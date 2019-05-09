@@ -1,0 +1,112 @@
+	<style>
+    .error{
+        background-color:white !important;
+    }
+    .yellow{
+        background-color:#ffff00
+    }
+     .green{
+        background-color:#00ff40
+    }
+      .red{
+        background-color:#FF0000
+    }
+    .k-grid  .k-grid-header  .k-header  .k-link {
+     height: auto;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     white-space: normal;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     text-align: center;
+    }
+/*     .k-header .k-link{
+    text-align: center;
+     }*/
+</style>
+
+	<div class="panel panel-default container_12">
+		<div class="panel-heading" align="center" c-translate>Master Jenis Linen</div>
+		<div class="panel-body">
+			<div class="grid_12" style="margin-top: 5px" ng-hide="SembunyikanKode">
+				<div class="grid_3"></div>
+				<div class="grid_2" style="margin-top: 10px">
+					<label c-label item="item" c-label-text="kodeJenisLinen"></label>
+				</div>
+				<div class="grid_3">
+					<input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.kodeJenisLinen" disabled="enableKodeJenisLinen"/>
+				</div>
+			</div>
+			<div class="grid_12" style="margin-top: 10px">
+				<div class="grid_3"></div>
+				<div class="grid_2" style="margin-top: 10px">
+					<label c-label item="item" c-label-text="kodeEksternal"></label>
+				</div>
+				<!-- filter="'char'" -->
+				<div class="grid_3">
+					<input c-text-box type="input"  class="k-textbox" ng-model="item.kodeEksternal" />
+				</div>
+			</div>
+			<!-- filter="'string'" -->
+			<div class="grid_12" style="margin-top: 10px">
+				<div class="grid_3"></div>
+				<div class="grid_2" style="margin-top: 10px">
+					<label c-label item="item" c-label-text="namaEksternal"></label>
+				</div>
+				<div class="grid_3">
+					<input c-text-box type="input"  class="k-textbox" ng-model="item.namaEksternal" />
+				</div>
+			</div>
+			<div class="grid_12" style="margin-top: 5px">
+				<div class="grid_3"></div>
+				<div class="grid_2" style="margin-top: 10px">
+					<label c-label item="item" c-label-text="jenisLinen"></label>
+				</div>
+				<!-- filter="'string'" -->
+				<div class="grid_3">
+					<input c-text-box type="input" class="k-textbox" ng-model="item.jenisLinen" />
+				</div>
+			</div>
+<!-- 			<div class="grid_12" style="margin-top: 5px">
+					<div class="grid_3"></div>
+					<div class="grid_2" style="margin-top: 5px">
+						<label c-label item="item" c-label-text="statusEnabled"></label>
+					</div>
+					<div class="grid_3" style="margin-top: 5px">
+						<input type="checkbox" class="k-checkbox" name="dataAktif" id="dataAktif" ng-click="checkbox()">
+						<label class="k-checkbox-label" c-label item="item" c-label-text="dataAktif" for="dataAktif"></label>
+					</div>
+				</div> -->
+				 <!-- style="margin-top: 20px" -->
+			<div class="grid_12">
+			<div class="grid_3"></div>
+				<div class="grid_2">
+					<button class="c-button success" ng-click="Save()">Simpan</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button success" ng-click="baru()">Baru</button>
+				</div>
+<!-- 				<div class="grid_2">
+					<button class="c-button cancel" ng-click="Batal()">Reset</button>
+				</div> -->
+<!-- 				<div class="grid_2">
+					<button class="c-button cancel" ng-click="Delete()">Hapus</button>
+				</div> -->
+				<div class="grid_2">
+					<button class="c-button cancel" ng-click="tutup()">Tutup</button>
+				</div>
+				<div class="grid_2"></div>
+			</div>
+			<div class="grid_12" style="margin-top: 30px">
+				<div class="grid_1"></div>
+				<div class="grid_10">
+					<div kendo-grid k-on-change="SelectJenisLinen(data)" options="mainGridOptions" k-data-source="dataSourceJenisLinen" k-selectable="'row'" k-columns="columndataJenisLinen">
+					</div>
+				</div>
+				<div class="grid_1"></div>
+			</div>
+		</div>
+	</div>
+</div>

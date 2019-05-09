@@ -1,0 +1,78 @@
+<c-panel item="item" header="'Master Biaya Diklat'">
+<div class="grid_6">
+	<div class="grid_4">
+		<label c-label item="item" style="margin-top: 10px">Komponen</label>
+	</div>
+	<div class="grid_8">
+		<input style="width: 100%;" kendo-combo-box k-ng-model="item.komponen" k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKomponen" />
+	</div>
+	<div class="grid_4">
+		<label c-label item="item" style="margin-top: 10px">Kelas</label>
+	</div>
+	<div class="grid_8">
+		<input style="width: 100%;" kendo-combo-box k-ng-model="item.kelas" k-data-text-field="'namaKelas'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKelas" />
+	</div>
+	<div class="grid_4">
+		<label c-label item="item" style="margin-top: 10px">Asal</label>
+	</div>
+	<div class="grid_8">
+		<input style="width: 100%;" kendo-combo-box k-ng-model="item.asal" k-data-text-field="'asalProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAsal" />
+	</div>
+	<div class="grid_4">
+		<label c-label item="item" style="margin-top: 10px">Jenis Tarif</label>
+	</div>
+	<div class="grid_8">
+		<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisTarif" k-data-text-field="'jenisTarif'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisTarif" />
+	</div>
+</div>
+<div class="grid_6">
+	<div class="grid_4">
+		<label c-label item="item" style="margin-top: 10px">Tanggal Berlaku</label>
+	</div>
+	<div class="grid_8">
+		<div class="grid_5">
+			<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalAwal" k-format="'yyyy-MM-dd'"/>
+		</div>
+		<div class="grid_2" style="text-align: center">
+			<label c-label item="item" style="margin-top: 10px">s/d</label>
+		</div>
+		<div class="grid_5">
+			<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalAkhir" k-format="'yyyy-MM-dd'"/>
+		</div>
+	</div>
+	<div class="grid_4">
+		<label c-label item="item" style="margin-top: 10px">Harga Satuan</label>
+	</div>
+	<div class="grid_8">
+		<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.hargaSatuan" ng-keyup="hitungDiskon()"/>
+	</div>
+	<div class="grid_4">
+		<label c-label item="item" style="margin-top: 10px">% Diskon</label>
+	</div>
+	<div class="grid_8">
+		<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.diskon" ng-keyup="hitungDiskon()"/>
+	</div>
+	<div class="grid_4">
+		<label c-label item="item" style="margin-top: 10px">Harga Diskon</label>
+	</div>
+	<div class="grid_8">
+		<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.hargaDiskon" disabled/>
+	</div>
+</div>
+<div class="grid_12">
+	<div class="grid_6"></div>
+	<div class="grid_6">
+		<div class="grid_4">
+		</div>
+		<div class="grid_4">
+			<button class="c-button" ng-click="simpan()">Simpan</button>
+		</div>
+		<div class="grid_4">
+			<button class="c-button" ng-click="batal()">Batal</button>
+		</div>
+	</div>
+</div>
+<div class="grid_12">
+	<kendo-grid options="mainGridOptions" k-data-source="dataGrid"></kendo-grid>
+</div>
+</c-panel>

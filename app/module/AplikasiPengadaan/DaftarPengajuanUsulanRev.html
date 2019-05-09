@@ -1,0 +1,121 @@
+<style type="text/css">
+    .style-center {
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .style-right {
+        display: inline-block;
+        text-align: right;
+        width: 100%;
+    }
+    
+    .style-left {
+        display: inline-block;
+        text-align: left;
+        width: 100%;
+    }
+    .k-grid .k-grid-header .k-header .k-link {
+        height: auto;
+    }
+
+    .k-grid .k-grid-header .k-header  {
+        white-space: normal;
+    }
+    .k-grid .k-grid-header .k-header  {
+        text-align: center;
+    }
+</style>
+<div ng-show="dataVOloaded">
+	<div class="panel panel-default container_12">
+		<div class="panel-heading" c-translate>Daftar Pengajuan Usulan</div>
+		<div class="panel-body">
+			<fieldset style="min-height:25px !important" align="left">
+            	<legend><h2>Pencarian</h2></legend>
+	           	<div class="grid_2">
+	                <div class="grid_12">
+	                    <label c-label class="label-aja" item="item" c-label-text="Kode Barang"></label>
+	                </div>
+	                <div class="grid_12">
+	                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaBarang" k-data-text-field="'id'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listNamaBarang" />
+	                </div>
+	            </div>
+	            <div class="grid_2">
+	                <div class="grid_12">
+	                    <label c-label class="label-aja" item="item" c-label-text="namaBarang"></label>
+	                </div>
+	                <div class="grid_12">
+	                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaBarang" k-data-text-field="'namaproduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listNamaBarang" />
+	                </div>
+	            </div>
+	            <div class="grid_2">
+                    <div class="grid_12">
+                        <label c-label item="item" >No. Usulan</label>
+                    </div>
+
+                    <div class="grid_12">
+                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nousulan" />
+                    </div>
+                </div>
+	            <div class="grid_4">
+	                <div class="grid_12">
+	                    <label c-label item="item" c-label-text="Periode Tanggal"></label>
+	                </div>
+	                <div class="grid_12">
+	                    <!-- AwalPeriode -->
+	                    <div class="grid_6 padDatePicker">
+	                        <div class="grid_12">
+	                            <input style="width: 100%" k-ng-model="item.tglAwal"  kendo-datetimepicker k-max="now" placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" />
+	                        </div>
+	                    </div>
+
+	                    <!-- AkhirPeriode -->
+	                    <div class="grid_6 padDatePicker">
+	                        <div class="grid_12">
+	                            <input style="width: 100%" k-ng-model="item.tglAkhir"  kendo-datetimepicker  placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" />
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="grid_2 k-edit-buttons  k-state-default " style="margin-top:23px"    >       
+	                <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="SearchData()"  style="width:100px"><span class="k-sprite k-icon k-i-search"></span>Cari </button>
+	                <button class="k-button  k-button-icontext" ng-click="ClearData()"   style="width:100px" ><span class="k-sprite k-icon k-delete"></span>Clear</button>
+	            </div>      
+	        </fieldset>
+		</div>
+		<div class="grid_12" style="margin-top: 10px;">                    
+	        <div class="grid_12 borderBox">
+	            <div id="kGrid" 
+	            kendo-grid k-data-source="dataGrid" 
+	            k-selectable="'row'" 
+	            k-columns="columnGrid" 
+	            k-pageable="'true'" 
+	            k-sortable="'true'" 
+	            k-ng-model="dataSelected">
+	                <div k-detail-template>
+	                    <kendo-tabstrip>
+	                        <div>
+	                            <div id="kGridDetail" kendo-grid k-options="data2(dataItem)" 
+	                                k-sortable="'true'" 
+	                                k-selectable="'row'" 
+	                                k-ng-model="dataSelected2"
+	                                ng-click="klikDetail(dataSelected2)">
+	                            </div>
+	                        </div>
+	                    </kendo-tabstrip>
+	                </div>
+	            </div>
+	        </div>
+        </div>
+        <div class="grid_12">
+        	<div class="grid_8"></div>
+		    <div class="grid_2">
+		      	<button kendo-button ng-click="lihatDetail()" class="k-button k-primary" style="margin-top:6px;width:100%;">Lihat Detail</button>
+			</div>
+		    <div class="grid_2">
+		      	<button kendo-button ng-click="doTheBack()" class="k-button k-primary" style="margin-top:6px;width:100%;">Kembali</button>
+		    </div>
+        </div>
+	</div>
+</div>

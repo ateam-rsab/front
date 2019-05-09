@@ -1,0 +1,200 @@
+<div ng-controller="IkiRemunerasiCtrl">
+
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'IKI dan Remunerasi'" disabled>
+            <div class="grid_6">
+                <div class="panel panel-default container_12">
+                    <!--		<div class="panel-heading" c-translate>Periode</div> -->
+                    <!--		<div class="panel-body"> -->
+
+
+
+                    <div class="grid_12">
+                 <!--  Bulan -->
+
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label c-label item="item" c-label-text="Bulan"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input kendo-date-picker k-options="yearSelected" k-ng-model="item.bulan" k-max="now" k-format="'MMMM yyyy'" style="width: 100%" />
+                    </div>
+
+                        <div class="grid_4" style="margin: 10px 0 0 0;">
+                            <label c-label item="item" c-label-text="Nama Pegawai"></label>
+                        </div>
+                        <div class="grid_8">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.dataPegawai" k-data-text-field="'namaLengkap'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listDataPegawai" />
+                        </div>
+
+                    <div class="grid_4" style="margin: 10px 0 0 0;"></div>
+                    <div class="grid_8">
+                         <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="cari()">
+                            <span class="title">Cari</span>
+                        </button>
+                    </div>
+
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin: 10px 0 0 0;">
+                            <label c-label item="item" c-label-text="jabatan"></label>
+                        </div>
+                        <div class="grid_8">
+                            <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.jabatan" ng-readonly="true" />
+                        </div>
+
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin: 10px 0 0 0;">
+                            <label c-label item="item" c-label-text="Grade"></label>
+                        </div>
+                        <div class="grid_8">
+                            <input c-text-box type="input" kendo-text-box  class="k-textbox" ng-model="item.grade" ng-readonly="true" />
+                        </div>
+
+                    </div>
+
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin: 10px 0 0 0;">
+                            <label c-label item="item" c-label-text="Nilai Jabatan"></label>
+                        </div>
+                        <div class="grid_8">
+                            <input c-text-box type="input" kendo-numeric-text-box style="text-align: right" filter="'numeric'" class="k-textbox" ng-model="item.nilaiJabatan" ng-readonly="true" />
+                        </div>
+
+                    </div>
+                
+                    <!--  Gaji -->
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin: 10px 0 0 0;">
+                            <label c-label item="item" c-label-text="Gaji"></label>
+                        </div>
+                        <div class="grid_8">
+                            <input c-text-box type="input" kendo-numeric-text-box style="text-align: right" filter="'numeric'" class="k-textbox" ng-model="item.gaji" ng-readonly="true" />
+                        </div>
+                        <!--  iNDEKS kEHADIRAN -->
+                        <div class="grid_4" style="margin: 10px 0 0 0;">
+                            <label c-label item="item"  c-label-text="Indeks Kehadiran"></label>
+                        </div>
+                        <div class="grid_8">
+                            <input c-text-box type="input" kendo-numeric-text-box style="text-align: right" filter="'numeric'" class="k-textbox" ng-model="item.indeksKehadiran" ng-readonly="true" />
+                        </div>
+                        <!--  IKI -->
+                        <div class="grid_4" style="margin: 10px 0 0 0;">
+                            <label c-label item="item" c-label-text="IKI"></label>
+                        </div>
+                        <div class="grid_8">
+                            <input c-text-box type="input" kendo-numeric-text-box filter="'numeric'" style="text-align: right" class="k-textbox" ng-model="item.iki" ng-readonly="true" />
+                        </div>
+                    </div>
+
+
+                    <!--  Tanggal -->
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin: 10px 0 0 0;">
+                            <label c-label item="item" c-label-text="Tanggal Proses"></label>
+                        </div>
+                        <div class="grid_8">
+                            <input kendo-date-picker k-ng-model="item.tanggalProses" k-max="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--		   </div>  -->
+            <div class="grid_6">
+
+
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label>PIR</label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" kendo-numeric-text-box filter="'numeric'" style="text-align: right" class="k-textbox" ng-model="item.pir" ng-readonly="true" />
+                    </div>
+
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label>PIR P1</label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" kendo-numeric-text-box filter="'numeric'" style="text-align: right" class="k-textbox" ng-model="item.pirP1" ng-readonly="true" />
+                    </div>
+
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label>PIR P2</label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" kendo-numeric-text-box filter="'numeric'" style="text-align: right" class="k-textbox" ng-model="item.pirP2" ng-readonly="true" />
+                    </div>
+
+                </div>
+
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label>IKU Instalasi</label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" kendo-numeric-text-box filter="'numeric'" style="text-align: right" class="k-textbox" ng-model="item.ikuInstalasi" ng-readonly="true" />
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="grid_12">
+
+
+            </div>
+
+            <div class="grid_6">
+
+            </div>
+            <div class="grid_6">
+
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label>P1 : Rp</label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" kendo-numeric-text-box filter="'numeric'" style="text-align: right" class="k-textbox" ng-model="item.p1" ng-readonly="true" />
+                    </div>
+
+                </div>
+
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label>P2 : Rp</label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" kendo-numeric-text-box filter="'numeric'" style="text-align: right" align="right" class="k-textbox" ng-model="item.p2" ng-readonly="true" />
+                    </div>
+
+                </div>
+
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label>Remunerasi : Rp</label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" kendo-numeric-text-box filter="'numeric'"  style="text-align: right" class="k-textbox" ng-model="item.remunerasi" ng-readonly="true" />
+                    </div>
+
+                </div>
+            </div>
+
+        </c-panel>`
+        <div class="grid_12">
+            <div class="grid_2">
+                <button class="c-button" ng-show="!isLoading"  is-validate ng-click="Cetak()">
+                    <span class="title">Cetak</span>
+                </button>
+            </div>
+            <div class="grid_10">
+                <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+
+            </div>
+        </div>
+    </div>
+</div>

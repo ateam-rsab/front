@@ -1,0 +1,13 @@
+{
+	"model":{
+	    "TextInput" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "TextInput",
+			"messagesRequired" : "TextInput Harus Diisi",
+			"caption" : "Label TextInput"
+		}
+  ]
+}

@@ -1,0 +1,62 @@
+<div ng-controller="ObservasiIGDCtrl">
+    <div ng-show="dataVOloaded">
+        <c-panel item = "item" header="'ObservasiIGD'">
+        	<div class="grid_12" style="margin-bottom: 10px;">
+        		<div class="grid_1">
+        			<label c-label item="item" c-label-text="namaObat"></label>     
+        		</div>
+        		<div class="grid_2">
+        			<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaObat" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listNamaObat" />    
+        		</div>
+        		<div class="grid_2">
+        			<label c-label item="item" c-label-text="caraPemberian"></label>       
+        		</div>
+        		<div class="grid_2">
+        			<input style="width: 100%;" kendo-combo-box k-ng-model="item.caraPemberian" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listCaraPemberian" />    
+        		</div>
+        		<div class="grid_1">
+        			<label c-label item="item" c-label-text="dosis"></label>  
+        		</div>
+        		<div class="grid_1"> 
+        			<input c-text-box type="number" class="k-textbox" ng-model="item.dosis" />  	
+        		</div>
+        		<div class="grid_1">
+        			<label c-label item="item" c-label-text="frekuensi"></label> 
+        		</div>
+        		<div class="grid_1"> 
+        			<input c-text-box type="number" class="k-textbox" ng-model="item.frekuensi" />  	
+        		</div>
+        	</div>
+
+        	<div class="clear"></div>
+
+        	<div class="grid_12" >
+	            	<div class="grid_8">
+	            	&nbsp;
+	            	</div>
+	            	<div class="grid_2" style="margin: 5px">
+	                    <c-button ng-click="clearField()" style="width:100% !important">
+	                        <span style="font-size:10!important">Batal</span>
+	                    </c-button>
+                	</div>
+        			<div class="grid_2" style="margin: 5px">
+	                    <c-button ng-click="addDataObservasi()" style="width:100% !important">
+	                        <span style="font-size:10!important">Tambah</span>
+	                    </c-button>
+                	</div>
+	        </div>
+
+	        <div class="clear"></div>
+
+	        <div class="grid_12" style="margin-bottom: 30px;">
+               		<div kendo-grid k-data-source="dataObservasiIGD" k-selectable="'row'" k-columns="columnObservasiIGD">
+                	</div>
+            </div>
+            <div class="clear"></div>	
+            	<div class="grid_12" style="margin-bottom:50px">                        	
+                    <div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+            </div>
+
+        </c-panel>
+    </div>
+</div>

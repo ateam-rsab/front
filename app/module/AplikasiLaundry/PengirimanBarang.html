@@ -1,0 +1,86 @@
+
+<div ng-controller="PengirimanBarangCtrl">
+	<div class="panel panel-default container_12">
+	<div class="panel-heading" c-translate>Pengiriman Barang Laundry</div>
+		<div class="panel-body">
+			<div class="grid_12" style="margin-top: 20px">
+				<div class="grid_1"></div>
+				<div class="grid_10">
+					<div class="grid_2" style="margin-top: 10px">
+						<div class="grid_10">
+							<label c-label item="item" c-label-text="tanggal"></label>
+						</div>
+						<div class="grid_2" align="right">
+							<label c-label item="item" c-label-text=":"></label>
+						</div>
+					</div>
+					<div class="grid_3">
+						<input style="width: 100%" kendo-date-picker value="now" k-max="now" k-ng-model="item.tanggal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+					</div>
+					<div class="grid_1"></div>
+					<div class="grid_3" style="margin-top: 10px">
+						<div class="grid_10">
+							<label c-label item="item" c-label-text="tanggalPengiriman"></label>
+						</div>
+						<div class="grid_2" align="right">
+							<label c-label item="item" c-label-text=":"></label>
+						</div>
+					</div>
+					<div class="grid_3">
+						<input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tanggalPengiriman" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+					</div>
+				</div>
+			</div>
+			<div class="grid_12" style="margin-top: 20px">
+				<div class="grid_1"></div>
+				<div class="grid_10">
+					<div class="grid_2" style="margin-top: 10px">
+						<div class="grid_10">
+							<label c-label item="item" c-label-text="ruangan"></label>
+						</div>
+						<div class="grid_2" align="right">
+							<label c-label item="item" c-label-text=":"></label>
+						</div>
+					</div>
+					<div class="grid_3">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listruangan" />
+					</div>
+					<div class="grid_1"></div>
+					<div class="grid_3" style="margin-top: 10px">
+						<div class="grid_10">
+							<label c-label item="item" c-label-text="linenKotor"></label>
+						</div>
+						<div class="grid_2" align="right">
+							<label c-label item="item" c-label-text=":"></label>
+						</div>
+					</div>
+					<div class="grid_2">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.linenKotor" disabled="true" />
+					</div>
+					<div class="grid_1" style="margin-top:10px">
+						<label c-label item="item" c-label-text="kg"></label>
+					</div>
+				</div>
+			</div>
+			<div class="grid_12" style="margin-top: 10px">
+				<div class="panel panel-default container_12">
+					<div class="panel-heading" c-translate>Stok Linen Ruangan</div>
+					<div class="panel-body">
+						<div class="grid_12" style="margin-top: 10px">
+							<div kendo-grid k-data-source="dataPengirimanBarang" k-selectable="'row'" k-columns="columndataPengirimanBarang"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="grid_12" style="margin-top: 20px">
+				<div class="grid_8"></div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="()">Cetak</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="()">Kirim</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

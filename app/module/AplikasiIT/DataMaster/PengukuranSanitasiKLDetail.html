@@ -1,0 +1,137 @@
+<div ng-controller="PengukuranSanitasiKLDetailCtrl">
+<div ng-show="dataVOloaded">
+<c-panel item="item" header="'Pengukuran Sanitasi KLDetail'" disabled>
+
+<!-- sanitasiKesehatanLingkungan -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="sanitasiKesehatanLingkungan"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.sanitasiKesehatanLingkungan" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listsanitasiKesehatanLingkungan" />
+</div>
+</div>
+
+<!-- sanitasiKesehatanLingkunganId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="sanitasiKesehatanLingkunganId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.sanitasiKesehatanLingkunganId" />
+</div>
+</div>
+
+<!-- parameterCheckSanitasiDetail -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="parameterCheckSanitasiDetail"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.parameterCheckSanitasiDetail" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listparameterCheckSanitasiDetail" />
+</div>
+</div>
+
+<!-- parameterCheckSanitasiDetailId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="parameterCheckSanitasiDetailId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.parameterCheckSanitasiDetailId" />
+</div>
+</div>
+
+<!-- hasilPengukuran -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="hasilPengukuran"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.hasilPengukuran" />
+</div>
+</div>
+
+<!-- keterangan -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="keterangan"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.keterangan" />
+</div>
+</div>
+
+<!-- reportDisplay -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="reportDisplay"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+</div>
+</div>
+
+<!-- kodeExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kodeExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+</div>
+</div>
+
+<!-- namaExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="namaExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+</div>
+</div>
+
+<!-- PengukuranSanitasiKLDetail -->
+<div class="grid_12">
+<div class="grid_12 headerBox">
+<p>PengukuranSanitasiKLDetail</p>
+</div>
+<div class="clear"></div>
+
+<!-- grid table -->
+<div class="grid_12 borderBox">
+<div kendo-grid k-data-source="dataPengukuranSanitasiKLDetail" k-selectable="'row'" k-columns="columnPengukuranSanitasiKLDetail">
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+
+
+</c-panel>
+
+<div class="grid_12" style="margin-top:30px">
+<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
+</div>
+</div>
+</div>

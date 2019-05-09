@@ -1,0 +1,83 @@
+{
+	"model":{
+	    "NoRekamMedis" : "",
+	    "NoPendaftaran" : "",
+		"NamaPasien": "",
+		"JenisKelamin": "",
+		"RuanganPerawatan": "",
+		"TanggalOrder" : "",
+		"NoResep" : "",
+		"TanggalResep": "",
+		"Dokter":"",
+		"RuanganTujuan":"",
+		"ResepObat":""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "NoRekamMedis",
+			"messagesRequired" : "NoRekamMedis Harus Diisi",
+			"caption" : "No. Rekam medis"
+		},
+		{
+			"isNull" : "true",
+			"name" : "NoPendaftaran",
+			"messagesRequired" : "NoPendaftaran Harus Diisi",
+			"caption" : "No. Pendaftaran"
+		},
+		{
+			"isNull" : "true",
+			"name" : "NamaPasien",
+			"messagesRequired" : "NamaPasien Harus Diisi",
+			"caption" : "Nama Pasien"
+		},
+		{
+			"isNull" : "true",
+			"name" : "JenisKelamin",
+			"messagesRequired" : "JenisKelamin Harus Diisi",
+			"caption" : "Jenis kelamin"
+		},
+		{
+			"isNull" : "true",
+			"name" : "RuanganPerawatan",
+			"messagesRequired" : "",
+			"caption" : "Ruangan Perawatan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "TanggalOrder",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Order"
+		},
+		{
+			"isNull" : "true",
+			"name" : "NoResep",
+			"messagesRequired" : "",
+			"caption" : "No. Resep"
+		},
+		{
+			"isNull" : "true",
+			"name" : "TanggalResep",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Resep"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Dokter",
+			"messagesRequired" : "",
+			"caption" : "Dokter penulis resep / Dokter order"
+		},
+		{
+			"isNull" : "true",
+			"name" : "RuanganTujuan",
+			"messagesRequired" : "",
+			"caption" : "Ruangan Tujuan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "ResepObat",
+			"messagesRequired" : "",
+			"caption" : "ResepObat"
+		}
+  ]
+}

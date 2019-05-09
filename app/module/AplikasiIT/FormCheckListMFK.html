@@ -1,0 +1,60 @@
+<div ng-controller="FormCheckListMFKCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Form Check List Manajemen Fasilitas dan Keamanan'">
+			<div ng-cloak>
+				<md-content>
+					<md-tabs md-dynamic-height md-border-bottom>
+						<md-tab label="fire & Sefety">
+							<md-content class="md-padding">
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="alarmGridOptions" k-selectable="'row'"></div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="aparmGridOptions" k-selectable="'row'"></div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="insidenGridOptions" k-selectable="'row'"></div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="keselamatanKerjaGridOptions" k-selectable="'row'"></div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="bebasAsapGridOptions" k-selectable="'row'"></div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="pekerjaanGridOptions" k-selectable="'row'"></div>
+								</div>
+							</md-content>
+						</md-tab>
+						<md-tab label="erp">
+							<md-content class="md-padding">
+								<h1 class="md-display-2">ERP</h1>
+							</md-content>
+						</md-tab>
+						<md-tab label="security">
+							<md-content class="md-padding">
+								<h1 class="md-display-2">Security</h1>
+							</md-content>
+						</md-tab>
+						<md-tab label="medical eq">
+							<md-content class="md-padding">
+							<h1 class="md-display-2">Medical Eq</h1>
+							</md-content>
+						</md-tab>
+						<md-tab label="hazmat">
+							<md-content class="md-padding">
+								<h1 class="md-display-2">HazMat</h1>
+							</md-content>
+						</md-tab>
+						<md-tab label="utility">
+							<md-content class="md-padding">
+								<h1 class="md-display-2">Utility</h1>
+							</md-content>
+						</md-tab>
+					</md-tabs>
+				</md-content>
+			</div>
+		</c-panel>
+	</div>
+</div>

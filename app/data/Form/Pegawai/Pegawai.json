@@ -1,0 +1,152 @@
+{
+	"model":{
+		"NoUrut" : "",
+		"NamaPerusahaan" : "",
+		"Jabatan" :"",
+	    "Tgl_Mulai" : "",
+	    "Tgl_Akhir" : "",
+	    "GajiPokok" : "",
+	    "NoSurat" : "",
+	    "Tgl_SK" : "",
+	    "Ttd_SK":"",
+	    "PimpinanPerusahaan":"",
+	    "AlamatPerusahaan" :"",
+	    "UraianPekerjaan" :"",
+	    "NoUrut_grid" : "",
+		"NamaPerusahaan_gird" : "",
+		"Jabatan_grid" :"",
+	    "Tgl_Mulai_gird" : "",
+	    "Tgl_Akhir_grid" : "",
+	    "GajiPokok_grid" : "",
+	    "NoSurat_grid" : "",
+	    "Tgl_SK_grid" : "",
+	    "AlamatPerusahaan_grid" :"",
+	    "UraianPekerjaan_grid" :""
+
+
+	   
+	},
+    "attributes" : [ 
+    	{
+			"isNull" : "true",
+			"name" : "NoUrut",
+			"messagesRequired" : "",
+			"caption" : "No Urut"
+		},{
+			"isNull" : "true",
+			"name" : "NamaPerusahaan",
+			"messagesRequired" : "",
+			"caption" : "Nama Perusahaan"
+		},{
+			"isNull" : "true",
+			"name" : "Jabatan",
+			"messagesRequired" : "",
+			"caption" : "Jabatan"
+		},{
+			"isNull" : "true",
+			"name" : "Tgl_Mulai",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Mulai"
+		},{
+			"isNull" : "true",
+			"name" : "Tgl_Akhir",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Akhir"
+		},{
+			"isNull" : "true",
+			"name" : "GajiPokok",
+			"messagesRequired" : "",
+			"caption" : "Gaji Pokok"
+		},{
+			"isNull" : "true",
+			"name" : "NoSurat",
+			"messagesRequired" : "",
+			"caption" : "No Surat "
+		},{
+			"isNull" : "true",
+			"name" : "Tgl_SK",
+			"messagesRequired" : "",
+			"caption" : "Tanggal SK "
+		},{
+			"isNull" : "true",
+			"name" : "Ttd_SK",
+			"messagesRequired" : "",
+			"caption" : "Tanda Tangan SK "
+		},{
+			"isNull" : "true",
+			"name" : "PimpinanPerusahaan",
+			"messagesRequired" : "",
+			"caption" : "Pimpinan Perusahaan "
+		},{
+			"isNull" : "true",
+			"name" : "AlamatPerusahaan",
+			"messagesRequired" : "",
+			"caption" : "Alamat Perusahaan"
+		},{
+			"isNull" : "true",
+			"name" : "AlamatPerusahaan",
+			"messagesRequired" : "",
+			"caption" : "Uraian Pekerjaan"
+
+
+
+		},{
+
+			"isNull" : "true",
+			"name" : "NoUrut_grid",
+			"messagesRequired" : "",
+			"caption" : "No Urut"
+
+		},{
+			"isNull" : "true",
+			"name" : "NamaPerusahaan_grid",
+			"messagesRequired" : "",
+			"caption" : "Nama Perusahaan"
+		},{
+			"isNull" : "true",
+			"name" : "Jabatan_grid",
+			"messagesRequired" : "",
+			"caption" : "Jabatan"
+		},{
+			"isNull" : "true",
+			"name" : "Tgl_Mulai_grid",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Mulai"
+		},{
+			"isNull" : "true",
+			"name" : "Tgl_Akhir_grid",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Akhir"
+		},{
+			"isNull" : "true",
+			"name" : "GajiPokok_grid",
+			"messagesRequired" : "",
+			"caption" : "Gaji Pokok"
+		},{
+			"isNull" : "true",
+			"name" : "NoSurat_grid",
+			"messagesRequired" : "",
+			"caption" : "No Surat "
+		},{
+			"isNull" : "true",
+			"name" : "Tgl_SK_grid",
+			"messagesRequired" : "",
+			"caption" : "Tanggal SK "
+		},{
+			"isNull" : "true",
+			"name" : "AlamatPerusahaan_grid",
+			"messagesRequired" : "",
+			"caption" : "Alamat Perusahaan"
+		},{
+			"isNull" : "true",
+			"name" : "UraianPekerjaan_grid",
+			"messagesRequired" : "",
+			"caption" : "Uraian Pekerjaan"
+		
+
+
+
+	}	
+
+	]
+}

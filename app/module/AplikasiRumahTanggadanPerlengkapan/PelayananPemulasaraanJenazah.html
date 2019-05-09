@@ -1,0 +1,71 @@
+<div ng-controller="PelayananPemulasaraanJenazahCtrl">
+	<div class=' grid_12 panel panel-default'>
+		<c-panel item="item" header="'Pelayanan Pemulasaraan Jenazah'">
+			<div class='panel-body animated'>
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label c-label-text="noRekamMedis"></label>
+						<input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.noCm" />
+
+					</div>
+					<div class="grid_2">
+						<label c-label c-label-text="namaPasien"></label>
+						<input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.namaPasien" />
+
+					</div>
+					<div class="grid_2">
+						<label c-label c-label-text="umur"></label>
+						<input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.umur" />
+
+					</div>
+					<div class="grid_2">
+						<label c-label c-label-text="alamatPasien"></label>
+						<input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.alamat" />
+					</div>
+					<div class="grid_2">
+						<label c-label c-label-text="jenisKelamin"></label>
+						<input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.jenisKelamin" />
+					</div>
+					<div class="grid_2">
+						<label c-label c-label-text="statusPerkawinan"></label>
+						<input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.statusPerkawinan" />
+					</div>
+				</div>
+
+			
+		
+		
+				<div class="grid_12" style="margin-top:50px">
+					<div class="grid_8">
+						<label c-label c-label-text="namaPelayanan"></label>
+						<input style="width: 100%;" kendo-combo-box k-options="customOptions" k-ng-model="item.pelayanan" k-data-text-field="'namaProduk'" k-data-value-field="'idProduk'"
+							k-filter="'contains'" k-auto-bind="false" k-data-source="listPelayanan" />
+					</div>
+                    <!--<div class="grid_2" style="margin-top: 20px; font-size: 24px;">
+						<button class="c-button" ng-show="!isLoading" item="item" ng-click="hapus()">
+                        <span class="title">Hapus</span></button>
+					</div>-->
+					<div class="grid_2" style="margin-top: 20px; font-size: 24px;">
+						<button class="c-button" ng-show="!isLoading" item="item" ng-click="tambahPelayanan()">
+                         <span class="title">Tambah</span></button>
+					</div>
+				</div>
+				<div class="grid_12" style="margin-top:30px">
+					<div kendo-grid  k-options="pelayananOptions" k-ng-model="current" k-selectable="'row'" 
+							style="margin-bottom: 10px"></div>
+					<div class="grid_8">
+						
+					</div>					
+				</div>
+				<!--<div class="grid_12" style="margin-top:50px">
+					<div kendo-grid k-data-source="listDataPelayananPemulasaraan" k-ng-model="selectedData" k-selectable="'row'" k-columns="columnDataPelayananPemulasaraan"
+						style="margin-bottom: 10px"></div>
+				</div>-->
+			
+		<div class="grid_12" style="margin-top: 70px">
+			<div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+		</div>
+		</div>
+		</c-panel>
+	</div>
+</div>

@@ -1,0 +1,42 @@
+
+	<div ng-show="dataVOloaded">
+        <div class="grid_12 headerBox">
+            <h1 style="color: white;"><b>Import Chart Of Account</b></h1>
+        </div>
+        <div class="clear"></div>
+
+        <br/>
+
+		<div class="grid_12">
+
+        <div class="grid_12">
+            <div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+                <p></p>
+            </div>
+            <div class="grid_12 borderBox containerBorderBox">
+                <div class="grid_12">
+                    <input id="fileCOA"
+                           name="files"
+                           type="file"
+                           kendo-upload
+                           k-multiple= "false",
+                           k-select="onSelectFile"
+                           />
+                </div>
+                
+                <!-- Button Upload -->
+                <div class="grid_2">
+                  <div class="grid_12">
+                    <button class="btnTemplate1" ng-click="Upload()">Upload File </button>
+                  </div>
+                </div>
+                <div class="clear"></div>
+
+            </div>
+
+            
+        </div>
+
+		</div>
+
+	</div>

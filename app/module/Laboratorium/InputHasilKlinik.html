@@ -1,0 +1,29 @@
+ <style>
+    .red{
+        color:red;
+    }
+    .green {
+        color:green;
+    }
+       .blue {
+        color:blue;
+    }
+    </style>
+
+<div ng-controller="LaboratoriumPemeriksaanCtrl">
+   
+    <div class="grid_12">
+        <div ng-include='"../app/module/Shared/headerPasienPenunjang" '></div>
+        <div class="grid_12">
+                    <div data-kendo-grid="grid" k-groupable="'true'"  k-ng-model="item" k-data-source="resultGrids" k-selectable="'row'" k-sortable="'true'" k-columns="ColumnResult">
+                    </div>
+        </div>
+
+    </div>
+
+   <!--  <div class="grid_11">
+        <label c-label item="item" c-label-text="Keterangan"></label>
+        <textarea ng-model="item.keteranganLainnya" style="width: 100%; height: 80px;"></textarea>
+    </div> 
+    <div ng-include='"../app/module/Shared/TemplateButtonSimpanNotFixed"'></div>-->
+</div>

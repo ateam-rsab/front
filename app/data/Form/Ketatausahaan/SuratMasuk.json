@@ -1,0 +1,146 @@
+{
+	"model":{
+		"namaSurat" : "",
+		"TanggalSurat" : "",
+		"tipeSurat" : "",
+		"penerimaSurat" : "",
+	   	"ruanganPengirim" : "",
+	   	"ruanganPenerima" : "",
+		"kodeUnitPengolah" : "",
+		"nomorUrutSurat" : "",
+		"nomorSurat" : "",
+	   	"bulan" : "",
+	   	"tahun" : "",
+	   	"sifatSurat" : "",
+		"statusBerkas" : "",
+		"jenisSurat" : "",
+		"jenisArsip" : "",
+		"jangkaWaktu" : "",
+		"Perihal" : "",
+		"lampiranPerihal" : "",
+		"ruanganTujuan" : "",
+		"tujuanSurat" : ""
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "namaSurat",
+			"messagesRequired" : "",
+			"caption" : "Nama Surat"
+		},
+		{
+			"isNull" : "true",
+			"name" : "TanggalSurat",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Surat"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tipeSurat",
+			"messagesRequired" : "",
+			"caption" : "Tipe Surat"
+		},
+		{
+			"isNull" : "true",
+			"name" : "penerimaSurat",
+			"messagesRequired" : "",
+			"caption" : "Penerima Surat"
+		},
+		{
+			"isNull" : "true",
+			"name" : "ruanganPengirim",
+			"messagesRequired" : "",
+			"caption" : "Ruangan Pengirim"
+		},
+		{
+			"isNull" : "true",
+			"name" : "ruanganPenerima",
+			"messagesRequired" : "",
+			"caption" : "Ruangan Penerima"
+		},
+		{
+			"isNull" : "true",
+			"name" : "kodeUnitPengolah",
+			"messagesRequired" : "",
+			"caption" : "kode Unit Pengolah/ Pemrakarsa"
+		},
+		{
+			"isNull" : "true",
+			"name" : "nomorUrutSurat",
+			"messagesRequired" : "",
+			"caption" : "Nomor Urut Surat"
+		},
+		{
+			"isNull" : "true",
+			"name" : "nomorSurat",
+			"messagesRequired" : "",
+			"caption" : "Nomor Surat"
+		},
+		{
+			"isNull" : "true",
+			"name" : "bulan",
+			"messagesRequired" : "",
+			"caption" : "Bulan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tahun",
+			"messagesRequired" : "",
+			"caption" : "Tahun"
+		},
+		{
+			"isNull" : "true",
+			"name" : "sifatSurat",
+			"messagesRequired" : "",
+			"caption" : "Sifat Surat"
+		},
+		{
+			"isNull" : "true",
+			"name" : "statusBerkas",
+			"messagesRequired" : "",
+			"caption" : "Status Berkas"
+		},
+		{
+			"isNull" : "true",
+			"name" : "jenisSurat",
+			"messagesRequired" : "",
+			"caption" : "Jenis Surat"
+		},
+		{
+			"isNull" : "true",
+			"name" : "jenisArsip",
+			"messagesRequired" : "",
+			"caption" : "Jenis Arsip"
+		},
+		{
+			"isNull" : "true",
+			"name" : "jangkaWaktu",
+			"messagesRequired" : "",
+			"caption" : "Jangka Waktu"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Perihal",
+			"messagesRequired" : "",
+			"caption" : "Perihal"
+		},
+		{
+			"isNull" : "true",
+			"name" : "lampiranPerihal",
+			"messagesRequired" : "",
+			"caption" : "Lampiran Perihal"
+		},
+		{
+			"isNull" : "true",
+			"name" : "ruanganTujuan",
+			"messagesRequired" : "",
+			"caption" : "Ruangan Tujuan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tujuanSurat",
+			"messagesRequired" : "",
+			"caption" : "Tujuan Surat"
+		}
+	]
+}

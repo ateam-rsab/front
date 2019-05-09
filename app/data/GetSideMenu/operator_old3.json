@@ -1,0 +1,461 @@
+[{
+    "name": "Layanan Medik",
+    "children": [{
+        "name": "Daftar Antrian Pasien",
+        "link": "#/DaftarAntrianPasienOperatorRev"
+    },
+    {
+        "name": "Daftar Registrasi Pasien",
+        "link": "#/DaftarRegistrasiPasienOperator"
+    }, 
+    {
+         "name": "Daftar Pasien Yang Masih Dirawat",
+         "link": "#/DaftarPasienAktif"
+    },{
+        "name": "Pendaftaran Bayi",
+        "link": "#/RegistrasiPasienBaruBayi"
+    }, {
+        "name": "Pendaftaran Pasien Baru",
+        "link": "#/RegistrasiPasienBaru"
+    }, {
+        "name": "Pendaftaran Pasien Lama",
+        "link": "#/Registrasi/Pelayanan/-"
+    }, {
+        "name": "Pencarian Pasien",
+        "link": "#/PencarianPasien"
+    },{
+        "name": "Daftar Pasien Perjanjian",
+        "link": "#/DaftarPasienReservasiOnline"
+    },{
+        "name": "Daftar Antrian Pasien Baru",
+        "link": "#/Daftar/Baru"
+    },{
+        "name": "Daftar Antrian Pasien Gawat Darurat",
+        "link": "#/DaftarPasienEmergencyRev"
+    },{
+        "name": "Rubah Jenis Penjamin",
+        "link": "#/RubahJenisPenjamin"
+    },{
+        "name": "Daftar Pasien Gawat Darurat",
+        "link": "#/Daftar/GawatDarurat"
+    },{
+        "name": "Daftar Pasien Masuk Rawat Inap",
+        "link": "#/DaftarPasienMasukRawatInap"
+    },{
+        "name": "Daftar Pembatalan Pasien",
+        "link": "#/DaftarPembatalanPasien"
+    },{
+        "name": "Daftar Schedule Ruangan",
+        "link": "#/Schedule/Perjanjian"
+    }, {
+        "name": "Daftar Reconfirm BPJS",
+        "link": "#/Daftar/BPJS"
+    }, {
+        "name": "Monitoring Klaim BPJS",
+        "link": "#/MonitoringKlaim"
+    }, {
+        "name": "Dokumen RekamMedis",
+        "link": "#/DokumenRekammedis"
+    }, {
+        "name": "Kendali Dokumen Rekam Medis",
+        "link": "#/KendaliDokumenRekamMedisRev"
+    }, {
+        "name": "Riwayat Registrasi",
+        "link": "#/RiwayatRegistrasi"
+    }, {
+        "name": "Riwayat Registrasi2",
+        "link": "#/RiwayatRegistrasi2"
+    }, {
+        "name": "BPJS Tools",
+        "link": "#/BPJSTools"
+    }, {
+        "name": "Daftar Permintaan Label",
+        "link": "#/DaftarPermintaanLabel"
+    }
+]
+}, {
+    "name": "Registrasi Beta",
+    "children": [{
+        "name": "Pendaftaran Pasien Baru",
+        "link": "#/RegistrasiPasienBaruRev"
+    },{
+        "name": "Pendaftaran Pasien Lama",
+        "link": "#/RegistrasiPasienLamaRev"
+    },{
+        "name": "Pendaftaran Bayi",
+        "link": "#/VerifikasiBayiRev"
+    },{
+        "name": "BPJS Tools",
+        "link": "#/BPJSToolsRev"
+    }]
+},
+{
+    "name": "Layanan Penunjang",
+    "children": [{
+        "name": "Pendaftaran Pasien Baru",
+        "link": "#/RegistrasiPasienPenunjang"
+    }, {
+        "name": "Pendaftaran Pasien Lama",
+        "link": "#/RegistrasiPasienLamaPenunjang/-"
+    }]
+},
+{
+    "name": "Laporan",
+    "children": [{
+            "name": "Laporan Pasien Daftar",
+            "link": "#/LaporanPasienDaftar"
+        },{
+            "name": "Laporan Sensus",
+            "link": "#/LaporanSensus"
+        },{
+            "name": "Laporan Pasien Pulang",
+            "link": "#/LaporanPasienPulang"
+        },{
+            "name": "Laporan Sensus BPJS",
+            "link": "#/LaporanSensusBPJS"
+        },{
+            "name": "Laporan Pendapatan Poli",
+            "link": "#/LaporanPendapatanPoli"
+        }
+       
+    ]
+},{
+      "name": "Laporan Rekam Medis",
+      "children": [  
+             {
+                "name": "Map Laporan RL",
+                "link": "#/MapKelompokLaporanToProduk"
+             },   
+             {
+                 "name": "RL3 Pelayanan",
+                 "children": 
+                    [
+                        {
+                            "name": "RL3.1 Rawat Inap",
+                            "link": "#/FormulirRL_31"
+                        },
+                        {
+                            "name": "RL3.2 Rawat Darurat",
+                            "link": "#/FormulirRL_32"
+                        },
+                        {
+                            "name": "RL3.3 Gigi dan Mulut ",
+                            "link": "#/RL33GigiDanMulut"
+                        },
+                        {
+                            "name": "RL3.4 Kebidanan",
+                            "link": "#/RL34Kebidanan"
+                        },
+                        {
+                            "name": "RL3.5 Perinatologi",
+                            "link": "#/RL35Perinatologi"
+                        },
+                        {
+                            "name": "RL3.6 Pembedahan",
+                            "link": "#/RL36Pembedahan"
+                        },
+                        {
+                            "name": "RL3.7 Radiologi",
+                            "link": "#/RL37Radiologi"
+                        },
+						{
+                            "name": "RL3.8 Laboratorium",
+                            "link": "#/LaporanRL38"
+                        },
+                        {
+                            "name": "RL3.9 Rehabilitasi Medik",
+                            "link": "#/LaporanRL39"
+                        },
+                        {
+                            "name": "RL3.10 Pelayanan Khusus",
+                            "link": "#/LaporanRL3_10"
+                        },
+                        {
+                            "name": "RL3.11 Kesehatan Jiwa",
+                            "link": "#/LaporanRL3_11"
+                        },
+                        {
+                            "name": "RL3.12 Keluarga Berencana",
+                            "link": "#/LaporanRL3_12"
+                        },
+                        {
+                            "name": "RL3.13 Farmasi Rumah Sakit",
+                            "link": "#/LaporanRL3_13"
+                        },
+                        {
+                            "name": "RL3.14 Rujukan",
+                            "link": "#/LaporanRL3_14"
+                        },
+                        {
+                            "name": "RL3.15 Cara Bayar",
+                            "link": "#/LaporanRL3_15"
+                        }
+                     ]
+                },
+                {
+                 "name": "RL4 Morbiditas dan Mortalitas",
+                 "children": 
+                    [
+                        {
+                            "name": "RL4a Penyakit Rawat Inap",
+                            "link": "#/RL4aPenyakitRawatInap"
+                        },
+                        {
+                            "name": "RL4b Penyakit Rawat Jalan",
+                            "link": "#/RL4bPenyakitRawatJalan"
+                        }
+                   ]
+                },
+                {
+                 "name": "RL5 Pengunjung Rumah Sakit",
+                 "children": 
+                    [
+                            {
+                                "name": "RL5.1 Pengunjung Rumah Sakit",
+                                "link": "#/LaporanRL51"
+                            },
+                            {
+                                "name": "RL5.2 Kunjungan Rawat Jalan",
+                                "link": "#/LaporanRL52"
+                            },
+                            {
+                                "name": "RL5.3 Daftar 10 Besar Penyakit Rawat Inap",
+                                "link": "#/LaporanRL_53"
+                            },
+                            {
+                                "name": "RL5.4 Daftar 10 Besar Penyakit Rawat Jalan",
+                                "link": "#/LaporanRL_54"
+                            }
+                       ]
+                }, 
+                {
+                 "name": "Laporan Mutasi Pasien",
+                 "children": 
+                    [
+                        {
+                            "name": "Pasien Masuk",
+                            "link": "#/MutasiPasienMasuk"
+                        },
+                        {
+                            "name": "Pasien Keluar",
+                            "link": "#/MutasiPasienKeluar"
+                        },
+                        {
+                            "name": "Pasien Pindahan",
+                            "link": "#/MutasiPasienPindahan"
+                        },
+                        {
+                            "name": "Pasien Dipindahkan",
+                            "link": "#/MutasiPasienDipindahkan"
+                        },
+                        {
+                            "name": "Pasien Meninggal",
+                            "link": "#/MutasiPasienMeninggal"
+                        },
+                        {
+                            "name": "Daftar Sisa Pasien",
+                            "link": "#/MutasiSisaPasien"
+                        }
+                     ]
+                },
+               {
+                 "name": "Laporan Surveilans",
+                 "children": 
+                    [
+                        {
+                            "name": "Surveilans Kasus PTM Rawat Inap",
+                            "link": "#/SurveilansKasusPtmRawatInap"
+                        },
+                        {
+                            "name": "Surveilans Kasus PTM Rawat Jalan",
+                            "link": "#/SurveilansKasusPtmRawatJalan"
+                        },
+                         {
+                            "name": "Formulir Rekapitulasi Harian Surveilans Tahap 3",
+                            "link": "#/FormulirRekapSurveilans"
+                        }
+                     ]
+                },
+                 {
+                 "name": "Laporan Index Penyakit",
+                 "children": 
+                    [
+                        {
+                            "name": "Laporan Index Penyakit Rawat Jalan",
+                            "link": "#/LaporanIndexPenyakitRJ"
+                        },
+                        {
+                            "name": "Laporan Index Penyakit Rawat Inap",
+                            "link": "#/LaporanIndexPenyakitRI"
+                        }
+                     ]
+                },
+                {
+                    "name": "Laporan Register Penomoran Pasien",
+                    "link": "#/LaporanRegisterPenomoranPasien"
+                },
+                
+                {
+                    "name": "Laporan Kematian Rumah Sakit",
+                    "link": "#/LaporanKematianRs"
+                },
+                {
+                    "name": "Kegiatan Pelayanan Kesehatan RS",
+                    "link": "#/LaporanKegiatanPelayananKesehatan"
+                },
+                {
+                    "name": "Rincian Kunjungan & Tindakan Rehab Medik",
+                    "link": "#/RincianKunjunganTindakanRehab"
+                },
+                {
+                    "name": "Perincian Imunisasi (Klinik Bayi Sehat & Alamanda)",
+                    "link": "#/LaporanPerincianImunisasi"
+                },
+                {
+                    "name": "Rincian Kunjungan & Tindakan Penunjang Radiologi",
+                    "link": "#/LaporanKunjunganRadiologi"
+                },
+                {
+                    "name": "Jumlah Pasien Keluar & Meninggal Setelah Dirawat",
+                    "link": "#/JumlahPasienKeluarMeninggal"
+                }
+               
+                            
+            ]                
+ },
+ {
+    "name": "SDM",
+    "children": [{
+            "name": "Target Bobot Uraian Tugas",
+            "link": "#/TargetBobot"
+        }, {
+            "name": "Input Logbook",
+            "link": "#/InputLogbook"
+        }, {
+            "name": "Indeks Kinerja Individu",
+            "link": "#/IndeksKinerjaIndividuSDM"
+        }, {
+            "name": "Permohonan Perubahan Status Pegawai (Cuti & Perjalanan Dinas)",
+            "link": "#/PermohonanPerubahanStatusPegawai"
+        }, {
+            "name": "Daftar Pengajuan Perubahan Status Pegawai (Cuti & Perjalanan Dinas)",
+            "link": "#/DaftarPengajuanPerubahanStatus"
+        }, {
+			"name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
+			"link": "#/DaftarPenangguhanCuti"
+		}, {
+            "name": "Pengajuan Mutasi Pegawai",
+            "link": "#/PengajuanMutasiPegawai"
+        }, {
+            "name": "Pengajuan Resign Pegawai",
+            "link": "#/PengajuanResignPegawai"
+        }, {
+            "name": "Pengajuan Sanksi Pegawai",
+            "link": "#/PengajuanSanksiPegawai"
+        }, {
+            "name": "Daftar Pengajuan Mutasi Sanksi Resign",
+            "link": "#/DaftarPengajuanMutasiSanksiResign"
+        }, {
+			"name": "Monitoring Absensi",
+			"link": "#/MonitoringAbsensiPegawai"
+		}, {
+			"name": "InputLemburPegawaiUnitKerja",
+			"link": "#/InputLemburPegawaiUnitKerja"
+		},{
+            "name": "Verifikasi Uraian Tugas Bawahan",
+            "link": "#/VerifikasiUraianTugasPegawaiLogin"
+        }
+    ]
+},
+{
+    "name":"Aplikasi IT",
+    "children":[
+        {
+            "name": "Permintaan Perbaikan dari Ruangan",
+            "link": "#/RevPermintaanPerbaikandariRuanganITNew"
+        }
+    ]
+},
+     {
+        "name": "IP3RS",
+        "children": [
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/PermintaanPerbaikandariRuangan"
+            },
+            {
+                "name": "Respond Perbaikan",
+                "link": "#/RespondPerbaikan"
+            } 
+        ]
+    },
+{
+    "name": "Tata Usaha",
+    "children": [{
+            "name": "Membuat Draft Surat",
+            "link": "#/BuatDraftSurat"
+        },
+        {
+            "name": "Daftar Draft",
+            "link": "#/DaftarDraft"
+        },
+        {
+            "name": "Daftar Draft Surat Masuk",
+            "link": "#/DaftarDraftSuratMasuk"
+        },
+        {
+            "name": "Dokumen Verbal Konsep",
+            "link": "#/DokumenVerbalKonsep/"
+        },
+        {
+            "name": "Verbal Konsep",
+            "link": "#/VerbalKonsep/"
+        },
+        {
+            "name": "Surat Masuk Internal dan Eksternal",
+            "link": "#/SuratMasukInternaldanEksternal"
+        },
+        {
+            "name": "Daftar Surat Masuk Internal Eksternal",
+            "link": "#/DaftarSuratMasukInternalEksternal"
+        },
+        {
+            "name": "Nota Dinas",
+            "link": "#/NotaDanDisposisi"
+        },
+        {
+            "name": "Daftar Nota Dinas",
+            "link": "#/ListNotaDinas"
+        }
+    ]
+}, {
+    "name": "Setting",
+    "children": [
+        {
+            "name": "Ubah Password",
+            "link": "#/UbahPassword"  
+        }
+    ]
+},
+{
+    "name": "Information",
+    "children": [
+            {
+                "name": "Informasi Tarif Layanan",
+                "link": "#/TarifLayanan"
+            },
+            {
+                "name": "Informasi Jadwal Dokter",
+                "link": "#/InformasiJadwalDokter"
+            },
+            {
+                "name": "Informasi Jadwal Pelayanan Dokter",
+                "link": "#/InformasiJadwalPelayananDokter" 
+            },
+            {
+                "name": "Ketersediaan Tempat Tidur",
+                "link": "#/KetersediaanTempatTidur"
+            }
+        ]
+}
+]

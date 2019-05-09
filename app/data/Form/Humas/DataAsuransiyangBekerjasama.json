@@ -1,0 +1,69 @@
+{
+	"model":{
+		"noPKS" : "",
+		"namaAsuransi":"",
+		"jumlahAnakPerusahaan":"",
+		"jumlahNasabah": "",
+		"caraPenagihan":"",
+		"alamatAsuransi" : "",
+		"contactPerson":"",
+		"jangkaWaktu" : "",
+		"namaFilePKS":"",
+		"sd":""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "noPKS",
+			"messagesRequired" : "",
+			"caption" : "No PKS"
+		},{
+			"isNull" : "true",
+			"name" : "namaAsuransi",
+			"messagesRequired" : "",
+			"caption" : "Nama Asuransi"
+		},{
+			"isNull" : "true",
+			"name" : "jumlahAnakPerusahaan",
+			"messagesRequired" : "",
+			"caption" : "Jumlah Anak Perusahaan"
+		},{
+			"isNull" : "true",
+			"name" : "jumlahNasabah",
+			"messagesRequired" : "",
+			"caption" : "Jumlah Nasabah"
+		},{
+			"isNull" : "true",
+			"name" : "caraPenagihan",
+			"messagesRequired" : "",
+			"caption" : "Cara Penagihan"
+		},{
+			"isNull" : "true",
+			"name" : "alamatAsuransi",
+			"messagesRequired" : "",
+			"caption" : "Alamat Asuransi"
+		},{
+			"isNull" : "true",
+			"name" : "contactPerson",
+			"messagesRequired" : "",
+			"caption" : "Contact Person"
+		},{
+			"isNull" : "true",
+			"name" : "jangkaWaktu",
+			"messagesRequired" : "",
+			"caption" : "Jangka Waktu Perjanjian"
+		},{
+			"isNull" : "true",
+			"name" : "namaFilePKS",
+			"messagesRequired" : "",
+			"caption" : "Nama File PKS"
+		},{
+			"isNull" : "true",
+			"name" : "sd",
+			"messagesRequired" : "",
+			"caption" : "S / D"
+		}
+
+	]
+}

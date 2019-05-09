@@ -1,0 +1,52 @@
+{
+	"model":{
+	    "TempatTinggal" : "",
+	    "TxtTempatTinggal":"",
+	    "Nama" : "",
+	    "Keterangan" : "",
+	    "JenisKelamin":"",
+	    "Usia":"",
+	    "Keterangan":"",
+	    "DataTabel":""
+
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "false",
+			"name" : "TempatTinggal",
+			"messagesRequired" : "",
+			"caption" : ""
+
+		},
+		{
+			"isNull" : "true",
+			"name" : "TxtTempatTinggal",
+			"messagesRequired" : "",
+			"caption" : ""
+		},
+		{
+			"isNull" : "true",
+			"name" : "Nama",
+			"messagesRequired" : "",
+			"caption" : "Nama"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Keterangan",
+			"messagesRequired" : "",
+			"caption" : "Keterangan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Usia",
+			"messagesRequired" : "",
+			"caption" : "Usia"
+		},
+		{
+			"isNull" : "true",
+			"name" : "DataTabel",
+			"messagesRequired" : "",
+			"caption" : "DataTabel"
+		}
+  ]
+}

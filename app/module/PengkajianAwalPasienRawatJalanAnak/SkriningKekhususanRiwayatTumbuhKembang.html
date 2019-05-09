@@ -1,0 +1,136 @@
+<style>
+.keteranganFieldTambahan {
+    right: 7px !important;
+    top: 12px !important;
+}
+</style>
+<div ng-controller="SkriningKekhususanRiwayatTumbuhKembangCtrl">
+
+    <div ng-show="dataVOloaded">
+        <!-- <div ng-show="dataVOloaded"> -->
+        <div class="container_12">
+            <!--New Riwayat Tumbuh kembang's form goes here-->
+            <div class="grid_12" style="margin-bottom:30px">
+                <div class="grid_12 headerBox">
+                    <h1 style="color: white;"><b>{{formMaster.nama}}</b></h1>
+                </div>
+                <div class="clear"></div>
+                <br/>
+                <div class="container_12"> <!-- html form goes here -->
+                    <div ng-repeat="list in formMaster.detail | orderBy:'id'" ng-init="listIndex = $index + 1">
+                        <div class="grid_4" style="margin:6px auto">
+                            <div class="grid_2">&nbsp;</div>
+                            <div class="grid_4" style="margin-top:12px">
+                                <label><b>{{list.nama}} : </b></label>
+                            </div>
+                            <div class="grid_2" style="margin-top:12px">
+                                <label>{{list.descNilai}}</label>
+                            </div>
+                            <div class="grid_2">
+                                <input kendo-numeric-text-box k-min="0" k-max="100" k-ng-model="list.value" style="width: 100%;" />
+                            </div>
+                            <div class="grid_2" style="margin-top:12px">
+                                <label>{{satuan.satuan}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div> 
+        </div>
+        <c-panel item="item" header="'Riwayat Tumbuh Kembang'" ng-hide="true">
+
+            <div class="grid_3">
+                <!-- Tengkurap -->
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Tengkurap pada Usia"></label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.tengkurap" maxlength="3" />
+                    <label class="keteranganFieldTambahan" c-translate>Bulan</label>
+                </div>
+                <div class="clear"></div>
+
+                        
+                <!-- TumbuhGigi -->
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="TumbuhGigi pada Usia"></label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.tumbuhGigi" maxlength="3" />
+                    <label class="keteranganFieldTambahan" c-translate>Bulan</label>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="grid_3">
+
+                <!-- Bicara -->
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Bicara pada Usia"></label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.bicara" maxlength="3" />
+                    <label class="keteranganFieldTambahan" c-translate>Bulan</label>
+                </div>
+                <div class="clear"></div>
+                <!-- Duduk -->
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Duduk pada Usia"></label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.duduk" maxlength="3" />
+                    <label class="keteranganFieldTambahan" c-translate>Bulan</label>
+                </div>
+                <div class="clear"></div>
+                </div>
+            <div class="grid_3">
+                <!-- Berdiri -->
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Berdiri pada Usia"></label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.berdiri" maxlength="3" />
+                    <label class="keteranganFieldTambahan" c-translate>Bulan</label>
+                </div>
+                <div class="clear"></div>
+
+                <!-- Berjalan -->
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Berjalan pada Usia"></label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.berjalan" maxlength="3" />
+                    <label class="keteranganFieldTambahan" c-translate>Bulan</label>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="grid_3">
+                <!-- Berjalan -->
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Merangkak pada Usia"></label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.merangkak" maxlength="3" />
+                    <label class="keteranganFieldTambahan" c-translate>Bulan</label>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_6"></div>
+                <div class="grid_3">
+                    <button class="c-button cancel" style="font-size:18px" ng-click="Batal()">Batal</button>
+                </div>
+                <div class="grid_3">
+                    <button class="c-button success" style="font-size:18px" ng-click="Save()">Simpan</button>
+                </div>
+            </div>
+            <!-- </div> -->
+
+
+
+        </c-panel>
+       <!--  <div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div> -->
+    </div>
+
+</div>

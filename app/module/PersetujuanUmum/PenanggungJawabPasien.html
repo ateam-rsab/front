@@ -1,0 +1,75 @@
+<div ng-controller="PenanggungJawabPasienCtrl">
+
+	<div ng-show="dataVOloaded">
+	 
+		<c-panel item="item" header="'Penanggung Jawab Pasien '">
+		<!-- Text Input Nama  -->
+
+			<div class="grid_12" style="margin-bottom: 5px">
+			<div class="grid_2" >
+				<label c-label item="item" c-label-text="Nama"> </label>
+			</div>
+
+			<div class="grid_5">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.Nama" />
+			</div>
+			<div class="grid_5">
+			</div>
+			</div>
+
+
+			<!-- Input Pekerjaan -->
+			<div class="grid_12" style="margin-bottom: 5px">
+				<div class="grid_2"	>
+					<label c-label item="item" c-label-text="Pekerjaan"></label>
+				</div>
+				<div class="grid_5">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.Pekerjaan" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataPekerjaan" />
+				</div>
+				<div class="grid_5">
+				</div>
+			</div>
+
+			<!-- Alamat -->
+			<div class="gird_12">
+				<div class="grid_2" style="margin-bottom:5px">
+					<label c-label item="item" c-label-text="Alamat"></label>
+				</div>
+				<div class="grid_5">
+					<textarea ng-model="item.Alamat" style="width: 99%; height: 80px;"></textarea>
+				</div>
+				<div class="grid_5">
+				</div>
+			</div>
+
+
+			<!-- No Telp  -->
+
+			<div class="grid_12">
+				<div class="grid_2" style="margin-bottom:5px">
+					<label c-label item="item" c-label-text="No Telpon"> </label>
+				</div>
+
+				<div class="grid_5">
+					<input c-text-box type="input" filter="'number'" class="k-textbox" ng-model="item.NoTelp" />
+				</div>
+				<div class="grid_5">
+				</div>
+			</div>
+			
+
+
+			  <!-- Button Simpan -->
+		<div class="grid_12" style="margin-top:10px">
+			<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '>
+			</div>
+    	</div>  
+
+
+		</div>
+		</div>
+
+
+		</c-panel>
+	</div>
+</div>

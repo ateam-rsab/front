@@ -1,0 +1,124 @@
+<style type="text/css">
+    .style-center {
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .style-right {
+        display: inline-block;
+        text-align: right;
+        width: 100%;
+    }
+    
+    .style-left {
+        display: inline-block;
+        text-align: left;
+        width: 100%;
+    }
+</style>
+
+<!-- <div ng-controller="DaftarPasienApotikCtrl"> -->
+    <div ng-show="dataVOloaded">
+        <!-- <c-panel item="item" header="'Produk'" disabled> -->
+        <div class="grid_12">
+            
+        <div class="grid_12 headerBox">
+            <h1 style="color: white;"><b>Hasil Bridging Consis-D</b></h1>
+        </div>
+        <div class="grid_12">
+
+            
+            <div class="grid_12">
+                    <!-- <div class="grid_12 headerBox">
+                        <p>Produk</p>
+                    </div> -->
+                    <!-- grid table -->
+                     <div class="grid_12 borderBox">
+                        <div id="kGrid" 
+                        kendo-grid k-data-source="dataGrid" 
+                        k-selectable="'row'" 
+                        k-columns="columnGrid" 
+                        class="max-height"
+                        k-pageable="'true'" 
+                        k-sortable="'true'" 
+                        k-ng-model="dataSelected">
+                            <div k-detail-template>
+                                <kendo-tabstrip>
+                                    <div>
+                                        <div id="kGridDetail" kendo-grid k-options="data2(dataItem)" 
+                                            k-sortable="'true'" 
+                                            k-selectable="'row'" 
+                                            k-ng-model="dataSelected2"
+                                            ng-click="klikDetail(dataSelected2)">
+                                        </div>
+                                    </div>
+                                </kendo-tabstrip>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                
+            </div>
+            <!-- NamaKegiatan -->
+            <div class="grid_12">
+                <div class="grid_1">
+                    <div class="grid_12">
+                        <label c-label item="item">TransaksiID</label>
+                    </div>
+                    <div class="grid_12">
+                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.transaksiid" ng-keypress="($event.which == 13)? cariFilter():item.transaksiid" />
+                    </div>
+                </div>
+                <div class="grid_1">
+                    <div class="grid_12">
+                        <label c-label item="item">NoMR</label>
+                    </div>
+                    <div class="grid_12">
+                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nomr" ng-keypress="($event.which == 13)? cariFilter():item.nomr" />
+                    </div>
+                </div>
+                <div class="grid_1">
+                    <div class="grid_12">
+                        <label c-label item="item">Nama</label>
+                    </div>
+                    <div class="grid_12">
+                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nama" ng-keypress="($event.which == 13)? cariFilter():item.nama"/>
+                    </div>
+                </div>
+                <div class="grid_2">
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="alamat"></label>
+                    </div>
+                    <div class="grid_12">
+                        <input c-text-box type="input"  filter="" class="k-textbox" ng-model="item.alamat" ng-keypress="($event.which == 13)? cariFilter():item.alamat" />
+                    </div>
+                </div>
+                <div class="grid_4">
+                </div>
+                <div class="grid_1">
+                    <div class="grid_12">
+                        <label c-label item="item" >Counter ID</label>
+                    </div>
+                    <div class="clear"></div>
+
+                    <div class="grid_12">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.ctrID" k-data-text-field="'counterID'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listCounterID" />
+                    </div>
+                </div>
+                <div class="grid_1" style="margin-top: 15px">
+                    <button class="btnTemplate1" style="margin-left: 0;" ng-click="SetCounterID()">Set CounterID</button>
+                </div>
+                <!-- <div class="grid_2" style="margin-top: 22px">
+                    <button class="c-button" ng-click="TransaksiPelayanan()">Transaksi Pelayanan</button>
+                </div> -->
+            </div>
+            <!-- <div class="grid_12" style="margin-top:60px">
+                    <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+                </div> -->
+
+
+</div>
+<!-- </div> -->

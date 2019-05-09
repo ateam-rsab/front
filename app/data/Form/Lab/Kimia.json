@@ -1,0 +1,83 @@
+{
+	"model":{
+	    "Diabetes" : "",
+	    "FaalHati" : "",
+	    "ProfilLemak" : "",
+	    "FaalGinjal" : "",
+	    "Tinja" : "",
+	    "Elektrolit" : "",
+	    "AnalisaGasDarah" : "",
+	    "Urine" : "",
+	    "FaalPankreas" : "",
+	    "FaalJantung" : "",
+	    "KadarObat" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "Diabetes",
+			"messagesRequired" : "",
+			"caption" : "Diabetes"
+		},
+		{
+			"isNull" : "true",
+			"name" : "FaalHati",
+			"messagesRequired" : "",
+			"caption" : "Faal Hati"
+		},
+		{
+			"isNull" : "true",
+			"name" : "ProfilLemak",
+			"messagesRequired" : "",
+			"caption" : "Profil Lemak"
+		},
+		{
+			"isNull" : "true",
+			"name" : "FaalGinjal",
+			"messagesRequired" : "",
+			"caption" : "Faal Ginjal"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Tinja",
+			"messagesRequired" : "",
+			"caption" : "Tinja"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Elektrolit",
+			"messagesRequired" : "",
+			"caption" : "Elektrolit"
+		},
+		{
+			"isNull" : "true",
+			"name" : "AnalisaGasDarah",
+			"messagesRequired" : "",
+			"caption" : "Analisa Gas Darah"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Urine",
+			"messagesRequired" : "",
+			"caption" : "Urine"
+		},
+		{
+			"isNull" : "true",
+			"name" : "FaalPankreas",
+			"messagesRequired" : "",
+			"caption" : "Faal Pankreas"
+		},
+		{
+			"isNull" : "true",
+			"name" : "FaalJantung",
+			"messagesRequired" : "",
+			"caption" : "Faal Jantung"
+		},
+		{
+			"isNull" : "true",
+			"name" : "FaalJantung",
+			"messagesRequired" : "",
+			"caption" : "Faal Jantung"
+		}
+  ]
+}

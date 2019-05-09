@@ -1,0 +1,108 @@
+<div ng-controller="MonitoringBiayaCtrl">
+	<div ng-show="dataVOloaded">
+		<!-- <c-panel item="item" header="'Detail Penerimaan Bank'" disabled> -->
+		<div class="grid_12 headerBox">
+			<h1 style="color: white;"><b>Jumlah Setoran Kasir</b></h1>
+		</div>
+		<div class="clear"></div>
+
+		<br/>
+		<!-- Kriteria -->
+		<div class="grid_3">
+		</div>
+		<div class="grid_8">
+
+			<!-- Keterangan -->
+			<div class="grid_2">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Tanggal Setor :"></label>
+				</div>
+				<div class="grid_12" style="margin-top: 5px">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.tanggal" ng-disabled="true" style="text-align: center;" />
+				</div>
+			</div>
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Periode Transaksi :"></label>
+				</div>
+				<div class="grid_12">
+					<div class="grid_6">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.tanggalAwal" ng-disabled="true" style="text-align: center;"/>
+					</div>
+					<div class="grid_6">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.tanggalAkhir" ng-disabled="true" style="text-align: center;"/>
+					</div>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" c-label-text="Nama Pegawai :" style="margin-top: 10px"></label>
+					</div>
+					<div class="grid_6">
+						<div class="grid_3">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.idPegawai" ng-disabled="true"/>
+						</div>
+						<div class="grid_9">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaPegawai" ng-disabled="true"/>
+						</div>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" c-label-text="Keterangan :" style="margin-top: 10px"></label>
+					</div>
+
+					<div class="grid_6">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.keterangan" />
+					</div>
+				</div>
+					<!-- <div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.keterangan" ng-disabled="true"/>
+					</div> -->
+
+					<!-- Jumlah -->
+					<div class="grid_12">
+						<div class="grid_2">
+							<label c-label item="item" c-label-text="Jumlah :" style="margin-top: 10px"></label>
+						</div>
+
+						<div class="grid_3">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jumlah" ng-disabled="true"/>
+						</div>
+					</div>
+
+					<div class="grid_12">
+						<div class="grid_2">
+							<label c-label item="item" c-label-text="Terbilang :" style="margin-top: 10px"></label>
+						</div>
+						<div class="grid_6">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.terbilang" ng-disabled="true"/>
+						</div>
+					<!-- <div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.keterangan" ng-disabled="true"/>
+					</div> -->
+				</div>
+
+				<!-- JenisTransaksi -->
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" c-label-text="JenisTransaksi :" style="margin-top: 10px"></label>
+					</div>
+					<div class="grid_3">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jenisSetoran" ng-disabled="true"/>
+						<!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisTransaksi" k-data-text-field="'jenis'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisTransaksi" /> -->
+					</div>
+				</div>
+				<!-- </div> -->
+			</div>
+
+			<!-- </c-panel> -->
+
+			<div class="grid_12" style="margin-top:30px">
+				<div ng-include='"../app/module/Shared/Keuangan/TemplateButtonBendaharaPenerimaan"'></div>
+			</div>
+		</div>
+	</div>
+
+</div>

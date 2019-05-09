@@ -1,0 +1,59 @@
+<c-panel item="item" header="'Pengemasan'">
+	<div class="grid_12">
+		<div class="grid_2">
+			<label c-label item="item" style="margin-top: 10px">Nomor Order</label>
+		</div>
+		<div class="grid_4">
+			<input style="width: 50%" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noOrder" disabled/>
+		</div>
+	</div>
+	<div class="grid_12">
+		<div class="grid_2">
+			<label c-label item="item" style="margin-top: 10px">Ruangan</label>
+		</div>
+		<div class="grid_4">
+			<input style="width: 50%" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.ruangan" disabled/>
+		</div>
+		<div class="grid_2">
+			<label c-label item="item" style="margin-top: 10px">Petugas</label>
+		</div>
+		<div class="grid_4">
+			<input style="width: 50%" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.operator" disabled/>
+		</div>
+	</div>
+	<div class="grid_12">
+		<div class="grid_2">
+			<label c-label item="item" style="margin-top: 10px">No Bundle</label>
+		</div>
+		<div class="grid_4">
+			<input style="width: 50%" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noBundle" />
+		</div>
+		<div class="grid_2">
+			<label c-label item="item" style="margin-top: 10px">Tanggal</label>
+		</div>
+		<div class="grid_4">
+			<input style="width: 50%" kendo-date-picker k-ng-model="item.tanggal" k-format="'yyyy-MM-dd'"/>
+		</div>
+	</div>
+	<div class="grid_12">
+		<div class="grid_2">
+			<label c-label item="item" style="margin-top: 10px">Nama Alat</label>
+		</div>
+		<div class="grid_10">
+			<kendo-grid options="gridDistribusiInternal" k-data-source="dataSource"></kendo-grid>
+		</div>
+	</div>
+	<div class="grid_12">
+		<div class="grid_2"></div>
+		<div class="grid_2"></div>
+		<div class="grid_2"></div>
+		<div class="grid_2"></div>
+		<div class="grid_2">
+			<button class="c-button success" ng-click="simpanInternal()">Simpan</button>
+		</div>
+		<div class="grid_2">
+			<button class="c-button cancel" ng-click="batal()">Tutup</button>
+		</div>
+	</div>
+
+</c-panel>

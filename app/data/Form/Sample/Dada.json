@@ -1,0 +1,24 @@
+{
+    "id": "",
+	"bentukDada": "",
+    "jantung": "",
+    "paru": "",
+
+    "attributes" : [{
+		"isNull" : "true",
+		"name" : "bentukDada",
+		"messagesRequired" : "Bentuk Dada Harus Diisi",
+		"caption" : "Bentuk Dada"
+	},{
+			"isNull" : "true",
+			"name" : "jantung",
+			"messagesRequired" : "Jantung Harus Diisi",
+			"caption" : "Jantung"
+	},{
+			"isNull" : "true",
+			"name" : "paru",
+			"messagesRequired" : "Paru Harus Diisi",
+			"caption" : "Paru"
+	}
+	]
+}

@@ -1,0 +1,31 @@
+<div class="grid_12">
+    <div class="breadcrum main" id="MenuNav">
+        <div class="grid_3">
+            <a ng-class="{'active': activeMenuPengkajianLanjutan == 'dashboardpasien.pengkajianLanjutan.skriningGizi'}" data-ng-click="nav('dashboardpasien.pengkajianLanjutan.skriningGizi')" class="n1 textCenter" >Skrining Gizi dan Tanda Vital</a>
+        </div>
+        <div class="grid_3">
+            <a ng-class="{'active': activeMenuPengkajianLanjutan == 'dashboardpasien.pengkajianLanjutan.SkriningNyeri'}" data-ng-click="nav('dashboardpasien.pengkajianLanjutan.SkriningNyeri')" class="n1 textCenter" >Skrining Nyeri</a>
+        </div>
+        <div class="grid_3">
+             <a ng-class="{'active': activeMenuPengkajianLanjutan == 'dashboardpasien.pengkajianLanjutan.SkriningKekhususan'}" data-ng-click="nav('dashboardpasien.pengkajianLanjutan.SkriningKekhususan')" class="n1 textCenter" >Skrining Khusus</a>
+        </div>
+        <div class="grid_3">
+             <a ng-class="{'active': activeMenuPengkajianLanjutan == 'dashboardpasien.pengkajianLanjutan.DiagnosisKeperawatan'}" data-ng-click="nav('dashboardpasien.pengkajianLanjutan.DiagnosisKeperawatan')" class="n1 textCenter" >Diagnosis Keperawatan</a>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    .active {
+        background-color:white !important;
+        color: #00AABB !important;
+        display: block;
+        padding: 10px 0 20px;
+        font-weight: 600
+    }
+    .textCenter {
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 100%;
+        /*font-weight: bold;*/
+    }
+</style>

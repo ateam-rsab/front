@@ -1,0 +1,194 @@
+{
+	"model":{
+  "NoCM" : "",
+  "pasien.namaLengkap" : "",
+  "pasien.tempatLahir" : "",
+    "NamaPasien" : "",
+		"NamaKeluarga" : "",
+    "Pasien.jenisKelamin" : "",
+    "pasien.tglLahir": "",
+    "pasien.agama": "",
+   	"pasien.statusPerkawinan": "",
+   	"pasien.pendidikan": "",
+   	"pasien.pekerjaan": "",
+   	"pasien.kebangsaan": "",
+   	"pasien.negara": "",
+   	"pasien.paspor": "",
+   	"pasien.noBpjs": "",
+   	"pasien.noAsuransiLain": "",
+   	"pasien.alamat": "",
+    "kodePos": "",
+    "kelurahan" : "",
+    "kecamatan" : "",
+    "kotaKabupaten" : "",
+    "provinsi" : "",
+    "pasien.noTelepon": "",
+   	"pasien.noHp": "",
+   	"pasien.namaAyah": "",
+   	"pasien.namaIbu": "",
+   	"pasien.namaSuamiIstri": "",
+    "JenisKelamin" : "",
+    "NamaPasien": "",
+    "TglLahir": "",
+   	"Agama": "",
+   	"AlamatPasien": ""
+	},
+  "attributes" : [
+  	  {
+	    "isNull" : "true",
+	    "name" : "NoCM",
+	    "messagesRequired" : "NoCM Harus Diisi",
+	    "caption" : "No. RM"
+  	  },{
+	    "isNull" : "true",
+	    "name" : "pasien.namaLengkap",
+	    "messagesRequired" : "Nama Lengkap Harus Diisi",
+	    "caption" : "Nama Lengkap"
+	  },{
+	    "isNull" : "true",
+	    "name" : "pasien.tempatLahir",
+	    "messagesRequired" : "Nama Lengkap Harus Diisi",
+	    "caption" : "Tempat Lahir"
+	  },{
+	    "isNull" : "true",
+	    "name" : "pasien.tglLahir",
+	    "messagesRequired" : "Nama Lengkap Harus Diisi",
+	    "caption" : "Tanggal Lahir"
+  	 },{
+	    "isNull" : "true",
+	    "name" : "pasien.jenisKelamin",
+	    "messagesRequired" : "Jenis Kelamin Harus Diisi",
+	    "caption" : "Jenis Kelamin"
+	},{
+	    "isNull" : "true",
+	    "name" : "pasien.agama",
+	    "messagesRequired" : "Agama Harus Diisi",
+	    "caption" : "Agama"
+	  },{
+	    "isNull" : "true",
+	    "name" : "pasien.statusPerkawinan",
+	    "messagesRequired" : "Status Perkawinan Harus Diisi",
+	    "caption" : "Status Perkawinan"
+	  },{
+	    "isNull" : "true",
+	    "name" : "pasien.pendidikan",
+	    "messagesRequired" : "Pendidikan Harus Diisi",
+	    "caption" : "Pendidikan"
+	  },{
+	    "isNull" : "true",
+	    "name" : "pasien.pekerjaan",
+	    "messagesRequired" : "Pekerjaan Harus Diisi",
+	    "caption" : "Pekerjaan"
+	  },{
+	    "isNull" : "true",
+	    "name" : "pasien.kebangsaan",
+	    "messagesRequired" : "Kebangsaan Harus Diisi",
+	    "caption" : "Kebangsaan"
+	  },{
+	    "isNull" : "true",
+	    "name" : "pasien.negara",
+	    "messagesRequired" : "Negara Harus Diisi",
+	    "caption" : "Negara"
+	  },{
+	    "isNull" : "true",
+	    "name" : "pasien.nik",
+	    "messagesRequired" : "NIK Harus Diisi",
+	    "caption" : "NIK"
+	  },{
+	    "isNull" : "true",
+	    "name" : "pasien.paspor",
+	    "messagesRequired" : "Paspor Harus Diisi",
+	    "caption" : "Paspor"
+	  },{
+	    "isNull" : "true",
+	    "name" : "pasien.noBpjs",
+	    "messagesRequired" : "Nomor BPJS Harus Diisi",
+	    "caption" : "Nomor BPJS"
+	  },{
+	    "isNull" : "true",
+	    "name" : "pasien.noAsuransiLain",
+	    "messagesRequired" : "Nomor Asuransi Lain Harus Diisi",
+	    "caption" : "Nomor Asuransi Lain"
+	  },{
+	    "isNull" : "true",
+	    "name" : "pasien.alamat",
+	    "messagesRequired" : "Alamat harus Diisi",
+	    "caption" : "Alamat"
+	  },{
+	    "isNull" : "true",
+	    "name" : "kodePos",
+	    "messagesRequired" : "Kode POS harus Diisi",
+	    "caption" : "Kode Pos"
+	  },{
+	    "isNull" : "true",
+	    "name" : "kelurahan",
+	    "messagesRequired" : "Kelurahan harus Diisi",
+	    "caption" : "Kelurahan"
+	  },{
+	    "isNull" : "true",
+	    "name" : "kecamatan",
+	    "messagesRequired" : "Kecamatan harus Diisi",
+	    "caption" : "Kecamatan"
+	  },{
+	    "isNull" : "true",
+	    "name" : "kotaKabupaten",
+	    "messagesRequired" : "Kota / Kabupaten harus Diisi",
+	    "caption" : "Kota / Kabupaten"
+	  },{
+	    "isNull" : "true",
+	    "name" : "provinsi",
+	    "messagesRequired" : "Provinsi harus Diisi",
+	    "caption" : "Provinsi"
+	  },{
+	    "isNull" : "true",
+	    "name" : "pasien.noTelepon",
+	    "messagesRequired" : "No. Telepon harus Diisi",
+	    "caption" : "No. Telepon"
+	  },{
+	    "isNull" : "true",
+	    "name" : "pasien.noHp",
+	    "messagesRequired" : "Propinsi harus Diisi",
+	    "caption" : "No. HP / Ponsel"
+	  },{
+	    "isNull" : "true",
+	    "name" : "pasien.namaAyah",
+	    "messagesRequired" : "Nama Ayah harus Diisi",
+	    "caption" : "Nama Ayah"
+	  },{
+	    "isNull" : "true",
+	    "name" : "pasien.namaIbu",
+	    "messagesRequired" : "Nama Ibu harus Diisi",
+	    "caption" : "Nama Ibu"
+	  },{
+	    "isNull" : "true",
+	    "name" : "pasien.namaSuamiIstri",
+	    "messagesRequired" : "Nama Suami / Istri harus Diisi",
+	    "caption" : "Nama Suami / Istri"
+  	  },{
+	    "isNull" : "true",
+	    "name" : "JenisKelamin",
+	    "messagesRequired" : "Jenis Kelamin Harus Diisi",
+	    "caption" : "Jenis Kelamin"
+  	  },{
+	    "isNull" : "true",
+	    "name" : "NamaPasien",
+	    "messagesRequired" : "Nama Pasien Harus Diisi",
+	    "caption" : "Nama Pasien"
+	  },{
+	    "isNull" : "true",
+	    "name" : "TglLahir",
+	    "messagesRequired" : "Tanggal Lahir Harus Diisi",
+	    "caption" : "Tanggal Lahir"
+	  },{
+	    "isNull" : "true",
+	    "name" : "Agama",
+	    "messagesRequired" : "Agama Harus Diisi",
+	    "caption" : "Agama"
+  	 },{
+	    "isNull" : "true",
+	    "name" : "AlamatPasien",
+	    "messagesRequired" : "Alamat Pasien Harus Diisi",
+	    "caption" : "Alamat Pasien"
+	}
+  ]
+}

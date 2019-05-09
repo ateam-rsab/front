@@ -1,0 +1,55 @@
+<div ng-controller="DaftarPengirimanCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Daftar Pengiriman'">
+			<div class="grid_12">
+				<div class="grid_1">
+					<label c-label item="item" c-label-text="ruangan" style="margin-top: 10px"></label>
+				</div>
+				<div class="grid_3">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+				</div>
+				<div class="grid_1">
+					<label c-label item="item" c-label-text="periode" style="margin-top: 10px"></label>
+				</div>
+				<div class="grid_3">
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAwal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"/>
+				</div>
+				<div class="grid_1">
+					<label c-label item="item" c-label-text="s/d" style="margin-top: 10px"></label>
+				</div>
+				<div class="grid_3">
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAkhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"/>
+				</div>
+				<div class="clear"></div>
+				<div class="grid_12" style="margin-bottom: 10px; margin-top: 10px">
+					<kendo-grid options="mainGridOptions"></kendo-grid>
+				</div>
+				<div class="clear"></div>
+				<div class="grid_1">
+					
+				</div>
+				<div class="grid_2">
+					
+				</div>
+				<div class="grid_1">
+					
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="cetak()" style="margin-top: 6px">Cetak</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="detail()" style="margin-top: 6px">Detail</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="edit()" style="margin-top: 6px">Edit</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="tutup()" style="margin-top: 6px">Tutup</button>
+				</div>
+				<div class="clear"></div>
+				
+			</div>
+		</c-panel>
+	</div>
+</div>

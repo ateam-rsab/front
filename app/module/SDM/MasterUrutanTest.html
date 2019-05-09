@@ -1,0 +1,123 @@
+<div ng-controller="MasterUrutanTestCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Master Urutan Test'"disabled>
+		<div class="grid_6">
+		<div class="panel panel-default container_12">
+	        <div class="grid_12" ng-show="false">
+			<div class="grid_4" style="margin-top: 10px;">
+				<label c-label item="item" c-label-text="Id"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.idInp" disabled />
+			</div>
+			</div>
+
+			<div class="grid_12">
+			<div class="grid_4" style="margin-top: 10px;">
+				<label c-label item="item" c-label-text="No Urut"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noUrut" disabled />
+			</div>
+			</div>
+			
+			<div class="grid_12">
+			<div class="grid_4" style="margin-top: 10px;">
+				<label c-label item="item" c-label-text="Jenis Test"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width:100%" kendo-combo-box k-ng-model="item.jenisTest" k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisTest" k-on-change="cbRubah(e)"/>
+			</div>
+			</div>
+		</div>
+		</div>
+
+		<!-- bagian button -->
+		<div class="grid_6">
+			<div class="grid_12">
+
+			<div class="grid_12">
+			<div class="grid_4" style="margin-top: 10px;">
+				
+			</div>
+			<div class="grid_8">
+				
+			</div>
+			</div>
+			
+			<div class="grid_12">
+			<div class="grid_4" style="margin-top: 10px;">
+				
+			</div>
+			<div class="grid_8">
+				
+			</div>
+			</div>
+
+			<div class="grid_12">
+			<div class="grid_2" style="margin-top: 25px;float:right">
+					<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+						<span class="title">Simpan</span>
+					</button>
+				</div>	
+			</div>
+
+							
+			
+		</div>
+		</div>
+		
+
+		<!-- <div class="grid_6">
+			<div class="container_12">
+
+
+				<div class="grid_12">
+					<div class="grid_8 style="margin-top: 10px;">
+						
+					</div>
+					<div class="grid_8">
+						
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_8 style="margin-top: 10px;">
+						
+					</div>
+					<div class="grid_8">
+						
+					</div>
+				</div>
+				<div class="grid_12">
+			  		<div class="grid_4" style="margin-top: 5px">
+					</div>
+					<div class="grid_4" style="margin-top: 5px">
+					</div>		
+					<div class="grid_3" style="margin-top: 10px">
+						<button class="c-button success" ng-click="addMasterUrutan()" k-selectable="'row'">Tambah</button>
+					</div>	
+				</div>
+
+			</div>	
+		</div>
+ -->
+
+		<!-- bagian grid -->
+	
+		<div class="grid_12">
+			
+			<div class="grid_12">
+				<kendo-grid  k-data-source="dataSource" id="kgrid" style="font-size: small;" options="optDataMasterUrutan" k-ng-model="current" ng-click="klik(current)">
+            	</kendo-grid>	
+			</div>	
+			
+		</div>
+
+		</c-panel>
+
+		
+	</div>
+</div>
+
+

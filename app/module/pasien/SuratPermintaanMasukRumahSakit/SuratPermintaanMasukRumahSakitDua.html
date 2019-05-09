@@ -1,0 +1,120 @@
+<div ng-include=' "../app/module/Dashboard/Pasien/diagnosa" '></div>
+<div ng-controller="SuratPermintaanMasukRumahSakitDuaCtrl">
+    <c-panel item="item" header="'Form Surat Permintaan Masuk Rumah Sakit Ranap IGD'" disabled>
+        <div class="panel-body">
+            <div class="grid_12">
+                <!--<div class=grid_12>
+                    <div class="grid_5">
+                        <label c-label item="item" c-label-text="ruanganTujuan"></label>
+                    </div>
+                    <div class="grid_7">
+                        <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="persetujuanUmum.ruanganTujuan.namaRuangan" />
+                    </div>
+                </div>-->
+                <div class="grid_12">
+
+                    <label c-label item="item" c-label-text="Instruksi"></label>
+
+                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.instruksi" />
+                </div>
+                <div class="grid_12">
+
+                    <label c-label item="item" c-label-text="Pertolongan"></label>
+
+                    <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.pertolongan"></textarea>
+
+                </div>
+                <div class="grid_6">
+                </div>
+            </div>
+            <div class="grid_12">
+                <!-- Form Kiri -->
+
+                <div class="grid_6">
+
+
+                    <div class=grid_12>
+                        <div class="grid_5">
+                            <label c-label item="item" c-label-text="Petugas"></label>
+                        </div>
+                        <div class="grid_7">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.petugas" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListPegawai" />
+                        </div>
+                    </div>
+                    <div class=grid_12>
+                        <div class="grid_5">
+                            <label c-label item="item" c-label-text="AksesMasuk"></label>
+                        </div>
+                        <div class="grid_7">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.caraMasuk" k-data-text-field="'caraMasuk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListAksesMasuk" />
+                        </div>
+                    </div>
+                    <div class=grid_12>
+                        <div class="grid_5">
+                            <label c-label item="item" c-label-text="Unit"></label>
+                        </div>
+                        <div class="grid_7">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.unit" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListUnitKerja" />
+                        </div>
+
+                        <div class="grid_12 border">
+                            <label c-label item="item" c-label-text="Perawat (Beri tanda checklist sesuai pilihan) :"></label>
+                            <div class="grid_12">
+                                <ul class="three-line">
+                                    <li ng-repeat="data in ListStatusPerawatan">
+                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-value="data" ng-model="item.perawatan" ng-change="getClick(item.name)">
+                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="grid_12">
+                                <span><i><b>(diisi oleh dokter)</b></i></span>
+                            </div>
+                            <v-line></v-line>
+                        </div>
+                    </div>
+                </div>
+                <!-- Form Kiri -->
+                <div class="grid_6">
+                    <div class=grid_12>
+                        <div class="grid_5">
+                            <label c-label item="item" c-label-text="Dokter Penanggung Jawab"></label>
+                        </div>
+                        <div class="grid_7">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.dokterPenanggungJawab" : " k-data-text-field=" 'namaLengkap' " k-data-value-field=" 'id' " k-filter=" 'contains' " k-auto-bind="false " k-data-source="ListNamaPegawai " />
+                        </div>
+                    </div>
+                    <div class=grid_12>
+                        <div class="grid_5 ">
+                            <label c-label item="item " c-label-text="PemberiInformasi "></label>
+                        </div>
+                        <div class="grid_7 ">
+                            <!--<input style=" " kendo-combo-box k-ng-model="item.PemberiInformasi " k-data-text-field=" 'jenisPegawai' " k-data-value-field=" 'id' " k-filter=" 'contains' " k-auto-bind="false " k-data-source="ListNamaPegawai " />-->
+                            <input c-text-box type="input " filter=" 'string' " class="k-textbox " ng-model="item.pemberiInformasi " />
+                        </div>
+                    </div>
+                    <div class=grid_12>
+                        <div class="grid_5 ">
+                            <label c-label item="item " c-label-text="Perawatan "></label>
+                        </div>
+                        <div class="grid_7 ">
+                            <input style="width: 100%; " kendo-combo-box k-ng-model="item.petugas " k-data-text-field=" 'namaLengkap' " k-data-value-field=" 'id' " k-filter=" 'contains' " k-auto-bind="false " k-data-source="ListPerawatan " />
+                        </div>
+                    </div>
+                    <div class=grid_12>
+                        <div class="grid_5 ">
+                            <label c-label item="item " c-label-text="DokterPengirim "></label>
+                        </div>
+                        <div class="grid_7 ">
+                            <input style="width: 100%; " kendo-combo-box k-ng-model="item.dokterPengirim " k-data-text-field=" 'namaLengkap' " k-data-value-field=" 'id' " k-filter=" 'contains' " k-auto-bind="false " k-data-source="ListDokterPengirim " />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </c-panel>
+    <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed " '></div>
+
+</div>
+</div>

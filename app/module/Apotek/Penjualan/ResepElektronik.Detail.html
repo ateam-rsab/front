@@ -1,0 +1,23 @@
+<div ng-controller="ResepElektronikDetailCtrl">
+    <div ng-include='"../app/module/Shared/headerPasienPenunjang" '></div>
+    <div class="panel-body" style="padding:0px">
+        <div class="grid_12">
+            <kendo-grid k-data-source="patienGrids" k-selectable="'row'" k-sortable="'true'" k-columns="arrColumnGridResepElektronik"></kendo-grid>
+        </div>
+    </div>
+    <div class="grid_12 place_button">
+        <div class="grid_3">
+            <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" click="cetakEtike">
+                <span class="title"><label  c-label c-label-text='cetakEtiket' font-size="13"></label></span>
+            </c-button>
+        </div>
+
+    </div>
+    <div class="place_button" style="right: 71px;
+    bottom: 0;
+    text-align: right;
+    left: inherit;">
+        <h1>Total Biaya : {{total| currency:"Rp. ":2}}</h1>
+    </div>
+
+</div>

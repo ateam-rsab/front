@@ -1,0 +1,41 @@
+{
+	"model":{
+	    "tanggalPenutupan" : "",
+	    "cariJenisBarang" : "",
+	    "cariNamaBarang" : "",
+	    "totalStok" : "",
+	    "nilaiPersediaan" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "tanggalPenutupan",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Penutupan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "cariJenisBarang",
+			"messagesRequired" : "",
+			"caption" : "Cari jenis Barang"
+		},
+		{
+			"isNull" : "true",
+			"name" : "cariNamaBarang",
+			"messagesRequired" : "",
+			"caption" : "Cari Nama Barang"
+		},
+		{
+			"isNull" : "true",
+			"name" : "totalStok",
+			"messagesRequired" : "",
+			"caption" : "Total Stok"
+		},
+		{
+			"isNull" : "true",
+			"name" : "nilaiPersediaan",
+			"messagesRequired" : "",
+			"caption" : "Nilai Persediaan"
+		}
+  ]
+}

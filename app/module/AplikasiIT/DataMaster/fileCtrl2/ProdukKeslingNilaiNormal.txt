@@ -1,0 +1,231 @@
+////header nya
+define(['initialize'], function(initialize) {
+	'use strict';
+initialize.controller('ProdukKeslingNilaiNormalCtrl', ['$q', '$rootScope', '$scope', 'IPSRSService',
+ function($q, $rootScope, $scope,IPSRSService) {
+ $scope.item = {};
+ $scope.dataVOloaded = true;
+ $scope.now = new Date();
+ var init = function () {
+IPSRSService.getFieldsMasterTable("get-data-master?className=ProdukKeslingNilaiNormal", true).then(function(dat){
+$scope.listDataMaster = dat.data.data.ProdukKeslingNilaiNormal;
+                                    					
+$scope.dataSource = new kendo.data.DataSource({
+pageSize: 10,
+data: $scope.listDataMaster,
+autoSync: true
+
+});
+
+});
+}
+init();
+
+
+
+
+$scope.columnProdukKeslingNilaiNormal = [
+{
+"field": "No",
+"title": "No"
+},
+{
+"field": "rangeMin",
+"title": "range Min"
+},
+{
+"field": "rangeMax",
+"title": "range Max"
+},
+{
+"field": "refrange",
+"title": "refrange"
+},
+{
+"field": "nilaiNormalTeks",
+"title": "nilai Normal Teks"
+},
+{
+"field": "kdKeslingNilaiNormal",
+"title": "kd Kesling Nilai Normal"
+},
+{
+"field": "produk",
+"title": "produk"
+},
+{
+"field": "produkId",
+"title": "produk Id"
+},
+{
+"field": "QkeslingNilaiNormal",
+"title": "Qkesling Nilai Normal"
+},
+{
+"field": "nilaiTeks",
+"title": "nilai Teks"
+},
+{
+"field": "jenisPemeriksaan",
+"title": "jenis Pemeriksaan"
+},
+{
+"field": "jenisPemeriksaanId",
+"title": "jenis Pemeriksaan Id"
+},
+{
+"field": "satuanStandar",
+"title": "satuan Standar"
+},
+{
+"field": "satuanStandarId",
+"title": "satuan Standar Id"
+},
+{
+"field": "id",
+"title": "id"
+},
+{
+"field": "reportDisplay",
+"title": "report Display"
+},
+{
+"field": "kodeExternal",
+"title": "kode External"
+},
+{
+"field": "namaExternal",
+"title": "nama External"
+},
+{
+"field": "statusEnabled",
+"title": "status Enabled"
+},
+
+{
+	"title" : "Action",
+	"width" : "200px",
+	"template" : "<button class='btnEdit' ng-click='enableData()'>Enable</button>"+
+"<button class='btnHapus' ng-click='disableData()'>Disable</button>"
+}
+];
+$scope.mainGridOptions = { 
+ pageable: true,
+ columns: $scope.columnProdukKeslingNilaiNormal,
+ editable: "popup",
+ selectable: "row",
+ scrollable: false
+ };
+////fungsi klik untuk edit
+ $scope.klik = function(current){
+$scope.showEdit = true;
+$scope.current = current;
+$scope.item.rangeMin = current.rangeMin;
+$scope.item.rangeMax = current.rangeMax;
+$scope.item.refrange = current.refrange;
+$scope.item.nilaiNormalTeks = current.nilaiNormalTeks;
+$scope.item.kdKeslingNilaiNormal = current.kdKeslingNilaiNormal;
+$scope.item.produk = current.produk;
+$scope.item.produkId = current.produkId;
+$scope.item.QkeslingNilaiNormal = current.QkeslingNilaiNormal;
+$scope.item.nilaiTeks = current.nilaiTeks;
+$scope.item.jenisPemeriksaan = current.jenisPemeriksaan;
+$scope.item.jenisPemeriksaanId = current.jenisPemeriksaanId;
+$scope.item.satuanStandar = current.satuanStandar;
+$scope.item.satuanStandarId = current.satuanStandarId;
+$scope.item.id = current.id;
+$scope.item.noRec = current.noRec;
+$scope.item.reportDisplay = current.reportDisplay;
+$scope.item.kodeExternal = current.kodeExternal;
+$scope.item.namaExternal = current.namaExternal;
+$scope.item.statusEnabled = current.statusEnabled;
+};
+$scope.disableData=function(){
+ IPSRSService.getClassMaster("delete-master-table?className=ProdukKeslingNilaiNormal&&id="+$scope.item.id+"&&statusEnabled=false").then(function(dat){
+ init();
+ });
+ };
+$scope.enableData=function(){
+ IPSRSService.getClassMaster("delete-master-table?className=ProdukKeslingNilaiNormal&&id="+$scope.item.id+"&&statusEnabled=true").then(function(dat){
+ init();
+
+	});
+};
+
+$scope.tambah = function()
+ {
+var data = {
+	"class": "ProdukKeslingNilaiNormal",
+	"listField": {
+"rangeMin": $scope.item.rangeMin,
+"rangeMax": $scope.item.rangeMax,
+"refrange": $scope.item.refrange,
+"nilaiNormalTeks": $scope.item.nilaiNormalTeks,
+"kdKeslingNilaiNormal": $scope.item.kdKeslingNilaiNormal,
+"produk": $scope.item.produk,
+"produkId": $scope.item.produkId,
+"QkeslingNilaiNormal": $scope.item.QkeslingNilaiNormal,
+"nilaiTeks": $scope.item.nilaiTeks,
+"jenisPemeriksaan": $scope.item.jenisPemeriksaan,
+"jenisPemeriksaanId": $scope.item.jenisPemeriksaanId,
+"satuanStandar": $scope.item.satuanStandar,
+"satuanStandarId": $scope.item.satuanStandarId,
+"id": $scope.item.id,
+"reportDisplay": $scope.item.reportDisplay,
+"kodeExternal": $scope.item.kodeExternal,
+"namaExternal": $scope.item.namaExternal,
+}
+	}
+ IPSRSService.saveDataMaster(data,"save-master-table").then(function(e) {
+console.log(JSON.stringify(e.data));
+init();
+$scope.item = {};
+ });
+  }
+
+ $scope.edit = function()
+  {	
+   var data = {
+ "class": "ProdukKeslingNilaiNormal",
+	"listField": {
+"rangeMin": $scope.item.rangeMin,
+"rangeMax": $scope.item.rangeMax,
+"refrange": $scope.item.refrange,
+"nilaiNormalTeks": $scope.item.nilaiNormalTeks,
+"kdKeslingNilaiNormal": $scope.item.kdKeslingNilaiNormal,
+"produk": $scope.item.produk,
+"produkId": $scope.item.produkId,
+"QkeslingNilaiNormal": $scope.item.QkeslingNilaiNormal,
+"nilaiTeks": $scope.item.nilaiTeks,
+"jenisPemeriksaan": $scope.item.jenisPemeriksaan,
+"jenisPemeriksaanId": $scope.item.jenisPemeriksaanId,
+"satuanStandar": $scope.item.satuanStandar,
+"satuanStandarId": $scope.item.satuanStandarId,
+"id": $scope.item.id,
+"noRec": $scope.item.noRec,
+"reportDisplay": $scope.item.reportDisplay,
+"kodeExternal": $scope.item.kodeExternal,
+"namaExternal": $scope.item.namaExternal,
+"statusEnabled": $scope.item.statusEnabled
+ }
+ }
+IPSRSService.saveDataMaster(data,"update-master-table").then(function(e){console.log(JSON.stringify(e.data));
+init();
+});
+}
+$scope.batal = function () {
+$scope.showEdit = false;
+$scope.item = {};
+}
+IPSRSService.getFieldListData("Produk&select=id,namaExternal", true).then(function(dat){
+$scope.listproduk= dat.data;
+});
+IPSRSService.getFieldListData("JenisPemeriksaan&select=id,namaExternal", true).then(function(dat){
+$scope.listjenispemeriksaan= dat.data;
+});
+IPSRSService.getFieldListData("SatuanStandar&select=id,namaExternal", true).then(function(dat){
+$scope.listsatuanstandar= dat.data;
+});
+}
+]);
+});

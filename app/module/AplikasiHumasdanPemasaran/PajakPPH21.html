@@ -1,0 +1,179 @@
+<style>
+	button:disabled {
+    background: #B5B2B1;
+}
+</style>
+<div ng-controller="PajakPPH21Ctrl">
+	<div ng-show="dataVOloaded">
+	<div class="grid_12 headerBox">
+    	<h1 style="color: white;"><b>Perhitungan Pajak PPH21</b></h1>
+    </div>
+	  <div class="panel-heading-white"><span class="title" c-translate>Data Pegawai</span></div>
+	 <div class="grid_12">
+	  	<div class="grid_6">
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Nama Pegawai</label>
+					</div>
+					<div class="grid_9">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaLengkap" k-data-text-field="'namaLengkap'" k-data-value-field="'idpegawai'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListDataPegawaiPenerima" k-on-change="init()" ng-click="init()"/>
+					</div>
+				</div>
+			</div>
+			 <div class="grid_5">
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">NPWP</label>
+					</div>
+					<div class="grid_9">
+						<input c-text-box type="input" filter="" class="k-textbox" k-auto-bind="false" k-data-value-field="'idpegawai'" k-data-text-field="'npwp'" ng-model="item.npwp" disabled="true" />
+					</div>
+				</div>
+			</div>
+			</div>
+			<div class="grid_12">
+			    <div class="grid_6">
+			    <div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Status Perkawinan</label>
+					</div>
+					<div class="grid_4">
+							<input c-text-box type="input" filter="" class="k-textbox" k-auto-bind="false" k-data-value-field="'id'" k-data-text-field="'StKawin'" ng-model="item.StKawin" disabled="true" />
+					</div>
+			</div>
+          
+            <div class="grid_12">
+			<div class="grid_6">
+			    <div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Periode Bulan</label>
+					</div>
+					<div class="grid_8">
+							 <input kendo-date-picker k-ng-model="item.periode" k-format="'MMM-yyyy'" k-options="monthSelectorOptions" k-on-change="init()" ng-click="init()" style="width: 100%; ">
+					</div>
+			</div>
+           </div>
+
+           <!-- <div class="grid_12">
+			<div class="grid_6">
+			    <div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Range</label>
+					</div>
+					<div class="grid_8">
+							 <input c-text-box type="input" filter="" class="k-textbox" k-auto-bind="false" k-data-value-field="'id'" k-data-text-field="'count'" ng-model="item.counter" disabled="true" />
+					</div>
+			</div>
+           </div> -->
+      
+      <div class="grid_12 headerBox">
+    	<h1 style="color: white;"><b>Daftar Perhitungan Pajak</b></h1>
+    	</div>
+		<div class="grid_6 ">
+	     <kendo-grid  k-data-source="dataUser" k-pageable="true" k-selectable="'row'" k-ng-model="current" k-columns="columnparent" ng-click="klik(current)" style="margin-bottom: 10px" >
+          </kendo-grid>
+        </div>
+        	<div class="grid_6">
+	          <div class="grid_12">
+				<kendo-grid k-sortable="'true'" k-options="mainGridOptions_1_3(dataItem)" k-pageable="true">
+				</kendo>
+				</div>
+				<div class="grid_12">
+				<kendo-grid k-sortable="'true'" k-options="mainGridOptions_1_4(dataItem)" k-pageable="true">
+				</kendo>
+				</div>
+				<fieldset style="min-height:250px !important">
+				 <legend><h2>Perhitungan PPH Pasal 21</h2></legend>
+				<div class="grid_12">
+					<div class="grid_5">
+					<label c-label item="item" style="margin-top: 5px; font-size:20px">Jumlah Penghasilan</label>
+					</div>
+					<div class="grid_1">
+					<p style="margin-top: 5px; font-size: 20px; font-weight: bold">:</p>
+					</div>
+					<div class="grid_6">
+					<label c-label item="item" style="margin-top: 5px; font-size:22px">{{getTotalKomponen()| currency:"Rp. "}}</label>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_5">
+					<label c-label item="item" style="margin-top: 5px; font-size:20px">Penghasilan Netto Setahun</label>
+					</div>
+					<div class="grid_1">
+					<p style="margin-top: 5px; font-size: 20px; font-weight: bold">:</p>
+					</div>
+					<div class="grid_4">
+					<label c-label item="item" style="margin-top: 5px; font-size:22px">{{ttlpenghasilanthn | currency:"Rp. "}}</label>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_5">
+					<label c-label item="item" style="margin-top: 5px; font-size:20px">Penghasilan Tidak Kena Pajak Setahun</label>
+					</div>
+					<div class="grid_1">
+					<p style="margin-top: 5px; font-size: 20px; font-weight: bold">:</p>
+					</div>
+					<div class="grid_4">
+					<label c-label item="item" style="margin-top: 5px; font-size:22px">{{TtlHargaPtkp | currency:"Rp. "}}</label>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_5">
+					<label c-label item="item" style="margin-top: 5px; font-size:20px">Presentase Pajak</label>
+					</div>
+					<div class="grid_1">
+					<p style="margin-top: 5px; font-size: 20px; font-weight: bold">:</p>
+					</div>
+					<div class="grid_4">
+					<label c-label item="item" style="margin-top: 5px; font-size:22px">{{persentasepajak}}</label>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_5">
+					<label c-label item="item" style="margin-top: 5px; font-size:20px">Penghasilan Kena Pajak Setahun</label>
+					</div>
+					<div class="grid_1">
+					<p style="margin-top: 5px; font-size: 20px; font-weight: bold">:</p>
+					</div>
+					<div class="grid_4">
+					<label c-label item="item" style="margin-top: 5px; font-size:22px">{{penghasilankp | currency:"Rp. "}}</label>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_5">
+					<label c-label item="item" style="margin-top: 5px; font-size:20px">Penghasilan Kena Pajak Sebulan</label>
+					</div>
+					<div class="grid_1">
+					<p style="margin-top: 5px; font-size: 20px; font-weight: bold">:</p>
+					</div>
+					<div class="grid_4">
+					<label c-label item="item" style="margin-top: 5px; font-size:22px">{{PenghasilanKenaPajakBulan | currency:"Rp. "}}</label>
+					</div>
+				</div>
+					
+				<div class="grid_12">
+					<div class="grid_5">
+					<label c-label item="item" style="margin-top: 5px; font-size:20px">Keterangan PTKP</label>
+					</div>
+					<div class="grid_1">
+					<p style="margin-top: 5px; font-size: 20px; font-weight: bold">:</p>
+					</div>
+					<div class="grid_4">
+					<textarea style="height: 100px font-size:24px; font-weight: bold" c-text-box type="input" class="k-textbox" ng-model="item.keterangan" disabled="true" />
+					</div>
+				</div>
+				</fieldset>
+	         <div class="grid_12">
+					<div class="grid_2"></div>
+					<div class="grid_2"></div>
+					<div class="grid_2"></div>
+					<!-- <div class="grid_2"><button class="c-button"  style=" background-color: #10c4b2; height: 10px; width: 10px margin-bottom: 5px " ng-click="Cetak()">Hitung</button></div> -->
+					<div class="grid_2"><button class="c-button" style=" background-color: #10c4b2; height: 10px; width: 10px margin-bottom: 5px"  ng-click="Save()">Simpan</button></div>
+					<div class="grid_2"><button class="c-button" style=" background-color: #10c4b2; height: 10px; width: 10px margin-bottom: 5px"  ng-click="batal()">Batal</button></div>
+			</div>
+ 		</div>
+<style type="text/css">
+.gambarAset {
+    width: 60%;
+    height: 100%;
+    border: 1px solid grey;
+}
+fieldset {color background: orange;}
+</style>

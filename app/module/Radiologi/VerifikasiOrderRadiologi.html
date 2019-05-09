@@ -1,0 +1,79 @@
+<div>
+    <div ng-include='"../app/module/Shared/headerPasienPenunjang"'></div>
+    <c-panel item="item" header="'Order'" disabled>
+        <div class="grid_4">
+            <table class="table" ng-repeat="data in listOrders2">
+                <tr class='success'></tr>
+                <tr>
+                    <th colspan="5" style="text-align:left">
+                        {{data[0].detailJenisProduk.jenisProduk.jenisProduk}}</th>
+                </tr>
+                <tr ng-repeat="subData in data" ng-click="isChecked(subData)" ng-disabled='stat'>
+                   <!-- td style="width:5px" ng-repeat="data in listCheck">
+                        <input type="checkbox" class="k-checkbox" id="{{data.name}}" ng-model="item.cekOrder" id="{{data.name}}" value="{{data.id}}" ng-check="item.cekOrder" ng-click="verifikasi(subData[$index])">
+                        <label class="k-checkbox-label" for="{{data.name}}"></label>
+                    </td> -->
+                    <td ng-switch on="subData.isVerifikasi" style="width:20px; size:20px" ng-model="subData">
+                        <img ng-switch-when="true" width="16px" src='stylesheets/work-done24.png' class="brightness"/>
+                        <img ng-switch-default width="16px" src='stylesheets/work-done24.png' class="grayscale"/>
+                    </td>
+                    <td>{{subData.namaProduk}}</td>
+                    <!--{{subData.bahanSample.namaBahanSample}}-->
+                </tr>
+            </table>
+        </div>
+        <div class="grid_8">
+            <label c-label item="item" c-label-text="Keluhan"></label>
+            <textarea ng-disabled="'true'" ng-model="item.keteranganLainnya" style="width: 100%; height: 80px;"></textarea>
+        </div>
+        <div class="grid_12">
+            <div class="grid_4" style="margin-top:5px">
+                <label c-label item="item " c-label-text="dokterOrder"></label>
+                <input style="width: 100%; " kendo-combo-box k-ng-model="item.pegawai" k-data-text-field="'namaLengkap'" k-filter="'contains'" k-data-value-field="'value'" k-data-source="dokters" disabled/>
+            </div>
+            <div class="grid_4" style="margin-top:5px">
+                <label c-label item="item " c-label-text="dokterRadiologi"></label>
+                <input style="width: 100%; " kendo-combo-box k-ng-model="item.pegawaiRadiologi" k-data-text-field="'namaLengkap'" k-filter="'contains'" k-data-value-field="'value'" k-data-source="dokters" />
+            </div>
+        </div>
+        <!-- <div class="grid_8">
+            <div class="grid_12">
+                <table class="table table-striped">
+                    <tr>
+                        <th><span c-translate>Bahan Spesimen</span></th>
+                        <th><span c-translate>Jumlah</span></th>
+                        <!--<th><span c-translate></span></th>-->
+                   <!--  </tr>
+                    <tr ng-repeat="data in listSpesimens">
+                        <td>{{data.bahanSample.namaBahanSample+" - "+data.bahanSample.kodeExternal}}</td>
+                        <td>{{data.jumlah}}</td>
+                        <!--<td>
+                            <button="k-button" ng-click="remove(data)"> Hapus</button>
+                        </td>-->
+                  <!--   </tr>
+                </table>
+            </div  -->
+    </c-panel>
+    <div class="grid_12 place_button" style="float:left;">
+        <div ng-hide='isNext' class="grid_3" style="float:right" ng-show="cetak">
+            <c-button ng-show="!isLoading" class="success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" is-validate ng-click="cetakBuktiLayanan()">
+                <span class="title">Bukti Layanan</span>
+            </c-button>
+        </div>
+        <div ng-hide='isNext' class="grid_3" style="float:right" ng-show="verif">
+            <c-button ng-show="!isLoading" class="success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" is-validate ng-click="verifikasi()">
+                <span class="title">Verifikasi</span>
+            </c-button>
+        </div>
+        <div ng-hide='isNext' class="grid_3" style="float:right;" ng-show="verif">
+            <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" ng-click="Changeorders('RadiologiPasien.ChangeOrderRadiologi')">
+                <span class="title">Edit</span>
+            </c-button>
+        </div>
+    </div>
+</div>
+
+<style>
+    .grayscale {-webkit-filter: grayscale(100%); filter: grayscale(100%);}
+    .brightness {-webkit-filter: saturate(10); filter: saturate(10);}
+</style>

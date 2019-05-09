@@ -1,0 +1,22 @@
+<div class="CoreDashboardCtrl">
+    <div class="grid_12">
+        <div class="grid_12" style="margin-left:10px">
+            <label c-label c-label-text="Periode"></label>
+        </div>
+        <div class="grid_12">
+            <div class="grid_6">
+                <input style="width: 100%" k-ng-model='from' k-value='now' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+            </div>
+            <div class="grid_6">
+                <input style="width: 100%" k-ng-model='until' k-max='now' k-value='now' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+            </div>
+        </div>
+    </div>
+    <div class="grid_{{item.span}}" ng-repeat="item in listData">
+        <md-toolbar>
+            <h1 style="color:white"> {{item.title}}
+            </h1>
+        </md-toolbar>
+        <div c-dashboard type="item.type" detail="item.detail" height="item.height" title="item.title" url="item.url" group="item.series"></div>
+    </div>
+</div>

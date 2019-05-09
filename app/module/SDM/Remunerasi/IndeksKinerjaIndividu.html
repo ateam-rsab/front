@@ -1,0 +1,126 @@
+<div class="IndeksKinerjaIndividuCtrl">
+    <div class="panel panel-default container_12" style="background-color:transparant">
+        <div class="panel-heading">
+            <label class='title' c-label item="item" c-label-text="Indeks Kerja Individu" real></label>
+        </div>
+        <div class="panel-body">
+
+
+            <div class="grid_10">
+                <div class="grid_1" style="margin: 12px 0 0 0;">
+                    <label><b>Bulan</b></label>
+                </div>
+                <div class="grid_2">
+                  <input kendo-date-picker k-options="yearSelected" k-ng-model="item.akhir" k-on-change="findSatuanKerja()" k-max="now" k-format="'MMMM yyyy'" style="width: 100%" />
+              </div>
+
+              <div class="grid_1" style="margin: 7px 0 0 0;">
+                <button class="c-button" ng-click="cari()">Cari</button>
+            </div>
+        </div>
+
+
+        <div class="grid_12">
+            <h3>
+                <font color="black">
+                    <div style="text-align:left";>
+                        <b>&nbsp;&nbsp;&nbsp;Kuantitas(50%)<b>
+                        </div>
+                    </font>
+                </h3>
+            
+            <!--div class="grid_12" ng-show="item.pegawai.id!=undefined"  style="margin-top: 10px;"-->
+            <div class="grid_12" style="margin-top: 10px;">
+                <div kendo-grid k-data-source="sourceOrder" options="mainGridOption" k-selectable="'row'" k-ng-model="selectedData">
+                </div>
+                     
+            </div>
+
+</div>
+   <div class="loading" style="position: relative; margin:25px 0px 20px;" class="animated" ng-show="isLoadingData">
+                            <img height="50" src="../app/stylesheets/Flat/loading-image.gif" />
+                            <br/> <span>Harap tunggu, sedang memproses data</span>
+                        </div>
+            <div class="grid_12">
+
+                <table class="table">
+                    <tr>
+                        <th></th>
+                        <th rowspan="2"></th>
+                        <th rowspan="2" style="width:50px">Target</th>
+                        <th rowspan="2" style="width:50px">Bobot</th>
+                        <th colspan="1">Capaian</th>
+                        <td style="width:50px">
+                            Total
+                        </td>
+                        <td style="width:50px">
+                            Nilai
+                        </td>
+                        <td style="width:50px">
+                            Hasil (%)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        
+                        <td></td>
+                    </tr>
+                    <tr ng-repeat="item in  listData" ng-class="{'success':item.isUpdate}">
+                        <td ng-show="item.isHead !==true && (item.isUpdate === undefined || item.isUpdate===false)">
+                            <b style="font-size: 14pt;">
+                             <i class="fa fa-floppy-o" aria-hidden="true" style="color:black;cursor:pointer"  ng-click="update(item)" ></i>
+                         </b>
+                     </td>
+                     <td ng-show="item.isHead ===true" colspan="5">
+                        <b style="font-size: 14pt;">
+                         <i class="fa fa-plus" aria-hidden="true" style="color:black;cursor:pointer" ng-show="item.canAdd===true" ng-click="Add(item)"></i>
+                         {{item.head}}
+                     </b>
+                 </td>
+                 <td ng-show="item.isHead !==true">
+                    <span ng-show="item.isCustom !==true">{{item.rincianKegiatan}}</span>
+                    <span ng-show="item.isCustom ===true">
+                        <input  c-text-box type="input"  ng-model="item.rincianKegiatan" ng-blur="Commit(item)"  class="k-textbox"  />
+                    </span>
+                </td>
+                <td ng-show="item.isHead !==true">
+                    <span><input  c-text-box type="input" filter="'numeric'" ng-model="item.target"  class="k-textbox"  /></span>
+                </td>
+                <td ng-show="item.isHead !==true"> <span>
+                    <input  c-text-box type="input" filter="'numeric'" ng-model="item.bobot"     class="k-textbox"  /></span>
+                </td>
+
+                <td ng-show="item.isHead !==true && item.isCustom===undefined" style="position:relative">
+                    <div ng-show="item.listDay[index-1].isLibur" class="day holiday">
+                    </div>
+                    <div ng-show="!item.listDay[index-1].isLibur" class="day in" ng-click="changeShift(item,item.listDay[index-1])">
+
+                        <span ng-show="'Keberadaan (dihitung oleh bagian SDM)'!==item.rincianKegiatan"><input  c-text-box type="input" filter="'numeric'" ng-model="item.listDay[index-1].value"  class="k-textbox"  /></span>
+                        <span ng-show="'Keberadaan (dihitung oleh bagian SDM)'===item.rincianKegiatan">{{item.listDay[index-1].value}}</span>
+                    </div>
+                </td>
+
+                <td><span ng-hide="item.isHead===true">{{item.total}}</span>
+                </td>
+                <td><span ng-hide="item.isHead===true">{{item.total/item.target | number:2}}</span>
+                </td>
+                <td><span ng-hide="item.isHead===true">{{item.total/item.target * item.bobot | number:2}}</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="grid_12">
+        Total Kuantitas : {{totalKuantitas| number : 2}}
+        <br/> Total Kualitas : {{totalKualitas| number : 2}}
+        <br/> Total Prilaku : {{totalPrilaku| number : 2}}
+        <br/> Total Inovasi : {{totalInovasi| number : 2}}
+        <br/>
+        <b>Total Nilai Kinerja Individu : {{totalNilaiKinerja| number : 2}}</b>
+        <br/>
+    </div>
+    <div class="grid_12">
+        <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+    </div>
+</div>
+</div>
+</div>

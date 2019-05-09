@@ -1,0 +1,100 @@
+<div ng-controller="MapPegawaiToObjekCtrl">
+
+	<div ng-show="dataVOloaded">
+		<center><c-panel item="item" header="'Map Pegawai To Objek Pajak'"disabled></center>
+		<div class="grid_6">
+		<div class="panel panel-default container_12">
+			<div class="grid_12">
+		    <fieldset style="min-height:150px !important">
+				 <legend style="font-size:15px; font-weight:bold;">List Pegawai</legend>	
+				<div id="kGrid" kendo-grid 
+					k-data-source="dataSource" 
+					k-selectable="'row'" 
+					k-columns="columnDataPasienPiutang"
+					k-pageable="'true'"
+					k-sortable="'true'">
+				</div>
+		   </div>
+		   <div class="grid_12">
+				<br>
+			</div>
+			<div class="grid_12">
+				<div class="grid_4" style="margin: -5px 0 0 0;">
+					<label c-label item="item" c-label-text="Status Enable"></label>
+				</div>
+				<div class="grid_8">
+					<input type="checkbox" class="k-checkbox" name="dataAktif" id="dataAktif" ng-click="check()">
+					<label class="k-checkbox-label" c-label item="item" c-label-text="Status Aktif" for="dataAktif"></label>
+				</div>
+			</div>
+		</div> 
+	    </div>
+	    <div class="grid_6">
+	    <div class="panel panel-default container_12">
+	     <div class="grid_12"> 
+	   		 <br><br><br>
+		   </div>
+	    <div class="grid_12">
+				<div class="grid_3" style="margin: 10px 0 0 0;">
+					<label c-label item="item" c-label-text="Objek Pajak"></label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.ObjekPajak" k-data-text-field="'objekPajak'" k-data-value-field="'idObjekPajak'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListObjekPajak"/>
+				</div>	
+		</div>
+		 <div class="grid_12">
+				<div class="grid_3" style="margin: 10px 0 0 0;">
+					<label c-label item="item" c-label-text="Nama External"></label>
+				</div>
+				<div class="grid_8">
+				<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.NamaExternal"/>
+				</div>	
+		</div>
+		 <div class="grid_12">
+				<div class="grid_3" style="margin: 10px 0 0 0;">
+					<label c-label item="item" c-label-text="Range"></label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.Range" k-data-text-field="'namaRange'" k-data-value-field="'idRange'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListRange"/>
+				</div>	
+		</div>
+			   <div class="grid_12"> 
+	   	     <br><br><br>
+		   </div>
+			 <div class="grid_12"> 
+		   		<div class="grid_6"></div>
+				<div class="grid_3" style="margin-top: 25px">
+				<button class="c-button" ng-click="Simpan()">Mapping</button>
+				</div>
+				<div class="grid_3" style="margin-top: 25px">
+				<button class="c-button" ng-click="reset()">Batal</button>
+				</div>
+		     </div>
+	     </div>
+
+	     <div class="grid_12">
+		    <fieldset style="min-height:150px !important">
+				 <legend style="font-size:15px; font-weight:bold;">DATA YANG SUDAH TERMAPPING</legend>	
+				<div id="kGrid" kendo-grid 
+					k-data-source="dataSource2" 
+					k-selectable="'row'" 
+					k-columns="columnDataPasienPiutang2"
+					k-pageable="'true'"
+					k-ng-model="ambildata"
+					ng-click="klik(ambildata)"
+					k-sortable="'true'">
+				</div>
+		   </div>
+	
+	   </div>
+	   </div>
+	</div>
+		</c-panel>
+
+<style type="text/css">
+.gambarAset {
+    width: 60%;
+    height: 100%;
+    border: 1px solid grey;
+}
+			

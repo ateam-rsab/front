@@ -1,0 +1,95 @@
+
+<div class="grid_12" ng-controller="InputDiagnosaTindakanCtrl">
+    <div class="grid_12">
+        <div class="panel panel-default">
+            <div class="panel-heading" c-translate>ICD 9</div>
+            <div class="panel-body">
+                <!-- kode & nama diagnosis -->
+                <div class="grid_12" ng-show="!isView">
+                    <br/>
+                    <md-radio-group ng-model="findBy" layout="row" layout-sm="row" layout-align="center center" layout-wrap>
+                        <div class="grid_2">
+                            <md-radio-button value="1" class="md-primary">Menurut Nama </md-radio-button>
+                        </div>
+                        <div class="grid_2">
+                            <md-radio-button value="0" class="md-primary">Menurut Kode</md-radio-button>
+                        </div>
+                        <!-- <div class="grid_2">
+                            <md-radio-button value="2" class="md-primary">PMK</md-radio-button>
+                        </div> -->
+
+                    </md-radio-group>
+                    <div class="grid_8" ng-show="findBy==='1'">
+                        <span style='display:block' c-translate>Nama tindakan</span>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.diagnosisPrimer" k-data-text-field="'namaDiagnosaTindakan'" k-data-value-field="'id '" k-filter="'contains '" k-auto-bind="false" k-data-source="sourceDiagnosisPrimer" />
+                    </div>
+                    <div class="grid_8" ng-show="findBy==='0'">
+                        <span style='display:block' c-translate>Nama tindakan</span>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.diagnosisPrimer" k-data-text-field="'kdDiagnosaTindakan'" k-data-value-field="'id '" k-filter="'contains '" k-auto-bind="false" k-data-source="sourceDiagnosisPrimer" />
+                    </div>
+                    <!-- add_hanafi -->
+                    <div class="grid_12" ng-show="findBy==='2'">
+                        <div ng-include=' "../app/module/Dashboard/Pasien/inputTindakan.html" '></div>
+                    </div>
+                    <!-- <div class="grid_2"  ng-hide="findBy==='2'">
+                        <span style='display:block' c-translate>Jumlah</span>
+                        <input required c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlah" />
+                    </div> -->
+
+                        <div class="grid_4" style="margin-top:20px;">
+                             <textarea style=" height:80px;" placeholder="Keterangan Tindakan" ng-model="item.ketTindakan"></textarea>
+                        </div>
+                </div>
+
+                <div class="grid_12">
+                    &nbsp;
+                </div>
+                <div class="grid_12" ng-show="!isView"  ng-hide="findBy==='2'">
+                    <div class="grid_6" style="float:right">
+                        <c-button ng-click="removeDataDiagnosisPrimer()">
+                            <span style="font-size:10!important">Hapus</span>
+                        </c-button>
+                    </div>
+                    <div class="grid_6" style="float:right">
+                        <c-button ng-click="addDataDiagnosisPrimer()">
+                            <span style="font-size:10!important">Tambah</span>
+                        </c-button>
+                    </div>
+                </div>
+                <div class="clear"></div>
+
+                <!-- grid diagnosis -->
+                <div class="grid_12" style="margin-top: 10px;"  ng-hide="findBy==='2'">
+                    <div kendo-grid k-data-source="dataDiagnosisPrimer" k-selectable="'row '" k-columns="columnDiagnosisPrimer">
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="grid_4" style="display:none">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-heading">Top Diagnosis 9 CM</div>
+            </div>
+            <div class="panel-body">
+                <div class="grid_12 list" ng-repeat="data in topDiagnosis" ng-click="addFromTopTen(data)">
+                    <div class="grid_3 left">{{data.kdDiagnosaTindakan}}</div>
+                    <div class="grid_8 right">{{data.diagnosaTindakan}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="grid_12" style="margin-bottom:20px">
+        <div class="grid_6"></div>
+        <div class="grid_3">
+            <button class="c-button cancel" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" is-validate click="Back">Batal</button>
+        </div>
+        <div class="grid_3">
+            <button class="c-button success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" is-validate click="Save">Simpan</button>
+        </div>
+    </div> -->
+    <div ng-show="!isView"  ng-hide="findBy==='2'" ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+
+</div>

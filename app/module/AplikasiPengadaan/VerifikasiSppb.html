@@ -1,0 +1,153 @@
+<div ng-controller="VerifikasiSppbCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Verifikasi SPPB'" disabled>
+		<div class="grid_6">
+			<div class="grid_4" style="margin-top:10px">
+				<label c-label item="item" c-label-text="noKontrak"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.noKontrak" style="width:100%" disabled/>
+			</div>
+			<div class="grid_4" style="margin-top:10px">
+				<label c-label item="item" c-label-text="tanggal Pengajuan"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalKartuKendali" k-format="'yyyy-MM-dd'" k-value="item.tanggalKartuKendali" disabled/>
+			</div>
+			<div class="grid_4" style="margin-top:10px">
+				<label c-label item="item" c-label-text="namaPenyedia"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaRekanan" style="width:100%" disabled/>
+			</div>
+		</div>
+
+		<div class="grid_6">
+			<div class="grid_4" style="margin-top:10px">
+				<label c-label item="item" c-label-text="noSppb"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.noSppb" style="width:100%" disabled/>
+			</div>
+			<div class="grid_4" style="margin-top:10px">
+				<label c-label item="item" c-label-text="tanggal Sppb"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalSppb" k-format="'yyyy-MM-dd'" k-value="item.tanggalKartuKendali" disabled/>
+			</div>
+			<div class="grid_4" style="margin-top:10px">
+				<label c-label item="item" c-label-text="total"></label>
+			</div>
+			<div class="grid_8">
+				<input id="phone" c-text-box class="k-textbox" ng-model="item.totalSppb" style="width:100%" disabled/>
+			</div>
+			<!-- <div class="grid_4" style="margin-top:10px;text-align:right">
+				<label c-label item="item" c-label-text="namaKegiatan"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaKegiatan" style="width:100%"/>
+			</div> -->
+		</div>
+		<div class="clear"></div>
+		<!-- <div kendo-grid k-data-source="daftarPengajuanUsulan" k-selectable="'row'" editable="true" pageable="true" k-columns="columnPengajuanUsulan" style="margin-bottom: 10px"></div> -->
+		</c-panel>
+		<div class="clear"></div>
+
+		<!-- grid data -->
+		<div class="grid_12" style="margin-bottom: 10px">
+			<kendo-grid k-data-source="dataSource" options="mainGridOptions"></kendo-grid>
+		</div>
+
+		<!-- footer content -->
+		<!-- <div class="grid_8"></div>
+		<div class="grid_4">
+			<div class="grid_4" style="margin-top:10px;text-align:right">
+				<label c-label item="item" c-label-text="ppn"></label>
+			</div>
+			<div class="grid_8">
+			<input c-text-box class="k-textbox" ng-model="item.totalPpn" style="width:100%" disabled="true"/>
+			</div>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_8"></div>
+		<div class="grid_4">
+			<div class="grid_4" style="margin-top:10px;text-align:right">
+				<label c-label item="item" c-label-text="disc"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box class="k-textbox" ng-model="item.disc" style="width:100%"/>
+			</div>
+		</div>
+		<div class="clear"></div> -->
+
+		<!-- tombol -->
+		<div class="grid_12" ng-hide="isNotPpk">
+			<div class="grid_6" >
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="keteranganUnverifikasi" style="margin-bottom:5px"></label>
+				</div>
+				<div class="grid_12">
+					<textarea rows="8" c-text-box type="input" class="k-textbox" ng-model="item.keterangan" />
+				</div>
+			</div>
+			<div class="grid_6" style="margin-top:17px">
+				<div class="grid_4">
+					<button class="c-button" ng-click="batal()">Kembali</button>
+				</div>
+				<div class="grid_4">
+					<button class="c-button" ng-click="Unverif()">Unverifikasi</button>
+				</div>
+				<div class="grid_4">
+					<button class="c-button" ng-click="Verif()">Verifikasi</button>
+				</div>
+			</div>
+		</div>
+		<div class="grid_12" ng-show="isNotPpk">
+			<div class="grid_6">&nbsp;</div>
+			<div class="grid_6">
+				<div class="grid_8">&nbsp;</div>
+				<div class="grid_4">
+					<button class="c-button" ng-click="batal()">Kembali</button>
+				</div>
+			</div>
+		</div>
+
+		<script id="notificationTemplate" class="notification" type="text/x-kendo-template">
+       		<div class="validError">
+                <img src="../content/web/notification/error-icon.png" />
+                <h3>#= title #</h3>
+                <p>#= message #</p>
+            </div>
+        </script>
+
+        <div kendo-notification="notf1" class="ui-notification" k-options="notf1Options"></div>
+	</div>
+</div>
+
+<style>
+.label-aja {
+	padding-top:12px;font-size:13px;font-weight:bold;
+	text-align:right;
+	height:22px;
+}
+.k-window > div.k-popup-edit-form {
+    padding: 1em;
+}
+  .contact-info-form {
+    list-style-type: none;
+    margin: 30px 0;
+    padding: 0;
+  }
+
+  .contact-info-form li {
+    margin: 10px 0;
+  }
+
+  .contact-info-form label {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    font-weight: bold;
+  }
+</style>

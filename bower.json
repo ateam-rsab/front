@@ -1,0 +1,41 @@
+{
+  "name": "simrs",
+  "description": "WebApp SIMRS untuk rumah sakit harapan kita",
+  "main": "app.js",
+  "authors": [
+    "IGM"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "SIMRS",
+    "MEDIFIRST2000",
+    "HARKIT"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "animate.css": "^3.5.1",
+    "underscore": "^1.8.3",
+    "AngularJS": "angular-latest#^1.5.5",
+    "jquery": "^2.2.3",
+    "font-awesome": "fontawesome#^4.7.0",
+    "angular-mocks": "^1.5.5",
+    "angular-local-storage": "^0.2.7",
+    "angular-socket-io": "^0.7.0",
+    "moment": "^2.13.0",
+    "caman": "^4.1.2",
+    "toastr": "^2.1.2",
+    "angular-material": "^1.1.0",
+    "freewall": "^1.0.6",
+    "terbilang": "^0.0.3",
+    "angular-sanitize": "^1.5.8"
+  }
+
+  }

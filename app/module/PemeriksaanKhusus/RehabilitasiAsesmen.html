@@ -1,0 +1,142 @@
+<div>
+    <div class="grid_12 headerBox">
+        <h1 style="color: white;"><b>Asesmen Fungsional</b></h1>
+    </div>
+    <div class="grid_12" style="border: 1px solid; border-color: #10C4B2;">
+        <div class="grid_12" style="margin-top:10px">
+            <div class="grid_2" style="margin:10px 0 0 20px;">
+                <div class="grid_12">
+                    <label c-label item="item">Lingkar Kepala</label>
+                </div>
+                <div class="grid_12" parentKeteranganFieldTambahan>
+                    <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.lingkarKepala"/>
+                    <label class="keteranganFieldTambahan" style="margin-top:5px">cm</label>
+                </div>
+            </div>
+            <div class="grid_2" style="margin:10px 0 0 20px;">
+                <div class="grid_12">
+                    <label c-label item="item">Berat Badan</label>
+                </div>
+                <div class="grid_12" parentKeteranganFieldTambahan>
+                    <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.beratBadan"/>
+                    <label class="keteranganFieldTambahan" style="margin-top:5px">kg</label>
+                </div>
+            </div>
+            <div class="grid_2" style="margin:10px 0 0 20px;">
+                <div class="grid_12">
+                    <label c-label item="item">Tinggi Badan</label>
+                </div> 
+                <div class="grid_12" parentKeteranganFieldTambahan>
+                    <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.tinggiBadan"/>
+                    <label class="keteranganFieldTambahan" style="margin-top:5px">cm</label>
+                </div>
+            </div>
+        </div>
+        <div class="grid_12" style="margin-top:10px">
+            <div class="grid_3" style="margin:10px 0 0 20px;">
+                <label c-label item="item">Riwayat Penyakit Sekarang</label>
+            </div>
+            <div class="grid_8" style="margin-left:10px">
+                <textarea ng-model="item.riwayatPenyakitSekarang" style="width: 99%; height: 80px;"></textarea>
+            </div>
+        </div>
+        <div class="grid_12">
+            <div class="grid_3" style="margin:10px 0 0 20px;">
+                <label c-label item="item">Riwayat Penyakit Dahulu</label>
+            </div>
+            <div class="grid_8" style="margin-left:10px">
+                <textarea ng-model="item.riwayatPenyakitDahulu" style="width: 99%; height: 80px;"></textarea>
+            </div>
+        </div>
+         <div class="grid_12" style="margin:10px 0 0 20px;"">
+            <label c-label item="item"><b>Pemeriksaan Fungsional</b></label>
+        </div>
+        <div class="grid_12" style="margin-top:10px">
+            <div class="grid_3" style="margin:10px 0 0 30px;">
+                <label c-label item="item">a. Fungsi Komunikasi - Interaksi sosial</label>
+            </div>
+            <div class="grid_8">
+                <textarea ng-model="item.fungsiKomunikasi" style="width: 99%; height: 80px;"></textarea>
+            </div>
+        </div>
+        <div class="grid_12" style="margin-top:10px">
+            <div class="grid_3" style="margin:10px 0 0 30px;">
+                <label c-label item="item">b. Fungsi Motorik dan Lokomotor</label>
+            </div>
+            <div class="grid_8">
+                <textarea ng-model="item.fungsiMotorik" style="width: 99%; height: 80px;"></textarea>
+            </div>
+        </div>
+        <div class="grid_12" style="margin-top:10px">
+            <div class="grid_3" style="margin:10px 0 0 30px;">
+                <label c-label item="item">c. Kardiorespirasi</label>
+            </div>
+            <div class="grid_8">
+                <textarea ng-model="item.kardiorespirasi" style="width: 99%; height: 80px;"></textarea>
+            </div>
+        </div>
+        <div class="grid_12" style="margin-top:10px">
+            <div class="grid_3" style="margin:10px 0 0 30px;">
+                <label c-label item="item">d. Fungsi Menelan</label>
+            </div>
+            <div class="grid_8">
+                <textarea ng-model="item.fungsiMenelan" style="width: 99%; height: 80px;"></textarea>
+            </div>
+        </div>
+        <div class="grid_12" style="margin-top:10px">
+            <div class="grid_3" style="margin:10px 0 0 30px;">
+                <label c-label item="item">e. Sensori Motor Skill yang berhubungan dengan Sensori Persepsi dan Kognisi</label>
+            </div>
+            <div class="grid_8">
+                <textarea ng-model="item.sensoriMotor" style="width: 99%; height: 80px;"></textarea>
+            </div>
+        </div>
+        <div class="grid_12" style="margin-top:10px">
+            <div class="grid_3" style="margin:10px 0 0 30px;">
+                <label c-label item="item">f. Fungsi Defekasi dan Berkemih</label>
+            </div>
+            <div class="grid_8">
+                <textarea ng-model="item.fungsiDefekasi" style="width: 99%; height: 80px;"></textarea>
+            </div>
+        </div>
+        <div class="grid_12" style="margin-top:10px">
+            <div class="grid_3" style="margin:10px 0 0 30px;">
+                <label c-label item="item">g. Aktivitas Sehari-hari (Kemandirian)</label>
+            </div>
+            <div class="grid_8">
+                <textarea ng-model="item.aktivitas" style="width: 99%; height: 80px;"></textarea>
+            </div>
+        </div>
+        <div class="grid_12" style="margin-top:10px">
+            <div class="grid_3" style="margin:10px 0 0 20px;">
+                <label c-label item="item">Pemeriksaan Tambahan</label>
+            </div>
+            <div class="grid_8" style="margin-left:10px">
+                <textarea ng-model="item.pemeriksaanTambahan" style="width: 99%; height: 80px;"></textarea>
+            </div>
+        </div>
+        <div class="grid_12" style="margin-top:10px">
+            <div class="grid_3" style="margin:10px 0 0 20px;">
+                <label c-label item="item">Diagnosa Rehabilitasi</label>
+            </div>
+            <div class="grid_8" style="margin-left:10px">
+                <textarea ng-model="item.diagnosaRehabilitasi" style="width: 99%; height: 80px;"></textarea>
+            </div>
+        </div>
+        <div class="grid_12" style="margin-top:10px">
+            <div class="grid_3" style="margin:10px 0 0 20px;">
+                <label c-label item="item">Protokol Terapi (Program Rehabilitasi dan Rekomendasi)</label>
+            </div>
+            <div class="grid_8" style="margin-left:10px">
+                <textarea ng-model="item.protokolTerapi" style="width: 99%; height: 80px;"></textarea>
+            </div>
+        </div>
+        <div ng-include='"../app/module/Shared/TemplateButtonSimpanNotFixed"'></div>
+        <div class="grid_12 headerBox">
+            <h2 style="color: white;"><b>Daftar Rehabilitasi Asesmen</b></h2>
+        </div>
+        <div class="grid_12 borderBox">
+            <kendo-grid id="gridRehabilitasiAsesmen" options="mainGridOptions" k-data-source="dataRehabilitasiAsesmen" k-ng-model="selectedItem" ng-click="click(selectedItem)"></kendo-grid>
+        </div>
+    </div>
+</div>

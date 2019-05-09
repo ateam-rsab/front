@@ -1,0 +1,101 @@
+<style>
+    .style-center{
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+    }
+
+    .style-right{
+        display: inline-block;
+        text-align: right;
+        width: 100%;
+    }
+
+    .style-left{
+        display: inline-block;
+        text-align: left;
+        width: 100%;
+    }
+</style>
+<!-- <div ng-controller="DetailKegiatanUnitCostCtrl2">  -->
+<div ng-show="dataVOloaded">
+    <!-- <c-panel item="item" header="'Setoran Kasir'" disabled> -->
+    <div class="grid_12 headerBox">
+        <h1 style="color: white;"><b>Indirect Cost</b></h1>
+    </div>
+    <div class="panel-body">
+        <div class="grid_12">
+
+            <div class="grid_1">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Tahun"></label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" style="text-align: right" filter="" class="k-textbox" ng-model="item.tahun"  />
+                </div>
+            </div>
+            <div class="grid_1">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Qty Tindakan"></label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" style="text-align: right" filter="" class="k-textbox" ng-model="item.qtyTindakan"  />
+                </div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Indirect Cost"></label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" style="text-align: right" filter="" class="k-textbox" ng-model="item.indirectcost" />
+                </div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Total Indirect Cost"></label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" style="text-align: right" filter="" class="k-textbox" ng-model="item.totalIndirectCost"  />
+                </div>
+            </div>
+            <div class="grid_1">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Status Enabled"></label>
+                </div>
+                <div class="grid_12">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.statusEnabled" k-data-text-field="'status'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listStatus" />
+                </div>
+            </div>
+            <div class="grid_2" style="margin-top: 10px">
+                <div class="grid_6">
+                    <button class="btnTemplate1" ng-click="simpan()">Simpan</button>
+                </div>
+                <div class="grid_6">
+                    <button class="btnTemplate1" ng-click="batal()">Batal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="grid_12 borderBox">
+<div id="kGrid" kendo-grid k-data-source="dataGrid" k-selectable="'row'" k-columns="columnGrid" k-pageable="'true'" k-sortable="'true'" k-ng-model="dataSelected" ng-click="klik(dataSelected)">
+    </div>
+</div>
+<!-- <div class="grid_12">
+    <div class="grid_11">
+    </div>
+    <div class="grid_1">
+        <div class="grid_12">
+            <button class="btnTemplate1" ng-click="kembali()">Kembali</button>
+        </div>
+    </div>
+</div> -->
+
+<!-- </c-panel> -->
+
+        <!-- <div class="grid_12" style="margin-top:30px">
+            <div ng-include='"../app/module/Shared/Keuangan/TemplateButtonBendaharaPenerimaan"'></div>
+        </div> -->
+    </div>
+    <!-- </div> -->

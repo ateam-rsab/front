@@ -1,0 +1,93 @@
+<div ng-controller="PenilaianResikoJatuhPasienGeriatriCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Penilaian Resiko Jatuh Pasien'">
+
+		<div ng-hide="isLastPage">
+			<div class="grid_12 borderBox">
+	            <div class="grid_3" style="margin-right: 0px;width: 25%;" ng-repeat="data in listDataPenilaianResiko">
+	                <div class="containerCenter" ng-class="{selected : data.chekVisible === true}" ng-click="risikoSelected(data)">
+	                	<div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+	                	<div class="check"></div>
+	                    <p>{{data.name}}</p>
+	                </div>
+	            </div>
+	            <div class="clear"></div>
+
+	            <hr style="background-color:#10C4B2;height: 1px;border: 0;" />
+
+	            <div class="grid_3" style="float:right; margin-bottom:10px">
+	            	<c-button  class="success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" ng-click="showInfo()">
+	                    <span class="title">Selanjutnya</span>
+	                </c-button>
+	            </div>
+
+	        </div>
+	        <div class="clear"></div>
+        </div>
+
+        <div ng-show="isLastPage">
+
+			<div ng-show="isInfo">
+				<div class="grid_12">
+
+				<table style="border: 1px solid;">
+					<tr>
+						<td style="border-bottom: 1px solid;">Risiko</td>
+						<td style="border-bottom: 1px solid;">Skala</td>
+					</tr>
+					<tr ng-repeat="data in item.penilaianRisikoGeriatri">
+						<td>{{data.risiko.name}}</td>
+						<td>{{data.risiko.score}}</td>
+					</tr>
+				</table>
+				</div>
+
+				<div class="clear"></div>
+
+				<div class="grid_12" style="margin-top:15px">
+
+					<div class="grid_3" style="float:right">
+						<c-button  class="success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" ng-click="toTotalScore()">
+		                                <span class="title">Selanjutnya</span>
+		                            </c-button>
+					</div>
+
+					<div class="grid_3" style="float:right">
+						<c-button  class="cancel" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" ng-click="backToPenilaian()">
+		                                <span class="title">Sebelumnya</span>
+		                            </c-button>
+					</div>
+				</div>
+				
+			</div>
+
+			<div ng-hide="isInfo">
+				<div class="grid_12">
+					<div class="grid_12 borderBox" style="width:100%"">
+						<div class="grid_2" style="margin-right: 0px; width:15%">
+							  <div class="containerCenter">
+							  	<p>SKORING</p>
+							  </div>
+						</div>
+						<div class="grid_10" style="margin-right: 0px; width:85%">
+							  <div class="containerLeft">
+							  	<p>{{tanggalHariIni}}</p>
+							  	<p><h1>TOTAL {{totalScore}}</h1></p>
+							  	<p>{{keteranganScore}}</p>
+							  </div>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+
+				<div class="grid_12" style="margin-top:15px">
+					<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+				</div>
+			</div>
+		</div>
+
+
+		</c-panel>
+	</div>
+</div>

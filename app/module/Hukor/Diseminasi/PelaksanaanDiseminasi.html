@@ -1,0 +1,81 @@
+<div ng-controller="PelaksanaanDiseminasiCtrl">
+    <c-panel item="item" header="'PelaksanaanDiseminasi'">
+        <div class="panel panel-default container_12">
+            <div class="panel-body">
+                <div class="grid_12">
+                    <div class="grid_2" style="margin: 10px 0 0 10px;">
+                        <label c-label item="item">No. Planning</label>
+                    </div>
+                    <div class="grid_3">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noPlanning"
+                               readonly="true"/>
+                    </div>
+                    <div class="grid_2" style="margin: 10px 0 0 10px;">
+                        <label c-label item="item">Judul Diseminasi</label>
+                    </div>
+                    <div class="grid_3">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox"
+                               ng-model="item.judulDiseminasi" readonly="true"/>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_2" style="margin: 10px 0 0 10px;">
+                        <label c-label item="item">Tanggal Rencana Pelaksanaan</label>
+                    </div>
+                    <div class="grid_4">
+                        <div class="grid_5">
+                            <input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAwal"
+                                  k-format="'dd-MM-yyyy'"
+                                   readonly="true"/>
+                        </div>
+                        <div class="grid_2" style="margin: 10px 0 0 0;">
+                            <label c-label item="item" c-label-text="s/d"></label>
+                        </div>
+                        <div class="grid_5">
+                            <input style="width: 100%" kendo-date-picker  k-ng-model="item.periodeAkhir"
+                                  k-format="'dd-MM-yyyy'"
+                                   readonly="true"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_2" style="margin: 10px 0 0 10px;">
+                        <label c-label item="item">Tanggal Pelaksanaan Diseminasi</label>
+                    </div>
+                    <div class="grid_4">
+                        <div class="grid_5">
+                            <input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAwal2"
+                                   placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"/>
+                        </div>
+                        <div class="grid_2" style="margin: 10px 0 0 0;">
+                            <label c-label item="item" c-label-text="s/d"></label>
+                        </div>
+                        <div class="grid_5">
+                            <input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAkhir2"
+                                   placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_2" style="margin: 10px 0 0 10px;">
+                        <label c-label item="item">Ruangan Pelaksanaan Diseminasi</label>
+                    </div>
+                    <div class="grid_3">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan"
+                               k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'"
+                               k-auto-bind="false" k-data-source="listRuangan"/>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_6"></div>
+                    <div class="grid_2">
+                        <button class="c-button" ng-click="save()">Simpan</button>
+                    </div>
+                    <div class="grid_2">
+                        <button class="c-button" ng-click="redirect()">Daftar Pelaksanaan Diseminasi</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </c-panel>
+</div> 

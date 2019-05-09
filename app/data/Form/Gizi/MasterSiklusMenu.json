@@ -1,0 +1,34 @@
+{
+	"model":{
+		"kodeSiklus" : "",
+		"namaSiklus":"",
+		"jmlHariSiklus":"",
+		"deskripsi": ""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "kodeSiklus",
+			"messagesRequired" : "",
+			"caption" : "Kode Siklus"
+		},{
+			"isNull" : "true",
+			"name" : "namaSiklus",
+			"messagesRequired" : "",
+			"caption" : "Nama Siklus"
+		},{
+			"isNull" : "true",
+			"name" : "jmlHariSiklus",
+			"messagesRequired" : "",
+			"caption" : "Jml Hari Siklus"
+		},{
+			"isNull" : "true",
+			"name" : "deskripsi",
+			"messagesRequired" : "",
+			"caption" : "Deskripsi"
+		}
+
+	]
+}

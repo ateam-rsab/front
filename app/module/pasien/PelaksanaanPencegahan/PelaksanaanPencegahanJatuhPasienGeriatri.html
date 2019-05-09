@@ -1,0 +1,50 @@
+<div ng-controller="PelaksanaanPencegahanJatuhPasienGeriatriCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Pelaksanaan Pencegahan Jatuh Pasien'">
+
+		<div ng-hide="isLastPage">
+			<c-wizard list-data="listDataPelaksanaanPencegahan" choose-kriteria="chooseKriteria" page-prev="pagePrev" is-first-page="isFirstPage"></c-wizard>
+		</div>
+
+		<div ng-show="isLastPage">
+
+			<div ng-show="isInfo">
+				<div class="grid_12">
+
+				<table style="border: 1px solid;">
+					<tr>
+						<td style="border-bottom: 1px solid;">Parameter</td>
+						<td style="border-bottom: 1px solid;">Kriteria</td>
+					</tr>
+					<tr ng-repeat="data in item.penilaianPencegahanGeriatri" style="cursor: pointer" ng-click="getEditData(data)">
+						<td>{{data.parameter.name}}</td>
+						<td>{{data.kriteria.name}}</td>
+					</tr>
+				</table>
+				</div>
+
+				<div class="clear"></div>
+
+				<div class="grid_12" style="margin-top:15px">
+
+					<div class="grid_3" style="float:right">
+						<c-button  class="success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" ng-click="Save()">
+		                                <span class="title">Simpan</span>
+		                            </c-button>
+					</div>
+
+					<div class="grid_3" style="float:right">
+						<c-button  class="cancel" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" ng-click="backToPenilaian()">
+		                                <span class="title">Sebelumnya</span>
+		                            </c-button>
+					</div>
+				</div>
+				
+			</div>
+
+		</div>
+
+		</c-panel>
+	</div>
+</div>

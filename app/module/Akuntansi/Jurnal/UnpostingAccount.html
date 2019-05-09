@@ -1,0 +1,112 @@
+<div ng-controller="UnpostingAccountCtrl"> 
+  <div ng-show="dataVOloaded">
+    <!-- <c-panel item="item" header="'Daftar Collecting Piutang'" disabled> -->
+    <div class="grid_12 headerBox">
+      <h1 style="color: white;"><b>Posting Jurnal</b></h1>
+    </div>
+
+    <!-- Kriteria -->
+    <div class="grid_12">
+      <div class="grid_12">
+      <div class="grid_3">
+              <div class="grid_12">
+              <label c-label item="item" style="margin-top: 10px">Jenis Jurnal</label>
+              </div>
+              <div class="grid_12">
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenistransaksi" k-data-text-field="'jenistransaksi'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisTransaksi" />
+              </div>
+            </div>
+        <div class="grid_4">
+          <div class="grid_12">
+            <label c-label item="item" style="margin-top: 10px">Periode </label>
+          </div>
+          <div class="grid_12">
+            <!-- AwalPeriode -->
+            <div class="grid_6 padDatePicker">
+              <input style="width: 100%" k-ng-model="item.tanggalAwal"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+            </div>
+            <div class="grid_6 padDatePicker">
+              <input style="width: 100%" k-ng-model="item.tanggalAkhir"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+            </div>
+            <div class="clear"></div>
+          </div>
+        </div>
+        <div class="grid_2">
+          <div class="grid_12">
+            <label c-label item="item" style="margin-top: 10px">Status</label>
+          </div>
+          <div class="grid_12">
+            <input style="width: 100%;" kendo-combo-box k-ng-model="item.status" k-data-text-field="'namaStatus'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listStatus" />
+          </div>
+        </div>
+        <div class="grid_3" style="margin-top: 17px">
+          <div class="grid_6" style="margin-top: 10px">
+            <div class="grid_12">
+              <button class="c-button" ng-click="cariData()">Cari</button>
+            </div>
+          </div>
+          <!-- <div class="grid_6" style="margin-top: 10px">
+            <div class="grid_12">
+              <button class="c-button" ng-click="ClearSearch()">Clear</button>
+            </div>
+          </div> -->
+        </div>
+      </div>
+
+      
+    </div>
+
+    <br/>
+
+    <!-- DaftarPiutang -->
+    <div class="grid_12">
+
+      <!-- grid table -->
+    <!-- <div class="grid_12 borderBox">
+      <div class="grid_12 borderBox">
+        <div id="kGrid" kendo-grid 
+        k-data-source="dataSource"
+        options="mainGridOptions"
+        k-ng-model="dataSelectedDataSource">
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div> -->
+    <div class="grid_12 headerBox">
+      <p>Daftar Collecting</p>
+    </div>
+    <div class="grid_12 borderBox">
+      <div id="kGrid" kendo-grid 
+      k-data-source="dataSource2" 
+      k-selectable="'row'" 
+      k-columns="columnPencatatanPiutang"
+      k-pageable="'true'"
+      k-sortable="'true'"
+      k-ng-model="dataSelected">
+    </div>
+
+  </div>
+  <div class="grid_12">
+    <div class="grid_3"></div>
+    <div class="grid_3"></div>
+    <div class="grid_2">
+      <button class="c-button" ng-click="Posting()">Posting</button>
+    </div>
+     <div class="grid_2">
+      <button class="c-button" ng-click="PostingBrs()">Posting Baris</button>
+    </div>
+    <div class="grid_2">
+      <button class="c-button" ng-click="UnPosting()">UnPosting</button>
+    </div>
+
+  </div>
+
+
+  <!-- <div class="grid_12" style="margin-top:30px">
+    <div ng-include='"../app/module/Shared/Keuangan/TemplateButtonKasir"'></div>
+  </div> -->
+
+  <!-- </c-panel> -->
+
+</div>
+</div>

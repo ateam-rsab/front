@@ -1,0 +1,28 @@
+{
+	"model":{
+		"kodePengendali" : "",
+		"namaPengendali":"",
+		"ketPengendali":""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "kodePengendali",
+			"messagesRequired" : "",
+			"caption" : "Kode Pengendali"
+		},{
+			"isNull" : "true",
+			"name" : "namaPengendali",
+			"messagesRequired" : "",
+			"caption" : "Nama Pengendali"
+		},{
+			"isNull" : "true",
+			"name" : "ketPengendali",
+			"messagesRequired" : "",
+			"caption" : "Keterangan Pengendali"
+		}
+
+	]
+}

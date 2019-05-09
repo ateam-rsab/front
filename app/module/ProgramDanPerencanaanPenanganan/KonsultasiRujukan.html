@@ -1,0 +1,16 @@
+
+<div ng-controller="KonsultasiRujukanCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="title">
+			
+			<div class="grid_1">
+				<label c-label item="item" c-label-text="keterangan"> </label>
+			</div>
+			<div class="grid_6">
+				<textarea style="height: 40px" id="text_area" c-text-box type="input" class="k-textbox" ng-model="item.keterangan" />
+			</div>
+            <div class="clear"></div>
+
+		</c-panel>
+	</div>
+</div>

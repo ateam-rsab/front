@@ -1,0 +1,47 @@
+<div ng-controller="MonitoringPihakLuarCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Monitoring Pihak Luar'">
+		<div class="grid_12">
+			<div kendo-grid="grid" k-ng-model="selectedData" k-data-source="dataSource" k-options="mainGridMonevPihakLuar" k-selectable="'row'" style="margin-bottom: 10px"></div>
+		</div>
+		<div class="grid_12">
+		<div kendo-chart
+             k-legend="{ position: 'bottom' }"
+             k-series-defaults="{ type: 'line', style: 'smooth' }"
+             k-series="[
+                         { field: 'target', name: 'Target' },
+                         { field: 'realisasi', name: 'Realisasi' },
+             ]"
+             k-data-source="dataPihakLuar"
+             k-options= "mainChart"
+             style="height: 250px;" ></div>
+        </div>
+        <div class="grid_12">
+        	<label c-label item="item" c-label-text="monitoring"></label>
+        </div>
+        <div class="grid_12">
+        	<div class="grid_8">
+        		<textarea style="height: 90px" c-text-box type="input" class="k-textbox" ng-model="item.monitoring" />
+        	</div>
+        </div>
+         <div class="grid_12">
+        	<label c-label item="item" c-label-text="evaluasi"></label>
+        </div>
+        <div class="grid_12">
+        	<div class="grid_8">
+        		<textarea style="height: 90px" c-text-box type="input" class="k-textbox" ng-model="item.evaluasi" />
+        	</div>
+        </div>
+         <div class="grid_12">
+        	<label c-label item="item" c-label-text="tindakLanjut"></label>
+        </div>
+        <div class="grid_12">
+        	<div class="grid_8">
+        		<textarea style="height: 90px" c-text-box type="input" class="k-textbox" ng-model="item.tindakLanjut" />
+        	</div>
+        </div>
+        </div>
+		</c-panel>
+	</div>
+</div>

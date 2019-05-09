@@ -1,0 +1,92 @@
+{
+	"id" : "",
+	"prosedur": "",
+	"waktu": "",
+	"dokter":"",
+	"pemindahanEmbrio" : "",
+	"kateterYgDigunakan":"",
+	"pengobatanFaseLuteal" : "",
+    "jlhEmbrioDipindahkan":"",
+	"jlhEmbrio" : [
+            	{
+                    "id": 1,
+                    "name": "Embrio 1"
+                },{
+                    "id": 2,
+                    "name": "Embrio 2"
+	            },{
+                    "id": 3,
+                    "name": "Embrio 3"
+	            },{
+                    "id": 4,
+                    "name": "Embrio 4"
+	            }
+              ],
+    "tanggalKrioprevasi":"",
+    "simpanBeku":"",
+	"keterangan" : [
+            	{
+                    "id": 1
+	            },
+	            {
+                    "id": 2
+	            },
+	            {
+                    "id": 3
+	            }
+    ],
+
+	"attributes" : [
+	{
+			"isNull" : "true",
+			"name" : "prosedur",
+			"messagesRequired" : "Prosedur Harus Diisi",
+			"caption" : "Prosedur"
+	},{
+			"isNull" : "true",
+			"name" : "waktu",
+			"pukul" : "Waktu Harus Diisi",
+			"caption" : "Waktu"
+	},{
+			"isNull" : "true",
+			"name" : "dokter",
+			"messagesRequired" : "Dokter Harus Diisi",
+			"caption" : "Dokter"
+	},{
+			"isNull" : "true",
+			"name" : "jlhEmbrioDipindahkan",
+			"messagesRequired" : " Jumlah embrio dipindahkan Harus Diisi",
+			"caption" : " Jumlah embrio dipindahkan"
+	},{
+			"isNull" : "true",
+			"name" : "pemindahanEmbrio",
+			"messagesRequired" : "Pemindahan Embrio Harus Diisi",
+			"caption" : "Pemindahan Embrio"
+	},{
+			"isNull" : "true",
+			"name" : "kateterYgDigunakan",
+			"messagesRequired" : "Kateter yang digunakan Harus Diisi",
+			"caption" : "Kateter yang digunakan"
+	},{
+			"isNull" : "true",
+			"name" : "pengobatanFaseLuteal",
+			"messagesRequired" : "Pengobatan fase luteal Harus Diisi",
+			"caption" : " Pengobatan fase luteal"
+	},{
+			"isNull" : "true",
+			"name" : "tanggalKrioprevasi",
+			"messagesRequired" : "Tanggal Harus Diisi",
+			"caption" : "Tanggal"
+	},{
+			"isNull" : "true",
+			"name" : "simpanBeku",
+			"messagesRequired" : "Simpan beku Harus Diisi",
+			"caption" : "Simpan Beku"
+	},{
+			"isNull" : "true",
+			"name" : "keterangan",
+			"messagesRequired" : "Pemindahan Embrio berasal dari simpan beku Harus Diisi",
+			"caption" : "Pemindahan Embrio berasal dari simpan beku"
+	}
+	]
+}

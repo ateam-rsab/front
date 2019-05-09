@@ -1,0 +1,68 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" c-translate>Daftar Undangan Peserta Pelatihan</div>
+	<div class="panel-body">
+		<fieldset style="min-height:50px !important" align="left">
+            <legend><h2>Pencarian</h2></legend>
+            <div class="grid_4" style="margin-top: 10px">
+            	<div class="grid_6">
+	                <label c-label item="item" c-label-text="Tanggal awal"></label>
+	                <input style="width: 100%" k-ng-model="item.tglawal" kendo-datetimepicker placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd HH:mm'" />
+	            </div>
+	            <div class="grid_6">
+	                <label c-label item="item" c-label-text="Tanggal Akhir"></label>
+	                <input style="width: 100%" k-ng-model="item.tglakhir" kendo-datetimepicker placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd HH:mm'" />
+	            </div>
+            </div>
+            <div class="grid_2" style="margin-top: 15px">
+				<div class="grid_12">
+					<label c-label item="item" >Jenis Pelatihan</label>
+				</div>
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPelatihan" k-data-text-field="'jenispelatihan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisPelatihan" />
+				</div>
+			</div>
+			<div class="grid_4" style="margin-top: 15px">
+				<div class="grid_12">
+					<label c-label item="item">Pelatihan</label>
+				</div>
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.Pelatihan" k-data-text-field="'namaplanning'" k-data-value-field="'noplanning'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPelatihan" />
+				</div>
+			</div>
+            <div class="grid_2 k-edit-buttons  k-state-default " style="margin-top:37px">       
+                <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="SearchData()"  style="width:100px"  ><span class="k-sprite k-icon k-i-search"></span>Cari </button>
+                <button class="k-button  k-button-icontext" ng-click="ClearData()"   style="width:100px" ><span class="k-sprite k-icon k-delete"></span>Clear</button>
+            </div>         
+        </fieldset>
+	</div>
+	<div class="grid_12">
+         <div class="grid_12 borderBox">
+            <div id="kGrid" 
+            kendo-grid k-data-source="dataGrid" 
+            k-selectable="'row'" 
+            k-columns="columnGrid" 
+            k-pageable="'true'" 
+            k-sortable="'true'" 
+            k-ng-model="dataSelected">
+            </div>
+        </div>
+    </div>
+	<div class="grid_12" style="margin-top: 25px;">
+		<div class="grid_4"></div>
+    	<div class="grid_2">
+			<button class="c-button" ng-click="CetakUndangan()">Surat Undangan</button>
+		</div>
+		<div class="grid_2">
+			<button class="c-button" ng-click="CetakSuratTugas()">Surat Tugas</button>
+		</div>
+		<div class="grid_2">
+			<button class="c-button" ng-click="CetakPerNara()">Permohonan Narasumber</button>
+		</div>
+		<div class="grid_2">
+			<button class="c-button" ng-click="CetakPerMC()">Permohonan Dokumentasi</button>
+		</div>        
+	</div>
+	<div class="grid_12" style="margin-top:60px">
+        <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+    </div>
+</div>

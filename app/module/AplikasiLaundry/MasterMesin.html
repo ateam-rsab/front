@@ -1,0 +1,95 @@
+
+	<div class="panel panel-default container_12">
+		<div class="panel-heading" c-translate>Master Mesin</div>
+			<div class="panel-body">
+				<div class="grid_12" style="margin-top: 5px" ng-hide="KodeSembunyi">
+					<div class="grid_3"></div>
+					<div class="grid_2" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="kodeMesin"></label>
+					</div>
+					<div class="grid_3">
+						<input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.idProduk" disabled="enableKodeMesin"/>
+					</div>
+				</div>
+				<div class="grid_12" style="margin-top: 5px">
+					<div class="grid_3"></div>
+					<div class="grid_2" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="mesin"></label>
+					</div>
+					<div class="grid_3">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaProduk" k-data-text-field="'namaProduk'" k-data-value-field="'idProduk'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceMasterMesin" ng-selected="satuan()"/>
+					</div>
+				</div>
+				<div class="grid_12" style="margin-top: 5px">
+					<div class="grid_3"></div>
+					<div class="grid_2" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="kapasitas"></label>
+					</div>
+					<div class="grid_2">
+						<input c-text-box type="number" filter="'numeric'" class="k-textbox" ng-model="item.kapasitas" />
+					</div>
+				</div>
+				<div class="grid_12" style="margin-top: 5px">
+					<div class="grid_3"></div>
+					<div class="grid_2" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="satuan"></label>
+					</div>
+					<div class="grid_2">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.satuan" k-data-text-field="'namaSatuanStandar'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceSatuan"/>
+					</div>
+				</div>
+				<div class="grid_12" style="margin-top: 5px">
+					<div class="grid_3"></div>
+					<div class="grid_2" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="kodeEksternal"></label>
+					</div>
+					<div class="grid_3">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.kodeEksternal" />
+					</div>
+				</div>
+				<div class="grid_12" style="margin-top: 5px">
+					<div class="grid_3"></div>
+					<div class="grid_2" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="namaEksternal"></label>
+					</div>
+					<div class="grid_3">
+						<input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.namaEksternal" />
+					</div>
+				</div>
+<!-- 				<div class="grid_12" style="margin-top: 5px">
+					<div class="grid_3"></div>
+					<div class="grid_2" style="margin-top: 5px">
+						<label c-label item="item" c-label-text="statusEnabled"></label>
+					</div>
+					<div class="grid_3" style="margin-top: 5px">
+						<input type="checkbox" class="k-checkbox" name="dataAktif" id="dataAktif" ng-click="checkbox()">
+						<label class="k-checkbox-label" c-label item="item" c-label-text="dataAktif" for="dataAktif"></label>
+					</div>
+				</div> -->
+				<div class="grid_12" style="margin-top: 30px">
+					<div class="grid_3"></div>
+					<div class="grid_2">
+						<button class="c-button success" ng-click="Save()">Simpan</button>
+					</div>
+<!-- 					<div class="grid_2">
+						<button class="c-button cancel" ng-click="Batal()">Batal</button>
+					</div> -->
+<!-- 					<div class="grid_2">
+						<button class="c-button cancel" ng-click="hapus()">Hapus</button>
+					</div> -->
+					<div class="grid_2">
+						<button class="c-button success" ng-click="baru()">Baru</button>
+					</div>
+					<div class="grid_2">
+						<button class="c-button cancel" ng-click="tutup()">Tutup</button>
+					</div>
+					<div class="grid_3"></div>
+				</div>
+				<div class="grid_12" style="margin-top: 30px">
+					<div kendo-grid k-on-change="SelectMesin(data)" options="mainGridOptions" k-data-source="sourceDataLaundry" k-selectable="'row'" k-columns="columndataMasterMesin">
+					</div>
+				</div>
+				<div class="grid_12"><br></br></div>
+			</div>
+		</div>
+	</div>

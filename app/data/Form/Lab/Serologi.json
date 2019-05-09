@@ -1,0 +1,34 @@
+{
+	"model":{
+	    "Umum" : "",
+	    "Torch" : "",
+	    "SkriningHIV" : "",
+	    "Hepatitis" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "Umum",
+			"messagesRequired" : "",
+			"caption" : "Umum"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Torch",
+			"messagesRequired" : "",
+			"caption" : "Torch"
+		},
+		{
+			"isNull" : "true",
+			"name" : "SkriningHIV",
+			"messagesRequired" : "",
+			"caption" : "Skrining HIV"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Hepatitis",
+			"messagesRequired" : "",
+			"caption" : "Hepatitis"
+		}
+  ]
+}

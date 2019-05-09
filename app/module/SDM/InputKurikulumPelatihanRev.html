@@ -1,0 +1,258 @@
+<div class="panel panel-default container_12">
+	<c-panel item="item" header="'Kurikulum Pelatihan'" style="margin-top:50px" disabled>
+		<div class="panel-body">
+			<div class="grid_12" style="margin-top: 5px">
+				<div class="grid_6" style="margin-top: 0">
+					<div class="grid_12">
+						<label c-label item="item">Nama Pelatihan</label>
+					</div>
+					<div class="grid_12">
+						 <input style="width: 100%;" kendo-combo-box k-ng-model="item.JenisPelatihan" k-data-text-field="'jenispelatihan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListJenisPelatihan" />	
+					</div>
+				</div>							
+				<div class="grid_6" style="margin-top: 0">
+					<div class="grid_12">
+						<label c-label item="item">Judul Kurikulum</label>
+					</div>
+					<div class="grid_12">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.judulKurikulum"/>
+					</div>
+				</div>			
+			</div>
+		</div>
+		<div class="grid_12" style="margin-top: 15px">
+			<div ng-cloak>
+				<md-content>
+					<md-tabs md-dynamic-height md-border-bottom>
+
+						<md-tab label="BAB I PENDAHULUAN">
+							<md-content class="md-padding">
+								<div class="panel-body">
+									<div class="grid_12">
+										<div class="grid_6">
+			  								<div class="grid_12">
+												<label><b>A. Latar Belakang</b></label>
+											</div>
+											<div class="grid_12">
+												<textarea ng-model="item.LatarBelakang" style="width: 99%; height: 80px;"></textarea>
+											</div>
+										</div>	
+										<div class="grid_6">
+			  								<div class="grid_12">
+												<label><b>B. Filosofi Pelatihan</b></label>
+											</div>
+											<div class="grid_12">
+												<textarea ng-model="item.FilosofiPelatihan" style="width: 99%; height: 80px;"></textarea>
+											</div>
+										</div>		
+									</div>
+								</div>
+							</md-content>
+						</md-tab>
+
+						<md-tab label="BAB II PERAN,FUNGSI DAN KOMPETENSI PESERTA">
+							<md-content class="md-padding">
+								<div class="panel-body">
+									<div class="grid_12">
+										<div class="grid_6">
+			  								<div class="grid_12">
+												<label><b>A. Peran</b></label>
+											</div>
+											<div class="grid_12">
+												<textarea ng-model="item.Peran" style="width: 99%; height: 80px;"></textarea>
+											</div>
+										</div>	
+										<div class="grid_6">
+			  								<div class="grid_12">
+												<label><b>B. Fungsi</b></label>
+											</div>
+											<div class="grid_12">
+												<textarea ng-model="item.Fungsi" style="width: 99%; height: 80px;"></textarea>
+											</div>
+										</div>		
+									</div>
+									<div class="grid_12">
+										<div class="grid_6">
+			  								<div class="grid_12">
+												<label><b>C. Kompetensi</b></label>
+											</div>
+											<div class="grid_12">
+												<textarea ng-model="item.Kompetensi" style="width: 99%; height: 80px;"></textarea>
+											</div>
+										</div>	
+									</div>
+								</div>
+							</md-content>
+						</md-tab>
+
+						<md-tab label="BAB III TUJUAN PELATIHAN">
+							<md-content class="md-padding">
+								<div class="panel-body">
+									<div class="grid_12">
+										<div class="grid_6">
+			  								<div class="grid_12">
+												<label><b>A. Tujuan Umum</b></label>
+											</div>
+											<div class="grid_12">
+												<textarea ng-model="item.TujuanUmum" style="width: 99%; height: 80px;"></textarea>
+											</div>
+										</div>	
+										<div class="grid_6">
+			  								<div class="grid_12">
+												<label><b>B. Tujuan Khusus</b></label>
+											</div>
+											<div class="grid_12">
+												<textarea ng-model="item.TujuanKhusus" style="width: 99%; height: 80px;"></textarea>
+											</div>
+										</div>		
+									</div>									
+								</div>
+							</md-content>
+						</md-tab>
+
+						<md-tab label="BAB IV STRUKTUR PROGRAM">
+							<md-content class="md-padding">
+								<div class="panel-body">
+									<div class="grid_12">
+										<div class="grid_6">
+			  								<div class="grid_12">
+												<label><b>Struktur Program</b></label>
+											</div>
+											<div class="grid_12">
+												<textarea ng-model="item.StrukturProgram" style="width: 99%; height: 80px;"></textarea>
+											</div>
+										</div>										
+									</div>									
+								</div>
+							</md-content>
+						</md-tab>
+
+						<md-tab label="BAB V GARIS-GARIS BESAR PROGRAM PEMBELAJARAN">
+							<md-content class="md-padding">
+								<div class="panel-body">
+									<div class="grid_12">
+										<div class="grid_6">
+			  								<div class="grid_12">
+												<label><b>Garis-Garis Besar Program Pembelajaran</b></label>
+											</div>
+											<div class="grid_12">
+												<textarea ng-model="item.ProgramPembelajaran" style="width: 99%; height: 80px;"></textarea>
+											</div>
+										</div>										
+									</div>									
+								</div>
+							</md-content>
+						</md-tab>
+
+						<md-tab label="BAB VI DIAGRAM PROSES PEMBELAJARAN">
+							<md-content class="md-padding">
+								<div class="panel-body">
+									<div class="grid_12">
+										<div class="grid_6">
+			  								<div class="grid_12">
+												<label><b>Diagram Proses Pembelajaran</b></label>
+											</div>
+											<div class="grid_12">
+												<textarea ng-model="item.DiagramPembelajaran" style="width: 99%; height: 80px;"></textarea>
+											</div>
+										</div>										
+									</div>									
+								</div>
+							</md-content>
+						</md-tab>
+
+						<md-tab label="BAB VII PESERTA DAN PELATIH">
+							<md-content class="md-padding">
+								<div class="panel-body">
+									<div class="grid_12">
+										<div class="grid_6">
+			  								<div class="grid_12">
+												<label><b>A. Peserta</b></label>
+											</div>
+											<div class="grid_12">
+												<textarea ng-model="item.Peserta" style="width: 99%; height: 80px;"></textarea>
+											</div>
+										</div>
+										<div class="grid_6">
+			  								<div class="grid_12">
+												<label><b>B. Pelatih/Fasilitator/Instruktur</b></label>
+											</div>
+											<div class="grid_12">
+												<textarea ng-model="item.Pelatih" style="width: 99%; height: 80px;"></textarea>
+											</div>
+										</div>													
+									</div>									
+								</div>
+							</md-content>
+						</md-tab>
+
+						<md-tab label="BAB VIII PENYELENGGARAAN DAN TEMPAT PENYELENGGARAAN">
+							<md-content class="md-padding">
+								<div class="panel-body">
+									<div class="grid_12">
+										<div class="grid_6">
+			  								<div class="grid_12">
+												<label><b>Penyelenggaraan dan Tempat Penyelenggaraan</b></label>
+											</div>
+											<div class="grid_12">
+												<textarea ng-model="item.Penyelenggaraan" style="width: 99%; height: 80px;"></textarea>
+											</div>
+										</div>
+									</div>									
+								</div>
+							</md-content>
+						</md-tab>
+
+						<md-tab label="BAB IX EVALUASI">
+							<md-content class="md-padding">
+								<div class="panel-body">
+									<div class="grid_12">
+										<div class="grid_6">
+			  								<div class="grid_12">
+												<label><b>evaluasi</b></label>
+											</div>
+											<div class="grid_12">
+												<textarea ng-model="item.Evaluasi" style="width: 99%; height: 80px;"></textarea>
+											</div>
+										</div>																				
+									</div>									
+								</div>
+							</md-content>
+						</md-tab>
+
+						<md-tab label="BAB X SERTIFIKAT">
+							<md-content class="md-padding">
+								<div class="panel-body">
+									<div class="grid_12">
+										<div class="grid_6">
+			  								<div class="grid_12">
+												<label><b>Sertifikat</b></label>
+											</div>
+											<div class="grid_12">
+												<textarea ng-model="item.Sertifikat" style="width: 99%; height: 80px;"></textarea>
+											</div>
+										</div>
+									</div>									
+								</div>
+							</md-content>
+						</md-tab>
+
+					</md-tabs>
+				</md-content>
+			</div>
+		</div>
+	</c-panel>
+	<div class="grid_12">
+		<div class="grid_8"></div>
+		<div class="grid_2">
+		    <c-button ng-show="!isLoading" class="success" style="width: 99.5%; font-size: 24px; padding:0px, margin:0px; text-align: center;" item="item" size="36" position=" 'right'" is-validate ng-click="Simpan()">
+	            <span class="title">Simpan</span>
+	        </c-button>
+		</div>
+		<div class="grid_2">
+		    <c-button ng-show="!isLoading" style="width: 99.5%; font-size: 24px; padding:0px, margin:0px; text-align: center;" item="item" size="36" position=" 'right'" class="cancel" ng-click="reset()">
+	            <span class="title">Batal</span>
+	        </c-button>
+		</div>
+	</div>
+</div>

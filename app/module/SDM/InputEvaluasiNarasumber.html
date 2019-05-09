@@ -1,0 +1,406 @@
+<style>
+	button:disabled {
+    background: #B5B2B1;
+}
+</style>
+<div ng-show="dataVOloaded">
+<div class="panel panel-default container_12" style="background-color:transparant">
+  	<div class="panel-heading"><label class='title' c-label item="item" c-label-text="Evaluasi Narasumber" real></label></div>
+        <div class="panel-body">
+        		<div class="grid_12">
+					<div class="panel panel-default panel-white">
+						<div class="panel-heading-white"><span class="title" c-translate>Data Evaluasi</span></div>
+						<div class="panel-body">
+							<div class="grid_12">
+								<div class="grid_4">
+									<div class="grid_12">
+										<label style="margin-top: 10px">Tanggal Evaluasi</label>
+									</div>
+									<div class="grid_12">
+										<input style="width: 99.5%" k-ng-model="item.TglEvaluasi"  kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm"/>
+									</div>
+								</div>
+								<div class="grid_4">
+									<div class="grid_12">
+										<label style="margin-top: 10px">Narasumber</label>
+									</div>
+									<div class="grid_12">
+										<input style="width: 100%;" kendo-combo-box k-ng-model="item.Narasumber" k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listNarasumber" />
+									</div>
+								</div>
+								<div class="grid_4">
+									<div class="grid_12">
+										<label style="margin-top: 10px">Nama Fasilitator</label>
+									</div>
+									<div class="grid_12">
+										<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.NamaFasilitator" />
+									</div>
+								</div>							   
+							</div>
+							<div class="grid_12">
+								<div class="grid_4">
+									<div class="grid_12" style="margin-top: 10px">
+										<label>Saran</label>
+									</div>
+									<div class="grid_12">
+										<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.SaranPelatihan" />
+									</div>
+								</div>
+								<!-- <div class="grid_4">
+									<div class="grid_12" style="margin-top: 10px">
+										<label>Materi</label>
+									</div>
+									<div class="grid_12">
+										<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.Materi" />
+									</div>
+								</div>
+								<div class="grid_4">
+									<div class="grid_12" style="margin-top: 10px">
+										<label>1. Materi Apa yang paling menarik? Mengapa?</label>
+									</div>
+									<div class="grid_12">
+										<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.MateriPelatihan" />
+									</div>
+								</div>
+								<div class="grid_4">
+									<div class="grid_12" style="margin-top: 10px">
+										<label>2. Siapa fasilitator yang anda suka dalam pelatihan ini? Mengapa?</label>
+									</div>
+									<div class="grid_12">
+										<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.FasilitatorPelatihan" />
+									</div>
+								</div> -->
+							</div>
+							<div class="grid_12">
+								<!-- <div class="grid_4">
+									<div class="grid_12" style="margin-top: 10px">
+										<label>3. Manfaat Apa yang dapat anda ambil dari pelatihan ini ?</label>
+									</div>
+									<div class="grid_12">
+										<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.ManfaatPelatihan" />
+									</div>
+								</div> -->
+								<!-- <div class="grid_4">
+									<div class="grid_12" style="margin-top: 10px">
+										<label>Saran Perbaikan</label>
+									</div>
+									<div class="grid_12">
+										<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.SaranPelatihan" />
+									</div>
+								</div> -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="panel panel-default panel-white">
+						<div class="panel-heading-white"><span class="title" c-translate></span></div>
+						<div class="panel-body">
+							<div class="grid_12 headerBox">
+				                <h1 style="color: white;"><b>Detail Evaluasi Narasumber</b></h1>
+				            </div>
+				            <div class="clear"></div>
+				            <br/>
+				            <div class="grid_12">
+				            	<div class="grid_12">
+				            		<div class="grid_3">
+										<div class="grid_12" style="margin-top: 10px">
+											<label>Penguasaan Materi</label>
+										</div>
+										<div class="grid_12">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.PenguasaanMateri" />
+										</div>
+									</div>
+									<div class="grid_3">
+										<div class="grid_12" style="margin-top: 10px">
+											<label>Ketepatan Waktu</label>
+										</div>
+										<div class="grid_12">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.KetepatanWaktu" />
+										</div>
+									</div>
+									<div class="grid_3">
+										<div class="grid_12" style="margin-top: 10px">
+											<label>Sistematika Penyajian</label>
+										</div>
+										<div class="grid_12">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.SistematikaPenyajian" />
+										</div>
+									</div>
+									<div class="grid_3">
+										<div class="grid_12" style="margin-top: 10px">
+											<label>Penggunaan Metode dan Alat Bantu</label>
+										</div>
+										<div class="grid_12">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.PenggunaanMetode" />
+										</div>
+									</div>
+				            	</div>
+
+				            	<div class="grid_12">
+				            		<div class="grid_3">
+										<div class="grid_12" style="margin-top: 10px">
+											<label>Empati, Gaya dan Sikap Terhadap Peserta</label>
+										</div>
+										<div class="grid_12">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.Empati" />
+										</div>
+									</div>
+									<div class="grid_3">
+										<div class="grid_12" style="margin-top: 10px">
+											<label>Penggunaan Bahasa dan Volume Suara</label>
+										</div>
+										<div class="grid_12">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.PenggunaanBahasa" />
+										</div>
+									</div>
+									<div class="grid_3">
+										<div class="grid_12" style="margin-top: 10px">
+											<label>Pemberian Motivasi Belajar Kepada Peserta</label>
+										</div>
+										<div class="grid_12">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.PemberianMotivasi" />
+										</div>
+									</div>
+									<div class="grid_3">
+										<div class="grid_12" style="margin-top: 10px">
+											<label>Isi Materi</label>
+										</div>
+										<div class="grid_12">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.IsiMateri" />
+										</div>
+									</div>
+				            	</div>
+
+				            	<div class="grid_12">
+				            		<div class="grid_3">
+										<div class="grid_12" style="margin-top: 10px">
+											<label>Penyajian Materi</label>
+										</div>
+										<div class="grid_12">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.PenyajianMateri" />
+										</div>
+									</div>
+									<div class="grid_3">
+										<div class="grid_12" style="margin-top: 10px">
+											<label>Dapat Diterapkan Diklinik</label>
+										</div>
+										<div class="grid_12">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.Diterapkan" />
+										</div>
+									</div>
+									<div class="grid_3">
+										<div class="grid_12" style="margin-top: 10px">
+											<label>Kesempatan Tanya Jawab</label>
+										</div>
+										<div class="grid_12">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.Kesempatan" />
+										</div>
+									</div>
+									<div class="grid_3">
+										<div class="grid_12" style="margin-top: 10px">
+											<label>Pencapaian Tujuan Pembelajaran</label>
+										</div>
+										<div class="grid_12">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.Pembelajaran" />
+										</div>
+									</div>
+				            	</div>
+
+				            	<div class="grid_12">
+				            		<div class="grid_3">
+										<div class="grid_12" style="margin-top: 10px">
+											<label>Penampilan Fasilitator</label>
+										</div>
+										<div class="grid_12">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.Fasilitator" />
+										</div>
+									</div>
+									<div class="grid_3">
+										<div class="grid_12" style="margin-top: 10px">
+											<label>Kerjasama Antar Tim Pengajar (Jika Tim)</label>
+										</div>
+										<div class="grid_12">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.Kerjasama" />
+										</div>
+									</div>
+									<div class="grid_3">
+										<div class="grid_12" style="margin-top: 10px">
+											<label>Rekapitulasi Hasil Penilaian</label>
+										</div>
+										<div class="grid_12">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.Rekapitulasi" disabled/>
+										</div>
+									</div>
+									<div class="grid_3">
+										<!-- <div class="grid_12" style="margin-top: 10px">
+											<label>Rekapitulasi Hasil Penilaian</label>
+										</div> -->
+										<div class="grid_12" style="margin-top: 25px">
+											<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.KeteranganRekapitulasi" disabled/>
+										</div>
+									</div>
+				            	</div>
+				            </div>
+							<!-- <div class="grid_12">
+								<div class="grid_3" ng-repeat="list in listPenguasaanMateri | orderBy:'id'" style="margin-top: 10px;">
+				                    <b>{{list.nama}}</b>
+				                    <div ng-repeat="opsi in list.detail | orderBy:'id'" style="margin-top: 5px;">
+				                        <div class="grid_12" style="margin-top: 5px;">
+				                            <input type="checkbox" ng-checked="opsi.isChecked" class="k-checkbox" name="{{opsi.nama}}" id="{{opsi.nama}}" ng-model="bool" value="{{opsi.id}}"  ng-click="addListPenguasaanMateri(bool,opsi)" >
+				                            <label class="k-checkbox-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+				                        </div>
+				                    </div>
+				                </div>
+				                <div class="grid_3" ng-repeat="list in listKetetapanWaktu | orderBy:'id'" style="margin-top: 10px;">
+				                    <b>{{list.nama}}</b>
+				                    <div ng-repeat="opsi in list.detail | orderBy:'id'" style="margin-top: 5px;">
+				                        <div class="grid_12" style="margin-top: 5px;">
+				                            <input type="checkbox" ng-checked="opsi.isChecked" class="k-checkbox" name="{{opsi.nama}}" id="{{opsi.nama}}" ng-model="bool" value="{{opsi.id}}"  ng-click="addListKetetapanWaktu(bool,opsi)" >
+				                            <label class="k-checkbox-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+				                        </div>
+				                    </div>
+				                </div>
+				                <div class="grid_3" ng-repeat="list in listSistematikaPenyajian | orderBy:'id'" style="margin-top: 10px;">
+				                    <b>{{list.nama}}</b>
+				                    <div ng-repeat="opsi in list.detail | orderBy:'id'" style="margin-top: 5px;">
+				                        <div class="grid_12" style="margin-top: 5px;">
+				                            <input type="checkbox" ng-checked="opsi.isChecked" class="k-checkbox" name="{{opsi.nama}}" id="{{opsi.nama}}" ng-model="bool" value="{{opsi.id}}"  ng-click="addListSistematikaPenyajian(bool,opsi)" >
+				                            <label class="k-checkbox-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+				                        </div>
+				                    </div>
+				                </div>
+				                <div class="grid_3" ng-repeat="list in listMetode  | orderBy:'id'" style="margin-top: 10px;">
+				                    <b>{{list.nama}}</b>
+				                    <div ng-repeat="opsi in list.detail | orderBy:'id'" style="margin-top: 5px;">
+				                        <div class="grid_12" style="margin-top: 5px;">
+				                            <input type="checkbox" ng-checked="opsi.isChecked" class="k-checkbox" name="{{opsi.nama}}" id="{{opsi.nama}}" ng-model="bool" value="{{opsi.id}}"  ng-click="addListMetode (bool,opsi)" >
+				                            <label class="k-checkbox-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+				                        </div>
+				                    </div>
+				                </div>
+							</div>
+							<div class="grid_12">
+								<div class="grid_3" ng-repeat="list in listEmpati | orderBy:'id'" style="margin-top: 10px;">
+				                    <b>{{list.nama}}</b>
+				                    <div ng-repeat="opsi in list.detail | orderBy:'id'" style="margin-top: 5px;">
+				                        <div class="grid_12" style="margin-top: 5px;">
+				                            <input type="checkbox" ng-checked="opsi.isChecked" class="k-checkbox" name="{{opsi.nama}}" id="{{opsi.nama}}" ng-model="bool" value="{{opsi.id}}"  ng-click="addListEmpati(bool,opsi)" >
+				                            <label class="k-checkbox-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+				                        </div>
+				                    </div>
+				                </div>
+				                <div class="grid_3" ng-repeat="list in listBahasa | orderBy:'id'" style="margin-top: 10px;">
+				                    <b>{{list.nama}}</b>
+				                    <div ng-repeat="opsi in list.detail | orderBy:'id'" style="margin-top: 5px;">
+				                        <div class="grid_12" style="margin-top: 5px;">
+				                            <input type="checkbox" ng-checked="opsi.isChecked" class="k-checkbox" name="{{opsi.nama}}" id="{{opsi.nama}}" ng-model="bool" value="{{opsi.id}}"  ng-click="addListBahasa(bool,opsi)" >
+				                            <label class="k-checkbox-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+				                        </div>
+				                    </div>
+				                </div>
+				                <div class="grid_3" ng-repeat="list in listMotivasi | orderBy:'id'" style="margin-top: 10px;">
+				                    <b>{{list.nama}}</b>
+				                    <div ng-repeat="opsi in list.detail | orderBy:'id'" style="margin-top: 5px;">
+				                        <div class="grid_12" style="margin-top: 5px;">
+				                            <input type="checkbox" ng-checked="opsi.isChecked" class="k-checkbox" name="{{opsi.nama}}" id="{{opsi.nama}}" ng-model="bool" value="{{opsi.id}}"  ng-click="addListMotivasi(bool,opsi)" >
+				                            <label class="k-checkbox-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+				                        </div>
+				                    </div>
+				                </div>
+				                <div class="grid_3" ng-repeat="list in listIsiMateri  | orderBy:'id'" style="margin-top: 10px;">
+				                    <b>{{list.nama}}</b>
+				                    <div ng-repeat="opsi in list.detail | orderBy:'id'" style="margin-top: 5px;">
+				                        <div class="grid_12" style="margin-top: 5px;">
+				                            <input type="checkbox" ng-checked="opsi.isChecked" class="k-checkbox" name="{{opsi.nama}}" id="{{opsi.nama}}" ng-model="bool" value="{{opsi.id}}"  ng-click="addListIsiMateri (bool,opsi)" >
+				                            <label class="k-checkbox-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+				                        </div>
+				                    </div>
+				                </div>
+							</div>
+							<div class="grid_12">
+								<div class="grid_3" ng-repeat="list in listPenyajianMateri | orderBy:'id'" style="margin-top: 10px;">
+				                    <b>{{list.nama}}</b>
+				                    <div ng-repeat="opsi in list.detail | orderBy:'id'" style="margin-top: 5px;">
+				                        <div class="grid_12" style="margin-top: 5px;">
+				                            <input type="checkbox" ng-checked="opsi.isChecked" class="k-checkbox" name="{{opsi.nama}}" id="{{opsi.nama}}" ng-model="bool" value="{{opsi.id}}"  ng-click="addListPenyajianMateri(bool,opsi)" >
+				                            <label class="k-checkbox-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+				                        </div>
+				                    </div>
+				                </div>
+				                <div class="grid_3" ng-repeat="list in listDiterapkan | orderBy:'id'" style="margin-top: 10px;">
+				                    <b>{{list.nama}}</b>
+				                    <div ng-repeat="opsi in list.detail | orderBy:'id'" style="margin-top: 5px;">
+				                        <div class="grid_12" style="margin-top: 5px;">
+				                            <input type="checkbox" ng-checked="opsi.isChecked" class="k-checkbox" name="{{opsi.nama}}" id="{{opsi.nama}}" ng-model="bool" value="{{opsi.id}}"  ng-click="addListDiterapkan(bool,opsi)" >
+				                            <label class="k-checkbox-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+				                        </div>
+				                    </div>
+				                </div>
+				                <div class="grid_3" ng-repeat="list in listTanyaJawab | orderBy:'id'" style="margin-top: 10px;">
+				                    <b>{{list.nama}}</b>
+				                    <div ng-repeat="opsi in list.detail | orderBy:'id'" style="margin-top: 5px;">
+				                        <div class="grid_12" style="margin-top: 5px;">
+				                            <input type="checkbox" ng-checked="opsi.isChecked" class="k-checkbox" name="{{opsi.nama}}" id="{{opsi.nama}}" ng-model="bool" value="{{opsi.id}}"  ng-click="addListTanyaJawab(bool,opsi)" >
+				                            <label class="k-checkbox-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+				                        </div>
+				                    </div>
+				                </div>
+				                <div class="grid_3" ng-repeat="list in listPembelajaran  | orderBy:'id'" style="margin-top: 10px;">
+				                    <b>{{list.nama}}</b>
+				                    <div ng-repeat="opsi in list.detail | orderBy:'id'" style="margin-top: 5px;">
+				                        <div class="grid_12" style="margin-top: 5px;">
+				                            <input type="checkbox" ng-checked="opsi.isChecked" class="k-checkbox" name="{{opsi.nama}}" id="{{opsi.nama}}" ng-model="bool" value="{{opsi.id}}"  ng-click="addListPembelajaran (bool,opsi)" >
+				                            <label class="k-checkbox-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+				                        </div>
+				                    </div>
+				                </div>
+							</div>
+							<div class="grid_12">
+								<div class="grid_3" ng-repeat="list in listFasilitator | orderBy:'id'" style="margin-top: 10px;">
+				                    <b>{{list.nama}}</b>
+				                    <div ng-repeat="opsi in list.detail | orderBy:'id'" style="margin-top: 5px;">
+				                        <div class="grid_12" style="margin-top: 5px;">
+				                            <input type="checkbox" ng-checked="opsi.isChecked" class="k-checkbox" name="{{opsi.nama}}" id="{{opsi.nama}}" ng-model="bool" value="{{opsi.id}}"  ng-click="addListFasilitator(bool,opsi)" >
+				                            <label class="k-checkbox-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+				                        </div>
+				                    </div>
+				                </div>
+				                <div class="grid_3" ng-repeat="list in listKerjasama | orderBy:'id'" style="margin-top: 10px;">
+				                    <b>{{list.nama}}</b>
+				                    <div ng-repeat="opsi in list.detail | orderBy:'id'" style="margin-top: 5px;">
+				                        <div class="grid_12" style="margin-top: 5px;">
+				                            <input type="checkbox" ng-checked="opsi.isChecked" class="k-checkbox" name="{{opsi.nama}}" id="{{opsi.nama}}" ng-model="bool" value="{{opsi.id}}"  ng-click="addListKerjasama(bool,opsi)" >
+				                            <label class="k-checkbox-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+				                        </div>
+				                    </div>
+				                </div>				               
+							</div> 															
+					    </div> -->
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_4">
+						<div class="grid_12">
+							<label><b>Keterangan :</b></label>
+						</div>
+						<div class="grid_12">
+							<label><b>45-55: Kurang, 56-75: Sedang, 76-85: Baik, >86: Sangat Baik</b></label>
+						</div>
+					</div>
+					<div class="grid_4"></div>
+					<div class="grid_2">
+					    <c-button ng-show="!isLoading" class="success" style="width: 99.5%; font-size: 24px; padding:0px, margin:0px; text-align: center;" item="item" size="36" position=" 'right'" is-validate ng-click="Save()">
+				            <span class="title">Simpan</span>
+				        </c-button>
+					</div>
+					<div class="grid_2">
+					    <c-button ng-show="!isLoading" style="width: 99.5%; font-size: 24px; padding:0px, margin:0px; text-align: center;" item="item" size="36" position=" 'right'" class="cancel" ng-click="reset()">
+				            <span class="title">Batal</span>
+				        </c-button>
+					</div>
+				</div> 
+        	</div>
+        </div>
+    </div>
+</div>

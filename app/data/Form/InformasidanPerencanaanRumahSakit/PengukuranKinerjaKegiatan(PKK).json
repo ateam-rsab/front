@@ -1,0 +1,77 @@
+{
+	"model":{
+		"sasaranStrategis":"",
+		"program":"",
+		"uraian" : "",
+		"input" : "",
+		"output":"",
+		"pic":"",
+		"rkotwi" : "",
+		"realisasitwi" : "",
+		"tingkatPencapaianKinerja":"",
+		"satuan":""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "sasaranStrategis",
+			"messagesRequired" : "",
+			"caption" : "Sasaran Strategis"
+		},{
+			"isNull" : "true",
+			"name" : "program",
+			"messagesRequired" : "",
+			"caption" : "Program"
+		},
+		{
+			"isNull" : "true",
+			"name" : "uraian",
+			"messagesRequired" : "",
+			"caption" : "Uraian"
+		},
+		{
+			"isNull" : "true",
+			"name" : "input",
+			"messagesRequired" : "",
+			"caption" : "Input"
+		},
+		{
+			"isNull" : "true",
+			"name" : "output",
+			"messagesRequired" : "",
+			"caption" : "Output"
+		},
+		{
+			"isNull" : "true",
+			"name" : "pic",
+			"messagesRequired" : "",
+			"caption" : "PIC"
+		},
+		{
+			"isNull" : "true",
+			"name" : "rkotwi",
+			"messagesRequired" : "",
+			"caption" : "RKO TW I"
+		},
+		{
+			"isNull" : "true",
+			"name" : "realisasitwi",
+			"messagesRequired" : "",
+			"caption" : "Realisasi TW I"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tingkatPencapaianKinerja",
+			"messagesRequired" : "",
+			"caption" : "Tingkat Pencapaian Kinerja"
+		},
+		{
+			"isNull" : "true",
+			"name" : "satuan",
+			"messagesRequired" : "",
+			"caption" : "Satuan"
+		}
+
+	]
+}

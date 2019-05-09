@@ -1,0 +1,84 @@
+<div ng-controller="RiwayatPascaLahirCtrl">
+    <c-panel item="item" header="'Riwayat Pasca Lahir'">
+
+        <div class="grid_12">
+            <div class="grid_2" style="margin: 5px 0 0 0;">
+                <label c-label item="item" c-label-text="SeringBiru"></label>
+            </div>
+            <div class="grid_6" style="margin: 5px 0 0 0;">
+                <div class="grid_2" ng-repeat="stat in statYaTidak">
+                    <input type="radio" name="{{stat.id+stat.name}}" id="{{stat.id+stat.name}}" class="k-radio" ng-model="item.seringBiru" value="{{stat.id}}">
+                    <label class="k-radio-label" for="{{stat.id+stat.name}}">{{stat.name}}</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid_12">
+            <div class="grid_2" style="margin: 5px 0 0 0;">
+                <label c-label item="item" c-label-text="Kejang"></label>
+            </div>
+            <div class="grid_6" style="margin: 5px 0 0 0;">
+                <div class="grid_2" ng-repeat="i in statYaTidak">
+                    <input type="radio" name="{{i.name}}" id="{{i.name}}" class="k-radio" ng-model="item.kejang" value="{{i.id}}">
+                    <label class="k-radio-label" for="{{i.name}}">{{i.name}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_12" ng-show="item.kejang==='2'">
+            <div class="grid_2" style="margin: 5px 0 0 0;">
+                <label c-label item="item" c-label-text="Disertai Demam"></label>
+            </div>
+            <div class="grid_6" style="margin: 5px 0 0 0;">
+                <div class="grid_2" ng-repeat="x in statYaTidak">
+                    <input type="radio" name="{{x.name+x.id}}" id="{{x.name+x.id}}" class="k-radio" ng-model="item.disertaiDemam" value="{{x.name}}">
+                    <label class="k-radio-label" for="{{x.name+x.id}}">{{x.name}}</label>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_2" style="margin: 15px 0 0 0;">
+                <label c-label item="item" c-label-text="Bila kejang"></label>
+            </div>
+            <div class="grid_1" style="margin: 5px 0 0 0;">
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.menit" />
+            </div>
+            <div class="grid_2" style="margin: 15px 0 0 0;">
+                <label c-label item="item" c-label-text="menit"></label>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_2" style="margin: 5px 0 0 0;">
+                <label c-label item="item" c-label-text="bagianTubuh"></label>
+            </div>
+            <div class="grid_10" style="margin: 5px 0 0 0;">
+                <div class="grid_5">
+                    <div class="grid_6" ng-repeat="stat in statBagianTubuh">
+                        <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.bagianTubuh" value="{{stat.id}}">
+                        <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+                    </div>
+                </div>
+                <div class="grid_7" ng-show="item.bagianTubuh==='2'">
+                    <textarea c-text-area type="input" style="height: 40px" filter="'string'" class="k-textbox" ng-model="dataTenggorok.catatan" placeholder="Keterangan"/>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_2" style="margin: 15px 0 0 0;">
+                <label c-label item="item" c-label-text="frekuensiKejang"></label>
+            </div>
+            <div class="grid_2" style="margin: 5px 0 0 0;">
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.frekuensiKejang" />
+            </div>
+            <div class="grid_1"></div>
+            <div class="grid_1" style="margin: 15px 0 0 0;">
+                <label c-label item="item" c-label-text="keadaan"></label>
+            </div>
+            <div class="grid_5" style="margin: 5px 0 0 0;">
+                <input c-text-box type="input" class="k-textbox" ng-model="item.keadaan" />
+            </div>
+        </div>
+
+        <div class="grid_12">
+            <div class="grid_12" style="margin: 35px 0 0 0;">
+                <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+            </div>
+        </div>
+</div>

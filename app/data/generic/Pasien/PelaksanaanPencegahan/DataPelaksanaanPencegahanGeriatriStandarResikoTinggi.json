@@ -1,0 +1,172 @@
+[
+    {
+        "id": 1,
+        "name": "Pakaikan gelang risiko jatuh warna kuning dan pasang tanda segitiga kuning pada bed pasien",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 2,
+        "name": "Mengkomunikasikan risiko jatuh pasien pada anggota tim interdisiplin",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 3,
+        "name": "Mengkomunikasikan risiko jatuh pasen pada pasien / keluarga dan memberikan brosur edukasi jatuh",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 4,
+        "name": "Dorong partisipasi keluarga dalam keselamatan pasien",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 5,
+        "name": "Pasien ditempatkan dakat nurse station",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 6,
+        "name": "Monitor kebutuhan pasien secara berkala (minimalnya tiap 2 jam): jadwalkan ke belakang (kamar kecil) secara teratur",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 7,
+        "name": "Handaril mudah dijangkau pasien dan kokoh",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 8,
+        "name": "Siapkan di jalan keluar dari tempat tidur: alat bantu jalan, komod",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 9,
+        "name": "Lantai kamar mandi dengan karpet anti slip/tidak licin, serta anjuran menggunakan tempat duduk di kamar mandi saat pasien mandi",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 10,
+        "name": "Keselamatan lingkungan: hindari ruangan yang kacau balau, dekatkan bel dan telepon, biarkan pintu terbuka, gunakan lampu pada malam hari, pagar tempat tidur",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    }
+]

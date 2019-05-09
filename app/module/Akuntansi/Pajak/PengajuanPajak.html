@@ -1,0 +1,113 @@
+<div ng-show="dataVOloaded">
+	<c-panel item="item" header="'Pengajuan'" disabled>
+
+		<!-- Kriteria -->
+		<div class="grid_6">
+			<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+				<p></p>
+			</div>
+			<div class="grid_12 borderBox containerBorderBox">
+				<!-- Tanggal -->
+				<div class="grid_6">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Tanggal"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.tanggal" ng-disabled="true"/>
+					</div>
+				</div>
+
+				<!-- JenisPajak -->
+				<div class="grid_6">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="JenisPajak"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jenisPajak" ng-disabled="true"/>
+					</div>
+				</div>
+
+				<!-- Nama -->
+				<div class="grid_12">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Nama"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nama" ng-disabled="true"/>
+					</div>
+				</div>
+
+				<!-- Npwp -->
+				<div class="grid_12">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Npwp"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.npwp" />
+					</div>
+				</div>
+
+				<!-- TanggalDiajukan -->
+				<div class="grid_12">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="TanggalDiajukan"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.tanggalDiajukan" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listTanggalDiajukan" />
+					</div>
+				</div>
+
+				<!-- NilaiObjekPajak -->
+				<div class="grid_12">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="NilaiObjekPajak"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nilaiObjekPajak" ng-disabled="true"/>
+					</div>
+				</div>
+
+				<!-- PersentasePajak -->
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="PersentasePajak"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.persentasePajak" />
+					</div>
+				</div>
+
+				<!-- NominalPajak -->
+				<div class="grid_9">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="NominalPajak"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nominalPajak" />
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</c-panel>
+
+	<div class="grid_12" style="margin-top:30px">
+		<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
+	</div>
+</div>

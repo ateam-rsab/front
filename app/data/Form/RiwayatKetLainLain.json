@@ -1,0 +1,48 @@
+{
+  "model":{
+    "Fiksasi" : "",
+    "PernahDilakukanPemeriksaanSebelumnya" : "",
+    "Tanggal" : "",
+    "Dr" : "",
+    "TglPemeriksaan" : "",
+    "TempatPemeriksaan" : ""
+  },
+  "attributes" : [
+    {
+      "isNull" : "true",
+      "name" : "Fiksasi",
+      "messagesRequired" : "Fiksasi Harus Diisi",
+      "caption" : "Fiksasi"
+    },
+    {
+      "isNull" : "true",
+      "name" : "PernahDilakukanPemeriksaanSebelumnya",
+      "messagesRequired" : "Hubungan Pasien Dengan Anggota Keluarga",
+      "caption" : "Pernah dilakukan pemeriksaan sebelumnya"
+    },
+    {
+      "isNull" : "false",
+      "name" : "Tanggal",
+      "messagesRequired" : "",
+      "caption" : "Tanggal"
+    },
+    {
+      "isNull" : "false",
+      "name" : "Dr",
+      "messagesRequired" : "",
+      "caption" : "Dr"
+    },
+    {
+      "isNull" : "false",
+      "name" : "TempatPemeriksaan",
+      "messagesRequired" : "",
+      "caption" : "Tempat Pemeriksaan"
+    },
+    {
+      "isNull" : "false",
+      "name" : "TglPemeriksaan",
+      "messagesRequired" : "",
+      "caption" : "Tgl Pemeriksaan"
+    }
+  ]
+} 

@@ -1,0 +1,12 @@
+[
+	{ "id": "1", "name": "EKG Lead"},
+	{ "id": "2", "name": "SPO2"},
+	{ "id": "3", "name": "NIBP"},
+	{ "id": "4", "name": "Temp"},
+	{ "id": "5", "name": "CVP"},
+	{ "id": "6", "name": "Arteri line"},
+	{ "id": "7", "name": "Etco2"},
+	{ "id": "8", "name": "BIS"},
+	{ "id": "9", "name": "Lain-lain"}
+	
+]

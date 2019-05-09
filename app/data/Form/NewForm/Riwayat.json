@@ -1,0 +1,133 @@
+{
+	"model":{
+	    "kehamilanDiinginkan" : "",
+	    "pemeriksaanKehamilan" : "",
+	    "kebiasaanIbu" : "",
+	    "penyakitYgDiderita" : "",
+	    "kehamilanDirencanakan" : "",
+	    "dilakukanOleh" : "",
+	    "riwayatKeguguran" : "",
+	    "kehamilan" : "",
+	    "anakMenangis" : "",
+	    "bantuanPernafasan" : "",
+	    "beratLahir" : "",
+	    "lingkarKepala" : "",
+	    "prosesKelahiran" : "",
+	    "indikasi" : "",
+	    "dibantuOleh" : "",
+	    "di" : "",
+	    "panjang" : "",
+	    "nilaiApgar" : "",
+	    "keterangan" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "kehamilanDiinginkan",
+			"messagesRequired" : "",
+			"caption" : "Kehamilan Diinginkan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "pemeriksaanKehamilan",
+			"messagesRequired" : "",
+			"caption" : "Pemeriksaan Kehamilan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "kebiasaanIbu",
+			"messagesRequired" : "",
+			"caption" : "Kebiasaan Ibu Saat Hamil"
+		},
+		{
+			"isNull" : "true",
+			"name" : "penyakitYgDiderita",
+			"messagesRequired" : "",
+			"caption" : "Penyakit Yang Diderita"
+		},
+		{
+			"isNull" : "true",
+			"name" : "kehamilanDirencanakan",
+			"messagesRequired" : "",
+			"caption" : "Kehamilan Direncanakan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "dilakukanOleh",
+			"messagesRequired" : "",
+			"caption" : "Dilakukan Oleh"
+		},
+		{
+			"isNull" : "true",
+			"name" : "riwayatKeguguran",
+			"messagesRequired" : "",
+			"caption" : "Riwayat Keguguran"
+		},
+		{
+			"isNull" : "true",
+			"name" : "kehamilan",
+			"messagesRequired" : "",
+			"caption" : "Kehamilan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "anakMenangis",
+			"messagesRequired" : "",
+			"caption" : "Anak Menangis"
+		},
+		{
+			"isNull" : "true",
+			"name" : "bantuanPernafasan",
+			"messagesRequired" : "",
+			"caption" : "Bantuan Pernafasan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "beratLahir",
+			"messagesRequired" : "",
+			"caption" : "Berat Lahir"
+		},
+		{
+			"isNull" : "true",
+			"name" : "lingkarKepala",
+			"messagesRequired" : "",
+			"caption" : "Lingkar Kepala"
+		},
+		{
+			"isNull" : "true",
+			"name" : "panjang",
+			"messagesRequired" : "",
+			"caption" : "Panjang Lahir"
+		},
+		{
+			"isNull" : "true",
+			"name" : "nilaiApgar",
+			"messagesRequired" : "",
+			"caption" : "Nilai Apgar"
+		},
+		{
+			"isNull" : "true",
+			"name" : "prosesKelahiran",
+			"messagesRequired" : "",
+			"caption" : "Proses Kelahiran"
+		},
+		{
+			"isNull" : "true",
+			"name" : "indikasi",
+			"messagesRequired" : "",
+			"caption" : "Indikasi"
+		},
+		{
+			"isNull" : "true",
+			"name" : "dibantuOleh",
+			"messagesRequired" : "",
+			"caption" : "Dibantu Oleh"
+		},
+		{
+			"isNull" : "true",
+			"name" : "di",
+			"messagesRequired" : "",
+			"caption" : "Di"
+		}
+  ]
+}

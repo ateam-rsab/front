@@ -1,0 +1,24 @@
+<div ng-controller="RadiologiPemeriksaanCtrl">
+    <div ng-include='"../app/module/Shared/headerPasienPenunjang" '></div>
+    <div class="grid_12">
+        <span class="title" c-translate>Verifikasi Pemeriksaan</span>
+
+        <table class="table " ng-repeat="data in listOrders">
+            <tr class='success'>
+            </tr>
+            <tr>
+                <th colspan="5">
+
+                    {{data[0].jenisPeriksa}}</th>
+            </tr>
+            <tr ng-repeat="subData in data" ng-click='checked(subData)'>
+                <td style="width:20px">
+                    <img ng-show='subData.check===true' width="14px" src='stylesheets/work-done24.png' />
+                    <label ng-hide='subData.check===true' checked class="k-checkbox-label"></label></td>
+                <td>&nbsp;&nbsp;&nbsp;{{subData.namaProduk}} </td>
+            </tr>
+        </table>
+
+    </div>
+    <div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+</div>

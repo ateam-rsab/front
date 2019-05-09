@@ -1,0 +1,13 @@
+{
+	"model":{
+	    "Imunologi" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "Diabetes",
+			"messagesRequired" : "",
+			"caption" : "Diabetes"
+		}
+  ]
+}

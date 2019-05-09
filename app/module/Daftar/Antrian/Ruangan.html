@@ -1,0 +1,116 @@
+<div ng-controller="DaftarAntrianPasienCtrl">
+    <md-toolbar>
+        <a href="#/Dashboard/PilihAntrian">
+            <img style="width:50px; position:absolute; border: 1px;" style="" src="stylesheets/Shared/back.png"/>
+        </a>
+        <img style="width:120px;position:absolute; right: 10px; border: 1px;" style="" src="images/reservasi/{{namaRuangan}}.png" />
+        <h1 style="color:white">
+            Daftar Antrian - {{namaRuangan}} </h1>
+        <span style="color:white" class="center"> {{ tglhariIni |date:'dd-MM-yyyy HH:mm:ss'}}</span>
+    </md-toolbar>
+
+    <div class="grid_3">
+        <md-toolbar style="background-color:green">
+            <div class="md-toolbar-tools">
+                <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+                    <md-icon md-svg-icon="images/finish.svg"></md-icon>
+                </md-button>
+                <h2 style="color:white">
+                    <span>Selesai</span>
+                </h2>
+            </div>
+
+        </md-toolbar>
+
+        <md-list flex>
+            <md-list-item class="md-3-line" ng-repeat="item in listCallingDone" ng-click="null">
+                <div class="md-avatar" style="position:relative;width: 70px;height: 70px;background-color: green;">
+                    <span style="left: 50%;position: absolute;transform: translate(-50%,-50%);font-size: 24pt;top: 50%;color:white"> {{item.noAntrian}}</span>
+                </div>
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{item.kelompokPasien}}</h3>
+                    <h4>{{ item.pasien.noCm }}</h4>
+                    <p>{{ item.jenisKelamin }}</p>
+                </div>
+            </md-list-item>
+        </md-list>
+    </div>
+    <div class="grid_3">
+        <md-toolbar style="background-color:blue">
+            <div class="md-toolbar-tools">
+                <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+                    <md-icon md-svg-icon="images/doctor.svg"></md-icon>
+                </md-button>
+                <h2 style="color:white">
+                    <span>Dokter</span>
+                </h2>
+            </div>
+
+        </md-toolbar>
+
+        <md-list flex>
+            <md-list-item class="md-3-line" ng-repeat="item in listCallingDoctor" ng-click="null">
+                <div class="md-avatar" style="position:relative;width: 70px;height: 70px;background-color: blue;">
+                    <span style="left: 50%;position: absolute;transform: translate(-50%,-50%);font-size: 24pt;top: 50%;color:white"> {{item.noAntrian}}</span>
+                </div>
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{item.kelompokPasien}}</h3>
+                    <h4>{{ item.pasien.noCm }}</h4>
+                    <p>{{ item.jenisKelamin }}</p>
+                </div>
+            </md-list-item>
+        </md-list>
+    </div>
+    <div class="grid_3">
+        <md-toolbar style="background-color:orange">
+            <div class="md-toolbar-tools">
+                <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+                    <md-icon md-svg-icon="images/nurse.svg"></md-icon>
+                </md-button>
+                <h2 style="color:white">
+                    <span>Perawat</span>
+                </h2>
+            </div>
+
+        </md-toolbar>
+
+        <md-list flex>
+            <md-list-item class="md-3-line" ng-repeat="item in listCallingUser" ng-click="null">
+                <div class="md-avatar" style="position:relative;width: 70px;height: 70px;background-color: orange;">
+                    <span style="left: 50%;position: absolute;transform: translate(-50%,-50%);font-size: 24pt;top: 50%;color:white"> {{item.noAntrian}}</span>
+                </div>
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{item.kelompokPasien}}</h3>
+                    <h4>{{ item.pasien.noCm }}</h4>
+                    <p>{{ item.jenisKelamin }}</p>
+                </div>
+            </md-list-item>
+        </md-list>
+    </div>
+    <div class="grid_3">
+        <md-toolbar style="background-color:red">
+            <div class="md-toolbar-tools">
+                <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+                    <md-icon md-svg-icon="images/wait.svg"></md-icon>
+                </md-button>
+                <h2 style="color:white">
+                    <span>Menunggu</span>
+                </h2>
+            </div>
+
+        </md-toolbar>
+        <md-list flex>
+            <md-list-item class="md-3-line" ng-repeat="item in listQueue" ng-click="null">
+                <div class="md-avatar" style="position:relative;width: 70px;height: 70px;background-color: red;">
+                    <span style="left: 50%;position: absolute;transform: translate(-50%,-50%);font-size: 24pt;top: 50%;color:white"> {{item.noAntrian}}</span>
+                </div>
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{item.kelompokPasien}}</h3>
+                    <h4>{{ item.pasien.noCm }}</h4>
+                    <p>{{ item.jenisKelamin }}</p>
+                </div>
+            </md-list-item>
+        </md-list>
+    </div>
+
+</div>

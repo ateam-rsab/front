@@ -1,0 +1,33 @@
+<div ng-controller="DaftarSasaranStrategisPICCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="title" disabled>
+			<div class="grid_12">
+				<div class="grid_1"></div>
+				<div class="grid_2" style="margin-top:15px">
+					<label c-label item="item" c-label-text="personInCharge"></label>
+				</div>
+				<div class="grid_4">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.personInCharge" k-data-text-field="'personInCharge'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourcepersonInChargeot" />
+				</div>
+			</div>
+			<div class="grid_12" style="margin-top: 20px;">
+				<div kendo-grid k-data-source="daftarSasaranStrategisPIC" k-selectable="'row'" k-columns="columndaftarSasaranStrategisPIC"></div>
+			</div>
+			<div class="grid_12" style="padding-top:30px">
+				<div class="grid_4"></div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="Cetak()">Cetak</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="InputDetail()">Input Target</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="Ubah()">Ubah Target</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="Tutup()">Tutup</button>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

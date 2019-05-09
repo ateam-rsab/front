@@ -1,0 +1,170 @@
+<div ng-show="dataVOloaded">
+    <!-- Buton Cetak -->
+    <!--
+    <div class="grid_12">
+        <md-button class="md-fab md-fab-top-right docs-scroll-fab md-button" align="center" style="height: 75px; width: 75px; background-color: #05b72a !important" aria-label="Eat cake">
+            <md-tooltip md-direction='left'>Cetak Dokumen</md-tooltip>
+            <md-icon md-svg-src="/app/stylesheets/Images/exam.svg"></md-icon>
+        </md-button>
+    </div>
+    -->
+    <!-- Daftar Order Ambulance -->
+    <c-panel item="item" header="'Daftar Order Ambulance'" disabled>
+        <div class="grid_6">
+            <div class="grid_12">
+                <div class="grid_4">
+                    <label c-label item="item">Periode Awal</label>
+                </div>
+                <div class="grid_4">
+                    <label c-label item="item">Periode Akhir</label>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_4">
+                <input style="width:100%" kendo-date-picker k-ng-model="item.awal" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'" />
+            </div>
+            <div class="grid_4">
+                <input style="width:100%" kendo-date-picker k-ng-model="item.akhir" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'" />
+            </div>
+            <div class="grid_3" style="margin-top:7px">
+                <button class="c-button success" ng-click="findAllOrder()" style="width:100% !important">
+                    <span style="font-size:10!important">Cari</span>
+                </button>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <!-- 
+            <div class="grid_4 pull-right">
+            <div class="grid_8">
+                <label c-label item="item">No. Order</label>
+                <input c-text-box type="input" filter="''" class="k-textbox" ng-model="item.noOrder" style="width: 100%;" />
+            </div>
+            <div class="grid_4" style="margin-top:5px">
+                <label c-label item="item">&nbsp;</label>
+                <button class="c-button success" ng-click="find()" style="width:100% !important">
+                    <span style="font-size:10!important">Cari</span>
+                </button>
+            </div>
+            <div class="clear"></div>
+        </div>
+        -->
+        <!-- <hr class="style-four"> -->
+        <div class="grid_12">
+            <div id="gridOrderAmbulance" kendo-grid k-data-source="listOrder" k-options="mainGridOptions"></div>
+        </div>
+
+
+        <!-- <div class="grid_12">
+            <div class="grid_5"></div>
+            <div class="grid_4" style="margin-top: 10px" text-align="right">
+                <button class="c-button success" ng-click="navToOrderAmbulance(current)" style="width:100% !important">
+                    <span class="title">Detail Order Ambulance</span>
+                </button>
+            </div>
+            <div class="grid_3" style="margin-top: 10px">
+                <button class="c-button success" ng-click="out(current.noOrder, current.status)">
+                <span class="title">Selesai Pemakaian</span>
+                </button>
+            </div>
+
+        </div> -->
+    </c-panel>
+    <div class="panel-body">
+        <div class="grid_12 headerBox"><p>Filter Data</p></div>
+        <div class="grid_12">
+            <div class="grid_2">
+                <label c-label item="item">Nomor MR</label>
+                <input c-text-box type="input" filter="''" class="k-textbox" ng-model="filter.noMr" style="width: 100%;"/>
+            </div>
+            <div class="grid_3">
+                <label c-label item="item">Nama Pasien</label>
+                <input c-text-box type="input" filter="''" class="k-textbox" ng-model="filter.namaPasien" style="width: 100%;"/>
+            </div>
+            <div class="grid_3">
+                <label c-label item="item">Ruangan</label>
+                <input c-text-box type="input" filter="''" class="k-textbox" ng-model="filter.ruangan" style="width: 100%;"/>
+            </div>
+            <div class="grid_1">
+                <label c-label c-label-text=""></label>
+                <em style="margin-top:6px;" ng-click='resetFilters()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
+
+<style>
+    .error{
+        background-color:white !important;
+    }
+    .yellow{
+        background-color:#ffff00
+    }
+     .green{
+        background-color:#00ff40
+    }
+      .red{
+        background-color:#FF0000
+    }
+    .k-grid  .k-grid-header  .k-header  .k-link {
+     height: auto;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     white-space: normal;
+    }
+
+    .style-four {
+        height: 5px;
+        border: 0;
+        box-shadow: inset 0 14px 12px -12px rgba(0, 0, 0, 0.5);
+        }
+    .md-button {
+          padding: 0 6px 0 6px;
+          margin: 6px 8px 6px 8px;
+          min-width: 88px;
+          border-radius: 3px;
+          font-size: 14px;
+          text-align: center;
+          text-transform: uppercase;
+          text-decoration:none;
+          border: none;
+          outline: none;
+          color: green;
+        }
+
+    .k-grid  .k-grid-header  .k-header {
+     text-align: center;
+    }
+
+    .md-tooltip {
+        height: 25px !important;
+        background-color: #363940 !important;
+        color: white !important;
+        border-radius: 5px;
+        font-size: 14px
+     }
+     .md-button.md-fab.md-fab-top-right {
+        top: 100px;
+        right: 41px;
+        bottom: auto;
+        left: auto;
+        position: absolute;
+     }
+     .h1 {
+        position:relative;
+        display:inline-block;
+            }
+      .h1::before, 
+      .h1::after {
+        content:' ';
+        display:block;
+        position:absolute; top:50%; left:-120px;
+        width:100px;
+        border-bottom:1px solid black;
+    }
+    .h1::after {
+        left:auto; right:-120px;
+    }
+</style>
+<!--<input style="width:100%" kendo-date-picker k-ng-model="item.akhir" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'" />-->

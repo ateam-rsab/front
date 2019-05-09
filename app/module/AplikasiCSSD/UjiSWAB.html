@@ -1,0 +1,90 @@
+<div ng-controller="UjiSWABCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Uji SWAB'">
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">No Order</label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noOrder" disabled/>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Tanggal</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggal"  data-k-format="'yyyy-MM-dd'"/>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Waktu Mulai</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%" kendo-time-picker k-ng-model="item.waktuMulai" placeholer="HH:mm" k-format="'HH:mm'"/>
+				</div><div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Waktu Selesai</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%" kendo-time-picker k-ng-model="item.waktuSelesai" placeholer="HH:mm" k-format="'HH:mm'"/>
+				</div>
+				
+			</div>
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Ruangan Asal</label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.ruanganAsal" disabled/>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Ruangan Tujuan</label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.ruanganTujuan" disabled />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Petugas</label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.petugas" disabled />
+				</div>
+
+			</div>
+			<div class="grid_12">
+				<kendo-grid options="gridUjiSWAB" k-scrollable = "false" k-data-source="dataSource"></kendo-grid>
+			</div>
+			<!-- <div class="grid_12">
+				<div class="grid_6">
+					<div class="grid_12">
+						<div class="grid_4">
+							<label c-label item="item" style="margin-top: 10px">Jumalh Bakteri</label>
+						</div>
+						<div class="grid_4">
+							<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahBakteri"/>
+						</div>
+						<div class="grid_4">
+							<label c-label item="item" style="margin-top: 10px">RLu</label>
+						</div>
+					</div>
+					<div class="grid_4">
+						<label c-label item="item" style="margin-top: 10px">Hasil</label>
+					</div>
+					<div class="grid_8">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.hasil"/>
+					</div>
+				</div>
+				</div>
+			</div> -->
+			<div class="grid_12">
+				<div class="grid_3"></div>
+				<div class="grid_3"></div>
+				<div class="grid_2"></div>
+				<div class="grid_2">
+					<button class="c-button success" ng-click="simpan()">Simpan</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button cancel" ng-click="batal()">Tutup</button>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

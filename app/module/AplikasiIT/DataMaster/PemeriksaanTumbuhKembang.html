@@ -1,0 +1,389 @@
+<div ng-controller="PemeriksaanTumbuhKembangCtrl">
+<div ng-show="dataVOloaded">
+<c-panel item="item" header="'Pemeriksaan Tumbuh Kembang'" disabled>
+
+<!-- kondisiUmum -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kondisiUmum"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.kondisiUmum" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listkondisiUmum" />
+</div>
+</div>
+
+<!-- kondisiUmumId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kondisiUmumId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kondisiUmumId" />
+</div>
+</div>
+
+<!-- kontakInterpersonal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kontakInterpersonal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.kontakInterpersonal" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listkontakInterpersonal" />
+</div>
+</div>
+
+<!-- kontakInterpersonalId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kontakInterpersonalId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kontakInterpersonalId" />
+</div>
+</div>
+
+<!-- keaktifan -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="keaktifan"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.keaktifan" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listkeaktifan" />
+</div>
+</div>
+
+<!-- keaktifanId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="keaktifanId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.keaktifanId" />
+</div>
+</div>
+
+<!-- kepalaUbunUbunBesar -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kepalaUbunUbunBesar"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.kepalaUbunUbunBesar" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listkepalaUbunUbunBesar" />
+</div>
+</div>
+
+<!-- kepalaUbunUbunBesarId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kepalaUbunUbunBesarId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kepalaUbunUbunBesarId" />
+</div>
+</div>
+
+<!-- wajah -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="wajah"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.wajah" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listwajah" />
+</div>
+</div>
+
+<!-- wajahId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="wajahId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.wajahId" />
+</div>
+</div>
+
+<!-- kelainanTingkahLaku -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kelainanTingkahLaku"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kelainanTingkahLaku" />
+</div>
+</div>
+
+<!-- motorikKasar -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="motorikKasar"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.motorikKasar" />
+</div>
+</div>
+
+<!-- motorikKasarUmur -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="motorikKasarUmur"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.motorikKasarUmur" />
+</div>
+</div>
+
+<!-- motorikHalus -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="motorikHalus"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.motorikHalus" />
+</div>
+</div>
+
+<!-- motorikHalusUmur -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="motorikHalusUmur"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.motorikHalusUmur" />
+</div>
+</div>
+
+<!-- bicaraExspresif -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="bicaraExspresif"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.bicaraExspresif" />
+</div>
+</div>
+
+<!-- bicaraExspresifUmur -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="bicaraExspresifUmur"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.bicaraExspresifUmur" />
+</div>
+</div>
+
+<!-- reseptif -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="reseptif"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reseptif" />
+</div>
+</div>
+
+<!-- reseptifUmur -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="reseptifUmur"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reseptifUmur" />
+</div>
+</div>
+
+<!-- kognisis -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kognisis"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kognisis" />
+</div>
+</div>
+
+<!-- kognisisUmur -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kognisisUmur"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kognisisUmur" />
+</div>
+</div>
+
+<!-- sosialisasi -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="sosialisasi"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.sosialisasi" />
+</div>
+</div>
+
+<!-- sosialisasiUmur -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="sosialisasiUmur"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.sosialisasiUmur" />
+</div>
+</div>
+
+<!-- perilaku -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="perilaku"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.perilaku" />
+</div>
+</div>
+
+<!-- perilakuUmur -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="perilakuUmur"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.perilakuUmur" />
+</div>
+</div>
+
+<!-- organArtikulasiBibir -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="organArtikulasiBibir"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.organArtikulasiBibir" />
+</div>
+</div>
+
+<!-- organArtikulasiLidah -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="organArtikulasiLidah"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.organArtikulasiLidah" />
+</div>
+</div>
+
+<!-- organArtikulasiPelatum -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="organArtikulasiPelatum"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.organArtikulasiPelatum" />
+</div>
+</div>
+
+<!-- gigiGeligi -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="gigiGeligi"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.gigiGeligi" />
+</div>
+</div>
+
+<!-- keteranganWajah -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="keteranganWajah"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.keteranganWajah" />
+</div>
+</div>
+
+<!-- PemeriksaanTumbuhKembang -->
+<div class="grid_12">
+<div class="grid_12 headerBox">
+<p>PemeriksaanTumbuhKembang</p>
+</div>
+<div class="clear"></div>
+
+<!-- grid table -->
+<div class="grid_12 borderBox">
+<div kendo-grid k-data-source="dataPemeriksaanTumbuhKembang" k-selectable="'row'" k-columns="columnPemeriksaanTumbuhKembang">
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+
+
+</c-panel>
+
+<div class="grid_12" style="margin-top:30px">
+<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
+</div>
+</div>
+</div>

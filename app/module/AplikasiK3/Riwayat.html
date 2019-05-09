@@ -1,0 +1,92 @@
+<div ng-controller="RiwayatCtrl">
+	<div ng-show="dataVOloaded">
+	<!-- Field TextBox -->
+	<div class="grid_12">
+		<c-panel item="item" header="'Pegawai'" disabled>
+			<div class="grid_12">
+				<!-- Id Pegawai -->
+				<div style="margin: 5px" class="grid_2">
+					<label c-label item="item" c-label-text="noId"></label>
+					<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.id" disabled />
+				</div>
+				<!-- Nama Pegawai -->
+				<div style="margin: 5px" class="grid_3">
+					<label c-label item="item" c-label-text="namaPegawai"></label>
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPegawai" disabled/>
+				</div>
+				<!-- Jenis Kelamin -->
+				<div style="margin: 5px" class="grid_2">
+					<label c-label item="item" c-label-text="jenisKelamin"></label>
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jenisKelamin" disabled/>
+				</div>
+				<!-- Jenis Pegawai -->
+				<div style="margin: 5px" class="grid_2">
+					<label c-label item="item" c-label-text="JenisPegawai"></label>
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jenisPegawai" disabled/>
+				</div>
+				<!-- Jabatan -->
+				<div style="margin: 5px" class="grid_3">
+					<label c-label item="item" c-label-text="jabatan"></label>
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" disabled/>
+				</div>
+			</div>
+		
+	<!-- Tab -->
+	<div kendo-tab-strip class="grid_11" style="margin-left:50px; margin-top:50px">
+		<!-- Daftar Judul Tab -->
+		<ul style="text-align:center">
+			<li style="width:20%; height:45px">{{tab1}}</li>
+			<li style="width:20%; height:45px">{{tab2}}</li>
+			<li style="width:20%; height:45px">{{tab3}}</li>
+			<li style="width:20%; height:45px">{{tab4}}</li>
+			<li style="width:19%; height:45px">{{tab5}}</li>
+		</ul>
+		<!-- Konten Tab1 (Hasil Pemeriksaan Pra - Kerja) -->
+		<div>
+			<div style="padding: 1em">
+				<div kendo-grid k-data-source="dataSourceHasilPeriksa" k-selectable="'row'" k-columns="columnHasilPemeriksaan">
+				</div>
+			</div>
+		</div>
+		<!-- Konten Tab2 (General Check - Up) -->
+		<div>
+			<div style="padding: 1em">
+				<div kendo-grid k-data-source="dataSourceCheckUp" k-selectable="'row'" k-columns="columnCheckUp">
+				</div>
+			</div>
+		</div>
+		<!-- Konten Tab3 (Vaksin) -->
+		<div>
+			<div style="padding: 1em">
+				<div kendo-grid k-data-source="dataSourceVaksin" k-selectable="'row'" k-columns="columnVaksin">
+				</div>
+			</div>
+		</div>
+		<!-- Konten Tab4 (Pap - Smear) -->
+		<div>
+			<div style="padding: 1em">
+				<div kendo-grid k-data-source="dataSourcePap" k-selectable="'row'" k-columns="columnPap">
+				</div>
+			</div>
+		</div>
+		<!-- Konten Tab5 (Riwayat Penyakit) -->
+		<div>
+			<div style="padding: 1em">
+				<div kendo-grid k-data-source="dataSourceRiwayat" k-selectable="'row'" k-columns="columnRiwayatPenyakit">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="grid_9">
+	</div>
+	<!-- Button -->
+	<div class="grid_2" style="margin: 10px" text-align="right">
+		<label c-label item="item" c-label-text=""> </label>
+		<c-button ng-click="deleteData()" style="width:100% !important">
+			<span style="font-size:10!important">Tutup</span>
+		</c-button>
+	</div>
+	</c-panel>
+	</div>
+	</div>
+</div>

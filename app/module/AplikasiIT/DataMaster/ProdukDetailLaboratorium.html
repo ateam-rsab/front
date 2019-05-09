@@ -1,0 +1,185 @@
+<div ng-controller="ProdukDetailLaboratoriumCtrl">
+<div ng-show="dataVOloaded">
+<c-panel item="item" header="'Produk Detail Laboratorium'" disabled>
+
+<!-- satuanStandar -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="satuanStandar"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.satuanStandar" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listsatuanStandar" />
+</div>
+</div>
+
+<!-- satuanStandarFk -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="satuanStandarFk"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.satuanStandarFk" />
+</div>
+</div>
+
+<!-- produkNilaiNormal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="produkNilaiNormal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.produkNilaiNormal" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listprodukNilaiNormal" />
+</div>
+</div>
+
+<!-- produk -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="produk"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.produk" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listproduk" />
+</div>
+</div>
+
+<!-- produkFk -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="produkFk"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.produkFk" />
+</div>
+</div>
+
+<!-- detailPemeriksaan -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="detailPemeriksaan"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.detailPemeriksaan" />
+</div>
+</div>
+
+<!-- metodePemeriksaanPenunjang -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="metodePemeriksaanPenunjang"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.metodePemeriksaanPenunjang" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listmetodePemeriksaanPenunjang" />
+</div>
+</div>
+
+<!-- metodePemeriksaanPenunjangId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="metodePemeriksaanPenunjangId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.metodePemeriksaanPenunjangId" />
+</div>
+</div>
+
+<!-- produkDetailHasilSet -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="produkDetailHasilSet"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.produkDetailHasilSet" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listprodukDetailHasilSet" />
+</div>
+</div>
+
+<!-- qCharDetailPemeriksaan -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="qCharDetailPemeriksaan"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.qCharDetailPemeriksaan" />
+</div>
+</div>
+
+<!-- reportDisplay -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="reportDisplay"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+</div>
+</div>
+
+<!-- kodeExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kodeExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+</div>
+</div>
+
+<!-- namaExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="namaExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+</div>
+</div>
+
+<!-- ProdukDetailLaboratorium -->
+<div class="grid_12">
+<div class="grid_12 headerBox">
+<p>ProdukDetailLaboratorium</p>
+</div>
+<div class="clear"></div>
+
+<!-- grid table -->
+<div class="grid_12 borderBox">
+<div kendo-grid k-data-source="dataProdukDetailLaboratorium" k-selectable="'row'" k-columns="columnProdukDetailLaboratorium">
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+
+
+</c-panel>
+
+<div class="grid_12" style="margin-top:30px">
+<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
+</div>
+</div>
+</div>

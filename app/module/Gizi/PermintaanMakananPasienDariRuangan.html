@@ -1,0 +1,99 @@
+<div ng-controller="PermintaanMakananPasienDariRuanganCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Permintaan Makanan Pasien Dari Ruangan'">
+		<div class="panel panel-default container_12">
+			<div class="panel-heading" c-translate>Daftar Pasien</div>
+			<div class="panel-body">
+				<div kendo-grid k-data-source="daftarPasien" k-selectable="'row'" k-columns="columnPasien">
+				</div>
+			</div>
+			</div>
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="tanggalPesan"></label>
+			</div>
+			<div class="grid_3">
+				<input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tanggalPesan" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+			</div>
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="keterangan"></label>
+			</div>
+			<div class="grid_3">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.keteranganDiet" k-data-text-field="'keteranganDiet'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKeterangan" />
+			</div>
+			<div class="grid_2">
+				<c-button ng-click="Tambah()">
+			<span>Tambah</span>
+			</c-button>
+			</div>
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="jenisDiet"></label>
+			</div>
+			<div class="grid_3">
+			<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisDiet" k-data-text-field="'jenisDiet'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisDiet" />
+			</div>
+			<div class="grid_2">
+			<label c-label item="item" c-label-text="jumlahMenu"></label>
+			</div>
+			<div class="grid_3">
+			<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahMenu" />
+			</div>
+			<div class="grid_2"><c-button ng-click="Batal()">
+			<span>Batal</span>
+			</c-button></div>
+			<div class="grid_2">
+			<label c-label item="item" c-label-text="kategoryDiet"></label>
+			</div>
+			<div class="grid_3">
+			<input style="width: 100%;" kendo-combo-box k-ng-model="item.kategoryDiet" k-data-text-field="'kategoryDiet'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKategoryDiet" />
+			</div>
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="minum"></label>
+			</div>
+			<div class="grid_3">
+				<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.minum" />
+			</div>
+			<div class="grid_2">
+				<c-button ng-click="Simpan()">
+			<span>Simpan</span>
+			</c-button>
+			</div>
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="jenisWaktu"></label>
+			</div>
+			<div class="grid_3">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisWaktu" k-data-text-field="'jenisWaktu'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisWaktu" />
+			</div>
+			<div class="grid_2">
+			<label c-label item="item" c-label-text="frekuensi"></label>
+			</div>
+			<div class="grid_3">
+				<div class="grid_4"> 
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.frekuensiDiet" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listFrekuensiDiet" />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="Volume"></label>
+				 </div>
+				<div class="grid_4">
+					<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.volume" />
+				 </div>
+			</div>
+			<div class="grid_2"><c-button ng-click="Tutup()">
+			<span>Tutup</span>
+			</c-button>
+			</div>
+			<div class="clear"></div>
+			<div class="grid_2"></div>
+			<div class="grid_3"></div>
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="namaPemesan"></label>
+			</div>
+			<div class="grid_3">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaPemesan" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listNamaPemesan" />
+			</div>
+			<div class="clear"></div>
+			<div kendo-grid k-data-source="daftarPemesananMakanan" k-selectable="'row'" k-columns="columnPemesananMakanan">
+				</div>
+		</c-panel>
+	</div>
+</div>

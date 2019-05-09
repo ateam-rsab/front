@@ -1,0 +1,69 @@
+<div ng-controller="PengalamanOrganisasiCtrl">
+
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Pengalaman Organisasi'">
+
+            <div class="grid_12">
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="Tahun"></label>
+                    <div class="clear"></div>
+                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.tahun" />
+                </div>
+                <div class="grid_3">
+                    <label c-label item="item" c-label-text="NamaDanJenisOrganisasi"></label>
+                    <div class="clear"></div>
+                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaOrganisasi" />
+                </div>
+                <div class="grid_3">
+                    <label c-label item="item" c-label-text="Jabatan"></label>
+                    <div class="clear"></div>
+                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.jabatan" />
+                </div>
+                <div class="grid_4">
+                    <textarea c-text-area type="input" style="height: 40px" filter="'string'" class="k-textbox" ng-model="item.keterangan" placeholder="Keterangan" />
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_6"></div>
+            <div class="grid_6" style="text-align: right">
+                <div class="grid_4"></div>
+                <div class="grid_4">
+                    <c-button ng-click="reset()">
+                        <span>Batal</span>
+                    </c-button>
+                </div>
+                <div class="grid_4">
+                    <c-button ng-click="addDataPengalamanOrganisasi()" style="width:10% !important">
+                        <span>Tambah</span>
+                    </c-button>
+                </div>
+            </div>
+
+            <div class="grid_12" style="margin-top: 10px;" style="margin-bottom: 10px">
+                <div kendo-grid k-data-source="dataPengalamanOrganisasi" k-selectable="'row'" k-columns="columnPengalamanOrganisasi">
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="container_12">
+                <div class="grid_6"></div>
+                <div class="grid_6" style="text-align: right">
+                    <div class="grid_4"></div>
+                    <div class="grid_4">
+                        <c-button ng-show="!isLoading" style="width: 100%" item="item" is-validate click="Back">
+                            <span>Sebelumnya</span>
+                        </c-button>
+                    </div>
+                    <div class="grid_4">
+                        <c-button ng-show="!isLoading" style="width: 100%" item="item" is-validate click="Selanjutnya">
+                            <span>Selanjutnya >></span>
+                        </c-button>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <!--<div class="grid_12" style="margin-top: 20px">
+                <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+            </div>-->
+        </c-panel>
+    </div>
+</div>

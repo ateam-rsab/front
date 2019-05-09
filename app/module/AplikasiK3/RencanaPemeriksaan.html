@@ -1,0 +1,55 @@
+<div ng-controller="RencanaPemeriksaanCtrl">
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Jadwal Rencana Pemeriksaan'">
+            <div class="panel panel-default container_12">
+                <div class="panel-body">
+                    <div class="grid_12">
+                        <div class="grid_2">
+                            <div class="grid_12" style="margin-top: 15px">
+                                <label c-label item="item" c-label-text="idPegawai"></label>
+                            </div>
+                            <div class="grid_12" style="margin-top: 25px">
+                                <label c-label item="item" c-label-text="nama"></label>
+                            </div>
+                            <div class="grid_12" style="margin-top: 25px">
+                                <label c-label item="item" c-label-text="pemeriksaan"></label>
+                            </div>
+                        </div>
+                        <div class="grid_3">
+                            <div class="grid_12" "margin-top: 5px">
+                                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.idPegawai" ng-disabled="true"/>
+                            </div>
+                            <div class="grid_12" style="margin-top: 5px">
+                                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.nama" ng-disabled="true" />
+                            </div>
+                            <div class="grid_12" style="margin-top: 5px">
+                                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.pemeriksaan" ng-disabled="enablePemeriksaan" />
+                            </div>
+                        </div>
+
+                        <div class="grid_2">
+                            <div class="grid_12" style="margin-top: 15px">
+                                <label c-label item="item" c-label-text="tglPemeriksaan"></label>
+                            </div>
+                        </div>
+                        <div class="grid_3">
+                            <div class="grid_12">
+                                <input style="width: 100%" k-ng-model='item.tglPemeriksaan' k-value='now' k-min='now' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_12" style="margin-top: 50px">
+                        <div class="grid_9"></div>
+                        <div class="grid_3">
+                            <div class="grid_12" "margin-top: 50px">
+                                <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" position="'right'" is-validate ng-click="save()">
+                                    <span class="title">Simpan</span>
+                                </c-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </c-panel>
+    </div>
+</div>

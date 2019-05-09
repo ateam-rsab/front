@@ -1,0 +1,249 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Permintaan Perbaikan dari Ruangan IT</div>
+	<div class="panel-body">
+		<div class="grid_12">
+			<div class="grid_12">
+
+			<!-- button Cetak -->
+			   <div class="grid_12">
+					 <md-button class="md-fab md-fab-top-right docs-scroll-fab md-button " align="center" style="height: 75px; width: 75px; background-color: #0066ff !important" aria-label="Eat cake">
+					   <md-tooltip md-direction='left'>Cetak Dokumen</md-tooltip>
+							<md-icon md-svg-src="/app/stylesheets/Images/exam.svg"></md-icon>
+					 </md-button>
+				</div>
+
+				<!-- Order Permintaan -->
+				<div class="grid_12" style="padding: 5px 5px 0 5px;">
+					<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+						<p>Order Permintaan</p>
+					</div>
+					<div class="grid_12 borderBox containerBorderBox">
+						<div class="grid_12">
+							<div class="grid_6">
+
+							<!-- Nomor Order -->
+								<div class="grid_4" style="padding-top:15px">
+									<label c-label item="item">Nomor Order</label>
+								</div>
+								<div class="grid_8">
+									<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noOrder" disabled="true"  />
+								</div>
+
+								<!-- Pelapor -->
+								<div class="grid_4" style="padding-top:15px">
+									<label c-label item="item">User Pelapor</label>
+								</div>
+								<div class="grid_8">
+									<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.userPelapor" disabled="true"  />
+								</div>		
+
+								<!-- Tanggal Pesan -->
+								<div class="grid_4" style="padding-top:15px">
+									<label c-label item="item">Tanggal Pesan</label>
+								</div>
+								<div class="grid_8">
+									<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalPesan" k-format="'dd-MM-yyyy'" />
+								</div>
+
+							
+
+								<!-- Kerusakan / Keluhan -->
+								<div class="grid_4" style="padding-top:15px">
+									<label c-label item="item">Kerusakan / Keluhan</label>
+								</div>
+								<div class="grid_8">
+									<textarea style="height: 90px" c-text-box type="input" class="k-textbox" ng-model="item.kerusakan" />
+								</div>							
+							</div>
+							<div class="grid_6">
+								
+								<!-- Ruangan Asal -->	
+								<div class="grid_4" style="padding-top:15px">
+									<label c-label item="item">Ruangan Asal</label>
+								</div>
+								<div class="grid_8">
+									<div class="grid_12">
+										<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'"  k-data-source="ListRuangan" k-on-change="OnChangeRuangan(item.ruangan)"/>
+									</div>
+									<div class="clear"></div>
+								</div>
+
+								<!-- Nama Barang -->
+								<div class="grid_4" style="padding-top:15px">
+									<label c-label item="item">Nama Barang</label>
+								</div>
+								<div class="grid_8">
+									<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaBarang" k-data-text-field="'namaProduk'" k-data-value-field="'kdProduk'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAsset" k-on-change="ChangeBarang(item.namaBarang)" />
+								</div>
+
+
+								<!-- Kategori Kerusakan -->
+								<div class="grid_4" style="padding-top:15px">
+									<label c-label item="item">Kategori Kerusakan</label>
+								</div>
+								<div class="grid_8">
+									<div class="grid_12">
+										<!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.KategoriKerusakan" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'"  k-data-source="ListDataSource"/> -->
+										<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.KategoriKerusakan" disabled="true"  />
+									</div>
+									<div class="clear"></div>
+								</div>							
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		    <div class="grid_12" style="margin-top: 15px">
+		        <div class="grid_2" style="margin-left:10px; font-weight: bold"><label c-label item="item">Status Pengerjaaan :</label></div>
+		          <div class="grid_2">
+		            <span id="square" style="background-color:#FFFF00">&nbsp;&nbsp;&nbsp;</span>
+		                <span style="font-weight: bold">: Belum ada yang dikerjakan</span>
+		          </div>
+		          <div class="grid_2">
+		            <span id="square" style="background-color: #00FF00">&nbsp;&nbsp;&nbsp;</span>
+		                <span style="font-weight: bold">: service sudah dikerjakan</span>
+		          </div>
+		          <div class="grid_2">
+		            <span id="square" style="background-color: #FF0000">&nbsp;&nbsp;&nbsp;</span>
+		                 <span style="font-weight: bold">: kalibrasi sudah dikerjakan</span>
+		          </div>		          
+		          <div class="grid_2">
+		            <span id="square" style="background-color: #FF8C00">&nbsp;&nbsp;&nbsp;</span>
+		                 <span style="font-weight: bold">: pemeliharaan sudah dikerjakan</span>
+		          </div>
+	        </div>
+
+			<!-- Pencarian -->
+			<hr class="style-four">
+				<div class="grid_12" style="margin-top: -5px">
+						<div class="grid_1"></div>
+						<div class="grid_1" style="margin-top: 10px">
+							<label c-label item="item" c-label-text="Pencarian"></label>
+						</div>
+						<div class="grid_1" align="right"  style="margin-top: 10px">
+							<label c-label item="item" c-label-text=":"></label>
+						</div>
+						<div class="grid_3">
+						 <input class=k-textbox type=text ng-model="item.pencarian" placeholder="No Order / Nama Barang / Nama Ruangan" />
+						</div>
+						<div class="grid_1" style="margin-top: 5px">
+							<button class="c-button success" ng-click="Cari(item.pencarian)">Cari</button>
+						</div>
+						<div class="grid_1" style="margin-top: 5px">
+							<button class="c-button cancel" ng-click="ClearCari()">Clear</button>
+						</div>
+				</div>
+
+				<div class="grid_12" style="margin-top: 10px">
+					<div class="grid_12" style="padding: 5px 5px 0 5px;">
+						<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+							<p>Daftar Permintaan</p>
+						</div>
+							<div id="kGrid" kendo-grid 
+							k-data-source="dataSource" 
+							k-options="mainGridOptions"
+							k-selectable="'row'" 
+							k-sortable="'true'"
+						    k-pageable="true"
+							k-ng-model="dataSelected"
+							ng-click="klik(dataSelected)">
+							</div>
+					</div>
+				</div>
+
+
+				<div class="grid_12" style="margin-top: 15px">
+					<div class="grid_8"></div>
+					<div class="grid_2">
+						<button class="c-button cancel" style="width: 100%; font-size: 16px; padding:0px, margin:0px;" ng-click="batal()">Batal</button>
+					</div>
+					<div class="grid_2">
+						<button class="c-button success" style="width: 100%; font-size: 16px; padding:0px, margin:0px;" ng-click="simpan()">Kirim</button>
+					</div>
+				</div>
+				<hr class="style-four">
+		</div>
+	</div>
+</div>
+<style>
+    .error{
+        background-color:white !important;
+    }
+    .yellow{
+        background-color:#ffff00;
+        color: #000000;
+        font-weight: bold;
+    }
+     .green{
+        background-color:#00ff40;
+        color: #000000;
+        font-weight: bold;
+    }
+      .red{
+        background-color:#FF0000;
+        color: #FFFFFF;
+        font-weight: bold;
+    }
+    .k-grid  .k-grid-header  .k-header  .k-link {
+     height: auto;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     white-space: normal;
+    }
+
+    .style-four {
+		height: 5px;
+		border: 0;
+		box-shadow: inset 0 14px 12px -12px rgba(0, 0, 0, 0.5);
+		}
+    .md-button {
+		  padding: 0 6px 0 6px;
+		  margin: 6px 8px 6px 8px;
+		  min-width: 88px;
+		  border-radius: 3px;
+		  font-size: 14px;
+		  text-align: center;
+		  text-transform: uppercase;
+		  text-decoration:none;
+		  border: none;
+		  outline: none;
+		  color: green;
+		}
+
+    .k-grid  .k-grid-header  .k-header {
+     text-align: center;
+    }
+
+    .md-tooltip {
+		height: 25px !important;
+		background-color: #363940 !important;
+		color: white !important;
+		border-radius: 5px;
+		font-size: 14px
+	 }
+	 .md-button.md-fab.md-fab-top-right {
+	    top: 300px;
+	    right: 71px;
+	    bottom: auto;
+	    left: auto;
+	    position: absolute;
+     }
+	 .h1 {
+	    position:relative;
+	    display:inline-block;
+			}
+	  .h1::before, 
+	  .h1::after {
+	    content:' ';
+	    display:block;
+	    position:absolute; top:50%; left:-120px;
+	    width:100px;
+	    border-bottom:1px solid black;
+	}
+	.h1::after {
+	    left:auto; right:-120px;
+	}
+</style>
+

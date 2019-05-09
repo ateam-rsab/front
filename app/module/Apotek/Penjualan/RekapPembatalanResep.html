@@ -1,0 +1,52 @@
+<div ng-controller="RekapPembatalanResepCtrl">
+
+	<div ng-show="dataVOloaded">
+
+		<c-panel item="item" header="'Rekap Pembatalan Resep'">
+			<div class="grid_12">
+				<div class="grid_6">
+
+					<!-- periode -->
+	                <div class="grid_3" style="margin-top:5px">
+	                    <label c-label item="item" c-label-text="periode"></label>
+	                </div>
+	                <div class="grid_3">
+	                    <input style="width: 100%" k-ng-model="item.periode"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+	                </div>
+	                <div class="grid_1" style="margin-top:5px">
+	                    <label>s/d</label>
+	                </div>
+	                <div class="grid_3">
+	                    <input style="width: 100%" k-ng-model="item.periode"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+	                </div>
+	                <div class="grid_2">
+                	    <c-button ng-show="!isLoading" class="success" item="item" size="30" position="'right'" is-validate click="SimpanKeluhanUtama" icon="'fa fa-chevron-right'">
+                        <span class="title" c-translate>Cari</span>
+                        </c-button>
+	                </div>
+	                <div class="clear"></div>
+
+				</div>
+
+				
+				<div class="grid_6">
+					
+				</div>
+            </div>
+            <div class="clear"></div>
+           
+
+
+           <!-- grid table -->
+			<div class="grid_12" style="margin-top: 10px;">
+              	<kendo-grid options="mainGridOptions" id="dataGrid">
+	            </kendo-grid>
+            </div>
+            <div class="clear"></div>
+		</c-panel>
+
+		<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+
+	</div>
+
+</div>

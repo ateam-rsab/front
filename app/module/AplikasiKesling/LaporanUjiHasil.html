@@ -1,0 +1,61 @@
+<div>
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Laporan Hasil Pemeriksaan LAB kesehatan Lingkungan'" disabled>
+			<div class="grid_6">
+				<div class="panel panel-default container_12">
+					<div class="grid_5" style="margin: 6px 0 0 0;">
+						<label c-label item="item" c-label-text="nomor"></label>
+					</div>
+					<div class="grid_7">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nomorContoh" />
+					</div>
+					<div class="clear"></div>
+					<div class="grid_5" style="margin: 6px 0 0 0;">
+						<label c-label item="item" c-label-text="jenisSample"></label>
+					</div>
+					<div class="grid_7">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.uraianContoh" />
+					</div>
+					<div class="grid_12">
+						<div class="grid_5">
+							<label c-label class="label-aja" item="item">Upload File</label>
+						</div>
+						<div class="grid_7">
+							<input id="fileCOA" name="files" type="file" valid-extensions="jpg,png,img,xls,xlsx,doc,docx,txt"
+							 data-max-size="2048" kendo-upload k-multiple="false" , k-select="onSelectFile" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="grid_6">
+				<div class="grid_5" style="margin: 6px 0 0 0;">
+					<label c-label item="item" c-label-text="tanggalPengujian"></label>
+				</div>
+				<div class="grid_3">
+					<input kendo-date-picker k-ng-model="item.tanggalpengujiandari" k-max="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+				</div>
+				<div class="grid_1" style="margin: 10px 0 0 0;">
+					<label>s/d</label>
+				</div>
+				<div class="grid_3">
+					<input kendo-date-picker k-ng-model="item.tanggalpengujiansampai" k-max="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+				</div>
+
+
+				<div class="grid_5" style="margin: 6px 0 0 0;">
+					<label c-label item="item" c-label-text="rekanan"></label>
+				</div>
+				<div class="grid_7">
+					<!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.persero" k-data-text-field="'namaRekanan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListRekanan" /> -->
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.persero" />
+				</div>
+			</div>
+		</c-panel>
+		<div class="grid_12" style="margin-bottom:40px">
+			<div id="gridPengujian" kendo-grid k-options="gridOptions"></div>
+		</div>
+		<div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
+		
+	</div>
+	<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+</div>

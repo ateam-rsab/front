@@ -1,0 +1,103 @@
+<div ng-controller="MasterDaftarMenuCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Master Daftar Menu'">
+		<div class="grid_2">
+			<label c-label item="item" c-label-text="jenisDiet"></label>
+		</div>
+		<div class="grid_2">
+			<label c-label item="item" c-label-text="kodeMenuDiet"></label>
+		</div>
+		<div class="grid_4">
+			<label c-label item="item" c-label-text="namaMenu"></label>
+		</div>
+		<div class="grid_2">
+			<label c-label item="item" c-label-text="satuanPorsi"></label>
+		</div>
+		<div class="grid_2">
+			<label c-label item="item" c-label-text="jmlPorsi"></label>
+		</div>
+
+		<div class="grid_2">
+			<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisDiet" k-data-text-field="'jenisDiet'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisBahanDiet" />
+		</div>
+		<div class="grid_2">
+			<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kodeMenuDiet" />
+		</div>
+		<div class="grid_4">
+			<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaMenu" />
+		</div>
+		<div class="grid_2">
+			<input style="width: 100%;" kendo-combo-box k-ng-model="item.satuanPorsi" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listSatuanPorsi" />
+		</div>
+		<div class="grid_2">
+			<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jmlPorsi" />
+		</div>
+		<div class="clear" style="margin: 10px"></div>
+		<div class="grid_3">
+			<label c-label item="item" c-label-text="jumlahKh"></label>
+		</div>
+		<div class="grid_3">
+			<label c-label item="item" c-label-text="jumlahKalori"></label>
+		</div>
+		<div class="grid_3">
+			<label c-label item="item" c-label-text="jumlahProtein"></label>
+		</div>
+		<div class="grid_3">
+			<label c-label item="item" c-label-text="jumlahLemak"></label>
+		</div>
+
+		<div class="grid_3">
+			<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahKh" />
+		</div>
+		<div class="grid_3">
+			<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahKalori" />
+		</div>
+		<div class="grid_3">
+			<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahProtein" />
+		</div>
+		<div class="grid_3">
+			<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahLemak" />
+		</div>
+		<div class="clear"></div>
+		<div kendo-grid k-data-source="daftarMenu" k-selectable="'row'" k-columns="columnMenu" style="margin-bottom: 10px">
+				</div>
+
+
+		<div class="grid_3">
+			<label c-label item="item" c-label-text="cariMenu"></label>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_3">
+			<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.cariBahanDiet" />
+		</div>
+		<div class="clear"></div>
+		<div class="grid_6">
+			<div class="grid_4">
+			<c-button ng-click="komponenMenuMakanan()">
+			<span>Komponen Menu Makanan</span>
+			</div>
+			<div class="grid_4"></div>
+			<div class="grid_4"></div>
+		</div>
+		<div class="grid_6">
+			<div class="grid_3">
+			<c-button ng-click="cetak()">
+			<span>Cetak</span>
+		</div>
+		<div class="grid_3">
+			<c-button ng-click="addMenu()">
+			<span>Tambah</span>
+		</div>
+		<div class="grid_3">
+			<c-button ng-click="simpan()">
+			<span>Simpan</span>
+		</div>
+		<div class="grid_3">
+			<c-button ng-click="batal()">
+			<span>Batal</span>
+		</div>
+		</div>
+		</c-panel>
+	</div>
+</div>

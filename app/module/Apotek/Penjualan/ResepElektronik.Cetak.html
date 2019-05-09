@@ -1,0 +1,16 @@
+<div ng-controller="ResepElektronikDetailCtrl">
+
+    <div id="content" class="grid_12">
+        <div class="grid_4" style="background-color:#e6e5e5" ng-repeat="data in listData">
+            <div class="grid_7">
+                <span kendo-qrcode k-error-correction="'M'" ng-model="data.noRec" style="height: 50px;"></span>
+            </div>
+            <div class="grid_5">
+                <h2>{{data.produk.namaProduk}}</h2>
+                <span class="c-label">{{'Jumlah :'+data.jumlah }}</span>
+                <span class="c-label">{{"Aturan :" +data.keteranganPakai.name}}</span>
+                <span class="c-label">{{"Nama   :"+data.pasienDaftar.pasienDaftar.pasien.namaPasien}}</span>
+            </div>
+        </div>
+    </div>
+</div>

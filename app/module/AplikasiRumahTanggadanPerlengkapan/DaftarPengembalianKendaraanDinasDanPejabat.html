@@ -1,0 +1,99 @@
+<div>
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Daftar Pengembalian Kendaraan Dinas dan Pejabat'" disabled>
+			<div class="grid_6">
+				<!-- <div class="grid_4"></div> -->
+				<div class="grid_3">
+					<input style="width:100%" kendo-date-picker k-ng-model="item.awal" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'" />
+				</div>
+				<label c-label item="item"class="grid_1" style="margin-top:10px;padding-left:10px;display:inline-block;text-align:center">s/d</label>
+				<div class="grid_3">
+					<input style="width:100%" kendo-date-picker k-ng-model="item.akhir" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'" />
+				</div>
+				<div class="grid_2" style="margin:5px">
+					<button class="c-button" ng-click="Search()" style="width:100% !important">
+						<span style="font-size:10!important">Cari</span>
+					</button>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			<!-- <c-panel item="item" header="'Daftar Order Pemakaian Kendaraan Dinas dan Pejabat'" style="margin-top:50px" disabled> -->
+				<div class="grid_12" style="margin-top: 10px;">
+					<div id="gridPengembalian" kendo-grid k-options="mainGridOptions" k-ng-model="current" ng-click="kl(current.noOrder)"></div>
+				</div>
+			<!-- </c-panel> -->
+		</c-panel>
+		<div class="clearfix"></div>
+		
+
+		<!-- <div class="grid_6 pull-right">
+			<div class="grid_4">
+				<button class="c-button" ng-click="cetak()" style="width:100% !important">
+					<span style="font-size:10!important">Cetak</span>
+				</button>
+			</div>
+			<div class="grid_4">
+				<button class="c-button" ng-click="NavToPengembalianKendaraanDinas()" style="width:100% !important">
+					<span style="font-size:10!important">Pengembalian Kendaraan Dinas</span>
+				</button>
+			</div>
+			<div class="grid_4">
+				<button class="c-button" ng-click="" style="width:100% !important">
+					<span style="font-size:10!important">Tutup</span>
+				</button>
+			</div>
+		</div> -->
+	</div>
+	<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+	<!-- template popup with kendo window -->
+	<div kendo-window="winDialog" k-title="'Detil Pengembalian Kendaraan Dinas'" k-width="920" k-visible="false" >
+		<div class="grid_12">
+			<div class="grid_6">
+				<label c-label item="item" c-label-text="tglOrder"></label>
+				<input style="width:100%" kendo-date-picker k-ng-model="dataItem.tglOrder" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'" readonly/>
+			</div>
+			<div class="grid_6">
+				<label c-label item="item" c-label-text="kondisi"></label>
+				<input c-text-box type="input" class="k-textbox" ng-model="dataItem.kondisi" readonly />
+			</div>
+			<div class="grid_6">
+				<label c-label item="item">KM Awal</label>
+				<input c-text-box type="input" class="k-textbox" ng-model="dataItem.kmAwal" readonly />
+			</div>
+			<div class="grid_6">
+				<label c-label item="item">KM Akhir</label>
+				<input c-text-box type="input" class="k-textbox" ng-model="dataItem.kmTerakhir" readonly />
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_10">
+				<label c-label item="item" c-label-text="keterangan"></label>
+				<input c-text-box type="input" class="k-textbox" ng-model="dataItem.keteranganKendaran" readonly />
+				<!-- <textarea c-text-area type="input" row="3" class="k-textbox" ng-model="dataItem.keteranganKendaran" style="width:100%" readonly/> -->
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_6">
+				<label c-label item="item" c-label-text="petugas"></label>
+				<span class="lis-petugas" ng-repeat="items in dataItem.petugas">{{items.petugasBerangkat}}</span>
+				<!-- <textarea c-text-area type="input" row="3" class="k-textbox" ng-model="dataItem.keteranganKendaran" readonly/> -->
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="grid_12" style="margin:20px 0 20px">
+			<div id="gridDetil" kendo-grid k-data-source="dataItem.permintaan" k-options="opsiGridDetil"></div>
+		</div>
+	</div>
+</div>
+<style>
+	span.lis-petugas {
+		display: inline-block;
+		text-indent: .33em;
+		/* line-height: 1.6em; */
+		/* margin-top: 6px; */
+		margin: 6px 6px 0 0;
+		border: 1px solid deepskyblue;
+		padding: 6px;
+		background-color: #e4e3e3;
+	}
+</style>

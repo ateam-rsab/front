@@ -1,0 +1,119 @@
+<div ng-controller="LaporanKonselingCtrl">
+
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Laporan Konseling Pasien'">
+
+            <div class="panel-place" style="top: -1px;"><i style="cursor:pointer;" ng-click='find()' class="fa  fa-search-plus fa-2x" aria-hidden="true"></i></div>
+            <div class="grid_12">
+                <div ui-view></div>
+                <div class="grid_12">
+                    <div class="panel panel-default panel-white">
+                        <div class="panel-heading-white"><span class="title" c-translate>Rekam Medis</span></div>
+                        <div class="panel-body">
+
+                            <div class="grid_3">
+                                <div class="grid_12" style="margin-top:5px">
+                                    <label c-label item="item" c-label-text="nama"></label>
+
+                                    <input ng-disabled="'true'" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="data.pasien.namaPasien" />
+                                </div>
+                            </div>
+                            <div class="grid_3">
+                                <div class="grid_12" style="margin-top:5px">
+                                    <label c-label item="item" c-label-text="jenisKelamin"></label>
+
+                                    <input ng-disabled="'true'" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="data.pasien.jenisKelamin.jenisKelamin" />
+                                </div>
+                            </div>
+                            <div class="grid_3">
+                                <div class="grid_6" style="margin-top:5px">
+                                    <label c-label item="item" c-label-text="BeratBadan" real></label>
+
+                                    <input ng-disabled="'true'" c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.bb" />
+
+                                </div>
+                                <div class="grid_6" style="margin-top:5px">
+                                    <label c-label item="item" c-label-text="TinggiBadan" real></label>
+
+                                    <input ng-disabled="'true'" c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.bb" />
+
+                                </div>
+                            </div>
+                            <div class="grid_3">
+                                <div class="grid_12" style="margin-top:5px">
+                                    <label c-label item="item" c-label-text="alergi"></label>
+                                    <input style="height: 94px;position: absolute;" ng-disabled="'true'" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.alergi" />
+                                </div>
+                            </div>
+                            <div class="grid_3" style="margin-top:5px">
+                                &nbsp;
+                            </div>
+                            <div class="grid_3" style="margin-top:5px">
+                                &nbsp;
+                            </div>
+                            <div class="grid_3" style="margin-top:5px">
+                                <label c-label item="item" c-label-text="TipePasien"></label>
+                                <input ng-disabled="'true'" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="data.kelompokPasien.kelompokPasien" />
+                            </div>
+                            <!-- no reg -->
+                            <div class="grid_3" style="margin-top:5px">
+                                <label c-label item="item" c-label-text="noRegistrasi" real></label>
+                                <input ng-disabled="'true'" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="data.noRegistrasi" />
+                            </div>
+
+                            <!-- ruangan -->
+                            <div class="grid_3" style="margin-top:5px">
+                                <label c-label item="item" c-label-text="Ruangan"></label>
+
+                                <input ng-disabled="'true'" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="data.ruangan.namaRuangan" />
+                            </div>
+                        </div>
+
+
+                        <!-- tipe pasien -->
+
+
+                        <!-- tipe bayar -->
+                        <!--<div class="grid_3" style="margin-top:5px">
+                        <label c-label item="item" c-label-text="tipeBayar"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.ComboBox" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataTipeBayar" />
+                    </div>-->
+
+                        <!--jenisTransaksi 
+                    <div class="<grid_3></grid_3>" style="margin-top:5px">
+                        <label c-label item="item" c-label-text="JenisTransaksi"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.ComboBox" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisTransaksi" />
+                    </div>-->
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12">
+
+                <!-- pertanyaan -->
+                <div class="grid_12" style="margin-top:5px">
+                    <label c-label item="item" c-label-text="pertanyaan"></label>
+                </div>
+                <div class="grid_12">
+                    <textarea ng-model="item.pertanyaan" style="width: 99%; height: 80px;"></textarea>
+                </div>
+
+                <!-- pemberiInformasi -->
+
+                <div class="clear"></div>
+
+                <!-- jawabanTambahan -->
+                <div class="grid_12" style="margin-top:5px">
+                    <label c-label item="item" c-label-text="jawabanTambahan"></label>
+                </div>
+                <div class="grid_12">
+                    <textarea ng-model="item.jawabanTambahan" style="width: 99%; height: 80px;"></textarea>
+                </div>
+            </div>
+
+
+        </c-panel>
+        <div class="grid_12" style="margin-top:15px">
+            <div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
+        </div>
+    </div>
+</div>

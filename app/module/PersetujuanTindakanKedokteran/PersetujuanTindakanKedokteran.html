@@ -1,0 +1,189 @@
+<div ng-controller="PersetujuanTindakanKedokteranCtrl">
+
+	<div ng-show="dataVOloaded">
+
+		<c-panel item="item" header="'Formulir Persetujuan Tindakan Kedokteran '" >
+		{{title}}
+		<div style="margin-bottom: 10px">
+		</div>
+		
+
+		<!-- LABEL -->
+		<div class="grid_12">
+			<!-- Dokter Pelaksana Tindakan --> 
+			<div class="grid_2" style="margin-bottom: 5px" style="margin-top: 5px">
+				<label c-label item="item" c-label-text="Dokter1"></label>
+			</div>
+			<div class="grid_2"> 
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.DokterPelaksana" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDokterPelaksana" />
+			</div>
+
+
+			<!-- Pemberi Informasi -->
+			<div class="grid_2"style="margin-bottom: 5px">
+				<label c-label item="item" c-label-text="PemberiInfo"></label>
+			</div>
+			<div class="grid_2">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.PemberiInfo" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPemberiInfo" />
+			</div>
+
+			<!-- Penerima Informasi Pemberi Persetujuan -->
+			<div class="grid_2"style="margin-bottom: 5px">
+				<label c-label item="item" c-label-text="PenerimaInfo"></label>
+			</div>
+			<div class="grid_2">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.PenerimaInfo" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPenerimaInfo" />
+			</div>
+
+			<div class="grid_12" style="margin-bottom:10px">
+				<hr style="background-color:#10C4B2;height: 1px;border: 0;" />
+			</div>	
+
+			<!-- Diagnosis -->
+			<div class="grid_3">
+				<label c-label item="item" c-label-text="Diagnosis "></label>
+			</div>
+			<div class="grid_9">
+				<textarea ng-model="item.Diagnosis" style="width: 99%; height: 80px;"></textarea>
+			</div>
+
+
+			<!-- Diagnosis -->
+			<div class="grid_3">
+				<label c-label item="item" c-label-text="Dasar_diagnosis"></label>
+			</div>
+			<div class="grid_9">
+				<textarea ng-model="item.Dasar_diagnosis" style="width: 99%; height: 80px;"></textarea>
+			</div>
+
+
+			<!-- Tindakan Kedokteran -->
+			<div class="grid_3">
+				<label c-label item="item" c-label-text="Tindakan_Dokter"></label>
+			</div>
+			<div class="grid_9">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.TindakanKedokteran" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listTindakanKedokteran" />
+			</div>
+
+			<!-- Indikasi Tindakan -->
+			<div class="grid_3" style="margin-top: 10px">
+				<label c-label item="item" c-label-text="Indikasi"></label>
+			</div>
+			<div class="grid_9" style="margin-top: 10px">
+				<textarea ng-model="item.Indikasi" style="width: 99%; height: 80px;"></textarea>
+			</div>
+
+
+			<!--Tata Cara-->
+			<div class="grid_12">
+				<div class="grid_3" style="margin-top:10px" style="margin-bottom:10px">
+					<label c-label item="item" c-label-text="Rb_TataCara"></label>
+				</div>
+				<div class="grid_4">
+					<div class="grid_6" ng-repeat="stat in listTataCara">
+						<input type="radio" name="{{'Data' + stat.name}}" id="{{'Data' + stat.name}}" class="k-radio" ng-model="item.TataCara" value="{{stat.name}}">
+						<label class="k-radio-label" for="{{'Data' + stat.name}}">{{stat.name}}</label>
+					</div>
+
+				</div>
+
+				<div class="grid_5" >
+					<textarea ng-model="item.Txt_TataCara" style="width: 99%; height: 80px;"></textarea>
+				</div>
+
+				<!-- Tujuan -->
+				<div class="grid_3" style="margin-top: 5px">
+					<label c-label item="item" c-label-text="Tujuan"></label>
+				</div>
+				<div class="grid_9">
+					<textarea ng-model="item.Tujuan" style="width: 99%; height: 80px;"></textarea>
+				</div>
+
+				<!-- Resiko -->
+				<div class="grid_3" style="margin-top: 5px">
+					<label c-label item="item" c-label-text="Resiko"></label>
+				</div>
+				<div class="grid_9">
+					<textarea ng-model="item.Resiko" style="width: 99%; height: 80px;"></textarea>
+				</div>
+
+
+				<!-- Komplikasi -->
+				<div class="grid_3" style="margin-top: 5px">
+					<label c-label item="item" c-label-text="Komplikasi"></label>
+				</div>
+				<div class="grid_9">
+					<textarea ng-model="item.Komplikasi" style="width: 99%; height: 80px;"></textarea>
+				</div>
+
+				<!-- Prognosis -->
+				<div class="grid_3" style="margin-top: 5px">
+					<label c-label item="item" c-label-text="Prognosis"></label>
+				</div>
+				<div class="grid_9">
+					<textarea ng-model="item.Prognosis" style="width: 99%; height: 80px;"></textarea>
+				</div>
+
+				<!-- Alternatif -->
+				<div class="grid_3" style="margin-top: 5px">
+					<label c-label item="item" c-label-text="Alternatif"></label>
+				</div>
+				<div class="grid_9">
+					<textarea ng-model="item.Alternatif" style="width: 99%; height: 80px;"></textarea>
+				</div>
+
+
+				<div class="grid_12">	
+					<div class="grid_3" style="margin-top:10px" >
+						<label c-label item="item" c-label-text="Ck_Tindakan"></label>
+					</div>
+					<div class="grid_9">
+					<div class="grid_4" ng-repeat="Data in listTindakan">
+						<input type="checkbox" class="k-checkbox" name="{{Data.name}}" 
+						id="{{Data.name}}" value="{{Data.id}}" >
+						<label class="k-checkbox-label" for="{{Data.name}}"> {{Data.name}}</label>
+					</div>
+					</div>
+
+					<div class="grid_12">
+					<div class="grid_3"></div>
+					<div class="grid_9">
+						<textarea ng-model="item.TxtTindakan" style="width: 99%; height: 80px;"></textarea>
+					</div>
+					</div>
+
+
+				</div>
+
+				<div class="grid_12" style="margin-top:10px">
+					<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '>
+					</div>
+				</div>  
+
+
+
+
+
+
+				<div class="clear"></div>
+			</div>
+
+		</div>
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+</div>
+
+</c-panel>
+</div>
+</div>

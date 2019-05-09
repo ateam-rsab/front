@@ -1,0 +1,87 @@
+<div class="grid_12" ng-controller="DashboarPasienLayananMedikRawatInapCtrl">
+    <h1>Rawat Inap</h1>
+    <div ng-hide="isHideSoap">
+        <div class="tiles" ng-show="detailItem===undefined">
+            <div class="tile bg-yellow-saffron orange" ng-repeat="data in listTimeLine" style="height:120px" ng-click='detail(data)'>
+                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                <div class="check"></div>
+                <div class="tile-body" style="overflow: initial">
+                    <i style="font-style: normal;"></i>
+                </div>
+                <div class="tile-object" style="height:100%">
+                    <div class="icon-panel">
+                        <span class="day" style="font-size: 11pt; margin-top:10px">{{descDay(data.tanggal)}}</span>
+                        <span class="hour" style="font-size: 26pt; margin-top:20px">{{data.tanggal | date:'dd'}}</span>
+                        <span class="month" style="font-size: 11pt">{{data.tanggal | date:'MMM yyyy'}}</span>
+                        <span class="hour" style="font-size: 11pt">{{data.jam}}</span>
+                    </div>
+                    <div class="text_panel">
+                        <span style="display:block">Diagnosis(ICD 10) : <b>{{data.diagnosaHeader}}</b> </span>
+                        <span style="display:block">Tindakan(ICD 9) : <b>{{data.tindakanHead}}</b> </span>
+                        <span style="display:block">Obat : <b>{{data.obat.join(',')}}</b> </span>
+                        <span style="display:block">DPJP : <b>{{data.dokterPananggungJawab}}</b> </span>
+                        <div class="grid_12" style="margin-top:5px;">
+                            <div class="k-button">
+                                <span><a current='dashboardpasien.RiwayatKesehatan' ng-click="listActive['RiwayatKesehatan'] ===true && (GoTo('dashboardpasien.soap'))"  class="k-button" >Tambah Soap</a></span>
+                            </div>
+                            <div class="k-button" ng-click="showDetailSoap(data)">
+                                <span>Lihat detail Soap</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-show="isHideSoap">
+        <div class="k-button" ng-click="isHideSoap=false">
+            <span>Kembali</span>
+        </div>
+        <div class="grid_12">
+
+            <div class="tiles">
+                <div class="tile bg-yellow-saffron orange" ng-repeat="data in listSoap" style="height:130px">
+                    <div class="tile-object" style="height:100%">
+                        <div class="icon-panel">
+                            <span class="day" style="font-size: 11pt; margin-top:10px">{{descDay(data.tglInput)}}</span>
+                            <span class="hour" style="font-size: 26pt; margin-top:20px">{{data.tglInput | date:'dd'}}</span>
+                            <span class="month" style="font-size: 11pt">{{data.tglInput | date:'MMM yyyy'}}</span>
+                            <span class="hour" style="font-size: 11pt">{{data.tglInput | date:'HH:MM:ss'}}</span>
+                        </div>
+                        <div class="text_panel" style="width:100%">
+                            <div class="grid_12">
+                                <div class="grid_8">
+                                    <div class="grid_12" style="padding:0 0 5px 5px;">
+                                        <span style="display:block">S : <b>{{data.s}}</b> </span>
+                                    </div>
+                                    <div class="grid_12" style="padding:5px 0 5px 5px;">
+                                        <span style="display:block">O : <b>{{data.o}}</b> </span>
+                                    </div>
+                                    <div class="grid_12" style="padding:5px 0 5px 5px;">
+                                        <span style="display:block">A : <b>{{data.a}}</b> </span>
+                                    </div>
+                                    <div class="grid_12" style="padding:5px 0 5px 5px;">
+                                        <span style="display:block">P : <b>{{data.p}}</b> </span>
+                                    </div>
+                                    <div class="grid_12" style="padding:5px 0 5px 5px;">
+                                        <span style="display:block">Pegawai : <b>{{data.pegawai.namaLengkap}}</b> </span>
+                                    </div>
+                                </div>
+                                <div class="grid_4">
+                                    <div class="grid_12" style="padding:40px 0 5px 50px;" ng-show="{{data.isVerifikasi===null}} && {{statusCode==='dokter'}}">
+                                        <div class="k-button success" style="width:60%; font-size: 16px; padding:0px, margin:0px;" ng-click="verifikasi(listSoap[$index])">
+                                            <span>Verifikasi</span>
+                                        </div>
+                                    </div>
+                                    <div class="grid_12" style="padding:30px 10px 20px 50px;" ng-show="{{data.isVerifikasi===true}}">
+                                        <h1>Verifikasi</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

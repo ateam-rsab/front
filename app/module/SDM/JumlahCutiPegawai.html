@@ -1,0 +1,67 @@
+<div class="grid_12">
+    <div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
+    <c-panel item="item" header="'Input Jumlah Cuti'"disabled>
+    <div class="panel panel-default container">
+        <div class="grid_12">
+            <div class="grid_2">
+                <label c-label item="item" class="label-aja" c-label-text="Pilih Pegawai"></label>
+            </div>
+            <div class="grid_2">
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" k-on-change="getDataPegawai()"/>
+            </div>
+            <div class="grid_1">
+                <label c-label item="item" class="label-aja" c-label-text="Periode(Tahun)"></label>
+            </div>
+            <div class="grid_1">
+                <input style="width: 100% " kendo-date-picker k-ng-model="item.periode" k-options="formatThn"/>
+            </div>
+        </div>
+        <div class="grid_12">
+            <div class="grid_2">
+                <label c-label item="item" class="label-aja" c-label-text="Komponen Index"></label>
+            </div>
+            <div class="grid_2">
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.komponenIndex" k-data-text-field="'komponenIndex'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listStatusPegawai"/>
+            </div>
+            <div class="grid_1">
+                <label c-label item="item" class="label-aja" c-label-text="JumlahCuti"></label>
+            </div>
+            <div class="grid_1">
+                <input kendo-numeric-text-box k-ng-model="item.jmlCuti" k-options="formatInt" style="width: 100%"/>
+            </div>
+            <div class="grid_1">
+                <label c-label item="item" class="label-aja" c-label-text="sisaCuti"></label>
+            </div>
+            <div class="grid_1">
+                <input kendo-numeric-text-box k-ng-model="item.sisaCuti" k-options="formatInt" style="width: 100%" disabled/>
+            </div>
+            <div class="grid_1">
+                <em style="margin-top:6px;" ng-click='findDataCuti()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+            </div>
+        </div>
+    </div>
+    </c-panel>
+    <div class="grid_12">
+        <div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
+    </div>
+</div>
+<style type="text/css">
+.label-aja {
+	padding-top:12px;font-size:13px;font-weight:bold;
+}
+.displayascell {
+    display: table-cell;
+    vertical-align: middle;
+    height: 50px;
+}
+.number {
+    display: inline-block;
+    width: 16px
+}
+.displayInline {
+    display: block;
+    margin-top: 10px
+}
+</style>
+
+

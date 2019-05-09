@@ -1,0 +1,36 @@
+<div ng-controller="ReportApotekCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Report Apotek'">
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Periode Awal</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.awal"  />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Periode Akhir</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.akhir"  />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Jenis Report</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.report" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="laporan" />
+				</div>
+				<div class="grid_8">
+					
+				</div>
+				<div class="grid_2">
+					
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="report()">Print Report</button>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

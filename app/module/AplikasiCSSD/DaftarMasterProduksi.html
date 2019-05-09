@@ -1,0 +1,32 @@
+<div ng-controller="DaftarMasterProduksiCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Daftar Master Produksi'">
+			<div class="grid_6">
+				<div class="grid_12" style="margin-bottom: 10px">
+					<kendo-grid options="mainGridOptions"></kendo-grid>
+				</div>
+				<div class="clear"></div>
+				<div class="grid_1">
+					<label c-label item="item" c-label-text="cari" style="margin-top: 10px"></label>
+				</div>
+				<div class="grid_4">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.cari"/>
+				</div>
+				<div class="clear"></div>
+				<div class="grid_5"></div>
+				<div class="grid_7">
+					<div class="grid_4">
+						<button class="c-button" ng-click="produksi()">Produksi</button>
+					</div>
+					<div class="grid_4">
+						<button class="c-button" ng-click="edit()">Edit</button>
+					</div>
+					<div class="grid_4">
+						<button class="c-button" ng-click="tutup()">Tutup</button>
+					</div>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

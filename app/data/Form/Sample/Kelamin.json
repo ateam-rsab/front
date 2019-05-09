@@ -1,0 +1,17 @@
+{
+
+    "id": "",
+    "kelamin": "",
+    "keterangan": "",
+    "attributes" : [{
+		"isNull" : "true",
+		"name" : "kelamin",
+		"messagesRequired" : "Kelamin Harus Diisi",
+		"caption" : "Kelamin"
+	},{
+			"isNull" : "true",
+			"name" : "keterangan",
+			"messagesRequired" : "Keterangan Harus Diisi",
+			"caption" : "Keterangan"
+		}]
+}

@@ -1,0 +1,24 @@
+{
+    "id": "",
+	"jenisObat": "",
+    "namaObat": "",
+    "keterangan": "",
+    "no": "",
+    "attributes" : [{
+		"isNull" : "true",
+		"name" : "jenisObat",
+		"messagesRequired" : "Jennis Obat Harus Diisi",
+		"caption" : "Jenis Obat"
+	},{
+			"isNull" : "true",
+			"name" : "namaObat",
+			"messagesRequired" : "Nama Obat Harus Diisi",
+			"caption" : "Nama Obat"
+	},{
+			"isNull" : "true",
+			"name" : "keterangan",
+			"messagesRequired" : "Keterangan Harus Diisi",
+			"caption" : "Keterangan"
+	}
+	]
+}

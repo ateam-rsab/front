@@ -1,0 +1,376 @@
+<style>
+	.style-center {
+		display: inline-block;
+		text-align: center;
+		width: 100%;
+	}
+
+	.style-right {
+		display: inline-block;
+		text-align: right;
+		width: 100%;
+	}
+
+	.style-left {
+		display: inline-block;
+		text-align: left;
+		width: 100%;
+	}
+
+	.k-treeview .k-item {
+		background-color: #f9f9f9 !important;
+	}
+
+	.k-checkbox-label:before {
+		margin: 1px 0px 0px 6px;
+	}
+</style>
+<!-- <div ng-controller="AksespegawaiCtrl"> -->
+	<div ng-show="dataVOloaded">
+		<div class="grid_12 headerBox">
+			<h1 style="color: white;"><b>Setting Login User</b></h1>
+		</div>
+		<div class="grid_12">
+			<div ng-cloak>
+				<md-content>
+					<md-tabs md-dynamic-height md-border-bottom>
+						<md-tab label="Login User">
+							<md-content class="md-padding">
+
+								<!-- <div class="grid_3" style="margin-top: 45px">
+									
+								</div> -->
+								<div class="grid_12" >
+									<div class="grid_6" >
+										<div class="grid_5">
+											<div class="grid_12">
+												<div class="grid_12">
+													<label c-label item="item">Nama Pegawai</label>
+												</div>
+												<div class="clear"></div>
+
+												<div class="grid_12">
+													<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaPegawai"  ng-keypress="($event.which == 13)? CariPegawai():item.namaPegawai"/>
+												</div>
+											</div>
+										</div>
+										<div class="grid_1">
+											<button class="btnTemplate1" style="margin-top: 22px;" ng-click="SearchData()">Cari</button>
+										</div>
+										<div class="grid_6">
+											<div class="grid_12" >
+												<label c-label item="item" c-label-text="Login User"></label>
+											</div>
+											<div class="grid_12">
+												<input style="width: 100%;" kendo-combo-box k-ng-model="item.loginUser" k-data-text-field="'namauser'" k-data-value-field="'luid'" k-filter="'contains'" k-auto-bind="false" k-data-source="listdataloginuser" k-on-change="getDataUser(item.loginUser)" />
+											</div>
+										</div>
+									</div>
+
+									<div class="grid_6" >
+										
+									</div>
+								</div>
+								<div class="grid_6" >
+									<div class="grid_12">
+										<div class="grid_3">
+											<label c-label item="item" c-label-text="IdLogin" real></label>
+										</div>
+										<div class="clear"></div>
+										<div class="grid_9">
+											<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.idlogin" />
+										</div>
+									</div>
+									<div class="grid_12">
+										<div class="grid_3">
+											<label c-label item="item" c-label-text="NamaUser" real></label>
+										</div>
+										<div class="clear"></div>
+										<div class="grid_9">
+											<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaUser" />
+										</div>
+									</div>
+									<div class="grid_12"">
+										<div class="grid_3">
+											<label c-label item="item" c-label-text="KataKunci" real></label>
+										</div>
+										<div class="clear"></div>
+										<div class="grid_9">
+											<input c-text-box type="password" filter="" class="k-textbox" ng-model="item.kataKunciPass" />
+										</div>
+									</div>
+									<div class="clear"></div>
+									<!-- kata kunci confirm -->
+									<div class="grid_12" ">
+										<div class="grid_3">
+											<label c-label item="item" c-label-text="UlangiKataKunci" real></label>
+										</div>
+										<div class="clear"></div>
+										<div class="grid_9">
+											<input c-text-box type="password" filter="" class="k-textbox" ng-model="item.kataKunciConfirm"  />
+										</div>
+									</div>
+									<div class="clear"></div>
+									<!-- kelompok user -->
+									<div class="grid_12" ">
+										<div class="grid_3">
+											<label c-label item="item" c-label-text="KelompokUser" real></label>
+										</div>
+										<div class="clear"></div>
+										<div class="grid_9">
+											<input  kendo-combo-box k-ng-model="item.kelompokUserHakAkses" k-data-text-field="'kelompokuser'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKelompokuser" />
+										</div>
+									</div>
+									<div class="grid_12" style="margin: 10px 0px;">
+										<div class="grid_8" >
+										</div>
+										<div class="grid_2" >
+											<button class="c-button" ng-click="simpan()">Simpan</button>
+										</div>
+										<div class="grid_2" >
+											<button class="c-button" ng-click="batal2()">Batal</button>
+										</div>
+									</div>
+								</div>
+								<div class="grid_6">
+									
+									<div class="grid_12">
+										<div class="grid_3" style="margin: 10px 0 0 0;">
+											<label c-label item="item" c-label-text="Instalasi"></label>
+										</div>
+										<div class="grid_9">
+											<input style="width: 100%;" kendo-combo-box k-ng-model="item.instalasi" k-data-text-field="'title'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listInstalasi" k-on-change="getDataRuangan(item.instalasi)"  />
+										</div>
+									</div><div class="grid_12">
+										<div class="grid_3" style="margin: 10px 0 0 0;">
+											<label c-label item="item" c-label-text="Ruangan"></label>
+										</div>
+										<div class="grid_9">
+											<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'title'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listdataruangan" />
+										</div>
+									</div>
+									<div class="grid_12">
+					                    <div class="grid_12 headerBox">
+					                        <p>Map Ruangan</p>
+					                    </div>
+					                    <!-- grid table -->
+					                     <div class="grid_12 borderBox">
+					                        <div id="kGrid" 
+					                        kendo-grid k-data-source="dataGrid" 
+					                        k-selectable="'row'" 
+					                        k-columns="columnGrid" 
+					                        k-pageable="'true'" 
+					                        k-sortable="'true'" 
+					                        k-ng-model="dataSelected"
+            								ng-click="klikGrid(dataSelected)">
+					                            <!-- <div k-detail-template>
+					                                <kendo-tabstrip>
+					                                    <div>
+					                                        <div id="kGridDetail" kendo-grid k-options="data2(dataItem)" 
+					                                            k-sortable="'true'" 
+					                                            k-selectable="'row'" 
+					                                            k-ng-model="dataSelected2"
+					                                            ng-click="klikDetail(dataSelected2)">
+					                                        </div>
+					                                    </div>
+					                                </kendo-tabstrip>
+					                            </div> -->
+					                        </div>
+					                    </div>
+					                    
+					                </div>
+
+				                    <div class="grid_2">
+				                        <button class="c-button"  ng-click="tambah()">Tambah</button>
+				                    </div>
+				                    <div class="grid_2">
+				                        <button class="c-button"  ng-click="hapus()">Hapus</button>
+				                    </div>
+								</div>
+							</md-content>
+						</md-tab>
+						<!-- <md-tab label="Mapping Pegawai Ruangan">
+							<md-content class="md-padding">
+								
+							</md-content>
+						</md-tab> -->
+						<md-tab label="Mapping Pegawai">
+							<md-content class="md-padding">
+								<div class="grid_6">
+									<div class="grid_12">
+										<div class="grid_3" style="margin: 10px 0 0 0;">
+											<label c-label item="item" c-label-text="Login User"></label>
+										</div>
+										<div class="grid_9">
+											<input style="width: 100%;" kendo-combo-box k-ng-model="item.loginUser" k-data-text-field="'namauser'" k-data-value-field="'luid'" k-filter="'contains'" k-auto-bind="false" k-data-source="listdataloginuser" k-on-change="getDataUser(item.loginUser)" />
+										</div>
+									</div>
+									<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+					                    <p>Map To Ruangan</p>
+					                </div>
+									<div class="grid_12 borderBox containerBorderBox" style="overflow-y: scroll; height:400px;">
+										<div class="grid_12">
+											<div kendo-tree-view="tree" 
+											k-data-source="treeSourceRuangan" 
+											options="mainTreeViewOptionRuangan" 
+											ng-model="treeView"
+											ng-click="klik(tree)">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="grid_6" style="margin-top: 45px">
+
+									<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+					                    <p>Map To Modul</p>
+					                </div>
+									<div class="grid_12 borderBox containerBorderBox" style="overflow-y: scroll; height:400px;">
+										<div class="grid_12">
+											<div kendo-tree-view="tree2" 
+											k-data-source="treeSourceModulAplikasi" 
+											options="mainTreeViewSubsistemOption" 
+											ng-model="treeView"
+											ng-click="klik3(tree)">
+											</div>
+										</div>
+									</div>
+								</div>
+							</md-content>
+						</md-tab>
+
+
+					<!-- <md-tab label="User Login">
+						<md-content class="md-padding">
+							<div class="grid_3">
+							</div>
+							<div class="grid_6 headerBox containerBorderBox" style="padding:0px">
+								<p>Data Pegawai</p>
+							</div>
+							<div class="grid_3">
+							</div>
+							<div class="grid_6">
+								<div class="grid_12 borderBox containerBorderBox">									<div class="grid_12" style="margin:10px 0px;">
+										<div class="grid_12">
+											<label c-label item="item" c-label-text="Pegawai" real></label>
+										</div>
+										<div class="grid_12">
+											<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaPegawai" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" k-on-change="getDataUser(item.namaPegawai)" />
+										</div>
+									</div>
+									
+									<div class="clear"></div>
+								</div>
+
+							</div>
+						</md-content>
+					</md-tab> -->
+				</md-tabs>
+			</md-content>
+		</div>
+	</div>
+</div>
+<!-- </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 	<div ng-show="dataVOloaded">
+<c-panel item="item" header="'Hak Akses Pegawai'">
+
+<div class="grid_12">
+<div kendo-tab-strip k-content-urls="[ null, null, null, null]" style="margin-bottom: 10px">
+
+<ul>
+<li class="k-state-active">Ke Modul</li>
+<li>Ke Ruangan</li>
+<li>Ke Kelompok User</li>
+
+</ul>
+
+<div style="padding: 1em">
+<div class="grid_6">
+<kendo-grid options="historyAlat"></kendo-grid>
+</div>
+<div class="grid_6">
+<div class="grid_4">
+<button class="c-button" ng-click="upload()">Upload Document</button>
+</div>
+
+</div>
+
+</div>
+
+<div style="padding: 1em">
+<div class="grid_6">
+<kendo-grid options="sertifikatKalibrasi"></kendo-grid>
+<div class="grid_9">
+
+</div>
+<div class="grid_3">
+<button class="c-button" ng-click="upload()">Simpan</button>
+</div>
+</div>
+</div>
+<div style="padding: 1em">
+<div class="grid_6">
+
+<kendo-grid options="serviceManual"></kendo-grid>
+<div class="grid_10">
+<label c-label item="item" c-label-text="pencarianNamaUser" style="margin-top: 10px" ></label>
+<div class="grid_6">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.pencarianNamaBarang" k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAset" k-on-change="autoComplite()" />
+</div>
+
+</div>
+</div>
+
+<div class="grid_6">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.pencarianNamaBarang" k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAset" k-on-change="autoComplite()" />
+</div>
+
+
+<div class="grid_6">
+<div class="grid_4">
+<button class="c-button" ng-click="upload()">Simpan
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+<div class="clear"></div>
+</c-panel>
+</div> 
+</div> -->

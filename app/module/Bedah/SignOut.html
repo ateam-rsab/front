@@ -1,0 +1,89 @@
+<div ng-include='"../app/module/Dashboard/Pasien/Index" '></div>
+
+<div ng-controller="SignOutCtrl">
+   <div class="grid_12">  
+         <div class="loading" style="position: relative; margin:25px 0px 20px;" class="animated"
+                        ng-show="isLoadingData">
+         <img height="250" src="../app/stylesheets/Flat/loading-image.gif"/>
+         <br/> <span style="font-weight: bold;">Mengambil data sign out, Mohon tunggu...</span>
+         </div>
+  </div>
+ <div class="grid_12" ng-show="AllData">
+    <div class="panel panel-default">
+        <div class="panel-heading" c-translate>Sign Out</div>
+        <div class="panel-body">
+      <div class="grid_12">
+         <div class="grid_6">
+                <c-panel item="item" header="'History Sign Out'">
+                <div class="grid_12">
+                    <div class="grid_12"></div>
+                    <div class="clear"></div>
+                    <div class="grid_12 borderBox">
+                        <div id="kGrid" kendo-grid 
+                        k-data-source="dataMaster" 
+                        k-selectable="'row'" 
+                        k-columns="columnSignOut"
+                        k-sortable="'true'"
+                        k-pageable="true"
+                        k-ng-model="dataSelected"
+                        ng-click="klik(dataSelected)">
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="clear"></div>
+                </c-panel>
+            </div>
+        </div>
+        <div class="grid_12">
+        <br><br>
+        </div>
+            <div class="grid_12">
+                <input type="checkbox" ng-model='item.isReadResult' class="k-checkbox" name="perawat" id="perawat" value="1">
+                <label class="k-checkbox-label" for="perawat"><span c-translate>Perawat bedah membacakan secara verbal tindakan dan alat yang dipasang</span></label>
+            </div>
+                <div class="grid_12">
+        <br><br>
+        </div>
+            <br/>
+            <br/>
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="CekKelengkapanAlkes"></label>
+            </div>
+            <div class="grid_6" ng-repeat="data in listSignOut">
+                <div class="grid_12">
+                    <span>{{data.name}}</span>
+                </div>
+                <div ng-class="{grid_8:stat.id == 2,grid_4:stat.id != 2}" ng-repeat="stat in listStatusYaTidak">
+                    <div class="grid_2">
+                        <input type="radio" ng-model="data.cekKelengkapanAlkes" name="{{data.name + stat.name}}" id="{{data.name + stat.name}}" class="k-radio" ng-value="stat" ng-click="kliks(data)"/>
+                        <label ng-if="stat.name != 'Ya'" class="k-radio-label" for="{{data.name + stat.name}}">{{stat.name}}</label>
+                        <label ng-if="stat.name == 'Ya'" class="k-radio-label" for="{{data.name + stat.name}}">{{stat.name}}</label>
+                    </div>
+                    <div class="grid_1" style="position:relative" ng-if="stat.id == 2">&nbsp;</div>
+                    <div class="grid_8" style="position:relative" ng-if="stat.id == 2">
+                        <input style="position:absolute" ng-show="data.value === data.showIn" c-text-box type="input"  class="k-textbox" ng-model="data.keterangan" ng-disabled="data.disabled==1" />
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="TindakanJaringanAtauCairan"></label>
+            </div>
+            <div class="grid_12">
+                <div class="grid_6" ng-repeat="data in listTindakanJaringan">
+                    <input type="checkbox" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" value="{{data.id}}" ng-click="manageCheck(data)" ng-checked="data.isChecked">
+                    <label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+                </div>
+                <div class="clear"></div>
+            </div>
+                <div class="grid_12">
+        <br><br>
+        </div>
+            <div ng-include='"../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+
+        </div>
+    </div>
+    </div>
+</div>

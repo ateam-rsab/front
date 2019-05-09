@@ -1,0 +1,35 @@
+<div ng-controller="PermintaanUSGCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Permintaan USG'">
+			<!-- Permintaan USG -->
+            <div class="grid_12" style="margin-bottom:5px">
+                <div class="grid_4" ng-repeat="data in listPermintaanUSG">
+                    <input type="checkbox" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" value="{{data.id}}">
+                    <label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+
+                    <div ng-if="data.info == 'true'" kendo-tooltip k-content="'keterangan : ' + data.infoMsg" class="tooltip">
+                          <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+            
+			
+            <div class="grid_12">
+                <div class="grid_3" style="float:right">
+                    <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="Next">
+                        <span class="title">Selanjutnya</span>
+                    </c-button>
+                </div>
+                <div class="grid_3" style="float:right">
+                    <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'">
+                        <span class="title">Sebelumnya</span>
+                    </c-button>
+                </div>
+            </div>
+            <div class="clear"></div>
+		</c-panel>
+	</div>
+</div>

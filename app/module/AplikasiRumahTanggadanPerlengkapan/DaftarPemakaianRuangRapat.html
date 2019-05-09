@@ -1,0 +1,54 @@
+<div>
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Daftar Pemakaian Ruang Rapat'" disabled>
+			<div class="gird_12">
+				<div class="grid_4"></div>
+				<div class="grid_8">
+			      	<c-panel item="item" header="'Periode'" disabled>
+						
+						<div class="grid_4">
+							<input style="width:100%" kendo-date-picker k-ng-model="item.awal" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'"/>
+						</div>
+						<label c-label item="item" class="grid_1" style="margin-top:10px;padding-left:10px">s/d</label>
+						<div class="grid_4">
+							<input style="width:100%" kendo-date-picker k-ng-model="item.akhir" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'"/>
+						</div>
+						<div class="grid_2" style="margin:7px">
+							<button class="c-button" ng-click="find()" style="width:100% !important">
+								<span style="font-size:10!important">Cari</span>
+							</button>
+						</div>
+			       	</c-panel>
+
+			    </div>
+			</div>
+			<c-panel item="item" header="'Daftar Order Pemakaian Ruang Rapat'" style="margin-top:50px" disabled>
+				<div class="grid_12" style="margin-top: 10px;">
+					<div id="gridRuangRapat" kendo-grid k-options="mainGridOptions" k-ng-model="current" ng-click="klik(current.noOrder)"></div>
+				</div>
+			</c-panel>
+
+			<div class="grid_12">
+				<div class="grid_5"></div>
+				<div class="grid_2" style="margin: 5px" text-align="right">
+					<label c-label item="item" c-label-text=""> </label>
+					<button class="c-button" ng-click="" style="width:100% !important">
+						<span style="font-size:10!important">Cetak</span>
+					</button>
+				</div>				
+				<div class="grid_3" style="margin: 5px" text-align="right">
+					<label c-label item="item" c-label-text=""> </label>
+					<button class="c-button" ng-click="selesaiPemakaian(current)" style="width:100% !important">
+						<span style="font-size:10!important">Selesai Pemakaian</span>
+					</button>
+				</div>
+				<div class="grid_2" style="margin: 5px" text-align="right">
+					<label c-label item="item" c-label-text=""> </label>
+					<button class="c-button" ng-click="" style="width:100% !important">
+						<span style="font-size:10!important">Tutup</span>
+					</button>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

@@ -1,0 +1,23 @@
+[
+    {
+        "namaDiagnosa": " Enterococcus As The Cause Of Diseases Classified Elsewhere",
+        "kdDiagnosa": "B95.2",
+        "instalasi": "Rawat Jalan",
+        "jenis": "Utama",
+        "tanggal": "20 Mei 2014"
+    },
+    {
+        "namaDiagnosa": "Adenoviral pneumonia",
+        "kdDiagnosa": "J12.0",
+        "instalasi": "Gawat Darurat",
+        "jenis": "Utama",
+        "tanggal": "1 November 2015"
+    },
+    {
+        "namaDiagnosa": "Headache",
+        "kdDiagnosa": "R51",
+        "instalasi": "Gawat Darurat",
+        "jenis": "Utama",
+        "tanggal": "12 Mei 2016"
+    }
+]

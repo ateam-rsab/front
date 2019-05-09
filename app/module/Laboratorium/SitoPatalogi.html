@@ -1,0 +1,393 @@
+<div ng-controller="SitoPatalogiCtrl">
+
+    <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="{{item.produk.namaProduk}}" ng-repeat="item in items">
+            <md-content>
+                <!-- Header diagnosa , tindakan , morfologi, topologi -->
+                <div class="grid_12">
+                    <div class="grid_12">
+                        <div style="background-color: #10C4B2; height: 25px; margin-top: 5px; text-align: left; border: 1px solid; border-color: #10C4B2;" class="grid_12">
+                            <center>
+                                <span style="font-size: 18px; color: white; padding: 5px;">ICD 9 CM</span></center>
+                        </div>
+                        <table class='table table-condensed'>
+                            <tr>
+                                <th><label c-label c-label-text="Kode" statment></label></th>
+                                <th><label c-label c-label-text="Nama" statment></label></th>
+                            </tr>
+                            <tr ng-repeat="data in listDiagnosaNine">
+                                <td><center>{{data.diagnosaTindakan.kdDiagnosaTindakan}}</center></td>
+                                <td><center>{{data.diagnosaTindakan.namaDiagnosaTindakan}}</center></td>
+                            </tr>
+                        </table>
+
+                        <div style="background-color: #10C4B2; height: 25px; margin-top: 5px; text-align: left; border: 1px solid; border-color: #10C4B2;" class="grid_12">
+                            <center>
+                                <span style="font-size: 18px; color: white; padding: 5px;">ICD 10 CM</span>
+                        </div>
+                        <table class='table table-condensed'>
+                            <tr>
+                                <th><label c-label c-label-text="Kode" statment></label></th>
+                                <th><label c-label c-label-text="Nama" statment></label></th>
+                            </tr>
+                            <tr ng-repeat="data in listDiagnosaTen">
+                                <td><center>{{data.diagnosa.kdDiagnosa}}</center></td>
+                                <td><center>{{data.diagnosa.namaDiagnosa}}</center></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!-- <div class="grid_12">
+                        <div class="grid_6">
+                            <label c-label>Diagnosa Morfologi</label>
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.diagnosaOnkologiMorfologi" k-data-text-field="'namaDiagnosaOnkologiMorfologi'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listDiagnosaOnkologiMorfologi" />
+                        </div>
+                        <div class="grid_6">
+                            <label c-label>Diagnosa Topologi</label>
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.diagnosaOnkologiTopologi" k-data-text-field="'namaDiagnosaOnkologiTopologi'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listDiagnosaOnkologiTopologi" />
+                        </div>
+                    </div> -->
+                    <div class="grid_12">
+                        <div class="grid_6">
+                            <label c-label>Diagnosa Klinik</label>
+                            <input c-text-box type="input" class="k-textbox" ng-model="item.diagnosaKlinik" />
+                        </div>
+                        <div class="grid_6">
+                            <label c-label>Diambil tanggal</label>
+                            <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.diambilTanggal"  />
+                        </div>
+                        </div>
+                        <div class="grid_12">
+                            
+                        <div class="grid_6">
+                            <label c-label>Bahan berasal dari</label>
+                            <input c-text-box type="input" class="k-textbox" ng-model="item.bahanBerasalDari" />
+                        </div>
+                        </div>
+                    
+                    <!--Histopatologi-->
+                    <div class="panel panel-default panel-white" ng-show="item.isHistopatologi">
+                        <div class="panel-heading-white"><span class="title" real>Histopatologi</span></div>
+                        <div class="panel-body">
+                        <div class="grid_12">
+                        <div class="grid_6">
+                            <label c-label>Diagnosa Morfologi</label>
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.diagnosaOnkologiMorfologi" k-data-text-field="'namaDiagnosaOnkologiMorfologi'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listDiagnosaOnkologiMorfologi" />
+                        </div>
+                        <div class="grid_6">
+                            <label c-label>Diagnosa Topologi</label>
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.diagnosaOnkologiTopologi" k-data-text-field="'namaDiagnosaOnkologiTopologi'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listDiagnosaOnkologiTopologi" />
+                        </div>
+                    </div>
+                            <div class="grid_4">
+                                <label c-label>Lokasi jaringan yang sakit</label>
+                                <input c-text-box type="input" class="k-textbox" ng-model="item.lokasiJaringanSakit" />
+                            </div>
+                            <div class="grid_12">
+                                <label c-label>Jaringan tubuh didapatkan</label>
+                                <div class="grid_4" ng-repeat="data in listJaringanTubuh">
+                                    <input type="checkbox" ng-checked="data.isChecked" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" ng-value="data.id" ng-click="cekArrStatusTempatTinggal(data)">
+                                    <label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+                                </div>
+                                <div class="grid_8">
+                                    <input type="checkbox" ng-checked="item.isLainnyaJaringan" class="k-checkbox" name="Jaringan" id="Jaringan" ng-value="100">
+                                    <label class="k-checkbox-label" for="Jaringan">Lainnya</label>
+                                    <input c-text-box type="input" ng-disabled="item.isLainnya" class="k-textbox" ng-model="item.lainnyaJaringan" />
+                                </div>
+                            </div>
+                            <div class="grid_4">
+                                <label c-label>Jam jaringan keluar dari tubuh</label>
+                                <input style="width: 100%" kendo-date-time-picker k-max="now" k-ng-model="item.jamJaringanKeluarDariTubuh" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                            </div>
+                            <div class="grid_4">
+                                <label c-label>Jam mulai dilakukan flisosif</label>
+                                <input style="width: 100%" kendo-date-time-picker k-max="now" k-ng-model="item.jamMulaiDilakukanFilsosif"/>
+                            </div>
+                            <div class="grid_4">
+                                <label c-label>Jumlah Jaringan yang dikirim</label>
+                                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahJaringanDikirim" />
+                            </div>
+                            <div class="grid_12">
+                                <label c-label>Cairan fiksasi</label>
+                                <div class="grid_4" ng-repeat="data in listCairanFiksasi">
+                                    <input type="checkbox" ng-checked="data.isChecked" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" ng-value="data.id" ng-click="cekArrStatusCairanFiksasi(data)">
+                                    <label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+                                </div>
+                                <div class="grid_8">
+                                    <input type="checkbox" ng-checked="item.isLainnyaCairan" class="k-checkbox" name="Cairan" id="Cairan" ng-value="100">
+                                    <label class="k-checkbox-label" for="Cairan">Lainnya</label>
+                                    <input c-text-box type="input" ng-disabled="item.isLainnyaCairan" class="k-textbox" ng-model="item.lainnyaCairan" />
+                                </div>
+                            </div>
+                            <div class="grid_12">
+                                <label c-label>Volume fiksasi 10 x volume</label>
+                                <div class="grid_2" ng-repeat="stat in listStatusYaTidak">
+                                    <input type="radio" ng-model="item.valumeFiksasi" id="{{data.id + stat.name}}" class="k-radio" ng-value="stat">
+                                    <label class="k-radio-label" for="{{data.id + stat.name}}" ng-if="stat.name != 'Ya'">{{stat.name}}</label>
+                                    <label class="k-radio-label" for="{{data.id + stat.name}}" ng-if="stat.name == 'Ya'">{{stat.name}}</label>
+                                </div>
+
+                            </div>
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="Keterangan Klinik : (Jelas dan lengkap)"></label>
+                                <textarea class="k-textbox" style="resize: none;" rows="10" cols="100%" ng-model="item.keteranganKlinisHistopatologi"></textarea>
+                            </div></div>
+                    </div>
+                    <!--Biopsi Jarum Halus-->
+                    <div class="panel panel-default panel-white" ng-show="item.isBiopsi">
+                        <div class="panel-heading-white"><span class="title" real>Biopsi Jarum Halus</span></div>
+                        <div class="panel-body">
+                            <div class="grid_12">
+                        <div class="grid_6">
+                            <label c-label>Diagnosa Morfologi</label>
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.diagnosaOnkologiMorfologi" k-data-text-field="'namaDiagnosaOnkologiMorfologi'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listDiagnosaOnkologiMorfologi" />
+                        </div>
+                        <div class="grid_6">
+                            <label c-label>Diagnosa Topologi</label>
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.diagnosaOnkologiTopologi" k-data-text-field="'namaDiagnosaOnkologiTopologi'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listDiagnosaOnkologiTopologi" />
+                        </div>
+                    </div>
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="Keterangan Klinik : (Jelas dan lengkap)"></label>
+                                <textarea class="k-textbox" style="resize: none;" rows="10" cols="100%" ng-model="item.keteranganKlinik"></textarea>
+                            </div></div>
+                    </div>
+                    <!--Sitopatologi-->
+                    <div class="panel panel-default panel-white" ng-show="item.isSitopatologi">
+                        <div class="panel-heading-white"><span class="title" c-translate>Sitopatologi</span></div>
+                        <div class="panel-body">
+                        <div class="grid_12">
+                        <div class="grid_6">
+                            <label c-label>Diagnosa Morfologi</label>
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.diagnosaOnkologiMorfologi" k-data-text-field="'namaDiagnosaOnkologiMorfologi'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listDiagnosaOnkologiMorfologi" />
+                        </div>
+                        <div class="grid_6">
+                            <label c-label>Diagnosa Topologi</label>
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.diagnosaOnkologiTopologi" k-data-text-field="'namaDiagnosaOnkologiTopologi'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listDiagnosaOnkologiTopologi" />
+                        </div>
+                    </div>
+                            <div class="grid_12">
+                                <div class="panel panel-default panel-white">
+                                    <div class="panel-heading"><span class="title" c-translate>Ginekologik</span></div>
+                                    <div class="panel-body">
+                                        <div class="grid_12">
+                                            <div class="grid_6">
+                                                <label c-label>Paritas</label>
+                                                <input c-text-box type="input" class="k-textbox" ng-model="item.paritas" />
+                                            </div>
+                                            <div class="grid_3">
+                                                <label c-label>Terapi Hormon</label>
+                                                <input c-text-box type="input" class="k-textbox" ng-model="item.terapiHormon" />
+                                            </div>
+                                            <div class="grid_3">
+                                                <label c-label>Tanggal</label>
+                                                <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tanggal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                                            </div>
+                                            <div class="grid_6">
+                                                <label c-label>Haid terakhir</label>
+                                                <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.haidTerakhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                                            </div>
+                                            <div class="grid_6">
+                                                <label c-label>Kontrasepsi</label>
+                                                <input c-text-box type="input" class="k-textbox" ng-model="item.kontrasepsi" />
+                                            </div>
+                                            <div class="grid_6">
+                                                <label c-label>Sikuls Haid</label>
+                                                <div class="grid_12">
+                                                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.siklusHaid" />
+                                                    <label class="keteranganFieldTambahan" c-translate>hari</label>
+                                                </div>
+                                            </div>
+                                            <div class="grid_6">
+                                                <label c-label>Operasi/Radiasi</label>
+                                                <input c-text-box type="input" class="k-textbox" ng-model="item.operasiRadiasi" />
+                                            </div>
+                                            <div class="grid_6">
+                                                <label c-label>Pra/Pasca Menopause </label>
+                                                <input c-text-box type="input" class="k-textbox" ng-model="item.praMenopause" />
+                                            </div>
+                                            <div class="grid_3">
+                                                <label c-label>Menopause </label>
+                                                <input c-text-box type="input" class="k-textbox" ng-model="item.menopause" />
+                                            </div>
+                                            <div class="grid_3">
+                                                <label c-label>Tanggal</label>
+                                                <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tglMenopause" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                                            </div>
+                                            <div class="grid_12">
+                                                <div class="grid_3">
+                                                    <label c-label>Status Ginekologi</label>
+                                                </div>
+                                                <div class="grid_9">
+                                                    <div class="grid_6" ng-repeat="data in listStatusGinekologik">
+                                                        <input type="checkbox" ng-checked="data.isChecked" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" ng-value="data.id" ng-click="cekArrStatusGinekologi(data)">
+                                                        <label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                    <div class="clear"></div>
+
+                                                    <div class="grid_6">
+                                                        <input type="checkbox" ng-checked="item.isLainnya" class="k-checkbox" name="Lainnya" id="Lainnya" ng-value="100">
+                                                        <label class="k-checkbox-label" for="Lainnya">Lainnya</label>
+                                                        <input c-text-box type="input" ng-disabled="item.isLainnya" class="k-textbox" ng-model="item.lainnya" />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="grid_12">
+                                    <div class="panel panel-default panel-white">
+                                        <div class="panel-heading"><span class="title" c-translate>Non-Ginekologik</span></div>
+                                        <div class="panel-body">
+                                            <label c-label>Bahan didapat dengan </label>
+                                            <input c-text-box type="input" class="k-textbox" ng-model="item.bahan" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grid_12">
+                                    <div class="panel panel-default panel-white">
+                                        <div class="panel-heading"><span class="title" c-translate>Keterangan lain-lain</span></div>
+                                        <div class="panel-body">
+                                            <div class="grid_12">
+                                                <input type="checkbox" ng-checked="item.isFiksasi" class="k-checkbox" name="alkohol" id="alkohol" ng-value="101">
+                                                <label class="k-checkbox-label" for="alkohol">Alk. 95%</label>
+                                                <input c-text-box type="input" ng-disabled="item.isFiksasi" class="k-textbox" ng-model="item.fiksasi" />
+                                            </div>
+                                            <div class="grid_6">
+                                                <label c-label>Pernah dilakukan pemeriksaan </label>
+                                                <input c-text-box type="input" class="k-textbox" ng-model="item.pemeriksaan" />
+                                            </div>
+                                            <div class="grid_3">
+                                                <label c-label>Tanggal</label>
+                                                <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tanggalPa" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                                            </div>
+                                            <div class="grid_3">
+                                                <label c-label>No </label>
+                                                <input c-text-box type="input" class="k-textbox" ng-model="item.noPa" />
+                                            </div>
+                                            <div class="grid_3">
+                                                <label c-label item="item" c-label-text="Dokter"></label>
+                                                <input style="width: 100%; " kendo-combo-box k-ng-model="item.pegawai" k-data-text-field=" 'namaLengkap' " k-filter=" 'contains' " k-data-value-field=" 'value' " k-auto-bind="false " k-data-source="dokters " />
+                                            </div>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_2" ng-repeat="data in listMikroskopik">
+                                                <input type="checkbox" ng-checked="data.isChecked" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" ng-value="data.id" ng-click="manageCheck(data)">
+                                                <label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div></div>
+                    </div>
+
+                    <!--Khasmir-->
+                    <div class="panel panel-default panel-white" ng-show="item.isPapsmir">
+                        <div class="panel-heading-white"><span class="title" c-translate>Papsmear</span></div>
+                        <div class="panel-body">
+                        <div class="grid_12">
+                        <div class="grid_6">
+                            <label c-label>Diagnosa Morfologi</label>
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.diagnosaOnkologiMorfologi" k-data-text-field="'namaDiagnosaOnkologiMorfologi'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listDiagnosaOnkologiMorfologi" />
+                        </div>
+                        <div class="grid_6">
+                            <label c-label>Diagnosa Topologi</label>
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.diagnosaOnkologiTopologi" k-data-text-field="'namaDiagnosaOnkologiTopologi'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listDiagnosaOnkologiTopologi" />
+                        </div>
+                    </div>
+                            <div class="grid_12">
+                                <div class="panel panel-default panel-white">
+                                    <div class="panel-heading"><span class="title" c-translate>Ginekologik</span></div>
+                                    <div class="panel-body">
+                                        <div class="grid_12">
+                                            <div class="grid_6">
+                                                <label c-label>Paritas</label>
+                                                <input c-text-box type="input" class="k-textbox" ng-model="item.paritas" />
+                                            </div>
+                                            <div class="grid_3">
+                                                <label c-label>Terapi Hormon</label>
+                                                <input c-text-box type="input" class="k-textbox" ng-model="item.terapiHormon" />
+                                            </div>
+                                            <div class="grid_3">
+                                                <label c-label>Tanggal</label>
+                                                <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tanggal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                                            </div>
+                                            <div class="grid_6">
+                                                <label c-label>Haid terakhir</label>
+                                                <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.haidTerakhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                                            </div>
+                                            <div class="grid_6">
+                                                <label c-label>Kontrasepsi</label>
+                                                <input c-text-box type="input" class="k-textbox" ng-model="item.kontrasepsi" />
+                                            </div>
+                                            <div class="grid_6">
+                                                <label c-label>Sikuls Haid</label>
+                                                <div class="grid_12">
+                                                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.siklusHaid" />
+                                                    <label class="keteranganFieldTambahan" c-translate>hari</label>
+                                                </div>
+                                            </div>
+                                            <div class="grid_6">
+                                                <label c-label>Operasi/Radiasi</label>
+                                                <input c-text-box type="input" class="k-textbox" ng-model="item.operasiRadiasi" />
+                                            </div>
+                                            <div class="grid_6">
+                                                <label c-label>Pra/Pasca Menopause </label>
+                                                <input c-text-box type="input" class="k-textbox" ng-model="item.praMenopause" />
+                                            </div>
+                                            <div class="grid_3">
+                                                <label c-label>Menopause </label>
+                                                <input c-text-box type="input" class="k-textbox" ng-model="item.menopause" />
+                                            </div>
+                                            <div class="grid_3">
+                                                <label c-label>Tanggal</label>
+                                                <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tglMenopause" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                                            </div>
+                                            <div class="grid_12">
+                                                <div class="grid_3">
+                                                    <label c-label>Status Ginekologi</label>
+                                                </div>
+                                                <div class="grid_9">
+                                                    <div class="grid_6" ng-repeat="data in listStatusGinekologik">
+                                                        <input type="checkbox" ng-checked="data.isChecked" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" ng-value="data.id" ng-click="manageCheck(data)">
+                                                        <label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                    <div class="clear"></div>
+
+                                                    <div class="grid_6">
+                                                        <input type="checkbox" ng-checked="item.isLainnya" class="k-checkbox" name="Lainnya" id="Lainnya" ng-value="100">
+                                                        <label class="k-checkbox-label" for="Lainnya">Lainnya</label>
+                                                        <input c-text-box type="input" ng-disabled="item.isLainnya" class="k-textbox" ng-model="item.lainnya" />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="grid_12">
+                                    <div class="panel panel-default panel-white">
+                                        <div class="panel-heading"><span class="title" c-translate>Non-Ginekologik</span></div>
+                                        <div class="panel-body">
+                                            <label c-label>Bahan didapat dengan </label>
+                                            <input c-text-box type="input" class="k-textbox" ng-model="item.bahan" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                 
+                            </div></div>
+                    </div>
+
+            </md-content>
+        </md-tab>
+    </md-tabs>
+
+</div>
+<div ng-include='"../app/module/Shared/TemplateButtonSimpanNotFixed"'></div>
+</div>

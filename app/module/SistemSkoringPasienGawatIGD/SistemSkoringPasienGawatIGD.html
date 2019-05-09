@@ -1,0 +1,78 @@
+
+<div ng-controller="SistemSkoringPasienGawatIGDCtrl">
+    <div ng-show="dataVOloaded">
+        <!-- panel Skrining Gizi -->
+
+        <c-panel item="item" header="title" disabled>
+
+            <div class="grid_1" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="jenisKategori"></label>
+            </div>
+            <div class="grid_3">
+                 <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisKategori" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisKategori" />
+            </div>
+            <div class="grid_1" style="margin-bottom:5px"></div>
+            <div class="grid_3" ng-show="showJam">
+              <div class="grid_3" style="margin-bottom:5px" >
+                  <label c-label item="item" c-label-text="jam"></label>
+              </div>
+              <div class="grid_9">
+                  <input kendo-time-picker k-ng-model="item.jam" placeholer="hh.mm" k-format="'hh.mm'" style="width: 100%" />
+              </div>
+            </div>
+            <!-- tinggi badan - berat badan - lingkar kepala -->
+            <div style="font-weight:bold; height: 25px; margin-top: 15px; text-align: left; border: 1px solid; border-color: #10C4B2;" class="grid_12">
+            <div class="grid_4" >
+                Variabel Organ
+            </div>
+            <div class="grid_7">
+              <div class="grid_3" >
+                  0
+                </div>
+                <div class="grid_3" >
+                  1
+                </div>
+             <div class="grid_3" >
+                  10
+                </div>
+                <div class="grid_3" >
+                  20
+                </div>
+              </div>
+              <div class="grid_1">Skor</div>
+          </div>
+          <div class="clear"></div>
+          <br/>
+
+          <div ng-repeat="data in listSistemSkoring" class="borderBox">
+            <div class="grid_12">
+              {{data.name}}
+            </div>
+            <br/><br/>
+            <div class="grid_12">
+              <div ng-repeat="child in data.children">
+                <div class="grid_4">
+                  {{child.name}}
+                </div>
+                <div class="grid_7">
+
+                  <div class="grid_3" ng-repeat="subchild in child.children">
+                      <!-- {{subchild.name}} -->
+                      <input type="radio" name="{{child.name+subchild.name}}" required id="{{child.name+subchild.name}}" class="k-radio" ng-model="child.score" value="{{subchild.score}}" ng-show="{{subchild.name!==''}}">
+                        <label ng-show="{{subchild.name!==''}}" class="k-radio-label" for="{{child.name+subchild.name}}">{{subchild.name}}</label>
+                   </div>
+                </div>
+                <div class="grid_1"><label>{{child.score}}</label></div>
+                <div class="clear"></div>
+              </div>
+            </div>
+            <div class="clear"></div>
+          </div>
+      </div>
+
+            <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+
+        </c-panel>
+    </div>
+
+</div>

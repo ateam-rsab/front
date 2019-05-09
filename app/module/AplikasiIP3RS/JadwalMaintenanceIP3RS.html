@@ -1,0 +1,129 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Jadwal Maintenance</div>
+	<div class="panel-body">
+		<div class="grid_12">
+			<div class="grid_12">
+				<div class="grid_12" style="padding: 5px 5px 0 5px;">
+					<div class="panel-heading-white"><span class="title" c-translate>Data Maintenance</span>
+						<div class="grid_4">
+							<div class="grid_4" style="padding-top:15px">
+								<label c-label item="item">Nomor Maintenance</label>
+							</div>
+							<div class="grid_8">
+								<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noMaintenance" disabled="true"  />
+							</div>
+
+							<div class="grid_4" style="padding-top:15px">
+								<label c-label item="item">Tanggal Maintenance</label>
+							</div>
+							<div class="grid_8">
+								<input style="width: 100%" kendo-date-picker k-ng-model="item.tglMaintenance" k-format="'dd-MM-yyyy'" />
+							</div>
+
+							<div class="grid_4" style="padding-top:15px">
+								<label c-label item="item">Ruangan Tujuan</label>
+							</div>
+							<div class="grid_8">
+								<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganTujuan" k-data-text-field="'namaruangan'" k-data-value-field="'id'" k-filter="'contains'"  k-data-source="listRuanganTujuan"/>
+							</div>
+						</div>
+						<div class="grid_4">
+							<div class="grid_12">
+								<label c-label item="item" style="margin-top: 10px">Keterangan</label>
+							</div>
+							<div class="grid_12">
+								<textarea style="height: 95px" c-text-box type="input" class="k-textbox" ng-model="item.deskPenanganan" />
+							</div>
+						</div>
+						<div class="grid_4" style="margin-top: 10px;">
+							<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+								<p>Daftar Petugas Maintenance</p>
+							</div>
+							<div class="grid_12">
+								<kendo-grid id="kendoGrid" options="GridPegawai" k-data-source="dataPegawai"></kendo-grid>
+							</div>
+						</div>
+						<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+						<p>Daftar Maintenance Asset</p>
+						</div>
+						<div class="grid_12 borderBox">
+				            <div id="kGrid" 
+				            kendo-grid k-data-source="dataGrid" 
+				            k-selectable="'row'" 
+				            options="columnGrid" 
+				            k-pageable="'true'" 
+				            k-sortable="'true'" 
+				            k-ng-model="dataSelected"
+				            ng-click="klikGrid(dataSelected)">
+				            </div>
+			       	 	</div>
+					</div>
+				</div>
+			</div>
+			<div kendo-window="winDialog" k-title="'Tambah Aset Maintenance'" k-visible="false" k-width="750" k-height="300">
+	        <div class="k-content container_12" style="padding:1% auto">
+	            <div class="grid_12">
+	            	<div class="grid_6">
+	            		<div class="grid_12">
+	            			<div class="grid_5" style="padding-top:15px">
+								<label c-label item="item">No</label>
+							</div>
+							<div class="grid_7">
+		                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noUrut" disabled="false" />
+		                    </div>
+	            		</div>
+	            		<div class="grid_12">
+	            			<div class="grid_5" style="padding-top:15px">
+								<label c-label item="item">Id Produk</label>
+							</div>
+							<div class="grid_7">
+		                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.idProduk" disabled="false"/>
+		                    </div>
+	            		</div>
+	            	</div>
+	            	<div class="grid_6">
+	            		<div class="grid_12">
+	            			<div class="grid_5" style="padding-top:15px">
+								<label c-label item="item">No Register Aset</label>
+							</div>
+							<div class="grid_7">
+								<input style="width: 100%;" kendo-combo-box k-ng-model="item.noRegisterAset" k-data-text-field="'noregisteraset'" k-data-value-field="'id'" k-filter="'contains'"  k-data-source="listNoRegisterAset"  />
+							</div>
+	            		</div>
+	            		<div class="grid_12">
+	            			<div class="grid_5" style="padding-top:15px">
+								<label c-label item="item">Nama Register Aset</label>
+							</div>
+							<div class="grid_7">
+								<input style="width: 100%;" kendo-combo-box k-ng-model="item.registerAset" k-data-text-field="'namaproduk'" k-data-value-field="'id'" k-filter="'contains'"  k-data-source="listRegisterAset"  />
+							</div>
+	            		</div>
+	            	</div>
+	            	<div class="grid_12">
+	            			<div class="grid_12" style="padding-top:15px">
+								<label c-label item="item">Keterangan</label>
+							</div>
+							<div class="grid_12">
+								<textarea style="height: 95px" c-text-box type="input" class="k-textbox" ng-model="item.keterangan" />
+							</div>
+	            		</div>
+				</div>
+                <div class="pull-right" style="margin-top:4%">
+                    <button class="k-button" ng-click="tambah()">Tambah</button>
+                    <button class="k-button" ng-click="batal()">Batal</button>
+                </div>
+	            </div>
+	        </div>
+			<div class="grid_12">
+				<div class="grid_8"></div>
+				<div class="grid_2">
+					<button class="c-button cancel" style="width: 100%; font-size: 16px; padding:0px, margin:0px;" ng-click="batal()">Batal</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button success" style="width: 100%; font-size: 16px; padding:0px, margin:0px;" ng-click="simpan()">Simpan</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

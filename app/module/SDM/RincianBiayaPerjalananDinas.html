@@ -1,0 +1,534 @@
+<div ng-controller="RincianBiayaPerjalananDinasCtrl">
+
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Rincian Biaya Perjalanan Dinas'"disabled>      
+        <div class="panel-body">
+        
+                
+                 <div class="grid_9" >
+                            <div class="grid_2" style="margin-top: 0">
+                                <div class="grid_12" style="margin-left:5px">
+                                    
+                                </div>
+                                <div class="grid_12" style="margin-top:12px">
+                                        <label c-label item="item" c-label-text="Nama Pegawai"></label>
+                                </div>
+                            </div>
+                            
+                            <div class="grid_3" style="margin-top: 0">
+                                
+                                <div class="grid_12" style="margin: 0 0 0 -26px;">
+                                             <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaPegawai" 
+                                             k-data-text-field="'namaPegawai'" k-data-value-field="'id'" k-filter="'contains'" 
+                                             k-auto-bind="false" k-data-source="ListNamaPegawai" />
+                                </div>
+                            </div>
+                            <div class="grid_1"></div>
+                               <div class="grid_2" style="margin-top: 0">
+                                <div class="grid_12" style="margin-left:5px">
+                                    
+                                </div>
+                                <div class="grid_12" style="margin-top:12px">
+                                        <label c-label item="item" c-label-text="Golongan"></label>
+                                </div>
+                            </div>
+                            
+                            <div class="grid_3" style="margin-top: 0">
+                                
+                                <div class="grid_12" style="margin: 0 0 0 -26px;">
+                                            <input disabled="disabled" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.statusPegawai" />
+                                </div>
+                            </div>
+                            
+                        </div>      
+                <div class="grid_9" >
+                              <div class="grid_2" style="margin-top: 0">
+                                <div class="grid_12" style="margin-left:5px">
+                                    
+                                </div>
+                                <div class="grid_12" style="margin-top:12px">
+                                        <label c-label item="item" ><b>NIP</b></label>
+                                </div>
+                            </div>
+                            
+                            <div class="grid_3" style="margin-top: 0">
+                                
+                                <div class="grid_12" style="margin: 0 0 0 -26px;">
+                                            <input disabled="disabled" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nip" />
+                                </div>
+                            </div>
+                             <div class="grid_1"></div>
+                               <div class="grid_2" style="margin-top: 0">
+                                <div class="grid_12" style="margin-left:5px">
+                                    
+                                </div>
+                                <div class="grid_12" style="margin-top:12px">
+                                        <label c-label item="item" c-label-text="Unit Kerja"></label>
+                                </div>
+                            </div>
+                            
+                            <div class="grid_3" style="margin-top: 0">
+                                
+                                <div class="grid_12" style="margin: 0 0 0 -26px;">
+                                            <input disabled="disabled" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.unitKerja" />
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="grid_9" >
+                            <div class="grid_2" style="margin-top: 0">
+                                <div class="grid_12" style="margin-left:5px">
+                                    
+                                </div>
+                                <div class="grid_12" style="margin-top:12px">
+                                        <label c-label item="item" c-label-text="Status Pegawai"></label>
+                                </div>
+                            </div>
+                            
+                            <div class="grid_3" style="margin-top: 0">
+                                
+                                <div class="grid_12" style="margin: 0 0 0 -26px;">
+                                            <input disabled="disabled" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.statusPegawai" />
+                                </div>
+                            </div>
+                                <div class="grid_1"></div>
+                               <div class="grid_2" style="margin-top: 0">
+                                <div class="grid_12" style="margin-left:5px">
+                                    
+                                </div>
+                                <div class="grid_12" style="margin-top:12px">
+                                        <label c-label item="item" c-label-text="Jabatan"></label>
+                                </div>
+                            </div>
+                            
+                            <div class="grid_3" style="margin-top: 0">
+                                
+                                <div class="grid_12" style="margin: 0 0 0 -26px;">
+                                            <input disabled="disabled" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.jabatan" />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        </div>
+      
+        </c-panel>
+        <!-- Panel Data Perjalanan Dinas-->
+        <c-panel item="item" header="'Data Perjalanan Dinas'"disabled>      
+        <div class="panel-body">
+                 <div class="grid_9" >
+                            <div class="grid_2" style="margin-top: 0">
+                                <div class="grid_12" style="margin-left:5px">
+                                    
+                                </div>
+                                <div class="grid_12" style="margin-top:12px">
+                                        <label c-label item="item" c-label-text="Jenis Pelatihan"></label>
+                                </div>
+                            </div>
+                            
+                            <div class="grid_3" style="margin-top: 0">
+                                
+                                <div class="grid_12" style="margin: 0 0 0 -26px;">
+                                             <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPelatihan" 
+                                             k-data-text-field="'jenisPelatihan'" k-data-value-field="'id'" k-filter="'contains'" 
+                                             k-auto-bind="false" k-data-source="ListJenisPelatihan" />
+                                </div>
+                            </div>
+                            <div class="grid_1"></div>
+                               <div class="grid_2" style="margin-top: 0">
+                                <div class="grid_12" style="margin-left:5px">
+                                    
+                                </div>
+                                <div class="grid_12" style="margin-top:12px">
+                                        <label c-label item="item" c-label-text="Tempat Pelatihan"></label>
+                                </div>
+                            </div>
+                            
+                            <div class="grid_3" style="margin-top: 0">
+                                
+                                <div class="grid_12" style="margin: 0 0 0 -26px;">
+                                            <input   c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.tempatPelatihan" />
+                                </div>
+                            </div>
+                            
+                        </div>      
+                <div class="grid_9" >
+                              <div class="grid_2" style="margin-top: 0">
+                                <div class="grid_12" style="margin-left:5px">
+                                    
+                                </div>
+                                <div class="grid_12" style="margin-top:12px">
+                                        <label c-label item="item" c-label-text="Nama Pelatihan"></label>
+                                </div>
+                            </div>
+                            
+                            <div class="grid_3" style="margin-top: 0">
+                                
+                                <div class="grid_12" style="margin: 0 0 0 -26px;">
+                                            <input   c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaPelatihan" />
+                                </div>
+                            </div>
+                             <div class="grid_1"></div>
+                               <div class="grid_2" style="margin-top: 0">
+                                <div class="grid_12" style="margin-left:5px">
+                                    
+                                </div>
+                                <div class="grid_12" style="margin-top:12px">
+                                        <label c-label item="item" c-label-text="Penyelenggara"></label>
+                                </div>
+                            </div>
+                            
+                            <div class="grid_3" style="margin-top: 0">
+                                
+                                <div class="grid_12" style="margin: 0 0 0 -26px;">
+                                            <input   c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.penyelenggara" />
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="grid_9" >
+                            <div class="grid_2" style="margin-top: 0">
+                                <div class="grid_12" style="margin-left:5px">
+                                    
+                                </div>
+                                <div class="grid_12" style="margin-top:12px">
+                                        <label c-label item="item" c-label-text="Tanggal Mulai"></label>
+                                </div>
+                            </div>
+                            
+                            <div class="grid_3" style="margin-top: 0">
+                                
+                                <div class="grid_12" style="margin: 0 0 0 -26px;">
+                                            <input ng-disabled="isDisable" kendo-date-picker k-ng-model="item.tanggalMulai"  k-format="'dd-MM-yyyy'" style="width: 100%" />
+                                </div>
+                            </div>
+                                <div class="grid_1"></div>
+                               <div class="grid_2" style="margin-top: 0">
+                                <div class="grid_12" style="margin-left:5px">
+                                    
+                                </div>
+                                <div class="grid_12" style="margin-top:12px">
+                                        <label c-label item="item" c-label-text="No Surat"></label>
+                                </div>
+                            </div>
+                            
+                            <div class="grid_3" style="margin-top: 0">
+                                
+                                <div class="grid_12" style="margin: 0 0 0 -26px;">
+                                            <input   c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noSurat" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_9" >
+                            <div class="grid_2" style="margin-top: 0">
+                                <div class="grid_12" style="margin-left:5px">
+                                    
+                                </div>
+                                <div class="grid_12" style="margin-top:12px">
+                                        <label c-label item="item" c-label-text="Tanggal Selesai"></label>
+                                </div>
+                            </div>
+                            
+                            <div class="grid_3" style="margin-top: 0">
+                                
+                                <div class="grid_12" style="margin: 0 0 0 -26px;">
+                                            <input ng-disabled="isDisable" kendo-date-picker k-ng-model="item.tanggalSelesai"  k-format="'dd-MM-yyyy'" style="width: 100%" />
+                                </div>
+                            </div>
+                                <div class="grid_1"></div>
+                               <div class="grid_2" style="margin-top: 0">
+                                <div class="grid_12" style="margin-left:5px">
+                                    
+                                </div>
+                                <div class="grid_12" style="margin-top:12px">
+                                        <label c-label item="item" c-label-text="Tgl Surat"></label>
+                                </div>
+                            </div>
+                            
+                            <div class="grid_3" style="margin-top: 0">
+                                
+                                <div class="grid_12" style="margin: 0 0 0 -26px;">
+                                            <input ng-disabled="isDisable" kendo-date-picker k-ng-model="item.tanggalSurat"  k-format="'dd-MM-yyyy'" style="width: 100%" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_9" >
+                              <div class="grid_2" style="margin-top: 0">
+                                <div class="grid_12" style="margin-left:5px">
+                                    
+                                </div>
+                                <div class="grid_12" style="margin-top:12px">
+                                        <label c-label item="item" c-label-text="Jumlah Jam"></label>
+                                </div>
+                            </div>
+                            
+                            <div class="grid_3" style="margin-top: 0">
+                                
+                                <div class="grid_12" style="margin: 0 0 0 -26px;">
+                                            <input   c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.jumlahJam" />
+                                </div>
+                            </div>
+                             
+                        </div>
+                        </div>
+      
+        </c-panel>
+        <!-- Tiket dan Akomodasi-->
+        <c-panel item="item" header="'Tiket dan Akomodasi'"disabled>      
+        <div class="panel-body">
+        
+                
+                 <div class="grid_9" >
+                            <div class="grid_2" style="margin-top: 0">
+                                <div class="grid_12" style="margin-left:5px">
+                                    
+                                </div>
+                                <div class="grid_12" style="margin-top:12px">
+                                        <label c-label item="item" c-label-text="Tanggal Berangkat"></label>
+                                </div>
+                            </div>
+                            
+                            <div class="grid_3" style="margin-top: 0">
+                                
+                                <div class="grid_12" style="margin: 0 0 0 -26px;">
+                                             <input ng-disabled="isDisable" kendo-date-picker k-ng-model="item.tanggalBerangkat"  k-format="'dd-MM-yyyy'" style="width: 100%" />
+                                </div>
+                            </div>
+                            <div class="grid_1"></div>
+                               <div class="grid_2" style="margin-top: 0">
+                                <div class="grid_12" style="margin-left:5px">
+                                    
+                                </div>
+                                <div class="grid_12" style="margin-top:12px">
+                                        <label c-label item="item" c-label-text="Tanggal Kembali"></label>
+                                </div>
+                            </div>
+                            
+                            <div class="grid_3" style="margin-top: 0">
+                                
+                                <div class="grid_12" style="margin: 0 0 0 -26px;">
+                                            <input ng-disabled="isDisable" kendo-date-picker k-ng-model="item.tanggalKembali"  k-format="'dd-MM-yyyy'" style="width: 100%" />
+                                </div>
+                            </div>
+                            
+                        </div>      
+                <div class="grid_9" >
+                              <div class="grid_2" style="margin-top: 0">
+                                <div class="grid_12" style="margin-left:5px">
+                                    
+                                </div>
+                                <div class="grid_12" style="margin-top:12px">
+                                        <label c-label item="item" c-label-text="Tempat Berangkat"></label>
+                                </div>
+                            </div>
+                            
+                            <div class="grid_3" style="margin-top: 0">
+                                
+                                <div class="grid_12" style="margin: 0 0 0 -26px;">
+                                            <input disabled="disabled" c-text-box type="input" filter="'varchar'" class="k-textbox" value="Jakarta" ng-model="item.tempatBerangkat" />
+                                </div>
+                            </div>
+                             <div class="grid_1"></div>
+                               <div class="grid_2" style="margin-top: 0">
+                                <div class="grid_12" style="margin-left:5px">
+                                    
+                                </div>
+                                <div class="grid_12" style="margin-top:12px">
+                                        <label c-label item="item" c-label-text="Lamanya Perjalanan Dinas"></label>
+                                </div>
+                            </div>
+                            
+                            <div class="grid_2" style="margin-top: 0">
+                                
+                                <div class="grid_12" style="margin: 0 0 0 -26px;">
+                                            <input disabled="disabled" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.unitKerja" /> 
+                                             
+                                </div>
+                            </div>
+                            <div class="grid_1" style="margin-top: 0">
+                                <div class="grid_12" style="margin-left:5px">
+                                    
+                                </div>
+                                <div class="grid_12" style="margin-top:12px">
+                                        <label c-label item="item" c-label-text="Hari"></label>
+                                </div>
+                            </div>
+
+                        </div>
+                        </div>
+                        <div class="grid_9" >
+                            <div class="grid_2" style="margin-top: 0">
+                                <div class="grid_12" style="margin-left:5px">
+                                    
+                                </div>
+                                <div class="grid_12" style="margin-top:12px">
+                                        <label c-label item="item" c-label-text="Tempat Tujuan"></label>
+                                </div>
+                            </div>
+                            
+                            <div class="grid_3" style="margin-top: 0">
+                                
+                                <div class="grid_12" style="margin: 0 0 0 -26px;">
+                                             <input style="width: 100%;" kendo-combo-box k-ng-model="item.statusPegawai" 
+                                             k-data-text-field="'statusPegawai'" k-data-value-field="'id'" k-filter="'contains'" 
+                                             k-auto-bind="false" k-data-source="listStatusPegawai" />
+                                </div>
+                            </div>
+                                <div class="grid_1"></div>
+                               <div class="grid_2" style="margin-top: 0">
+                                <div class="grid_12" style="margin-left:5px">
+                                    
+                                </div>
+                                <div class="grid_12" style="margin-top:12px">
+                                        <label c-label item="item" c-label-text="Alat Angkutan yang Dipergunakan"></label>
+                                </div>
+                            </div>
+                            
+                            <div class="grid_3" style="margin-top: 0">
+                                
+                                <div class="grid_12" style="margin: 0 0 0 -26px;">
+                                             <input style="width: 100%;" kendo-combo-box k-ng-model="item.alatAngkutan" 
+                                             k-data-text-field="'namaAngkutan'" k-data-value-field="'id'" k-filter="'contains'" 
+                                             k-auto-bind="false" k-data-source="listAlatAngkutan" />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        </div>
+      
+        </c-panel>
+        <!-- Biaya Perjalanan Dinas-->
+        <c-panel item="item" header="'Biaya Perjalanan Dinas'"disabled>      
+        <div class="panel-body">
+        
+                
+                 <div class="grid_9" >
+                            <div class="grid_2" style="margin-top: 0">
+                                <div class="grid_12" style="margin-left:5px">
+                                    
+                                </div>
+                                <div class="grid_12" style="margin-top:12px">
+                                        <label c-label item="item" c-label-text="Biaya Pendaftaran"></label>
+                                </div>
+                            </div>
+                            
+                            <div class="grid_3" style="margin-top: 0">
+                                
+                                <div class="grid_12" style="margin: 0 0 0 -26px;">
+                                             <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.biayaPendaftaran" />
+                                </div>
+                            </div>
+                            <div class="grid_1"></div>
+                               <div class="grid_2" style="margin-top: 0">
+                                <div class="grid_12" style="margin-left:5px">
+                                    
+                                </div>
+                                <div class="grid_12" style="margin-top:12px">
+                                        <label c-label item="item" c-label-text="Biaya Taksi"></label>
+                                </div>
+                            </div>
+                            
+                            <div class="grid_3" style="margin-top: 0">
+                                
+                                <div class="grid_12" style="margin: 0 0 0 -26px;">
+                                            <input   c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.biayaTaksi" />
+                                </div>
+                            </div>
+                            
+                        </div>      
+                <div class="grid_9" >
+                              <div class="grid_2" style="margin-top: 0">
+                                <div class="grid_12" style="margin-left:5px">
+                                    
+                                </div>
+                                <div class="grid_12" style="margin-top:12px">
+                                        <label c-label item="item" c-label-text="Biaya Penginapan"></label>
+                                </div>
+                            </div>
+                            
+                            <div class="grid_3" style="margin-top: 0">
+                                
+                                <div class="grid_12" style="margin: 0 0 0 -26px;">
+                                            <input   c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.biayaPenginapan" />
+                                </div>
+                            </div>
+                             <div class="grid_1"></div>
+                               <div class="grid_2" style="margin-top: 0">
+                                <div class="grid_12" style="margin-left:5px">
+                                    
+                                </div>
+                                <div class="grid_12" style="margin-top:12px">
+                                        <label c-label item="item" c-label-text="Uang Representasi"></label>
+                                </div>
+                            </div>
+                            
+                            <div class="grid_3" style="margin-top: 0">
+                                
+                                <div class="grid_12" style="margin: 0 0 0 -26px;">
+                                            <input  c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.uangRepresentasi" />
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="grid_9" >
+                            <div class="grid_2" style="margin-top: 0">
+                                <div class="grid_12" style="margin-left:5px">
+                                    
+                                </div>
+                                <div class="grid_12" style="margin-top:12px">
+                                        <label c-label item="item" c-label-text="Uang Saku"></label>
+                                </div>
+                            </div>
+                            
+                            <div class="grid_3" style="margin-top: 0">
+                                
+                                <div class="grid_12" style="margin: 0 0 0 -26px;">
+                                            <input  c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.uangSaku" />
+                                </div>
+                            </div>
+                              
+                        </div>
+                         <div class="grid_9" >
+                            <div class="grid_2" style="margin-top: 0">
+                                <div class="grid_12" style="margin-left:5px">
+                                    
+                                </div>
+                                <div class="grid_12" style="margin-top:12px">
+                                        <label c-label item="item" c-label-text="Biaya Tiket"></label>
+                                </div>
+                            </div>
+                            
+                            <div class="grid_3" style="margin-top: 0">
+                                
+                                <div class="grid_12" style="margin: 0 0 0 -26px;">
+                                            <input  c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.biayaTiket" />
+                                </div>
+                            </div>
+                              
+                        </div>
+                        </div>
+      
+        </c-panel>
+            <div class="grid_12">
+                            <div class="grid_8" style="float:left">
+                            
+                            
+                            <!-- <div class="grid_2" style="margin-top: 25px">
+                                <button class="c-button" ng-show="!isLoading" item="item" is-validate click="Cancel">
+                                    <span class="title">Batal</span></button>
+                            </div> -->
+                            <div class="grid_2 " style="margin-top: 25px ">
+                                <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+                                    <span class="title">Simpan</span>
+                                    </button>
+                            </div>
+                           <!--  <div class="grid_2 " style="margin-top: 25px ">
+                                <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+                                    <span class="title">Cetak</span>
+                                    </button>
+                            </div> -->
+                            </div>
+                        </div>
+        </div>
+    </div>
+</div>
+

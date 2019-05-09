@@ -1,0 +1,83 @@
+<div ng-controller="TargetBobotSDMCtrl">
+
+	<div ng-show="dataVOloaded">
+
+		<c-panel item="item" header="'Input Target Bobot Uraian Tugas'" disabled>
+
+			<div class="panel panel-default container_12" disabled>
+
+				<div class="panel-body">
+
+					<div class="grid_12">
+
+
+						<div class="grid_10">
+
+							<div class="grid_1" style="margin: 12px 0 0 0;">
+								<label><b>Bulan</b></label>
+							</div>
+
+							<div class="grid_2">
+								<input kendo-date-picker k-options="yearSelected" k-ng-model="item.DatePickerBulan"  k-format="'MMMM yyyy'" style="width: 100%" kendo-date-picker k-max="now" 
+								ng-init="now"  />
+							</div>
+<!-- 
+							<div class="grid_1" style="margin: 12px 0 0 20px;">
+								<label><b>Pegawai</b></label>
+							</div>
+
+							<div class="grid_5">
+								<input ng-disabled="isDisable" style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai"/>
+							</div> -->
+							
+							<div class="grid_1" style="margin: 7px 0 0 0;">
+								<button class="c-button"  ng-click="valCari()">
+									Cari</button>
+								</div>
+							</div>
+
+
+					<!--	<div class="grid_12"  style="margin-top: 10px;">
+							<div kendo-grid="grid" k-data-source="sourceOrder" k-selectable="'row'" k-ng-model="selectedData" k-columns="columnJadwal">
+							</div>
+						</div> -->
+						<div class="grid_12">
+							<div class="grid_9"></div>
+							<div class="grid_3">
+								<!-- <input type="checkbox" class="k-checkbox" id="Checkbox1" ng-click="cbSama()" 
+								k-ng-model="item.Checkbox" ng-checked="vals" ng-true-value="'true'" ng-false-value="'false'">
+ -->
+								
+				<input type="checkbox" class="k-checkbox" ng-model='item.sama' id="cb" ng-true-value="'true'" ng-false-value="'false'" k-ng-model="item.Checkbox" ng-click="cbSama()" ng-checked="vals" >
+				<label class="k-checkbox-label" for="cb">Target dan Bobot sama dengan Bulan sebelumnya</label>
+							</div>
+
+						</div> 
+
+						<div class="grid_12"></div>
+
+						<div class="grid_12">
+
+							<div kendo-grid="grid" id="grid" k-data-source="sourceOrder" k-editable="true"  
+							 options="mainGridOption" k-selectable="'row'"  style="font-size: small;">
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="grid_12">
+
+						<div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</c-panel>
+
+	</div>
+
+</div>

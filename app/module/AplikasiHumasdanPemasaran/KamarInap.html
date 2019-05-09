@@ -1,0 +1,162 @@
+<div ng-controller="KamarInapCtrl">
+	<div ng-show="dataVOloaded">
+		<!-- <c-panel item="item" disabled> -->
+			<c-panel item="item" header="'Informasi Kamar Rawat Inap'">
+			<!-- <c-panel item="item" header="'Master Pertanyaan Survei Pelanggan'"> -->
+			<div class="grid_12 list-ruangan">
+                    <div class="grid_4">
+                         <ul class="list-half">
+                            <li ng-repeat="data in nmRuangan  | toArray:false  | orderBy:'nmRuangan'">
+                                <div class="feed-message" ng-click="item.ruangan = data" ng-class="{selected : item.ruangan === data}">
+                                    <div class="message-icon">
+                                        <img class="photo-icon" src="stylesheets/bed.png">
+                                    </div>
+                                    <div class="text-block text-message">
+                                        <div class="message-header">
+                                            <span class="author"> {{data.nmRuangan}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+             <div class="grid_6">
+                   <ul class="list-half">
+                            <li ng-repeat="data in listKelas | toArray:false | filter:namaKamar | orderBy:'namaKamar' ">
+                                <div class="feed-message" ng-click="item.kamar = data" ng-class="{selected : item.kamar === data}">
+                                    <div class="message-icon">
+                                        <img class="photo-icon" src="stylesheets/bed.png">
+                                    </div>
+                                    <div class="text-block text-message">
+                                       <div class="text-block text-message">
+                                        <div class="message-header">
+                                            <span class="author"> {{data.namaKamar}}</span>
+                                        </div>
+                                        <div class="message-content">
+                                            KOSONG : {{data.bedKosong}} --  ISI : {{data.bedIsi}}
+                                        </div>
+                                        <div class="message-content">
+                                            {{data.keterangan}}
+                                        </div>
+                                        <div class="message-content">
+                                            Jumlah Bed : {{data.jmlbed}}
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </li>
+                      </ul>
+                    </div>
+
+			
+			<div class="grid_12" style="margin-top:30px">
+				<div class="grid_1"></div>
+				<div class="grid_2">
+					<c-button ng-click="" style="width:20% !important">
+						<span style="font-size:10!important">Lihat Ketersediaan</span>
+					</c-button>
+				</div>
+			</div>
+	<c-panel item="item" header="'Fasilitas Kamar'">
+
+    <div class="grid_6">
+            <div class="grid_12">
+                    <div class="grid_2">
+                        <label c-label item="item" style="margin-top: 10px">Nama Fasilitas</label>
+                    </div>
+                    <div class="grid_10">
+                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nmFasilitas" disabled="true" />
+                    </div>
+                </div>
+                <div class="grid_6">
+                </div>
+                <div class="grid_12">
+                    <div class="grid_2">
+                        <label c-label item="item" style="margin-top: 10px">Nama Departemen</label>
+                    </div>
+                    <div class="grid_10">
+                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nmDept" disabled="true" />
+                    </div>
+                </div>
+                <div class="grid_6">
+                </div>
+                <div class="grid_12">
+                    <div class="grid_2">
+                        <label c-label item="item" style="margin-top: 10px">Nama Ruangan</label>
+                    </div>
+                    <div class="grid_10">
+                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nmRuangan" disabled="true" />
+                    </div>
+                </div>
+                <div class="grid_6">
+                </div>
+                <div class="grid_12">
+                    <div class="grid_2">
+                        <label c-label item="item" style="margin-top: 10px">Nama Kelas</label>
+                    </div>
+                    <div class="grid_10">
+                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nmKelas" disabled="true" />
+                    </div>
+                </div>
+                <div class="grid_6">
+                </div>
+                 <div class="grid_12">
+                    <div class="grid_2">
+                        <label c-label item="item" style="margin-top: 10px">Desk Detail Fasilitas</label>
+                    </div>
+                    <div class="grid_10">
+                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.deskDetailFal" disabled="true" />
+                    </div>
+                </div>
+                <div class="grid_6">
+                </div>
+                </div>
+
+
+            <div class="grid_6">
+            <fieldset style="min-height:250px !important">
+            <legend><h2>Fasilitas Kamar Inap</h2></legend>
+            <div class="grid_12">        
+                            <div class="grid_3">
+                            <c-panel item="item" header="'Fasilitas 1'" disabled>
+                                 <image ng-src="{{item.pathGambar1}}" width="550" heigth="832" >
+                        </c-panel>  
+                            </div>
+                
+                            <div class="grid_3">
+                            <c-panel item="item" header="'Fasilitas 2'" disabled>
+                                  <image ng-src ="{{item.pathGambar2}}" width="550" heigth="832" >
+                            
+                            </c-panel>  
+                            </div>
+                    </div>
+              <div class="grid_12">
+            
+                            <div class="grid_3">
+                            <c-panel item="item" header="'Fasilitas 3'" disabled>
+                                  <img src="{{item.pathGambar3}}" width="550" heigth="832" >
+                                 
+                                
+                                    </c-panel>  
+                            </div>
+                
+                            
+                             
+                            <div class="grid_3">
+                            <c-panel item="item" header="'Fasilitas 4'" disabled>
+                                 <image ng-src="{{item.pathGambar4}}" width="550" heigth="832" />
+                            
+                            </c-panel>  
+                            </div>
+                        
+                    </div>
+                         </div>
+
+
+
+
+			</c-panel>
+		</c-panel>
+	</div>
+</div>

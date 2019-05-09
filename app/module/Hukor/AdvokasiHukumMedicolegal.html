@@ -1,0 +1,72 @@
+<div ng-controller="AdvokasiHukumMedicolegalCtrl">
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Advokasi Hukum Medicolegal'">
+            <div class="panel panel-default container_12">
+                <div class="panel-body">
+                    <div class="grid_12">
+                        <div class="grid_2">
+                            <div class="grid_12" style="margin-top: 11px">
+                                <label c-label item="item" c-label-text="noKasus"></label>
+                            </div>
+                            <div class="grid_12" style="margin-top: 17px">
+                                <label c-label item="item" c-label-text="tanggal"></label>
+                            </div>
+                            <div class="grid_12" style="margin-top: 20px">
+                                <label c-label item="item" c-label-text="idUser"></label>
+                            </div>
+                            <div class="grid_12" style="margin-top: 20px">
+                                <label c-label item="item" c-label-text="jenisKasus"></label>
+                            </div>
+                            <div class="grid_12" style="margin-top: 20px">
+                                <label c-label item="item" c-label-text="deskripsiKasus"></label>
+                            </div>
+                            <div class="grid_12" style="margin-top: 75px">
+                                <label c-label item="item" c-label-text="penanggungJawab"></label>
+                            </div>
+                        </div>
+                        <div class="grid_4">
+                            <div class="grid_12">
+                                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noKasus" ng-disabled="disableNoKasus" />
+                            </div>
+                            <div class="grid_12">
+                                <input style="width: 100%" k-ng-model='item.tanggalPengajuan' k-on-change="selectTanggal()" kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                            </div>
+                            <div class="grid_12">
+                                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.userId" ng-disabled="disableIdUser" />
+                            </div>
+                            <div class="grid_12">
+                                <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisKasus" k-data-text-field="'jenisKasus'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisKasus" />
+                            </div>
+                            <div class="grid_12">
+                                <textarea c-text-box type="input" class="k-textbox" ng-model="item.deskripsiKasus" style="width: 100%; height: 80px;"></textarea>
+                            </div>
+                            <div class="grid_12">
+                                <input style="width: 100%;" kendo-combo-box k-ng-model="item.penanggungJawab" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPenanggungJawab" />
+                            </div>
+                        </div>
+                        <div class="grid_2">
+                            <div class="grid_12" style="margin-top: 11px">
+                                <label c-label item="item" c-label-text="inputAnalisaKajian"></label>
+                            </div>
+                            <div class="grid_12" style="margin-top: 120px">
+                                <label c-label item="item" c-label-text="inputHasilKeputusan"></label>
+                            </div>
+
+                        </div>
+                        <div class="grid_4">
+                            <div class="grid_12">
+                                <textarea c-text-box type="input" class="k-textbox" ng-model="item.analisaKajian" style="width: 99%; height: 125px;"></textarea>
+                            </div>
+                            <div class="grid_12">
+                                <textarea c-text-box type="input" class="k-textbox" ng-model="item.hasilKajian" style="width: 99%; height: 125px;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="grid_12" style="margin-top:15px">
+                        <div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
+                    </div>
+                </div>
+            </div>
+        </c-panel>
+    </div>
+</div>

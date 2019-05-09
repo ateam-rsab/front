@@ -1,0 +1,118 @@
+<style>
+    .error{
+        background-color:white !important;
+    }
+    .yellow{
+        background-color:#ffff00
+    }
+     .green{
+        background-color:#00ff40
+    }
+      .red{
+        background-color:#FF0000
+    }
+    .k-grid  .k-grid-header  .k-header  .k-link {
+     height: auto;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     white-space: normal;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     text-align: center;
+    }
+/*     .k-header .k-link{
+    text-align: center;
+     }*/
+</style>
+
+	<div class="panel panel-default container_12">
+		<div class="panel-heading" c-translate>Master Alat Laundry</div>
+			<div class="panel-body">
+				<div class="grid_12" style="margin-top: 5px">
+					<div class="grid_6">
+						<div class="grid_12">
+							<div class="grid_4" style="margin: 6px 0 0 0;">
+								<label><b>Nama Mesin</b></label>
+							</div>
+							<div class="grid_1" style="margin: 6px 0 0 0;">
+								<label><b>:</b></label>
+							</div>
+							<div class="grid_7">
+					   			<input style="width: 100%;" kendo-combo-box k-ng-model="item.Mesin"   k-data-text-field="'namaProduk'" k-data-value-field="'produkId'" k-filter="'contains'" k-auto-bind="false" k-on-change="ChangeRegisterAsset()" k-data-source="ListMesin" ng-disabled="disableMesin"/>
+						  	</div>
+					  	</div>
+						<div class="grid_12">
+							<div class="grid_4" style="margin: 6px 0 0 0;">
+								<label><b>Nomor Registrasi Asset</b></label>
+							</div>
+							<div class="grid_1" style="margin: 6px 0 0 0;">
+								<label><b>:</b></label>
+							</div>
+							<div class="grid_7">
+					   			<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noRegisterAsset" /disabled>
+						  	</div>
+					  	</div>
+					  	<div class="grid_12">
+							<div class="grid_4" style="margin: 6px 0 0 0;">
+								<label><b>Kapasitas Mesin</b></label>
+							</div>
+							<div class="grid_1" style="margin: 6px 0 0 0;">
+								<label><b>:</b></label>
+							</div>
+							<div class="grid_7">
+					   			<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.Kapasitas"/>
+						  	</div>
+					  	</div>
+				  	</div>
+				  	<div class="grid_6">
+						<div class="grid_12">
+							<div class="grid_4" style="margin: 6px 0 0 0;">
+								<label><b>Satuan</b></label>
+							</div>
+							<div class="grid_1" style="margin: 6px 0 0 0;">
+								<label><b>:</b></label>
+							</div>
+							<div class="grid_7">
+					   			<input style="width: 100%;" kendo-combo-box k-ng-model="item.satuan"   k-data-text-field="'namaSatuanStandar'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listsatuan" />
+						  	</div>
+					  	</div>
+						<div class="grid_12">
+							<div class="grid_4" style="margin: 6px 0 0 0;">
+								<label><b>Unit Kerja</b></label>
+							</div>
+							<div class="grid_1" style="margin: 6px 0 0 0;">
+								<label><b>:</b></label>
+							</div>
+							<div class="grid_7">
+					   			<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.unitKerja" /disabled>
+						  	</div>
+					  	</div>
+						<div class="grid_12" style="margin-top: 10px">
+							<input type="checkbox" class="k-checkbox" name="dataAktif" id="dataAktif" value="true" ng-model="item.dataAktif" ng-true-value="'true'" ng-false-value="'false'" ng-checked="vals">
+							<label class="k-checkbox-label" for="dataAktif">Status Aktif</label>
+						</div>
+				  	</div>
+				</div>
+				</div>
+				<div class="grid_12" style="margin-top: 30px">
+					<div kendo-grid k-on-change="SelectMesin(data)" options="mainGridOptions" k-data-source="data" k-selectable="'row'" k-ng-model="Isidata" k-columns="columndataMasterMesin" ng-click="klik(Isidata)">
+					</div>
+				</div>
+				<div class="grid_12" style="margin-top: 30px">
+					<div class="grid_6"></div>
+					<div class="grid_2">
+						<button class="c-button success" ng-click="Save()">Simpan</button>
+					</div>
+					<div class="grid_2">
+						<button class="c-button success" ng-click="baru()">Baru</button>
+					</div>
+					<div class="grid_2">
+						<button class="c-button cancel" ng-click="tutup()">Tutup</button>
+					</div>
+				</div>
+				<div class="grid_12"><br></br></div>
+			</div>
+		</div>
+	</div>

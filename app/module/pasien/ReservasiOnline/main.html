@@ -1,0 +1,35 @@
+<div ng-controller="ReservasiOnlineNewCtrl">
+    <div class="grid_12" ng-click="item.TypePasien='Baru'">
+        <div class="grid_6">
+            <a ng-click="NavTipePasien('EKSEKUTIF')">
+                <div class="card">
+                    <div class="card-image">
+                        <span class="card-title">EKSEKUTIF</span>
+                        <img width="100px" src="stylesheets/Business-Man.png" />
+                    </div>
+                    <div class=" card-content">
+                        <p>Pilih Menu ini, jika anda akan memilih jenis Executive di rumah sakit</p>
+                    </div>
+                    <div class="card-action">
+                        Pilih
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="grid_6">
+            <a ng-click="NavTipePasien('REGULER')">
+                <div class="card">
+                    <div class="card-image">
+                        <span class="card-title">REGULER</span>
+                        <img src="stylesheets/general.png" />
+                    </div>
+                    <div class="card-content">
+                        <p>Pilih Menu ini, jika anda adalah jenis pasien Reguler di rumah sakit</p>
+                    </div>
+                    <div class="card-action">
+                        Pilih
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>

@@ -1,0 +1,171 @@
+{
+    "namaAlat": "",
+    "merk": "",
+    "type": "",
+    "noSeri": "",
+    "tanggal": "",
+    "namaUser": "",
+    "catatan": "",
+    "catuTegangan": [
+        {
+            "id": 1,
+            "name": "Kebutuhan Alat"
+        },
+        {
+            "id": 2,
+            "name": "Terukur"
+        }
+    ],
+    "temperaturRuang": [
+        {
+            "id": 1,
+            "name": "Kebutuhan Alat"
+        },
+        {
+            "id": 2,
+            "name": "Terukur"
+        }
+    ],
+    "kelembapanRuang": [
+        {
+            "id": 1,
+            "name": "Kebutuhan Alat"
+        },
+        {
+            "id": 2,
+            "name": "Terukur"
+        }
+    ],
+    "bagianAlat":[
+        {
+            "id": 1,
+            "name": "Chasis Pemeriksaan Fisik"
+        },{
+            "id": 2,
+            "name": "Chasis Pemeriksaan Fungsi"
+        },{
+            "id": 3,
+            "name": "Penyangga Pemeriksaan Fisik"
+        },{
+            "id": 4,
+            "name": "Penyangga Pemeriksaan Fungsi"
+        },{
+            "id": 5,
+            "name": "Kotak Kontak Pemeriksaan Fisik"
+        },{
+            "id": 6,
+            "name": "Kotak Kontak Pemeriksaan Fungsi"
+        },{
+            "id": 7,
+            "name": "Label Pemeriksaan Fisik"
+        },{
+            "id": 8,
+            "name": "Label Pemeriksaan Fungsi"
+        },{
+            "id": 9,
+            "name": "Cek Alat Pemeriksaan Fisik"
+        },{
+            "id": 10,
+            "name": "Cek Alat Pemeriksaan Fungsi"
+        },{
+            "id": 11,
+            "name": "Cek Sistem Pemeriksaan Fisik"
+        },{
+            "id": 12,
+            "name": "Cek Sistem Pemeriksaan Fungsi"
+        },{
+            "id": 13,
+            "name": "Cek Plugger Pemeriksaan Fisik"
+        },{
+            "id": 14,
+            "name": "Cek Plugger Pemeriksaan Fungsi"
+        },{
+            "id": 15,
+            "name": "Cek Detektor Pemeriksaan Fisik"
+        },{
+            "id": 16,
+            "name": "Cek Detektor Pemeriksaan Fungsi"
+        },{
+            "id": 17,
+            "name": "Cek Fungsi Pemeriksaan Fisik"
+        },{
+            "id": 18,
+            "name": "Cek Fungsi Pemeriksaan Fungsi"
+        },{
+            "id": 19,
+            "name": "Lakukan Pengukuran Pemeriksaan Fisik"
+        },{
+            "id": 20,
+            "name": "Lakukan Pengukuran Pemeriksaan Fungsi"
+        },{
+            "id": 21,
+            "name": "Cek Sensor Pemeriksaan Fisik"
+        },{
+            "id": 22,
+            "name": "Cek Sensor Pemeriksaan Fungsi"
+        },{
+            "id": 23,
+            "name": "Lakukan Uji Pemeriksaan Fisik"
+        },{
+            "id": 24,
+            "name": "Lakukan Uji Pemeriksaan Fungsi"
+        }
+    ],
+    "attributes" : [{
+		"isNull" : "true",
+		"name" : "namaAlat",
+		"messagesRequired" : "Nama Alat Harus Diisi",
+		"caption" : "Nama Alat"
+	},{
+			"isNull" : "true",
+			"name" : "merk",
+			"pukul" : "Merk Harus Diisi",
+			"caption" : "Merk"
+		},{
+			"isNull" : "true",
+			"name" : "type",
+			"messagesRequired" : "Type Harus Diisi",
+			"caption" : "Type"
+		},{
+			"isNull" : "true",
+			"name" : "noSeri",
+			"messagesRequired" : " No Seri Harus Diisi",
+			"caption" : " No Seri"
+		},{
+			"isNull" : "true",
+			"name" : "tanggal",
+			"messagesRequired" : "Tanggal Harus Diisi",
+			"caption" : "Tanggal"
+		},{
+			"isNull" : "true",
+			"name" : "namaUser",
+			"messagesRequired" : "Nama User Harus Diisi",
+			"caption" : "Nama User"
+		},{
+			"isNull" : "true",
+			"name" : "catatan",
+			"messagesRequired" : "Catatan Harus Diisi",
+			"caption" : " Catatan"
+		},{
+			"isNull" : "true",
+			"name" : "catuTegangan",
+			"messagesRequired" : "Catu Tegangan Harus Diisi",
+			"caption" : "Catu Tegangan"
+		},{
+			"isNull" : "true",
+			"name" : "temperaturRuang",
+			"messagesRequired" : "Temperatur Ruang Harus Diisi",
+			"caption" : "Temperatur Ruang"
+		},{
+		"isNull" : "true",
+		"name" : "kelembapanRuang",
+		"messagesRequired" : "Kelembapan Ruang Harus Diisi",
+		"caption" : "Kelembapan Ruang"
+	},{
+			"isNull" : "true",
+			"name" : "bagianAlat",
+			"pukul" : "Bagian Alat Harus Diisi",
+			"caption" : "Bagian Alat"
+		}
+	]
+}

@@ -1,0 +1,41 @@
+<div ng-controller="VerifikasiUsulanKebutuhanEPlanningCtrl">
+<div ng-show="dataVOloaded">
+<c-panel item="item" header="'Verifikasi Usulan Kebutuhan EPlanning'" disabled>
+
+<!-- UntukPeriodeAnggaran -->
+<div class="grid_12">
+<div class="grid_12">
+<label c-label item="item" c-label-text="UntukPeriodeAnggaran"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%" k-ng-model="item.untukPeriodeAnggaran"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+</div>
+</div>
+
+<!-- VerifikasiUsulanKebutuhanEPlanning -->
+<div class="grid_12">
+<div class="grid_12 headerBox">
+<p>VerifikasiUsulanKebutuhanEPlanning</p>
+</div>
+<div class="clear"></div>
+
+<!-- grid table -->
+<div class="grid_12 borderBox">
+<div kendo-grid k-data-source="dataVerifikasiUsulanKebutuhanEPlanning" k-selectable="'row'" k-columns="columnVerifikasiUsulanKebutuhanEPlanning">
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+
+
+</c-panel>
+
+<div class="grid_12" style="margin-top:30px">
+<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
+</div>
+</div>
+</div>

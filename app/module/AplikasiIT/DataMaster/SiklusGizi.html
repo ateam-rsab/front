@@ -1,0 +1,221 @@
+<div ng-controller="SiklusGiziCtrl">
+<div ng-show="dataVOloaded">
+<c-panel item="item" header="'Siklus Gizi'" disabled>
+
+<!-- siklusKe -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="siklusKe"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.siklusKe" />
+</div>
+</div>
+
+<!-- jenisWaktu -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="jenisWaktu"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisWaktu" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listjenisWaktu" />
+</div>
+</div>
+
+<!-- jenisWaktuId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="jenisWaktuId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jenisWaktuId" />
+</div>
+</div>
+
+<!-- jenisDiet -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="jenisDiet"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisDiet" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listjenisDiet" />
+</div>
+</div>
+
+<!-- jenisDietId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="jenisDietId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jenisDietId" />
+</div>
+</div>
+
+<!-- kelas -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kelas"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.kelas" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listkelas" />
+</div>
+</div>
+
+<!-- kelasId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kelasId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kelasId" />
+</div>
+</div>
+
+<!-- kategoriProduk -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kategoriProduk"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.kategoriProduk" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listkategoriProduk" />
+</div>
+</div>
+
+<!-- kategoriProdukId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kategoriProdukId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kategoriProdukId" />
+</div>
+</div>
+
+<!-- produk -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="produk"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.produk" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listproduk" />
+</div>
+</div>
+
+<!-- produkId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="produkId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.produkId" />
+</div>
+</div>
+
+<!-- bentukProduk -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="bentukProduk"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.bentukProduk" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listbentukProduk" />
+</div>
+</div>
+
+<!-- bentukProdukId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="bentukProdukId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.bentukProdukId" />
+</div>
+</div>
+
+<!-- reportDisplay -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="reportDisplay"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+</div>
+</div>
+
+<!-- kodeExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kodeExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+</div>
+</div>
+
+<!-- namaExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="namaExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+</div>
+</div>
+
+<!-- SiklusGizi -->
+<div class="grid_12">
+<div class="grid_12 headerBox">
+<p>SiklusGizi</p>
+</div>
+<div class="clear"></div>
+
+<!-- grid table -->
+<div class="grid_12 borderBox">
+<div kendo-grid k-data-source="dataSiklusGizi" k-selectable="'row'" k-columns="columnSiklusGizi">
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+
+
+</c-panel>
+
+<div class="grid_12" style="margin-top:30px">
+<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
+</div>
+</div>
+</div>

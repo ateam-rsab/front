@@ -1,0 +1,62 @@
+{
+	"model":{
+		"noOrder":"",
+		"tglOrder":"",
+		"namaPasien":"",
+		"namaPenangggungJawab":"",
+		"noHpPenanggungJawab":"",
+		"namaTempatTujuan":"",
+		"alamatLengkapTujuan":"",
+		"namaPelayanan":"",
+	   	"keteranganLainnya":""
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "noOrder",
+			"messagesRequired" : "",
+			"caption" : "No Order"
+		},{
+			"isNull" : "true",
+			"name" : "tglOrder",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Order"
+		},{
+			"isNull" : "true",
+			"name" : "namaPasien",
+			"messagesRequired" : "",
+			"caption" : "Nama Pasien"
+		},{
+			"isNull" : "true",
+			"name" : "namaPenangggungJawab",
+			"messagesRequired" : "",
+			"caption" : "Nama Penangggung Jawab Keluarga"
+		},{
+			"isNull" : "true",
+			"name" : "noHpPenanggungJawab",
+			"messagesRequired" : "",
+			"caption" : "No HP Penanggung Jawab Keluarga"
+		},{
+			"isNull" : "true",
+			"name" : "namaTempatTujuan",
+			"messagesRequired" : "",
+			"caption" : "Nama Tempat Tujuan"
+		},{
+			"isNull" : "true",
+			"name" : "alamatLengkapTujuan",
+			"messagesRequired" : "",
+			"caption" : "Alamat Lengkap Tujuan"
+		},{
+			"isNull" : "true",
+			"name" : "namaPelayanan",
+			"messagesRequired" : "",
+			"caption" : "Nama Pelayanan"
+		},{
+			"isNull" : "true",
+			"name" : "keteranganLainnya",
+			"messagesRequired" : "",
+			"caption" : "Keterangan Lainnya"
+		}
+
+	]
+}

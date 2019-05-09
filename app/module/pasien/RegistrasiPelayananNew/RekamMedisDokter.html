@@ -1,0 +1,175 @@
+<div class="panel panel-default panel-white">
+    <div class="panel-heading text-center btn"><span class="title">BPJS Tools</span></div>
+</div>
+<div class="grid_2">
+    <div class="breadcrum">
+        <div class="grid_12">
+            <!-- <div class="grid_12">
+                <span class="title">Vclaim</span>
+            </div> -->
+            <div class="grid_12">
+                <a class="n1" ng-class="{'active': currentState == 'BPJSToolsRev.ReferensiVclaim'}" ng-click="nav('BPJSToolsRev.ReferensiVclaim')">Referensi</a>
+            </div>
+            <div class="grid_12">
+                <a class="n1" ng-class="{'active': currentState == 'BPJSToolsRev.CekKepesertaanRev'}" ng-click="nav('BPJSToolsRev.CekKepesertaanRev')">Peserta</a>
+            </div>
+            <div class="grid_12">
+                <a class="n1" ng-class="{'active': currentState == 'BPJSToolsRev.MenuSEP'}" ng-click="nav('BPJSToolsRev.MenuSEP')">SEP</a>
+            </div>
+            <div class="grid_12">
+                <a class="n1" ng-class="{'active': currentState == 'BPJSToolsRev.MenuRujukan'}" ng-click="nav('BPJSToolsRev.MenuRujukan')">Rujukan</a>
+            </div>
+            <div class="grid_12">
+                <a class="n1" ng-class="{'active': currentState == 'BPJSToolsRev.MenuLPK'}" ng-click="nav('BPJSToolsRev.MenuLPK')">Lembar
+                    Pengajuan Klaim</a>
+            </div>
+            <div class="grid_12">
+                <a class="n1" ng-class="{'active': currentState == 'BPJSToolsRev.MenuMonitoring'}" ng-click="nav('BPJSToolsRev.MenuMonitoring')">Monitoring</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="grid_10">
+
+     
+    <div ui-view></div>
+</div>
+
+
+<!-- 
+<div class="grid_12">
+    <div class="panel panel-default panel-white">
+        <div class="panel-heading text-center btn"><span class="title">BPJS Tools</span></div>
+        <div class="panel-body">
+            <div class="grid_12">
+                <div class="breadcrum">
+                    <div class="grid_2">
+                        <a class="n1 text-center" ng-class="{'active': currentState == 'BPJSToolsRev.CekKepesertaanRev'}" ng-click="nav('BPJSToolsRev.CekKepesertaanRev')">Cek
+                            Kepesertaan
+                        </a>
+                    </div>
+                    <div class="grid_2">
+                        <a class="n1 text-center" ng-class="{'active': currentState == 'BPJSToolsRev.CekRujukanRev'}" ng-click="nav('BPJSToolsRev.CekRujukanRev')">Cek
+                            Rujukan
+                        </a>
+                    </div>
+                    <div class="grid_2">
+                        <a class="n1 text-center" ng-class="{'active': currentState == 'BPJSToolsRev.CekSepRev'}" ng-click="nav('BPJSToolsRev.CekSepRev')">Cek
+                            SEP
+                        </a>
+                    </div>
+                    <div class="grid_2">
+                        <a class="n1 text-center" ng-class="{'active': currentState == 'BPJSToolsRev.CreateSepRev'}" ng-click="nav('BPJSToolsRev.CreateSepRev')">Generate
+                            SEP
+                        </a>
+                    </div>
+                    <div class="grid_2">
+                        <a class="n1 text-center" ng-class="{'active': currentState == 'BPJSToolsRev.UpdateSepRev'}" ng-click="nav('BPJSToolsRev.UpdateSepRev')">Ubah
+                            SEP
+                        </a>
+                    </div>
+                    <div class="grid_2">
+                        <a class="n1 text-center" ng-class="{'active': currentState == 'BPJSToolsRev.HapusSepRev'}" ng-click="nav('BPJSToolsRev.HapusSepRev')">Hapus
+                            SEP
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="breadcrum">
+                    <div class="grid_2">
+                        <a class="n1 text-center" ng-class="{'active': currentState == 'BPJSToolsRev.UpdateTglPulangRev'}" ng-click="nav('BPJSToolsRev.UpdateTglPulangRev')">Update
+                            Tanggal Pulang</a>
+                    </div>
+                    <div class="grid_2">
+                        <a class="n1 text-center" ng-class="{'active': currentState == 'BPJSToolsRev.LembarPengajuanKlaim'}" ng-click="nav('BPJSToolsRev.LembarPengajuanKlaim')">Pembuatan
+                            LPK
+                        </a>
+                    </div>
+                    <div class="grid_2">
+                        <a class="n1 text-center" ng-class="{'active': currentState == 'BPJSToolsRev.DeleteLembarPengajuanKlaim'}" ng-click="nav('BPJSToolsRev.DeleteLembarPengajuanKlaim')">Hapus
+                            LPK
+                        </a>
+                    </div>
+                    <div class="grid_2">
+                        <a class="n1 text-center" ng-class="{'active': currentState == 'BPJSToolsRev.DataLembarPengajuanKlaim'}" ng-click="nav('BPJSToolsRev.DataLembarPengajuanKlaim')">Data
+                            Lembar Pengajuan Klaim</a>
+                    </div>
+                    <div class="grid_2">
+                        <a class="n1 text-center" ng-class="{'active': currentState == 'BPJSToolsRev.PengajuanSep'}" ng-click="nav('BPJSToolsRev.PengajuanSep')">Pengajuan
+                            SEP
+                        </a>
+                    </div>
+                    <div class="grid_2">
+                        <a class="n1 text-center" ng-class="{'active': currentState == 'BPJSToolsRev.ApprovalSep'}" ng-click="nav('BPJSToolsRev.ApprovalSep')">Approval
+                            SEP
+                        </a>
+                    </div>
+                    <div class="grid_2">
+                        <a class="n1 text-center" ng-class="{'active': currentState == 'BPJSToolsRev.IntegrasiInacbg'}" ng-click="nav('BPJSToolsRev.IntegrasiInacbg')">Integrasi
+                            SEP dgn Inacbg</a>
+                    </div>
+                    <div class="grid_2">
+                        <a class="n1 text-center" ng-class="{'active': currentState == 'BPJSToolsRev.CreateRujukan'}" ng-click="nav('BPJSToolsRev.CreateRujukan')">Pembuatan
+                            Rujukan
+                        </a>
+                    </div>
+                    <div class="grid_2">
+                        <a class="n1 text-center" ng-class="{'active': currentState == 'BPJSToolsRev.UpdateRujukan'}" ng-click="nav('BPJSToolsRev.UpdateRujukan')">Update
+                            Rujukan
+                        </a>
+                    </div>
+                    <div class="grid_2">
+                        <a class="n1 text-center" ng-class="{'active': currentState == 'BPJSToolsRev.DeleteRujukan'}" ng-click="nav('BPJSToolsRev.DeleteRujukan')">Hapus
+                            Rujukan
+                        </a>
+                    </div>
+                    <div class="grid_2">
+                        <a class="n1 text-center" ng-class="{'active': currentState == 'BPJSToolsRev.MonitoringKunjungan'}" ng-click="nav('BPJSToolsRev.MonitoringKunjungan')">Monitoring
+                            Kunjungan
+                        </a>
+                    </div>
+                    <div class="grid_2">
+                        <a class="n1 text-center" ng-class="{'active': currentState == 'BPJSToolsRev.MonitoringKlaim'}" ng-click="nav('BPJSToolsRev.MonitoringKlaim')">Monitoring
+                            Klaim
+                        </a>
+                    </div>
+                    <div class="grid_2">
+                        <a class="n1 text-center" ng-class="{'active': currentState == 'BPJSToolsRev.ReferensiVclaim'}" ng-click="nav('BPJSToolsRev.ReferensiVclaim')">Referensi</a>
+
+
+                    </div>
+                </div>
+            </div>
+            <div ui-view></div>
+        </div>
+
+    </div>
+</div> -->
+</div>
+<style type="text/css">
+    .k-button {
+        width: 100%;
+        font-weight: 600;
+        font-size: 100%;
+    }
+
+    .text-center {
+        text-align: center
+    }
+
+    .active {
+        background: blue;
+        color: #f6f6f6;
+        display: block;
+        padding: 10px;
+        font-size: 120%;
+    }
+
+    .btn {
+        display: block;
+        padding: 10px;
+    }
+</style>

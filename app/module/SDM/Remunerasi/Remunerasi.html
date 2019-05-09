@@ -1,0 +1,139 @@
+<div class="RemunerasiCtrl">
+    <div class="panel panel-default container_12" style="background-color:transparant">
+        <div class="panel-heading"><label class='title' c-label item="item" c-label-text="Menghitung Remunerasi Pegawai" real></label></div>
+        <div class="panel-body">
+            <div class="grid_2">
+                <span c-label c-label-text="Tahun" />
+                <input required style="width: 100%;" kendo-combo-box k-ng-model="selectedTahun" k-data-text-field="'id'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listTahun" />
+            </div>
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="Pegawai"></label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="pegawai" k-data-text-field="'namaLengkap'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="pegawais" />
+            </div>
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="Nilai Jabatan"></label> {{nilaiJabatan}}
+            </div>
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="PIR"></label>
+                <label class="c-label">
+                    Rp. {{nilaiPir|number:0}}
+                </label>
+            </div>
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="P1 P2"></label>
+                <label class="c-label">
+                    Rp. {{p1p2|number:0}}
+                </label>
+            </div>
+
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="P1 P2"></label>
+                <label class="c-label">
+                    Rp. {{positionP1|number:0}}
+                </label>
+            </div>
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="P1 P2"></label>
+                <input c-text-box type="input" filter="'numeric'" ng-model="adjustmenFactorIndeks" class="k-textbox" />
+            </div>
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="P2 Min"></label>
+                <label class="c-label">
+                    Rp. {{p2Min|number:0}}
+                </label>
+            </div>
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="P2"></label>
+                <label class="c-label">
+                    Rp. {{p2Iki|number:0}}
+                </label>
+            </div>
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="P2 Max"></label>
+                <label class="c-label">
+                    Rp. {{p2Max|number:0}}
+                </label>
+            </div>
+
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="Usulan Min"></label>
+                <label class="c-label">
+                    Rp. {{jumlahUsulanMin|number:0}}
+                </label>
+            </div>
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="Usulan"></label>
+                <label class="c-label">
+                    Rp. {{jumlahUsulanIki|number:0}}
+                </label>
+            </div>
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="Usulan Max"></label>
+                <label class="c-label">
+                    Rp. {{jumlahUsulanMax|number:0}}
+                </label>
+            </div>
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="P1 P2"></label>
+                <input c-text-box type="input" filter="'numeric'" ng-model="existing" class="k-textbox" />
+            </div>
+            <div class="grid_12">
+                <div class="grid_12">
+                    <md-toolbar layout="row" class="md-hue-3">
+                        <div class="md-toolbar-tools">
+                            <span>Kebutuhan Anggaran Remunerasi</span>
+                        </div>
+                    </md-toolbar>
+                </div>
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="P2 Min"></label>
+                    <label class="c-label">
+                    Rp. {{kebutuhanP2Min|number:0}}
+                </label>
+                </div>
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="P2"></label>
+                    <label class="c-label">
+                    Rp. {{kebutuhanP2Iki|number:0}}
+                </label>
+                </div>
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="P2 Max"></label>
+                    <label class="c-label">
+                    Rp. {{kebutuhanP2Max|number:0}}
+                </label>
+                </div>
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Usulan Min"></label>
+                    <label class="c-label">
+                    Rp. {{kebutuhanJumlahUsulanMin|number:0}}
+                </label>
+                </div>
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Usulan Min"></label>
+                    <label class="c-label">
+                    Rp. {{kebutuhanJumlahUsulanMin|number:0}}
+                </label>
+                </div>
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Usulan"></label>
+                    <label class="c-label">
+                    Rp. {{kebutuhanJumlahUsulanIki|number:0}}
+                </label>
+                </div>
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Usulan Max"></label>
+                    <label class="c-label">
+                    Rp. {{kebutuhanJumlahUsulanMax|number:0}}
+                </label>
+                </div>
+            </div>
+
+
+
+            <div class="grid_12">
+                <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+            </div>
+        </div>
+    </div>
+</div>

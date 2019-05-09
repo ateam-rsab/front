@@ -1,0 +1,39 @@
+<div ng-controller="InformasiDaftarPerencanaanRTDPCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Informasi Daftar Perencanaan (Pengendali Kegiatan)'" disabled>
+			<div class="grid_5" style="margin:50px">
+				<c-panel item="item" header="'Pencarian'" disabled>
+					<div class="grid_3" style="margin-top:20px">
+						<c-button ng-click="" style="width:100% !important">
+							<span style="font-size:10!important">Cari</span>
+						</c-button>
+					</div>
+					<div class="grid_8" style="margin-left:15px">
+						<label c-label item="item" c-label-text="noPerencanaan"></label>
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noPerencanaan"/>
+					</div>
+				</c-panel>
+			</div>
+
+			<div class="grid_12">
+				<div kendo-grid k-data-source="" k-selectable="'row'" k-columns="columnInfo"></div>
+			</div>
+
+			<div class="grid_12" style="margin-top:50px">
+				<div class="grid_7"></div>
+				<div class="grid_5">
+					<div class="grid_7">
+						<c-button ng-click="" style="width:100% !important">
+							<span style="font-size:10!important">Detail Perencanaan</span>
+						</c-button>
+					</div>
+					<div class="grid_5">
+						<c-button ng-click="Save()" style="width:100% !important">
+							<span style="font-size:10!important">Tutup</span>
+						</c-button>
+					</div>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

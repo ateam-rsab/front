@@ -1,0 +1,43 @@
+<div ng-controller="KoreksiDraftCtrl">
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Koreksi Draft Peraturan'">
+            <div class="panel panel-default container_12">
+                <div class="panel-body">
+                    <div class="grid_12" style="margin-top: 10px">
+                        <div class="grid_3">
+                            <div class="grid_12" style="margin-top: 10px">
+                                <label c-label item="item" c-label-text="noPeraturan"></label>
+                            </div>
+                            <div class="grid_12" style="margin-top: 25px">
+                                <label c-label item="item" c-label-text="draftPeraturan"></label>
+                            </div>                            
+                            <div class="grid_12" style="margin-top: 90px">
+                                <label c-label item="item" c-label-text="koreksiDraftPeraturan"></label>
+                            </div>
+                        </div>
+                        <div class="grid_8">
+                            <div class="grid_12">
+                                <div class="grid_5">
+                                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noPeraturan" ng-disabled="disableNoPeraturan" />
+                                </div>
+                            </div>
+                            <div class="grid_12" style="margin-top: 5px">
+                                <div class="grid_7">
+                                    <textarea c-text-box type="input" class="k-textbox" ng-model="item.draftPeraturan" style="width: 100%; height: 80px;" ng-disabled="disableDraftPeraturan"></textarea>
+                                </div>
+                            </div>                            
+                            <div class="grid_12" style="margin-top: 5px">
+                                <div class="grid_7">
+                                    <textarea c-text-box type="input" class="k-textbox" ng-model="item.koreksiDraftPeraturan" style="width: 100%; height: 140px;"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_12" style="margin-top:15px">
+                        <div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
+                    </div>
+                </div>
+            </div>
+        </c-panel>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+{
+    "id": "",
+	"punggung": "",
+    "attributes" : [{
+		"isNull" : "true",
+		"name" : "punggung",
+		"messagesRequired" : "Punggung Harus Diisi",
+		"caption" : "Punggung"
+	}
+	]
+}

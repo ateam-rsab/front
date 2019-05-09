@@ -1,0 +1,357 @@
+<style>
+.avatar {
+    float: left;
+    margin-top: 1em;
+    margin-right: 1em;
+    position: relative;
+
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+
+    -webkit-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+    box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0,0,0,.2);
+}
+
+.k-item {
+    background-color: #2a2d33 !important;
+}
+
+.k-menu .k-item, .k-menu.k-header {
+    border-color: #2a2d33 !important;
+}
+
+.box-profile {
+    z-index: 99;
+    position: absolute;
+    top: 65px;
+    right: 4px;
+    width: auto;
+    background-color: #2a2d33;
+    border: 4px solid #10c4b2;
+}
+
+.box-notification {
+    z-index: 99;
+    position: absolute;
+    top: 65px;
+    right: 4px;
+    width: 300px;
+    background-color: #2a2d33;
+    height: auto;
+    max-height: 500px; 
+    overflow-y: scroll;
+    border: 4px solid #10c4b2;
+}
+
+.cont-hover {
+    z-index: 999;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(42, 45, 51, 0.5);
+}
+
+
+.form-login{
+    width: 300px;
+    height: auto;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -70px 0 0 -170px;
+    background-color: #2a2d33;
+    border: 1px solid #10c4b2;
+}
+
+.notif-number{
+    z-index: 99;
+    position: absolute;
+    top: 10px;
+    right: 0px;
+    color: white;
+    background-color: red;
+    border-radius: 100%;
+    padding: 4px;
+    text-align: center;
+    font-size: 8px;
+    font-weight: bolder;
+    width: 10px;
+    height: 10px;
+}
+
+
+
+</style>
+
+<div ng-controller="HeaderCtrl">
+    <div class="container" style="padding:0; margin:0">
+        
+        <!-- logo baru -->
+        <!-- syamsu hide menu-->
+        <div id="logo-bar">
+            <i class="fa fa-bars fa-2x" 
+            style="position: absolute;
+            top: 19px;
+            left: 20px;" aria-hidden="true" ng-click="showMenu()" ng-hide="showMenuUtama"></i>
+            <div>
+                <img src="images/logo/smart-rsab-logo.png" 
+                style=" border-right: 2px solid #8b8d90;
+                width: 6%;
+                padding: 10px 50px 10px 75px;
+                display: inline-block;"">
+                <span class="c-color sub-title" 
+                style="display: inline-block;
+                margin: 14px 0px 0px 50px;
+                position: absolute;">Terdepan Dalam Layanan Kesehatan Perempuan, Perinatal dan Anak</span>
+            </div>
+        </div>
+
+        <!-- logo lama -->
+        <!--
+        <div id="logo-bar">
+            <i class="fa fa-bars fa-2x" style="    position: absolute;top: 15px;" aria-hidden="true" ng-click="showMenu()"></i>
+            <div>
+                <span class="title" style="color: white;margin-left:27px;">SMART<span class="c-color">&nbsp; RSAB </span></span>
+                <span class="c-color sub-title">a Terdepan Dalam Layanan Kesehatan Perempuan, Perinatal dan Anak </span>
+            </div>
+        </div>
+        -->
+        <!-- pop up login -->
+        <div class="cont-hover" ng-show="showRootFormlogin">
+            <div class="form-login">
+                 <i class="fa fa-close" style="top: 10px;
+                    right: 0px;
+                    position: absolute;
+                    color: #bbbcbd;
+                    margin-right: 15px;
+                    cursor: pointer;" ng-click="hideHover('showRootFormlogin')"></i>
+
+                <!-- Username -->
+                <div class="grid_12">
+                    <div class="grid_12">
+                        <label style="color:white">Username</label>
+                    </div>
+                    <div class="clear"></div>
+
+                    <div class="grid_12">
+                        <input type="input" filter="" class="k-textbox" ng-model="dataLoginSupervisor.UserName"/>
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="grid_12">
+                    <div class="grid_12">
+                        <label style="color:white">Password</label>
+                    </div>
+                    <div class="clear"></div>
+
+                    <div class="grid_12">
+                        <input type="password" filter="" class="k-textbox" ng-model="dataLoginSupervisor.Password"/>
+                    </div>
+                </div>
+
+                 <!-- Button -->
+                <div class="grid_12" style="padding: 0px;">
+                    <div class="grid_6" style="padding-right: 0px;">
+                        <button class='btnEdit' ng-click="loginSuperUser()"> Login </button> <span style="color:white">{{msgErorLoginSupervisor}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- pop up password -->
+        <div class="cont-hover" ng-show="showRootAuthPassword">
+            <div class="form-login">
+                 <i class="fa fa-close" style="top: 10px;
+                    right: 0px;
+                    position: absolute;
+                    color: #bbbcbd;
+                    margin-right: 15px;
+                    cursor: pointer;" ng-click="hideHoverConfirmPassword()"></i>
+                 <!-- Username -->
+                <div class="grid_12">
+                    <div class="grid_12">
+                        <label style="color:white">Nama User</label>
+                    </div>
+                    <div class="clear"></div>
+
+                    <div class="grid_12">
+                        <input type="text" filter="" class="k-textbox" ng-model="dataConfirmUser"/>
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="grid_12">
+                    <div class="grid_12">
+                        <label style="color:white">Password</label>
+                    </div>
+                    <div class="clear"></div>
+
+                    <div class="grid_12">
+                        <input type="password" filter="" class="k-textbox" ng-model="dataConfirmPassword"/>
+                    </div>
+                </div>
+                 <!-- Kelompok USer -->
+                <div class="grid_12">
+                    <div class="grid_12">
+                        <label style="color:white">Kelompok User</label>
+                    </div>
+                    <div class="clear"></div>
+
+                    <div class="grid_12">
+                        <input type="text" filter="" class="k-textbox" ng-model="dataConfirmKelompokUser" disabled="" />
+                    </div>
+                </div>
+
+
+                 <!-- Button -->
+                <div class="grid_12" style="padding: 0px;">
+                    <div class="grid_6" style="padding-right: 0px;">
+                        <button class='btnEdit' ng-click="submitPassword()"> Ok </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- box profile -->
+        <div class="box-profile" ng-show='isShowBoxProfile'>
+            <table style="color: white; padding: 10px;">
+                <tr>
+                    <td style="text-align: right;">Nama Pegawai : </td>
+                    <td>{{dataPegawai.namaLengkap}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">Jenis Kelamin : </td>
+                    <td>{{dataPegawai.jenisKelamin.jenisKelamin}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">Jabatan Struktural : </td>
+                    <td>{{dataPegawai.jabatanFungsional.namaJabatan}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">Jenis Pegawai : </td>
+                    <td>{{dataPegawai.jenisPegawai.jenisPegawai}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">Tgl. Login : </td>
+                    <td>{{tglSkrg}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;">No. Mobile : </td>
+                    <td ng-hide="showEditNohandphone">{{dataPegawai.noHandphone}}</td>
+                    <td ng-show="showEditNohandphone"><input type="input" filter="" class="k-textbox" ng-model="dataTemp"/></td>
+                    
+                    <td ng-hide="showEditNohandphone" style="width: 150px"><button class='btnEdit'" ng-click="editDataProfile('noHandphone', 'showEditNohandphone')"> Edit </button></td>
+                    <td ng-show="showEditNohandphone" style="width: 150px">
+                    <button class='btnEdit'" ng-click="confirmEditprofile('noHandphone', 'showEditNohandphone')"> Ok </button>
+                    <button class='btnEdit'" ng-click="cancelEditProfile('showEditNohandphone')"> Cancel </button>
+                    </td>
+
+                
+                </tr>
+                <tr>
+                    <td style="text-align: right;">Alamat Email : </td>
+                    <td ng-hide="showEditEmail">{{dataPegawai.email}}</td>
+                    <td ng-show="showEditEmail"><input type="input" filter="" class="k-textbox" ng-model="dataTemp"/></td>
+                    
+                    <td ng-hide="showEditEmail" style="width: 150px"><button class='btnEdit'" ng-click="editDataProfile('email', 'showEditEmail')"> Edit </button></td>
+                    <td ng-show="showEditEmail" style="width: 150px">
+                    <button class='btnEdit'" ng-click="confirmEditprofile('email', 'showEditEmail')"> Ok </button>
+                    <button class='btnEdit'" ng-click="cancelEditProfile('showEditEmail')"> Cancel </button>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td style="text-align: right;">Kata Sandi : </td>
+                    <td ng-hide="showEditPassword">*****</td>
+                    <td ng-show="showEditPassword"><input type="input" filter="" class="k-textbox" ng-model="dataTemp"/></td>
+                    
+                    <td ng-hide="showEditPassword" style="width: 150px"><button class='btnEdit'" ng-click="editDataPassword('showEditPassword')"> Edit </button></td>
+                    <td ng-show="showEditPassword" style="width: 150px">
+                    <button class='btnEdit'" ng-click="confirmDataPassword('showEditPassword')"> Ok </button>
+                    <button class='btnEdit'" ng-click="cancelEditDataPassword('showEditPassword')"> Cancel </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align: right;"><button ng-click="doLogout()" class="btnTemplate1" style="margin:0px 0px 0px 0px;background-color: #000;">Logout</button></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- box profile -->
+        <div class="box-notification" ng-show='isShowBoxNotification' ng-if="listNotification.length > 0">
+            <table style="color: white; padding: 10px;">
+                <tr ng-repeat="notif in listNotification" style="cursor: pointer;" ng-click="checkNotif(notif)">
+                    <td style="text-align: left;">
+                        <p style="margin: 2px; font-weight: bold; ">{{notif.title}}</p>
+                        <p style="margin: 2px;">Dari : {{notif.fromPegawai}}</p>
+                        <p style="margin: 2px;" ng-hide="notif.unitKerja == null">Unit Kerja : {{notif.unitKerja}}</p>
+                        <p style="margin: 2px;">{{notif.description}}</p>
+                        <p style="margin: 2px;font-size: 11px;text-align: right;">{{notif.date}}</p>
+                        <hr style="margin: 15px 0px; border: 0.5px solid #68696b;"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        
+        <div class="nav-buttons" k-content 
+        style="position: absolute;
+        right: 30px;
+        top: 6px;">
+            <ul id="NavigationMenu" kendo-menu k-orientation="menuOrientation" k-rebind="menuOrientation">
+                <!--<li ng-repeat="menu in listMenuHeader" style="background-color: #2a2d33 !important">
+                    <a href="{{menu.link}}">{{menu.caption}}aa</a>
+                </li>-->
+                <li ng-click="showBoxProfile()">
+                    <img class="avatar" src="resources/images/docters.jpg" alt="avatar" style="width:40px" />
+                </li>
+            </ul>
+        </div>
+        <div style="top: 0px;right: 5px;position: absolute;">
+        <div style="position: relative;">
+            <span class="notif-number" ng-if="listNotification.length > 0">{{listNotification.length}}</span>
+            <span class="badge" style="top: 23px;">
+            <i class=" fa fa-bell" aria-hidden="true" ng-click='showBoxNotification()'></i>
+        </span>
+        </div>
+        </div>
+    </div>
+    <div ng-show='hide' class="grid_6" style='position: fixed;
+    height: 109px;
+    right: 0;
+    top: 0;'>
+        <ul class="list-menu" style="    position: absolute;
+    top: 40px;
+    right: 29px;">
+            <li><img src="stylesheets/Radiologi/first.png" ng-click='first()' /></li>
+            <li><img src="stylesheets/Radiologi/back.png" ng-click='back()' /></li>
+            <li><img src="stylesheets/Radiologi/next.png" ng-click='next()' /></li>
+            <li><img src="stylesheets/Radiologi/last.png" ng-click='last()' /></li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $("#NavigationMenu").kendoMenu();
+    });
+
+    $(document.body).keydown(function(e) {
+        if (e.altKey && e.keyCode == 87) {
+            $("#NavigationMenu").focus();
+        }
+    });
+</script>

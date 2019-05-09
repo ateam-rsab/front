@@ -1,0 +1,13 @@
+{
+	"model":{
+	    "ComboBox" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "ComboBox",
+			"messagesRequired" : "",
+			"caption" : "Label ComboBox"
+		}
+  ]
+}

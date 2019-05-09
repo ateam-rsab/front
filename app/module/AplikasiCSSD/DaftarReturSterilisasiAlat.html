@@ -1,0 +1,39 @@
+<c-panel item="item" header="'Daftar Retur Sterilisasi Alat'">
+	<div class="grid_12">
+<!-- 		<div class="grid_2">
+			<label c-label item="item" style="margin-top: 10px">No Order</label>
+			<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noOrder"/>
+		</div>
+		<div class="grid_2">
+			<label c-label item="item" style="margin-top: 10px">No Kirim</label>
+			<label c-label item="item" style="margin-top: 10px">No Retur</label>
+			<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noKirim"/>
+		</div> -->
+		<div class="grid_2">
+			<label c-label item="item" style="margin-top: 10px">Pencarian</label>
+			<!-- <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="Pencarians" placeholder="No Order / No Kirim" /> -->
+			 <input class=k-textbox type=text ng-model="Pencarians" placeholder="No Order / No Kirim" />
+		</div>
+		<div class="grid_2">
+			<label c-label item="item" style="margin-top: 10px">Periode Awal</label>
+			<input style="width: 100%" kendo-date-picker k-ng-model="item.tglAwal" k-format="'yyyy-MM-dd'" k-on-change="ChangeDate()"/>
+		</div>
+		<div class="grid_2">
+			<label c-label item="item" style="margin-top: 10px">Periode Akhir</label>
+			<input style="width: 100%" kendo-date-picker k-ng-model="item.tglAkhir" k-format="'yyyy-MM-dd'" k-on-change="ChangeDate()"/>
+		</div>
+		<div class="grid_1">
+			<button style="margin-top: 32px" class="c-button" ng-click="cari(Pencarians)">Cari</button>
+		</div>
+		<div class="grid_1">
+			<button style="margin-top: 32px" class="c-button" ng-click="Refresh()">Refresh</button>
+		</div>
+	</div>
+	
+	<div class="grid_12">
+		<!-- <div class="grid_10"> -->
+			<kendo-grid id="grid" options="gridDistribusiInternal" k-data-source="dataSource"></kendo-grid>
+<!-- 		</div> -->
+	</div>
+	
+</c-panel>

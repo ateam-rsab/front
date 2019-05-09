@@ -1,0 +1,185 @@
+<style>
+    .style-center{
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+    }
+
+    .style-right{
+        display: inline-block;
+        text-align: right;
+        width: 100%;
+    }
+
+    .style-left{
+        display: inline-block;
+        text-align: left;
+        width: 100%;
+    }
+</style>
+<!-- <div class="DashboardPenerimaanCtrl"> -->
+    <div class="grid_12">
+        <div class="grid_4">
+            <div class="grid_3" style="margin-top: 8px" >
+                <label c-label c-label-text="Dashboard :"></label>
+            </div>
+            <div class="grid_3">
+                <input  k-ng-model='from' k-value='now' kendo-date-picker placeholer="dd-mmm-yyyy" k-format="'dd-MMM-yyyy'" />
+            </div>
+            <div class="grid_1" style="margin-left: 60px;margin-top: 10px" >
+                <!-- <label c-label c-label-text="s/d"></label> -->
+                s/d
+            </div>
+            <div class="grid_3">
+                <input  k-ng-model='until' k-value='now' kendo-date-picker placeholer="dd-mmm-yyyy" k-format="'dd-MMM-yyyy'" />
+            </div>
+        </div>
+        <!-- <div class="grid_1">
+            <button class="c-button"  ng-click="loadCari()">LoadData</button>
+        </div> -->
+    </div>
+    <div class="grid_12 headerBox">
+        <h1 style="color: white;"><b>DASHBOARD INDIKATOR KINERJA TERPILIH</b></h1>
+    </div>
+    <div class="grid_6">
+        <div class="grid_12">
+            <label c-label item="item" c-label-text="Kategori "></label>
+        </div>
+        <div class="clear"></div>
+
+        <div class="grid_12">
+            <input style="width: 100%;" kendo-combo-box k-ng-model="item.kategori" k-data-text-field="'nama'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKategori" />
+        </div>
+    </div>
+    <!-- Button Search -->
+    <div class="grid_1">
+        <div class="grid_12">
+            <label>&nbsp;</label>
+        </div>
+        <div class="clear"></div>
+
+        <div class="grid_12">
+            <button class="btnTemplate1" style="margin-left: 0;" ng-click="SearchData()">Cari</button>
+        </div>
+    </div>
+    <div class="grid_12">
+        <!-- <div class="demo-section k-content wide"> -->
+            <!-- <div id="chart" 
+                 k-series-hover="onSeriesHover" ng-click="klikChart(chart)" style="background: center no-repeat url('../content/shared/styles/world-map.png');"></div> -->
+        <!-- </div> -->
+        <div class="grid_6">
+            <div kendo-chart k-options="chart1" k-data-source="sourcechart"></div>
+        </div>
+        <div class="grid_6">
+            <div kendo-chart k-options="chart2" k-data-source="sourcechart"></div>
+        </div>
+    </div>
+    <div class="grid_12" ng-show='detailShow'>
+        <div class="grid_12 headerBox">
+            <p>Details</p>
+        </div>
+        <!-- grid table -->
+         <div class="grid_12 borderBox">
+            <div id="kGrid" 
+            kendo-grid k-data-source="dataGridVisite" 
+            k-groupable="'true'" 
+            k-aggregate='aggregate'
+            k-selectable="'row'" 
+            k-columns="columnGridVisite" 
+            k-pageable="'true'" 
+            k-sortable="'true'" 
+            k-ng-model="dataSelectedGridVisite">
+            </div>
+        </div>
+       
+    </div>
+    <div class="grid_12" ng-show='gridShow'>
+        <div class="grid_12">
+            <div class="grid_12 headerBox">
+                <p>Details</p>
+            </div>
+            <!-- grid table -->
+             <div class="grid_12 borderBox">
+                <div id="kGrid" 
+                kendo-grid k-data-source="dataGrid1" 
+                k-selectable="'row'" 
+                k-groupable="'true'" 
+                k-aggregate='aggregates'
+                k-columns="columnGrid1" 
+                k-pageable="'true'" 
+                k-sortable="'true'" 
+                k-ng-model="dataSelected1">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid_12" ng-show='gridShow1'>
+        <div class="grid_12">
+            <div class="grid_12 headerBox">
+                <p>Details</p>
+            </div>
+            <!-- grid table -->
+             <div class="grid_12 borderBox">
+                <div id="kGrid" 
+                kendo-grid k-data-source="dataGrid3" 
+                k-selectable="'row'" 
+                k-groupable="'true'" 
+                k-aggregate='aggregatess'
+                k-columns="columnGrid3" 
+                k-pageable="'true'" 
+                k-sortable="'true'" 
+                k-ng-model="dataSelected2">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid_12" ng-show='gridShow2'>
+        <div class="grid_12">
+            <div class="grid_12 headerBox">
+                <p>Details</p>
+            </div>
+            <!-- grid table -->
+             <div class="grid_12 borderBox">
+                <div id="kGrid" 
+                kendo-grid k-data-source="dataGrid2" 
+                k-selectable="'row'" 
+                k-groupable="'true'" 
+                k-aggregate='aggregatesss'
+                k-columns="columnGrid2" 
+                k-pageable="'true'" 
+                k-sortable="'true'" 
+                k-ng-model="dataSelected3">
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- <div class="grid_7">
+            <div class="grid_12 headerBox">
+                <p>Item By Pegawai</p>
+            </div> -->
+            <!-- grid table -->
+             <!-- <div class="grid_12 borderBox">
+                <div id="kGrid" 
+                kendo-grid k-data-source="dataGrid2" 
+                k-selectable="'row'" 
+                k-columns="columnGrid2" 
+                k-pageable="'true'" 
+                k-sortable="'true'" 
+                k-ng-model="dataSelected2">
+                </div>
+            </div>
+            <div class="grid_6">
+            </div>
+            <div class="grid_6">
+                <div class="grid_3">
+                </div>
+                <div class="grid_3">
+                    <label c-label item="item">Sub Total</label>
+                </div>
+
+                <div class="grid_6" style="margin-top: -12px">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.subTotal2"  style="text-align: right;"/>
+                </div>
+            </div>
+        </div>
+    </div> -->

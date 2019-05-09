@@ -1,0 +1,58 @@
+<div class="grid_12">
+    <c-panel item="item" header="'Input Jumlah Cuti'"disabled>
+    <div class="panel panel-default container">
+        <div class="grid_6">
+            <div class="grid_3">
+                <label c-label item="item" class="label-aja" c-label-text="Periode(Tahun)"></label>
+                <input style="width: 100% " kendo-date-picker k-ng-model="item.periode" k-options="formatThn" k-auto-bind="true"/>
+                <!--<input style="width: 100%;" kendo-combo-box k-ng-model="item.tahun" k-data-text-field="'komponenIndex'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listStatusPegawai"/>-->
+            </div>
+            <div class="grid_8">
+                <label c-label item="item" class="label-aja" c-label-text="Komponen Index"></label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.komponenIndex" k-data-text-field="'komponenIndex'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listStatusPegawai"/>
+            </div>
+		</div>
+        <div class="grid_6">
+            <div class="grid_12">
+                <!--<label c-label item="item" c-label-text="Kelompok Shift" style="padding-left:6px"></label>-->
+                <h3 style="text-align:left">Kelompok Shift</h3>
+            </div>
+            <div class="grid_12" ng-repeat="list in kelompokShift | orderBy: 'id'">
+                <div class="grid_3">
+                    <label class="displayInline">
+                        <span class="number">{{list.id}}.</span>
+                        <span>{{list.name}}</span>
+                    </label>
+                </div>
+                <div class="grid_4">
+                    <input kendo-numeric-text-box k-ng-model="list.value" k-options="formatInt"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    </c-panel>
+    <div class="grid_12">
+        <div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
+    </div>
+</div>
+<div ng-include="'../app/module/Shared/TemplateLoading'"></div>
+<style type="text/css">
+.label-aja {
+	padding-top:12px;font-size:13px;font-weight:bold;
+}
+.displayascell {
+    display: table-cell;
+    vertical-align: middle;
+    height: 50px;
+}
+.number {
+    display: inline-block;
+    width: 16px
+}
+.displayInline {
+    display: block;
+    margin-top: 10px
+}
+</style>
+
+

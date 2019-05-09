@@ -1,0 +1,921 @@
+{
+    "model": {
+        "pegawai": {},
+        "kdProfile": "",
+        "isRegistrasiLengkap": "",
+        "isOnSiteService": "",
+        "noRec": "",
+        "statusEnabled": "",
+        "tglRegistrasi": "",
+        "kelompokPasien": {},
+        "ruangan": {},
+        "pasien": {},
+        "asalRujukan": {
+
+        }
+    },
+    "attributes": [{
+        "name": "ruangan.kdProfile",
+        "type": "short"
+    }, {
+        "name": "ruangan.statusEnabled",
+        "type": "Boolean"
+    }, {
+        "name": "ruangan.id",
+        "type": "Integer"
+    }, {
+        "name": "ruangan.noRec",
+        "type": "String"
+    }, {
+        "name": "ruangan.reportDisplay",
+        "type": "String"
+    }, {
+        "name": "ruangan.kodeExsternal",
+        "type": "String"
+    }, {
+        "name": "ruangan.namaExternal",
+        "type": "String"
+    }, {
+        "name": "ruangan.alamatEmail",
+        "caption": "AlamatVO Email",
+        "type": "String"
+    }, {
+        "name": "ruangan.faksimile",
+        "caption": "Faksimile",
+        "type": "String"
+    }, {
+        "name": "ruangan.fixedPhone",
+        "caption": "Fixed Phone",
+        "type": "String"
+    }, {
+        "name": "ruangan.jamBuka",
+        "caption": "Jam Buka",
+        "type": "String"
+    }, {
+        "name": "ruangan.jamTutup",
+        "caption": "Jam Tutup",
+        "type": "String"
+    }, {
+        "isNull": false,
+        "name": "ruangan.departemen",
+        "messagesRequired": "Object DepartemenVO Harus Diisi",
+        "caption": "Object Departemen",
+        "type": "DepartemenVO"
+    }, {
+        "isNull": true,
+        "name": "ruangan.departemenId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "ruangan.kelasHead",
+        "caption": "Object KelasVO Head",
+        "type": "KelasVO"
+    }, {
+        "isNull": true,
+        "name": "ruangan.kelasHeadId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "ruangan.modulAplikasi",
+        "caption": "Object Modul Aplikasi",
+        "type": "ModulAplikasiVO"
+    }, {
+        "isNull": true,
+        "name": "ruangan.modulAplikasiId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "ruangan.pegawaiKepala",
+        "caption": "Object PegawaiVO Kepala",
+        "type": "LoginUserVO"
+    }, {
+        "isNull": true,
+        "name": "ruangan.pegawaiKepalaId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "ruangan.kdRuangan",
+        "caption": "Kode Ruangan",
+        "type": "String"
+    }, {
+        "name": "ruangan.lokasiRuangan",
+        "caption": "LokasiVO Ruangan",
+        "type": "String"
+    }, {
+        "name": "ruangan.mobilePhone",
+        "caption": "Mobile Phone",
+        "type": "String"
+    }, {
+        "name": "ruangan.namaRuangan",
+        "caption": "Nama Ruangan",
+        "type": "String"
+    }, {
+        "name": "ruangan.noCounter",
+        "caption": "No Counter",
+        "type": "Integer"
+    }, {
+        "name": "ruangan.noRuangan",
+        "caption": "No Ruangan",
+        "type": "String"
+    }, {
+        "name": "ruangan.prefixNoAntrian",
+        "caption": "Prefix No Antrian",
+        "type": "String"
+    }, {
+        "name": "ruangan.qRuangan",
+        "caption": "QRuangan",
+        "type": "short"
+    }, {
+        "name": "ruangan.statusViewData",
+        "caption": "Status View Data",
+        "type": "Boolean"
+    }, {
+        "name": "ruangan.website",
+        "caption": "Website",
+        "type": "String"
+    }, {
+        "name": "pasien.kdProfile",
+        "type": "short"
+    }, {
+        "name": "pasien.statusEnabled",
+        "type": "Boolean"
+    }, {
+        "name": "pasien.id",
+        "type": "Integer"
+    }, {
+        "name": "pasien.noRec",
+        "type": "String"
+    }, {
+        "name": "pasien.reportDisplay",
+        "type": "String"
+    }, {
+        "name": "pasien.kodeExsternal",
+        "type": "String"
+    }, {
+        "name": "pasien.namaExternal",
+        "type": "String"
+    }, {
+        "name": "pasien.bankRekeningAtasNama",
+        "caption": "Bank Rekening Atas Nama",
+        "type": "String"
+    }, {
+        "name": "pasien.bankRekeningNama",
+        "caption": "Bank Rekening Nama",
+        "type": "String"
+    }, {
+        "name": "pasien.bankRekeningNomor",
+        "caption": "Bank Rekening Nomor",
+        "type": "String"
+    }, {
+        "name": "pasien.isTemporary",
+        "caption": "Is Temporary",
+        "type": "Byte"
+    }, {
+        "name": "pasien.agama",
+        "caption": "Object Agama",
+        "type": "AgamaVO"
+    }, {
+        "isNull": true,
+        "name": "pasien.agamaId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pasien.kdGolonganDarah",
+        "caption": "Object Golongan Darah",
+        "type": "GolonganDarahVO"
+    }, {
+        "isNull": true,
+        "name": "pasien.golonganDarahId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pasien.jabatan",
+        "caption": "Object Jabatan",
+        "type": "JabatanVO"
+    }, {
+        "isNull": true,
+        "name": "pasien.jabatanId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "isNull": false,
+        "name": "pasien.jenisKelamin",
+        "messagesRequired": "Object Jenis Kelamin Harus Diisi",
+        "caption": "Object Jenis Kelamin",
+        "type": "JenisKelaminVO"
+    }, {
+        "isNull": true,
+        "name": "pasien.jenisKelaminId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "isNull": false,
+        "name": "pasien.kelompokUmur",
+        "messagesRequired": "Object Kelompok Umur Harus Diisi",
+        "caption": "Object Kelompok Umur",
+        "type": "KelompokUmurVO"
+    }, {
+        "isNull": true,
+        "name": "pasien.kelompokUmurId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pasien.lokasiDokumenRM",
+        "caption": "Object LokasiVO DokumenVO R M",
+        "type": "LokasiVO"
+    }, {
+        "isNull": true,
+        "name": "pasien.lokasiDokumenRMId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "isNull": false,
+        "name": "pasien.negara",
+        "messagesRequired": "Object NegaraVO Harus Diisi",
+        "caption": "Object Negara",
+        "type": "NegaraVO"
+    }, {
+        "isNull": true,
+        "name": "pasien.negaraId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pasien.pegawai",
+        "caption": "Object Pegawai",
+        "type": "LoginUserVO"
+    }, {
+        "isNull": true,
+        "name": "pasien.pegawaiId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "isNull": false,
+        "name": "pasien.pekerjaan",
+        "messagesRequired": "Object PekerjaanVO Harus Diisi",
+        "caption": "Object Pekerjaan",
+        "type": "PekerjaanVO"
+    }, {
+        "isNull": true,
+        "name": "pasien.pekerjaanId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "isNull": false,
+        "name": "pasien.pendidikan",
+        "messagesRequired": "Object PendidikanVO Harus Diisi",
+        "caption": "Object Pendidikan",
+        "type": "PendidikanVO"
+    }, {
+        "isNull": true,
+        "name": "pasien.pendidikanId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pasien.statusPerkawinan",
+        "caption": "Object Status Perkawinan",
+        "type": "StatusPerkawinanVO"
+    }, {
+        "isNull": true,
+        "name": "pasien.statusPerkawinanId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pasien.suku",
+        "caption": "Object Suku",
+        "type": "SukuVO"
+    }, {
+        "isNull": true,
+        "name": "pasien.sukuId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "isNull": false,
+        "name": "pasien.title",
+        "messagesRequired": "Object Title Harus Diisi",
+        "caption": "Object Title",
+        "type": "TitlePasienVO"
+    }, {
+        "isNull": true,
+        "name": "pasien.titleId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pasien.namaAyah",
+        "caption": "Nama Ayah",
+        "type": "String"
+    }, {
+        "name": "pasien.namaIbu",
+        "caption": "Nama Ibu",
+        "type": "String"
+    }, {
+        "name": "pasien.namaKeluarga",
+        "caption": "Nama Keluarga",
+        "type": "String"
+    }, {
+        "name": "pasien.namaKepalaKK",
+        "caption": "Nama Kepala K K",
+        "type": "String"
+    }, {
+        "name": "pasien.namaPanggilan",
+        "caption": "Nama Panggilan",
+        "type": "String"
+    }, {
+        "name": "pasien.namaPasien",
+        "caption": "Nama Pasien",
+        "type": "String"
+    }, {
+        "name": "pasien.namaSuamiIstri",
+        "caption": "Nama Suami Istri",
+        "type": "String"
+    }, {
+        "name": "pasien.nipPenjabatTandaTgnKK",
+        "caption": "NI P_ Penjabat Tanda Tgn K K",
+        "type": "String"
+    }, {
+        "name": "pasien.noCm",
+        "caption": "No C M",
+        "type": "String"
+    }, {
+        "name": "pasien.noCmAyah",
+        "caption": "No C M Ayah",
+        "type": "String"
+    }, {
+        "name": "pasien.noCmIbu",
+        "caption": "No C M Ibu",
+        "type": "String"
+    }, {
+        "name": "pasien.noCmSuamiIstri",
+        "caption": "No C M Suami Istri",
+        "type": "String"
+    }, {
+        "name": "pasien.noIdentitas",
+        "caption": "No Identitas",
+        "type": "String"
+    }, {
+        "name": "pasien.noKK",
+        "caption": "No K K",
+        "type": "String"
+    }, {
+        "name": "pasien.npwp",
+        "caption": "NP W P",
+        "type": "String"
+    }, {
+        "name": "pasien.pejabatTandaTgnKK",
+        "caption": "Pejabat Tanda Tgn K K",
+        "type": "String"
+    }, {
+        "name": "pasien.photoDiri",
+        "caption": "Photo Diri",
+        "type": "String"
+    }, {
+        "name": "pasien.qPasien",
+        "caption": "QPasien",
+        "type": "Integer"
+    }, {
+        "name": "pasien.qtyImunisasi",
+        "caption": "Qty Imunisasi",
+        "type": "Byte"
+    }, {
+        "name": "pasien.statusRhesus",
+        "caption": "Status Rhesus",
+        "type": "String"
+    }, {
+        "name": "pasien.tempatLahir",
+        "caption": "Tempat Lahir",
+        "type": "String"
+    }, {
+        "name": "pasien.tglDaftar",
+        "caption": "Tanggal Daftar",
+        "type": "Date"
+    }, {
+        "name": "pasien.tglKK",
+        "caption": "Tanggal K K",
+        "type": "Date"
+    }, {
+        "name": "pasien.tglLahir",
+        "caption": "Tanggal Lahir",
+        "type": "Date"
+    }, {
+        "name": "pasien.tglTemporary",
+        "caption": "Tanggal Temporary",
+        "type": "Date"
+    }, {
+        "name": "pasien.alamats",
+        "type": "Set"
+    }, {
+        "name": "asalRujukan.kdProfile",
+        "type": "short"
+    }, {
+        "name": "asalRujukan.statusEnabled",
+        "type": "Boolean"
+    }, {
+        "name": "asalRujukan.id",
+        "type": "Integer"
+    }, {
+        "name": "asalRujukan.noRec",
+        "type": "String"
+    }, {
+        "name": "asalRujukan.reportDisplay",
+        "type": "String"
+    }, {
+        "name": "asalRujukan.kodeExsternal",
+        "type": "String"
+    }, {
+        "name": "asalRujukan.namaExternal",
+        "type": "String"
+    }, {
+        "name": "asalRujukan.asalRujukan",
+        "caption": "Asal Rujukan",
+        "type": "String"
+    }, {
+        "name": "asalRujukan.kdAsalRujukan",
+        "caption": "Kode Asal Rujukan",
+        "type": "String"
+    }, {
+        "name": "asalRujukan.qAsalRujukan",
+        "caption": "QAsal Rujukan",
+        "type": "Byte"
+    }, {
+        "name": "pegawai.kdProfile",
+        "type": "short"
+    }, {
+        "name": "pegawai.statusEnabled",
+        "type": "Boolean"
+    }, {
+        "name": "pegawai.id",
+        "type": "Integer"
+    }, {
+        "name": "pegawai.noRec",
+        "type": "String"
+    }, {
+        "name": "pegawai.reportDisplay",
+        "type": "String"
+    }, {
+        "name": "pegawai.kodeExsternal",
+        "type": "String"
+    }, {
+        "name": "pegawai.namaExternal",
+        "type": "String"
+    }, {
+        "name": "pegawai.bankRekeningAtasNama",
+        "caption": "Bank Rekening Atas Nama",
+        "type": "String"
+    }, {
+        "name": "pegawai.bankRekeningNama",
+        "caption": "Bank Rekening Nama",
+        "type": "String"
+    }, {
+        "name": "pegawai.bankRekeningNomor",
+        "caption": "Bank Rekening Nomor",
+        "type": "String"
+    }, {
+        "name": "pegawai.fingerPrintId",
+        "caption": "Finger Print I D",
+        "type": "String"
+    }, {
+        "name": "pegawai.agama",
+        "caption": "Object Agama",
+        "type": "AgamaVO"
+    }, {
+        "isNull": true,
+        "name": "pegawai.agamaId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pegawai.detailKategoryPegawai",
+        "caption": "Object Detail Kategory Pegawai",
+        "type": "DetailKategoryPegawaiVO"
+    }, {
+        "isNull": true,
+        "name": "pegawai.detailKategoryPegawaiId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pegawai.dokumen",
+        "caption": "Object DokumenVO Surat Lamar",
+        "type": "DokumenVO"
+    }, {
+        "isNull": true,
+        "name": "pegawai.dokumenId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pegawai.eselon",
+        "caption": "Object Eselon",
+        "type": "EselonVO"
+    }, {
+        "isNull": true,
+        "name": "pegawai.eselonId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pegawai.golonganDarah",
+        "caption": "Object Golongan Darah",
+        "type": "GolonganDarahVO"
+    }, {
+        "isNull": true,
+        "name": "pegawai.golonganDarahId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pegawai.jabatanFungsional",
+        "caption": "Object JabatanVO Fungsional",
+        "type": "JabatanVO"
+    }, {
+        "isNull": true,
+        "name": "pegawai.jabatanFungsionalId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pegawai.jabatanLamar",
+        "caption": "Object JabatanVO Lamar",
+        "type": "JabatanVO"
+    }, {
+        "isNull": true,
+        "name": "pegawai.jabatanLamarId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pegawai.jabatanStruktural",
+        "caption": "Object JabatanVO Struktural",
+        "type": "JabatanVO"
+    }, {
+        "isNull": true,
+        "name": "pegawai.jabatanStrukturalId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "isNull": false,
+        "name": "pegawai.jenisKelamin",
+        "messagesRequired": "Object Jenis Kelamin Harus Diisi",
+        "caption": "Object Jenis Kelamin",
+        "type": "JenisKelaminVO"
+    }, {
+        "isNull": true,
+        "name": "pegawai.jenisKelaminId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "isNull": false,
+        "name": "pegawai.jenisPegawai",
+        "messagesRequired": "Object Jenis PegawaiVO Harus Diisi",
+        "caption": "Object Jenis Pegawai",
+        "type": "JenisPegawaiVO"
+    }, {
+        "isNull": true,
+        "name": "pegawai.jenisPegawaiId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pegawai.jenisPegawaiLamar",
+        "caption": "Object Jenis PegawaiVO Lamar",
+        "type": "JenisPegawaiVO"
+    }, {
+        "isNull": true,
+        "name": "pegawai.jenisPegawaiLamarId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pegawai.kualifikasiJurusan",
+        "caption": "Object Kualifikasi Jurusan",
+        "type": "KualifikasiJurusanVO"
+    }, {
+        "isNull": true,
+        "name": "pegawai.kualifikasiJurusanId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "isNull": false,
+        "name": "pegawai.negara",
+        "messagesRequired": "Object NegaraVO Harus Diisi",
+        "caption": "Object Negara",
+        "type": "NegaraVO"
+    }, {
+        "isNull": true,
+        "name": "pegawai.negaraId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pegawai.pangkat",
+        "caption": "Object Pangkat",
+        "type": "PangkatVO"
+    }, {
+        "isNull": true,
+        "name": "pegawai.pangkatId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "isNull": false,
+        "name": "pegawai.loginUser",
+        "messagesRequired": "Object PegawaiVO Harus Diisi",
+        "caption": "Object Pegawai",
+        "type": "LoginUserVO"
+    }, {
+        "isNull": true,
+        "name": "pegawai.loginUserId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pegawai.loginUserAtasan",
+        "caption": "Object PegawaiVO Atasan",
+        "type": "LoginUserVO"
+    }, {
+        "isNull": true,
+        "name": "pegawai.loginUserAtasanId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pegawai.loginUserPembimbing",
+        "caption": "Object PegawaiVO Pembimbing",
+        "type": "LoginUserVO"
+    }, {
+        "isNull": true,
+        "name": "pegawai.loginUserPembimbingId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pegawai.pendidikan",
+        "caption": "Object PendidikanVO Terakhir",
+        "type": "PendidikanVO"
+    }, {
+        "isNull": true,
+        "name": "pegawai.pendidikanId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pegawai.penghasilanTidakKenaPajak",
+        "caption": "Object P T K P",
+        "type": "PenghasilanTidakKenaPajakVO"
+    }, {
+        "isNull": true,
+        "name": "pegawai.penghasilanTidakKenaPajakId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pegawai.range",
+        "caption": "Object RangeVO Total Nilai Score",
+        "type": "RangeVO"
+    }, {
+        "isNull": true,
+        "name": "pegawai.rangeId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pegawai.ruangan",
+        "caption": "Object RuanganVO Kerja",
+        "type": "RuanganVO"
+    }, {
+        "isNull": true,
+        "name": "pegawai.ruanganId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pegawai.statusPegawai",
+        "caption": "Object Status Pegawai",
+        "type": "StatusPegawaiVO"
+    }, {
+        "isNull": true,
+        "name": "pegawai.statusPegawaiId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pegawai.statusPerkawinan",
+        "caption": "Object Status Perkawinan",
+        "type": "StatusPerkawinanVO"
+    }, {
+        "isNull": true,
+        "name": "pegawai.stattusPerkawinanId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pegawai.suku",
+        "caption": "Object Suku",
+        "type": "SukuVO"
+    }, {
+        "isNull": true,
+        "name": "pegawai.sukuId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pegawai.titlePasien",
+        "caption": "Object Title",
+        "type": "TitlePasienVO"
+    }, {
+        "isNull": true,
+        "name": "pegawai.titlePasienId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pegawai.typePegawai",
+        "caption": "Object Type Pegawai",
+        "type": "TypePegawaiVO"
+    }, {
+        "isNull": true,
+        "name": "pegawai.typePegawaiId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pegawai.namaKeluarga",
+        "caption": "Nama Keluarga",
+        "type": "String"
+    }, {
+        "name": "pegawai.namaLengkap",
+        "caption": "Nama Lengkap",
+        "type": "String"
+    }, {
+        "name": "pegawai.namaPanggilan",
+        "caption": "Nama Panggilan",
+        "type": "String"
+    }, {
+        "name": "pegawai.nikIntern",
+        "caption": "NI K_ Intern",
+        "type": "String"
+    }, {
+        "name": "pegawai.nipPns",
+        "caption": "NI P_ P N S",
+        "type": "String"
+    }, {
+        "name": "pegawai.noIdentitas",
+        "caption": "No Identitas",
+        "type": "String"
+    }, {
+        "isNull": true,
+        "name": "pegawai.noStruk_TTujuanLastId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "pegawai.npwp",
+        "caption": "NP W P",
+        "type": "String"
+    }, {
+        "name": "pegawai.photoDiri",
+        "caption": "Photo Diri",
+        "type": "String"
+    }, {
+        "name": "pegawai.qPegawai",
+        "caption": "QPegawai",
+        "type": "short"
+    }, {
+        "name": "pegawai.qtyAnak",
+        "caption": "Qty Anak",
+        "type": "Byte"
+    }, {
+        "name": "pegawai.qtyTanggungan",
+        "caption": "Qty Tanggungan",
+        "type": "Byte"
+    }, {
+        "name": "pegawai.qtyTotalJiwa",
+        "caption": "Qty Total Jiwa",
+        "type": "Byte"
+    }, {
+        "name": "pegawai.statusRhesus",
+        "caption": "Status Rhesus",
+        "type": "String"
+    }, {
+        "name": "pegawai.tempatLahir",
+        "caption": "Tempat Lahir",
+        "type": "String"
+    }, {
+        "name": "pegawai.tglDaftarFingerPrint",
+        "caption": "Tanggal Daftar Finger Print",
+        "type": "Date"
+    }, {
+        "name": "pegawai.tglKeluar",
+        "caption": "Tanggal Keluar",
+        "type": "Date"
+    }, {
+        "name": "pegawai.tglLahir",
+        "caption": "Tanggal Lahir",
+        "type": "Date"
+    }, {
+        "name": "pegawai.tglMasuk",
+        "caption": "Tanggal Masuk",
+        "type": "Date"
+    }, {
+        "name": "pegawai.totalNilaiScore",
+        "caption": "Total Nilai Score",
+        "type": "Double"
+    }, {
+        "isNull": false,
+        "name": "pegawai.pegawai",
+        "messagesRequired": "Object Pegawai Harus Diisi",
+        "caption": "Object Pegawai",
+        "type": "PegawaiVO"
+    }, {
+        "name": "pegawai.pegawaiPembimbing",
+        "caption": "Object Pegawai Pembimbing",
+        "type": "PegawaiVO"
+    }, {
+        "name": "pegawai.pegawaiAtasan",
+        "caption": "Object Pegawai Atasan",
+        "type": "PegawaiVO"
+    }, {
+        "name": "kelompokPasien.kdProfile",
+        "type": "short"
+    }, {
+        "name": "kelompokPasien.statusEnabled",
+        "type": "Boolean"
+    }, {
+        "name": "kelompokPasien.id",
+        "type": "Integer"
+    }, {
+        "name": "kelompokPasien.noRec",
+        "type": "String"
+    }, {
+        "name": "kelompokPasien.reportDisplay",
+        "type": "String"
+    }, {
+        "name": "kelompokPasien.kodeExsternal",
+        "type": "String"
+    }, {
+        "name": "kelompokPasien.namaExternal",
+        "type": "String"
+    }, {
+        "isNull": false,
+        "name": "kelompokPasien.jenisTarif",
+        "messagesRequired": "Object Jenis Tarif Harus Diisi",
+        "caption": "Object Jenis Tarif",
+        "type": "JenisTarifVO"
+    }, {
+        "isNull": true,
+        "name": "kelompokPasien.jenisTarifId",
+        "length": 255,
+        "type": "Integer"
+    }, {
+        "name": "kelompokPasien.kdKelompokPasien",
+        "caption": "Kode Kelompok Pasien",
+        "type": "Byte"
+    }, {
+        "name": "kelompokPasien.kelompokPasien",
+        "caption": "Kelompok Pasien",
+        "type": "String"
+    }, {
+        "name": "kelompokPasien.qKelompokPasien",
+        "caption": "QKelompok Pasien",
+        "type": "Byte"
+    }, {
+        "name": "kelompokPasien.statusIsiSJP",
+        "caption": "Status Isi S J P",
+        "type": "Byte"
+    }, {
+        "name": "kdProfile",
+        "type": "short"
+    }, {
+        "name": "statusEnabled",
+        "type": "Boolean"
+    }, {
+        "name": "noRec",
+        "type": "String"
+    }, {
+        "isNull": false,
+        "name": "ruangan",
+        "messagesRequired": "Ruangan Harus Diisi",
+        "caption": "Ruangan",
+        "type": "RuanganVO"
+    }, {
+        "isNull": false,
+        "name": "pasien",
+        "messagesRequired": "Ruangan Harus Diisi",
+        "caption": "Pasien",
+        "type": "PasienVO"
+    }, {
+        "isNull": false,
+        "name": "asalRujukan",
+        "messagesRequired": "Asal Rujukan Harus Diisi",
+        "caption": "Asal Rujukan",
+        "type": "AsalRujukanVO"
+    }, {
+        "isNull": false,
+        "name": "pegawai",
+        "messagesRequired": "Dokter Pemeriksa Harus Diisi",
+        "caption": "Asal Rujukan",
+        "type": "PegawaiVO"
+    }, {
+        "isNull": false,
+        "name": "kelompokPasien",
+        "messagesRequired": "Kelompok pasien Harus Diisi",
+        "caption": "Kelompok Pasien",
+        "type": "KelompokPasienVO"
+    }, {
+        "isNull": false,
+        "name": "isOnSiteService",
+        "length": 255,
+        "messagesRequired": "Is On Site Service tidak boleh kosong",
+        "caption": "Is On Site Service",
+        "type": "Byte"
+    }, {
+        "isNull": false,
+        "name": "isRegistrasiLengkap",
+        "length": 255,
+        "messagesRequired": "Is Registrasi Lengkap tidak boleh kosong",
+        "caption": "Is Registrasi Lengkap",
+        "type": "Byte"
+    }, {
+        "isNull": false,
+        "name": "tglRegistrasi",
+        "length": 255,
+        "messagesRequired": "Tgl Registrasi tidak boleh kosong",
+        "caption": "Tanggal Registrasi",
+        "type": "Date"
+    }]
+}  

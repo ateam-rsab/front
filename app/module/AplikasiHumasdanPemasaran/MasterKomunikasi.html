@@ -1,0 +1,96 @@
+<div ng-controller="MasterKomunikasiCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Master Komunikasi'"disabled>
+		<div class="grid_6">
+		<div class="panel panel-default container_12">
+           
+					
+	        
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Kode Komunikasi"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="number" filter="'varchar'" class="k-textbox" ng-model="item.kdKomunikasi" />
+			</div>
+			
+			</div>
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Komunikasi"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.komunikasi" />
+			</div>
+			</div>
+			 
+			<div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Report Display"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.reportDisplay" />
+			</div>
+			
+			</div>
+			
+			</div> 
+			<div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Kode External"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kodeExternal" />
+			</div>
+			
+			</div>
+			<div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Nama External"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaExternal" />
+			</div>
+			
+			</div>
+			<div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Status Enable"></label>
+			</div>
+			<div class="grid_8">
+				<input type="checkbox" class="k-checkbox" name="dataAktif" id="dataAktif" ng-click="check()">
+							<label class="k-checkbox-label" c-label item="item" c-label-text="Status Aktif" for="dataAktif"></label>
+			</div>
+			
+			</div>
+			 
+		   </div>
+		   </div>
+           <div class="grid_6">	 
+		</div>
+
+	
+		<div class="grid_12">
+				<kendo-grid  k-data-source="daftarJabatan" k-pageable="true" k-selectable="'row'" k-columns="columnKomunikasi"  style="font-size: small;">
+            	</kendo-grid>
+					
+			</div>
+		
+		
+		</c-panel>
+			<div class="grid_12">
+							<div class="grid_8" style="float:left">
+							
+							<div class="grid_2" style="margin-top: 25px">
+							<button class="c-button" ng-click="reset()">Reset</button>
+							</div>
+							<div class="grid_2" style="margin-top: 25px">
+							<button class="c-button" ng-click="Save()">Simpan</button>
+							</div>
+							
+						</div>
+		</div>
+	</div>
+</div>
+

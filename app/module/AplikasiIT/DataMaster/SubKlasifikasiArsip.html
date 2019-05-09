@@ -1,0 +1,125 @@
+<div ng-controller="SubKlasifikasiArsipCtrl">
+<div ng-show="dataVOloaded">
+<c-panel item="item" header="'Sub Klasifikasi Arsip'" disabled>
+
+<!-- klasifikasiArsip -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="klasifikasiArsip"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.klasifikasiArsip" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listklasifikasiArsip" />
+</div>
+</div>
+
+<!-- klasifikasiArsipId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="klasifikasiArsipId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.klasifikasiArsipId" />
+</div>
+</div>
+
+<!-- subKlasifikasiArsip -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="subKlasifikasiArsip"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.subKlasifikasiArsip" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listsubKlasifikasiArsip" />
+</div>
+</div>
+
+<!-- subKlasifikasiArsipId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="subKlasifikasiArsipId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.subKlasifikasiArsipId" />
+</div>
+</div>
+
+<!-- name -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="name"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.name" />
+</div>
+</div>
+
+<!-- reportDisplay -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="reportDisplay"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+</div>
+</div>
+
+<!-- kodeExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kodeExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+</div>
+</div>
+
+<!-- namaExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="namaExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+</div>
+</div>
+
+<!-- SubKlasifikasiArsip -->
+<div class="grid_12">
+<div class="grid_12 headerBox">
+<p>SubKlasifikasiArsip</p>
+</div>
+<div class="clear"></div>
+
+<!-- grid table -->
+<div class="grid_12 borderBox">
+<div kendo-grid k-data-source="dataSubKlasifikasiArsip" k-selectable="'row'" k-columns="columnSubKlasifikasiArsip">
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+
+
+</c-panel>
+
+<div class="grid_12" style="margin-top:30px">
+<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
+</div>
+</div>
+</div>

@@ -1,0 +1,193 @@
+<div ng-controller="KomponenIndexDetailCtrl">
+<div ng-show="dataVOloaded">
+<c-panel item="item" header="'Komponen Index Detail'" disabled>
+
+<!-- factorRateIndex -->
+<div class="grid_12">
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="factorRateIndex"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.factorRateIndex" />
+</div>
+</div>
+
+<!-- jabatanStruktural -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="jabatanStruktural"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.jabatanStruktural" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listjabatanstruktural" />
+</div>
+</div>
+</div>
+<!-- jabatanStrukturalId -->
+<div class="grid_12">
+
+
+<!-- komponenIndex -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="komponenIndex"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.komponenIndex" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listkomponenindex" />
+</div>
+</div>
+
+
+<!-- komponenIndexId -->
+
+
+
+<!-- pendidikan -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="pendidikan"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.pendidikan" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listpendidikan" />
+</div>
+</div>
+</div>
+
+<!-- pendidikanId -->
+<div class="grid_12">
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="namaKomponenIndexDetail"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaKomponenIndexDetail" />
+</div>
+</div>
+
+
+<!-- nilaiIndexStandar -->
+
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="nilaiIndexStandar"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nilaiIndexStandar" />
+</div>
+</div>
+</div>
+
+<!-- noUrut -->
+<div class="grid_12">
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="noUrut"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noUrut" />
+</div>
+</div>
+
+
+<!-- qKomponenIndexDetail -->
+
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="qKomponenIndexDetail"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.qKomponenIndexDetail" />
+</div>
+</div>
+</div>
+
+<!-- reportDisplay -->
+<div class="grid_12">
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="reportDisplay"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+</div>
+</div>
+
+
+<!-- kodeExternal -->
+
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kodeExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+</div>
+</div>
+</div>
+
+<!-- namaExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="namaExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+</div>
+</div>
+
+
+<!-- KomponenIndexDetail -->
+<div class="grid_12">
+<div class="grid_12 headerBox">
+<p>KomponenIndexDetail</p>
+</div>
+<div class="clear"></div>
+
+<!-- grid table -->
+<div class="grid_12 borderBox">
+					<kendo-grid options="mainGridOptions"  k-data-source="dataSource" k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+				</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+
+
+</c-panel>
+
+<div class="grid_12">
+				<div class="grid_8"></div>
+				<div class="grid_2" ng-show="showEdit">
+					<button class="c-button" ng-click="edit()">Edit</button>
+				</div>
+				<div class="grid_2" ng-hide="showEdit">
+					<button class="c-button" ng-click="tambah()">Tambah</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="batal()">Batal</button>
+				</div>
+			</div>
+</div>
+</div>

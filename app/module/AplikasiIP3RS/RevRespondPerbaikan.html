@@ -1,0 +1,177 @@
+<style >
+.red{
+    
+    background-color:red;
+}
+.yellow{
+    
+    background-color:yellow;
+}
+</style>
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Respond Perbaikan'">
+			<div class="grdi_12">
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" style="margin-top: 10px">No Order</label>
+					</div>
+					<div class="grid_12">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noOrder"/>
+					</div>
+				</div>
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" style="margin-top: 10px">Jenis Order</label>
+					</div>
+					<div class="grid_12">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisOrder" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="dataJenisOrder" />
+
+					</div>
+				</div>
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" style="margin-top: 10px">Tanggal Awal</label>
+					</div>
+					<div class="grid_12">
+						<input style="width: 100%" kendo-date-picker k-ng-model="item.dateStart" k-format="'yyyy-MM-dd'""/>
+					</div>
+				</div>
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" style="margin-top: 10px">Tanggal Akhir</label>
+					</div>
+					<div class="grid_12">
+						<input style="width: 100%" kendo-date-picker k-ng-model="item.dateEnd" k-format="'yyyy-MM-dd'"/>
+					</div>
+				</div>
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" style="margin-top: 10px">&nbsp;</label>
+					</div>
+					<div class="grid_6">
+						<button class="c-button" ng-click="cari()">Cari</button>
+					</div>
+					<div class="grid_6">
+						<button class="c-button" ng-click="init()">Refresh</button>
+					</div>
+				</div>
+				<div class="grid_2" >
+					<div class="grid_12">
+						
+					</div>
+					<div class="grid_12">
+						
+					</div>
+				</div>
+			</div>
+			<div class="grid_12">
+			  <div class="loading" style="position: relative; margin:25px 0px 20px;" class="animated"
+	                        ng-show="isLoadingData">
+	           <img height="150" src="../app/stylesheets/Flat/loading-image.gif"/>
+	           <br/> <span style="font-weight: bold;">Mengambil data Respon Perbaikan Mohon tunggu !</span>
+	           </div>
+	         </div>
+			<div class="grid_12" ng-hide="AllData">
+				<kendo-grid id="grud" k-scrollable="false" k-data-source="dataSource" k-selectable="'row'" k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+			</div>
+			<!-- options="mainGridOptions" -->
+<!--             <div class="panel-body">
+                <div class="grid_12">
+                    <div class="k-grid k-widget">
+                        <div class="k-grid-header">
+                            <div class="k-grid-header-wrap k-auto-scrollable">
+                                <table>
+                                    <tr>
+                                        <th style="width:50px; text-align: center;" class="k-header">
+                                            No.
+                                        </th>
+                                        <th style="width:150px; text-align: center;" class="k-header">
+                                            No. Order
+                                        </th>
+                                        <th style="width:100px; text-align: center;" class="k-header">
+                                            Tanggal Order
+                                        </th>
+                                        <th style="width:150px; text-align: center;" class="k-header">
+                                            Ruangan Pemesanan
+                                        </th>
+                                        <th style="width:150px; text-align: center;" class="k-header">
+                                            User Pemesanan
+                                        </th>
+                                        <th style="width:150px; text-align: center;" class="k-header">
+                                            No Respon
+                                        </th>
+                                        <th style="width:150px; text-align: center;" class="k-header">
+                                        	No Verifikasi
+                                        </th>
+                                        <th style="width:150px; text-align: center;" class="k-header">
+                                        	Keterangan Lainnya
+                                        </th>
+                                        <th style="width:150px; text-align: center;" class="k-header">
+                                        	Asal Suku Cadang
+                                        </th>
+                                         <th style="width:150px; text-align: center;" class="k-header">
+                                        	Keterangan Order
+                                        </th>
+                                         <th style="width:150px; text-align: center;" class="k-header">
+                                        	Nama Teknisi
+                                        </th>
+                                        <th style="width:150px; text-align: center;" class="k-header">
+                                        	Status Pending
+                                        </th>
+                                    </tr>
+
+
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="k-grid-content k-auto-scrollable" style="max-height:250px">
+                            <table role="grid" data-role="selectable" class="k-selectable">
+                                <tbody role="rowgroup">
+                                    <tr role="row" class="ng-scope" ng-repeat="data in listDataRespon" ng-style="data.myStyle" ng-click='selected(data)' ng-class="{'k-state-selected':item ===data}">
+                                        <td style="width:50px" role="gridcell"><span ng-bind="data.no" class="ng-binding"></span></td>
+                                        <td style="width:150px" role="gridcell"><span ng-bind="data.noOrder" class="ng-binding">ii</span></td>
+                                        <td style="width:100px" role="gridcell"><span ng-bind="data.tanggalOrder" class="ng-binding">ii</span></td>
+                                        <td style="width:150px" role="gridcell"><span ng-bind="data.ruanganPemesan" class="ng-binding">ii</span></td>
+                                        <td style="width:150px" role="gridcell"><span ng-bind="data.userPemesan" class="ng-binding">ii</span></td>
+                                        <td style="width:150px" role="gridcell"><span ng-bind="data.noRespon" class="ng-binding">ii</span></td>
+                                        <td style="width:150px" role="gridcell"><span ng-bind="data.noVerifikasi" class="ng-binding">ii</span></td>
+                                        <td style="width:150px" role="gridcell"><span ng-bind="data.keteranganLainnya" class="ng-binding">ii</span></td>
+                                        <td style="width:150px" role="gridcell"><span ng-bind="data.asalSukuCadang" class="ng-binding">ii</span></td>
+                                        <td style="width:150px" role="gridcell"><span ng-bind="data.keteranganOrder" class="ng-binding">ii</span></td>
+                                        <td role="gridcell"><span ng-bind="data.namaTeknisi" class="ng-binding"></span></td>
+                                        <td style="width:150px" role="gridcell"><span ng-bind="data.dataStatusPending" class="ng-binding" style="font-weight: bold; font-style: italic;">Status Pending</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+			<div class="grid_12" style="margin-top: 20px">
+				<div class="grid_4">
+				</div>
+				<div class="grid_2" ng-show="showUser" >
+				</div>
+				<div class="grid_2" ng-show="showAdmin" ng-hide="AllData">
+					<button class="c-button" ng-click="permintaanSukuCadang()">Permintaan Suku Cadang</button>
+				</div>
+				<div class="grid_2" ng-show="showAdmin" ng-hide="AllData">
+					<button class="c-button" ng-click="perbaikan()">Perbaikan</button>
+				</div>
+				<div class="grid_2" ng-show="showUser" >
+					<button class="c-button" ng-click="verifPekerjaan()">Verifikasi Pekerjaan</button>
+				</div>
+				<div class="grid_2" ng-show="showUser" >
+					<button class="c-button" ng-click="verifKedatangan()">Verifikasi Kedatangan</button>
+				</div>
+				<div class="grid_2" ng-hide="AllData">
+					<button class="c-button" ng-click="detail()">Detail Order</button>
+				</div>
+				<div class="grid_2" ng-show="showAdmin" ng-hide="AllData">
+					<button class="c-button" ng-click="respon()">Respon</button>
+				</div>
+			</div>
+			
+		</c-panel>
+	</div>

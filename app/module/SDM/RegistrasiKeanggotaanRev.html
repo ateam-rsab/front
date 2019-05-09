@@ -1,0 +1,138 @@
+<style>
+.style-center {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+
+.style-right {
+    display: inline-block;
+    text-align: right;
+    width: 100%;
+}
+
+.style-left {
+    display: inline-block;
+    text-align: left;
+    width: 100%;
+}
+div.k-window {
+    width: 50%;
+}
+.k-edit-form-container {
+    width: 100%;
+}
+.k-grid .k-grid-header .k-header .k-link {
+    height: auto;
+}
+
+.k-grid .k-grid-header .k-header  {
+    white-space: normal;
+}
+.k-grid .k-grid-header .k-header  {
+    text-align: center;
+}
+</style>
+<c-panel item="item" header="'Registrasi Keanggotaan'"disabled>
+    <div ng-show="dataVOloaded">
+
+        <div class="panel-body">
+          <div class="grid_12" style="margin-top: 10px">
+           <div class="grid_2">
+            <div class="grid_12" >
+                <label c-label item="item" c-label-text="No Anggota"></label>
+            </div>
+            <div class="grid_12">
+                <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nomorAnggota" >
+            </div>
+        </div>
+        <div class="grid_3">
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="Nama Anggota"></label>
+            </div>
+            <div class="grid_12">
+                <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaAnggota" >
+            </div>
+        </div>
+        <div class="grid_1">
+
+            <label c-label c-label-text=""></label>
+            <!-- <em style="margin-top:6px;" ng-click='Search()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-search">Refresh</span></em> -->
+            <em style="margin-top:6px;" ng-click='resetFilter()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Reset</span></em>
+        </div>
+    </div>
+
+</div>
+
+<div class="grid_12">
+    <div class="grid_12 borderBox">
+        <kendo-grid id="kGrid" k-options="mainGridOptions" k-data-source="dataSource" k-ng-model="selectedItem" ng-click="click(selectedItem)"></kendo-grid>
+
+
+    </div>
+</div>
+</div>
+<div class="grid_12" style="margin-top:60px" >
+        <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+    </div>
+</c-panel>
+<script id="popup-editor" type="text/x-kendo-template">
+    <div class="panel panel-default container_12" style="padding: 0px 10px;">
+        <div class="grid_12">
+               <div class="grid_12">
+            <div class="grid_6" style="margin: 0px 0px 5px">
+                <label c-label c-label-text="No Anggota" real></label>
+                <input c-text-box type="input" class="k-textbox" ng-model="dataItem.nomoranggota" disabled>
+            </div>
+            <div class="grid_6" style="margin: 0px 0px 5px">
+                <label c-label c-label-text="Tipe Keanggotaan" real></label>
+                <input kendo-combo-box k-ng-model="dataItem.tipekeanggotaan" k-data-source="listTipeKeanggotaan" k-data-text-field="'tipekeanggotaan'" k-data-value-field="'id'" k-filter="'contains'" required>
+            </div>
+        </div>
+            <div class="grid_12">
+            <div class="grid_6" style="margin: 0px 0px 5px">
+                <label c-label c-label-text="Tanggal Regis" real></label>
+                <input style="width: 100% " kendo-date-time-picker k-ng-model="dataItem.tanggal " placeholder="dd-mm-yyyy " k-format=" 'dd-MM-yyyy HH:mm:ss' " data-validasiPegawai-msg="Pegawai tidak boleh kosong" required  />
+
+            </div>
+            <div class="grid_6" style="margin: 0px 0px 5px">
+                <label c-label c-label-text="Nama Anggota" real></label>
+                <input c-text-box type="input" class="k-textbox" ng-model="dataItem.nama"  data-validasiPegawai-msg="nama tidak boleh kosong" required">
+            </div>
+        </div>
+            <div class="grid_6" style="margin: 0px 0px 5px">
+                <label c-label c-label-text="Jenis Kelamin" real></label>
+                <input kendo-combo-box k-ng-model="dataItem.jeniskelamin" k-data-source="listJenisKelamin" k-data-text-field="'jeniskelamin'" k-data-value-field="'id'" k-filter="'contains'" required>
+            </div>
+            <div class="grid_6" style="margin: 0px 0px 5px">
+                <label c-label c-label-text="Tempat Lahir" real></label>
+                <input c-text-box type="input" class="k-textbox" ng-model="dataItem.tempatlahir" data-validasiPegawai-msg="tidak boleh kosong" >
+            </div>
+            <div class="grid_6" style="margin: 0px 0px 5px">
+                <label c-label c-label-text="Tanggal Lahir" real></label>
+                <input style="width: 100% " k-value='now' kendo-date-picker k-ng-model="dataItem.tanggallahir " placeholder="dd-mm-yyyy " k-format=" 'dd-MM-yyyy' " />
+            </div>
+            <div class="grid_6" style="margin: 0px 0px 5px">
+                <label c-label c-label-text="Asal Instansi" real></label>
+                <input c-text-box type="input" class="k-textbox" ng-model="dataItem.asalinstansi" data-validasiPegawai-msg=" tidak boleh kosong"  required>
+            </div>
+            <div class="grid_6" style="margin: 0px 0px 5px">
+                <label c-label c-label-text="No Hp" real></label>
+                <input c-text-box type="number" class="k-textbox" ng-model="dataItem.nomorhp" data-validasiPegawai-msg=" tidak boleh kosong"  required>
+            </div>
+            <div class="grid_6" style="margin: 0px 0px 5px">
+                <label c-label c-label-text="Email" real></label>
+                <input c-text-box type="input" class="k-textbox" ng-model="dataItem.email" data-validasiPegawai-msg=" tidak boleh kosong" required >
+            </div>
+            <div class="grid_12" style="margin: 0px 0px 5px">
+                <label c-label c-label-text="Alamat" real></label>
+                <textarea type="input" class="k-textbox" ng-model="dataItem.alamat" data-validasiPegawai-msg=" tidak boleh kosong" required ></textarea>
+            </div>
+
+
+
+        </div>
+    </div>
+</script>
+
+

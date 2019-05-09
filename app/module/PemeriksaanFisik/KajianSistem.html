@@ -1,0 +1,89 @@
+<div ng-controller="KajianSistemCtrl">
+    <c-panel item="item" header="'Kajian Sistem'">
+      
+
+				
+<div class="grid_6">
+    <div class="grid_12"  ng-repeat="kajiansistem in listKajianSistem"  style="margin: 5px 0 0 0;">
+	<div class="grid_6">
+	  {{kajiansistem.name}}
+	</div>
+    <div class="grid_2"  ng-repeat="stat in listApproval">
+             <input type="radio"  name="{{kajiansistem.id(1) + stat.name(1)}}" id="{{kajiansistem.id+stat.name}}" class="k-radio" ng-model="kajiansistem.id" value="{{stat.name}}"  >
+             <label class="k-radio-label" for="{{kajiansistem.id+stat.name}}">{{stat.name}}</label>
+          
+           </div>
+	
+    </div>	
+
+
+	
+	
+	 
+
+
+  
+  
+
+
+					
+			
+					
+					
+					
+					
+		
+					
+					
+	
+			
+            </div>
+			
+		</c-panel>
+			
+        <!--
+		
+
+		
+		--->
+			
+		<div class="clear"></div>
+		
+     
+		  
+		 
+		 
+		
+
+		 </br>
+		 </br>
+	 <div class="grid_12">
+			<div class="grid_12"><div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>	
+    </div>	  
+		  
+
+
+
+	 
+         
+		 
+		  
+		  
+         
+		 
+		 
+		
+		 
+	     
+	 
+	 
+
+
+		
+		
+		
+		  
+		
+		
+	
+		

@@ -1,0 +1,97 @@
+{
+	"model": {
+		"noRAB": "",
+		"title1": "",
+		"title2": "",
+		"title3": "",
+		"latarBelakang": "",
+		"penerimaManfaat": "",
+		"strategiPencapaiKeluaran": "",
+		"kurunWaktuPencapaianKeluaran": "",
+		"biayaYangDikeluarkan": "",
+		"jakarta": "",
+		"titimangsa": "",
+		"jabatan": "",
+		"rsabHarapanKita": ""
+	},
+	"attributes": [
+		{
+			"isNull": "true",
+			"name": "noRAB",
+			"messagesRequired": "",
+			"caption": "No. RAB"
+		},
+		{
+			"isNull": "true",
+			"name": "title1",
+			"messagesRequired": "",
+			"caption": "Title 1"
+		},
+		{
+			"isNull": "true",
+			"name": "title2",
+			"messagesRequired": "",
+			"caption": "Title 2"
+		},
+		{
+			"isNull": "true",
+			"name": "title3",
+			"messagesRequired": "",
+			"caption": "Title 3"
+		},
+		{
+			"isNull": "true",
+			"name": "latarBelakang",
+			"messagesRequired": "",
+			"caption": "A. Latar Belakang"
+		},
+		{
+			"isNull": "true",
+			"name": "penerimaManfaat",
+			"messagesRequired": "",
+			"caption": "B. Penerima Manfaat"
+		},
+		{
+			"isNull": "true",
+			"name": "strategiPencapaiKeluaran",
+			"messagesRequired": "",
+			"caption": "C. Strategi Pencapai Keluaran"
+		},
+		{
+			"isNull": "true",
+			"name": "kurunWaktuPencapaianKeluaran",
+			"messagesRequired": "",
+			"caption": "D. Kurun Waktu Pencapaian Keluaran"
+		},
+		{
+			"isNull": "true",
+			"name": "biayaYangDikeluarkan",
+			"messagesRequired": "",
+			"caption": "E. Biaya yang Dikeluarkan"
+		},
+		{
+			"isNull": "true",
+			"name": "jakarta",
+			"messagesRequired": "",
+			"caption": "Jakarta,"
+		},
+		{
+			"isNull": "true",
+			"name": "titimangsa",
+			"messagesRequired": "",
+			"caption": "28 April 2016"
+		},
+		{
+			"isNull": "true",
+			"name": "jabatan",
+			"messagesRequired": "",
+			"caption": "Jabatan"
+		},
+		{
+			"isNull": "true",
+			"name": "rsabHarapanKita",
+			"messagesRequired": "",
+			"caption": "RSAB Harapan Kita"
+		}
+	]
+}

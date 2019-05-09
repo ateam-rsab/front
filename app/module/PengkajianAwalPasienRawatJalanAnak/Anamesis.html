@@ -1,0 +1,95 @@
+<div ng-controller="AnamesisCtrl">
+    <!-- panel anamnsis -->
+    <div class="panel panel-default container_12">
+
+        <div class="panel-heading" c-translate>Anamnesis</div>
+        <div class="panel-body list-detail">
+            <div class="grid_12">
+                <md-content>
+                    <md-tabs md-dynamic-height md-border-bottom>
+                        <md-tab label="Dokter">
+                            <md-content class="md-padding">
+                                <div class="grid_12">
+                                    <!-- link dengan anamnesis perawat -->
+                                    <!-- <label c-label item="item" c-label-text="Perawat/Bidan/Ahli Gizi" real style="margin-top: 5px; margin-bottom:5px;"></label>
+                                    <div class="grid_12">
+                                        <textarea style="width: 99%; height: 80px;" ng-model="item.anamansisSuster"></textarea>
+                                    </div> -->
+
+                                    <!-- anamnesis tambahan dokters -->
+                                    <div class="grid_12">
+                                        <label c-label item="item" c-label-text="Dokter" real style="margin-top: 5px; margin-bottom:5px;"></label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <textarea style="width: 99%; height: 80px;" ng-model="item.anamnesisDokter"></textarea>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="grid_12">
+                                    <div class="grid_6"></div>
+                                    <div class="grid_3">
+                                        <button class="c-button cancel" style="font-size:18px" ng-click="Batal()">Batal</button>
+                                    </div>
+                                    <div class="grid_3">
+                                        <button class="c-button success" style="font-size:18px" ng-click="SaveAnamnesis()">Simpan</button>
+                                    </div>
+                                    <!-- <div ng-include=' "../app/module/Shared/TemplateButtonSimpan " '></div> -->
+                                </div>
+                                <div class="grid_12" style="padding-top:10px">
+                                    <div kendo-grid k-data-source="sourceAnamnesisDokter" k-on-change="SelectData(data)" k-selectable="'row'" options="mainGridOptions"></div>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="Riwayat Penyakit">
+                            <md-content class="md-padding">
+                                <div class="grid_12">
+                                    <!-- riwayat penyakit -->
+                                    <div class="grid_6">
+                                        <label c-label item="item" c-label-text="riwayatPenyakit" real></label>
+                                        <textarea style="width: 99%; height: 80px;" ng-model="item.riwayatPenyakit"></textarea>
+                                    </div>
+                                    <div class="grid_6">
+                                        <label c-label item="item " c-label-text="riwayatPengobatanYangDiterima " real></label>
+                                        <textarea style="width: 99%; height: 80px;" ng-model="item.riwayatPengobatan"></textarea>
+                                    </div>
+                                </div>
+                                <!-- <div class="grid_12">
+                                    <div class="grid_6"></div>
+                                    <!-- button tambah, hapus -->
+                                    <!-- <div class="grid_3">
+                                        <button class="c-button" ng-click="addDataRiwayatPenyakitOrObat()">Tambah</button>
+                                    </div>
+                                    <div class="grid_3">
+                                        <button class="c-button" ng-click="removeRiwayatPenyakitOrObat()">Hapus</button>
+                                    </div>
+                                    <div class="clear "></div>
+                                </div>
+                                <div class="grid_12 " style="margin-top: 20px; margin-bottom: 20px;">
+                                    <div kendo-grid k-data-source="dataRiwayatPenyakitOrObat " k-selectable=" 'row' " k-columns="columnRiwayatPenyakitOrObat ">
+                                    </div>
+                                </div> --> 
+                                <div class="clear "></div>
+                                <div class="grid_12">
+                                    <div class="grid_6"></div>
+                                    <div class="grid_3">
+                                        <button class="c-button cancel" style="font-size:18px" ng-click="BatalRiwayat()">Batal</button>
+                                    </div>
+                                    <div class="grid_3">
+                                        <button class="c-button success" style="font-size:18px" ng-click="SaveAnamnesisRiwayat()">Simpan</button>
+                                    </div>
+                                    <!-- <div ng-include=' "../app/module/Shared/TemplateButtonSimpan " '></div> -->
+                                </div>
+                                <div class="grid_12">
+                                    <div kendo-grid k-data-source="sourceRiwayatAnamnesis" k-on-change="SelectDataRiwayat(data)" k-selectable="'row'" options="mainGridOptions2"></div>
+                                </div>
+                                <!-- <div class="grid_12" style="margin-top:20px">
+                                    <div ng-include=' "../app/module/Shared/TemplateButtonSimpan " '></div>
+                                </div> -->
+                            </md-content>
+                        </md-tab>
+                    </md-tabs>
+                </md-content>
+            </div>
+        </div>
+    </div>
+</div>

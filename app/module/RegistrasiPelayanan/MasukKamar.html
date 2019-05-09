@@ -1,0 +1,29 @@
+<div ng-controller="MasukKamarCtrl">
+    <div ng-include='"../app/module/Shared/headerPasien" '></div>
+
+    <div ng-show="dataVOloaded">
+
+        <div class="panel panel-default panel-white">
+            <div class="panel-heading-white"><span class="title" c-translate>Registrasi Rawat Inap</span></div>
+            <div class="panel-body">
+
+                <div class="grid_2" style="margin-bottom:5px">
+                    <label c-label item="item" c-label-text="noKamar"> </label>
+                </div>
+                <div class="grid_2">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.kamar" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKamar" />
+                </div>
+                <div class="grid_2" style="margin-bottom:5px">
+                    <label c-label item="item" c-label-text="nomorTempatTidur"></label>
+                </div>
+
+                <div class="grid_2">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.nomorTempatTidur" k-data-text-field="'nomorBed'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listTipeKamar" />
+                </div>
+                <div class="clear"></div>
+                <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" ' style="margin-bottom:50px"></div>
+
+            </div>
+        </div>
+    </div>
+</div>

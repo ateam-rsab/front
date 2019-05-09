@@ -1,0 +1,50 @@
+<style>
+	.popUp{
+		background-color: rgba(0, 0, 0, 0.44);
+		z-index: 1;
+	    width: 100%;
+	    position: absolute;
+	    height: 90vh;
+	    top: 0px;
+	    left: 0px;
+	}
+</style>
+
+<div class="grid_12 headerBox">
+	<h1 style="color: white;"><b>Grid Custom Inline Editing</b></h1>
+</div>
+<div class="clear"></div>
+
+<br/>
+
+
+<!-- Kriteria -->
+<div class="grid_12">
+	<div class="grid_12 borderBox containerBorderBox">
+
+		<!-- Data Pasien Pulang -->
+		<div class="grid_12">
+			<div class="grid_12 headerBox">
+				<p>Data</p>
+			</div>
+			<div class="clear"></div>
+
+			<!-- kendo grid ini dimana optionnya di ambil dari controller cek aja scope variable mainGridOptions-->
+			<kendo-grid id="grid" options="mainGridOptions"></kendo-grid>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+
+
+	</div>
+</div>
+<div class="clear"></div>
+
+<br/>
+
+<div class="grid_12" style="margin-top:30px">
+		<div ng-include='"../app/module/Shared/KendoUiSample/TemplateButton"'></div>
+	</div>
+
+</div>
+

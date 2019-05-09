@@ -1,0 +1,41 @@
+{
+	"model":{
+	    "periode" : "",
+	  	"unitLayanan" : "",
+	    "dokter" : "",
+	    "tipeBayar" : "",
+	    "jenisTransaksi" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "periode",
+			"messagesRequired" : "",
+			"caption" : "Periode"
+		},
+		{
+			"isNull" : "true",
+			"name" : "unitLayanan",
+			"messagesRequired" : "",
+			"caption" : "Unit Layanan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "dokter",
+			"messagesRequired" : "",
+			"caption" : "Dokter"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tipeBayar",
+			"messagesRequired" : "",
+			"caption" : "Tipe Bayar
+		},
+		{
+			"isNull" : "true",
+			"name" : "jenisTransaksi",
+			"messagesRequired" : "",
+			"caption" : "Jenis Transaksi"
+		}
+  ]
+}

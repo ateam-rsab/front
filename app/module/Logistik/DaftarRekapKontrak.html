@@ -1,0 +1,100 @@
+<div>
+	<div ng-show="dataVOloaded">
+			<!--
+			<div class="grid_12">
+				<div class="grid_3">
+					<label c-label>No. Faktur</label>
+					<input c-text-box type="input" class="k-textbox" ng-model="item.noFaktur" placeholder=""/>
+				</div>
+				<div class="grid_3">
+					<label c-label>Nama Produk</label>
+					<input kendo-combo-box k-ng-model="item.namaBarang" k-data-text-field="'namaProduk'" k-data-value-field="'namaProduk'" k-data-source="sourceProduk" style=\"width: 100%\" ></input>
+				</div>
+				<div class="grid_2">
+					<label c-label>Dari Tanggal:</label>
+					<input style="width:100%" kendo-date-picker k-ng-model="item.awal" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'"/>
+				</div>
+				<div class="grid_2">
+					<label c-label>Sampai Tanggal:</label>
+					<input style="width:100%" kendo-date-picker k-ng-model="item.akhir" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'"/>
+				</div>
+				<div class="grid_1"/>
+				<div class="grid_1" style="margin-top:5px">
+					<label c-label>&nbsp;</label>
+					<button class="c-button" ng-click="Search()">
+						<span style="font-size:10!important">Cari</span>
+					</button>
+				</div>
+			</div>
+			-->
+			<c-panel item="item" header="'PenerimaaanBarangDariPphp'" style="margin-top:50px" disabled>
+
+			<div class="grid_12">
+				<div class="grid_6">
+					<div class="grid_4">
+						<label c-label class="label-aja" item="item" c-label-text="namaSuplier"></label>
+					</div>
+					<div class="grid_8">
+						<input kendo-combo-box k-data-value-field="'id'" k-data-text-field="'namaRekanan'" k-data-source="listSuplier" k-ng-model="item.supplier"/>
+					</div>
+				</div>
+				<div class="grid_6">&nbsp;</div>
+			</div>
+
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label class="label-aja" item="item" c-label-text="periodeKontrak"></label>
+				</div>
+				<div class="grid_2">
+					<label c-label class="label-aja" item="item" c-label-text="dari"></label>
+				</div>
+				<div class="grid_6">
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.dari" placeholder="now" k-format="'dd-MM-yyyy'"/>
+				</div>
+			</div>
+			<div class="grid_6">
+				<div class="grid_2">
+					<label c-label class="label-aja" item="item" c-label-text="sampai"></label>
+				</div>
+				<div class="grid_6">
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.sampai" placeholder="now" k-format="'dd-MM-yyyy'"/>
+				</div>
+				<div class="grid_2" style="margin-top:6px">
+					<button class="c-button" ng-click="cariKontrak()">Cari</button>
+				</div>
+				<div class="grid_2" style="margin-top:6px">
+					<button class="c-button" ng-click="batal()">Batal</button>
+				</div>
+			</div>
+
+				<div class="grid_12" style="margin-top: 10px;">
+					<div kendo-grid k-data-source="sourcePenerimaan" k-selectable="'row'" k-ng-model="current" ng-click="kl(current)" options="mainGridOptions">
+					</div>
+				</div>
+			</c-panel>
+
+			<div class="grid_12">
+				<div class="grid_6"></div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="cetak()" style="width:100% !important">
+						<span style="font-size:10!important">Cetak</span>
+					</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="NavToPenerimaan()" style="width:100% !important">
+						<span style="font-size:10!important">Input Penerimaan</span>
+					</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="kembali()" style="width:100% !important">
+						<span style="font-size:10!important">Kembali</span>
+					</button>
+				</div>
+			</div>
+	</div>
+</div>
+
+<style>
+.label-aja {
+	margin-top:10px;
+}

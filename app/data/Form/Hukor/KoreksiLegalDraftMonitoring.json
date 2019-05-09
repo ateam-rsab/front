@@ -1,0 +1,31 @@
+{
+	"model":{
+		"noPeraturan":"",
+		"namaPeraturan":"",
+		"evaluasiPeraturan":"",
+		"koreksiLegalDraftPeraturan":""   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "noPeraturan",
+			"messagesRequired" : "",
+			"caption" : "No. Peraturan"
+		},{
+			"isNull" : "true",
+			"name" : "namaPeraturan",
+			"messagesRequired" : "",
+			"caption" : "Nama Peraturan"
+		},{
+			"isNull" : "true",
+			"name" : "evaluasiPeraturan",
+			"messagesRequired" : "",
+			"caption" : "Evaluasi Peraturan"
+		},{
+			"isNull" : "true",
+			"name" : "koreksiLegalDraftPeraturan",
+			"messagesRequired" : "",
+			"caption" : "Koreksi Legal Draft Peraturan"
+		}
+	]
+}

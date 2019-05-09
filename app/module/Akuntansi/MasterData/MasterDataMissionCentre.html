@@ -1,0 +1,41 @@
+<div ng-controller="MasterDataMissionCentreCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Master Data Mission Centre'" disabled>
+
+			<!-- -->
+			<div class="grid_12">
+	            <div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+	                <p></p>
+	            </div>
+            	<div class="grid_12 borderBox containerBorderBox">
+            		<!-- KodeMissionCentre -->
+					<div class="grid_12">
+						<div class="grid_4 fieldPadding">
+							<label c-label item="item" c-label-text="KodeMissionCentre"></label>
+						</div>
+
+						<div class="grid_8">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeMissionCentre" />
+						</div>
+					</div>
+
+					<!-- UnitKerjaMissionCentre -->
+					<div class="grid_12">
+						<div class="grid_4 fieldPadding">
+							<label c-label item="item" c-label-text="UnitKerjaMissionCentre"></label>
+						</div>
+
+						<div class="grid_8">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.unitKerjaMissionCentre" />
+						</div>
+					</div>            	
+            	</div>
+            </div>
+
+		</c-panel>
+
+		<div class="grid_12" style="margin-top:30px">
+			<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
+		</div>
+	</div>
+</div>

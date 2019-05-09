@@ -1,0 +1,184 @@
+<div ng-controller="DraftPeraturanCtrl">
+<div ng-show="dataVOloaded">
+<c-panel item="item" header="'Draft Peraturan'" disabled>
+
+<!-- user -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="user"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.user" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listuser" />
+</div>
+</div>
+
+<!-- userId -->
+
+<!-- noPeraturan -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="noPeraturan"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noPeraturan" />
+</div>
+</div>
+
+<!-- namaPeraturan -->
+<div class="grid_12">
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="namaPeraturan"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaPeraturan" />
+</div>
+</div>
+
+<!-- tglPeraturan -->
+
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="tglPeraturan"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%" k-ng-model="item.tglPeraturan"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+</div>
+</div>
+</div>
+
+<!-- draftPeraturan -->
+<div class="grid_12">
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="draftPeraturan"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.draftPeraturan" />
+</div>
+</div>
+
+<!-- tglPengesahan -->
+
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="tglPengesahan"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%" k-ng-model="item.tglPengesahan"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+</div>
+</div>
+</div>
+
+
+<!-- penanggungJawab -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="penanggungJawab"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.penanggungJawab" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listpenanggungjawab" />
+</div>
+</div>
+
+
+<!-- penanggungJawabId -->
+
+
+<!-- detailDraftSet -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="detailDraftSet"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.detailDraftSet" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listdetaildraftset" />
+</div>
+</div>
+
+<!-- reportDisplay -->
+
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="reportDisplay"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+</div>
+</div>
+
+<!-- kodeExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kodeExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+</div>
+</div>
+</div>
+
+<!-- namaExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="namaExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+</div>
+</div>
+
+<!-- DraftPeraturan -->
+<div class="grid_12">
+<div class="grid_12 headerBox">
+<p>DraftPeraturan</p>
+</div>
+<div class="clear"></div>
+
+<!-- grid table -->
+<div class="grid_12 borderBox">
+					<kendo-grid options="mainGridOptions"  k-data-source="dataSource" k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+				</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+
+
+</c-panel>
+
+<div class="grid_12">
+				<div class="grid_8"></div>
+				<div class="grid_2" ng-show="showEdit">
+					<button class="c-button" ng-click="edit()">Edit</button>
+				</div>
+				<div class="grid_2" ng-hide="showEdit">
+					<button class="c-button" ng-click="tambah()">Tambah</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="batal()">Batal</button>
+				</div>
+			</div>
+</div>
+</div>

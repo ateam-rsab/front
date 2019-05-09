@@ -1,0 +1,22 @@
+
+{
+	"model":{
+		"kodeParameter":"",
+		"parameter":""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "kodeParameter",
+			"messagesRequired" : "",
+			"caption" : "Kode Parameter"
+		},{
+			"isNull" : "true",
+			"name" : "parameter",
+			"messagesRequired" : "",
+			"caption" : "Parameter"
+		}
+
+	]
+}

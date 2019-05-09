@@ -1,0 +1,128 @@
+<div class="SurveiCtrl">
+    <div class="grid_12">
+        <div class="main-survei">
+            <div class="content">
+                <div ng-show="state==='data respondend'">
+                    <md-toolbar style="background-color:blue">
+                        <h1 style="color:white">Data Respondend </h1>
+                        <div style="background-color : #46f53a; height : 10px" ng-style="myStyle"></div>
+
+                        <div style="position: absolute;right: 9px;top: 10px;">
+                            <i ng-hide=" currentIndex ===0" ng-click="prev()" ng-show="currentIndex >0" style="margin-top: -2px;" class="animated fa  fa-arrow-circle-o-left fa-4x" aria-hidden="true"></i>
+                            <i ng-hide="currentIndex ===items.length" ng-click="next()" ng-show="currentIndex < items.length -1" style="margin-top: -2px;" class="animated fa  fa-arrow-circle-o-right fa-4x" aria-hidden="true"></i>
+                        </div>
+                    </md-toolbar>
+                    <div style="max-height:519px;overflow-y:auto;;position:absolute;width:99%" class="grid_12 animated" ng-repeat="item in items" ng-class="{slideInUp : $index ===currentIndex,slideOutUp : $index !==currentIndex}" style="position:absolute">
+                        <span class="question">{{item.question}} :  </span>
+                        <i ng-show="item.isDetail===true" ng-click="item.isDetail =!item.isDetail" style="margin-top: -2px;" class="animated fa  fa-arrow-circle-o-left fa-4x" aria-hidden="true"></i>
+                        <md-radio-group ng-model="item.answer">
+                            <md-radio-button ng-show="!item.isDetail" ng-repeat="data in item.answers" ng-click="navigate($parent.$index,item,data)" ng-value="data" class="md-primary">
+                                <h2 class="answer">{{data.name}}</h2>
+                            </md-radio-button>
+                            <md-radio-button ng-show="item.isDetail" ng-repeat="data in item.detail" ng-click="navigate($parent.$index,item,data)" ng-value="data" class="md-primary">
+                                <h2 class="answer">{{data.name}}</h2>
+                            </md-radio-button>
+                        </md-radio-group>
+                    </div>
+                    <div class="grid_12 animated" ng-class="{slideInUp :currentIndex ===items.length,slideOutUp :currentIndex !==items.length}">
+                        <div ng-repeat="item in items">
+                            <span class="question">{{item.question}} </span> :<span class="question" style="font-family:inherit"> {{item.answer.name}}</span>
+                            </h2>
+                        </div>
+                        <button class="success" ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" ng-click="Next()">
+                            <h1 style="color:white">
+                                Selanjutnya
+                            </h1>
+                        </button>
+                    </div>
+                </div>
+                <div ng-show="state==='quisioner'">
+                    <md-toolbar>
+                        <h1 style="color:white">Kuesioner</h1>
+                        <div style="background-color : #46f53a; height : 10px" ng-style="myStyle"></div>
+                        <div style="position: absolute;right: 9px;top: 10px;">
+                            <i ng-hide=" currentIndex ===0" ng-click="prev()" ng-show="currentIndex >0" style="margin-top: -2px;" class="animated fa  fa-arrow-circle-o-left fa-4x" aria-hidden="true"></i>
+                            <i ng-hide="currentIndex ===items.length" ng-click="next()" ng-show="currentIndex < items.length -1" style="margin-top: -2px;" class="animated fa  fa-arrow-circle-o-right fa-4x" aria-hidden="true"></i>
+                        </div>
+                    </md-toolbar>
+                    <div style="max-height:519px;overflow-y:auto;position:absolute;width:99%" class="grid_12 animated" ng-repeat="item in items" ng-class="{slideInUp : $index ===currentIndex,slideOutUp : $index !==currentIndex}" style="position:absolute">
+                        <span class="question">{{$index+1}}. {{item.question}} :  </span>
+                        <md-radio-group ng-model="item.answer">
+                            <md-radio-button ng-repeat="data in item.answers" ng-click="navigate($parent.$index)" ng-value="data" class="md-primary">
+                                <h2 class="answer">{{data.name}}</h2>
+                            </md-radio-button>
+                        </md-radio-group>
+                    </div>
+                    <div class="grid_12 animated" ng-class="{slideInUp :currentIndex ===items.length,slideOutUp :currentIndex !==items.length}">
+
+                        <button class="success" ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" ng-click="Save()">
+                            <h1 style="color:white">
+                                Selesai
+                            </h1>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="left">
+                <div ng-show="isLoading">
+                    <h1 style="color:black">Sedang Proses Simpan</h1>
+                </div>
+                <div id="left-content">
+                    <h1>Aturan Pengisian Kuesioner</h1>
+                    <p style="font-size: 12pt;text-align: justify;padding: 12px;">Selamat Pagi/siang /sore
+                        <br/>
+                        <br/> Mohon kesediaan Bapak/Ibu berpartisipasi dalam pengisian survey kepuasan pegawai, untuk memberikan masukan kepada manajemen dalam memperbaiki dan meningkatkan lingkungan kerja. Survey ini memerlukan waktu sekitar 10 menit.
+                        Survey ini dijawab tanpa nama.
+
+                        <br/> Partisipan memberikan jawaban dengan 4 (empat) pilihan :
+                    </p>
+                    <ul style="font-size: 12pt;">
+                        <li>Sangat Setuju</li>
+                        <li>Setuju</li>
+                        <li>Tidak Setuju</li>
+                        <li>Sangat Tidak Setuju</li>
+                    </ul>
+                    <p style="
+    font-size: 12pt;
+    text-align: justify;
+    padding: 12px;">
+                        Jawablah sesuai dengan kondisi yang dirasakan. <br/>Klik (symbol tanda panah) untuk memulai survey
+
+
+
+                    </p>
+                    <div>
+                        <!--<button class="success" ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" ng-click="Done()">
+                            <h1 style="color:white">
+                                Mulai
+                            </h1>
+                        </button>-->
+
+                        <h1>Total Respondend {{Persentase | number:3}} %</h1>
+                        <table class="table">
+                            <tr>
+                                <th>Jenis Kelamin</th>
+                                <th>Populasi</th>
+                                <th>Respondend</th>
+                                <th>Keterwakilan Sample</th>
+                            </tr>
+                            <tr ng-repeat="item in itemsRekap">
+                                <td>{{item.key}}</td>
+                                <td>{{item.count}}</td>
+                                <td>{{item.respondedn}}</td>
+                                <td>{{(item.respondedn/item.count)| number:3}} %</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="right">
+                <img style="width: 100%;height: 100%;" src="images/sdm/survei.jpg">
+            </div>
+            <div class="center-survei animated">
+                <i style="margin-top: -2px;" class="animated fa  fa-arrow-circle-o-right fa-4x" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>

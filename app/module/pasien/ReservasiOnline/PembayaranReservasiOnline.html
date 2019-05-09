@@ -1,0 +1,73 @@
+<div ng-controller="PembayaranReservasiOnlineCtrl">
+    <core-busy busy="isLoading"></core-busy>
+    <c-form item="item">
+        <div class="grid_6">
+            <div class="grid_12">
+                <div class="grid_6">
+                    <label c-label item="item" c-label-text="CardNumber"></label>
+                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.CardNumber" />
+                </div>
+                <div class="grid_6">
+                    <label c-label item="item" c-label-text="Pembayaran"></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.Pembayaran" k-data-text-field="'Pembayaran'" k-filter="'contains'" k-data-value-field="'value'" k-auto-bind="false" k-data-source="pembayarans" />
+                </div>
+                <div class="grid_6">
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="CardExpiryDate"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.YearExpired" k-data-text-field="'value'" k-filter="'contains'" k-data-value-field="'value'" k-auto-bind="false" k-data-source="years" />
+                    </div>
+                    <div class="grid_4">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.MonthExpired" k-data-text-field="'value'" k-filter="'contains'" k-data-value-field="'value'" k-auto-bind="false" k-data-source="month" />
+                    </div>
+                </div>
+                <div class="grid_6">
+                    <label c-label item="item" c-label-text="SecurityCode"></label>
+                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.SecurityCode" />
+                </div>
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="NameOnCard"></label>
+                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NameOnCard" />
+                </div>
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="BillingAddress"></label>
+                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.Address" />
+                </div>
+                <div class="grid_6">
+                    <label c-label item="item" c-label-text="City"></label>
+                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.City" />
+                </div>
+                <div class="grid_6">
+                    <label c-label item="item" c-label-text="PostalCode"></label>
+                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.PostalCode" />
+                </div>
+                <div class="grid_6">
+                    <label c-label item="item" c-label-text="Province"></label>
+                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.Province" />
+                </div>
+
+                <div class="grid_6">
+                    <label c-label item="item" c-label-text="EmailAddress"></label>
+                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.EmailAddress" />
+                </div>
+                <div class="grid_6">
+                    <label c-label item="item" c-label-text="PhoneNumber"></label>
+                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.PhoneNumber" />
+                </div>
+            </div>
+        </div>
+        <div class="grid_12" style="position:absolute;bottom:0px;left:0px;">
+            <div class="grid_6">
+                <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px" item="item" size="36" position="'left'" is-back icon="'icon-prev'">
+                    <span class="title">Kembali</span>
+                </c-button>
+            </div>
+            <div class="grid_6">
+                <c-button ng-show="!isLoading" link="'#/ReservasiOnline/Registrasi'" style="width: 100%; font-size: 24px" item="item" size="36" position="'right'" is-validate click="Lanjutkan" icon="'icon-next'">
+                    <span class="title">Proses</span>
+                </c-button>
+            </div>
+        </div>
+    </c-form>
+</div>

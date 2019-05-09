@@ -1,0 +1,48 @@
+{
+	"model":{
+	    "nama" : "",
+	    "umur" : "",
+	    "jenisKelamin" : "",
+	    "alamat" : "",
+	    "tindakan" : "",
+	    "tanggalJam" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "nama",
+			"messagesRequired" : "",
+			"caption" : "Nama"
+		},
+		{
+			"isNull" : "true",
+			"name" : "umur",
+			"messagesRequired" : "",
+			"caption" : "Umur"
+		},
+		{
+			"isNull" : "true",
+			"name" : "jenisKelamin",
+			"messagesRequired" : "",
+			"caption" : "Jenis Kelamin"
+		},
+		{
+			"isNull" : "true",
+			"name" : "alamat",
+			"messagesRequired" : "",
+			"caption" : "Alamat"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tindakan",
+			"messagesRequired" : "",
+			"caption" : "Untuk dilakukan tindakan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tanggalJam",
+			"messagesRequired" : "",
+			"caption" : "Tanggal & Jam"
+		}
+  ]
+}

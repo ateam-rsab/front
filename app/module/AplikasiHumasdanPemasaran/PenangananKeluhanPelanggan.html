@@ -1,0 +1,159 @@
+<div ng-controller="PenangananKeluhanPelangganCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Penanganan Keluhan Pelanggan'">
+			<div class="grid_8">
+			<div class="grid_12">
+				<div class="grid_3" style="margin-top: 10px">
+		             <label c-label item="item" c-label-text="Nama Petugas"></label>
+		         </div>
+		         <div class="grid_1" style="margin-top: 10px">
+		         	 <label c-label item="item" c-label-text=":"></label>
+		         </div>
+				<div class="grid_8" style="margin: 0 0 5px 0;">
+					 <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.user" disabled/>
+				</div>
+				<div class="grid_3" style="margin-top: 10px">
+		              <label c-label item="item" c-label-text="Email"></label>
+		        </div>
+		        <div class="grid_1" style="margin-top: 10px">
+		         	 <label c-label item="item" c-label-text=":"></label>
+		         </div>
+				<div class="grid_8" style="margin: 0 0 5px 0;">
+				 	 <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.emailLogin" placeholder="Contoh : email@gmail.com" />
+				</div>
+				<div class="grid_3" style="margin-top : 10px">
+		              <label c-label item="item" c-label-text="Email Tujuan"></label>
+		         </div>
+		         <div class="grid_1" style="margin-top: 10px">
+		         	 <label c-label item="item" c-label-text=":"></label>
+		         </div>
+				<div class="grid_8" style="margin: 0 0 5px 0;">
+					 <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.email" disabled/> 
+				</div>
+				<div class="grid_3" style="margin-top:10px">
+		              <label c-label item="item" c-label-text="Keluhan"></label>
+		         </div>
+		         <div class="grid_1" style="margin-top: 10px">
+		         	 <label c-label item="item" c-label-text=":"></label>
+		         </div>
+				<div class="grid_8" style="margin: 0 0 5px 0;">
+					 <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.keluhan" disabled/> 
+				</div>
+			     <div class="grid_3" style="margin-top: 10px">
+		              <label c-label item="item" c-label-text="Tanggal"></label>
+		         </div>
+		         <div class="grid_1" style="margin-top: 10px">
+		         	 <label c-label item="item" c-label-text=":"></label>
+		         </div>
+				<div class="grid_6" style="margin: 0 0 5px 0;">
+					 <input style="width: 100%" kendo-date-picker k-ng-model="item.TglPenangan" data-k-format="'yyyy-MM-dd'"/>
+				</div>
+             </div>
+           </div>
+            <div class="clear"></div>
+		</c-panel> 
+      <hr>
+	  <div class="grid_12" >
+  	 	 <div class="grid_1" style="margin-top: 10px">
+  	 		 <h3 style="font-weight: bold; font-family: arial-black">Saran</h3>
+  	 	 </div>
+  	 	 <div class="grid_1" style="margin-top: 10px">
+  	 	 	  <h3 style="font-weight: bold; font-weight: arial-black">:</h3>
+  	 	 </div>
+        <div class="grid_10" style="margin-top: 10px">
+            <textarea ng-model="item.saran" style="width: 100%; height: 100px;" disabled="true"></textarea>      
+        </div>	
+      </div>
+        <div class="grid_12">
+			<div class="grid_1">
+				<h3 style="font-weight: bold; font-family: arial-black">Reply</h3>
+			</div>
+			<div class="grid_1">
+				<h3 style="font-weight: bold; font-weight: arial-black">:</h3>
+			</div>
+			<div class="grid_10" style="margin-bottom: 15px">
+				<textarea ng-model="item.reply" auto-bind="true" style="width: 100%; height: 100px;"></textarea>      
+			</div>			
+		</div>
+	    <div class="grid_12">
+	        <div class="grid_10"></div>
+		   <div class="grid_1" style="margin-bottom: 10px">
+		  	    <button class="c-button success" ng-click="Save()">Save</button>
+		   </div>	  		   	   		   
+		    <div class="grid_1" style="margin-bottom: 10px">
+		  	    <button class="c-button cancel" ng-click="ClearForm()">Clear Form</button>
+		   </div>
+	   </div>
+	   </div>
+	   <br>
+	   <div class="grid_12"></div>
+	   <br>
+	   <c-panel item="item" header="'Daftar Penanganan Keluhan'">
+		   <div class="grid_12" style="margin-top: 10px">
+				    <div class="grid_1"></div>
+					<div class="grid_1" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="periode"></label>
+					</div>
+					<div class="grid_1" align="right"  style="margin-top: 10px">
+						<label c-label item="item" c-label-text=":"></label>
+					</div>
+					<div class="grid_2">
+						<input style="width: 100%" kendo-date-picker  k-ng-model="item.awal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" k-on-change="OnIntData()" />
+					</div>
+					<div class="grid_1" align="center" style="margin-top: 10px">
+							<label c-label item="item">s/d</label>
+						</div>
+					<div class="grid_2">
+						<input style="width: 100%" kendo-date-picker k-ng-model="item.akhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" k-on-change="OnIntData()"/>
+					</div>
+		   </div>
+		   <div class="grid_12">
+					<div class="grid_1"></div>
+					<div class="grid_1" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="Pencarian"></label>
+					</div>
+					<div class="grid_1" align="right"  style="margin-top: 10px">
+						<label c-label item="item" c-label-text=":"></label>
+					</div>
+					<div class="grid_5">
+					 	 <input class=k-textbox type=text ng-model="item.pencarian" placeholder="Petugas / Email / Email Tujuan" />
+					</div>
+					<div class="grid_1" style="margin-top: 6px">
+						<button class="c-button cancel" ng-click="Clear()">Clear</button>
+					</div>
+			</div>
+	   </c-panel>
+		<br>
+			<div class="grid_12 borderBox">
+				<div id="kGrid" kendo-grid 
+				k-data-source="datasource" 
+				k-options="mainGridOptions"
+				k-selectable="'row'" 
+				k-columns="columnPermohonanPerubahanStatus"
+				k-sortable="'true'"
+			    k-pageable="true"
+				k-ng-model="dataSelected"
+				ng-click="klik(dataSelected)">
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_10"></div>
+		    	<div class="grid_2" style="margin-bottom: 10px">
+		  	    	<button class="c-button cancel" ng-click="DaftarKeluhanPelanggan()">Kembali</button>
+		   		</div>
+			</div>
+		</div>
+	  </div>
+<!-- item.reply -->
+
+<style type="text/css">
+	hr { 
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+}
+</style>

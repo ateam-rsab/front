@@ -1,0 +1,432 @@
+[{
+        "name": "Alur Pengadaan",
+        "children": [
+            { "name": "Daftar Monitoring Usulan","link": "#/DaftarMonitoringUsulan" },
+            {
+                "name": "Daftar Usulan Permintaan Barang",
+                "link": "#/DaftarPengajuanPengadaanBarangDirektur"
+            },
+            {
+                "name": "Verifikasi Kartu Pengendali",
+                "link": "#/daftarKartuPengendaliDirektur"
+            }            
+
+        ]
+    },
+    {
+        "name": "Menu Operator",
+        "children": [{
+                "name": "Layanan Medik",
+                "children": [{
+                    "name": "Daftar Antrian Pasien",
+                    "link": "#/DaftarAntrianPasienOperator"
+                }, {
+                    "name": "Pendaftaran Pasien Baru",
+                    "link": "#/RegistrasiPasienBaru"
+                }, {
+                    "name": "Pendaftaran Pasien Lama",
+                    "link": "#/Registrasi/Pelayanan/-"
+                }, {
+                    "name": "Pendaftaran Triage",
+                    "link": "#/GawatDarurat/Triage/Input"
+                }, {
+                    "name": "Pendaftaran Gawat Darurat",
+                    "link": "#/GawatDarurat"
+                }, {
+                    "name": "Pencarian Pasien",
+                    "link": "#/PencarianPasien"
+                }, {
+                    "name": "Daftar Pasien Perjanjian",
+                    "link": "#/Daftar/Perjanjian"
+                }, {
+                    "name": "Daftar Antrian Pasien Baru",
+                    "link": "#/Daftar/Baru"
+                }, {
+                    "name": "Daftar Pasien Gawat Darurat",
+                    "link": "#/Daftar/GawatDarurat"
+                }, {
+                    "name": "Daftar Pasien Masuk Rawat Inap",
+                    "link": "#/DaftarPasienMasukRawatInap"
+                }, {
+                    "name": "Daftar Schedule Ruangan",
+                    "link": "#/Schedule/Perjanjian"
+                }, {
+                    "name": "Daftar Reconfirm BPJS",
+                    "link": "#/Daftar/BPJS"
+                }, {
+                    "name": "Dokumen RekamMedis",
+                    "link": "#/DokumenRekamMedis"
+                }]
+            }, {
+                "name": "Layanan Penunjang",
+                "children": [{
+                    "name": "Pendaftaran Pasien Baru",
+                    "link": "#/RegistrasiPasienPenunjang"
+                }]
+            }
+
+        ]
+    },
+    {
+        "name": "Menu Perawat",
+        "children": [{
+                "name": "Layanan Medik",
+                "children": [{
+                        "name": "Daftar Antrian",
+                        "link": "#/Daftar/Antrian"
+                    }, {
+                        "name": "Dokumen RekamMedis",
+                        "link": "#/DokumenRekamMedis"
+                    }, {
+                        "name": "Dashboard Pasien Rawat Jalan",
+                        "link": "#/Daftar/Antrian"
+                    }, {
+                        "name": "Dashboard Pasien Rawat Inap",
+                        "link": "#/Daftar/Antrian/Inap"
+                    }, {
+                        "name": "Dashboard Pasien Konsultasi",
+                        "link": "#/Daftar/Antrian/Konsultasi"
+                    }, {
+                        "name": "Dashboard Pasien Semua",
+                        "link": "#/Daftar/Antrian/Semua"
+                    },
+                    {
+                        "name": "Daftar Pasien Pulang",
+                        "link": "#/Daftar/Antrian/Pulang"
+                    }
+                ]
+            }, {
+                "name": "Rekam Medik",
+                "children": [{
+                    "name": "Dashboard Pasien",
+                    "link": "#/Daftar/Antrian/Main"
+                }]
+            }, {
+                "name": "Logistik",
+                "children": [{
+                    "name": "Informasi Permintaan Barang Logistik",
+                    "link": "#/Logistik/Order/Informasi"
+                }, {
+                    "name": "Permintaan Barang",
+                    "link": "#/Logistik/Order/"
+                }, {
+                    "name": "Inventori Ruangan",
+                    "link": "#/Logistik/DaftarStok/"
+                }, {
+                    "name": "Kartu Stok",
+                    "link": "#/KartuStok"
+                }, {
+                    "name": "Antrian",
+                    "link": "#/daftarAntrianPasienRuangan"
+                }]
+            }
+
+        ]
+    },
+    {
+        "name": "Menu Dokter",
+        "children": [{
+                "name": "Dashboard Pasien",
+                "children": [{
+                        "name": "Dashboard Pasien Rawat Jalan",
+                        "link": "#/Daftar/Antrian"
+                    },
+                    {
+                        "name": "Dashboard Pasien Rawat Inap",
+                        "link": "#/Daftar/Antrian/Inap"
+                    }
+                ]
+            },
+            {
+                "name": "Dashboard Pasien Konsultasi",
+                "link": "#/Daftar/Antrian/Konsultasi"
+            },
+            {
+                "name": "Dashboard Pasien Semua",
+                "link": "#/Daftar/Antrian/Semua"
+            },
+            {
+                "name": "Daftar Pasien Pulang",
+                "link": "#/Daftar/Antrian/Pulang"
+            },
+            {
+                "name": "Pasien Pulang",
+                "link": "#/Pasien/Pulang"
+            },
+            {
+                "name": "Informasi Permintaan Barang Logistik",
+                "link": "#/Logistik/Order/Informasi"
+            },
+            {
+                "name": "Permintaan Barang",
+                "link": "#/Logistik/Order/"
+            },
+            {
+                "name": "Inventori Ruangan",
+                "link": "#/Logistik/DaftarStok/"
+            },
+            {
+                "name": "Kartu Stok",
+                "link": "#/KartuStok"
+            },
+            {
+                "name": "Report Pasien",
+                "link": "#/ReportPasien"
+            }
+
+        ]
+    },
+    {
+        "name": "Menu Farmasi",
+        "children": [{
+                "name": "Dashboard",
+                "link": "#/Apotek/Daftar"
+            },
+            {
+                "name": "Daftar Antrian",
+                "link": "#/ResepElektronik"
+            },
+            {
+                "name": "Handling Cytotoxic",
+                "link": "#/PelayananHandlingCytotoxic/Detail/"
+            },
+            {
+                "name": "Pelayanan IV Admixture",
+                "link": "#/PelayananIVAdmixture/Detail/"
+            },
+            {
+                "name": "Pelayanan TPN",
+                "link": "#/PelayananTPN/Detail/"
+            },
+            {
+                "name": "Penerimaan Barang Logistik",
+                "link": "#/Logistik/PenerimaanBarangLogistik"
+            },
+            {
+                "name": "PIO",
+                "link": "#/Pio"
+            },
+            {
+                "name": "Informasi Kirim Barang",
+                "link": "#/Logistik/OrderKirim/Informasi"
+            },
+            {
+                "name": "Informasi Permintaan Barang Unit Kerja",
+                "link": "#/InformasiOrderProdukUnit"
+            },
+            {
+                "name": "Informasi Permintaan Barang Logistik",
+                "link": "#/Logistik/Order/Informasi"
+            },
+            {
+                "name": "Permintaan Barang",
+                "link": "#/Logistik/Order/"
+            },
+            {
+                "name": "Inventori Ruangan",
+                "link": "#/Logistik/DaftarStok/"
+            },
+            {
+                "name": "Kartu Stok",
+                "link": "#/KartuStok"
+            },
+            {
+                "name": "Report",
+                "children": [{
+                    "name": "Report Apotek",
+                    "link": "#/ReportApotek"
+                }]
+            }, {
+                "name": "Logistik",
+                "children": [{
+                    "name": "Data Stok Ruangan",
+                    "link": "#/Logistik/DaftarStok/"
+                }, {
+                    "name": "Order Barang",
+                    "link": "#/Logistik/Orders/"
+                }, {
+                    "name": "Informasi Permintaan Barang",
+                    "link": "#/Logistik/Order/Informasi"
+                }, {
+                    "name": "Informasi Pengiriman Barang",
+                    "children": [{
+                        "name": "Stok Barang Keluar",
+                        "link": "#/Logistik/OrderKirim/Informasi"
+                    }, {
+                        "name": "Stok Barang Masuk",
+                        "link": "#/Logistik/Terima/Verifikasi"
+                    }]
+                }, {
+                    "name": "Kartu Stok",
+                    "link": "#/KartuStok"
+                }]
+            }
+
+        ]
+    },
+    {
+        "name": "Menu Laboratorium",
+        "children": [{
+                "name": "Dashboard",
+                "link": "#/Laboratorium/Daftar"
+            }, {
+                "name": "Daftar Pasien",
+                "link": "#/Laboratorium/Pasien"
+            }, {
+                "name": "Laporan Hasil By Pemeriksaan",
+                "link": "#/Laboratorium/Laporan/Pemeriksaan"
+            }
+
+        ]
+    },
+    {
+        "name": "Menu Radiologi",
+        "children": [{
+                "name": "Dashboard",
+                "link": "#/Radiologi/Daftar"
+            }, {
+                "name": "Daftar Pasien",
+                "link": "#/Radiologi/Pasien"
+            }
+
+        ]
+    },
+    {
+        "name": "SDM",
+        "children": [{
+            "name": "Target Bobot",
+            "link": "#/TargetBobot"
+        }, {
+            "name": "Input Logbook",
+            "link": "#/InputLogbook"
+        }, {
+            "name": "Indeks Kinerja Individu",
+            "link": "#/IndeksKinerjaIndividuSDM"
+        }, {
+            "name": "Permohonan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
+            "link": "#/PermohonanPerubahanStatusPegawai"
+        }, {
+			"name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
+			"link": "#/DaftarPenangguhanCuti"
+		}, {
+            "name": "Pengajuan Mutasi Pegawai",
+            "link": "#/PengajuanMutasiPegawai"
+        }, {
+            "name": "Pengajuan Resign Pegawai",
+            "link": "#/PengajuanResignPegawai"
+        }, {
+            "name": "Pengajuan Sanksi Pegawai",
+            "link": "#/PengajuanSanksiPegawai"
+        }, {
+            "name": "Daftar Pengajuan Mutasi Resign Sanksi",
+            "link": "#/DaftarPengajuanMutasiSanksiResign"
+        }, {
+			"name": "Monitoring Absensi",
+			"link": "#/MonitoringAbsensiPegawai"
+		}, {
+			"name": "InputLemburPegawaiUnitKerja",
+			"link": "#/InputLemburPegawaiUnitKerja"
+		},{
+            "name": "Verifikasi Uraian Tugas Bawahan",
+            "link": "#/VerifikasiUraianTugasPegawaiLogin"
+        },{
+                "name": "Pengajuan Pelatihan",
+                "children": [
+                    {
+                        "name": "Monitoring Pengajuan Pelatihan",
+                        "link": "#/MonitoringPengajuanPelatihan"
+                    },
+                    {
+                        "name": "Pengajuan Pelatihan",
+                        "link": "#/PermintaaanPelatihanDirek"
+                    },
+                    {
+                        "name": "Daftar Undangan Pelatihan",
+                        "link": "#/DaftarUndanganPelatihan"
+                    },
+                    {
+                        "name": "Daftar Kehadiran Peserta Pelatihan",
+                        "link": "#/DaftarKehadiranPesertaPelatihan"
+                    },
+                    {
+                        "name": "Daftar Rekapitulasi Kehadiran Peserta Pelatihan",
+                        "link": "#/DaftarRekapitulasiKehadiran"
+                    }
+                ]
+            }]
+    },
+    {
+        "name":"Aplikasi IT",
+        "children":[
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/RevPermintaanPerbaikandariRuanganITNew"
+            }
+        ]
+    },
+    {
+        "name": "IP3RS",
+        "children": [
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/PermintaanPerbaikandariRuangan"
+            },
+            {
+                "name": "Respond Perbaikan",
+                "link": "#/RespondPerbaikan"
+            } 
+        ]
+    }, 
+    {
+        "name": "Tata Usaha",
+        "children": [{
+                "name": "Membuat Draft Surat",
+                "link": "#/BuatDraftSurat"
+            },
+            {
+                "name": "Daftar Draft",
+                "link": "#/DaftarDraft"
+            },
+            {
+                "name": "Daftar Draft Surat Masuk",
+                "link": "#/DaftarDraftSuratMasuk"
+            },
+            {
+                "name": "Dokumen Verbal Konsep",
+                "link": "#/DokumenVerbalKonsep/"
+            },
+            {
+                "name": "Verbal Konsep",
+                "link": "#/VerbalKonsep/"
+            },
+            {
+                "name": "Surat Masuk Internal dan Eksternal",
+                "link": "#/SuratMasukInternaldanEksternal"
+            },
+            {
+                "name": "Daftar Surat Masuk Internal Eksternal",
+                "link": "#/DaftarSuratMasukInternalEksternal"
+            },
+            {
+                "name": "Nota Dinas",
+                "link": "#/NotaDanDisposisi"
+            },
+            {
+                "name": "Daftar Nota Dinas",
+                "link": "#/ListNotaDinas"
+            }
+        ]
+    },
+    {
+        "name": "Aplikasi Laundry",
+        "children": [
+            {
+                "name": "Permintaan Linen Bersih",
+                "link": "#/PermintaanLinenByRuangan"
+            },{
+                "name": "Verifikasi",
+                "link": "#/VerifikasiTerima"
+            }
+    ]
+    }
+]

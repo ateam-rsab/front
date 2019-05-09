@@ -1,0 +1,90 @@
+{
+	"model":{
+		"id" : "",
+		"jenisPegawai":"",
+		"namaPegawai":"",
+		"jenisKelamin" : "",
+		"tempatLahir":"",
+		"tglLahir":"",
+		"tglMasuk" : "",
+		"nip":"",
+		"jabatanStruktural":"",
+		"jabatanFungsional":"",
+		"noBPJS":"",
+		"satuanKerja":"",
+		"cariPegawai":""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "id",
+			"messagesRequired" : "",
+			"caption" : "No ID"
+		},{
+			"isNull" : "true",
+			"name" : "jenisPegawai",
+			"messagesRequired" : "",
+			"caption" : "Jenis Pegawai"
+		},{
+			"isNull" : "true",
+			"name" : "namaPegawai",
+			"messagesRequired" : "",
+			"caption" : "Nama Pegawai"
+		},
+		{
+			"isNull" : "true",
+			"name" : "jenisKelamin",
+			"messagesRequired" : "",
+			"caption" : "Jenis Kelamin"
+		},{
+			"isNull" : "true",
+			"name" : "tempatLahir",
+			"messagesRequired" : "",
+			"caption" : "Tempat Lahir"
+		},{
+			"isNull" : "true",
+			"name" : "tglLahir",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Lahir"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tglMasuk",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Masuk"
+		},{
+			"isNull" : "true",
+			"name" : "nip",
+			"messagesRequired" : "",
+			"caption" : "NIP"
+		},{
+			"isNull" : "true",
+			"name" : "jabatanStruktural",
+			"messagesRequired" : "",
+			"caption" : "Jabatan Struktural"
+		},{
+			"isNull" : "true",
+			"name" : "jabatanFungsional",
+			"messagesRequired" : "",
+			"caption" : "Jabatan Fungsional"
+		},
+		{
+			"isNull" : "true",
+			"name" : "noBPJS",
+			"messagesRequired" : "",
+			"caption" : "No. BPJS"
+		},{
+			"isNull" : "true",
+			"name" : "satuanKerja",
+			"messagesRequired" : "",
+			"caption" : "Satuan Kerja"
+		},{
+			"isNull" : "true",
+			"name" : "cariPegawai",
+			"messagesRequired" : "",
+			"caption" : "Cari Pegawai"
+		}
+
+	]
+}

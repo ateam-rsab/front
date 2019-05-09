@@ -1,0 +1,152 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Master Barang Non Medis</div>
+	<div class="panel-body">
+		<div class="grid_6" style="margin-top: 5px">
+			<div class="grid_2" style="margin-top: 10px">
+				<label c-label item="item">Jenis Barang</label>
+			</div>
+			<div class="grid_4">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jenis"/>
+			</div>
+			<div class="grid_2" style="margin-top: 10px">
+				<label c-label item="item">Detil Jenis</label>
+			</div>
+			<div class="grid_4">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jenisDetil" ng-keypress="($event.which == 13)? Save():item.namaMenu"/>
+			</div>
+			<div class="grid_2" style="margin-top: 10px">
+				<label c-label item="item">Kode Barang</label>
+			</div>
+			<div class="grid_4">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.kodeBarang"/>
+			</div>
+			<div class="grid_2" style="margin-top: 10px">
+				<label c-label item="item">Kode BMN</label>
+			</div>
+			<div class="grid_4">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.kodeBmn" ng-keypress="($event.which == 13)? Save():item.namaMenu"/>
+			</div>
+			<div class="grid_2" style="margin-top: 10px">
+				<label c-label item="item">Nama Barang</label>
+			</div>
+			<div class="grid_4">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaBarang"/>
+			</div>
+			<div class="grid_2" style="margin-top: 10px">
+				<label c-label item="item">Satuan</label>
+			</div>
+			<div class="grid_4">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.satuan" ng-keypress="($event.which == 13)? Save():item.namaMenu"/>
+			</div>
+		</div>
+		<div class="grid_6" style="margin-top: 5px">
+			<div class="grid_2" style="margin-top: 10px">
+				<label c-label item="item">Kode Aspak</label>
+			</div>
+			<div class="grid_4">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.kodeAspak"/>
+			</div>
+			<div class="grid_2" style="margin-top: 10px">
+				<label c-label item="item">Kode RS</label>
+			</div>
+			<div class="grid_4">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.kodeRs" ng-keypress="($event.which == 13)? Save():item.namaMenu"/>
+			</div>
+		</div>
+		<div class="grid_12 headerBox">&nbsp;</div>
+		<div class="grid_6">
+			<div class="grid_2" style="margin-top: 10px">
+				<label c-label item="item">Merk</label>
+			</div>
+			<div class="grid_4">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.merk"/>
+			</div>
+			<div class="grid_2" style="margin-top: 10px">
+				<label c-label item="item">Type</label>
+			</div>
+			<div class="grid_4">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.type"/>
+			</div>
+			<div class="grid_3" style="margin-top: 10px">
+				<label c-label item="item">Jumlah Kemasan</label>
+			</div>
+			<div class="grid_3">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jumlahKemasan" ng-keypress="($event.which == 13)? Save():item.namaMenu"/>
+			</div>
+			<div class="grid_2" style="margin-top: 10px">
+				<label c-label item="item">Jumlah Terkecil</label>
+			</div>
+			<div class="grid_4">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaMenu" ng-keypress="($event.which == 13)? Save():item.namaMenu"/>
+			</div>
+		</div>
+		<div class="grid_6">
+			<div class="grid_2" style="margin-top: 10px">
+				<label c-label item="item">Bahan</label>
+			</div>
+			<div class="grid_4">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.bahan"/>
+			</div>
+			<div class="grid_2" style="margin-top: 10px">
+				<label c-label item="item">Warna</label>
+			</div>
+			<div class="grid_4">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.warna" ng-keypress="($event.which == 13)? Save():item.namaMenu"/>
+			</div>
+			<div class="grid_2" style="margin-top: 10px">
+				<label c-label item="item">Status</label>
+			</div>
+			<div class="grid_4">
+				<div class="grid_6" ng-repeat="stat in listStatus">
+                    <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.status" ng-checked="item.status.id===stat.id" ng-value="stat">
+                    <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                </div>
+				<!-- <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.status"/> -->
+			</div>
+			<div class="grid_2" style="margin-top: 10px">
+				<label c-label item="item">Produksi</label>
+			</div>
+			<div class="grid_4">
+				<input style="width:100%" kendo-date-picker k-ng-model="item.tglProduksi" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'"/>
+			</div>
+		</div>
+		<div class="grid_6">
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item">Spesifikasi</label>
+			</div>
+			<div class="grid_12">
+				<textarea rows="8" c-text-box type="input" class="k-textbox" ng-model="item.deskripsi"/>
+			</div>
+		</div>
+		<div class="grid_8">&nbsp;</div>
+		<div class="grid_4">
+			<div class="grid_6">
+				<button class="c-button" ng-click="Tambah()" disabled>Tambah</button>
+			</div>
+			<div class="grid_6">
+				<button class="c-button" ng-click="Clear()" disabled>Batal</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="grid_12" style="margin-top: 10px">
+		<kendo-grid k-data-source="dataSource" k-selectable="'row'" options="mainGridOptions"></kendo-grid>
+	</div>
+	<div class="grid_12">
+		<div class="grid_8"></div>
+		<div class="grid_4">
+			<div class="grid_6">
+				<button class="c-button" ng-click="Save()">Simpan</button>
+			</div>
+			<div class="grid_6">
+				<button class="c-button" ng-click="lihatDaftar()">Daftar Barang</button>
+			</div>
+		</div>
+		<!-- <div class="grid_2">
+			<button class="c-button" ng-click="Delete()">Hapus</button>
+		</div>
+		<div class="grid_2">
+			<button class="c-button">Tutup</button>
+		</div> -->
+	</div>
+</div>

@@ -1,0 +1,52 @@
+<div class="DesignCtrl">
+    <div class="panel panel-default container_12" style="background-color:transparant">
+        <div class="panel-heading"><label class='title' c-label item="item" c-label-text="Master Design Dashboard" real></label></div>
+        <div class="panel-body">
+            <div class="grid_2">
+                <label c-label item="item" c-label-text="kelompokMenu">Kelompok Menu</label>
+                <input required c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.kelompok" />
+            </div>
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="Judul">Judul</label>
+                <input required c-text-box type="input" class="k-textbox" ng-model="item.title" />
+            </div>
+            <div class="grid_2">
+                <label c-label item="item" c-label-text="Kolom">Kolom</label>
+                <input required c-text-box type="input" class="k-textbox" ng-model="item.span" />
+            </div>
+            <div class="grid_2">
+                <label c-label item="item" c-label-text="Group">Group</label>
+                <input required c-text-box type="input" class="k-textbox" ng-model="item.series" />
+            </div>
+            <div class="grid_2">
+                <label c-label item="item" c-label-text="detail">Detail</label>
+                <input required c-text-box type="input" class="k-textbox" ng-model="item.detail" />
+            </div>
+
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="Query">Query</label>
+                <textarea class="k-textbox" style="resize: none;" rows="5" cols="100%" ng-model="item.query"></textarea>
+            </div>
+
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="Tipe"></label>
+
+                <input required style="width: 100%;" kendo-combo-box k-ng-model="item.type" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'name'" k-data-source="types" />
+            </div>
+            <div class="grid_2">
+                <label c-label item="item" c-label-text="Tinggi Chart">Tinggi Chart</label>
+                <input required c-text-box type="input" class="k-textbox" ng-model="item.height" />
+            </div>
+            <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="Pencarian">Pencarian</label>
+                <input required c-text-box type="input" filter="'string'" class="k-textbox" ng-model="pencarian" />
+            </div>
+            <div class="grid_12">
+                <div data-kendo-grid="grid" k-groupable="'true'" k-aggregate='aggregate' k-ng-model="item" k-data-source="listData" k-selectable="'row'" k-sortable="'true'" k-columns="Column">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+<div ng-controller="DaftarPermintaanOperasiCtrl">
+	<div ng-show="dataVOloaded">
+		<div class="panel panel-default panel-white">
+            <div class="panel-heading-white"><span class="title" c-translate>Parameter Pencarian</span></div>
+            <div class="panel-body">
+				<div class="grid_12">
+					<div class="grid_4" style="margin-top:20px">
+						<div class="grid_12" style="margin-left:10px">
+							<label c-label item="item" c-label-text="Periode"></label>
+						</div>
+						<div class="grid_5">
+							<input style="width: 100%" k-ng-model="item.tanggalAwal"  kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+						</div>
+						<div class="grid_1" style="margin-top:10px" align="center">
+							<label c-label item="item">s/d</label>
+						</div>
+						<div class="grid_5">
+							<input style="width: 100%" k-ng-model="item.tanggalAkhir"  kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+						</div>
+					</div>
+					<div class="grid_3" style="margin-top:20px">
+						<div class="grid_12">
+							<label c-label item="item">Nama / No Rm</label>
+						</div>
+						<div class="grid_12">
+							<input c-text-box type="input" style="text-align: left; margin-top: 10px" filter="" class="k-textbox" ng-model="item.noCm" ng-disable="false"/>
+						</div>
+					</div>
+					<div class="grid_3" style="margin-top:20px">
+						<div class="grid_6">
+							<button class="btnTemplate1" style="margin-top: 20px" ng-click="btnCari()">Cari</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default panel-white">
+            <div class="panel-heading-white"><span class="title" c-translate>Daftar Permintaan Operasi</span></div>
+            <div class="panel-body">
+				<div class="grid_12" style="margin-top:10px">
+					<div kendo-grid k-data-source="sourceDaftarPermintaanOperasi" k-selectable="'row'" options="mainGridOptions" k-ng-model="dataSelectedRow"></div>
+				</div>
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_10">
+
+			</div>
+			<div class="grid_2">
+				<button class="btnTemplate1" style="font-size:16px" ng-click="goVerifikasi()" >Verifikasi Permintaan</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,28 @@
+{
+	"model":{
+		"kodeUnitOrganisasi" : "",
+		"namaUnitOrganisasi":"",
+		"ketUnitOrganisasi":""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "kodeUnitOrganisasi",
+			"messagesRequired" : "",
+			"caption" : "Kode Unit Organisasi"
+		},{
+			"isNull" : "true",
+			"name" : "namaUnit Organisasi",
+			"messagesRequired" : "",
+			"caption" : "Nama Unit Organisasi"
+		},{
+			"isNull" : "true",
+			"name" : "ketUnitOrganisasi",
+			"messagesRequired" : "",
+			"caption" : "Keterangan Unit Organisasi"
+		}
+
+	]
+}

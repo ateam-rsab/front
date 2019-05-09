@@ -1,0 +1,246 @@
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#aabcfe;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aabcfe;color:#669;background-color:#e8edff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aabcfe;color:#039;background-color:#b9c9fe;}
+.tg .tg-yw4l{vertical-align:top;}
+.tg .nilai{vertical-align:middle;text-align: center;font-weight: bold;}
+.tg .jawaban{vertical-align:middle;text-align: center;}
+.header {font-size:120%; font-weight:700;}
+.footer {text-align:center; font-size:11pt; font-weight:700; margin-bottom:20px}
+.rowstyle {border-bottom:1px dashed lightblue}
+img.painScale {
+    display: inline-block;
+    margin: 2% auto;
+}
+.headingPainScale {
+    font-size:150%; font-weight:700;
+    text-align: center;
+    margin-bottom: 10%;
+}
+.k-slider {
+  width:94%;
+  margin-left:3%;
+  margin-right:3%;
+  margin-top:1%;
+  margin-bottom:5%;
+  display: inline-block;
+}
+.palKiri {
+    text-align: left;
+    vertical-align: middle
+}
+.palTengah {
+    text-align: center;
+    vertical-align: middle
+}
+.palKanan {
+    text-align: right;
+    vertical-align: middle
+}
+</style>
+
+<div>
+    <div class="grid_12" style="margin-bottom:60px">
+        <!-- panel Skrining Nyeri Neonatus -->
+        <div class="grid_12" ng-show="isNeonatal">
+            <div class="grid_12 headerBox">
+                <h1 style="color: white;"><b>{{title.neonatus}}</b></h1>
+            </div>
+            <div class="clear"></div>
+            <br/>
+            <div class="grid_12">
+                <div class="grid_6" ng-repeat="list in arrParameterNeonatus | orderBy:'id'">
+                    <b>{{list.nama}}</b>
+                    <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                        <input type="radio" ng-model="list.value" ng-value="opsi.id" ng-click="cekSkor(list, opsi)" >
+                        <label for="{{opsi.nama}}">{{opsi.nama}} : ({{opsi.descNilai}})</label>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <p style="margin-left:10px"><b>Catatan:</b> Skor > 3 mengindikasikan bahwa bayi mengalami nyeri.</p>
+                </div>
+                
+                <div class="grid_12 footer" style="border-top:1px solid lightblue">
+                    <div class="grid_8">&nbsp;</div>
+                    <div class="grid_2">Total Skor</div>
+                    <div class="grid_2">{{totalSkorNeonatus}}</div>
+                </div>
+                <!--<table class="tg">
+                <tr>
+                    <td class="tg-yw4l nilai" colspan="2">Total Skor</td>
+                    <td class="tg-yw4l nilai" colspan="2">{{totalSkorNeonatus}}</td>
+                </tr>
+                </table>-->
+            </div>
+        </div>
+        
+        <!-- panel Skrining Nyeri Anak/Dewasa -->
+        <div class="grid_12" style="margin-bottom:60px" ng-show="isAnak || isDewasa">
+            <div class="grid_12 headerBox">
+                <!--<h1 style="color: white;"><b>{{title.dewasa}}</b></h1>-->
+                <h1 style="color: white;"><b>Skrining Nyeri</b></h1>
+            </div>
+            <div class="clear"></div>
+            <br/>
+            <div class="grid_6">
+                <div class="grid_12" ng-show="isDewasa" style="margin-top:20%">
+                    <div class="headingPainScale">
+                        <label for="{{item.nama}}">Numeric Pain Rating Scale</label>
+                        <!--<img class="painScale" src="stylesheets/skalanyeri/numericPainRatingScale2.png">-->
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_4 palKiri">
+                            <label for="{{item.nama}}">No Pain</label>
+                        </div>
+                        <div class="grid_4 palTengah">
+                            <label for="{{item.nama}}">Moderate Pain</label>
+                        </div>
+                        <div class="grid_4 palKanan">
+                            <label for="{{item.nama}}">Worst Possible Pain</label>
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <input kendo-slider="" k-min="0" k-max="10" ng-model="item.skalaNyeri" />
+                    </div>
+                </div>
+                <div class="grid_12" ng-show="isAnak" style="margin-top:20%">
+                    <div class="grid_12" style="text-align: center; vertical-align: middle; margin-bottom:20px">
+                        <div class="headingPainScale">
+                            <label for="{{item.nama}}"><b>{{titleNyeriAnak}}</b></label>
+                        </div>
+                    </div>
+                    <div ng-repeat="list in formNyeriAnak | orderBy:'id'">
+                        <div ng-repeat="opsi in list.detail | orderBy:'id'" ng-init="listIndex = $index + 1">
+                            <div class="grid_2" style="text-align: center; vertical-align: middle;">
+                                <img class="normalTidakNormal" src="stylesheets/skalanyeri/{{listIndex}}.png">
+                                <input type="radio" ng-model="list.value" ng-value="opsi.id" ng-click="cekSkalaNyeri(list, opsi)" >
+                                <!--<input type="checkbox" ng-change="cekArrNyeriAnak(bool, list)" ng-model="bool" ng-checked="isChecked(list.id)">-->
+                                <div class="grid_12">
+                                    <label for="{{opsi.nama}}"><b>{{opsi.nama}}</b></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_6">
+                <div class="grid_12" ng-repeat="list in arrParameterDewasa | orderBy:'id'">
+                    <div ng-switch on="list.detail">
+                        <div ng-switch-when="undefined">
+                            <div class="grid_2" style="padding-left:0px !important; padding-top:18px">
+                                <label for="{{list.nama}}"><b>{{list.nama}}</b></label>
+                            </div>
+                            <div class="grid_2">
+                                <input type="inut" c-text-box class="k-textbox" ng-model="item.skalaNyeri" placeholder="{{list.value}}" style="width:100%" size="36" disabled/>
+                            </div>
+                            <hr style="margin:5px auto"/>
+                        </div>
+                        <div ng-switch-default>
+                            <b>{{list.nama}}</b>
+                            <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                                <div ng-if="!opsi.detail">
+                                    <div ng-switch on="list.id">
+                                        <div ng-switch-when="118">
+                                            <div class="grid_3">
+                                                <input type="checkbox" ng-change="cekArrNyeriMempengaruhi(bool, opsi)" ng-model="bool" ng-checked="isChecked(opsi.id)">
+                                                <label for="{{opsi.nama}}">{{opsi.nama}}</label>
+                                            </div>
+                                        </div>
+                                        <div ng-switch-default>
+                                            <div class="grid_3">
+                                                <input type="radio" ng-model="list.value" ng-value="opsi.id" ng-click="cekSkorss(list, opsi)" >
+                                                <label for="{{opsi.nama}}">{{opsi.nama}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-if="opsi.detail">
+                                    <div class="grid_2">
+                                        <input type="radio" ng-model="list.value" ng-value="opsi.id" ng-click="cekSkorss(list, opsi)">
+                                        <label for="{{opsi.nama}}">{{opsi.nama}}</label>
+                                    </div>
+                                    <div ng-repeat="subOpsi in opsi.detail | orderBy:'id'" style="margin-left:23px">
+                                        <div class="grid_12" ng-disabled="isNyeri">
+                                            <div class="grid_4">
+                                                <label for="{{subOpsi.nama}}">{{subOpsi.nama}}</label>
+                                            </div>
+                                            <div class="grid_8">
+                                                <input type="input" filter="'varchar'" class="k-textbox" ng-model="subOpsi.value" placeholder="{{subOpsi.value}}" style="width:100%" ng-blur="cekArrTextBox(subOpsi)"/>
+                                                <!--<input type="text" ng-model="subOpsi.value" ng-value="subOpsi.value" ng-disabled="adaNyeri">-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr style="margin:5px auto"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        <div >
+
+        <!-- panel Skrining Nyeri FLACC -->
+        <div class="grid_12"  ng-show="isAnak">
+            <div class="grid_12 headerBox">
+                <h1 style="color: white;"><b>{{title.flacc}}</b></h1>
+            </div>
+            <div class="clear"></div>
+            <br/>
+            <div class="grid_12 header">
+                <div class="grid_1" style="border-bottom:1px solid blue; text-align:center"><b>No</b></div>
+                <div class="grid_4" style="border-bottom:1px solid blue"><b>Fungsi</b></div>
+                <div class="grid_5" style="border-bottom:1px solid blue"><b>Keterangan</b></div>
+                <div class="grid_1" style="border-bottom:1px solid blue; text-align:center"><b>Skor</b></div>
+                <div class="grid_1" style="border-bottom:1px solid blue; text-align:center"><b>Hasil</b></div>
+            </div>
+            <div ng-repeat="tanya in formFlacc | orderBy:'id'" ng-init="tanyaIndex = $index + 1">\
+                <div class="grid_12" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index">
+                    <div ng-switch on="jawabIndex">
+                        <div ng-switch-when="0">
+                            <div class="grid_12 rowstyle">
+                                <div class="grid_1" style="text-align:center">
+                                    <label>{{tanyaIndex}}</label>
+                                </div>
+                                <div class="grid_4">
+                                    <label><b>{{tanya.nama}}</b></label>
+                                </div>
+                                <div class="grid_5">
+                                    <input type="radio" ng-model="tanya.value" ng-value="jawab.id" ng-click="cekSkors(tanya, jawab)">
+                                    <label for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                </div>
+                                <div class="grid_1" style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_1" style="text-align:center">
+                                    <label>{{tanya.descNilai}}</label>
+                                </div>
+                            </div> 
+                        </div>
+                        <div ng-switch-default>
+                            <div class="grid_12 rowstyle">
+                                <div class="grid_1">&nbsp;</div>
+                                <div class="grid_4">&nbsp;</div>
+                                <div class="grid_5">
+                                    <input type="radio" ng-model="tanya.value" ng-value="jawab.id" ng-click="cekSkors(tanya, jawab)">
+                                    <label for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                </div>
+                                <div class="grid_1" style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_1" style="text-align:center">&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12 footer" style="border-top:1px solid lightblue">
+                <div class="grid_8">&nbsp;</div>
+                <div class="grid_2">Total Skor</div>
+                <div class="grid_2">{{totalSkorFlacc}}</div>
+            </div>
+
+        </div>
+    </div>
+    <div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
+</div>

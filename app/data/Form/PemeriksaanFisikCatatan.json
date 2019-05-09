@@ -1,0 +1,14 @@
+{
+	"model":{
+	    "DataRujukan" : ""
+	   
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "DataRujukan",
+			"messagesRequired" : "",
+			"caption" : "DataRujukan"
+		}
+  ]
+}

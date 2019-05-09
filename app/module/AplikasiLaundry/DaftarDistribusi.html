@@ -1,0 +1,142 @@
+<style>
+    .error{
+        background-color:white !important;
+    }
+    .yellow{
+        background-color:#ffff00
+    }
+     .green{
+        background-color:#00ff40
+    }
+      .red{
+        background-color:#FF0000
+    }
+    .k-grid  .k-grid-header  .k-header  .k-link {
+     height: auto;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     white-space: normal;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     text-align: center;
+    }
+    .fieldset2{
+    	background-color: #363940; 
+    }
+
+  .btnHapus2 {
+  margin-right: 10px;
+  padding: 7px 20px;
+  border: none;
+  color: white;
+  font-size: 12px;
+  background-color: #363940; }
+/*     .k-header .k-link{
+    text-align: center;
+     }*/
+</style>
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Daftar Distribusi</div>
+		<div class="panel-body">
+          <div class="grid_12">
+				<div class="grid_2"></div>	
+				<div class="grid_1" style="margin-top:15px">
+					<label c-label item="item">Periode</label>
+				</div>
+				<div class="grid_1" align="right"  style="margin-top: 10px">
+						<label c-label item="item" c-label-text=":"></label>
+					</div>
+				<div class="grid_2">
+					<input style="width:100%" kendo-date-picker  k-ng-model="item.awal" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'" k-on-change="ChangeDate()"/>
+				</div>
+				<div class="grid_1" align="center" style="margin-top:10px">
+					<label c-label item="item">s/d</label>
+				</div>
+				<div class="grid_2">
+					<input style="width:100%" kendo-date-picker  k-ng-model="item.akhir" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'" k-on-change="ChangeDate()"/>
+				</div>
+<!-- 				<div class="grid_2" style="margin:5px">
+					<button class="c-button success" ng-click="search()">Cari</button>
+				</div> -->
+			</div>
+			<div class="grid_12" style="margin-top: 10px">
+					<div class="grid_2"></div>
+					<div class="grid_1" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="Pencarian"></label>
+					</div>
+					<div class="grid_1" align="right"  style="margin-top: 10px">
+						<label c-label item="item" c-label-text=":"></label>
+					</div>
+					<div class="grid_3">
+					 <input class=k-textbox type=text ng-model="Pencarians" placeholder="Ruangan / Petugas" />
+					</div>
+					<div class="grid_1" style="margin-top: 5px">
+						<button class="c-button success" ng-click="Cari(Pencarians)">Cari</button>
+					</div>
+					<div class="grid_1" style="margin-top: 5px">
+						<button class="c-button success" ng-click="ClearCari()">Clear</button>
+					</div>
+			</div>
+			<div class="grid_12" style="margin-top: 10px">
+				<div class="grid_12	">
+					<div id="grid" kendo-grid k-data-source="sourceDistribusi" options="mainGridOptions" k-selectable="'row'" k-ng-model="current" ng-click="kl(current)">
+					</div>
+				</div>
+			</div>
+					<!-- POP UP  DETAIL -->
+		<div class="grid_12">
+				<div class="popUp" ng-show="isShowPopUp">
+   		 	 <div kendo-window="win1" id="winPopUp"
+       			 k-title="'Detail Data Distribusi'" 
+       			 k-width="'80%'"
+       			 k-draggable="false"
+       		 	 k-position="{ 'top': '20%', 'left':'10%' }"
+       		 	 k-on-close="closeWindowLinen()"
+      		 	 k-visible="isShowPopUp">
+           	     <div class="grid_12">
+                	 <fieldset style="min-height:40px !important">
+		                <div class="grid_12">
+		                	<div class="grid_3" style="margin-top: 10px">
+		                  	  <label c-label item="item" c-label-text="Tanggal Pengiriman"></label>
+		                	</div>
+		                	<div class="clear"></div>
+			                <div class="grid_9">
+			                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.tanggalpengiriman" ng-disabled="true" />
+			                </div>
+		                </div>
+		                <div class="grid_12">
+		                	<div class="grid_3" style="margin-top: 10px">
+		                  	  <label c-label item="item" c-label-text="Petugas"></label>
+		                	</div>
+		                	<div class="clear"></div>
+			                <div class="grid_9">
+			                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.petugas" ng-disabled="true" />
+			                </div>
+		                </div>
+		              </fieldset>
+           	     </div>
+               <div class="grid_12">
+	                <kendo-grid id="grid" options="mainGridOptions2" k-data-source="SourceDataDetail" k-ng-model="current" ng-click="kl(current)">
+					</kendo-grid>
+   			  </div>
+   			  <div class="grid_6">
+                 <button class='btnHapus2' ng-click='cancelData()'>Tutup</button>
+              </div>
+    	  </div>
+			</div>
+    </div>
+			<div class="grid_12" style="margin-top: 20px ">
+				<div class="grid_8"></div>
+				<div class="grid_2"></div>
+				<div class="grid_2">
+					<button class="c-button success" ng-click="openWindow()">Detail</button>
+	            </div>
+				<!-- <div class="grid_2">
+					<button class="c-button success" ng-click="Cetak()">Cetak</button>
+	            </div> -->
+			</div> 
+		</div>
+	</div>
+</div>

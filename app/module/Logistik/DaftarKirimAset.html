@@ -1,0 +1,73 @@
+<div ng-controller="DaftarKirimAsetCtrl">
+    <div class="panel panel-default">
+        <div class="panel-heading"><span class="title" c-translate>Daftar Pengiriman Barang Aset</span></div>
+        <div class="panel-body">
+            <div class="grid_12">
+                <div class="grid_3">
+                    <label c-label c-label-text="periodePengiriman" real></label>
+                    <input style="width: 100%" k-ng-model='from' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                </div>
+                <div class="grid_3">
+                    <label c-label c-label-text="periodePengiriman" style="visibility:hidden"></label>
+                    <input style="width: 100%" k-ng-model='until' k-max='now' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                </div>
+                <div class="grid_3">
+                    <div class="grid_12">
+                        <label c-label c-label-text="noOrder" real></label>
+                    </div>
+                    <div class="grid_12">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="noOrder" />
+                    </div>
+                </div>
+                <div class="grid_1">
+                    <label c-label c-label-text=""></label>
+                    <em style="margin-top: 6px;" ng-click='findData()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+                </div>
+            </div>
+            <div class="grid_12" style="margin-top: 10px;">
+                <div kendo-grid k-data-source="dataOrder" k-ng-model="item" k-selectable="'row'" k-columns="columnOrder">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid_12 place_button" style="float:left;" ng-hide="isHide">
+        <div ng-show='isNext' class="grid_3" style="float:right;">
+            <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" class="cancel" is-back>
+                <span class="title">Kembali</span>
+            </c-button>
+        </div>
+        <div ng-show='isReport' class="grid_3" style="float:right;">
+            <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" class="success" is-validate click="cetak">
+                <span class="title">Cetak</span>
+            </c-button>
+        </div>
+        <div ng-show='isDetil' class="grid_3" style="float:right;">
+            <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="Detil">
+                <span class="title">Lihat Detil</span>
+            </c-button>
+        </div>
+        <div ng-show='isKirim' class="grid_3" style="float:right;">
+            <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="navToVerif">
+                <span class="title">Terima Barang</span>
+            </c-button>
+        </div>
+        <div ng-hide='isNext' class="grid_3" style="float:right">
+            <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" class="cancel" click="Back">
+                <span class="title">Batal</span>
+            </c-button>
+        </div>
+    </div>
+
+    <!-- <div class="grid_8">&nbsp;</div>
+    <div class="grid_2">
+        <c-button   style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" click="navToVerif">
+            <span class="title"><label  c-label c-label-text='Terima Barang' font-size="13"></label></span>
+        </c-button>
+    </div>
+    <div class="grid_2">
+         <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" click="showDetailOrder">
+            <span class="title"><label  c-label c-label-text='DetailOrder' font-size="13"></label></span>
+        </c-button>
+    </div> -->
+</div>

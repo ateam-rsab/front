@@ -1,0 +1,33 @@
+<div class="panel panel-default container_12">
+    <div class="panel-heading" align="center" c-translate>Daftar Penentuan Rencana Mitigasi Risiko</div>
+    <div class="panel-body">
+        <div class="grid_12">
+			<div class="grid_12">
+				<div class="grid_7">
+					<div class="grid_2" style="margin-top:15px">
+						<label c-label item="item" c-label-text="Periode"></label>
+					</div>
+					<div class="grid_3">
+						<input style="width:100%" kendo-date-picker k-options="yearSelected" value="now" k-ng-model="item.tahun" k-format="'yyyy'" k-on-change="tahun()"/>
+					</div>
+					<div class="grid_2" style="margin-top:5px">
+						<button class="c-button" ng-click="Search()">Cari</button>
+					</div>
+				</div>
+			</div>
+			<div class="grid_12" style="margin-top: 10px;">
+				<div kendo-grid k-data-source="sourceDaftarPenentuanRencanaMitigasiRisiko" k-selectable="'row'" options="mainGridOptions"></div>
+				<!-- <div kendo-grid k-data-source="sourceDaftarPenentuanRencanaMitigasiRisiko" k-selectable="'row'" k-columns="columnDaftarPenentuanRencanaMitigasiResiko" style="height:400px"></div> -->
+			</div>
+			<div class="grid_12" style="padding-top:30px">
+				<div class="grid_8"></div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="Search()">Cetak</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="Search()">Tutup</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

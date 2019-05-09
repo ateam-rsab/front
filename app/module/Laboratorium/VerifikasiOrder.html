@@ -1,0 +1,102 @@
+<div ng-controller="LaboratoriumPemeriksaanOrderCtrl">
+    <div ng-include='"../app/module/Shared/headerPasienPenunjang" '></div>
+    <c-panel item="item" header="'Order'" disabled>
+        <div class="grid_4">
+            <table class="table " ng-repeat="data in listOrders2">
+                <tr class='success'>
+                </tr>
+                <tr>
+                    <th colspan="5" style="text-align:left">
+                        {{data[0].jenisPeriksa}}</th>
+                </tr>
+                <tr ng-repeat="subData in data" ng-click='checked(subData)'>
+                    <td ng-switch on="subData.check" style="width:20px; size:20px" ng-model="subData">
+                        <img ng-switch-when="true" width="16px" src='stylesheets/work-done24.png' class="brightness"/>
+                        <img ng-switch-default width="16px" src='stylesheets/work-done24.png' class="grayscale"/>
+                    </td>
+                    <td>{{subData.namaProduk}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="grid_8">
+            <div class="grid_12">
+                <table class="table table-striped">
+                    <tr>
+                        <th><span c-translate>Bahan Spesimen</span></th>
+                        <th><span c-translate>Jumlah</span></th>
+                        <!--<th><span c-translate></span></th>-->
+                    </tr>
+                    <tr ng-repeat="data in listSpesimens">
+                        <td>{{data.bahanSample.namaBahanSample+" - "+data.bahanSample.kodeExternal}}</td>
+                        <td>{{data.jumlah}}</td>
+                        <!--<td>
+                            <button="k-button" ng-click="remove(data)"> Hapus</button>
+                        </td>-->
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </c-panel>
+    
+    <div class="grid_11">
+        <label c-label item="item" c-label-text="Keterangan"></label>
+        <textarea ng-disabled="'true'" ng-model="item.keteranganLainnya" style="width: 100%; height: 80px;"></textarea>
+    </div>
+  <div ng-show="shows === 0">
+        <table class="table " ng-repeat="data in listOrders">
+            <tr class='success' ng-show="$index===0">
+                <th style="width:100px"><span c-translate>Nama Pemeriksan</span></th>
+                <th><span c-translate>Hasil</span></th>
+                <th ng-show="cito===false || cito ===undefined" style="width:100px"><span c-translate>Nilai Normal</span></th>
+                <th ng-show="cito===true" style="width:200px"><span c-translate></span></th>
+                <th style="width:20px"><input type="checkbox" class="k-checkbox" name="Verifikasi" id="Verifikasi" ng-click="SelectAll()" />
+                    <label class="k-checkbox-label" for="Verifikasi">Verifikasi</label></th>
+            </tr>
+            <tr>
+                <th colspan="5" style="text-align:left">{{data[0].jenisPeriksa}}</th>
+            </tr>
+            <tr ng-repeat="subData in data">
+                <td>&nbsp;&nbsp;&nbsp;{{subData.namaProduk}}</td>
+                <td>{{subData.detail.hasil}}
+                    <br/>
+                    <span class="information-table">{{subData.detail.comment}}</span>
+                </td>
+                <td ng-show="cito===false || cito ===undefined">{{subData.nilaiNormal}}</td>
+                <td> <input type="checkbox" class="k-checkbox" name="{{subData.uuid}}" id="{{subData.uuid}}" value="2" ng-model="subData.statusVerifikasi">
+                    <label class="k-checkbox-label" for="{{subData.uuid}}"></label></td>
+            </tr>
+        </table>
+
+    
+   
+         
+    </div> 
+        <div class="grid_12">
+            <div class="grid_4" style="margin-top:5px">
+                <label c-label item="item " c-label-text="dokterOrder"></label>
+                <input style="width: 100%; " kendo-combo-box k-ng-model="item.pegawai" k-data-text-field="'namaLengkap'" k-filter="'contains'" k-data-value-field="'value'" k-data-source="dokters" disabled/>
+            </div>
+            <div class="grid_4" style="margin-top:5px">
+                <label c-label item="item " c-label-text="dokterLaboratorium"></label>
+                <input style="width: 100%; " kendo-combo-box k-ng-model="item.pegawaiLab" k-data-text-field="'namaLengkap'" k-filter="'contains'" k-data-value-field="'value'" k-data-source="dokters" />
+            </div>
+        </div>
+    <div class="grid_12">
+        <div class="grid_4" ng-show="isReport">
+            <button class="c-button"  ng-click="cetakBuktiLayanan()">Bukti Layanan</button>
+        </div>
+        <div class="grid_4"></div>
+        <div class="grid_4" style="margin: 7px 0 0 0;" ng-show="isSimpan">
+            <button class="c-button"  ng-click="Changeorders('LaboratoriumPasien.ChangeOrderLaboratorium')">Edit Order</button>
+        </div>
+        <div class="grid_4" style="margin: 7px 0 0 0;" ng-show="isSimpan">
+            <button class="c-button"  ng-click="SaveSysmex()">Simpan</button>
+        </div> 
+    </div>
+   <!--  <div ng-include='"../app/module/Shared/TemplateButtonSimpanNotFixed" '></div> -->
+</div>
+<style>
+    .grayscale {-webkit-filter: grayscale(100%); filter: grayscale(100%);}
+    .brightness {-webkit-filter: saturate(10); filter: saturate(10);}
+</style>

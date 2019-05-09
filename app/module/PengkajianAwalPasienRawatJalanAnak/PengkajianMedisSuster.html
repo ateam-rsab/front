@@ -1,0 +1,41 @@
+<div class="grid_12" style="margin-bottom:60px!important">
+    <div class="grid_12 headerBox">
+        <h1 style="color: white;"><b>{{formMaster.nama}}</b></h1>
+    </div>
+    <div class="clear"></div>
+    <br/>
+    <div class="container_12"> <!-- html form goes here -->
+        <div ng-repeat="list in formMaster.detail | orderBy:'id'" ng-init="listIndex = $index + 1">
+            <div class="grid_12" style="margin:6px auto">
+                <div class="grid_4">
+                    <label><b>{{list.nama}} : </b></label>
+                </div>
+                <div ng-repeat="opsi in list.detail | orderBy:'id'" ng-init="listIndex = $index">
+                    <div ng-switch on="listIndex">
+                        <div ng-switch-when="1">
+                            <div class="grid_2">
+                                <label for="{{opsi.nama}}" class="radio-inline">
+                                    <input type="radio" ng-model="list.value" ng-value="opsi.id" ng-click="klikOption(list, opsi)">
+                                    {{opsi.nama}}
+                                </label>
+                            </div>
+                            <div class="grid_4">
+                                <textarea c-text-area type="input" class="k-textbox" ng-model="opsi.value" ng-blur="setKeterangan(opsi)"/>
+                                <!-- <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.riwayat" /> -->
+                            </div>
+                        </div>
+                        <div ng-switch-default>
+                            <div class="grid_2">
+                                <label for="{{opsi.nama}}" class="radio-inline">
+                                    <input type="radio" ng-model="list.value" ng-value="opsi.id" ng-click="klikOption(list, opsi)">
+                                    {{opsi.nama}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
+</div>

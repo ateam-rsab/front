@@ -1,0 +1,19 @@
+{
+    "noRuangan" : "",
+    "tipeRuangan" : "",
+
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "noRuangan",
+			"messagesRequired" : "No Ruangan Harus Diisi",
+			"caption" : "No. Ruangan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tipeRuangan",
+			"messagesRequired" : "Tipe Ruangan Harus Diisi",
+			"caption" : "Tipe Ruangan"
+		}
+  ]
+}

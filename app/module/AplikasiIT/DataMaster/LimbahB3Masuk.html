@@ -1,0 +1,149 @@
+<div ng-controller="LimbahB3MasukCtrl">
+<div ng-show="dataVOloaded">
+<c-panel item="item" header="'Limbah B3Masuk'" disabled>
+
+<!-- jenisLimbahB3Masuk -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="jenisLimbahB3Masuk"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisLimbahB3Masuk" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listjenisLimbahB3Masuk" />
+</div>
+</div>
+
+<!-- jenisLimbahB3MasukId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="jenisLimbahB3MasukId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jenisLimbahB3MasukId" />
+</div>
+</div>
+
+<!-- tanggal -->
+<div class="grid_12">
+<div class="grid_12">
+<label c-label item="item" c-label-text="tanggal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%" k-ng-model="item.tanggal"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+</div>
+</div>
+
+<!-- beratSampahMedis -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="beratSampahMedis"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.beratSampahMedis" />
+</div>
+</div>
+
+<!-- waktu -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="waktu"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.waktu" />
+</div>
+</div>
+
+<!-- ruangan -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="ruangan"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listruangan" />
+</div>
+</div>
+
+<!-- ruanganId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="ruanganId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.ruanganId" />
+</div>
+</div>
+
+<!-- mapPegawaiLimbah -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="mapPegawaiLimbah"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.mapPegawaiLimbah" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listmapPegawaiLimbah" />
+</div>
+</div>
+
+<!-- maksimalPenyimpanan -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="maksimalPenyimpanan"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.maksimalPenyimpanan" />
+</div>
+</div>
+
+<!-- qtyKeluar -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="qtyKeluar"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.qtyKeluar" />
+</div>
+</div>
+
+<!-- LimbahB3Masuk -->
+<div class="grid_12">
+<div class="grid_12 headerBox">
+<p>LimbahB3Masuk</p>
+</div>
+<div class="clear"></div>
+
+<!-- grid table -->
+<div class="grid_12 borderBox">
+<div kendo-grid k-data-source="dataLimbahB3Masuk" k-selectable="'row'" k-columns="columnLimbahB3Masuk">
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+
+
+</c-panel>
+
+<div class="grid_12" style="margin-top:30px">
+<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
+</div>
+</div>
+</div>

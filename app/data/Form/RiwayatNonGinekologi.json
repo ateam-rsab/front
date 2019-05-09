@@ -1,0 +1,20 @@
+{
+    "model":{
+        "BahanDidapatDengan" : "",
+        "Keterangan" : ""
+    },
+    "attributes" : [
+        {
+            "isNull" : "true",
+            "name" : "BahanDidapatDengan",
+            "messagesRequired" : "Tempat Tinggal Harus Diisi",
+            "caption" : "Bahan di dapat dengan"
+        },
+        {
+            "isNull" : "false",
+            "name" : "Keterangan",
+            "messagesRequired" : "",
+            "caption" : "Keterangan"
+        }
+    ]
+} 

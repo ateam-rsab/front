@@ -1,0 +1,464 @@
+<style>
+.menu-layanan{
+    position: absolute;
+    top: 50px;
+    width: 100%;
+}
+
+.box-menu-layanan{
+    padding: 13px !important;
+}
+
+.box-image-menu-layanan{
+    width:100%;
+    box-shadow: 5px 10px 18px 1px #abaaaa;
+}
+
+.menu-back{
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    background: white;
+    height: 50px;
+    box-shadow: 0px 2px 20px 1px #abaaaa;
+}
+
+.container-navigation-menu{
+    position: relative;
+}
+
+.btn-back-menu-layanan{
+    cursor: pointer;
+    color: #bbbcbd;
+    font-weight: 700;
+    padding-left: 30px;
+    position: absolute;
+    left: 0px;
+    top:0px;
+    text-align: left;
+    display: inline-block;
+}
+
+.title-menu-layanan{
+    cursor: pointer;
+    color: black;
+    font-weight: 700;
+    padding-right: 30px;
+    position: absolute;
+    right: 0px;
+    top:0px;
+    text-align: right;
+    display: inline-block;
+}
+
+.tooltip-rmpelayanan{
+    z-index: 10;
+    background-color: #2a2d33;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: -75px;
+    left: 67px;
+}
+
+.tooltip-keuangan{
+    z-index: 10;
+    background-color: #2a2d33;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: 85px;
+    right: -119px;
+}
+
+.tooltip-sdm{
+    bottom: 85px;
+    left: -190px;
+    z-index: 10;
+    background-color: #2a2d33;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+}
+
+.tooltip-sarpras{
+    bottom: 84px;
+    right: -190px;
+    z-index: 10;
+    background-color: #2a2d33;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+}
+
+.tooltip-manajemen{
+    top: 82px;
+    left: -125px;
+    z-index: 10;
+    background-color: #2a2d33;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+}
+
+.cont-hover {
+    z-index: 999;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(42, 45, 51, 0.5);
+}
+
+
+.form-ruangan{
+    width: 300px;
+    height: 100px;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -70px 0 0 -170px;
+    background-color: #2a2d33;
+    border: 1px solid #10c4b2;
+}
+
+.tooltip-menu-1{
+    z-index: 10;
+    background-color: #2a2d33;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: -90px;
+    left: 70px;
+}
+
+.tooltip-menu-2{
+    z-index: 10;
+    background-color: #2a2d33;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: 70px;
+    left: -195px;
+}
+
+.tooltip-menu-3{
+    z-index: 10;
+    background-color: #2a2d33;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: 215px;
+    left: -250px;
+}
+
+.tooltip-menu-4{
+    z-index: 10;
+    background-color: #2a2d33;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    right: -160px;
+    top: 70px;
+}
+
+.tooltip-menu-5{
+    z-index: 10;
+    background-color: #2a2d33;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: 215px;
+    right: -190px;
+}
+
+.tooltip-menu-6{
+    z-index: 10;
+    background-color: #2a2d33;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: 385px;
+    left: 75px;
+}
+
+
+
+</style>
+
+<div ng-controller="WelcomeCtrl">
+    <br/>
+    <br/>
+    <button ng-show="listMenu.length!==1" ng-click='Back()'>Back</button>
+
+    <!-- syamsu perubahannya -->
+
+     <div class="cont-hover" ng-show="showRootRuangan">
+        <div class="form-ruangan">
+            <i class="fa fa-close" style="top: 10px;
+                right: 0px;
+                position: absolute;
+                color: #bbbcbd;
+                margin-right: 15px;
+                cursor: pointer;" ng-click="hideUnitKerjaAtauRuanganSaja()"></i>
+            <div class="grid_12" style="margin-top:5px;">
+                    <label style="color:white">Unit Kerja</label>
+            </div>
+
+            <div class="grid_12" style="margin-top:5px;">
+
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="rootRuanganUnitKerja" k-data-text-field="'namaRuangan'" k-on-change="changeDataRuangan(rootRuanganUnitKerja)" k-data-value-field="'ruanganId'" k-filter="'contains'" k-auto-bind="false" k-data-source="rootListRuangan" />
+            </div>
+
+            <!-- Button -->
+            <div class="grid_12" style="padding: 0px;">
+                <div class="grid_12" style="padding-right: 0px;">
+                    <button class='btnEdit' ng-click="hideUnitKerjaAtauRuangan()"> OK </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- navigasi back -->
+    <div class="menu-back" ng-hide="showMenuUtama">
+        <div class="container-navigation-menu" ng-click="backToMenuUtama()">
+            <h3 class="btn-back-menu-layanan"><i class="fa fa-arrow-left" style="color:#bbbcbd;margin-right: 15px;"></i>back</h3>
+            <h3 class="title-menu-layanan">{{titleMenu}}</h3>
+        </div>
+    </div> 
+
+    <!-- nampilin sub menu -->
+    <div class="menu-layanan" ng-hide="showMenuUtama">
+         <div class="{{gridStyle}} box-menu-layanan" ng-repeat="subModul in DaftarSubModul" ng-click="showSubMenu(subModul.kdModulAplikasi, subModul.iconImage, subModul.modulAplikasi, false)" style="cursor: pointer;">
+            <img ng-src="images/menu/{{subModul.iconImage}}" class="box-image-menu-layanan">
+         </div>
+         
+         <div class="clear"></div>
+    </div>
+
+
+    <div class="home-animation" ng-show="showMenuUtama">
+        <div class="mainmenu">
+
+            <img class="logotitle" src="images/logo/logotitle.png">
+
+            <a ng-repeat="data in DaftarMenu"
+               ng-click="goToMenuLayanan(data.showMenuPelayanan, data.kdModulAplikasi, data.modulAplikasi)" 
+               ng-mouseleave="leaveMenu(data)" 
+               ng-mouseover="hoverMenu(data)"
+            >
+            <div>
+                <img class="{{data.modulClass}}" ng-src="{{data.iconImage}}" style="cursor: pointer"> 
+                <p class="{{data.classTooltip}}" ng-show="data.showTooltip">{{data.modulAplikasi}}</p>
+            </div>
+            
+            </a>
+
+            <!--<a ng-click="goToMenuLayanan('showMenuRmPelayanan')" 
+               ng-mouseleave="leaveMenu('showTooltipRmPelayanan')" 
+               ng-mouseover="hoverMenu('showTooltipRmPelayanan')"
+            ><img class="menu01 anime01" src="images/logo/cover01.png" style="cursor: pointer"> 
+            <span class="tooltip-rmpelayanan" ng-show="showTooltipRmPelayanan">Rekam Medis & Pelayanan</span>
+            </a>
+
+            <a ng-click="goToMenuLayanan('showMenuManajemen')"
+               ng-mouseleave="leaveMenu('showTooltipManajemen')" 
+               ng-mouseover="hoverMenu('showTooltipManajemen')"
+            ><img class="menu02 anime02" src="images/logo/cover06.png" style="cursor: pointer" >
+            <span class="tooltip-manajemen" ng-show="showTooltipManajemen">Manajemen</span></a>
+
+            <a ng-click="goToMenuLayanan('showMenuSDM')" 
+               ng-mouseleave="leaveMenu('showTooltipSDM')" 
+               ng-mouseover="hoverMenu('showTooltipSDM')"
+            ><img class="menu03 anime03" src="images/logo/cover03.png" style="cursor: pointer"> 
+            <span class="tooltip-sdm" ng-show="showTooltipSDM">Sumber Daya Manusia</span>
+            </a>            
+
+
+            <img class="logotitle" src="images/logo/logotitle.png">
+
+            <a ng-click="goToMenuLayanan('showMenuKeuangan')"
+               ng-mouseleave="leaveMenu('showTooltipKeuangan')" 
+               ng-mouseover="hoverMenu('showTooltipKeuangan')"
+            ><img class="menu04 anime04" src="images/logo/cover04.png" style="cursor: pointer" >
+            <span class="tooltip-keuangan" ng-show="showTooltipKeuangan">Keuangan</span>
+            </a>
+
+            <a ng-click="goToMenuLayanan('showMenuSarpras')"
+               ng-mouseleave="leaveMenu('showTooltipSarpras')" 
+               ng-mouseover="hoverMenu('showTooltipSarpras')"
+            ><img class="menu05 anime05" src="images/logo/cover05.png" style="cursor: pointer">
+            <span class="tooltip-sarpras" ng-show="showTooltipSarpras">Sarana dan Prasarana</span>
+            </a>
+
+            <a><img class="menu06 anime06" src="images/logo/cover02.png" style="cursor: pointer"></a>-->
+
+            <!--<a ng-click="goToMenuLayanan('showMenuManajemen')"
+               ng-mouseleave="leaveMenu('showTooltipManajemen')" 
+               ng-mouseover="hoverMenu('showTooltipManajemen')"
+            ><img class="menu06 anime06" src="images/logo/cover06.png" style="cursor: pointer" >
+            <span class="tooltip-manajemen" ng-show="true">Manajemen</span></a>-->
+        </div>
+    </div>
+
+    <!-- <div loginService access="suster">
+      <h1>
+        Hello admin
+      </h1>
+      <p>
+        ini adalah admin
+      </p>
+    </div> -->
+
+    <!-- <img style="position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    background-size: cover;
+    height: 100%;" src="images/logo.svg" alt="Kiwi standing on oval"> -->
+
+    <div class="tiles" style="display:none">
+        <div class="grid_6">
+            <h1>FRONT OFFICE</h1>
+            <div class="grid_12" ng-repeat="menu in menus">
+                <div class="tile bg-yellow-saffron primary" style="height:200px;" ng-click="changeMenu(menu)">
+                    <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                    <div class="check"></div>
+                    <div class="tile-body" style="overflow: initial">
+                        <i style="font-style: normal;"></i>
+                    </div>
+                    <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                        <div class="icon-panel main">
+                            <img height='150px' src='' />
+                        </div>
+                        <div class="text_panel main">
+                            <span class="title"><label c-label c-label-text="{{menu.title}}" class="title"></label></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_6">
+            <h1>BACK OFFICE</h1>
+            <div class="grid_12" ng-repeat="menu in menuBackOffices">
+                <div class="tile bg-yellow-saffron primary" style="height:200px;" ng-click="changeMenu(menu)">
+                    <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                    <div class="check"></div>
+                    <div class="tile-body" style="overflow: initial">
+                        <i style="font-style: normal;"></i>
+                    </div>
+                    <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                        <div class="icon-panel main">
+                           
+                        </div>
+                        <div class="text_panel main">
+                            <span class="title"><label c-label c-label-text="{{menu.title}}" class="title"></label></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="grid_4">
+            <div class="tile bg-yellow-saffron primary" style="height:200px;">
+                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                <div class="check"></div>
+                <div class="tile-body" style="overflow: initial">
+                    <i style="font-style: normal;"></i>
+                </div>
+                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                    <div class="icon-panel main">
+                        <img height='150px' src='stylesheets/pelayananMedik.png' />
+                    </div>
+                    <div class="text_panel main">
+                        <span class="title"><label c-label c-label-text="layananMedik" class="title"></label></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid_4">
+            <div class="tile bg-yellow-saffron primary" style="height:200px;">
+                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                <div class="check"></div>
+                <div class="tile-body" style="overflow: initial">
+                    <i style="font-style: normal;"></i>
+                </div>
+                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                    <div class="icon-panel main">
+                        <img height='150px' src='stylesheets/keuangan.png' />
+                    </div>
+                    <div class="text_panel main">
+                        <span class="title"><label c-label c-label-text="keuangan" class="title"></label></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid_4">
+            <div class="tile bg-yellow-saffron primary" style="height:200px;">
+                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                <div class="check"></div>
+                <div class="tile-body" style="overflow: initial">
+                    <i style="font-style: normal;"></i>
+                </div>
+                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                    <div class="icon-panel main">
+                        <img height='150px' src='stylesheets/sarpras.png' />
+                    </div>
+                    <div class="text_panel main">
+                        <span class="title"><label c-label c-label-text="sarana&Prasarana" class="title"></label></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_4">
+            <div class="tile bg-yellow-saffron primary" style="height:200px;">
+                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                <div class="check"></div>
+                <div class="tile-body" style="overflow: initial">
+                    <i style="font-style: normal;"></i>
+                </div>
+                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                    <div class="icon-panel main">
+                        <img height='150px' src='stylesheets/hrd.png' />
+                    </div>
+                    <div class="text_panel main">
+                        <span class="title"><label c-label c-label-text="SDM" class="title"></label></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid_4">
+            <div class="tile bg-yellow-saffron primary" style="height:200px;">
+                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                <div class="check"></div>
+                <div class="tile-body" style="overflow: initial">
+                    <i style="font-style: normal;"></i>
+                </div>
+                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                    <div class="icon-panel main">
+                        <img height='150px' src='stylesheets/management.png' />
+                    </div>
+                    <div class="text_panel main">
+                        <span class="title"><label c-label c-label-text="manajemen" class="title"></label></span>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+
+    </div>
+</div>

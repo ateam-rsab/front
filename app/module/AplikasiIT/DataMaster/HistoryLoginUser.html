@@ -1,0 +1,174 @@
+<div ng-controller="HistoryLoginUserCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'History Login User'" disabled>
+
+			<!-- detailDataCRUD -->
+			<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="detailDataCRUD"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.detailDataCRUD" />
+				</div>
+			</div>
+
+			<!-- isCRUD -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="isCRUD"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.isCRUD" />
+				</div>
+			</div>
+			</div>
+			<!-- historyLogin -->
+			<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="historyLogin"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.historyLogin" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listhistoryLogin" />
+				</div>
+			</div>
+
+			<!-- historyLoginId -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="historyLoginId"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.historyLoginId" />
+				</div>
+			</div>
+			</div>
+			<!-- namaObjekCRUD -->
+			<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="namaObjekCRUD"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaObjekCRUD" />
+				</div>
+			</div>
+
+			<!-- noRecord -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="noRecord"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noRecord" />
+				</div>
+			</div>
+			</div>
+			<!-- tglCRUDin -->
+			<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="tglCRUDin"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%" k-ng-model="item.tglCRUDin"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+				</div>
+			</div>
+
+			<!-- tglCRUDout -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="tglCRUDout"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%" k-ng-model="item.tglCRUDout"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+				</div>
+			</div>
+			</div>
+
+			<!-- reportDisplay -->
+			<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="reportDisplay"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+				</div>
+			</div>
+
+			<!-- kodeExternal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kodeExternal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+				</div>
+			</div>
+			</div>
+			<!-- namaExternal -->
+
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="namaExternal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+				</div>
+			</div>
+
+			<!-- HistoryLoginUser -->
+			<div class="grid_12">
+				<div class="grid_12 headerBox">
+					<p>HistoryLoginUser</p>
+				</div>
+				<div class="clear"></div>
+
+				<!-- grid table -->
+				<div class="grid_12 borderBox">
+					<kendo-grid options="mainGridOptions"  k-data-source="dataSource" k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+			<div class="grid_12">
+				<div class="grid_8"></div>
+				<div class="grid_2" ng-show="showEdit">
+					<button class="c-button" ng-click="edit()">Edit</button>
+				</div>
+				<div class="grid_2" ng-hide="showEdit">
+					<button class="c-button" ng-click="tambah()">Tambah</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="batal()">Batal</button>
+				</div>
+			</div>
+
+
+		</c-panel>
+	</div>
+</div>

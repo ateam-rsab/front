@@ -1,0 +1,12 @@
+{  "model":{
+    "KomponenPenilaian" : ""
+  },
+  "attributes" : [
+    {
+      "isNull" : "true",
+      "name" : "KomponenPenilaian",
+      "messagesRequired" : "Komponen Penilaian Darah Harus Diisi",
+      "caption" : "Komponen penilaian c"
+    }
+  ]
+} 

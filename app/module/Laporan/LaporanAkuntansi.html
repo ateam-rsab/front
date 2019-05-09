@@ -1,0 +1,80 @@
+
+
+	<div ng-show="dataVOloaded">
+		<!-- <c-panel item="item" header="'Daftar Tagihan Rekanan'" disabled> -->
+		<div class="grid_12 headerBox">
+			<h1 style="color: white;"><b>Laporan Akuntansi</b></h1>
+		</div>
+
+		<div class="grid_12">
+
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="Tanggal"></label>
+                <div class="grid_6">
+    				<input style="width: 100%" k-ng-model="item.tglawal" kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm" k-format="'dd-MM-yyyy'" />
+                </div>
+                <div class="grid_6">
+                    <input style="width: 100%" k-ng-model="item.tglakhir" kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm" k-format="'dd-MM-yyyy'" />
+                </div>
+			</div>
+            <div class="grid_3">
+                <label c-label item="item" c-label-text="Departement"></label>
+                <input  style="width: 100%;" kendo-combo-box k-ng-model="item.departement" k-data-text-field="'departemen'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDepartemen"  k-on-change="getIsiComboRuangan()"/>
+            </div>
+            <div class="grid_3">
+                <label c-label item="item" c-label-text="Ruangan"></label>
+                <input ng-disabled="isDisable" style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'ruangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan"/>
+            </div> 
+
+		</div>
+
+			
+		<div class="grid_6">
+			<div class="grid_12">
+			</div>
+		</div>
+		<div class="clear"></div>
+            <div class="grid_12">
+                <div class="grid_12" style="float:right">
+                    <div class="grid_3 " style="margin-top: 25px ">
+                        <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakJurnal()">
+                            <span class="title">Cetak Jurnal</span>
+                        </button>
+                    </div>
+                    <div class="grid_3 " style="margin-top: 25px ">
+                        <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakRincianJurnal()">
+                            <span class="title">Cetak Rincian Jurnal</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_12" style="float:right">
+                    <div class="grid_3" style="margin-top: 25px ">
+                        <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakJurnalNonTunai()">
+                            <span class="title">Cetak Jurnal Non Tunai</span>
+                        </button>
+                    </div>
+                    <div class="grid_3" style="margin-top: 25px ">
+                        <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakJurnalNonTunaiDetail()">
+                            <span class="title">Cetak Jurnal Non Tunai Detail</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_12" style="float:right">
+                    <div class="grid_3" style="margin-top: 25px ">
+                        <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakJurnalAdministrasi()">
+                            <span class="title">Cetak Jurnal Administrasi</span>
+                        </button>
+                    </div>
+                    <div class="grid_3" style="margin-top: 25px ">
+                        <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakJurnalAdminDetail()">
+                            <span class="title">Cetak Jurnal Administrasi Detail</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+		<br/>
+	</div>

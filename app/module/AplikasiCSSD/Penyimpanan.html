@@ -1,0 +1,153 @@
+<div ng-controller="PenyimpananCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Penyimpanan'">
+			<div class="grid_12">
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Nomor Order</label>
+					</div>
+					<div class="grid_6">
+						<input style="width: 50%" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noOrder" disabled/>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Operator</label>
+					</div>
+					<div class="grid_6">
+						<input style="width: 50%" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.operator" disabled/>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Ruangan</label>
+					</div>
+					<div class="grid_6">
+						<input style="width: 50%" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.ruangan" disabled/>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Tanggal</label>
+					</div>
+					<div class="grid_6">
+						<input style="width: 50%" kendo-date-picker k-ng-model="item.tanggal" k-format="'yyyy-MM-dd'"/>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Nama Alat</label>
+					</div>
+					<div class="grid_10">
+						<kendo-grid style="width: 100%" options="gridPenyimpanan" k-data-source="dataSource" k-ng-model="current" ng-dblclick="klik(current)"></kendo-grid>
+					</div>
+				</div>
+			</div>
+			<div class="grid_2">
+				
+			</div>
+			<div class="panel panel-default container_12">
+				<div class="panel-heading" c-translate>Hasil Indikator</div>
+				<div class="panel-body">
+					<div class="grid_6">
+						<div class="grid_4">
+							<label c-label item="item" style="margin-top: 10px">Auto Clave Tape</label>
+						</div>
+						<div class="grid_8">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.autoClaveTape" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAutoClave" />
+						</div>
+						<div class="grid_4">
+							<label c-label item="item" style="margin-top: 10px">Label</label>
+						</div>
+						<div class="grid_8">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.label" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAutoClave" />
+						</div>
+						<div class="grid_4">
+							<label c-label item="item" style="margin-top: 10px">Indicator Internal</label>
+						</div>
+						<div class="grid_8">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.indicatorInternal" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAutoClave" />
+						</div>
+						
+					</div>
+					<div class="grid_6">
+						<div class="grid_4">
+							<label c-label item="item" style="margin-top: 10px">Bowidick</label>
+						</div>
+						<div class="grid_8">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.bowidick" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAutoClave" />
+						</div>
+						<div class="grid_4">
+							<label c-label item="item" style="margin-top: 10px">Attest</label>
+						</div>
+						<div class="grid_8">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.attest" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAutoClave" />
+						</div>
+						<div class="grid_4">
+							<label c-label item="item" style="margin-top: 10px">Kemasan</label>
+						</div>
+						<div class="grid_8">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.kemasan" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKemasan" />
+						</div>
+					</div>
+					<div class="grid_6">
+						
+					</div>
+					<div class="grid_6">
+						<div class="grid_4">
+						</div>
+						<div class="grid_4">
+							<button class="c-button success" ng-click="tambahHasil()">Tambah</button>
+						</div>
+						<div class="grid_4">
+							<button class="c-button cancel" ng-click="batalTemp()">Batal</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Hasil Indikator</label>
+					</div>
+					<div class="grid_10">
+						<kendo-grid options="gridIndikator" k-data-source="dataSourceIndikator" k-ng-model="item.gridIndikator"></kendo-grid>
+					</div>
+				</div>
+				<div kendo-window="modal" k-title="'Title'" k-visible="false" k-modal="true">
+					Are you sure you want to delete: {{ productName }}
+					<button  ng-click="deleteProduct(no)">OK</button>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Waktu Mulai</label>
+					</div>
+					<div class="grid_6">
+						<input style="width: 50%" kendo-time-picker k-ng-model="item.waktuMulai" placeholer="HH:mm" k-format="'HH:mm'"/>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Waktu Selesai</label>
+					</div>
+					<div class="grid_6">
+						<input style="width: 50%" kendo-time-picker k-ng-model="item.waktuSelesai" placeholer="HH:mm" k-format="'HH:mm'"/>
+					</div>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_2"></div>
+				<div class="grid_2"></div>
+				<div class="grid_2"></div>
+				<div class="grid_2"></div>
+				<div class="grid_2">
+					<button class="c-button success" ng-click="simpan()">Simpan</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button cancel" ng-click="batal()">Batal</button>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

@@ -1,0 +1,51 @@
+npm ERR! Error: ENOENT, open '/usr/share/app/front/Main/app/javascripts/package.json'
+npm ERR! If you need help, you may report this *entire* log,
+npm ERR! including the npm and node versions, at:
+npm ERR!     <http://github.com/npm/npm/issues>
+
+npm ERR! System Linux 3.16.0-4-amd64
+npm ERR! command "/usr/bin/nodejs" "/usr/bin/npm" "start"
+npm ERR! cwd /usr/share/app/front/Main/app/javascripts
+npm ERR! node -v v0.10.29
+npm ERR! npm -v 1.4.21
+npm ERR! path /usr/share/app/front/Main/app/javascripts/package.json
+npm ERR! code ENOENT
+npm ERR! errno 34
+npm ERR! 
+npm ERR! Additional logging details can be found in:
+npm ERR!     /usr/share/app/front/Main/app/javascripts/npm-debug.log
+npm ERR! not ok code 0
+npm ERR! Error: ENOENT, open '/usr/share/app/front/Main/app/javascripts/package.json'
+npm ERR! If you need help, you may report this *entire* log,
+npm ERR! including the npm and node versions, at:
+npm ERR!     <http://github.com/npm/npm/issues>
+
+npm ERR! System Linux 3.16.0-4-amd64
+npm ERR! command "/usr/bin/nodejs" "/usr/bin/npm" "start"
+npm ERR! cwd /usr/share/app/front/Main/app/javascripts
+npm ERR! node -v v0.10.29
+npm ERR! npm -v 1.4.21
+npm ERR! path /usr/share/app/front/Main/app/javascripts/package.json
+npm ERR! code ENOENT
+npm ERR! errno 34
+npm ERR! 
+npm ERR! Additional logging details can be found in:
+npm ERR!     /usr/share/app/front/Main/app/javascripts/npm-debug.log
+npm ERR! not ok code 0
+npm ERR! Error: ENOENT, open '/usr/share/app/front/Main/app/javascripts/package.json'
+npm ERR! If you need help, you may report this *entire* log,
+npm ERR! including the npm and node versions, at:
+npm ERR!     <http://github.com/npm/npm/issues>
+
+npm ERR! System Linux 3.16.0-4-amd64
+npm ERR! command "/usr/bin/nodejs" "/usr/bin/npm" "start"
+npm ERR! cwd /usr/share/app/front/Main/app/javascripts
+npm ERR! node -v v0.10.29
+npm ERR! npm -v 1.4.21
+npm ERR! path /usr/share/app/front/Main/app/javascripts/package.json
+npm ERR! code ENOENT
+npm ERR! errno 34
+npm ERR! 
+npm ERR! Additional logging details can be found in:
+npm ERR!     /usr/share/app/front/Main/app/javascripts/npm-debug.log
+npm ERR! not ok code 0

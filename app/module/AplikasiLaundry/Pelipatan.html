@@ -1,0 +1,209 @@
+<div ng-controller="PelipatanCtrl">
+<style type="text/css">
+.alert {
+    background-color: #f76565
+}
+.warning {
+    background-color: #ffff66
+}
+.danger {
+    background-color: #f76565
+}
+</style>
+<div class="panel panel-default container_12">
+    <div class="panel-body">
+        <div class="grid_12">
+        <span class="title center">
+            Pelipatan
+            <br/>
+            
+        </span>
+        <table style="width: 281px;margin-left: auto;margin-right: auto;">
+            <tbody>
+                <tr>
+                    <td style="width: 37px;">Tanggal</td>
+                    <td style="width: 83px;" class="ng-binding">{{now |date:'dd-MM-yyyy' }} </td>
+                    <td style="width: 26px;">Jam</td>
+                    <td style="width: 83px;" class="ng-binding">{{now |date:'HH:mm:ss' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        <div class="grid_12" style="margin-top:15px">
+            <div class="grid_6">
+			   <div class="grid_12">
+                <div class="grid_4" style="margin-left:10px">
+                    <label c-label>Tanggal</label>
+                </div>
+				   
+					<div class="grid_8">
+                        <input style="width: 100%" k-value="now" k-ng-model="item.tanggalPengeringan" kendo-date-time-picker  k-format="'dd-MM-yyyy HH:mm'" />
+                    </div>
+                
+				</div>
+            </div>
+			<div class="grid_6">
+			   <div class="grid_12">
+                <div class="grid_4" style="margin-left:10px">
+                    <label c-label>Tanggal Kerja</label>
+                </div>
+					<div class="grid_8">
+                        <input style="width: 100%" k-value="now" k-ng-model="item.tanggalKerja" kendo-date-time-picker  k-format="'dd-MM-yyyy HH:mm'" />
+                    </div>
+                
+				</div>
+            </div>
+		   <div class="grid_6">
+			   <div class="grid_12">
+                <div class="grid_4" style="margin-left:10px">
+                    <label c-label>Petugas</label>
+                </div>
+					<div class="grid_8">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.petugas" disabled="" />
+                    </div>
+                
+				</div>
+            </div>
+			        <div ng-show="false">
+					<div class="grid_6">
+						<div class="grid_12" style="margin-top: 10px">
+							<div class="grid_4">
+								<label c-label item="item" c-label-text="noRecStrukPelayanan"></label>
+							</div>
+							
+						</div>
+						<div class="grid_8">
+							<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="noRecStrukPelayanan"  maxlength="4" />
+						</div>
+					</div>
+					</div>
+					
+					<div ng-show="false">
+					<div class="grid_6">
+						<div class="grid_12" style="margin-top: 10px">
+							<div class="grid_4">
+								<label c-label item="item" c-label-text="ruanganAsalId"></label>
+							</div>
+							
+						</div>
+						<div class="grid_8">
+							<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="ruanganAsalId"  maxlength="4" />
+						</div>
+					</div>
+					</div>
+					
+            
+            
+            <div class="grid_12">
+                <md-content>
+                    <md-tabs md-dynamic-height md-border-bottom>
+					
+	                      <md-tab label="Eksternal">
+                            <md-content class="md-padding">
+							     <div class="grid_12">
+                                   <div class="grid_6">
+								   <div class="grid_12">
+								   <div class="grid_4" style="margin-top:10px">
+								    <label c-label>Nama Pelanggan</label>
+								   </div>
+								   <div class="grid_8">
+								   <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="namaPelanggan" disabled="" />
+								   </div>
+								   </div>
+								   </div>
+						       </div>
+                                <div class="grid_12">
+                                    <kendo-grid options="mainGridOptions_2_1" k-data-source="sourceOrder">
+                                    
+                                    </kendo-grid>
+                                </div>
+								
+                                
+                               
+                                <div class="grid_12" style="margin-top:20px">
+                                    <div class="grid_2">
+                                        <button class="c-button success" ng-click="SaveOK()">Simpan</button>
+                                    </div>
+                                    <div class="grid_2">
+                                        <button class="c-button success" ng-click="navToKalori()">Batal</button>
+                                    </div>
+                                  <!--   <div class="grid_2">
+                                        <button class="c-button success" ng-click="navToKomposisiMinuman()">Komposisi Minuman</button>
+                                    </div>
+                                    <div class="grid_2">
+                                        <button class="c-button success" ng-click="navToKomposisiFormula()">Komposisi Formula</button>
+                                    </div> -->
+                                </div>
+                            </md-content>
+                        </md-tab>				
+					
+					
+                        <md-tab label="Internal">
+                            <md-content class="md-padding">
+							<div class="grid_12">
+							<div class="grid_6">
+							<label c-label item="item">Linen</label>
+							</div>
+							<div class="grid_6">
+						    <input style="width: 100%;" kendo-combo-box k-ng-model="item.Linen" k-data-text-field="'namaProduk'"  k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceLinen"  />
+							</div>
+							</div>
+							<div class="grid_12">
+							<div class="grid_6">
+							<label c-label item="item">Jumlah Lipat</label>
+							</div>
+							<div class="grid_6">
+						   <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahLipat"/>
+							</div>
+							</div>
+			<div class="grid_12">
+			  <div class="grid_4" style="margin-top: 5px">
+						
+					</div>
+			
+			   <div class="grid_3" style="margin-top: 5px">
+						
+					</div>
+				<div class="grid_3" style="margin-top: 5px">
+						<button class="c-button success" ng-click="addDataPenerimaanLinen()" k-selectable="'row'" k-columns="columndataPenerimaanLinen">Tambah</button>
+					</div>	
+			
+			
+			</div>
+			
+			<div class="grid_12">
+			
+			  <kendo-grid id="grid" options="mainGridOptions" k-data-source="dataPenerimaanLinen" k-ng-model="current">
+			
+			  </kendo-grid>
+			</div>
+                               
+                                <div class="grid_12" style="margin-top:20px">
+                                    <div class="grid_2">
+                                        <button class="c-button success" ng-click="Save()">Simpan</button>
+                                    </div>
+                                    <div class="grid_2">
+                                        <button class="c-button success" ng-click="">Batal</button>
+                                    </div>
+                                   
+                                </div>
+                            </md-content>
+                        </md-tab>
+                     
+                     
+                       
+                    </md-tabs>
+                </md-content>
+            </div>
+        </div>
+       
+    </div>
+</div>
+</div>
+<script type="text/x-kendo-template" id="template">
+                <div class="toolbar">
+                    <label class="category-label" for="category">Waktu Order Makanan</label>
+                    <!-- <input type="search" id="category" style="width: 150px"/> -->
+                    <input style="width: 150px;" id="category" kendo-combo-box k-ng-model="item.cariJenisWaktu" k-data-text-field="'jenisWaktu'" options="mainGridOptions_3" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisWaktu" k-on-change = "gantiJenisWaktu()" />
+                </div>
+            </script>

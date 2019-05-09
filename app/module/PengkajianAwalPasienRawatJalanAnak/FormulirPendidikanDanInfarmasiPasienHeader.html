@@ -1,0 +1,52 @@
+<div class="panel panel-default container_12">
+    <div class="panel-heading" c-translate>Pengkajian</div>
+    <div class="panel-body">
+        <div class="grid_12">
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="Bahasa" real></label>
+                <div class="grid_4" ng-repeat="stat in listBahasa">
+                    <input type="radio" name="{{stat}}" id="{{stat}}" class="k-radio" ng-model="item.bahasa" value="{{stat}}">
+                    <label class="k-radio-label" for="{{stat}}">{{stat}}</label>
+                </div>
+            </div>
+
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="kebutuhanPenterjamah" real></label>
+                <div class="grid_4" ng-repeat="stat in listStatusYaTidak">
+                    <input type="radio" name="{{stat}}" id="{{stat}}" class="k-radio" ng-model="item.kebutuhanPenterjamah" value="{{stat}}">
+                    <label class="k-radio-label" for="{{stat}}">{{stat}}</label>
+                </div>
+            </div>
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="pendidikanPasien" real></label>
+                <div class="grid_3" ng-repeat="stat in listPendidikan">
+                    <input type="radio" name="{{stat}}" id="{{stat}}" class="k-radio" ng-model="item.pendidikanPasien" value="{{stat}}">
+                    <label class="k-radio-label" for="{{stat}}">{{stat}}</label>
+                </div>
+            </div>
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="bacaDanTulis" real></label>
+                <div class="grid_4" ng-repeat="stat in listBahasaTulis">
+                    <input type="radio" name="{{stat}}" id="{{stat}}" class="k-radio" ng-model="item.bacaDanTulis" value="{{stat}}">
+                    <label class="k-radio-label" for="{{stat}}">{{stat}}</label>
+                </div>
+            </div>
+            <div class="grid_8">
+                <label c-label item="item" c-label-text="hambatanPendidikan" real></label>
+                <div class="grid_4" ng-repeat="stat in listHambatanPendidikan">
+                    <input type="radio" name="{{stat}}" id="{{stat}}" class="k-radio" ng-model="item.hambatanPendidikan" value="{{stat}}">
+                    <label class="k-radio-label" for="{{stat}}">{{stat}}</label>
+                </div>
+            </div>
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="pilihanTipePembelajaran" real></label>
+                <div class="grid_3" ng-repeat="stat in listTipePembelajaran">
+                    <input type="radio" name="{{stat}}" id="{{stat}}" class="k-radio" ng-model="item.pilihanTipePembelajaran" value="{{stat}}">
+                    <label class="k-radio-label" for="{{stat}}">{{stat}}</label>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

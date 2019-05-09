@@ -1,0 +1,34 @@
+{
+	
+	"namaObat": "",
+	"caraPemberian" : "",
+	"dosis" : "",
+	"frekuensi" : "",	
+
+    "attributes" : [{
+	        "name": "namaObat",
+	        "isNull": true,
+	        "messagesRequired": "Nama Obat tidak boleh kosong",
+	        "caption": "Nama Obat"
+    	},	 
+		{
+			"name" : "caraPemberian",
+			"isNull" : "true",
+			"messagesRequired" : "Cara Pemberian Harus Diisi",
+			"caption" : "Cara Pemberian"
+		},	 
+		{
+			"name" : "dosis",
+			"isNull" : "true",
+			"messagesRequired" : "Dosis Harus Diisi",
+			"caption" : "Dosis"
+		},	 
+		{
+			"name" : "frekuensi",
+			"isNull" : "true",
+			"messagesRequired" : "Frekuensi Harus Diisi",
+			"caption" : "Frekuensi"
+		}
+		
+	]
+}

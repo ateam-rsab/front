@@ -1,0 +1,28 @@
+{
+	"model":{
+		"kodeAkun" : "",
+		"namaAkun":"",
+		"ketAkun":""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "kodeAkun",
+			"messagesRequired" : "",
+			"caption" : "Kode Akun"
+		},{
+			"isNull" : "true",
+			"name" : "namaAkun",
+			"messagesRequired" : "",
+			"caption" : "Nama Akun"
+		},{
+			"isNull" : "true",
+			"name" : "ketAkun",
+			"messagesRequired" : "",
+			"caption" : "Keterangan Akun"
+		}
+
+	]
+}

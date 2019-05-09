@@ -1,0 +1,99 @@
+<div ng-controller="RadiologiDaftarPasienCtrl">
+    <div class="grid_8">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="grid_12" ng-show="notDetail">
+                    <div class="grid_6">
+                        <div class="grid_12">
+                            <label c-label c-label-text="TanggalMasuk" real></label>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_6">
+                                <input style="width: 100%" k-value='now' k-ng-model='tglAwal' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                            </div>
+                            <div class="grid_6">
+                                <input style="width: 100%" k-value='now' k-ng-model='tglAkhir' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_6">
+                        <div class="grid_12">
+                            <label c-label c-label-text="masukkanNoRekamMedis" real></label>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_8">
+                                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="noCm" />
+                            </div>
+                            <div class="grid_4">
+                                <c-button class="c-button" style="padding:0px" click='refresh'>
+                                    <span c-translate>CARI</span>
+                                </c-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="panel panel-default">
+
+            <div class="panel-heading">{{title}}</div>
+            <div class="panel-body" style="padding:0px">
+
+                <div class="grid_12">
+                    <kendo-grid k-ng-model="item" k-data-source="listDataPasien" k-selectable="'row'" k-height="'500'" k-sortable="'true'" k-columns="Column"></kendo-grid>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid_4">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="grid_12">
+                    <label c-label c-label-text="namaPasienAlat" real></label>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="namaPasienDevice" />
+                    </div>
+                    <div class="grid_4">
+                        <c-button class="c-button" style="padding:0px" click='findDataPacs'>
+                            <span c-translate>CARI</span>
+                        </c-button>
+                    </div>
+                </div>
+                <div class="animated" ng-class={slideOutUp:loadPacs}>
+                    <img style="width:100px" src="../app/stylesheets/Flat/loading-image.gif" />
+                </div>
+                <div class="tiles">
+                    <div ng-repeat="data in listPacs">
+                        <div class="tile bg-yellow-saffron orange" ng-click="selectedData(data)" ng-class="{selected :selected.StudyInstanceUID===data.StudyInstanceUID}" style="height:100px">
+                            <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                            <div class="check"></div>
+                            <div class="tile-body" style="overflow: initial">
+                                <i style="font-style: normal;"></i>
+                            </div>
+                            <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                                <div class="icon-panel">
+                                    <img width='70px' src='stylesheets/pasien.png' />
+                                </div>
+                                <div class="text_panel">
+                                    <span class="title">{{data.NoMr}}</span>
+                                    <span class="c-label">{{data.Name}}</span>
+                                    <label class="c-label">{{data.StudyInstanceUID}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="grid_12 place_button">
+        <c-button style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="mappingData">
+            <span class="title">Mapping</span>
+        </c-button>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<div ng-controller="ComboBoxCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Combo Box'">
+				<div class="grid_12" style="margin-bottom:5px">
+					<label c-label item="item" c-label-text="ComboBox"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					 <input style="width: 100%;" kendo-combo-box k-ng-model="item.ComboBox" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPenyakitMayor" />
+				</div>
+
+				
+		</c-panel>
+	</div>
+</div>

@@ -1,0 +1,56 @@
+<style>
+    .card {
+        will-change: transform;
+        margin: 8px;
+        position: relative;
+        border-radius: 2px;
+        overflow: hidden;
+        background-color: #fafafa;
+        height: 35%;
+        width: 100%;
+        -webkit-transition: all 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+        transition: all 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+    }
+    
+    .card .detail {
+        height: 53px;
+        font-size: 50px;
+        color: white;
+    }
+    
+    .green {
+        background-color: #109e10;
+    }
+    
+    .red {
+        background-color: #ce0e0e;
+    }
+</style>
+<div class="KetersediaanBedCtrl">
+    <div class="grid_12">
+        <div ng-show='isDetail' class="grid_12">
+            <h2 class="title center" style="font-family:Big !important">{{detailBed.title}}</h2>
+            <div class="grid_3" ng-repeat="data in detailBed.ruangans">
+                <!-- Cards-->
+                <div class="card card--small">
+                    <h2 class="title center" style="font-family:Big !important">{{data.namaRuangan}}</h2>
+                    <div class="grid_12">
+                        <div class="grid_6 center detail green">{{data.bedAvaible}}</div>
+                        <div class="grid_6 center detail red">{{data.bedEmpty}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-show='!isDetail' class="grid_3" ng-repeat="data in listBed">
+            <!-- Cards-->
+            <div class="card card--small">
+                <h2 class="title center" style="font-family:Big !important">{{data.kelas}}</h2>
+                <div class="grid_12">
+                    <div class="grid_6 center detail green">{{data.bedAvaible}}</div>
+                    <div class="grid_6 center detail red">{{data.bedEmpty}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

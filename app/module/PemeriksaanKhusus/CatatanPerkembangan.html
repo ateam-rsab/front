@@ -1,0 +1,199 @@
+<div ng-controller="CatatanPerkembanganCtrl">
+    <c-panel item="item" header="title">
+
+        <div class="grid_12">
+            <div class="grid_3" >
+                <label c-label item="item" c-label-text="keadaanUmum"></label>
+            </div>
+            <div class="grid_9" >
+                <div class="grid_3" ng-repeat="stat in statKeadaanUmum">
+                    <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.kondisiUmum" value="{{stat.id}}">
+                    <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid_12">
+            <div class="grid_3">
+                <label c-label item="item" c-label-text="kontakInterpersonal"></label>
+            </div>
+            <div class="grid_9" >
+                <div class="grid_3" ng-repeat="stat in statKontakInterpersonal">
+                    <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.kontakInterpersonal" value="{{stat.id}}">
+                    <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid_12">
+            <div class="grid_3" >
+                <label c-label item="item" c-label-text="Keaktifan"></label>
+            </div>
+            <div class="grid_9">
+                <div class="grid_3" ng-repeat="stat in statKeaktifan">
+                    <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.keaktifan" value="{{stat.id}}">
+                    <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid_12">
+            <div class="grid_3" >
+                <label c-label item="item" c-label-text="KelainanTingkahLaku"></label>
+            </div>
+            <div class="grid_9">
+                <input c-text-box type="input"  class="k-textbox" ng-model="item.kelainanTingkahLaku" />
+            </div>
+        </div>
+
+        <div class="grid_12">
+            <div class="grid_3">
+                <label c-label item="item" c-label-text="MotorikKasar"></label>
+            </div>
+            <div class="grid_7">
+                <input c-text-box type="text"  class="k-textbox" ng-model="item.motorikKasar" placeholder="keterangan" />
+            </div>
+            <div class="grid_2">
+                <input c-text-box type="number"  class="k-textbox" ng-model="item.motorikKasarUmur" placeholder="usia"/>
+            </div>
+        </div>
+
+        <div class="grid_12">
+            <div class="grid_3">
+                <label c-label item="item" c-label-text="MotorikHalus"></label>
+            </div>
+            <div class="grid_7">
+                <input c-text-box type="text"  class="k-textbox" ng-model="item.motorikHalus" placeholder="keterangan" />
+            </div>
+            <div class="grid_2">
+                <input c-text-box type="number"  class="k-textbox" ng-model="item.motorikHalusUmur" placeholder="usia"/>
+            </div>
+        </div>
+
+        <div class="grid_12">
+            <div class="grid_3">
+                <label c-label item="item" c-label-text="bicaraExspresif"></label>
+            </div>
+            <div class="grid_7">
+                <input c-text-box type="text"  class="k-textbox" ng-model="item.bicaraExspresif" placeholder="keterangan" />
+            </div>
+            <div class="grid_2">
+                <input c-text-box type="number"  class="k-textbox" ng-model="item.bicaraExspresifUmur" placeholder="usia"/>
+            </div>
+        </div>
+
+        <div class="grid_12">
+            <div class="grid_3">
+                <label c-label item="item" c-label-text="reseptif"></label>
+            </div>
+            <div class="grid_7">
+                <input c-text-box type="text"  class="k-textbox" ng-model="item.reseptif" placeholder="keterangan" />
+            </div>
+            <div class="grid_2">
+                <input c-text-box type="number"  class="k-textbox" ng-model="item.reseptifUmur" placeholder="usia"/>
+            </div>
+        </div>
+
+        <div class="grid_12">
+            <div class="grid_3">
+                <label c-label item="item" c-label-text="kognisis"></label>
+            </div>
+            <div class="grid_7">
+                <input c-text-box type="text"  class="k-textbox" ng-model="item.kognisis" placeholder="keterangan" />
+            </div>
+            <div class="grid_2">
+                <input c-text-box type="number"  class="k-textbox" ng-model="item.kognisisUmur" placeholder="usia"/>
+            </div>
+        </div>
+
+        <div class="grid_12">
+            <div class="grid_3">
+                <label c-label item="item" c-label-text="sosialisasi"></label>
+            </div>
+            <div class="grid_7">
+                <input c-text-box type="text"  class="k-textbox" ng-model="item.sosialisasi" placeholder="keterangan" />
+            </div>
+            <div class="grid_2">
+                <input c-text-box type="number"  class="k-textbox" ng-model="item.sosialisasiUmur" placeholder="usia"/>
+            </div>
+        </div>
+
+        <div class="grid_12">
+            <div class="grid_3">
+                <label c-label item="item" c-label-text="perilaku"></label>
+            </div>
+            <div class="grid_7">
+                <input c-text-box type="text"  class="k-textbox" ng-model="item.perilaku" placeholder="keterangan" />
+            </div>
+            <div class="grid_2">
+                <input c-text-box type="number"  class="k-textbox" ng-model="item.perilakuUmur" placeholder="usia"/>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+        <div class="grid_12">
+            <div class="grid_3">
+                <label c-label item="item" c-label-text="Kepala Ubun-ubun besar"></label>
+            </div>
+            <div class="grid_6" >
+                <div class="grid_2" ng-repeat="stat in statKepala">
+                    <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.kepalaUbunUbunBesar" value="{{stat.id}}">
+                    <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid_12">
+            <div class="grid_3" >
+                <label c-label item="item" c-label-text="Wajah"></label>
+            </div>
+            <div class="grid_6" >
+                <div class="grid_2" ng-repeat="stat in statWajah">
+                    <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.wajah" value="{{stat.id}}">
+                    <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+                </div>
+                <div class="grid_6" ng-show="item.wajah==='3'">
+                    <textarea c-text-area type="input" style="height: 40px" filter="'string'" class="k-textbox" ng-model="item.keteranganWajah" placeholder="Keterangan"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+        <div class="grid_12">
+            <div class="grid_3" >
+                <label c-label item="item" c-label-text="Organ Artikulasi Bibir"></label>
+            </div>
+            <div class="grid_6">
+                <input c-text-box type="input" class="k-textbox" ng-model="item.organArtikulasiBibir" />
+            </div>
+        </div>
+        <div class="grid_12">
+            <div class="grid_3" >
+                <label c-label item="item" c-label-text="Organ Artikulasi Lidah"></label>
+            </div>
+            <div class="grid_6" >
+                <input c-text-box type="input" class="k-textbox" ng-model="item.organArtikulasiLidah" />
+            </div>
+        </div>
+        <div class="grid_12">
+            <div class="grid_3" >
+                <label c-label item="item" c-label-text="Organ Artikulasi Palatum"></label>
+            </div>
+            <div class="grid_6" >
+                <input c-text-box type="input"  class="k-textbox" ng-model="item.organArtikulasiPelatum" />
+            </div>
+        </div>
+        <div class="grid_12">
+            <div class="grid_3" >
+                <label c-label item="item" c-label-text="Gigi Geligi"></label>
+            </div>
+            <div class="grid_6" >
+                <input c-text-box type="input"  class="k-textbox" ng-model="item.gigiGeligi" />
+            </div>
+        </div>
+        <div class="grid_12" style="margin: 35px 0 0 0;">
+            <div class="grid_12">
+                <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+            </div>
+        </div>
+</div>

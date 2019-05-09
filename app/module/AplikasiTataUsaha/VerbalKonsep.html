@@ -1,0 +1,61 @@
+<div ng-controller="VerbalKonsepCtrl">
+    <c-panel item="item" header="'Verbal Konsep'" disabled>
+        <div class="panel panel-default container_12" disabled>
+        <div class="grid_6">
+            <div class="grid_12">
+                <div class="grid_5" style="margin: 10px 0 0 10px;">
+                    <label c-label item="item"  >Tanggal</label>
+                </div>
+                <div class="grid_6">
+                    <input c-text-box type="input" class="k-textbox" ng-model="item.tanggal" ng-disabled="true"/>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_5" style="margin: 10px 0 0 10px;">
+                    <label c-label item="item" >No Draft Surat</label>
+                </div>
+                <div class="grid_6">
+                    <input c-text-box type="input" class="k-textbox" ng-model="item.noDraft" ng-disabled="true"/>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_5" style="margin: 10px 0 0 10px;">
+                    <label c-label item="item" >Nama Surat</label>
+                </div>
+                <div class="grid_6">
+                    <input c-text-box type="input" class="k-textbox" ng-model="item.namaSurat" ng-disabled/>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_5" style="margin: 10px 0 0 10px;">
+                    <label c-label item="item"  >Download File</label>
+                </div>
+                <div class="grid_6">
+                    <button class="c-button success" ng-click="downloadFormat()">Download Format</button>
+                </div>
+            </div>
+        </div>
+        <div class="grid_6">
+            <div class="grid_12">
+                <div class="grid_12" style="margin: 10px 0 0 10px;">
+                <label c-label item="item" >Lembar Catatan</label>
+                </div>
+                <div class="grid_12" style="margin: 10px 0 0 10px;">
+                    <textarea ng-model="item.lampiran" data-bind="value: textareaValue" class="k-textbox" style="height: 150px; width: 500px;"></textarea>
+                </div>
+            </div>
+        </div>
+
+            <div class="grid_12">
+                <div class="grid_8"></div>
+                <div class="grid_2">
+                    <button class="c-button success" ng-click="save()">Simpan</button>
+                </div>
+                <div class="grid_2">
+                    <button class="c-button cancel" ng-click="tutup()">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </c-panel>
+
+</div>

@@ -1,0 +1,138 @@
+<div ng-controller="IntegumenCtrl"><br/>
+    <div ng-show="dataVOloaded">
+
+        <!-- panel utama -->
+
+        <c-normal-tidak-normal is-show-form="isShowForm" selanjutnya="selanjutnya">
+        </c-normal-tidak-normal>
+
+        <div ng-show="isShowForm">
+            <c-panel item="item" header="'Integumen'" disabled>
+                <div class="panel-body">
+                    <c-form item="item">
+
+                        <div class="grid_12">
+                            <div class="grid_3">
+                                <div class="grid_12">
+                                    <label c-label item="item" c-label-text="WarnaKulit"></label>
+                                </div>
+                                <div class="grid_6" ng-repeat="stat in listStatusWarnaKulit">
+                                    <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.warnaKulit" ng-value="stat">
+                                    <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+
+                                </div>
+                            </div>
+
+
+                            <div class="grid_3">
+                                <div class="grid_12">
+                                    <label c-label item="item" c-label-text="Kelainan"></label>
+                                </div>
+                                <div class="grid_6" ng-repeat="stat in listStatusKesadaran">
+                                    <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.kelainan" ng-value="stat">
+                                    <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+
+                                </div>
+
+                                <div ng-show="isKelainan">
+                                    <div class="grid_12">
+                                        <div class="grid_12">
+                                            <label c-label item="item" c-label-text="Keterangan"></label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <textarea style="width: 99%; height: 80px;"></textarea>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="grid_3">
+                                <div class="grid_12">
+                                    <label c-label item="item" c-label-text="ResikoDekubitus"></label>
+                                </div>
+                                <div class="grid_6" ng-repeat="stat in listStatusKesadaran">
+                                    <input type="radio" name="{{'ResikoDekubitus'+stat.name}}" id="{{'ResikoDekubitus'+stat.name}}" class="k-radio" ng-model="item.resikoDekubitos" ng-value="stat">
+                                    <label class="k-radio-label" for="{{'ResikoDekubitus'+stat.name}}">{{stat.name}}</label>
+
+                                </div>
+
+                                <div ng-show="isResikoDekubitus">
+                                    <div class="grid_12">
+                                        <div class="grid_12">
+                                            <label c-label item="item" c-label-text="Keterangan"></label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <textarea style="width: 99%; height: 80px;"></textarea>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="grid_3">
+                                <div class="grid_12">
+                                    <label c-label item="item" c-label-text="Luka"></label>
+                                </div>
+                                <div class="grid_6" ng-repeat="status in listStatusKesadaran">
+                                    <input type="radio" name="{{'Luka' + status.name}}" id="{{'Luka' + status.name}}" class="k-radio" ng-model="item.luka" ng-value="status">
+                                    <label class="k-radio-label" for="{{'Luka' + status.name}}">{{status.name}}</label>
+
+                                </div>
+
+                                <div ng-show="isLuka">
+                                    <div class="grid_12">
+                                        <div class="grid_12">
+                                            <label c-label item="item" c-label-text="Keterangan"></label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <textarea style="width: 99%; height: 80px;"></textarea>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid_3">
+                                <div class="grid_12">
+                                    <label c-label item="item" c-label-text="listStatusKeutuhanKulit"></label>
+                                </div>
+                                <div class="grid_6" ng-repeat="status in listStatusKeutuhanKulit">
+                                    <input type="radio" name="{{'KeutuhanKulit' + status.name}}" id="{{'KeutuhanKulit' + status.name}}" class="k-radio" ng-model="item.keutuhankulit" ng-value="status">
+                                    <label class="k-radio-label" for="{{'KeutuhanKulit' + status.name}}">{{status.name}}</label>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </c-form>
+
+                    <!-- status normal tidak normal -->
+                    <div class="grid_4" style="border: none;display:none">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="Status Pernafasan"></label>
+                        </div>
+                        <div class='grid_12'>
+                            <div>
+                                <button class='btnShowNormalTidakNormal' ng-click='changeStat("Normal")' style='position:relative' ng-style="{'background-color': warna.normal}">
+                                <img class="normalTidakNormal" src="stylesheets/yes.png">
+                                <span class="normalTidakNormal">Normal</span>
+                            
+                                <button class='btnShowNormalTidakNormal' ng-click='changeStat("TidakNormal")' style='position:relative' ng-style="{'background-color': warna.tidakNormal}">
+                                <img class="normalTidakNormal" src="stylesheets/no.png">
+                                <span class="normalTidakNormal">Tidak Normal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c-panel>
+
+            <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+        </div>
+
+    </div>
+</div>

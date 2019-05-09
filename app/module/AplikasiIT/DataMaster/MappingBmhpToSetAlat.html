@@ -1,0 +1,145 @@
+<div ng-controller="MappingBmhpToSetAlatCtrl">
+<div ng-show="dataVOloaded">
+<c-panel item="item" header="'Mapping Bmhp To Set Alat'" disabled>
+
+<!-- bmhp -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="bmhp"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.bmhp" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listbmhp" />
+</div>
+</div>
+
+<!-- alatId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="alatId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.alatId" />
+</div>
+</div>
+
+<!-- bundleSetAlat -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="bundleSetAlat"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.bundleSetAlat" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listbundlesetalat" />
+</div>
+</div>
+
+<!-- bundleSetAlatId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="bundleSetAlatId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.bundleSetAlatId" />
+</div>
+</div>
+
+<!-- jumlah -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="jumlah"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jumlah" />
+</div>
+</div>
+
+<!-- satuan -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="satuan"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.satuan" />
+</div>
+</div>
+
+<!-- reportDisplay -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="reportDisplay"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+</div>
+</div>
+
+<!-- kodeExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kodeExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+</div>
+</div>
+
+<!-- namaExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="namaExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+</div>
+</div>
+
+<!-- MappingBmhpToSetAlat -->
+<div class="grid_12">
+<div class="grid_12 headerBox">
+<p>MappingBmhpToSetAlat</p>
+</div>
+<div class="clear"></div>
+
+<!-- grid table -->
+<div class="grid_12 borderBox">
+					<kendo-grid options="mainGridOptions"  k-data-source="dataSource" k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+				</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+
+
+</c-panel>
+
+<div class="grid_12">
+				<div class="grid_8"></div>
+				<div class="grid_2" ng-show="showEdit">
+					<button class="c-button" ng-click="edit()">Edit</button>
+				</div>
+				<div class="grid_2" ng-hide="showEdit">
+					<button class="c-button" ng-click="tambah()">Tambah</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="batal()">Batal</button>
+				</div>
+			</div>
+</div>
+</div>

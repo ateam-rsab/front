@@ -1,0 +1,136 @@
+<style>
+	button:disabled {
+    background: #B5B2B1;
+}
+</style>
+<div ng-controller="KeluhanPelangganBaruCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Keluhan Pelanggan'">
+			<div class="grid_6">
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Nama Pasien</label>
+					</div>
+					<div class="grid_9">
+						<input c-text-box type="input" class="k-textbox" ng-model="item.namaPasien" />
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_3">
+						 <label c-label item="item" style="margin-top: 10px">No Rekam Medis</label>
+					</div>
+					<div class="grid_9">
+						 <input c-text-box type="input" class="k-textbox" ng-model="item.noRm" />
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Umur</label>
+					</div>
+					<div class="grid_3">
+						 <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.umur" />
+					</div>
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px"> Tahun</label>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Email</label>
+					</div>
+					<div class="grid_9">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.email" placeholder="email@gmail.com" />
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Keluhan</label>
+					</div>
+					<div class="grid_9">
+					 	<textarea c-text-box type="input" class="k-textbox" ng-model="item.keluhan" style="width: 99%; height: 80px;"></textarea> 
+					</div>
+				</div>				
+				<div class="grid_12">
+					<div class="grid_3">
+						 <label c-label item="item" style="margin-top: 10px">Saran</label>
+					</div>
+					<div class="grid_9">
+					 	 <textarea c-text-box type="input" class="k-textbox" ng-model="item.saran" style="width: 99%; height: 80px;"></textarea> 
+					</div>
+				</div>
+			</div>
+			<!-- End Setengah Form -->
+			<div class="grid_6">
+
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Telepon/HP</label>
+					</div>
+					<div class="grid_7">
+				 		<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noTlp" />
+					</div>
+				</div>
+
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Pekerjaan</label>
+					</div>
+					<div class="grid_9">
+				 		<input style="width: 100%;" kendo-combo-box k-ng-model="item.pekerjaan" k-data-text-field="'pekerjaan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataPekerjaan" />
+					</div>
+				</div>
+
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Tanggal Order</label>
+					</div>
+				     <div class="grid_4">
+				 		<input style="width: 100%" value="now" k-max="now" kendo-date-picker k-ng-model="item.tglorder" data-k-format="'yyyy-MM-dd'" disabled="true"/>
+					</div>
+				</div>
+
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Tanggal Keluhan</label>
+					</div>
+					<div class="grid_4">
+				 		<input style="width: 100%" kendo-date-picker k-ng-model="item.tglkeluhan" data-k-format="'yyyy-MM-dd'"/>
+					</div>
+				</div>
+
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Lokasi keluhan</label>
+					</div>
+					<div class="grid_9">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListDataRuangan" />
+					</div>
+				</div>
+
+                <div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Alamat</label>
+					</div>
+					<div class="grid_9">
+						 <textarea c-text-box type="input" class="k-textbox" ng-model="item.alamat" style="width: 99%; height: 50px;"></textarea>
+					</div>
+				</div>
+
+				</div>
+		
+	            <div class="grid_12">
+				    <div class="grid_6"></div>
+					<div class="grid_2">
+					   <button class="c-button success"  ng-click="Save()" >Simpan</button>
+					</div>
+					<div class="grid_2">
+					   <button class="c-button cancel" ng-click="reset()">Clear Form</button>
+					</div>
+					<div class="grid_2">
+						<button class="c-button success"  ng-click="keluhan()" >Daftar Keluhan</button>
+					</div>
+				</div> 
+           </c-panel>
+		</div>
+	</div>
+

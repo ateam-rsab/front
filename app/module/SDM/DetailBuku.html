@@ -1,0 +1,123 @@
+<div ng-controller="DetailBukuCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Detail Buku'" disabled>
+		<div class="grid_6">
+		<div class="panel panel-default container_12">
+	<!--		<div class="panel-heading" c-translate>Periode</div> -->
+	<!--		<div class="panel-body"> -->
+	
+           
+					
+	        <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Judul Buku"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nama" />
+			</div>
+			
+			</div>
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;"> 
+				<label c-label item="item" c-label-text="Kode Eksemplar"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.email" />
+			</div>
+			</div>
+			<div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Nama Pengarang"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nama" />
+			</div>
+			
+			</div>
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;"> 
+				<label c-label item="item" c-label-text="Tipe Koleksi"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.email" />
+			</div>
+			</div>
+			<div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Edisi"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nama" />
+			</div>
+			
+			</div>
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;"> 
+				<label><b>ISSN</b></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.email" />
+			</div>
+			</div>
+			<div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Tahun Terbit"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nama" />
+			</div>
+			
+			</div>
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;"> 
+				<label c-label item="item" c-label-text="Jumlah Halaman"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.email" />
+			</div>
+			</div>
+			
+			 
+			
+			
+			
+			
+			
+			
+			
+				
+		   </div>
+		   </div>
+<!--		   </div>  -->
+          
+	
+		
+	
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		</c-panel>
+			<div class="grid_12">
+							<div class="grid_8" style="float:left">
+							
+							
+							<div class="grid_3 " style="margin-top: 25px ">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Cari Jurnal/Buku</span>
+									</button>
+							</div>
+						
+							
+							</div>
+						</div>
+		</div>
+	</div>
+</div>
+

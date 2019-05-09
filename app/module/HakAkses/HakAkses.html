@@ -1,0 +1,165 @@
+<style>
+.style-center{
+	display: inline-block;
+	text-align: center;
+	width: 100%;
+}
+
+.style-right{
+	display: inline-block;
+	text-align: right;
+	width: 100%;
+}
+
+.style-left{
+	display: inline-block;
+	text-align: left;
+	width: 100%;
+}
+
+.k-treeview .k-item {
+	background-color: #f9f9f9 !important;
+}
+
+.k-checkbox-label:before {
+	margin: 1px 0px 0px 6px;
+}
+
+
+</style>
+
+<div>
+	<div class="grid_12 headerBox">
+		<h1 style="color: white;"><b>Hak Akses</b></h1>
+	</div>
+	<div class="clear"></div>
+
+	<br/>
+
+	<div class="grid_5" style="margin-top: 20px;height:630px;">
+		<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+			<p>Data Pegawai</p>
+		</div>
+		<div class="grid_12 borderBox containerBorderBox">
+
+			<!-- nama user -->
+			<div class="grid_12">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="NamaUser"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.user.nama"/>
+				</div>
+			</div>
+			<div class="clear"></div>
+
+			<!-- kata kunci -->
+			<div class="grid_12">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="KataKunci"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.user.kataKunci"/>
+				</div>
+			</div>
+			<div class="clear"></div>
+
+			<!-- kata kunci confirm -->
+			<div class="grid_12">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="UlangiKataKunci"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.user.kataKunciConfirm"/>
+				</div>
+			</div>
+			<div class="clear"></div>
+
+			<!-- kelompok user -->
+			<div class="grid_12">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="KelompokUser"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+			    	<input style="width: 100%;" kendo-combo-box k-ng-model="item.user.kelompokUser" k-data-text-field="'kelompokUser'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKelompokuser" />
+				</div>
+			</div>
+			<div class="clear"></div>
+
+			<!-- grid user -->
+			<div class="grid_12" style="margin-top:15px">
+				<!-- grid table pegawai -->
+				<div class="grid_12 borderBox">
+					<div class="grid_3">
+						<label c-label item="item" c-label-text="CariPegawai:" style="margin-top: 10px;"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_7">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="searchNamaPegawai"/>
+					</div>
+
+					<div class="grid_2">
+						<button class="btnTemplate1" style="margin-left: 0;" ng-click="SearchData()">Cari</button>
+					</div>
+
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<div kendo-grid id="kGrid"
+							k-data-source="daftarPegawai" 
+							k-selectable="'row'" 
+							k-sortable="'true'"
+							k-columns="columnDaftarPegawai">
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+			
+		</div>
+	</div>
+
+	<!--<div class="grid_3" style="margin-top: 20px;">
+		<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+			<p>Ruangan</p>
+		</div>
+		<div class="grid_12 borderBox containerBorderBox" style="overflow-y: scroll; height:630px;">
+			<div class="grid_12" ng-repeat="ruangan in listRuangan" style="margin: 2px 0px;">
+               <input type="checkbox"  name="{{ruangan.namaExternal}}" id="{{ruangan.namaExternal}}" class="k-checkbox"  value="{{ruangan.namaExternal}}"  >
+                <label class="k-checkbox-label" for="{{ruangan.namaExternal}}">{{ruangan.namaExternal}}</label>
+	        </div>
+		</div>
+	</div>-->
+	
+
+	<div class="grid_4" style="margin-top: 20px;">
+		<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+			<p>Menu</p>
+		</div>
+		<div class="grid_12 borderBox containerBorderBox" style="overflow-y: scroll; height:630px;">
+			<div class="grid_12">
+				<div style="margin-left:5px" kendo-tree-view="tree"
+				 k-checkboxes="checkboxes" 
+	             k-data-source="treeDataMenu">
+	            </div>
+			</div>
+		</div>
+	</div>
+
+	
+
+	<div class="grid_12" style="margin-top:30px">
+		<div ng-include='"../app/module/Shared/TemplateButtonDataMaster"'></div>
+	</div>
+</div>
+

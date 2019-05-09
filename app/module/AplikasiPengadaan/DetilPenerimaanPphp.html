@@ -1,0 +1,112 @@
+<div>
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Form Input Penerimaan PPHP'" disabled>
+		<div class="grid_6">
+			<div class="grid_4" style="margin-top:10px">
+				<label c-label item="item" c-label-text="noKontrak"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.noKontrak" style="width:100%" disabled/>
+			</div>
+			<div class="grid_4" style="margin-top:10px">
+				<label c-label item="item" c-label-text="noPphp"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.noPphp" style="width:100%" disabled/>
+			</div>
+			<div class="grid_4" style="margin-top:10px">
+				<label c-label item="item" c-label-text="tanggal"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggal" k-format="'yyyy-MM-dd'" disabled/>
+			</div>
+		</div>
+
+		<div class="grid_6">
+			<div class="grid_4" style="margin-top:10px">
+				<label c-label item="item" c-label-text="namaSupplier"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" class="k-textbox" ng-model="item.namaSupplier" style="width:100%" disabled/>
+			</div>
+			<div class="grid_4" style="margin-top:10px">
+				<label c-label item="item" c-label-text="alamat"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" class="k-textbox" ng-model="item.alamatLengkap" style="width:100%" disabled/>
+			</div>
+			<div class="grid_4" style="margin-top:10px">
+				<label c-label item="item" c-label-text="noTelepon"></label>
+			</div>
+			<div class="grid_8">
+				<input id="phone" c-text-box class="k-textbox" ng-value="item.telepon" style="width:100%" disabled/>
+			</div>
+			<!-- <div class="grid_4" style="margin-top:10px;text-align:right">
+				<label c-label item="item" c-label-text="namaKegiatan"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaKegiatan" style="width:100%"/>
+			</div> -->
+		</div>
+		<div class="clear"></div>
+		<!-- <div kendo-grid k-data-source="daftarPengajuanUsulan" k-selectable="'row'" editable="true" pageable="true" k-columns="columnPengajuanUsulan" style="margin-bottom: 10px"></div> -->
+		</c-panel>
+		<div class="clear"></div>
+
+		<!-- grid data -->
+		<div class="grid_12" style="margin-bottom: 10px">
+			<kendo-grid k-data-source="dataSource" options="mainGridOptions" k-editable="false"></kendo-grid>
+		</div>
+
+		<!-- footer content -->
+		<!-- <div class="grid_8"></div>
+		<div class="grid_4">
+			<div class="grid_4" style="margin-top:10px;text-align:right">
+				<label c-label item="item" c-label-text="ppn"></label>
+			</div>
+			<div class="grid_8">
+			<input c-text-box class="k-textbox" ng-model="item.totalPpn" style="width:100%" disabled="true"/>
+			</div>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_8"></div>
+		<div class="grid_4">
+			<div class="grid_4" style="margin-top:10px;text-align:right">
+				<label c-label item="item" c-label-text="disc"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box class="k-textbox" ng-model="item.disc" style="width:100%"/>
+			</div>
+		</div>
+		<div class="clear"></div> -->
+		<div class="grid_8"></div>
+		<div class="grid_4">
+			<div class="grid_4" style="margin-top:10px;text-align:right">
+				<label c-label item="item" c-label-text="total"></label>
+			</div>
+			<div class="grid_8">
+			<input c-text-box class="k-textbox" ng-model="item.total" style="width:100%;text-align:right" disabled="true"/>
+			</div>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_12" style="min-height:20px;"></div>
+
+		<!-- tombol -->
+		<div class="grid_6"></div>
+		<div class="grid_6">
+			<div class="grid_4"></div>
+			<div class="grid_4"></div>
+			<div class="grid_4">
+				<button class="c-button" ng-click="batal()">Kembali</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+.label-aja {
+	padding-top:12px;font-size:13px;font-weight:bold;
+	text-align:right;
+	height:22px;
+}
+</style>

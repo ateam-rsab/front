@@ -1,0 +1,343 @@
+<div ng-controller="IntraOperasiAnestesiCtrl">
+    <div class="grid_12" style="margin-bottom:60px">
+    <div ng-include='"../app/module/Dashboard/Pasien/Index" '></div>
+        <div class="grid_12 headerBox">
+            <h1 style="color: white;"><b>ASUHAN KEPERAWATAN PERI OPERATIF DI KAMAR OPERASI</b></h1>
+        </div>
+         <div class="loading" style="position: relative; margin:25px 0px 20px;" class="animated"
+                        ng-show="isLoadingData">
+         <img height="250" src="../app/stylesheets/Flat/loading-image.gif"/>
+         <br/> <span style="font-weight: bold;">Mengambil data Intra Operasi Anestesi, Mohon tunggu...</span>
+         </div>
+            <div class="grid_12" ng-show="AllData">
+                <c-panel item="item" header="'History Intra Operasi Anestesi'">
+                <div class="grid_12">
+                    <div class="grid_12"></div>
+                    <div class="clear"></div>
+                    <!-- grid table -->
+                    <div class="grid_12 borderBox">
+                        <div id="kGrid" kendo-grid 
+                        k-data-source="dataMaster" 
+                        k-selectable="'row'" 
+                        k-columns="columnIntraOpAnestesi"
+                        k-sortable="'true'"
+                        k-pageable="true"
+                        k-ng-model="dataSelected"
+                        ng-click="klik(dataSelected)">
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                </c-panel>
+            </div>
+            <!-- HIIDEN SEMENTARA -->
+<!--         <div class="grid_12" style="margin-top:20px">
+            <fieldset style="min-height:80px !important">
+                <legend><h2><b>Diagnosa dan Tindakan</b></h2></legend>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label item="item">Diagnosa Pre Operasi</label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.diagnosaPreOperasi" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceDiagnosisPrimer"/>
+                    </div>
+                    <div class="grid_4">
+                        <label c-label item="item">Diagnosa Post Operasi</label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.diagnosaPostOperasi" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceDiagnosisPrimer"/>
+                    </div>
+                    <div class="grid_4">
+                        <label c-label item="item">Tindakan</label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.tindakan" k-data-text-field="'namaDiagnosaTindakan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="DiagnosaTindakan"/>
+                    </div>
+                </div>
+            </fieldset>
+        </div> -->
+
+        <!-- HIIDEN SEMENTARA -->
+<!--         <div class="grid_12" style="margin-top:20px">
+            <fieldset style="min-height:150px !important">
+                <legend><h2><b>Pegawai Pelaksana</b></h2></legend>
+                <div class="grid_12">
+                    <div class="grid_3">
+                        <label c-label item="item">Dokter Bedah</label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.dokterBedah" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataDokter"/>
+                    </div>
+                    <div class="grid_3">
+                        <label c-label item="item">Asisten Bedah</label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.asistenBedah" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataDokter"/>
+                    </div>
+                    <div class="grid_3">
+                        <label c-label item="item">Perawat Instrumen I</label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.perawatInstrumen1" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataPegawai"/>
+                    </div>
+                    <div class="grid_3">
+                        <label c-label item="item">Perawat Instrumen II</label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.perawatInstrumen2" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataPegawai"/>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_3">
+                        <label c-label item="item">Perawat Sirkuler</label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.perawatSirkuler" k-data-text-field="'namaExternal'" k-data-value-field="'pasienId'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataPegawai"/>
+                    </div>
+                    <div class="grid_3">
+                        <label c-label item="item">Operator Alat Canggih</label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.operatorAlatCanggih" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataPegawai"/>
+                    </div>
+                </div>
+            </fieldset>
+        </div> -->
+        <div class="grid_12" style="margin-top:20px" ng-show="AllData">
+            <fieldset style="min-height:80px !important">
+                <legend><h2><b>Waktu Operasi</b></h2></legend>
+                <div class="grid_12">
+<!--                     <div class="grid_2">
+                        <label c-label item="item" c-label-text="Tanggal"></label>
+                        <input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalOperasi" placeholer="DD-MM-YYYY" k-format="'dd-MM-yyyy'" />
+                    </div> -->
+                    <div class="grid_2">
+                        <label c-label item="item">Jam Masuk Kamar Operasi</label>
+                        <input style="width: 100%" kendo-time-picker k-ng-model="item.jamMasukOperasi" placeholer="HH:mm" k-format="'HH:mm'" />
+                    </div>
+ <!--                    <div class="grid_2">
+                        <label c-label item="item">Operasi Mulai Jam</label>
+                        <input style="width: 100%" kendo-time-picker k-ng-model="item.operasiMulai" placeholer="HH:mm" k-format="'HH:mm'" />
+                    </div> -->
+<!--                     <div class="grid_2">
+                        <label c-label item="item">Operasi Selesai Jam</label>
+                        <input style="width: 100%" kendo-time-picker k-ng-model="item.operasiSelesai" placeholer="HH:mm" k-format="'HH:mm'" />
+                    </div> -->
+                </div>
+            </fieldset>
+        </div> 
+        <div class="grid_12 headerBox" style="margin-top:10px" ng-show="AllData">
+            <h1 style="color: white;"><b>INTRA OPERASI (ANESTESI)</b></h1>
+        </div>
+        <div class="grid_12" style="margin-top:20px" ng-show="AllData">
+            <div class="grid_4" style="border: 1px solid; border-color: #10C4B2; height:2500px">
+                <div class="grid_12 headerBox">
+                    <h1 style="color: white;"><b>Masalah Keperawatan</b></h1>
+                </div>
+                <!-- woooo -->
+                 <div class="grid_12" ng-repeat="list in Masalah | orderBy : 'id'">
+                        <div ng-switch on="list.id">
+                        <div class="grid_12" ng-switch-when="169" style="margin-bottom: 10px" >
+                             <div class="grid_12">
+                                <input type="checkbox" ng-checked="isChecked(list.id)" class="k-checkbox" name="{{list.name}}" id="{{list.name}}" ng-value="list.id" ng-model="bool" ng-click="checkedData(bool, list)">
+                                <label class="k-checkbox-label" for="{{list.name}}"><b>{{list.name}}</b></label>
+                             </div>
+                             <div class="grid_12" style="padding-left:25px">  
+                             <input type="radio" name="Ya1" id="1" class="k-radio" ng-model="item.radio1" value="1">
+                             <label class="k-radio-label" for="1">Ya</label>
+                             <input type="radio" name="Tidak1" id="2" class="k-radio" ng-model="item.radio1" value="2">
+                             <label class="k-radio-label" for="2">Tidak</label>
+                             </div>
+                        </div>
+                        <div class="grid_12" ng-switch-when="170" style="margin-bottom: 10px" >
+                             <div class="grid_12">
+                             <input type="checkbox" ng-checked="isChecked(list.id)" class="k-checkbox" name="{{list.name}}" id="{{list.name}}" ng-value="list.id" ng-model="bool" ng-click="checkedData(bool, list)">
+                                <label class="k-checkbox-label" for="{{list.name}}"><b>{{list.name}}</b></label>
+                             </div>
+                             <div class="grid_12" style="padding-left:25px">  
+                             <input type="radio" name="Ya2" id="3" class="k-radio" ng-model="item.radio2" value="1">
+                             <label class="k-radio-label" for="3">Ya</label>
+                             <input type="radio" name="Tidak2" id="4" class="k-radio" ng-model="item.radio2" value="2">
+                             <label class="k-radio-label" for="4">Tidak</label>
+                             </div>
+                        </div>
+                        <div class="grid_12" ng-switch-when="171" style="margin-bottom: 10px" >
+                             <div class="grid_12">
+                             <input type="checkbox" ng-checked="isChecked(list.id)" class="k-checkbox" name="{{list.name}}" id="{{list.name}}" ng-value="list.id" ng-model="bool" ng-click="checkedData(bool, list)">
+                                <label class="k-checkbox-label" for="{{list.name}}"><b>{{list.name}}</b></label>
+                             </div>
+                             <div class="grid_12" style="padding-left:25px"> 
+                             <input type="radio" name="Ya3" id="5" class="k-radio" ng-model="item.radio3" value="1">
+                             <label class="k-radio-label" for="5">Ya</label>
+                             <input type="radio" name="Tidak3" id="6" class="k-radio" ng-model="item.radio3" value="2">
+                             <label class="k-radio-label" for="6">Tidak</label>
+                             </div>
+                        </div>
+                        <div class="grid_12" ng-switch-when="172" style="margin-bottom: 10px" >
+                             <div class="grid_12">
+                             <input type="checkbox" ng-checked="isChecked(list.id)" class="k-checkbox" name="{{list.name}}" id="{{list.name}}" ng-value="list.id" ng-model="bool" ng-click="checkedData(bool, list)">
+                                <label class="k-checkbox-label" for="{{list.name}}"><b>{{list.name}}</b></label>
+                             </div>
+                             <div class="grid_12" style="padding-left:25px"> 
+                             <input type="radio" name="Ya4" id="7" class="k-radio" ng-model="item.radio4" value="1">
+                             <label class="k-radio-label" for="7">Ya</label>
+                             <input type="radio" name="Tidak4" id="8" class="k-radio" ng-model="item.radio4" value="2">
+                             <label class="k-radio-label" for="8">Tidak</label>
+                             </div>
+                        </div>
+                         <div class="grid_12" ng-switch-when="173" style="margin-bottom: 10px" >
+                             <div class="grid_12">
+                             <input type="checkbox" ng-checked="isChecked(list.id)" class="k-checkbox" name="{{list.name}}" id="{{list.name}}" ng-value="list.id" ng-model="bool" ng-click="checkedData(bool, list)">
+                                <label class="k-checkbox-label" for="{{list.name}}"><b>{{list.name}}</b></label>
+                             </div>
+                             <div class="grid_12" style="padding-left:25px"> 
+                             <input type="radio" name="Ya5" id="9" class="k-radio" ng-model="item.radio5" value="1">
+                             <label class="k-radio-label" for="9">Ya</label>
+                             <input type="radio" name="Tidak5" id="10" class="k-radio" ng-model="item.radio5" value="2">
+                             <label class="k-radio-label" for="10">Tidak</label>
+                             </div>
+                        </div>
+                          <div class="grid_12" ng-switch-when="175" style="margin-bottom: 10px" >
+                             <div class="grid_12">
+                             <input type="checkbox" ng-checked="isChecked(list.id)" class="k-checkbox" name="{{list.name}}" id="{{list.name}}" ng-value="list.id" ng-model="bool" ng-click="checkedData(bool, list)">
+                                <label class="k-checkbox-label" for="{{list.name}}"><b>{{list.name}}</b></label>
+                             </div>
+                             <div class="grid_11">  
+                              <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.names1" style="border:0;
+                              border-bottom: 1px dotted;" />
+                             </div>
+                        </div>
+                          <div class="grid_12" ng-switch-when="176" style="margin-bottom: 10px" >
+                             <div class="grid_12">
+                             <input type="checkbox" ng-checked="isChecked(list.id)" class="k-checkbox" name="{{list.name}}" id="{{list.name}}" ng-value="list.id" ng-model="bool" ng-click="checkedData(bool, list)">
+                                <label class="k-checkbox-label" for="{{list.name}}"><b>{{list.name}}</b></label>
+                             </div>
+                             <div class="grid_11"> 
+                              <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.names2" style="border:0;
+                              border-bottom: 1px dotted;" />
+                             </div>
+                        </div>
+                        <div class="grid_12" ng-switch-when="177" style="margin-bottom: 10px" >
+                             <div class="grid_12">
+                             <input type="checkbox" ng-checked="isChecked(list.id)" class="k-checkbox" name="{{list.name}}" id="{{list.name}}" ng-value="list.id" ng-model="bool" ng-click="checkedData(bool, list)">
+                                <label class="k-checkbox-label" for="{{list.name}}"><b>{{list.name}}</b></label>
+                             </div>
+                             <div class="grid_11">   
+                              <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.names3" style="border:0;
+                              border-bottom: 1px dotted;" />
+                             </div>
+                                <div class="grid_8" ng-repeat="Sublist in list.detail | orderBy : 'id'">
+                                <div class="grid_8" style="margin:10px 0 0 5px">
+                                <input type="checkbox" ng-checked="isChecked(Sublist.id)" class="k-checkbox" name="{{Sublist.namaExternal}}" id="{{Sublist.namaExternal}}" value="{{Sublist.id}}" ng-model="bool" ng-click="checkedData(bool, Sublist)">
+                                <label class="k-checkbox-label" for="{{Sublist.namaExternal}}">{{Sublist.namaExternal}}</label>
+
+                                </div>
+                                </div>
+                        </div>
+                        <div class="grid_12" ng-switch-when="183" style="margin-bottom: 10px" >
+                                <div class="grid_11">
+                                <input type="checkbox" ng-checked="isChecked(list.id)" class="k-checkbox" name="{{list.name}}" id="{{list.name}}" value="{{list.id}}" ng-model="bool" ng-click="checkedData(bool, list)">
+                                <label class="k-checkbox-label" for="{{list.name}}">{{list.name}}</label>
+                                </div>
+                        </div>
+                        <div class="grid_12" ng-switch-when="184" style="margin-bottom: 10px" >
+                             <div class="grid_11">
+                                <input type="checkbox" ng-checked="isChecked(list.id)" class="k-checkbox" name="{{list.name}}" id="{{list.name}}" value="{{list.id}}" ng-model="bool" ng-click="checkedData(bool, list)">
+                                <label class="k-checkbox-label" for="{{list.name}}">{{list.name}}</label>
+                                </div>
+                        </div>
+                        <div class="grid_12" ng-switch-when="185" style="margin-bottom: 10px" >
+                             <div class="grid_11">
+                                <input type="checkbox" ng-checked="isChecked(list.id)" class="k-checkbox" name="{{list.name}}" id="{{list.name}}" value="{{list.id}}" ng-model="bool" ng-click="checkedData(bool, list)">
+                                <label class="k-checkbox-label" for="{{list.name}}">{{list.name}}</label>
+                                </div>
+                        </div>
+                        <div class="grid_12" ng-switch-when="186" style="margin-bottom: 10px" >
+                             <div class="grid_11">
+                                <input type="checkbox" ng-checked="isChecked(list.id)" class="k-checkbox" name="{{list.name}}" id="{{list.name}}" value="{{list.id}}" ng-model="bool" ng-click="checkedData(bool, list)">
+                                <label class="k-checkbox-label" for="{{list.name}}">{{list.name}}</label>
+                                </div>
+                        </div>
+                        <div class="grid_12" ng-switch-when="187" style="margin-bottom: 10px" >
+                             <div class="grid_11">
+                                <input type="checkbox" ng-checked="isChecked(list.id)" class="k-checkbox" name="{{list.name}}" id="{{list.name}}" value="{{list.id}}" ng-model="bool" ng-click="checkedData(bool, list)">
+                                <label class="k-checkbox-label" for="{{list.name}}">{{list.name}}</label>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+
+
+
+             <div class="grid_4" style="border: 1px solid; border-color: #10C4B2; height:2500px" ng-show="AllData">
+                <div class="grid_12 headerBox">
+                    <h1 style="color: white;"><b>Intervensi</b></h1>
+                </div>
+                   <div class="grid_12" ng-repeat="Interen in Intervensi | orderBy :'id'">
+                  <div class="grid_11" style="margin:10px 0 0 5px">
+                      <input type="checkbox" ng-checked="isChecked(Interen.id)" class="k-checkbox" name="{{Interen.name}}" id="{{Interen.name}}" value="{{Interen.id}}" ng-model="bool" ng-click="checkedData(bool, Interen)">
+                      <label class="k-checkbox-label" for="{{Interen.name}}">{{Interen.name}}</label>
+                          <div class="grid_12" ng-repeat="DetIntern in Interen.detail">
+                          <div class="grid_11" style="margin:10px 0 0 5px">
+                          <input type="checkbox" ng-checked="isChecked(DetIntern.id)" class="k-checkbox" name="{{DetIntern.namaExternal}}" id="{{DetIntern.namaExternal}}" value="{{DetIntern.id}}" ng-model="bool" ng-click="checkedData(bool, DetIntern)">
+                          <label class="k-checkbox-label" for="{{DetIntern.namaExternal}}">{{DetIntern.namaExternal}}</label>
+                          </div>
+                          </div>
+                  </div>
+              </div>
+            </div>
+
+
+          <div class="grid_4" style="border: 1px solid; border-color: #10C4B2; height:2500px" ng-show="AllData">
+              <div class="grid_12 headerBox">
+                  <h1 style="color: white;"><b>Kriteria Evaluasi</b></h1>
+              </div>
+               <div class="grid_12" ng-repeat="Kriteriax in Kriteria | orderBy :'id'">
+                  <div class="grid_11" style="margin:10px 0 0 5px">
+                      <input type="checkbox" ng-checked="isChecked(Kriteriax.id)" class="k-checkbox" name="{{Kriteriax.name}}" id="{{Kriteriax.name}}" value="{{Kriteriax.id}}" ng-model="bool" ng-click="checkedData(bool, Kriteriax)">
+                      <label class="k-checkbox-label" for="{{Kriteriax.name}}">{{Kriteriax.name}}</label>
+                          <div class="grid_12" ng-repeat="Kriteriaxz in Kriteriax.detail">
+                           <div ng-switch on="Kriteriaxz.id">
+                           <div class="grid_12" ng-switch-when="207" style="margin-bottom: 10px" >
+                          <div class="grid_11" style="margin:10px 0 0 5px">
+                          <input type="checkbox" ng-checked="isChecked(Kriteriaxz.id)" class="k-checkbox" name="{{Kriteriaxz.namaExternal}}" id="{{Kriteriaxz.namaExternal}}" value="{{Kriteriaxz.id}}" ng-model="bool" ng-click="checkedData(bool, Kriteriaxz)">
+                          <label class="k-checkbox-label" for="{{Kriteriaxz.namaExternal}}">{{Kriteriaxz.namaExternal}}</label>
+                          <div class="grid_11">   
+                              <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namek1" style="border:0;
+                              border-bottom: 1px dotted;" />
+                             </div>
+                          </div>
+                          </div>
+                          </div>
+                           <div ng-switch on="Kriteriaxz.id">
+                           <div class="grid_12" ng-switch-when="204" style="margin-bottom: 10px" >
+                          <div class="grid_11" style="margin:10px 0 0 5px">
+                          <input type="checkbox" ng-checked="isChecked(Kriteriaxz.id)" class="k-checkbox" name="{{Kriteriaxz.namaExternal}}" id="{{Kriteriaxz.namaExternal}}" value="{{Kriteriaxz.id}}" ng-model="bool" ng-click="checkedData(bool, Kriteriaxz)">
+                          <label class="k-checkbox-label" for="{{Kriteriaxz.namaExternal}}">{{Kriteriaxz.namaExternal}}</label>
+                          <div class="grid_11">   
+                              <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namek2" style="border:0;
+                              border-bottom: 1px dotted;" />
+                             </div>
+                          </div>
+                          </div>
+                          </div>
+                           <div ng-switch on="Kriteriaxz.id">
+                           <div class="grid_12" ng-switch-when="205" style="margin-bottom: 10px" >
+                          <div class="grid_11" style="margin:10px 0 0 5px">
+                          <input type="checkbox" ng-checked="isChecked(Kriteriaxz.id)" class="k-checkbox" name="{{Kriteriaxz.namaExternal}}" id="{{Kriteriaxz.namaExternal}}" value="{{Kriteriaxz.id}}" ng-model="bool" ng-click="checkedData(bool, Kriteriaxz)">
+                          <label class="k-checkbox-label" for="{{Kriteriaxz.namaExternal}}">{{Kriteriaxz.namaExternal}}</label>
+                          <div class="grid_11">   
+                              <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namek3" style="border:0;
+                              border-bottom: 1px dotted;" />
+                             </div>
+                          </div>
+                          </div>
+                          </div>
+                           <div ng-switch on="Kriteriaxz.id">
+                           <div class="grid_12" ng-switch-when="206" style="margin-bottom: 10px" >
+                          <div class="grid_11" style="margin:10px 0 0 5px">
+                          <input type="checkbox" ng-checked="isChecked(Kriteriaxz.id)" class="k-checkbox" name="{{Kriteriaxz.namaExternal}}" id="{{Kriteriaxz.namaExternal}}" value="{{Kriteriaxz.id}}" ng-model="bool" ng-click="checkedData(bool, Kriteriaxz)">
+                          <label class="k-checkbox-label" for="{{Kriteriaxz.namaExternal}}">{{Kriteriaxz.namaExternal}}</label>
+                          <div class="grid_11">   
+                              <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namek4" style="border:0;
+                              border-bottom: 1px dotted;" />
+                             </div>
+                          </div>
+                          </div>
+                          </div>
+                          </div>
+                  </div>
+              </div>
+          </div>
+            
+            
+           
+        </div>
+    </div>
+    <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+    <!--<div ui-view></div>-->
+</div>

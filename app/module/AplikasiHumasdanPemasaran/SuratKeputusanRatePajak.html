@@ -1,0 +1,151 @@
+<div ng-controller="SuratKeputusanRatePajakCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Surat Keputusan Rate Pajak'"disabled>
+		<div class="grid_6">
+		<div class="panel panel-default container_12">
+           
+			
+		
+			 
+		
+			
+			<div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="No SK"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nosk" />
+			</div>
+			
+			</div>
+			<div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Objek Pajak"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.objekpajak" k-data-text-field="'objekPajak'" k-data-value-field="'idObjekPajak'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListDataobjekpajak" ng-disabled="diswow"/>
+			</div>
+			
+			</div>
+			<div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Range"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.range" k-data-text-field="'namaRange'" k-data-value-field="'idRange'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListDatarange" ng-disabled="diswow"/>
+			</div>
+			
+			</div>
+
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Persen Harga Satuan"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.persenhargasatuan" />
+			</div>
+			
+			</div>
+
+			<div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Harga Satuan"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.hargasatuan" />
+			</div>
+			
+			</div>
+
+			<div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Factor Rate"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.factorrate" />
+			</div>
+			
+			</div>
+
+
+			</div> 
+			   </div>
+
+			 <div class="grid_6">
+			
+
+
+			
+           
+           <div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Operator Factor Rate"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.operatorfactor" />
+			</div>
+			
+			</div>
+
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Rumus Perhitungan"></label>
+			</div>
+			<div class="grid_8">
+				<textarea style="height: 90px" c-text-box type="input" class="k-textbox" ng-model="item.RumusPerhitungan" />
+			</div>
+			
+			</div>
+			 
+
+
+
+			  <div class="grid_12">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="Keterangan Lainnya"></label>
+			</div>
+			<div class="grid_8">
+			<textarea style="height: 90px" c-text-box type="input" class="k-textbox" ng-model="item.keteranganlainnya" />
+			</div>
+			
+			</div>
+
+			</div> 
+
+			 
+		   </div>
+
+		 
+
+
+	
+		<div class="grid_12 borderBox">
+				<div id="kGrid" kendo-grid 
+				k-data-source="dataMaster" 
+				k-selectable="'row'" 
+				k-columns="columnKomunikasi"
+				k-sortable="'true'"
+			    k-pageable="true"
+				k-ng-model="dataSelected"
+				ng-click="klik(dataSelected)">
+				</div>
+			</div>
+		
+		
+		</c-panel>
+			<div class="grid_12">
+							<div class="grid_8" style="float:left">
+							
+							<div class="grid_2" style="margin-top: 25px">
+							<button class="c-button" ng-click="reset()">Reset</button>
+							</div>
+							<div class="grid_2" style="margin-top: 25px">
+							<button class="c-button" ng-click="Save()">Simpan</button>
+							</div>
+							
+						</div>
+		</div>
+	</div>
+</div>
+

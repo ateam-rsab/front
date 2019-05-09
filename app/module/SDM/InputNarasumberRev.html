@@ -1,0 +1,102 @@
+<div ng-show="dataVOloaded">
+	<div class="panel panel-default container_12" style="background-color:transparant">
+        <div class="panel-heading"><label class='title' c-label item="item" c-label-text="Narasumber dan Kompetensi" real></label></div>
+        <div class="panel-body">
+       		<div class="grid_12">
+	        	<div class="panel panel-default panel-white">
+    				<div class="panel-heading-white"><span class="title" c-translate></span></div>
+    				<div class="grid_12">
+    					<div class="grid_4">
+							<div class="grid_12" style="margin: 10px 0 0 0;">
+								<label c-label item="item" >Nama Pengajar/Pelatih/Narasumber</label>
+							</div>
+							<div class="grid_12">
+								 <input style="width: 100%;" kendo-combo-box k-ng-model="item.Narasumber" k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListNarasumber" />
+							</div>
+						</div>
+						<div class="grid_4">
+							<div class="grid_12" style="margin: 10px 0 0 0;">
+								<label c-label item="item" c-label-text="Materi Yang Diajarkan"></label>
+							</div>
+							<div class="grid_12">
+								<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.MateriDiajarkan" />
+							</div>
+						</div>
+						<div class="grid_4">
+							<div class="grid_12" style="margin: 10px 0 0 0;">
+								<label c-label item="item" c-label-text="Dasar Pendidikan"></label>
+							</div>
+							<div class="grid_12">
+								<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.DasarPendidikan" />
+							</div>
+						</div>
+    				</div>
+    				<div class="grid_12">
+    					<div class="grid_4">
+							<div class="grid_12" style="margin: 10px 0 0 0;">
+								<label c-label item="item" c-label-text="Diklat Tambahan Terkait Materi"></label>
+							</div>
+							<div class="grid_12">
+								<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.TambahanMateri" />
+							</div>
+						</div>
+						<div class="grid_4">
+							<div class="grid_12" style="margin: 10px 0 0 0;">
+								<label c-label item="item" c-label-text="Pelatihan"></label>
+							</div>
+							<div class="grid_12">
+								<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.Pelatihan" />
+							</div>
+						</div>
+						<div class="grid_4">
+							<div class="grid_12" style="margin: 10px 0 0 0;">
+								<label c-label item="item" c-label-text="Pengalaman Bekerja"></label>
+							</div>
+							<div class="grid_12">
+								<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.PengalamanBekerja" />
+							</div>
+						</div>
+    				</div>
+    				<div class="grid_12">
+			        	<div class="grid_8"></div>
+						<div class="grid_2">
+						    <c-button ng-show="!isLoading" class="success" style="width: 99.5%; font-size: 24px; padding:0px, margin:0px; text-align: center;" item="item" size="36" position=" 'right'" is-validate ng-click="simpan()">
+					            <span class="title">Simpan</span>
+					        </c-button>
+						</div>
+						<div class="grid_2">
+						    <c-button ng-show="!isLoading" class="cancel" style="width: 99.5%; font-size: 24px; padding:0px, margin:0px; text-align: center;" item="item" size="36" position=" 'right'" is-validate ng-click="batal()">
+					            <span class="title">batal</span>
+					        </c-button>
+						</div>
+					</div>
+    			</div>
+    		</div>
+
+    		<div class="grid_12" style="margin-top: 15px;">
+				<div class="grid_12 headerBox">
+					<p>Daftar Narasumber dan Kompetensi</p>
+				</div>
+				<div class="clear"></div>
+				<!-- grid table -->
+				<div class="grid_12 borderBox">
+					<kendo-grid  options="mainGridOptions" k-data-source="dataGrid"
+					k-ng-model="dataSelected"  ng-click="klikGrid(dataSelected)" k-selectable="'row'" ></kendo-grid>
+				</div>
+			</div>
+			<div class="grid_12">
+	        	<div class="grid_8"></div>
+				<div class="grid_2">
+				    <c-button ng-show="!isLoading" style="width: 99.5%; font-size: 24px; padding:0px, margin:0px; text-align: center;" item="item" size="36" position=" 'right'" is-validate ng-click="Cetak()">
+			            <span class="title">Cetak</span>
+			        </c-button>
+				</div>
+				<div class="grid_2">
+				    <c-button ng-show="!isLoading" class="cancel" style="width: 99.5%; font-size: 24px; padding:0px, margin:0px; text-align: center;" item="item" size="36" position=" 'right'" is-validate ng-click="Hapus()">
+			            <span class="title">Hapus</span>
+			        </c-button>
+				</div>
+			</div>
+       	</div>
+    </div>		
+</div>

@@ -1,0 +1,70 @@
+<div ng-controller="DaftarPenerimaanLinenCtrl">
+	<div class="panel panel-default container_12">
+		<div class="panel-heading" c-translate>Daftar Penerimaan Linen</div>
+			<div class="panel-body">
+				<div class="grid_12">
+				<div class="grid_7">
+					<c-panel item="item" header="'Pencarian'" disabled>
+						<div class="grid_12">
+							<div class="grid_3" style="margin-top:15px">
+								<label c-label item="item" c-label-text="Periode"></label>
+							</div>
+							<div class="grid_3">
+								<input style="width:100%" kendo-date-picker value="now" k-ng-model="item.awal" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy 00:00:00'"/>
+							</div>
+							<div class="grid_1" align="center" style="margin-top:10px">
+								<label c-label item="item" c-label-text="S/d"></label>
+							</div>
+							<div class="grid_3">
+								<input style="width:100%" kendo-date-picker value="now" k-ng-model="item.akhir" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy hh:mm:ss'"/>
+							</div>
+							<div ng-show="false">
+							 <div class="grid_12">
+								<div class="grid_4" style="margin: 10px 0 0 0;">
+								<label c-label item="item">Berat</label>
+							</div>
+							<div class="grid_8">
+								<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.berat" disabled="" />
+							</div>
+							</div>
+							</div>
+							<div class="grid_2" style="margin-top:7px">
+								<button class="c-button" ng-click="Proses()">Cari</button>
+							</div>
+						</div>
+					</c-panel>
+				</div>
+			</div>
+	           <div class="grid_12">		
+                    <kendo-grid id="grid" options="mainGridOptions" k-data-source="sourceOrder" k-ng-model="current">			
+			        </kendo-grid>
+			   </div>
+			
+				<div class="grid_12" style="margin-top: 10px">
+        			<div kendo-grid k-data-source="daftarPenerimaanLinen" k-selectable="'row'" k-columns="columndaftarPenerimaanLinen">
+        			</div>
+				</div>
+				<div class="grid_12" style="margin-top: 20px ">
+					<div class="grid_10"></div>
+					<div class="grid_3">
+						<button class="c-button" ng-click="CuciLinen()">Pencucian Linen</button>
+                    </div>
+                    <div class="grid_2">
+						<button class="c-button" ng-click="">Tutup</button>
+                    </div>
+				</div>
+    		</div>   
+	</div>
+</div>
+ <script type="text/x-kendo-template" id="template">
+           <div>
+           <div kendo-grid k-options="mainGridOptions_1_2(dataItem)"></div>
+		   <a class="k-grid-edit" style="visibility:hidden;" id="edit">Edit</a>
+             </div>
+
+
+        </script>
+	<script id="edit-template" type="text/x-kendo-template">
+    <a class="k-grid-edit" style="visibility:hidden;" id="edit">Edit</a>
+</script>	
+		

@@ -1,0 +1,136 @@
+[
+	{ 
+		"noMR" : "001",
+		"namaPasien" : "dicky",
+		"jenisKelamin" : "laki-laki",
+		"unitLayanan" : "farmasi1",
+		"tanggal" : "16 juni 2016",
+		"dokter" : "egga bramasta akidapi",
+		"tipePasien" : "tepi 1",
+		"statusResep" : "status 1",
+		"depo" : "depo 1",
+		"lamaRawat" : "3 bulan"
+	},
+	{ 
+		"noMR" : "002",
+		"namaPasien" : "adnan",
+		"jenisKelamin" : "laki-laki",
+		"unitLayanan" : "farmasi1",
+		"tanggal" : "16 juni 2016",
+		"dokter" : "egga bramasta akidapi",
+		"tipePasien" : "tepi 2",
+		"statusResep" : "status 2",
+		"depo" : "depo 2",
+		"lamaRawat" : "3 bulan"
+	},
+	{ 
+		"noMR" : "003",
+		"namaPasien" : "rico",
+		"jenisKelamin" : "laki-laki",
+		"unitLayanan" : "farmasi1",
+		"tanggal" : "16 juni 2016",
+		"dokter" : "egga bramasta akidapi",
+		"tipePasien" : "tepi 3",
+		"statusResep" : "status 3",
+		"depo" : "depo 3",
+		"lamaRawat" : "3 bulan"
+	},
+	{ 
+		"noMR" : "004",
+		"namaPasien" : "hanafi",
+		"jenisKelamin" : "laki-laki",
+		"unitLayanan" : "farmasi2",
+		"tanggal" : "16 juni 2016",
+		"dokter" : "egga bramasta akidapi",
+		"tipePasien" : "tepi 4",
+		"statusResep" : "status 4",
+		"depo" : "depo 4",
+		"lamaRawat" : "3 bulan"
+	},
+	{ 
+		"noMR" : "005",
+		"namaPasien" : "roni",
+		"jenisKelamin" : "laki-laki",
+		"unitLayanan" : "farmasi3",
+		"tanggal" : "16 juni 2016",
+		"dokter" : "egga bramasta akidapi",
+		"tipePasien" : "tepi 5",
+		"statusResep" : "status 5",
+		"depo" : "depo 5",
+		"lamaRawat" : "3 bulan"
+	},
+	{ 
+		"noMR" : "006",
+		"namaPasien" : "andik",
+		"jenisKelamin" : "laki-laki",
+		"unitLayanan" : "farmasi3",
+		"tanggal" : "16 juni 2016",
+		"dokter" : "egga bramasta akidapi",
+		"tipePasien" : "tepi 6",
+		"statusResep" : "status 6",
+		"depo" : "depo 6",
+		"lamaRawat" : "3 bulan"
+	},
+	{ 
+		"noMR" : "007",
+		"namaPasien" : "eka",
+		"jenisKelamin" : "laki-laki",
+		"unitLayanan" : "farmasi3",
+		"tanggal" : "16 juni 2016",
+		"dokter" : "egga bramasta akidapi",
+		"tipePasien" : "tepi 7",
+		"statusResep" : "status 7",
+		"depo" : "depo 7",
+		"lamaRawat" : "3 bulan"
+	},
+	{ 
+		"noMR" : "008",
+		"namaPasien" : "asep",
+		"jenisKelamin" : "laki-laki",
+		"unitLayanan" : "farmasi1",
+		"tanggal" : "16 juni 2016",
+		"dokter" : "egga bramasta akidapi",
+		"tipePasien" : "tepi 8",
+		"statusResep" : "status 8",
+		"depo" : "depo 8",
+		"lamaRawat" : "3 bulan"
+	},
+	{ 
+		"noMR" : "009",
+		"namaPasien" : "andri",
+		"jenisKelamin" : "laki-laki",
+		"unitLayanan" : "farmasi2",
+		"tanggal" : "16 juni 2016",
+		"dokter" : "egga bramasta akidapi",
+		"tipePasien" : "tepi 9",
+		"statusResep" : "status 9",
+		"depo" : "depo 9",
+		"lamaRawat" : "3 bulan"
+	},
+	{ 
+		"noMR" : "0010",
+		"namaPasien" : "vindra",
+		"jenisKelamin" : "laki-laki",
+		"unitLayanan" : "farmasi1",
+		"tanggal" : "16 juni 2016",
+		"dokter" : "egga bramasta akidapi",
+		"tipePasien" : "tepi 10",
+		"statusResep" : "status 10",
+		"depo" : "depo 10",
+		"lamaRawat" : "3 bulan"
+	},
+	{ 
+		"noMR" : "0011",
+		"namaPasien" : "chandra",
+		"jenisKelamin" : "laki-laki",
+		"unitLayanan" : "farmasi1",
+		"tanggal" : "16 juni 2016",
+		"dokter" : "egga bramasta akidapi",
+		"tipePasien" : "tepi 11",
+		"statusResep" : "status 11",
+		"depo" : "depo 11",
+		"lamaRawat" : "3 bulan"
+	}
+	
+]
+

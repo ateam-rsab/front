@@ -1,0 +1,61 @@
+<div ng-controller="SwabAlatPermukaanCtrl">
+	<div class="panel panel-default container_12">
+		<div class="panel-heading" c-translate>Swab Alat / Permukaan</div>
+		<div class="panel-body">
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label class="label-aja" item="item">Tanggal</label>
+				</div>
+				<div class="grid_8">
+					<input kendo-date-picker k-ng-model="item.tglPengukuran" k-value="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+				</div>
+				<div class="grid_4">
+					<label c-label class="label-aja" item="item">Jenis Alat / Permukaan yang Diperiksa</label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="''" class="k-textbox" ng-model="item.jenisAlat" />
+				</div>
+
+			</div>
+			<div class="grid_6">
+
+				<div class="grid_4">
+					<label c-label class="label-aja" item="item">Nama Ruangan</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'ruanganId'"
+						k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+				</div>
+				<div class="grid_4">
+					<label c-label class="label-aja" item="item">Hasil Pemeriksaan</label>
+				</div>
+				<div class="grid_8">
+					<textarea c-text-box type="input" class="k-textbox" ng-model="item.hasilPemeriksaan" style="width: 100%; height: 80px;"></textarea>
+				</div>
+
+			</div>
+
+
+
+
+			<div ng-include='"../app/module/Shared/TemplateButtonSimpanC" '></div>
+		</div>
+		<div class="grid_12" style="margin-top: 25px;">
+			<div kendo-grid="grid" k-data-source="listGridPengukuran" k-ng-model="selectedData" k-columns="columnPengukuran" change="changeB3()"
+				k-options="optionsGridPengukuran" k-selectable="'row'">
+			</div>
+		</div>
+		<div class="grid_9"></div>
+		<div class="grid_3" style="margin-top: 25px; font-size: 24px;">
+			<c-button class="cancel" ng-show="!isLoading" item="item" ng-click="hapus(selectedData)">
+				<span class="title" style="text-align:center;">Hapus</span></c-button>
+		</div>
+	</div>
+</div>
+
+
+<style>
+	.label-aja {
+		margin-top: 10px;
+	}
+</style>

@@ -1,0 +1,30 @@
+[
+  {
+    "noCM": "0000001",
+    "namaPasien": "Dicky",
+    "noRegistrasi": "150900000001",
+    "jenisPemabayaran": "UMUM",
+    "jenisKelamin":"Pria"
+  },
+  {
+    "noCM": "0000002",
+    "namaPasien": "Hanafi",
+    "noRegistrasi": "150900000002",
+    "jenisPemabayaran": "UMUM",
+    "jenisKelamin":"Pria"
+  },
+  {
+    "noCM": "0000003",
+    "namaPasien": "Roni",
+    "noRegistrasi": "150900000003",
+    "jenisPemabayaran": "UMUM",
+    "jenisKelamin":"Pria"
+  },
+  {
+    "noCM": "0000003",
+    "namaPasien": "Rahmi",
+    "noRegistrasi": "150900000003",
+    "jenisPemabayaran": "UMUM",
+    "jenisKelamin":"Perempuan"
+  }
+]

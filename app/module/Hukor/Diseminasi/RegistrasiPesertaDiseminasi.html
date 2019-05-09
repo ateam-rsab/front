@@ -1,0 +1,149 @@
+<style>
+    .label-aja {
+        padding-top: 12px;
+        font-size: 13px;
+        font-weight: bold;
+        text-align: right;
+        height: 22px;
+    }
+
+    .k-window > div.k-popup-edit-form {
+        padding: 1em;
+    }
+</style>
+<div ng-controller="RegistrasiPesertaDiseminasiCtrl">
+    <c-panel item="item" header="'RegistrasiPesertaDiseminasi'" disabled>
+        <div class="panel panel-default container_12">
+            <div class="panel-body">
+                <div class="grid_12">
+                    <div class="grid_2" style="margin: 10px 0 0 10px;">
+                        <label c-label item="item">Judul Diseminasi</label>
+                    </div>
+                    <div class="grid_3">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.judul"
+                               readonly="true"/>
+                    </div>
+                    <div class="grid_2" style="margin: 10px 0 0 10px;">
+                        <label c-label item="item">Ruangan Pelaksanaan Diseminasi</label>
+                    </div>
+                    <div class="grid_3">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox"
+                               ng-model="item.pelaksanaanDiseminasi" readonly="true"/>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_2" style="margin: 10px 0 0 10px;">
+                        <label c-label item="item">Tanggal Pelaksanaan Diseminasi</label>
+                    </div>
+                    <div class="grid_3">
+                        <div class="grid_5">
+                            <input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAwal"
+                                   k-format="'dd-MM-yyyy'" readonly="true"/>
+                        </div>
+                        <div class="grid_2" style="margin: 10px 0 0 0;">
+                            <label c-label item="item" c-label-text="s/d"></label>
+                        </div>
+                        <div class="grid_5">
+                            <input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAkhir"
+                                   k-format="'dd-MM-yyyy'" readonly="true"/>
+                        </div>
+                    </div>
+                    <div class="grid_2" style="margin: 10px 0 0 10px;">
+                        <label c-label item="item">Penyelenggara</label>
+                    </div>
+                    <div class="grid_3">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox"
+                               ng-model="item.penyelenggara" readonly="true"/>
+                    </div>
+                </div>
+                <div class="grid_12">
+
+                    <div class="grid_2" style="margin: 10px 0 0 10px;">
+                        <label c-label item="item">Deskripsi</label>
+                    </div>
+                    <div class="grid_3">
+                        <textarea c-text-box type="input" class="k-textbox" ng-model="item.deskripsi"
+                                  style="width: 200%; height: 50px;" readonly="true"></textarea>
+                    </div>
+                </div>
+
+                <div class="k-block grid_10" style="margin: 10px 0 0 10px;">
+                    <div class="k-header">Peserta</div>
+                    <div class="grid_12"  >
+                        <div kendo-grid k-data-source="gridInputPeserta" k-selectable="'row'"
+                             k-options="colInputPeserta" k-ng-model="current" ng-click="klik(current)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid_12">
+                <div class="grid_7"></div>
+                <div class="grid_3" style="margin: 10px 0 0 10px;">
+                    <button class="c-button" ng-click="save()">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </c-panel>
+
+    <script id="popup-editors" type="text/x-kendo-template">
+        <div class="panel panel-default container_12">
+            <div class="grid_12">
+                <div class="grid_12">
+                    <div class="grid_5" style="margin: 6px 0 0 0;">
+                        <label c-label item="item" c-label-text="namaPeserta"></label>
+                    </div>
+                    <div class="grid_7">
+                        <input c-text-box type="varchar" class="k-textbox" ng-model="dataItem.namaPegawai"
+                               k-auto-bind="false" required/>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_5" style="margin: 6px 0 0 0;">
+                        <label c-label item="item" c-label-text="asalPeserta"></label></div>
+                    <div class="grid_7">
+                        <div class="grid_7">
+                            <input   kendo-combo-box k-ng-model="dataItem.asalPesertas"
+                                   k-data-text-field="'asalPeserta'"
+                                   k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
+                                   k-data-source="listAsalPeserta"
+                                   k-on-change="getAsal(data, dataItem, columns)" required/>
+                        </div>
+                    </div>
+                </div>
+               <!-- <div class="grid_12">
+                    <div class="grid_5" style="margin: 6px 0 0 0;">
+                        <label c-label item="item" c-label-text="Jabatan"></label></div>
+                    <div class="grid_7">
+                        <input c-text-box type="varchar" class="k-textbox" ng-model="dataItem.jabatan"
+                               k-auto-bind="false"/>
+                    </div>
+                </div>-->
+                <div class="grid_12">
+                    <div class="grid_5" style="margin: 6px 0 0 0;">
+                        <label c-label item="item" c-label-text="Alamat"></label></div>
+                    <div class="grid_7">
+                        <input c-text-box type="varchar" class="k-textbox" ng-model="dataItem.alamat"
+                               k-auto-bind="false"/>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_5" style="margin: 6px 0 0 0;">
+                        <label c-label item="item" c-label-text="No. Telp"></label></div>
+                    <div class="grid_7">
+                        <input c-text-box type="varchar" class="k-textbox" ng-model="dataItem.noTlp" k-auto-bind="false"
+                        /></div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_5" style="margin: 6px 0 0 0;">
+                        <label c-label item="item" c-label-text="Email"></label>
+                    </div>
+                    <div class="grid_7">
+                        <input c-text-box type="varchar" class="k-textbox" ng-model="dataItem.email" k-auto-bind="false"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+</div>

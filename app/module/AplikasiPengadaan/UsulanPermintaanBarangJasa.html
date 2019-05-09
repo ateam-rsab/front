@@ -1,0 +1,60 @@
+<div ng-controller="UsulanPermintaanBarangJasaCtrl">
+    <div ng-show="dataVOloaded">
+        <div ng-show="simpanLokalSukses" class="alert alert-{{notification.type}}" style="display: none;" role="alert" data-notification="{{notification.status}}">{{notification.message}}</div>
+        <c-panel item="item" header="'Daftar Usulan Permintaan Barang Jasa'">
+            <div class="panel panel-default container_12">
+                <div class="panel-body">
+                    <div class="grid_12">
+                        <div class="grid_2" style="margin-top:10px;">
+                            <label c-label item="item" c-label-text="Periode"></label>
+                        </div>
+                        <div class="grid_4">
+                            <input style="width: 100%" kendo-date-picker k-ng-model="item.dari" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"/>
+                        </div>
+                        <div class="grid_1" style="margin-top:10px;text-align:center !important">
+                            <label c-label item="item">sampai</label>
+                        </div>
+                        <div class="grid_4">
+                            <input style="width: 100%" kendo-date-picker k-ng-model="item.sampai" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"/>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+
+                    <div class="grid_12">
+                        <div class="grid_2" style="margin-top:10px;">
+                            <label c-label item="item" c-label-text="pengendali"></label>
+                        </div>
+                        <div class="grid_4">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.pengendali" k-data-text-field="'namaPengendali'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPengendali"/>
+                        </div>
+                        <div class="grid_1" style="margin-top:10px;text-align:center !important">
+                            <label c-label item="item" c-label-text="status"></label>
+                        </div>
+                        <div class="grid_4">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.isVerifikasi" k-data-text-field="'status'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="isVerifikasi"/>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </c-panel>
+
+        <div class="grid_12">
+            <kendo-grid id="GridDataUsulanPermintaan" k-data-source="dataUsulanPermintaanBarangJasa" k-selectable="'row'" k-columns="columnUsulanPermintaanBarangJasa" editable="inline"></kendo-grid>
+        </div>
+
+        <div class="grid_12" style="margin-top:15px">
+            <div class="grid_6"></div>
+            <div class="grid_6" style="bottom:0px !important">
+                <div class="grid_4"/>
+                <div class="grid_4">
+                    <button class="c-button" ng-click="Save()">Simpan</button>
+                </div>
+                <div class="grid_4">
+                    <button class="c-button" ng-click="batal()">Batal</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

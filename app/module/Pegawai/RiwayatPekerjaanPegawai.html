@@ -1,0 +1,164 @@
+<div ng-controller="RiwayatPekerjaanPegawaiCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Riwayat Pekerjaan Pegawai '">
+		<div class="grid_12" style="margin-bottom:10px">
+		{{title}} 
+		</div>
+		<!-- LABEL -->
+		<div class="grid_12">
+		<!-- No Urut --> 
+			<div class="grid_2" style="margin-bottom: 5px" style="margin-top: 5px">
+				<label c-label item="item" c-label-text="NoUrut"></label>
+			</div>
+
+			<!-- Nama Perusahaan -->
+			<div class="grid_5"style="margin-bottom: 5px">
+				<label c-label item="item" c-label-text="NamaPerusahaan"></label>
+			</div>
+			<div class="grid_5"style="margin-bottom: 5px">
+				<!-- Jabatan -->
+				<label c-label item="item" c-label-text="Jabatan"></label>
+			</div>
+		</div>
+
+		<!-- BUTTON -->
+		<div class="grid_12">
+			<div class="grid_2"> 
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NoUrut" />
+			</div>
+
+			<div class="grid_5">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPerusahaan" />
+
+			</div>
+			<div class="grid_5">
+				
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.Jabatan" />
+			</div>
+		</div>
+
+		<!-- LABEL -->
+
+		<div class="grid_12">
+		<!-- Tanggal Mulai --> 
+			<div class="grid_2"style="margin-top: 5px">
+				<label c-label item="item" c-label-text="Tgl_Mulai"></label>
+			</div>
+			
+			<!-- Tanggal Akhir -->
+			<div class="grid_3"style="margin-top: 5px">
+				<label c-label item="item" c-label-text="Tgl_Akhir"></label>
+			</div>
+
+			<!-- Gaji pokok -->
+			<div class="grid_3"style="margin-top: 5px">	
+				<label c-label item="item" c-label-text="GajiPokok"></label>
+			</div>
+			<!-- No Surat Keputusan -->
+			<div class="grid_3"style="margin-top: 5px">	
+				<label c-label item="item" c-label-text="NoSurat"></label>
+			</div>
+			
+
+			<!-- BUTTON -->
+
+			<!-- Tgl Mulai -->
+			<div class="grid_12">
+			<div class="grid_2"> 
+				<input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.TglMulai" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+			</div>
+
+			<!-- Tgl Akhir -->
+			
+			<div class="grid_3"> 
+				<input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.TglAkhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+			</div>
+
+			<!-- Gaji Pokok -->
+			<div class="grid_3"> 
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.GajiPokok" />
+			</div>
+
+			<!-- No Surat -->
+			<div class="grid_4"> 
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NoSurat" />
+			</div>
+			</div>
+
+
+		<div class="grid_12">
+		<!-- Tangal SK -->
+			<div class="grid_2" style="margin-top: 5px">
+				<label c-label item="item" c-label-text="Tgl_SK"></label>
+			</div>
+
+			<!-- Tanda Tangan SK -->
+			<div class="grid_5"style="margin-top: 5px">
+				<label c-label item="item" c-label-text="Ttd_SK"></label>
+			</div>
+			<div class="grid_5"style="margin-top: 5px">
+				<!-- Pimpinan Perusahaan -->
+				<label c-label item="item" c-label-text="PimpinanPerusahaan"></label>
+			</div>
+		</div>
+
+		<!-- BUTTON -->
+		<div class="grid_12">
+			<div class="grid_2"> 
+				<input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.Tgl_SK" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+			</div>
+
+			<div class="grid_5">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.Ttd_SK" />
+
+			</div>
+			<div class="grid_5">
+				
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.PimpinanPerusahaan" />
+			</div>
+		</div>
+
+
+
+
+			<!-- Alamat Perusahaan -->
+		<div class="grid_12"style="margin-top: 10px">
+			<label c-label item="item" c-label-text="AlamatPerusahaan"></label>
+			</div>
+		<div class="grid_12">
+			<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.AlamatPerusahaan" />
+			</div>
+
+		<!-- Uraian Pekerjaan -->
+			<div class="grid_12" style="margin-top: 10px">
+				<label c-label item="item" c-label-text="UraianPekerjaan"></label>
+			</div>
+			<div class="grid_12">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.UraianPekerjaan" />
+			</div>
+		</div>
+
+		<!-- Grid Tabel -->
+		<div class="grid_12" style="margin-top: 10px;">
+			<div kendo-grid k-data-source="DaftarRiwayatPekerjaan" k-selectable="'row'" k-columns="columnRiwayatKerja">
+			</div>
+		</div>
+
+		<!-- Button Simpan -->
+		<div class="grid_12" style="margin-top:10px">
+			<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '>
+			</div>
+		</div>
+
+
+
+		</div>
+		</div>
+		</div>
+		<div class="clear">
+		</div>
+
+
+		</c-panel>
+	
+</div>

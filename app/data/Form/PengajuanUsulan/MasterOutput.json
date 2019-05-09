@@ -1,0 +1,28 @@
+{
+	"model":{
+		"kodeOutput" : "",
+		"namaOutput":"",
+		"ketOutput":""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "kodeOutput",
+			"messagesRequired" : "",
+			"caption" : "Kode Output"
+		},{
+			"isNull" : "true",
+			"name" : "namaOutput",
+			"messagesRequired" : "",
+			"caption" : "Nama Output"
+		},{
+			"isNull" : "true",
+			"name" : "ketOutput",
+			"messagesRequired" : "",
+			"caption" : "Keterangan Output"
+		}
+
+	]
+}

@@ -1,0 +1,372 @@
+<div ng-controller="LaboratoriumCtrl">
+    <c-panel header="'Instalasi Laboratorium Dan Transfusi Darah'">
+        <div class="panel-body">
+            <div class="panel panel-default container_12">
+                <div class="panel-body" style="padding:0;">
+                    <div class="grid_12">
+                        <ul kendo-panel-bar>
+                            <li>
+                                <span style="margin-left: -6px;">HEMATOLOGI</span>
+                                <div class="container_12"><ul kendo-panel-bar>
+                                    <li>
+                                        <span style="margin-left: -6px;" c-label="" item="item" c-label-text="Rutin" class="ng-isolate-scope c-label"></span>
+                                        <div class="container_12">
+                                            <div class="grid_4">
+                                                <div  ng-repeat="pengaruhNyeri in listStatusLabRutin">
+                                                    <input type="checkbox" class="k-checkbox" name="{{pengaruhNyeri.name}}" id="{{pengaruhNyeri.name}}" value="{{pengaruhNyeri.id}}" ng-click="cekArrNyeriMempengaruhi(pengaruhNyeri.id)">
+                                                    <label class="k-checkbox-label" for="{{pengaruhNyeri.name}}">{{pengaruhNyeri.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span style="margin-left: -6px;" c-label="" item="item" c-label-text="Khusus" class="ng-isolate-scope c-label"></span>
+                                        <div class="container_12">
+                                            <div class="grid_4">
+                                                <div  ng-repeat="pengaruhNyeri in listStatusLabKhusus">
+                                                    <input type="checkbox" class="k-checkbox" name="{{pengaruhNyeri.name}}" id="{{pengaruhNyeri.name}}" value="{{pengaruhNyeri.id}}" ng-click="cekArrNyeriMempengaruhi(pengaruhNyeri.id)">
+                                                    <label class="k-checkbox-label" for="{{pengaruhNyeri.name}}">{{pengaruhNyeri.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span style="margin-left: -6px;" c-label="" item="item" c-label-text="Koagulasi" class="ng-isolate-scope c-label"></span>
+                                        <div class="container_12">
+                                            <div class="grid_4">
+                                                <div  ng-repeat="pengaruhNyeri in listStatusLabKoagulasi">
+                                                    <input type="checkbox" class="k-checkbox" name="{{pengaruhNyeri.name}}" id="{{pengaruhNyeri.name}}" value="{{pengaruhNyeri.id}}" ng-click="cekArrNyeriMempengaruhi(pengaruhNyeri.id)">
+                                                    <label class="k-checkbox-label" for="{{pengaruhNyeri.name}}">{{pengaruhNyeri.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <span style="margin-left: -6px;" c-label="" item="item" c-label-text="Anemia" class="ng-isolate-scope c-label"></span>
+                                        <div class="container_12">
+                                            <div class="grid_4">
+                                                <div  ng-repeat="pengaruhNyeri in listStatusLabAnemia">
+                                                    <input type="checkbox" class="k-checkbox" name="{{pengaruhNyeri.name}}" id="{{pengaruhNyeri.name}}" value="{{pengaruhNyeri.id}}" ng-click="cekArrNyeriMempengaruhi(pengaruhNyeri.id)">
+                                                    <label class="k-checkbox-label" for="{{pengaruhNyeri.name}}">{{pengaruhNyeri.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span style="margin-left: -6px;" c-label="" item="item" c-label-text="BankDarah" class="ng-isolate-scope c-label"></span>
+                                        <div class="container_12">
+                                            <div class="grid_4">
+                                                <div  ng-repeat="pengaruhNyeri in listStatusLabBankDarah">
+                                                    <input type="checkbox" class="k-checkbox" name="{{pengaruhNyeri.name}}" id="{{pengaruhNyeri.name}}" value="{{pengaruhNyeri.id}}" ng-click="cekArrNyeriMempengaruhi(pengaruhNyeri.id)">
+                                                    <label class="k-checkbox-label" for="{{pengaruhNyeri.name}}">{{pengaruhNyeri.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="grid_12">
+                        <ul kendo-panel-bar>
+                            <li>
+                                <span style="margin-left: -6px;">KIMIA</span>
+                                <div class="container_12"><ul kendo-panel-bar>
+                                    <li>
+                                        <span style="margin-left: -6px;" c-label="" item="item" c-label-text="Diabetes" class="ng-isolate-scope c-label"></span>
+                                        <div class="container_12">
+                                            <div class="grid_4">
+                                                <div  ng-repeat="pengaruhNyeri in listStatusLabDiabetes">
+                                                    <input type="checkbox" class="k-checkbox" name="{{pengaruhNyeri.name}}" id="{{pengaruhNyeri.name}}" value="{{pengaruhNyeri.id}}" ng-click="cekArrNyeriMempengaruhi(pengaruhNyeri.id)">
+                                                    <label class="k-checkbox-label" for="{{pengaruhNyeri.name}}">{{pengaruhNyeri.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span style="margin-left: -6px;" c-label="" item="item" c-label-text="FaalGinjal" class="ng-isolate-scope c-label"></span>
+                                        <div class="container_12">
+                                            <div class="grid_4">
+                                                <div  ng-repeat="pengaruhNyeri in listStatusLabFaalGinjal">
+                                                    <input type="checkbox" class="k-checkbox" name="{{pengaruhNyeri.name}}" id="{{pengaruhNyeri.name}}" value="{{pengaruhNyeri.id}}" ng-click="cekArrNyeriMempengaruhi(pengaruhNyeri.id)">
+                                                    <label class="k-checkbox-label" for="{{pengaruhNyeri.name}}">{{pengaruhNyeri.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span style="margin-left: -6px;" c-label="" item="item" c-label-text="Tinja" class="ng-isolate-scope c-label"></span>
+                                        <div class="container_12">
+                                            <div class="grid_4">
+                                                <div  ng-repeat="pengaruhNyeri in listStatusLabTinja">
+                                                    <input type="checkbox" class="k-checkbox" name="{{pengaruhNyeri.name}}" id="{{pengaruhNyeri.name}}" value="{{pengaruhNyeri.id}}" ng-click="cekArrNyeriMempengaruhi(pengaruhNyeri.id)">
+                                                    <label class="k-checkbox-label" for="{{pengaruhNyeri.name}}">{{pengaruhNyeri.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <span style="margin-left: -6px;" c-label="" item="item" c-label-text="Urine" class="ng-isolate-scope c-label"></span>
+                                        <div class="container_12">
+                                            <div class="grid_4">
+                                                <div  ng-repeat="pengaruhNyeri in listStatusLabUrine">
+                                                    <input type="checkbox" class="k-checkbox" name="{{pengaruhNyeri.name}}" id="{{pengaruhNyeri.name}}" value="{{pengaruhNyeri.id}}" ng-click="cekArrNyeriMempengaruhi(pengaruhNyeri.id)">
+                                                    <label class="k-checkbox-label" for="{{pengaruhNyeri.name}}">{{pengaruhNyeri.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span style="margin-left: -6px;" c-label="" item="item" c-label-text="FaalHati" class="ng-isolate-scope c-label"></span>
+                                        <div class="container_12">
+                                            <div class="grid_4">
+                                                <div  ng-repeat="pengaruhNyeri in listStatusLabFaalHati">
+                                                    <input type="checkbox" class="k-checkbox" name="{{pengaruhNyeri.name}}" id="{{pengaruhNyeri.name}}" value="{{pengaruhNyeri.id}}" ng-click="cekArrNyeriMempengaruhi(pengaruhNyeri.id)">
+                                                    <label class="k-checkbox-label" for="{{pengaruhNyeri.name}}">{{pengaruhNyeri.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span style="margin-left: -6px;" c-label="" item="item" c-label-text="Elektrolit" class="ng-isolate-scope c-label"></span>
+                                        <div class="container_12">
+                                            <div class="grid_4">
+                                                <label item="item">Bahan: Serum/Urin</label>
+                                                <div  ng-repeat="pengaruhNyeri in listStatusLabElektrolit">
+                                                    <input type="checkbox" class="k-checkbox" name="{{pengaruhNyeri.name}}" id="{{pengaruhNyeri.name}}" value="{{pengaruhNyeri.id}}" ng-click="cekArrNyeriMempengaruhi(pengaruhNyeri.id)">
+                                                    <label class="k-checkbox-label" for="{{pengaruhNyeri.name}}">{{pengaruhNyeri.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span style="margin-left: -6px;" c-label="" item="item" c-label-text="FaalPankreas" class="ng-isolate-scope c-label"></span>
+                                        <div class="container_12">
+                                            <div class="grid_4">
+                                                <div  ng-repeat="pengaruhNyeri in listStatusLabFaalPankreas">
+                                                    <input type="checkbox" class="k-checkbox" name="{{pengaruhNyeri.name}}" id="{{pengaruhNyeri.name}}" value="{{pengaruhNyeri.id}}" ng-click="cekArrNyeriMempengaruhi(pengaruhNyeri.id)">
+                                                    <label class="k-checkbox-label" for="{{pengaruhNyeri.name}}">{{pengaruhNyeri.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span style="margin-left: -6px;" c-label="" item="item" c-label-text="FaalJantung" class="ng-isolate-scope c-label"></span>
+                                        <div class="container_12">
+                                            <div class="grid_4">
+                                                <div  ng-repeat="pengaruhNyeri in listStatusLabFaalJantung">
+                                                    <input type="checkbox" class="k-checkbox" name="{{pengaruhNyeri.name}}" id="{{pengaruhNyeri.name}}" value="{{pengaruhNyeri.id}}" ng-click="cekArrNyeriMempengaruhi(pengaruhNyeri.id)">
+                                                    <label class="k-checkbox-label" for="{{pengaruhNyeri.name}}">{{pengaruhNyeri.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span style="margin-left: -6px;" c-label="" item="item" c-label-text="ProfilLemak" class="ng-isolate-scope c-label"></span>
+                                        <div class="container_12">
+                                            <div class="grid_4">
+                                                <div  ng-repeat="pengaruhNyeri in listStatusLabProfilLemak">
+                                                    <input type="checkbox" class="k-checkbox" name="{{pengaruhNyeri.name}}" id="{{pengaruhNyeri.name}}" value="{{pengaruhNyeri.id}}" ng-click="cekArrNyeriMempengaruhi(pengaruhNyeri.id)">
+                                                    <label class="k-checkbox-label" for="{{pengaruhNyeri.name}}">{{pengaruhNyeri.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span style="margin-left: -6px;" c-label="" item="item" c-label-text="AnalisaGasDarah" class="ng-isolate-scope c-label"></span>
+                                        <div class="container_12">
+                                            <div class="grid_4">
+                                                <div  ng-repeat="pengaruhNyeri in listStatusLabAnalisaGasDarah">
+                                                    <input types="checkbox" class="k-checkbox" name="{{pengaruhNyeri.name}}" id="{{pengaruhNyeri.name}}" value="{{pengaruhNyeri.id}}" ng-click="cekArrNyeriMempengaruhi(pengaruhNyeri.id)">
+                                                    <label class="k-checkbox-label" for="{{pengaruhNyeri.name}}">{{pengaruhNyeri.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span style="margin-left: -6px;" c-label="" item="item" c-label-text="KadarObat" class="ng-isolate-scope c-label"></span>
+                                        <div class="container_12">
+                                            <div class="grid_4">
+                                                <div  ng-repeat="pengaruhNyeri in listStatusLabKadarObat">
+                                                    <input type="checkbox" class="k-checkbox" name="{{pengaruhNyeri.name}}" id="{{pengaruhNyeri.name}}" value="{{pengaruhNyeri.id}}" ng-click="cekArrNyeriMempengaruhi(pengaruhNyeri.id)">
+                                                    <label class="k-checkbox-label" for="{{pengaruhNyeri.name}}">{{pengaruhNyeri.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="grid_12">
+                        <ul kendo-panel-bar>
+                            <li>
+                                <span style="margin-left: -6px;">IMUNOLOGI</span>
+                                <div class="container_12"><ul kendo-panel-bar>
+                                    <li>
+                                        <span style="margin-left: -6px;" c-label="" item="item" c-label-text="Imunologi" class="ng-isolate-scope c-label"></span>
+                                        <div class="container_12">
+                                            <div class="grid_4">
+                                                <div  ng-repeat="pengaruhNyeri in listStatusLabImunologi">
+                                                    <input type="checkbox" class="k-checkbox" name="{{pengaruhNyeri.name}}" id="{{pengaruhNyeri.name}}" value="{{pengaruhNyeri.id}}" ng-click="cekArrNyeriMempengaruhi(pengaruhNyeri.id)">
+                                                    <label class="k-checkbox-label" for="{{pengaruhNyeri.name}}">{{pengaruhNyeri.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="grid_12">
+                        <ul kendo-panel-bar>
+                            <li>
+                                <span style="margin-left: -6px;">SEROLOGI</span>
+                                <div class="container_12"><ul kendo-panel-bar>
+                                    <li>
+                                        <span style="margin-left: -6px;" c-label="" item="item" c-label-text="Umum" class="ng-isolate-scope c-label"></span>
+                                        <div class="container_12">
+                                            <div class="grid_4">
+                                                <div  ng-repeat="pengaruhNyeri in listStatusLabUmum">
+                                                    <input type="checkbox" class="k-checkbox" name="{{pengaruhNyeri.name}}" id="{{pengaruhNyeri.name}}" value="{{pengaruhNyeri.id}}" ng-click="cekArrNyeriMempengaruhi(pengaruhNyeri.id)">
+                                                    <label class="k-checkbox-label" for="{{pengaruhNyeri.name}}">{{pengaruhNyeri.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span style="margin-left: -6px;" c-label="" item="item" c-label-text="Torch" class="ng-isolate-scope c-label"></span>
+                                        <div class="container_12">
+                                            <div class="grid_4">
+                                                <div  ng-repeat="pengaruhNyeri in listStatusLabTorch">
+                                                    <input type="checkbox" class="k-checkbox" name="{{pengaruhNyeri.name}}" id="{{pengaruhNyeri.name}}" value="{{pengaruhNyeri.id}}" ng-click="cekArrNyeriMempengaruhi(pengaruhNyeri.id)">
+                                                    <label class="k-checkbox-label" for="{{pengaruhNyeri.name}}">{{pengaruhNyeri.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span style="margin-left: -6px;" c-label="" item="item" c-label-text="SkriningHIV" class="ng-isolate-scope c-label"></span>
+                                        <div class="container_12">
+                                            <div class="grid_4">
+                                                <div  ng-repeat="pengaruhNyeri in listStatusLabSkriningHIV">
+                                                    <input type="checkbox" class="k-checkbox" name="{{pengaruhNyeri.name}}" id="{{pengaruhNyeri.name}}" value="{{pengaruhNyeri.id}}" ng-click="cekArrNyeriMempengaruhi(pengaruhNyeri.id)">
+                                                    <label class="k-checkbox-label" for="{{pengaruhNyeri.name}}">{{pengaruhNyeri.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span style="margin-left: -6px;" c-label="" item="item" c-label-text="Hepatitis" class="ng-isolate-scope c-label"></span>
+                                        <div class="container_12">
+                                            <div class="grid_4">
+                                                <div  ng-repeat="pengaruhNyeri in listStatusLabHepatitis">
+                                                    <input type="checkbox" class="k-checkbox" name="{{pengaruhNyeri.name}}" id="{{pengaruhNyeri.name}}" value="{{pengaruhNyeri.id}}" ng-click="cekArrNyeriMempengaruhi(pengaruhNyeri.id)">
+                                                    <label class="k-checkbox-label" for="{{pengaruhNyeri.name}}">{{pengaruhNyeri.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="grid_12">
+                        <ul kendo-panel-bar>
+                            <li>
+                                <span style="margin-left: -6px;">HORMON</span>
+                                <div class="container_12"><ul kendo-panel-bar>
+                                    <li>
+                                        <span style="margin-left: -6px;" c-label="" item="item" c-label-text="Reproduksi" class="ng-isolate-scope c-label"></span>
+                                        <div class="container_12">
+                                            <div class="grid_4">
+                                                <div  ng-repeat="pengaruhNyeri in listStatusLabReproduksi">
+                                                    <input type="checkbox" class="k-checkbox" name="{{pengaruhNyeri.name}}" id="{{pengaruhNyeri.name}}" value="{{pengaruhNyeri.id}}" ng-click="cekArrNyeriMempengaruhi(pengaruhNyeri.id)">
+                                                    <label class="k-checkbox-label" for="{{pengaruhNyeri.name}}">{{pengaruhNyeri.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span style="margin-left: -6px;" c-label="" item="item" c-label-text="Tiroid" class="ng-isolate-scope c-label"></span>
+                                        <div class="container_12">
+                                            <div class="grid_4">
+                                                <div  ng-repeat="pengaruhNyeri in listStatusLabTiroid">
+                                                    <input type="checkbox" class="k-checkbox" name="{{pengaruhNyeri.name}}" id="{{pengaruhNyeri.name}}" value="{{pengaruhNyeri.id}}" ng-click="cekArrNyeriMempengaruhi(pengaruhNyeri.id)">
+                                                    <label class="k-checkbox-label" for="{{pengaruhNyeri.name}}">{{pengaruhNyeri.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span style="margin-left: -6px;" c-label="" item="item" c-label-text="Lainlain" class="ng-isolate-scope c-label"></span>
+                                        <div class="container_12">
+                                            <div class="grid_4">
+                                                <div  ng-repeat="pengaruhNyeri in listStatusLabLainlain">
+                                                    <input type="checkbox" class="k-checkbox" name="{{pengaruhNyeri.name}}" id="{{pengaruhNyeri.name}}" value="{{pengaruhNyeri.id}}" ng-click="cekArrNyeriMempengaruhi(pengaruhNyeri.id)">
+                                                    <label class="k-checkbox-label" for="{{pengaruhNyeri.name}}">{{pengaruhNyeri.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="grid_12">
+                        <ul kendo-panel-bar>
+                            <li>
+                                <span style="margin-left: -6px;">MIKROBIOLOGI</span>
+                                <div class="container_12"><ul kendo-panel-bar>
+                                    <li>
+                                        <span style="margin-left: -6px;" c-label="" item="item" c-label-text="Mikroskopik" class="ng-isolate-scope c-label"></span>
+                                        <div class="container_12">
+                                            <div class="grid_4">
+                                                <div  ng-repeat="pengaruhNyeri in listStatusLabMikroskopik">
+                                                    <input type="checkbox" class="k-checkbox" name="{{pengaruhNyeri.name}}" id="{{pengaruhNyeri.name}}" value="{{pengaruhNyeri.id}}" ng-click="cekArrNyeriMempengaruhi(pengaruhNyeri.id)">
+                                                    <label class="k-checkbox-label" for="{{pengaruhNyeri.name}}">{{pengaruhNyeri.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span style="margin-left: -6px;" c-label="" item="item" c-label-text="BiakanResistensiBahan" class="ng-isolate-scope c-label"></span>
+                                        <div class="container_12">
+                                            <div class="grid_4">
+                                                <div  ng-repeat="pengaruhNyeri in listStatusLabBiakanResistensiBahan">
+                                                    <input type="checkbox" class="k-checkbox" name="{{pengaruhNyeri.name}}" id="{{pengaruhNyeri.name}}" value="{{pengaruhNyeri.id}}" ng-click="cekArrNyeriMempengaruhi(pengaruhNyeri.id)">
+                                                    <label class="k-checkbox-label" for="{{pengaruhNyeri.name}}">{{pengaruhNyeri.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span style="margin-left: -6px;" c-label="" item="item" c-label-text="Pcr" class="ng-isolate-scope c-label"></span>
+                                        <div class="container_12">
+                                            <div class="grid_4">
+                                                <div  ng-repeat="pengaruhNyeri in listStatusLabPcr">
+                                                    <input type="checkbox" class="k-checkbox" name="{{pengaruhNyeri.name}}" id="{{pengaruhNyeri.name}}" value="{{pengaruhNyeri.id}}" ng-click="cekArrNyeriMempengaruhi(pengaruhNyeri.id)">
+                                                    <label class="k-checkbox-label" for="{{pengaruhNyeri.name}}">{{pengaruhNyeri.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div></c-panel>
+</div>

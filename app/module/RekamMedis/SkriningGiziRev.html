@@ -1,0 +1,40 @@
+<div ng-controller="SkriningGiziNeoRevCtrl"><br/>
+    <div ng-show="dataVOloaded">
+        <c-form item='item'>
+            <c-panel item="item" header="'Skrining Gizi'">
+                <div class="grid_12">
+                    <div class="grid_3">
+                        <div class="grid_12" style="margin-bottom:5px">
+                            <label c-label item="item" c-label-text="beratBadan"></label>
+                        </div>
+                        <div class="grid_12 parentKeteranganFieldTambahan">
+                            <input kendo-numeric-text-box ng-model="item.beratBadan" style="width: 100%;"/>
+                            <label class="keteranganFieldTambahan"style="margin-top: 5px;margin-right: 30px">Kg</label>
+                        </div>
+                    </div>
+                    <div class="grid_3">
+                        <div class="grid_12" style="margin-bottom:5px">
+                            <label c-label item="item" c-label-text="tinggiBadan"></label>
+                        </div>
+                        <div class="grid_12 parentKeteranganFieldTambahan">
+                            <input kendo-numeric-text-box ng-model="item.tinggiBadan" style="width: 100%;"/>
+                            <label class="keteranganFieldTambahan" style="margin-top: 5px;margin-right: 30px">Cm</label>
+                        </div>
+                    </div>
+                    <div class="grid_3">
+                        <div class="grid_12" style="margin-bottom:5px">
+                            <label c-label item="item" c-label-text="lingkarKepala"></label>
+                        </div>
+                        <div class="grid_12 parentKeteranganFieldTambahan">
+                            <input kendo-numeric-text-box ng-model="item.lingkarKepala" style="width: 100%;"/>
+                            <label class="keteranganFieldTambahan" style="margin-top: 5px;margin-right: 30px">Cm</label>
+                        </div>
+                    </div>
+                    <div class="grid_12" style="margin-top:50px">
+                        <div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
+                    </div>
+                </div>
+            </c-panel>
+        </c-form>
+    </div>
+</div>

@@ -1,0 +1,144 @@
+<div ng-controller="MasalahKeperawatanCtrl"><br/>
+
+    <div ng-show="dataVOloaded">
+        <div class="container_12">
+            <div class="grid_12" ng-show="diagnosis"> <!-- Diagnosis Keperawatan -->
+                <div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+                    <span style="font-size: 18px; color: white; padding: 5px;">Diagnosis Keperawatan</span>
+                </div>
+                <div class="container_12"> 
+                    <div class="grid_12" style="margin-top: 10px;">
+                        <div kendo-grid k-selectable="'row'" k-options="optionsKeperawatan" k-scrollabe="true"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12"> <!-- Diagnosis Bidan -->
+                <div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+                    <span style="font-size: 18px; color: white; padding: 5px;">Diagnosis Bidan</span>
+                </div>
+                <div class="container_12">
+                    <div class="grid_12" style="margin-top: 10px;">
+                        <div kendo-grid k-selectable="'row'" k-options="optionsKeperawatan" k-scrollabe="true"></div>
+                    </div>
+                </div>
+            </div>  
+        </div>
+
+        <c-panel item="item" header="'Masalah Keperawatan'" ng-hide="true">
+            <div>
+                <div class="grid_12">
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin: 5px;">
+                            <div class="grid_12 suffix_2" style="margin: 5px">
+                                <label c-label item="item" c-label-text="Tanggal ditemukan"></label>
+                                <input style="width: 100%" k-ng-model="tempItem.tanggala" kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                            </div>
+                            <div class="grid_12 suffix_2" style="margin: 5px">
+                                <label c-label item="item" c-label-text=" TanggalTeratasi"></label>
+                                <input style="width: 100%" k-ng-model="tempItem.tanggalb" kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                            </div>
+                        </div>
+                        <div class="grid_8 suffix_2" style="margin: 5px">
+                            <label c-label item="item" c-label-text="Masalah keperawatan"></label>
+                            <textarea style="width: 100%;;height:85px;margin-top:10px;" placeholder="Masalah keperawatan" ng-model="item.riwayatPenyakitOrObat"></textarea>
+
+                        </div>
+
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin: 5px">
+                        </div>
+                        <div class="grid_4" style="margin: 5px">
+                            <!-- <input style="width: 100%;" kendo-combo-box k-ng-model="tempItem.riwayatPenyakitOrObat" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDiagnosis" /> -->
+                        </div>
+                        <div class="grid_4" style="margin: 5px">
+                        </div>
+
+                        <div class="grid_12" style="margin: 5px">
+                            <div class="grid_10"></div>
+                            <div class="grid_2">
+                                <c-button ng-click="addDataRiwayatPenyakitOrObat()" style="width:100% !important">
+                                    <span style="font-size:10!important">Tambah</span>
+                                </c-button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+
+                    <!-- grid diagnosis -->
+                    <div ng-show="isAdaDiagnosis">
+                        <div class="grid_12" style="margin-top: 10px;">
+                            <div class="k-grid k-widget">
+                                <div class="k-grid-header">
+                                    <div class="k-grid-header-wrap k-auto-scrollable">
+                                        <table>
+                                            <tr>
+                                                <th class="k-header" style="width:150px">
+                                                    Tanggal Ditemukan
+                                                </th>
+                                                <th class="k-header">
+                                                    Masalah Keperawatan
+                                                </th>
+                                                <th style="width:150px" class="k-header">
+                                                    Tanggal Teratasi
+                                                </th>
+                                                <th style="width:50px" class="k-header">
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                </div>
+                                <div class="k-grid-content k-auto-scrollable" style="max-height:256px">
+                                    <table role="grid" data-role="selectable" class="k-selectable">
+                                        <tbody role="rowgroup">
+
+                                            <tr ng-dblclick="edit(data)" role="row" class="ng-scope" ng-repeat="data in dataRiwayatPenyakitOrObat" ng-style="data.myStyle" ng-click='selected(data)' ng-class="{'k-state-selected':item ===data}">
+                                                <td style="width:150px">
+                                                    {{data.tanggalDitemukan|date:'dd-MM-yyyy'}}
+                                                </td>
+                                                <td>
+                                                    {{data.dataMasalahKeperawatan}}
+                                                </td>
+                                                <td style="width:150px">
+                                                    {{data.tanggalTeratasi|date:'dd-MM-yyyy'}}
+                                                </td>
+                                                <td style="width:50px">
+                                                    <a href="" style="color:red" ng-click="delete(data)">Hapus</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!--<div kendo-grid k-data-source="dataRiwayatPenyakitOrObat" k-selectable="'row'" k-columns="columnRiwayatPenyakitOrObat">
+                            </div>-->
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="clear"></div>
+
+
+            <div class="clear"></div>
+
+            <hr style="background-color:#10C4B2;height: 1px;border: 0;" />
+            <!--<div class="grid_12">
+                <div class="grid_3" style="float:right">
+                    <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="Next">
+                        <span class="title">Selanjutnya</span>
+                    </c-button>
+                </div>
+                <div class="grid_3" style="float:right">
+                    <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'">
+                        <span class="title">Sebelumnya</span>
+                    </c-button>
+                </div>
+            </div>
+            <div class="clear"></div>-->
+        </c-panel>
+        <div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+    </div>
+</div>

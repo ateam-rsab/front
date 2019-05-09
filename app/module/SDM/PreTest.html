@@ -1,0 +1,129 @@
+<div ng-controller="PreTestCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Pre-Test'"disabled>
+		<div class="grid_6">
+		<div class="panel panel-default container_12">
+	<!--		<div class="panel-heading" c-translate>Periode</div> -->
+	<!--		<div class="panel-body"> -->
+	
+           
+					
+	        
+			 
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Nama Peserta"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.jumlahPinjaman" />
+			</div>
+			
+			</div>
+			   <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Instansi"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.dendaHarian" />
+			</div>
+			</div>
+			<div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Tanggal Pelaksanaan"></label>
+			</div>
+			<div class="grid_8">
+				<input kendo-date-picker k-ng-model="item.tanggalLahir" k-max ="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+			</div>
+			</div>
+			</div>
+			 
+			<table>
+		
+  <tr>
+   <b><th bgcolor="#10c4b2" height="35px"><center>Nomor Soal<center></th></b>
+      <th bgcolor="#10c4b2">Pertanyaan   </th>
+   <b><th bgcolor="#10c4b2" height="35px"><center><center></th></b>
+  <th bgcolor="#10c4b2" height="35px"><center>Pilihan Jawaban<center></th></b>
+ 
+	 
+  </tr>
+  </br>
+  </br>
+  <tr ng-repeat="stat in ListKeterangan" >
+    <td><center> {{stat.id}} </center></td>
+	 <td> {{stat.pertanyaan}} </td>
+	<td>{{stat.kode}}</td>
+	<td><input type="radio" name="{{stat.id}}" id="{{stat.id}}" class="k-radio" ng-model="item.ok" ng-value="stat">
+    	<label class="k-radio-label" for="{{stat.id}}">{{stat.name}}</label></td>
+	
+  
+	
+	  
+   
+		
+		
+		
+
+		
+		
+		
+  </tr>
+  
+ 
+  
+</table>
+	</div>		
+			
+			
+			
+			
+			
+			
+			
+				
+		  
+		
+<!--		   </div>  -->
+           <div class="grid_6">	
+		   
+		  
+		  
+			
+		   
+			
+			
+			
+
+		</div>
+		
+		
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		</c-panel>
+			<div class="grid_12">
+							<div class="grid_8" style="float:left">
+							
+							
+							<div class="grid_2" style="margin-top: 25px">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate click="Cancel">
+                					<span class="title">Batal</span></button>
+							</div>
+							<div class="grid_2 " style="margin-top: 25px ">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Submit</span>
+									</button>
+							</div>
+							</div>
+						</div>
+		</div>
+	</div>
+</div>
+

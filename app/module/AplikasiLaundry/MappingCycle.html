@@ -1,0 +1,172 @@
+<div ng-controller="MappingCycleCtrl">
+	<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Mapping Cycle</div>
+		<div class="panel-body">
+			<div class="grid_12">
+				<div class="grid_1"></div>
+				<div class="grid_5">
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top: 10px">
+							<div class="grid_10">
+								<label c-label item="item" c-label-text="mesin"></label>
+							</div>
+							<div class="grid_2">
+								<label c-label item="item" c-label-text=":"></label>
+							</div>
+						</div>
+						<div class="grid_5">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.mesin" k-data-text-field="'namaMesin'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceMasterMesin" ng-selected="satuan()" />
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top: 10px">
+						<div class="grid_10">
+							<label c-label item="item" c-label-text="jenisLinen"></label>
+						</div>
+						<div class="grid_2">
+							<label c-label item="item" c-label-text=":"></label>
+						</div>
+					</div>
+					<div class="grid_8">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisLinen" k-data-text-field="'jenisLinen'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceMasterJenisLinen" />
+					</div>
+					<div class="clear"></div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top: 10px">
+							<div class="grid_10">
+								<label c-label item="item" c-label-text="kapasitas"></label>
+							</div>
+							<div class="grid_2">
+								<label c-label item="item" c-label-text=":"></label>
+							</div>
+						</div>
+						<div class="grid_6">
+							<div class="grid_8">
+								<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.kapasitas" maxlength="12" disabled="true" />
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div class="grid_5">
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top: 10px">
+							<div class="grid_10">
+								<label c-label item="item" c-label-text="satuan"></label>
+							</div>
+							<div class="grid_2">
+								<label c-label item="item" c-label-text=":"></label>
+							</div>
+						</div>
+						<div class="grid_6">
+							<div class="grid_8">
+								<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.satuanKg" disabled="true" />
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top: 10px">
+							<div class="grid_10">
+								<label c-label item="item" c-label-text="prosesCuci"></label>
+							</div>
+							<div class="grid_2">
+								<label c-label item="item" c-label-text=":"></label>
+							</div>
+						</div>
+						<div class="grid_6">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.prosesCuci" k-data-text-field="'prosesCuci'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceMasterProsesCuci" />
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_1"></div>
+				<div class="grid_10" style="margin-top: 10px">
+					<div class="panel panel-default container_12">
+						<div class="panel-heading" c-translate>Bahan - bahan</div>
+						<div class="panel-body">
+							<div class="grid_12">
+								<div class="grid_6">
+									<div class="grid_12">
+										<div class="grid_4" style="margin-top: 10px">
+											<div class="grid_10">
+												<label c-label item="item" c-label-text="namaBahan"></label>
+											</div>
+											<div class="grid_2">
+												<label c-label item="item" c-label-text=":"></label>
+											</div>
+										</div>
+										<div class="grid_8">
+											<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaProduk" k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceMasterProduk" ng-selected="satuanBahan()" />
+										</div>
+										<div class="clear"></div>
+									</div>
+									<div class="grid_12">
+										<div class="grid_4" style="margin-top: 10px">
+											<div class="grid_10">
+												<label c-label item="item" c-label-text="jumlah"></label>
+											</div>
+											<div class="grid_2">
+												<label c-label item="item" c-label-text=":"></label>
+											</div>
+										</div>
+										<div class="grid_3">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlah" maxlength="4" ng-keydown="satuan()" />
+										</div>
+										<!-- <div class="grid_2" style="margin-top: 10px" align="center">
+											<label c-label item="item" c-label-text="kg"></label>
+										</div> -->
+										<div class="clear"></div>
+									</div>
+								</div>
+								<div class="grid_6">
+									<div class="grid_12">
+										<div class="grid_4" style="margin-top: 10px">
+											<div class="grid_10">
+												<label c-label item="item" c-label-text="satuan"></label>
+											</div>
+											<div class="grid_2">
+												<label c-label item="item" c-label-text=":"></label>
+											</div>
+										</div>
+										<div class="grid_6">
+									<!-- 		<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.satuanStandar"/> -->
+											<input style="width: 100%;" kendo-combo-box k-ng-model="item.satuanStandar" k-data-text-field="'satuanStandar'" k-data-value-field="'idSatuanStandar'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceMasterProduk" />
+										</div>
+										<div class="clear"></div>
+									</div>
+									<div class="grid_12" style="margin-top: 10px">
+										<div class="grid_4"></div>
+										<div class="grid_6">
+											<button class="c-button success" ng-click="addDataBahanLinen()">Tambah</button>
+											<!-- <c-button class="succsess" ng-click="addDataBahanLinen()"><span class="title" c-translate>Cari</span></c-button> -->
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="grid_12" style="margin-top:10px">
+								<div kendo-grid k-data-source="daftarBahanLinen" id="DataIdGrid" k-selectable="'row'" k-columns="columndaftarBahanLinen"></div>
+							</div>
+							<div class="grid_12" style="margin:20px 0 10px 0;">
+								<div class="grid_8"></div>
+								<div class="grid_2">
+									<button class="c-button success" ng-click="Save()">Simpan</button>
+								</div>
+								<div class="grid_2">
+									<button class="c-button cancel" ng-click="Batal()">Batal</button>
+								</div>
+<!-- 								<div class="grid_2">
+									<button class="c-button success" ng-click="daftarmapping()">Daftar Mapping</button>
+								</div> -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,73 @@
+
+    <div class="panel panel-default container_12">
+        <div class="panel-heading" c-translate>Gagal Hitung Klaim BPJS</div>
+        <div class="panel-body">
+            <div class="grid_12">
+                
+                <div class="grid_12">
+                    
+                    <!-- <div class="grid_2">
+                        <label c-label item="item" c-label-text="DPJP"></label>
+                         <div class="grid_12">
+                            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.dpjp" />
+                        </div>
+                    </div>
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="No Kartu"></label>
+                         <div class="grid_12">
+                            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nokartu" />
+                        </div>
+                    </div>
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="No SEP"></label>
+                         <div class="grid_12">
+                            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nosep" />
+                        </div>
+                    </div>
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="Nama Pasien"></label>
+                         <div class="grid_12">
+                            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namapasien" />
+                        </div>
+                    </div> -->
+                    <div class="grid_1 pull-right" style="margin-top: 15px">
+                        <div class="grid_12" style="margin-top:6px">
+                            <button class="c-button" ng-click="cari()">Cari</button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+           <div class="grid_12">
+                     <div class="grid_12 borderBox">
+                        <div id="kGrid" 
+                        kendo-grid k-data-source="dataGrid" 
+                        k-selectable="'row'" 
+                        k-columns="columnGrid" 
+                        k-pageable="'true'" 
+                        class="max-height"
+                        k-sortable="'true'" 
+                        k-ng-model="dataSelected"
+                        ng-click="klikGrid(dataSelected)">
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+
+            <div class="grid_12" style="margin-top:22px">
+                <input type="file" id="file-input" />
+            </div>
+            
+            <div class="grid_9"></div>
+
+             <div class="grid_3" style="float:right;">
+                <c-button class="success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" is-validate     click="Save">
+                    <span class="title">Simpan</span>
+                </c-button>
+            </div> 
+
+            <div class="grid_12" style="margin-top:60px" >
+                <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+            </div> 
+    </div>

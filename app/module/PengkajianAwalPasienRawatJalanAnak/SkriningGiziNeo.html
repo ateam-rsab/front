@@ -1,0 +1,92 @@
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#aabcfe;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aabcfe;color:#669;background-color:#e8edff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aabcfe;color:#039;background-color:#b9c9fe;}
+.tg .tg-yw4l{vertical-align:top;}
+.tg .nilai{vertical-align:middle;text-align: center;font-weight: bold;}
+.tg .jawaban{vertical-align:middle;text-align: center;}
+</style>
+
+<div class="grid_12" ng-controller="SkriningGiziNeoCtrl" style="margin-bottom:60px">
+    <div>
+        <!-- panel Skrining Gizi -->
+        <!-- <c-panel item="item" header="'DemoSkriningGizi[Master]'" disabled style="margin-bottom:60px"> -->
+        <!-- <div class="grid_12 headerBox">
+            <h1 style="color: white;">DemoSkriningGizi[Master]</h1>
+        </div>
+        <div class="clear"></div> -->
+        <div class="grid_12 headerBox">
+            <h1 style="color: white;"><b>STATUS SKRINING GIZI</b></h1>
+        </div>
+        <div class="clear"></div>
+        <br/>
+        <div class="grid_12" style="margin-bottom:20px">
+            <div class="grid_12" ng-show="isNeonatal">
+                <div class="grid_3" ng-repeat="opsi in arrSkriningGiziNeo">
+                    <div class="grid_12" style="margin-bottom:5px">
+                        <label c-label item="item">{{opsi.name}}</label>
+                    </div>
+
+                    <div class="grid_12 parentKeteranganFieldTambahan">
+                        <input kendo-numeric-text-box ng-model="opsi.nilai" style="width: 100%;" />
+                        <!--<input c-text-box type="input" class="k-textbox" ng-model="opsi.nilai" />-->
+                        <label class="keteranganFieldTambahan numericPAP">{{opsi.ket}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12" ng-hide="isNeonatal">
+                <div class="grid_3" ng-repeat="opsi in arrSkriningGiziNeo">
+                    <div ng-switch on="opsi.name">
+                        <div ng-switch-when="Berat Badan">
+                            <div class="grid_12" style="margin-bottom:5px">
+                                <label c-label item="item">{{opsi.name}}</label>
+                            </div>
+
+                            <div class="grid_12 parentKeteranganFieldTambahan">
+                                <input kendo-numeric-text-box ng-model="opsi.nilai" style="width: 100%;" />
+                                <!--<input c-text-box type="input" class="k-textbox" ng-model="opsi.nilai" />-->
+                                <label c-label item="item" class="keteranganFieldTambahan numericPAP" c-label-text="kg"></label>
+                            </div>
+                        </div>
+                        <div ng-switch-default>
+                            <div class="grid_12" style="margin-bottom:5px">
+                                <label c-label item="item">{{opsi.name}}</label>
+                            </div>
+
+                            <div class="grid_12 parentKeteranganFieldTambahan">
+                                <input kendo-numeric-text-box ng-model="opsi.nilai" style="width: 100%;" />
+                                <!--<input c-text-box type="input" class="k-textbox" ng-model="opsi.nilai" />-->
+                                <label c-label item="item" class="keteranganFieldTambahan numericPAP" c-label-text="{{opsi.ket}}"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="grid_12" ng-show="isAnak">
+                <div class="grid_3" ng-repeat="data in arrSkriningGiziAnak">
+                    <div class="grid_12" style="margin-bottom:5px">
+                        <label c-label item="item">{{data.name}}</label>
+                    </div>
+
+                    <div class="grid_12 parentKeteranganFieldTambahan">
+                        <input c-text-box type="input" filter="data.type" class="k-textbox" ng-model="data.nilai" />
+                        <label class="keteranganFieldTambahan">{{data.ket}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12" ng-show="isDewasa">
+                <div class="grid_3" ng-repeat="data in arrSkriningGiziDewasa">
+                    <div class="grid_12" style="margin-bottom:5px">
+                        <label c-label item="item">{{data.name}}</label>
+                    </div>
+
+                    <div class="grid_12 parentKeteranganFieldTambahan">
+                        <input c-text-box type="input" filter="data.type" class="k-textbox" ng-model="data.nilai" readonly="true" />
+                        <label class="keteranganFieldTambahan">{{data.ket}}</label>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div> 
+</div>

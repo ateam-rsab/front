@@ -1,0 +1,159 @@
+<div class="EvaluasiJabatanCtrl">
+    <div class="panel panel-default container_12" style="background-color:transparant">
+        <div class="panel-heading"><label class='title' c-label item="item" c-label-text="Evaluasi Jabatan" real></label></div>
+        <div class="panel-body">
+            <div class="grid_2">
+                <span c-label c-label-text="Bulan" />
+                <input required style="width: 100%;" kendo-combo-box k-ng-model="selectedBulan" k-data-text-field="'name'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listMonth" />
+            </div>
+            <div class="grid_2">
+                <span c-label c-label-text="Tahun" />
+                <input required style="width: 100%;" kendo-combo-box k-ng-model="selectedTahun" k-data-text-field="'id'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listTahun" />
+            </div>
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="ruangan"></label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaRuangan'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="ruangans" />
+            </div>
+            <div class="grid_12">
+                <table class="table">
+                    <tr>
+                        <th rowspan="2">Nama Pegawai</th>
+                        <th>
+                            KOMTEK
+                        </th>
+                        <th>
+                            MANAJERIAL
+                        </th>
+                        <th>
+                            KOMUNIKASI
+                        </th>
+                        <th>
+                            ANALISIS
+                        </th>
+                        <th>
+                            PEDOMAN
+                        </th>
+                        <!--<th>
+                            KONDISI KERJA
+                        </th>-->
+                        <th>
+                            WEWENANG & HARTA
+                        </th>
+                        <th>
+                            PERAN JABATAN
+                        </th>
+                        <th>
+                            PROBABILITAS RESIKO
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Profile</th>
+                        <th>Profile</th>
+                        <th>Profile</th>
+                        <th>Profile</th>
+                        <!--<th>Profile</th>-->
+                        <th>Profile</th>
+                        <th>Profile</th>
+                        <th>Profile</th>
+                        <th>Profile</th>
+                    </tr>
+                    <tbody ng-repeat="item in  listData">
+                        <tr>
+                            <td>{{item.namaPegawai}}</td>
+                            <td style="text-align: center;">
+                                <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor1" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktor['Faktor 1']" k-auto-bind="'false'" />                                {{item.faktor1.nilai}}
+                            </td>
+
+                            <td style="text-align: center;">
+                                <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor2" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktor['Faktor 2']" k-auto-bind="'false'" />                                {{item.faktor2.nilai}}
+                            </td>
+
+                            <td style="text-align: center;">
+                                <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor3" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktor['Faktor 3']" k-auto-bind="'false'" />                                {{item.faktor3.nilai}}
+                            </td>
+
+                            <td style="text-align: center;">
+                                <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor4" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktor['Faktor 4']" k-auto-bind="'false'" />                                {{item.faktor4.nilai}}
+                            </td>
+
+                            <td style="text-align: center;">
+                                <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor5" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktor['Faktor 5']" k-auto-bind="'false'" />                                {{item.faktor5.nilai}}
+                            </td>
+
+                            <td style="text-align: center;">
+                                <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor6" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktor['Faktor 6']" k-auto-bind="'false'" />{{item.faktor6.nilai}}
+                            </td>
+
+                            <td style="text-align: center;">
+                                <div class="grid_12">
+                                    <div class="grid_6">
+                                        <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor7" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktor['Faktor 7']" k-auto-bind="'false'" />{{item.faktor7.nilai}}
+
+                                    </div>
+                                    <div class="grid_6">
+                                        <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor8" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktor['Faktor 8']" k-auto-bind="'false'" />{{item.faktor8.nilai}}
+
+                                    </div>
+                                </div>
+
+                            </td>
+
+                            <td style="text-align: center;">
+                                <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor9" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktor['Faktor 9']" k-auto-bind="'false'" />{{item.faktor9.nilai}}
+                            </td>
+
+                            <td style="text-align: center;">
+                                <input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktor10" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktor['Faktor 10']" k-auto-bind="'false'" />{{item.faktor10.nilai}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">
+
+                            </td>
+                            <td colspan="10">
+                                <table>
+                                    <tr>
+                                        <th colspan="12" style="text-align:center">FAKTOR KONDISI</th>
+                                    </tr>
+                                    <tr>
+                                        <th>A</th>
+                                        <th>B</th>
+                                        <th>C</th>
+                                        <th>D</th>
+                                        <th>E</th>
+                                        <th>F</th>
+                                        <th>G</th>
+                                        <th>H</th>
+                                        <th>I</th>
+                                        <th>J</th>
+                                        <th>K</th>
+                                        <th>L</th>
+                                    </tr>
+                                    <tr>
+                                        <td><input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktorA" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktorA" k-auto-bind="'false'" />{{item.faktorA.nilai}}</td>
+                                        <td><input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktorB" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktorB" k-auto-bind="'false'" />{{item.faktorB.nilai}}</td>
+                                        <td><input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktorC" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktorC" k-auto-bind="'false'" />{{item.faktorC.nilai}}</td>
+                                        <td><input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktorD" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktorD" k-auto-bind="'false'" />{{item.faktorD.nilai}}</td>
+                                        <td><input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktorE" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktorE" k-auto-bind="'false'" />{{item.faktorE.nilai}}</td>
+                                        <td><input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktorF" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktorF" k-auto-bind="'false'" />{{item.faktorF.nilai}}</td>
+                                        <td><input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktorG" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktorG" k-auto-bind="'false'" />{{item.faktorG.nilai}}</td>
+                                        <td><input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktorH" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktorH" k-auto-bind="'false'" />{{item.faktorH.nilai}}</td>
+                                        <td><input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktorI" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktorI" k-auto-bind="'false'" />{{item.faktorI.nilai}}</td>
+                                        <td><input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktorJ" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktorJ" k-auto-bind="'false'" />{{item.faktorJ.nilai}}</td>
+                                        <td><input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktorK" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktorK" k-auto-bind="'false'" />{{item.faktorK.nilai}}</td>
+                                        <td><input required style="width: 100%;" kendo-combo-box k-ng-model="item.faktorL" k-data-text-field="'profile'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listFaktorL" k-auto-bind="'false'" />{{item.faktorL.nilai}}</td>
+
+                                    </tr>
+                                </table>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="grid_12">
+                <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+            </div>
+        </div>
+    </div>
+</div>

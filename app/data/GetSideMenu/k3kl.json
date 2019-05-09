@@ -1,0 +1,310 @@
+[{
+        "name": "Aplikasi K3",
+        "children": [{
+                "name": "Risiko Ruangan Kerja",
+                "link": "#/RisikoRuanganKerja"
+            },
+            {
+                "name": "Daftar Pegawai",
+                "link": "#/DaftarPegawai"
+            },
+            {
+                "name": "Jadwal Rencana Pemeriksaan",
+                "link": "#/JadwalRencanaPemeriksaan"
+            },
+            {
+                "name": "Hazard And Vulnerability Assessment",
+                "link": "#/HazardAndVulnerabilityAssessment"
+            },
+            {
+                "name": "Summary Hazard And Vulnerability Assessment",
+                "link": "#/SummaryHazardAndVulnerabilityAssessment"
+            },
+            {
+                "name": "Laporan Kecelakaan Kerja",
+                "link": "#/LaporanKecelakaanKerja"
+            },
+            {
+                "name": "Daftar Laporan Kecelakaan Kerja",
+                "link": "#/DaftarLaporanKecelakaanKerja"
+            },
+            {
+                "name": "Daftar Bahan B3 di Ruangan",
+                "link": "#/DaftarBahanB3DiRuangan"
+            },
+            {
+                "name": "CHECK LIST FACILLITY MANAGEMENT & SAFETY (FMS)/ MANAJEMEN FASILITAS DAN KEAMANAN (MFK)",
+                "link": "#/CheckListMFK"
+            },
+            {
+                "name": "Daftar Check List FMS/MFK",
+                "link": "#/DaftarCheckListMFK"
+            }
+        ]
+    },
+
+    {
+        "name": "Aplikasi Kesling",
+        "children": [
+            {
+                "name": "Limbah B3 Masuk",
+                "link": "#/LimbahB3Masuk"
+            },
+            {
+                "name": "Daftar Limbah B3 Masuk",
+                "link": "#/DaftarLimbahB3Masuk"
+            },
+            {
+                "name": "Limbah B3 Keluar",
+                "link": "#/LimbahB3Keluar"
+            },
+            {
+                "name": "Daftar Limbah B3 Keluar",
+                "link": "#/DataLimbahB3Keluar"
+            },
+            {
+                "name": "Neraca Limbah B3",
+                "link": "#/NeracaLimbahB3Rev"
+            },
+            {
+                "name": "Data Neraca Limbah B3",
+                "link": "#/NeracaLimbah"
+            },
+            {
+                "name": "Pemakaian dan Pemanasan Mesin Genset",
+                "link": "#/PemakaiandanPemanasanMesinGenset"
+            },
+            {
+                "name": "Pemakaian dan Pemanasan Mesin Boiler",
+                "link": "#/PemakaiandanPemanasanMesinBoiler"
+            },
+            {
+                "name": "Pemeriksaan Swa Pantau Limbah Cair",
+                "link": "#/HasilPemeriksaanSwaPantauLimbahCair"
+            },
+            {
+                "name": "Data Pemeriksaan Swa Pantau Limbah Cair",
+                "link": "#/DataHasilPemeriksaanSwaPantauLimbahCair"
+            },
+            {
+                "name": "Laporan Pemakaian Air Bersih",
+                "link": "#/LaporanPemakaianAirBersih"
+            },
+            {
+                "name": "Laporan Hasil Pemeriksaan L A B kesehatan Lingkunganl",
+                "link": "#/LaporanUjiHasil"
+            },
+            {
+                "name": "Laporan Uji Hasil Revisi",
+                "link": "#/FormLaporanUjiHasil"
+            },
+            {
+                "name": "Data Laporan Uji Hasil",
+                "link": "#/DataLaporanUjiHasil"
+            },
+            {
+                "name": "Pemantauan Kinerja Pihak Ketiga",
+                "link": "#/PemantauanPihakKetiga"
+            },
+            {
+                "name":"Pengukuran dan Pemeriksaan",
+                "link":"#/PengukuranDanPemeriksaan"
+            }
+        ]
+    },
+    {
+        "name": "Master Aplikasi Kesling",
+        "children": [
+            {
+                "name": "Master Perlakuan Limbah",
+                "link": "#/MasterPerlakuanLimbah"
+            },
+            {
+                "name": "Master Parameter",
+                "link": "#/MasterParameter"
+            },
+            {
+                "name": "Master Satuan",
+                "link": "#/MasterSatuan"
+            },
+            {
+                "name": "Master Baku Mutu",
+                "link": "#/MasterBakuMutu"
+            },
+            {
+                "name": "Master Jenis Limbah B3 Masuk",
+                "link": "#/MasterJenisLimbahB3Masuk"
+            }
+        ]
+    },
+    {
+    "name": "Inventori",
+    "children": [
+        {
+            "name": "Stok Barang",
+            "children": [
+                {
+                    "name": "Data Stok Ruangan",
+                    "link": "#/Logistik/StokRuangan"
+                },
+                {
+                    "name": "Stok Opname",
+                    "link": "#/Logistik/StokOpname"
+                },
+                {
+                    "name": "Kartu Stok",
+                    "link": "#/KartuStok"
+                },
+                {
+                  "name": "Daftar Barang Kadaluarsa",
+                  "link": "#/DaftarBarangKadaluarsa"
+                }
+            ]
+        },
+        {
+            "name": "Daftar Transfer Barang",
+            "children": [
+                {
+                    "name": "Order Barang",
+                    "link": "#/OrderBarangLogistik"
+                },
+                {
+                    "name": "Daftar Order Barang",
+                    "link": "#/DaftarOrderBarang"
+                },
+                {
+                    "name": "Kirim Barang",
+                    "link": "#/KirimBarangLogistik"
+                },
+                {
+                    "name": "Daftar Distribusi Barang",
+                    "link": "#/DaftarDistribusiBarang"
+                },
+                {
+                    "name": "Daftar Pengeluaran Barang",
+                    "link": "#/DaftarDistribusiBarangPerUnit"
+                }
+            ]
+        },
+         {
+              "name": "Daftar Pemakaian Stok Ruangan",
+              "link": "#/DaftarPemakaianStokRuangan"
+          }
+    ]
+    },
+    {
+        "name": "SDM",
+        "children": [{
+                "name": "Target Bobot Uraian Tugas",
+                "link": "#/TargetBobot"
+            }, {
+                "name": "Input Logbook",
+                "link": "#/InputLogbook"
+            }, {
+                "name": "Indeks Kinerja Individu",
+                "link": "#/IndeksKinerjaIndividuSDM"
+            }, {
+                "name": "Permohonan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
+                "link": "#/PermohonanPerubahanStatusPegawai"
+            }, {
+				"name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
+				"link": "#/DaftarPenangguhanCuti"
+			}, {
+                "name": "Pengajuan Mutasi Pegawai",
+                "link": "#/PengajuanMutasiPegawai"
+            }, {
+                "name": "Pengajuan Resign Pegawai",
+                "link": "#/PengajuanResignPegawai"
+            }, {
+                "name": "Pengajuan Sanksi Pegawai",
+                "link": "#/PengajuanSanksiPegawai"
+            }, {
+                "name": "Daftar Pengajuan Mutasi Resign Sanksi Pegawai",
+                "link": "#/DaftarPengajuanMutasiSanksiResign"
+            }, {
+				"name": "Monitoring Absensi",
+				"link": "#/MonitoringAbsensiPegawai"
+			}, {
+				"name": "InputLemburPegawaiUnitKerja",
+				"link": "#/InputLemburPegawaiUnitKerja"
+			},{
+                "name": "Verifikasi Uraian Tugas Bawahan",
+                "link": "#/VerifikasiUraianTugasPegawaiLogin"
+            }
+        ]
+    },
+    {
+        "name":"Aplikasi IT",
+        "children":[
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/RevPermintaanPerbaikandariRuanganITNew"
+            }
+        ]
+    },
+    {
+        "name": "IP3RS",
+        "children": [
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/PermintaanPerbaikandariRuangan"
+            },
+            {
+                "name": "Respond Perbaikan",
+                "link": "#/RespondPerbaikan"
+            } 
+        ]
+    }, 
+    {
+        "name": "Tata Usaha",
+        "children": [{
+                "name": "Membuat Draft Surat",
+                "link": "#/BuatDraftSurat"
+            },
+            {
+                "name": "Daftar Draft",
+                "link": "#/DaftarDraft"
+            },
+            {
+                "name": "Daftar Draft Surat Masuk",
+                "link": "#/DaftarDraftSuratMasuk"
+            },
+            {
+                "name": "Dokumen Verbal Konsep",
+                "link": "#/DokumenVerbalKonsep/"
+            },
+            {
+                "name": "Verbal Konsep",
+                "link": "#/VerbalKonsep/"
+            },
+            {
+                "name": "Surat Masuk Internal dan Eksternal",
+                "link": "#/SuratMasukInternaldanEksternal"
+            },
+            {
+                "name": "Daftar Surat Masuk Internal Eksternal",
+                "link": "#/DaftarSuratMasukInternalEksternal"
+            },
+            {
+                "name": "Nota Dinas",
+                "link": "#/NotaDanDisposisi"
+            },
+            {
+                "name": "Daftar Nota Dinas",
+                "link": "#/ListNotaDinas"
+            }
+        ]
+    },
+    {
+        "name": "Aplikasi Laundry",
+        "children": [
+            {
+                "name": "Permintaan Linen Bersih",
+                "link": "#/PermintaanLinenByRuangan"
+            },{
+                "name": "Verifikasi",
+                "link": "#/VerifikasiTerima"
+            }
+    ]
+    }
+]

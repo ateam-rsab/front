@@ -1,0 +1,65 @@
+<div ng-controller="SasaranMutuCtrl">
+
+	<div ng-show="dataVOloaded">
+
+		<div class="grid_12 headerBox">
+            <h1 style="color: white;"><b>Sasaran Mutu</b></h1>
+        </div>
+			<div class="grid_12">
+				<div class="grid_3">
+					<!-- jenis farmasi -->
+					<div class="grid_12" style="margin-top:5px">
+	                    <label c-label item="item" c-label-text="unitLayanan"></label>
+	                </div>
+	                <div class="grid_12">
+	                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.unitLayanan" k-data-text-field="'namaruangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitLayanan" />
+	                </div>
+				</div>
+
+				<div class="grid_4">
+	                <div class="grid_12" >
+	                    <label c-label item="item" c-label-text="periode"></label>
+	                </div>
+	                <div class="grid_5">
+	                    <input style="width: 100%" k-ng-model="item.periodeAwal"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+	                </div>
+	                 <div class="grid_5">
+	                    <input style="width: 100%" k-ng-model="item.periodeAkhir"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+	                </div>
+				</div>
+
+				<div class="grid_2">
+                    <div class="grid_12" style="margin-top: 22px">
+                        <button class="c-button" ng-click="Cari()">Cari</button>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+           
+
+
+            <div class="grid_12">
+                    <!-- <div class="grid_12 headerBox">
+                        <p>Produk</p>
+                    </div> -->
+                    <!-- grid table -->
+                     <div class="grid_12 borderBox">
+                        <div id="kGrid" 
+                        kendo-grid k-data-source="dataGrid" 
+                        k-selectable="'row'" 
+                        k-columns="columnGrid" 
+                        k-pageable="'true'" 
+                        k-sortable="'true'" 
+                        k-ng-model="dataSelected">
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+		<!-- <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div> -->
+
+	</div>
+
+</div>

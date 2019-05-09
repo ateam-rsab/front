@@ -1,0 +1,33 @@
+<style>
+.keteranganFieldTambahan {
+    left: 5px !important;
+}
+</style>
+<div ng-controller="KelainanCtrl">
+    <c-panel item="item" header="'Kelainan'" disabled>
+        <div class="grid_12">
+            <div class="grid_12">
+                <!--<label c-label item="item" c-label-text="Kelainan" style="padding-right:5pt;font-weight:bold;font-size:15pt"></label>-->
+                <div class="grid_2" ng-repeat="data in listKelainan">
+                    <input type="checkbox" id="{{data.id}}" name="data" ng-model="item.kelainan[data.id]">
+                    <!--<input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="item.ke" ng-value="data" ng-checked="{{data.id===1}}">-->
+                    <label for="{{data.name}}">{{data.name}}</label>
+                </div>
+                <div class="grid_8">
+                    <textarea c-text-area type="input" filter="'string'" class="k-textbox" ng-model="item.rhesusAyah" placeholder="Isi jika ada"/>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_6"></div>
+                <div class="grid_3">
+                    <button class="c-button cancel" style="font-size:18px" ng-click="Batal()">Batal</button>
+                </div>
+                <div class="grid_3">
+                    <button class="c-button success" style="font-size:18px" ng-click="Save()">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </c-panel>
+</div>
+
+		

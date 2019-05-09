@@ -1,0 +1,74 @@
+<div class="container">
+    <c-panel item="item" header="'Master Unit Kerja'"disabled>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <md-content>
+                    <md-tabs md-dynamic-height md-border-bottom>
+                        <md-tab label="Unit Kerja" md-on-select="onTabChanges(1)">
+                            <md-content class="md-padding">
+                                <div class="grid_12">
+                                    <div class="grid_2">
+                                        <label c-label item="item" c-label-text="Kode Unit Kerja"></label>
+                                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kodeUnitKerja" />
+                                    </div>
+                                    <div class="grid_4">
+                                        <label c-label item="item" c-label-text="Nama Unit Kerja"></label>
+                                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaUnitKerja" />
+                                    </div>
+                                    <div class="grid_1">
+                                        <label c-label c-label-text=""></label>
+                                        <!-- <em style="margin-top:6px;" ng-click='findUnitKerja(item.query)' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Find</span></em>
+                                        <em style="margin-top:6px;" ng-click='refreshGridUnit()' id="iconButton" data-role="button" class="k-button k-button-icon cancel" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em> -->
+                                        <em style="margin-top:6px;" ng-click='resetDatasource("#gridUnitKerja")' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+                                    </div>
+                                </div>
+                                <div class="grid_12">
+                                    <kendo-grid id="gridUnitKerja" k-data-source="daftarUnitKerja" options="gridOptions" k-ng-model="current" ng-click="kl(current, 'unitKerja')"></kendo-grid>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="Sub Unit Kerja" md-on-select="onTabChanges(2)">
+                            <md-content class="md-padding">
+                                <div class="grid_12">
+                                    <div class="grid_4">
+                                        <label c-label item="item" c-label-text="Unit Kerja"></label>
+                                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.idUnitKerja" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja" />
+                                    </div>
+                                    <div class="grid_4">
+                                        <label c-label item="item" c-label-text="Nama Sub Unit Kerja"></label>
+                                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaSubunit" />
+                                    </div>
+                                    <div class="grid_1">
+                                        <label c-label c-label-text=""></label>
+                                        <!-- <em style="margin-top:6px;" ng-click='findSubUnitKerja(items.query)' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Find</span></em>
+                                        <em style="margin-top:6px;" ng-click='refreshGridSubUnit()' id="iconButton" data-role="button" class="k-button k-button-icon cancel" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em> -->
+                                        <em style="margin-top:6px;" ng-click='resetDatasource("#gridSubUnitKerja")' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+                                    </div>
+                                </div>
+                                <div class="grid_12">
+                                    <kendo-grid id="gridSubUnitKerja" k-data-source="daftarSubUnitKerja" options="gridSubUnitOptions" k-ng-model="current" ng-click="kl(current, 'subUnitKerja')"></kendo-grid>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                    </md-tabs>
+                </md-content>
+            </div>
+        </div>
+    </c-panel>
+</div>
+
+<!-- template widget konfirmasi -->
+<!-- <div kendo-window="confirmDeleteUnitKerja" k-title="'Konfirmasi'" k-width="400" k-height="125" k-visible="false">
+    <p>Apakah anda yakin ingin menghapus data?</p>
+    <button class="k-button cancel" ng-click="Delete(item, 'hapus')" style="font-size:18px;margin-left:1%;min-width:80px;float:right;margin-top:4%">Ya</button>
+    <button class="k-button" ng-click="Back('hapus')" style="font-size:18px;min-width:80px;float:right;margin-top:4%">Batal</button>
+</div> -->
+
+<!-- template widget konfirmasi -->
+<!-- <div kendo-window="confirmDeleteSubUnitKerja" k-title="'Konfirmasi'" k-width="400" k-height="125" k-visible="false">
+    <p>Apakah anda yakin ingin menghapus data?</p>
+    <button class="k-button cancel" ng-click="Delete(items, 'hapus')" style="font-size:18px;margin-left:1%;min-width:80px;float:right;margin-top:4%">Ya</button>
+    <button class="k-button" ng-click="Back('hapus')" style="font-size:18px;min-width:80px;float:right;margin-top:4%">Batal</button>
+</div> -->
+
+<div ng-include=' "../app/module/Shared/TemplateLoading" '></div>

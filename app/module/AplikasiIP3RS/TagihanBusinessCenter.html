@@ -1,0 +1,101 @@
+<div ng-controller="TagihanBusinessCenterCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Tagihan Business Center'">
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="jenisPemakaian" style="margin-top: 10px"></label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPemakaian" k-data-text-field="'jenisPemakaian'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisPemakaian" k-on-change="satuan()" />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="satuan" style="margin-top: 10px"></label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 50%;" kendo-combo-box k-ng-model="item.satuan" k-data-text-field="'satuan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listSatuan" />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="ruangan" style="margin-top: 10px"></label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaRekanan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="periode" style="margin-top: 10px"></label>
+				</div>
+				<div class="grid_8">
+					<!-- <input style="width: 100%" kendo-date-picker k-ng-model="item.periode" />-->				
+ 				<input style="width: 100%" kendo-date-picker k-ng-model="item.periode" placeholer="DD-MM-YYYY" k-format="'yyyy-MM-dd'" />
+ 				</div>
+				<div class="grid_4" ng-hide="hideTelepon">
+					<label c-label item="item" c-label-text="jumlahMeterAwal" style="margin-top: 10px"></label>
+				</div>
+				<div class="grid_8" ng-hide="hideTelepon">
+					<input c-text-box type="input" style="width: 50%" filter="'numeric'" class="k-textbox" ng-model="item.jumlahMeterAwal" ng-keyup="total()" ng-disabled="disMeterAwal"/>
+				</div>
+				<div class="grid_4" ng-hide="hideTelepon">
+					<label c-label item="item" c-label-text="jumlahMeterAkhir" style="margin-top: 10px"></label>
+				</div>
+				<div class="grid_8" ng-hide="hideTelepon">
+					<input c-text-box type="input" style="width: 50%" filter="'numeric'" class="k-textbox" ng-model="item.jumlahMeterAkhir" ng-keyup="total()" ng-disabled="disMeterAkhir"/>
+				</div>
+			</div>
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="jumlahPemakaian" style="margin-top: 10px"></label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" style="width: 50%" filter="'numeric'" class="k-textbox" ng-model="item.jumlahPemakaian" disabled="" />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="biayaPerBulan" style="margin-top: 10px"></label>
+				</div>
+				<div class="grid_8">
+				   <div class="grid_6">
+					<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.biayaPerBulan"/>
+				   </div>
+				   <div class="grid_6">
+					<label c-label item="item" style="margin-top: 5px; font-size:15px; font-weight: bold;">{{ArrayCurency | currency:"Rp "}}</label>
+				   </div>
+				</div>
+				
+				
+	
+				<!--  -->
+			</div>
+			<div class="clear"></div>
+			<div class="grid_6">
+				
+			</div>
+<!-- 			<div class="grid_6">
+				<div class="grid_4">
+				</div>
+				<div class="grid_4">
+					<button class="c-button" ng-click="simpan()">Tambah</button>
+				</div>
+				<div class="grid_4">
+					<button class="c-button" ng-click="hapus()">Hapus</button>
+				</div>
+			</div> -->
+		  <div class="grid_6">
+			<div class="grid_3">
+			</div>
+				<div class="grid_3">
+					<button class="c-button" ng-click="simpan()">Simpan</button>
+				</div>
+				<div class="grid_3">
+					<button class="c-button" ng-click="hapus()">Hapus</button>
+				</div>
+				<div class="grid_3">
+					<button class="c-button" ng-click="baru()">Baru</button>
+				</div>
+			</div>
+			<div class="grid_12" style="margin-bottom: 10px">
+				<div kendo-grid k-data-source="dataTagihanBusinessCenter" options="mainGridOptions" k-selectable="'row'" k-columns="columnTagihan" style="margin-bottom: 10px" k-ng-model="current" ng-click="kl(current)"></div>
+			</div>
+			<div class="grid_6"></div>
+			
+		</c-panel>
+	</div>
+</div>

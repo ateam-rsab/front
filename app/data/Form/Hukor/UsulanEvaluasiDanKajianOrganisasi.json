@@ -1,0 +1,44 @@
+{
+	"model":{
+		"userId" : "",
+		"noUsulan":"",
+		"tanggal":"",
+		"inputEvaluasiDanKajian":"",
+		"inputUsulan":"",
+		"tujuan":""	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "userId",
+			"messagesRequired" : "",
+			"caption" : "User ID"
+		},{
+			"isNull" : "true",
+			"name" : "noUsulan",
+			"messagesRequired" : "",
+			"caption" : "No. Usulan"
+		},{
+			"isNull" : "true",
+			"name" : "tanggal",
+			"messagesRequired" : "",
+			"caption" : "Tanggal"
+		},{
+			"isNull" : "true",
+			"name" : "inputEvaluasiDanKajian",
+			"messagesRequired" : "",
+			"caption" : "Input Evaluasi dan Kajian"
+		},{
+			"isNull" : "true",
+			"name" : "inputUsulan",
+			"messagesRequired" : "",
+			"caption" : "Input Usulan"
+		},{
+			"isNull" : "true",
+			"name" : "tujuan",
+			"messagesRequired" : "",
+			"caption" : "Tujuan"
+		}
+
+	]
+}

@@ -1,0 +1,15 @@
+<div ng-controller="MenuRehabilitasiCtrl">
+    <c-panel item="item" header="'Rehabilitasi'">
+        <div class="panel panel-default container_12">
+            <div class="breadcrum" style='margin-top: 0px;'>
+                <div class="grid_2">
+                    <a class="n1"  ng-click="nav('dashboardpasien.PengkajianMedis.PemeriksaanKhusus.MenuRehabilitasi.Rehabilitasi')">Formulir Klaim</a>
+                </div>
+                <div class="grid_2">
+                    <a class="n1" ng-class='{warning:flagKomposisiKeluarga.status===false}' ng-click="nav('dashboardpasien.PengkajianMedis.PemeriksaanKhusus.MenuRehabilitasi.AsesmenFungsional')">Asesmen Fungsional</a>
+                </div>
+            </div>
+        </div>
+    </c-panel>
+    <div ui-view></div>
+</div>

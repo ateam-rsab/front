@@ -1,0 +1,291 @@
+<div ng-controller="GinekologikKhususCtrl">
+    <br/>
+    <div>
+        <!-- panel utama -->
+        <c-panel item="item" header="'ginekologi'" disabled>
+            <div class="panel-body">
+                <c-form item="item">
+                    <!--<div class="grid_12">
+                        <label c-label item="item" class="title" c-label-text="Anamaesis"></label>
+                    </div>-->
+                    <div class="grid_4">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="kawin"></label>
+                            <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.kawin" />
+                        </div>
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="umurSuami"></label>
+                            <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.umurSuami" />
+                        </div>
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="kehamilan"></label>
+                            <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.kehamilan" />
+                        </div>
+                    </div>
+                    <div class="grid_4">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="umurKawinPertama"></label>
+                            <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.umurKawinPetama" />
+                        </div>
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="umurKawinKedua"></label>
+                            <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.umuKawinKedua" />
+                        </div>
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="banyaknya"></label>
+                            <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.banyaknya" />
+                        </div>
+                    </div>
+                    <div class="grid_4">
+                        <div class="grid_12">
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="masihKawin"></label>
+                            </div>
+                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                <input type="radio" name="{{'masihKawin' + stat.name}}" id="{{'masihKawin' + stat.name}}" class="k-radio" checked ng-model="item.masihKawin" ng-value="stat">
+                                <label class="k-radio-label" for="{{'masihKawin' + stat.name}}">{{stat.name}}</label>
+                            </div>
+                        </div>
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="abortus"></label>
+                            <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.abortus" />
+                        </div>
+                    </div>
+                    <c-panel item="item" header="'Kejadian'" disabled>
+                        <div class="grid_12">
+                            <div class="grid_4" ng-repeat="data in listKehamilan">
+                                <div class="grid_2">
+                                    <label c-label item="item" c-label-text="Ke{{data.id}}"></label>
+                                </div>
+                                <div class="grid_10">
+                                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="data.keterangan" />
+                                </div>
+                            </div>
+                        </div>
+                    </c-panel>
+                    <c-panel item="item" header="'haid'" disabled>
+                        <div class="grid_6">
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="umurHaidPertama"></label>
+                                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.umurHaidPertama" />
+                            </div>
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="lamanya"></label>
+                                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.lamanyaHaid" />
+                            </div>
+                            <div class="grid_4">
+                                <label c-label item="item" c-label-text="banyaknya"></label>
+                                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.banyaknyaHaid" />
+                            </div>
+                            <div class="grid_8">
+                                <label c-label item="item" c-label-text="bertambah"></label>
+                                <div style="width: 20%;float: left;">
+                                    <input type="checkbox" name='bertambahYa' id='bertambahYa' class="k-checkbox" checked ng-model="item.isBertambah" value="Ya">
+                                    <label class="k-checkbox-label" for='bertambahYa'>Ya</label>
+                                </div>
+                                <div style="width: 77%;float: left;margin-left: 3%;">
+                                    <input ng-disabled="!item.isBertambah" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.keterangan" />
+                                </div>
+                            </div>
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="tanggalHariPertamaDariHaidYangTerakhir"></label>
+                                <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tglHaidTerkahir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                            </div>
+                        </div>
+                        <div class="grid_6">
+                            <div class="grid_12">
+                                <div class="grid_12">
+                                    <label c-label item="item" c-label-text="sakitWaktuHaidHinggaTakDapatBekerja"></label>
+                                </div>
+                                <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                    <input type="radio" name="{{'tidakDapatBekerja' + stat.name}}" id="{{'tidakDapatBekerja' + stat.name}}" class="k-radio" checked ng-model="item.tidakDapatBekerja" ng-value="stat">
+                                    <label class="k-radio-label" for="{{'tidakDapatBekerja' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="grid_12">
+                                <div class="grid_3">
+                                    <label style="margin-top:5px;" c-label item="item" c-label-text="teratur"></label>
+                                </div>
+                                <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                    <input type="radio" name="{{'teratur' + stat.name}}" id="{{'teratur' + stat.name}}" class="k-radio" checked ng-model="item.teratur" ng-value="stat">
+                                    <label class="k-radio-label" for="{{'teratur' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                            </div>
+                            <div class="grid_12" ng-show='item.teratur.name==="Tidak"'>
+                                <div class="grid_4">
+                                    <label c-label item="item" c-label-text="setiapBerapaHari"></label>
+                                </div>
+                                <div class="grid_10">
+                                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.jumlahHariTidakTeratur" k-data-text-field="'id'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listDay" />
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </c-panel>
+                    <c-panel item="item" header="'keputihan'" disabled>
+                        <div class="grid_4">
+                            <div class="grid_12">
+                                <div class="grid_4">
+                                    <label c-label item="item" c-label-text="Gatal"></label>
+                                </div>
+                                <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                    <input type="radio" name="{{'gatal' + stat.name}}" id="{{'gatal' + stat.name}}" class="k-radio" checked ng-model="item.gatalKeputihan" ng-value="stat">
+                                    <label class="k-radio-label" for="{{'gatal' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                            </div>
+                            <div class="grid_12">
+                                <div class="grid_4">
+                                    <label c-label item="item" c-label-text="Sakit"></label>
+                                </div>
+                                <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                    <input type="radio" name="{{'Sakit' + stat.name}}" id="{{'Sakit' + stat.name}}" class="k-radio" checked ng-model="item.SakitKeputihan" ng-value="stat">
+                                    <label class="k-radio-label" for="{{'Sakit' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                            </div>
+                            <div class="grid_12">
+                                <div class="grid_4">
+                                    <label c-label item="item" c-label-text="bau"></label>
+                                </div>
+                                <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                    <input type="radio" name="{{'bau' + stat.name}}" id="{{'bau' + stat.name}}" class="k-radio" checked ng-model="item.bauKeputihan" ng-value="stat">
+                                    <label class="k-radio-label" for="{{'bau' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                            </div>
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="Warna"></label>
+                                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.warnaKeputihan" />
+                            </div>
+                        </div>
+                        <div class="grid_8">
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="riwayatGinekologi"></label>
+                            </div>
+                            <div class="grid_12" style="margin-bottom:5px">
+                                <div class="grid_4" ng-repeat="data in listRiwayatPengobatan">
+                                    <a style="color:red" href="#/Dashboard/Pasien/PengkajianMedis/{{noCM}}/{{data.tanggal}}/PemeriksaanKhusus/Ginekologi">{{data.tanggal}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </c-panel>
+                    <c-panel item="item" header="'pengkajianMedis'" disabled>
+                        <div class="grid_4">
+                            <div class="grid_12" ng-repeat="data in arrTandaVital">
+                                <label c-label item="item" c-label-text="{{data.name}}"></label>
+                                <input c-text-box type="input" filter="data.type" class="k-textbox" ng-model="data.nilai" />
+                            </div>
+
+                            <!--<div class="grid_12">
+                                <label c-label item="item" c-label-text="keadaanUmum"></label>
+                                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.keadaanUmum" />
+                            </div>
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="jantung"></label>
+                                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jantung" />
+                            </div>
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="paruParu"></label>
+                                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.paruParu" />
+                            </div>
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="perut"></label>
+                                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.perut" />
+                            </div>
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="beratBadan"></label>
+                                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.beratBadan" />
+                            </div>
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="perubahanLainLain"></label>
+                                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.perubahanLainLain" />
+                            </div>
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="tekananDarah"></label>
+                                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.tekananDarah" />
+                            </div>-->
+                        </div>
+                        <div class="grid_8">
+                            <c-panel item="item" header="'pemeriksaanGinekologi'" disabled>
+                                <div class="grid_12">
+                                    <label c-label item="item" c-label-text="inspeksi"></label>
+                                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.inspeksi" />
+                                </div>
+                                <div class="grid_12">
+                                    <label c-label item="item" c-label-text="inspekulo"></label>
+                                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.inspekulo" />
+                                </div>
+                                <div class="grid_12">
+                                    <label c-label item="item" c-label-text="vaginalToucher"></label>
+                                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.vaginalToucher" />
+                                </div>
+                            </c-panel>
+                        </div>
+                    </c-panel>
+                    <c-panel item="item" header="'Laboratorium'" disabled>
+                        <div class="grid_12" style="margin-bottom:5px">
+                            <div class="grid_4" ng-repeat="data in listLaboratorium">
+                                <input type="checkbox" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" value="{{data.id}}">
+                                <label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+                                <div ng-if="data.info == 'true'" kendo-tooltip k-content="'keterangan : ' + data.infoMsg" class="tooltip">
+                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </c-panel>
+                    <!--<div class="panel panel-default">
+                        <div class="panel-heading">Diagnosis </div>
+                        <div class="panel-body">
+                            <div class="grid_12">
+                                <div class="grid_4">
+                                    <div class="grid_12">
+                                        <label c-label c-label-text="jenisDiagnosis" statment>
+                                    </div>
+                                    <div class="grid_12">
+                                        <input kendo-combo-box style="width:100%" k-ng-model="item.jenisDiagnosis" k-data-text-field="'jenisDiagnosa'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceJenisDiagnosisPrimer" />
+                                    </div>
+                                </div>
+                                <div class="grid_4">
+                                    <div class="grid_12">
+                                        <label c-label c-label-text="namaDiagnosis" statment>
+                                    </div>
+                                    <div class="grid_12">
+                                        <input kendo-combo-box tyle="width:100%" k-ng-model="item.diagnosisPrimer" k-data-text-field="'namaDiagnosa'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceDiagnosisPrimer" />
+                                    </div>
+                                </div>
+                                <div class="grid_4">
+                                    <div class="grid_12">
+                                        <label c-label c-label-text="" statment>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_6" style="float:right">
+                                            <c-button ng-click="removeDataDiagnosisPrimer()">
+                                                <span style="font-size:10!important">Hapus</span>
+                                            </c-button>
+                                        </div>
+                                        <div class="grid_6" style="float:right">
+                                            <c-button ng-click="addDataDiagnosisPrimer()">
+                                                <span style="font-size:10!important">Tambah</span>
+                                            </c-button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid_12" style="margin-top: 10px;">
+                                    <div kendo-grid k-data-source="dataDiagnosisPrimer" k-selectable="'row'" k-columns="columnDiagnosisPrimer"></div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </div>-->
+                    <c-panel item="item" header="'Pengobatan'" disabled>
+                        <div class="grid_12">
+                            <textarea style="width: 99%; height: 80px;" ng-model="item.Pengobatan">{{item.Pengobatan}}</textarea>
+                        </div>
+                    </c-panel>
+                </c-form>
+            </div>
+        </c-panel>
+    </div>
+    <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+</div>

@@ -1,0 +1,132 @@
+<div ng-controller="MasterLevelTingkatCtrl">
+   <div ng-show="dataVOloaded">
+      <c-panel item="item" header="'Master Level Tingkat'" disabled>
+         <div class="grid_6">
+            <div class="panel panel-default container_12">
+               <!--     <div class="panel-heading" c-translate>Periode</div> -->
+               <!--     <div class="panel-body"> -->
+               <!--                <div class="grid_12">
+                  <div class="grid_5" style="margin: 6px 0 0 0;">
+                     <label><b>Kode Profile</b></label>
+                  </div>
+                  <div class="grid_7">
+                     <input style="width: 100%;" kendo-combo-box k-ng-model="item.fakultas" k-data-text-field="'keterangan'" k-data-value-field="'id'" k-filter="'contains'"
+                        k-auto-bind="false" k-data-source="Listpublikasi" />
+                  </div>
+                  </div> -->
+               <div class="grid_12">
+                  <div class="grid_5" style="margin: 6px 0 0 0;"> 
+                     <label c-label item="item" c-label-text="Kode Level Tingkat"></label>
+                  </div>
+                  <div class="grid_7">
+                     <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kodeLevelTingkat" />
+                  </div>
+               </div>
+                 <div class="grid_12">
+                  <div class="grid_5" style="margin: 6px 0 0 0;"> 
+                     <label c-label item="item" c-label-text="Nama Level Tingkat"></label>
+                  </div>
+                  <div class="grid_7">
+                     <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaLevelTingkat" />
+                  </div>
+               </div>
+              <!--  <div class="grid_12">
+                  <div class="grid_5" style="margin: 6px 0 0 0;"> 
+                     <label c-label item="item" c-label-text="Level Tingkat"></label>
+                  </div>
+                  <div class="grid_7">
+                     <input style="width: 100%;" kendo-combo-box k-ng-model="item.levelTingkat" k-data-text-field="'levelTingkat'" k-data-value-field="'id'" k-filter="'contains'"
+                        k-auto-bind="false" k-data-source="listLevelTingkat" />
+                  </div>
+               </div> -->
+               <div class="grid_12">
+                  <div class="grid_5" style="margin: 6px 0 0 0;">  
+                     <label c-label item="item" c-label-text="Report Display"></label>
+                  </div>
+                  <div class="grid_7">
+                     <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.reportDisplay" />
+                  </div>
+               </div>
+               <div class="grid_12">
+                  <div class="grid_5" style="margin: 6px 0 0 0;">
+                     <label c-label item="item" c-label-text="Kode Level Tingkat Head"></label>
+                  </div>
+                  <div class="grid_7">
+                   <!--   <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kodeLevelTingkatHead" /> -->
+        <!--              <input style="width: 100%;" kendo-combo-box k-ng-model="item.levelTingkat" k-data-text-field="'levelTingkat'" k-data-value-field="'id'" k-filter="'contains'"
+                        k-auto-bind="false" k-data-source="listLevelTingkat" /> -->
+                         <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.levelTingkat" />
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!--        </div>  -->
+         <div class="grid_6">
+            <div class="grid_12">
+               <div class="grid_5" style="margin: 6px 0 0 0;">
+                  <label c-label item="item" c-label-text="Departemen"></label>
+               </div>
+               <div class="grid_7">
+                  <input style="width: 100%;" kendo-combo-box k-ng-model="item.Departemen" k-data-text-field="'namaDepartemen'" k-data-value-field="'id'" k-filter="'contains'"
+                     k-auto-bind="false" k-data-source="listDepartemen" />
+               </div>
+            </div>
+            <div class="grid_12">
+               <div class="grid_5" style="margin: 6px 0 0 0;"> 
+                  <label c-label item="item" c-label-text="Q Level Tingkat"></label>
+               </div>
+               <div class="grid_7">
+                  <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.qLevelTingkat" />
+               </div>
+            </div>
+            <div class="grid_12">
+               <div class="grid_5" style="margin: 6px 0 0 0;"> 
+                  <label c-label item="item" c-label-text="Kode External"></label>
+               </div>
+               <div class="grid_7">
+                  <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kodeExternal" />
+               </div>
+            </div>
+            <div class="grid_12">
+               <div class="grid_5" style="margin: 6px 0 0 0;"> 
+                  <label c-label item="item" c-label-text="Nama External"></label>
+               </div>
+               <div class="grid_7">
+                  <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaExternal" />
+               </div>
+            </div>
+               <div class="grid_12">
+                    <div class="grid_5" style="margin: 6px 0 0 0;">
+                        <label c-label item="item" c-label-text="Status Aktif"></label>
+                    </div>
+                    <div class="grid_7" style="margin-top: 10px">
+
+                        <input type="checkbox" class="k-checkbox" name="dataAktif" id="dataAktif" value="true" ng-model="item.dataAktif" ng-true-value="'true'" ng-false-value="'false'" ng-checked="vals">
+                        <label class="k-checkbox-label" for="dataAktif">Aktif</label>
+
+                    </div>
+            </div>
+         </div>
+         <div class="grid_12">
+            <div kendo-grid k-data-source="gridMasterLevelTingkat" k-selectable="'row'" k-pageable="true" options="columnGridMasterLevelTingkat" k-ng-model="current" ng-click="klik(current)">
+            </div>
+         </div>
+      </c-panel>
+      <div class="grid_12">
+         <div class="grid_6">
+         </div>
+         <div class="grid_6">
+            <div class="grid_6" style="margin-top: 10px">
+               <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Cancel()">
+               <span class="title">Batal</span></button>
+            </div>
+            <div class="grid_6" style="margin-top: 10px ">
+               <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+               <span class="title">Tambah</span>
+               </button>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+</div>

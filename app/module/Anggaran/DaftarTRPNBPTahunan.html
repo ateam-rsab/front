@@ -1,0 +1,64 @@
+<div ng-controller="DaftarTRPNBPTahunanctrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Daftar TR-PNBP Tahunan'" disabled>
+
+			<!-- -->
+		<!-- 	<div class="grid_6">
+				<div class="grid_12">
+					<div class="grid_2" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="Tahun"></label>
+					</div>
+
+					<div class="grid_4">
+						<input style="width: 100px" kendo-combo-box k-ng-model="item.now" />
+					</div>
+				</div>
+			</div>
+
+			<br/> -->
+
+			
+
+			<!-- PenyusunanTRPNBP -->
+			<div class="grid_12">
+				<!-- <div class="grid_12 headerBox">
+					<p>Daftar TR-PNBP Tahunan</p>
+				</div>
+				<div class="clear"></div> -->
+
+				<!-- grid table -->
+				<div class="grid_12 borderBox" style="margin-bottom: 30px;margin-top: 15px">
+					<div kendo-grid k-data-source="dataDaftarTRPNBPTahunan" k-selectable="'row'" k-selectable="'row'"
+					k-pageable="true"
+					k-sortable="'true'"  k-columns="columnDaftarTRPNBPTahunan">
+				</div>
+			</div>
+
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+
+		<br/>
+
+	</c-panel>
+	<div class="grid_12">
+		<!-- <div class="grid_5"></div> -->
+		<div class="grid_6">
+			<button class="c-button" ng-click="Save()">Riwayat</button>
+		</div>
+		<div class="grid_6">
+			<button class="c-button" ng-click="Batal()">Edit</button>
+		</div>
+		<div class="grid_6">
+		<button class="c-button" ng-click="Detail()">Detail</button>
+		</div>
+		<div class="grid_6">
+			<button class="c-button" ng-click="Batal()">Kembali</button>
+		</div>
+	</div>
+
+		<!-- <div class="grid_12" style="margin-top:30px">
+			<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
+		</div> -->
+	</div>
+</div>

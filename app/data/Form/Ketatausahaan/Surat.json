@@ -1,0 +1,112 @@
+{
+	"model":{
+		"namaSurat" : "",
+		"Tanggal" : "",
+		"nomorNotaDinas" : "",
+		"hal" : "",
+	   	"RuanganPengirim" : "",
+	   	"RuanganTujuan" : "",
+		"noAgenda" : "",
+		"disampaikanOleh" : "",
+		"hal" : "",
+	   	"mohonUntuk" : "",
+	   	"sifatSurat" : "",
+	   	"perihal" : "",
+		"asalSurat" : "",
+		"penerima" : "",
+		"nomorDraftSurat" : "",
+	   	"tujuanSurat" : ""
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "namaSurat",
+			"messagesRequired" : "",
+			"caption" : "Nama Surat"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Tanggal",
+			"messagesRequired" : "",
+			"caption" : "Tanggal"
+		},
+		{
+			"isNull" : "true",
+			"name" : "nomorNotaDinas",
+			"messagesRequired" : "",
+			"caption" : "Nomor Nota Dinas"
+		},
+		{
+			"isNull" : "true",
+			"name" : "hal",
+			"messagesRequired" : "",
+			"caption" : "Hal"
+		},
+		{
+			"isNull" : "true",
+			"name" : "RuanganPengirim",
+			"messagesRequired" : "",
+			"caption" : "Ruangan Pengirim"
+		},
+		{
+			"isNull" : "true",
+			"name" : "RuanganTujuan",
+			"messagesRequired" : "",
+			"caption" : "Ruangan Tujuan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "noAgenda",
+			"messagesRequired" : "",
+			"caption" : "Nomor Agenda"
+		},
+		{
+			"isNull" : "true",
+			"name" : "disampaikanOleh",
+			"messagesRequired" : "",
+			"caption" : "Disampaikan Oleh"
+		},
+		{
+			"isNull" : "true",
+			"name" : "mohonUntuk",
+			"messagesRequired" : "",
+			"caption" : "Mohon Untuk"
+		},
+		{
+			"isNull" : "true",
+			"name" : "sifatSurat",
+			"messagesRequired" : "",
+			"caption" : "Sifat Surat"
+		},
+		{
+			"isNull" : "true",
+			"name" : "perihal",
+			"messagesRequired" : "",
+			"caption" : "Perihal"
+		},
+		{
+			"isNull" : "true",
+			"name" : "asalSurat",
+			"messagesRequired" : "",
+			"caption" : "Asal Surat"
+		},
+		{
+			"isNull" : "true",
+			"name" : "penerima",
+			"messagesRequired" : "",
+			"caption" : "Penerima"
+		},
+		{
+			"isNull" : "true",
+			"name" : "nomorDraftSurat",
+			"messagesRequired" : "",
+			"caption" : "Nomor Draft Surat"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tujuanSurat",
+			"messagesRequired" : "",
+			"caption" : "Tujuan Surat"
+		}
+	]
+}

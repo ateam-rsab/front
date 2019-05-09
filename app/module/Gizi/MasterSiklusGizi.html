@@ -1,0 +1,50 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Master Siklus Menu</div>
+	<div class="panel-body">
+		<div class="grid_12" style="margin-top: 5px">
+			<div class="grid_6">
+				<div class="grid_12">
+					<div class="grid_4" style="margin-top: 10px">
+						<label c-label item="item">Siklus Menu Makanan/Minuman</label>
+					</div>
+					<div class="grid_8">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.ComboBox" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPenyakitMayor" />
+					</div>
+				</div>
+				<div class="grid_12">
+					<kendo-grid options="gridDetailMenu" k-scrollable ="false" k-data-source="sourceDetailMenu"></kendo-grid>	
+				</div>
+			</div>
+			<div class="grid_6">
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Waktu Makan</label>
+					</div>
+					<div class="grid_4">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.waktuMakan" disabled="true" />
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Hari Ke</label>
+					</div>
+					<div class="grid_4">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.hariKe" k-data-text-field="'hariKe'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="SourceHariKe" />
+					</div>
+				</div>
+			</div>
+			<div class="grid_6"></div>
+			<div class="grid_6">
+				<div class="grid_6">
+					<button class="c-button success" ng-click="simpan()">Simpan</button>
+				</div>
+				<div class="grid_6">
+					<button class="c-button cancel" ng-click="tambah()">Hapus</button>
+				</div>
+			</div>
+			<div class="grid_12">
+				<kendo-grid options="gridSiklusMenu" k-scrollable ="false" k-data-source="sourceSiklusMenu"></kendo-grid>
+			</div>
+		</div>
+	</div>
+</div>

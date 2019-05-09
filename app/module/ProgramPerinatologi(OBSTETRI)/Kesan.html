@@ -1,0 +1,59 @@
+<div ng-controller="KesanCtrl">
+
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Kesan'">
+        <div class="panel-body">
+            <!-- form kiri -->
+             <div class="grid_12">
+                <div class="grid_6">    
+                    <!-- Keterangan -->
+                    <div class="grid_12" style="margin-top:10px">
+                        <div class="grid_4">
+                            <label c-label item="item" c-label-text="Keterangan"></label>
+                        </div>
+                        <div class="grid_8">
+                            <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.Keterangan"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_6" style="margin-top:20px">
+                    <!--  -->
+                    <div class="grid_12" style="margin-top:10px">
+                        <div class="grid_4" ng-repeat="stat in ListRadio_1">
+                                <input type="radio" name="{{'KontraksiHits' + stat.name}}" id="{{'KontraksiHits' + stat.name}}" class="k-radio" ng-model="item.KontraksiHits" value="{{stat.name}}">
+                                <label class="k-radio-label" for="{{'KontraksiHits' + stat.name}}">{{stat.name}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Insuficiensi Placenta -->
+                    <div class="grid_12" style="margin-top:20px">
+                        <div class="grid_2">
+                            <label c-label item="item" c-label-text="Insuficiensi"></label>
+                        </div>
+                        <div class="grid_4">
+                            <div class="grid_4" ng-repeat="stat in ListAkselerasi">
+                                <input type="radio" name="{{'InsuficiensiPlacenta' + stat.name}}" id="{{'InsuficiensiPlacenta' + stat.name}}" class="k-radio" ng-model="item.InsuficiensiPlacenta" value="{{stat.name}}">
+                                <label class="k-radio-label" for="{{'InsuficiensiPlacenta' + stat.name}}">{{stat.name}}</label>
+                            </div>
+                        </div>
+                        <div class="grid_6"></div>
+                    </div>
+                    <div class="grid_12" style="margin-top:20px">
+                        <div class="grid_2">
+                            <label c-label item="item" c-label-text="Anjuran"></label>
+                        </div>
+                        <div class="grid_4">
+                            <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.Anjuran"></textarea>
+                        </div>
+                        <div class="grid_6"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </c-panel>
+        <div class="grid_12" style="margin-top:10px">
+            <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+        </div>
+    </div>
+</div>

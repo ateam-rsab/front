@@ -1,0 +1,75 @@
+<style>
+    .error{
+        background-color:white !important;
+    }
+    .yellow{
+        background-color:#ffff00
+    }
+     .green{
+        background-color:#00ff40
+    }
+      .red{
+        background-color:#FF0000
+    }
+    .k-grid  .k-grid-header  .k-header  .k-link {
+     height: auto;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     white-space: normal;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     text-align: center;
+    }
+/*     .k-header .k-link{
+    text-align: center;
+     }*/
+</style>
+<div ng-controller="ProduksiBMHPCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Produksi BMHP'">
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Nama Barang</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaBarang" k-data-text-field="'namaProduk'" k-data-value-field="'idProduk'" k-filter="'contains'" k-auto-bind="false" k-data-source="produk" k-on-change="GetDataProduk()"/>
+				</div>
+				<!-- <div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Harga</label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.harga" style="width: 40%" />
+				</div> -->
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Jumlah</label>
+				</div>
+				<div class="grid_4">
+					<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlah" />
+				</div>				
+				<div class="grid_3">
+						<button class="c-button success" ng-click="hitung()" style="margin-top: 5px">Hitung</button>
+				</div>
+				<div class="grid_1">
+				 <img ng-show="isLoading" height="24" src="stylesheets\Flat\loading-image.gif" />
+				</div>
+			</div>
+			<div class="grid_12">
+					<kendo-grid options="mainGridOptions" k-data-source="dataBahan"></kendo-grid>
+			</div>
+			<div class="grid_12">
+				<div class="grid_6"></div>
+				<div class="grid_6" ng-show="disabledSave">
+					<div class="grid_6"></div>
+					<div class="grid_3">
+						<button class="c-button success" ng-click="simpan()">Simpan</button>
+					</div>
+					<div class="grid_3">
+						<button class="c-button cancel" ng-click="Batal()">Batal</button>
+					</div>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

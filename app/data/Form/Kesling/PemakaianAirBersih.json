@@ -1,0 +1,49 @@
+
+{
+	"model":{
+	    "bulan" : "",
+	    "namaRuangan" : "",
+	    "standMeterAkhir" : "",
+	    "standMeterLalu" : "",
+	    "pemakaian" : "",
+	    "keterangan" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "bulan",
+			"messagesRequired" : "",
+			"caption" : "Bulan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "namaRuangan",
+			"messagesRequired" : "",
+			"caption" : "Nama / Ruangan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "standMeterAkhir",
+			"messagesRequired" : "",
+			"caption" : "Stand Meter (akhir)"
+		},
+		{
+			"isNull" : "true",
+			"name" : "standMeterLalu",
+			"messagesRequired" : "",
+			"caption" : "Stand Meter (lalu)"
+		},
+		{
+			"isNull" : "true",
+			"name" : "pemakaian",
+			"messagesRequired" : "",
+			"caption" : "Pemakaian"
+		},
+		{
+			"isNull" : "true",
+			"name" : "keterangan",
+			"messagesRequired" : "",
+			"caption" : "Keterangan"
+		}
+  ]
+}

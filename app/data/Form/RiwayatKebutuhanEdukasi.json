@@ -1,0 +1,20 @@
+{  "model":{
+  "hambatanPembelajaran" : "",
+  "edukasiYgDiPerlukan" : ""
+
+},
+  "attributes" : [
+    {
+      "isNull" : "true",
+      "name" : "HambatanPembelajaran",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "Hambatan Pembelajaran"
+    },
+    {
+      "isNull" : "true",
+      "name" : "EdukasiYgDiPerlu",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "Edukasi yang di perlukan"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+	"model":{
+		"userId" : "",
+		"noPeraturan":"",
+		"inputDraftPeraturan":"",
+		"tanggalBerlaku":"",
+		"penanggungJawab":"",
+		"tanggal":"",
+		"tujuanKirimDraft":""	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "userId",
+			"messagesRequired" : "",
+			"caption" : "User ID"
+		},{
+			"isNull" : "true",
+			"name" : "noPeraturan",
+			"messagesRequired" : "",
+			"caption" : "No. Peraturan"
+		},{
+			"isNull" : "true",
+			"name" : "inputDraftPeraturan",
+			"messagesRequired" : "",
+			"caption" : "Input Draft Peraturan"
+		},{
+			"isNull" : "true",
+			"name" : "tanggalBerlaku",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Berlaku / Disahkan"
+		},{
+			"isNull" : "true",
+			"name" : "penanggungJawab",
+			"messagesRequired" : "",
+			"caption" : "Penanggung Jawab"
+		},{
+			"isNull" : "true",
+			"name" : "tanggal",
+			"messagesRequired" : "",
+			"caption" : "Tanggal"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tujuanKirimDraft",
+			"messagesRequired" : "",
+			"caption" : "Tujuan Kirim Draft"
+		}
+
+	]
+}

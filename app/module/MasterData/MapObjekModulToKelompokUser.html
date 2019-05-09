@@ -1,0 +1,148 @@
+<div ng-controller="MapObjekModulToKelompokUserCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Map Objek Modul To Kelompok User'" disabled>
+
+			<!-- kelompokUser -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kelompokUser"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.kelompokUser" k-data-text-field="'kelompokUser'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listkelompokUser" />
+				</div>
+			</div>
+
+			<!-- kelompokUserId -->
+			<!-- <div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kelompokUserId"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kelompokUserId" />
+				</div>
+			</div> -->
+
+			<!-- objekModulAplikasi -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="objekModulAplikasi"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.objekModulAplikasi" k-data-text-field="'objekModulAplikasi'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listobjekModulAplikasi" />
+				</div>
+			</div>
+
+			<!-- objekModulAplikasiId -->
+			<!-- <div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="objekModulAplikasiId"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.objekModulAplikasiId" />
+				</div>
+			</div> -->
+
+			<!-- reportDisplay -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="reportDisplay"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+				</div>
+			</div>
+
+			<!-- kodeExternal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kodeExternal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+				</div>
+			</div>
+
+			<!-- namaExternal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="namaExternal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+				</div>
+			</div>
+			<div class="grid_6 borderBox" style="margin: 19px 0px 0px;">
+				<div class="grid_6">
+					<input type="checkbox" class="k-checkbox" id="tes" ng-model="selectedAll" ng-click="checkAll(selectedAll)" id="check-all">
+					<label class="k-checkbox-label" for="tes">Checklis Semua</label>
+				</div>
+				<div class="clear">	</div>
+				<br>
+				<div class="grid_12" id="check2">
+					<!-- <div class="grid_3" id="check2" ng-repeat="data in dataMapObjekModul">
+						<input type="checkbox" class="k-checkbox" value="{{data.namaExternal}}" name="{{data.namaExternal}}" id="{{data.id}}" ng-click="checkdataMapObjekModul(data)">
+						<label class="k-checkbox-label" for="{{data.id}}">{{data.namaExternal}}</label>
+					</div> -->
+					<div class="grid_3">
+						<input type="checkbox" class="k-checkbox" value="simpan" id="simpan" ng-model="item.simpan" ng-click="clickSimpan(item.simpan)">
+						<label class="k-checkbox-label" for="simpan">Simpan</label>
+					</div>
+					<div class="grid_3">
+						<input type="checkbox" class="k-checkbox" value="edit" id="edit" ng-model="items.edit" ng-click="clickEdit(items.edit)">
+						<label class="k-checkbox-label" for="edit">Edit</label>
+					</div>
+					<div class="grid_3">
+						<input type="checkbox" class="k-checkbox" value="hapus" id="hapus" ng-model="item.hapus" ng-click="clickHapus(item.hapus)">
+						<label class="k-checkbox-label" for="hapus">Hapus</label>
+					</div>
+					<div class="grid_3">
+						<input type="checkbox" class="k-checkbox" value="cetak" id="cetak" ng-model="item.cetak" ng-click="clickCetak(item.cetak)">
+						<label class="k-checkbox-label" for="cetak">Cetak</label>
+					</div>
+				</div>
+			</div>
+			<!-- MapObjekModulToKelompokUser -->
+			<div class="grid_12">
+				<div class="grid_12 headerBox">
+					<p>Map Objek Modul To Kelompok User</p>
+				</div>
+				<div class="clear"></div>
+
+				<!-- grid table -->
+				<div class="grid_12 borderBox">
+					<kendo-grid options="mainGridOptions"  k-data-source="dataSource" k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+			<div class="grid_12">
+				<div class="grid_8"></div>
+				<div class="grid_2" ng-show="showEdit">
+					<button class="c-button" ng-click="edit()">Edit</button>
+				</div>
+				<div class="grid_2" ng-hide="showEdit">
+					<button class="c-button" ng-click="tambah()">Tambah</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="batal()">Batal</button>
+				</div>
+			</div>
+
+
+		</c-panel>
+	</div>
+</div>

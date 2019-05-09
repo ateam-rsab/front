@@ -1,0 +1,28 @@
+<md-dialog>
+    <md-toolbar>
+        <h2 style="color: white">Input Periode</h2>
+    </md-toolbar>
+    <div class="grid_12">
+        <div class="grid_4">
+            <label c-label class="label-aja" item="item">Periode Awal</label>
+        </div>
+        <div class="grid_8">
+            <input kendo-date-picker k-ng-model="item.tglPeriodeAwal" style="width: 100%" />
+        </div>
+        <div class="grid_4">
+            <label c-label class="label-aja" item="item">Periode Akhir</label>
+        </div>
+        <div class="grid_8">
+            <input kendo-date-picker k-ng-model="item.tglPeriodeAkhir" style="width: 100%" />
+        </div>
+    </div>
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-click="answer('not useful')">
+            Cancel
+        </md-button>
+        <md-button ng-click="cetak()" style="margin-right:20px;">
+            Cetak
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

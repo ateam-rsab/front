@@ -1,0 +1,43 @@
+<div ng-controller="DaftarJadwalSeleksiCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Daftar Jadwal Seleksi'"disabled>
+        <div class="grid_12" style="margin-top: 10px">
+					<div class="grid_2"></div>
+					<div class="grid_2" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="Periode lowongan"></label>
+					</div>
+					<div class="grid_1" align="right"  style="margin-top: 10px">
+						<label c-label item="item" c-label-text=":"></label>
+					</div>
+					<div class="grid_2">
+						<input kendo-date-picker k-options="monthSelectorOptions" k-ng-model="item.Periode" k-format="'MMMM yyyy'" k-value="now" style="width: 100%;">
+					</div>
+					<div class="grid_1" style="margin-top: 5px">
+						<button class="c-button success" ng-click="cari()">Cari</button>
+					</div>
+		</div>
+		<div class="grid_12">
+				<kendo-grid  k-data-source="ListTampilGrid" k-pageable="true" k-selectable="'row'" options="mainGridOptions" value="now()"  style="font-size: small;" >
+            	</kendo-grid>
+		</div>
+		</c-panel>
+		<div class="grid_12">
+						
+			
+
+		</div>
+
+
+	</div>
+</div>
+<script type="text/x-kendo-template" id="template">
+           <div>
+           <div kendo-grid k-options="mainGridOptions_1_3(dataItem)"></div>
+		   <a class="k-grid-edit" style="visibility:hidden;" id="edit">Edit</a>
+             </div>
+
+
+        </script>
+
+

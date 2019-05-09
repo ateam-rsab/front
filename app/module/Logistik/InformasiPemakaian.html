@@ -1,0 +1,50 @@
+<div ng-controller="InformasiPemakaianCtrl">
+    <div class="panel panel-default">
+        <div class="panel-heading"><span class="title" c-translate>Pemakaian Barang Habis Pakai</span></div>
+        <div class="panel-body">
+            <div class="grid_12">
+                <div class="grid_3">
+                    <label c-label item="item" c-label-text="KelompokBarang"></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.kelompokBarang" k-data-text-field="'kelompokProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKelompokBarang" />
+                </div>
+                <div class="grid_3">
+                    <label c-label item="item" c-label-text="JenisProduk"></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisProduk" k-data-text-field="'jenisProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisBarang" />
+                </div>
+            </div>
+            <div class="grid_12" style="margin-top: 10px;">
+                <div kendo-grid k-data-source="dataPemakaian" k-selectable="'row'" k-options="optionsPemakaian" k-scrollabe="true">
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_3">
+                    <label c-label item="item" c-label-text="tanggalPemakaian"></label>
+                    <input style="width: 100%" k-ng-model="item.tglPemakaian" k-value='now' kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                </div>
+                <div class="grid_6">
+                    <label c-label item="item" c-label-text="Keperluan" style="margin-bottom:6px"></label>
+                    <textarea style="width:100%" rows="3" c-text-box type="input" class="k-textbox" ng-model="item.keperluan"/>
+                </div>
+            </div>
+            <div ng-include='"../app/module/Shared/TemplateButtonSimpanSRO" '></div>
+        </div>
+    </div>
+    <script id="popup-editor" type="text/x-kendo-template">
+        <div class="grid_12">
+            <label c-label item="item" c-label-text="NamaBarang"></label>
+            <input kendo-combo-box k-ng-model="dataItem.NamaBarang" style="width: 100%;" k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listNamaBarang" k-on-change="getSaldoStok(data, dataItem, columns)"/>
+        </div>
+        <div class="grid_2">
+            <label c-label item="item" c-label-text="Saldo"></label>
+            <input c-text-box type="input" filter="'numeric'" ng-disabled="true" class="k-textbox" ng-model="dataItem.stok" k-auto-bind="false" />
+        </div>
+        <div class="grid_2">
+            <label c-label item="item" c-label-text="Qty"></label>
+            <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="dataItem.qty" k-auto-bind="false" />
+        </div>
+        <div class="grid_2">
+            <label c-label item="item" c-label-text="Satuan"></label>
+            <input style="width: 100%;" kendo-combo-box k-ng-model="dataItem.satuan" k-data-text-field="'satuanStandar'" k-data-value-field="'id'" k-data-source="listSatuanStandard" k-on-change="getkonversi(data, dataItem, columns)"/>
+        </div>
+    </script>
+</div>

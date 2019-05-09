@@ -1,0 +1,77 @@
+{
+	
+	"namaAlat": "",
+	"keterangan" : "",
+	"ahliBedah" : "",
+	"asisten" : "",
+	"perawatInstrumen" : "",
+	"perawatSirkular" : "",
+	"kondisiSterilisasi" : "",	
+	"alat" : "",
+	"load" : "",
+	"tglSteril" : "",
+	"kuantitas" : "",
+
+
+
+    "attributes" : [	 
+		{
+			"name" : "namaAlat",
+			"isNull" : "true",
+			"messagesRequired" : "Nama Alat Harus Diisi",
+			"caption" : "Nama Alat/Set yang Digunakan"
+		},{
+	        "name": "keterangan",
+	        "isNull": true,
+	        "messagesRequired": "Keterangan tidak boleh kosong",
+	        "caption": "Keterangan"
+    	},{
+	        "name": "ahliBedah",
+	        "isNull": true,
+	        "messagesRequired": "Ahli Bedah tidak boleh kosong",
+	        "caption": "Ahli Bedah"
+    	},{
+	        "name": "asisten",
+	        "isNull": true,
+	        "messagesRequired": "Asisten tidak boleh kosong",
+	        "caption": "Asisten"
+    	},{
+	        "name": "perawatSirkular",
+	        "isNull": true,
+	        "messagesRequired": "Perawat Sirkular tidak boleh kosong",
+	        "caption": "Perawat Sirkular"
+    	},{
+	        "name": "perawatInstrumen",
+	        "isNull": true,
+	        "messagesRequired": "Perawat Instrumen tidak boleh kosong",
+	        "caption": "Perawat Instrumen"
+    	},{
+	        "name": "tglSteril",
+	        "isNull": true,
+	        "type": "DATE",
+	        "messagesRequired": "Tanggal Pembatalan tidak boleh kosong",
+	        "caption": "Tanggal Steril"
+    	},{
+			"name" : "alat",
+			"isNull" : "true",
+			"messagesRequired" : "Alat/ Item Harus Diisi",
+			"caption" : "Alat/Item"
+		},{
+			"name" : "load",
+			"isNull" : "true",
+			"messagesRequired" : "Load Harus Diisi",
+			"caption" : "Load"
+		},{
+			"name" : "kondisiSterilisasi",
+			"isNull" : "true",
+			"messagesRequired" : "Kondisi Sterilisasi Harus Diisi",
+			"caption" : "Kondisi Sterilisasi"
+		},{
+			"name" : "kuantitas",
+			"isNull" : "true",
+			"messagesRequired" : "Kuantitas Sterilisasi Harus Diisi",
+			"caption" : "Kuantitas"
+		}
+		
+	]
+}

@@ -1,0 +1,23 @@
+<div ng-show="dataVOloaded">
+
+	<div>
+		<div class="grid_12 headerBox">
+			<h1 style="color: white;"><b>Cetak Kwitansi</b></h1>
+		</div>
+		<div class="clear"></div>
+
+		<br/>
+		
+	</div>
+
+	<!-- page kartu pulang pasien -->
+
+	<div ng-repeat="item in listItem">
+		<object id="pageBilling" type="application/pdf" data="{{item}}" style="width:100%; min-height: 500px;height: 100%"/>
+	</div>
+
+
+	<div class="grid_12" style="margin-top:30px">
+		<div ng-include='"../app/module/Shared/Keuangan/TemplateButtonKasir"'></div>
+	</div>
+</div>

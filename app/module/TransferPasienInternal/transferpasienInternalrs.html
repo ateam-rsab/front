@@ -1,0 +1,145 @@
+<div ng-controller="transferpasienInternalrsCtrl">
+    <!-- AlASAN PEMDINDAHAN PASIEN -->
+    <div class="grid_12">
+        <div class="panel panel-default  ">
+            <div class="panel-heading" c-translate>Transfer Pasien Internal</div>
+
+            <div class="panel-body">
+            <div class="container_12">
+                <div class="grid_6" class='box'>
+                <div class="grid_4" style="margin-top: 15px;"><label c-label="" item="item" c-label-text="Tanggal/jamMasuk" class="ng-isolate-scope c-label"></label></div>
+
+                        <div class="grid_7" style="margin: 5px">
+                            <input style="width: 100%" k-ng-model="item.tanggaljammasuk" kendo-datetimepicker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy hh-mm'" />
+                        </div>
+                </div>
+                <div class="grid_6" class='box'>
+                    <div class="grid_4" style="margin-top: 15px;"><label c-label="" item="item" c-label-text="AsalRuangRawat" class="ng-isolate-scope c-label"></label></div>
+
+                    <div class="grid_7" style="margin: 5px">
+                        <input style="width: 100%;" kendo-combo-box k-data-text-field="'namaRuangan'" k-filter="'contains'" k-ng-model="item.asalruangrawat" k-data-value-field="'id'" k-auto-bind="false" k-data-source="listStatusRuangan" /></div>
+               </div>
+            </div>
+            <div class="container_12">
+                <div class="grid_6" class='box'>
+                <div class="grid_4" style="margin-top: 15px;"><label c-label="" item="item" c-label-text="Tanggal/jamPindah" class="ng-isolate-scope c-label"></label></div>
+
+                        <div class="grid_7" style="margin: 5px">
+                            <input style="width: 100%" k-ng-model="item.tanggaljampindah" kendo-datetimepicker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy hh-mm'" />
+                        </div>
+                </div>
+                <div class="grid_6" class='box'>
+                    <div class="grid_4" style="margin-top: 15px;"><label c-label="" item="item" c-label-text="RuangSelanjutnya" class="ng-isolate-scope c-label"></label></div>
+
+                    <div class="grid_7" style="margin: 5px">
+                        <input style="width: 100%;" kendo-combo-box k-data-text-field="'namaRuangan'" k-filter="'contains'" k-ng-model="item.ruangrawatlanjut" k-data-value-field="'id'" k-auto-bind="false" k-data-source="listStatusRuangan" /></div>
+               </div>
+            </div>
+            <div class="container_12">
+                <div class="grid_6" class='box'>
+                <div class="grid_4" style="margin-top: 15px;"><label c-label="" item="item" c-label-text="Dokter IGD/Jaga Ruangan" class="ng-isolate-scope c-label"></label></div>
+
+                        <div class="grid_7" style="margin: 5px">
+                            <input style="width: 100%;" kendo-combo-box k-data-text-field="'namaLengkap'" k-filter="'contains'" k-ng-model="item.dokterjagaruang" k-data-value-field="'id'" k-auto-bind="false" k-data-source="listDokter" />
+                </div>
+                </div>
+               <!-- <div class="grid_6" class='box'>
+                <div class="grid_4" style="margin-top: 15px;"><label c-label="" item="item" c-label-text="Dokter Penanggung Jawab" class="ng-isolate-scope c-label"></label></div>
+
+                        <div class="grid_7" style="margin: 5px">
+                            <input style="width: 100%;" kendo-combo-box k-data-text-field="'namaLengkap'" k-filter="'contains'" k-ng-model="item.dokterjagaruang" k-data-value-field="'id'" k-auto-bind="false" k-data-source="listDokter" />
+                </div>
+                </div>-->
+            </div>
+
+        </div>
+
+            <div class="panel-heading" c-translate>Alasan pemindahan pasien</div>
+            <div class="panel-body">
+                <div class="grid_12">
+                    <div class="panel" style="border-color:#0d9a8b; margin-left: 10px;margin-right: 10px">
+                        <div class="panel-body">
+                            <div class="grid_6">
+                                <div class="grid_4">
+
+                                    <label>Kondisi Pasien</label>
+                                </div>
+                                <div class="grid_8">
+                                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.kondisipasien" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="listStatusKondisiPasien" />
+                                </div>
+                                <div class="grid_4">
+
+                                    <label>Fasilitas</label>
+                                </div>
+                                <div class="grid_8">
+                                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.fasilitas" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="listStatusFasilitas" />
+                                </div>
+                            </div>
+                            <div class="grid_6">
+                                <div class="grid_4">
+
+                                    <label>Tenaga</label>
+                                </div>
+                                <div class="grid_8">
+                                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.tenaga" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="listStatusTenaga" />
+                                </div>
+                                <div class="grid_4">
+
+                                    <label>Lain-lain</label>
+                                </div>
+                                <div class="grid_8">
+                                    <input placeholder="Keterangan" style="width: 100%;" ng-model="item.lainlain" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- KELUARGA PASIEN DI BERITAHUKAN ALASAN PEMINDAHAN PASIEN -->
+    <div class="panel panel-default ">
+        <div class="panel-heading" c-translate>Keluarga pasien diberitahukan alasan pemindahan pasien</div>
+        <div class="panel-body">
+            <div class="grid_12">
+                <div class="panel" style="border-color:#0d9a8b; margin-left: 10px;margin-right: 10px">
+                    <div class="panel-body">
+                        <div class="grid_6">
+
+                            <div class="grid_3" style="margin: 5px 0px 5px 0px;" ng-repeat="stat in listStatusYaTidak">
+                                <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio"
+                                       ng-model="item.rbhubunganPasien" ng-click="arrStatusYaTidakKet(stat.name)" ng-value="stat">
+                                <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="grid_6"></div>
+                    </div>
+                </div>
+                <div class="grid_12" ng-show="isNamaHubungan" >
+                    <div class="grid_6">
+                        <div class="grid_4"><label c-translate>Nama</label><span class="titikDua">:</span></div>
+                        <div class="grid_8">
+                            <input placeholder="Nama Keluarga" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaKeluargaPasien" />
+                        </div>
+                    </div>
+                    <div class="grid_6">
+                        <div class="grid_4"><label c-translate>Hubungan</label><span class="titikDua">:</span></div>
+                        <div class="grid_8">
+                            <input placeholder="Hubungan Keluarga" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.HubunganPasien" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid_12">
+
+
+    </div>
+    <!--  <button ng-click="KirimData()"> coba kirim data </button> -->
+    <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+
+</div>

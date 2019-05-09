@@ -1,0 +1,19 @@
+<div class="container">
+	<div class="panel panel-default">
+		<div class="panel-heading"><span class="title" c-translate>{{title}}</span></div>
+		<div class="panel-body">
+			<div kendo-grid k-data-source="dataGrid" options="opsiGrid"></div>
+		</div>
+	</div>
+	<div ng-include="'../app/module/Shared/TemplateLoading'"></div>
+</div>
+<script id="popup-editor" type="text/x-kendo-template">
+	<div class="panel panel-default container_12"> 
+		<div class="grid_12">
+			<div class="grid_11">
+				<label c-label item="item" c-label-text="Nama Kelompok Jabatan"></label>
+				<input name="kelompokJabatan" c-text-box type="input" ng-disabled="false" class="k-textbox" data-bind="value: namaKelompokJabatan" data-validasiKomponen-msg="nama kelompok jabatan tidak boleh kosong"/>
+			</div>
+		</div>
+	</div>
+</script>

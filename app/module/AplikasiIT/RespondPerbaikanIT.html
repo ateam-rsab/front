@@ -1,0 +1,282 @@
+<style type="text/css">
+	.status-pengerjaan {
+		background-color: #d4d4d4;
+		color: rgb(0, 0, 0);
+	}
+    .yellow{
+		background-color:#EFFD5F;
+		color: #000000;
+		font-weight: bold;
+	}
+	.green{
+		background-color:#98FB98;
+		color: #000000;
+		font-weight: bold;
+	}
+	.red{
+		background-color: #D21F3C;
+		color: #FFFFFF;
+		font-weight: bold;
+	}
+	.orange{
+		background-color: #EF7215;
+		color: #000000;
+		font-weight: bold;
+	}
+	.gray {
+		background-color: #b9ff56;
+		color: #000000;
+		font-weight: bold;
+	}
+
+    .style-four {
+		height: 5px;
+		border: 0;
+		box-shadow: inset 0 14px 12px -12px rgba(0, 0, 0, 0.5);
+	}
+    .md-button {
+		  padding: 0 6px 0 6px;
+		  margin: 6px 8px 6px 8px;
+		  min-width: 88px;
+		  border-radius: 3px;
+		  font-size: 14px;
+		  text-align: center;
+		  text-transform: uppercase;
+		  text-decoration:none;
+		  border: none;
+		  outline: none;
+		  color: green;
+		}
+
+    .k-grid  .k-grid-header  .k-header {
+     text-align: center;
+    }
+
+    .md-tooltip {
+		height: 25px !important;
+		background-color: #363940 !important;
+		color: white !important;
+		border-radius: 5px;
+		font-size: 14px
+	 }
+	legend {
+		cursor:pointer;
+		padding: 10px;
+	}
+	.effect-shadow{
+	-webkit-box-shadow: 2px 2px 5px #b6b6b6;
+	   -moz-box-shadow: 2px 2px 5px #b6b6b6;
+	   		box-shadow: 2px 2px 5px #b6b6b6;
+	}
+	.k-grid-content.k-auto-scrollable::-webkit-scrollbar { width: 5px; border-radius: 5px }	
+	.k-grid-content.k-auto-scrollable::-webkit-scrollbar-track { background: #f1f1f1 }
+	.k-grid-content.k-auto-scrollable::-webkit-scrollbar-thumb { background: #888 }
+	.k-grid-content.k-auto-scrollable::-webkit-scrollbar-thumb:hover { background: #555 }
+	body::-webkit-scrollbar { width: 5px; border-radius: 5px }	
+	body::-webkit-scrollbar-track { background: #f1f1f1 }
+	body::-webkit-scrollbar-thumb { background: #888 }
+	body::-webkit-scrollbar-thumb:hover { background: #555 }
+	/* body::-we */
+</style>
+<c-panel item="item" header="'Monitoring Perbaikan IT'">
+	<div ng-show="dataVOloaded">
+		<!-- Conntent Pencarian -->
+		<div class="panel panel-default container_12">
+			<div class="grid_12">
+
+				<div class="grid_12">
+					<fieldset class="effect-shadow" style="margin:10px; border-radius: 4px">
+						<legend id="filterData">
+							<a ng-click="showAndHide()">Filter Data <span>+</span></a>
+						</legend>
+						<div class="grid_12" style="margin: 10px 0">
+							<div class="grid_1"></div>
+							<div class="grid_1" style="margin-top: 10px">
+								<label c-label item="item" c-label-text="Periode"></label>
+							</div>
+							<div class="grid_1" align="right" style="margin-top: 10px">
+								<label c-label item="item" c-label-text=":"></label>
+							</div>
+							<div class="grid_2">
+								<input style="width: 100%" kendo-date-picker k-ng-model="item.Awal"
+									placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"
+									k-on-change="ChangeDate()" />
+							</div>
+							<div class="grid_1" style="margin-top: 10px">
+								<label c-label item="item" align="center">S/D</label>
+							</div>
+							<div class="grid_2">
+								<input style="width: 100%" kendo-date-picker k-ng-model="item.Akhir"
+									placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"
+									k-on-change="ChangeDate()" />
+							</div>
+							<div class="grid_1" style="margin-top: 7px">
+								<md-tooltip md-direction='bottom'>Isi data yang akan di cari</md-tooltip>
+								<button class="c-button success" ng-click="init(item.pencarian)">Cari</button>
+							</div>
+						</div>
+						<div class="grid_12" id="contentFilterData" style="padding: 5px;margin:0 auto;">
+							<div class="grid_1"></div>
+							<!-- <div class="grid_2">
+								<label>
+									<strong>Page</strong>
+								</label>
+								<input style="width: 100%;" id="combPage"
+									kendo-combo-box
+									k-ng-model="item.pageData"
+									k-data-text-field="'page'"
+									k-data-value-field="'id'"
+									k-filter="'contains'"
+									k-data-source="dataSourcePage"
+									k-on-change="onChangePage(item.pageData)" />
+							</div> -->
+							<div class="grid_2">
+								<label>
+									<strong>Jumlah data</strong>
+								</label>
+								<input class=k-textbox type="number" ng-model="item.takeData"
+									placeholder="Masukan jumlah data"
+									ng-change="onChangeTakeData(item.takeData)" />
+							</div>
+							<div class="grid_2">
+								<label>
+									<strong>Nama Gedung</strong>
+								</label>
+								<input style="width: 100%;"
+									kendo-combo-box
+									k-ng-model="item.ruangan"
+									k-data-text-field="'namaRuangan'"
+									k-data-value-field="'id'"
+									k-filter="'contains'"
+									k-data-source="ListRuangan"
+									k-on-change="OnChangeRuangan(item.ruangan)" />
+							</div>
+							<div class="grid_2">
+								<label>
+									<strong>Status Pekerjaan</strong>
+								</label>
+								<input style="width: 100%;"
+									kendo-combo-box
+									k-ng-model="item.statusPekerjaan"
+									k-data-text-field="'namaExternal'"
+									k-data-value-field="'id'"
+									k-filter="'contains'"
+									k-data-source="dataStatusPekerjaan"
+									k-on-change="onChangeStatusPekerjaan(item.statusPekerjaan)" />
+							</div>
+							<div class="grid_1" style="margin-top: 20px">
+								<button class="c-button cancel" ng-click="reset()">RESET</button>
+							</div>
+							<div class="grid_1" style="margin-top:20px">
+								<button class="c-button" ng-click="print()">PRINT</button>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+
+			</div>
+			<!-- <hr class="style-four"> -->
+
+			<!-- Grid -->
+			<div class="grid_12 status-pengerjaan" style="margin-top: 5px;margin-bottom:5px;">
+				<div class="grid_2" style="margin-left:10px; font-weight: bold">
+					<label c-label item="item">Jumlah Request :</label>
+				</div>
+				<div class="grid_2" style="margin-left:10px; font-weight: bold">
+					<label c-label item="item">{{jumlahRequest}}</label>
+				</div>
+				<div class="grid_2" style="margin-left:10px; font-weight: bold">
+					<label c-label item="item">Jumlah Respon :</label>
+				</div>
+				<div class="grid_2" style="margin-left:10px; font-weight: bold">
+					<label c-label item="item">{{jumlahRespon}}</label>
+				</div>
+			</div>
+			<div class="grid_12 status-pengerjaan" style="margin-top: 5px;margin-bottom:
+				5px;">
+				<div class="grid_2" style="margin-left:10px; font-weight: bold"><label
+						c-label item="item">Status Pengerjaaan :</label></div>
+				<div class="grid_2">
+					<span class="yellow">&nbsp;&nbsp;&nbsp;</span>
+					<span style="font-weight: bold">: Belum dikerjakan</span>
+				</div>
+				<div class="grid_2">
+					<span class="green">&nbsp;&nbsp;&nbsp;</span>
+					<span style="font-weight: bold">: Sudah dikerjakan</span>
+				</div>
+				<div class="grid_2">
+					<span class="red">&nbsp;&nbsp;&nbsp;</span>
+					<span style="font-weight: bold">: Pending</span>
+				</div>
+				<div class="grid_2">
+					<span class="gray">&nbsp;&nbsp;&nbsp;</span>
+					<span style="font-weight: bold">: Belum memilih Produk</span>
+				</div>
+			</div>
+			<div class="grid_12 status-pengerjaan" style="margin-bottom: 20px">
+				<div class="grid_2" style="margin-left:10px; font-weight: bold"><label
+						c-label item="item">Status Respon :</label></div>
+				<div class="grid_2">
+					<span class="yellow">&nbsp;&nbsp;&nbsp;</span>
+					<span style="font-weight: bold">: Belum di Respon</span>
+				</div>
+				<div class="grid_2">
+					<span class="green">&nbsp;&nbsp;&nbsp;</span>
+					<span style="font-weight: bold">: Respon kurang dari 15 menit</span>
+				</div>
+				<div class="grid_2">
+					<span class="orange">&nbsp;&nbsp;&nbsp;</span>
+					<span style="font-weight: bold">: Respon kurang dari 30 menit</span>
+				</div>
+				<div class="grid_2">
+					<span class="red">&nbsp;&nbsp;&nbsp;</span>
+					<span style="font-weight: bold">: Respon lebih dari 30menit</span>
+				</div>
+			</div>
+			<div class="grid_12">
+
+				<div class="grid_12">
+					<div id="gridRespon" kendo-grid options="mainGridOptions"
+						k-scrollable="true" k-data-source="dataSource" k-selectable="'row'"
+						k-ng-model="selectedData" ng-click="klick(selectedData)"></div>
+				</div>
+				<div class="grid_1">
+					<label>
+						<strong>Page</strong>
+					</label>
+					<input style="width: 100%;" id="combPage"
+						kendo-combo-box
+						k-ng-model="item.pageData"
+						k-data-text-field="'page'"
+						k-data-value-field="'id'"
+						k-filter="'contains'"
+						k-data-source="dataSourcePage"
+						k-on-change="onChangePage(item.pageData)" />
+				</div>
+			</div>
+		</div>
+		<!-- button -->
+		<div class="grid_12" style="margin-top: 20px">
+			<div class="grid_8"></div>
+			<!-- <div class="grid_2">
+				<md-tooltip md-direction='bottom' ng-show="showbutton">Pilih 1 data terlebih
+					dahulu untuk membatalkan</md-tooltip>
+				<button class="c-button cancel" ng-click="batalPerbaikan(selectedData)">Batal</button>
+			</div> -->
+			<div class="grid_2">
+				<md-tooltip md-direction='bottom' ng-show="showbutton">Pilih 1 data terlebih
+					dahulu untuk respon</md-tooltip>
+				<button class="c-button success" ng-click="ResponPerbaikanIT(selectedData)">Respon</button>
+			</div>
+			<div class="grid_2">
+				<md-tooltip md-direction='bottom' ng-show="showbutton">Pilih 1 data terlebih
+					dahulu untuk tindakan</md-tooltip>
+				<button class="c-button" ng-disabled="disableTindakan"
+					ng-click="PermintaanPerbaikan(selectedData)">Tindakan
+					Perbaikan</button>
+			</div>
+		</div>
+		<hr class="style-four">
+
+	</div>
+</c-panel>

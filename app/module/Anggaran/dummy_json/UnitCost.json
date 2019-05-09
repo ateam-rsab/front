@@ -1,0 +1,126 @@
+{
+  "daftarKegiatan": [
+  {
+    "noUnitCost": "UN0000000001",
+    "instalasi": "Rawat Jalan",
+    "ruangan": "Alamanda",
+    "nama": "Konsultasi",
+    "keterangan": ""
+  },
+  {
+    "noUnitCost": "UN0000000002",
+    "instalasi": "Rawat Jalan",
+    "ruangan": "Alamanda",
+    "nama": "Injeksi",
+    "keterangan": ""
+  },
+  {
+    "noUnitCost": "UN0000000003",
+    "instalasi": "Rawat Jalan",
+    "ruangan": "Alamanda",
+    "nama": "Test mantoux",
+    "keterangan": ""
+  },
+  {
+    "noUnitCost": "UN0000000004",
+    "instalasi": "Rawat Jalan",
+    "ruangan": "Alamanda",
+    "nama": "Klisma",
+    "keterangan": ""
+  }
+],
+  "UN0000000001": [
+    {    
+      "noUnitCost": "UN0000000001",
+      "instalasi": "Rawat Jalan",
+      "ruangan": "Alamanda",
+      "nama": "Konsultasi",
+      "keterangan": "-",
+      "detail": [
+        {
+            "jenis":"Operator",
+            "detailJenis":"SDM",
+            "nama":"S2 (Dokter)",
+            "biaya":1000,
+            "jumlah":15,
+            "satuan":"menit",
+            "total":15000
+        },
+        {
+            "jenis":"Operator",
+            "detailJenis":"SDM",
+            "nama":"D3 (Perawat)",
+            "biaya":400,
+            "jumlah":20,
+            "satuan":"menit",
+            "total":8000
+        },
+        {
+            "jenis":"Operator",
+            "detailJenis":"SDM",
+            "nama":"Adm D3",
+            "biaya":200,
+            "jumlah":5,
+            "satuan":"menit",
+            "total":1000
+        },
+        {
+            "jenis":"Gedung",
+            "detailJenis":"Gedung",
+            "nama":"Ruang Periksa",
+            "biaya":10,
+            "jumlah":15,
+            "satuan":"menit",
+            "total":1500
+        }
+      ]
+    }
+],
+  "UN0000000002": [
+    {    
+      "noUnitCost": "UN0000000002",
+      "instalasi": "Rawat Jalan",
+      "ruangan": "Alamanda",
+      "nama": "Injeksi",
+      "keterangan": "-",
+      "detail": [
+        {
+            "jenis":"Operator",
+            "detailJenis":"SDM",
+            "nama":"S2 (Dokter)",
+            "biaya":1000,
+            "jumlah":5,
+            "satuan":"menit",
+            "total":5000
+        },
+        {
+            "jenis":"Operator",
+            "detailJenis":"SDM",
+            "nama":"D3 (Perawat)",
+            "biaya":400,
+            "jumlah":10,
+            "satuan":"menit",
+            "total":4000
+        },
+        {
+            "jenis":"Operator",
+            "detailJenis":"SDM",
+            "nama":"Adm D3",
+            "biaya":200,
+            "jumlah":5,
+            "satuan":"menit",
+            "total":1000
+        },
+        {
+            "jenis":"Gedung",
+            "detailJenis":"Gedung",
+            "nama":"Ruang Periksa",
+            "biaya":10,
+            "jumlah":10,
+            "satuan":"menit",
+            "total":1000
+        }
+      ]
+    }
+]
+}

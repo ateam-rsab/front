@@ -1,0 +1,286 @@
+{
+    "telinga ": [
+        {
+            "id": 1,
+            "name": "Gangguan Pendengaran"
+        },{
+            "id": 2,
+            "name": "Tinitus"
+        },{
+            "id": 3,
+            "name": "Telinga Tersumbat"
+        },{
+            "id": 4,
+            "name": "Telinga Gatal"
+        },{
+            "id": 5,
+            "name": "Nyeri Telinga"
+        },{
+            "id": 6,
+            "name": "Telinga mengeluarkan lendir"
+        },{
+            "id": 7,
+            "name": "Telinga Berdarah"
+        },{
+            "id": 8,
+            "name": "Benda asing di dalam telinga"
+        },{
+            "id": 9,
+            "name": "Bisul di daun telinga"
+        },{
+            "id": 10,
+            "name": "Bisul di depan telinga"
+        },{
+            "id": 11,
+            "name": "Bisul di belakang telinga"
+        },{
+            "id": 12,
+            "name": "Benjolan di daun telinga"
+        },{
+            "id": 13,
+            "name": "Benjolan di sekitar telinga"
+        },{
+            "id": 14,
+            "name": "Bintul di daun telinga"
+        },{
+            "id": 15,
+            "name": "Bintul di sekitar telinga"
+        },{
+            "id": 16,
+            "name": "Kulit daun telinga tidak normal"
+        },{
+            "id": 17,
+            "name": "Kulit di sekitar telinga tidak normal"
+        },{
+            "id": 18,
+            "name": "Lubang abnormal di depan telinga"
+        },{
+            "id": 19,
+            "name": "Bentuk daun telinga tidak normal"
+        },{
+            "id": 20,
+            "name": "Lubang telinga tidak ada"
+        },{
+            "id": 21,
+            "name": "Pusing berputar"
+        },{
+            "id": 22,
+            "name": "Gangguan keseimbangan"
+        },{
+            "id": 23,
+            "name": "Nyeri Kepala"
+        },{
+            "id": 24,
+            "name": "Demam"
+        },{
+            "id": 25,
+            "name": "Muka mencong"
+        },{
+            "id": 26,
+            "name": "Riwayat operasi telinga sebelumnya"
+        },{
+            "id": 27,
+            "name": "Trauma pada telinga"
+        }
+    ],
+    "hidung":[
+        {
+            "id": 1,
+            "name": "Ingus bening"
+        },{
+            "id": 2,
+            "name": "Ingus mukopurulen"
+        },{
+            "id": 3,
+            "name": "Ingus bercampur darah"
+        },{
+            "id": 4,
+            "name": "Mimisan"
+        },{
+            "id": 5,
+            "name": "Ingus belakang hidung"
+        },{
+            "id": 6,
+            "name": "Hidung tersumbat"
+        },{
+            "id": 7,
+            "name": "Hidung gatal"
+        },{
+            "id": 8,
+            "name": "Bersin"
+        },{
+            "id": 9,
+            "name": "Penciuman terganggu"
+        },{
+            "id": 10,
+            "name": "Nyeri sekitar wajah"
+        },{
+            "id": 11,
+            "name": "Nyeri kepala"
+        },{
+            "id": 12,
+            "name": "Nyeri daerah gusi"
+        },{
+            "id": 13,
+            "name": "Nyeri rahang atas"
+        },{
+            "id": 14,
+            "name": "Bau mulut"
+        },{
+            "id": 15,
+            "name": "Hidung berbau abnormal"
+        },{
+            "id": 16,
+            "name": "Benda asing di hidung"
+        },{
+            "id": 17,
+            "name": "Benjolan di hidung"
+        },{
+            "id": 18,
+            "name": "Benjolan sekitar hidung"
+        },{
+            "id": 19,
+            "name": "Kulit hidung abnormal"
+        },{
+            "id": 20,
+            "name": "Kulit di sekitar hidung abnormal"
+        },{
+            "id": 21,
+            "name": "Bentuk hidung abnormal"
+        },{
+            "id": 22,
+            "name": "Riwayat operasi hidung sebelumnya"
+        },{
+            "id": 23,
+            "name": "Riwayat operasi hidung sebelumnya"
+        }
+    ],
+    "tenggorok":[
+        {
+            "id": 1,
+            "name": "Nyeri Menelan"
+        },{
+            "id": 2,
+            "name": "Nyeri Tenggorok"
+        },{
+            "id": 3,
+            "name": "Rasa mengganjal di tenggorok"
+        },{
+            "id": 4,
+            "name": "Rasa gatal di tenggorok"
+        },{
+            "id": 5,
+            "name": "Sulit menelan"
+        },{
+            "id": 6,
+            "name": "Tidak bisa menelan"
+        },{
+            "id": 7,
+            "name": "Tersedak saat makan atau minum"
+        },{
+            "id": 8,
+            "name": "Batuk"
+        },{
+            "id": 9,
+            "name": "Gangguan bernapas"
+        },{
+            "id": 10,
+            "name": "Suara serak"
+        },{
+            "id": 11,
+            "name": "Suara hilang"
+        },{
+            "id": 12,
+            "name": "Suara cadel"
+        },{
+            "id": 13,
+            "name": "Suara sengau"
+        },{
+            "id": 14,
+            "name": "Tertelan benda asing"
+        },{
+            "id": 15,
+            "name": "Terhirup benda asing"
+        },{
+            "id": 16,
+            "name": "Sariawan pada mulut"
+        },{
+            "id": 17,
+            "name": "Sariawan pada lidah"
+        },{
+            "id": 18,
+            "name": "Sariawan pada tenggorok"
+        },{
+            "id": 19,
+            "name": "Mulut berbau"
+        },{
+            "id": 20,
+            "name": "Kelainan pada bibir"
+        },{
+            "id": 21,
+            "name": "Kelainan pada lidah"
+        },{
+            "id": 22,
+            "name": "Kelainan pada mulut"
+        },{
+            "id": 23,
+            "name": "Benjolan pada dagu"
+        },{
+            "id": 24,
+            "name": "Benjolan pada leher"
+        },{
+            "id": 25,
+            "name": "Benjolan pada mulut"
+        },{
+            "id": 26,
+            "name": "Kulit leher abnormal"
+        },{
+            "id": 27,
+            "name": "Bisul pada dagu"
+        },{
+            "id": 28,
+            "name": "Bisul pada leher"
+        },{
+            "id": 29,
+            "name": "Trauma pada mulut"
+        },{
+            "id": 30,
+            "name": "Trauma pada leher"
+        },{
+            "id": 31,
+            "name": "Tidur mendengkur"
+        },{
+            "id": 32,
+            "name": "Sulit bernapas saat tidur"
+        },{
+            "id": 33,
+            "name": "Napas terhenti saat tidur"
+        },{
+            "id": 34,
+            "name": "Muntah"
+        },{
+            "id": 35,
+            "name": "Muntah darah"
+        },{
+            "id": 36,
+            "name": "Batuk Darah"
+        }
+    ],
+    "attributes" : [{
+		"isNull" : "true",
+		"name" : "telinga",
+		"messagesRequired" : "Telinga / Keseimbangan Alat Harus Diisi",
+		"caption" : "Telinga / Keseimbangan"
+	},{
+			"isNull" : "true",
+			"name" : "hidung",
+			"pukul" : "Hidung / sinus paranasal Harus Diisi",
+			"caption" : "Hidung / sinus paranasal "
+		},{
+			"isNull" : "true",
+			"name" : "tenggorok",
+			"messagesRequired" : "Tenggorok / leher Harus Diisi",
+			"caption" : " Tenggorok / leher"  
+		}
+	]
+}

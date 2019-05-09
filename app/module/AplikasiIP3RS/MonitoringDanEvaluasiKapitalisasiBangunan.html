@@ -1,0 +1,72 @@
+<div ng-controller="MonitoringDanEvaluasiKapitalisasiBangunanCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Monitoring Dan Evaluasi Kapitalisasi Bangunan'">
+			<div class="grid_6">
+			<div class="grid_12">
+				<div class="grid_4" style="margin-top: 10px">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="unitKerja"></label>
+					</div>
+					<div class="grid_2" style="text-align: center;">
+						<label c-label item="item" c-label-text=":"></label>
+					</div>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.unitKerja" style="width: 50%" />
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_4" style="margin-top: 10px">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="kegiatan"></label>
+					</div>
+					<div class="grid_2" style="text-align: center;">
+						<label c-label item="item" c-label-text=":"></label>
+					</div>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kegiatan" style="width: 50%"/>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_4" style="margin-top: 10px">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="lokasi"></label>
+					</div>
+					<div class="grid_2" style="text-align: center;">
+						<label c-label item="item" c-label-text=":"></label>
+					</div>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.lokasi"/>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_4" style="margin-top: 10px">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="tahunAnggaran"></label>
+					</div>
+					<div class="grid_2" style="text-align: center;">
+						<label c-label item="item" c-label-text=":"></label>
+					</div>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.tahunAnggaran" style="width: 50%"/>
+				</div>
+			</div>
+				<div class="grid_4"></div>
+				<div class="grid_4"></div>
+				<div class="grid_4">
+					<button class="c-button" ng-click="simpan()">Simpan</button>
+				</div>
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Daftar Kegiatan"></label>
+				</div>
+				<div class="grid_12" style="margin-top: 10px">
+					<kendo-grid options="gridDaftarKegiatan"></kendo-grid>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

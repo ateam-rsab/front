@@ -1,0 +1,96 @@
+[{
+        "name": "Pengajuan Usulan Anggaran",
+        "link": "#/PengajuanUsulanAnggaran"
+    }, {
+        "name": "Daftar Pengajuan Usulan Anggaran",
+        "link": "#/DaftarUsulanPengajuanAnggaran"
+    }, {
+        "name": "Verifikasi Pengajuan Usulan Anggaran",
+        "link": "#/DaftarUsulanPengajuanAnggaranPengendali"
+    }, {
+        "name": "Proses RUP",
+        "link": "#/dataRup"
+    }, {
+        "name": "Buat Kartu Kendali",
+        "link": "#/dataKendali"
+    },
+    {
+        "name":"Aplikasi IT",
+        "children":[
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/RevPermintaanPerbaikandariRuanganITNew"
+            }
+        ]
+    },
+    {
+        "name": "Aplikasi Laundry",
+        "children": [
+            {
+                "name": "Permintaan Linen Bersih",
+                "link": "#/PermintaanLinenByRuangan"
+            },{
+                "name": "Verifikasi",
+                "link": "#/VerifikasiTerima"
+            }
+    ]},
+     {
+        "name": "Verifikasi Kartu Pengendali",
+        "children": [
+            {
+                "name": "Verifikasi Pengendali",
+                "link": "#/daftarKartuPengendali"
+            },{
+                "name": "Verifikasi Direktur Terkait",
+                "link": "#/daftarKartuPengendaliDirektur"
+            },
+            {
+                "name": "Verifikasi Bagian Anggaran",
+                "link": "#/daftarKartuPengendaliAnggaran"
+            },
+            {
+                "name": "Verifikasi PPK",
+                "link": "#/daftarKartuPengendaliPPK"
+            },
+            {
+                "name": "Verifikasi ULP",
+                "link": "#/daftarKartuPengendaliULP"
+            },
+            {
+                "name": "Link Verifikasi Kartu Pengendali(General)",
+                "link": "#/VerifikasiKartuPengendali"
+            }
+        ]
+    }, 
+    {
+        "name": "Daftar Usulan Permintaan Barang/Jasa",
+        "link": "#/UsulanPermintaanBarangJasa"
+    },
+    {
+        "name": "Daftar Usulan Belanja",
+        "link": "#/DaftarPengajuanBelanja"
+    }, {
+        "name": "Evaluasi Penawaran Harga",
+        "link": "#/EvaluasiPenawaranHarga"
+    }, {
+        "name": "Jadwal Seleksi Prakualifikasi",
+        "link": "#/JadwalSeleksiPrakualifikasi"
+    }, {
+        "name": "Rekap Pemenang",
+        "link": "#/RekapPemenang"
+    }, {
+        "name": "Rekap Kontrak Pengadaan Barang",
+        "link": "#/RekapKontrakPengadaan"
+    }, {
+        "name": "Form Daftar SPPB",
+        "link": "#/DaftarSppb"
+    }, {
+        "name": "Form Pembuatan SPPB",
+        "link": "#/BuatSppb"
+    }, {
+        "name": "Terima Barang PPHP",
+        "link": "#/TerimaBarangPphp"
+    }, {
+        "name": "TOR",
+        "link": "#/TOR"
+    }]

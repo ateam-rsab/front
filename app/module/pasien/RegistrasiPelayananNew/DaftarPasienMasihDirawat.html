@@ -1,0 +1,134 @@
+<style>
+.k-grid .k-grid-header .k-header .k-link {
+    height: auto;
+}
+
+.k-grid .k-grid-header .k-header  {
+    white-space: normal;
+}
+.k-grid .k-grid-header .k-header  {
+    text-align: center;
+}
+</style>
+<div>
+    <div>
+        <div class="panel panel-default container_12">
+            <div class="panel-heading"><label class='title' c-label item="item" > Daftar Pasien Masih Dirawat</label></div>
+            <div class="panel-body">
+               <div class="grid_12">
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item">No Registrasi</label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noReg" />
+					</div>
+				</div>
+				<div class="grid_1">
+					<div class="grid_12">
+						<label c-label item="item" >No RM</label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noRm" />
+					</div>
+				</div>
+
+				<!-- Nama -->
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" >Nama Pasien</label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nama" />
+					</div>
+				</div>
+
+				<!-- Ruangan -->
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Ruangan"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaruangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+					</div>
+				</div>
+
+				<!-- Periode Pulang -->
+	<!-- 			<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" >Periode Registrasi</label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+					
+						<div class="grid_6 padDatePicker">
+							<input style="width: 100%" k-ng-model="item.periodeAwal" kendo-date-time-picker k-max="now" placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" />
+						</div>
+
+				
+						<div class="grid_6 padDatePicker">
+							<input style="width: 100%" k-ng-model="item.periodeAkhir"  kendo-date-time-picker k-max="now" placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'"/>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div> -->
+				<div class="grid_1">
+					<div class="grid_12">
+						<label>&nbsp;</label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<button class="c-button" style="margin-left: 0;margin-top: 6px" ng-click="SearchData()">Cari</button>
+					</div>
+				</div>
+
+				<!-- Button Clear -->
+				<div class="grid_1">
+					<div class="grid_12">
+						<label>&nbsp;</label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<button class="c-button" style="margin-left: 0;margin-top: 6px" ng-click="ClearSearch()">Clear</button>
+					</div>
+				</div>
+			</div>
+            </div>
+        </div>
+        <div class="grid_12">
+           <div id="kGrid" kendo-grid 
+				k-data-source="dataDaftarPasienPulang" 
+				k-selectable="'row'" 
+                        class="max-height"
+				k-columns="columnDaftarPasienPulang"
+				k-pageable="'true'"
+				k-sortable="'true'"
+				k-ng-model="dataPasienSelected"
+				ng-click="klikGrid(dataPasienSelected)">
+			</div>
+        </div>
+        <div ng-hide="isCalling" class="grid_12 place_button">
+            <div class="grid_3 pull-right bottom">
+                <c-button click='pindah' style="width: 100%; padding:0px;margin:0px;" class="success" item="item" position="'right'" is-validate click="Lanjutkan">
+                    <span class="title">Pindah atau Pulang</span>
+                </c-button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+.bottom {position:absolute; bottom:0; right:0}
+</style>
+  <div ng-include='"../app/module/Shared/TemplateLoading"'></div>

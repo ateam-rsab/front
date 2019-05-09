@@ -1,0 +1,69 @@
+
+ <style>
+    .red{
+        color:red;
+    }
+    .green {
+        color:green;
+    }
+       .blue {
+        color:blue;
+    }
+    </style>
+
+<div ng-controller="RadiologiPemeriksaanCtrl">
+<!--     <div ng-include='"../app/module/Shared/headerPasienPenunjang" '></div> -->
+    <div class="grid_12">
+       
+    
+        <div class="grid_12">
+                    <div data-kendo-grid="grid" k-ng-model="item" k-data-source="resultGrids2" k-selectable="'row'"   k-columns="ColumnResult2">
+                    </div>
+        </div>
+        <!-- 
+        <table class="table " ng-repeat="data in listOrders">
+            <tr class='success' ng-show="$index===0">
+                <th style="width:100px"><span c-translate>Nama Pemeriksan</span></th>
+                <th style="width:75px"><span c-translate>Hasil</span></th>
+                <th ng-show="cito===false || cito ===undefined" style="width:100px"><span c-translate>Nilai Normal</span></th>
+                <th ng-show="cito===true" style="width:200px"><span c-translate></span></th>
+                <th style="width:100px"><span c-translate>Satuan</span></th>
+                <th style="width:200px"><span c-translate>Keterangan</span></th>
+            </tr>
+            <tr>
+                <th colspan="5" style="text-align:left">{{data[0].jenisPeriksa}}</th>
+            </tr>
+            <tbody ng-repeat="subData in data">
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;{{subData.namaProduk}} </td>
+                    <td>
+                        {{subData.detail.hasil}}
+                        <i ng-click="showDetail(subData)" style="cursor:pointer;color: black;float: right;top: 0;position: absolute;right: 0;margin-top: 15px;margin-right: 10px;" class="fa fa-search-plus fa-2x" aria-hidden="true"></i>
+                    </td>
+                    <td ng-show="cito===false || cito ===undefined"> <pre>{{subData.nilaiNormal}}</pre></td>
+                    <td ng-show="cito===true ">
+                        <div class="grid_12" ng-show="subData.nilaiNormal===''">
+                            <div class="grid_6 choice-in-table" ng-repeat="data in choice" ng-click="subData.detail.hasil = (data)">
+                                <p ng-bind-html="data"></p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>{{subData.satuanStandar.satuanStandar}}</td>
+                    <td>{{subData.detail.comment}}</td>
+                </tr>
+                <tr ng-show='subData.isDetail ===true' ng-dblclick="subData.isDetail=false">
+                    <td colspan="10">
+                        <div style="border: 1px solid gray;padding: 5px;width:100px" ng-repeat="subDetailData in subData.details">
+                            <b style="display:block;text-align:center">{{subDetailData.tgl|date:'dd-MM-yy'}}</b> nilai : {{subDetailData.nilai}}
+                        </div>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+ -->
+    </div>
+ <!--    <div class="grid_11">
+        <label c-label item="item" c-label-text="Keterangan"></label> {{item.keteranganLainnya}}
+    </div> -->
+</div>

@@ -1,0 +1,240 @@
+<style>
+.keteranganFieldTambahan {
+    left: 5px !important;
+}
+hr {
+    margin: 0px !important; 
+}
+</style>
+<div ng-controller="SkriningKhususObstetrikGinekologiCtrl">
+    <!-- Obstetri dan Ginekologi -->
+    <div class="container_12">
+        <!-- Rawat Inap dan Rawat Jalan-->
+        <div class="grid_12">
+            <div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+                <span style="font-size: 18px; color: white; padding: 5px;">{{formMaster.nama}}</span>
+            </div>
+            <div class="container_12"> <!-- html form goes here -->
+                <!-- kawin -->
+                <div class="grid_12" style="padding: 5pt 10pt">
+                    <div ng-repeat="list in kawin.detail | orderBy:'id'" ng-init="listIndex = $index">
+                        <div ng-if="list.detail === undefined">
+                            <div class="grid_4">
+                                <div class="grid_4">
+                                    <label for="{{'formMaster' + list.nama}}"><b>{{list.nama}}</b></label>
+                                </div>
+                                <div class="grid_2">
+                                    <input kendo-numeric-text-box k-min="0" k-ng-model="list.value" style="width:100%" k-options="numberPicker"/>
+                                </div>
+                                <div class="grid_4 parentKeteranganFieldTambahan">
+                                    <label c-label item="item " class="keteranganFieldTambahan">{{list.descNilai}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="list.detail !== undefined">
+                            <div class="grid_4">
+                                <div class="grid_4">
+                                    <label for="{{'formMaster' + list.nama}}"><b>{{list.nama}}</b></label>
+                                </div>
+                                <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                                    <div class="grid_2">
+                                        <input type="radio" ng-model="list.value" ng-value="opsi.id" ng-click="radioKlik(list, opsi)">
+                                        <label for="{{'list' + opsi.nama}}">{{opsi.nama}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <!-- riwayat kehamilan sekarang -->
+                <div class="grid_12" style="padding: 5pt 10pt">
+                    <span style="font-size: 14px;">{{kehamilanSkrng.nama}}</span>
+                    <div class="grid_12"ng-repeat="list in kehamilanSkrng.detail | orderBy:'id'" ng-init="listIndex = $index">
+                        <div ng-if="list.detail !== undefined">
+                            <div class="grid_2">
+                                <label for="{{'formMaster' + list.nama}}"><b>{{list.nama}}</b></label>
+                            </div>
+                            <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                                <div class="grid_2">
+                                    <input type="radio" ng-model="list.value" ng-value="opsi.id" ng-click="radioKlik(list, opsi)">
+                                    <label for="{{'list' + opsi.nama}}">{{opsi.nama}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="list.detail === undefined">
+                            <div class="grid_2">
+                                <label for="{{'formMaster' + list.nama}}"><b>{{list.nama}}</b></label>
+                            </div>
+                            <div class="grid_4">
+                                <textarea c-text-area type="input" filter="'string'" class="k-textbox" ng-model="list.value"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <!-- ginekologi -->
+                <div class="grid_12" style="padding: 5pt 10pt">
+                    <span style="font-size: 14px;">{{ginekologi.nama}}</span>
+                    <div class="grid_12"ng-repeat="list in ginekologi.detail | orderBy:'id'" ng-init="listIndex = $index">
+                        <div class="grid_2">
+                            <label for="{{'formMaster' + list.nama}}"><b>{{list.nama}}</b></label>
+                        </div>
+                        <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                            <div ng-switch on="opsi.id">
+                                <div ng-switch-when="633">
+                                    <div class="grid_1">
+                                        <label for="{{'list' + opsi.nama}}">{{opsi.nama}}</label>
+                                    </div>
+                                    <div class="grid_1">
+                                        <input kendo-numeric-text-box k-min="0" k-ng-model="opsi.value" style="width:100%" k-options="numberPicker"/>
+                                    </div>
+                                    <div class="grid_1 parentKeteranganFieldTambahan">
+                                        <label c-label item="item " class="keteranganFieldTambahan">{{opsi.descNilai}}</label>
+                                    </div>
+                                </div>
+                                <div ng-switch-default>
+                                    <div class="grid_2">
+                                        <input type="radio" ng-model="list.value" ng-value="opsi.id" ng-click="radioKlik(list, opsi)">
+                                        <label for="{{'list' + opsi.nama}}">{{opsi.nama}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <!-- golongan darah -->
+                <div class="grid_12" style="padding: 5pt 10pt">
+                    <div class="grid_12">
+                        <label><b>{{golDarah.nama}}</b></label>
+                    </div>
+                    <div ng-repeat="list in golDarah.detail | orderBy:'id'" ng-init="listIndex = $index">
+                        <div class="grid_12">
+                            <div class="grid_4">
+                                <div class="grid_2">
+                                    <label for="{{'formMaster' + list.nama}}">{{list.nama}}</label>
+                                </div>
+                                <div class="grid_2">
+                                    <input type="text" c-text-box ng-model="list.value" placeholder"{{list.value}}"/>
+                                </div>
+                                <div ng-repeat="detil in list.detail">
+                                    <div class="grid_1">&nbsp;</div>
+                                    <div class="grid_2">
+                                        <label for="{{'list' + detil.nama}}">{{detil.nama}}</label>
+                                    </div>
+                                    <div class="grid_4">
+                                        <input type="text" c-text-box ng-model="detil.value" placeholder"{{detil.value}}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- penyakit lain -->
+                <div class="grid_12" style="padding: 5pt 10pt">
+                    <div class="grid_2">
+                        <label><b>{{pLain.nama}}</b></label>
+                    </div>
+                    <div ng-repeat="list in pLain.detail | orderBy:'id'">
+                        <div class="grid_2">
+                            <input type="checkbox" ng-change="checkboxCLick(bool, list)" ng-model="bool" ng-checked="isChecked(list.id)">
+                            <label for="{{'formMaster' + list.nama}}">{{list.nama}}</label>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            
+            <!--<div class="container_12">
+                <div class="grid_12" ng-repeat="list in formMaster.detail | orderBy:'id'" ng-init="listIndex = $index" style="padding: 5pt 10pt">
+                    <div class="grid_12">
+                        <label for="{{'formMaster' + list.nama}}"><b>{{list.nama}}</b></label>
+                    </div>
+                    <div class="grid_12">
+                        <div ng-repeat="parameter in list.detail | orderBy:'id'">
+                            <div class="grid_3" ng-if="parameter.detail === undefined">
+                                <div class="grid_6">
+                                    <label for="{{'list' + parameter.nama}}"><b>{{parameter.nama}}</b></label>
+                                </div>
+                                <div class="grid_4">
+                                    <input kendo-numeric-text-box k-min="0" k-ng-model="parameter.value" style="width:100%"/>
+                                </div>
+                            </div>
+                            <div ng-if="parameter.detail !== undefined">
+                                <div class="grid_12">
+                                    <label for="{{'list' + parameter.nama}}"><b>{{parameter.nama}}</b></label>
+                                </div>
+                                <div ng-repeat="opsi in parameter.detail">
+                                    <div ng-if="opsi.detail === undefined">
+                                        <div class="grid_12">
+                                            <div class="grid_2">
+                                                <label for="{{'opsi' + opsi.nama}}">{{opsi.nama}}</label>
+                                                <input kendo-numeric-text-box k-min="0" k-ng-model="opsi.value" style="width:100%"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-if="opsi.detail !== undefined">
+                                        <div class="grid_4">
+                                            <label for="{{'list' + opsi.nama}}"><b>{{opsi.nama}}</b></label>
+                                        </div>
+                                        <div ng-repeat="childOpsi in opsi.detail | orderBy:'id'">
+                                            <div class="grid_2">
+                                                <input type="radio" ng-model="opsi.value" ng-value="childOpsi.id" ng-click="radioKlik(opsi, childOpsi)">
+                                                <label for="{{'opsi' + childOpsi.nama}}">{{childOpsi.nama}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>-->
+        </div>
+
+        <!-- Rawat Inap -->
+        <div class="grid_12" ng-hide="isRawatJalan && isDewasa">
+            <div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+                <span style="font-size: 18px; color: white; padding: 5px;">{{rawatInapCoy.nama}}</span>
+            </div>
+            <div class="container_12"> <!-- html form goes here -->
+                <div class="grid_12" style="padding: 5pt 10pt">
+                    <div ng-repeat="list in rawatInapCoy.detail | orderBy:'id'" ng-init="listIndex = $index">
+                        <div ng-switch on="list.id">
+                            <div ng-switch-when="657">
+                                <div class="grid_12">
+                                    <div class="grid_2">
+                                        <label for="{{'formMaster' + list.nama}}"><b>{{list.nama}}</b></label>
+                                    </div>
+                                    <div class="grid_2">
+                                        <input kendo-numeric-text-box k-min="0" k-ng-model="list.value" style="width:100%"/>
+                                    </div>
+                                    <div class="grid_4 parentKeteranganFieldTambahan">
+                                        <label c-label item="item " class="keteranganFieldTambahan">{{list.descNilai}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-switch-default>
+                            <div class="grid_12">
+                                <div class="grid_2">
+                                    <label for="{{'formMaster' + list.nama}}"><b>{{list.nama}}</b></label>
+                                </div>
+                                <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                                    <div class="grid_2">
+                                        <input type="radio" ng-model="list.value" ng-value="opsi.id" ng-click="radioKlik(list, opsi)">
+                                        <label for="{{'list' + opsi.nama}}">{{opsi.nama}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+</div>
+                  	

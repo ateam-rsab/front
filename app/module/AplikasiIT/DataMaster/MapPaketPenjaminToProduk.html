@@ -1,0 +1,182 @@
+<div ng-controller="MapPaketPenjaminToProdukCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Map Paket Penjamin To Produk'" disabled>
+
+		<!-- kdGolonganAsuransi -->
+		<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kdGolonganAsuransi"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.kdGolonganAsuransi" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listGolonganAsuransi" />
+				</div>
+			</div>
+
+			<!-- golonganAsuransiId -->
+
+
+			<!-- hubunganPeserta -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="hubunganPeserta"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.hubunganPeserta" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listHubunganPeserta" />
+				</div>
+			</div>
+		</div>
+
+		<!-- hubunganPesertaId -->
+
+
+		<!-- kelompokPasien -->
+		<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kelompokPasien"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.kelompokPasien" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKelompokPasien" />
+				</div>
+			</div>
+
+			<!-- kelompokPasienId -->
+
+
+			<!-- paket -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="paket"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.paket" k-data-text-field="'namaPaket'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPaket" />
+				</div>
+			</div>
+		</div>
+
+		<!-- paketId -->
+
+
+		<!-- kdPenjaminPasien -->
+		<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kdPenjaminPasien"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kdPenjaminPasien" />
+				</div>
+			</div>
+
+			<!-- produk -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="produk"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.produk" k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listProduk" />
+				</div>
+			</div>
+		</div>
+
+		<!-- produkId -->
+
+
+		<!-- qtyMaxProduk -->
+		<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="qtyMaxProduk"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.qtyMaxProduk" />
+				</div>
+			</div>
+
+			<!-- reportDisplay -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="reportDisplay"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+				</div>
+			</div>
+		</div>
+
+		<!-- kodeExternal -->
+		<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kodeExternal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+				</div>
+			</div>
+
+			<!-- namaExternal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="namaExternal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+				</div>
+			</div>
+		</div>
+
+		<!-- MapPaketPenjaminToProduk -->
+		<div class="grid_12">
+			<div class="grid_12 headerBox">
+				<p>MapPaketPenjaminToProduk</p>
+			</div>
+			<div class="clear"></div>
+
+			<!-- grid table -->
+			<div class="grid_12 borderBox">
+				<kendo-grid options="mainGridOptions"  k-data-source="dataSource" k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+
+
+
+	</c-panel>
+
+	<div class="grid_12">
+		<div class="grid_8"></div>
+		<div class="grid_2" ng-show="showEdit">
+			<button class="c-button" ng-click="edit()">Edit</button>
+		</div>
+		<div class="grid_2" ng-hide="showEdit">
+			<button class="c-button" ng-click="tambah()">Tambah</button>
+		</div>
+		<div class="grid_2">
+			<button class="c-button" ng-click="batal()">Batal</button>
+		</div>
+	</div>
+</div>
+</div>

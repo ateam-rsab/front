@@ -1,0 +1,303 @@
+<div ng-controller="HargaPaketPenjaminLuarPaketCtrl">
+<div ng-show="dataVOloaded">
+<c-panel item="item" header="'Harga Paket Penjamin Luar Paket'" disabled>
+
+<!-- factorRate -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="factorRate"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.factorRate" />
+</div>
+</div>
+
+<!-- hargaSatuan -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="hargaSatuan"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.hargaSatuan" />
+</div>
+</div>
+
+<!-- isPaketByProduk -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="isPaketByProduk"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.isPaketByProduk" />
+</div>
+</div>
+
+<!-- kdGolonganAsuransi -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kdGolonganAsuransi"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.kdGolonganAsuransi" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listkdgolonganasuransi" />
+</div>
+</div>
+
+<!-- golonganAsuransiId -->
+
+
+<!-- hubunganPeserta -->
+<div class="grid_12">
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="hubunganPeserta"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.hubunganPeserta" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listhubunganpeserta" />
+</div>
+</div>
+
+<!-- hubunganPesertaId -->
+
+
+<!-- kelas -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kelas"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.kelas" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listkelas" />
+</div>
+</div>
+</div>
+
+<!-- kelasId -->
+
+
+<!-- kelompokPasien -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kelompokPasien"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.kelompokPasien" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listkelompokpasien" />
+</div>
+</div>
+
+<!-- kelompokPasienId -->
+
+
+<!-- paket -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="paket"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.paket" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listpaket" />
+</div>
+</div>
+
+<!-- paketId -->
+
+
+<!-- kdPenjaminPasien -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kdPenjaminPasien"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kdPenjaminPasien" />
+</div>
+</div>
+
+<!-- produk -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="produk"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.produk" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listproduk" />
+</div>
+</div>
+
+<!-- produkId -->
+
+
+<!-- maxTPenjamin -->
+<div class="grid_12">
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="maxTPenjamin"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.maxTPenjamin" />
+</div>
+</div>
+
+<!-- persenHargaSatuan -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="persenHargaSatuan"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.persenHargaSatuan" />
+</div>
+</div>
+</div>
+
+<!-- persenTPenjamindrSelisih -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="persenTPenjamindrSelisih"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.persenTPenjamindrSelisih" />
+</div>
+</div>
+
+<!-- persenTProfiledrSelisih -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="persenTProfiledrSelisih"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.persenTProfiledrSelisih" />
+</div>
+</div>
+
+<!-- qtyMaxProduk -->
+<div class="grid_12">
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="qtyMaxProduk"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.qtyMaxProduk" />
+</div>
+</div>
+
+<!-- tglBerlakuAkhir -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="tglBerlakuAkhir"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%" k-ng-model="item.tglBerlakuAkhir"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+</div>
+</div>
+</div>
+
+<!-- tglBerlakuAwal -->
+<div class="grid_12">
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="tglBerlakuAwal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%" k-ng-model="item.tglBerlakuAwal"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+</div>
+</div>
+
+<!-- reportDisplay -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="reportDisplay"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+</div>
+</div>
+</div>
+
+<!-- kodeExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kodeExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+</div>
+</div>
+
+<!-- namaExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="namaExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+</div>
+</div>
+
+<!-- HargaPaketPenjaminLuarPaket -->
+<div class="grid_12">
+<div class="grid_12 headerBox">
+<p>HargaPaketPenjaminLuarPaket</p>
+</div>
+<div class="clear"></div>
+
+<!-- grid table -->
+<div class="grid_12 borderBox">
+					<kendo-grid options="mainGridOptions"  k-data-source="dataSource" k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+				</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+				<div class="grid_8"></div>
+				<div class="grid_2" ng-show="showEdit">
+					<button class="c-button" ng-click="edit()">Edit</button>
+				</div>
+				<div class="grid_2" ng-hide="showEdit">
+					<button class="c-button" ng-click="tambah()">Tambah</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="batal()">Batal</button>
+				</div>
+			</div>
+
+</c-panel>
+
+
+</div>
+</div>

@@ -1,0 +1,41 @@
+{
+	"model":{
+	    "TekananDarah" : "",
+	    "Nadi" : "",
+		"Pernafasan" : "",
+	    "Suhu" : "",
+	    "KesadaranTerganggu": "Tidak"
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "TekananDarah",
+			"messagesRequired" : "Tekanan Darah Harus Diisi",
+			"caption" : "Tekanan Darah"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Nadi",
+			"messagesRequired" : "Nadi Harus Diisi",
+			"caption" : "Nadi"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Pernafasan",
+			"messagesRequired" : "Pernafasan Harus Diisi",
+			"caption" : "Pernafasan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Suhu",
+			"messagesRequired" : "Suhu Harus Diisi",
+			"caption" : "Suhu"
+		},
+		{
+			"isNull" : "true",
+			"name" : "KesadaranTerganggu",
+			"messagesRequired" : "Kesadaran Terganggu Harus Diisi",
+			"caption" : "Kesadaran Terganggu"
+		}
+  ]
+}

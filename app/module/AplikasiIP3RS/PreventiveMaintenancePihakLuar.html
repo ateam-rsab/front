@@ -1,0 +1,216 @@
+<div ng-controller="PreventiveMaintenancePihakLuarCtrl">
+
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Preventive Maintenance Pihak Luar'">
+            <div class="grid_12">
+                <div class="grid_6">
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin-top:10px">
+                            <label c-label item="item" c-label-text="namaAlat"></label>
+                        </div>
+                        <div class="grid_8">
+                            <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaProduk" disabled />
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin-top:10px">
+                            <label c-label item="item" c-label-text="merk"></label>
+                        </div>
+                        <div class="grid_8">
+                            <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.merkProduk" disabled="true" />
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_1"></div>
+                <div class="grid_5">
+
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin-top:10px">
+                            <label c-label item="item" c-label-text="tipe"></label>
+                        </div>
+                        <div class="grid_8">
+                            <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.typeProduk" disabled="true" />
+                        </div>
+
+                    </div>
+                    <div class="grid_4" style="margin-top:10px">
+                        <label c-label item="item" c-label-text="noSeri"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.noSeri" disabled="true" />
+                    </div>
+                    <div class="grid_4" style="margin-top:10px">
+                        <label c-label item="item" c-label-text="jadwal"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jadwalPemeliharaan" disabled="true" />
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_7">
+                    <div class="panel panel-default container_12">
+                        <div class="panel-heading" c-translate>Parameter</div>
+                        <div class="panel-body">
+                            <div class="grid_4">
+                            </div>
+                            <div class="grid_8">
+                                <div class="grid_4">
+                                   <label c-label item="item" c-label-text="Kebutuhan alat"></label>
+                               </div>
+                               <div class="grid_2">
+                                   <label c-label item="item" c-label-text="satuan"></label>
+                               </div>
+                               <div class="grid_4">
+                                   <label c-label item="item" c-label-text="Terukur"></label>
+                               </div>
+                               <div class="grid_2">
+                                   <label c-label item="item" c-label-text="satuan"></label>
+                               </div>
+                           </div>
+                           <div class="grid_4" style="margin-top: 10px">
+                            <div class="grid_10">
+                                <label c-label item="item" c-label-text="catuTegangan"></label>
+                            </div>
+                            <div class="grid_2">
+                                <label c-label item="item" c-label-text=":"></label>
+                            </div>
+                        </div>
+                        <div class="grid_8">
+                            <div class="grid_4">
+                               <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.kebutuhanAlat.catuTegangan"/>
+                           </div>
+                           <div class="grid_2" style="margin-top: 10px; text-align: center;">
+                               <label c-label item="item" c-label-text="V"></label>
+                           </div>
+                           <div class="grid_4">
+                               <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.Terukur.catuTegangan"/>
+                           </div>
+                           <div class="grid_2" style="margin-top: 10px; text-align: center;">
+                               <label c-label item="item" c-label-text="V"></label>
+                           </div>
+                       </div>
+                       <div class="grid_4" style="margin-top: 10px">
+                        <div class="grid_10">
+                            <label c-label item="item" c-label-text="temperaturRuangan"></label>
+                        </div>
+                        <div class="grid_2">
+                            <label c-label item="item" c-label-text=":"></label>
+                        </div>
+                    </div>
+                    <div class="grid_8">
+                        <div class="grid_4">
+                           <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.kebutuhanAlat.temperaturRuang"/>
+                       </div>
+                       <div class="grid_2" style="margin-top: 10px; text-align: center;">
+                           <label c-label item="item" c-label-text="C"></label>
+                       </div>
+                       <div class="grid_4">
+                           <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.Terukur.temperaturRuang"/>
+                       </div>
+                       <div class="grid_2" style="margin-top: 10px; text-align: center;">
+                           <label c-label item="item" c-label-text="C"></label>
+                       </div>
+                   </div>
+                   <div class="grid_4" style="margin-top: 10px">
+                    <div class="grid_10">
+                        <label c-label item="item" c-label-text="kelembapanRuangan"></label>
+                    </div>
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text=":"></label>
+                    </div>
+                </div>
+                <div class="grid_8">
+                    <div class="grid_4">
+                       <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.kebutuhanAlat.kelembapanRuang"/>
+                   </div>
+                   <div class="grid_2" style="margin-top: 10px; text-align: center;">
+                       <label c-label item="item" c-label-text="%"></label>
+                   </div>
+                   <div class="grid_4">
+                       <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.Terukur.kelembapanRuang"/>
+                   </div>
+                   <div class="grid_2" style="margin-top: 10px; text-align: center;">
+                       <label c-label item="item" c-label-text="%"></label>
+                   </div>
+               </div>
+           </div>
+       </div>
+
+   </div>
+   <div class="grid_5" style="margin-top: 60px">
+    <div class="grid_12">
+        <div class="grid_4" style="margin-top:10px">
+            <label c-label item="item" c-label-text="namaTeknisiPendamping"></label>
+        </div>
+        <div class="grid_8">
+            <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.teknisiPendampingGrid" disabled />
+        </div>
+    </div>
+    <div class="grid_12">
+        <div class="grid_4" style="margin-top:10px">
+            <label c-label item="item" c-label-text="catatan"></label>
+        </div>
+        <div class="grid_8">
+            <textarea style="height: 60px" id="text_area" c-text-box type="input" class="k-textbox" ng-model="item.catatan" />
+        </div>
+    </div>
+    <div class="grid_12">
+        <div class="grid_4" style="margin-top:10px">
+            <label c-label item="item" c-label-text="namaTeknisi"></label>
+        </div>
+        <div class="grid_8">
+            <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaTeknisi" />
+        </div>
+    </div>
+    <!-- <div class="grid_12">
+        <div class="grid_4" style="margin-top:10px">
+            <label c-label item="item" c-label-text="namaPt"></label>
+        </div>
+        <div class="grid_8">
+            <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaPT" k-data-text-field="'namaRekanan'" k-data-value-field="'idRekanan'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRekanan" />
+        </div>
+    </div> -->
+    <div class="grid_12">
+        <div class="grid_4" style="margin-top:10px">
+            <label c-label item="item" style="margin-top: 10px">Nama PT</label>
+        </div>
+        <div class="grid_8">
+           <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.textNamaPT" disabled />
+        </div>
+    </div>
+</div>
+</div>
+
+
+<div class="grid_12">
+    <kendo-grid options="mainGridOptions" k-scrollable = "false" k-data-source="dataSource"></kendo-grid>
+                <!-- <div kendo-grid k-data-source="daftarPemeriksaan" k-selectable="'row'" k-columns="columndaftarPemeriksaan" editable="true">
+            </div> -->
+        </div>
+        <div class="grid_12" style="margin-top:20px">
+
+            <div class="grid_1" style="margin-top: 10px">
+                <label c-label item="item" c-label-text="namaUser"></label> 
+            </div>
+            <div class="grid_3">
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaUser" k-data-text-field="'namaPegawai'" k-data-value-field="'pegawaiId'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" />
+            </div>
+            <div class="grid_2" style="margin-top: 6px">
+                <button class="c-button" ng-click="asdasd()">Verifikasi</button>
+            </div>
+            <div class="grid_3" style="margin-top: 6px">
+                <button class="c-button" ng-click="batal()">Batal</button>
+            </div>
+            <div class="grid_3" style="margin-top: 6px" ng-disabled="disSimpan">
+                <button class="c-button" ng-click="simpan()" ng-disabled="disSimpan">Simpan</button>
+            </div>
+        </div>
+    </c-panel>
+</div>
+</div>
+<style>
+    button[disabled] {
+        background-color: gray;
+    }
+</style>

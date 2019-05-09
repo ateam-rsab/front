@@ -1,0 +1,41 @@
+<div ng-show="dataVOloaded">
+	<c-panel item="item" header="'Detail Spare Part'">
+		<div class="grid_6">
+			<div class="grid_4">
+				<label c-label item="item" style="margin-top: 10px">No Order</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noOrder" disabled="true" />
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" style="margin-top: 10px">Nama Barang</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.NamaBarang" disabled="true"/>
+			</div>
+		</div>
+		<div class="grid_6">
+			<div class="grid_4">
+				<label c-label item="item" style="margin-top: 10px">Satuan</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.satuan" disabled="true" />
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" style="margin-top: 10px">QTY</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.qty" disabled="true"/>
+			</div>
+		</div>
+		<div class="grid_12">
+			<kendo-grid options="mainGridOptions" k-scrollable="false" k-data-source="dataSource" k-selectable="'row'" k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+		</div>
+		<div class="grid_10">
+			
+		</div>
+		<div class="grid_2">
+			<button class="c-button" ng-click="kembali()">Kembali</button>
+		</div>
+	</c-panel>
+</div>

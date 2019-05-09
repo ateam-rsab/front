@@ -1,0 +1,156 @@
+<div ng-controller="PegawaiSKPajakCtrl">
+	<div ng-show="dataVOloaded">
+		<!-- <c-panel item="item" header="'Harga Netto Produk By Kelas'" disabled> -->
+		<div class="grid_12 headerBox">
+			<h1 style="color: white;"><b>Pegawai SK Pajak</b></h1>
+		</div>
+
+		<div class="grid_12">
+
+			<div class="grid_1">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="No SK"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noSK"/>
+				</div>
+			</div>
+			<div class="grid_4">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Golongan Pegawai"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.golPegawai" k-data-text-field="'golonganPegawai'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listgolPegawai" />
+				</div>
+			</div>
+
+			<div class="grid_4">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Objek Pajak"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.ObjekPajak" k-data-text-field="'objekPajak'" k-data-value-field="'idObjekPajak'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListDataobjekpajak" />
+				</div>
+			</div>
+			<div class="grid_3">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Range"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.Range" k-data-text-field="'namaRange'" k-data-value-field="'idRange'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListDatarange"/>
+				</div>
+			</div>
+		</div>
+
+		<div class="grid_12">
+			<div class="grid_2">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Persen Harga Satuan"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="number" filter="numeric" class="k-textbox" ng-model="item.PersenHargaSatuan"/>
+				</div>
+			</div>
+
+			<div class="grid_3">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Harga Satuan"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="number" filter="numeric" class="k-textbox" ng-model="item.HargaSatuan"/>
+				</div>
+			</div>
+			<div class="grid_3">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Factor Rate"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="number" filter="numeric" class="k-textbox" ng-model="item.FactorRate"/>
+				</div>
+			</div>
+			<div class="grid_4">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Operator Factor Rate"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.OperatorFactorRate" />
+				</div>
+			</div>
+		</div>
+
+        <div class="grid_12">
+			<div class="grid_2">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Rumus Perhitungan"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.RumusPerhitungan" />
+				</div>
+			</div>
+			<div class="grid_4">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Keterangan Lainnya"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.KeternganLainnya" />
+				</div>
+			</div>
+		</div>
+
+		
+			<div class="grid_12">
+			
+				<div class="grid_12 borderBox">
+					<div id="kGrid" kendo-grid 
+					k-data-source="dataSource" 
+					k-selectable="'row'" 
+					k-columns="columnKomponen"
+					k-pageable="'true'"
+					k-sortable="'true'"
+					k-ng-model="dataSelectedKomponen" 
+					ng-click="klik(dataSelectedKomponen)">
+					
+				</div>
+			</div>
+		</div>
+		<div class="grid_12">
+
+			<div class="grid_8">
+			</div>
+			<div class="grid_2" ng-hide="showEdit">
+				<button class="c-button" ng-click="Save()">Simpan</button>
+			</div>
+			<div class="grid_2" ng-show="showEdit">
+				<button class="c-button" ng-click="edit()">Edit</button>
+			</div>
+			<div class="grid_2" >
+				<button class="c-button" ng-click="batal()">Batal</button>
+			</div>
+			<div class="clear"></div>
+		</div>
+
+
+<!-- 
+</c-panel> -->
+</div>
+</div>

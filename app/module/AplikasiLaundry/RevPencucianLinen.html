@@ -1,0 +1,249 @@
+<style>
+
+	.dropdown-header {
+border-width: 0 0 1px 0;
+text-transform: uppercase;
+}
+.dropdown-header > span {
+display: inline-block;
+padding: 10px;
+}
+
+.dropdown-header > span:first-child {
+width: 50px;
+}
+
+.k-list-container > .k-footer {
+padding: 10px;
+}
+
+#customers-list .k-item {
+line-height: 1em;
+min-width: 300px;
+}
+
+.vl {
+border-left: 3px solid #10c4b2;
+height: 250px;
+}
+
+.style-four {
+height: 5px;
+border: 0;
+box-shadow: inset 0 14px 12px -12px rgba(0, 0, 0, 0.5);
+}
+
+.md-tooltip {
+height: 55px !important;
+background-color: #363940 !important;
+color: white !important;
+border-radius: 5px;
+}
+
+</style>
+<div ng-controller="RevPencucianLinenCtrl">
+	<div class="panel panel-default container_12">
+		<div class="panel-heading" align="center" c-translate>Pencucian Linen</div>
+		<div class="panel-body">
+			<div class="grid_12">
+				<div class="grid_1"></div>
+				<div class="grid_5">
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top: 10px">
+							<div class="grid_10">
+								<label c-label item="item" c-label-text="Tanggal Mulai Cuci"></label>
+							</div>
+							<div class="grid_2" align="right">
+								<label c-label item="item" c-label-text=":"></label>
+							</div>
+						</div>
+						<div class="grid_6">
+							<input style="width: 100%" kendo-date-picker k-ng-model="item.tglPencucian" placeholer="DD-MM-YYYY" k-format="'dd-MM-yyyy'"
+							 k-on-change="SetTotalJam()" />
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top: 10px">
+							<div class="grid_10">
+								<label c-label item="item" c-label-text="Tanggal Selesai Cuci"></label>
+							</div>
+							<div class="grid_2" align="right">
+								<label c-label item="item" c-label-text=":"></label>
+							</div>
+						</div>
+						<div class="grid_6">
+							<input style="width: 100%" kendo-date-picker k-ng-model="item.tglSelesaiPencucian" placeholer="DD-MM-YYYY"
+							 k-format="'dd-MM-yyyy'" k-on-change="SetTotalJam()" />
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top: 10px">
+							<div class="grid_10">
+								<label c-label item="item" c-label-text="Jam Awal s/d Akhir"></label>
+							</div>
+							<div class="grid_2" align="right">
+								<label c-label item="item" c-label-text=":"></label>
+							</div>
+						</div>
+						<div class="grid_6">
+							<div class="grid_6">
+								<md-tooltip md-direction='bottom' ng-show="tooltipDay">Tanggal Mulai Cuci dan Tanggal Selesai Cuci <br> Harus
+									dipilih terlebih dahulu!</md-tooltip>
+								<input style="width: 100%" kendo-time-picker k-ng-model="item.jamAwal" placeholer="HH:mm" k-format="'HH:mm'"
+								 k-on-change="SetTotalJam()" />
+							</div>
+							<div class="grid_6">
+								<md-tooltip md-direction='bottom' ng-show="tooltipDay">Tanggal Mulai Cuci dan Tanggal Selesai Cuci <br> Harus
+									dipilih terlebih dahulu!</md-tooltip>
+								<input style="width: 100%" kendo-time-picker k-ng-model="item.jamAkhir" placeholer="HH:mm" k-format="'HH:mm'"
+								 k-on-change="SetTotalJam()" />
+							</div>
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top: 10px">
+							<div class="grid_10">
+								<label c-label item="item" c-label-text="Total Waktu Cuci"></label>
+							</div>
+							<div class="grid_2" align="right">
+								<label c-label item="item" c-label-text=":"></label>
+							</div>
+						</div>
+						<div class="grid_6">
+							<!-- <input style="width: 100%" kendo-date-picker  k-ng-model="item.TotalJam" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy hh:mm:ss'" ng-disabled ="true" /> -->
+							<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.TotalJam" disabled="true" />
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top: 10px">
+							<div class="grid_10">
+								<label c-label item="item" c-label-text="Operator/Petugas"></label>
+							</div>
+							<div class="grid_2" align="right">
+								<label c-label item="item" c-label-text=":"></label>
+							</div>
+						</div>
+						<div class="grid_6">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.petugas" k-data-text-field="'namaLengkap'"
+							 k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="dataMasterPetugas" />
+						</div>
+					</div>
+				</div>
+				<div class="grid_1">
+					<div class="vl"></div>
+				</div>
+				<div class="grid_4">
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top: 10px">
+							<div class="grid_10">
+								<label c-label item="item" c-label-text="jenisLinen"></label>
+							</div>
+							<div class="grid_2" align="right">
+								<label c-label item="item" c-label-text=":"></label>
+							</div>
+						</div>
+						<div class="grid_6">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisLinen" k-data-text-field="'jenisLinen'"
+							 k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceJenislinen"
+							 k-on-change="OnChangeJenisLinen(item.jenisLinen)" />
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top: 10px">
+							<div class="grid_10">
+								<label c-label item="item" c-label-text="mesin"></label>
+							</div>
+							<div class="grid_2" align="right">
+								<label c-label item="item" c-label-text=":"></label>
+							</div>
+						</div>
+						<div class="grid_6">
+							<md-tooltip md-direction='right' ng-show="tooltip">Jenis Linen <br> Harus dipilih Terlebih dahulu !</md-tooltip>
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.mesin" k-data-text-field="'namaAlat'"
+							 k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceMasterMesin"
+							 k-on-change="OnChangeMesin(item.mesin)" />
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top: 10px">
+							<div class="grid_10">
+								<label c-label item="item" c-label-text="kapasitas"></label>
+							</div>
+							<div class="grid_2" align="right">
+								<label c-label item="item" c-label-text=":"></label>
+							</div>
+						</div>
+						<div class="grid_6">
+							<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.kapasitas" disabled="true" />
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top: 10px">
+							<div class="grid_10">
+								<label c-label item="item" c-label-text="Satuan"></label>
+							</div>
+							<div class="grid_2" align="right">
+								<label c-label item="item" c-label-text=":"></label>
+							</div>
+						</div>
+						<div class="grid_6">
+							<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.satuan" disabled="true" />
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top: 10px">
+							<div class="grid_10">
+								<label c-label item="item" c-label-text="beratLinen"></label>
+							</div>
+							<div class="grid_2" align="right">
+								<label c-label item="item" c-label-text=":"></label>
+							</div>
+						</div>
+						<div class="grid_6">
+							<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.bobots" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<hr class="style-four">
+			<div class="grid_12" style="margin-top: 10px">
+				<div class="grid_1"></div>
+				<div class="grid_10">
+					<div class="panel panel-default container_12">
+						<div class="panel-heading" align="center" c-translate>Bahan Baku Pencucian {{item.jenisLinen.jenisLinen }} Pada
+							Mesin {{ item.mesin.namaAlat}}</div>
+						<div class="panel-body">
+							<div class="grid_12" style="margin-top: 10px">
+								<div kendo-grid id="grid" options="mainGridOptions" k-data-source="DaftarPencucianLinen" k-selectable="'row'"
+								 k-columns="columndataBahan"></div>
+							</div>
+							<script type="text/x-kendo-template" id="todo-template">
+			            <label>Product Name <input k-on-change="dataItem.dirty=true" kendo-dropdownlist k-data-source="productNames" data-bind="value: ProductName" /><label>
+			            <br />
+			            <label>Unit Price <input k-on-change="dataItem.dirty=true" kendo-numeric-text-box data-bind="value: UnitPrice" /></label>
+			            <br />
+			            <label my-directive>Discontinued <input type="checkbox" ng-change="dataItem.dirty=true" ng-model="dataItem.Discontinued" /></label>
+			        </script>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="grid_12" style="margin-top: 10px">
+				<div class="grid_7"></div>
+				<div class="grid_2">
+					<button class="c-button success" ng-disabled="disabledSave" ng-click="Save()">Simpan</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button cancel" ng-click="daftar()">Daftar Proses Pencucian</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="grid_12" style="margin-top:60px">
+	<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+</div>

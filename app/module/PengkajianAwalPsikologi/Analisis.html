@@ -1,0 +1,38 @@
+<div ng-controller="AnalisisCtrl">
+
+    <div ng-show="dataVOloaded">
+
+        <c-panel item="item" header="title">
+            <div class="panel panel-default container_12">
+                <div class="panel-heading" c-translate>{{title}}</div>
+                <div class="panel-body">
+
+                    <div class="grid_12">
+                        <div class="grid_12">
+                            <textarea c-text-area type="input" style="height: 100px; margin-bottom:10px;" filter="'string'" class="k-textbox" ng-model="item.analisis" placeholder="Keterangan" />
+                        </div>
+                        <div class="clear"></div>
+
+                        <div class="container_12">
+                            <div class="grid_6"></div>
+                            <div class="grid_6" style="text-align: right">
+                                <div class="grid_4"></div>
+                                <div class="grid_4">
+                                    <c-button ng-show="!isLoading" style="width: 100%" item="item" is-validate click="Back">
+                                        <span>Sebelumnya</span>
+                                    </c-button>
+                                </div>
+                                <div class="grid_4">
+                                    <c-button ng-show="!isLoading" style="width: 100%" item="item" is-validate click="Selanjutnya">
+                                        <span>Selanjutnya >></span>
+                                    </c-button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" ' style="margin-bottom:10px"></div>-->
+        </c-panel>
+        </div>
+    </div>

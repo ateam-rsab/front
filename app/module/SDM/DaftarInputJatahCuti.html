@@ -1,0 +1,35 @@
+<div>
+    <c-panel item="item" header="'Daftar Input Jatah Cuti'" disabled>     
+        <div class="grid_12">
+            <kendo-grid id="gridCutiPegawai" k-data-source="daftarPegawai" options="daftarpegawaiOpt"></kendo-grid>
+        </div>
+        <div class="panel-body">
+            <div class="grid_12 headerBox"><p>Filter Data</p></div>
+            <div class="grid_12">
+                <!-- Nama -->
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="Nama"></label>
+                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="filter.namaPegawai" />
+                </div>
+                <!-- unit kerja -->
+                <div class="grid_3">
+                    <label c-label item="item" c-label-text="Unit Kerja"></label>
+                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="filter.unitKerja" />
+                </div>
+                <!-- sub unit kerja -->
+                <div class="grid_3">
+                    <label c-label item="item" c-label-text="SubUnit Kerja"></label>
+                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="filter.subUnitKerja" />
+                </div>
+                <div class="grid_1">
+                    <label c-label c-label-text=""></label>
+                    <em style="margin-top:6px;" ng-click='resetFilters()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+                </div>
+            </div>
+        
+        </div>
+        <div class="grid_12" style="margin-top:60px">
+            <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+        </div>
+    </c-panel>
+</div>

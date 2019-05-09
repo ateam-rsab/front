@@ -1,0 +1,108 @@
+<div ng-controller="RegistrasiPelayananCtrl">
+	<core-busy busy="isLoading"></core-busy>
+	<c-panel item="item" header="'header'">
+		<div class="grid_12">
+			<div class="grid_3">
+				<!-- noCm -->
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="noCm"></label>
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.noCm" />
+				</div>
+			</div>
+			<div class="grid_3">
+				<!-- namaPasien -->
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="namaPasien"></label>
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPasien" />
+				</div>
+			</div>
+			<div class="grid_3">
+				<!-- jenisKelamin -->
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="jenisKelamin"></label>
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jenisKelamin" />
+				</div>
+			</div>
+			<div class="grid_3">
+				<!-- tglDaftar -->
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="tglDaftar"></label>
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.tglDaftar" />
+				</div>
+			</div>
+			<div class="grid_6">
+				<!-- alamats -->
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="alamats"></label>
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.alamats" />
+				</div>
+			</div>
+			<div class="grid_3">
+				<!-- pendidikan -->
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="pendidikan"></label>
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.pendidikan" />
+				</div>
+			</div>
+			<div class="grid_3">
+				<!-- pekerjaan -->
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="pekerjaan"></label>
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.pekerjaan" />
+				</div>
+			</div>
+		</div>
+	</c-panel>
+
+	<c-panel item="item" header="'RegistrasiPelayanan'">
+		<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_12">
+					<!-- Ruangan Pelayanan -->
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="ruanganPelayanan"></label>
+					</div>
+					<div class="grid_8">
+
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganPelayanan" k-data-text-field="'namaRuangan'" k-filter="'contains'" k-data-value-field="'value'" k-auto-bind="false" k-data-source="ruangans" />
+					</div>
+
+					<!-- Asal Rujukan -->
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="asalRujukan"></label>
+					</div>
+					<div class="grid_8">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.asalRujukan" k-data-text-field="'asalRujukan'" k-filter="'contains'" k-data-value-field="'value'" k-auto-bind="false" k-data-source="asalrujukans" />
+					</div>
+					<!-- Kelompk Pasien -->
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="kelompokPasien"></label>
+					</div>
+					<div class="grid_8">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.kelompokPasien" k-data-text-field="'jenisPasien'" k-filter="'contains'" k-data-value-field="'value'" k-auto-bind="false" k-data-source="kelompokPasiens" />
+					</div>
+				</div>
+			</div>
+
+			<div class="grid_6">
+				<div class="grid_12">
+					<!-- Tanggal Pendaftaran -->
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="tanggalPendaftaran2"></label>
+					</div>
+					<div class="grid_8">
+						<input style="width: 100%" kendo-date-time-picker k-max='now' k-value='now' k-ng-model="item.tanggalPendaftaran" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+					</div>
+
+					<!-- Dokter Pemeriksaan -->
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="dokterPemeriksaan"></label>
+					</div>
+					<div class="grid_8">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.dokterPemeriksaans" k-data-text-field="'NamaPegawai'" k-filter="'contains'" k-data-value-field="'value'" k-auto-bind="false" k-data-source="dokters" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</c-panel>
+</div>

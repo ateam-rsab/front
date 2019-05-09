@@ -1,0 +1,67 @@
+<div ng-controller="TarifLayananCtrl">
+	<div class="panel panel-default container_12"> 
+		<div class="panel-heading" c-translate style="text-align: center;">Tarif Layanan</div>
+		<div class="panel-body">
+			<div class="grid_12" >
+				<div class="grid_5">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Produk"></label>
+						<div class="grid_12">
+					        <input kendo-combo-box k-ng-model="item.produk" k-data-text-field="'namaproduk'" k-data-value-field="'kdproduk'" k-filter="'contains'" k-auto-bind="false" k-data-source="listProduk" />
+					    </div>
+					</div>	
+				</div>
+				<div class="grid_2">
+					<div class="grid_12">
+						 <label c-label item="item" c-label-text="Kelas"></label>
+						 <input style="width: 100%;" kendo-combo-box k-ng-model="item.kelas" k-data-text-field="'namakelas'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListKelas" />
+					</div>	
+				</div>
+				<div class="grid_3">
+					<div class="grid_12">
+						 <label c-label item="item" c-label-text="Nama Ruangan"></label>
+						 <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaruangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListRuangan" />
+					</div>	
+				</div>
+				<div class="grid_2" style="margin-top: 22px;">
+            	    <button class="c-button" ng-click="SearchData()">Cari</button>
+                </div>
+			</div>
+			<div class="grid_12" style="margin: 30px 0 30px 0;">
+                <!-- grid table -->
+                <div class="grid_12 borderBox">
+                 	<div kendo-grid id="kGrid"
+					k-data-source="sourceTarif"
+	                k-groupable="'true'"
+					k-selectable="'row'" 
+	                class="max-height"
+	                k-pageable="'true'" 
+					k-columns="columndata" 
+					k-sortable="'true'"
+					k-ng-model="dataSelected" 
+					ng-click="klik(dataSelected)">
+	                    <div k-detail-template>
+	                        <kendo-tabstrip>
+	                            <div>
+	                                <div id="kGridDetail" kendo-grid k-options="data2(dataItem)" 
+	                                    k-sortable="'true'" 
+	                                    k-selectable="'row'" 
+	                                    k-ng-model="dataSelected2"
+	                                    ng-click="klikDetail(dataSelected2)">
+	                                </div>
+	                            </div>
+	                        </kendo-tabstrip>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+            <div class="grid_12" style="margin-top:60px">
+				<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+			</div>
+               <!--  <div class="grid_12">
+        			<kendo-grid  k-data-source="sourceOrder" k-selectable="'row'" k-columns="columndata" k-ng-model="current" ng-click="kl">
+                    </kendo-grid>
+                </div> -->
+    	</div>
+	</div>
+</div>

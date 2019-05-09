@@ -1,0 +1,128 @@
+<div>
+    <!--<div ng-include='"../app/module/Dashboard/Pasien/Index"'></div>-->
+    <div class="panel panel-default container_12">
+    <div class="panel-heading" c-translate>Status Skrining Gizi dan Tanda Vital</div>
+    <div class="panel-body list-detail">
+        <div class="grid_12">
+            <md-content>
+                <md-tabs md-dynamic-height md-border-bottom>
+                    <md-tab label="Tanda Vital">
+                        <md-content class="md-padding">
+                            <div class="grid_12">
+                                <div class="grid_3" ng-repeat="data in arrTandaVital">
+                                    <div ng-switch on="data.type">
+                                        <div ng-switch-when="numeric">
+                                            <div class="grid_12" style="margin-bottom:5px">
+                                                <label c-label item="item" c-label-text="{{data.name}}"></label>
+                                            </div>
+
+                                            <div class="grid_12 parentKeteranganFieldTambahan">
+                                                <input kendo-numeric-text-box k-ng-model="data.nilai" style="width: 100%;" />
+                                                <!--<input c-text-box type="input" filter="data.type" class="k-textbox" ng-model="data.nilai" />-->
+                                                <label class="keteranganFieldTambahan numericPAP">{{data.ket}}</label>
+                                            </div>
+                                        </div>
+                                        <div ng-switch-default>
+                                            <div class="grid_12" style="margin-bottom:5px">
+                                                <label c-label item="item" c-label-text="{{data.name}}"></label>
+                                            </div>
+
+                                            <div class="grid_12 parentKeteranganFieldTambahan">
+                                                <input c-text-box type="input" filter="data.type" class="k-textbox" ng-model="data.nilai" />
+                                                <label class="keteranganFieldTambahan">{{data.ket}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid_12" style="margin-top:10px">
+                                <div class="grid_6"></div>
+                                <div class="grid_3">
+                                    <button class="c-button cancel" style="font-size:18px" ng-click="Batal()">Batal</button>
+                                </div>
+                                <div class="grid_3">
+                                    <button class="c-button success" style="font-size:18px" ng-click="Save()">Simpan</button>
+                                </div>
+                            </div>
+                            <div class="grid_12">
+                                <div kendo-grid k-on-change="SelectGrid(data)" k-data-source="sourceTandaVital" k-selectable="'row'" options="mainGridOptions"></div>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Status Skrining Gizi">
+                        <md-content class="md-padding">
+                            <div class="grid_12" ng-show="isNeonatal">
+                                <div class="grid_3" ng-repeat="data in arrSkriningGiziNeo">
+                                    <div class="grid_12" style="margin-bottom:5px">
+                                        <label c-label item="item">{{data.name}}</label>
+                                    </div>
+
+                                    <div class="grid_12 parentKeteranganFieldTambahan">
+                                        <input kendo-numeric-text-box k-ng-model="data.nilai" style="width: 100%;" />
+                                        <!--<input c-text-box type="input" filter="data.type" class="k-textbox" ng-model="data.nilai" />-->
+                                        <label class="keteranganFieldTambahan numericPAP">{{data.ket}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid_12" ng-show="isAnak">
+                                <div class="grid_3" ng-repeat="data in arrSkriningGiziAnak">
+                                    <div ng-switch on="data.type">
+                                        <div ng-switch-when="numeric">
+                                            <div class="grid_12" style="margin-bottom:5px">
+                                                <label c-label item="item" c-label-text="{{data.name}}"></label>
+                                            </div>
+
+                                            <div class="grid_12 parentKeteranganFieldTambahan">
+                                                <input kendo-numeric-text-box k-ng-model="data.nilai" style="width: 100%;" />
+                                                <!--<input c-text-box type="input" filter="data.type" class="k-textbox" ng-model="data.nilai" />-->
+                                                <label class="keteranganFieldTambahan numericPAP">{{data.ket}}</label>
+                                            </div>
+                                        </div>
+                                        <div ng-switch-default>
+                                            <div class="grid_12" style="margin-bottom:5px">
+                                                <label c-label item="item" c-label-text="{{data.name}}"></label>
+                                            </div>
+
+                                            <div class="grid_12 parentKeteranganFieldTambahan">
+                                                <input c-text-box type="input" filter="data.type" class="k-textbox" ng-model="data.nilai" />
+                                                <label class="keteranganFieldTambahan">{{data.ket}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid_12" ng-show="isDewasa">
+                                <div class="grid_3" ng-repeat="data in arrSkriningGiziDewasa">
+                                    <div class="grid_12" style="margin-bottom:5px">
+                                        <label c-label item="item">{{data.name}}</label>
+                                    </div>
+
+                                    <div class="grid_12 parentKeteranganFieldTambahan">
+                                        <input c-text-box type="input" filter="data.type" class="k-textbox" ng-model="data.nilai" />
+                                        <label class="keteranganFieldTambahan">{{data.ket}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid_12" style="margin-top:10px">
+                                <div class="grid_6"></div>
+                                <div class="grid_3">
+                                    <button class="c-button cancel" style="font-size:18px" ng-click="BatalGizi()">Batal</button>
+                                </div>
+                                <div class="grid_3">
+                                    <button class="c-button success" style="font-size:18px" ng-click="SaveGizi()">Simpan</button>
+                                </div>
+                            </div>
+                            <div class="grid_12" ng-show="isNeonatal || isAnak">
+                                <div kendo-grid k-on-change="SelectGridGizi(data)" k-data-source="sourceSkriningGizi" k-selectable="'row'" options="mainGridOptions2"></div>
+                            </div>
+                            <div class="grid_12" ng-show="isDewasa">
+                                <div kendo-grid k-on-change="SelectGridGizi(data)" k-data-source="sourceSkriningGizi" k-selectable="'row'" options="mainGridOptions3"></div>
+                            </div>
+                            
+                        </md-content>
+                    </md-tab>
+                </md-tabs>
+            </md-content>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+{
+	"model":{
+		"kodeSasaranStrategis":"",
+		"sasaranStrategis":""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "sasaranStrategis",
+			"messagesRequired" : "",
+			"caption" : "Sasaran Strategis"
+		},{
+			"isNull" : "true",
+			"name" : "kodeSasaranStrategis",
+			"messagesRequired" : "",
+			"caption" : "Kode Sasaran Strategis"
+		}
+
+	]
+}

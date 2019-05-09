@@ -1,0 +1,57 @@
+<div ng-controller="PesanCtrl">
+	<core-busy busy="isLoading"></core-busy>
+	<c-form item="item">
+
+		<div class="grid_12">
+			<div class="grid_4">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="tgldaftar"></label>
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.tgldaftar" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+				</div>
+			</div>
+			<div class="grid_4">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="statusrhesus"></label>
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.statusrhesus" />
+				</div>
+			</div>
+			<div class="grid_4">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="nip_penjabattandatgnkk"></label>
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.nip_penjabattandatgnkk" />
+				</div>
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_4">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="namakeluarga"></label>
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namakeluarga" />
+				</div>
+			</div>
+			<div class="grid_4">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="qtyimunisasi"></label>
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.qtyimunisasi" />
+				</div>
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_12">
+				<div class="grid_8">
+					&nbsp;
+				</div>
+				<div class="grid_2">
+					<c-button ng-show="!isLoading" style="width:100px;" item="item" position="'left'" is-back icon="'fa-chevron-left'">
+						<span class="title">Kembali</span>
+					</c-button>
+				</div>
+				<div class="grid_2">
+					<c-button ng-show="!isLoading" item="item" link="''" size="36" position="'right'" is-validate click="Lanjutkan" icon="'fa-floppy-o'">
+						<span class="title">Proses</span>
+					</c-button>
+				</div>
+			</div>
+		</div>
+	</c-form>
+</div>

@@ -1,0 +1,129 @@
+<style>
+.k-grid .k-grid-header .k-header .k-link {
+    height: auto;
+}
+
+.k-grid .k-grid-header .k-header  {
+    white-space: normal;
+}
+.k-grid .k-grid-header .k-header  {
+    text-align: center;
+}
+</style>
+<!-- <div ng-controller="LaporanRL52Ctrl"> -->
+    <div ng-show="dataVOloaded">
+        <!-- <c-panel item="item" header="'Daftar Tagihan Rekanan'" disabled> -->
+           <div class="grid_12 headerBox">
+            <h2 style="color: white;">
+                <p>Formulir RL 3.13</p>
+                <p>FARMASI RUMAH SAKIT</p>
+            </h2>
+        </div>
+        <div class="grid_12">
+            <div ng-cloak>
+                <md-content>
+                    <md-tabs md-dynamic-height md-border-bottom>
+                        <md-tab label="A. Pengadaan Obat">
+                            <md-content class="md-padding">
+                             <div class="grid_12">
+
+                                <div class="grid_3">
+                                    <label c-label item="item" c-label-text="Tanggal awal"></label>
+                                    <input style="width: 100%" k-ng-model="item.tglawal" kendo-datetimepicker placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd HH:mm'"/>
+                                </div>
+
+                                <div class="grid_3">
+                                    <label c-label item="item" c-label-text="Tanggal Akhir"></label>
+                                    <input style="width: 100%" k-ng-model="item.tglakhir" kendo-datetimepicker placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd HH:mm'"/>
+                                </div>
+
+                                <div class="grid_1">
+                                    <div class="grid_12">
+                                        <label>&nbsp;</label>
+                                    </div>
+                                    <div class="clear"></div>
+
+                                    <div class="grid_12">
+                                        <button class="btnTemplate1" style="margin-left: 0;" ng-show="! isLoading"  ng-click="CariRegistrasiPasien()">Cari</button>
+                                    </div>
+                                </div>
+                                <div class="grid_1">
+                                    <div class="grid_12">
+                                        <label>&nbsp;</label>
+                                    </div>
+                                    <div class="clear"></div>
+
+                                    <div class="grid_12">
+                                        <button class="btnTemplate1" style="margin-left: 0;" ng-show="! isLoading"  ng-click="ClearSearch()">Clear</button>
+                                    </div>            
+                                </div>
+                            </div>
+
+                            <div class="grid_12" style="margin-top:10px">
+                                <div class="grid_12 borderBox">
+                                    <div id="kGrid" kendo-grid k-data-source="dataRL52" k-selectable="'row'" k-columns="columnRL52" 
+                                    k-sortable="'true'" k-ng-model="dataPasienSelected" ng-click="click(dataPasienSelected)">
+                                </div>
+                            </div>
+                        </div>
+
+                    </md-content>
+                </md-tab>
+                <md-tab label="B. Penulisan dan Pelayanan Resep">
+                    <md-content class="md-padding">
+                      <div class="grid_12" style="margin-top:10px">
+
+                        <div class="grid_3">
+                            <label c-label item="item" c-label-text="Tanggal awal"></label>
+                            <input style="width: 100%" k-ng-model="item.tglawal1" kendo-datetimepicker placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd HH:mm'"/>
+                        </div>
+
+                        <div class="grid_3">
+                            <label c-label item="item" c-label-text="Tanggal Akhir"></label>
+                            <input style="width: 100%" k-ng-model="item.tglakhir1" kendo-datetimepicker placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd HH:mm'"/>
+                        </div>
+
+                        <div class="grid_1">
+                            <div class="grid_12">
+                                <label>&nbsp;</label>
+                            </div>
+                            <div class="clear"></div>
+
+                            <div class="grid_12">
+                                <button class="btnTemplate1" style="margin-left: 0;" ng-show="! isLoading"  ng-click="CariRegistrasiPasien1()">Cari</button>
+                            </div>
+                        </div>
+                        <div class="grid_1">
+                            <div class="grid_12">
+                                <label>&nbsp;</label>
+                            </div>
+                            <div class="clear"></div>
+
+                            <div class="grid_12">
+                                <button class="btnTemplate1" style="margin-left: 0;" ng-show="! isLoading"  ng-click="ClearSearch1()">Clear</button>
+                            </div>            
+                        </div>
+                    </div>
+
+                    <div class="grid_12" style="margin-top:10px">
+
+
+                        <div class="grid_12 borderBox">
+                            <div id="kGrid1" kendo-grid k-data-source="dataRL3_13" k-selectable="'row'" k-columns="columnRL3_13" 
+                            k-sortable="'true'" k-ng-model="dataPasienSelected1" ng-click="click1(dataPasienSelected1)">
+                        </div>
+                    </div>
+                </div> 
+
+            </md-content>
+        </md-tab>
+    </md-tabs>
+</md-content>
+</div>
+
+
+
+<div class="grid_12" style="margin-top:60px" >
+    <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+</div>                   
+</div></div>

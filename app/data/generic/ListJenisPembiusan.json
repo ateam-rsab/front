@@ -1,0 +1,12 @@
+[
+	{  
+        "id":1,
+        "name":"Analgesi neuroleptika"
+    },{
+        "id": 2,
+        "name": "Lokal"
+    },{
+        "id": 3,
+        "name": "Umum"
+    }
+]

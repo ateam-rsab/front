@@ -1,0 +1,39 @@
+<div ng-controller="MasterDokumenPeraturan">
+
+    <c-panel item="item" header="'MasterDokumenPeraturan/ProdukHukum'" disabled>
+        <div class="panel panel-default container_12" disabled>            
+            <div class="grid_12">
+                <div class="grid_2" style="margin: 10px 0 0 10px;">
+                    <label c-label item="item">Nama Peraturan/Produk Hukum</label>
+                </div>
+                <div class="grid_3">
+                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaDokumen" />
+                </div>
+            </div>
+             
+
+            <div class="grid_12">
+                <div class="grid_3" style="margin: 10px 0 0 10px;">
+                    <input id="filePicker" type="file">
+                </div>
+                <div class="grid_2">
+                    <button class="c-button" ng-click="upload()">Simpan</button>
+                </div>
+            </div>
+
+   
+            <div class="grid_12">
+                <div kendo-grid="grid" ng-click="klik()" id="grid" k-data-source="sourceOrder" k-editable="false" options="colGridDaftarTemplate" k-selectable="'row'" style="font-size: small;">
+                </div>
+            </div>
+
+            <div class="grid_12">
+                <div class="grid_8"></div>
+                <div class="grid_4">
+                    <button class="c-button" ng-click="downloadFormat()">Download Format</button>
+                </div>
+            </div>
+        </div>
+    </c-panel>
+
+</div>

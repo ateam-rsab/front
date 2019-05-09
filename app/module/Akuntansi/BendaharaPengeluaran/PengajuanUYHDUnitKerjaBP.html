@@ -1,0 +1,143 @@
+<div ng-controller="PengajuanUYHDUnitKerjaBPCtrl">
+<style>
+	.container_12 .grid_3 {
+		margin-top: 6px;
+	}
+
+	.container_12 .grid_1 {
+		margin-top: 6px;
+		width: 3%;
+	}
+
+</style>
+
+
+	<div ng-show="dataVOloaded">
+
+		<div class="grid_12 headerBox">
+			<h1 style="color: white;"><b>Pengajuan UYHD</b></h1>
+		</div>
+		<div class="clear"></div>
+
+		<br/>
+
+		<!-- Kriteria -->
+		<div class="grid_12">
+			<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+				<p></p>
+			</div>
+			<div class="grid_12 borderBox containerBorderBox">
+				<!-- Tanggal -->
+				<div class="grid_15">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 15px" c-label-text="Tanggal" ></label>
+					</div>
+					<div class="grid_1">
+						<label c-label item="item" style="margin-top: 10px" c-label-text=":" ></label>
+					</div>
+					<div class="grid_3">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.tanggal" ng-disabled="true"/>
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 15px" c-label-text="UnitYangMengajukan"></label>
+					</div>
+					<div class="grid_1">
+						<label c-label item="item" style="margin-top: 10px" c-label-text=":" ></label>
+					</div>
+					<div class="grid_3">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.unitYangMengajukan" ng-disabled="true"/>
+					</div>
+				</div>
+				<!-- <div class="clear"></div> -->
+
+				<!-- Keperluan -->
+				<div class="grid_12">
+					<div class="grid_6">
+						<label c-label item="item" c-label-text="Keperluan :"></label>
+					</div>
+					<div class="grid_6">
+						<label c-label item="item" c-label-text="BuktiPendukung :"></label>
+					</div>
+
+				</div>
+				<div class="clear"></div>
+
+				<!-- BuktiPendukung -->
+				<div class="grid_12">
+					<div class="grid_6">
+						<textarea style="width: 99%; height: 80px;">{{item.keperluan}}</textarea>
+					</div>
+					<div class="grid_6">
+						<textarea style="width: 99%; height: 80px;">{{item.buktiPendukung}}</textarea>
+					</div>
+				</div>
+				<div class="clear"></div>
+
+				<!-- MataAnggaran -->
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" c-label-text="MataAnggaran"></label>
+					</div>
+					<div class="grid_1">
+						<label c-label item="item" c-label-text=":" ></label>
+					</div>
+					<div class="grid_2">
+						<!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.kodeMataAnggaran" k-data-text-field="'kodeMataAnggaran'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKodeMataAnggaran" /> -->
+						<input style="width: 100%" kendo-combo-box k-ng-model="item.kodeMataAnggaran" k-data-source="listKodeMataAnggaran" k-data-value-field="'noRec'" k-data-text-field="'kodeMataAnggaran'"/>
+					</div>
+					<div class="grid_6">
+						<!-- <input style="width: 100%;" style="margin-top: 30px" kendo-combo-box k-ng-model="item.mataAnggaran" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listMataAnggaran" /> -->
+						<input style="width: 100%" kendo-combo-box k-ng-model="item.mataAnggaran" k-data-source="listMataAnggaran" k-data-value-field="'noRec'" k-data-text-field="'keterangan'" k-ng-model="selectedMataAnggaran" k-on-change="selectedData(selectedMataAnggaran)"/>
+					</div>
+				</div>
+				<div class="clear"></div>
+
+				<!-- YangMengajukan -->
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" c-label-text="YangMengajukan"></label>
+					</div>
+					<div class="grid_1">
+						<label c-label item="item" c-label-text=":" ></label>
+					</div>
+					<div class="grid_4">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.yangMengajukan" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listYangMengajukan" />
+					</div>
+				</div>
+				<div class="clear"></div>
+
+				<!-- Jumlah -->
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" c-label-text="Jumlah"></label>
+					</div>
+					<div class="grid_1">
+						<label c-label item="item" c-label-text=":" ></label>
+					</div>
+					<div class="grid_3">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jumlah" />
+					</div>
+				</div>
+				<div class="clear"></div>
+
+				<!-- Terbilang -->
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" c-label-text="Terbilang"></label>
+					</div>
+					<div class="grid_1">
+						<label c-label item="item" c-label-text=":" ></label>
+					</div>
+					<div class="grid_6">
+						<textarea style="width: 99%; height: 80px;">{{item.terbilang}}</textarea>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+
+		<div class="grid_12" style="margin-top:30px">
+			<div ng-include='"../app/module/Shared/Keuangan/TemplateButtonBendaharaPengeluaran"'></div>
+		</div>
+	</div>
+</div>

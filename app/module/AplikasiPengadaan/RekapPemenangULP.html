@@ -1,0 +1,102 @@
+<div ng-controller="RekapPemenangULPCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Rekap Pemenang'">
+		<div class="grid_8">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="namaPengendali"></label>
+			</div>
+			<div class="grid_8 garisBawah">
+				<label class="tebal">: {{items.namaPengendali}}</label>
+			</div>
+		</div>
+		<div class="grid_4">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="noUsulan"></label>
+			</div>
+			<div class="grid_8 garisBawah">
+				<label class="tebal">: {{items.noUsulan}}</label>
+			</div>
+		</div>
+		<div class="grid_8">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="asalProduk"></label>
+			</div>
+			<div class="grid_8 garisBawah">
+				<label class="tebal">: {{items.asalProduk}}</label>
+			</div>
+		</div>
+		<div class="grid_4">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="tanggalUsulan"></label>
+			</div>
+			<div class="grid_8 garisBawah">
+				<label class="tebal">: {{items.tanggal}}</label>
+			</div>
+			<div class="clear" style="margin-bottom:10px"></div>
+		</div>
+		<div class="grid_8"></div>
+		<div class="grid_4">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="kdAccount"></label>
+			</div>
+			<div class="grid_8 garisBawah">
+				<label class="tebal">: {{items.kdAccount}}</label>
+			</div>
+		</div>
+		<div class="grid_8"></div>
+		<div class="grid_4">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="namaAccount"></label>
+			</div>
+			<div class="grid_8 garisBawah">
+				<label class="tebal">: {{items.namaAccount}}</label>
+			</div>
+		</div>
+		<div class="grid_8"></div>
+		<div class="grid_4">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="Jumlah"></label>
+			</div>
+			<div class="grid_8 garisBawah">
+				<label class="tebal">: {{items.total}}</label>
+			</div>
+		</div>
+		<!-- <div kendo-grid k-data-source="daftarPengajuanUsulan" k-selectable="'row'" editable="true" pageable="true" k-columns="columnPengajuanUsulan" style="margin-bottom: 10px"></div> -->
+		</c-panel>
+		<div class="clear"></div>
+		<div class="grid_12" style="margin-bottom: 10px">
+			<kendo-grid options="mainGridOptions" k-ng-model="current" ng-click="kl(current)"></kendo-grid>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_6"></div>
+		<div class="grid_6">
+			<div class="grid_4"></div>
+			<div class="grid_4">
+				<!-- <button class="c-button" ng-click="" disabled>Cetak</button> -->
+			</div>
+			<div class="grid_4">
+				<button class="c-button" ng-click="navToDetailPemenang()">Lihat Detil</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+  .contact-info-form {
+    list-style-type: none;
+    margin: 30px 0;
+    padding: 0;
+  }
+
+  .contact-info-form li {
+    margin: 10px 0;
+  }
+
+  .contact-info-form label {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    font-weight: bold;
+  }
+</style>

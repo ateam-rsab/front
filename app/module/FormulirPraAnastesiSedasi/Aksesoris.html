@@ -1,0 +1,80 @@
+<div ng-controller="AksesorisCtrl">
+
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Aksesoris'">
+            <div class="panel-body">
+                <div class="grid_12">
+                    <div class="grid_6">
+                        <div class="grid_12" style="margin-bottom: 10px">
+                            <div class="grid_5">
+                                <label c-label item="item" c-label-text="Kacamata"></label>
+                            </div>
+                            <div class="grid_7">
+                                <div class="grid_4" ng-repeat="stat in listYaTidak">
+                                    <input type="radio" name="{{'Kacamata' + stat.name}}" id="{{'Kacamata' + stat.name}}" class="k-radio" ng-model="item.Kacamata" value="{{stat.name}}">
+                                    <label class="k-radio-label" for="{{'Kacamata' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_6">
+                        <div class="grid_12" style="margin-bottom: 10px">
+                            <div class="grid_5">
+                                <label c-label item="item" c-label-text="Dengar"></label>
+                            </div>
+                            <div class="grid_7">
+                                <div class="grid_4" ng-repeat="stat in listYaTidak">
+                                    <input type="radio" name="{{'Dengar' + stat.name}}" id="{{'Dengar' + stat.name}}" class="k-radio" ng-model="item.Dengar" value="{{stat.name}}">
+                                    <label class="k-radio-label" for="{{'Dengar' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_6">
+                        <div class="grid_12" style="margin-bottom: 10px">
+                            <div class="grid_5">
+                                <label c-label item="item" c-label-text="Gigi"></label>
+                            </div>
+                            <div class="grid_7">
+                                <div class="grid_4" ng-repeat="stat in listYaTidak">
+                                    <input type="radio" name="{{'Gigi' + stat.name}}" id="{{'Gigi' + stat.name}}" class="k-radio" ng-model="item.Gigi" value="{{stat.name}}">
+                                    <label class="k-radio-label" for="{{'Gigi' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_6">
+                        <div class="grid_12" style="margin-bottom: 10px">
+                            <div class="grid_5">
+                                <label c-label item="item" c-label-text="Perhiasan"></label>
+                            </div>
+                            <div class="grid_7">
+                                 <div class="grid_4" ng-repeat="stat in listYaTidak">
+                                    <input type="radio" name="{{'Perhiasan' + stat.name}}" id="{{'Perhiasan' + stat.name}}" class="k-radio" ng-model="item.Perhiasan" value="{{stat.name}}">
+                                    <label class="k-radio-label" for="{{'Perhiasan' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </c-panel>
+         <!-- button -->
+        <div class="grid_12">
+            <div class="grid_6">
+            </div>
+            <div class="grid_3">
+                <c-button ng-click="" style="width:100% !important">
+                <span style="font-size:10!important">Sebelumnya</span>
+                </c-button>
+            </div>
+            <div class="grid_3">
+                <c-button ng-click="" style="width:100% !important">
+                <span style="font-size:10!important">Selanjutnya</span>
+                </c-button>
+            </div>
+        </div>
+    </div>
+</div>

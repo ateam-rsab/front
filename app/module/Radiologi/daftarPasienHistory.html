@@ -1,0 +1,23 @@
+<div ng-controller="RadiologiDaftarHistoryPasienCtrl">
+    <div ng-show="true">
+
+        <div class="panel panel-default">
+
+            <div class="panel-heading">Riwayat Radiologi</div>
+            <div class="panel-body" style="padding:0px">
+
+                <div class="grid_12">
+                    <kendo-grid k-ng-model="item" k-data-source="listDataPasien" k-selectable="'row'" k-sortable="'true'" k-columns="Column"></kendo-grid>
+                </div>
+            </div>
+        </div>
+        <div class="grid_12 place_button">
+            <div class="grid_3">
+                <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" click="MasukanHasil">
+                    <span class="title"><label  c-label c-label-text='lihatHasil' font-size="13"></label></span>
+                </c-button>
+            </div>
+
+        </div>
+    </div>
+</div>

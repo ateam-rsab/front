@@ -1,0 +1,26 @@
+<div ng-controller="LaporanPemakaiandanPemanasanMesinPerJenisMesinCtrl">
+
+	<div ng-show="dataVOloaded">
+		<div class="panel panel-default container_12">
+			<div class="panel-heading" c-translate>Laporan Pemakaian dan Pemanasan Mesin PerJenisMesin</div>
+			<div class="panel-body">
+				<c-panel item="item" header="'CariDataLaporan'">
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="periodeAwal"></label>
+						<input kendo-date-picker k-ng-model="item.dateStart" k-max ="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+					</div>
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="periodeAkhir"></label>
+						<input kendo-date-picker k-ng-model="item.dateEnd" k-max ="now"  k-format="'dd-MM-yyyy'" style="width: 100%" />
+					</div>
+					<div class="grid_2">
+						<label c-label c-label-text="" style="visibility:hidden"></label>
+						<button c-button class="k-button k-primary" ng-click="cari()" style="margin-top:6px !important"><span>Cari</span></button>
+					</div>
+				</c-panel>
+				<div class="clear"></div>
+				<kendo-grid k-data-source="sourceOrder" k-selectable="'row'" k-columns="columnLaporanAirBersih" style="margin-bottom: 10px"></kendo-grid>
+			</div>
+		</div>
+	</div>
+</div>

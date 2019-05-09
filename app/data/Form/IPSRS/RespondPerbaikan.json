@@ -1,0 +1,28 @@
+{
+	"model":{
+		"pilihTeknisi" : "",
+		"jamLapor":"",
+		"jamRespon":""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "pilihTeknisi",
+			"messagesRequired" : "",
+			"caption" : "Pilih Teknisi"
+		},{
+			"isNull" : "true",
+			"name" : "jamLapor",
+			"messagesRequired" : "",
+			"caption" : "Jam Lapor"
+		},{
+			"isNull" : "true",
+			"name" : "jamRespon",
+			"messagesRequired" : "",
+			"caption" : "Jam Respon"
+		}
+
+	]
+}

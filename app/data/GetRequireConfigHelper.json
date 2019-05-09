@@ -1,0 +1,8 @@
+{
+  "path": [
+    {
+      "nameDep": "Helper",
+      "urlDep": "javascripts/Helper"
+    }
+  ]
+}

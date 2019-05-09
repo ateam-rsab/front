@@ -1,0 +1,34 @@
+{
+  "model":{
+    "CaraPengambilan" : "",
+    "BahanBerasalDari" : "",
+    "DiagnosisKlinik" : "",
+    "DiambilTgl": ""
+  },
+  "attributes" : [
+    {
+      "isNull" : "true",
+      "name" : "CaraPengambilan",
+      "messagesRequired" : "Pernah Dirawat Darah Harus Diisi",
+      "caption" : "Cara Pengambilan c"
+    },
+    {
+      "isNull" : "true",
+      "name" : "BahanBerasalDari",
+      "messagesRequired" : "Alat Implant Harus Diisi",
+      "caption" : "Bahan Berasal Dari"
+    },
+    {
+      "isNull" : "true",
+      "name" : "DiagnosisKlinik",
+      "messagesRequired" : "Riwayat Dalam Keluarga Harus Diisi",
+      "caption" : "Diagnosis Klinik"
+    },
+    {
+      "isNull" : "false",
+      "name" : "DiambilTgl",
+      "messagesRequired" : "keterangan Harus Diisi",
+      "caption" : "Diambil Tanggal"
+    }
+  ]
+} 

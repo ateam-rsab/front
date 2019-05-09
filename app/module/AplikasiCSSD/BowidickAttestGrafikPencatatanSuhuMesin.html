@@ -1,0 +1,353 @@
+<style>
+    .error{
+        background-color:white !important;
+    }
+    .yellow{
+        background-color:#ffff00
+    }
+     .green{
+        background-color:#00ff40
+    }
+      .red{
+        background-color:#FF0000
+    }
+    .k-grid  .k-grid-header  .k-header  .k-link {
+     height: auto;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     white-space: normal;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     text-align: center;
+    }
+/*     .k-header .k-link{
+    text-align: center;
+     }*/
+</style>
+<div ng-controller="BowidickAttestGrafikPencatatanSuhuMesinCtrl">
+<div ng-show="dataVOloaded">
+<c-panel item="item"  header="'Bowidick, Biological Indicator, Grafik Pencatatan Suhu Mesin'">
+		<div class="grid_12" style="margin-top: 10px">
+				<div class="grid_1" style="margin-top: 10px">
+					<label c-label item="item" c-label-text="periode"></label>
+				</div>
+				<div class="grid_1" align="right"  style="margin-top: 10px">
+					<label c-label item="item" c-label-text=":"></label>
+				</div>
+				<div class="grid_2">
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.awal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" k-on-change="ChangeDat()"  />
+				</div>
+				<div class="grid_1" align="center" style="margin-top: 10px">
+						<label c-label item="item">s/d</label>
+				</div>
+			<div class="grid_2">
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.akhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" k-on-change="ChangeDat()"/>
+			</div>
+		   <div class="grid_1">
+				 <img ng-show="isLoading" height="24" src="stylesheets\Flat\loading-image.gif" />
+		  </div>
+	    </div>
+		<div class="grid_12">
+				<div class="grid_1" style="margin-top: 10px">
+					<label c-label item="item" c-label-text="Pencarian"></label>
+				</div>
+				<div class="grid_1" align="right"  style="margin-top: 10px">
+					<label c-label item="item" c-label-text=":"></label>
+				</div>
+				<div class="grid_5">
+				 <input class=k-textbox type=text ng-model="item.Pencarians" placeholder="Nama Mesin / Petugas" />
+				</div>
+				<div class="grid_1" style="margin-top: 5px">
+					<button class="c-button success" ng-click="Cari(item.Pencarians)">Cari</button>
+				</div>
+				<div class="grid_1" style="margin-top: 5px">
+					<button class="c-button cancel" ng-click="ClearCari()">Clear</button>
+				</div>
+		</div>
+			<div class="grid_12 borderBox">
+				<div id="kGrid" kendo-grid 
+				k-data-source="dataSource" 
+				k-options="mainGridOptions"
+				k-selectable="'row'" 
+				k-columns="columnPermohonanPerubahanStatus"
+				k-sortable="'true'"
+			    k-pageable="true"
+				k-ng-model="current"
+				ng-dblclick="Selected(current)">
+				</div>
+			</div>
+			<div class="grid_12">
+			   <div class="grid_6"></div>
+				<div class="grid_6">
+				   <div class="grid_4">
+				   </div>
+				<div class="grid_4">
+					
+				</div>
+				<div class="grid_4">
+					<button class="c-button success" ng-click="DataBaru()" style="width: 89%">Refresh</button>
+				</div>
+				</div>
+			</div>
+	<div class="grid_12" style="margin-top: 10px">
+		<div class="panel panel-default container_12">
+			<div class="panel-heading" c-translate>Bowidick</div>
+			<div class="panel-body">
+			<!-- BOWDICK -->
+				<div class="grid_6">
+					<div class="grid_4">
+						<label c-label item="item" style="margin-top: 10px">No Mesin</label>
+					</div>
+					<div class="grid_8">
+						<input style="width: 50%;" kendo-combo-box k-ng-model="item.noMesin" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listMesin" />
+					</div>
+					<div class="grid_4">
+						<label c-label item="item" style="margin-top: 10px">No Cycle</label>
+					</div>
+					<div class="grid_5">
+                      <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noCycle"/>
+					</div>
+					<div class="grid_4">
+						<label c-label item="item" style="margin-top: 10px">Hasil</label>
+					</div>
+					<div class="grid_8">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.hasilBowidick"/>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4">
+							<label c-label item="item" style="margin-top: 10px">Suhu</label>
+						</div>
+						<div class="grid_4">
+							<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.suhuBowdick"/>
+						</div>
+						<div class="grid_4">
+							<label c-label item="item" style="text-align: left;margin-top: 10px">°C</label>
+						</div>
+					</div>
+				</div>
+				<div class="grid_6">
+
+					<div class="grid_4">
+						<label c-label item="item" style="margin-top: 10px">Operator</label>
+					</div>
+					<div class="grid_8">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.operatorBowidick" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="dataMasterPegawai" />
+					</div>
+					<div class="grid_4">
+						<label c-label item="item" style="margin-top: 10px">Supervisor</label>
+					</div>
+					<div class="grid_8">
+				  <input style="width: 100%;" kendo-combo-box k-ng-model="item.SupervisiorBowidick" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="dataMasterPegawai" />
+					</div>
+					<div class="grid_4">
+						<label c-label item="item" style="margin-top: 10px">Tanggal</label>
+					</div>
+					<div class="grid_8">
+						<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalBowidick" placeholer="dd-MM-yyyy" k-format="'dd-MM-yyyy'" ng-disabled="dataEdit"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END BOWDICK -->
+
+	<!-- Biological Sudah Disterile -->
+	<div class="grid_6">
+		<div class="panel panel-default container_12">
+			<div class="panel-heading" c-translate>Biological Sudah Disterile</div>
+			<div class="panel-body">
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Tanggal</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalBiological" placeholer="dd-MM-yyyy" k-format="'dd-MM-yyyy'" ng-disabled="dataEdit"/>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Operator</label>
+				</div>
+				<div class="grid_8">
+				  <input style="width: 100%;" kendo-combo-box k-ng-model="item.operatorBiological" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="dataMasterPegawai" />
+				</div>
+				<div class="grid_12">
+					<div class="grid_4">
+						<label c-label item="item" style="margin-top: 10px">Suhu Pensterilan</label>
+					</div>
+					<div class="grid_4">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.suhuBiological"/>
+					</div>
+					<div class="grid_4">
+						<label c-label item="item" style="text-align: left;margin-top: 10px">°C</label>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_4">
+						<label c-label item="item" style="margin-top: 10px">Suhu Incubator</label>
+					</div>
+					<div class="grid_4">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.suhuIncubatorBiological"/>
+					</div>
+					<div class="grid_4">
+						<label c-label item="item" style="text-align: left;margin-top: 10px">°C</label>
+					</div>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Hasil</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 50%" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.hasilBilogical"/>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Jam Masuk</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 50%" kendo-time-picker k-ng-model="item.jamMasukBiological" placeholer="HH:mm" k-format="'HH:mm'" ng-disabled="dataEdit"/>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Jam Keluar</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 50%" kendo-time-picker k-ng-model="item.jamKeluarBiological" placeholer="HH:mm" k-format="'HH:mm'" ng-disabled="dataEdit"/>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END SBiological Sudah Disterile -->
+	
+	<!-- Attest Pembanding -->
+	<div class="grid_6">
+		<div class="panel panel-default container_12">
+			<div class="panel-heading" c-translate>Attest Pembanding</div>
+			<div class="panel-body">
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Tanggal</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalAttestPembanding" placeholer="dd-MM-yyyy" k-format="'dd-MM-yyyy'" ng-disabled="dataEdit"/>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Operator</label>
+				</div>
+				<div class="grid_8">
+				  <input style="width: 100%;" kendo-combo-box k-ng-model="item.operatorAttestPembanding" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="dataMasterPegawai" />
+				</div>
+				<div class="grid_12">
+					<div class="grid_4">
+						<label c-label item="item" style="margin-top: 10px">Suhu Pensterilan</label>
+					</div>
+					<div class="grid_4">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.suhuPensterilanAttestPembanding"/>
+					</div>
+					<div class="grid_4">
+						<label c-label item="item" style="text-align: left;margin-top: 10px">°C</label>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_4">
+						<label c-label item="item" style="margin-top: 10px">Suhu Incubator</label>
+					</div>
+					<div class="grid_4">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.suhuIncubatorAttestPembanding"/>
+					</div>
+					<div class="grid_4">
+						<label c-label item="item" style="text-align: left;margin-top: 10px">°C</label>
+					</div>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Hasil</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 50%" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.hasilAttestPembanding"/>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Jam Masuk</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 50%" kendo-time-picker k-ng-model="item.jamMasukAttestPembanding" placeholer="HH:mm" k-format="'HH:mm'" ng-disabled="dataEdit"/>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Jam Keluar</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 50%" kendo-time-picker k-ng-model="item.jamKeluarAttestPembanding" placeholer="HH:mm" k-format="'HH:mm'" ng-disabled="dataEdit"/>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="panel panel-default container_12">
+		<div class="panel-heading" c-translate>Grafik Pencatatan Suhu Mesin</div>
+		<div class="panel-body">
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Tanggal</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggal" placeholer="dd-MM-yyyy" k-format="'dd-MM-yyyy'" ng-disabled="dataEdit"/>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Program Mesin & Cycle</label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.programMesin"/>
+				</div>
+				<div class="grid_12">
+					<div class="grid_4">
+						<label c-label item="item" style="margin-top: 10px">Suhu</label>
+					</div>
+					<div class="grid_4">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.suhu"/>
+					</div>
+					<div class="grid_4">
+						<label c-label item="item" style="text-align: left;margin-top: 10px">°C</label>
+					</div>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Tekanan</label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box style="width: 50%" type="input" filter="'varchar'" class="k-textbox" ng-model="item.tekanan"/>
+				</div>
+			</div>
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Waktu Mulai</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 50%" kendo-time-picker k-ng-model="item.waktuMulai" placeholer="HH:mm" k-format="'HH:mm'" k-on-change="SetTotalJam()" ng-disabled="dataEdit"/>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Waktu Selesai</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 50%" kendo-time-picker k-ng-model="item.waktuSelesai" placeholer="HH:mm" k-format="'HH:mm'" k-on-change="SetTotalJam()" ng-disabled="dataEdit"/>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Lama Proses</label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box style="width: 50%" type="input" filter="'varchar'" class="k-textbox" ng-model="item.lamaProses" disabled />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Petugas</label>
+				</div>
+				<div class="grid_8">
+				  <input style="width: 100%;" kendo-combo-box k-ng-model="item.petugas" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="dataMasterPegawai" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="grid_6"></div>
+	<div class="grid_6">
+		<div class="grid_4"></div>
+		<div class="grid_4">
+			<button class="c-button success" ng-show="saveShow" ng-click="Save()">Simpan</button>
+			<img ng-show="isLoading" height="24" align="center" src="stylesheets\Flat\loading-image.gif" />
+		</div>		
+		<div class="grid_4">
+			<button class="c-button cancel" ng-click="batal()">Batal</button>
+		</div>
+	</div>
+</c-panel>
+</div>
+</div>

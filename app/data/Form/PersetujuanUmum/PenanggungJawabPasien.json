@@ -1,0 +1,35 @@
+{
+	"model":{
+		"Nama" : "",
+		"Pekerjaan" : "",
+		"Alamat" :"",
+	    "NoTelpon" : ""
+	   
+	},
+    "attributes" : [ 
+    	{
+			"isNull" : "true",
+			"name" : "Nama",
+			"messagesRequired" : "",
+			"caption" : "Nama"
+		},{
+			"isNull" : "true",
+			"name" : "Pekerjaan",
+			"messagesRequired" : "",
+			"caption" : "Pekerjaan"
+		},{
+			"isNull" : "true",
+			"name" : "Alamat",
+			"messagesRequired" : "",
+			"caption" : "Alamat"
+		},{
+			"isNull" : "true",
+			"name" : "NoTelpon",
+			"messagesRequired" : "",
+			"caption" : "No Telepon"
+		}
+
+		
+
+	]
+}

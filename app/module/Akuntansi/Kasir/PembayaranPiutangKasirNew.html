@@ -1,0 +1,193 @@
+<style>
+.style-center{
+	display: inline-block;
+	text-align: center;
+	width: 100%;
+}
+
+.style-right{
+	display: inline-block;
+	text-align: right;
+	width: 100%;
+}
+
+.style-left{
+	display: inline-block;
+	text-align: left;
+	width: 100%;
+}
+</style>
+
+<div ng-show="dataVOloaded">
+	<c-panel item="item" header="'Pembayaran Piutang Perusahaan'" disabled>
+
+		<!-- Kriteria -->
+		<div class="grid_12">
+			<!-- <div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+				<p>Data</p>
+			</div> -->
+			<div class="grid_12 borderBox containerBorderBox">
+				<!-- NoPendaftaran -->
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item">No Collecting</label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noCollect" ng-disabled="true"/>
+					</div>
+				</div>
+
+				<!-- NoRM -->
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item">Nama Collecting</label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaCollector" ng-disabled="true"/>
+					</div>
+				</div>
+
+				<!-- NamaPasien -->
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Perusahaan"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.perusahaan" ng-disabled="true"/>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+
+		<br/>
+
+		
+		<!-- DaftarTagihan -->
+		<div class="grid_12">
+			<div class="grid_12 headerBox">
+				<p>DaftarTagihan</p>
+			</div>
+			<div class="clear"></div>
+
+			<!-- grid table -->
+			<div class="grid_12 borderBox">
+				<div kendo-grid 
+				k-data-source="dataDaftarTagihan" 
+				k-selectable="'row'" 
+				k-sortable="'true'"
+				k-columns="columnDaftarTagihan">
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+
+		<br/>
+
+		<!-- Data -->
+		<div class="grid_6">
+			<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+				<p>Data</p>
+			</div>
+			<div class="grid_12 borderBox containerBorderBox">
+				<!-- Total Pasien -->
+				<div class="grid_12">
+					<div class="grid_3">
+						<p style="font-size: 16px; font-weight: bold;">Total Pasien :</p>
+					</div>
+					<div class="grid_9">
+						<p style="font-size: 16px;font-weight: bold;">{{totalPasien}}</p>
+					</div>
+					
+					<!-- <div class="grid_12">
+						<label c-label item="item">Total Pasien</label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" style="text-align: right;" filter="" class="k-textbox" ng-model="item.totalPasien" ng-disabled="true"/>
+					</div> -->
+				</div>
+				<!-- Total Tagihan -->
+				<div class="grid_12">
+					<div class="grid_3">
+						<p style="font-size: 16px; font-weight: bold;">Total Tagihan :</p>
+					</div>
+					<div class="grid_9">
+						<p style="font-size: 16px;font-weight: bold;">{{totalTagihan}}</p>
+					</div>
+					<!-- <div class="grid_12">
+						<label c-label item="item">Total Tagihan</label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" style="text-align: right;" filter="" class="k-textbox" ng-model="item.totalTagihan" ng-disabled="true"/>
+					</div> -->
+				</div>
+
+				<!-- TotalDeposit -->
+				<div class="grid_12">
+					<div class="grid_3">
+						<p style="font-size: 16px; font-weight: bold;">Sudah Dibayar: </p>
+					</div>
+					<div class="grid_9">
+						<p style="font-size: 16px;font-weight: bold;">{{totalDeposit}}</p>
+					</div>
+					<!-- <div class="grid_12">
+						<label c-label item="item">Yang Sudah Dibayar</label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" style="text-align: right;" filter="" class="k-textbox" ng-model="item.totalDeposit" ng-disabled="true"/>
+					</div> -->
+				</div>
+
+				<!-- JumlahBayar -->
+				<div class="grid_12">
+					<div class="grid_3">
+						<p style="font-size: 16px; font-weight: bold;">Sisa Tagihan :</p>
+					</div>
+					<div class="grid_9">
+						<p style="font-size: 16px;font-weight: bold;">{{jumlahBayarFix}}</p>
+					</div>
+					<!-- <div class="grid_12">
+						<label c-label item="item">Sisa Tagihan</label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" style="text-align: right;" filter="" class="k-textbox" ng-model="item.jumlahBayarFix" />
+					</div> -->
+				</div>
+			</div>
+		</div>
+		<div class="grid_6">
+			<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+				<p>Jumlah yang Ingin Dibayar</p>
+			</div>
+			<div class="grid_12 borderBox containerBorderBox">
+				<!-- Total Tagihan -->
+				<input c-text-box id="currency" type="input" style="text-align: left;" filter="'numeric'" class="k-textbox" ng-model="item.jumlahBayar" autofocus="foc" />
+
+				<p style="font-size: 24px;font-weight: bold;">{{jumlahBayar}}</p>
+				<p style="font-size: 16px; font-weight: bold;">Terbilang :</p>
+				<p style="font-size: 16px;font-weight: bold;">{{terbilang}}</p>
+			</div>
+		</div>
+
+	</c-panel>
+
+	<div class="grid_12" style="margin-top:30px">
+		<div ng-include='"../app/module/Shared/Keuangan/TemplateButtonKasirNew"'></div>
+	</div>
+</div>
+

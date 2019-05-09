@@ -1,0 +1,64 @@
+<div ng-controller="LaporanPemakaianAirBersihCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Laporan Pemakaian Air Bersih'" disabled>
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label class="label-aja" item="item" c-label-text="periodeAwal"></label>
+				</div>
+				<div class="grid_8">
+					<input kendo-date-picker k-ng-model="item.dateStart" k-max ="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+				</div>
+			</div>
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label class="label-aja" item="item" c-label-text="periodeAkhir"></label>
+				</div>
+				<div class="grid_8">
+					<input kendo-date-picker k-ng-model="item.dateEnd" k-max ="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div class="grid_6"></div>
+			<div class="grid_6">
+				<div class="grid_4"></div>
+				<div class="grid_8">
+					<div class="grid_6">
+						<c-button ng-click="cari()"><span>Cari</span></c-button>
+					</div>
+					<div class="grid_6">
+						<c-button ng-click="reset()"><span>Reset</span></c-button>
+					</div>
+				</div>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_12" style="margin-top:20px">
+				<kendo-grid k-data-source="sourceOrder" k-selectable="'row'" k-columns="columnLaporanAirBersih" style="margin-bottom: 10px"></kendo-grid>
+			</div>
+			
+		<!-- <div class="grid_3">
+			<label c-label item="item" c-label-text="penandatangan"></label>
+		</div>
+		<div class="clear"> </div>
+		<div class="grid_3">
+			<input style="width: 100%;" kendo-combo-box k-ng-model="item.penandatangan" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPenandatangan" />
+		</div>
+		<div class="grid_5"></div>
+		<div class="grid_2">
+			<c-button ng-click="cetal()">
+				<span>Cetak</span>
+		</div>
+		<div class="grid_2">
+			<c-button ng-click="tutup()">
+				<span>Tutup</span>
+		</div> -->
+		</c-panel>
+	</div>
+</div>
+
+<style>
+.label-aja {
+	margin-top:10px;
+}
+</style>

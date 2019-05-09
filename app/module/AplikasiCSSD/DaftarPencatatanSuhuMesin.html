@@ -1,0 +1,10 @@
+<div ng-controller="DaftarPencatatanSuhuMesinCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Daftar Pencatatan Suhu Mesin'">
+		<div class="grid_12">
+			<kendo-grid options="gridPencatatanSuhuMesin" k-scrollable = "false" k-data-source="dataSource"></kendo-grid>
+		</div>
+		</c-panel>
+	</div>
+</div>

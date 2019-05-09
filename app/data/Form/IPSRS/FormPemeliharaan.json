@@ -1,0 +1,81 @@
+{
+    "model":{
+        "unitKerja" : "",
+        "lokasi":"",
+        "namaHardware":"",
+        "merk": "",
+        "type":"",
+        "noSeri" :"",
+        "namaTeknisi" : "",
+        "tanggalPemeliharaan" : "",
+        "catatan" : "",
+        "hasil":"",
+        "jamTglSelesai":"",
+        "verifikasi": ""
+
+       
+    },
+    "attributes" :[ 
+        {
+            "isNull" : "unit",
+            "name" : "unitKerja",
+            "messagesRequired" : "",
+            "caption" : "UnitKerja"
+        },{
+            "isNull" : "true",
+            "name" : "lokasi",
+            "messagesRequired" : "",
+            "caption" : "Lokasi"
+        },{
+            "isNull" : "true",
+            "name" : "namaHardware",
+            "messagesRequired" : "",
+            "caption" : "Nama Hardware"
+        },{
+            "isNull" : "true",
+            "name" : "merk",
+            "messagesRequired" : "",
+            "caption" : "Merk"
+        },{
+            "isNull" : "true",
+            "name" : "type",
+            "messagesRequired" : "",
+            "caption" : "Type"
+        },{
+            "isNull" : "true",
+            "name" : "noSeri",
+            "messagesRequired" : "",
+            "caption" : "No. Seri"
+        },{
+            "isNull" : "true",
+            "name" : "namaTeknisi",
+            "messagesRequired" : "",
+            "caption" : "Nama Teknisi"
+        },{
+            "isNull" : "true",
+            "name" : "tanggalPemeliharaan",
+            "messagesRequired" : "",
+            "caption" : "Tanggal Pemeliharaan"
+        },{
+            "isNull" : "true",
+            "name" : "catatan",
+            "messagesRequired" : "",
+            "caption" : "Catatan"
+        },{
+            "isNull" : "true",
+            "name" : "hasil",
+            "messagesRequired" : "",
+            "caption" : "Hasil / Status"
+        },{
+            "isNull" : "true",
+            "name" : "jamTglSelesai",
+            "messagesRequired" : "",
+            "caption" : "Jam & Tanggal Selesai"
+        },{
+            "isNull" : "true",
+            "name" : "verifikasi",
+            "messagesRequired" : "",
+            "caption" : "Verifikasi User"
+        }
+    ]
+}

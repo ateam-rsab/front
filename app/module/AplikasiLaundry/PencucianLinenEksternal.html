@@ -1,0 +1,134 @@
+<div ng-controller="PencucianLinenEksternalCtrl">
+	<div class="panel panel-default container_12">
+		<div class="panel-heading" c-translate>Pencucian Linen Eksternal</div>
+			<div class="panel-body">
+				<div class="grid_12">
+						<div class="grid_2"></div>
+						<div class="grid_3">
+							<div class="grid_12" style="margin-top: 15px">
+								<div class="grid_10">
+									<label c-label item="item" c-label-text="noMesin"></label>
+								</div>
+								<div class="grid_2" align="right">:</div>
+							</div>
+				 			<div class="grid_12" style="margin-top: 20px">
+				 				<div class="grid_10">
+									<label c-label item="item" c-label-text="kapasitas"></label>
+								</div>
+								<div class="grid_2" align="right">:</div>
+							</div>
+							<div class="grid_12" style="margin-top: 20px">
+				 				<div class="grid_10">
+									<label c-label item="item" c-label-text="satuan"></label>
+								</div>
+								<div class="grid_2" align="right">:</div>
+							</div>
+							<div class="grid_12" style="margin-top: 20px">
+								<div class="grid_10">
+									<label c-label item="item" c-label-text="jenisLinen"></label>
+								</div>
+								<div class="grid_2" align="right">:</div>
+							</div>
+				 			<div class="grid_12" style="margin-top: 15px">
+				 				<div class="grid_10">
+									<label c-label item="item" c-label-text="jumlah"></label>
+								</div>
+								<div class="grid_2" align="right">:</div>
+							</div>
+							<div class="grid_12" style="margin-top: 20px">
+				 				<div class="grid_10">
+									<label c-label item="item" c-label-text="satuan"></label>
+								</div>
+								<div class="grid_2" align="right">:</div>
+							</div>
+							<div class="grid_12" style="margin-top: 15px">
+				 				<div class="grid_10">
+									<label c-label item="item" c-label-text="hargaSatuan"></label>
+								</div>
+								<div class="grid_2" align="right">:</div>
+							</div>	
+						</div>
+						<div class="grid_3">
+							<div class="grid_12" style="margin: 5px 0 0 0;">
+					  			<input style="width: 100%;" kendo-combo-box k-ng-model="item.mesin" k-data-text-field="'namaProduk'" k-data-value-field="'idProduk'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceMasterMesin" ng-selected="satuan()" />
+							</div>
+							<div class="grid_12">
+								<div class="grid_8">
+									<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.kapasitas" maxlength="4" />
+								</div>
+							</div>
+							<div class="grid_12">
+								<div class="grid_8">
+									<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.satuanKg"/>
+								</div>
+							</div>
+							<div class="grid_12">
+								<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisLinen" k-data-text-field="'jenisLinen'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceMasterJenisLinen"/>
+							</div>
+							<div class="grid_12">
+								<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlah" maxlength="10"/>
+							</div>
+							<div class="grid_12">
+								<div class="grid_8">
+									<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.satuanKg"/>
+								</div>
+							</div>
+							<div class="grid_12">
+								<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.hargaSatuan" maxlength="10"/>
+							</div>
+						</div>
+						<div class="grid_1"></div>
+						<div class="grid_2">
+							<div class="grid_12" style="margin: 200px 0 0 0;">
+					  			<button class="c-button" ng-click="addDaftarPencucianLinenEksternal()">Tambah</button>
+							</div>
+							<div class="grid_12" style="margin: 10px 0 0 0;">
+								<button class="c-button" ng-click="removeDaftarPencucianLinenEksternal()">Hapus</button>
+							</div>
+							<div class="grid_1"></div>
+						</div>
+					</div>
+					<div class="grid_12" style="margin-top: 20px">
+						<div class="grid_1"></div>
+						<div class="grid_10">
+        					<div kendo-grid k-data-source="daftarPencucianLinenEksternal" k-selectable="'row'" k-columns="columndaftarPencucianLinenEksternal">
+        					</div>
+        				</div>
+        				<div class="clear"></div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_2"></div>
+						<div class="grid_2">
+							<div class="grid_12" style="margin-top: 25px">
+								<div class="grid_8" align="right">
+									<label c-label item="item" c-label-text="total"></label>
+								</div>
+								<div class="grid_4" align="right">:</div>
+							</div>
+						</div>
+						<div class="grid_3" style="margin-top: 15px">
+							<input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.totalHarga" maxlength="10"/>
+						</div>
+					</div>
+			<div class="panel panel-default container_12" style="margin-top: 20px">
+				<div class="panel-heading" c-translate>Perhitungan Bahan Kimia</div>
+					<div class="panel-body">
+						<div class="grid_12" style="margin-top: 10px">
+        					<div kendo-grid k-data-source="daftarPerhitunganBahanKimia" k-selectable="'row'" k-columns="columndaftarPerhitunganBahanKimia">
+        					</div>
+						</div>
+    				</div> 
+				</div>
+			</div>
+			<div class="grid_12" style="margin-bottom:10px">
+				<div class="grid_8"></div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="Save()">Simpan</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="Tutup()">Tutup</button>
+				</div>
+			</div>
+		</div>
+	</div>
+

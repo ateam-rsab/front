@@ -1,0 +1,90 @@
+<div ng-controller="PerencanaanPulangCtrl"><br/>
+
+    <div ng-show="dataVOloaded">
+        <div class="grid_12"> <!-- Perencanaan Pulang -->
+            <div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+                <span style="font-size: 18px; color: white; padding: 5px;">Perencanaan Pulang</span>
+            </div>
+            <div class="container_12"> 
+                <div class="grid_12" style="margin-top: 10px;">
+                    <div kendo-grid k-selectable="'row'" k-options="optionsPerencanaan" k-scrollabe="true"></div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_12" style="margin-bottom:48px">
+            <div class="grid_12" style="border-bottom:1px dashed grey">
+                <div class="grid_2" style="padding-top:12px">
+                    <label>Nama Perawat/Bidan</label>
+                </div>
+                <div class="grid_4">
+                    <input type="input" ng-model="item.namaPerawat" class="k-textbox">
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_2" style="padding-top:12px">
+                    <label>Tanda Tangan</label>
+                </div>
+                <div class="grid_4">
+                    <input type="input" ng-model="item.namaPerawat" class="k-textbox">
+                </div>
+            </div>
+        </div>
+        <c-panel item="item" header="'Perencanaan Pulang'" ng-hide="true">
+            <div >
+                <div class="grid_12">
+                    <div class="grid_12">
+                        <div class="grid_2" style="margin: 5px">
+                            <label c-label item="item" c-label-text="Komponen penilaian"></label></div>
+                        <div class="grid_4" style="margin: 5px">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="tempItem.riwayatPenyakitOrObat" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDiagnosis" />
+                        </div>
+                        <div class="grid_1"></div>
+                        <div class="grid_2" style="margin: 5px 0px 5px 0px;" ng-repeat="stat in listStatusKesadaran">
+                            <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="tempItem.HubunganPasienDenganAnggotaKeluarga" value="{{stat.name}}">
+                            <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="grid_3"></div>
+                    </div>
+                    <div class="grid_12" style="margin: 5px">
+                        <div class="grid_10"><textarea placeholder="Keterangan" ng-model="tempItem.TextAreaKeterangan" style="width: 99%; height: 80px;"></textarea></div>
+                        <div class="grid_2">
+                            <c-button ng-click="addDataRiwayatPenyakitOrObat()" style="width:100% !important">
+                                <span style="font-size:10!important">Tambah</span>
+                            </c-button></div>
+                    </div>
+                </div>
+
+                <div class="clear"></div>
+
+                <!-- grid diagnosis -->
+                <div ng-show="isAdaDiagnosis">
+                    <div class="grid_12" style="margin-top: 10px;">
+                        <div kendo-grid k-data-source="dataRiwayatPenyakitOrObat" k-selectable="'row'" k-columns="columnRiwayatPenyakitOrObat">
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+            <div class="clear"></div>
+            <div class="clear"></div>
+
+            <hr style="background-color:#10C4B2;height: 1px;border: 0;" />
+            <div class="grid_12">
+                <div class="grid_3" style="float:right">
+                    <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="Next">
+                        <span class="title">Selanjutnya</span>
+                    </c-button>
+                </div>
+                <div class="grid_3" style="float:right">
+                    <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'">
+                        <span class="title">Sebelumnya</span>
+                    </c-button>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </c-panel>
+        <div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+    </div>
+</div>

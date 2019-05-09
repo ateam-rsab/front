@@ -1,0 +1,81 @@
+<div ng-controller="FormPengembalianCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Form Pengembalian'">
+			<div class="panel panel-default container_12">
+				<div class="panel-heading" c-translate>Data Barang</div>
+				<div class="panel-body">
+					<div class="grid_6">
+						<div class="grid_4" style="margin-top: 10px">
+							<label c-label item="item" c-label-text="namaBarang"></label>
+						</div>
+						<div class="grid_8">
+							<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaProduk" ng-disabled="disdataAlat"/>
+						</div>
+						<div class="grid_4" style="margin-top: 10px">
+							<label c-label item="item" c-label-text="jumlahBarang"></label>
+						</div>
+						<div class="grid_8">
+							<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlah" style="width: 50%" ng-disabled="disdataAlat" />
+						</div>
+						<div class="grid_4" style="margin-top: 10px">
+							<label c-label item="item" c-label-text="namaPeminjam"></label>
+						</div>
+						<div class="grid_8">
+							<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.peminjam" ng-disabled="disdataAlat"/>
+						</div>
+					</div>
+					<div class="grid_6">
+						<div class="grid_4" style="margin-top: 10px">
+							<label c-label item="item" c-label-text="tglPeminjaman"></label>
+						</div>
+						<div class="grid_8">
+							<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.tglPeminjamanNew" ng-disabled="disdataAlat"/>
+						</div>
+						<div class="grid_4" style="margin-top: 10px">
+							<label c-label item="item" c-label-text="tglPengembalian"></label>
+						</div>
+						<div class="grid_8">
+							<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.tglPengembalianNew" ng-disabled="disdataAlat"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default container_12">
+				<div class="panel-heading" c-translate>Data Pengembalian</div>
+				<div class="panel-body">
+					<div class="grid_6">
+						<div class="grid_4" style="margin-top: 10px">
+							<label c-label item="item" c-label-text="namaPengembali"></label>
+						</div>
+						<div class="grid_8">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaPengembali" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" />
+						</div>
+						<div class="grid_4" style="margin-top: 10px">
+							<label c-label item="item" c-label-text="tglPengembalian"></label>
+						</div>
+						<div class="grid_8">
+							<input style="width: 100%" kendo-date-picker k-ng-model="item.tglPengembalian" placeholer="dd-mm-yyyy" />
+						</div>
+						<div class="grid_4" style="margin-top: 10px">
+							<label c-label item="item" c-label-text="kondisiBarang"></label>
+						</div>
+						<div class="grid_8">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.kondisiBarang" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKondisiBarang" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="grid_6"></div>
+			<div class="grid_6">
+				<div class="grid_4"></div>
+				<div class="grid_4">
+					<button class="c-button" ng-click="simpan()">Simpan</button>
+				</div>
+				<div class="grid_4">
+					<button class="c-button" ng-click="batals()">Batal</button>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

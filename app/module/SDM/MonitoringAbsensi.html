@@ -1,0 +1,199 @@
+<style>
+.k-grid  .k-grid-header  .k-header  .k-link {
+    height: auto;
+}
+  
+.k-grid  .k-grid-header  .k-header {
+    white-space: normal;
+}
+
+#panelbar {
+    max-width: 800px;
+    margin: 0 auto;
+}
+.details {
+    display: inline-flex;
+    vertical-align: middle;
+}
+</style>
+<div>
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Monitoring Absensi'" disabled>
+            <div class="panel-body">
+                <div class="grid_12">
+                    <div class="grid_4" >
+                        <div id="arcodion">
+                            <ul id="panelbar">
+                              <!--   <li class="k-state-active" ng-click="pijit(1)">
+                                    <span class="k-link k-state-selected">Tanggal Monitoring</span>
+                                    <div style="padding: 30px;">
+                                        <div class="1">
+                                            <div class="details">
+                                                <div class="grid_12">
+                                                    <div class="grid_5">
+                                                        <input kendo-date-picker k-ng-model="item.monitoringAwal" k-max="now" k-format="'yyyy-MM-dd'" style="width: 100%" />
+                                                    </div>
+                                                    <div class="grid_1">
+                                                        <label>s/d</label>
+                                                    </div>
+                                                    <div class="grid_5">
+                                                        <input kendo-date-picker   k-ng-model="item.monitoringAkhir" k-max="now" k-format="'yyyy-MM-dd'" style="width: 100%" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li> -->
+                                <li class="k-state-active" ng-click="pijit(2)">
+                                    <span class="k-link k-state-selected">Nama Pegawai</span>
+                                    <div style="padding: 30px;">
+                                        <div class="2">
+                                            <div class="details">
+                                                <div class="grid_12">
+                                                    <input style="min-width: 250px;" kendo-combo-box k-ng-model="item.pegawai" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-data-source="listPegawai" ng-disabled="isDisable" k-filter="'contains'" k-auto-bind="false"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li ng-click="pijit(3)" ng-hide="isHide">
+                                    <span class="k-link k-state-selected">Unit Kerja</span>
+                                    <div style="padding: 30px;">
+                                        <div class="3">
+                                            <div class="details">
+                                                <div class="grid_12">
+                                                    <input style="min-width: 250px;" kendo-combo-box k-ng-model="item.unitKerja" k-data-text-field="'name'" k-data-value-field="'id'" k-data-source="listUnitKerja" ng-disabled="loginKaru"/>
+                                                <!--     <div class="grid_10">
+                                                        <input type="checkbox" class="k-checkbox" id="Checkbox1" ng-click="cbAll()" k-ng-model="item.Checkbox1" ng-checked="vals">
+                                                        <label class="k-checkbox-label" for="Checkbox1"> Tampilkan Semua</label>
+                                                    </div> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li></li>
+                            </ul>
+                            <script>
+                                $(document).ready(function() {
+                                    $("#panelbar").kendoPanelBar({
+                                        expandMode: "single"
+                                    });
+                                });
+                            </script>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_12" style="padding:5px">
+                                <label c-label item="item" c-label-text="periodeMonitoring"></label>
+                            </div>
+                            <div class="grid_12" style="margin-top:-5px">
+                                <div class="grid_5">
+                                    <input kendo-date-picker k-ng-model="item.monitoringAwal" k-max="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+                                </div>
+                                <div class="grid_1" style="padding-top:16px;text-align:center">
+                                    <label c-label item="item" class="">s/d</label>
+                                </div>
+                                <div class="grid_5">
+                                    <input kendo-date-picker   k-ng-model="item.monitoringAkhir" k-max="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+                                </div>
+                                <div class="grid_1">
+                                    <em style="margin-top:6px;" ng-click='Cari()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+                                </div>
+                            </div>
+                            <!--<div class="grid_1" style="margin: 15px 0 0 0;">
+                                <label><b>s/d</b></label>
+                            </div>-->
+                            <!-- <div class="grid_2">
+                                <button class="c-button" ng-show="!isLoading"  ng-click="cariTgl()">
+                                    <span class="title">Cari Berdasarkan Tanggal</span>
+                                </button>
+                            </div> -->
+
+                        </div>
+                        <!--<div class="grid_12"> 
+                            <button class="c-button" ng-show="!isLoading" ng-click="Cari()">
+                                <span class="title">Cari</span>
+                            </button> 
+                        </div>-->
+                    </div>
+                    <div class="grid_8">
+                        <div class="grid_10">
+                            <div class="grid_3" style="margin: 15px 0 0 0;">
+                                <label><b>ID Finger Print</b>
+                                </label>
+                            </div>
+                            <div class="grid_7">
+                                <input c-text-box type="input" filter="'varchar'" readonly="true" class="k-textbox" ng-model="item.idFingerPrint" />
+                            </div>
+                        </div>
+                        <div class="grid_10">
+                            <div class="grid_3" style="margin: 15px 0 0 0;">
+                                <label><b>Nama</b>
+                                </label>
+                            </div>
+                            <div class="grid_7">
+                                <input c-text-box type="input" filter="'varchar'" readonly="true" class="k-textbox" ng-model="item.nama" />
+                            </div>
+                        </div>
+                        <div class="grid_10">
+                            <div class="grid_3" style="margin: 15px 0 0 0;">
+                                <label><b>NIP</b>
+                                </label>
+                            </div>
+                            <div class="grid_7">
+                                <input c-text-box type="input" filter="'varchar'" readonly="true" class="k-textbox" ng-model="item.nip" />
+                            </div>
+                        </div>
+                        <div class="grid_10">
+                            <div class="grid_3" style="margin: 15px 0 0 0;">
+                                <label><b>Jabatan</b>
+                                </label>
+                            </div>
+                            <div class="grid_7">
+                                <input c-text-box type="input" filter="'varchar'" readonly="true" class="k-textbox" ng-model="item.jabatan" />
+                            </div>
+                        </div>
+                        <div class="grid_10">
+                            <div class="grid_3" style="margin: 15px 0 0 0;">
+                                <label><b>Unit Kerja</b>
+                                </label>
+                            </div>
+                            <div class="grid_7">
+                                <input c-text-box type="input" filter="'varchar'" readonly="true" class="k-textbox" ng-model="item.unitKerjatxt" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </c-panel>
+        <!--<div class="grid_12">
+            <div class="loading" style="position: relative; margin:25px 0px 20px;" class="animated" ng-show="isLoadingData">
+                <img height="50" src="../app/stylesheets/Flat/loading-image.gif" />
+                <br/> <span>Harap tunggu, sedang memproses data</span>
+            </div>
+        </div>-->
+        <div class="grid_12" style="margin: 10px 0 50px;">
+            <div kendo-grid="grid" id="grid" k-data-source="sourceOrder" options="mainGridOption" k-selectable="'row'" style="font-size: small;" k-ng-model="current" ng-click="klik(current)"></div>
+        </div>
+        <!--<div class="grid_12">
+            <div class="grid_8" style="float:left">
+                <div class="grid_2" style="margin-top: 25px">
+                    <button class="c-button" ng-show="!isLoading" item="item" is-validate click="Cancel">
+                        <span class="title">Batal</span>
+                    </button>
+                </div>
+                <div class="grid_2 " style="margin-top: 25px ">
+                    <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="cetak()">
+                        <span class="title">Cetak</span>
+                    </button>
+                </div>
+                <div class="grid_2" style="margin-top: 25px">
+                    <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="save()">
+                        <span class="title">Simpan</span>
+                    </button>
+                </div>
+            </div>
+        </div>-->
+    </div>
+    <div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
+</div>
+<div ng-include='"../app/module/Shared/TemplateLoading"'></div>

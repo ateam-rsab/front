@@ -1,0 +1,21 @@
+[
+	{  
+        "id":1,
+        "noRM":"21112022",
+        "nama":"Adre",
+        "ruanganAsal":"Dahlia",
+        "ruanganTujuan":"Anggrek",
+        "kelasPerawatan":"Kelas Perawatan 1",
+        "tglRencana":"Ruangan 1",
+        "tipePembayaran":"pembayaran 1"
+    },{  
+        "id":2,
+        "noRM":"21112029",
+        "nama":"Susy",
+        "ruanganAsal":"Anggrek",
+        "ruanganTujuan":"Dahlia",
+        "kelasPerawatan":"Kelas Perawatan 1",
+        "tglRencana":"Ruangan 2",
+        "tipePembayaran":"pembayaran 2"
+    }
+]

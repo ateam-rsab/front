@@ -1,0 +1,66 @@
+<div ng-controller="MasterExtensionCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Master Extension'">
+		<div class="grid_6">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="nomor"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.nomor" disabled="" />
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="ruangan"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="noExtension"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noExtension"/>
+			</div>
+		</div>
+		<div class="grid_6">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="statusSemuaRuangan"></label>
+			</div>
+			<div class="grid_8">
+				<div class="grid_6" ng-repeat="stat in listYaTidak">
+                    <input type="radio" name="{{'statusSemuaRuangan' + stat.name}}" id="{{'statusSemuaRuangan' + stat.name}}" class="k-radio" ng-model="item.statusSemuaRuangan" value="{{stat.id}}">
+                    <label class="k-radio-label" for="{{'statusSemuaRuangan' + stat.name}}">{{stat.name}}</label>
+	            </div>
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="statusPelanggan"></label>
+			</div>
+			<div class="grid_8">
+				<div class="grid_6" ng-repeat="stat in listYaTidak">
+                    <input type="radio" name="{{'statusPelanggan' + stat.name}}" id="{{'statusPelanggan' + stat.name}}" class="k-radio" ng-model="item.statusPelanggan" value="{{stat.id}}">
+                    <label class="k-radio-label" for="{{'statusPelanggan' + stat.name}}">{{stat.name}}</label>
+	            </div>
+			</div>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_12" style="margin-bottom: 10px">
+			<kendo-grid options="mainGridOptions" k-selectable="'row'" k-data-source="dataEkstension" k-ng-model="current" ng-click="kl(current)"></kendo-grid>
+		</div>
+		<div class="grid_6"></div>
+		<div class="grid_6">
+			<div class="grid_3">
+				<button class="c-button" ng-click="Save()">Simpan</button>
+			</div>
+			<div class="grid_3">
+				<button class="c-button" ng-click="batal()">Batal</button>
+			</div>
+			<div class="grid_3">
+				<button class="c-button" ng-click="hapus()">Hapus</button>
+			</div>
+			<div class="grid_3">
+				<button class="c-button" ng-click="tambah()">Tutup</button>
+			</div>
+		</div>
+		</c-panel>
+	</div>
+</div>

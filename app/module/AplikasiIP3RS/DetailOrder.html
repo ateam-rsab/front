@@ -1,0 +1,43 @@
+<div ng-controller="DetailOrderCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Detail Order'">
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">No Order</label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noOrder" disabled="true" />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Tanggal Order</label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.tanggalOrder" disabled="true"/>
+				</div>
+			</div>
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">User Pemesan</label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.userPemesan" disabled="true" />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Ruangan Pemesan</label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.ruanganPemesan" disabled="true"/>
+				</div>
+			</div>
+			<div class="grid_12">
+				<kendo-grid options="mainGridOptions" k-scrollable="false" k-data-source="dataSource" k-selectable="'row'" k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+			</div>
+			<div class="grid_10">
+				
+			</div>
+			<div class="grid_2">
+				<button class="c-button" ng-click="kembali()">Kembali</button>
+			</div>
+		</c-panel>
+	</div>
+</div>

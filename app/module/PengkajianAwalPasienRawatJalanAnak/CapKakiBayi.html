@@ -1,0 +1,30 @@
+<div ng-controller="CapKakiBayiCtrl">
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Cap Kaki Bayi'">
+            <div class="grid_12">
+                <div class="grid_3">
+                    <!-- <label c-label item="item">Upload Gambar</label> -->
+                    <input id="files"
+                           type="file"
+                           kendo-upload
+                           k-async="{ saveUrl: 'save', removeUrl: 'remove', autoUpload: true }"
+                           k-multiple="false"
+                           k-select="onSelect"/>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_3" id="preview" ng-hide="!imgData">
+                    <img class="gambarAset img-responsive" src="{{imgData}}" />
+                </div>
+            </div>
+        </c-panel>
+    </div>
+    <div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
+</div>
+<style type="text/css">
+.gambarAset {
+    max-width: 100%;
+    max-height: 100%;
+    /*border: 1px solid grey;*/
+}
+</style>

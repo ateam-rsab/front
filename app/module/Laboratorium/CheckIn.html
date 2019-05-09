@@ -1,0 +1,30 @@
+<div ng-controller="CheckInLaboratoriumCtrl">
+    <div ng-include='"../app/module/Shared/headerPasienPenunjang" '></div>
+    <c-panel item="item" header="'Check In'" disabled>
+
+        <div class="grid_12">
+            <div class="grid_12">
+                <table class="table table-striped">
+                    <tr>
+                        <th style="width:25px"></th>
+                        <th><span c-translate>Bahan Spesimen</span></th>
+                        <th><span c-translate>Jumlah</span></th>
+                        <th><span c-translate></span></th>
+                    </tr>
+                    <tr ng-repeat="data in listSpesimens">
+                        <td>
+                            <input type="checkbox" class="k-checkbox" name="{{data.noRec}}" id="{{data.noRec}}" value="{{data.noRec}}" ng-model="data.isChecked">
+                            <label class="k-checkbox-label" for="{{data.noRec}}"></label>
+                        </td>
+                        <td>{{data.namaProduk +" "+data.bahanSample.namaBahanSample+" - "+data.bahanSample.kodeExternal}}</td>
+                        <td>{{data.jumlah}}</td>
+                        <td>
+                    </tr>
+                </table>
+                <c-button style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="cetak">
+                    <span class="title">Cetak</span>
+                </c-button>
+            </div>
+        </div>
+    </c-panel>
+</div>

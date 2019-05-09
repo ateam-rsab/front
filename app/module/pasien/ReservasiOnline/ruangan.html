@@ -1,0 +1,129 @@
+<div ng-controller="ReservasiOnlineNewCtrl">
+    <div class="grid_12">
+        <div class="grid_6">
+            <div class="grid_12">
+                <span class="title" style="font-size:14pt !important;">Tanggal Pemesanan<b  style='font-size:21pt; ' ng-click='item.tglReservasi=undefined'> <br/>{{item.tglReservasi | date :'dd MMMM yyyy HH:mm'}}</b> </span>
+            </div>
+            <div class="grid_12">
+                <input ng-show="item.tglReservasi===undefined" k-min='now' style="width: 100%" kendo-date-time-picker k-ng-model="item.tglReservasi" placeholer="dd-mm-yyyy HH:mm" k-format="'dd-MM-yyyy HH:mm'"/>
+            </div>
+
+        </div>
+        <div class="grid_6">
+            <div class="grid_12">
+                <span class="title" style="font-size:14pt !important;">Jenis Pasien<b  style='font-size:21pt; ' ng-click='item.jenisPasien=undefined'> <br/>{{item.jenisPasien.kelompokPasien}}</b> </span>
+            </div>
+            <div class="grid_12">
+                <input ng-show="item.jenisPasien===undefined" required style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPasien" k-data-text-field="'kelompokPasien'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="asuransiPasiens" k-auto-bind="'false'"
+                />
+            </div>
+
+        </div>
+        <div class="grid_12">
+            &nbsp;
+        </div>
+        <!--<span class="title">Tanggal Reservasi : <b>{{item.TglDaftar | date :'dd MMMM yyyy'}}</b></span>-->
+
+
+        <!--<div class="tiles">
+            <div class="grid_3" ng-repeat="tanggal in tanggalReservasi">
+                <div class="tile bg-yellow-saffron main" ng-click="(tanggal.date.getDay()==6 || tanggal.date.getDay()==0)?item.TglDaftar=item.TglDaftar :item.TglDaftar= tanggal.date" ng-class="{red : (tanggal.date.getDay()==6 || tanggal.date.getDay()==0),blue : !(tanggal.date.getDay()==6 || tanggal.date.getDay()==0),selected : tanggal.date === item.TglDaftar}">
+                    <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                    <div class="check"></div>
+                    <div class="tile-body" style="overflow: initial;">
+                        <i style="font-style: normal;">{{tanggal.date.getDate()}}</i>
+                    </div>
+                    <div class="tile-object">
+                        <div class="name">{{tanggal.date | date :'MMMM yyyy'}} </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+        <div class="grid_12" style="padding: 0px 5px;">
+            <span class="title" style="font-size:14pt !important;">Ruangan Tujuan  
+            <b style='font-size:21pt; ' ng-click='item.poliTujuan=undefined'><br/>{{item.poliTujuan.namaRuangan}}</b>
+            </span>
+            <br/>
+            <span style='font-size:10px'>Tekan ruangan untuk merubah ruangan</span>
+            <br />
+            <div ng-show='item.poliTujuan===undefined' class="grid_12">
+                <span class="k-textbox k-space-right" style="width: 100%;">
+                <input type="text" id="icon-right" ng-model="searchNamaRuangan" />
+                <a href="" class="k-icon k-i-search">&nbsp;</a>
+            </span>
+            </div>
+            <div class="tiles" ng-show='item.poliTujuan===undefined'>
+                <div ng-class="{grid_4: $index===0,grid_8:$index===1}" ng-repeat="data in ruangansLocal">
+                    <div class="grid_12">
+                        <md-toolbar>
+                            <h1 style="color:white; ">{{data.key}}</h2>
+                        </md-toolbar>
+                    </div>
+                    <div class="item-hover" ng-class="{grid_6: $parent.$index===0,grid_3:$parent.$index===1}" ng-repeat="ruangan in data.items | filter:searchNamaRuangan">
+                        <img style="width: 100%;" ng-click="item.poliTujuan =ruangan" src="images/reservasi/{{ruangan.namaRuangan}}.png" />
+
+                        <!--<div class="tile bg-yellow-saffron main purple" ng-click="item.poliTujuan =ruangan" ng-class="{selected : item.poliTujuan ===ruangan}">
+                            <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                            <div class="check"></div>
+                            <div class="tile-body" style="overflow: initial;">
+                                <i style="font-style: normal;">
+                                </i>
+                            </div>
+                            <div class="tile-object">
+                                <div class="name"> </div>
+                            </div>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_12">
+            &nbsp;
+        </div>
+        <div class="grid_12">
+            <div ng-show='showDokter==="EKSEKUTIF"'>
+                <!---->
+                <span class="title" style="font-size:14pt !important;">Dokter  <b> <br/>{{item.dokter.namaLengkap}}</b></span>
+                <br />
+                <di ng-show='item.Dokter===undefined' class="grid_12">
+                    <span class="k-textbox k-space-right" style="width: 100%;">
+                <input type="text" id="icon-right" ng-model="searchNamaDokter" />
+                <a  class="k-icon k-i-search">&nbsp;</a>
+            </span>
+                    <div ng-show='item.Dokter===undefined' class="tiles">
+                        <div class="grid_3" ng-repeat="doktor in dokters">
+                            <div class="tile bg-yellow-saffron main purple" ng-click="item.dokter =doktor.dokter" ng-class="{selected : item.dokter ===doktor.dokter}">
+                                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                                <div class="check"></div>
+                                <div class="tile-object" style="min-height:80px;top:0 !important;bottom:auto !important;">
+                                    <div class="icon-panel">
+                                        <img width='70px' ng-src='stylesheets/dokter-{{doktor.dokter.id}}.png' />
+                                    </div>
+                                    <div class="text_panel">
+                                        <br/>
+                                        <div class="name" style="display: block;bottom: initial;">{{doktor.dokter.namaLengkap}} </div>
+                                        <br/>
+                                        <div class="name" style="display: block;bottom: initial;font-size: 84%;">{{doktor.jadwalPraktek.jamPraktek}} </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="grid_12">
+        <div class="grid_6">
+            <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px" item="item" size="36" position="'left'" is-back icon="'icon-prev'">
+                <span class="title" c-translate>Kembali</span>
+            </c-button>
+        </div>
+        <div class="grid_6">
+            <c-button ng-show="!isLoading" class="success" style="width: 100%; font-size: 24px" item="item" size="36" position="'right'" is-validate click="Done" icon="'icon-next'">
+                <span class="title" c-translate>Selesai</span>
+            </c-button>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,21 @@
+
+<div ng-controller="RadioButtonCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Radio Button'">
+				<div class="grid_12" style="margin-bottom:5px">
+					<label c-label item="item" c-label-text="RadioButton"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+	                <div class="grid_3" ng-repeat="stat in listYaTidak">
+	                    <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.RadioButton" value="{{stat.name}}">
+	                    <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+	                </div>
+	                <div class="clear"></div>
+	            </div>
+	            
+		</c-panel>
+	</div>
+</div>

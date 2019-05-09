@@ -1,0 +1,12 @@
+[
+	{  
+        "id":1,
+        "name":"Kantong kecil"
+    },{
+        "id": 2,
+        "name": "Kantong Sedang"
+    },{
+        "id": 3,
+        "name": "Kantong Besar"
+    }
+]

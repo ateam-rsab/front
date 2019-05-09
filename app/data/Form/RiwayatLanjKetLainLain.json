@@ -1,0 +1,26 @@
+{
+  "model":{
+    "Mikroskopik" : "",
+    "Tanggal" : ""
+  },
+  "attributes" : [
+    {
+      "isNull" : "true",
+      "name" : "DiIsiOlehLaboratorium",
+      "messagesRequired" : "Fiksasi Harus Diisi",
+      "caption" : "Di isi oleh laboratorium"
+    },
+    {
+      "isNull" : "true",
+      "name" : "Mikroskopik",
+      "messagesRequired" : "Hubungan Pasien Dengan Anggota Keluarga",
+      "caption" : "Mikroskopik"
+    },
+    {
+      "isNull" : "true",
+      "name" : "Tanggal",
+      "messagesRequired" : "Hubungan Pasien Dengan Anggota Keluarga",
+      "caption" : "Tanggal"
+    }
+  ]
+} 

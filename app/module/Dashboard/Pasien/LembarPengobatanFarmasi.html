@@ -1,0 +1,75 @@
+<div class="grid_12" ng-controller="LembarPengobatanFarmasiCtrl">
+    <div class="panel panel-default panel-white">
+        <div class="panel-heading-white"><span class="title" c-translate>Lembar Pengobatan</span></div>
+        <div class="panel-body">
+            <div class="grid_12 " style="padding-top:10px">
+                <div class="grid_3">
+                    <!-- tanggal order -->
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="Mulai"></label>
+                    </div>
+                    <div class="grid_12">
+                        <input style="width: 100%" k-ng-model="item.TanggalOrder" k-value='now' kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                    </div>
+                </div>
+                <div class="grid_5">
+                    <!-- Dokter penulis -->
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="Dokter"></label>
+                    </div>
+                    <div class="grid_12">
+                        <input style="width: 100%; " kendo-combo-box k-ng-model="item.pegawai" k-data-text-field=" 'namaLengkap' " k-filter=" 'contains' " k-data-value-field=" 'value' " k-auto-bind="false " k-data-source="dokters " />
+                    </div>
+                </div>
+                <div class="grid_4">
+                    <!-- Ruangan Tujuan -->
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="RuanganTujuan"></label>
+                    </div>
+                    <div class="grid_12">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.RuanganTujuan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuanganTujuan" />
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_12">
+                    <div class="grid_3" style="padding-top:10px">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="NamaObat/Alkes"></label>
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="tempItem.NamaObat" k-data-text-field="'namaObat'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAmbilObat" />
+                        </div>
+                    </div>
+                    <div class="grid_3" style="margin-bottom: 5px;">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="Rute"></label>
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="tempItem.route" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="routes" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12">
+            <div class="grid_6">
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="Keterangan"></label>
+                        <textarea style="width: 99%; height: 100px;" ng-model="item.Keterangan"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12">
+                <c-none></c-none>
+                <c-button ng-click="addRacikanObat()" style="width:100% !important">
+                    <span style="font-size:10!important">Tambah</span>
+                </c-button>
+            </div>
+                    
+            <div class="grid_12" style="margin-top: 10px;">
+                <div kendo-grid k-data-source="racikanObats" k-selectable="'row'" k-columns="columnDataResepObat">
+                </div>
+            </div>
+            <div class="grid_12">
+                
+            </div>
+        </div>
+        <div ng-include='"../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+    </div>
+</div>

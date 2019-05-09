@@ -1,0 +1,13 @@
+{
+	"model":{
+	    "RadioButton" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "RadioButton",
+			"messagesRequired" : "",
+			"caption" : "Label RadioButton"
+		}
+  ]
+}

@@ -1,0 +1,74 @@
+{
+	"model":{
+		"noOrder" : "",
+		"ruangan":"",
+		"tglPesan":"",
+		"kodeBarang": "",
+		"namaBarang":"",
+		"merk":"",
+		"type" : "",
+		"noSeri":"",
+		"kerusakan":"",
+		"user": ""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "noOrder",
+			"messagesRequired" : "",
+			"caption" : "No Order"
+		},{
+			"isNull" : "true",
+			"name" : "ruangan",
+			"messagesRequired" : "",
+			"caption" : "Ruangan"
+		},{
+			"isNull" : "true",
+			"name" : "tglPesan",
+			"messagesRequired" : "",
+			"caption" : "Tgl Pesan"
+		},{
+			"isNull" : "true",
+			"name" : "kodeBarang",
+			"messagesRequired" : "",
+			"caption" : "Kode Barang"
+		},{
+			"isNull" : "true",
+			"name" : "namaBarang",
+			"messagesRequired" : "",
+			"caption" : "Nama Barang"
+		},{
+			"isNull" : "true",
+			"name" : "merk",
+			"messagesRequired" : "",
+			"caption" : "Merk"
+		},{
+			"isNull" : "true",
+			"name" : "type",
+			"messagesRequired" : "",
+			"caption" : "Type"
+		},{
+			"isNull" : "true",
+			"name" : "noSeri",
+			"messagesRequired" : "",
+			"caption" : "No Seri"
+		},{
+			"isNull" : "true",
+			"name" : "kerusakan",
+			"messagesRequired" : "",
+			"caption" : "Kerusakan/ Keluhan"
+		},{
+			"isNull" : "true",
+			"name" : "user",
+			"messagesRequired" : "",
+			"caption" : "User/ Pelapor"
+		},{
+			"isNull" : "true",
+			"name" : "kelompokAsset",
+			"messagesRequired" : "",
+			"caption" : "Kelompok Asset"
+		}
+
+	]
+}

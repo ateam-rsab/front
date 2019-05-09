@@ -1,0 +1,51 @@
+<div ng-controller="KoreksiCtrl">
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Koreksi'">
+            <div class="panel panel-default container_12">
+                <div class="panel-body">
+                    <div class="grid_12" style="margin-top: 10px">
+                        <div class="grid_3">
+                            <div class="grid_12" style="margin-top: 10px">
+                                <label c-label item="item" c-label-text="noUsulan"></label>
+                            </div>
+                            <div class="grid_12" style="margin-top: 20px">
+                                <label c-label item="item" c-label-text="usulan"></label>
+                            </div>
+                            <div class="grid_12" style="margin-top: 85px">
+                                <label c-label item="item" c-label-text="kajian"></label>
+                            </div>
+                            <div class="grid_12" style="margin-top: 75px">
+                                <label c-label item="item" c-label-text="inputKoreksi"></label>
+                            </div>
+                        </div>
+                        <div class="grid_8">
+                            <div class="grid_12">
+                                <div class="grid_4">
+                                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noUsulan" ng-disabled="disableNoUsulan" />
+                                </div>
+                            </div>
+                            <div class="grid_12" style="margin-top: 5px">
+                                <div class="grid_7">
+                                    <textarea c-text-box type="input" class="k-textbox" ng-model="item.usulan" style="width: 100%; height: 80px;" ng-disabled="disableUsulan"></textarea>
+                                </div>
+                            </div>
+                            <div class="grid_12" style="margin-top: 5px">
+                                <div class="grid_7">
+                                    <textarea c-text-box type="input" class="k-textbox" ng-model="item.kajian" style="width: 100%; height: 80px;" ng-disabled="disableKajian"></textarea>
+                                </div>
+                            </div>
+                            <div class="grid_12" style="margin-top: 5px">
+                                <div class="grid_7">
+                                    <textarea c-text-box type="input" class="k-textbox" ng-model="item.koreksi" style="width: 100%; height: 140px;"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_12" style="margin-top:15px">
+                        <div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
+                    </div>
+                </div>
+            </div>
+        </c-panel>
+    </div>
+</div>

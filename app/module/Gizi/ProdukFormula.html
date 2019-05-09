@@ -1,0 +1,36 @@
+<div ng-show="dataVOloaded">
+	<c-panel item="item" header="title" disabled>
+		<div class="grid_12">
+			<div class="grid_12">
+				<div class="grid_3" style="margin-top:10px">
+					<label c-label item="item" c-label-text="ProdukHasil"></label>
+				</div>
+			</div>
+			<div class="grid_3">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.produkHasil" k-data-text-field="'produkHasil'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ProdukHasil" />
+			</div>
+		</div>
+		<div class="grid_12" style="margin-top:10px">
+			<c-panel item="item" header="title" disabled>
+				<div class="grid_12" style="margin-top: 10px;">
+					<div kendo-grid k-data-source="sourceDaftarProdukFormula" k-selectable="'row'" k-columns="columnDaftarProdukFormula"></div>
+				</div>
+				<div class="grid_12" style="padding-top:30px">
+					<div class="grid_4"></div>
+					<div class="grid_2">
+						<button class="c-button" ng-click="Save()">Simpan</button>
+					</div>
+					<div class="grid_2">
+						<button class="c-button" ng-click="Batal()">Batal</button>
+					</div>
+					<div class="grid_2">
+						<button class="c-button" ng-click="Search()">Cetak</button>
+					</div>
+					<div class="grid_2">
+						<button class="c-button" ng-click="Search()">Tutup</button>
+					</div>
+				</div>
+			</c-panel>
+		</div>
+	</c-panel>
+</div>

@@ -1,0 +1,74 @@
+<div class="panel panel-default container_12">
+    <div class="panel-heading" c-translate>Limbah B3 Masuk</div>
+    <div class="panel-body">
+        <div class="grid_12">
+            <div class="grid_6">
+                <div class="grid_5" style="margin: 10px 0 0 0;" >
+                    <label c-label item="item" c-label-text="kategoriLimbah"></label>
+                </div>
+                <div class="grid_7">
+                    <div class="grid_6">
+                        <input type="radio" name="b3Medis" id="1" class="k-radio" ng-model="item.kategoriLimbah" ng-value="'medis'">
+                        <label class="k-radio-label" for="1"><b>B3 Medis</b></label>  
+                    </div>
+                    <div class="grid_6">
+                        <input type="radio" name="b3NonMedis" id="2" class="k-radio" ng-model="item.kategoriLimbah" ng-value="'nonMedis'">
+                        <label class="k-radio-label" for="2"><b>B3 Non Medis</b></label>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="grid_6">
+                <div class="grid_5" style="margin: 10px 0 0 0;" >
+                    <label c-label item="item" c-label-text="jenisLimbah"></label>
+                </div>
+                <div class="grid_7">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisLimbah" k-data-text-field="'jenisLimbahB3masuk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListLimbah " />
+                </div>
+                <div class="grid_5" style="margin: 10px 0 0 0;">
+                    <label c-label item="item" c-label-text="tanggal"></label>
+                </div>
+                <div class="grid_3">
+                    <input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalAwal" k-format="'dd-MM-yyyy'"/>
+                </div>
+                <div class="grid_1" style="margin: 10px 0 0 0;" >
+                    <label c-label item="item" c-label-text="waktu"></label>
+                </div>
+                <div class="grid_3">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.satuanWaktuKesling" k-data-text-field="'namaSatuanWaktuKesling'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListWaktu" />
+                </div>   
+                <div class="grid_5" style="margin: 10px 0 0 0;">
+                    <label c-label item="item" c-label-text="beratSampah"></label>
+                </div>
+                <div class="grid_3">
+                    <input c-text-box type="input" kendo-numeric-text-box k-min="0" k-ng-model="item.qty" />
+                </div>
+                <div class="grid_1" style="margin-top: 10px">kg</div>
+            </div>
+            <div class="grid_6">
+                <div class="grid_12">					
+                    <div class="grid_5" style="margin: 10px 0 0 0;" >
+                        <label c-label item="item" c-label-text="ruanganTujuan"></label>
+                    </div>
+                    <div class="grid_7">
+                            <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.ruanganTujuan.namaRuangan" /disabled>
+                        </div>	
+                    <div class="grid_5" style="margin: 10px 0 0 0;">
+                        <label c-label item="item" c-label-text="RuanganAsal"></label>
+                    </div>
+                    <div class="grid_7">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.kdruanganasal" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListRuangan"/>
+                    </div>	
+                    <div class="grid_5" style="margin: 10px 0 0 0;">
+                        <label c-label item="item" c-label-text="petugas"></label>
+                    </div>
+                    <div class="grid_7">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPengirim.name" disabled/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+<div ng-include='"../app/module/Shared/TemplateLoading" '></div>

@@ -1,0 +1,88 @@
+<style>
+	.style-center{
+		display: inline-block;
+		text-align: center;
+		width: 100%;
+	}
+
+	.style-right{
+		display: inline-block;
+		text-align: right;
+		width: 100%;
+	}
+
+	.style-left{
+		display: inline-block;
+		text-align: left;
+		width: 100%;
+	}
+</style>
+
+<div ng-controller="DaftarPenerimaanHarianPiutangCtrl"> 
+	<div ng-show="dataVOloaded">
+		<div class="grid_12 headerBox">
+			<h1 style="color: white;"><b>Daftar Penerimaan Harian Piutang</b></h1>
+		</div>
+		<!-- <c-panel item="item"  disabled> -->
+
+		<!-- Kriteria -->
+		<div class="grid_12">
+			<div class="grid_6">
+					<!-- <div class="grid_12">
+						<label c-label item="item" c-label-text="Ruangan"></label>
+					</div>
+					<div class="grid_12" style="margin-top: 5px">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan"  />
+					</div> -->
+				</div>
+				<!-- Tanggal Terima -->
+				<div class="grid_4">
+					<div class="grid_4" style="margin-top: 7px">
+						<!-- <label c-label item="item" style="margin-top: 7px" c-label-text="Tanggal Terima :"></label> -->
+						<b>Tanggal Terima :</b>
+					</div>
+					<div class="grid_4">
+						<input style="width: 100%" k-ng-model="item.tanggalAwal"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+					</div>
+					<div class="grid_4">
+						<input style="width: 100%" k-ng-model="item.tanggalAkhir"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+
+					</div>
+					
+				</div>
+				<div class="grid_1" style="margin-top: 5px" >
+					<button class="btnTemplate1" ng-click="SearchData()">Cari</button>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_12 borderBox">
+					<!-- <div kendo-grid k-data-source="dataDaftarPenerimaanHarian" k-selectable="'row'" k-columns="columnDaftarPenerimaanHarian">
+				</div> -->
+				<div class="grid_12 headerBox">
+					<p>Daftar Penerimaan</p>
+				</div>
+				<div class="grid_12 borderBox">
+					<div id="kGrid" kendo-grid 
+					k-data-source="dataSource" 
+					k-selectable="'row'" 
+					k-columns="columnGrid"
+					k-pageable="'true'"
+					k-sortable="'true'"
+					k-ng-model="dataSelected">
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+
+		<div class="grid_12" style="margin-top:10px;">
+			<!-- <div class="grid_5"></div> -->
+			<div class="grid_2" style="float:right;">
+				<button class="c-button" ng-click="Kompensasi()">Kompensasi</button>
+				</div>
+		</div>
+		<!-- <div class="grid_12" style="margin-top:30px">
+			<div ng-include='"../app/module/Shared/Keuangan/TemplateButtonPiutang"'></div>
+		</div> -->
+	</div>
+</div>

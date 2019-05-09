@@ -1,0 +1,123 @@
+<div ng-controller="TORCtrl">
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'TOR'">
+            <div class="panel panel-default container_12">
+                <div class="panel-body">
+                    <div class="grid_12">
+                        <div class="grid_3">
+                            <div class="grid_12" style="margin-top: 10px">
+                                <label c-label item="item" c-label-text="noRAB"></label>
+                            </div>
+                            <div class="grid_12" style="margin-top: 20px">
+                                <label c-label item="item" c-label-text="title1"></label>
+                            </div>
+                            <div class="grid_12" style="margin-top: 20px">
+                                <label c-label item="item" c-label-text="title2"></label>
+                            </div>
+                            <div class="grid_12" style="margin-top: 85px">
+                                <label c-label item="item" c-label-text="title3"></label>
+                            </div>
+                            <div class="grid_12" style="margin-top: 75px">
+                                <label c-label item="item" c-label-text="latarBelakang"></label>
+                            </div>
+                            <div class="grid_12" style="margin-top: 145px">
+                                <label c-label item="item" c-label-text="penerimaManfaat"></label>
+                            </div>
+                            <div class="grid_12" style="margin-top: 85px">
+                                <label c-label item="item" c-label-text="strategiPencapaiKeluaran"></label>
+                            </div>
+                            <div class="grid_12" style="margin-top: 75px">
+                                <label c-label item="item" c-label-text="kurunWaktuPencapaianKeluaran"></label>
+                            </div>
+                            <div class="grid_12" style="margin-top: 75px">
+                                <label c-label item="item" c-label-text="biayaYangDikeluarkan"></label>
+                            </div>
+                        </div>
+                        <div class="grid_8">
+                            <div class="grid_12">
+                                <div class="grid_4">
+                                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noRAB" ng-disabled="enableNoRAB" />
+                                </div>
+                            </div>
+                            <div class="grid_12" style="margin-top: 5px">
+                                <div class="grid_7">
+                                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.title1" style="width: 100%;" />
+                                </div>
+                            </div>
+                            <div class="grid_12" style="margin-top: 5px">
+                                <div class="grid_7">
+                                    <textarea c-text-box type="input" class="k-textbox" ng-model="item.title2" style="width: 100%; height: 80px;"></textarea>
+                                </div>
+                            </div>
+                            <div class="grid_12" style="margin-top: 5px">
+                                <div class="grid_7">
+                                    <textarea c-text-box type="input" class="k-textbox" ng-model="item.title3" style="width: 100%; height: 80px;"></textarea>
+                                </div>
+                            </div>
+                            <div class="grid_12" style="margin-top: 5px">
+                                <div class="grid_7">
+                                    <textarea c-text-box type="input" class="k-textbox" ng-model="item.latarBelakang" style="width: 100%; height: 140px;"></textarea>
+                                </div>
+                            </div>
+                            <div class="grid_12" style="margin-top: 5px">
+                                <div class="grid_7">
+                                    <textarea c-text-box type="input" class="k-textbox" ng-model="item.penerimaManfaat" style="width: 100%; height: 80px;"></textarea>
+                                </div>
+                            </div>
+                            <div class="grid_12" style="margin-top: 5px">
+                                <div class="grid_7">
+                                    <textarea c-text-box type="input" class="k-textbox" ng-model="item.strategiPencapaiKeluaran" style="width: 100%; height: 80px;"></textarea>
+                                </div>
+                            </div>
+                            <div class="grid_12" style="margin-top: 5px">
+                                <div class="grid_7">
+                                    <textarea c-text-box type="input" class="k-textbox" ng-model="item.kurunWaktuPencapaianKeluaran" style="width: 100%; height: 80px;"></textarea>
+                                </div>
+                            </div>
+                            <div class="grid_12" style="margin-top: 5px">
+                                <div class="grid_7">
+                                    <textarea c-text-box type="input" class="k-textbox" ng-model="item.biayaYangDikeluarkan" style="width: 100%; height: 80px;"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_3" style="margin-top: 25px">
+                                <button class="c-button" ng-click="find()">
+                                Daftar Usulan</button>
+                            </div>
+                            <div class="grid_8">
+                                <div class="grid_12" style="margin-top: 40px">
+                                    <div class="grid_8"></div>
+                                     <div class="grid_1">
+                                        <label c-label item="item" c-label-text="jakarta"></label>
+                                    </div>
+                                    <div class="grid_3">
+                                        <label c-label item="item" c-label-text="{{titimangsaLabel}}"></label>
+                                    </div>
+                                </div>
+                                <div class="grid_12" style="margin-top: 10px">
+                                    <div class="grid_6"></div>
+                                    <div class="grid_2">
+                                        <label c-label item="item" c-label-text="jabatan"></label>
+                                    </div>
+                                    <div class="grid_3">
+                                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.jabatan" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJabatan" />
+                                    </div>
+                                </div>
+                                <div class="grid_12" style="margin-top: 10px">
+                                    <div class="grid_8"></div>
+                                    <div class="grid_4">
+                                        <label c-label item="item" c-label-text="rsabHarapanKita"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_12" style="margin-top:15px">
+                        <div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
+                    </div>
+                </div>
+            </div>
+        </c-panel>
+    </div>
+</div>

@@ -1,0 +1,340 @@
+<div ng-controller="KalenderCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Kalender'" disabled>
+
+			<!-- bulanFiscal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="bulanFiscal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.bulanFiscal" />
+				</div>
+			</div>
+
+			<!-- bulanKeDlmTahun -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="bulanKeDlmTahun"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.bulanKeDlmTahun" />
+				</div>
+			</div>
+
+			<!-- hariKeDlmBulan -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="hariKeDlmBulan"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.hariKeDlmBulan" />
+				</div>
+			</div>
+
+			<!-- hariKeDlmMinggu -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="hariKeDlmMinggu"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.hariKeDlmMinggu" />
+				</div>
+			</div>
+
+			<!-- hariKeDlmTahun -->
+			<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="hariKeDlmTahun"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.hariKeDlmTahun" />
+				</div>
+			</div>
+
+			<!-- historyLoginD -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="historyLoginD"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.historyLoginD" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listhistoryLoginD" />
+				</div>
+			</div>
+			</div>
+			<!-- historyLoginDId -->
+			<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="historyLoginDId"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.historyLoginDId" />
+				</div>
+			</div>
+
+			<!-- historyLoginI -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="historyLoginI"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.historyLoginI" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listhistoryLoginI" />
+				</div>
+			</div>
+			</div>
+			<!-- historyLoginIId -->
+			<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="historyLoginIId"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.historyLoginIId" />
+				</div>
+			</div>
+
+			<!-- historyLoginS -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="historyLoginS"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.historyLoginS" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listhistoryLoginS" />
+				</div>
+			</div>
+			</div>
+			<!-- historyLoginSId -->
+			<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="historyLoginSId"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.historyLoginSId" />
+				</div>
+			</div>
+
+			<!-- historyLoginU -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="historyLoginU"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.historyLoginU" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listhistoryLoginU" />
+				</div>
+			</div>
+			</div>
+			<!-- historyLoginUId -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="historyLoginUId"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.historyLoginUId" />
+				</div>
+			</div>
+
+			<!-- kdTanggal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kdTanggal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kdTanggal" />
+				</div>
+			</div>
+
+			<!-- namaBulan -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="namaBulan"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaBulan" />
+				</div>
+			</div>
+
+			<!-- namaHari -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="namaHari"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaHari" />
+				</div>
+			</div>
+
+			<!-- qTanggal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="qTanggal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.qTanggal" />
+				</div>
+			</div>
+
+			<!-- semesterKeDlmTahun -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="semesterKeDlmTahun"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.semesterKeDlmTahun" />
+				</div>
+			</div>
+
+			<!-- tahunFiscal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="tahunFiscal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.tahunFiscal" />
+				</div>
+			</div>
+
+			<!-- tahunKalender -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="tahunKalender"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.tahunKalender" />
+				</div>
+			</div>
+
+			<!-- tanggal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="tanggal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%" k-ng-model="item.tanggal"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+				</div>
+			</div>
+
+			<!-- triwulanKeDlmTahun -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="triwulanKeDlmTahun"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.triwulanKeDlmTahun" />
+				</div>
+			</div>
+
+			<!-- reportDisplay -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="reportDisplay"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+				</div>
+			</div>
+
+			<!-- kodeExternal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kodeExternal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+				</div>
+			</div>
+
+			<!-- namaExternal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="namaExternal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+				</div>
+			</div>
+
+			<!-- Kalender -->
+			<div class="grid_12">
+				<div class="grid_12 headerBox">
+					<p>Kalender</p>
+				</div>
+				<div class="clear"></div>
+
+				<!-- grid table -->
+				<div class="grid_12 borderBox">
+					<kendo-grid options="mainGridOptions"  k-data-source="dataSource" k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+			<div class="grid_12">
+				<div class="grid_8"></div>
+				<div class="grid_2" ng-show="showEdit">
+					<button class="c-button" ng-click="edit()">Edit</button>
+				</div>
+				<div class="grid_2" ng-hide="showEdit">
+					<button class="c-button" ng-click="tambah()">Tambah</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="batal()">Batal</button>
+				</div>
+			</div>
+
+
+		</c-panel>
+
+	</div>
+</div>

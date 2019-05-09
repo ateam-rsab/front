@@ -1,0 +1,64 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Daftar Standar Diet</div>
+	<div class="panel-body">
+		<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_12" style="margin-top: 5px">
+					<div class="grid_3"></div>
+					<div class="grid_2" style="margin-top: 10px">
+						<label c-label item="item">Jenis Diet</label>
+					</div>
+					<div class="grid_4">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisDiet" k-data-text-field="'jenisDiet'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListjenisDiet" />
+					</div>
+				</div>
+				<div class="grid_12" style="margin-top: 5px">
+					<div class="grid_3"></div>
+					<div class="grid_2" style="margin-top: 10px">
+						<label c-label item="item">Waktu Makan</label>
+					</div>
+					<div class="grid_4">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.waktuMakan" k-data-text-field="'waktuMakan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListwaktuMakan" />
+					</div>
+				</div>
+			</div>
+			<div class="grid_6">
+				<div class="grid_12" style="margin-top: 5px">
+					<div class="grid_3"></div>
+					<div class="grid_2" style="margin-top: 10px">
+						<label c-label item="item">Bahan Makanan</label>
+					</div>
+					<div class="grid_4">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.bahanMakanan" k-data-text-field="'bahanMakanan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListbahanMakanan" />
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_4"></div>
+					<div class="grid_8">
+						<button class="c-button" ng-click="Cari()">Cari</button>
+					</div>
+				</div>
+			</div>
+			</div>
+			<div class="grid_12" style="margin-top: 10px">
+				<div class="grid_2"></div>
+				<div class="grid_8">
+					<div kendo-grid k-on-change="Select(data)" options="mainGridOptions">
+					</div>
+					<!-- <div kendo-grid k-on-change="SelectDampak(data)" k-data-source="sourceDampakRisiko" k-selectable="'row'" k-columns="columnDampakRisiko" pageable="true" pagesize="2" scrollable="false">
+					</div> -->
+				</div>
+				<div class="grid_1"></div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_8"></div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="Ubah()">Ubah</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="Cetak()">Cetak</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

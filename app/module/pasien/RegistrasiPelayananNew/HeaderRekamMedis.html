@@ -1,0 +1,147 @@
+<c-panel item="item" header="'Data Pasien'" disabled>
+    <core-busy busy="isLoading"></core-busy>
+    <!-- <div ui-view></div> -->
+
+    <div class="panel-place" style="top: -1px;">
+        <a ng-hide='hideButtonAdd' class="
+                         " ng-click="cetakLaporan()" style="margin-left: 0;width: 100px;height: 1.2em;font-size: 20px;position: absolute;top: 5px;right: -50px;">
+            <div class="cd-timeline-img cd-picture add animated">
+                <img src="stylesheets/cetak.png" alt="Picture">
+            </div>
+        </a>
+    </div>
+    <div class='grid_12'>
+        <div class="grid_12 animated" ng-show="item.noregistrasi!==undefined">
+            <div class="grid_2">
+                <div class="grid_12">
+                    <label c-label item="item">No.Registrasi</label>
+                </div>
+
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noregistrasi" ng-disabled="true" />
+                </div>
+            </div>
+            <div class="grid_2">
+                <div class="grid_12">
+                    <label c-label item="item">Tgl. Registrasi</label>
+                </div>
+
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.tglRegistrasi"
+                        ng-disabled="true" />
+                </div>
+            </div>
+            <div class="grid_2">
+                <div class="grid_12">
+                    <label c-label item="item">No.MR</label>
+                </div>
+
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noMr" ng-disabled="true" />
+                </div>
+            </div>
+
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Nama Pasien"></label>
+                </div>
+
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaPasien" ng-disabled="true" />
+                </div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Umur"></label>
+                </div>
+
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.umur" ng-disabled="true" />
+                </div>
+            </div>
+            <div class="grid_2">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Jenis Kelamin"></label>
+                </div>
+
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jenisKelamin" ng-disabled="true" />
+                </div>
+            </div>
+
+            <div class="grid_2">
+                <div class="grid_12">
+                    <label c-label item="item">Kelompok Pasien</label>
+                </div>
+
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kelompokPasien"
+                        ng-disabled="true" />
+                </div>
+            </div>
+            <div class="grid_2">
+                <div class="grid_12">
+                    <label c-label item="item">Kelas</label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kelas" ng-disabled="true" />
+                </div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item">Ruangan</label>
+                </div>
+
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaRuangan" ng-disabled="true" />
+                </div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item">Alamat</label>
+                </div>
+
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.alamat" ng-disabled="true" />
+                </div>
+            </div>
+        </div>
+        <div class="grid_12" ng-show="showTombol">
+            <div class="grid_2">
+                <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="rekamMedisElektronik()" position="'right'">
+                    <span class="title">Catatan Medis</span>
+                </c-button>
+            </div>
+            <div class="grid_2">
+                <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="inputCPPT()" position="'right'">
+                    <span class="title">CPPT</span>
+                </c-button>
+            </div>
+            <div class="grid_2">
+                <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="showInputDiagnosaDokter()" position="'right'">
+                    <span class="title">Diagnosa</span>
+                </c-button>
+            </div>
+            <div class="grid_2">
+                <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="inputTindakanDokter()" position="'right'">
+                    <span class="title">Tindakan</span>
+                </c-button>
+            </div>
+            <div class="grid_2">
+                <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="resep()" position="'right'">
+                    <span class="title">Resep Elektronik</span>
+                </c-button>
+            </div>
+            <div class="grid_2">
+                <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="laboratorium()" position="'right'">
+                    <span class="title">Laboratorium</span>
+                </c-button>
+            </div>
+            <div class="grid_2">
+                <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="radiologi()" position="'right'">
+                    <span class="title">Radiologi</span>
+                </c-button>
+            </div>
+        </div>
+    </div>
+</c-panel>

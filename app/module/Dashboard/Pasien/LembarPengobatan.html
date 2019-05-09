@@ -1,0 +1,300 @@
+<div class="grid_12" ng-controller="OrderFarmasiCtrl">
+    <div class="panel panel-default panel-white">
+        <div class="panel-heading-white"><span class="title" c-translate>Informasi Resep</span></div>
+        <div class="panel-body">
+            <div class="grid_12 " style="padding-top:10px">
+                <div class="grid_2">
+                    <!-- tanggal order -->
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="TanggalOrder"></label>
+                    </div>
+                    <div class="grid_12">
+                        <input style="width: 100%" ng-disabled="'true'" k-ng-model="item.TanggalOrder" k-value='now' kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                    </div>
+                </div>
+                <!-- no resep -->
+                <div class="grid_3">
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="NoResep"></label>
+                    </div>
+                    <div class="grid_12">
+                        <input c-text-box type="input" ng-disabled="'true'" class="k-textbox" ng-model="item.noResep" />
+                    </div>
+                </div>
+                <div class="grid_4">
+                    <!-- Dokter penulis -->
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="Dokter"></label>
+                    </div>
+                    <div class="grid_12">
+                        <input style="width: 100%; " kendo-combo-box k-ng-model="item.pegawai" k-data-text-field=" 'namaLengkap' " k-filter=" 'contains' " k-data-value-field=" 'value' " k-auto-bind="false " k-data-source="dokters " />
+                    </div>
+                </div>
+                <div class="grid_3">
+                    <!-- Ruangan Tujuan -->
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="RuanganTujuan"></label>
+                    </div>
+                    <div class="grid_12">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.RuanganTujuan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuanganTujuan" />
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_12">
+                    <div class="grid_2" style="padding-top:10px">
+                        <label c-label item="item" c-label-text="JenisResep"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="tempItem.JenisObat" k-data-text-field="'jenisKemasan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisObat" />
+                    </div>
+                    <div class="grid_4" style="padding-top:10px">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="NamaObat/Alkes"></label>
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="tempItem.NamaObat" k-data-text-field="'namaObat'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAmbilObat" />
+                        </div>
+
+                        <div class="grid_6" ng-repeat="data in ListSameObat">
+                            <md-button style="width:100%" ng-click='changeObat(data)'>{{data.namaProduk}}</md-button>
+                        </div>
+                    </div>
+                    <div class="grid_2" style="padding-top:10px">
+                        <label c-label item="item" c-label-text="BentukObat"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="tempItem.JenisRacikan" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisRacikan" k-on-change="jumlahNama()"/>
+                    </div>
+                    <div class="grid_4">
+                        <div class="grid_4">
+                            <label c-label item="item" c-label-text="Stok"></label>
+                            <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="tempItem.Stock" disabled />
+                        </div>
+                        <div class="grid_4">
+                            <label c-label>Jumlah {{jumlah}}</label>
+                            <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="tempItem.Jumlah" />
+                        </div>
+                        <div class="grid_4" ng-show="tempItem.JenisRacikan.name ==='Puyer'">
+                            <label c-label item="item" c-label-text="Mg/Ml"></label>
+                            <input c-text-box type="input" filter="'contains'" class="k-textbox" ng-model="tempItem.JumlahMg" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_12">
+                    <div class="grid_3" style="margin-bottom: 5px;">
+                        <label c-label item="item" c-label-text="Rute"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="tempItem.route" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="routes" />
+                    </div>
+                    <div class="grid_3">
+                        <label c-label item="item" c-label-text="AturanPakai"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="tempItem.KeteranganPakai" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="stigmas" />
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12" style="margin-top:2px" ng-show="tempItem.JenisObat.isRacikan ===true">
+
+                    <div class="grid_12">
+                        <c-none></c-none>
+                        <c-button ng-click="addRacikanObat()" style="width:100% !important">
+                            <span style="font-size:10!important">Tambah</span>
+                        </c-button>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_2" ng-repeat="data in ListSameObat">
+                            <md-button style="width:100%" ng-click='changeObat(data)'>{{data.namaProduk}}</md-button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid_12" style="margin-top: 10px;">
+                        <div kendo-grid k-data-source="racikanObats" k-selectable="'row'" k-columns="columnRacikan">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_12" ng-show="tempItem.JenisObat.isRacikan ===false">
+                    <c-button ng-click="addDataResepObat()" style="width:100% !important">
+                        <span style="font-size:10!important">Tambah</span>
+                    </c-button>
+                </div>
+            </div>
+            <div class="grid_12"><label c-label item="item" c-label-text="Deskripsi"></label></div>
+                <div class="grid_6">
+                    <textarea ng-model="item.deskripsi" placeholder="Deskrispi"></textarea>
+                </div>
+            </div>
+            <div class="grid_12" ng-show="tempItem.JenisObat.isRacikan ===true">
+                <c-none></c-none>
+                <c-button ng-click="selesaiRacikan()" style="width:100% !important">
+                    <span style="font-size:10!important">Selesai</span>
+                </c-button>
+            </div>
+            <div class="grid_12" style="margin-top: 10px;" ng-show="tempItem === undefined || tempItem.JenisObat === undefined || tempItem.JenisObat.isRacikan===false; ">
+                <div kendo-grid k-data-source="dataResepObat" k-selectable="'row'" k-columns="columnDataResepObat">
+                </div>
+            </div>
+            <div ng-show="tempItem === undefined || tempItem.JenisObat === undefined || tempItem.JenisObat.isRacikan===false; " ng-include='"../app/module/Shared/TemplateButtonSimpanNotFixed" '>
+            </div>
+        </div>
+    </div>
+            <!-- <div class="grid_12">
+                <div class="grid_12">
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="JenisResep"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="tempItem.JenisObat" k-data-text-field="'jenisKemasan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisObat" />
+                    </div>
+                    <div class="grid_3" ng-show="tempItem.JenisObat.isRacikan ===true">
+                        <label c-label item="item" c-label-text="BentukObat"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="tempItem.JenisRacikan" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisRacikan" />
+                    </div>
+                    <div class="grid_3" ng-show="tempItem.JenisObat.isRacikan ===true">
+                        <label c-label item="item" c-label-text="AturanPakai"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="tempItem.KeteranganPakai" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="stigmas" />
+                    </div>
+                    <div class="grid_4" style="margin-top:1px" ng-show="tempItem.JenisObat.isRacikan ===false">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="NamaObat/Alkes"></label>
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="tempItem.NamaObat" k-data-text-field="'namaObat'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAmbilObat" />
+                        </div>
+
+                        <div class="grid_6" ng-repeat="data in ListSameObat">
+                            <md-button style="width:100%" ng-click='changeObat(data)'>{{data.namaProduk}}</md-button>
+                        </div>
+                    </div>
+                    <div class="grid_2" ng-show="tempItem.JenisObat.isRacikan ===false">
+                        <label c-label item="item" c-label-text="BentukObat"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="tempItem.JenisRacikan" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisRacikan" />
+                    </div>
+                    <div class="grid_3" ng-show="tempItem.JenisObat.isRacikan ===false">
+                        <div class="grid_6">
+                            <label c-label item="item" c-label-text="Jumlah"></label>
+                            <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="tempItem.Jumlah" />
+                        </div>
+
+                        <div class="grid_6">
+                            <label c-label item="item" c-label-text="Stok"></label>
+
+                            <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="tempItem.Stock" disabled />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid_12">
+                    <div class="grid_12">
+                        <div class="grid_12" ng-show="tempItem.JenisObat.isRacikan ===false">
+                            
+                            <div class="grid_3" style="margin-bottom: 5px;">
+                                <label c-label item="item" c-label-text="Rute"></label>
+                                <input style="width: 100%;" kendo-combo-box k-ng-model="tempItem.route" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="routes" />
+                            </div>
+                            <div class="grid_3">
+                                <label c-label item="item" c-label-text="AturanPakai"></label>
+                                <input style="width: 100%;" kendo-combo-box k-ng-model="tempItem.KeteranganPakai" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="stigmas" />
+                            </div>
+
+                            <div class="grid_3" ng-show="tempItem.JenisRacikan===puyer">
+
+                                <div class="grid_6" ng-show="tempItem.JenisRacikan.name ==='Puyer' || tempItem.JenisRacikan.name ==='Sirup'">
+                                    <label c-label item="item" c-label-text="Mg/Ml"></label>
+                                    <input c-text-box type="input" filter="'contains'" class="k-textbox" ng-model="tempItem.JumlahMg" />  
+                                </div>
+
+                                <div class="grid_6" ng-show="tempItem.JenisRacikan.name ==='Tablet'">
+                                    <label c-label item="item" c-label-text="Tablet"></label>
+                                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="tempItem.JumlahTablet" />
+                                </div>
+                            </div>
+                            <div class="grid_12">
+                                <c-button ng-click="addDataResepObat()" style="width:100% !important">
+                                    <span style="font-size:10!important">Tambah</span>
+                                </c-button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="grid_12">
+                    <div class="grid_12">
+                        <div class="grid_6" ng-show="tempItem.JenisObat.isRacikan ===true">
+                            <label c-label item="item" c-label-text="NamaObat/Alkes"></label>
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="tempItem.NamaObat" k-data-text-field="'namaObat'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAmbilObat" />
+                        </div>
+                        <div class="grid_6" ng-show="tempItem.JenisObat.isRacikan ===true">
+                            <div class="grid_3">
+                                <label c-label item="item" c-label-text="Jumlah Obat"></label>
+                                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="tempItem.Jumlah" />
+                            </div>
+                            <div class="grid_3">
+                                <label c-label item="item" c-label-text="Stok"></label>
+
+                                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="tempItem.Stock" disabled />
+                            </div>
+                            <div class="grid_3">
+                                <label c-label item="item" c-label-text="Rute"></label>
+                                <input style="width: 100%;" kendo-combo-box k-ng-model="tempItem.route" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="routes" />
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_6" ng-show="tempItem.JenisRacikan ===puyer">
+
+                            <div class="grid_3" ng-show="tempItem.JenisRacikan.name ==='Puyer' || tempItem.JenisRacikan.name ==='Sirup'">
+                                <label c-label item="item" c-label-text="Mg/Ml"></label>
+                                <input c-text-box type="input" filter="'contains'" class="k-textbox" ng-model="tempItem.JumlahMg" />
+                            </div>
+
+                            <div class="grid_3" ng-show="tempItem.JenisRacikan.name ==='Tablet'">
+                                <label c-label item="item" c-label-text="Tablet"></label>
+                                <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="tempItem.JumlahTablet" />
+                            </div> -->
+                            <!-- <div class="grid_3">
+                                <label c-label item="item" c-label-text="Kekuatan"></label>
+                                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="tempItem.JumlahKekuatan" disabled />
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="grid_12" style="margin-top:2px" ng-show="tempItem.JenisObat.isRacikan ===true">
+
+                    <div class="grid_12">
+                        <c-none></c-none>
+                        <c-button ng-click="addRacikanObat()" style="width:100% !important">
+                            <span style="font-size:10!important">Tambah</span>
+                        </c-button>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_2" ng-repeat="data in ListSameObat">
+                            <md-button style="width:100%" ng-click='changeObat(data)'>{{data.namaProduk}}</md-button>
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <c-none></c-none>
+                        <c-button ng-click="selesaiRacikan()" style="width:100% !important">
+                            <span style="font-size:10!important">Selesai</span>
+                        </c-button>
+                    </div>
+                    <div class="grid_12" style="margin-top: 10px;">
+                        <div kendo-grid k-data-source="racikanObats" k-selectable="'row'" k-columns="columnRacikan">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="grid_12"> -->
+            <!-- <div class="grid_12"><label c-label item="item" c-label-text="Deskripsi"></label></div>
+                <div class="grid_6">
+                    <textarea ng-model="item.deskripsi" placeholder="Deskrispi"></textarea>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="grid_12" style="margin-top: 10px;" ng-show="tempItem === undefined || tempItem.JenisObat === undefined || tempItem.JenisObat.isRacikan===false; ">
+        <div kendo-grid k-data-source="dataResepObat" k-selectable="'row'" k-columns="columnDataResepObat">
+        </div>
+    </div>
+    <div ng-show="tempItem === undefined || tempItem.JenisObat === undefined || tempItem.JenisObat.isRacikan===false; " ng-include='"../app/module/Shared/TemplateButtonSimpanNotFixed" '>
+    </div> -->
+</div>

@@ -1,0 +1,412 @@
+<div ng-controller="AlatSOPCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Data Alat'">
+		<div class="panel panel-default container_12">
+			<div class="panel-heading" c-translate>Data Barang</div>
+			<div class="panel-body">
+			<div class="grid_2">
+				<div class="grid_12" style="margin-bottom: 5px">
+					<center><div id="surface" style="width: 107; height: 114px;">
+						
+					</div></center>
+				</div>
+				<div class="clear"></div>
+				<div class="grid_12">
+					<center><label c-label item="item" c-label-text="gambarAlat"  style="margin-top: 10px" ></label></center>
+				</div>
+				<div class="clear"></div>
+				<div class="grid_12">
+                   <center> <div id="qrTelephone">
+                    	
+                    </div>
+                    </center>
+                </div>
+				<div class="clear"></div>
+				<div class="grid_12">
+					<center><label c-label item="item" c-label-text="qrCode" style="margin-top: 10px" ></label></center>
+				</div>
+			</div>
+			<div class="grid_5">
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="pencarianNamaBarang" style="margin-top: 10px" ></label>
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" c-label-text=":" style="margin-top: 10px" ></label>
+					</div>
+				</div>
+				<div class="grid_6">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.pencarianNamaBarang" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listNamaBarang" />
+				</div>
+				<div class="clear"></div>
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="noRegistrasiAsset" style="margin-top: 10px" ></label>
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" c-label-text=":" style="margin-top: 10px" ></label>
+					</div>
+				</div>
+				<div class="grid_6">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noRegistrasiAsset" disabled="true" />
+				</div>
+				<div class="clear"></div>
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="kodeAspak" style="margin-top: 10px" ></label>
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" c-label-text=":" style="margin-top: 10px" ></label>
+					</div>
+				</div>
+				<div class="grid_6">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kodeAspak" disabled="true" />
+				</div>
+				<div class="clear"></div>
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="kodeBmn" style="margin-top: 10px" ></label>
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" c-label-text=":" style="margin-top: 10px" ></label>
+					</div>
+				</div>
+				<div class="grid_6">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kodeBmn" disabled="true" />
+				</div>
+				<div class="clear"></div>
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="kodeRsabhk" style="margin-top: 10px" ></label>
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" c-label-text=":" style="margin-top: 10px" ></label>
+					</div>
+				</div>
+				<div class="grid_6">
+					<div class="grid_6">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kodeRsabhk" disabled="true" />	
+					</div>
+					
+				</div>
+				<div class="clear"></div>
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="kodeBmn" style="margin-top: 10px" ></label>
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" c-label-text=":" style="margin-top: 10px" ></label>
+					</div>
+				</div>
+				<div class="grid_6">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kodeBmn" disabled="true" />
+				</div>
+				<div class="clear"></div>
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="namaBarang" style="margin-top: 10px" ></label>
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" c-label-text=":" style="margin-top: 10px" ></label>
+					</div>
+				</div>
+				<div class="grid_6">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaBarang" />
+				</div>
+				<div class="clear"></div>
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="merk" style="margin-top: 10px" ></label>
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" c-label-text=":" style="margin-top: 10px" ></label>
+					</div>
+				</div>
+				<div class="grid_6">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.merk" />
+				</div>
+				<div class="clear"></div>
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="type" style="margin-top: 10px" ></label>
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" c-label-text=":" style="margin-top: 10px" ></label>
+					</div>
+				</div>
+				<div class="grid_6">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.type" />
+				</div>
+				<div class="clear"></div>
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="qty" style="margin-top: 10px" ></label>
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" c-label-text=":" style="margin-top: 10px" ></label>
+					</div>
+				</div>
+				<div class="grid_6">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.qty" />
+				</div>
+				<div class="clear"></div>
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="satuan" style="margin-top: 10px" ></label>
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" c-label-text=":" style="margin-top: 10px" ></label>
+					</div>
+				</div>
+				<div class="grid_6">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.satuan" />
+				</div>
+				<div class="clear"></div>
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="tglPenerimaanAsset" style="margin-top: 10px" ></label>
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" c-label-text=":" style="margin-top: 10px" ></label>
+					</div>
+				</div>
+				<div class="grid_6">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.tglPenerimaanAsset" />
+				</div>
+				<div class="clear"></div>
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="kelompokAsset" style="margin-top: 10px" ></label>
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" c-label-text=":" style="margin-top: 10px" ></label>
+					</div>
+				</div>
+				<div class="grid_6">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kelompokAsset" />
+				</div>
+				<div class="clear"></div>
+
+			</div>
+			
+			<div class="grid_5">
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="lokasiAsset" style="margin-top: 10px" ></label>
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" c-label-text=":" style="margin-top: 10px" ></label>
+					</div>
+				</div>
+				<div class="grid_6">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.lokasiAsset" />
+				</div>
+				<div class="clear"></div>
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="kondisiAsset" style="margin-top: 10px" ></label>
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" c-label-text=":" style="margin-top: 10px" ></label>
+					</div>
+				</div>
+				<div class="grid_6">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kondisiAsset" />
+				</div>
+				<div class="clear"></div>
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="sumberDana" style="margin-top: 10px" ></label>
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" c-label-text=":" style="margin-top: 10px" ></label>
+					</div>
+				</div>
+				<div class="grid_6">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.sumberDana" />
+				</div>
+				<div class="clear"></div>
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="noSeri" style="margin-top: 10px" ></label>
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" c-label-text=":" style="margin-top: 10px" ></label>
+					</div>
+				</div>
+				<div class="grid_6">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noSeri" />
+				</div>
+				<div class="clear"></div>
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="dayaListrik" style="margin-top: 10px" ></label>
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" c-label-text=":" style="margin-top: 10px" ></label>
+					</div>
+				</div>
+				<div class="grid_6">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.dayaListrik" />
+				</div>
+				<div class="clear"></div>
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="klarifikasiTeknologi" style="margin-top: 10px" ></label>
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" c-label-text=":" style="margin-top: 10px" ></label>
+					</div>
+				</div>
+				<div class="grid_6">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.klarifikasiTeknologi" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKlarifikasiTeknologi" />
+				</div>
+				<div class="clear"></div>
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="usiaTeknis" style="margin-top: 10px" ></label>
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" c-label-text=":" style="margin-top: 10px" ></label>
+					</div>
+				</div>
+				<div class="grid_6">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.usiaTeknis" />
+				</div>
+				<div class="clear"></div>
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="tahunPerolehan" style="margin-top: 10px" ></label>
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" c-label-text=":" style="margin-top: 10px" ></label>
+					</div>
+				</div>
+				<div class="grid_6">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.tahunPerolehan" />
+				</div>
+				<div class="clear"></div>
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="umurUsia" style="margin-top: 10px" ></label>
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" c-label-text=":" style="margin-top: 10px" ></label>
+					</div>
+				</div>
+				<div class="grid_6">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.umurUsia" />
+				</div>
+				<div class="clear"></div>
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="sisaUsia" style="margin-top: 10px" ></label>
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" c-label-text=":" style="margin-top: 10px" ></label>
+					</div>
+				</div>
+				<div class="grid_6">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.sisaUsia" />
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		</div>
+		<div class="clear"></div>
+		<div kendo-tab-strip k-content-urls="[ null, null, null, null]" style="margin-bottom: 10px">
+				<!-- tab list -->
+				<ul>
+					<li class="k-state-active">History Alat</li>
+					<li>Sertifikat Kalibrasi</li>
+					<li>Service Manual</li>
+					<li>SOP</li>
+				</ul>
+
+				<div style="padding: 1em">
+					<div class="grid_6">
+						<kendo-grid options="historyAlat"></kendo-grid>
+					</div>
+					<div class="grid_6">
+						<div class="grid_4">
+							<button class="c-button" ng-click="upload()">Upload Document</button>
+						</div>
+						
+					</div>
+					
+				</div>
+
+				<div style="padding: 1em">
+					<div class="grid_6">
+						<kendo-grid options="sertifikatKalibrasi"></kendo-grid>
+					</div>
+					<div class="grid_6">
+						<div class="grid_4">
+							<button class="c-button" ng-click="upload()">Upload Sertifikat</button>
+						</div>
+						
+					</div>
+				</div>
+				<div style="padding: 1em">
+					<div class="grid_6">
+						<kendo-grid options="serviceManual"></kendo-grid>
+					</div>
+					<div class="grid_6">
+						<div class="grid_4">
+							<button class="c-button" ng-click="upload()">Upload Manual Book</button>
+						</div>
+						
+					</div>
+				</div>
+				<div style="padding: 1em">
+					<div class="grid_6">
+						<kendo-grid options="sop"></kendo-grid>
+					</div>
+					<div class="grid_6">
+						<div class="grid_4">
+							<button class="c-button" ng-click="upload()">Upload SOP</button>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</c-panel>
+	</div>
+</div>
+<script type="text/javascript">
+                $(document).ready(function () {
+
+
+                    $("#qrTelephone").kendoQRCode({
+                        value: "tel:+1-888-365-2779",
+                        errorCorrection: "Q",
+                        size: 114,
+                        color: "#67a814",
+                        border: {
+                            color: "#67a814",
+                            width: 5
+                        }
+                    });
+
+                });
+
+            </script>
+            <script>
+    var draw = kendo.drawing;
+    var geom = kendo.geometry;
+
+    var rect = new geom.Rect(
+        [15, 15],  // Position of the top left corner
+        [107, 114] // Size of the rectangle
+    );
+    var image = new draw.Image("http://hopearbor.com/wp-content/uploads/2015/04/placeholder.jpg", rect);
+
+    var surface = draw.Surface.create($("#surface"));
+    surface.draw(image);
+
+    setTimeout(function() {
+        image.src("http://goo.gl/10IzfV");
+    }, 1000);
+</script>

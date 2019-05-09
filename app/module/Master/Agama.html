@@ -1,0 +1,95 @@
+
+<div ng-controller="AgamaCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="title">
+			
+			<!-- Text Input Kode Agama -->
+			<div class="grid_4" style="margin-bottom:5px">
+				<label c-label item="item" c-label-text="kodeAgama"> </label>
+			</div>
+				
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.kodeAgama" />
+			</div>
+			<div class="clear"></div>
+
+			<!-- Text Input Nama Agama -->
+			<div class="grid_4" style="margin-bottom:5px">
+				<label c-label item="item" c-label-text="namaAgama"> </label>
+			</div>
+				
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaAgama" />
+			</div>
+			<div class="clear"></div>
+			 
+
+			<!-- Text Input Detail -->
+			<div class="grid_4" style="margin-bottom:5px">
+				<label c-label item="item" c-label-text="detailAgama"> </label>
+			</div>
+				
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.detailAgama" />
+				<input type="hidden" ng-model="item.id" />
+			</div>
+
+			<div class="clear"></div>
+			</br>
+			
+
+	        
+
+			<hr style="background-color:#10C4B2;height: 1px;border: 0;" />
+			<!--Button AddAgama-->
+			<div class="grid_12">
+                <div class="grid_3" style="float:right">
+                    <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="AddAgama" >
+                        <span class="title">Simpan</span>
+                    </c-button>
+                    <!-- <button ng-click="AddAgama(item.id)">button</button> -->
+                </div>
+            </div>
+
+            <div class="clear"></div>
+            <hr style="background-color:#10C4B2;height: 1px;border: 0;" />
+
+            <!-- lIST -->
+
+            <div class="div_12">
+				<div class="grid_2" style="margin-bottom:5px" >
+					<label c-label item="item" c-label-text="kodeAgama"> </label>
+				</div>
+				<div class="grid_3" style="margin-bottom:5px">
+					<label c-label item="item" c-label-text="namaAgama"> </label>
+				</div>
+				<div class="grid_3" style="margin-bottom:5px">
+					<label c-label item="item" c-label-text="detailAgama"> </label>
+				</div>
+				<div class="grid_4" style="margin-bottom:5px">
+					<label c-label item="item" c-label-text="Action"> </label>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div class="div_12" ng-repeat="i in dataAgama" ng-show="showGridData" >
+				<div class="grid_2">
+					{{i.kodeAgama}}
+				</div>
+				<div class="grid_3">
+					{{i.namaAgama}}
+				</div>
+				<div class="grid_3">
+					{{i.detailAgama}}
+				</div>
+				
+				<!-- Button -->
+				<div class="grid_2">
+                    <a href="javascript:void(0)" ng-click="UpdateAgama(i.id)">Edit</a>
+                </div>
+	            <div class="grid_2">
+                    <a href="javascript:void(0)" ng-click="DeleteAgama(i.id)">Delete</a>
+                </div>
+	         </div>
+		</c-panel>
+	</div>
+</div>

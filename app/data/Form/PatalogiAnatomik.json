@@ -1,0 +1,155 @@
+{
+	"model":{
+	    "CaraPengambilan" : "",
+	    "Bahan" : "",
+		
+	    "DiagnosisKlinik" : "",
+		 "DiambilTanggal" : "",
+		  "Paritas" : "",
+		 "HaidTerakhir" : "",
+		 "TerapiHormon" :"",
+		 "Tanggal":"",
+		 "StatusGinekologik":"",
+		 "Kontrasepsi":"",
+		 "Operasi/radiasi":"",
+		 "Bahan":"",
+		 "Fiksasi":"",
+		 "PemeriksaanSebelumnya":"",
+		 "Mikroskopik":"",
+		 "Tanggal":"",
+		 "Nomor":"",
+		 "Dokter":"",
+		 "Laboratorium":"",
+		 "Tanggal":"",
+		 "Operasi":"",
+		 "Tanggal2":"",
+		 "Tanggal3":"",
+		 "StatusGinekologik":"",
+		 "Bahandidapat":"",
+		 "Fiksasi":"",
+		 "Dokter":"",
+		 "Pernah":"",
+		 "Diisi":"",
+		 "Dokter":""
+		 
+		 
+		 
+		
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "CaraPengambilan",
+			"messagesRequired" : "Cara Pengambilan Harus Diisi",
+			"caption" : "Cara Pengambilan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Bahan",
+			"messagesRequired" : "Bahan Harus Diisi",
+			"caption" : "Bahan berasal dari"
+		},
+		{
+			"isNull" : "true",
+			"name" : "DiagnosisKlinik",
+			"messagesRequired" : "Diagnosis Klinik Harus Diisi",
+			"caption" : "Diagnosis Klinik"
+		},
+		{
+			"isNull" : "true",
+			"name" : "DiambilTanggal",
+			"messagesRequired" : "Diambil Tanggal Harus Diisi",
+			"caption" : "Diambil Tanggal"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Paritas",
+			"messagesRequired" : "Paritas Harus Diisi",
+			"caption" : "Paritas"
+		},
+		{
+			"isNull" : "true",
+			"name" : "HaidTerakhir",
+			"messagesRequired" : "Haid Terakhir Harus Diisi",
+			"caption" : "Haid Terakhir"
+		},
+		{
+			"isNull" : "true",
+			"name" : "TerapiHormon",
+			"messagesRequired" : "Terapi Hormon Harus Diisi",
+			"caption" : "Terapi Hormon"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Kontrasepsi",
+			"messagesRequired" : "Kontrasepsi Harus Diisi",
+			"caption" : "Kontrasepsi pil/akdr/lain2"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Operasi",
+			"messagesRequired" : "Operasi/Radiasi Harus Diisi",
+			"caption" : "Operasi/radiasi"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Tanggal",
+			"messagesRequired" : "Tanggal Harus Diisi",
+			"caption" : "Tanggal"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Tanggal2",
+			"messagesRequired" : "Tanggal Harus Diisi",
+			"caption" : "Tanggal"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Tanggal3",
+			"messagesRequired" : "Tanggal Harus Diisi",
+			"caption" : "Tanggal"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Bahandidapat",
+			"messagesRequired" : "Bahan harus diisi",
+			"caption" : "Bahan didapat dengan:punksi/aspirasi/apus/bilasan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Diisi",
+			"messagesRequired" : "Diisi harus diisi",
+			"caption" : "Diisi oleh laboratorium "
+		},
+		{
+			"isNull" : "true",
+			"name" : "Dokter",
+			"messagesRequired" : "Dokter harus diisi",
+			"caption" : "Dokter"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Fiksasi",
+			"messagesRequired" : "Fiksasi harus diisi",
+			"caption" : "Fiksasi"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Pernah",
+			"messagesRequired" : "Pernah dilakukan sebelumnya harus diisi",
+			"caption" : "Pernah dilakukan pemeriksaan sebelumnya"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Nomor",
+			"messagesRequired" : "Nomor harus diisi",
+			"caption" : "Nomor"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Mikroskopik",
+			"messagesRequired" : "Mikroskopik harus diisi",
+			"caption" : "Mikroskopik"
+		}
+  ]
+}

@@ -1,0 +1,41 @@
+<div ng-controller="KirimMenuCtrl">
+    <div class="grid_12">
+    {{listtest}}
+        <table class="table " style="padding:0px" ng-repeat="data in listOrders">
+            <tr class='success' ng-show="$index===0">
+                <th style="width:150px"><span c-translate>Ruangan</span></th>
+                <th style="width:150px"><span c-translate>Nama Pasien</span></th>
+                <th style="width:150px"><span c-translate>Jenis Diet</span></th>
+                <th><span c-translate>Menu Diet</span></th>
+            </tr>
+            <tr>
+                <th colspan="5" style="text-align:left">{{data.key}}</th>
+            </tr>
+            <tbody>
+                <tr ng-repeat="subData in data.value">
+                    <td colspan="5" style="width:150px">
+                    <!-- add_hanafi -->
+                        <span style="display:block" ng-click="selected(subData)">
+                        &nbsp;&nbsp;<input  ng-checked="subData.isChecked"  type="checkbox" checked="checked">{{namaruangantampil}}
+                        </span>
+                        <!-- <span style="display:block" ng-click="selected(subData)">
+                        &nbsp;&nbsp;<input  ng-checked="subData.isChecked"  type="checkbox" checked="checked">{{subData.key}}
+                        </span> -->
+                        <table>
+                            <tr ng-repeat="item in subData.value" ng-click="selectedItem(item)" ng->
+                                <td style="width:321px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input ng-checked="item.isChecked ||item.check" type="checkbox" checked="checked">{{item.pasien}}</td>
+                                <td style="width:150px">&nbsp;&nbsp;&nbsp;{{item.jenisDiet.jenisDiet}}</td>
+                                <td>&nbsp;&nbsp;&nbsp;{{item.produk.namaProduk}}</td>
+                            </tr>
+                        </table>
+                    </td>
+
+
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+    <div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+</div>

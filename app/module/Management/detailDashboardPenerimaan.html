@@ -1,0 +1,511 @@
+<style>
+    .style-center{
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+    }
+
+    .style-right{
+        display: inline-block;
+        text-align: right;
+        width: 100%;
+    }
+
+    .style-left{
+        display: inline-block;
+        text-align: left;
+        width: 100%;
+    }
+</style>
+<!-- <div class="DashboardPenerimaanCtrl"> -->
+    <div class="grid_12">
+        <div class="grid_4">
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="Periode Penerimaan"></label>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_12">
+                <!-- AwalPeriode -->
+                <div class="grid_6 padDatePicker">
+                    <input style="width: 100%" k-ng-model='from' k-value='now' kendo-date-picker placeholer="dd-mmm-yyyy" k-format="'dd-MMM-yyyy'"/>
+                </div>
+
+                <!-- AkhirPeriode -->
+                <div class="grid_6 padDatePicker">
+                    <input style="width: 100%"  k-ng-model='until' k-value='now' kendo-date-picker placeholer="dd-mmm-yyyy" k-format="'dd-MMM-yyyy'" />
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="grid_2" style="margin-top: 15px;">
+            <button class="btnTemplate1" ng-click="SearchData()">Cari</button>
+        </div>
+    </div>
+    <div class="grid_12 headerBox">
+        <h1 style="color: white;"><b>Dashboard Penerimaan</b></h1>
+    </div>    
+    <div class="grid_12" style="margin-bottom: 5px;">
+        <div class="grid_12">
+            <div kendo-chart k-options="chart" k-data-source="sourcechart"></div>
+        </div>
+         <div class="grid_6">
+            <div kendo-chart k-options="chart1" k-data-source="sourcechart"></div>
+        </div>
+    </div>
+    <div class="grid_12" style="margin-top:30px">
+        <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+    </div>
+    <div class="grid_12" style="margin-bottom: 5px;">
+        <div class="grid_12" style="margin-top: 10px;" ng-show="TJalan">
+                <table id="grid" class="table table-bordered tabelJurnal">
+                    <thead>
+                        <tr>
+                            <th colspan="1" style="font-weight: bold;">Uraian Unit/Kode Program/Kegiatan</th>
+                            <th colspan="1" style="font-weight: bold;">&nbsp;</th>
+                            <th colspan="1" style="font-weight: bold;">&nbsp;</th>
+                        </tr>
+                        <tr>
+                            <th style="font-weight: bold;">Akun Pendapatan</th>
+                            <th style="font-weight: bold;">Target</th>
+                            <th style="font-weight: bold;">Realisasi</th>                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                         <tr>
+                            <td style="font-weight: bold;text-align: left;">Instalasi Rawat Jalan</td>
+                            <td style="font-weight: bold;">&nbsp;</td>
+                            <td style="font-weight: bold;">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold; text-align: left;">Program Pembinaan Pelayanan Kesehatan</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;">Pendapatan Jasa Pelayanan RS</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerja" item="item">
+                            <td style="font-weight: bold; text-align: left;">PENDAPATAN BLU</td>
+                            <!-- Prognosa -->
+                            <td style="text-align: right; font-weight: bold;">{{data.targetBLU}}</td>
+                            <!-- Target -->
+                            <td style="text-align: right; font-weight: bold;">{{data.totBLU}}</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerja" item="item">
+                            <td style="font-weight: bold; text-align: left;">Pasien BPJS</td>
+                            <!-- Target -->
+                            <td style="text-align: right;">{{data.targetpasienBpjs}}</td>
+                             <!-- Prognosa -->
+                            <td style="text-align: right;">{{data.proBPJS}}</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerja" item="item">
+                            <td style="font-weight: bold;text-align: left">Pasien Non BPJS</td>
+                            <!-- Target -->
+                            <td style="text-align: right">{{data.targetpasienNonBpjs}}</t>
+                            <!-- Prognosa -->
+                            <td style="text-align: right">{{data.proNonBPJS}}</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerja" item="item">
+                            <td style="font-weight: bold; text-align: left;">PENERIMAAN RUPIAH MURNI (RM)</td>
+                            <!-- Target -->
+                            <td style="text-align: right; font-weight: bold;">{{data.targetPRM}}</t>
+                            <!-- Prognosa -->
+                            <td style="text-align: right; font-weight: bold;">{{0}}</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerja" item="item">
+                            <td style="text-align: left;">Belanja Pegawai</td>
+                            <!-- Prognosa -->
+                            <td style="text-align: right">{{data.targetBPeg}}</t>
+                            <!-- Target -->
+                            <td style="text-align: right">{{0}}</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerja" item="item">
+                            <td style="text-align: left;">Belanja Barang</td>
+                            <!-- Prognosa -->
+                            <td style="text-align: right">{{data.targetBBrg}}</t>
+                            <!-- Target -->
+                            <td style="text-align: right">{{0}}</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerja" item="item">
+                            <td style="text-align: left;">Belanja Modal</td>
+                            <!-- Prognosa -->
+                            <td style="text-align: right">{{data.targetBMod}}</t>
+                            <!-- Target -->
+                            <td style="text-align: right">{{0}}</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr> 
+                        <tr ng-repeat="data in Datakinerja" item="item">
+                            <td style="font-weight: bold; text-align: left;">TOTAL PENDAPATAN</td>
+                            <!-- Target -->
+                            <td style="text-align: right; font-weight: bold;">{{data.totalPend}}</t>
+                            <!-- Prognosa -->
+                            <td style="text-align: right; font-weight: bold;">{{data.totBLU}}</td>
+                        </tr>                     
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="grid_12" style="margin-top: 10px;" ng-show="Tinap">
+                <table id="grid" class="table table-bordered tabelJurnal">
+                    <thead>
+                        <tr>
+                            <th colspan="1" style="font-weight: bold;">Uraian Unit/Kode Program/Kegiatan</th>
+                            <th colspan="1" style="font-weight: bold;">&nbsp;</th>
+                            <th colspan="1" style="font-weight: bold;">&nbsp;</th>
+                        </tr>
+                        <tr>
+                            <th style="font-weight: bold;">Akun Pendapatan</th>
+                            <th style="font-weight: bold;">Target</th>
+                            <th style="font-weight: bold;">Realisasi</th>                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                         <tr>
+                            <td style="font-weight: bold;text-align: left;">Instalasi Rawat Inap</td>
+                            <td style="font-weight: bold;">&nbsp;</td>
+                            <td style="font-weight: bold;">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;">Program Pembinaan Pelayanan Kesehatan</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;">Pendapatan Jasa Pelayanan RS</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerjas" item="item">
+                            <td style="font-weight: bold; text-align: left;">PENDAPATAN BLU</td>
+                            <!-- Target -->
+                            <td style="text-align: right; font-weight: bold;">{{data.targetBLU}}</td>
+                             <!-- Prognosa -->
+                            <td style="text-align: right; font-weight: bold;">{{data.totBLU}}</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerjas" item="item">
+                            <td style="font-weight: bold; text-align: left;">Pasien BPJS</td>
+                            <!-- Target -->
+                            <td style="text-align: right;">{{data.targetpasienBpjs}}</td>
+                            <!-- Prognosa -->
+                            <td style="text-align: right;">{{data.proBPJS}}</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerjas" item="item">
+                            <td style="font-weight: bold;text-align: left">Pasien Non BPJS</td>
+                            <!-- Target -->
+                            <td style="text-align: right">{{data.targetpasienNonBpjs}}</t>
+                            <!-- Prognosa -->
+                            <td style="text-align: right">{{data.proNonBPJS}}</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerjas" item="item">
+                            <td style="font-weight: bold; text-align: left;">PENERIMAAN RUPIAH MURNI (RM)</td>
+                            <!-- Target -->
+                            <td style="text-align: right; font-weight: bold;">{{data.targetPRM}}</t>
+                                <!-- Prognosa -->
+                            <td style="text-align: right; font-weight: bold;">{{0}}</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerjas" item="item">
+                            <td style="text-align: left;">Belanja Pegawai</td>
+                            <!-- Target -->
+                            <td style="text-align: right">{{data.targetBPeg}}</t>
+                            <!-- Prognosa -->
+                            <td style="text-align: right">{{0}}</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerjas" item="item">
+                            <td style="text-align: left;">Belanja Barang</td>
+                            <!-- Target -->
+                            <td style="text-align: right">{{data.targetBBrg}}</t>
+                            <!-- Prognosa -->
+                            <td style="text-align: right">{{0}}</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerjas" item="item">
+                            <td style="text-align: left;">Belanja Modal</td>
+                            <!-- Target -->
+                            <td style="text-align: right">{{data.targetBMod}}</t>
+                            <!-- Prognosa -->
+                            <td style="text-align: right">{{0}}</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr> 
+                        <tr ng-repeat="data in Datakinerjas" item="item">
+                            <td style="font-weight: bold; text-align: left;">TOTAL PENDAPATAN</td>
+                            <!-- Target -->
+                            <td style="text-align: right; font-weight: bold;">{{data.totalPend}}</t>
+                            <!-- Prognosa -->
+                            <td style="text-align: right; font-weight: bold;">{{data.totBLU}}</td>
+                        </tr>                     
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="grid_12" style="margin-top: 10px;" ng-show="TFarmasi">
+                <table id="grid" class="table table-bordered tabelJurnal">
+                    <thead>
+                        <tr>
+                            <th colspan="1" style="font-weight: bold;">Uraian Unit/Kode Program/Kegiatan</th>
+                            <th colspan="1" style="font-weight: bold;">&nbsp;</th>
+                            <th colspan="1" style="font-weight: bold;">&nbsp;</th>
+                        </tr>
+                        <tr>
+                            <th style="font-weight: bold;">Akun Pendapatan</th>
+                            <th style="font-weight: bold;">Target</th>
+                            <th style="font-weight: bold;">Realisasi</th>                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                         <tr>
+                            <td style="font-weight: bold;text-align: left;">Instalasi Farmasi</td>
+                            <td style="font-weight: bold;">&nbsp;</td>
+                            <td style="font-weight: bold;">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;">Program Pembinaan Pelayanan Kesehatan</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;">Pendapatan Jasa Pelayanan RS</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerjas" item="item">
+                            <td style="font-weight: bold; text-align: left;">PENDAPATAN BLU</td>
+                            <!-- Target -->
+                            <td style="text-align: right; font-weight: bold;">{{data.targetBLU}}</td>
+                             <!-- Prognosa -->
+                            <td style="text-align: right; font-weight: bold;">{{data.totBLU}}</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerjas" item="item">
+                            <td style="font-weight: bold; text-align: left;">Pasien BPJS</td>
+                            <!-- Target -->
+                            <td style="text-align: right;">{{data.targetpasienBpjs}}</td>
+                            <!-- Prognosa -->
+                            <td style="text-align: right;">{{data.proBPJS}}</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerjas" item="item">
+                            <td style="font-weight: bold;text-align: left">Pasien Non BPJS</td>
+                            <!-- Target -->
+                            <td style="text-align: right">{{data.targetpasienNonBpjs}}</t>
+                            <!-- Prognosa -->
+                            <td style="text-align: right">{{data.proNonBPJS}}</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerjas" item="item">
+                            <td style="font-weight: bold; text-align: left;">PENERIMAAN RUPIAH MURNI (RM)</td>
+                            <!-- Target -->
+                            <td style="text-align: right; font-weight: bold;">{{data.targetPRM}}</t>
+                                <!-- Prognosa -->
+                            <td style="text-align: right; font-weight: bold;">{{0}}</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerjas" item="item">
+                            <td style="text-align: left;">Belanja Pegawai</td>
+                            <!-- Target -->
+                            <td style="text-align: right">{{data.targetBPeg}}</t>
+                            <!-- Prognosa -->
+                            <td style="text-align: right">{{0}}</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerjas" item="item">
+                            <td style="text-align: left;">Belanja Barang</td>
+                            <!-- Target -->
+                            <td style="text-align: right">{{data.targetBBrg}}</t>
+                            <!-- Prognosa -->
+                            <td style="text-align: right">{{0}}</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerjas" item="item">
+                            <td style="text-align: left;">Belanja Modal</td>
+                            <!-- Target -->
+                            <td style="text-align: right">{{data.targetBMod}}</t>
+                            <!-- Prognosa -->
+                            <td style="text-align: right">{{0}}</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr> 
+                        <tr ng-repeat="data in Datakinerjas" item="item">
+                            <td style="font-weight: bold; text-align: left;">TOTAL PENDAPATAN</td>
+                            <!-- Target -->
+                            <td style="text-align: right; font-weight: bold;">{{data.totalPend}}</t>
+                            <!-- Prognosa -->
+                            <td style="text-align: right; font-weight: bold;">{{data.totBLU}}</td>
+                        </tr>                     
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="grid_12" style="margin-top: 10px;" ng-show="TUsahalainnya">
+                <table id="grid" class="table table-bordered tabelJurnal">
+                    <thead>
+                        <tr>
+                            <th colspan="1" style="font-weight: bold;">Uraian Unit/Kode Program/Kegiatan</th>
+                            <th colspan="1" style="font-weight: bold;">&nbsp;</th>
+                            <th colspan="1" style="font-weight: bold;">&nbsp;</th>
+                        </tr>
+                        <tr>
+                            <th style="font-weight: bold;">Akun Pendapatan</th>
+                            <th style="font-weight: bold;">Target</th>
+                            <th style="font-weight: bold;">Realisasi</th>                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                         <tr>
+                            <td style="font-weight: bold;text-align: left;">Pendapatan Usaha Lainnya</td>
+                            <td style="font-weight: bold;">&nbsp;</td>
+                            <td style="font-weight: bold;">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;">Program Pembinaan Pelayanan Kesehatan</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>                        
+                        <tr ng-repeat="data in Datakinerja" item="item">                            
+                            <td style="font-weight: bold; text-align: left;">PENDAPATAN BLU</td>
+                            <!-- Target -->
+                            <td style="text-align: right; font-weight: bold;">{{data.targetBLU}}</td>
+                             <!-- Prognosa -->
+                            <td style="text-align: right; font-weight: bold;">{{data.totBLU}}</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerja" item="item">
+                            <td style="font-weight: bold; text-align: left;">Pendapatan Kerjasama Perorangan</td>
+                            <!-- Target -->
+                            <td rowspan="2" style="text-align: right;">{{data.target}}</td>
+                            <!-- Prognosa -->
+                            <td rowspan="2" style="text-align: right;">{{data.capaian}}</td>
+                        </tr>
+                        <tr>                           
+                            <td style="font-weight: bold;text-align: left">Pendapatan Jasa Layanan Perbankan BLU</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerja" item="item">
+                            <td style="font-weight: bold; text-align: left;">PENERIMAAN RUPIAH MURNI (RM)</td>
+                            <!-- Target -->
+                            <td style="text-align: right; font-weight: bold;">{{data.targetPRM}}</t>
+                                <!-- Prognosa -->
+                            <td style="text-align: right; font-weight: bold;">{{0}}</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerja" item="item">
+                            <td style="text-align: left;">Belanja Pegawai</td>
+                            <!-- Target -->
+                            <td style="text-align: right">{{data.targetBPeg}}</t>
+                            <!-- Prognosa -->
+                            <td style="text-align: right">{{0}}</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerja" item="item">
+                            <td style="text-align: left;">Belanja Barang</td>
+                            <!-- Target -->
+                            <td style="text-align: right">{{data.targetBBrg}}</t>
+                            <!-- Prognosa -->
+                            <td style="text-align: right">{{0}}</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerja" item="item">
+                            <td style="text-align: left;">Belanja Modal</td>
+                            <!-- Target -->
+                            <td style="text-align: right">{{data.targetBMod}}</t>
+                            <!-- Prognosa -->
+                            <td style="text-align: right">{{0}}</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr> 
+                        <tr ng-repeat="data in Datakinerja" item="item">
+                            <td style="font-weight: bold; text-align: left;">TOTAL PENDAPATAN</td>
+                            <!-- Target -->
+                            <td style="text-align: right; font-weight: bold;">{{data.totalPend}}</t>
+                            <!-- Prognosa -->
+                            <td style="text-align: right; font-weight: bold;">{{data.totBLU}}</td>
+                        </tr>                     
+                    </tbody>
+                </table>
+            </div>
+    </div>
+    <div class="grid_12">
+        <div class="grid_3" ng-show="TJalan">
+            <c-button style="width: 100%; padding:0px, margin:0px;background-color: #C7C700;" ng-click="Digd()" position="'right'">
+                <span class="title">Detail IGD</span>
+            </c-button>
+        </div>
+        <div class="grid_3" ng-show="TJalan">
+            <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="RehabMedik()" position="'right'">
+                <span class="title">Detail Rehabilitasi Medik</span>
+            </c-button>
+        </div>
+        <div class="grid_3" ng-show="TJalan">
+            <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="Radiologi()" position="'right'">
+                <span class="title">Detail Radiologi</span>
+            </c-button>
+        </div>
+         <div class="grid_3" ng-show="TJalan">
+            <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="Labo()" position="'right'">
+                <span class="title">Detail Laboratorium</span>
+            </c-button>
+        </div>
+
+       <div class="grid_3" ng-show="Tinap">
+            <c-button style="width: 100%; padding:0px, margin:0px;background-color: #C7C700;" ng-click="Peristi()" position="'right'">
+                <span class="title">Detail Inst. Peristi</span>
+            </c-button>
+        </div>
+        <div class="grid_3" ng-show="Tinap">
+            <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="ICU()" position="'right'">
+                <span class="title">Detail ICU</span>
+            </c-button>
+        </div>
+        <div class="grid_3" ng-show="Tinap">
+            <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="Bedah()" position="'right'">
+                <span class="title">Detail Bedah Sentral</span>
+            </c-button>
+        </div>
+    </div>
+    <style>
+        table {
+                font-size: 16px;
+                font-weight: bold;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            th, td {
+                font-size: 16px;
+                font-weight: bold;
+                text-align: left;
+                padding: 16px;
+            }
+
+            tr:nth-child(even){
+                background-color: #f2f2f2;
+                text-align: left;
+                font-weight: bold;
+                font-size: 16px;
+            }
+
+            th {
+                font-size: 17px;
+                font-weight: bold;
+                background-color: #4CAF50;
+                color: white;
+        }
+    </style>

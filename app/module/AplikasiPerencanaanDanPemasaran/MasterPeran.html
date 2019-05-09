@@ -1,0 +1,37 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Master Peran</div>
+	<div class="panel-body">
+		<div class="grid_12">
+			<div class="grid_3"></div>
+			<div class="grid_6">
+				<div class="grid_12" style="margin-top:10px">
+					<div class="grid_2" style="margin-top:15px">
+						<label c-label item="item" c-label-text="peran"></label>
+					</div>
+					<div class="grid_9">
+						<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.peran" ng-keypress="($event.which == 13)? Save():item.peran"/>
+					</div>
+				</div>
+				<div class="grid_12" style="margin-top:10px">
+					<div class="grid_5"></div>
+					<div class="grid_3">
+						<button class="c-button success" ng-click="Save()">Simpan</button>
+					</div>
+					<div class="grid_3">
+						<button class="c-button cancel" ng-click="Batal()">Batal</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_3"></div>
+			<div class="grid_6" style="padding-top:10px">
+				<div kendo-grid k-on-change="Select(data)" k-data-source="sourceMasterPeran" k-selectable="'row'" options="mainGridOptions">
+
+				<!-- <div kendo-grid k-on-change="SelectGrid(data)" k-data-source="sourceMasterPeran" k-selectable="'row'" k-columns="columnMasterPeran" pageable="true" scrollable="false"></div> -->
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>

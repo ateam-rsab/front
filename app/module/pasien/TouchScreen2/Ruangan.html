@@ -1,0 +1,70 @@
+<div ng-controller="VerifikasiCtrl">
+    <div class="grid_12">
+        <div class="grid_12">
+            <span class="title">Tanggal Registrasi :<b ng-click='item.tglReservasi=undefined'>{{item.tglPendaftaran | date :'dd MMMM yyyy'}}</b> </span>
+
+        </div>
+        <div class="grid_4">
+        </div>
+        <hr />
+        <span class="title">Ruangan Tujuan : <b ng-click='item.PoliTujuan=undefined'>{{item.PoliTujuan.namaRuangan}}</b></span>
+        <span style='font-size:10px' ng-show='item.tglReservasi!==undefined'>Tekan ruangan untuk merubah ruangan</span>
+        <br />
+        <div ng-show='item.PoliTujuan===undefined' class="grid_12">
+            <span class="k-textbox k-space-right" style="width: 100%;">
+                <input type="text" id="icon-right" ng-model="searchNamaRuangan" />
+                <a href="#" class="k-icon k-i-search">&nbsp;</a>
+            </span>
+        </div>
+        <div ng-show='item.PoliTujuan===undefined' class="tiles">
+            <div class="grid_3" ng-repeat="ruangan in ruangansLocal | filter:searchNamaRuangan">
+                <div class="tile bg-yellow-saffron main purple" ng-click="item.PoliTujuan =ruangan" ng-class="{selected : item.PoliTujuan ===ruangan}">
+                    <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                    <div class="check"></div>
+                    <div class="tile-body" style="overflow: initial;">
+                        <i style="font-style: normal;">{{ruangan.namaRuangan[0]}}</i>
+                    </div>
+                    <div class="tile-object">
+                        <div class="name">{{ruangan.namaRuangan}} </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-show='showDokter==="EKSEKUTIF"'>
+            <span class="title">Dokter : <b>{{item.Dokter.namaPegawai}}</b></span>
+            <br />
+            <di ng-show='item.Dokter===undefined' class="grid_12">
+                <span class="k-textbox k-space-right" style="width: 100%;">
+                <input type="text" id="icon-right" ng-model="searchNamaDokter" />
+                <a href="#" class="k-icon k-i-search">&nbsp;</a>
+            </span>
+        </div>
+        <div ng-show='item.Dokter===undefined' class="tiles">
+            <div class="grid_3" ng-repeat="doktor in dokters">
+                <div class="tile bg-yellow-saffron main purple" ng-click="item.Dokter =doktor" ng-class="{selected : item.Dokter ===doktor}">
+                    <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                    <div class="check"></div>
+                    <div class="tile-body" style="overflow: initial;">
+                        <i style="font-style: normal;">{{doktor.namaPegawai[0]}}</i>
+                    </div>
+                    <div class="tile-object">
+                        <div class="name">{{doktor.namaPegawai}} </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid_12">
+        <div class="grid_6">
+            <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px" item="item" size="36" position="'left'" is-back icon="'icon-prev'">
+                <span class="title" c-translate>Kembali</span>
+            </c-button>
+        </div>
+        <div class="grid_6">
+            <c-button ng-show="!isLoading" class='successs' style="width: 100%; font-size: 24px" item="item" size="36" position="'right'" is-validate click="Done" icon="'icon-next'">
+                <span class="title" c-translate>Selesai</span>
+            </c-button>
+        </div>
+    </div>
+
+</div>  

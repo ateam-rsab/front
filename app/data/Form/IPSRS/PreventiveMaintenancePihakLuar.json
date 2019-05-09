@@ -1,0 +1,97 @@
+{
+	"model":{
+	    "namaAlat" : "",
+	    "merk" : "",
+	    "tipe" : "",
+	    "noSeri" : "",
+	    "tanggal" : "",
+	    "catuTegangan" : "",
+	    "temperaturRuangan" : "",
+	    "kelembapanRuangan" : "",
+	    "namaUser" : "",
+	    "catatan" : "",
+	    "namaTeknisiPendamping" : "",
+	    "namaPt" : "",
+	    "namaTeknisi" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "namaAlat",
+			"messagesRequired" : "",
+			"caption" : "Nama Alat"
+		},
+		{
+			"isNull" : "true",
+			"name" : "merk",
+			"messagesRequired" : "",
+			"caption" : "Merk"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tipe",
+			"messagesRequired" : "",
+			"caption" : "Tipe"
+		},
+		{
+			"isNull" : "true",
+			"name" : "noSeri",
+			"messagesRequired" : "",
+			"caption" : "No Seri"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tanggal",
+			"messagesRequired" : "",
+			"caption" : "Tanggal"
+		},
+		{
+			"isNull" : "true",
+			"name" : "catuTegangan",
+			"messagesRequired" : "",
+			"caption" : "Catu Tegangan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "temperaturRuangan",
+			"messagesRequired" : "",
+			"caption" : "Temperatur Ruangan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "kelembapanRuangan",
+			"messagesRequired" : "",
+			"caption" : "Kelembapan Ruangan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "namaUser",
+			"messagesRequired" : "",
+			"caption" : "Nama User"
+		},
+		{
+			"isNull" : "true",
+			"name" : "catatan",
+			"messagesRequired" : "",
+			"caption" : "Catatan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "namaTeknisiPendamping",
+			"messagesRequired" : "",
+			"caption" : "Nama Teknisi Pendamping"
+		},
+		{
+			"isNull" : "true",
+			"name" : "namaPt",
+			"messagesRequired" : "",
+			"caption" : "Nama PT"
+		},
+		{
+			"isNull" : "true",
+			"name" : "namaTeknisi",
+			"messagesRequired" : "",
+			"caption" : "Nama Teknisi"
+		}
+  ]
+}

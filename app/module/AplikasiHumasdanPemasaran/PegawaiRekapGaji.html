@@ -1,0 +1,132 @@
+<div ng-controller="PegawaiRekapGajiCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Pegawai Histori Rekap Gaji'"disabled>
+		<div class="grid_6">
+		<div class="panel panel-default container_12">
+           
+			
+
+			<div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Norec"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.norec" />
+			</div>
+			
+			</div>
+			<div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="No Histori"></label>
+			</div>
+			<div class="grid_8">
+			<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.NoHistori" />
+			</div>
+			
+			</div>
+
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Kode Pegawai"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.KdPegawai" />
+			</div>
+			
+			</div>
+
+			<div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Kode Komponen Harga"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.KdKomponenHarga" />
+			</div>
+			
+			</div>
+
+
+			</div> 
+			   </div>
+
+		   <div class="grid_6">
+           <div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Harga Satuan"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.HargaSatuan" />
+			</div>
+			
+			</div>
+
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="QTY Komponen Harga"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.QtyKomponenHarga" />
+			</div>
+			
+			</div>
+
+			<div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="No Verifikasi"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.NoVerifikasi" />
+			</div>
+			
+			</div>
+
+            <div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="No Closing"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.NoClosing" />
+			</div>
+			
+			</div>
+			
+
+			</div> 
+
+			 
+		   </div>
+
+		 
+
+
+	
+		<div class="grid_12 borderBox">
+				<div id="kGrid" kendo-grid 
+				k-data-source="dataMaster" 
+				k-selectable="'row'" 
+				k-columns="columnKomunikasi"
+				k-sortable="'true'"
+			    k-pageable="true"
+				k-ng-model="dataSelected"
+				ng-click="klik(dataSelected)">
+				</div>
+			</div>
+		
+		
+		</c-panel>
+			<div class="grid_12">
+							<div class="grid_8" style="float:left">
+							
+							<div class="grid_2" style="margin-top: 25px">
+							<button class="c-button" ng-click="reset()">Reset</button>
+							</div>
+							<div class="grid_2" style="margin-top: 25px">
+							<button class="c-button" ng-click="Save()">Simpan</button>
+							</div>
+							
+						</div>
+		</div>
+	</div>
+</div>
+

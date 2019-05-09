@@ -1,0 +1,35 @@
+<div ng-show="dataVOloaded">
+	<c-panel item="item" header="title" align="center" disabled>
+		<div class="grid_12">
+			<div class="grid_2">
+				<label c-label item="item">Indikator</label>
+			</div>
+		</div>
+		<div class="grid_12">
+			<input style="width: 100%;" kendo-combo-box k-ng-model="item.indikator" k-data-text-field="'indikator'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceIndikator" />
+		</div>
+		<div class="grid_12" style="margin-top:10px">
+			<div class="grid_2">
+				<label c-label item="item">Definisi Operasional</label>
+			</div>
+		</div>
+		<div class="grid_12" style="margin-top:5px">
+			<textarea ng-model="item.definisiOperasional" ng-readOnly="cheked" style="width: 99%; height: 350px;"></textarea>
+		</div>
+		<div class="grid_12">
+			<div class="grid_8"></div>
+			<div class="grid_2" ng-show="simpanData">
+				<button class="c-button" ng-click="Save()">Simpan</button>
+			</div>
+			<div class="grid_2">
+				<button class="c-button" ng-click="Batal()">Batal</button>
+			</div>
+		</div>
+		<div class="grid_12" style="padding-top:10px">
+			<c-panel item="item" header="title2" disabled>
+				<div class="grid_12">
+					<div kendo-grid k-on-change="SelectGrid(data)" k-data-source="sourceMasterDefinisiOperasional" k-selectable="'row'" k-columns="columnMasterDefinisiOperasional" pageable="true" scrollable="true"></div>
+				</div>
+			</c-panel>
+	</c-panel>
+</div>

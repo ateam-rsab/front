@@ -1,0 +1,56 @@
+<div ng-controller="ObatObatanCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Instruksi Pasca Bedah'">
+		<div class="panel panel-default container_12">
+			<div class="panel-heading" c-translate>Infus</div>
+			<div class="panel-body">
+				<div class="grid_12">
+					<div class="grid_1">
+						<label c-label item="item" c-label-text="jenisObat"></label>
+					</div>
+					<div class="grid_3">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.JenisObat" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisObat" />
+					</div>
+					<div class="grid_1">
+						<label c-label item="item" c-label-text="namaObat"></label>
+					</div>
+					<div class="grid_2">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.NamaObat" />
+					</div>
+					<div class="grid_1">
+						<label c-label item="item" c-label-text="keteranganObat"></label>
+					</div>
+					<div class="grid_3">
+						<textarea style="height: 90px" id="text_area_keteranganObat" c-text-box type="input" class="k-textbox" ng-model="item.KeteranganObat" />
+					</div>
+					<div class="clear"></div>
+					<div class="grid_1"></div>
+					<div class="grid_3"></div>
+					<div class="grid_1"></div>
+					<div class="grid_3"></div>
+					<div class="grid_4" style="margin-top: 10px">
+						<div class="grid_6">
+							<c-button ng-click="batal()" style="width: 100% !important" >
+							<span style="font-size: 10!important">Batal</span>
+						</div>
+						<div class="grid_6">
+							<c-button ng-click="addDataObat()" style="width: 100% !important" >
+							<span style="font-size: 10!important">Tambah</span>
+						</div>
+					</div>
+				</div>
+				<div class="grid_12" style="margin-top: 10px;">
+				<div kendo-grid k-data-source="dataObat" k-selectable="'row'" k-columns="columnObat">
+				</div>
+			</div>
+			<div class="clear"></div>
+
+		</div>
+	</div>
+	<div class="grid_12" style="margin-top: 10px">
+			<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+		</div>
+</c-panel>
+</div>
+</div>

@@ -1,0 +1,64 @@
+<div ng-controller="DaftarRegistrasiPesertaDiseminasiCtrl">
+    <c-panel item="item" header="'DaftarRegistrasiPesertaDiseminasi'" disabled>
+        <div class="panel panel-default container_12">
+            <div class="panel panel-default container_12">
+                <div class="panel-body">
+                    <div class="grid_12" style="margin-top:10px">
+                        <div class="grid_1" style="margin: 10px 0 0 10px;">
+                            <label c-label item="item">No. Planning</label>
+                        </div>
+                        <div class="grid_2">
+                            <input c-text-box type="input" filter="'varchar'" class="k-textbox"
+                                   ng-model="item.noPlanning"/>
+                        </div>
+                        <div class="grid_2" style="margin: 10px 0 0 10px;">
+                            <label c-label item="item">Tanggal Pelaksanaan Diseminasi</label>
+                        </div>
+                        <div class="grid_3">
+                            <div class="grid_5"  >
+                                <input style="width: 100%" kendo-date-picker k-value="now" k-ng-model="item.periodeAwal"
+                                       placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"/>
+                            </div>
+                            <div class="grid_2">
+                                <label c-label item="item" style="margin: 10px 0 0 10px;">s/d</label>
+                            </div>
+                            <div class="grid_5"  >
+                                <input style="width: 100%" kendo-date-picker k-value="now"
+                                       k-ng-model="item.periodeAkhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"/>
+                            </div>
+                        </div>
+                        <div class="grid_2 " style="margin-top: 10px; font-size: 24px;">
+                            <button class="c-button" ng-show="!isLoading" item="item" ng-click="cari()">
+                                Cari
+                            </button>
+                        </div>
+                    </div>
+                    <div class="clear "></div>
+                    <div class="grid_11" style="margin: 10px 0 0 10px;">
+                        <div kendo-grid k-options="colDaftarRegistrasi" k-data-source="DaftarRegistrasi"
+                             k-selectable="'row'" k-ng-model="current" ng-click="klik(current)">
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_8"></div>
+                        <div class="grid_3">
+                            <button class="c-button" ng-click="redirect()">Cetak Daftar Hadir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </c-panel>
+</div>
+
+    <div kendo-window="window" k-visible="false" k-modal="true">
+
+        <div class="grid_12" style="margin: 10px 0 0 10px;">
+            <label c-label item="item"  style="font-size: 20px;">Daftar Peserta</label>
+        </div>
+            <div class="grid_12">
+                <div kendo-grid k-data-source="gridListPeserta" k-selectable="'row'" k-pageable="true"
+                     k-options="colgridListPeserta">
+                </div>
+            </div>
+    </div>

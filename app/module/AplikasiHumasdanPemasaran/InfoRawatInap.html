@@ -1,0 +1,37 @@
+<div ng-controller="InfoRawatInapCtrl">
+
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'InfoRawatInap'"disabled>      
+       
+       <div class="grid_12">
+                    <div class="grid_2">
+                        <label class="c-label" item="item" c-label-text="">Nama Kamar : {{item.kamar.namaKamar}}</label>
+                        <input c-text-box type="input" class="k-textbox" ng-model="listNamaKamar" />
+                        <br/>
+                    </div>
+                    <div class="grid_10">
+                        <div class="grid_12">
+                            <label c-label item="item">Intruksi Masuk, Pemeriksaan/ Pertolongan segera untuk pasien</label>
+                        </div>
+                        <div class="grid_12" style="margin-top:5px">
+                            <textarea ng-model="instruksi" style="width: 99%; height: 80px;"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+               
+      
+            
+        </div>
+
+    </div>
+</div>
+</c-panel>
+<div class="clear"></div>
+
+<br/>
+
+
+</div>
+
+

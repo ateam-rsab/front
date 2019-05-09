@@ -1,0 +1,23 @@
+<div ng-controller="ProgramDanPerencanaanPenangananCtrl">
+    <div ng-show="dataVOloaded">
+        <!-- panel Skrining Gizi -->
+
+        <c-panel item="item" header="title" disabled>
+
+            <div ng-include='"../app/module/ProgramDanPerencanaanPenanganan/Obat" '></div>
+            <div ng-include='"../app/module/ProgramDanPerencanaanPenanganan/EegBm" '></div>
+            <div ng-include='"../app/module/ProgramDanPerencanaanPenanganan/AbrAudiometri" '></div>
+            <div ng-include='"../app/module/ProgramDanPerencanaanPenanganan/Radiologi" '></div>
+            <div ng-include='"../app/module/ProgramDanPerencanaanPenanganan/Laboratorium" '></div>
+            <div ng-include='"../app/module/ProgramDanPerencanaanPenanganan/Fisioterapi" '></div>
+            <div ng-include='"../app/module/ProgramDanPerencanaanPenanganan/TerapiWicara" '></div>
+            <div ng-include='"../app/module/ProgramDanPerencanaanPenanganan/TerapiOkupasi" '></div>
+            <div ng-include='"../app/module/ProgramDanPerencanaanPenanganan/OrtotikProstetik" '></div>
+            <div ng-include='"../app/module/ProgramDanPerencanaanPenanganan/KonsultasiRujukan" '></div>
+            <div ng-include='"../app/module/ProgramDanPerencanaanPenanganan/RencanaFollowUp" '></div>
+            <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" ' style="margin-bottom:50px"></div>
+
+        </c-panel>
+    </div>
+
+</div>

@@ -1,0 +1,112 @@
+{
+	"model":{
+		"namaProduk":"",
+		"detailJenisPeriksa":"",
+		"namaDetailPemeriksaan":"",
+		"satuanStandar":"",
+        "jenisKelamin":"",
+        "kode":"",
+        "nama":"",
+        "umurMin":"",
+        "umurMax":"",
+        "satuanUmur":"",
+        "nilaiMin":"",
+        "nilaiMax":"",
+        "nilaiReferensi":"",
+        "namaDetail":"",
+        "Nilai":""
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "namaProduk",
+			"messagesRequired" : "",
+			"caption" : "Nama Produk"
+		},{
+			"isNull" : "true",
+			"name" : "detailJenisPeriksa",
+			"messagesRequired" : "",
+			"caption" : "Detail Jenis Periksa"
+		},{
+			"isNull" : "true",
+			"name" : "namaDetailPemeriksaan",
+			"messagesRequired" : "",
+			"caption" : "Nama Detail Pemeriksaan"
+		},{
+			"isNull" : "true",
+			"name" : "satuanStandar",
+			"messagesRequired" : "",
+			"caption" : "Satuan Standar"
+		},{
+			"isNull" : "true",
+			"name" : "jenisKelamin",
+			"messagesRequired" : "",
+			"caption" : "Jenis Kelamin"
+		},{
+			"isNull" : "true",
+			"name" : "kode",
+			"messagesRequired" : "",
+			"caption" : "Kode"
+		},{
+			"isNull" : "true",
+			"name" : "nama",
+			"messagesRequired" : "",
+			"caption" : "Nama"
+		},{
+			"isNull" : "true",
+			"name" : "umurMin",
+			"messagesRequired" : "",
+			"caption" : "Umur Min"
+		},{
+			"isNull" : "true",
+			"name" : "umurMax",
+			"messagesRequired" : "",
+			"caption" : "Umur Max"
+		},{
+			"isNull" : "true",
+			"name" : "satuanUmur",
+			"messagesRequired" : "",
+			"caption" : "Satuan Umur"
+		},{
+			"isNull" : "true",
+			"name" : "Nilai Min",
+			"messagesRequired" : "",
+			"caption" : "Nilai Min"
+		},{
+			"isNull" : "true",
+			"name" : "Nilai Max",
+			"messagesRequired" : "",
+			"caption" : "Nilai Max"
+		},{
+			"isNull" : "true",
+			"name" : "nilaiReferensi",
+			"messagesRequired" : "",
+			"caption" : "Nilai Referensi"
+		},{
+			"isNull" : "true",
+			"name" : "namaDetail",
+			"messagesRequired" : "",
+			"caption" : "Nama"
+		},{
+			"isNull" : "true",
+			"name" : "nilai",
+			"messagesRequired" : "",
+			"caption" : "Nilai"
+		},{
+			"isNull" : "true",
+			"name" : "satuanUmur",
+			"messagesRequired" : "",
+			"caption" : "Satuan Umur"
+		},{
+			"isNull" : "true",
+			"name" : "Nilai Min",
+			"messagesRequired" : "",
+			"caption" : "Nilai Min"
+		},{
+			"isNull" : "true",
+			"name" : "Nilai Max",
+			"messagesRequired" : "",
+			"caption" : "Nilai Max"
+		}
+	]
+}

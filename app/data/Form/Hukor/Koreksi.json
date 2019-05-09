@@ -1,0 +1,31 @@
+{
+	"model":{
+		"noUsulan":"",
+		"usulan":"",
+		"kajian":"",
+		"inputKoreksi":""   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "noUsulan",
+			"messagesRequired" : "",
+			"caption" : "No. Usulan"
+		},{
+			"isNull" : "true",
+			"name" : "usulan",
+			"messagesRequired" : "",
+			"caption" : "Usulan"
+		},{
+			"isNull" : "true",
+			"name" : "kajian",
+			"messagesRequired" : "",
+			"caption" : "Kajian"
+		},{
+			"isNull" : "true",
+			"name" : "inputKoreksi",
+			"messagesRequired" : "",
+			"caption" : "Input Koreksi"
+		}
+	]
+}

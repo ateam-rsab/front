@@ -1,0 +1,40 @@
+<div ng-controller="DataPemeriksaanCtrl">
+
+	<div ng-show="dataVOloaded">
+	
+		<c-panel item="item" header="'Data Hasil Pemeriksaan Swa Pantau Limbah Cair'">
+			<div class="panel-body">
+				<div class="grid_12" >
+							
+							<div class="grid_3" style="margin-top: 10px">
+								<div class="grid_12" style="margin-left:5px">
+									<label c-label item="item" c-label-text="periodeAwal"></label>
+								</div>
+								<div class="grid_12" style="margin-top:5px">
+									<input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAwal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+								</div>
+							</div>
+							<div class="grid_1" style="margin-top: 40px" align="center">
+								 <label c-label item="item" c-label-text="sd"></label>
+							</div>
+							<div class="grid_3" style="margin-top: 10px">
+								<div class="grid_12" style="margin-left:5px">
+									<label c-label item="item" c-label-text="periodeAkhir"></label>
+								</div>
+								<div class="grid_12" style="margin-top:5px">
+									<input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAkhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+								</div>
+							</div>
+							
+						
+							<div class="grid_2" style="margin-top: 38px">
+								<button class="c-button"  ng-click="cari()">
+								
+                            	CARI</button>
+							</div>
+						</div>
+						</div>
+		<div kendo-grid k-data-source="sourceOrder" k-selectable="'row'" k-columns="columnMonitoringStatusPKS" style="margin-bottom: 10px"></div>
+		</c-panel>
+	</div>
+</div>

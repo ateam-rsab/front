@@ -1,0 +1,71 @@
+{
+	"model":{
+		"namaBarang" : "",
+		"noRegistrasiAsset":"",
+		"noSeri":"",
+		"lokasi":"",
+		"tglPemeliharaan":"",
+		"namaTeknisi":"",
+		"tglKontrakService":"",
+		"tglKalibrasi":"",
+		"namaPT":"",
+		"teknisiPendamping":""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "namaBarang",
+			"messagesRequired" : "",
+			"caption" : "Nama Barang"
+		},{
+			"isNull" : "true",
+			"name" : "noRegistrasiAsset",
+			"messagesRequired" : "",
+			"caption" : "No Registrasi Asset"
+		},{
+			"isNull" : "true",
+			"name" : "noSeri",
+			"messagesRequired" : "",
+			"caption" : "No Seri"
+		},{
+			"isNull" : "true",
+			"name" : "lokasi",
+			"messagesRequired" : "",
+			"caption" : "Lokasi"
+		},{
+			"isNull" : "true",
+			"name" : "tglPemeliharaan",
+			"messagesRequired" : "",
+			"caption" : "Tgl. Pemeliharaan"
+		},{
+			"isNull" : "true",
+			"name" : "namaTeknisi",
+			"messagesRequired" : "",
+			"caption" : "Nama Teknisi"
+		},{
+			"isNull" : "true",
+			"name" : "tglKontrakService",
+			"messagesRequired" : "",
+			"caption" : "Tgl. Kontrak Service"
+		},{
+			"isNull" : "true",
+			"name" : "tglKalibrasi",
+			"messagesRequired" : "",
+			"caption" : "Tgl Kalibrasi"
+		},{
+			"isNull" : "true",
+			"name" : "namaPT",
+			"messagesRequired" : "",
+			"caption" : "Nama PT"
+		},{
+			"isNull" : "true",
+			"name" : "teknisiPendamping",
+			"messagesRequired" : "",
+			"caption" : "Teknisi Pendamping"
+		}
+
+
+	]
+}

@@ -1,0 +1,117 @@
+<div ng-controller="PindahKamarCtrl">
+    <div ng-include='"../app/module/Shared/headerPasien" '></div>
+    <div ng-show="dataVOloaded">
+        <div class="panel panel-default panel-white">
+            <div class="panel-body ">
+                <div class="panel-heading-white"><span class="title" c-translate>Registrasi Rawat Inap</span></div>
+                <br>
+                <!-- <P>{{listKamar._data}}</P> -->
+
+                <div class="grid_12">
+                    <div class="grid_2">
+                        <label class="c-label" item="item" c-label-text="">Nama Kamar - {{item.kamar.namaKamar}}</label>
+                        <input c-text-box type="input" class="k-textbox" ng-model="listNamaKamar" />
+                        <br/>
+                    </div>
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="Pemberi Informasi Ruangan"></label>
+                        <input c-text-box type="input " filter=" 'string' " class="k-textbox " ng-model="item.pemberiInformasi"/>
+                        <br/>
+                    </div>
+                </div>
+
+                <div class="grid_12 list-ruangan">
+                    <div class="grid_2">
+                        <ul>
+                            <li ng-repeat="data in namaRuang  | toArray:false  | orderBy:'namaRuangan'">
+                                <div class="feed-message" ng-click="item.ruangan = data" ng-class="{selected : item.ruangan === data}">
+                                    <div class="message-icon">
+                                        <img class="photo-icon" src="stylesheets/bed.png">
+                                    </div>
+                                    <div class="text-block text-message">
+                                        <div class="message-header">
+                                            <span class="author"> {{data.namaRuangan}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="grid_2">
+                        <ul>
+                            <li ng-repeat="data in listKelas | toArray:false | filter:namaKelas | orderBy:'namaKelas' ">
+                                <div class="feed-message" ng-click="item.kelas = data" ng-class="{selected : item.kelas === data}">
+                                    <div class="message-icon">
+                                        <img class="photo-icon" src="stylesheets/bed.png">
+                                    </div>
+                                    <div class="text-block text-message">
+                                        <div class="message-header">
+                                            <span class="author"> {{data.namaKelas}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="grid_3">
+                        <ul>
+                            <li ng-repeat="data in listKamar | toArray:false | filter:namaKamar | filter:listNamaKamar | orderBy:'namaKamar' ">
+                                <div class="feed-message" ng-click="item.kamar = data" ng-class="{selected : item.kamar === data}">
+                                    <div class="message-icon">
+                                        <img class="photo-icon" src="stylesheets/bed.png">
+                                    </div>
+                                    <div class="text-block text-message">
+                                        <div class="message-header">
+                                            <span class="author"> {{data.namaKamar}}</span>
+                                        </div>
+                                        <div class="message-content">
+                                            {{data.jumlaKamarKosong}} kosong -- {{data.jumlaKamarIsi}} isi
+                                        </div>
+                                        <div class="message-aditional">
+                                            {{data.keterangan}}
+                                        </div>
+                                        <div class="message-aditional">
+                                            Jumlah Bed : {{data.qtyBed}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <!--<input style="width: 100%;" kendo-combo-box k-ng-model="item.kamar" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKamar" />-->
+                    </div>
+                    <div class="grid_5">
+                        <ul class="list-half">
+                            <li ng-repeat="data in listNoBed | orderBy:'namaExternal'">
+                                <div class="feed-message" ng-click="item.nomorBed = data" ng-class="{selected : item.nomorBed === data,isi:data.statusBed==='ISI',kosong:data.statusBed==='KOSONG'}">
+                                    <div class="message-icon">
+                                        <img class="photo-icon" src="stylesheets/room.png">
+                                    </div>
+                                    <div class="text-block text-message">
+                                        <div class="message-header">
+                                            <span class="author">{{item.kamar.namaKamar}} - {{data.nomorBed}}</span>
+                                        </div>
+                                        <div class="message-content">
+                                        </div>
+                                        <div class="message-aditional">
+                                            {{data.statusBed}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <!--<input style="width: 100%;" kendo-combo-box k-ng-model="item.nomorTempatTidur" k-data-text-field="'nomorBed'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listTipeKamar" />-->
+                    </div>
+                </div>
+
+                <!--<div class="grid_2" style="margin-bottom:5px">
+                    <label c-label item="item" c-label-text="nomorTempatTidur"></label>
+                </div>-->
+
+                <div class="clear"></div>
+                <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" ' style="margin-bottom:50px"></div>
+            </div>
+        </div>
+    </div>
+</div>

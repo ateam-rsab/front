@@ -1,0 +1,109 @@
+<div class="grid_12" ng-controller="BedahCtrl">
+    <div class="panel panel-default">
+        <div class="panel-heading">Permintaan Bedah/Tindakan</div>
+        <div class="panel-body">
+            <div class="grid_12">
+                <div class="grid_3">
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="TanggalPermintaanOperasi"></label>
+                    </div>
+                    <div class="grid_12">
+                        <input style="width: 100%" k-ng-model='item.tanggalPermintaanOperasi' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                    </div>
+                </div>
+               <!--  <div class="grid_8">
+                     <div class="grid_12">
+                        <label c-label item="item" c-label-text="Keterangan"></label>
+                    </div>
+                    <div class="grid_12">
+                        <textarea ng-model="item.keterangan" style="height:70px; margin-top:5px"></textarea>
+                    </div>
+                </div> -->
+            </div>
+            <div class="grid_12">
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="jenisTindakan" real></label>
+                    <div class="breadcrum">
+                        <div class="grid_12">
+                            <div ng-repeat="data in listJenisProduk">
+                                <a class="n1 green" ng-click='item.jenisProduk=data'>{{data.jenisProduk}}</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="grid_3">
+                    <label c-label item="item" c-label-text="detailJenisTindakan" real></label>
+                    <div class="breadcrum">
+                        <div class="grid_12">
+                            <div ng-repeat="data in listDetailJenisProduk">
+                                <a class="n1 purple" ng-click='item.detailProduk=data'>{{data.detailJenisProduk}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- 
+            <div class="grid_7">
+                <label c-label item="item" c-label-text="Tindakan" real></label>
+                <div class="breadcrum">
+                    <div class="grid_12">
+                        <div ng-repeat="data in listProduk">
+                            <a class="n1" ng-click='AddProduk(data)'>{{data.namaProduk}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+                <div class="grid_7">
+                    <label c-label item="item" c-label-text="Tindakan" real></label>
+                    <div class="breadcrum">
+                        <div class="grid_12">
+                            <input style="width:100%" c-text-box type="input" class="k-textbox" ng-model="pencarianData" />
+                        </div>
+                        <div class="grid_12">
+
+                            <div class="grid_6" ng-repeat="data in listProduk |filter:pencarianData">
+                                <a class="n1" ng-click='AddProduk(data)'>{{data.namaProduk}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    &nbsp;
+                </div>
+            </div>
+
+            <!-- grid diagnosis -->
+            <div class="grid_12" style="float: left;">
+                <div kendo-grid k-data-source="dataPemeriksaanLaboratorium" k-selectable="'row'" k-columns="columnPemeriksaanLaboratorium" >
+                </div>
+            </div>
+            <div class="grid_12" style="margin-top:10px">
+                <div class="grid_6"></div>
+                <div class="grid_3">
+                    <button class="c-button cancel" style="font-size:18px" ng-click="Batal()">Batal</button>
+                </div>
+                <div class="grid_3">
+                    <button class="c-button success" style="font-size:18px" ng-click="Save()">Simpan</button>
+                </div>
+            </div>
+                <!-- <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div> -->
+        </div>
+
+        <!--<div class="grid_12">
+            <div class="grid_3" style="float:right">
+                <c-button class="success" ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="KirimData">
+                    <span class="title">Simpan</span>
+                </c-button>
+            </div>
+            <div class="grid_3" style="float:right">
+                <c-button class="cancle" ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="removeOrderRaiolog">
+                    <span class="title">Batal</span>
+                </c-button>
+            </div>
+        </div>-->
+
+        
+
+    </div>
+</div>

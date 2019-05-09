@@ -1,0 +1,238 @@
+<div>
+    <div class="panel panel-default container_12">
+        <div class="panel-heading" c-translate>Status Skrining Gizi dan Tanda Vital</div>
+        <div class="panel-body list-detail">
+            <div class="grid_12">
+            <c-form item='item'>
+                <div class="grid_12">
+                        <div class="grid_12">
+                             <div class="grid_2">
+                                <!-- namaPasien -->
+                                <div class="grid_12">
+                                    <label c-label item="item" c-label-text="NoRegistrasi"></label>
+                                    <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.noregistrasi" />
+                                </div>
+                            </div>
+                            <div class="grid_2">
+                                <!-- namaPasien -->
+                                <div class="grid_12">
+                                    <label c-label item="item" c-label-text="NoRekamMedis"></label>
+                                    <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.nocm" />
+                                </div>
+                            </div>
+                            <div class="grid_2">
+                                <!-- namaPasien -->
+                                <div class="grid_12">
+                                    <label c-label item="item" c-label-text="namaPasien"></label>
+                                    <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.namapasien" />
+                                </div>
+                            </div>
+                             <div class="grid_2">
+                                <div class="grid_12">
+                                    <label c-label item="item" c-label-text="Tanggal Registrasi"></label>
+                                    <input  c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.tglregistrasi"/>
+                                </div>
+                            </div>
+                            <div class="grid_2">
+                                <div class="grid_12">
+                                    <label c-label item="item" c-label-text="jenisKelamin"></label>
+                                    <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.jeniskelamin" />
+                                </div>
+                            </div>
+                            <div class="grid_2">
+                                <div class="grid_12">
+                                    <label c-label item="item" c-label-text="tanggalLahir"></label>
+                                    <input  c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.tgllahir"/>
+                                    
+                                </div>
+                            </div>
+                            <div class="grid_4">                    
+                                <div class="grid_12">
+                                    <label c-label item="item" c-label-text="alamat"></label>
+                                    <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.alamatlengkap" />
+                                </div>
+                            </div>
+                            <div class="grid_2">
+                                <!-- pekerjaan -->
+                                <div class="grid_12">
+                                    <label c-label item="item" c-label-text="Ruangan"></label>
+                                    <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.namaruangan" />
+                                </div>
+                            </div>
+                            <div class="grid_2">
+                                <!-- pekerjaan -->
+                                <div class="grid_12">
+                                    <label c-label item="item" c-label-text="Notelpon"></label>
+                                    <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.notelepon" />
+                                    <!--<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.pasien.pekerjaan.pekerjaan" />-->
+                                </div>
+                            </div>
+                            <!-- <div class="grid_2"> -->
+                                <!-- pekerjaan -->
+                             <!--    <div class="grid_12">
+                                    <label c-label item="item" c-label-text="Jenis Pelayanan"></label>
+                                    <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.jeniskelamin"/>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class='grid_12 panel panel-default'> 
+                    <div class="grid_12 headerBox">
+                        <p>Tanda Vital</p>
+                    </div>           
+                    <div class='panel-body'>
+                        <div class="grid_12">
+                            <div class="grid_4">
+                                <!-- suhu -->
+                                <label c-label item="item" c-label-text="Suhu"></label>
+                                <div class="grid_12 parentKeteranganFieldTambahan">
+                                    <input kendo-numeric-text-box k-ng-model="data.Suhu" style="width: 100%;" />
+                                    <label class="keteranganFieldTambahan numericPAP" style="margin-top: 5px;margin-right: 30px">°C</label>
+                                </div>
+                            </div>
+                            <div class="grid_4">
+                                <!-- nadi -->
+                                <label c-label item="item" c-label-text="Nadi"></label>
+                                <div class="grid_12 parentKeteranganFieldTambahan">
+                                    <input kendo-numeric-text-box k-ng-model="data.Nadi" style="width: 100%;" />
+                                    <label class="keteranganFieldTambahan numericPAP" style="margin-top: 5px;margin-right: 30px">x/menit</label>
+                                </div>
+                            </div>
+                            <div class="grid_4">
+                                <!-- Pernapasan -->
+                                <label c-label item="item" c-label-text="Pernapasan"></label>
+                                <div class="grid_12 parentKeteranganFieldTambahan">
+                                    <input kendo-numeric-text-box k-ng-model="data.Pernapasan" style="width: 100%;" />
+                                    <label class="keteranganFieldTambahan numericPAP" style="margin-top: 5px;margin-right: 30px">x/menit</label>
+                                </div>
+                            </div>
+                            <div class="grid_4">
+                                <!-- Tekanan Darah -->
+                                <label c-label item="item" c-label-text="Tekanan Darah"></label>
+                                <div class="grid_12 parentKeteranganFieldTambahan">
+                                    <input kendo-numeric-text-box k-ng-model="data.Tdarah" style="width: 100%;" />
+                                    <label class="keteranganFieldTambahan numericPAP" style="margin-top: 5px;margin-right: 30px">mmHg</label>
+                                </div>
+                            </div>
+                            <div class="grid_4">
+                                <!-- Alergi -->
+                                <div class="grid_12" style="margin-top:10px">
+                                    <input type="checkbox" id="eq1" ng-model="model.chkAlergi" ng-click="chkalergi()" class="k-checkbox">
+                                    <label class="k-checkbox-label" for="eq1">Alergi</label>
+                                    <style>
+                                        .fieldlist {
+                                            margin: 0 0 -1em;
+                                            padding: 0;
+                                        }
+                                        .fieldlist li {
+                                            list-style: none;
+                                            padding-bottom: 1em;
+                                        }
+                                    </style>
+                                </div>
+                                <div class="grid_12 parentKeteranganFieldTambahan">
+                                    <input c-text-box type="input" class="k-textbox" ng-model="item.Alergi" ng-disabled="disabled"/>
+                                </div>
+                            </div>
+                            <div class="grid_4">
+                                <!-- Infeksi -->
+                                <div class="grid_12" style="margin-top:10px">
+                                    <input type="checkbox" id="eq2" ng-model="model.chkInfeksi" ng-click="chkinfeksi()" class="k-checkbox">
+                                    <label class="k-checkbox-label" for="eq2">Infeksi</label>
+                                    <style>
+                                        .fieldlist {
+                                            margin: 0 0 -1em;
+                                            padding: 0;
+                                        }
+                                        .fieldlist li {
+                                            list-style: none;
+                                            padding-bottom: 1em;
+                                        }
+                                    </style>
+                                </div>
+                                <div class="grid_12 parentKeteranganFieldTambahan">
+                                    <input c-text-box type="input" class="k-textbox" ng-model="item.Infeksi" ng-disabled="disabled1"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='grid_12 panel panel-default'>
+                        <div class="grid_12 headerBox">
+                            <p>Status Skrining Gizi</p>
+                        </div>
+                        <div class='panel-body'>
+                            <div class="grid_12">
+                                <div class="grid_4">
+                                    <!-- Berat Badan -->
+                                    <label c-label item="item" c-label-text="Berat Badan"></label>
+                                    <div class="grid_12 parentKeteranganFieldTambahan">
+                                        <input kendo-numeric-text-box k-ng-model="data.bBadan" style="width: 100%;" />
+                                        <label class="keteranganFieldTambahan numericPAP" style="margin-top: 5px;margin-right: 30px">gram</label>
+                                    </div>
+                                </div>
+                                <div class="grid_4">
+                                    <!-- Tinggi Badan -->
+                                    <label c-label item="item" c-label-text="Panjang Badan"></label>
+                                    <div class="grid_12 parentKeteranganFieldTambahan">
+                                        <input kendo-numeric-text-box k-ng-model="data.TBadan" style="width: 100%;" />
+                                        <label class="keteranganFieldTambahan numericPAP" style="margin-top: 5px;margin-right: 30px">cm</label>
+                                    </div>
+                                </div>
+                                <div class="grid_4">
+                                    <!-- Lingkaran Kepala -->
+                                    <label c-label item="item" c-label-text="Lingkaran Kepala"></label>
+                                    <div class="grid_12 parentKeteranganFieldTambahan">
+                                        <input kendo-numeric-text-box k-ng-model="data.Lkepala" style="width: 100%;" />
+                                        <label class="keteranganFieldTambahan numericPAP" style="margin-top: 5px;margin-right: 30px">cm</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- DaftarPasienPulang -->
+                <div class="grid_12">
+                    <div class="grid_12 headerBox">
+                        <p>Daftar Riwayat Skrining Gizi dan Tanda Vital</p>
+                    </div>
+                    <div class="clear"></div>
+
+                    <!-- grid table -->
+                    <div class="grid_12 borderBox">
+                        <div id="kGrid" kendo-grid 
+                        k-data-source="DaftarPasien" 
+                        k-selectable="'row'" 
+                        k-columns="columnDaftarPasien"
+                        k-pageable="'true'"
+                        k-sortable="'true'"
+                        k-resizable="'true'"
+                        k-ng-model="PasienSelected"
+                        ng-click="klikGrid()">
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+              <!--   <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div> -->
+              <div ng-include='"../app/module/Shared/TemplateButtonRegistrasiNew "' style="margin-top:30px;"></div>
+            <!-- <div class="grid_12 " style="float:left;">
+                <div class="grid_3" style="float:right" >
+                    <c-button ng-show="!isLoading" class="success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="SimpanTandaVital()">
+                        <span class="title">Simpan</span>
+                    </c-button>
+                </div>
+                <div ng-hide='isBatal' class="grid_3" style="float:right">
+                    <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" class="cancel" is-back>
+                        <span class="title">Batal</span>
+                    </c-button>
+                </div>
+            </div> -->
+            <div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
+            <!-- </div> -->
+        </div>
+        </c-form>
+        </div>
+        </div>
+    </div>
+</div>
+

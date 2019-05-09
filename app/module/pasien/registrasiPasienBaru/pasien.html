@@ -1,0 +1,175 @@
+<div>
+	<!-- panel utama -->
+	<div class="panel panel-default">
+
+
+		<div class="panel-heading">Data Pasien Baru</div>
+		<div class="panel-body">
+			
+		<div class="grid_12">
+	  		<!-- form kiri -->
+	  		<div class="grid_6">
+	  			<!-- nama lengkap -->
+		  		<div class="grid_12">
+		  			<div class="grid_4">
+		  	 			<label c-label c-label-text="dataPasienBaru.attributes.caption"></label>
+		  	 		</div>
+		  	 		<div class="grid_8">
+		  	 			<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="tes" />
+		  	 		</div>
+		  		</div>
+		  		<!-- tempat lahir -->
+		  		<div class="grid_12">
+		  			<div class="grid_4">
+		  	 			<label c-label c-label-text="TempatLahir"></label>
+		  	 		</div>
+		  	 		<div class="grid_8">
+		  	 			<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="tes" />
+		  	 		</div>
+		  		</div>
+		  		<!-- tanggal lahir -->
+		  		<div class="grid_12">
+		  			<div class="grid_4">
+		  	 			<label c-label c-label-text="TanggalLahir"></label>
+		  	 		</div>
+		  	 		<div class="grid_8">
+		  	 			<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="tes" />
+		  	 		</div>
+		  		</div>
+		  		<!-- jenis kelamin -->
+	  			<div class="grid_12">
+		  			<div class="grid_4">
+		  	 			<label c-label c-label-text="JenisKelamin"></label>
+		  	 		</div>
+		  	 		<div class="grid_8">
+	                    <input style="width: 100%;" kendo-combo-box k-ng-model="tes"
+	                           k-data-text-field="'NamaTitle'"
+	                           k-filter="'contains'"
+	                           k-data-value-field="'KdTitle'"
+	                           k-data-source="titles" />
+		  	 		</div>
+		  		</div>
+		  		<!-- Agama -->
+	  			<div class="grid_12">
+		  			<div class="grid_4">
+		  	 			<label c-label c-label-text="Agama"></label>
+		  	 		</div>
+		  	 		<div class="grid_8">
+	                    <input style="width: 100%;" kendo-combo-box k-ng-model="tes"
+	                           k-data-text-field="'NamaTitle'"
+	                           k-filter="'contains'"
+	                           k-data-value-field="'KdTitle'"
+	                           k-data-source="titles" />
+		  	 		</div>
+		  		</div>
+		  		<!-- pendidikan -->
+	  			<div class="grid_12">
+		  			<div class="grid_4">
+		  	 			<label c-label c-label-text="Pendidikan"></label>
+		  	 		</div>
+		  	 		<div class="grid_8">
+	                    <input style="width: 100%;" kendo-combo-box k-ng-model="tes"
+	                           k-data-text-field="'NamaTitle'"
+	                           k-filter="'contains'"
+	                           k-data-value-field="'KdTitle'"
+	                           k-data-source="titles" />
+		  	 		</div>
+		  		</div>
+		  		<!-- pekerjaan -->
+	  			<div class="grid_12">
+		  			<div class="grid_4">
+		  	 			<label c-label c-label-text="Pekerjaan"></label>
+		  	 		</div>
+		  	 		<div class="grid_8">
+	                    <input style="width: 100%;" kendo-combo-box k-ng-model="tes"
+	                           k-data-text-field="'NamaTitle'"
+	                           k-filter="'contains'"
+	                           k-data-value-field="'KdTitle'"
+	                           k-data-source="titles" />
+		  	 		</div>
+		  		</div>
+		  		<!-- alamat -->
+		  		<div class="grid_12">
+		  			<div class="grid_4">
+		  	 			<label c-label c-label-text="Alamat"></label>
+		  	 		</div>
+		  	 		<div class="grid_8">
+		  	 			<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="tes" />
+		  	 		</div>
+		  		</div>
+	  		</div>
+
+
+			<!-- form kanan -->
+			<div class="grid_6">
+				<!-- nama lengkap ayah -->
+	  			<div class="grid_12">
+		  			<div class="grid_4">
+		  	 			<label c-label c-label-text="NamaLengkapAyah"></label>
+		  	 		</div>
+		  	 		<div class="grid_8">
+		  	 			<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="tes" />
+		  	 		</div>
+		  		</div>
+		  		<!-- nama lengkap ibu  -->
+			  	<div class="grid_12">
+		  			<div class="grid_4">
+		  	 			<label c-label c-label-text="NamaLengkapIbu"></label>
+		  	 		</div>
+		  	 		<div class="grid_8">
+		  	 			<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="tes" />
+		  	 		</div>
+		  		</div>
+		  		<!-- nama lengkap suami  -->
+			  	<div class="grid_12">
+		  			<div class="grid_4">
+		  	 			<label c-label c-label-text="NamaLengkapSuami"></label>
+		  	 		</div>
+		  	 		<div class="grid_8">
+		  	 			<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="tes" />
+		  	 		</div>
+		  		</div>
+		  		<!-- status perkawinan -->
+	  			<div class="grid_12">
+		  			<div class="grid_4">
+		  	 			<label c-label c-label-text="StatusPerkawinan"></label>
+		  	 		</div>
+		  	 		<div class="grid_8">
+	                    <input style="width: 100%;" kendo-combo-box k-ng-model="tes"
+	                           k-data-text-field="'NamaTitle'"
+	                           k-filter="'contains'"
+	                           k-data-value-field="'KdTitle'"
+	                           k-data-source="titles" />
+		  	 		</div>
+		  		</div>
+			</div>
+  		</div>
+
+
+		</div>
+	</div>
+
+	
+	<div class="grid_12">
+		<div class="grid_3">
+            <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px" item="item" size="36" position="'right'" is-validate click="Lanjutkan" icon="'icon-next'">
+                <span class="title">Simpan</span>
+            </c-button>
+        </div>
+        <div class="grid_3">
+            <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px" item="item" size="36" position="'right'" is-validate click="Lanjutkan" icon="'icon-next'">
+                <span class="title">Batal</span>
+            </c-button>
+        </div>
+	</div>
+
+
+	 
+</div>
+
+<script>
+$(document).ready(function() {
+            // create DatePicker from input HTML element
+            $("#datepicker").kendoDatePicker();
+});
+</script>

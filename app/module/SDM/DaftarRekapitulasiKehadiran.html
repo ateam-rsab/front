@@ -1,0 +1,159 @@
+<style type="text/css">
+    .custom-button {
+        margin: 0 0 10px;
+        background: none;
+        color: black;
+        border-radius: 0.8em;
+        border: 1px solid;
+        background-color: white;
+    }
+
+    .k-edit,
+    .k-i-download {
+        background-position: -313px -221px;
+    }
+
+    a.k-button.k-button-icontext {
+        min-width: 84px;
+        background-color: #e0360b;
+        border: none;
+        margin: .1em;
+    }
+
+    k-button.k-button-icontext.k-grid-Cetak {
+        min-width: 84px;
+        background-color: #e0360b;
+        border: none;
+        margin: .1em;
+    }
+
+    .duplicateDate {
+        background-color: red;
+        border: 2px solid red !important;
+    }
+
+    .k-window-content .k-content {
+        overflow: none
+    }
+
+    legend {
+        cursor: pointer;
+        padding: 10px;
+    }
+
+    .effect-shadow {
+        -webkit-box-shadow: 2px 2px 5px #b6b6b6;
+        -moz-box-shadow: 2px 2px 5px #b6b6b6;
+        box-shadow: 2px 2px 5px #b6b6b6;
+    }
+</style>
+<div class="panel panel-default container_12">
+	<div class="panel-heading" c-translate>Daftar Rekapitulasi Kehadiran Pelatihan</div>
+	<div class="panel-body">
+		<fieldset style="min-height:50px !important" align="left">
+            <legend><h2>Pencarian</h2></legend>
+            <div class="grid_4" style="margin-top: 10px">
+            	<div class="grid_6">
+	                <label c-label item="item" c-label-text="Tanggal awal"></label>
+	                <input style="width: 100%" k-ng-model="item.tglawal" kendo-datetimepicker placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd HH:mm'" />
+	            </div>
+	            <div class="grid_6">
+	                <label c-label item="item" c-label-text="Tanggal Akhir"></label>
+	                <input style="width: 100%" k-ng-model="item.tglakhir" kendo-datetimepicker placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd HH:mm'" />
+	            </div>
+            </div>
+            <div class="grid_2" style="margin-top: 15px">
+				<div class="grid_12">
+					<label c-label item="item" >Jenis Pelatihan</label>
+				</div>
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPelatihan" k-data-text-field="'jenispelatihan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisPelatihan" />
+				</div>
+			</div>
+			<div class="grid_4" style="margin-top: 15px">
+				<div class="grid_12">
+					<label c-label item="item">Pelatihan</label>
+				</div>
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.Pelatihan" k-data-text-field="'namaplanning'" k-data-value-field="'noplanning'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPelatihan" />
+				</div>
+			</div>
+            <div class="grid_2 k-edit-buttons  k-state-default " style="margin-top:37px">       
+                <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="SearchData()"  style="width:100px"  ><span class="k-sprite k-icon k-i-search"></span>Cari </button>
+                <button class="k-button  k-button-icontext" ng-click="ClearData()"   style="width:100px" ><span class="k-sprite k-icon k-delete"></span>Clear</button>
+            </div>         
+        </fieldset>
+	</div>
+	<div class="grid_12">
+         <div class="grid_12 borderBox">
+            <div id="kGrid" 
+            kendo-grid k-data-source="dataGrid" 
+            k-selectable="'row'" 
+           	options="columnGrid"
+            k-pageable="'true'" 
+            k-sortable="'true'" 
+            k-ng-model="dataSelected">
+            </div>
+        </div>
+    </div>
+	<div class="grid_12" style="margin-top: 25px;">
+		<div class="grid_10"></div>
+		<!-- <div class="grid_2">
+			<button class="c-button" ng-click="CetakUndangan()">Cetak Undangan</button>
+		</div> -->
+	</div>
+	<div class="grid_12" style="margin-top:60px">
+        <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+    </div>
+    <div kendo-window="winDialog" k-title="'Detil Logbook Pegawai'" k-width="1100" k-visible="false" >
+	    <div class="panel panel-default">
+	        <div class="panel-body">
+	            <div class="grid_6">
+	                <label c-label item="item" c-label-text="Nama"></label>
+	                <input c-text-box type="input" class="k-textbox" ng-model="item.pegawai.namaLengkap" readonly />
+	            </div>
+	            <div class="clearfix"></div>
+	            <div class="grid_12" style="margin:20px 0 20px">
+	                <div kendo-grid="gridDetil" k-data-source="dataDetil" options="detilGridOptions"></div>
+	            </div>
+	        </div>
+	    </div>
+	    <!-- <span><b>Total Poin: </b><label c-label item="item">{{dats.total}}</label></span> -->
+	    <!--<button class="k-button" ng-click="pilihDokter(item, items.pilihDokter)" style="float:right;margin-top:4%">Simpan</button>-->
+	</div>
+     <!-- Pop Up End Pop Up Detail Peserta -->
+    <div kendo-window="PopUpDetailPeserta" k-title="'Detail Peserta'" k-width="800" k-visible="false" k-on-open="win2visible = true" k-on-close="win2visible = false">
+        <div class="panel panel-default container_12" style="padding: 0px 10px;">
+            <div class="grid_6">
+                <div class="grid_12">
+                    <label c-label item="item" >Pelatihan</label>
+                </div>
+                <div class="clear"></div>
+                <div class="grid_12">
+                   <input c-text-box type="input" style="text-align: left" filter="" class="k-textbox" ng-model="item.JudulPelatihan" />
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_12 headerBox">
+                    <p>Detail Peserta</p>
+                </div>
+                <div class="clear"></div>
+                <div class="grid_12 borderBox">
+		            <div id="kGrid" 
+		            kendo-grid k-data-source="dataGridDetail" 
+		            k-selectable="'row'" 
+		           	options="columnGridDetail"
+		            k-pageable="'true'" 
+		            k-sortable="'true'" 
+		            k-ng-model="dataSelectedDetail">
+		            </div>
+		        </div>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_2">
+                <button class="btnTemplate1" ng-click="close()">Tutup</button>
+            </div>
+        </div>
+    </div> 
+    <!-- End Pop Up Detail Peserta -->
+</div>

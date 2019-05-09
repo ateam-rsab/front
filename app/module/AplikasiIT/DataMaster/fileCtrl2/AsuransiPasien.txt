@@ -1,0 +1,352 @@
+////header nya
+define(['initialize'], function(initialize) {
+	'use strict';
+initialize.controller('AsuransiPasienCtrl', ['$q', '$rootScope', '$scope', 'IPSRSService',
+ function($q, $rootScope, $scope,IPSRSService) {
+ $scope.item = {};
+ $scope.dataVOloaded = true;
+ $scope.now = new Date();
+ var init = function () {
+IPSRSService.getFieldsMasterTable("get-data-master?className=AsuransiPasien", true).then(function(dat){
+$scope.listDataMaster = dat.data.data.AsuransiPasien;
+                                    					
+$scope.dataSource = new kendo.data.DataSource({
+pageSize: 10,
+data: $scope.listDataMaster,
+autoSync: true
+
+});
+
+});
+}
+init();
+
+
+
+
+$scope.columnAsuransiPasien = [
+{
+"field": "No",
+"title": "No"
+},
+{
+"field": "alamatLengkap",
+"title": "alamat Lengkap"
+},
+{
+"field": "golonganAsuransi",
+"title": "golongan Asuransi"
+},
+{
+"field": "golonganAsuransiId",
+"title": "golongan Asuransi Id"
+},
+{
+"field": "hubunganPeserta",
+"title": "hubungan Peserta"
+},
+{
+"field": "hubunganPesertaId",
+"title": "hubungan Peserta Id"
+},
+{
+"field": "kdInstitusiAsal",
+"title": "kd Institusi Asal"
+},
+{
+"field": "jenisKelamin",
+"title": "jenis Kelamin"
+},
+{
+"field": "jenisKelaminId",
+"title": "jenis Kelamin Id"
+},
+{
+"field": "kelasDiJamin",
+"title": "kelas Di Jamin"
+},
+{
+"field": "kelasDiJaminId",
+"title": "kelas Di Jamin Id"
+},
+{
+"field": "kdLastUnitBagian",
+"title": "kd Last Unit Bagian"
+},
+{
+"field": "pegawai",
+"title": "pegawai"
+},
+{
+"field": "pegawaiId",
+"title": "pegawai Id"
+},
+{
+"field": "kdPenjaminPasien",
+"title": "kd Penjamin Pasien"
+},
+{
+"field": "lastUnitBagian",
+"title": "last Unit Bagian"
+},
+{
+"field": "namaPeserta",
+"title": "nama Peserta"
+},
+{
+"field": "nikInstitusiAsal",
+"title": "nik Institusi Asal"
+},
+{
+"field": "nipPns",
+"title": "nip Pns"
+},
+{
+"field": "noAsuransi",
+"title": "no Asuransi"
+},
+{
+"field": "noAsuransiHead",
+"title": "no Asuransi Head"
+},
+{
+"field": "noCm",
+"title": "no Cm"
+},
+{
+"field": "noCmId",
+"title": "no Cm Id"
+},
+{
+"field": "noIdentitas",
+"title": "no Identitas"
+},
+{
+"field": "noTelpFixed",
+"title": "no Telp Fixed"
+},
+{
+"field": "noTelpMobile",
+"title": "no Telp Mobile"
+},
+{
+"field": "qAsuransi",
+"title": "q Asuransi"
+},
+{
+"field": "tglAkhirBerlakuLast",
+"title": "tgl Akhir Berlaku Last"
+},
+{
+"field": "tglLahir",
+"title": "tgl Lahir"
+},
+{
+"field": "tglMulaiBerlakuLast",
+"title": "tgl Mulai Berlaku Last"
+},
+{
+"field": "id",
+"title": "id"
+},
+{
+"field": "reportDisplay",
+"title": "report Display"
+},
+{
+"field": "kodeExternal",
+"title": "kode External"
+},
+{
+"field": "namaExternal",
+"title": "nama External"
+},
+{
+"field": "statusEnabled",
+"title": "status Enabled"
+},
+
+{
+	"title" : "Action",
+	"width" : "200px",
+	"template" : "<button class='btnEdit' ng-click='enableData()'>Enable</button>"+
+"<button class='btnHapus' ng-click='disableData()'>Disable</button>"
+}
+];
+$scope.mainGridOptions = { 
+ pageable: true,
+ columns: $scope.columnAsuransiPasien,
+ editable: "popup",
+ selectable: "row",
+ scrollable: false
+ };
+////fungsi klik untuk edit
+ $scope.klik = function(current){
+$scope.showEdit = true;
+$scope.current = current;
+$scope.item.alamatLengkap = current.alamatLengkap;
+$scope.item.golonganAsuransi = current.golonganAsuransi;
+$scope.item.golonganAsuransiId = current.golonganAsuransiId;
+$scope.item.hubunganPeserta = current.hubunganPeserta;
+$scope.item.hubunganPesertaId = current.hubunganPesertaId;
+$scope.item.kdInstitusiAsal = current.kdInstitusiAsal;
+$scope.item.jenisKelamin = current.jenisKelamin;
+$scope.item.jenisKelaminId = current.jenisKelaminId;
+$scope.item.kelasDiJamin = current.kelasDiJamin;
+$scope.item.kelasDiJaminId = current.kelasDiJaminId;
+$scope.item.kdLastUnitBagian = current.kdLastUnitBagian;
+$scope.item.pegawai = current.pegawai;
+$scope.item.pegawaiId = current.pegawaiId;
+$scope.item.kdPenjaminPasien = current.kdPenjaminPasien;
+$scope.item.lastUnitBagian = current.lastUnitBagian;
+$scope.item.namaPeserta = current.namaPeserta;
+$scope.item.nikInstitusiAsal = current.nikInstitusiAsal;
+$scope.item.nipPns = current.nipPns;
+$scope.item.noAsuransi = current.noAsuransi;
+$scope.item.noAsuransiHead = current.noAsuransiHead;
+$scope.item.noCm = current.noCm;
+$scope.item.noCmId = current.noCmId;
+$scope.item.noIdentitas = current.noIdentitas;
+$scope.item.noTelpFixed = current.noTelpFixed;
+$scope.item.noTelpMobile = current.noTelpMobile;
+$scope.item.qAsuransi = current.qAsuransi;
+$scope.item.tglAkhirBerlakuLast = current.tglAkhirBerlakuLast;
+$scope.item.tglLahir = current.tglLahir;
+$scope.item.tglMulaiBerlakuLast = current.tglMulaiBerlakuLast;
+$scope.item.id = current.id;
+$scope.item.noRec = current.noRec;
+$scope.item.reportDisplay = current.reportDisplay;
+$scope.item.kodeExternal = current.kodeExternal;
+$scope.item.namaExternal = current.namaExternal;
+$scope.item.statusEnabled = current.statusEnabled;
+};
+$scope.disableData=function(){
+ IPSRSService.getClassMaster("delete-master-table?className=AsuransiPasien&&id="+$scope.item.id+"&&statusEnabled=false").then(function(dat){
+ init();
+ });
+ };
+$scope.enableData=function(){
+ IPSRSService.getClassMaster("delete-master-table?className=AsuransiPasien&&id="+$scope.item.id+"&&statusEnabled=true").then(function(dat){
+ init();
+
+	});
+};
+
+$scope.tambah = function()
+ {
+var data = {
+	"class": "AsuransiPasien",
+	"listField": {
+"alamatLengkap": $scope.item.alamatLengkap,
+"golonganAsuransi": $scope.item.golonganAsuransi,
+"golonganAsuransiId": $scope.item.golonganAsuransiId,
+"hubunganPeserta": $scope.item.hubunganPeserta,
+"hubunganPesertaId": $scope.item.hubunganPesertaId,
+"kdInstitusiAsal": $scope.item.kdInstitusiAsal,
+"jenisKelamin": $scope.item.jenisKelamin,
+"jenisKelaminId": $scope.item.jenisKelaminId,
+"kelasDiJamin": $scope.item.kelasDiJamin,
+"kelasDiJaminId": $scope.item.kelasDiJaminId,
+"kdLastUnitBagian": $scope.item.kdLastUnitBagian,
+"pegawai": $scope.item.pegawai,
+"pegawaiId": $scope.item.pegawaiId,
+"kdPenjaminPasien": $scope.item.kdPenjaminPasien,
+"lastUnitBagian": $scope.item.lastUnitBagian,
+"namaPeserta": $scope.item.namaPeserta,
+"nikInstitusiAsal": $scope.item.nikInstitusiAsal,
+"nipPns": $scope.item.nipPns,
+"noAsuransi": $scope.item.noAsuransi,
+"noAsuransiHead": $scope.item.noAsuransiHead,
+"noCm": $scope.item.noCm,
+"noCmId": $scope.item.noCmId,
+"noIdentitas": $scope.item.noIdentitas,
+"noTelpFixed": $scope.item.noTelpFixed,
+"noTelpMobile": $scope.item.noTelpMobile,
+"qAsuransi": $scope.item.qAsuransi,
+"tglAkhirBerlakuLast": $scope.item.tglAkhirBerlakuLast,
+"tglLahir": $scope.item.tglLahir,
+"tglMulaiBerlakuLast": $scope.item.tglMulaiBerlakuLast,
+"id": $scope.item.id,
+"reportDisplay": $scope.item.reportDisplay,
+"kodeExternal": $scope.item.kodeExternal,
+"namaExternal": $scope.item.namaExternal,
+}
+	}
+ IPSRSService.saveDataMaster(data,"save-master-table").then(function(e) {
+console.log(JSON.stringify(e.data));
+init();
+$scope.item = {};
+ });
+  }
+
+ $scope.edit = function()
+  {	
+   var data = {
+ "class": "AsuransiPasien",
+	"listField": {
+"alamatLengkap": $scope.item.alamatLengkap,
+"golonganAsuransi": $scope.item.golonganAsuransi,
+"golonganAsuransiId": $scope.item.golonganAsuransiId,
+"hubunganPeserta": $scope.item.hubunganPeserta,
+"hubunganPesertaId": $scope.item.hubunganPesertaId,
+"kdInstitusiAsal": $scope.item.kdInstitusiAsal,
+"jenisKelamin": $scope.item.jenisKelamin,
+"jenisKelaminId": $scope.item.jenisKelaminId,
+"kelasDiJamin": $scope.item.kelasDiJamin,
+"kelasDiJaminId": $scope.item.kelasDiJaminId,
+"kdLastUnitBagian": $scope.item.kdLastUnitBagian,
+"pegawai": $scope.item.pegawai,
+"pegawaiId": $scope.item.pegawaiId,
+"kdPenjaminPasien": $scope.item.kdPenjaminPasien,
+"lastUnitBagian": $scope.item.lastUnitBagian,
+"namaPeserta": $scope.item.namaPeserta,
+"nikInstitusiAsal": $scope.item.nikInstitusiAsal,
+"nipPns": $scope.item.nipPns,
+"noAsuransi": $scope.item.noAsuransi,
+"noAsuransiHead": $scope.item.noAsuransiHead,
+"noCm": $scope.item.noCm,
+"noCmId": $scope.item.noCmId,
+"noIdentitas": $scope.item.noIdentitas,
+"noTelpFixed": $scope.item.noTelpFixed,
+"noTelpMobile": $scope.item.noTelpMobile,
+"qAsuransi": $scope.item.qAsuransi,
+"tglAkhirBerlakuLast": $scope.item.tglAkhirBerlakuLast,
+"tglLahir": $scope.item.tglLahir,
+"tglMulaiBerlakuLast": $scope.item.tglMulaiBerlakuLast,
+"id": $scope.item.id,
+"noRec": $scope.item.noRec,
+"reportDisplay": $scope.item.reportDisplay,
+"kodeExternal": $scope.item.kodeExternal,
+"namaExternal": $scope.item.namaExternal,
+"statusEnabled": $scope.item.statusEnabled
+ }
+ }
+IPSRSService.saveDataMaster(data,"update-master-table").then(function(e){console.log(JSON.stringify(e.data));
+init();
+});
+}
+$scope.batal = function () {
+$scope.showEdit = false;
+$scope.item = {};
+}
+IPSRSService.getFieldListData("GolonganAsuransi&select=id,namaExternal", true).then(function(dat){
+$scope.listgolonganasuransi= dat.data;
+});
+IPSRSService.getFieldListData("HubunganPesertaAsuransi&select=id,namaExternal", true).then(function(dat){
+$scope.listhubunganpeserta= dat.data;
+});
+IPSRSService.getFieldListData("JenisKelamin&select=id,namaExternal", true).then(function(dat){
+$scope.listjeniskelamin= dat.data;
+});
+IPSRSService.getFieldListData("DetailKamar&select=id,namaExternal", true).then(function(dat){
+$scope.listkelasdijamin= dat.data;
+});
+IPSRSService.getFieldListData("LoginUser&select=id,namaExternal", true).then(function(dat){
+$scope.listpegawai= dat.data;
+});
+IPSRSService.getFieldListData("Pasien&select=id,namaExternal", true).then(function(dat){
+$scope.listnocm= dat.data;
+});
+}
+]);
+});

@@ -1,0 +1,2065 @@
+<div ng-controller="GigiMulutCtrl">
+    <script src="javascripts/jcanvas.min.js"></script>
+    <style type="text/css">
+        .heading-menu {
+            background-color: #99aaff;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 2px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+            padding: 2px;
+            text-align: center
+        }
+        
+        .tabel-gigi-head {
+            font-size: 10px;
+            font-weight: bold;
+        }
+        
+        .clickable {
+            cursor: pointer;
+        }
+    </style>
+    <div id="odontogram">
+        <div class="panel panel-default container_12">
+
+            <div class="panel-heading" c-translate>
+                Odontogram
+            </div>
+            <div class="grid_6">
+                <div class="grid_3">
+                    <button class="btnTemplate1" ng-click="Odontogram()">Odontogram</button>
+                </div>
+            </div>
+            <!-- <div class="panel-body">
+                <div class="grid_12">
+                    <div class="grid_12">
+                        <div class="grid_12">
+                            <table class="table no-padding" align="center" width="100%">
+                                <tr>
+                                    <td class="col-xs-1 tabel-gigi-head clickable" align="center" tag="51"><span>11<span/> <span tag="51">[51]</span>
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="11" id="t11" ng-model="item.papGigiKiriSatu.sebelas" />
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="[51]" id="t51" ng-model="item.papGigiKiriDua.limasatu" />
+                                    </td>
+
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="[61]" id="t61" ng-model="item.papGigiKananDua.enamsatu" />
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="21" id="t21" ng-model="item.papGigiKananSatu.duasatu" />
+                                    </td>
+                                    <td class="col-xs-1 tabel-gigi-head clickable" align="center" tag="61"><span tag="61">[61]</span> <span>21</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-1 tabel-gigi-head clickable" align="center" tag="52"><span>12</span> <span tag="52">[52]</span>
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="12" id="t12" ng-model="item.papGigiKiriSatu.duabelas" />
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="[52]" id="t52" / ng-model="item.papGigiKiriDua.limadua">
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="[62]" id="t62" ng-model="item.papGigiKananDua.enamdua" />
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="22" id="t22" ng-model="item.papGigiKananSatu.duadua" />
+                                    </td>
+                                    <td class="col-xs-1 tabel-gigi-head clickable" align="center" tag="62"><span tag="62">[62]</span> <span>22</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-1 tabel-gigi-head clickable" align="center" tag="53"><span>13</span> <span tag="53">[53]</span>
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="13" id="t13" ng-model="item.papGigiKiriSatu.tigabelas" />
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="[53]" id="t53" ng-model="item.papGigiKiriDua.limatiga" />
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="[63]" id="t63" ng-model="item.papGigiKananDua.enamtiga" />
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="23" id="t23" ng-model="item.papGigiKananSatu.duatiga" />
+                                    </td>
+                                    <td class="col-xs-1 tabel-gigi-head clickable" align="center" tag="63"><span tag="63">[63]</span> <span>23</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-1 tabel-gigi-head clickable" align="center" tag="54"><span>14</span> <span tag="54">[54]</span>
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="14" id="t14" ng-model="item.papGigiKiriSatu.empatbelas" />
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="[54]" id="t54" ng-model="item.papGigiKiriDua.limaempat" />
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="[64]" id="t64" ng-model="item.papGigiKananDua.enamempat" />
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="24" id="t24" ng-model="item.papGigiKananSatu.duaempat" />
+                                    </td>
+                                    <td class="col-xs-1 tabel-gigi-head clickable" align="center" tag="64"><span tag="64">[64]</span> <span>24</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-1 tabel-gigi-head clickable" align="center" tag="55"><span>15</span> <span tag="55">[55]</span>
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="15" id="t15" ng-model="item.papGigiKiriSatu.limabelas" />
+                                    </td>
+                                    <td colspan="1">
+                                        <input c-text-box type="text" class="k-textbox" placeholder="[55]" id="t55" ng-model="item.papGigiKiriDua.limalima" />
+                                    </td>
+
+                                    <td colspan="1">
+                                        <input c-text-box type="text" class="k-textbox" placeholder="[65]" id="t65" ng-model="item.papGigiKananDua.enamlima" />
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="25" id="t25" ng-model="item.papGigiKananSatu.dualima" />
+                                    </td>
+                                    <td class="col-xs-1 tabel-gigi-head clickable" align="center" tag="65"><span tag="65">[65]</span> <span>25</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-1" align="center">16</td>
+                                    <td colspan="1">
+                                        <input c-text-box type="text" class="k-textbox" placeholder="16" id="t16" ng-model="item.papGigiKiriSatu.enambelas" />
+                                    </td>
+                                    <td colspan="2" rowspan="6" width='487px'>
+                                        <canvas id="canvas" width="487px" height="296"></canvas>
+                                    </td>
+
+                                    <td colspan="1">
+                                        <input c-text-box type="text" class="k-textbox" placeholder="26" id="t26" ng-model="item.papGigiKananSatu.duaenam" />
+                                    </td>
+                                    <td class="col-xs-1" align="center">26</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-1" align="center">17</td>
+                                    <td colspan="1">
+                                        <input c-text-box type="text" class="k-textbox" placeholder="17" id="t17" ng-model="item.papGigiKiriSatu.tujuhbelas" />
+                                    </td>
+                                    <td colspan="1">
+                                        <input c-text-box type="text" class="k-textbox" placeholder="27" id="t27" ng-model="item.papGigiKananSatu.duatujuh" />
+                                    </td>
+                                    <td class="col-xs-1" align="center">27</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-1" align="center">18</td>
+                                    <td colspan="1">
+                                        <input c-text-box type="text" class="k-textbox" placeholder="18" id="t18" ng-model="item.papGigiKiriSatu.delapanbelas" />
+                                    </td>
+                                    <td colspan="1">
+                                        <input c-text-box type="text" class="k-textbox" placeholder="28" id="t28" ng-model="item.papGigiKananSatu.duadelapan" />
+                                    </td>
+                                    <td class="col-xs-1" align="center">28</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-1" align="center">48</td>
+                                    <td colspan="1">
+                                        <input c-text-box type="text" class="k-textbox" placeholder="48" id="t48" ng-model="item.papGigiKiriEmpat.empatdelapan" />
+                                    </td>
+                                    <td colspan="1">
+                                        <input c-text-box type="text" class="k-textbox" placeholder="38" id="t38" ng-model="item.papGigiKananEmpat.tigadelapan" />
+                                    </td>
+                                    <td class="col-xs-1" align="center">38</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-1" align="center">47</td>
+                                    <td colspan="1">
+                                        <input c-text-box type="text" class="k-textbox" placeholder="47" id="t47" ng-model="item.papGigiKiriEmpat.empattujuh" />
+                                    </td>
+                                    <td colspan="1">
+                                        <input c-text-box type="text" class="k-textbox" placeholder="37" id="t37" ng-model="item.papGigiKananEmpat.tigatujuh" />
+                                    </td>
+                                    <td class="col-xs-1" align="center">37</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-1" align="center">46</td>
+                                    <td colspan="1">
+                                        <input c-text-box type="text" class="k-textbox" placeholder="46" id="t46" ng-model="item.papGigiKiriEmpat.empatenam" />
+                                    </td>
+                                    <td colspan="1">
+                                        <input c-text-box type="text" class="k-textbox" placeholder="36" id="t36" ng-model="item.papGigiKananEmpat.tigaenam" />
+                                    </td>
+                                    <td class="col-xs-1" align="center">36</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-1 tabel-gigi-head clickable" align="center" tag="85"><span>45</span> <span tag="85">[85]</span>
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="45" id="t45" ng-model="item.papGigiKiriEmpat.empatlima" />
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="[85]" id="t85" ng-model="item.papGigiKiriTiga.delapanlima" />
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="[75]" id="t75" ng-model="item.papGigiKananTiga.tujuhlima" />
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="35" id="t35" ng-model="item.papGigiKananEmpat.tigalima" />
+                                    </td>
+                                    <td class="col-xs-1 tabel-gigi-head clickable" align="center" tag="75"><span tag="75">[75]</span> <span>35</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-1 tabel-gigi-head clickable" align="center" tag="84"><span>44</span> <span tag="84">[84]</span>
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="44" id="t44" ng-model="item.papGigiKiriEmpat.empatempat" />
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="[84]" id="t84" ng-model="item.papGigiKiriTiga.delapanempat" />
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="[74]" id="t74" ng-model="item.papGigiKananTiga.tujuhempat" />
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="34" id="t34" ng-model="item.papGigiKananEmpat.tigaempat" />
+                                    </td>
+                                    <td class="col-xs-1 tabel-gigi-head clickable" align="center" tag="74"><span tag="74">[74]</span> <span>34</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-1 tabel-gigi-head clickable" align="center" tag="83"><span>43</span> <span tag="83">[83]</span>
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="43" id="t43" ng-model="item.papGigiKiriEmpat.empattiga" />
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="[83]" id="t83" ng-model="item.papGigiKiriTiga.delapantiga" />
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="[73]" id="t73" ng-model="item.papGigiKananTiga.tujuhtiga" />
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="33" id="t33" ng-model="item.papGigiKananEmpat.tigatiga" />
+                                    </td>
+                                    <td class="col-xs-1 tabel-gigi-head clickable" align="center" tag="73"><span tag="73">[73]</span> <span>33</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-1 tabel-gigi-head clickable" align="center" tag="82"><span>42</span> <span tag="82">[82]</span>
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="42" id="t42" ng-model="item.papGigiKiriEmpat.empatdua" />
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="[82]" id="t82" ng-model="item.papGigiKiriTiga.delapandua" />
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="[72]" id="t72" ng-model="item.papGigiKananTiga.tujuhdua" />
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="32" id="t32" ng-model="item.papGigiKananEmpat.tigadua" />
+                                    </td>
+                                    <td class="col-xs-1 tabel-gigi-head clickable" align="center" tag="72"><span tag="72">[72]</span> <span>32</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-xs-1 tabel-gigi-head clickable" align="center" tag="81"><span>41</span> <span tag="81">[81]</span>
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="41" id="t41" ng-model="item.papGigiKiriEmpat.empatsatu" />
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="[81]" id="t81" ng-model="item.papGigiKiriTiga.delapansatu" />
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="[71]" id="t71" ng-model="item.papGigiKananTiga.tujuhsatu" />
+                                    </td>
+                                    <td>
+                                        <input c-text-box type="text" class="k-textbox" placeholder="31" id="t31" ng-model="item.papGigiKananEmpat.tigasatu" />
+                                    </td>
+                                    <td class="col-xs-1 tabel-gigi-head clickable" align="center" tag="71"><span tag="71">[71]</span> <span>31</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_12">
+                        <div class="grid_3">
+                            <div id="menu-keadaan-gigi" class="panel panel-primary heading-menu">Keadaan Gigi</div>
+                        </div>
+                        <div class="grid_3">
+                            <div id="menu-bahan-restorasi" class="panel panel-primary heading-menu">Bahan Restorasi</div>
+                        </div>
+                        <div class="grid_3">
+                            <div id="menu-restorasi" class="panel panel-primary heading-menu">Restorasi</div>
+                        </div>
+                        <div class="grid_3">
+                            <div id="menu-protesa" class="panel panel-primary heading-menu">Protesa</div>
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_3">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.papKeadaanGigi" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="listKeadaanGigi" />
+                            <!<select kendo-combo-box id="menu-keadaan-gigi-item" class="form-control">
+                            <option value="0" id="keadaan-gigi" class="panel panel-primary" style="margin:2px;cursor:pointer"></option>
+                            <option value="1" id="keadaan-gigi" class="panel panel-primary" style="margin:2px;cursor:pointer">Normal</option>
+                            <option value="2" id="keadaan-gigi" class="panel panel-primary" style="margin:2px;cursor:pointer">Tidak ada</option>
+                            <option value="3" id="keadaan-gigi" class="panel panel-primary" style="margin:2px;cursor:pointer">Un-erupted</option>
+                            <option value="4" id="keadaan-gigi" class="panel panel-primary" style="margin:2px;cursor:pointer">Par. erupted</option>
+                            <option value="5" id="keadaan-gigi" class="panel panel-primary" style="margin:2px;cursor:pointer">Impacted Vis.</option>
+                            <option value="6" id="keadaan-gigi" class="panel panel-primary" style="margin:2px;cursor:pointer">Anomali</option>
+                            <option value="7" id="keadaan-gigi" class="panel panel-primary" style="margin:2px;cursor:pointer">Diastema</option>
+                            <option value="8" id="keadaan-gigi" class="panel panel-primary" style="margin:2px;cursor:pointer">Atrisi</option>
+                            <option value="9" id="keadaan-gigi" class="panel panel-primary" style="margin:2px;cursor:pointer">Abrasi</option>
+                            <option value="10" id="keadaan-gigi" class="panel panel-primary" style="margin:2px;cursor:pointer">Caries</option>
+                            <option value="11" id="keadaan-gigi" class="panel panel-primary" style="margin:2px;cursor:pointer">Crown Frac.</option>
+                            <option value="12" id="keadaan-gigi" class="panel panel-primary" style="margin:2px;cursor:pointer">Non Vital</option>
+                            <option value="13" id="keadaan-gigi" class="panel panel-primary" style="margin:2px;cursor:pointer">Sisa Akar</option>
+                            <option value="14" id="keadaan-gigi" class="panel panel-primary" style="margin:2px;cursor:pointer">Hilang</option>-->
+                            <!-- </select>
+                        </div>
+                        <div class="grid_3">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.papBahanRestorasi" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="listBahanRestorasi" /> -->
+
+                            <!--<select kendo-combo-box id="menu-bahan-restorasi-item" class="form-control">
+                            <option value="0" id="bahan-restorasi" class="panel panel-primary" style="margin:2px;cursor:pointer"></option>
+                            <option value="1" id="bahan-restorasi" class="panel panel-primary" style="margin:2px;cursor:pointer">Emas</option>
+                            <option value="2" id="bahan-restorasi" class="panel panel-primary" style="margin:2px;cursor:pointer">Amalgam</option>
+                            <option value="3" id="bahan-restorasi" class="panel panel-primary" style="margin:2px;cursor:pointer">Berwarna sama</option>
+                            <option value="4" id="bahan-restorasi" class="panel panel-primary" style="margin:2px;cursor:pointer">Fissure Sealant</option>-->
+                            <!-- </select>
+                        </div>
+                        <div class="grid_3">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.papRestorasi" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="listRestorasi" /> -->
+
+                            <!--<select kendo-combo-box id="menu-restorasi-item" class="form-control">
+                            <option value="0" id="restorasi" class="panel panel-primary" style="margin:2px;cursor:pointer"></option>
+                            <option value="1" id="restorasi" class="panel panel-primary" style="margin:2px;cursor:pointer">Full Metal Cr.</option>
+                            <option value="2" id="restorasi" class="panel panel-primary" style="margin:2px;cursor:pointer">Porcelain Cr.</option>
+                            <option value="3" id="restorasi" class="panel panel-primary" style="margin:2px;cursor:pointer">Metal Porcelain Cr.</option>
+                            <option value="4" id="restorasi" class="panel panel-primary" style="margin:2px;cursor:pointer">Gold Metal Cr.</option>
+                            <option value="5" id="restorasi" class="panel panel-primary" style="margin:2px;cursor:pointer">Root Canal Trt.</option>
+                            <option value="6" id="restorasi" class="panel panel-primary" style="margin:2px;cursor:pointer">Implan</option>
+                            <option value="7" id="restorasi" class="panel panel-primary" style="margin:2px;cursor:pointer">Metal Bridge</option>
+                            <option value="8" id="restorasi" class="panel panel-primary" style="margin:2px;cursor:pointer">Porcelain Br.</option>
+                            <option value="9" id="restorasi" class="panel panel-primary" style="margin:2px;cursor:pointer">Pontic</option>
+                            <option value="10" id="restorasi" class="panel panel-primary" style="margin:2px;cursor:pointer">Gigi Abutment</option>-->
+                           <!--  </select>
+                        </div>
+                        <div class="grid_3">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.papProtesa" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="listProstesa" /> -->
+
+                            <!--<select kendo-combo-box id="menu-protesa-item" class="form-control">
+                            <option value="0" id="protesa" class="panel panel-primary" style="margin:2px;cursor:pointer"></option>
+                            <option value="1" id="protesa" class="panel panel-primary" style="margin:2px;cursor:pointer">Part. Denture</option>
+                            <option value="2" id="protesa" class="panel panel-primary" style="margin:2px;cursor:pointer">Full Denture</option>
+                            <option value="3" id="protesa" class="panel panel-primary" style="margin:2px;cursor:pointer">Acrilic</option>
+                            </select>-->
+                        <!-- </div>
+                    </div>
+
+                </div>
+                <div class="grid_12">
+                    <div class="grid_12">
+                        <div class="grid_12" style="position:relative;z-index:1">
+                            <table class="table-bordered " align="center" width="100%">
+
+                            </table>
+                        </div>
+                    </div>
+                </div> -->
+
+            <!-- </div> -->
+        <!-- </div> -->
+
+        <!-- <map name="gigi">
+        <area shape='poly' coords='3,22,11,30,11,43,3,51,3,22,' title='D' name='18'>
+        <area shape='poly' coords='3,22,32,22,24,30,11,30,3,22,' title='V' name='18'>
+        <area shape='poly' coords='32,22,24,30,24,43,32,51,32,22,' title='M' name='18'>
+        <area shape='poly' coords='3,51,32,51,24,43,11,43,3,51,' title='L' name='18'>
+        <area shape='poly' coords='12,31,23,31,23,42,12,42,12,31,' title='O' name='18'>
+        <area shape='poly' coords='33,22,41,30,41,43,33,51,33,22,' title='D' name='17'>
+        <area shape='poly' coords='33,22,62,22,54,30,41,30,33,22,' title='V' name='17'>
+        <area shape='poly' coords='62,22,54,30,54,43,62,51,62,22,' title='M' name='17'>
+        <area shape='poly' coords='33,51,62,51,54,43,41,43,33,51,' title='L' name='17'>
+        <area shape='poly' coords='42,31,53,31,53,42,42,42,42,31,' title='O' name='17'>
+        <area shape='poly' coords='63,22,71,30,71,43,63,51,63,22,' title='D' name='16'>
+        <area shape='poly' coords='63,22,92,22,84,30,71,30,63,22,' title='V' name='16'>
+        <area shape='poly' coords='92,22,84,30,84,43,92,51,92,22,' title='M' name='16'>
+        <area shape='poly' coords='63,51,92,51,84,43,71,43,63,51,' title='L' name='16'>
+        <area shape='poly' coords='72,31,83,31,83,42,72,42,72,31,' title='O' name='16'>
+        <area shape='poly' coords='93,22,101,30,101,43,93,51,93,22,' title='D' name='15'>
+        <area shape='poly' coords='93,22,122,22,114,30,101,30,93,22,' title='V' name='15'>
+        <area shape='poly' coords='122,22,114,30,114,43,122,51,122,22,' title='M' name='15'>
+        <area shape='poly' coords='93,51,122,51,114,43,101,43,93,51,' title='L' name='15'>
+        <area shape='poly' coords='102,31,113,31,113,42,102,42,102,31,' title='O' name='15'>
+        <area shape='poly' coords='123,22,131,30,131,43,123,51,123,22,' title='D' name='14'>
+        <area shape='poly' coords='123,22,152,22,144,30,131,30,123,22,' title='V' name='14'>
+        <area shape='poly' coords='152,22,144,30,144,43,152,51,152,22,' title='M' name='14'>
+        <area shape='poly' coords='123,51,152,51,144,43,131,43,123,51,' title='L' name='14'>
+        <area shape='poly' coords='132,31,143,31,143,42,132,42,132,31,' title='O' name='14'>
+        <area shape='poly' coords='153,22,161,36,153,51,153,22,' title='D' name='13'>
+        <area shape='poly' coords='153,22,182,22,174,36,161,36,153,22,' title='V' name='13'>
+        <area shape='poly' coords='182,22,174,36,182,51,182,22,' title='M' name='13'>
+        <area shape='poly' coords='153,51,182,51,174,36,161,36,153,51,' title='L' name='13'>
+        <area shape='poly' coords='183,22,191,36,183,51,183,22,' title='D' name='12'>
+        <area shape='poly' coords='183,22,212,22,204,36,191,36,183,22,' title='V' name='12'>
+        <area shape='poly' coords='212,22,204,36,212,51,212,22,' title='M' name='12'>
+        <area shape='poly' coords='183,51,212,51,204,36,191,36,183,51,' title='L' name='12'>
+        <area shape='poly' coords='213,22,221,36,213,51,213,22,' title='D' name='11'>
+        <area shape='poly' coords='213,22,242,22,234,36,221,36,213,22,' title='V' name='11'>
+        <area shape='poly' coords='242,22,234,36,242,51,242,22,' title='M' name='11'>
+        <area shape='poly' coords='213,51,242,51,234,36,221,36,213,51,' title='L' name='11'>
+        <area shape='poly' coords='243,22,251,36,243,51,243,22,' title='M' name='21'>
+        <area shape='poly' coords='243,22,272,22,264,36,251,36,243,22,' title='V' name='21'>
+        <area shape='poly' coords='272,22,264,36,272,51,272,22,' title='D' name='21'>
+        <area shape='poly' coords='243,51,272,51,264,36,251,36,243,51,' title='L' name='21'>
+        <area shape='poly' coords='273,22,281,36,273,51,273,22,' title='M' name='22'>
+        <area shape='poly' coords='273,22,302,22,294,36,281,36,273,22,' title='V' name='22'>
+        <area shape='poly' coords='302,22,294,36,302,51,302,22,' title='D' name='22'>
+        <area shape='poly' coords='273,51,302,51,294,36,281,36,273,51,' title='L' name='22'>
+        <area shape='poly' coords='303,22,311,36,303,51,303,22,' title='M' name='23'>
+        <area shape='poly' coords='303,22,332,22,324,36,311,36,303,22,' title='V' name='23'>
+        <area shape='poly' coords='332,22,324,36,332,51,332,22,' title='D' name='23'>
+        <area shape='poly' coords='303,51,332,51,324,36,311,36,303,51,' title='L' name='23'>
+        <area shape='poly' coords='333,22,341,30,341,43,333,51,333,22,' title='M' name='24'>
+        <area shape='poly' coords='333,22,362,22,354,30,341,30,333,22,' title='V' name='24'>
+        <area shape='poly' coords='362,22,354,30,354,43,362,51,362,22,' title='D' name='24'>
+        <area shape='poly' coords='333,51,362,51,354,43,341,43,333,51,' title='L' name='24'>
+        <area shape='poly' coords='342,31,353,31,353,42,342,42,342,31,' title='O' name='24'>
+        <area shape='poly' coords='363,22,371,30,371,43,363,51,363,22,' title='M' name='25'>
+        <area shape='poly' coords='363,22,392,22,384,30,371,30,363,22,' title='V' name='25'>
+        <area shape='poly' coords='392,22,384,30,384,43,392,51,392,22,' title='D' name='25'>
+        <area shape='poly' coords='363,51,392,51,384,43,371,43,363,51,' title='L' name='25'>
+        <area shape='poly' coords='372,31,383,31,383,42,372,42,372,31,' title='O' name='25'>
+        <area shape='poly' coords='393,22,401,30,401,43,393,51,393,22,' title='M' name='26'>
+        <area shape='poly' coords='393,22,422,22,414,30,401,30,393,22,' title='V' name='26'>
+        <area shape='poly' coords='422,22,414,30,414,43,422,51,422,22,' title='D' name='26'>
+        <area shape='poly' coords='393,51,422,51,414,43,401,43,393,51,' title='L' name='26'>
+        <area shape='poly' coords='402,31,413,31,413,42,402,42,402,31,' title='O' name='26'>
+        <area shape='poly' coords='423,22,431,30,431,43,423,51,423,22,' title='M' name='27'>
+        <area shape='poly' coords='423,22,452,22,444,30,431,30,423,22,' title='V' name='27'>
+        <area shape='poly' coords='452,22,444,30,444,43,452,51,452,22,' title='D' name='27'>
+        <area shape='poly' coords='423,51,452,51,444,43,431,43,423,51,' title='L' name='27'>
+        <area shape='poly' coords='432,31,443,31,443,42,432,42,432,31,' title='O' name='27'>
+        <area shape='poly' coords='453,22,461,30,461,43,453,51,453,22,' title='M' name='28'>
+        <area shape='poly' coords='453,22,482,22,474,30,461,30,453,22,' title='V' name='28'>
+        <area shape='poly' coords='482,22,474,30,474,43,482,51,482,22,' title='D' name='28'>
+        <area shape='poly' coords='453,51,482,51,474,43,461,43,453,51,' title='L' name='28'>
+        <area shape='poly' coords='462,31,473,31,473,42,462,42,462,31,' title='O' name='28'>
+        <area shape='poly' coords='93,82,101,90,101,103,93,111,93,82,' title='D' name='55'>
+        <area shape='poly' coords='93,82,122,82,114,90,101,90,93,82,' title='V' name='55'>
+        <area shape='poly' coords='122,82,114,90,114,103,122,111,122,82,' title='M' name='55'>
+        <area shape='poly' coords='93,111,122,111,114,103,101,103,93,111,' title='L' name='55'>
+        <area shape='poly' coords='102,91,113,91,113,102,102,102,102,91,' title='O' name='55'>
+        <area shape='poly' coords='123,82,131,90,131,103,123,111,123,82,' title='D' name='54'>
+        <area shape='poly' coords='123,82,152,82,144,90,131,90,123,82,' title='V' name='54'>
+        <area shape='poly' coords='152,82,144,90,144,103,152,111,152,82,' title='M' name='54'>
+        <area shape='poly' coords='123,111,152,111,144,103,131,103,123,111,' title='L' name='54'>
+        <area shape='poly' coords='132,91,143,91,143,102,132,102,132,91,' title='O' name='54'>
+        <area shape='poly' coords='153,82,161,96,153,111,153,82,' title='D' name='53'>
+        <area shape='poly' coords='153,82,182,82,174,96,161,96,153,82,' title='V' name='53'>
+        <area shape='poly' coords='182,82,174,96,182,111,182,82,' title='M' name='53'>
+        <area shape='poly' coords='153,111,182,111,174,96,161,96,153,111,' title='L' name='53'>
+        <area shape='poly' coords='183,82,191,96,183,111,183,82,' title='D' name='52'>
+        <area shape='poly' coords='183,82,212,82,204,96,191,96,183,82,' title='V' name='52'>
+        <area shape='poly' coords='212,82,204,96,212,111,212,82,' title='M' name='52'>
+        <area shape='poly' coords='183,111,212,111,204,96,191,96,183,111,' title='L' name='52'>
+        <area shape='poly' coords='213,82,221,96,213,111,213,82,' title='D' name='51'>
+        <area shape='poly' coords='213,82,242,82,234,96,221,96,213,82,' title='V' name='51'>
+        <area shape='poly' coords='242,82,234,96,242,111,242,82,' title='M' name='51'>
+        <area shape='poly' coords='213,111,242,111,234,96,221,96,213,111,' title='L' name='51'>
+        <area shape='poly' coords='243,82,251,96,243,111,243,82,' title='M' name='61'>
+        <area shape='poly' coords='243,82,272,82,264,96,251,96,243,82,' title='V' name='61'>
+        <area shape='poly' coords='272,82,264,96,272,111,272,82,' title='D' name='61'>
+        <area shape='poly' coords='243,111,272,111,264,96,251,96,243,111,' title='L' name='61'>
+        <area shape='poly' coords='273,82,281,96,273,111,273,82,' title='M' name='62'>
+        <area shape='poly' coords='273,82,302,82,294,96,281,96,273,82,' title='V' name='62'>
+        <area shape='poly' coords='302,82,294,96,302,111,302,82,' title='D' name='62'>
+        <area shape='poly' coords='273,111,302,111,294,96,281,96,273,111,' title='L' name='62'>
+        <area shape='poly' coords='303,82,311,96,303,111,303,82,' title='M' name='63'>
+        <area shape='poly' coords='303,82,332,82,324,96,311,96,303,82,' title='V' name='63'>
+        <area shape='poly' coords='332,82,324,96,332,111,332,82,' title='D' name='63'>
+        <area shape='poly' coords='303,111,332,111,324,96,311,96,303,111,' title='L' name='63'>
+        <area shape='poly' coords='333,82,341,90,341,103,333,111,333,82,' title='M' name='64'>
+        <area shape='poly' coords='333,82,362,82,354,90,341,90,333,82,' title='V' name='64'>
+        <area shape='poly' coords='362,82,354,90,354,103,362,111,362,82,' title='D' name='64'>
+        <area shape='poly' coords='333,111,362,111,354,103,341,103,333,111,' title='L' name='64'>
+        <area shape='poly' coords='342,91,353,91,353,102,342,102,342,91,' title='O' name='64'>
+        <area shape='poly' coords='363,82,371,90,371,103,363,111,363,82,' title='M' name='65'>
+        <area shape='poly' coords='363,82,392,82,384,90,371,90,363,82,' title='V' name='65'>
+        <area shape='poly' coords='392,82,384,90,384,103,392,111,392,82,' title='D' name='65'>
+        <area shape='poly' coords='363,111,392,111,384,103,371,103,363,111,' title='L' name='65'>
+        <area shape='poly' coords='372,91,383,91,383,102,372,102,372,91,' title='O' name='65'>
+        <area shape='poly' coords='93,142,101,150,101,163,93,171,93,142,' title='D' name='85'>
+        <area shape='poly' coords='93,142,122,142,114,150,101,150,93,142,' title='L' name='85'>
+        <area shape='poly' coords='122,142,114,150,114,163,122,171,122,142,' title='M' name='85'>
+        <area shape='poly' coords='93,171,122,171,114,163,101,163,93,171,' title='V' name='85'>
+        <area shape='poly' coords='102,151,113,151,113,162,102,162,102,151,' title='O' name='85'>
+        <area shape='poly' coords='123,142,131,150,131,163,123,171,123,142,' title='D' name='84'>
+        <area shape='poly' coords='123,142,152,142,144,150,131,150,123,142,' title='L' name='84'>
+        <area shape='poly' coords='152,142,144,150,144,163,152,171,152,142,' title='M' name='84'>
+        <area shape='poly' coords='123,171,152,171,144,163,131,163,123,171,' title='V' name='84'>
+        <area shape='poly' coords='132,151,143,151,143,162,132,162,132,151,' title='O' name='84'>
+        <area shape='poly' coords='153,142,161,156,153,171,153,142,' title='D' name='83'>
+        <area shape='poly' coords='153,142,182,142,174,156,161,156,153,142,' title='L' name='83'>
+        <area shape='poly' coords='182,142,174,156,182,171,182,142,' title='M' name='83'>
+        <area shape='poly' coords='153,171,182,171,174,156,161,156,153,171,' title='V' name='83'>
+        <area shape='poly' coords='183,142,191,156,183,171,183,142,' title='D' name='82'>
+        <area shape='poly' coords='183,142,212,142,204,156,191,156,183,142,' title='L' name='82'>
+        <area shape='poly' coords='212,142,204,156,212,171,212,142,' title='M' name='82'>
+        <area shape='poly' coords='183,171,212,171,204,156,191,156,183,171,' title='V' name='82'>
+        <area shape='poly' coords='213,142,221,156,213,171,213,142,' title='D' name='81'>
+        <area shape='poly' coords='213,142,242,142,234,156,221,156,213,142,' title='L' name='81'>
+        <area shape='poly' coords='242,142,234,156,242,171,242,142,' title='M' name='81'>
+        <area shape='poly' coords='213,171,242,171,234,156,221,156,213,171,' title='V' name='81'>
+        <area shape='poly' coords='243,142,251,156,243,171,243,142,' title='M' name='71'>
+        <area shape='poly' coords='243,142,272,142,264,156,251,156,243,142,' title='L' name='71'>
+        <area shape='poly' coords='272,142,264,156,272,171,272,142,' title='D' name='71'>
+        <area shape='poly' coords='243,171,272,171,264,156,251,156,243,171,' title='V' name='71'>
+        <area shape='poly' coords='273,142,281,156,273,171,273,142,' title='M' name='72'>
+        <area shape='poly' coords='273,142,302,142,294,156,281,156,273,142,' title='L' name='72'>
+        <area shape='poly' coords='302,142,294,156,302,171,302,142,' title='D' name='72'>
+        <area shape='poly' coords='273,171,302,171,294,156,281,156,273,171,' title='V' name='72'>
+        <area shape='poly' coords='303,142,311,156,303,171,303,142,' title='M' name='73'>
+        <area shape='poly' coords='303,142,332,142,324,156,311,156,303,142,' title='L' name='73'>
+        <area shape='poly' coords='332,142,324,156,332,171,332,142,' title='D' name='73'>
+        <area shape='poly' coords='303,171,332,171,324,156,311,156,303,171,' title='V' name='73'>
+        <area shape='poly' coords='333,142,341,150,341,163,333,171,333,142,' title='M' name='74'>
+        <area shape='poly' coords='333,142,362,142,354,150,341,150,333,142,' title='L' name='74'>
+        <area shape='poly' coords='362,142,354,150,354,163,362,171,362,142,' title='D' name='74'>
+        <area shape='poly' coords='333,171,362,171,354,163,341,163,333,171,' title='V' name='74'>
+        <area shape='poly' coords='342,151,353,151,353,162,342,162,342,151,' title='O' name='74'>
+        <area shape='poly' coords='363,142,371,150,371,163,363,171,363,142,' title='M' name='75'>
+        <area shape='poly' coords='363,142,392,142,384,150,371,150,363,142,' title='L' name='75'>
+        <area shape='poly' coords='392,142,384,150,384,163,392,171,392,142,' title='D' name='75'>
+        <area shape='poly' coords='363,171,392,171,384,163,371,163,363,171,' title='V' name='75'>
+        <area shape='poly' coords='372,151,383,151,383,162,372,162,372,151,' title='O' name='75'>
+        <area shape='poly' coords='3,202,11,210,11,223,3,231,3,202,' title='D' name='48'>
+        <area shape='poly' coords='3,202,32,202,24,210,11,210,3,202,' title='L' name='48'>
+        <area shape='poly' coords='32,202,24,210,24,223,32,231,32,202,' title='M' name='48'>
+        <area shape='poly' coords='3,231,32,231,24,223,11,223,3,231,' title='V' name='48'>
+        <area shape='poly' coords='12,211,23,211,23,222,12,222,12,211,' title='O' name='48'>
+        <area shape='poly' coords='33,202,41,210,41,223,33,231,33,202,' title='D' name='47'>
+        <area shape='poly' coords='33,202,62,202,54,210,41,210,33,202,' title='L' name='47'>
+        <area shape='poly' coords='62,202,54,210,54,223,62,231,62,202,' title='M' name='47'>
+        <area shape='poly' coords='33,231,62,231,54,223,41,223,33,231,' title='V' name='47'>
+        <area shape='poly' coords='42,211,53,211,53,222,42,222,42,211,' title='O' name='47'>
+        <area shape='poly' coords='63,202,71,210,71,223,63,231,63,202,' title='D' name='46'>
+        <area shape='poly' coords='63,202,92,202,84,210,71,210,63,202,' title='L' name='46'>
+        <area shape='poly' coords='92,202,84,210,84,223,92,231,92,202,' title='M' name='46'>
+        <area shape='poly' coords='63,231,92,231,84,223,71,223,63,231,' title='V' name='46'>
+        <area shape='poly' coords='72,211,83,211,83,222,72,222,72,211,' title='O' name='46'>
+        <area shape='poly' coords='93,202,101,210,101,223,93,231,93,202,' title='D' name='45'>
+        <area shape='poly' coords='93,202,122,202,114,210,101,210,93,202,' title='L' name='45'>
+        <area shape='poly' coords='122,202,114,210,114,223,122,231,122,202,' title='M' name='45'>
+        <area shape='poly' coords='93,231,122,231,114,223,101,223,93,231,' title='V' name='45'>
+        <area shape='poly' coords='102,211,113,211,113,222,102,222,102,211,' title='O' name='45'>
+        <area shape='poly' coords='123,202,131,210,131,223,123,231,123,202,' title='D' name='44'>
+        <area shape='poly' coords='123,202,152,202,144,210,131,210,123,202,' title='L' name='44'>
+        <area shape='poly' coords='152,202,144,210,144,223,152,231,152,202,' title='M' name='44'>
+        <area shape='poly' coords='123,231,152,231,144,223,131,223,123,231,' title='V' name='44'>
+        <area shape='poly' coords='132,211,143,211,143,222,132,222,132,211,' title='O' name='44'>
+        <area shape='poly' coords='153,202,161,216,153,231,153,202,' title='D' name='43'>
+        <area shape='poly' coords='153,202,182,202,174,216,161,216,153,202,' title='L' name='43'>
+        <area shape='poly' coords='182,202,174,216,182,231,182,202,' title='M' name='43'>
+        <area shape='poly' coords='153,231,182,231,174,216,161,216,153,231,' title='V' name='43'>
+        <area shape='poly' coords='183,202,191,216,183,231,183,202,' title='D' name='42'>
+        <area shape='poly' coords='183,202,212,202,204,216,191,216,183,202,' title='L' name='42'>
+        <area shape='poly' coords='212,202,204,216,212,231,212,202,' title='M' name='42'>
+        <area shape='poly' coords='183,231,212,231,204,216,191,216,183,231,' title='V' name='42'>
+        <area shape='poly' coords='213,202,221,216,213,231,213,202,' title='D' name='41'>
+        <area shape='poly' coords='213,202,242,202,234,216,221,216,213,202,' title='L' name='41'>
+        <area shape='poly' coords='242,202,234,216,242,231,242,202,' title='M' name='41'>
+        <area shape='poly' coords='213,231,242,231,234,216,221,216,213,231,' title='V' name='41'>
+        <area shape='poly' coords='243,202,251,216,243,231,243,202,' title='D' name='31'>
+        <area shape='poly' coords='243,202,272,202,264,216,251,216,243,202,' title='L' name='31'>
+        <area shape='poly' coords='272,202,264,216,272,231,272,202,' title='M' name='31'>
+        <area shape='poly' coords='243,231,272,231,264,216,251,216,243,231,' title='V' name='31'>
+        <area shape='poly' coords='273,202,281,216,273,231,273,202,' title='D' name='32'>
+        <area shape='poly' coords='273,202,302,202,294,216,281,216,273,202,' title='L' name='32'>
+        <area shape='poly' coords='302,202,294,216,302,231,302,202,' title='M' name='32'>
+        <area shape='poly' coords='273,231,302,231,294,216,281,216,273,231,' title='V' name='32'>
+        <area shape='poly' coords='303,202,311,216,303,231,303,202,' title='D' name='33'>
+        <area shape='poly' coords='303,202,332,202,324,216,311,216,303,202,' title='L' name='33'>
+        <area shape='poly' coords='332,202,324,216,332,231,332,202,' title='M' name='33'>
+        <area shape='poly' coords='303,231,332,231,324,216,311,216,303,231,' title='V' name='33'>
+        <area shape='poly' coords='243,202,251,216,243,231,243,202,' title='M' name='31'>
+        <area shape='poly' coords='243,202,272,202,264,216,251,216,243,202,' title='L' name='31'>
+        <area shape='poly' coords='272,202,264,216,272,231,272,202,' title='D' name='31'>
+        <area shape='poly' coords='243,231,272,231,264,216,251,216,243,231,' title='V' name='31'>
+        <area shape='poly' coords='273,202,281,216,273,231,273,202,' title='M' name='32'>
+        <area shape='poly' coords='273,202,302,202,294,216,281,216,273,202,' title='L' name='32'>
+        <area shape='poly' coords='302,202,294,216,302,231,302,202,' title='D' name='32'>
+        <area shape='poly' coords='273,231,302,231,294,216,281,216,273,231,' title='V' name='32'>
+        <area shape='poly' coords='303,202,311,216,303,231,303,202,' title='M' name='33'>
+        <area shape='poly' coords='303,202,332,202,324,216,311,216,303,202,' title='L' name='33'>
+        <area shape='poly' coords='332,202,324,216,332,231,332,202,' title='D' name='33'>
+        <area shape='poly' coords='303,231,332,231,324,216,311,216,303,231,' title='V' name='33'>
+        <area shape='poly' coords='333,202,341,210,341,223,333,231,333,202,' title='M' name='34'>
+        <area shape='poly' coords='333,202,362,202,354,210,341,210,333,202,' title='L' name='34'>
+        <area shape='poly' coords='362,202,354,210,354,223,362,231,362,202,' title='D' name='34'>
+        <area shape='poly' coords='333,231,362,231,354,223,341,223,333,231,' title='V' name='34'>
+        <area shape='poly' coords='342,211,353,211,353,222,342,222,342,211,' title='O' name='34'>
+        <area shape='poly' coords='363,202,371,210,371,223,363,231,363,202,' title='M' name='35'>
+        <area shape='poly' coords='363,202,392,202,384,210,371,210,363,202,' title='L' name='35'>
+        <area shape='poly' coords='392,202,384,210,384,223,392,231,392,202,' title='D' name='35'>
+        <area shape='poly' coords='363,231,392,231,384,223,371,223,363,231,' title='V' name='35'>
+        <area shape='poly' coords='372,211,383,211,383,222,372,222,372,211,' title='O' name='35'>
+        <area shape='poly' coords='393,202,401,210,401,223,393,231,393,202,' title='M' name='36'>
+        <area shape='poly' coords='393,202,422,202,414,210,401,210,393,202,' title='L' name='36'>
+        <area shape='poly' coords='422,202,414,210,414,223,422,231,422,202,' title='D' name='36'>
+        <area shape='poly' coords='393,231,422,231,414,223,401,223,393,231,' title='V' name='36'>
+        <area shape='poly' coords='402,211,413,211,413,222,402,222,402,211,' title='O' name='36'>
+        <area shape='poly' coords='423,202,431,210,431,223,423,231,423,202,' title='M' name='37'>
+        <area shape='poly' coords='423,202,452,202,444,210,431,210,423,202,' title='L' name='37'>
+        <area shape='poly' coords='452,202,444,210,444,223,452,231,452,202,' title='D' name='37'>
+        <area shape='poly' coords='423,231,452,231,444,223,431,223,423,231,' title='V' name='37'>
+        <area shape='poly' coords='432,211,443,211,443,222,432,222,432,211,' title='O' name='37'>
+        <area shape='poly' coords='453,202,461,210,461,223,453,231,453,202,' title='M' name='38'>
+        <area shape='poly' coords='453,202,482,202,474,210,461,210,453,202,' title='L' name='38'>
+        <area shape='poly' coords='482,202,474,210,474,223,482,231,482,202,' title='D' name='38'>
+        <area shape='poly' coords='453,231,482,231,474,223,461,223,453,231,' title='V' name='38'>
+        <area shape='poly' coords='462,211,473,211,473,222,462,222,462,211,' title='O' name='38'>
+    </map>
+        <map name="crown">
+        <area shape='poly' coords='3,22,32,22,32,51,3,51,3,22,' title='Crown' name='18'>
+        <area shape='poly' coords='33,22,62,22,62,51,33,51,33,22,' title='Crown' name='17'>
+        <area shape='poly' coords='63,22,92,22,92,51,63,51,63,22,' title='Crown' name='16'>
+        <area shape='poly' coords='93,22,122,22,122,51,93,51,93,22,' title='Crown' name='15'>
+        <area shape='poly' coords='123,22,152,22,152,51,123,51,123,22,' title='Crown' name='14'>
+        <area shape='poly' coords='153,22,182,22,182,51,153,51,153,22,' title='Crown' name='13'>
+        <area shape='poly' coords='183,22,212,22,212,51,183,51,183,22,' title='Crown' name='12'>
+        <area shape='poly' coords='213,22,242,22,242,51,213,51,213,22,' title='Crown' name='11'>
+        <area shape='poly' coords='243,22,272,22,272,51,243,51,243,22,' title='Crown' name='21'>
+        <area shape='poly' coords='273,22,302,22,302,51,273,51,273,22,' title='Crown' name='22'>
+        <area shape='poly' coords='303,22,332,22,332,51,303,51,303,22,' title='Crown' name='23'>
+        <area shape='poly' coords='333,22,362,22,362,51,333,51,333,22,' title='Crown' name='24'>
+        <area shape='poly' coords='363,22,392,22,392,51,363,51,363,22,' title='Crown' name='25'>
+        <area shape='poly' coords='393,22,422,22,422,51,393,51,393,22,' title='Crown' name='26'>
+        <area shape='poly' coords='423,22,452,22,452,51,423,51,423,22,' title='Crown' name='27'>
+        <area shape='poly' coords='453,22,482,22,482,51,453,51,453,22,' title='Crown' name='28'>
+        <area shape='poly' coords='93,82,122,82,122,111,93,111,93,82,' title='Crown' name='55'>
+        <area shape='poly' coords='123,82,152,82,152,111,123,111,123,82,' title='Crown' name='54'>
+        <area shape='poly' coords='153,82,182,82,182,111,153,111,153,82,' title='Crown' name='53'>
+        <area shape='poly' coords='183,82,212,82,212,111,183,111,183,82,' title='Crown' name='52'>
+        <area shape='poly' coords='213,82,242,82,242,111,213,111,213,82,' title='Crown' name='51'>
+        <area shape='poly' coords='243,82,272,82,272,111,243,111,243,82,' title='Crown' name='61'>
+        <area shape='poly' coords='273,82,302,82,302,111,273,111,273,82,' title='Crown' name='62'>
+        <area shape='poly' coords='303,82,332,82,332,111,303,111,303,82,' title='Crown' name='63'>
+        <area shape='poly' coords='333,82,362,82,362,111,333,111,333,82,' title='Crown' name='64'>
+        <area shape='poly' coords='363,82,392,82,392,111,363,111,363,82,' title='Crown' name='65'>
+        <area shape='poly' coords='93,142,122,142,122,171,93,171,93,142,' title='Crown' name='85'>
+        <area shape='poly' coords='123,142,152,142,152,171,123,171,123,142,' title='Crown' name='84'>
+        <area shape='poly' coords='153,142,182,142,182,171,153,171,153,142,' title='Crown' name='83'>
+        <area shape='poly' coords='183,142,212,142,212,171,183,171,183,142,' title='Crown' name='82'>
+        <area shape='poly' coords='213,142,242,142,242,171,213,171,213,142,' title='Crown' name='81'>
+        <area shape='poly' coords='243,142,272,142,272,171,243,171,243,142,' title='Crown' name='71'>
+        <area shape='poly' coords='273,142,302,142,302,171,273,171,273,142,' title='Crown' name='72'>
+        <area shape='poly' coords='303,142,332,142,332,171,303,171,303,142,' title='Crown' name='73'>
+        <area shape='poly' coords='333,142,362,142,362,171,333,171,333,142,' title='Crown' name='74'>
+        <area shape='poly' coords='363,142,392,142,392,171,363,171,363,142,' title='Crown' name='75'>
+        <area shape='poly' coords='3,202,32,202,32,231,3,231,3,202,' title='Crown' name='48'>
+        <area shape='poly' coords='33,202,62,202,62,231,33,231,33,202,' title='Crown' name='47'>
+        <area shape='poly' coords='63,202,92,202,92,231,63,231,63,202,' title='Crown' name='46'>
+        <area shape='poly' coords='93,202,122,202,122,231,93,231,93,202,' title='Crown' name='45'>
+        <area shape='poly' coords='123,202,152,202,152,231,123,231,123,202,' title='Crown' name='44'>
+        <area shape='poly' coords='153,202,182,202,182,231,153,231,153,202,' title='Crown' name='43'>
+        <area shape='poly' coords='183,202,212,202,212,231,183,231,183,202,' title='Crown' name='42'>
+        <area shape='poly' coords='213,202,242,202,242,231,213,231,213,202,' title='Crown' name='41'>
+        <area shape='poly' coords='243,202,272,202,272,231,243,231,243,202,' title='Crown' name='31'>
+        <area shape='poly' coords='273,202,302,202,302,231,273,231,273,202,' title='Crown' name='32'>
+        <area shape='poly' coords='303,202,332,202,332,231,303,231,303,202,' title='Crown' name='33'>
+        <area shape='poly' coords='333,202,362,202,362,231,333,231,333,202,' title='Crown' name='34'>
+        <area shape='poly' coords='363,202,392,202,392,231,363,231,363,202,' title='Crown' name='35'>
+        <area shape='poly' coords='393,202,422,202,422,231,393,231,393,202,' title='Crown' name='36'>
+        <area shape='poly' coords='423,202,452,202,452,231,423,231,423,202,' title='Crown' name='37'>
+        <area shape='poly' coords='453,202,482,202,482,231,453,231,453,202,' title='Crown' name='38'>
+    </map>
+        <map name="fraktur">
+        <area shape='poly' coords='8,31,27,31,8,44,27,44,12,25,17,49,19,25,24,49,' title='cfr' name='18'>
+        <area shape='poly' coords='38,31,57,31,38,44,57,44,42,25,47,49,49,25,54,49,' title='cfr' name='17'>
+        <area shape='poly' coords='68,31,87,31,68,44,87,44,72,25,77,49,79,25,84,49,' title='cfr' name='16'>
+        <area shape='poly' coords='98,31,117,31,98,44,117,44,102,25,107,49,109,25,114,49,' title='cfr' name='15'>
+        <area shape='poly' coords='128,31,147,31,128,44,147,44,132,25,137,49,139,25,144,49,' title='cfr' name='14'>
+        <area shape='poly' coords='158,31,177,31,158,44,177,44,162,25,167,49,169,25,174,49,' title='cfr' name='13'>
+        <area shape='poly' coords='188,31,207,31,188,44,207,44,192,25,197,49,199,25,204,49,' title='cfr' name='12'>
+        <area shape='poly' coords='218,31,237,31,218,44,237,44,222,25,227,49,229,25,234,49,' title='cfr' name='11'>
+        <area shape='poly' coords='248,31,267,31,248,44,267,44,252,25,257,49,259,25,264,49,' title='cfr' name='21'>
+        <area shape='poly' coords='278,31,297,31,278,44,297,44,282,25,287,49,289,25,294,49,' title='cfr' name='22'>
+        <area shape='poly' coords='308,31,327,31,308,44,327,44,312,25,317,49,319,25,324,49,' title='cfr' name='23'>
+        <area shape='poly' coords='338,31,357,31,338,44,357,44,342,25,347,49,349,25,354,49,' title='cfr' name='24'>
+        <area shape='poly' coords='368,31,387,31,368,44,387,44,372,25,377,49,379,25,384,49,' title='cfr' name='25'>
+        <area shape='poly' coords='398,31,417,31,398,44,417,44,402,25,407,49,409,25,414,49,' title='cfr' name='26'>
+        <area shape='poly' coords='428,31,447,31,428,44,447,44,432,25,437,49,439,25,444,49,' title='cfr' name='27'>
+        <area shape='poly' coords='458,31,477,31,458,44,477,44,462,25,467,49,469,25,474,49,' title='cfr' name='28'>
+        <area shape='poly' coords='98,91,117,91,98,104,117,104,102,85,107,109,109,85,114,109,' title='cfr' name='55'>
+        <area shape='poly' coords='128,91,147,91,128,104,147,104,132,85,137,109,139,85,144,109,' title='cfr' name='54'>
+        <area shape='poly' coords='158,91,177,91,158,104,177,104,162,85,167,109,169,85,174,109,' title='cfr' name='53'>
+        <area shape='poly' coords='188,91,207,91,188,104,207,104,192,85,197,109,199,85,204,109,' title='cfr' name='52'>
+        <area shape='poly' coords='218,91,237,91,218,104,237,104,222,85,227,109,229,85,234,109,' title='cfr' name='51'>
+        <area shape='poly' coords='248,91,267,91,248,104,267,104,252,85,257,109,259,85,264,109,' title='cfr' name='61'>
+        <area shape='poly' coords='278,91,297,91,278,104,297,104,282,85,287,109,289,85,294,109,' title='cfr' name='62'>
+        <area shape='poly' coords='308,91,327,91,308,104,327,104,312,85,317,109,319,85,324,109,' title='cfr' name='63'>
+        <area shape='poly' coords='338,91,357,91,338,104,357,104,342,85,347,109,349,85,354,109,' title='cfr' name='64'>
+        <area shape='poly' coords='368,91,387,91,368,104,387,104,372,85,377,109,379,85,384,109,' title='cfr' name='65'>
+        <area shape='poly' coords='98,151,117,151,98,164,117,164,102,145,107,169,109,145,114,169,' title='cfr' name='85'>
+        <area shape='poly' coords='128,151,147,151,128,164,147,164,132,145,137,169,139,145,144,169,' title='cfr' name='84'>
+        <area shape='poly' coords='158,151,177,151,158,164,177,164,162,145,167,169,169,145,174,169,' title='cfr' name='83'>
+        <area shape='poly' coords='188,151,207,151,188,164,207,164,192,145,197,169,199,145,204,169,' title='cfr' name='82'>
+        <area shape='poly' coords='218,151,237,151,218,164,237,164,222,145,227,169,229,145,234,169,' title='cfr' name='81'>
+        <area shape='poly' coords='248,151,267,151,248,164,267,164,252,145,257,169,259,145,264,169,' title='cfr' name='71'>
+        <area shape='poly' coords='278,151,297,151,278,164,297,164,282,145,287,169,289,145,294,169,' title='cfr' name='72'>
+        <area shape='poly' coords='308,151,327,151,308,164,327,164,312,145,317,169,319,145,324,169,' title='cfr' name='73'>
+        <area shape='poly' coords='338,151,357,151,338,164,357,164,342,145,347,169,349,145,354,169,' title='cfr' name='74'>
+        <area shape='poly' coords='368,151,387,151,368,164,387,164,372,145,377,169,379,145,384,169,' title='cfr' name='75'>
+        <area shape='poly' coords='8,211,27,211,8,224,27,224,12,205,17,229,19,205,24,229,' title='cfr' name='48'>
+        <area shape='poly' coords='38,211,57,211,38,224,57,224,42,205,47,229,49,205,54,229,' title='cfr' name='47'>
+        <area shape='poly' coords='68,211,87,211,68,224,87,224,72,205,77,229,79,205,84,229,' title='cfr' name='46'>
+        <area shape='poly' coords='98,211,117,211,98,224,117,224,102,205,107,229,109,205,114,229,' title='cfr' name='45'>
+        <area shape='poly' coords='128,211,147,211,128,224,147,224,132,205,137,229,139,205,144,229,' title='cfr' name='44'>
+        <area shape='poly' coords='158,211,177,211,158,224,177,224,162,205,167,229,169,205,174,229,' title='cfr' name='43'>
+        <area shape='poly' coords='188,211,207,211,188,224,207,224,192,205,197,229,199,205,204,229,' title='cfr' name='42'>
+        <area shape='poly' coords='218,211,237,211,218,224,237,224,222,205,227,229,229,205,234,229,' title='cfr' name='41'>
+        <area shape='poly' coords='248,211,267,211,248,224,267,224,252,205,257,229,259,205,264,229,' title='cfr' name='31'>
+        <area shape='poly' coords='278,211,297,211,278,224,297,224,282,205,287,229,289,205,294,229,' title='cfr' name='32'>
+        <area shape='poly' coords='308,211,327,211,308,224,327,224,312,205,317,229,319,205,324,229,' title='cfr' name='33'>
+        <area shape='poly' coords='338,211,357,211,338,224,357,224,342,205,347,229,349,205,354,229,' title='cfr' name='34'>
+        <area shape='poly' coords='368,211,387,211,368,224,387,224,372,205,377,229,379,205,384,229,' title='cfr' name='35'>
+        <area shape='poly' coords='398,211,417,211,398,224,417,224,402,205,407,229,409,205,414,229,' title='cfr' name='36'>
+        <area shape='poly' coords='428,211,447,211,428,224,447,224,432,205,437,229,439,205,444,229,' title='cfr' name='37'>
+        <area shape='poly' coords='458,211,477,211,458,224,477,224,462,205,467,229,469,205,474,229,' title='cfr' name='38'>
+    </map>
+        <map name="sisa_akar">
+        <area shape='poly' coords='3,22,18,51,32,22,' title='rrx' name='18'>
+        <area shape='poly' coords='33,22,48,51,62,22,' title='rrx' name='17'>
+        <area shape='poly' coords='63,22,78,51,92,22,' title='rrx' name='16'>
+        <area shape='poly' coords='93,22,108,51,122,22,' title='rrx' name='15'>
+        <area shape='poly' coords='123,22,138,51,152,22,' title='rrx' name='14'>
+        <area shape='poly' coords='153,22,168,51,182,22,' title='rrx' name='13'>
+        <area shape='poly' coords='183,22,198,51,212,22,' title='rrx' name='12'>
+        <area shape='poly' coords='213,22,228,51,242,22,' title='rrx' name='11'>
+        <area shape='poly' coords='243,22,258,51,272,22,' title='rrx' name='21'>
+        <area shape='poly' coords='273,22,288,51,302,22,' title='rrx' name='22'>
+        <area shape='poly' coords='303,22,318,51,332,22,' title='rrx' name='23'>
+        <area shape='poly' coords='333,22,348,51,362,22,' title='rrx' name='24'>
+        <area shape='poly' coords='363,22,378,51,392,22,' title='rrx' name='25'>
+        <area shape='poly' coords='393,22,408,51,422,22,' title='rrx' name='26'>
+        <area shape='poly' coords='423,22,438,51,452,22,' title='rrx' name='27'>
+        <area shape='poly' coords='453,22,468,51,482,22,' title='rrx' name='28'>
+        <area shape='poly' coords='93,82,108,111,122,82,' title='rrx' name='55'>
+        <area shape='poly' coords='123,82,138,111,152,82,' title='rrx' name='54'>
+        <area shape='poly' coords='153,82,168,111,182,82,' title='rrx' name='53'>
+        <area shape='poly' coords='183,82,198,111,212,82,' title='rrx' name='52'>
+        <area shape='poly' coords='213,82,228,111,242,82,' title='rrx' name='51'>
+        <area shape='poly' coords='243,82,258,111,272,82,' title='rrx' name='61'>
+        <area shape='poly' coords='273,82,288,111,302,82,' title='rrx' name='62'>
+        <area shape='poly' coords='303,82,318,111,332,82,' title='rrx' name='63'>
+        <area shape='poly' coords='333,82,348,111,362,82,' title='rrx' name='64'>
+        <area shape='poly' coords='363,82,378,111,392,82,' title='rrx' name='65'>
+        <area shape='poly' coords='93,142,108,171,122,142,' title='rrx' name='85'>
+        <area shape='poly' coords='123,142,138,171,152,142,' title='rrx' name='84'>
+        <area shape='poly' coords='153,142,168,171,182,142,' title='rrx' name='83'>
+        <area shape='poly' coords='183,142,198,171,212,142,' title='rrx' name='82'>
+        <area shape='poly' coords='213,142,228,171,242,142,' title='rrx' name='81'>
+        <area shape='poly' coords='243,142,258,171,272,142,' title='rrx' name='71'>
+        <area shape='poly' coords='273,142,288,171,302,142,' title='rrx' name='72'>
+        <area shape='poly' coords='303,142,318,171,332,142,' title='rrx' name='73'>
+        <area shape='poly' coords='333,142,348,171,362,142,' title='rrx' name='74'>
+        <area shape='poly' coords='363,142,378,171,392,142,' title='rrx' name='75'>
+        <area shape='poly' coords='3,202,18,231,32,202,' title='rrx' name='48'>
+        <area shape='poly' coords='33,202,48,231,62,202,' title='rrx' name='47'>
+        <area shape='poly' coords='63,202,78,231,92,202,' title='rrx' name='46'>
+        <area shape='poly' coords='93,202,108,231,122,202,' title='rrx' name='45'>
+        <area shape='poly' coords='123,202,138,231,152,202,' title='rrx' name='44'>
+        <area shape='poly' coords='153,202,168,231,182,202,' title='rrx' name='43'>
+        <area shape='poly' coords='183,202,198,231,212,202,' title='rrx' name='42'>
+        <area shape='poly' coords='213,202,228,231,242,202,' title='rrx' name='41'>
+        <area shape='poly' coords='243,202,258,231,272,202,' title='rrx' name='31'>
+        <area shape='poly' coords='273,202,288,231,302,202,' title='rrx' name='32'>
+        <area shape='poly' coords='303,202,318,231,332,202,' title='rrx' name='33'>
+        <area shape='poly' coords='333,202,348,231,362,202,' title='rrx' name='34'>
+        <area shape='poly' coords='363,202,378,231,392,202,' title='rrx' name='35'>
+        <area shape='poly' coords='393,202,408,231,422,202,' title='rrx' name='36'>
+        <area shape='poly' coords='423,202,438,231,452,202,' title='rrx' name='37'>
+        <area shape='poly' coords='453,202,468,231,482,202,' title='rrx' name='38'>
+    </map>
+        <map name="missing">
+        <area shape='poly' coords='3,22,32,51,3,51,32,22,' title='mis' name='18'>
+        <area shape='poly' coords='33,22,62,51,33,51,62,22,' title='mis' name='17'>
+        <area shape='poly' coords='63,22,92,51,63,51,92,22,' title='mis' name='16'>
+        <area shape='poly' coords='93,22,122,51,93,51,122,22,' title='mis' name='15'>
+        <area shape='poly' coords='123,22,152,51,123,51,152,22,' title='mis' name='14'>
+        <area shape='poly' coords='153,22,182,51,153,51,182,22,' title='mis' name='13'>
+        <area shape='poly' coords='183,22,212,51,183,51,212,22,' title='mis' name='12'>
+        <area shape='poly' coords='213,22,242,51,213,51,242,22,' title='mis' name='11'>
+        <area shape='poly' coords='243,22,272,51,243,51,272,22,' title='mis' name='21'>
+        <area shape='poly' coords='273,22,302,51,273,51,302,22,' title='mis' name='22'>
+        <area shape='poly' coords='303,22,332,51,303,51,332,22,' title='mis' name='23'>
+        <area shape='poly' coords='333,22,362,51,333,51,362,22,' title='mis' name='24'>
+        <area shape='poly' coords='363,22,392,51,363,51,392,22,' title='mis' name='25'>
+        <area shape='poly' coords='393,22,422,51,393,51,422,22,' title='mis' name='26'>
+        <area shape='poly' coords='423,22,452,51,423,51,452,22,' title='mis' name='27'>
+        <area shape='poly' coords='453,22,482,51,453,51,482,22,' title='mis' name='28'>
+        <area shape='poly' coords='93,82,122,111,93,111,122,82,' title='mis' name='55'>
+        <area shape='poly' coords='123,82,152,111,123,111,152,82,' title='mis' name='54'>
+        <area shape='poly' coords='153,82,182,111,153,111,182,82,' title='mis' name='53'>
+        <area shape='poly' coords='183,82,212,111,183,111,212,82,' title='mis' name='52'>
+        <area shape='poly' coords='213,82,242,111,213,111,242,82,' title='mis' name='51'>
+        <area shape='poly' coords='243,82,272,111,243,111,272,82,' title='mis' name='61'>
+        <area shape='poly' coords='273,82,302,111,273,111,302,82,' title='mis' name='62'>
+        <area shape='poly' coords='303,82,332,111,303,111,332,82,' title='mis' name='63'>
+        <area shape='poly' coords='333,82,362,111,333,111,362,82,' title='mis' name='64'>
+        <area shape='poly' coords='363,82,392,111,363,111,392,82,' title='mis' name='65'>
+        <area shape='poly' coords='93,142,122,171,93,171,122,142,' title='mis' name='85'>
+        <area shape='poly' coords='123,142,152,171,123,171,152,142,' title='mis' name='84'>
+        <area shape='poly' coords='153,142,182,171,153,171,182,142,' title='mis' name='83'>
+        <area shape='poly' coords='183,142,212,171,183,171,212,142,' title='mis' name='82'>
+        <area shape='poly' coords='213,142,242,171,213,171,242,142,' title='mis' name='81'>
+        <area shape='poly' coords='243,142,272,171,243,171,272,142,' title='mis' name='71'>
+        <area shape='poly' coords='273,142,302,171,273,171,302,142,' title='mis' name='72'>
+        <area shape='poly' coords='303,142,332,171,303,171,332,142,' title='mis' name='73'>
+        <area shape='poly' coords='333,142,362,171,333,171,362,142,' title='mis' name='74'>
+        <area shape='poly' coords='363,142,392,171,363,171,392,142,' title='mis' name='75'>
+        <area shape='poly' coords='3,202,32,231,3,231,32,202,' title='mis' name='48'>
+        <area shape='poly' coords='33,202,62,231,33,231,62,202,' title='mis' name='47'>
+        <area shape='poly' coords='63,202,92,231,63,231,92,202,' title='mis' name='46'>
+        <area shape='poly' coords='93,202,122,231,93,231,122,202,' title='mis' name='45'>
+        <area shape='poly' coords='123,202,152,231,123,231,152,202,' title='mis' name='44'>
+        <area shape='poly' coords='153,202,182,231,153,231,182,202,' title='mis' name='43'>
+        <area shape='poly' coords='183,202,212,231,183,231,212,202,' title='mis' name='42'>
+        <area shape='poly' coords='213,202,242,231,213,231,242,202,' title='mis' name='41'>
+        <area shape='poly' coords='243,202,272,231,243,231,272,202,' title='mis' name='31'>
+        <area shape='poly' coords='273,202,302,231,273,231,302,202,' title='mis' name='32'>
+        <area shape='poly' coords='303,202,332,231,303,231,332,202,' title='mis' name='33'>
+        <area shape='poly' coords='333,202,362,231,333,231,362,202,' title='mis' name='34'>
+        <area shape='poly' coords='363,202,392,231,363,231,392,202,' title='mis' name='35'>
+        <area shape='poly' coords='393,202,422,231,393,231,422,202,' title='mis' name='36'>
+        <area shape='poly' coords='423,202,452,231,423,231,452,202,' title='mis' name='37'>
+        <area shape='poly' coords='453,202,482,231,453,231,482,202,' title='mis' name='38'>
+    </map>
+        <map name="root">
+        <area shape='poly' coords='12,51,24,51,18,61,12,51,' title='Root' name='18'>
+        <area shape='poly' coords='42,51,54,51,48,61,42,51,' title='Root' name='17'>
+        <area shape='poly' coords='72,51,84,51,78,61,72,51,' title='Root' name='16'>
+        <area shape='poly' coords='102,51,114,51,108,61,102,51,' title='Root' name='15'>
+        <area shape='poly' coords='132,51,144,51,138,61,132,51,' title='Root' name='14'>
+        <area shape='poly' coords='162,51,174,51,168,61,162,51,' title='Root' name='13'>
+        <area shape='poly' coords='192,51,204,51,198,61,192,51,' title='Root' name='12'>
+        <area shape='poly' coords='222,51,234,51,228,61,222,51,' title='Root' name='11'>
+        <area shape='poly' coords='252,51,264,51,258,61,252,51,' title='Root' name='21'>
+        <area shape='poly' coords='282,51,294,51,288,61,282,51,' title='Root' name='22'>
+        <area shape='poly' coords='312,51,324,51,318,61,312,51,' title='Root' name='23'>
+        <area shape='poly' coords='342,51,354,51,348,61,342,51,' title='Root' name='24'>
+        <area shape='poly' coords='372,51,384,51,378,61,372,51,' title='Root' name='25'>
+        <area shape='poly' coords='402,51,414,51,408,61,402,51,' title='Root' name='26'>
+        <area shape='poly' coords='432,51,444,51,438,61,432,51,' title='Root' name='27'>
+        <area shape='poly' coords='462,51,474,51,468,61,462,51,' title='Root' name='28'>
+        <area shape='poly' coords='102,111,114,111,108,121,102,111,' title='Root' name='55'>
+        <area shape='poly' coords='132,111,144,111,138,121,132,111,' title='Root' name='54'>
+        <area shape='poly' coords='162,111,174,111,168,121,162,111,' title='Root' name='53'>
+        <area shape='poly' coords='192,111,204,111,198,121,192,111,' title='Root' name='52'>
+        <area shape='poly' coords='222,111,234,111,228,121,222,111,' title='Root' name='51'>
+        <area shape='poly' coords='252,111,264,111,258,121,252,111,' title='Root' name='61'>
+        <area shape='poly' coords='282,111,294,111,288,121,282,111,' title='Root' name='62'>
+        <area shape='poly' coords='312,111,324,111,318,121,312,111,' title='Root' name='63'>
+        <area shape='poly' coords='342,111,354,111,348,121,342,111,' title='Root' name='64'>
+        <area shape='poly' coords='372,111,384,111,378,121,372,111,' title='Root' name='65'>
+        <area shape='poly' coords='102,141,114,141,108,131,102,141,' title='Root' name='85'>
+        <area shape='poly' coords='132,141,144,141,138,131,132,141,' title='Root' name='84'>
+        <area shape='poly' coords='162,141,174,141,168,131,162,141,' title='Root' name='83'>
+        <area shape='poly' coords='192,141,204,141,198,131,192,141,' title='Root' name='82'>
+        <area shape='poly' coords='222,141,234,141,228,131,222,141,' title='Root' name='81'>
+        <area shape='poly' coords='252,141,264,141,258,131,252,141,' title='Root' name='71'>
+        <area shape='poly' coords='282,141,294,141,288,131,282,141,' title='Root' name='72'>
+        <area shape='poly' coords='312,141,324,141,318,131,312,141,' title='Root' name='73'>
+        <area shape='poly' coords='342,141,354,141,348,131,342,141,' title='Root' name='74'>
+        <area shape='poly' coords='372,141,384,141,378,131,372,141,' title='Root' name='75'>
+        <area shape='poly' coords='12,201,24,201,18,191,12,201,' title='Root' name='48'>
+        <area shape='poly' coords='42,201,54,201,48,191,42,201,' title='Root' name='47'>
+        <area shape='poly' coords='72,201,84,201,78,191,72,201,' title='Root' name='46'>
+        <area shape='poly' coords='102,201,114,201,108,191,102,201,' title='Root' name='45'>
+        <area shape='poly' coords='132,201,144,201,138,191,132,201,' title='Root' name='44'>
+        <area shape='poly' coords='162,201,174,201,168,191,162,201,' title='Root' name='43'>
+        <area shape='poly' coords='192,201,204,201,198,191,192,201,' title='Root' name='42'>
+        <area shape='poly' coords='222,201,234,201,228,191,222,201,' title='Root' name='41'>
+        <area shape='poly' coords='252,201,264,201,258,191,252,201,' title='Root' name='31'>
+        <area shape='poly' coords='282,201,294,201,288,191,282,201,' title='Root' name='32'>
+        <area shape='poly' coords='312,201,324,201,318,191,312,201,' title='Root' name='33'>
+        <area shape='poly' coords='342,201,354,201,348,191,342,201,' title='Root' name='34'>
+        <area shape='poly' coords='372,201,384,201,378,191,372,201,' title='Root' name='35'>
+        <area shape='poly' coords='402,201,414,201,408,191,402,201,' title='Root' name='36'>
+        <area shape='poly' coords='432,201,444,201,438,191,432,201,' title='Root' name='37'>
+        <area shape='poly' coords='462,201,474,201,468,191,462,201,' title='Root' name='38'>
+    </map> -->
+
+        <!-- <script type="text/javascript">
+            $(document).off("poligon_click");
+            $(document).off("poligon_enter");
+            $(document).off("keyup", "input");
+            $(document).off("keydown", "input");
+            $("#keadaan-gigi-item").off("change");
+            $("#bahan-restorasi-item").off("change");
+            $("#restorasi-item").off("change");
+            $("#protesa-item").off("change");
+            $("#save").off("click");
+
+            var max_layer = 0;
+            var mode_keadaan_gigi = {
+                "1": {
+                    fillColor: "#000000",
+                    strokeWidth: 1,
+                    strokeColor: "#000000",
+                    singkatan: "sou"
+                }, //tulisan
+                "2": {
+                    fillColor: "#000000",
+                    strokeWidth: 1,
+                    strokeColor: "#000000",
+                    singkatan: "non"
+                }, //tulisan
+                "3": {
+                    fillColor: "#000000",
+                    strokeWidth: 1,
+                    strokeColor: "#000000",
+                    singkatan: "une"
+                }, //tulisan
+                "4": {
+                    fillColor: "#000000",
+                    strokeWidth: 1,
+                    strokeColor: "#000000",
+                    singkatan: "pre"
+                }, //tulisan
+                "5": {
+                    singkatan: "imv"
+                }, //?
+                "6": {
+                    fillColor: "#000000",
+                    strokeWidth: 1,
+                    strokeColor: "#000000",
+                    singkatan: "ano"
+                }, //tulisan
+                "7": {
+                    singkatan: "dia"
+                }, //?
+                "8": {
+                    singkatan: "att"
+                }, //?
+                "9": {
+                    singkatan: "abr"
+                }, //?
+                "10": {
+                    fillColor: "transparent",
+                    strokeWidth: 3,
+                    strokeColor: "#000000",
+                    singkatan: "car"
+                },
+                "11": {
+                    fillColor: "transparent",
+                    strokeWidth: 3,
+                    strokeColor: "#000000",
+                    singkatan: "cfr"
+                },
+                "12": {
+                    fillColor: "transparent",
+                    strokeWidth: 2,
+                    strokeColor: "#000000",
+                    singkatan: "nvt"
+                },
+                "13": {
+                    fillColor: "transparent",
+                    strokeWidth: 3,
+                    strokeColor: "#000000",
+                    singkatan: "rrx"
+                },
+                "14": {
+                    fillColor: "transparent",
+                    strokeWidth: 3,
+                    strokeColor: "#000000",
+                    singkatan: "mis"
+                }
+            };
+
+            var mode_bahan_restorasi = {
+                "1": {
+                    fillColor: "#ff0000",
+                    strokeWidth: 1,
+                    strokeColor: "#000000",
+                    singkatan: "Emas"
+                },
+                "2": {
+                    fillColor: "#000000",
+                    strokeWidth: 1,
+                    strokeColor: "#000000",
+                    singkatan: "amf"
+                },
+                "3": {
+                    fillColor: "#00ff00",
+                    strokeWidth: 1,
+                    strokeColor: "#000000",
+                    singkatan: "cof"
+                },
+                "4": {
+                    fillColor: "#ff9999",
+                    strokeWidth: 1,
+                    strokeColor: "#000000",
+                    singkatan: "fis"
+                }
+            };
+
+            var mode_restorasi = {
+                "1": {
+                    fillColor: "transparent",
+                    strokeWidth: 3,
+                    strokeColor: "#000000",
+                    singkatan: "fmc"
+                },
+                "2": {
+                    fillColor: "rgba(0, 255, 0, 0.5)",
+                    strokeWidth: 3,
+                    strokeColor: "#00FF00",
+                    singkatan: "poc"
+                },
+                "3": {
+                    fillColor: "transparent",
+                    strokeWidth: 3,
+                    strokeColor: "#007F00",
+                    singkatan: "mpc"
+                },
+                "4": {
+                    fillColor: "transparent",
+                    strokeWidth: 3,
+                    strokeColor: "#007f7f",
+                    singkatan: "gmc"
+                },
+                "5": {
+                    fillColor: "#000000",
+                    strokeWidth: 1,
+                    strokeColor: "#000000",
+                    singkatan: "rct"
+                },
+                "6": {
+                    fillColor: "#000000",
+                    strokeWidth: 1,
+                    strokeColor: "#000000",
+                    singkatan: "ipx"
+                }, //tulisan
+                "7": {
+                    fillColor: "rgba(255, 255, 0, 0.5)",
+                    strokeWidth: 4,
+                    strokeColor: "#aaaa00",
+                    singkatan: "meb"
+                },
+                "8": {
+                    fillColor: "rgba(0, 255, 0, 0.5)",
+                    strokeWidth: 4,
+                    strokeColor: "#00FF00",
+                    singkatan: "pob"
+                },
+                "9": {
+                    singkatan: "pon"
+                },
+                "10": {
+                    singkatan: "abu"
+                }
+            };
+
+            var mode_protesa = {
+                "1": {
+                    fillColor: "#000000",
+                    strokeWidth: 1,
+                    strokeColor: "#000000",
+                    singkatan: "prd"
+                }, //tulisan
+                "2": {
+                    fillColor: "#000000",
+                    strokeWidth: 1,
+                    strokeColor: "#000000",
+                    singkatan: "fld"
+                }, //tulisan
+                "3": {
+                    singkatan: "acr"
+                }
+            };
+
+            var mode = {
+                mode: "idle",
+                option: "0"
+            };
+            var y_offset = 20;
+            var last_length = 0;
+
+
+            $(document).ready(function() {
+
+                $("#save").on("click", function() {
+                    getData();
+                });
+
+                $("td[class='col-xs-1 tabel-gigi-head clickable']").on("click", function() {
+                    var nomor = $(this).attr("tag");
+                    var isDisabled = $("#t" + nomor).prop("disabled");
+                    console.log(isDisabled);
+                    if (!isDisabled) {
+                        $(this).find("span").each(function() {
+                            if ($(this).attr("tag") === nomor) {
+                                $(this).css("text-decoration", "line-through");
+                                $("#t" + nomor).prop("disabled", true);
+                                strikeLayer(true, nomor);
+                            }
+                        });
+                    } else {
+                        $(this).find("span").each(function() {
+                            if ($(this).attr("tag") === nomor) {
+                                $(this).css("text-decoration", "none");
+                                $("#t" + nomor).prop("disabled", false);
+                                strikeLayer(false, nomor);
+                            }
+                        });
+                    }
+                });
+
+                $("#menu-keadaan-gigi-item").on("change", function() {
+                    mode.mode = "keadaan-gigi";
+                    mode.option = $(this).val();
+                });
+
+                $("#menu-bahan-restorasi-item").on("change", function() {
+                    mode.mode = "bahan-restorasi";
+                    mode.option = $(this).val();
+                });
+
+                $("#menu-restorasi-item").on("click", function() {
+                    mode.mode = "restorasi";
+                    mode.option = $(this).val();
+                });
+
+                $("#menu-protesa-item").on("click", function() {
+                    mode.mode = "protesa";
+                    mode.option = $(this).val();
+                });
+
+                //persiapan gambar backgorund:
+                $('canvas').drawImage({
+                    source: "images/odontogram.png",
+                    layer: true,
+                    name: 'bgnd',
+                    x: 0,
+                    y: y_offset,
+                    fromCenter: false
+                });
+
+                //--------------------------------------------- poligon gigi
+                var poligon = {};
+                $("map[name=gigi]").find("area").each(function() {
+                    var poli = {}
+                    poli['name'] = $(this).attr("name");
+                    poli['title'] = $(this).attr("title");
+                    var coor = $(this).attr("coords").split(",");
+                    var coords = {}
+                    var j = 1;
+                    coords['type'] = 'line';
+                    for (i = 0; i < coor.length - 1; i = i + 2) {
+                        coords['x' + j] = parseInt(coor[i]);
+                        coords['y' + j] = parseInt(coor[i + 1]) + y_offset;
+                        j++;
+                    }
+                    var poly = {};
+                    poly['layer'] = true;
+                    poly['name'] = $(this).attr("name") + "-" + $(this).attr("title"),
+                        poly['strokeStyle'] = 'transparent';
+                    poly['strokeWidth'] = 1;
+                    //poly['fillStyle'] = '#000000';
+                    poly['p1'] = coords;
+                    poly['click'] = function() {
+                        var item = {
+                            name: poli['name'],
+                            title: poli['title'],
+                            updateText: true
+                        };
+                        $(document).trigger("poligon_click", item);
+                    };
+                    poly['mouseover'] = function() {
+                        var item = {
+                            name: poli['name'],
+                            title: poli['title']
+                        };
+                        $(document).trigger("poligon_enter", item);
+                    };
+                    poli['poligon'] = poly;
+                    poligon[$(this).attr("name") + "-" + $(this).attr("title")] = poli;
+                    $('canvas').drawPath(poli['poligon']);
+                    max_layer++;
+                });
+
+                var root = {};
+                $("map[name=root]").find("area").each(function() {
+                    var poli = {}
+                    poli['name'] = $(this).attr("name");
+                    poli['title'] = $(this).attr("title");
+                    var coor = $(this).attr("coords").split(",");
+                    var coords = {}
+                    var j = 1;
+                    coords['type'] = 'line';
+                    for (i = 0; i < coor.length - 1; i = i + 2) {
+                        coords['x' + j] = parseInt(coor[i]);
+                        coords['y' + j] = parseInt(coor[i + 1]) + y_offset;
+                        j++;
+                    }
+                    var poly = {};
+                    poly['layer'] = true;
+                    poly['name'] = $(this).attr("name") + "-" + $(this).attr("title"),
+                        poly['strokeStyle'] = 'transparent';
+                    poly['strokeWidth'] = 1;
+                    //poly['fillStyle'] = '#000000';
+                    poly['p1'] = coords;
+                    poly['click'] = function() {
+                        var item = {
+                            name: poli['name'],
+                            title: poli['title'],
+                            updateText: true
+                        };
+                        $(document).trigger("poligon_click", item);
+                    };
+                    poli['poligon'] = poly;
+                    root[$(this).attr("name") + "-" + $(this).attr("title")] = poli;
+                    $('canvas').drawPath(poli['poligon']);
+                    max_layer++;
+                });
+
+                var sisa_akar = {};
+                $("map[name=sisa_akar]").find("area").each(function() {
+                    var poli = {}
+                    poli['name'] = $(this).attr("name");
+                    poli['title'] = $(this).attr("title");
+                    var coor = $(this).attr("coords").split(",");
+                    var coords = {}
+                    var j = 1;
+                    coords['type'] = 'line';
+                    for (i = 0; i < coor.length - 1; i = i + 2) {
+                        coords['x' + j] = parseInt(coor[i]);
+                        coords['y' + j] = parseInt(coor[i + 1]) + y_offset;
+                        j++;
+                    }
+                    var poly = {};
+                    poly['layer'] = true;
+                    poly['name'] = $(this).attr("name") + "-" + $(this).attr("title"),
+                        poly['strokeStyle'] = 'transparent';
+                    poly['strokeWidth'] = 1;
+                    //poly['fillStyle'] = '#000000';
+                    poly['p1'] = coords;
+                    poly['click'] = function() {
+                        var item = {
+                            name: poli['name'],
+                            title: poli['title'],
+                            updateText: true
+                        };
+                        $(document).trigger("poligon_click", item);
+                    };
+                    poli['poligon'] = poly;
+                    sisa_akar[$(this).attr("name") + "-" + $(this).attr("title")] = poli;
+                    $('canvas').drawPath(poli['poligon']);
+                    max_layer++;
+                });
+
+                var gigi_hilang = {};
+                $("map[name=missing]").find("area").each(function() {
+                    var poli = {};
+                    poli['name'] = $(this).attr("name");
+                    poli['title'] = $(this).attr("title");
+                    var coor = $(this).attr("coords").split(",");
+                    var coords1 = {};
+                    var coords2 = {};
+                    var j = 1;
+                    coords1['type'] = 'line';
+                    coords2['type'] = 'line';
+                    for (i = 0; i < coor.length / 2 - 1; i = i + 2) {
+                        coords1['x' + j] = parseInt(coor[i]);
+                        coords1['y' + j] = parseInt(coor[i + 1]) + y_offset;
+                        j++;
+                    }
+                    j = 1;
+                    for (i = 0; i < coor.length / 2 - 1; i = i + 2) {
+                        coords2['x' + j] = parseInt(coor[i + 4]);
+                        coords2['y' + j] = parseInt(coor[i + 5]) + y_offset;
+                        j++;
+                    }
+                    var poly = {};
+                    poly['layer'] = true;
+                    poly['name'] = $(this).attr("name") + "-" + $(this).attr("title"),
+                        poly['strokeStyle'] = 'transparent';
+                    poly['strokeWidth'] = 1;
+                    //poly['fillStyle'] = '#000000';
+                    poly['p1'] = coords1;
+                    poly['p2'] = coords2;
+                    poly['click'] = function() {
+                        var item = {
+                            name: poli['name'],
+                            title: poli['title'],
+                            updateText: true
+                        };
+                        $(document).trigger("poligon_click", item);
+                    };
+                    poli['poligon'] = poly;
+                    gigi_hilang[$(this).attr("name") + "-" + $(this).attr("title")] = poli;
+                    $('canvas').drawPath(poli['poligon']);
+                    max_layer++;
+                });
+
+                var fraktur = {};
+                $("map[name=fraktur]").find("area").each(function() {
+                    var poli = {};
+                    poli['name'] = $(this).attr("name");
+                    poli['title'] = $(this).attr("title");
+                    var coor = $(this).attr("coords").split(",");
+                    var coords1 = {};
+                    var coords2 = {};
+                    var coords3 = {};
+                    var coords4 = {};
+                    var j = 1;
+                    coords1['type'] = 'line';
+                    coords2['type'] = 'line';
+                    coords3['type'] = 'line';
+                    coords4['type'] = 'line';
+                    for (i = 0; i < coor.length / 4 - 1; i = i + 2) {
+                        coords1['x' + j] = parseInt(coor[i]);
+                        coords1['y' + j] = parseInt(coor[i + 1]) + y_offset;
+                        j++;
+                    }
+                    j = 1;
+                    for (i = 0; i < coor.length / 4 - 1; i = i + 2) {
+                        coords2['x' + j] = parseInt(coor[i + 4]);
+                        coords2['y' + j] = parseInt(coor[i + 5]) + y_offset;
+                        j++;
+                    }
+                    j = 1;
+                    for (i = 0; i < coor.length / 4 - 1; i = i + 2) {
+                        coords3['x' + j] = parseInt(coor[i + 8]);
+                        coords3['y' + j] = parseInt(coor[i + 9]) + y_offset;
+                        j++;
+                    }
+                    j = 1;
+                    for (i = 0; i < coor.length / 4 - 1; i = i + 2) {
+                        coords4['x' + j] = parseInt(coor[i + 12]);
+                        coords4['y' + j] = parseInt(coor[i + 13]) + y_offset;
+                        j++;
+                    }
+                    var poly = {};
+                    poly['layer'] = true;
+                    poly['name'] = $(this).attr("name") + "-" + $(this).attr("title"),
+                        poly['strokeStyle'] = 'transparent';
+                    poly['strokeWidth'] = 1;
+                    //poly['fillStyle'] = '#000000';
+                    poly['p1'] = coords1;
+                    poly['p2'] = coords2;
+                    poly['p3'] = coords3;
+                    poly['p4'] = coords4;
+                    poly['click'] = function() {
+                        var item = {
+                            name: poli['name'],
+                            title: poli['title'],
+                            updateText: true
+                        };
+                        $(document).trigger("poligon_click", item);
+                    };
+                    poli['poligon'] = poly;
+                    fraktur[$(this).attr("name") + "-" + $(this).attr("title")] = poli;
+                    $('canvas').drawPath(poli['poligon']);
+                    max_layer++;
+                });
+
+                var crown = {};
+                $("map[name=crown]").find("area").each(function() {
+                    var poli = {}
+                    poli['name'] = $(this).attr("name");
+                    poli['title'] = $(this).attr("title");
+                    var coor = $(this).attr("coords").split(",");
+                    var coords = {}
+                    var j = 1;
+                    coords['type'] = 'line';
+                    for (i = 0; i < coor.length - 1; i = i + 2) {
+                        coords['x' + j] = parseInt(coor[i]);
+                        coords['y' + j] = parseInt(coor[i + 1]) + y_offset;
+                        j++;
+                    }
+                    var poly = {};
+                    poly['layer'] = true;
+                    poly['name'] = $(this).attr("name") + "-" + $(this).attr("title"),
+                        poly['strokeStyle'] = 'transparent';
+                    poly['strokeWidth'] = 1;
+                    //poly['fillStyle'] = '#000000';
+                    poly['p1'] = coords;
+                    poly['click'] = function() {
+                        var item = {
+                            name: poli['name'],
+                            title: poli['title'],
+                            updateText: true
+                        };
+                        $(document).trigger("poligon_click", item);
+                    };
+                    poly['mouseover'] = function() {
+                        var item = {
+                            name: poli['name'],
+                            title: poli['title']
+                        };
+                        $(document).trigger("poligon_enter", item);
+                    };
+                    poli['poligon'] = poly;
+                    crown[$(this).attr("name") + "-" + $(this).attr("title")] = poli;
+                    $('canvas').drawPath(poli['poligon']);
+                    max_layer++;
+                });
+
+                $(document).on("poligon_enter", function(event, item) {
+                    //setting untuk interaksi layer
+                    switch (mode.mode) {
+                        case "keadaan-gigi":
+                            if (mode_keadaan_gigi[mode.option].singkatan === "car") {
+                                $('canvas').moveLayer(item.name + "-M", max_layer - 0); //.drawLayers();
+                                $('canvas').moveLayer(item.name + "-O", max_layer - 1); //.drawLayers();
+                                $('canvas').moveLayer(item.name + "-D", max_layer - 2); //.drawLayers();
+                                $('canvas').moveLayer(item.name + "-V", max_layer - 3); //.drawLayers();
+                                $('canvas').moveLayer(item.name + "-L", max_layer - 4); //.drawLayers();
+                            } else {
+                                $('canvas').moveLayer(item.name + "-Crown", max_layer - 0) //.drawLayers();
+                            }
+                            break;
+                        case "bahan-restorasi":
+                            $('canvas').moveLayer(item.name + "-M", max_layer - 0) //.drawLayers();
+                            $('canvas').moveLayer(item.name + "-O", max_layer - 1) //.drawLayers();
+                            $('canvas').moveLayer(item.name + "-D", max_layer - 2) //.drawLayers();
+                            $('canvas').moveLayer(item.name + "-V", max_layer - 3) //.drawLayers();
+                            $('canvas').moveLayer(item.name + "-L", max_layer - 4) //.drawLayers();
+                            break;
+                        case "restorasi":
+                            $('canvas').moveLayer(item.name + "-Crown", max_layer - 0) //.drawLayers();
+                            break;
+                        case "protesa":
+                            $('canvas').moveLayer(item.name + "-Crown", max_layer - 0) //.drawLayers();
+                            break;
+                    }
+                });
+
+                $(document).on("poligon_click", function(event, item) {
+                    var fs;
+                    var st;
+                    var ss;
+                    if (mode.mode === "keadaan-gigi") {
+                        fs = mode_keadaan_gigi[mode.option].fillColor;
+                        st = mode_keadaan_gigi[mode.option].strokeWidth;
+                        ss = mode_keadaan_gigi[mode.option].strokeColor;
+                        var singkatan_check = ["rct", "nvt"];
+                        var found = $.inArray(mode_keadaan_gigi[mode.option].singkatan, singkatan_check);
+                        if (found != -1) {
+                            item.title = "Root";
+                        }
+                        singkatan_check = ["rrx"];
+                        found = $.inArray(mode_keadaan_gigi[mode.option].singkatan, singkatan_check);
+                        if (found != -1) {
+                            item.title = "rrx";
+                        }
+
+                        singkatan_check = ["mis"];
+                        found = $.inArray(mode_keadaan_gigi[mode.option].singkatan, singkatan_check);
+                        if (found != -1) {
+                            item.title = "mis";
+                        }
+
+                        singkatan_check = ["cfr"];
+                        found = $.inArray(mode_keadaan_gigi[mode.option].singkatan, singkatan_check);
+                        if (found != -1) {
+                            item.title = "cfr";
+                        }
+
+                        singkatan_check = ["sou", "non", "une", "pre", "ano"];
+                        found = $.inArray(mode_keadaan_gigi[mode.option].singkatan, singkatan_check);
+                        if (found != -1) {
+                            newLayer(item, "text", mode_keadaan_gigi[mode.option].singkatan);
+                            item.title = "text";
+                        }
+
+                        if (item.updateText) {
+                            updateText({
+                                name: item.name,
+                                title: item.title,
+                                singkatan: mode_keadaan_gigi[mode.option].singkatan,
+                                updateText: true
+                            });
+                        }
+
+                    } else if (mode.mode === "bahan-restorasi") {
+                        console.log(mode);
+                        fs = mode_bahan_restorasi[mode.option].fillColor;
+                        st = mode_bahan_restorasi[mode.option].strokeWidth;
+                        ss = mode_bahan_restorasi[mode.option].strokeColor;
+                        if (item.updateText) {
+                            updateText({
+                                name: item.name,
+                                title: item.title,
+                                singkatan: mode_bahan_restorasi[mode.option].singkatan,
+                                updateText: true
+                            });
+                        }
+                    } else if (mode.mode === "restorasi") {
+                        console.log(mode)
+                        fs = mode_restorasi[mode.option].fillColor;
+                        st = mode_restorasi[mode.option].strokeWidth;
+                        ss = mode_restorasi[mode.option].strokeColor;
+                        var test_array = ["fmc", "poc", "mpc", "gmc"];
+                        var found = $.inArray(mode_restorasi[mode.option].singkatan, test_array);
+                        if (found != -1) {
+                            //visualnya di layer crown. ga perlu di set apapun
+                        }
+                        test_array = ["rct"];
+                        found = $.inArray(mode_restorasi[mode.option].singkatan, test_array);
+                        if (found != -1) {
+                            //visualnya di layer root.
+                            item.title = "Root"
+                        }
+                        test_array = ["ipx"];
+                        found = $.inArray(mode_restorasi[mode.option].singkatan, test_array);
+                        if (found != -1) {
+                            newLayer(item, "text", mode_restorasi[mode.option].singkatan);
+                            item.title = "text";
+                        }
+                        var bridge_array = ["pob", "meb"];
+                        found = $.inArray(mode_restorasi[mode.option].singkatan, bridge_array);
+                        if (found != -1) {
+                            bridgeLayer(item);
+                        }
+
+                        if (item.updateText) {
+                            updateText({
+                                name: item.name,
+                                title: item.title,
+                                singkatan: mode_restorasi[mode.option].singkatan,
+                                updateText: true
+                            });
+                        }
+                    } else if (mode.mode === "protesa") {
+                        fs = mode_protesa[mode.option].fillColor;
+                        st = mode_protesa[mode.option].strokeWidth;
+                        ss = mode_protesa[mode.option].strokeColor;
+                        var test_array = ["prd", "fld"];
+                        var found = $.inArray(mode_protesa[mode.option].singkatan, test_array);
+
+                        if (found != -1) {
+                            newLayer(item, "text", mode_protesa[mode.option].singkatan);
+                            item.title = "text";
+                        }
+
+                        if (item.updateText) {
+                            updateText({
+                                name: item.name,
+                                title: item.title,
+                                singkatan: mode_protesa[mode.option].singkatan,
+                                updateText: true
+                            });
+                        }
+                    } else if (mode.mode === "reset") {
+                        if (mode.option === "all") {
+                            fs = "transparent";
+                            st = 1;
+                            ss = "transparent";
+                            $('canvas').animateLayer(item.name + "-" + "M", {
+                                fillStyle: fs,
+                                strokeWidth: st,
+                                strokeStyle: ss
+                            });
+                            $('canvas').animateLayer(item.name + "-" + "O", {
+                                fillStyle: fs,
+                                strokeWidth: st,
+                                strokeStyle: ss
+                            });
+                            $('canvas').animateLayer(item.name + "-" + "D", {
+                                fillStyle: fs,
+                                strokeWidth: st,
+                                strokeStyle: ss
+                            });
+                            $('canvas').animateLayer(item.name + "-" + "V", {
+                                fillStyle: fs,
+                                strokeWidth: st,
+                                strokeStyle: ss
+                            });
+                            $('canvas').animateLayer(item.name + "-" + "L", {
+                                fillStyle: fs,
+                                strokeWidth: st,
+                                strokeStyle: ss
+                            });
+                            $('canvas').animateLayer(item.name + "-" + "Crown", {
+                                fillStyle: fs,
+                                strokeWidth: st,
+                                strokeStyle: ss
+                            });
+                            $('canvas').animateLayer(item.name + "-" + "mis", {
+                                fillStyle: fs,
+                                strokeWidth: st,
+                                strokeStyle: ss
+                            });
+                            $('canvas').animateLayer(item.name + "-" + "Root", {
+                                fillStyle: fs,
+                                strokeWidth: st,
+                                strokeStyle: ss
+                            });
+                            $('canvas').animateLayer(item.name + "-" + "cfr", {
+                                fillStyle: fs,
+                                strokeWidth: st,
+                                strokeStyle: ss
+                            });
+                            $('canvas').animateLayer(item.name + "-" + "rrx", {
+                                fillStyle: fs,
+                                strokeWidth: st,
+                                strokeStyle: ss
+                            });
+
+                            var h = $('canvas').getLayer(item.name + "-" + "text");
+                            if (h != undefined) {
+                                $('canvas').removeLayer(item.name + "-" + "text");
+                            }
+                            h = $('canvas').getLayer(item.name + "-" + "bridge");
+                            if (h != undefined) {
+                                $('canvas').removeLayer(item.name + "-" + "bridge");
+                            }
+                        }
+                    }
+                    console.log("click:" + item.name + "-" + item.title);
+                    $('canvas').animateLayer(item.name + "-" + item.title, {
+                        fillStyle: fs,
+                        strokeWidth: st,
+                        strokeStyle: ss
+                    });
+
+                    clearMenu(mode.mode);
+                    mode.mode = "idle";
+                    mode.option = "0";
+                    $("#t" + item.name).focus();
+                });
+
+
+                function clearMenu(mode) {
+                    $("#menu-" + mode + "-item").val("0");
+                    var combobox = $("#menu-" + mode + "-item").kendoComboBox();
+                    combobox.select(-1);
+                }
+
+                function bridgeLayer(item) {
+                    var oo = $('canvas').getLayer(item.name + "-" + item.title).p1;
+                    var gigi_line = [
+                        ["18", "17", "16", "15", "14", "13", "12", "11", "21", "22", "23", "24", "25", "26", "27", "28"],
+                        ["55", "54", "53", "52", "51", "61", "62", "63", "64", "65"],
+                        ["85", "84", "83", "82", "81", "71", "72", "73", "74", "75"],
+                        ["48", "47", "46", "45", "44", "43", "42", "41", "31", "32", "33", "34", "35", "36", "37", "38"]
+                    ]
+
+                    var idx_gigi, idx_baris, flipper;
+                    for (i = 0; i < gigi_line.length; i++) {
+                        idx_gigi = $.inArray(item.name, gigi_line[i]);
+                        if (idx_gigi != -1) {
+                            idx_baris = i;
+                            break;
+                        }
+                    }
+                    var offset;
+                    if (idx_baris < 2) {
+                        offset = 0;
+                        flipper = 1;
+                    } else {
+                        offset = 30;
+                        flipper = -1;
+                    }
+                    if (idx_gigi == 0) {
+                        $('canvas').drawLine({ //ujung kiri
+                            layer: true,
+                            name: item.name + "-bridge",
+                            data: {
+                                desc: "ujung-kiri"
+                            },
+                            strokeStyle: '#000000',
+                            strokeWidth: 4,
+                            x1: oo.x1 + 15,
+                            y1: oo.y1 + offset,
+                            x2: oo.x1 + 15,
+                            y2: oo.y1 + offset - 12 * flipper,
+                            x3: oo.x2,
+                            y3: oo.y1 + offset - 12 * flipper,
+                            fromCenter: false,
+                        });
+                    } else if (idx_gigi == gigi_line[idx_baris].length - 1) {
+                        $('canvas').drawLine({ //ujung kanan
+                            layer: true,
+                            name: item.name + "-bridge",
+                            data: {
+                                desc: "ujung-kanan"
+                            },
+                            strokeStyle: '#000000',
+                            strokeWidth: 4,
+                            x1: oo.x1 + 15,
+                            y1: oo.y1 + offset,
+                            x2: oo.x1 + 15,
+                            y2: oo.y1 + offset - 12 * flipper,
+                            x3: oo.x1,
+                            y3: oo.y1 + offset - 12 * flipper,
+                            fromCenter: false,
+                        });
+                    } else {
+                        var kiri = $('canvas').getLayer((gigi_line[idx_baris][idx_gigi - 1]).toString() + "-bridge");
+                        var kanan = $('canvas').getLayer((gigi_line[idx_baris][idx_gigi + 1]).toString() + "-bridge");
+                        if ((kiri == undefined) && (kanan != undefined)) {
+                            if (kanan.data.desc === "ujung-kiri") {
+                                var nama = kanan.name.split("-");
+                                var koord = $('canvas').getLayer(nama[0] + "-Crown").p1;
+                                $('canvas').removeLayer(kanan.name);
+                                $('canvas').drawLine({
+                                    layer: true,
+                                    name: nama[0] + "-bridge",
+                                    data: {
+                                        desc: "bridge"
+                                    },
+                                    strokeStyle: '#000000',
+                                    strokeWidth: 4,
+                                    x1: koord.x1,
+                                    y1: koord.y1 + offset - 12 * flipper,
+                                    x2: koord.x2,
+                                    y2: koord.y1 + offset - 12 * flipper,
+                                    fromCenter: false,
+                                });
+                            }
+
+                            $('canvas').drawLine({ //ujung kiri
+                                layer: true,
+                                name: item.name + "-bridge",
+                                data: {
+                                    desc: "ujung-kiri"
+                                },
+                                strokeStyle: '#000000',
+                                strokeWidth: 4,
+                                x1: oo.x1 + 15,
+                                y1: oo.y1 + offset,
+                                x2: oo.x1 + 15,
+                                y2: oo.y1 + offset - 12 * flipper,
+                                x3: oo.x2,
+                                y3: oo.y1 + offset - 12 * flipper,
+                                fromCenter: false,
+                            });
+                        } else if ((kiri != undefined) && (kanan == undefined)) {
+                            if (kiri.data.desc === "ujung-kanan") {
+                                var nama = kiri.name.split("-");
+                                var koord = $('canvas').getLayer(nama[0] + "-Crown").p1;
+                                $('canvas').removeLayer(kiri.name);
+                                $('canvas').drawLine({
+                                    layer: true,
+                                    name: nama[0] + "-bridge",
+                                    data: {
+                                        desc: "bridge"
+                                    },
+                                    strokeStyle: '#000000',
+                                    strokeWidth: 4,
+                                    x1: koord.x1,
+                                    y1: koord.y1 + offset - 12 * flipper,
+                                    x2: koord.x2,
+                                    y2: koord.y1 + offset - 12 * flipper,
+                                    fromCenter: false,
+                                });
+                            }
+                            $('canvas').drawLine({ //ujung kanan
+                                layer: true,
+                                name: item.name + "-bridge",
+                                data: {
+                                    desc: "ujung-kanan"
+                                },
+                                strokeStyle: '#000000',
+                                strokeWidth: 4,
+                                x1: oo.x1 + 15,
+                                y1: oo.y1 + offset,
+                                x2: oo.x1 + 15,
+                                y2: oo.y1 + offset - 12 * flipper,
+                                x3: oo.x1,
+                                y3: oo.y1 + offset - 12 * flipper,
+                                fromCenter: false,
+                            });
+                        } else if ((kiri != undefined) && (kanan != undefined)) {
+                            $('canvas').drawLine({
+                                layer: true,
+                                name: item.name + "-bridge",
+                                data: {
+                                    desc: "bridge"
+                                },
+                                strokeStyle: '#000000',
+                                strokeWidth: 4,
+                                x1: oo.x1,
+                                y1: oo.y1 + offset - 12 * flipper,
+                                x2: oo.x2,
+                                y2: oo.y1 + offset - 12 * flipper,
+                                fromCenter: false,
+                            });
+                        } else if ((kiri == undefined) && (kanan == undefined)) {
+                            $('canvas').drawLine({
+                                layer: true,
+                                name: item.name + "-bridge",
+                                data: {
+                                    desc: "bridge"
+                                },
+                                strokeStyle: '#000000',
+                                strokeWidth: 4,
+                                x1: oo.x1,
+                                y1: oo.y1 + offset - 12 * flipper,
+                                x2: oo.x2,
+                                y2: oo.y1 + offset - 12 * flipper,
+                                fromCenter: false,
+                            });
+                        }
+                    }
+
+                }
+
+                function newLayer(item, new_item_title, text_to_display) {
+                    var oo = $('canvas').getLayer(item.name + "-" + item.title).p1;
+                    var test = $('canvas').getLayer(item.name + "-" + new_item_title);
+                    var top = ["18", "17", "16", "15", "14", "13", "12", "11", "21", "22", "23", "24", "25", "26", "27", "28", "55", "54", "53", "52", "51", "61", "62", "63", "64", "65"]
+                    var offset;
+                    var of_test = $.inArray(item.name, top);
+                    if (of_test != -1) {
+                        offset = -30;
+                    } else {
+                        offset = 46;
+                    }
+                    if (test != undefined) {
+                        $('canvas').removeLayer(item.name + "-" + new_item_title);
+                    }
+                    $('canvas').drawText({
+                        layer: true,
+                        name: item.name + "-" + new_item_title,
+                        fillStyle: '#000000',
+                        strokeStyle: '#000000',
+                        strokeWidth: 1,
+                        x: oo.x1,
+                        y: oo.y1 + offset,
+                        fontSize: 13,
+                        fontFamily: 'Verdana, sans-serif',
+                        fromCenter: false,
+                        text: text_to_display.toUpperCase()
+                    });
+                }
+
+                function strikeLayer(create, nama) {
+                    if (create) {
+                        var oo = $('canvas').getLayer(nama + "-Crown").p1;
+                        console.log(nama + "-Strike");
+                        $('canvas').drawLine({
+                            layer: true,
+                            name: nama + "-Strike",
+                            fillStyle: '#000000',
+                            strokeStyle: '#000000',
+                            strokeWidth: 7,
+                            x1: oo.x1,
+                            y1: oo.y1 + 15,
+                            x2: oo.x2,
+                            y2: oo.y1 + 15,
+                            fromCenter: false,
+                        });
+                    } else {
+                        $('canvas').animateLayer(nama + "-Strike", {
+                            fillStyle: "transparent",
+                            strokeWidth: 1,
+                            strokeStyle: "transparent"
+                        });
+                        $('canvas').removeLayer(nama + "-Strike");
+                    }
+                }
+
+                function updateText(obj) {
+                    var current = $("#t" + obj.name).val();
+                    var headless = ["Crown", "Root", "text", "mis", "rrx", "cfr"];
+                    var text_single = ["sou", "non", "une", "pre", "ano", "ipx", "prd", "fld"];
+                    var root_canal = ["rct", "nvt"];
+                    var update, update_is_text, update_is_root_canal
+                    var is_headless = $.inArray(obj.title, headless);
+
+                    update_is_text = $.inArray(obj.singkatan, text_single);
+                    update_is_root_canal = $.inArray(obj.singkatan, root_canal);
+
+                    if (is_headless != -1) {
+                        update = obj.singkatan;
+                    } else {
+                        update = obj.title + " " + obj.singkatan;
+                    }
+
+                    //check apakah sudah ada di MODVL sebelumnya:
+                    var check;
+                    if (current != undefined) {
+                        check = current.split(";");
+                    } else {
+                        check = [];
+                    }
+                    current = "";
+
+                    // for(j=0;j<check.length;j++){
+                    //     if(check[j].substring(0,1)===obj.title){
+                    //         check[j]="";
+                    //     }
+                    // }
+
+                    for (j = 0; j < check.length; j++) {
+                        if (check[j].length > 0) {
+
+                            var overrided_text = $.inArray(check[j], text_single);
+                            if ((overrided_text != -1) && (update_is_text != -1)) {
+                                check[j] = "";
+                            }
+
+                            var root_canal_result = $.inArray(check[j], root_canal);
+                            if ((update_is_root_canal != -1) && (root_canal_result != -1)) {
+                                check[j] = "";
+                            }
+                        }
+                    }
+
+                    for (i = 0; i < check.length; i++) {
+                        if (check[i].length > 0) {
+                            current = current + check[i] + ";";
+                        }
+                    }
+                    $("#t" + obj.name).val(current.replaceAll(";;", ";") + update);
+                }
+
+                $(document).on("keydown", "input", function(event) {
+                    last_length = $(this).val().length;
+                });
+
+                $(document).on("keyup", "input", function(event) {
+                    var lastkey = $(this).val().substring($(this).val().length - 1, $(this).val().length);
+                    var update = [];
+                    var key = event.keyCode || event.charCode;
+                    if ($(this).val().length > 0) {
+                        if ((lastkey === ";") || (key == 8 || key == 46)) {
+                            var frac = $(this).val().split(";");
+                            for (j = 0; j < frac.length; j++) {
+                                var frac2 = frac[j].split(" ");
+                                if (frac2.length == 2) { //gigi plus spesial: caries
+                                    var mode_keadaan_gigi_check = ["car"];
+                                    var mode_bahan_restorasi_check = ["amf", "cof", "fis"];
+                                    var test = $.inArray(frac2[1], mode_keadaan_gigi_check);
+                                    var mode_switch = "";
+                                    var option = "";
+
+                                    if (test != -1) {
+                                        mode_switch = "keadaan-gigi";
+                                        option = cariKunci(mode_keadaan_gigi, frac2[1]);
+                                    }
+                                    test = $.inArray(frac2[1], mode_bahan_restorasi_check);
+                                    if (test != -1) {
+                                        mode_switch = "bahan-restorasi";
+                                        option = cariKunci(mode_bahan_restorasi, frac2[1]);
+                                    }
+
+                                    update.push({
+                                        option: option,
+                                        mode: mode_switch,
+                                        name: $(this).attr("id").substring(1, $(this).attr("id").length),
+                                        title: frac2[0],
+                                        singkatan: frac2[1]
+                                    });
+                                } else if (frac2.length == 1) {
+                                    //var mode_keadaan_gigi_check = ["Crown", "Root", "text","mis","rrx","cfr"];
+                                    var mode_keadaan_gigi_check = ["sou", "non", "une", "pre", "ano", "nvt", "rrx", "mis", "cfr"];
+                                    var mode_restorasi_check = ["ipx", "fmc", "poc", "mpc", "gmc", "rct", "pob", "meb"];
+                                    var mode_protesa_check = ["prd", "fld"];
+
+                                    var title = "";
+                                    var mode_switch = "";
+                                    var option = "";
+                                    var test = $.inArray(frac2[0], mode_keadaan_gigi_check);
+                                    if (test != -1) {
+                                        title = "Crown";
+                                        mode_switch = "keadaan-gigi";
+                                        option = cariKunci(mode_keadaan_gigi, frac2[0]);
+                                    }
+
+                                    test = $.inArray(frac2[0], mode_restorasi_check);
+                                    if (test != -1) {
+                                        title = "Crown";
+                                        mode_switch = "restorasi";
+                                        option = cariKunci(mode_restorasi, frac2[0]);
+                                    }
+
+                                    test = $.inArray(frac2[0], mode_protesa_check);
+                                    if (test != -1) {
+                                        title = "Crown";
+                                        mode_switch = "protesa";
+                                        option = cariKunci(mode_protesa, frac2[0]);
+                                    }
+
+                                    if (title.length > 0) {
+                                        update.push({
+                                            option: option,
+                                            mode: mode_switch,
+                                            name: $(this).attr("id").substring(1, $(this).attr("id").length),
+                                            title: title,
+                                            singkatan: frac2[0]
+                                        });
+                                    }
+                                }
+                            }
+                        }
+                        for (j = 0; j < update.length; j++) {
+                            mode.mode = update[j].mode;
+                            mode.option = update[j].option;
+                            $(document).trigger("poligon_click", {
+                                name: update[j].name,
+                                title: update[j].title,
+                                updateText: false
+                            });
+                        }
+                    } else {
+                        if (last_length != 0) {
+                            mode.mode = "reset";
+                            mode.option = "all";
+                            $(document).trigger("poligon_click", {
+                                name: $(this).attr("id").substring(1, $(this).attr("id").length),
+                                title: "M",
+                                updateText: false
+                            });
+                        }
+                    }
+                    //isi
+
+                });
+
+
+                function getData() {
+                    var all_data = [];
+                    $("#odontogram").find("input").each(function() {
+                        var data = {};
+                        data[$(this).attr("id")] = {
+                            disabled: $(this).prop("disabled"),
+                            value: $(this).val()
+                        };
+                        all_data.push(data);
+                    });
+                    console.log(all_data);
+                    return all_data
+                }
+
+            }); //end doc ready
+
+
+            function cariKunci(obj, search_key) {
+                var kunci = Object.keys(obj);
+                for (kun = 0; kun < kunci.length; kun++) {
+                    if (obj[kunci[kun]].singkatan === search_key) {
+                        //option = kunci[kun];
+                        return kunci[kun];
+                        break;
+                    }
+                }
+            }
+        </script> -->
+        <!-- <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div> -->
+    </div>
+</div>

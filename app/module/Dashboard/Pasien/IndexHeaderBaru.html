@@ -1,0 +1,69 @@
+<div ng-controller="DashboarPasienCtrl"> <!-- duplicate from Dashboard\Pasien\Index.html -->
+    <div class="grid_12">
+        <div class="grid_12">
+            <div class=' grid_12 panel panel-default'>
+                <div class='panel-heading'>
+                    <span c-translate>Data Pasien</span>
+                    <!--<div class="panel-place">
+                         <a ng-hide='hideButtonAdd' class="
+                         " ng-click="cetakLaporan()" style="margin-left: 0;width: 100px;height: 1.2em;font-size: 20px;position: absolute;top: 5px;right: -50px;">
+                            <div class="cd-timeline-img cd-picture add animated">
+                                <img src="stylesheets/cetak.png" alt="Picture">
+                            </div>
+                        </a>
+                    </div>-->
+                </div>
+                <div class='panel-body animated'>
+                    <div class="grid_12">
+                        <div class="grid_2">
+                            <label c-label>No. Registrasi</label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasienDaftar.noRegistrasi" />
+                        </div>
+                        <div class="grid_2">
+                            <label c-label>No. Rekam Medis</label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.noCm" />
+                        </div>
+                        <div class="grid_2">
+                            <label c-label>Tanggal Masuk</label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.tanggalRegistrasi" />
+                        </div>
+                        <div class="grid_2">
+                            <label c-label>Nama Lengkap Pasien</label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.namaPasien" />
+                        </div>
+                        <div class="grid_2">
+                            <label c-label>Umur Pasien</label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.umur" />
+                        </div>
+                        <div class="grid_2">
+                            <label c-label>Jenis Kelamin</label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.jenisKelamin.jenisKelamin" />
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_2">
+                            <label c-label>Status Perkawinan</label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.statusPerkawinan.statusPerkawinan" />
+                        </div>
+                        <div class="grid_4">
+                            <label c-label>Alamat Pasien</label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.alamat.alamatLengkap" />
+                        </div>
+                        <div class="grid_2">
+                            <label c-label>Kelas</label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.kelas.namaKelas" />
+                        </div>
+                        <div class="grid_2">
+                            <label c-label>Ruangan</label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.ruangan.namaRuangan" />
+                        </div>
+                        <div class="grid_2">
+                            <label c-label>No Kamar - No Bed</label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.noKamar" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ui-view></div>
+    </div>

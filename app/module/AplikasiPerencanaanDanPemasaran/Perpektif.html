@@ -1,0 +1,61 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Master Perspektif</div>
+	<div class="panel-body">
+		<div class="grid_12">
+				<div class="grid_1"></div>
+				<div class="grid_10">
+					<div class="grid_12">
+						<div class="grid_2" style="margin-top:15px">
+							<label c-label item="item">Jenis Indikator</label>
+						</div>
+						<div class="grid_4">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisIndikator" k-data-text-field="'jenisIndikator'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceJenisIndikator" />
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_2" style="margin-top:15px">
+							<label c-label item="item">Perspektif</label>
+						</div>
+						<div class="grid_10">
+							<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.perspektif"/>
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_2" style="margin-top:15px">
+							<label c-label item="item">Kode Perspektif</label>
+						</div>
+						<div class="grid_4">
+							<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.kodePerspektif" ng-keypress="($event.which == 13)? Save():item.perspektif"/>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<div class="grid_12" style="padding-top:10px">
+				<div class="grid_7"></div>
+				<div class="grid_2">
+					<button class="c-button success" ng-click="Save()">Simpan</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button cancel" ng-click="Batal()">Batal</button>
+				</div>
+			</div>
+			<div class="grid_12" style="padding-top:20px">
+				<div class="grid_1"></div>
+				<div class="grid_10">
+					<div kendo-grid k-on-change="Select(data)" k-data-source="sourcedaftarPerpektif" k-selectable="'row'" options="mainGridOptions"></div>
+					<!-- <div kendo-grid k-on-change="SelectPerspektif(data)" k-data-source="sourcedaftarPerpektif" k-selectable="'row'" k-columns="columndaftarPerpektif"></div> -->
+				</div>
+			</div>
+			<!-- <div class="grid_12" style="padding-top:20px">
+				<div class="grid_6"></div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="Cetak()">Cetak</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="Search()">Tutup</button>
+				</div>
+			</div> -->
+		</c-panel>
+	</div>
+</div>

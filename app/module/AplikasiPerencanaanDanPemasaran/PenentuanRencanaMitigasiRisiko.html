@@ -1,0 +1,119 @@
+<div class="panel panel-default container_12">
+    <div class="panel-heading" align="center" c-translate>Penentuan Rencana Mitigasi Risiko</div>
+    <div class="panel-body">
+        <div class="grid_12">
+			<div class="grid_12">
+				<div class="grid_6">
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top:15px">
+							<label c-label item="item">Sasaran Strategis</label>
+						</div>
+						<div class="grid_8">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.sasaranStrategis" k-data-text-field="'sasaranStrategis'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceMasterSasaranStrategis" />
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top:15px">
+							<label c-label item="item">Risiko</label>
+						</div>
+						<div class="grid_8" style="margin-top:5px">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.resiko" k-data-text-field="'risiko'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceMasterResiko" />
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top:10px">
+							<label c-label item="item">Kemungkinan Risiko</label>
+						</div>
+						<div class="grid_8">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.kemungkinanResiko" k-data-text-field="'kemungkinanResiko'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceMasterKemungkinanResiko" />
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top:15px">
+							<label c-label item="item">Dampak Risiko</label>
+						</div>
+						<div class="grid_8">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.dampakResiko" k-data-text-field="'dampakResiko'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceMasterDampakResiko" />
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top:15px">
+							<label c-label item="item">Periode</label>
+						</div>
+						<div class="grid_4">
+							<input style="width:100%" kendo-date-picker k-options="yearSelected" value="now" k-ng-model="item.periode" k-format="'yyyy'"/>
+						</div>
+					</div>
+				</div>
+				<div class="grid_6">
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top:15px">
+							<label c-label item="item">Tingkat Risiko</label>
+						</div>
+						<div class="grid_8">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.tingkatResiko" k-data-text-field="'tingkatResiko'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceMasteTingkatResiko" />
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top:15px">
+							<label c-label item="item">Warna</label>
+						</div>
+				        <!-- <div class="grid_5">
+				        	<input style="width: 100%;" kendo-combo-box k-ng-model="item.warna" k-data-text-field="'nama'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="warnaPalette" /> -->
+				            <!-- <div kendo-color-palette k-palette="palette" ng-model="warna" k-opacity="false"> </div> -->
+				       <!--  </div> -->
+				        <div class="grid_8">
+				        	<input c-text-box type="text" filter="'string'" class="k-textbox" style="background-color:{{item.tingkatResiko.warna}}" readonly="true">
+				        	<!-- <input type="text" style="background-color:{{item.warna.warna}}" readonly="true"> -->
+				        </div>
+					</div>
+					<!-- {{palette}} -->
+					<!-- <div class="grid_12">
+						<h4>Color value 1: {{color1}}</h4>
+	                	<li><div kendo-color-palette ng-model="color1" k-opacity="true"></div></li>
+					</div> -->
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top:15px">
+							<label c-label item="item">Rencana Mitigasi</label>
+						</div>
+						<div class="grid_8" style="margin-top:5px">
+							<textarea ng-model="item.rencanaMitigasi" style="width: 99%; height: 100px;"></textarea>
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top:15px">
+							<label c-label item="item">Penanggung Jawab</label>
+						</div>
+						<div class="grid_8">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.penanggungJawab" k-data-text-field="'satuanKerja'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceSatuanKerja" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="grid_12" style="margin-top:10px">
+				<div class="grid_8"></div>
+				<div class="grid_2">
+					<button class="c-button success" ng-click="addData()">Tambah</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button cancel" ng-click="()">Hapus</button>
+				</div>
+			</div> 
+			<div class="grid_12" style="margin-top:10px">
+				<div kendo-grid editable="true" k-data-source="daftarPenentuanRencanaMitigasiResiko" k-selectable="'row'" k-columns="columndaftarPenentuanRencanaMitigasiResiko"></div>
+			</div>
+			<div class="grid_12" style="padding-top:30px">
+				<div class="grid_5"></div>
+				<div class="grid_2">
+					<button class="c-button success" ng-click="Save()">Simpan</button>
+				</div>
+				<div class="grid_3">
+					<button class="c-button success" ng-click="DaftarPenentuan()">Daftar Penentuan Rencana Mitigasi</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button cancel" ng-click="Search()">Batal</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

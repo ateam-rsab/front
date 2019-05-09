@@ -1,0 +1,56 @@
+<div ng-show="dataVOloaded">
+	<c-panel item="item" header="'Neraca Percobaan'" disabled>
+
+		<button class="export-pdf k-button" ng-click="getPDF('.pdf-page')">Export PDF</button>
+
+		<div class="pdf-page">
+			<div class="pdf-header">
+				<p class="judul">Neraca Percobaan</p>
+				<p class="periode">Periode April 2016</p>
+			</div>
+
+			<div class="pdf-body">
+				<table class="table table-bordered tabelJurnal">
+					<thead>
+						<tr>
+							<th rowspan="2">Kode</th>
+							<th rowspan="2">Nama Perkiraan</th>
+							<th colspan="2">Saldo Awal</th>
+							<th colspan="2">Mutasi</th>
+							<th colspan="2">Saldo Akhir</th>
+						</tr>
+						<tr>
+							<th>Debet</th>
+							<th>Kredit</th>
+							<th>Debet</th>
+							<th>Kredit</th>
+							<th>Debet</th>
+							<th>Kredit</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="data in dataNeracaPercobaan">
+							<td>{{data.kode}}</td>
+							<td>{{data.namaPerkiraan}}</td>
+							<td>{{data.SaldoAwalDebit}}</td>
+							<td>{{data.SaldoAwalkredit}}</td>
+							<td>{{data.MutasiDebit}}</td>
+							<td>{{data.Mutasikredit}}</td>
+							<td>{{data.SaldoKreditDebit}}</td>
+							<td>{{data.SaldoKreditkredit}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="pdf-footer">
+				<p>Footer</p>
+			</div>
+
+
+		</div>
+
+
+
+	</c-panel>
+</div>

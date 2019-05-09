@@ -1,0 +1,54 @@
+<div class="AbsensiPegawaiCtrl">
+    <div class="panel panel-default container_12" style="background-color:transparant">
+        <div class="panel-heading"><label class='title' c-label item="item" c-label-text="Absensi Pegawai" real></label></div>
+        <div class="panel-body">
+            <div class="grid_2">
+                <span c-label c-label-text="Bulan" />
+                <input required style="width: 100%;" kendo-combo-box k-ng-model="selectedBulan" k-data-text-field="'name'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listMonth" />
+            </div>
+            <div class="grid_2">
+                <span c-label c-label-text="Tahun" />
+                <input required style="width: 100%;" kendo-combo-box k-ng-model="selectedTahun" k-data-text-field="'id'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listTahun" />
+            </div>
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="Unit Kerja"></label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'name'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="ruangans" />
+            </div>
+            <div class="grid_12">
+                <table class="table">
+                    <tr>
+                        <th rowspan="2">Nama Pegawai</th>
+                        <td ng-repeat="item in listDay">
+                            {{item.id}}
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td ng-repeat="day in listDay">
+                            {{day.display}}
+                        </td>
+                    </tr>
+                    <tr ng-repeat="item in  listData">
+                        <td>{{item.namaPegawai}}</td>
+                        <td style="position:relative" ng-repeat="day in item.listDay">
+                            <div ng-show="day.isLibur" ng-init="initialize(item,day)" class="day holiday">
+                            </div>
+
+                            <div ng-show="!day.isLibur" ng-init="initialize(item,day)" class="day in" ng-click="changeShift(item,day)">
+                                <span class="text-day">{{day.kehadiranKerja.kodeExternal}}</span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="grid_12">
+                <input id="fileCOA" name="files" type="file" kendo-upload k-multiple="false" k-select="onSelectFile" />
+                <button ng-click="uploadFile()">upload me</button>
+            </div>
+            <div class="grid_12">
+                <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+
+            </div>
+        </div>
+    </div>
+</div>

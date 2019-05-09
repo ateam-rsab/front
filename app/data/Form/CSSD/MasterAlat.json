@@ -1,0 +1,21 @@
+{
+	"model":{
+		"kodeBarang":"",
+		"namaAlat" : ""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "kodeBarang",
+			"messagesRequired" : "",
+			"caption" : "Kode Barang"
+		},{
+			"isNull" : "true",
+			"name" : "namaAlat",
+			"messagesRequired" : "",
+			"caption" : "Nama Alat"
+		}
+
+	]
+}

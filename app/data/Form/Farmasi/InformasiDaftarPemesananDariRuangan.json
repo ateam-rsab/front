@@ -1,0 +1,20 @@
+{
+	"model":{
+	    "noOrder" : "",
+	    "ruanganPemesanan" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "noOrder",
+			"messagesRequired" : "",
+			"caption" : "No Order"
+		},
+		{
+			"isNull" : "true",
+			"name" : "ruanganPemesanan",
+			"messagesRequired" : "",
+			"caption" : "Ruangan Pemesanan"
+		}
+  ]
+}

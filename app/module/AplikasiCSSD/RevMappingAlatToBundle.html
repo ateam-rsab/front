@@ -1,0 +1,107 @@
+<div ng-controller="RevMappingAlatToBundelCtrl">
+	<div ng-show="dataVOloaded">
+		<!-- <center><c-panel item="item" header="'Mapping Alat To Bundel'"disabled></center> -->
+		<center><c-panel item="item" header="'Mapping Produk To Paket'"disabled></center>
+		<div class="grid_8">
+			<div class="panel panel-default container_12">
+			    <div class="grid_12" >
+	                <div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+	                    <p>Daftar Alat</p>
+	                </div>
+	                <div class="grid_12 borderBox containerBorderBox">
+
+						<div id="kGrid" kendo-grid 
+	                        options="mainGridOptions"
+							k-data-source="dataSource" 
+							k-selectable="'row'" 
+							k-columns="columnDataAlat"
+							k-pageable="'true'"
+							k-sortable="'true'"
+							k-ng-model="dataSelected" 
+							ng-click="klik2(dataSelected)">
+						</div>
+	                </div>
+	            </div>
+			   <div class="grid_12"><br></div>
+			</div> 
+	    </div>
+	    <div class="grid_4">
+        <div class="panel panel-default container_12">
+		 <div class="grid_12">
+		      <div class="grid_12 headerBox containerBorderBox" style="padding:0px"><p>Paket</p></div>
+		      <div class="grid_12">
+		      	<label c-label item="item">Jenis Paket :</label>
+		      </div>
+			<div class="grid_12">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.JenisPaket" k-data-text-field="'jenisPaket'" k-data-value-field="'id'" k-filter="'contains'"  k-data-source="listJenisPaket" k-on-change="OnChangeJenisPaket(item.JenisPaket)" />
+			</div>
+		    <div class="grid_12">
+		      	<label c-label item="item">Paket :</label>
+		    </div>	
+			<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="selectedPaket" k-data-text-field="'namaPaket'" k-data-value-field="'idPaket'" k-filter="'contains'"  k-data-source="listPaket" k-on-change="OnChangePaket(selectedPaket)"/>
+			</div>
+		</div>	
+		<div class="grid_12"> <br><br><br></div>
+		 <div class="grid_12"> 
+	   		<div class="grid_3"></div>
+			<div class="grid_5" style="margin-top: 25px">
+			<button class="c-button success" ng-click="Simpan()">Mapping / Unmapping</button>
+			</div>
+			 <div class="grid_4" style="margin-top: 25px">
+			<button class="c-button cancel" ng-click="tutup()">Tutup</button>
+			</div>
+	     </div>
+	   </div>
+	   </div>
+   		   <div class="grid_12" style="margin-top: 10px">
+				<div class="grid_1" style="margin-top: 10px">
+					<label c-label item="item" c-label-text="Pencarian"></label>
+				</div>
+				<div class="grid_1" align="right"  style="margin-top: 10px">
+					<label c-label item="item" c-label-text=":"></label>
+				</div>
+				<div class="grid_4">
+				 <input class=k-textbox type=text ng-model="Pencarians" placeholder="Nama Alat" />
+				</div>
+				<div class="grid_1" style="margin-top: 5px">
+					<button class="c-button success" ng-click="Cari(Pencarians)">Cari</button>
+				</div>
+				<div class="grid_1" style="margin-top: 5px">
+					<button class="c-button success" ng-click="ClearCari()">Clear</button>
+				</div>
+				<!-- <div class="grid_1">
+					<label c-label item="item" style="margin-top: 10px" align="center">Limit :</label>
+				</div>
+				<div class="grid_1">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.limit"/>
+				</div> -->
+			</div>
+	   		<div class="grid_12">
+		    <fieldset style="min-height:150px !important">
+				 <legend style="font-size:15px; font-weight:bold;">Daftar yang sudah Termapping</legend>	
+				<div id="kGrid2" kendo-grid 
+					k-data-source="dataSourceMapping" 
+					k-selectable="'row'" 
+					k-columns="columnDataMapping"
+					k-pageable="'true'"
+					k-ng-model="ambildata"
+					ng-click="klikmapping(ambildata)"
+					k-sortable="'true'">
+				</div>
+		   </div>
+	   </div>
+	</div>
+		</c-panel>
+
+<style type="text/css">
+.gambarAset {
+    width: 60%;
+    height: 100%;
+    border: 1px solid grey;
+}
+
+
+/*===========================Old Source Code =========================================================
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.bundel" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'"  k-data-source="listBundel" k-on-change="fetchgridMapping()" ng-click="fetchgridMapping()"/>
+*/

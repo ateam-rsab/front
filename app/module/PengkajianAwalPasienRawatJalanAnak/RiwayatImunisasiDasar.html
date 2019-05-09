@@ -1,0 +1,29 @@
+<div ng-controller="RiwayatImunisasiDasarCtrl">
+    <!-- Riwayat Imunisasi dasar -->
+    <c-panel item="item" header="'Riwayat Imunisasi Dasar'" disabled>
+
+        <div class="grid_12">
+
+            <div class="grid_12">
+                <div class="grid_12">
+                    <div class="grid_3" ng-repeat="stat in listStatusImunisasi">
+                        <input type="checkbox" name="{{stat.name}}" id="{{stat.name}}" ng-click="cekArrStatusImunisasiDasar(stat)" ng-checked="stat.isChecked" class="k-checkbox" value="stat" k-ng-model="item.StatusImunisasi">
+                        <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+                    </div>
+
+                    <textarea style="width: 99%; height: 80px;" placeholder="Keterangan Lainnya" ng-model="item.KetImunisasiLainnya"></textarea>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="grid_12">
+            <div class="grid_2">
+                <label c-label="" item="item" c-label-text="RiwayatImunisasi" class="ng-isolate-scope c-label">
+            </div>
+            <div class="grid_4">
+                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.HasilImunisasi" /></div>
+                </div>
+    </c-panel>
+<div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
+</div>

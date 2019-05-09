@@ -1,0 +1,55 @@
+<div ng-controller="FormulirPendidikanDanInfarmasiPasienCtrl">
+    <div class="panel panel-default container_12">
+        <div class="panel-heading" c-translate>Formulir Pendidikan dan Informasi Terintegrasi</div>
+        <div class="panel-body">
+            <div ng-include=' "../app/module/Shared/headerPasien "'></div>
+            <div ng-include=' "../app/module/PengkajianAwalPasienRawatJalanAnak/FormulirPendidikanDanInfarmasiPasienHeader "'></div>
+        </div>
+        <div class="grid_3">
+            <span class="k-textbox k-space-right" style="width: 100%;margin: 5px;">
+                    <input type="text" id="icon-right" ng-model="search"/>
+                    <a href="#" class="k-icon k-i-search">&nbsp;</a>
+                </span>
+            <div class="grid_12 list" ng-click="detail(data)" style="padding: 3px;" ng-repeat="data in listTopik|filter:search">
+                {{data.title}}
+            </div>
+        </div>
+
+        <div class="grid_9" style="">
+            <div class="grid_4">
+                <label c-label c-label-text="tanggal"></label>
+                <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tglLahir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+            </div>
+            <div class="grid_4">
+                <label c-label c-label-text="durasiPenyampian"></label>
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.durasiPenyampian" />
+            </div>
+            <div class="grid_12">
+
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="metode" real></label>
+                    <div class="grid_12" ng-repeat="subData in data.metode">
+                        <input type="checkbox" class="k-checkbox" name="{{subData}}" id="{{subData}}" value="{{subData}}" ng-click="addMethod(subData)">
+                        <label class="k-checkbox-label" for="{{subData}}">{{subData}}</label>
+                    </div>
+                </div>
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="evaluasiPasien/Keluarga" real></label>
+                    <div class="grid_12" ng-repeat="subData in data.evaluasi">
+                        <input type="checkbox" class="k-checkbox" name="{{subData}}" id="{{subData}}" value="{{subData}}" ng-click="addMethod(subData)">
+                        <label class="k-checkbox-label" for="{{subData}}">{{subData}}</label>
+                    </div>
+                </div>
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="material" real></label>
+                    <div class="grid_12" ng-repeat="subData in data.material">
+                        <input type="checkbox" class="k-checkbox" name="{{subData}}" id="{{subData}}" value="{{subData}}" ng-click="addMethod(subData)">
+                        <label class="k-checkbox-label" for="{{subData}}">{{subData}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-include=' "../app/module/Shared/TemplateButtonSimpan"'></div>
+    </div>
+
+</div>

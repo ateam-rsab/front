@@ -1,0 +1,114 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Diagram Kartesius</div>
+	<div class="panel-body">
+		<div class="grid_12">
+			<div class="grid_12" style="margin-top:15px">
+				<div class="panel panel-default panel-white">
+	       			<div class="panel-heading-white"><span class="title" c-translate>Pencarian</span>
+	       				<div class="grid_8" style="margin-top:15px">
+							<div class="grid_2" style="margin-top:15px">
+								<label c-label item="item" c-label-text="periode"></label>
+							</div>
+							<div class="grid_3">
+								<input style="width:100%" kendo-date-picker value="now" k-options="yearSelected" k-ng-model="item.awal" k-format="'yyyy'" k-on-change="tahun()"/>
+							</div>
+							<div class="grid_1" align="center" style="margin-top:10px">
+								<label c-label item="item">s/d</label>
+							</div>
+							<div class="grid_3">
+								<input style="width:100%" kendo-date-picker value="now" k-ng-model="item.akhir" k-format="'yyyy'" readonly="true" />
+							</div>
+							<div class="grid_2" style="margin:5px">
+								<button class="c-button success" ng-click="search();">Cari</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="grid_12" style="margin-top:10px">
+				<div class="grid_6">
+					<div class="grid_12">
+						<div class="panel panel-default panel-white">
+		       				<div class="panel-heading-white" align="center"><span class="title" c-translate>Sumbu X</span>
+		       					<div class="grid_12" style="margin-top:15px">
+									<div class="grid_12">
+										<div class="grid_1"></div>
+										<div class="grid_3" style="margin-top:15px">
+											<label c-label item="item" c-label-text="kekuatan"></label>
+										</div>
+										<div class="grid_6">
+											<input c-text-box type="input" filter="'text'" class="k-textbox" ng-model="item.Kekuatan" readonly="true" />
+										</div>
+									</div>
+									<div class="grid_12">
+										<div class="grid_1"></div>
+										<div class="grid_3" style="margin-top:15px">
+											<label c-label item="item" c-label-text="kekurangan"></label>
+										</div>
+										<div class="grid_6">
+											<input c-text-box type="input" filter="'text'" class="k-textbox" ng-model="item.Kelemahan" readonly="true" />
+										</div>
+									</div>
+									<div class="grid_12">
+										<div class="grid_1"></div>
+										<div class="grid_3" style="margin-top:15px">
+											<label c-label item="item" c-label-text="sumbuX"></label>
+										</div>
+										<div class="grid_6">
+											<input c-text-box type="input" filter="'text'" class="k-textbox" ng-model="item.SumbuX" readonly="true"/>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="grid_12" style="margin-top:10px">
+						<div class="panel panel-default panel-white">
+		       				<div class="panel-heading-white" align="center"><span class="title" c-translate>Sumbu Y</span>
+		       					<div class="grid_12" style="margin-top:15px">
+									<div class="grid_12">
+										<div class="grid_1"></div>
+										<div class="grid_3" style="margin-top:15px">
+											<label c-label item="item" c-label-text="peluang"></label>
+										</div>
+										<div class="grid_6">
+											<input c-text-box type="input" filter="'text'" class="k-textbox" ng-model="item.Peluang" readonly="true" />
+										</div>
+									</div>
+									<div class="grid_12">
+										<div class="grid_1"></div>
+										<div class="grid_3" style="margin-top:15px">
+											<label c-label item="item" c-label-text="ancaman"></label>
+										</div>
+										<div class="grid_6">
+											<input c-text-box type="input" filter="'text'" class="k-textbox" ng-model="item.Ancaman" readonly="true" />
+										</div>
+									</div>
+									<div class="grid_12">
+										<div class="grid_1"></div>
+										<div class="grid_3" style="margin-top:15px">
+											<label c-label item="item" c-label-text="sumbuY"></label>
+										</div>
+										<div class="grid_6">
+											<input c-text-box type="input" filter="'text'" class="k-textbox" ng-model="item.SumbuY" readonly="true"/>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="grid_6">
+			        <div class="panel panel-default panel-white">
+			            <div class="panel-heading-white" align="center"><span class="title" c-translate>Diagram Kartesius</span></div>
+			            <div class="panel-body">
+			            	<div class="grid_12" align="center">
+			                	<div id="chart"></div>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+        	</div>
+        </div>
+	</c-panel>
+</div>

@@ -1,0 +1,13 @@
+<div ng-controller="TindakanMedisCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Tindakan Medis'">
+			<!-- grid table -->
+			<div class="grid_12" style="margin-top: 10px;">
+              	<kendo-grid options="mainGridOptions" id="dataGrid">
+	            </kendo-grid>
+            </div>
+            <div class="clear"></div>
+		</c-panel>
+	</div>
+</div>

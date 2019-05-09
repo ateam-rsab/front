@@ -1,0 +1,149 @@
+<div>
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Daftar Pemakaian Rumah Duka'">
+		
+	     <!-- Form Input -->
+			<div class="grid_12">
+  				<div class="grid_7">
+                    <div class="grid_6">
+                        <div class="grid_3" style="margin-top: 10px">
+                            <label c-label item="item">Periode Awal</label>
+                        </div>							
+                        <div class="grid_1" style="margin-top: 10px">
+                            <label c-label item="item">:</label>
+                        </div>
+                        <div class="grid_8">
+                            <input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAwal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"/>
+                        </div>	
+                    </div>					
+  					<div class="grid_6">
+                        <div class="grid_3" style="margin-top: 10px">
+                            <label c-label item="item">Periode Akhir</label>
+                        </div>							
+                        <div class="grid_1" style="margin-top: 10px">
+                            <label c-label item="item">:</label>
+                        </div>
+                        <div class="grid_8">
+                            <input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAkhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"/>
+                        </div>	
+  					</div>
+  				</div>
+  				<div class="grid_5" style="margin-top: 12px;">
+  					<div class="grid_2">
+  						<button class="c-button success" ng-click="Search()">
+  						<span>Cari</span>
+                      </div>
+                      <div class="grid_2">
+                        <button id="findAll" class="c-button success" ng-click="findAll()">
+                        <span>Reset</span>
+                    </div>
+  					<!-- <div class="grid_9"></div> -->
+  				</div>
+			 </div>
+			<hr class="style-four">
+		
+
+			<!-- Form Daftar -->
+			<div class="panel panel-default container_12">
+  				<div class="panel-body">
+    				<div id="gridRumahDuka" kendo-grid k-options="mainGridOptions" k-ng-model="current" ng-click="kl(current)"></div>
+  				</div>
+			</div>
+			<div class="grid_7"></div>
+			<div class="grid_2">
+				  <button class="c-button cancel" ng-click="batal()">
+				       <span>Batal</span>
+				   </button>
+			</div>
+			<div class="grid_3">
+				   <button class="c-button success" ng-click="out(current.noRecStrukOrder, current.status)">
+				      <span>Keluar Rumah Duka</span>
+				   </button>
+			</div>
+			<hr class="style-four">
+	    </c-panel>
+
+	    <!-- ButtoN Cetak 
+  		<div class="grid_12">
+  	         <md-button class="md-fab md-fab-top-right docs-scroll-fab md-button " align="center" style="height: 75px; width: 75px; background-color: #05b72a !important" aria-label="Eat cake">
+  	           <md-tooltip md-direction='left'>Cetak Dokumen</md-tooltip>
+  	                <md-icon md-svg-src="/app/stylesheets/Images/exam.svg"></md-icon>
+  	         </md-button>
+  		</div> -->
+    </div>
+</div>
+
+<style>
+    .error{
+        background-color:white !important;
+    }
+    .yellow{
+        background-color:#ffff00
+    }
+     .green{
+        background-color:#00ff40
+    }
+      .red{
+        background-color:#FF0000
+    }
+    .k-grid  .k-grid-header  .k-header  .k-link {
+     height: auto;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     white-space: normal;
+    }
+
+    .style-four {
+        height: 5px;
+        border: 0;
+        box-shadow: inset 0 14px 12px -12px rgba(0, 0, 0, 0.5);
+        }
+    .md-button {
+          padding: 0 6px 0 6px;
+          margin: 6px 8px 6px 8px;
+          min-width: 88px;
+          border-radius: 3px;
+          font-size: 14px;
+          text-align: center;
+          text-transform: uppercase;
+          text-decoration:none;
+          border: none;
+          outline: none;
+          color: green;
+        }
+
+    .k-grid  .k-grid-header  .k-header {
+     text-align: center;
+    }
+
+    .md-tooltip {
+        height: 25px !important;
+        background-color: #363940 !important;
+        color: white !important;
+        border-radius: 5px;
+        font-size: 14px
+     }
+     .md-button.md-fab.md-fab-top-right {
+        top: 100px;
+        right: 41px;
+        bottom: auto;
+        left: auto;
+        position: absolute;
+     }
+     .h1 {
+        position:relative;
+        display:inline-block;
+            }
+      .h1::before, 
+      .h1::after {
+        content:' ';
+        display:block;
+        position:absolute; top:50%; left:-120px;
+        width:100px;
+        border-bottom:1px solid black;
+    }
+    .h1::after {
+        left:auto; right:-120px;
+    }
+</style>

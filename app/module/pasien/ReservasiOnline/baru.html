@@ -1,0 +1,117 @@
+<div ng-controller="ReservasiOnlineNewCtrl">
+    <div class="grid_12" ng-click="item.TypePasien='Baru'">
+        <div class="grid_6">
+            <a ng-click="NavStatusPasien('BARU')">
+                <div class="card">
+                    <div class="card-image">
+                        <span class="card-title">PASIEN BARU</span>
+                        <img width="100px" src="stylesheets/Flat/new-patient.png" />
+                    </div>
+                    <div class=" card-content">
+                        <p>Pilih Menu ini, jika anda adalah pasien baru di rumah sakit</p>
+                    </div>
+                    <div class="card-action">
+                        Pilih
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="grid_6">
+            <a ng-click="NavStatusPasien('LAMA')">
+                <div class="card">
+                    <div class="card-image">
+                        <span class="card-title">PASIEN LAMA</span>
+                        <img src="stylesheets/Flat/old-patient.png" />
+                    </div>
+                    <div class="card-content">
+                        <p>Pilih Menu ini, jika anda adalah pasien Lama di rumah sakit</p>
+                    </div>
+                    <div class="card-action">
+                        Pilih
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!--<c-form item="item">
+        <div class="grid_12">
+            <core-busy busy="isLoading"></core-busy>
+            <div class="grid_6">
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label item="item" c-label-text="NamaPasien"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter=" 'string'" class="k-textbox" ng-model="item.NamaPasien" />
+                    </div>
+                </div>
+            </div>
+            <div class="grid_6">
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label c-label-text="NamaKeluarga"></label>
+
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter=" 'string'" class="k-textbox" ng-model="item.NamaKeluarga" />
+
+                    </div>
+                </div>
+            </div>
+            <div class="grid_6">
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label item="item" c-label-text="JenisKelamin"></label>
+
+                    </div>
+                    <div class="grid_8">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.JenisKelamin" k-data-text-field=" 'JenisKelamin'" k-filter=" 'contains'" k-data-value-field=" 'value'" k-auto-bind="false" k-data-source="jenisKelamins" />
+                    </div>
+                </div>
+            </div>
+            <div class="grid_6">
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label c-label-text="TglLahir"></label>
+
+                    </div>
+                    <div class="grid_8">
+                        <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.TglLahir" placeholer="dd-mm-yyyy" k-format=" 'dd-MM-yyyy'" />
+
+                    </div>
+                </div>
+            </div>
+            <div class="grid_6">
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label c-label-text="AlamatPasien"></label>
+                    </div>
+                    <div class="grid_8">
+                        <textarea style="height: 40px" id="alamat" c-text-box type="input" class="k-textbox" ng-model="item.AlamatPasien" />
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="grid_6">
+            &nbsp;
+
+        </div>
+        <div class="grid_6">
+            <div class="grid_4">
+                &nbsp;
+            </div>
+            <div class="grid_4">
+                <c-button ng-show="!isLoading" style="width:100px;" item="item" position=" 'left'" is-back icon=" 'fa-chevron-left'">
+                    <span class="title">Kembali</span>
+                </c-button>
+            </div>
+            <div class="grid_4">
+                <c-button ng-show="!isLoading" item="item" size="36" position=" 'right'" is-validate click="Lanjutkan" icon=" 'fa fa-chevron-right'">
+                    <span class="title">Proses</span>
+                </c-button>
+            </div>
+        </div>
+    </c-form>-->
+</div>

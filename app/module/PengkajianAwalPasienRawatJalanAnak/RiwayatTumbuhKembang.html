@@ -1,0 +1,89 @@
+<div ng-controller="RiwayatTumbuhKembangCtrl"><br/>
+
+    <!-- <div ng-show="dataVOloaded"> -->
+        <c-panel item="item" header="'Riwayat Tumbuh Kembang'">
+
+            <div class="grid_3">
+                <!-- Tengkurap -->
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Tengkurap pada Usia"></label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.tengkurap" />
+                    <label class="keteranganFieldTambahan" c-translate>Bulan</label>
+                </div>
+                <div class="clear"></div>
+
+                        
+                <!-- TumbuhGigi -->
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="TumbuhGigi pada Usia"></label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.tumbuhGigi" />
+                    <label class="keteranganFieldTambahan" c-translate>Bulan</label>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="grid_3">
+
+                <!-- Bicara -->
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Bicara pada Usia"></label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.bicara" />
+                    <label class="keteranganFieldTambahan" c-translate>Bulan</label>
+                </div>
+                <div class="clear"></div>
+                <!-- Duduk -->
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Duduk pada Usia"></label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.duduk" />
+                    <label class="keteranganFieldTambahan" c-translate>Bulan</label>
+                </div>
+                <div class="clear"></div>
+                </div>
+            <div class="grid_3">
+                <!-- Berdiri -->
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Berdiri pada Usia"></label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.berdiri" />
+                    <label class="keteranganFieldTambahan" c-translate>Bulan</label>
+                </div>
+                <div class="clear"></div>
+
+                <!-- Berjalan -->
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Berjalan pada Usia"></label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.berjalan" />
+                    <label class="keteranganFieldTambahan" c-translate>Bulan</label>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="grid_3">
+                <!-- Berjalan -->
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Merangkak pada Usia"></label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.merangkak" />
+                    <label class="keteranganFieldTambahan" c-translate>Bulan</label>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <!-- </div> -->
+
+
+
+        </c-panel>
+        <div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
+    </div>
+</div>

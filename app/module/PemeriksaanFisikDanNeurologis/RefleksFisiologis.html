@@ -1,0 +1,146 @@
+
+<div ng-controller="RefleksFisiologisCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="title">
+			
+            <div class="grid_12">
+              <div class="grid_1" style="margin-bottom:5px">
+                  <label c-label item="item" c-label-text="bicep"></label>
+              </div>
+              <div class="grid_11">
+                <div class="grid_6" ng-repeat="data in item.bicep">
+                      
+                      <div class="grid_2" >
+                        <label c-label item="item" c-label-text="{{data.name}}" style="float:right"></label>
+                      </div>
+                      <div class="grid_10">
+                        <textarea style="height: 40px" id="text_area" c-text-box type="input" class="k-textbox" ng-model="item.bicep.catatan" />
+                      </div>
+                </div>
+                <div class="clear"></div>
+              </div>
+          </div>
+            
+            <div class="clear"></div>
+           <div class="grid_12">
+              <div class="grid_1" style="margin-bottom:5px">
+                  <label c-label item="item" c-label-text="tricep"></label>
+              </div>
+              <div class="grid_11">
+                <div class="grid_6" ng-repeat="data in item.tricep">
+                      
+                      <div class="grid_2">
+                        <label c-label item="item" c-label-text="{{data.name}}"></label>
+                      </div>
+                      <div class="grid_10">
+                        <textarea style="height: 40px" id="text_area" c-text-box type="input" class="k-textbox" ng-model="item.tricep.catatan" />
+                      </div>
+                </div>
+                <div class="clear"></div>
+              </div>
+          </div>
+            <div class="clear"></div>
+
+            <div class="clear"></div>
+           <div class="grid_12">
+              <div class="grid_1" style="margin-bottom:5px">
+                  <label c-label item="item" c-label-text="brachiodialis"></label>
+              </div>
+              <div class="grid_11">
+                <div class="grid_6" ng-repeat="data in item.brachiodialis">
+                      
+                      <div class="grid_2">
+                        <label c-label item="item" c-label-text="{{data.name}}"></label>
+                      </div>
+                      <div class="grid_10">
+                        <textarea style="height: 40px" id="text_area" c-text-box type="input" class="k-textbox" ng-model="item.brachiodialis.catatan" />
+                      </div>
+                </div>
+                <div class="clear"></div>
+              </div>
+          </div>
+            <div class="clear"></div>
+
+ <div class="clear"></div>
+           <div class="grid_12">
+              <div class="grid_1" style="margin-bottom:5px">
+                  <label c-label item="item" c-label-text="kpr"></label>
+              </div>
+              <div class="grid_11">
+                <div class="grid_6" ng-repeat="data in item.kpr">
+                      
+                      <div class="grid_2">
+                        <label c-label item="item" c-label-text="{{data.name}}"></label>
+                      </div>
+                      <div class="grid_10">
+                        <textarea style="height: 40px" id="text_area" c-text-box type="input" class="k-textbox" ng-model="item.kpr.catatan" />
+                      </div>
+                </div>
+                <div class="clear"></div>
+              </div>
+          </div>
+            <div class="clear"></div>
+
+ <div class="clear"></div>
+           <div class="grid_12">
+              <div class="grid_1" style="margin-bottom:5px">
+                  <label c-label item="item" c-label-text="atr"></label>
+              </div>
+              <div class="grid_11">
+                <div class="grid_6" ng-repeat="data in item.atr">
+                      
+                      <div class="grid_2">
+                        <label c-label item="item" c-label-text="{{data.name}}"></label>
+                      </div>
+                      <div class="grid_10">
+                        <textarea style="height: 40px" id="text_area" c-text-box type="input" class="k-textbox" ng-model="item.atr.catatan" />
+                      </div>
+                </div>
+                <div class="clear"></div>
+              </div>
+          </div>
+            <div class="clear"></div>
+
+ <div class="clear"></div>
+           <div class="grid_12">
+              <div class="grid_1" style="margin-bottom:5px">
+                  <label c-label item="item" c-label-text="refleksPatologis"></label>
+              </div>
+              <div class="grid_11">
+                <div class="grid_6" ng-repeat="data in item.refleksPatologis">
+                      
+                      <div class="grid_2">
+                        <label c-label item="item" c-label-text="{{data.name}}"></label>
+                      </div>
+                      <div class="grid_10">
+                        <textarea style="height: 40px" id="text_area" c-text-box type="input" class="k-textbox" ng-model="item.refleksPatologis.catatan" />
+                      </div>
+                </div>
+                <div class="clear"></div>
+              </div>
+          </div>
+            <div class="clear"></div>
+
+<div class="clear"></div>
+           <div class="grid_12">
+              <div class="grid_1" style="margin-bottom:5px">
+                  <label c-label item="item" c-label-text="klonus"></label>
+              </div>
+              <div class="grid_11">
+                <div class="grid_6" ng-repeat="data in item.klonus">
+                      
+                      <div class="grid_2">
+                        <label c-label item="item" c-label-text="{{data.name}}"></label>
+                      </div>
+                      <div class="grid_10">
+                        <textarea style="height: 40px" id="text_area" c-text-box type="input" class="k-textbox" ng-model="item.klonus.catatan" />
+                      </div>
+                </div>
+                <div class="clear"></div>
+              </div>
+          </div>
+            <div class="clear"></div>
+
+		</c-panel>
+	</div>
+</div>

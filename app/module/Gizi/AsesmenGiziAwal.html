@@ -1,0 +1,112 @@
+<div ng-controller="AsesmenGiziAwalCtrl">
+    <div class="panel panel-default container_12">
+        <div class="panel-heading" c-translate>Asesmen Gizi Awal</div>
+        <div class="panel-body">
+            <div class="grid_12">
+                <span c-translate>
+                    <label c-label item="item" c-label-text="Risiko malnutrisi berdasarkan hasil skrining gizi oleh perawat, kondisi pasien termasuk kategori" real></label>
+                    
+                </span>
+            </div>
+            <br>
+                <!--<div class="grid_4" ng-repeat="stat in listSkriningGizi">
+                    <input type="radio" name="{{'Risiko' + stat.name}}" id="{{'Risiko' + stat.name}}" class="k-radio" ng-model="item.risiko" ng-value="stat">
+                    <label class="k-radio-label" for="{{'Risiko' + stat.name}}">{{stat.name}}</label>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_4" ng-repeat="stat in listSkriningGizi">
+                    <input type="radio" name="{{'Risiko' + stat.name}}" id="{{'Risiko' + stat.name}}" class="k-radio" ng-model="item.risiko" ng-value="stat">
+                    <label class="k-radio-label" for="{{'Risiko' + stat.name}}">{{stat.name}}</label>
+                </div>-->
+                <div class="grid_12" style="padding-top: 8px">
+                    <div ng-show="ringan" style="font-size: 15px">Risiko Ringan (Nilai String Kids 0)</div>
+                    <div ng-show="sedang" style="font-size: 15px">Risiko Sedang ( Nilai Strong Kids 1-3)</div>
+                    <div ng-show="parah" style="font-size: 15px">Risiko Tinggi (Nilai Strong Kids 4-5 )</div>
+                </div>
+            <!--<div style="background-color: #10C4B2; height: 25px; margin-top: 5px; text-align: left; border: 1px solid; border-color: #10C4B2;" class="grid_12">
+                <span style="font-size: 18px; color: white; padding: 5px;">Skrining Gizi Anak 1 Bulan - 18 Tahun (Modihkasi Strong - Kids)</span>
+            </div>
+            <div class="grid_12">
+                <div ng-show="ringan">7 hari kemudian</div>
+                <div ng-show="sedang">3 hari kemudian</div>
+                <div ng-show="parah">Setiap Hari</div>
+            </div>-->
+            <div class="grid_12">
+                &nbsp;
+            </div>
+            <hr>
+            <div class="grid_12">
+                <span c-translate>
+                    <label c-label item="item" c-label-text="AlergiMakanan" real></label>
+                </span>
+            </div>
+            <div class="grid_4">
+                <ul ng-repeat="data in listAlergiMakanan">
+                    <li>{{data.alergi.namaAlergi}} - {{data.keteranganData}}</li>
+                </ul>
+            </div>
+
+            <div class="grid_12">
+                &nbsp;
+            </div>
+            <div class="grid_12">
+                <div class="panel panel-default container_12">
+
+                    <div class="panel-heading" c-translate>
+                        Preskripsi Diet
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="grid_3">
+                            <label c-label item="item" c-label-text="JenisDiet" real></label>
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisDiet" k-data-text-field="'jenisDiet'" k-data-value-field="'id '" k-filter="'contains '" k-auto-bind="false" k-data-source="sourceJenisDiet" />
+                        </div>
+                        <div class="grid_5">
+                            <span c-translate>Keterangan</span>
+                            <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.keterangan" />
+                        </div>
+                        <div class="grid_4">
+                            <div class="grid_12">
+                                &nbsp;
+                            </div>
+                            <div class="grid_12">
+                                <div class="grid_6">
+                                    <c-button click="addJenisDiet">
+                                        <span style="font-size:10!important">Tambah</span>
+                                    </c-button>
+                                </div>
+                                <div class="grid_6">
+                                    <c-button click="removeJenisDiet">
+                                        <span style="font-size:10!important">Hapus</span>
+                                    </c-button>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="grid_12" style="margin-top: 10px;">
+                            <div kendo-grid k-data-source="jenisMenuDiet" k-selectable="'row'" k-columns="column">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="grid_12">
+                    &nbsp;
+                </div>
+                <div class="grid_12">
+                    <span c-translate>
+                    Tindak Lanjut
+                </span>
+                </div>
+                <div class="grid_12" ng-repeat="data in listTindakLanjutGizi">
+                    <input type="checkbox" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" ng-checked="data.isChecked" ng-click="addTindakLanjutGizi(data)">
+                    <label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+                </div>
+            </div><hr>
+            <div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+        </div>
+    </div>
+    </div>

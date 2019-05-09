@@ -1,0 +1,106 @@
+<div ng-controller="MasterUnsurSurveyCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Master Unsur Yang Dinilai Pada Survey'"disabled>
+		<div class="grid_6">
+		<div class="panel panel-default container_12">
+	<!--		<div class="panel-heading" c-translate>Periode</div> -->
+	<!--		<div class="panel-body"> -->
+	
+           
+					
+	        <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Nama Survey"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nomorSurat" />
+			</div>
+			
+			</div>
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Kelompok Unsur"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaTim" />
+			</div>
+			</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				
+		   </div>
+		   </div>
+<!--		   </div>  -->
+           <div class="grid_6">	
+		   <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label><b>Pernyataan</b></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.jabatan" />
+			</div>
+			
+			</div>
+			
+			<div class = "grid_4">
+			</div>
+			<div class="grid_8" style="margin-top: 10px">
+                            <input type="checkbox" class="k-checkbox" name="dataAktif" id="dataAktif" ng-click="check()">
+							<label class="k-checkbox-label" c-label item="item" c-label-text="Status Aktif" for="dataAktif"></label>
+                        </div>
+		  
+		  
+			
+			
+			
+
+		</div>
+	
+		
+	</br>
+	
+		<div class="grid_12">
+				<kendo-grid  k-data-source="daftarBahanLinen" k-pageable="true" k-selectable="'row'" k-columns="columnLaporanUjiHasil"  style="font-size: small;">
+            	</kendo-grid>
+					
+			</div>
+		
+		
+		
+		
+		
+		
+		
+		</c-panel>
+			<div class="grid_12">
+							<div class="grid_8" style="float:left">
+							
+							
+							<div class="grid_2" style="margin-top: 25px">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate click="Cancel">
+                					<span class="title">Batal</span></button>
+							</div>
+							<div class="grid_2 " style="margin-top: 25px ">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Simpan</span>
+									</button>
+							</div>
+							<div class="grid_2 " style="margin-top: 25px ">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Cetak</span>
+									</button>
+							</div>
+							</div>
+						</div>
+		</div>
+	</div>
+</div>
+

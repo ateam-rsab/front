@@ -1,0 +1,104 @@
+<div ng-show="dataVOloaded">
+	<c-panel item="item" header="'Master BMHP'">
+		<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Nama Produk</label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box style="width: 90%;" type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaProduk"/>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Harga</label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box style="width: 50%;" type="input" filter="'numeric'" class="k-textbox" ng-model="item.harga"/>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="satuan" style="margin-top: 10px"></label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 50%;" kendo-combo-box k-ng-model="item.satuan" k-data-text-field="'satuanStandar'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listSatuan" />
+				</div>
+			</div>
+			<div class="grid_6">
+			<c-panel item="item" header="'Detail Bahan Mentah'"></c-panel>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Nama Produk</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 80%;" kendo-combo-box k-ng-model="item.bahanProduk" k-data-text-field="'namaProduk'" k-data-value-field="'idProduk'" k-filter="'contains'" k-auto-bind="false" k-data-source="dataProduk" />
+				</div>
+
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Quantity</label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box style="width: 80%;" type="input" filter="'varchar'" class="k-textbox" ng-model="item.quantity"/>
+				</div>
+				<div class="grid_12">
+					<div class="grid_4">
+					</div>
+					<div class="grid_8">
+						<button class="c-button success" style="width: 80%;"  ng-click="tambahData()" k-selectable="'row'" k-columns="columndataBahan">Tambah</button>
+					</div>
+				</div>
+			</div>	
+
+			</div>
+		</div>
+		<div class="grid_12">
+		<div class="grid_1"></div>
+			<div class="grid_10">
+				<kendo-grid id="grid" options="mainGridOptions" k-data-source="dataSource" k-selectable="'row'" k-columns="columndataBahan"></kendo-grid>
+			</div>
+		<div class="grid_1"></div>
+		</div>
+		<div class="grid_12">
+		<div class="grid_1"></div>
+			<div class="grid_5" style="margin-top: 10px">
+				<div class="grid_1"></div>
+				<div class="grid_1" style="margin-top: 10px">
+					<label c-label item="item" c-label-text="Pencarian"></label>
+				</div>
+				<div class="grid_1" align="right"  style="margin-top: 10px">
+					<label c-label item="item" c-label-text=":"></label>
+				</div>
+				<div class="grid_5">
+				 <input class=k-textbox type=text ng-model="Pencarians" placeholder="Nama Produk / Satuan" />
+				</div>
+				<div class="grid_2" style="margin-top: 5px">
+					<button class="c-button success" ng-click="Cari(Pencarians)">Cari</button>
+				</div>
+				<div class="grid_2" style="margin-top: 5px">
+					<button class="c-button success" ng-click="ClearCari()">Clear</button>
+				</div>
+			</div>
+			<div class="grid_5">
+				<div class="grid_6"></div>
+				<div class="grid_3">
+					<button class="c-button success" ng-click="simpan()">Simpan</button>
+				</div>
+				<div class="grid_3">
+					<button class="c-button cancel" ng-click="tutup()">Tutup</button>
+				</div>
+			</div>
+		<div class="grid_1"></div>
+		</div>
+		<div class="grid_12">
+		     <div class="grid_1"></div>
+				<div class="grid_10">
+					<kendo-grid options="mainGridBMHP" id="detailGrid" k-selectable="'row'" k-data-source="dataSourceBMHP" k-ng-model="grid_2" ng-click="klik(grid_2)"></kendo-grid>
+				</div>
+		   <div class="grid_1"></div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_1"></div>
+				<div class="grid_7"></div>
+				<div class="grid_3">
+					<button class="c-button success" ng-click="detail()">Detail</button>
+				</div>
+			<div class="grid_1"></div>
+		</div>
+	</c-panel>
+</div>

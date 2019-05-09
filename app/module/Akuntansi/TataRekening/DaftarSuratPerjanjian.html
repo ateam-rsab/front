@@ -1,0 +1,120 @@
+<style>
+	.btnTemplate1:focus, .btnTemplate1:active {
+		border: 1px solid #00a600 !important;
+		outline: none !important;
+	}
+</style>
+<div ng-controller="DaftarSuratPerjanjianCtrl">
+	<div class="grid_12 headerBox">
+		<h1 style="color: white;"><b>Daftar Surat Pernyataan</b></h1>
+	</div>
+	<div class="clear"></div>
+
+	<br/>
+	<div class="grid_12">
+			<!-- <div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+				<p>Kriteria</p>
+			</div> -->
+			<div class="grid_12 borderBox containerBorderBox">
+
+		
+				<!-- No Reg -->
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label c-label-text="NamaPasien" real style="margin: 10px 0px 0px"></label>
+					</div>
+					<div class="grid_12">
+						<input c-text-box type="input" class="k-textbox" ng-model="item.namaPasien">
+					</div>
+				</div>
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="NoRegistrasi" real style="margin: 10px 0px 0px"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noReg" />
+					</div>
+				</div>
+				
+				<!-- Periode Pulang -->
+				<div class="grid_3">
+					<div class="grid_6">
+						<label c-label item="item" c-label-text="Tanggal Pernyataan" real style="margin: 0px 0px 0px"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<!-- AwalPeriode -->
+						<div class="grid_6 padDatePicker">
+							<div class="grid_12">
+								<input style="width: 100%" k-ng-model="item.tanggalRegistrasiAwal"  kendo-date-picker />
+							</div>
+							
+						</div>
+
+						<!-- AkhirPeriode -->
+						<div class="grid_6 padDatePicker">
+							<div class="grid_12">
+								<input style="width: 100%" k-ng-model="item.tanggalRegistrasiAkhir"  kendo-date-picker />
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div class="grid_3">
+					<br>
+					<div class="grid_3" style="margin: 5px 0px 0px">
+						<button class="btnTemplate1" ng-click="cariData()">Cari</button>
+					</div>
+					<div class="grid_3" style="margin: 5px 0px 0px">
+						<button class="btnTemplate1" ng-click="batalPencarian()">Batal</button>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<div class="clear"></div>
+
+		<br/>
+
+		<!-- Data Pasien Pulang -->
+		<div class="grid_12">
+			<!-- <div class="grid_12 headerBox">
+				<p>Daftar Surat Perjanjian</p>
+			</div> -->
+			<!-- <div class="clear"></div> -->
+
+			<!-- grid table -->
+			
+
+			<div class="grid_12">
+				<div id="kGrid" kendo-grid 
+				k-data-source="dataSuratPerjanjian" 
+				k-selectable="'row'" 
+				k-columns="columnSuratPerjanjian" 
+				k-pageable="'true'"
+				k-sortable="'true'"
+				k-ng-model="dataSuratSelected" ng-click="click(dataSuratSelected)">
+			</div>
+		</div>
+		<div class="grid_12" style="margin-top:60px">
+			<div class="grid_12">
+				<div class="grid_10"></div>
+				<div class="grid_2">
+					<div class="grid_6">
+						<button class="btnTemplate1" 
+        				ng-show="showBtnCetak"
+        				ng-click="Cetak()" 
+        				style="float:right;width:150px">
+        					Cetak
+    					</button>	
+					</div>
+				</div>	
+			</div>
+			<!-- <div ng-include='"../app/module/Shared/Keuangan/TemplateButtonTataRekening"'></div> -->
+		</div>
+
+	</div>
+</div>

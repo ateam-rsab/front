@@ -1,0 +1,272 @@
+<style>
+    .error{
+        background-color:white !important;
+    }
+    .yellow{
+        background-color:#ffff00
+    }
+     .green{
+        background-color:#00ff40
+    }
+      .red{
+        background-color:#FF0000
+    }
+    .k-grid  .k-grid-header  .k-header  .k-link {
+     height: auto;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     white-space: normal;
+    }
+
+    .style-four {
+		height: 5px;
+		border: 0;
+		box-shadow: inset 0 14px 12px -12px rgba(0, 0, 0, 0.5);
+		}
+    .md-button {
+		  padding: 0 6px 0 6px;
+		  margin: 6px 8px 6px 8px;
+		  min-width: 88px;
+		  border-radius: 3px;
+		  font-size: 14px;
+		  text-align: center;
+		  text-transform: uppercase;
+		  text-decoration:none;
+		  border: none;
+		  outline: none;
+		  color: green;
+		}
+
+    .k-grid  .k-grid-header  .k-header {
+     text-align: center;
+    }
+
+    .md-tooltip {
+		height: 25px !important;
+		background-color: #363940 !important;
+		color: white !important;
+		border-radius: 5px;
+		font-size: 14px
+	 }
+	 .md-button.md-fab.md-fab-top-right {
+	    top: 420px;
+	    right: 71px;
+	    bottom: auto;
+	    left: auto;
+	    position: absolute;
+     }
+	 .h1 {
+	    position:relative;
+	    display:inline-block;
+			}
+	  .h1::before, 
+	  .h1::after {
+	    content:' ';
+	    display:block;
+	    position:absolute; top:50%; left:-120px;
+	    width:100px;
+	    border-bottom:1px solid black;
+	}
+	.h1::after {
+	    left:auto; right:-120px;
+	}
+</style>
+<div ng-controller="MembuatDraftSuratCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Membuat Draft Surat'" align="center">	</c-panel>
+		<div class="grid_5">
+
+		<!-- Judul -->
+		    <div class="grid_12">
+				<div class="grid_3" style="margin-top: 10px">
+					<label c-label item="item" c-label-text="judul"></label>
+				</div>				
+				<div class="grid_1" style="margin-top: 10px">
+					<label c-label item="item" c-label-text=":"></label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.judul"/>
+				</div>			
+			</div>
+
+		<!-- No Surat -->
+			<div class="grid_12">
+				<div class="grid_3" style="margin-top: 10px">
+					<label c-label item="item" c-label-text="noSurat"></label>
+				</div>				
+				<div class="grid_1" style="margin-top: 10px">
+					<label c-label item="item" c-label-text=":"></label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noSurat"/>
+				</div>			
+			</div>
+
+			<!-- Jenis Surat -->			
+			<div class="grid_12">
+				<div class="grid_3" style="margin-top: 10px">
+					<label c-label item="item" c-label-text="jenisSurat"></label>
+				</div>				
+				<div class="grid_1" style="margin-top: 10px">
+					<label c-label item="item" c-label-text=":"></label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisSurat" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceJenisSurat" />
+				</div>			
+			</div>
+
+			<!-- Keterangan -->			
+			<div class="grid_12">
+				<div class="grid_3" style="margin-top: 10px;">
+					<label c-label item="item" c-label-text="keterangan"></label>
+				</div>				
+				<div class="grid_1" style="margin-top: 10px">
+					<label c-label item="item" c-label-text=":"></label>
+				</div>
+				<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.keterangan"/>
+				</div>			
+			</div>
+
+			<!-- Ruangan -->
+			<div class="panel-body">
+				<div class="grid_12" ng-repeat="dataTeknisi in arrRuangan">
+					<div class="grid_3" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="Ruangan"></label>
+					</div>
+					<div class="grid_1" style="margin-top: 10px">
+						<label c-label item="item" c-label-text=":"></label>
+					</div>
+					<div class="grid_8">
+						<div class="grid_10">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.Ruangan[$index]" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="dataMasterRuangan"/>
+						</div>
+						<div class="grid_2">
+							<label c-label item="item" c-label-text="x" ng-click="RemoveRuangan($index)" ng-show="$index > -1" style="margin-top: 10px; text-align: right;" ></label>
+						</div>
+					</div>
+				</div>
+				<div class="grid_4"></div>
+				<div class="grid_8">
+					<div class="grid_12">
+					    <md-tooltip md-direction='bottom'>Pilih Ruangan untuk draft yang akan di sebar</md-tooltip>
+						<button class="c-button" style="background-color:#363940" ng-click="tambahRuangan()" ng-disabled="verifPekerjaan">Tambah Ruangan</button>
+					</div>
+
+				</div>
+		  </div>
+		</div>
+		<div class="grid_7">
+
+		<!-- Isi Surar -->
+			<div class="grid_12">
+				<div class="grid_3" style="margin-top: 10px">
+					<label c-label item="item" c-label-text="isiSurat"></label>
+				</div>				
+				<div class="grid_1" style="margin-top: 10px">
+					<label c-label item="item" c-label-text=":"></label>
+				</div>
+				<div class="grid_8">
+					<textarea style="height: 300px" id="text_area_surat" c-text-box type="input" class="k-textbox" ng-model="item.isiSurat" />
+				</div>			
+			</div>	
+
+		</div>
+		<hr class="style-four">
+		<div class="grid_12" style="margin-top: 10px">
+				<div class="grid_1"></div>
+				<div class="grid_1" style="margin-top: 10px">
+					<label c-label item="item" c-label-text="Pencarian"></label>
+				</div>
+				<div class="grid_1" align="right"  style="margin-top: 10px">
+					<label c-label item="item" c-label-text=":"></label>
+				</div>
+				<div class="grid_3">
+				 <input class=k-textbox type=text ng-model="item.pencarian" placeholder="No Draft / judul Surat" />
+				</div>
+				<div class="grid_1" style="margin-top: 5px">
+					<button class="c-button success" ng-click="Cari(item.pencarian)">Cari</button>
+				</div>
+				<div class="grid_1" style="margin-top: 5px">
+					<button class="c-button cancel" ng-click="batal()">Clear</button>
+				</div>
+		</div>
+		<hr class="style-four">
+		  <span class="title center">
+             <h5 style="color: black; font-weight: bold;" class="h1">Daftar Draft Surat</h5>
+          </span>
+          <br>
+        <div class="grid_12"><br></div>
+        <div class="grid_12">
+				 <md-button class="md-fab md-fab-top-right docs-scroll-fab md-button " align="center" style="height: 75px; width: 75px; background-color: #05b72a !important" aria-label="Eat cake">
+				   <md-tooltip md-direction='left'>Cetak Dokumen</md-tooltip>
+						<md-icon md-svg-src="/app/stylesheets/Images/exam.svg"></md-icon>
+				 </md-button>
+		</div>
+		<div class="grid_12">
+			  <kendo-grid id="kGrid" options="mainGridOptions" k-data-source="sourceDataGrid" k-ng-model="current" ng-click="kl(current)">
+			 </kendo-grid>
+		</div>
+		<div class="grid_12" style="margin-top:5px">
+			<div class="grid_6"></div>
+			<div class="grid_2">
+				<button class="c-button success" ng-click="Save()">Simpan</button>
+			</div>
+			<div class="grid_2">
+			    <md-tooltip md-direction='bottom'>Bersihkan Data pada Form</md-tooltip>
+				<button class="c-button cancel" ng-click="batal()">Clear Form</button>
+			</div>
+			<div class="grid_2">
+				<button class="c-button" ng-click="verifikasiSurat()">Verifikasi</button>
+			</div>
+		</div>
+		<hr class="style-four">
+	</div>
+</div>
+
+<!-- 	<div class="grid_1" style="margin-top:5px" align="center">
+<input type="checkbox" class="k-checkbox" name="verifikasi" id="verifikasi"  ng-click="()">
+<label class="k-checkbox-label" c-label item="item" c-label-text="verifikasi" for="verifikasi"></label>
+</div> -->
+
+
+<!-- <div class="grid_5" ng-show="verifikasi">
+<div class="grid_12">
+<div class="grid_10">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai1" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourcePegawai" />
+</div>
+<div class="grid_2" style="margin-top:5px" ng-show="tambah1">
+<button class="c-button" ng-click="Tambah1()">+</button>
+</div>
+</div>
+<div class="grid_12">
+<div class="grid_10" ng-show="pegawai2">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai2" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourcePegawai" />
+</div>
+<div class="grid_2" style="margin-top:5px" ng-show="tambah2">
+<button class="c-button" ng-click="Tambah2()">+</button>
+</div>
+</div>
+<div class="grid_12">
+<div class="grid_10" ng-show="pegawai3">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai3" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourcePegawai" />
+</div>
+<div class="grid_2" style="margin-top:5px" ng-show="tambah3">
+<button class="c-button" ng-click="Tambah3()">+</button>
+</div>
+</div>
+<div class="grid_12">
+<div class="grid_10" ng-show="pegawai4">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai4" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourcePegawai" />
+</div>
+<div class="grid_2" style="margin-top:5px" ng-show="tambah4">
+<button class="c-button" ng-click="Tambah4()">+</button>
+</div>
+</div>
+<div class="grid_12">
+<div class="grid_10" ng-show="pegawai5">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai5" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourcePegawai" />
+</div>
+</div>
+</div> -->

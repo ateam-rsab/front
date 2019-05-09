@@ -1,0 +1,104 @@
+<div ng-controller="InformasiSeminarCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Informasi Seminar di Website'"disabled>
+		<div class="grid_6">
+		<div class="panel panel-default container_12">
+	<!--		<div class="panel-heading" c-translate>Periode</div> -->
+	<!--		<div class="panel-body"> -->
+	
+           
+					
+	        <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Nama Seminar/Workshop"></label>
+			</div>
+			
+			
+			</div>
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Penyelenggara"></label>
+			</div>
+			
+			</div>
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Tanggal Pelaksanaan"></label>
+			</div>
+			
+			
+			</div>
+			
+				 <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Tempat"></label>
+			</div>
+			
+			
+			</div>
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Diakreditasi Oleh"></label>
+			</div>
+			
+			
+			</div>
+			
+			<div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Biaya Seminar"></label>
+			</div>
+			
+			
+			</div>
+			
+			
+			
+			
+			
+			
+			
+			
+				
+		   </div>
+		   </div>
+<!--		   </div>  -->
+           <div class="grid_6">	
+		   
+		  
+		  
+			
+			
+			
+
+		</div>
+	
+		
+	
+	
+		<div class="grid_12">
+							<div class="grid_8" style="float:left">
+							
+							
+							
+							<div class="grid_3 " style="margin-top: 25px ">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Pendaftaran Online</span>
+									</button>
+							</div>
+							</div>
+						</div>
+		
+		
+		
+		
+		
+		
+		
+		</c-panel>
+			
+		</div>
+	</div>
+</div>
+

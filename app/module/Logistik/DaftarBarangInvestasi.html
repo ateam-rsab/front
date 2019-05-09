@@ -1,0 +1,65 @@
+<div>
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Daftar Registrasi Asset'" style="margin-top:50px" disabled>
+            <div class="grid_12">
+                <div class="grid_3">
+                    <label c-label>Barang Asset</label>
+                    <input kendo-combo-box k-ng-model="item.produk" k-data-text-field="'namaproduk'" k-data-value-field="'id'" k-data-source="sourceProduk" k-filter="'contains'" style=\ "width: 100%\"></input>
+                </div>
+                <div class="grid_3">
+                    <label c-label>Ruangan</label>
+                    <input kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaruangan'" k-data-value-field="'id'" k-data-source="sourceRuangan" k-filter="'contains'" style=\ "width: 100%\></input>
+                </div>
+               <!--  <div class="grid_2">
+                    <label c-label>Periode</label>
+                    <input style="width: 100%" k-ng-model="item.Awal"  kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
+                </div>
+                <div class="grid_2" style="margin-top:15px">
+                   <input style="width: 100%" k-ng-model="item.Akhir"  kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
+                </div> -->
+                <div class="grid_2" style="margin-top:5px">
+                    <label c-label>&nbsp;</label>
+                    <button class="c-button" ng-click="Search()">
+        					<span style="font-size:10!important">Cari</span>
+        				</button>
+                </div>
+            </div>
+
+            <div class="grid_12" style="margin-top: 10px;">
+                <div id="kGrid" 
+                     kendo-grid k-data-source="sourceBarang" 
+                     k-selectable="'row'"
+                     k-columns="columnGrid"  
+                     k-pageable="'true'" 
+                     k-sortable="'true'" 
+                     k-ng-model="dataSelected"
+                     ng-click="klikGrid(dataSelected)">
+                </div>
+            </div>
+            <div class="clear">&nbsp;</div>
+        </c-panel>
+        <div class="grid_12" style="margin-top:60px">
+           <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+        </div>
+        <div class="grid_12 place_button" style="float:right;" ng-hide="isHide">
+            <div class="grid_3"></div>
+            <div class="grid_3" style="float:right;">
+                 <c-button style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate ng-click="Cetak()">
+                    <span class="title">Cetak Label</span>
+                </c-button>    
+            </div>
+            <div class="grid_3" style="float:right;">
+               <c-button style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate ng-click="KirimAsset()">
+                    <span class="title">Kirim Barang Aset</span>
+                </c-button>  
+              <!--   <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="">
+                    <span class="title">BMN</span> -->
+            </div>
+            <div class="grid_3" style="float:right;">
+                <c-button style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate ng-click="DetailAsset()">
+                    <span class="title">Detail Barang Aset</span>
+                </c-button>              
+            </div>
+        </div>       
+    </div>
+</div>

@@ -1,0 +1,191 @@
+<div class="panel panel-default container_12">
+	<div class="panel-body">
+		<div class="grid_12">
+			<div class="grid_12">
+				<!-- <div class="grid_1"></div> -->
+				<div class="grid_12">
+					<c-panel item="item" header="'Daftar Jenis Waktu Makan'" disabled> </c-panel>	
+				</div>
+				<!-- <div class="grid_1"></div> -->
+			</div>
+			<div class="grid_12">
+				<!-- <div class="grid_1"></div> -->
+				<div class="grid_12" style="margin-top: 10px">
+					<div class="grid_1">
+						<div class="grid_12">
+							<label c-label item="item" c-label-text="ID"></label>
+						</div>
+						<div class="grid_12">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.id" />
+						</div>
+					</div>
+					<div class="grid_2">
+						<div class="grid_12">
+							<label c-label item="item" c-label-text="Kd Jenis Waktu"></label>
+						</div>
+						<div class="grid_12">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kdJenisWaktu" />
+						</div>
+					</div>
+					<div class="grid_3">
+						<div class="grid_12">
+							<label c-label item="item" c-label-text="Jenis Waktu"></label>
+						</div>
+						<div class="grid_12">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jenisWaktu" />
+						</div>
+					</div>
+					<div class="grid_2">
+						<div class="grid_12">
+							<label c-label item="item" c-label-text="Kelompok Produk"></label>
+						</div>
+
+
+						<div class="grid_12">
+							<input style="width: 100%;" kendo-combo-box ng-model="item.kelompokProduk"
+							k-data-text-field="'kelompokproduk'" k-data-value-field="'id'"
+							k-filter="'contains'" k-auto-bind="false" k-data-source="listKelompokProduk" />
+						</div>
+					</div>
+					<div class="grid_2">
+						<div class="grid_12">
+							<label c-label item="item" c-label-text="Departemen"></label>
+						</div>
+
+
+						<div class="grid_12">
+							<input style="width: 100%;" kendo-combo-box ng-model="item.departemen"
+							k-data-text-field="'namadepartemen'" k-data-value-field="'id'"
+							k-filter="'contains'" k-auto-bind="false" k-data-source="listDepartemen" />
+						</div>
+					</div>
+
+
+					<div class="grid_1" style="margin-top: 20px">
+						<button class="c-button success" ng-click="Search()">Cari</button>
+					</div>
+					<div class="grid_1" style="margin-top: 20px">
+						<button class="c-button cancel" ng-click="Clear()">Clear</button>
+					</div>
+					
+				</div>
+				<!-- <div class="grid_1"></div> -->
+			</div>
+		</div>
+		<div class="grid_12" style="margin-top: 10px">
+			<!-- <div class="grid_1"></div> -->
+			<div class="grid_12">
+				<kendo-grid  id="kGrids" 
+				data-source="dataSource" options="columnGrid"
+				k-selectable="'row'" 
+				k-sortable="'true'"
+				k-resizable="'true'"
+				k-ng-model="dataSelected"
+				ng-click="klikGrid(dataSelected)"></kendo-grid>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="grid_12" style="margin-top:60px" >
+	<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+</div>
+
+<div kendo-window="popUps" k-title="'Add Edit Jenis Waktu'" k-width="600" k-height="300" k-visible="false">
+	<div class="panel panel-default container_12" style="padding: 0px 10px;"> 
+
+
+		<div class="grid_6">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="ID"></label>
+				<input  c-text-box type="input" filter="'string'" class="k-textbox" ng-model="popUp.id" disabled=""  />
+			</div>
+
+		</div>
+		<div class="grid_6">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="Kode Jenis Waktu"></label>
+				<input c-text-box type="number" class="k-textbox" ng-model="popUp.kodeJenisWaktu" />
+			</div>
+		</div>
+
+		<div class="grid_12" >
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="Jenis Waktu"></label>
+				<input c-text-box type="input" class="k-textbox" ng-model="popUp.jenisWaktu" />
+			</div>
+		</div>
+
+
+		<div class="grid_6">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="Kelompok Produk"></label>
+				<input style="width: 100%;" kendo-combo-box k-ng-model="popUp.kelompokProduk"
+				k-data-text-field="'kelompokproduk'" k-data-value-field="'id'"
+				k-filter="'contains'" k-auto-bind="false" k-data-source="listKelompokProduk" />
+
+			</div>
+		</div>
+		<div class="grid_6">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="Departemen"></label>
+				<input style="width: 100%;" kendo-combo-box k-ng-model="popUp.departemen"
+				k-data-text-field="'namadepartemen'" k-data-value-field="'id'"
+				k-filter="'contains'" k-auto-bind="false" k-data-source="listDepartemen" />
+
+			</div>
+		</div>
+		<div class="grid_6">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="Jam Awal"></label>
+				<input c-text-box type="number" class="k-textbox"  ng-model="popUp.jamAwal" />
+			</div>
+		</div>
+		<div class="grid_6">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="Jam Akhir"></label>
+				<input c-text-box type="number" class="k-textbox"  ng-model="popUp.jamAkhir" />
+			</div>
+		</div>
+
+</div>
+
+		<div class="k-edit-buttons  k-state-default pull-right" style="margin-top:10px"	>		
+			<button class="k-button  k-button-icontext k-primary k-grid-update" ng-click="save()" ><span class="k-icon k-update"></span>Simpan</button>
+
+			<button class="k-button  btnHapus k-button-icontext" ng-click="tutup()" ><span class="k-icon k-cancel"></span>Tutup</button>
+		</div>
+	</div>
+	<style>
+
+	button:disabled {
+		background: #B5B2B1;
+	}
+	.custom-button {
+		margin: 0 0 10px;
+		background: none;
+		color: black;
+		border-radius: 0.8em;
+		border: 1px solid;
+		background-color: white;
+	}
+	.k-edit, .k-i-download {
+		background-position: -313px -221px;
+	}
+	a.k-button.k-button-icontext {
+		min-width: 84px;
+		background-color: #e0360b;
+		border: none;
+		margin: .1em;
+	}
+	.duplicateDate {
+		background-color: red;
+		border: 2px solid red !important;
+	}
+	span.errorCuti {
+		text-align: center;
+		width: 100%;
+		padding: 10px 20px;
+		color: red;
+		font: italic 14px/30px arial, sans-serif;
+	}
+</style>

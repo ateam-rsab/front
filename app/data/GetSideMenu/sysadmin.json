@@ -1,0 +1,101 @@
+[{
+    "name": "Layanan Medik",
+    "children": [{
+        "name": "Jadwal Dokter",
+        "link": "#/Pegawai/JadwalDokter"
+    },{
+        "name": "Jadwal Dokter DPJP",
+        "link": "#/Pegawai/JadwalDokterDpjp"
+    },{
+        "name": "Jadwal Dokter Beta",
+        "link": "#/MasterJadwalDokter"
+    }]
+}, {
+    "name": "Layanan Penunjang",
+    "children": [{
+        "name": "Pendaftaran Pasien Baru",
+        "link": "#/RegistrasiPasienPenunjang"
+    }]
+},
+{
+    "name": "Laporan Buku Register Masuk Ri",
+    "link": "#/LaporanGeneral/LaporanBukuRegisterMasukRi"
+},
+{
+    "name": "Laporan Buku Register Pelayanan Ri",
+    "link": "#/LaporanGeneral/LaporanBukuRegisterPelayananRi"
+},
+{
+    "name": "Laporan Kunjungan",
+    "link": "#/LaporanGeneral/LaporanKunjungan"
+},
+{
+    "name": "Laporan Sensus Harian",
+    "link": "#/LaporanGeneral/LaporanSensusHarian"
+},
+{
+    "name":"Aplikasi IT",
+    "children":[
+        {
+            "name": "Permintaan Perbaikan dari Ruangan",
+            "link": "#/RevPermintaanPerbaikandariRuanganITNew"
+        }
+    ]
+},
+    {
+        "name": "IP3RS",
+        "children": [
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/PermintaanPerbaikandariRuangan"
+            },
+            {
+                "name": "Respond Perbaikan",
+                "link": "#/RespondPerbaikan"
+            } 
+        ]
+    }, 
+{
+        "name": "SDM",
+        "children": [{
+            "name": "Target Bobot Uraian Tugas",
+            "link": "#/TargetBobot"
+        }, {
+            "name": "Input Logbook",
+            "link": "#/InputLogbook"
+        }, {
+            "name": "Indeks Kinerja Individu",
+            "link": "#/IndeksKinerjaIndividuSDM"
+        }, {
+            "name": "Permohonan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
+            "link": "#/PermohonanPerubahanStatusPegawai"
+        }, {
+			"name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
+			"link": "#/DaftarPenangguhanCuti"
+		}, {
+            "name": "Pengajuan Mutasi Pegawai",
+            "link": "#/PengajuanMutasiPegawai"
+        }, {
+            "name": "Pengajuan Resign Pegawai",
+            "link": "#/PengajuanResignPegawai"
+        }, {
+            "name": "Pengajuan Sanksi Pegawai",
+            "link": "#/PengajuanSanksiPegawai"
+        }, {
+            "name": "Daftar Pengajuan Mutasi Sanksi Resign",
+            "link": "#/DaftarPengajuanMutasiSanksiResign"
+        }, {
+			"name": "Monitoring Absensi",
+			"link": "#/MonitoringAbsensiPegawai"
+		}, {
+			"name": "InputLemburPegawaiUnitKerja",
+			"link": "#/InputLemburPegawaiUnitKerja"
+		},{
+            "name": "Verifikasi Uraian Tugas Bawahan",
+            "link": "#/VerifikasiUraianTugasPegawaiLogin"
+        }]
+    },
+{
+    "name": "Form Baru",
+    "link": "#/NewForm"
+}]

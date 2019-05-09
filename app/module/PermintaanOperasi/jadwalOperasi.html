@@ -1,0 +1,109 @@
+<div>
+	<div class="panel panel-default container_12" style="min-height:100%!important">
+        <div class="panel-heading" c-translate><span class="title" c-translate>{{title}}</span></div>
+        <div class="panel-body">
+        	<div class="grid_12" style="margin: 10px 0 10px 0;">
+        		<div id="grid" data-kendo-grid="grid" k-options='optionsDataPengiriman'>
+                </div>
+                <!-- <kendo-grid k-data-source="dataPermintaan" k-options="optionsDataPengiriman">
+                </kendo-grid> -->
+            </div>
+            <div class="grid_12">
+            	<!-- 
+            	<div class="grid_1">
+            		<label class="checkbox-inline">
+			            <input type="checkbox" name="favoriteColors" ng-model="checked">
+			        </label>
+			    </div> -->
+            	<div class="grid_3">
+                    <label c-label item="item" c-label-text="noCm"></label>
+                    <input c-text-box type="input" filter="'number'" class="k-textbox" ng-model="item.noCm" style="width:100%" />
+                </div>
+                <div class="grid_4 pull-right">
+                    <div class="grid_6" style="margin-top:16px">
+                        <button class="c-button" ng-click="cari()">Cari</button>
+                    </div>
+                    <div class="grid_6" style="margin-top:16px">
+                        <button class="c-button error" ng-click="batal()">Batal</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default container_12" ng-if="checked" class="animate-if">
+    <!-- <div class="panel panel-default panel-white container_12"> -->
+        <div class="panel-heading-white" c-translate><span class="title" c-translate>{{subtitle}}</span></div>
+        <div class="panel-body">
+        	<div class="grid_2">
+        		<label c-label item="item" c-label-text="noCm"></label>
+        		<input c-text-box type="input" class="k-textbox" ng-model="items.noCm" style="width:100%" disabled/>
+        	</div>
+        	<div class="grid_2">
+        		<label c-label item="item" c-label-text="noPendaftaran"></label>
+        		<input c-text-box type="input" class="k-textbox" ng-model="items.noPendaftaran" style="width:100%" disabled/>
+        	</div>
+        	<div class="grid_4">
+        		<label c-label item="item" c-label-text="namaPasien"></label>
+        		<input c-text-box type="input" class="k-textbox" ng-model="items.namaPasien" style="width:100%" disabled/>
+        	</div>
+        	<div class="grid_2">
+        		<label c-label item="item" c-label-text="jenisKelamin"></label>
+        		<input c-text-box type="input" class="k-textbox" ng-model="items.jenisKelamin" style="width:100%" disabled/>
+        	</div>
+        	<div class="grid_2">
+        		<label c-label item="item" c-label-text="namaRuangan"></label>
+        		<input c-text-box type="input" class="k-textbox" ng-model="items.namaRuangan" style="width:100%" disabled/>
+        	</div>
+        	<div class="clear">&nbsp;</div>
+        	<!-- baris baru --> 
+        	<div class="grid_2">
+        		<label c-label item="item" c-label-text="rencanaOperasi"></label>
+        		<input style="width: 100%" kendo-date-time-picker k-ng-model="items.rencanaOperasi" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy hh:mm'">
+        	</div>
+        	<div class="grid_2">
+        		<label c-label item="item" c-label-text="mulaiAnastesi"></label>
+        		<input style="width: 100%" kendo-date-time-picker k-ng-model="items.mulaiAnastesi" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy hh:mm'">
+        	</div>
+        	<div class="grid_2">
+        		<label c-label item="item" c-label-text="selesaiAnastesi"></label>
+        		<input style="width: 100%" kendo-date-time-picker k-ng-model="items.selesaiAnastesi" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy hh:mm'">
+        	</div>
+        	<div class="grid_2">
+        		<label c-label item="item" c-label-text="mulaiOperasi"></label>
+        		<input style="width: 100%" kendo-date-time-picker k-ng-model="items.mulaiOperasi" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy hh:mm'">
+        	</div>
+        	<div class="grid_2">
+        		<label c-label item="item" c-label-text="selesaiOperasi"></label>
+        		<input style="width: 100%" kendo-date-time-picker k-ng-model="items.selesaiOperasi" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy hh:mm'">
+        	</div>
+        	<div class="grid_2">
+        		<label c-label item="item" c-label-text="kamarOperasi"></label>
+        		<input style="width: 100%" kendo-combo-box k-ng-model="items.kamarOperasi" k-data-text-field="'nama'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKamarOperasi">
+        	</div>
+        	<div class="clear">&nbsp;</div>
+        	<!-- baris baru --> 
+        	<div class="grid_2">
+        		<label c-label item="item" c-label-text="dokterOperator1"></label>
+        		<input style="width: 100%" kendo-combo-box k-ng-model="items.dokterOperator1" k-data-text-field="'nama'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDokter">
+        	</div>
+        	<div class="grid_2">
+        		<label c-label item="item" c-label-text="dokterOperator2"></label>
+        		<input style="width: 100%" kendo-combo-box k-ng-model="items.dokterOperator2" k-data-text-field="'nama'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDokter">
+        	</div>
+        	<div class="grid_2">
+        		<label c-label item="item" c-label-text="dokterAnastesi"></label>
+        		<input style="width: 100%" kendo-combo-box k-ng-model="items.dokterAnastesi" k-data-text-field="'nama'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDokter">
+        	</div>
+        	<div class="grid_2">
+        		<label c-label item="item" c-label-text="dokterPendamping"></label>
+        		<input style="width: 100%" kendo-combo-box k-ng-model="items.dokterPendamping" k-data-text-field="'nama'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDokter">
+        	</div>
+        	<div class="grid_2">
+        		<label c-label item="item" c-label-text="paramedis"></label>
+        		<input style="width: 100%" kendo-combo-box k-ng-model="items.paramedis" k-data-text-field="'nama'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDokter">
+        	</div>
+        	<div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+        </div>
+    </div>
+
+</div>

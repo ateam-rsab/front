@@ -1,0 +1,99 @@
+<div ng-controller="TambahPengajuanPelatihanCtrl">
+	<c-panel item="item" header="'Tambah Pengajuan Pelatihan'">
+		<div class="grid_12">
+			<div class="grid_2">
+				<label c-label item="item" style="margin-top: 10px">No. Pengajuan</label>
+			</div>
+			<div class="grid_4">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noPengajuan" disabled />
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_2">
+				<label c-label item="item" style="margin-top: 10px">Nama Paket Pelatihan</label>
+			</div>
+			<div class="grid_4">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaPaketPelatihan" disabled />
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_2">
+				<label c-label item="item" style="margin-top: 10px">Penyelenggara</label>
+			</div>
+			<div class="grid_4">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.penyelenggara" disabled />
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_2">
+				<label c-label item="item" style="margin-top: 10px">Tanggal</label>
+			</div>
+			<div class="grid_4">
+				<div class="grid_5">
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalAwal" k-format="'yyyy-MM-dd'" disabled/>
+				</div>
+				<div class="grid_2" style="text-align: center">
+					<label c-label item="item" style="margin-top: 10px">s/d</label>
+				</div>
+				<div class="grid_5">
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalAkhir" k-format="'yyyy-MM-dd'" disabled/>
+				</div>
+				
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_2">
+				<label c-label item="item" style="margin-top: 10px">Alasan</label>
+			</div>
+			<div class="grid_4">
+				<textarea style="height: 90px" c-text-box type="input" class="k-textbox" ng-model="item.alasan" />
+			</div>
+		</div>
+		<div class="grid_6">
+			<div ng-cloak>
+				<md-content>
+					<md-tabs md-dynamic-height md-border-bottom>
+						<md-tab label="Peserta">
+							<md-content class="md-padding">
+								<div class="grid_12">
+									<div class="grid_4">
+										<label c-label item="item" style="margin-top: 10px">Kapasitas Peserta</label>
+									</div>
+									<div class="grid_4">
+										<label c-label item="item" style="margin-top: 10px" ng-model="item.dataMax">{{item.dataMax}}</label>
+									</div>
+								</div>
+								<div class="grid_12">
+									<kendo-grid id="kendoGrid" options="mainGridOptions_1" k-data-source="dataGrid_1"></kendo-grid>
+								</div>
+							</md-content>
+						</md-tab>
+						<md-tab label="Lokasi">
+							<md-content class="md-padding">
+								<div class="grid_12">
+									<div class="grid_4">
+										<label c-label item="item" style="margin-top: 10px">Tempat</label>
+									</div>
+									<div class="grid_4">
+									<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.lokasi" disabled />
+									</div>
+								</div>
+							</md-content>
+						</md-tab>
+						<md-tab label="Agenda">
+							<md-content class="md-padding">
+							<kendo-grid  options="mainGridOptions_2" k-data-source="dataGrid_2"></kendo-grid>
+							</md-content>
+						</md-tab>
+					</md-tabs>
+				</md-content>
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_4"></div>
+			<div class="grid_2">
+				<button class="c-button" ng-click="simpan()">Simpan</button>
+			</div>
+		</div>
+	</c-panel>
+</div>

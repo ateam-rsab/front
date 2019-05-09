@@ -1,0 +1,101 @@
+	<style>
+    .error{
+        background-color:white !important;
+    }
+    .yellow{
+        background-color:#ffff00
+    }
+     .green{
+        background-color:#00ff40
+    }
+      .red{
+        background-color:#FF0000
+    }
+    .k-grid  .k-grid-header  .k-header  .k-link {
+     height: auto;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     white-space: normal;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     text-align: center;
+    }
+/*     .k-header .k-link{
+    text-align: center;
+     }*/
+</style>
+<div ng-controller="MasterJenisBahanCtrl">
+	<div class="panel panel-default container_12">
+		<div class="panel-heading" c-translate>Master Jenis Bahan</div>
+			<div class="panel-body">
+				<div class="grid_12" style="margin-top: 10px" ng-hide="SembunyiKodeJenisBahan"> 
+					<div class="grid_3"></div>
+					<div class="grid_2" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="kodeJenisBahan"></label>
+					</div>
+					<div class="grid_3">
+						<input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.kodeJenisBahan" disabled="enableKodeJenisBahan"/>
+					</div>
+				</div>
+				<div class="grid_12" style="margin-top: 10px">
+					<div class="grid_3"></div>
+					<div class="grid_2" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="KodeEksternal"></label>
+					</div>
+					<div class="grid_3">
+						<input c-text-box type="input" class="k-textbox" ng-model="item.KodeExternal" />
+					</div>
+				</div>
+				<div class="grid_12" style="margin-top: 10px">
+					<div class="grid_3"></div>
+					<div class="grid_2" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="NamaEksternal"></label>
+					</div>
+					<div class="grid_3">
+						<input c-text-box type="input" class="k-textbox" ng-model="item.NamaEksternal" />
+					</div>
+				</div>
+				<div class="grid_12" style="margin-top: 10px">
+					<div class="grid_3"></div>
+					<div class="grid_2" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="JenisBahan"></label>
+					</div>
+					<div class="grid_3">
+						<input c-text-box type="input" class="k-textbox" ng-model="item.JenisBahan" />
+					</div>
+				</div>
+				<div class="grid_12" style="margin-top: 30px">
+					<div class="grid_3"></div>
+					<div class="grid_2">
+						<button class="c-button success" ng-click=Save()>Simpan</button>
+					</div>
+<!-- 					<div class="grid_2">
+						<button class="c-button cancel" ng-click=batal()>Batal</button>
+					</div> -->
+<!-- 					<div class="grid_2">
+						<button class="c-button cancel" ng-click=hapus()>Hapus</button>
+					</div> -->
+					<div class="grid_2">
+						<button class="c-button success" ng-click="baru()">Baru</button>
+					</div>
+					<div class="grid_2">
+						<button class="c-button cancel" ng-click="tutup()">Tutup</button>
+					</div>
+					<div class="grid_3"></div>
+				</div>
+				<div class="grid_12" style="margin-top: 30px">
+					<div class="grid_1"></div>
+						<div class="grid_10">
+							<div kendo-grid k-on-change="SelectJenisBahan(data)" k-ng-model="currentData" ng-click="Kl(currentData)" options="mainGridOptions" k-data-source="dataSourceMasterJenisBahan" k-selectable="'row'" k-columns="columnJenisBahan">
+							</div>
+						<div class="grid_1"></div>
+					</div>
+				</div>
+				<!-- <div class="grid_12">
+					<div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+				</div> -->
+			</div>
+		</div>
+	</div>

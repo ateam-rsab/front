@@ -1,0 +1,18 @@
+{
+    "noRegistrasi": "1606000001",
+    "noMasuk": "16060000099",
+    "noOrder": "16060000099",
+    "ruanganTujuan": "Radiologi",
+    "dokterPerujuk": "Dr. Adang",
+    "tglDiRujuk": "1466385600",
+    "orders": [{
+        "kdProduk": "000001",
+        "namaProduk": "USG Kepala",
+        "bahanSample": {
+            "id": 1,
+            "kdBahanSample": "B",
+            "namaBahanSample": "URINE"
+        },
+        "jenisPeriksa": "USG"
+    }]
+}

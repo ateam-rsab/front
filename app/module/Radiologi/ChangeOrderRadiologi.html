@@ -1,0 +1,96 @@
+<div ng-include='"../app/module/Shared/headerPasienPenunjang"'></div>
+<div class="panel panel-default">
+    <div class="panel-heading">Permintaan Radiodiagnostik</div>
+    <div class="panel-body">
+        <!--<a style="float: right;cursor:pointer" ng-click="navigate()"> Lihat Riwayat</a>-->
+        <div class="grid_4">
+            <label c-label item="item" c-label-text="tanggalPermintaan"></label>
+        </div>
+        <div class="grid_8">
+            <input kendo-date-time-picker k-ng-model="items.tanggalPermintaan" k-format="'dd-MM-yyyy hh:mm:ss'" style="width: 100%" k-max="now"/>
+        </div>
+        <div class="grid_4">
+            <label c-label item="item" c-label-text="tanggalHaidTerkait"></label>
+        </div>
+        <div class="grid_8">
+            <input kendo-date-time-picker k-ng-model="items.tglHaidTerkait" k-format="'dd-MM-yyyy hh:mm:ss'" style="width: 100%" k-max="now"/>
+        </div>
+        <div class="grid_12">
+            &nbsp;
+        </div>
+        <div class="grid_12">
+            <label c-label item="item" c-label-text="keluhan" real></label>
+            <textarea ng-model="items.keluhan" style="width: 100%; height: 80px;"></textarea>
+        </div>
+        <div class="grid_12">
+            <label c-label item="item" c-label-text="diagnosisKerja" real></label>
+            <ul>
+                <li ng-repeat="diagnosis in diagnosisKerja">{{'['+diagnosis.kdDiagnosa+'] '+diagnosis.namaDiagnosa}}</li>
+            </ul>
+        </div>
+        <div class="grid_12">
+            &nbsp;
+        </div>
+        <div class="grid_2">
+            <label c-label item="item" c-label-text="jenisPemeriksaan" real></label>
+            <div class="breadcrum">
+                <div class="grid_12">
+                    <div ng-repeat="data in listJenisProduk">
+                        <a class="n1 green" ng-click='items.jenisProduk=data'>{{data.jenisProduk}}</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="grid_3">
+            <label c-label item="item" c-label-text="detailJenisPemeriksaan" real></label>
+            <div class="breadcrum">
+                <div class="grid_12">
+                    <div ng-repeat="data in listDetailJenisProduk">
+                        <a class="n1 purple" ng-click='items.detailProduk=data'>{{data.detailJenisProduk}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--
+        <div class="grid_7">
+            <label c-label item="item" c-label-text="pemeriksaan" real></label>
+            <div class="breadcrum">
+                <div class="grid_12">
+                    <div ng-repeat="data in listProduk">
+                        <a class="n1" ng-click='AddProduk(data)'>{{data.namaProduk}}</a>
+                    </div>
+                </div>
+            </div>
+            //////////////////
+            <input style="width: 100%;" kendo-combo-box k-ng-model="item.produk" k-data-text-field="'namaProduk'" k-data-value-field="'id '" k-filter="'contains '" k-auto-bind="false" k-data-source="listProduk" />
+            //////////////////
+        </div>-->
+
+        <div class="grid_7">
+            <label c-label item="item" c-label-text="Pemeriksaan" real></label>
+            <div class="breadcrum">
+                <div class="grid_12">
+                    <input style="width:100%" c-text-box type="input" class="k-textbox" ng-model="pencarianData" />
+                </div>
+                <div class="grid_12">
+
+                    <div class="grid_6" ng-repeat="data in listProduk |filter:pencarianData">
+                        <a class="n1" ng-click='AddProduk(data)'>{{data.namaProduk}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid_12">
+            &nbsp;
+        </div>
+
+        <!-- grid diagnosis -->
+        <div class="grid_12" style="float: left; margin-bottom:50px;">
+            <div kendo-grid="dataRadiologi" k-data-source="dataPemeriksaanRadiolog" k-selectable="'row'" k-columns="columnPemeriksaanRadiolog">
+            </div>
+        </div>
+    </div>
+    <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+</div>

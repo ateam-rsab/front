@@ -1,0 +1,5696 @@
+[
+    {
+      "noRec": "297eb280585ca9ee01585cc2488a0017",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "297eb280585ca9ee01585cc2488a0017",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "297eb280585ca9ee01585cc2488a0017",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "297eb280585ca9ee01585cc2488a0017",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "297eb280585ca9ee01585cc2488a0017",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "297eb280585ca9ee01585cc2488a0017",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "297eb280585ca9ee01585cc2488a0017",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengadaan Obat Unit Farmasi 2",
+          "noRec": "297eb280585ca9ee01585cc2488a0017",
+          "hargaSatuan": "12000.0",
+          "volume": "1200.0",
+          "totalHarga": "1.44E7",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "297eb280585ca9ee01585cc248e20018",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "297eb280585ca9ee01585cc248e20018",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "297eb280585ca9ee01585cc248e20018",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "297eb280585ca9ee01585cc248e20018",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "297eb280585ca9ee01585cc248e20018",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "297eb280585ca9ee01585cc248e20018",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "297eb280585ca9ee01585cc248e20018",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengadaan Obat Unit Farmasi 2",
+          "noRec": "297eb280585ca9ee01585cc248e20018",
+          "hargaSatuan": "50900.0",
+          "volume": "360.0",
+          "totalHarga": "1.8324E7",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "297eb280585ca9ee01585cc2494f0019",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "297eb280585ca9ee01585cc2494f0019",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "297eb280585ca9ee01585cc2494f0019",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "297eb280585ca9ee01585cc2494f0019",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "297eb280585ca9ee01585cc2494f0019",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "297eb280585ca9ee01585cc2494f0019",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "297eb280585ca9ee01585cc2494f0019",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengadaan Obat Unit Farmasi 2",
+          "noRec": "297eb280585ca9ee01585cc2494f0019",
+          "hargaSatuan": "9000.0",
+          "volume": "1080.0",
+          "totalHarga": "9720000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "297eb280585ca9ee01585cc249aa001a",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "297eb280585ca9ee01585cc249aa001a",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "297eb280585ca9ee01585cc249aa001a",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "297eb280585ca9ee01585cc249aa001a",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "297eb280585ca9ee01585cc249aa001a",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "297eb280585ca9ee01585cc249aa001a",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "297eb280585ca9ee01585cc249aa001a",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengadaan Obat Unit Farmasi 2",
+          "noRec": "297eb280585ca9ee01585cc249aa001a",
+          "hargaSatuan": "50000.0",
+          "volume": "40.0",
+          "totalHarga": "2000000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "297eb280585d36e901585d5e9b370002",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "297eb280585d36e901585d5e9b370002",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "297eb280585d36e901585d5e9b370002",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "297eb280585d36e901585d5e9b370002",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "297eb280585d36e901585d5e9b370002",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "297eb280585d36e901585d5e9b370002",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "297eb280585d36e901585d5e9b370002",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengadaan Obat Farmasi 2",
+          "noRec": "297eb280585d36e901585d5e9b370002",
+          "hargaSatuan": "12000.0",
+          "volume": "1080.0",
+          "totalHarga": "1.296E7",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "297eb280585d36e901585d5e9b4b0003",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "297eb280585d36e901585d5e9b4b0003",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "297eb280585d36e901585d5e9b4b0003",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "297eb280585d36e901585d5e9b4b0003",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "297eb280585d36e901585d5e9b4b0003",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "297eb280585d36e901585d5e9b4b0003",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "297eb280585d36e901585d5e9b4b0003",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengadaan Obat Farmasi 2",
+          "noRec": "297eb280585d36e901585d5e9b4b0003",
+          "hargaSatuan": "12000.0",
+          "volume": "1080.0",
+          "totalHarga": "1.296E7",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "297eb280585d36e901585d5e9b590004",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "297eb280585d36e901585d5e9b590004",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "297eb280585d36e901585d5e9b590004",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "297eb280585d36e901585d5e9b590004",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "297eb280585d36e901585d5e9b590004",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "297eb280585d36e901585d5e9b590004",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "297eb280585d36e901585d5e9b590004",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengadaan Obat Farmasi 2",
+          "noRec": "297eb280585d36e901585d5e9b590004",
+          "hargaSatuan": "12000.0",
+          "volume": "1080.0",
+          "totalHarga": "1.296E7",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "297eb280585d36e901585d5e9b640005",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "297eb280585d36e901585d5e9b640005",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "297eb280585d36e901585d5e9b640005",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "297eb280585d36e901585d5e9b640005",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "297eb280585d36e901585d5e9b640005",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "297eb280585d36e901585d5e9b640005",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "297eb280585d36e901585d5e9b640005",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengadaan Obat Farmasi 2",
+          "noRec": "297eb280585d36e901585d5e9b640005",
+          "hargaSatuan": "12000.0",
+          "volume": "1080.0",
+          "totalHarga": "1.296E7",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "297eb280586479d8015864836e9b0008",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "297eb280586479d8015864836e9b0008",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "297eb280586479d8015864836e9b0008",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "297eb280586479d8015864836e9b0008",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "297eb280586479d8015864836e9b0008",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "297eb280586479d8015864836e9b0008",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "297eb280586479d8015864836e9b0008",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Belanja barang dapur",
+          "noRec": "297eb280586479d8015864836e9b0008",
+          "hargaSatuan": "200.0",
+          "volume": "276.0",
+          "totalHarga": "55200.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "297eb280586479d8015864836ea10009",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "297eb280586479d8015864836ea10009",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "297eb280586479d8015864836ea10009",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "297eb280586479d8015864836ea10009",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "297eb280586479d8015864836ea10009",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "297eb280586479d8015864836ea10009",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "297eb280586479d8015864836ea10009",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Belanja barang dapur",
+          "noRec": "297eb280586479d8015864836ea10009",
+          "hargaSatuan": "200.0",
+          "volume": "144.0",
+          "totalHarga": "28800.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "297eb2805867203e015867bb6ab40009",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "DEFINITIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "297eb2805867203e015867bb6ab40009",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "297eb2805867203e015867bb6ab40009",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "297eb2805867203e015867bb6ab40009",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "002",
+          "noRec": "297eb2805867203e015867bb6ab40009",
+          "namaJenisPengadaan": "Pengadaan Jasa",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "297eb2805867203e015867bb6ab40009",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "297eb2805867203e015867bb6ab40009",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pembelian Mesin",
+          "noRec": "297eb2805867203e015867bb6ab40009",
+          "hargaSatuan": "12000.0",
+          "volume": "0.0",
+          "totalHarga": "0.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "297eb2805867e655015867e9884e0001",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "297eb2805867e655015867e9884e0001",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "297eb2805867e655015867e9884e0001",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "297eb2805867e655015867e9884e0001",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "002",
+          "noRec": "297eb2805867e655015867e9884e0001",
+          "namaJenisPengadaan": "Pengadaan Jasa",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "297eb2805867e655015867e9884e0001",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "297eb2805867e655015867e9884e0001",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pembelian Mesin",
+          "noRec": "297eb2805867e655015867e9884e0001",
+          "hargaSatuan": "12000.0",
+          "volume": "144.0",
+          "totalHarga": "1728000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "297eb2805867e655015867e988580002",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "297eb2805867e655015867e988580002",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "297eb2805867e655015867e988580002",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "297eb2805867e655015867e988580002",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "002",
+          "noRec": "297eb2805867e655015867e988580002",
+          "namaJenisPengadaan": "Pengadaan Jasa",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "297eb2805867e655015867e988580002",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "297eb2805867e655015867e988580002",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pembelian Mesin",
+          "noRec": "297eb2805867e655015867e988580002",
+          "hargaSatuan": "12000.0",
+          "volume": "12.0",
+          "totalHarga": "144000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "297eb2805867e655015867e9885e0003",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "297eb2805867e655015867e9885e0003",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "297eb2805867e655015867e9885e0003",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "297eb2805867e655015867e9885e0003",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "002",
+          "noRec": "297eb2805867e655015867e9885e0003",
+          "namaJenisPengadaan": "Pengadaan Jasa",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "297eb2805867e655015867e9885e0003",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "297eb2805867e655015867e9885e0003",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pembelian Mesin",
+          "noRec": "297eb2805867e655015867e9885e0003",
+          "hargaSatuan": "12000.0",
+          "volume": "12.0",
+          "totalHarga": "144000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "297eb2805867e655015867eb03e70004",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "297eb2805867e655015867eb03e70004",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "297eb2805867e655015867eb03e70004",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "297eb2805867e655015867eb03e70004",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "297eb2805867e655015867eb03e70004",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "297eb2805867e655015867eb03e70004",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "297eb2805867e655015867eb03e70004",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "ppengadaan kelompok barang aset",
+          "noRec": "297eb2805867e655015867eb03e70004",
+          "hargaSatuan": "15000.0",
+          "volume": "1080.0",
+          "totalHarga": "1.62E7",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "297eb280587654f3015876975e59001a",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.085",
+          "namaKegiatanDetail": "Pemantauan dan Evaluasi Bidang Fasilitas Pelayanan Kesehatan",
+          "noRec": "297eb280587654f3015876975e59001a",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "297eb280587654f3015876975e59001a",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "297eb280587654f3015876975e59001a",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "297eb280587654f3015876975e59001a",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "297eb280587654f3015876975e59001a",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "297eb280587654f3015876975e59001a",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Obat-obatan farmasi",
+          "noRec": "297eb280587654f3015876975e59001a",
+          "hargaSatuan": "120.0",
+          "volume": "300000.0",
+          "totalHarga": "3.6E7",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "297eb280587654f3015876975e63001b",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.085",
+          "namaKegiatanDetail": "Pemantauan dan Evaluasi Bidang Fasilitas Pelayanan Kesehatan",
+          "noRec": "297eb280587654f3015876975e63001b",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "297eb280587654f3015876975e63001b",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "297eb280587654f3015876975e63001b",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "297eb280587654f3015876975e63001b",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "297eb280587654f3015876975e63001b",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "297eb280587654f3015876975e63001b",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Obat-obatan farmasi",
+          "noRec": "297eb280587654f3015876975e63001b",
+          "hargaSatuan": "600.0",
+          "volume": "14400.0",
+          "totalHarga": "8640000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "297eb280587654f3015876975e6c001c",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.085",
+          "namaKegiatanDetail": "Pemantauan dan Evaluasi Bidang Fasilitas Pelayanan Kesehatan",
+          "noRec": "297eb280587654f3015876975e6c001c",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "297eb280587654f3015876975e6c001c",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "297eb280587654f3015876975e6c001c",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "297eb280587654f3015876975e6c001c",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "297eb280587654f3015876975e6c001c",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "297eb280587654f3015876975e6c001c",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Obat-obatan farmasi",
+          "noRec": "297eb280587654f3015876975e6c001c",
+          "hargaSatuan": "12000.0",
+          "volume": "1440.0",
+          "totalHarga": "1.728E7",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "297eb2805888735a01588a3e561b0012",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.085",
+          "namaKegiatanDetail": "Pemantauan dan Evaluasi Bidang Fasilitas Pelayanan Kesehatan",
+          "noRec": "297eb2805888735a01588a3e561b0012",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "297eb2805888735a01588a3e561b0012",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "297eb2805888735a01588a3e561b0012",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "297eb2805888735a01588a3e561b0012",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "297eb2805888735a01588a3e561b0012",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "297eb2805888735a01588a3e561b0012",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pembelian Obat Bulan Juni",
+          "noRec": "297eb2805888735a01588a3e561b0012",
+          "hargaSatuan": "12.0",
+          "volume": "144.0",
+          "totalHarga": "1728.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "297eb2805888735a01588a3e56280013",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.085",
+          "namaKegiatanDetail": "Pemantauan dan Evaluasi Bidang Fasilitas Pelayanan Kesehatan",
+          "noRec": "297eb2805888735a01588a3e56280013",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "297eb2805888735a01588a3e56280013",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "297eb2805888735a01588a3e56280013",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "297eb2805888735a01588a3e56280013",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "297eb2805888735a01588a3e56280013",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "297eb2805888735a01588a3e56280013",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pembelian Obat Bulan Juni",
+          "noRec": "297eb2805888735a01588a3e56280013",
+          "hargaSatuan": "12.0",
+          "volume": "144.0",
+          "totalHarga": "1728.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "297eb2805888735a01588a3e56370014",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.085",
+          "namaKegiatanDetail": "Pemantauan dan Evaluasi Bidang Fasilitas Pelayanan Kesehatan",
+          "noRec": "297eb2805888735a01588a3e56370014",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "297eb2805888735a01588a3e56370014",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "297eb2805888735a01588a3e56370014",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "297eb2805888735a01588a3e56370014",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "297eb2805888735a01588a3e56370014",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "297eb2805888735a01588a3e56370014",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pembelian Obat Bulan Juni",
+          "noRec": "297eb2805888735a01588a3e56370014",
+          "hargaSatuan": "12.0",
+          "volume": "144.0",
+          "totalHarga": "1728.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "297eb2805888735a01588a3e56520015",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.085",
+          "namaKegiatanDetail": "Pemantauan dan Evaluasi Bidang Fasilitas Pelayanan Kesehatan",
+          "noRec": "297eb2805888735a01588a3e56520015",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "297eb2805888735a01588a3e56520015",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "297eb2805888735a01588a3e56520015",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "297eb2805888735a01588a3e56520015",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "297eb2805888735a01588a3e56520015",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "297eb2805888735a01588a3e56520015",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pembelian Obat Bulan Juni",
+          "noRec": "297eb2805888735a01588a3e56520015",
+          "hargaSatuan": "12.0",
+          "volume": "144.0",
+          "totalHarga": "1728.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "297eb2805888735a01588a3e56790016",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.085",
+          "namaKegiatanDetail": "Pemantauan dan Evaluasi Bidang Fasilitas Pelayanan Kesehatan",
+          "noRec": "297eb2805888735a01588a3e56790016",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "297eb2805888735a01588a3e56790016",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "297eb2805888735a01588a3e56790016",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "297eb2805888735a01588a3e56790016",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "297eb2805888735a01588a3e56790016",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "297eb2805888735a01588a3e56790016",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pembelian Obat Bulan Juni",
+          "noRec": "297eb2805888735a01588a3e56790016",
+          "hargaSatuan": "12.0",
+          "volume": "144.0",
+          "totalHarga": "1728.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "297eb28058e2c3a60158e2e48e29001e",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "297eb28058e2c3a60158e2e48e29001e",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "297eb28058e2c3a60158e2e48e29001e",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "297eb28058e2c3a60158e2e48e29001e",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "297eb28058e2c3a60158e2e48e29001e",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "297eb28058e2c3a60158e2e48e29001e",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "297eb28058e2c3a60158e2e48e29001e",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengajuan obat ruangan seruni",
+          "noRec": "297eb28058e2c3a60158e2e48e29001e",
+          "hargaSatuan": "1500.0",
+          "volume": "1200.0",
+          "totalHarga": "1800000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "297eb28058e2c3a60158e2e48e31001f",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "297eb28058e2c3a60158e2e48e31001f",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "297eb28058e2c3a60158e2e48e31001f",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "297eb28058e2c3a60158e2e48e31001f",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "297eb28058e2c3a60158e2e48e31001f",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "297eb28058e2c3a60158e2e48e31001f",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "297eb28058e2c3a60158e2e48e31001f",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengajuan obat ruangan seruni",
+          "noRec": "297eb28058e2c3a60158e2e48e31001f",
+          "hargaSatuan": "1200.0",
+          "volume": "1200.0",
+          "totalHarga": "1440000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "297eb28058e393290158e3a452eb000b",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2094.065",
+          "namaKegiatanDetail": "Barang Medik Habis Pakai",
+          "noRec": "297eb28058e393290158e3a452eb000b",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "297eb28058e393290158e3a452eb000b",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "297eb28058e393290158e3a452eb000b",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "297eb28058e393290158e3a452eb000b",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "297eb28058e393290158e3a452eb000b",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "297eb28058e393290158e3a452eb000b",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pembelian stok obat farmasi",
+          "noRec": "297eb28058e393290158e3a452eb000b",
+          "hargaSatuan": "10000.0",
+          "volume": "1200.0",
+          "totalHarga": "1.2E7",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "2c9090cf591c869c01591c92d3df0007",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "2c9090cf591c869c01591c92d3df0007",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "2c9090cf591c869c01591c92d3df0007",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "2c9090cf591c869c01591c92d3df0007",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "2c9090cf591c869c01591c92d3df0007",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "2c9090cf591c869c01591c92d3df0007",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "2c9090cf591c869c01591c92d3df0007",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "coba pengadaan baru",
+          "noRec": "2c9090cf591c869c01591c92d3df0007",
+          "hargaSatuan": "0.0",
+          "volume": "1200.0",
+          "totalHarga": "6.0E7",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "2c9090cf591c869c01591c92d3e70008",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "2c9090cf591c869c01591c92d3e70008",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "2c9090cf591c869c01591c92d3e70008",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "2c9090cf591c869c01591c92d3e70008",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "2c9090cf591c869c01591c92d3e70008",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "2c9090cf591c869c01591c92d3e70008",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "2c9090cf591c869c01591c92d3e70008",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "coba pengadaan baru",
+          "noRec": "2c9090cf591c869c01591c92d3e70008",
+          "hargaSatuan": "0.0",
+          "volume": "1200.0",
+          "totalHarga": "1.32E7",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "2c9090cf591f788101591f868d65000a",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "2c9090cf591f788101591f868d65000a",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "2c9090cf591f788101591f868d65000a",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "2c9090cf591f788101591f868d65000a",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "2c9090cf591f788101591f868d65000a",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "2c9090cf591f788101591f868d65000a",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "2c9090cf591f788101591f868d65000a",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengadaan coba dulu",
+          "noRec": "2c9090cf591f788101591f868d65000a",
+          "hargaSatuan": "0.0",
+          "volume": "12000.0",
+          "totalHarga": "2.4E8",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "2c9090cf591f788101591f868d6e000b",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "2c9090cf591f788101591f868d6e000b",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "2c9090cf591f788101591f868d6e000b",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "2c9090cf591f788101591f868d6e000b",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "2c9090cf591f788101591f868d6e000b",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "2c9090cf591f788101591f868d6e000b",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "2c9090cf591f788101591f868d6e000b",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengadaan coba dulu",
+          "noRec": "2c9090cf591f788101591f868d6e000b",
+          "hargaSatuan": "0.0",
+          "volume": "12000.0",
+          "totalHarga": "4.2E8",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "2c9090cf591f788101591f868d76000c",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "2c9090cf591f788101591f868d76000c",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "2c9090cf591f788101591f868d76000c",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "2c9090cf591f788101591f868d76000c",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "2c9090cf591f788101591f868d76000c",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "2c9090cf591f788101591f868d76000c",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "2c9090cf591f788101591f868d76000c",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengadaan coba dulu",
+          "noRec": "2c9090cf591f788101591f868d76000c",
+          "hargaSatuan": "0.0",
+          "volume": "12000.0",
+          "totalHarga": "3.6E8",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "2c9090cf591f788101591f8e70c9001d",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "2c9090cf591f788101591f8e70c9001d",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "2c9090cf591f788101591f8e70c9001d",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "2c9090cf591f788101591f8e70c9001d",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "2c9090cf591f788101591f8e70c9001d",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "2c9090cf591f788101591f8e70c9001d",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "2c9090cf591f788101591f8e70c9001d",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengadaan coba dulu 002",
+          "noRec": "2c9090cf591f788101591f8e70c9001d",
+          "hargaSatuan": "70000.0",
+          "volume": "1200.0",
+          "totalHarga": "8.4E7",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "2c9090cf591f788101591f8e70d8001e",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "2c9090cf591f788101591f8e70d8001e",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "2c9090cf591f788101591f8e70d8001e",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "2c9090cf591f788101591f8e70d8001e",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "2c9090cf591f788101591f8e70d8001e",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "2c9090cf591f788101591f8e70d8001e",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "2c9090cf591f788101591f8e70d8001e",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengadaan coba dulu 002",
+          "noRec": "2c9090cf591f788101591f8e70d8001e",
+          "hargaSatuan": "60000.0",
+          "volume": "2400.0",
+          "totalHarga": "1.44E8",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "2c9090cf591f788101591f8e70e3001f",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "2c9090cf591f788101591f8e70e3001f",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "2c9090cf591f788101591f8e70e3001f",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "2c9090cf591f788101591f8e70e3001f",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "2c9090cf591f788101591f8e70e3001f",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "2c9090cf591f788101591f8e70e3001f",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "2c9090cf591f788101591f8e70e3001f",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengadaan coba dulu 002",
+          "noRec": "2c9090cf591f788101591f8e70e3001f",
+          "hargaSatuan": "80000.0",
+          "volume": "2400.0",
+          "totalHarga": "1.92E8",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "2c9090cf592590e70159259f333a0007",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "2c9090cf592590e70159259f333a0007",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "2c9090cf592590e70159259f333a0007",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "2c9090cf592590e70159259f333a0007",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "2c9090cf592590e70159259f333a0007",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "2c9090cf592590e70159259f333a0007",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "2c9090cf592590e70159259f333a0007",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Contoh Spesifikasi",
+          "noRec": "2c9090cf592590e70159259f333a0007",
+          "hargaSatuan": "100.0",
+          "volume": "120.0",
+          "totalHarga": "12000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "2c9090cf592590e70159259f33430008",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "2c9090cf592590e70159259f33430008",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "2c9090cf592590e70159259f33430008",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "2c9090cf592590e70159259f33430008",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "2c9090cf592590e70159259f33430008",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "2c9090cf592590e70159259f33430008",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "2c9090cf592590e70159259f33430008",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Contoh Spesifikasi",
+          "noRec": "2c9090cf592590e70159259f33430008",
+          "hargaSatuan": "100.0",
+          "volume": "10.0",
+          "totalHarga": "1000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "2c9090cf5925bb71015925bd6ec10004",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "DEFINITIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "2c9090cf5925bb71015925bd6ec10004",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "2c9090cf5925bb71015925bd6ec10004",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "2c9090cf5925bb71015925bd6ec10004",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "2c9090cf5925bb71015925bd6ec10004",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "2c9090cf5925bb71015925bd6ec10004",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "2c9090cf5925bb71015925bd6ec10004",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengadaan Konsultan Managemen Konstruksi Ruanga  Rawat Jalan Gedung utama RSAB Harappan Kita 2016",
+          "noRec": "2c9090cf5925bb71015925bd6ec10004",
+          "hargaSatuan": "1.02375E7",
+          "volume": "2.0",
+          "totalHarga": "2.0475E7",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "2c9090cf5925bb71015925bd6ec10005",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "DEFINITIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "2c9090cf5925bb71015925bd6ec10005",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "2c9090cf5925bb71015925bd6ec10005",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "2c9090cf5925bb71015925bd6ec10005",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "2c9090cf5925bb71015925bd6ec10005",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "2c9090cf5925bb71015925bd6ec10005",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "2c9090cf5925bb71015925bd6ec10005",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengadaan Konsultan Managemen Konstruksi Ruanga  Rawat Jalan Gedung utama RSAB Harappan Kita 2016",
+          "noRec": "2c9090cf5925bb71015925bd6ec10005",
+          "hargaSatuan": "7900000.0",
+          "volume": "4.0",
+          "totalHarga": "3.16E7",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff80818158ddd1720158de10954e0048",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "DEFINITIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.994",
+          "namaKegiatanDetail": "Layanan Perkantoran",
+          "noRec": "ff80818158ddd1720158de10954e0048",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff80818158ddd1720158de10954e0048",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff80818158ddd1720158de10954e0048",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff80818158ddd1720158de10954e0048",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff80818158ddd1720158de10954e0048",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff80818158ddd1720158de10954e0048",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "obat",
+          "noRec": "ff80818158ddd1720158de10954e0048",
+          "hargaSatuan": "400.0",
+          "volume": "6000.0",
+          "totalHarga": "2400000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff80818158dea9ff0158debc542e0008",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.994",
+          "namaKegiatanDetail": "Layanan Perkantoran",
+          "noRec": "ff80818158dea9ff0158debc542e0008",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff80818158dea9ff0158debc542e0008",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff80818158dea9ff0158debc542e0008",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff80818158dea9ff0158debc542e0008",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff80818158dea9ff0158debc542e0008",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff80818158dea9ff0158debc542e0008",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "obat",
+          "noRec": "ff80818158dea9ff0158debc542e0008",
+          "hargaSatuan": "2900.0",
+          "volume": "3840.0",
+          "totalHarga": "1.1136E7",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff80818158dea9ff0158e1cfeb1a0cce",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff80818158dea9ff0158e1cfeb1a0cce",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff80818158dea9ff0158e1cfeb1a0cce",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff80818158dea9ff0158e1cfeb1a0cce",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff80818158dea9ff0158e1cfeb1a0cce",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff80818158dea9ff0158e1cfeb1a0cce",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff80818158dea9ff0158e1cfeb1a0cce",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "-",
+          "noRec": "ff80818158dea9ff0158e1cfeb1a0cce",
+          "hargaSatuan": "3200.0",
+          "volume": "3000.0",
+          "totalHarga": "9600000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff80818158dea9ff0158e1cfeb1f0ccf",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff80818158dea9ff0158e1cfeb1f0ccf",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff80818158dea9ff0158e1cfeb1f0ccf",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff80818158dea9ff0158e1cfeb1f0ccf",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff80818158dea9ff0158e1cfeb1f0ccf",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff80818158dea9ff0158e1cfeb1f0ccf",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff80818158dea9ff0158e1cfeb1f0ccf",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "-",
+          "noRec": "ff80818158dea9ff0158e1cfeb1f0ccf",
+          "hargaSatuan": "1000.0",
+          "volume": "7200.0",
+          "totalHarga": "7200000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff80818158f5c1940158f5fc79e70430",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff80818158f5c1940158f5fc79e70430",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff80818158f5c1940158f5fc79e70430",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff80818158f5c1940158f5fc79e70430",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff80818158f5c1940158f5fc79e70430",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff80818158f5c1940158f5fc79e70430",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff80818158f5c1940158f5fc79e70430",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "1221134314134",
+          "noRec": "ff80818158f5c1940158f5fc79e70430",
+          "hargaSatuan": "500.0",
+          "volume": "12000.0",
+          "totalHarga": "6000000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff80818158f5c1940158f7569b6a12f9",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2090.048",
+          "namaKegiatanDetail": "Pengadaan Obat-obatan dan Balian habis pakai ",
+          "noRec": "ff80818158f5c1940158f7569b6a12f9",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Pembinean Pelayanan Kesehatan Primer",
+          "noRec": "ff80818158f5c1940158f7569b6a12f9",
+          "kodeKegiatan": "2087",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff80818158f5c1940158f7569b6a12f9",
+          "namaOutput": "Penagadaan Alat Kesehatan",
+          "outputId": "3",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff80818158f5c1940158f7569b6a12f9",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff80818158f5c1940158f7569b6a12f9",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff80818158f5c1940158f7569b6a12f9",
+          "kodeKomponen": "C",
+          "namaKomponen": "Belanja Obat-Obatan",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Obat1",
+          "noRec": "ff80818158f5c1940158f7569b6a12f9",
+          "hargaSatuan": "150.0",
+          "volume": "144.0",
+          "totalHarga": "21600.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff80818158f5c1940158f756e7ee12fa",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2090.048",
+          "namaKegiatanDetail": "Pengadaan Obat-obatan dan Balian habis pakai ",
+          "noRec": "ff80818158f5c1940158f756e7ee12fa",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Pembinean Pelayanan Kesehatan Primer",
+          "noRec": "ff80818158f5c1940158f756e7ee12fa",
+          "kodeKegiatan": "2087",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff80818158f5c1940158f756e7ee12fa",
+          "namaOutput": "Penagadaan Alat Kesehatan",
+          "outputId": "3",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff80818158f5c1940158f756e7ee12fa",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff80818158f5c1940158f756e7ee12fa",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff80818158f5c1940158f756e7ee12fa",
+          "kodeKomponen": "C",
+          "namaKomponen": "Belanja Obat-Obatan",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Obat1",
+          "noRec": "ff80818158f5c1940158f756e7ee12fa",
+          "hargaSatuan": "1000.0",
+          "volume": "1200.0",
+          "totalHarga": "1200000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff80818158f5c1940158f756e7f212fb",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2090.048",
+          "namaKegiatanDetail": "Pengadaan Obat-obatan dan Balian habis pakai ",
+          "noRec": "ff80818158f5c1940158f756e7f212fb",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Pembinean Pelayanan Kesehatan Primer",
+          "noRec": "ff80818158f5c1940158f756e7f212fb",
+          "kodeKegiatan": "2087",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff80818158f5c1940158f756e7f212fb",
+          "namaOutput": "Penagadaan Alat Kesehatan",
+          "outputId": "3",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff80818158f5c1940158f756e7f212fb",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "002",
+          "noRec": "ff80818158f5c1940158f756e7f212fb",
+          "namaJenisBelanja": "Belanja Operasional",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff80818158f5c1940158f756e7f212fb",
+          "kodeKomponen": "C",
+          "namaKomponen": "Belanja Obat-Obatan",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Obat1",
+          "noRec": "ff80818158f5c1940158f756e7f212fb",
+          "hargaSatuan": "125.0",
+          "volume": "120.0",
+          "totalHarga": "15000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff80818158f5c1940158fbcacab424e6",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "DEFINITIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff80818158f5c1940158fbcacab424e6",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff80818158f5c1940158fbcacab424e6",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff80818158f5c1940158fbcacab424e6",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff80818158f5c1940158fbcacab424e6",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff80818158f5c1940158fbcacab424e6",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff80818158f5c1940158fbcacab424e6",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengadaan Obat Farmasi",
+          "noRec": "ff80818158f5c1940158fbcacab424e6",
+          "hargaSatuan": "12000.0",
+          "volume": "1200.0",
+          "totalHarga": "1.44E7",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff80818158fcd2b001590186006a136b",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "DEFINITIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff80818158fcd2b001590186006a136b",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff80818158fcd2b001590186006a136b",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff80818158fcd2b001590186006a136b",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff80818158fcd2b001590186006a136b",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff80818158fcd2b001590186006a136b",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff80818158fcd2b001590186006a136b",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "coba usulan anggaran",
+          "noRec": "ff80818158fcd2b001590186006a136b",
+          "hargaSatuan": "0.0",
+          "volume": "144.0",
+          "totalHarga": "1440000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff80818158fcd2b0015906ce162422ae",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "DEFINITIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff80818158fcd2b0015906ce162422ae",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff80818158fcd2b0015906ce162422ae",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff80818158fcd2b0015906ce162422ae",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff80818158fcd2b0015906ce162422ae",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff80818158fcd2b0015906ce162422ae",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff80818158fcd2b0015906ce162422ae",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengajuan obar unit farmasi",
+          "noRec": "ff80818158fcd2b0015906ce162422ae",
+          "hargaSatuan": "0.0",
+          "volume": "1680.0",
+          "totalHarga": "8400000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff808181590712310159071912de0009",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff808181590712310159071912de0009",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff808181590712310159071912de0009",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff808181590712310159071912de0009",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff808181590712310159071912de0009",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff808181590712310159071912de0009",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff808181590712310159071912de0009",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengadaan obat farmasi",
+          "noRec": "ff808181590712310159071912de0009",
+          "hargaSatuan": "0.0",
+          "volume": "1440.0",
+          "totalHarga": "2880000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff808181590712310159071912e4000a",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff808181590712310159071912e4000a",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff808181590712310159071912e4000a",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff808181590712310159071912e4000a",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff808181590712310159071912e4000a",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff808181590712310159071912e4000a",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff808181590712310159071912e4000a",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengadaan obat farmasi",
+          "noRec": "ff808181590712310159071912e4000a",
+          "hargaSatuan": "0.0",
+          "volume": "1680.0",
+          "totalHarga": "5880000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff808181590734ef0159074243fd000e",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff808181590734ef0159074243fd000e",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff808181590734ef0159074243fd000e",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff808181590734ef0159074243fd000e",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff808181590734ef0159074243fd000e",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff808181590734ef0159074243fd000e",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff808181590734ef0159074243fd000e",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Coba pengajuan usulan barang medik",
+          "noRec": "ff808181590734ef0159074243fd000e",
+          "hargaSatuan": "0.0",
+          "volume": "240.0",
+          "totalHarga": "4800000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff808181590734ef015907424413000f",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff808181590734ef015907424413000f",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff808181590734ef015907424413000f",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff808181590734ef015907424413000f",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff808181590734ef015907424413000f",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff808181590734ef015907424413000f",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff808181590734ef015907424413000f",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Coba pengajuan usulan barang medik",
+          "noRec": "ff808181590734ef015907424413000f",
+          "hargaSatuan": "0.0",
+          "volume": "1440.0",
+          "totalHarga": "4.32E7",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff808181590734ef015907527dc7001c",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff808181590734ef015907527dc7001c",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff808181590734ef015907527dc7001c",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff808181590734ef015907527dc7001c",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff808181590734ef015907527dc7001c",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff808181590734ef015907527dc7001c",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff808181590734ef015907527dc7001c",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "coba pengajuan usulan barang medik 2",
+          "noRec": "ff808181590734ef015907527dc7001c",
+          "hargaSatuan": "0.0",
+          "volume": "1440.0",
+          "totalHarga": "1.44E7",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff808181590734ef015907527dd0001d",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff808181590734ef015907527dd0001d",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff808181590734ef015907527dd0001d",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff808181590734ef015907527dd0001d",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff808181590734ef015907527dd0001d",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff808181590734ef015907527dd0001d",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff808181590734ef015907527dd0001d",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "coba pengajuan usulan barang medik 2",
+          "noRec": "ff808181590734ef015907527dd0001d",
+          "hargaSatuan": "0.0",
+          "volume": "1440.0",
+          "totalHarga": "2.88E7",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff808181590734ef01591498c6721b6f",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff808181590734ef01591498c6721b6f",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff808181590734ef01591498c6721b6f",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff808181590734ef01591498c6721b6f",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff808181590734ef01591498c6721b6f",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff808181590734ef01591498c6721b6f",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff808181590734ef01591498c6721b6f",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengedaan Bulan Desember 2016",
+          "noRec": "ff808181590734ef01591498c6721b6f",
+          "hargaSatuan": "0.0",
+          "volume": "1200.0",
+          "totalHarga": "2400000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff808181590734ef01591498c6771b70",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff808181590734ef01591498c6771b70",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff808181590734ef01591498c6771b70",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff808181590734ef01591498c6771b70",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff808181590734ef01591498c6771b70",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff808181590734ef01591498c6771b70",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff808181590734ef01591498c6771b70",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengedaan Bulan Desember 2016",
+          "noRec": "ff808181590734ef01591498c6771b70",
+          "hargaSatuan": "0.0",
+          "volume": "120.0",
+          "totalHarga": "240000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff8081815914c8ae015915027c2a04aa",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff8081815914c8ae015915027c2a04aa",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff8081815914c8ae015915027c2a04aa",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff8081815914c8ae015915027c2a04aa",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff8081815914c8ae015915027c2a04aa",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff8081815914c8ae015915027c2a04aa",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff8081815914c8ae015915027c2a04aa",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "pengadaan Obat",
+          "noRec": "ff8081815914c8ae015915027c2a04aa",
+          "hargaSatuan": "0.0",
+          "volume": "144000.0",
+          "totalHarga": "1.584E8",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff808181591a6f1501591b0f199b0bf7",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff808181591a6f1501591b0f199b0bf7",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff808181591a6f1501591b0f199b0bf7",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff808181591a6f1501591b0f199b0bf7",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff808181591a6f1501591b0f199b0bf7",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff808181591a6f1501591b0f199b0bf7",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff808181591a6f1501591b0f199b0bf7",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengadaan barang farmasi",
+          "noRec": "ff808181591a6f1501591b0f199b0bf7",
+          "hargaSatuan": "1000.0",
+          "volume": "1200.0",
+          "totalHarga": "1200000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff8081815924ac2301592563219703d1",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff8081815924ac2301592563219703d1",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff8081815924ac2301592563219703d1",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff8081815924ac2301592563219703d1",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff8081815924ac2301592563219703d1",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff8081815924ac2301592563219703d1",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff8081815924ac2301592563219703d1",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengadaan Konsultan Managemen Konstruksi Ruanga  Rawat Jalan Gedung utama RSAB Harappan Kita 2016",
+          "noRec": "ff8081815924ac2301592563219703d1",
+          "hargaSatuan": "7900000.0",
+          "volume": "4.0",
+          "totalHarga": "3.16E7",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff8081815924ac230159256321a003d2",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff8081815924ac230159256321a003d2",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff8081815924ac230159256321a003d2",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff8081815924ac230159256321a003d2",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff8081815924ac230159256321a003d2",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff8081815924ac230159256321a003d2",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff8081815924ac230159256321a003d2",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengadaan Konsultan Managemen Konstruksi Ruanga  Rawat Jalan Gedung utama RSAB Harappan Kita 2016",
+          "noRec": "ff8081815924ac230159256321a003d2",
+          "hargaSatuan": "1.02375E7",
+          "volume": "2.0",
+          "totalHarga": "2.0475E7",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff8081815949a7240159678de1885bb7",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff8081815949a7240159678de1885bb7",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff8081815949a7240159678de1885bb7",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff8081815949a7240159678de1885bb7",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff8081815949a7240159678de1885bb7",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff8081815949a7240159678de1885bb7",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff8081815949a7240159678de1885bb7",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengadaan coba dulu 002",
+          "noRec": "ff8081815949a7240159678de1885bb7",
+          "hargaSatuan": "80000.0",
+          "volume": "2400.0",
+          "totalHarga": "1.92E8",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff8081815949a7240159678de18d5bb8",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff8081815949a7240159678de18d5bb8",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff8081815949a7240159678de18d5bb8",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff8081815949a7240159678de18d5bb8",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff8081815949a7240159678de18d5bb8",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff8081815949a7240159678de18d5bb8",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff8081815949a7240159678de18d5bb8",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengadaan coba dulu 002",
+          "noRec": "ff8081815949a7240159678de18d5bb8",
+          "hargaSatuan": "70000.0",
+          "volume": "1200.0",
+          "totalHarga": "8.4E7",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff8081815949a7240159678de1915bb9",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff8081815949a7240159678de1915bb9",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff8081815949a7240159678de1915bb9",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff8081815949a7240159678de1915bb9",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff8081815949a7240159678de1915bb9",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff8081815949a7240159678de1915bb9",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff8081815949a7240159678de1915bb9",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengadaan coba dulu 002",
+          "noRec": "ff8081815949a7240159678de1915bb9",
+          "hargaSatuan": "60000.0",
+          "volume": "2400.0",
+          "totalHarga": "1.44E8",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff8081815949a724015968d2a54d653b",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "DEFINITIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.033",
+          "namaKegiatanDetail": "Peralatan Kesehatan, Rumah Sakit yang akan terakreditasi",
+          "noRec": "ff8081815949a724015968d2a54d653b",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff8081815949a724015968d2a54d653b",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff8081815949a724015968d2a54d653b",
+          "namaOutput": "Penagadaan Alat Kesehatan",
+          "outputId": "3",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "002",
+          "noRec": "ff8081815949a724015968d2a54d653b",
+          "namaJenisPengadaan": "Pengadaan Jasa",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff8081815949a724015968d2a54d653b",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff8081815949a724015968d2a54d653b",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "abcdghhh",
+          "noRec": "ff8081815949a724015968d2a54d653b",
+          "hargaSatuan": "1.0",
+          "volume": "12.0",
+          "totalHarga": "12.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff8081815990804101599371906b1e6c",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "DEFINITIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff8081815990804101599371906b1e6c",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff8081815990804101599371906b1e6c",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff8081815990804101599371906b1e6c",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff8081815990804101599371906b1e6c",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff8081815990804101599371906b1e6c",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff8081815990804101599371906b1e6c",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "pengadaan obat",
+          "noRec": "ff8081815990804101599371906b1e6c",
+          "hargaSatuan": "10.0",
+          "volume": "10.0",
+          "totalHarga": "100.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff8081815990804101599375b4101e74",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2094.034",
+          "namaKegiatanDetail": "Obat-obatan",
+          "noRec": "ff8081815990804101599375b4101e74",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Pengadaan Obat dan Alat Kesehatan",
+          "noRec": "ff8081815990804101599375b4101e74",
+          "kodeKegiatan": "5837",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff8081815990804101599375b4101e74",
+          "namaOutput": "Penagadaan Alat Kesehatan",
+          "outputId": "3",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff8081815990804101599375b4101e74",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff8081815990804101599375b4101e74",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff8081815990804101599375b4101e74",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "pengadaan obat",
+          "noRec": "ff8081815990804101599375b4101e74",
+          "hargaSatuan": "1000.0",
+          "volume": "200.0",
+          "totalHarga": "200000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff8081815990804101599375b4141e75",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2094.034",
+          "namaKegiatanDetail": "Obat-obatan",
+          "noRec": "ff8081815990804101599375b4141e75",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Pengadaan Obat dan Alat Kesehatan",
+          "noRec": "ff8081815990804101599375b4141e75",
+          "kodeKegiatan": "5837",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff8081815990804101599375b4141e75",
+          "namaOutput": "Penagadaan Alat Kesehatan",
+          "outputId": "3",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff8081815990804101599375b4141e75",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff8081815990804101599375b4141e75",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff8081815990804101599375b4141e75",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "pengadaan obat",
+          "noRec": "ff8081815990804101599375b4141e75",
+          "hargaSatuan": "2000.0",
+          "volume": "50.0",
+          "totalHarga": "100000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff808181599080410159958c66e6222c",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "INDIKATIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff808181599080410159958c66e6222c",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff808181599080410159958c66e6222c",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff808181599080410159958c66e6222c",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff808181599080410159958c66e6222c",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff808181599080410159958c66e6222c",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff808181599080410159958c66e6222c",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "coba1",
+          "noRec": "ff808181599080410159958c66e6222c",
+          "hargaSatuan": "1000.0",
+          "volume": "10.0",
+          "totalHarga": "10000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff80818159908041015995f71626267b",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "DEFINITIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff80818159908041015995f71626267b",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff80818159908041015995f71626267b",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff80818159908041015995f71626267b",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff80818159908041015995f71626267b",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff80818159908041015995f71626267b",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff80818159908041015995f71626267b",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengajuan usulan error unsupport media type",
+          "noRec": "ff80818159908041015995f71626267b",
+          "hargaSatuan": "1000.0",
+          "volume": "1200.0",
+          "totalHarga": "1200000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff80818159908041015995f7d4942680",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "DEFINITIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff80818159908041015995f7d4942680",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff80818159908041015995f7d4942680",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff80818159908041015995f7d4942680",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff80818159908041015995f7d4942680",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff80818159908041015995f7d4942680",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff80818159908041015995f7d4942680",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengajuan usulan error unsupport media type",
+          "noRec": "ff80818159908041015995f7d4942680",
+          "hargaSatuan": "1000.0",
+          "volume": "1200.0",
+          "totalHarga": "1200000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff80818159908041015995fd602226d2",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "DEFINITIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff80818159908041015995fd602226d2",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff80818159908041015995fd602226d2",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff80818159908041015995fd602226d2",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff80818159908041015995fd602226d2",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff80818159908041015995fd602226d2",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff80818159908041015995fd602226d2",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Nama paket pengadaan",
+          "noRec": "ff80818159908041015995fd602226d2",
+          "hargaSatuan": "1500.0",
+          "volume": "1200.0",
+          "totalHarga": "1800000.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff80818159908041015995fd602226d3",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "DEFINITIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff80818159908041015995fd602226d3",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff80818159908041015995fd602226d3",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff80818159908041015995fd602226d3",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff80818159908041015995fd602226d3",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff80818159908041015995fd602226d3",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff80818159908041015995fd602226d3",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Nama paket pengadaan",
+          "noRec": "ff80818159908041015995fd602226d3",
+          "hargaSatuan": "1200.0",
+          "volume": "1188.0",
+          "totalHarga": "1425600.0",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff80818159908041015996002726272c",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "DEFINITIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff80818159908041015996002726272c",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff80818159908041015996002726272c",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff80818159908041015996002726272c",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff80818159908041015996002726272c",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff80818159908041015996002726272c",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff80818159908041015996002726272c",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Bongkar bedeng utara I",
+          "noRec": "ff80818159908041015996002726272c",
+          "hargaSatuan": "4900000.0",
+          "volume": "120.0",
+          "totalHarga": "5.88E8",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff8081815990804101599607a5662743",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "DEFINITIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff8081815990804101599607a5662743",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff8081815990804101599607a5662743",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff8081815990804101599607a5662743",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff8081815990804101599607a5662743",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff8081815990804101599607a5662743",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff8081815990804101599607a5662743",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengajuan usulan farmasi 2 januari 2017",
+          "noRec": "ff8081815990804101599607a5662743",
+          "hargaSatuan": "15000.0",
+          "volume": "1200.0",
+          "totalHarga": "1.8E7",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff8081815990804101599607cee22748",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "DEFINITIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff8081815990804101599607cee22748",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff8081815990804101599607cee22748",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff8081815990804101599607cee22748",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff8081815990804101599607cee22748",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff8081815990804101599607cee22748",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff8081815990804101599607cee22748",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "Pengajuan usulan farmasi 2 januari 2017",
+          "noRec": "ff8081815990804101599607cee22748",
+          "hargaSatuan": "15000.0",
+          "volume": "1200.0",
+          "totalHarga": "1.8E7",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff808181599080410159960c9f09276d",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "DEFINITIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff808181599080410159960c9f09276d",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff808181599080410159960c9f09276d",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff808181599080410159960c9f09276d",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff808181599080410159960c9f09276d",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff808181599080410159960c9f09276d",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff808181599080410159960c9f09276d",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "pengajuan usulan anggaran pengadaan obat farmasi",
+          "noRec": "ff808181599080410159960c9f09276d",
+          "hargaSatuan": "18000.0",
+          "volume": "12000.0",
+          "totalHarga": "2.16E8",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    },
+    {
+      "noRec": "ff808181599080410159960c9f09276e",
+      "kodeKemenLemb": "Kementrian Kesehatan",
+      "unitKerjaId": 2,
+      "namaUnitKerja": "Rsab Harapan Kita",
+      "unitOrgId": 1,
+      "namaUnitOrg": "Ditjen Pelayanan Kesehatan",
+      "tahun": 2017,
+      "kodeProgram": "024.4.07",
+      "namaProgram": "Program Pembinanaan Layanan Kesehatan",
+      "asalProdukId": 1,
+      "asalProduk": "Badan Layanan Umum",
+      "isVerifikasi": "DEFINITIF",
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.001",
+          "namaKegiatanDetail": "Layanan perkantoran\r\n",
+          "noRec": "ff808181599080410159960c9f09276e",
+          "tahun": "2017"
+        }
+      ],
+      "listKegiatan": [
+        {
+          "namaKegiatan": "Dukungan Manajemen dan Pelaksanaan Tugas Teknis Lainnya pada Program Pembinaan Pelayanan Kesehatan",
+          "noRec": "ff808181599080410159960c9f09276e",
+          "kodeKegiatan": "2094",
+          "tahun": "2017"
+        }
+      ],
+      "listOutputDetail": [
+        {
+          "noRec": "ff808181599080410159960c9f09276e",
+          "namaOutput": "Peralatan Dan Mesin",
+          "outputId": "1",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisPengadaan": [
+        {
+          "kodeJenisPengadaan": "001",
+          "noRec": "ff808181599080410159960c9f09276e",
+          "namaJenisPengadaan": "Pengadaan Barang",
+          "tahun": "2017"
+        }
+      ],
+      "listJenisBelanja": [
+        {
+          "kodeJenisBelanja": "001",
+          "noRec": "ff808181599080410159960c9f09276e",
+          "namaJenisBelanja": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listKomponen": [
+        {
+          "noRec": "ff808181599080410159960c9f09276e",
+          "kodeKomponen": "A",
+          "namaKomponen": "Belanja Modal",
+          "tahun": "2017"
+        }
+      ],
+      "listSpesifikasi": [
+        {
+          "namaPaketPengadaan": "pengajuan usulan anggaran pengadaan obat farmasi",
+          "noRec": "ff808181599080410159960c9f09276e",
+          "hargaSatuan": "12000.0",
+          "volume": "1200.0",
+          "totalHarga": "1.44E7",
+          "tahun": "2017"
+        }
+      ],
+      "volume": 0
+    }
+  ]

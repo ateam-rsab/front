@@ -1,0 +1,97 @@
+[
+    {
+        "id": 1,
+        "name": "Riwayat jatuh, yang baru atau dalam 3 bulan terakhir",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 25
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 2,
+        "name": "Alat bantu jalan",
+        "children":[
+            {
+                "id": 1,
+                "name": "Bed res / dibantu perawat",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Penopang / tongkat / walker",
+                "score": 15
+            },
+            {
+                "id": 2,
+                "name": "Furnitur",
+                "score": 30
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 3,
+        "name": "Menggunakan Infus",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 25
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 4,
+        "name": "Cara berjalan / berpindah",
+        "children":[
+            {
+                "id": 1,
+                "name": "Normal / bed rest / imobilisasi",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "lemah",
+                "score": 15
+            },
+            {
+                "id": 3,
+                "name": "Terganggu",
+                "score": 30
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 5,
+        "name": "Status Mental",
+        "children": [
+            {
+                "id": 1,
+                "name": "Orientasi sesuai kemampuan diri",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Lupa keterbatasan diri",
+                "score": 15
+            }
+        ],
+        "score":0
+    }
+]

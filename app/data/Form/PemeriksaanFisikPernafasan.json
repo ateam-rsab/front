@@ -1,0 +1,104 @@
+{
+	"model":{
+	    "Irama" : "Reguler",
+	    "RetraksiDada" : "Tidak Ada",
+		"BentukDada" : "Normal",
+		"PolaNafas" : "Normal",
+		"SuaraNafas" : "Normal",
+		"NafasCupingHidung" : "Tidak Ada",
+		"Sianosis" : "Tidak Ada",
+		"AlatBantuNafas" : "Spontan",
+		"Sebutkan" : "",
+		"Setting" : "",
+		"KeteranganBentukDada" : "",
+		"KeteranganPolaNafas" : "",
+		"KeteranganSuaraNafas" : "",
+		"KeteranganAlatBantu" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "false",
+			"name" : "Irama",
+			"messagesRequired" : "Irama Darah Harus Diisi",
+			"caption" : "Irama"
+		},
+		{
+			"isNull" : "false",
+			"name" : "RetraksiDada",
+			"messagesRequired" : "Retraksi Dada Darah Harus Diisi",
+			"caption" : "Retraksi Dada"
+		},
+		{
+			"isNull" : "false",
+			"name" : "BentukDada",
+			"messagesRequired" : "BentukDada Darah Harus Diisi",
+			"caption" : "Bentuk Dada"
+		},
+		{
+			"isNull" : "false",
+			"name" : "PolaNafas",
+			"messagesRequired" : "Pola Nafas Darah Harus Diisi",
+			"caption" : "Pola Nafas"
+		},
+		{
+			"isNull" : "false",
+			"name" : "SuaraNafas",
+			"messagesRequired" : "SuaraNafas Darah Harus Diisi",
+			"caption" : "Suara Nafas"
+		},
+		{
+			"isNull" : "false",
+			"name" : "NafasCupingHidung",
+			"messagesRequired" : "NafasCupingHidung Darah Harus Diisi",
+			"caption" : "Nafas Cuping Hidung"
+		},
+		{
+			"isNull" : "false",
+			"name" : "Sianosis",
+			"messagesRequired" : "Sianosis Darah Harus Diisi",
+			"caption" : "Sianosis"
+		},
+		{
+			"isNull" : "false",
+			"name" : "AlatBantuNafas",
+			"messagesRequired" : "AlatBantuNafas Darah Harus Diisi",
+			"caption" : "Alat Bantu Nafas"
+		},
+		{
+			"isNull" : "false",
+			"name" : "Sebutkan",
+			"messagesRequired" : "Sebutkan Darah Harus Diisi",
+			"caption" : "Sebutkan"
+		},
+		{
+			"isNull" : "false",
+			"name" : "Setting",
+			"messagesRequired" : "Setting Darah Harus Diisi",
+			"caption" : "Setting"
+		},
+		{
+			"isNull" : "false",
+			"name" : "KeteranganBentukDada",
+			"messagesRequired" : "",
+			"caption" : "KeteranganBentukDada"
+		},
+		{
+			"isNull" : "false",
+			"name" : "KeteranganPolaNafas",
+			"messagesRequired" : "",
+			"caption" : "KeteranganPolaNafas"
+		},
+		{
+			"isNull" : "false",
+			"name" : "keteranganSuaraNafas",
+			"messagesRequired" : "",
+			"caption" : "keteranganSuaraNafas"
+		},
+		{
+			"isNull" : "false",
+			"name" : "KeteranganAlatBantu",
+			"messagesRequired" : "",
+			"caption" : "KeteranganAlatBantu"
+		}
+  ]
+}

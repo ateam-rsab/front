@@ -1,0 +1,51 @@
+[
+    {
+        "name": "Layanan Medik",
+        "children": [{
+                "name": "Reservasi Online",
+                "link": "/app/reservasiOnline"
+            },
+            {
+                "name": "Touch Screen",
+                "link": "#/TouchScreen"
+            },
+            {
+                "name": "Antrian Klinik Edelweis",
+                "link": "#/AntrianRadiologi"
+            }
+        ]
+    },
+    {
+        "name":"Aplikasi IT",
+        "children":[
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/RevPermintaanPerbaikandariRuanganITNew"
+            }
+        ]
+    },
+    {
+        "name": "IP3RS",
+        "children": [
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/PermintaanPerbaikandariRuangan"
+            },
+            {
+                "name": "Respond Perbaikan",
+                "link": "#/RespondPerbaikan"
+            } 
+        ]
+    },
+    {
+        "name": "Aplikasi Laundry",
+        "children": [
+            {
+                "name": "Permintaan Linen Bersih",
+                "link": "#/PermintaanLinenByRuangan"
+            },{
+                "name": "Verifikasi",
+                "link": "#/VerifikasiTerima"
+            }
+    ]}
+]

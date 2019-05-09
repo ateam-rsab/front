@@ -1,0 +1,90 @@
+<style>
+.style-center {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+
+.style-right {
+    display: inline-block;
+    text-align: right;
+    width: 100%;
+}
+
+.style-left {
+    display: inline-block;
+    text-align: left;
+    width: 100%;
+}
+
+.k-treeview .k-item {
+    background-color: #f9f9f9 !important;
+}
+
+.k-checkbox-label:before {
+    margin: 1px 0px 0px 6px;
+}
+</style>
+	<div ng-show="dataVOloaded">
+		<div class="grid_12 headerBox">
+			<h1 style="color: white;"><b>Daftar Map Ruangan To Produk</b></h1>
+		</div>
+		<div class="grid_12">
+			 <div class="grid_3">
+					<div class="grid_12" style="margin: 10px 0 0 0;">
+						<label c-label item="item" c-label-text="Departemen"></label>
+					</div>
+					<div class="grid_12">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.departemen" k-data-text-field="'departemen'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDepartement"  k-on-change="RuanganToDepartement()" ng-click="RuanganToDepartement()" for="RuanganToDepartement"/>
+					</div>	
+			</div>
+			<div class="grid_3">
+					<div class="grid_12" style="margin: 10px 0 0 0;">
+						<label c-label item="item" c-label-text="Ruangan"></label>
+					</div>
+					<div class="grid_12">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'ruangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listruangan" k-on-change="ruangan()" />
+					</div>	
+			</div>
+			<div class="grid_3">
+				<div class="grid_12" style="margin: 10px 0 0 0;">
+					<label c-label item="item" c-label-text="Nama Produk"></label>
+				</div>
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.Produk" k-data-text-field="'namaproduk'" k-data-value-field="'kdproduk'" k-filter="'contains'" k-auto-bind="false" k-data-source="listProduk"/>
+				</div>	
+			</div>
+			 <div class="grid_3 k-edit-buttons  k-state-default " style="margin-top:32px"    >       
+                <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="SearchData()"  style="width:100px"  ><span class="k-sprite k-icon k-i-search"></span>Cari </button>
+                <button class="k-button  k-button-icontext" ng-click="ClearData()"   style="width:100px" ><span class="k-sprite k-icon k-delete"></span>Clear</button>
+            </div>      
+		</div>
+		<div class="grid_12">
+            <div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+                <p>Data Mapping</p>
+            </div>
+            <div class="grid_12">
+                <div id="kGrid" kendo-grid 
+                    kendo-grid options="mainGridOptions"
+					k-data-source="dataSource" 
+					k-selectable="'row'" 
+					k-columns="columnProduk"
+					k-pageable="'true'"
+					k-sortable="'true'"
+					k-ng-model="dataSelected" 
+					ng-click="klik2(dataSelected)">
+				</div>
+            </div>
+		</div>	
+		<div class="grid_12">
+			<div class="grid_12" style="float:right;">
+			    <div class="grid_8"></div>
+				<div class="grid_2" style="margin-top: 5px">
+					<button class="c-button" ng-click="delete()">Hapus</button>
+				</div>
+				<div class="grid_2" style="margin-top: 5px">
+					<button class="c-button" ng-click="NewMapping()">Mapping Baru</button>
+				</div>
+			</div>
+		</div>
+</div>

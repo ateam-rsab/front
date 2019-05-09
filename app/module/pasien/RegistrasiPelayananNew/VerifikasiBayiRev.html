@@ -1,0 +1,92 @@
+<div>
+   <c-form item="item">
+        <div ng-show="true">
+            <div class="panel panel-default container_12" style="background-color:transparant">
+      <div class="panel-heading"><label class='title' c-label item="item" c-label-text="Pendaftaran Pasien Bayi" real></label></div>
+    <div class="grid_12">
+        <div class="grid_3">
+            <label c-label>No RM Ibu</label>
+            <input c-text-box type="input" class="k-textbox" ng-model="item.NoCM" ng-keypress="($event.which == 13)? VerificationNamaIbu():item.NoCM"/>
+            <kendo-button sprite-css-class="'k-icon k-i-lock'" ng-click="VerificationNamaIbu()" style="width: 100%">Cari No RM Ibu</kendo-button>
+        </div>
+        <div class="panel panel-default panel-white">
+            <div class="panel-heading-white"><span class="title" c-translate>Rekam Medis Ibu</span></div>
+            <div class="panel-body">
+               <div class="grid_3" ng-show="nocmHide">
+                    <!-- <label c-label c-label-text="NamaPasien"></label> -->
+                    <label c-label>No RM</label>
+                    <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.nocm" />
+                </div>
+                <div class="grid_3">
+                    <!-- <label c-label c-label-text="NamaPasien"></label> -->
+                    <label c-label>Nama Ibu</label>
+                    <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.namapasien" />
+                </div>
+                 <div class="grid_3">
+                    <!-- <label c-label c-label-text="TglLahir"></label> -->
+                    <label c-label>Tanggal Lahir</label>
+                    <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.tglLahir"/>
+                </div>
+                  <div class="grid_3">
+                    <!-- <label c-label c-label-text="JenisKelamin"></label> -->
+                    <label c-label>Jenis Kelamin</label>
+                    <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.jeniskelamin" />
+                </div>
+                <div class="grid_3">
+                    <!-- <label c-label c-label-text="Agama"></label> -->
+                    <label c-label>Agama</label>
+                    <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.agama" />
+                </div>
+                 <div class="grid_3">
+                    <!-- <label c-label c-label-text="Agama"></label> -->
+                    <label c-label>No Telpon</label>
+                    <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.noTelpon" />
+                </div>
+                <div class="grid_3">
+                    <!-- <label c-label c-label-text="Agama"></label> -->
+                    <label c-label>Pendidikan</label>
+                    <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.pendidikan" />
+                </div>
+                 <div class="grid_3">
+                    <!-- <label c-label c-label-text="Agama"></label> -->
+                    <label c-label>Pekerjaan</label>
+                    <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.pekerjaan" />
+                </div>
+                <div class="grid_3">
+                    <!-- <label c-label c-label-text="AlamatPasien"></label> -->
+                    <label c-label>Alamat Lengkap</label>
+                    <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.alamatlengkap" />
+                </div>
+               
+               
+            </div>
+        </div>
+        <div class="grid_12">
+            <!-- <div class="grid_12" style="position: absolute; bottom: 0;left: 0">
+                <div class="grid_6">
+                    <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px" item="item" size="36" position="'left'" is-back icon="'icon-prev'">
+                        <span class="title" c-translate>Kembali</span>
+                    </c-button>
+                </div>
+                <div class="grid_6">
+                    <c-button ng-show="!isLoading" class="success" style="width: 100%; font-size: 24px" item="item" size="36" position="'right'" is-validate click="Prosses" icon="'icon-next'">
+                        <span class="title" c-translate>Lanjutkan</span>
+                    </c-button>
+                </div>
+            </div> -->
+            <div class="panel-message">
+
+            </div>
+            <div ng-include=' "../app/module/Shared/TemplateButtonSelanjutnya" '></div>
+        </div>
+        <div class="grid_12">
+            <c-loading ng-show="isLoading" message="message"></c-loading>
+        </div>
+    <div class="grid_12" style="margin-top:60px" >
+    <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+</div> 
+</div>
+</div>
+</div>
+</c-form>
+</div>

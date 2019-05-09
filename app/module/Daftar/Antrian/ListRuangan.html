@@ -1,0 +1,16 @@
+<div ng-controller="DaftarAntrianPasienCtrl">
+    <md-toolbar>
+        <h1 style="color:white">Daftar Ruangan </h1>
+    </md-toolbar>
+    <div ng-class="{grid_4: $index===0,grid_8:$index===1}" ng-repeat="data in ruangansLocal">
+        <div class="grid_12">
+            <md-toolbar>
+                <h1 style="color:white; ">{{data.key}}</h2>
+            </md-toolbar>
+        </div>
+        <div class="item-hover" style="padding: 2px !important;" ng-class="{grid_6: $parent.$index===0,grid_3:$parent.$index===1}" ng-repeat="ruangan in data.items | filter:searchNamaRuangan">
+            <img  style="width:100%" ng-click="nav(ruangan)" style="" ng-click="item.poliTujuan =ruangan" src="images/reservasi/{{ruangan.namaRuangan.trim()}}.png" />
+        </div>
+
+    </div>
+</div>

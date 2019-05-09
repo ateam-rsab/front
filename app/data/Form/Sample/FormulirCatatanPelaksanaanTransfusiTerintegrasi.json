@@ -1,0 +1,170 @@
+{
+	"id" :"" ,
+	"noFormulir":"",
+	"urutan": "",
+	"keterangan": "",
+	"jam": "",
+	"target":"",
+	"laporan" : "",
+	"namaDPJP" : "",
+	"golonganDarah" :"" ,
+	"jenisDarah":"",
+	"pemberian": "",
+	"alasan": "",
+	"kecepatan": "",
+	"pemeriksaan":"",
+	"namaDokter" : "",
+	"noStock" : "",
+	"tglKadaluarsa" :"" ,
+	"jenisDarahStock":"",
+	"volume": "",
+	"jamTTV": "",
+	"t": "",
+	"nyeri":"",
+	"n" : "",
+	"s" : "",
+	"p" :"" ,
+	"parafTTV":"",
+	"jamKeluar": "",
+	"identifikasiKantong": "",
+	"identifikasiPasien": "",
+	"keadaanKantong":"",
+	"tglTransfusi" : "",
+	"waktuMulai" : "",
+	"waktuSelesai" : "",
+	"paraf" : "",
+	
+
+    "attributes" : [{
+		"isNull" : "true",
+		"name" : "noFormulir",
+		"messagesRequired" : "Nomor Formulir PMI Harus Diisi",
+		"caption" : "Nomor Formulir PMI"
+	},{
+			"isNull" : "true",
+			"name" : "urutan",
+			"messagesRequired" : "Urutan  Harus Diisi",
+			"caption" : "Urutan"
+		},{
+			"isNull" : "true",
+			"name" : "keterangan",
+			"messagesRequired" : "Keterangan Harus Diisi",
+			"caption" : "Keterangan"
+		},{
+			"isNull" : "true",
+			"name" : "jam",
+			"messagesRequired" : " Jam Harus Diisi",
+			"caption" : " Jam"
+		},{
+			"isNull" : "true",
+			"name" : "target",
+			"messagesRequired" : "Target Pemberian Transfusi Harus Diisi",
+			"caption" : "Target Pemberian Transfusi"
+		},{
+			"isNull" : "true",
+			"name" : "laporan",
+			"messagesRequired" : "Laporan Hasil Harus Diisi",
+			"caption" : "Laporkan hasil dengan segera, bila"
+		},{
+			"isNull" : "true",
+			"name" : "namaDPJP",
+			"messagesRequired" : "Nama Lengkap DPJP Harus Diisi",
+			"caption" : " Nama Lengkap DPJP"
+		},{
+			"isNull" : "true",
+			"name" : "golgonganDarah",
+			"messagesRequired" : "Golonngan Darah Pasien Harus Diisi",
+			"caption" : "Golongan Darah Pasien"
+		},{
+			"isNull" : "true",
+			"name" : "jenisDarah",
+			"messagesRequired" : "Jenis Darah (Volume) Diminta Harus Diisi",
+			"caption" : "Jenis Darah (Voume) Diminta"
+		},{
+			"isNull" : "true",
+			"name" : "pemberian",
+			"messagesRequired" : "Pemberian pre-medikasi Harus Diisi",
+			"caption" : "Pemberian pre-medikasi "
+		},{
+			"isNull" : "true",
+			"name" : "alasan",
+			"messagesRequired" : " Alasan Pemberian Pre-Medikasi Harus Diisi",
+			"caption" : " Alasan Pemberian Pre-Medikasi"
+		},{
+			"isNull" : "true",
+			"name" : "kecepatan",
+			"messagesRequired" : "Kecepatan pemberian Harus Diisi",
+			"caption" : "Kecepatan pemberian"
+		},{
+			"isNull" : "true",
+			"name" : "pemeriksaan",
+			"messagesRequired" : "Pemeriksaan Untuk Monitoring Harus Diisi",
+			"caption" : "Pemeriksaan Untuk Monitoring"
+		},{
+			"isNull" : "true",
+			"name" : "namaDokter",
+			"messagesRequired" : "Nama Lengkap Dokter Harus Diisi",
+			"caption" : " Nama Lengkap Dokter"
+		},{
+			"isNull" : "true",
+			"name" : "noStock",
+			"messagesRequired" : "Nomor Stock Harus Diisi",
+			"caption" : "Nomor Stock"
+		},{
+			"isNull" : "true",
+			"name" : "tglKadaluarsa",
+			"messagesRequired" : " Tanggal Kadaluarsa Harus Diisi",
+			"caption" : "Tanggal Kadaluarsa"
+		},{
+			"isNull" : "true",
+			"name" : "jenisDarahStock",
+			"messagesRequired" : "Jenis Darah Harus Diisi",
+			"caption" : "Jenis Darah"
+		},{
+			"isNull" : "true",
+			"name" : "volume",
+			"messagesRequired" : "Volume Harus Diisi",
+			"caption" : "Volume"
+		},{
+			"isNull" : "true",
+			"name" : "jamTTV",
+			"messagesRequired" : "Jam TTV Harus Diisi",
+			"caption" : "Jam"
+		},{
+			"isNull" : "true",
+			"name" : "t",
+			"messagesRequired" : "T Harus Diisi",
+			"caption" : "T"
+		},{
+			"isNull" : "true",
+			"name" : "nyeri",
+			"messagesRequired" : "Nyeri Harus Diisi",
+			"caption" : "Nyeri"
+		},{
+			"isNull" : "true",
+			"name" : "n",
+			"messagesRequired" : "N Harus Diisi",
+			"caption" : "N"
+		},{
+			"isNull" : "true",
+			"name" : "s",
+			"messagesRequired" : "S Harus Diisi",
+			"caption" : "S"
+		},{
+			"isNull" : "true",
+			"name" : "p",
+			"messagesRequired" : "P Harus Diisi",
+			"caption" : "P"
+		},{
+			"isNull" : "true",
+			"name" : "tglTransfusi",
+			"messagesRequired" : "Tanggal Transfusi Harus Diisi",
+			"caption" : "Tanggal Transfusi"
+		},{
+			"isNull" : "true",
+			"name" : "parafTTV",
+			"messagesRequired" : "Paraf Harus Diisi",
+			"caption" : "Paraf"
+		}		
+	]
+}

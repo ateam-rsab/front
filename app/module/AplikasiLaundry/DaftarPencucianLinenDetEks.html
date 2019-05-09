@@ -1,0 +1,100 @@
+<style>
+    .error{
+        background-color:white !important;
+    }
+    .yellow{
+        background-color:#ffff00
+    }
+     .green{
+        background-color:#00ff40
+    }
+      .red{
+        background-color:#FF0000
+    }
+    .k-grid  .k-grid-header  .k-header  .k-link {
+     height: auto;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     white-space: normal;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     text-align: center;
+    }
+/*     .k-header .k-link{
+    text-align: center;
+     }*/
+</style>
+
+<div ng-controller="DaftarPencucianLinenDetEksCtrl">
+	<div class="panel panel-default container_12">
+		<div class="panel-heading" align="center" c-translate>Daftar Detail Pencucian Linen</div>
+			<div class="panel-body">
+			<div class="grid_6">
+				<div class="grid_12">
+					<div class="grid_3" align="left" style="margin-top:  10px">
+						<label c-label item="item" c-label-text="Nama Mesin"></label>
+					</div>
+					<div class="grid_1" align="right" style="margin-top:  10px">
+						<label c-label item="item" c-label-text=":"></label>
+					</div>
+					<div class="grid_7">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.namaMesin"  disabled="true" />
+					</div>
+				</div>
+				<div class="grid_12">
+				    <div class="grid_3" align="left" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="Berat Linen"></label>
+					</div>
+					<div class="grid_1" align="right" style="margin-top: 10px">
+						<label c-label item="item" c-label-text=":"></label>
+					</div>
+					<div class="grid_7">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.BeratLinen"  disabled="true" />
+					</div>
+				</div>
+			</div>
+			<div class="grid_6">
+				<div class="grid_12">
+				    <div class="grid_3" align="left" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="TanggalAwal"></label>
+					</div>
+					<div class="grid_1" align="right" style="margin-top: 10px">
+						<label c-label item="item" c-label-text=":"></label>
+					</div>
+					<div class="grid_7">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.tglplanning"  disabled="true" />
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_3" align="left" style="margin-top:  10px">
+						<label c-label item="item" c-label-text="TanggalAkhir"></label>
+					</div>
+					<div class="grid_1" align="right" style="margin-top:  10px">
+						<label c-label item="item" c-label-text=":"></label>
+					</div>
+					<div class="grid_7">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.tglPlanningAkhir"  disabled="true" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="grid_12">
+            <kendo-grid id="grid" options="mainGridOptions" k-data-source="sourceOrderBahan" k-ng-model="current" ng-click="kl(current)">
+			</kendo-grid>
+        </div>
+		<div class="grid_12" style="margin-top: 20px ">
+			<div class="grid_10"></div>
+            <div class="grid_2">
+				<button class="c-button success" ng-click="Tutup()">Tutup</button>
+            </div>
+		</div>
+	</div>   
+	</div>
+   <script type="text/x-kendo-template" id="template">
+       <div>
+       <div kendo-grid k-options="mainGridOptions_1_3(dataItem)"></div>
+	   <a class="k-grid-edit" style="visibility:hidden;" id="edit">Edit</a>
+         </div>
+    </script>

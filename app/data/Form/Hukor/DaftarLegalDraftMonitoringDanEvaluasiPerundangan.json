@@ -1,0 +1,13 @@
+{
+	"model":{		
+		"noPeraturan":""		
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "noPeraturan",
+			"messagesRequired" : "",
+			"caption" : "No. Peraturan"
+		}
+	]
+}

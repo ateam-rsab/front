@@ -1,0 +1,179 @@
+<div ng-controller="SkriningKekhususanTambahanCtrl">
+
+    <div ng-show="dataVOloaded">
+        <!-- panel Skrining Tambahan -->
+        <div class="container_12">
+            <!--New informasi ibu's form goes here-->
+            <div class="grid_12" style="margin-bottom:30px">
+                <div class="grid_12 headerBox">
+                    <h1 style="color: white;"><b>{{formMaster.nama}}</b></h1>
+                </div>
+                <div class="clear"></div>
+                <br/>
+                <div class="container_12"> <!-- html form goes here -->
+                    <div ng-repeat="list in formMaster.detail | orderBy:'id'" ng-init="listIndex = $index + 1">
+                        <div class="grid_6" style="margin:6px auto">
+                            <div class="grid_1" style="text-align:right">{{listIndex}})</div>
+                            <div class="grid_3">
+                                <label><b>{{list.nama}} : </b></label>
+                            </div>
+                            <div ng-repeat="opsi in listYaTidak | orderBy:'id'">
+                                <div class="grid_3">
+                                    <label for="{{opsi.nama}}" class="radio-inline">
+                                        <input type="radio" ng-model="list.value" ng-value="opsi.id" ng-click="klikOption(list, opsi)">{{opsi.nama}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div> 
+        </div>
+        <c-panel item="item" header="'Skrining Tambahan'" disabled ng-hide="true">
+            <div class="grid_12">
+                <div class="grid_12" ng-show="(isNeonatal || isAnak)">
+                    <div class="grid_1">
+                    </div>
+
+                    <div class="grid_5">
+                        <div class="grid_12" >
+                            <!-- batuk -->
+                            <div class="grid_3" style="margin-top:10px">
+                                <label c-label item="item">1. Batuk</label>
+                            </div>
+                            <div class="grid_9" style="margin-bottom:5px">
+                                <div class="grid_5" ng-repeat="stat in listAdaTidakAda">
+                                    <input type="radio" name="{{'Batuk' + stat.name}}" id="{{'Batuk' + stat.name}}" class="k-radio" ng-model="item.Batuk" ng-value="stat">
+                                    <label class="k-radio-label" for="{{'Batuk' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                            </div>
+                            <!-- Lendir -->
+                            <div class="grid_3" style="margin-top:10px">
+                                <label c-label item="item">2. Lendir</label>
+                            </div>
+                            <div class="grid_9" style="margin-bottom:5px">
+                                <div class="grid_5" ng-repeat="stat in listAdaTidakAda">
+                                    <input type="radio" name="{{'Lendir' + stat.name}}" id="{{'Lendir' + stat.name}}" class="k-radio" ng-model="item.Lendir" ng-value="stat">
+                                    <label class="k-radio-label" for="{{'Lendir' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="clear"></div>
+                            <!-- Sesak -->
+                            <div class="grid_3" style="margin-top:10px">
+                                <label c-label item="item">3. Sesak</label>
+                            </div>
+                            <div class="grid_9" style="margin-bottom:5px">
+                                <div class="grid_5" ng-repeat="stat in listAdaTidakAda">
+                                    <input type="radio" name="{{'Sesak' + stat.name}}" id="{{'Sesak' + stat.name}}" class="k-radio" ng-model="item.Sesak" ng-value="stat">
+                                    <label class="k-radio-label" for="{{'Sesak' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="clear"></div>
+                            <!-- Muntah -->
+                            <div class="grid_3" style="margin-top:10px">
+                                <label c-label item="item">4. Muntah</label>
+                            </div>
+                            <div class="grid_9" style="margin-bottom:5px">
+                                <div class="grid_5" ng-repeat="stat in listAdaTidakAda">
+                                    <input type="radio" name="{{'Muntah' + stat.name}}" id="{{'Muntah' + stat.name}}" class="k-radio" ng-model="item.Muntah" ng-value="stat">
+                                    <label class="k-radio-label" for="{{'Muntah' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="clear"></div>
+                            <!-- Diare -->
+                            <div class="grid_3" style="margin-top:10px">
+                                <label c-label item="item">5. Diare</label>
+                            </div>
+                            <div class="grid_9" style="margin-bottom:5px">
+                                <div class="grid_5" ng-repeat="stat in listAdaTidakAda">
+                                    <input type="radio" name="{{'Diare' + stat.name}}" id="{{'Diare' + stat.name}}" class="k-radio" ng-model="item.Diare" ng-value="stat">
+                                    <label class="k-radio-label" for="{{'Diare' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="grid_5">
+                        <div class="grid_12">
+                            <!-- Kejang -->
+                            <div class="grid_3" style="margin-top:10px">
+                                <label c-label item="item">6. Kejang</label>
+                            </div>
+                            <div class="grid_9" style="margin-bottom:5px">
+                                <div class="grid_5" ng-repeat="stat in listAdaTidakAda">
+                                    <input type="radio" name="{{'Kejang' + stat.name}}" id="{{'Kejang' + stat.name}}" class="k-radio" ng-model="item.Kejang" ng-value="stat">
+                                    <label class="k-radio-label" for="{{'Kejang' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="clear"></div>
+                            <!-- Ikterik -->
+                            <div class="grid_3" style="margin-top:10px">
+                                <label c-label item="item">7. Ikterik</label>
+                            </div>
+                            <div class="grid_9" style="margin-bottom:5px">
+                                <div class="grid_5" ng-repeat="stat in listAdaTidakAda">
+                                    <input type="radio" name="{{'Ikterik' + stat.name}}" id="{{'Ikterik' + stat.name}}" class="k-radio" ng-model="item.Ikterik" ng-value="stat">
+                                    <label class="k-radio-label" for="{{'Ikterik' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="clear"></div>
+                            <!-- Pucat -->
+                            <div class="grid_3" style="margin-top:10px">
+                                <label c-label item="item">8. Pucat</label>
+                            </div>
+                            <div class="grid_9" style="margin-bottom:5px">
+                                <div class="grid_5" ng-repeat="stat in listAdaTidakAda">
+                                    <input type="radio" name="{{'Pucat' + stat.name}}" id="{{'Pucat' + stat.name}}" class="k-radio" ng-model="item.Pucat" ng-value="stat">
+                                    <label class="k-radio-label" for="{{'Pucat' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="clear"></div>
+                            <!--Pendarahan -->
+                            <div class="grid_3" style="margin-top:10px">
+                                <label c-label item="item">9. Pendarahan</label>
+                            </div>
+                            <div class="grid_9" style="margin-bottom:5px">
+                                <div class="grid_5" ng-repeat="stat in listAdaTidakAda">
+                                    <input type="radio" name="{{'Pendarahan' + stat.name}}" id="{{'Pendarahan' + stat.name}}" class="k-radio" ng-model="item.Pendarahan" ng-value="stat">
+                                    <label class="k-radio-label" for="{{'Pendarahan' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="clear"></div>
+                            <!-- Memar -->
+                            <div class="grid_3" style="margin-top:10px">
+                                <label c-label item="item">10. Memar</label>
+                            </div>
+                            <div class="grid_9" style="margin-bottom:5px">
+                                <div class="grid_5" ng-repeat="stat in listAdaTidakAda">
+                                    <input type="radio" name="{{'Memar' + stat.name}}" id="{{'Memar' + stat.name}}" class="k-radio" ng-model="item.Memar" ng-value="stat">
+                                    <label class="k-radio-label" for="{{'Memar' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_6"></div>
+                        <div class="grid_3">
+                            <button class="c-button cancel" style="font-size:18px" ng-click="Batal()">Batal</button>
+                        </div>
+                        <div class="grid_3">
+                            <button class="c-button success" style="font-size:18px" ng-click="Save()">Simpan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </c-panel>
+        <!-- <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div> -->
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<div ng-controller="DaftarPermintaanPelatihanCtrl">
+	<c-panel item="item" header="'Daftar Permintaan Pelatihan'">
+		<div class="grid_12">
+			<kendo-grid options="mainGridOptions" k-data-source="dataGrid" k-selectable="'row'"></kendo-grid>
+		</div>
+		<div class="grid_12">
+			<div class="grid_8"></div>
+			<div class="grid_2">
+				<button class="c-button" ng-click="()">Unverifikasi</button>
+			</div>
+			<div class="grid_2">
+				<button class="c-button" ng-click="()">Verifikasi</button>
+			</div>
+		</div>
+	</c-panel>
+</div>

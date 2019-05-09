@@ -1,0 +1,43 @@
+<div ng-controller="IsiPelatihanCtrl">
+	<c-panel item="item" header="'Isi Pelatihan'">
+		<div class="grid_12">
+			<div class="grid_2">
+				<label c-label item="item" style="margin-top: 10px">Judul</label>
+			</div>
+			<div class="grid_4">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.judul"/>
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_2">
+				<label c-label item="item" style="margin-top: 10px">File</label>
+			</div>
+			<div class="grid_4">
+				<input name="files"
+				type="file"
+				kendo-upload
+				id="filePicker"
+				k-select="onSelect"
+				/>
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_2">
+				<label c-label item="item" style="margin-top: 10px">Status Aktif</label>
+			</div>
+			<div class="grid_4">
+				<input type="checkbox" class="k-checkbox" name="ya" id="1" value="1" ng-click="cekCaraSterilisasi(1)">
+				<label class="k-checkbox-label" for="ya">Ya</label>
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_4"></div>
+			<div class="grid_2">
+				<button class="c-button" ng-click="()">Upload</button>
+			</div>
+		</div>
+		<div class="grid_6">
+			<kendo-grid options="mainGridOptions" k-data-source="dataGrid"></kendo-grid>
+		</div>
+	</c-panel>
+</div>

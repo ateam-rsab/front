@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "name": "Gangguan gaya berjalan (diseret, menghentak, berayun) pusing/pingsan pada posisi tegak",
+        "score":4
+    },{
+        "id": 2,
+        "name": "Kebingunan setiap saat Nokturia / Inkontinen",
+        "score":3
+    },{
+        "id": 3,
+        "name": "Kebingungan intermiten",
+        "score":3
+    },{
+        "id": 4,
+        "name": "Kelemahan umum",
+        "score":3
+    },{
+        "id": 5,
+        "name": "Obat-obat berisiko tinggi (diuretik, narkoti, sedatif, anti, pskoti, laksatif, vasodilator, antiaritmia, antihipertensi, obat hipoglikemik, antidepresan, neuroleptik, NSAID",
+        "score":2
+    },{
+        "id": 6,
+        "name": "Riwayat jatuh daam waktu 12 bulan sebelumnya",
+        "score":2
+    },{
+        "id": 7,
+        "name": "Gangguan pendengaran dan atau penglihatan",
+        "score":2
+    },{
+        "id": 8,
+        "name": "Riwayat jatuh dalam waktu 12 bulan sebelumnya",
+        "score":2
+    },{
+        "id": 9,
+        "name": "Osteoporosis",
+        "score":1
+    },{
+        "id": 10,
+        "name": "Gangguan pendengaran dan atau penglihatan",
+        "score":1
+    },{
+        "id": 11,
+        "name": "Usia 70 tahun ke atas",
+        "score":1
+    }
+]

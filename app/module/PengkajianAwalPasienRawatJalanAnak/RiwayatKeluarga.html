@@ -1,0 +1,73 @@
+<div ng-controller="RiwayatKeluargaCtrl">
+    <!-- Riwayat Imunisasi dasar -->
+    <c-panel item="item" header="'Riwayat Keluarga'">
+        <div class="grid_3">
+            <div class="grid_12">
+                <div class="grid_5">
+                    <label c-label="" item="item" c-label-text="Ibu" class="ng-isolate-scope c-label"><span class="titikDua">:</span></label>
+                </div>
+                <div class="grid_7">
+                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.Ibu" /></div>
+                <div class="grid_5">
+                    <label c-label="" item="item" c-label-text="Ayah" class="ng-isolate-scope c-label"><span class="titikDua">:</span></label>
+                </div>
+                <div class="grid_7">
+                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.Ayah" /></div>
+            </div>
+        </div>
+        <div class="grid_3">
+            <div class="grid_12">
+                <div class="grid_4">
+                    <label c-label="" item="item" c-label-text="UmurAyah" class="ng-isolate-scope c-label"><span class="titikDua">:</span></label>
+                </div>
+                <div class="grid_8">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.UmurAyah" />
+                </div>
+                <div class="grid_4">
+                    <label c-label="" item="item" c-label-text="UmurIbu" class="ng-isolate-scope c-label"></label>
+                </div>
+                <div class="grid_8">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.UmurIbu" />
+                </div>
+            </div>
+        </div>
+        <div class="grid_3">
+            <div class="grid_12">
+                <div class="grid_4">
+                    <label c-label="" item="item" c-label-text="BangsaAyah" class="ng-isolate-scope c-label"><span class="titikDua">:</span></label>
+                </div>
+                <div class="grid_8">
+                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.BangsaAyah" /></div>
+                <div class="grid_4">
+                    <label c-label="" item="item" c-label-text="BangsaIbu" class="ng-isolate-scope c-label"><span class="titikDua">:</span></label>
+                </div>
+                <div class="grid_8">
+                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.BangsaIbu" /></div>
+            </div>
+        </div>
+        <div class="grid_3">
+            <div class="grid_12">
+                <div class="grid_4">
+                    <label c-label="" item="item" c-label-text="KesehatanAyah" class="ng-isolate-scope c-label"><span class="titikDua">:</span></label>
+                </div>
+                <div class="grid_8">
+                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.KesehatanAyah" /></div>
+                <div class="grid_4">
+                    <label c-label="" item="item" c-label-text="KesehatanIbu" class="ng-isolate-scope c-label"><span class="titikDua">:</span></label>
+                </div>
+                <div class="grid_8">
+                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.KesehatanIbu" /></div>
+            </div>
+        </div>
+        <div class="grid_3">
+            <div class="grid_5">
+                <label c-label="" item="item" c-label-text="AnakAnakLain" class="ng-isolate-scope c-label"><span class="titikDua">:</span></label>
+            </div>
+            <div class="grid_7">
+                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.AnakAnakLain" /></div>
+        </div>
+        <div class="grid_6"></div>
+    </c-panel>
+    <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+
+</div>

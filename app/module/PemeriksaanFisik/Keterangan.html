@@ -1,0 +1,170 @@
+<div ng-controller="KeteranganCtrl">
+    <c-panel item="item" header="'Laboratorium Patalogi Anatomik'">
+      
+	
+	
+			
+        
+			
+		
+			
+        <!--
+		
+
+		
+		--->
+			
+	
+		
+     
+		  
+		 
+		 
+		
+        <c-panel item="item" header="'Keterangan lain-lain'"disabled>
+         
+		  <div class="grid_6">
+		  <div class="grid_12">
+		  <div class="grid_12" style="margin: 10px 0 5px 0;">
+		    <label c-label item="item" c-label-text="Fiksasi"></label>
+		  
+		  </div>
+			 <div class="grid_12" style="margin: 10px 0 5px 0;" ng-repeat="stat in listStatusFiksasi">
+                       <input type="checkbox"  name="{{stat.name}}" id="{{stat.name}}" class="k-checkbox"  value="{{stat.name}}"  >
+                        <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+						
+                </div>
+			</div>
+      	
+		
+		        <div class="grid_12">
+				 <div class="grid_12" style="margin: 10px 0 5px 0;">
+				 
+				  <label c-label item="item" c-label-text="Pernah"></label>
+				 </div>
+				 
+				   
+            <div class="grid_2" style="margin: 10px 0 5px 0;" ng-repeat="stat in listStatusYaTidak">
+             <input type="radio"  name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.Pernah" value="{{stat.name}}"  >
+             <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+             </div>
+           </div>
+		    <div class="grid_12">
+         <div ng-show="isAdaGangguan">
+           <div class="grid_12">
+             <div class="grid_2" style="margin: 10px 5px 5px 10px;">
+               <label c-label item="item" c-label-text="Keterangan"></label>
+             </div>
+             <div class="grid_10" style="margin: 10px 5px 5px 10px;">
+               <textarea style="width: 99%; height: 80px;"></textarea>
+             </div>
+            
+           </div>
+         </div>
+       </div>
+		  
+		   </div>
+   
+      
+       
+	   
+	   <div class="grid_6">
+		 <div class="grid_12">
+				 <div class="grid_2" style="margin: 10px 0 5px 0;">
+				 
+				  <label c-label item="item" c-label-text="Tanggal2"></label>
+				 
+				 </div>
+            <div class="grid_3" style="margin: 10px 0 5px 0;">
+              <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.Tanggal2" k-data-text-field="'tanggallahir'" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+           </div>
+		    <div class="grid_2" style="margin: 10px 0 5px 15px;">
+               <label c-label item="item" c-label-text="Nomor"></label>
+           </div>
+		   <div class="grid_3" style="margin: 10px 0 5px 0;">
+		    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.Nomor" />
+			</div>
+       </div>
+	   <div class="clear"> </div>
+	   <div class="grid_12" style="margin: 15px 0 5px 0;">
+	   <div class="grid_12" >
+               <label c-label item="item" c-label-text="Dokter"></label>
+           </div>
+		   <div class="grid_12" style="margin: 10px 0 5px 0;">
+		    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.Dokter" />
+			</div>
+    </div>
+	 <div class="grid_12">
+		  <div class="grid_6" style="margin: 10px 0 0 0" >
+		    <label c-label item="item" c-label-text="Diisi"></label>
+		  
+		  </div>
+		  
+		  <div class="grid_2" style="margin: 10px 0 0 8px;">
+		    <label c-label item="item" c-label-text="Tanggal3"></label>
+		  
+		  </div>
+		  <div class="grid_4" style="margin: 10px 0 0 -10px;" >
+		    <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.Tanggal3" k-data-text-field="'tanggallahir'" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+		  </div>
+		  </div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+      </div>
+	   <div class="grid_12">
+              <div class="grid_2" style="margin: 10px 5px 5px 0;" >
+		    <label c-label item="item" c-label-text="Mikroskopik"></label>
+			</div>
+		  <div class="grid_2" style="margin: 10px 5px 5px 0;" ng-repeat="stat in listStatusMikroskopik">
+                       <input type="checkbox"  name="{{stat.name}}" id="{{stat.name}}" class="k-checkbox"  value="{{stat.name}}"  >
+                        <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+						
+                </div>
+		  </div>
+		  <div class="clear"></div>
+		
+		 </br>
+		 </br>
+	 <div class="grid_12">
+			<div class="grid_12"><div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>	
+    </div>	  
+	    </div>	  
+</c-panel>
+
+
+	 
+ </c-panel>        
+		 
+		  
+		  
+         
+		 
+		 
+		
+		 
+	     
+	 
+	 
+
+
+		
+		
+		
+		  
+		
+		
+	
+		

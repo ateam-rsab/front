@@ -1,0 +1,41 @@
+<div ng-controller="CatatanTindakanKeperawatanCtrl">
+    <!-- panel anamnsis -->
+    <div class="panel panel-default container_12">
+
+        <div class="panel-heading" c-translate>Catatan Tindakan Keperawatan</div>
+        <div class="panel-body">
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="tanggalPelaksaaan" real></label>
+                <input style="width: 100%" k-ng-model="item.tanggalPelaksaaan" kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy hh:mm'" />
+            </div>
+            <div class="grid_12">
+                <div class="grid_4">
+                    <h3 c-translate>Masalah Keperawatan</h3>
+                </div>
+                <div class="grid_8">
+                    <h3 c-translate>Tindakan keperawatan</h3></div>
+
+            </div>
+
+            <div class="grid_12" ng-repeat="data in listTindakan">
+                <div class="grid_4">
+                    <label class="c-label">{{data.deskripsiMasalahKeperawatan}}</label>
+                    <div class="grid_12" ng-repeat="stat in data.detail ">
+                        <input type="radio" name="{{stat}}" id="{{stat}}" class="k-radio " ng-model="data.masalahKeperawatan" value="{{stat}}">
+                        <label class="k-radio-label" for="{{stat}}">{{stat}}</label>
+                    </div>
+                </div>
+                <div class="grid_8">
+                    <table>
+                        <tr ng-repeat="stat in data.tindakanKeperawatan ">
+                            <td><span can-input item='stat'></span></td>
+                            <td><input style="width: 100%" ng-model="item.tanggalPelaksaaan" kendo-time-picker k-max="now" placeholer="hh:mm" k-format="'hh:mm'" /></td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" ' style="margin-bottom:50px"></div>
+                <!-- <div ng-include=' "../app/module/Shared/TemplateButtonSimpan " '></div> -->
+            </div>
+
+        </div>

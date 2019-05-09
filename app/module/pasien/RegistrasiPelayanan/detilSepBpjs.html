@@ -1,0 +1,107 @@
+<div class="grid_12" style="margin: 10px auto; padding: 10px auto">
+    <div class="panel panel-default">
+        <div class="panel-heading"><span class="title" c-translate>Detil SEP Peserta</span></div>
+        <div class="panel-body">
+            <div class="grid_12">
+                <div class="grid_2">
+                    <label class="c-label">Nama</label>
+                </div>
+                <div class="grid_4">
+                    <label class="label-nilai">{{items.peserta.nama}}</label>
+                </div>
+                <div class="grid_2">
+                    <label class="c-label">No Kartu</label>
+                </div>
+                <div class="grid_4">
+                    <label class="label-nilai">{{items.peserta.noKartu}}</label>
+                </div>
+                <div class="grid_2">
+                    <label class="c-label">NIK</label>
+                </div>
+                <div class="grid_4">
+                    <label class="label-nilai">{{items.peserta.nik}}</label>
+                </div>
+                <div class="grid_2">
+                    <label class="c-label">Tgl Lahir</label>
+                </div>
+                <div class="grid_4">
+                    <label class="label-nilai">{{items.tglLahir}}</label>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_12">
+                    <div class="grid_2">
+                        <label class="c-label">No SEP</label>
+                    </div>
+                    <div class="grid_4">
+                        <label class="label-nilai">{{items.noSep}}</label>
+                    </div>
+                    <div class="grid_2">
+                        <label class="c-label">Status</label>
+                    </div>
+                    <div class="grid_4">
+                        <label class="label-nilai">{{items.statSep.nmStatSep}}</label>
+                    </div>
+                </div>
+                    <div class="grid_2">
+                        <label class="c-label">No Rujukan</label>
+                    </div>
+                    <div class="grid_4">
+                        <label class="label-nilai">{{items.noRujukan}}</label>
+                    </div>
+                    <div class="grid_2">
+                        <label class="c-label">Tgl Rujukan</label>
+                    </div>
+                    <div class="grid_4">
+                        <label class="label-nilai">{{items.tglRujukan}}</label>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_2">
+                        <label class="c-label">Pelayanan</label>
+                    </div>
+                    <div class="grid_4">
+                        <label class="label-nilai">{{items.jnsPelayanan}}</label>
+                    </div>
+                    <div class="grid_2">
+                        <label class="c-label">Kelas</label>
+                    </div>
+                    <div class="grid_4">
+                        <label class="label-nilai">{{items.klsRawat.nmKelas}}</label>
+                    </div>
+                    <div class="grid_2">
+                        <label class="c-label">Diagnosa Awal</label>
+                    </div>
+                    <div class="grid_4">
+                        <label class="label-nilai">{{items.diagAwal.nmDiag}}</label>
+                    </div>
+                    <div class="grid_2">
+                        <label class="c-label">Laka Lantas</label>
+                    </div>
+                    <div class="grid_4">
+                        <label class="label-nilai">{{items.lakaLantas.keterangan}}</label>
+                    </div>
+                    <div class="grid_2">
+                        <label class="c-label">Provider Pelayanan</label>
+                    </div>
+                    <div class="grid_4">
+                        <label class="label-nilai">{{items.provPelayanan.nmProvider}}</label>
+                    </div>
+                    <div class="grid_2">
+                        <label class="c-label">Provider Rujukan</label>
+                    </div>
+                    <div class="grid_4">
+                        <label class="label-nilai">{{items.provRujukan.nmProvider}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .label-nilai {
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-weight: 600;
+        font-size: 18px;
+    }
+</style>

@@ -1,0 +1,22 @@
+{
+	"model":{
+		"tanggalPesan" : "",
+		"tanggalKirim":""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "tanggalPesan",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Pesan"
+		},{
+			"isNull" : "true",
+			"name" : "tanggalKirim",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Kirim"
+		}
+
+	]
+}

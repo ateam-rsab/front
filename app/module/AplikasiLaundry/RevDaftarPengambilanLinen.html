@@ -1,0 +1,240 @@
+<style>
+    .error{
+        background-color:white !important;
+    }
+    .yellow{
+        background-color:#ffff00
+    }
+     .green{
+        background-color:#00ff40
+    }
+      .red{
+        background-color:#FF0000
+    }
+    .k-grid  .k-grid-header  .k-header  .k-link {
+     height: auto;
+    }
+
+    .k-grid  .k-grid-header  .k-header {	
+     white-space: normal;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     text-align: center;
+    }
+
+    .hr { 
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+} 
+</style>
+<div ng-controller="RevDaftarPengambilanLinenCtrl">
+	<div class="panel panel-default container_12">
+		      <div class="grid_12 headerBox">
+           			 <h1 style="color: white;"><b>Data Pelanggan Order Laundry External</b></h1>
+       			 </div>
+		<div class="panel-body">
+		    <div class="grid_12">
+		      <div class="grid_6">
+					<div class="grid_2">
+						<label c-label item="item" c-label-text="Periode" style="margin-top: 10px"></label>
+					</div>
+					<div class="grid_1" align="right"  style="margin-top: 10px">
+						<label c-label item="item" c-label-text=":"></label>
+					</div>
+					<div class="grid_4">
+						<input style="width: 100%" kendo-date-picker k-ng-model="item.awal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" k-on-change="ChangeDat()" />
+					</div>
+					<div class="grid_1" align="right"  style="margin-top: 10px">
+						<label c-label item="item" c-label-text="s/d"></label>
+					</div>
+					<div class="grid_4">
+						<input style="width: 100%" kendo-date-picker k-ng-model="item.akhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" k-on-change="ChangeDat()" />
+					</div>
+				</div>
+		    	<div class="grid_4">
+					<div class="grid_2">
+						<label c-label item="item" c-label-text="Pencarian" style="margin-top: 10px "></label>
+					</div>
+					<div class="grid_1" align="right"  style="margin-top: 10px">
+						<label c-label item="item" c-label-text=":"></label>
+					</div>
+					<div class="grid_8">
+						<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="Pencarians" placeholder="No Order / Nama Pelanggan" />
+					</div>
+				</div>
+			   <div class="grid_1" style="margin-top: 10px">
+			   	   <button class="c-button success" ng-click="Cari(Pencarians)">Cari</button>
+			   </div>
+			   <div class="grid_1" style="margin-top: 10px">
+				   <button class="c-button success" ng-click="ClearCari()">Clear</button>
+			  </div>				
+	  		</div>	   
+		     <div class="grid_12">
+		 		<div class="grid_6">
+		        <div class="grid_3"><label c-label item="item">Status Bayar :</label></div>
+		          <div class="grid_4">
+		            <span id="square" style="background-color:#ffff00">&nbsp;&nbsp;&nbsp;</span>
+		                <span style="font-weight: bold">: Belum Di Ambil</span>
+		          </div>
+		          <div class="grid_4">
+		            <span id="square" style="background-color: #00FF00">&nbsp;&nbsp;&nbsp;</span>
+		                <span style="font-weight: bold">: Belum Bayar</span>
+		          </div>
+		    	</div>     
+		    </div>
+			<div class="grid_12">
+                <kendo-grid id="grid" options="mainGridOptions" k-data-source="sourceOrder" k-ng-model="current" ng-click="kl(current)">
+				</kendo-grid>
+				 <br/>
+            </div>
+	         <span class="title center" style="font-weight: bold; font-size: 5pt">
+            	Input Data Pengambilan Linen
+            	  <hr width="15%">
+            	  </hr>
+            	<br/>
+        	  </span>
+        	 <div class ="grid_8">
+        	  <div class="grid_12">
+				<kendo-grid id="grid" options="mainGridOptions2" k-data-source="SourceOrderLinen"> </kendo-grid>
+			 </div>
+			 <div class="grid_12">
+	        	  <div class="grid_12">
+	        	   	<div class="grid_6">
+	        	   		<div class="grid_4" style="margin-top: 10px">
+							<label c-label item="item" c-label-text="No Order"></label>
+						</div>
+						<div class="grid_1" align="right"  style="margin-top: 10px">
+							<label c-label item="item" c-label-text=":"></label>
+						</div>
+						<div class="grid_7">
+						<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.noOrder" ng-disabled="true"/>
+						</div>
+	        	  	</div>	        	   	
+	        	   	<div class="grid_6">
+	        	   		<div class="grid_4" style="margin-top: 10px">
+							<label c-label item="item" c-label-text="Tanggal Pengambilan /Terima"></label>
+						</div>
+						<div class="grid_1" align="right"  style="margin-top: 10px">
+							<label c-label item="item" c-label-text=":"></label>
+						</div>
+						<div class="grid_7">
+							<input style="width: 100%" kendo-date-picker k-ng-model="item.tglambil" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+						</div>
+	        	  	</div>
+	        	  </div>      	  
+	        	  <div class="grid_12">   	   	
+	        	  	<div class="grid_6">
+	        	   		<div class="grid_4" style="margin-top: 10px">
+							<label c-label item="item" c-label-text="Petugas Yang Menyerahkan"></label>
+						</div>
+						<div class="grid_1" align="right"  style="margin-top: 10px">
+							<label c-label item="item" c-label-text=":"></label>
+						</div>
+						<div class="grid_7">
+							<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.petugas" ng-disabled="true"/>
+						</div>
+	        	  	</div>
+	        	   <div class="grid_6">
+	        	   		<div class="grid_4" style="margin-top: 10px">
+							<label c-label item="item" c-label-text="Berat Linen"></label>
+						</div>
+						<div class="grid_1" align="right"  style="margin-top: 10px">
+							<label c-label item="item" c-label-text=":"></label>
+						</div>
+						<div class="grid_7">
+							<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.berat" ng-disabled="true"/>
+						</div>
+	        	  	</div>		
+	        	  </div>         	  
+	        	  <div class="grid_12">
+	        	  	<div class="grid_6">
+	        	   		<div class="grid_4" style="margin-top: 10px">
+							<label c-label item="item" c-label-text="Yang Menerima"></label>
+						</div>
+						<div class="grid_1" align="right"  style="margin-top: 10px">
+							<label c-label item="item" c-label-text=":"></label>
+						</div>
+						<div class="grid_7">
+							<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.penerima" ng-disabled="true"/>
+						</div>
+	        	  	</div>	        	   	
+	        	  	<div class="grid_6">
+	        	   		<div class="grid_4" style="margin-top: 10px">
+							<label c-label item="item" c-label-text="Tanggal Order"></label>
+						</div>
+						<div class="grid_1" align="right"  style="margin-top: 10px">
+							<label c-label item="item" c-label-text=":"></label>
+						</div>
+						<div class="grid_7">
+							<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.tglOrder" ng-disabled="true"/>
+						</div>
+	        	  	</div>	
+	        	  </div> 
+	        	 </div>
+        	 </div>
+			 <div class="grid_4 headerBox" style="background-color:#363940; margin-top:5px">
+           		<h1 style="color: white;"><h2>Linen Ambil</h2></h1>
+       		</div>
+       		 <div class="grid_4">
+       		 <div class="grid_12">
+       		 	<table>
+					<tr>
+				      <td align="center"><h3 style="font-style: bold" align="left"><u>No.</u></h3></td>
+				      <td align="left"><h3 style="font-style: bold; text-align: left;""><u>Nama Linen</u></h3></td>
+				      <td align="left"><h3 style="font-style: bold; text-align: center;"><u>Qty</u></h3></td>
+				      <td align="left"><h3 style="font-style: bold; text-align: right;" ><u>Jumlah Harga</u></h3></td>
+					</tr>
+					<tr ng-repeat="x in addData" style="font-size: 14px; font-weight: bold; margin-top: 10px  width: 10em">
+					  <td align="center" k-auto-bind="true">{{$index + 1}}.</td>
+					  <td align="center" k-auto-bind="true" style="text-align: left;">{{x.namaProduk}}</td>
+					  <td align="left" k-auto-bind="true" style="text-align: center;">{{x.qtyproduk}}</td>
+					  <td align="left" k-auto-bind="true" style="text-align: right;">{{x.jumlahHarga | currency:"Rp. "}}</td>
+					</tr>
+				</table>
+            </div>
+            </div>
+            <div class="grid_4"><hr></div>
+            <div class="grid_4">
+            	 <table>
+					<tr>
+				      <td><h3 style="text-align: left; font-weight: bold;">Total Harga :</h3></td>
+				      <td align="right"><h3 style="text-align: right; font-weight: bold;">{{totalHarga | currency:"Rp. "}}</h3></td>
+					</tr>
+				</table>
+            </div>            
+            <div class="grid_4">
+            	 <table>
+					<tr>
+				      <td><h3 style="text-align: left; font-weight: bold;">Total Qty :</h3></td>
+				      <td align="right"><h3 style="text-align: right; font-weight: bold;">{{totalQty}}</h3></td>
+					</tr>
+				</table>
+            </div>
+			<div class="grid_12" style="margin-top: 20px ">
+				<div class="grid_8"></div>
+                <div class="grid_2">
+					<button class="c-button success" ng-click="Save()">Simpan</button>
+                </div>
+                <div class="grid_2">
+					<button class="c-button success" ng-click="Batal()">Batal</button>
+                </div>
+<!-- 				 <div class="grid_2">
+					<button class="c-button success" ng-click="pindah()"  ng-disabled="!b">Retur</button>
+                </div> -->
+			</div>
+		</div>   
+	</div>
+</div>
+
+ <script type="text/x-kendo-template" id="template">
+      <div>
+        <div kendo-grid k-options="mainGridOptions_1_3(dataItem)"></div>
+		<a class="k-grid-edit" style="visibility:hidden;" id="edit">Edit</a>
+     </div>
+ </script>

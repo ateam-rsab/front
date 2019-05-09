@@ -1,0 +1,51 @@
+<div ng-controller="DaftarPelamarCtrl">
+
+<div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Daftar Pelamar'"disabled>
+         <div class="panel panel-default container_12">
+           <div class="grid_12">
+               <div class="container_12">
+                    <div class="grid_12">
+                    <br/>
+                    <!-- <pdf-download url="D:/download/tesPdf.pdf" filename="my-awesome-pdf"></pdf-download> -->
+                    
+                        <kendo-grid k-data-source="dataMonitoringStatusPKS" k-pageable="true" k-selectable="'row'" k-ng-model="current" k-columns="columnMonitoringStatusPKS" ng-click="klik(current)" style="margin-bottom: 10px"  options="optDataMonitoring">
+
+                            <div k-detail-template>
+                                <kendo-tabstrip>
+                                    <div>
+                                        <div kendo-grid k-options="mainGridOptionsDetail()"></div>
+                                    </div>
+                                </kendo-tabstrip>
+                            </div>
+                        
+                        </kendo-grid>
+                    </div>
+               </div>
+           </div>
+        </c-panel>
+    
+    <div class="grid_12">
+        <div class="grid_8">
+            <div class="grid_4" style="margin-top: 0">
+                <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="pindah1()">
+                					<span class="title">Ceklist Berkas Lamaran</span></button>
+            </div>
+            <div class="grid_4 " style="margin-top: 0 ">
+                <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Cetak Daftar Pelamar</span>
+									</button>
+            </div>
+            <div class="grid_4 " style="margin-top: 0 ">
+                <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="pindahKe()">
+									<span class="title">Input Jadwal Seleksi</span>
+				</button>
+            </div>
+            <!-- <div class="grid_4 " style="margin-top: 0 ">
+                <button class="c-button" ng-click="download()">Download Dokumen</button>
+            <div> -->
+        </div>
+    </div>
+
+</div>
+</div>

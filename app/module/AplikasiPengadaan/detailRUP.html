@@ -1,0 +1,17 @@
+<div ng-controller="detailRUPCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Detil Rencana Umum Pengadaan'" disabled>
+			<div class="grid_12">
+				<kendo-grid k-columns="columnPenyusunanRUP" k-data-source="dataSpek" k-pageable="true" k-selectable="'false'" k-on-change="handleChange(data, dataItem, columns)"></kendo-grid>
+			</div>
+	        <div class="grid_10"></div>
+			<!-- <div class="grid_2">
+				<button style="width:100%" class="c-button  button-primary" ng-click="Save()">Buat RUP</button>
+			</div> -->
+			<div class="grid_2">
+			    <button style="width:100%" class="c-button btn-danger" ng-click="batal()">Kembali</button>
+			</div>
+		</c-panel>
+	</div>
+</div>

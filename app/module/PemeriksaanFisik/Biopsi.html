@@ -1,0 +1,140 @@
+<div ng-controller="BiopsiCtrl">
+    <c-panel item="item" header="'Pemeriksaan Biopsi Jarum Halus (FNAB)'">
+
+   
+      
+   
+		
+		
+ 
+       
+		<div class="grid_6">
+		<div class="grid_12">
+         <div class="grid_6" style="margin: 5px 0 5px 0">
+		  <label c-label item="item" c-label-text="Lokasi"></label>
+		 </div>
+		<div class="grid_6" style="margin: 5px 0 5px 0">
+         <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.Lokasi" />
+		</div>
+        </div>
+		
+		
+		<div class="grid_12">
+         <div class="grid_6" style="margin: 5px 0 5px 0">
+		  <label c-label item="item" c-label-text="DiagnosisKlinik"></label>
+		 </div>
+          <div class="grid_6" style="margin: 5px 0 5px 0">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.DiagnosisKlinik"
+                               k-data-text-field="'namaDiagnosa'"
+                               k-filter="'contains'"
+                               k-data-value-field="'id'"
+                               k-data-source="listStatusDiagnosa" />
+                    </div>
+		</div>
+		<div class="grid_12">
+		<div class="grid_6" style="margin: 5px 0 5px 0">
+		 <label c-label item="item" c-label-text="DiambilTanggal"></label>
+		</div>
+		<div class="grid_6" style="margin: 5px 0 5px 0">
+			<input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.DiambilTanggal" k-data-text-field="'tanggallahir'" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+		</div>
+		
+		
+		</div>
+       
+     
+		
+		</div>
+		<div class="grid_6">
+		
+	 
+        
+		
+		
+			
+		
+		
+
+
+	  
+	   
+	        <div class="grid_12">
+                                <div class="grid_6" style="margin: 5px 0 5px 0">
+                                    <label c-label item="item" c-label-text="KeteranganKlinik"></label>
+                                    
+                                </div>
+                                <div class="grid_6" style="margin: 5px 0 5px 0">
+                                    <textarea style="width: 99%; height: 80px;"></textarea>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+             <div class="grid_12">
+		  <div class="grid_6" >
+		    <label c-label item="item" c-label-text="DiisiOlehLaboratorium"></label>
+		  
+		  </div>
+		  
+		  <div class="grid_2" >
+		    <label c-label item="item" c-label-text="Tanggal"></label>
+		  
+		  </div>
+		  <div class="grid_4" >
+		    <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.Tanggal" k-data-text-field="'tanggallahir'" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+		  </div>
+		  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+							
+		
+		   </div>
+		
+		  
+           
+		   
+		  <div class="clear"> </div>
+		   <div class="grid_12">
+              <div class="grid_3" style="margin: 10px 5px 5px 0;" >
+		    <label c-label item="item" c-label-text="Mikroskopik"></label>
+			</div>
+		  <div class="grid_2" style="margin: 10px 0 5px -5px;" ng-repeat="stat in listStatusMikroskopik">
+                       <input type="checkbox"  name="{{stat.name}}" id="{{stat.name}}" class="k-checkbox"  value="{{stat.name}}"  >
+                        <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+						
+                </div>
+		  </div>
+		   
+		   
+		   
+		   
+		   
+		   
+		
+	      </div>
+	 
+	  <div class="grid_12">
+	  
+     <div class="grid_12">
+			<div class="grid_12"><div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>	
+    </div>	
+    </div>	  
+
+
+		
+		
+		</c-panel>
+		  
+		
+		
+	
+		

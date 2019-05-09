@@ -1,0 +1,92 @@
+<style type="text/css">
+.subtits{font-weight: 800; font-size:12pt; padding-left:8px}
+hr {
+    border: 1px dashed #cccccc;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+    width: 100%;
+}
+</style>
+<div ng-controller="RiwayatPsikososialCtrl">
+    <div class="grid_12 headerBox">
+        <h1 style="color: white;"><b>{{formMaster.nama}}</b></h1>
+    </div>
+    <div class="clear"></div>
+    <br/>
+    <div class="grid_12" style="margin-bottom:40px">
+        <!-- form untuk Psikososial -->
+        <div class="grid_12">
+            <div class="grid_12 subtits">{{titlePsikososial}}</div>
+            <div ng-repeat="parameter in item.psikososial | orderBy:'id'">
+                <div class="grid_2">
+                    <input type="checkbox" ng-change="cekArrPsikososial(bool, parameter)" ng-model="bool" ng-checked="isChecked(parameter.id)">
+                    <label for="{{parameter.nama}}">{{parameter.nama}}</label>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <!-- form untuk status sosial -->
+        <div class="grid_12">
+            <div class="grid_12 subtits">{{titleStatusSosial}}</div>
+            <div ng-repeat="parameter in item.statusSosial | orderBy:'id'">
+                <div class="grid_3" style="margin-left:12px">
+                    <label for="{{parameter.nama}}">{{parameter.nama}} : </label>
+                </div>
+                <div ng-repeat="opsi in parameter.detail | orderBy:'id'">
+                    <div class="grid_2">
+                        <input type="radio" ng-model="parameter.value" ng-value="opsi.id" ng-click="cekStatusSosial(parameter, opsi)">
+                        <label for="{{opsi.nama}}">{{opsi.nama}}</label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- form riwayat psikososial yang lama -->
+    <c-panel item="item" header="'riwayatPsikososial'" disabled ng-hide="true">
+        <c-panel item="item" header="'statusPsikologi'" disabled>
+
+            <div class="panel">
+                <div class="grid_12">
+                    <div class="grid_3" ng-repeat="data in listStatusRiwayatPsikologi">
+                        <input type="checkbox" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" ng-checked="data.isNilai" value="{{data.id}}" ng-model="TempItem.kecenderunganLainnya" ng-click="cekArrStatusRiwayatPsikologi(data)">
+                        <label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+                    </div>
+
+                    <textarea style="width: 99%; height: 80px;" placeholder="Keterangan Lainnya" ng-model="item.KetStatusPsikologiLainnya"></textarea>
+                </div>
+            </div>
+        </c-panel>
+        <c-panel item="item" header="'statusSosial'" disabled>
+            <!-- Status Sosial -->
+            <div class="panel" style="border-color:#0d9a8b; padding: 10px 10px 10px 10px;">
+                <div class="container_12">
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="HubunganPasienDenganAnggotaKeluarga"></label></div>
+                    <div class="grid_2" style="margin: 5px 0px 5px 0px;" ng-repeat="stat in listStatusKesadaran">
+                        <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-checked="stat.isNilai" ng-model="item.hubunganPasien" ng-value="stat">
+                        <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+                        
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="container_12">
+                    <div class="grid_12"><label c-label item="item" c-label-text="TempatTinggal"></label></div>
+                    <div class="grid_2" ng-repeat="stat in listStatusTempatTinggal">
+                        <input type="checkbox" name="{{stat.name}}" id="{{stat.name}}" class="k-checkbox" ng-checked="stat.isNilai" ng-click="cekArrStatusTempatTinggal(stat)">
+                        <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+
+                        <div class="clear"></div>
+                    </div>
+                    <div ng-show="isTempatTinggalLain">
+                        <textarea style="width: 99%; height: 80px;" placeholder="Keterangan Lainnya" ng-model="item.keteranganStatusSosial"></textarea></div>
+                </div>
+            </div>
+        </c-panel>
+        <div class="grid_12">
+        </div>
+    </c-panel>
+    <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+</div>

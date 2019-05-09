@@ -1,0 +1,272 @@
+<div ng-controller="NeracaLimbahB3Ctrl">
+	
+	<div class="panel panel-default container_12">
+		<div class="panel-heading" c-translate>Neraca Limbah B3 </div>
+		<div class="panel-body">
+			<div class="grid_12">
+				<div class="grid_12">
+				<div class="panel panel-default container_12">
+					<div class="panel-heading" c-translate>Pencarian</div>
+					<div class="panel-body">
+						<div class="grid_12" >
+							
+							<div class="grid_3" style="margin-top: 10px">
+								<div class="grid_12" style="margin-left:5px">
+									<label c-label item="item" c-label-text="periodeAwal"></label>
+								</div>
+								<div class="grid_12" style="margin-top:5px">
+									<input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAwal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+								</div>
+							</div>
+							<div class="grid_1" style="margin-top: 40px" align="center">
+								 <label c-label item="item" c-label-text="s/d"></label>
+							</div>
+							<div class="grid_3" style="margin-top: 10px">
+								<div class="grid_12" style="margin-left:5px">
+									<label c-label item="item" c-label-text="periodeAkhir"></label>
+								</div>
+								<div class="grid_12" style="margin-top:5px">
+									<input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAkhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+								</div>
+							</div>
+							<div class="grid_2" style="margin-top: 38px">
+								<button class="c-button"  ng-click="cari()">
+                            	CARI</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				</div>
+			</div>
+			<div class="grid_12" style="margin-top: 10px">
+				<div class="grid_5" style="margin: 10px 0 0 25px;">
+					<kendo-grid  k-data-source="sourceOrder" k-selectable="'row'" k-columns="columndataJenisAwalLimbah">
+                	</kendo-grid>
+				</div>
+				<div class="grid_12">
+					
+						<div class="grid_12" style="margin: 10px 0 10px 25px;">
+							<label c-label item="item" c-label-text="catatan"></label>
+						</div>
+						
+				</div>
+				<div class="grid_12" style="margin: 0 0 20px 25px;">
+					<textarea ng-model="item.catatan" style="width: 95%; height: 80px;"></textarea>
+				</div>
+			</div>
+			
+			<table>
+  				<tr>
+   					<th bgcolor="#10c4b2" height="35px" rowspan="2"><center><b>Nomor</b></center></th>
+   					<th bgcolor="#10c4b2" height="35px" rowspan="2"><center><b>Perlakuan</center></b></th>
+				  	<th bgcolor="#10c4b2" height="35px" rowspan="2"><center><b>Jumlah</b></center></th>
+				  	<th bgcolor="#10c4b2" height="35px" rowspan="2"><center><b>Jenis Limbah Yang Dikelola</b></center></th>
+				   	<th bgcolor="#10c4b2" height="35px" colspan="3"><center><b>Perizinan Limbah</b></center></th>
+	 
+  				</tr>
+  				<tr>
+  					<td bgcolor="#10c4b2" height="35px" width="120px"><center><b>Ada</center></b></td>
+  					<td bgcolor="#10c4b2" height="35px" width="120px"><center><b>Tidak Ada</center></b></td>
+   					<td bgcolor="#10c4b2" height="35px" width="120px"><center><b>Kadaluarsa</b></center></td>
+  				</tr>
+  </br>
+  </br>
+  <tr>
+       <td><center> 1 </center></td>  
+      <td><left> Disimpan </left></td>
+     <td> <input c-text-box type="number"  filter="'numeric'" class="k-textbox" ng-model="item.qtyproduk1" ng-keyup="penjumlahan()"/></td>
+	   <td > <input c-text-box type="input"  filter="'string'" class="k-textbox" ng-model="item.jenislimbah" /></td>
+    
+    	<!-- <span ng-repeat="izin in daftarPerizinan" style="margin-right:4px important!">
+                <input type="radio" name="{{izin.name}}" id="{{izin.id}}" class="k-radio" ng-model="item.perizinan.id" value="{{izin.id}}" required="required"/>
+                <label class="k-radio-label" for="{{izin.id}}">{{izin.name}}</label>
+        </span> -->
+        <td><center>
+    	<input type="radio" name="Ada" id="1" class="k-radio" ng-model="item.perizinan.id" value="1">
+    	<label class="k-radio-label" for="1">Ada</label></center>  
+        </td>
+        <td><center>
+        <input type="radio" name="TidakAda" id="2" class="k-radio" ng-model="item.perizinan.id" value="2">
+    	<label class="k-radio-label" for="2">Tidak Ada</label> </center>
+        </td>
+        <td><center>
+		<input type="radio" name="Kadaluarsa" id="3" class="k-radio" ng-model="item.perizinan.id" value="3">
+    	<label class="k-radio-label" for="3">Kadaluarsa</label></center>
+        </td>
+		
+		
+		
+  </tr>
+   <tr>
+       <td><center> 2 </center></td>  
+      <td> Dimanfaatkan </td>
+     <td> <input c-text-box type="number"  filter="'numeric'" class="k-textbox" ng-model="item.qtyproduk2" ng-keyup="penjumlahan()"/></td>
+	   <td > <input c-text-box type="input"  filter="'string'" class="k-textbox" ng-model="item.jenislimbah2" /></td>
+    <td><center><input type="radio" name="A" id="A+1" class="k-radio" ng-model="item.perizina.id" value="1">
+    	<label class="k-radio-label" for="A+1">Ada</label></center></td>
+    	<td><center>  
+        <input type="radio" name="B" id="B+2" class="k-radio" ng-model="item.perizina.id" value="2">
+    	<label class="k-radio-label" for="B+2">Tidak Ada</label></center></td>
+    	<td><center>
+		<input type="radio" name="C" id="C+3" class="k-radio" ng-model="item.perizina.id" value="3">
+    	<label class="k-radio-label" for="C+3">Kadaluarsa</label> 
+        </center>
+		</td>
+		
+  </tr>
+  <tr>
+       <td><center> 3 </center></td>  
+      <td> Diolah </td>
+     <td> <input c-text-box type="number"  filter="'numeric'" class="k-textbox" ng-model="item.qtyproduk3" ng-keyup="penjumlahan()"/></td>
+	   <td > <input c-text-box type="input"  filter="'string'" class="k-textbox" ng-model="item.jenislimbah3" /></td>
+    <td><center><input type="radio" name="D" id="D+1" class="k-radio" ng-model="item.perizin.id" value="1">
+    	<label class="k-radio-label" for="D+1">Ada</label></center></td>
+    	<td><center>  
+        <input type="radio" name="E" id="E+2" class="k-radio" ng-model="item.perizin.id" value="2">
+    	<label class="k-radio-label" for="E+2">Tidak Ada</label> </td></center>
+    	<td><center>
+		<input type="radio" name="F" id="F+3" class="k-radio" ng-model="item.perizin.id" value="3">
+    	<label class="k-radio-label" for="F+3">Kadaluarsa</label> 
+        </center>
+		</td>
+		
+		
+		
+  </tr>
+   <tr>
+       <td><center> 4 </center></td>  
+      <td> Perlakuan Lainnya </td>
+     <td> <input c-text-box type="number"  filter="'numeric'" class="k-textbox" ng-model="item.qtyproduk4" ng-keyup="penjumlahan()" /></td>
+	   <td > <input c-text-box type="input"  filter="'string'" class="k-textbox" ng-model="item.jenislimbah4" /></td>
+    <td><center><input type="radio" name="G" id="G+1" class="k-radio" ng-model="item.perizi.id" value="1">
+    	<label class="k-radio-label" for="G+1">Ada</label>  </center></td>
+    	<td><center>
+        <input type="radio" name="H" id="H+2" class="k-radio" ng-model="item.perizi.id" value="2">
+    	<label class="k-radio-label" for="H+2">Tidak Ada</label> </cemter></td>
+    	<td><center>
+		<input type="radio" name="I" id="I+3" class="k-radio" ng-model="item.perizi.id" value="3">
+    	<label class="k-radio-label" for="I+3">Kadaluarsa</label> 
+
+		</center></td>
+		
+		
+		
+  </tr>
+   <tr>
+       <td><center> 5 </center></td>  
+      <td> Filter Bekas </td>
+     <td> <input c-text-box type="number"  filter="'numeric'" class="k-textbox" ng-model="item.qtyproduk5" ng-keyup="penjumlahan()" /></td>
+	   <td > <input c-text-box type="input"  filter="'string'" class="k-textbox" ng-model="item.jenislimbah5" /></td>
+    <td><center><input type="radio" name="J" id="J+1" class="k-radio" ng-model="item.periz.id" value="1">
+    	<label class="k-radio-label" for="J+1">Ada</label>  </center></td>
+    	<td><center>
+        <input type="radio" name="K" id="K+2" class="k-radio" ng-model="item.periz.id" value="2">
+    	<label class="k-radio-label" for="K+2">Tidak Ada</label> </center></td>
+    	<td><center>
+		<input type="radio" name="L" id="L+3" class="k-radio" ng-model="item.periz.id" value="3">
+    	<label class="k-radio-label" for="L+3">Kadaluarsa</label>
+        </center>
+		</td>
+		
+		
+		
+  </tr>
+   <tr>
+       <td><center> 6 </center></td>  
+      <td> Diserahkan Pihak ke 3 </td>
+     <td> <input c-text-box type="number"  filter="'numeric'" class="k-textbox" ng-model="item.qtyproduk6" ng-keyup="penjumlahan()"/></td>
+	   <td > <input c-text-box type="input"  filter="'string'" class="k-textbox" ng-model="item.jenislimbah6" /></td>
+    <td><center><input type="radio" name="M" id="M+1" class="k-radio" ng-model="item.peri.id" value="1">
+    	<label class="k-radio-label" for="M+1">Ada</label>  </center></td>
+    	<td><center>
+        <input type="radio" name="N" id="N+2" class="k-radio" ng-model="item.peri.id" value="2">
+    	<label class="k-radio-label" for="N+2">Tidak Ada</label> </center></td>
+    	<td><center>
+		<input type="radio" name="O" id="O+3" class="k-radio" ng-model="item.peri.id" value="3">
+    	<label class="k-radio-label" for="O+3">Kadaluarsa</label>
+        </center>
+		</td>
+		
+		
+		
+  </tr>
+   <tr>
+       <td><center> 7 </center></td>  
+      <td> Perlakuan Lainnya </td>
+     <td> <input c-text-box type="number"  filter="'numeric'" class="k-textbox" ng-model="item.qtyproduk7" ng-keyup="penjumlahan()"/></td>
+	   <td > <input c-text-box type="input"  filter="'string'" class="k-textbox" ng-model="item.jenislimbah7" /></td>
+    <td><center><input type="radio" name="P" id="P+1" class="k-radio" ng-model="item.per.id" value="1">
+    	<label class="k-radio-label" for="P+1">Ada</label>  </center></td>
+    	<td><center>
+        <input type="radio" name="Q" id="Q+2" class="k-radio" ng-model="item.per.id" value="2">
+    	<label class="k-radio-label" for="Q+2">Tidak Ada</label> </center></td>
+    	<td><center>
+		<input type="radio" name="R" id="R+3" class="k-radio" ng-model="item.per.id" value="3">
+    	<label class="k-radio-label" for="R+3">Kadaluarsa</label> 
+        </center>
+		</td>
+		
+		
+		
+  </tr>
+   <td><center> </center></td>  
+      <td> Total </td>
+     <td> <input c-text-box type="input"  filter="'numeric'" class="k-textbox" ng-model="item.qtyproduk8" /disabled></td>
+	   <td > </td>
+    <td>
+		</td>
+  
+</table>	
+			
+			
+			
+			
+			
+			</br>
+			</br>
+		
+			<div class="grid_12">
+			   
+				<div class="grid_5" style="margin: 20px 0 0 60px;">
+					<label c-label item="item" c-label-text="Residu"></label>
+				</div>
+				<div class="grid_3" style="margin: 10px 0 0 15px;">
+					 <input c-text-box type="number" filter="'numeric'" class="k-textbox" ng-model="item.residu" style="width: 92%"/>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_5" style="margin: 20px 0 0 60px;">
+					<label c-label item="item" c-label-text="jumlahLimbahYangBelumTerkelola"></label>
+				</div>
+				<div class="grid_3" style="margin: 10px 0 0 15px;">
+					 <input c-text-box type="number" filter="'numeric'" class="k-textbox" ng-model="item.jumlahbelumkelola" style="width: 92%" ng-keyup="tambahbro()"/>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_5" style="margin: 20px 0 0 60px;">
+					<label c-label item="item" c-label-text="TotalJumlahLimbahYangTersisa"></label>
+				</div>
+				<div class="grid_3" style="margin: 10px 0 0 15px;">
+					 <input c-text-box type="number" filter="'numeric'" class="k-textbox" ng-model="item.plus" style="width: 92%"  ng-keyup="tambahbro()" /disabled>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_5" style="margin: 20px 0 0 60px;">
+					<label c-label item="item" c-label-text="kinerjaPengelolaanLimbahB3SelamaPeriodeSkala"></label>
+				</div>
+				<div class="grid_3" style="margin: 10px 0 0 15px;">
+					 <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.kinerjapengelolaan" style="width: 92%" /disabled>
+				</div>
+			</div>
+			
+			
+			<div class="grid_12" style="margin-top: 20px">
+				<div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+			</div>
+		</div>
+	
+	</div>
+</div>
+</div>
+</div>

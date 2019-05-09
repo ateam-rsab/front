@@ -1,0 +1,41 @@
+{
+	"model":{
+	    "jenisKelamin" : "",
+	    "tglLahir" : "",
+	    "menyusuiEkslusif" : "",
+	    "umurDisapih" : "",
+	    "masalahDalamMenyusui" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "jenisKelamin",
+			"messagesRequired" : "",
+			"caption" : "Jenis Kelamin"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tglLahir",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Lahir"
+		},
+		{
+			"isNull" : "true",
+			"name" : "menyusuiEkslusif",
+			"messagesRequired" : "",
+			"caption" : "Menyusui Ekslusif"
+		},
+		{
+			"isNull" : "true",
+			"name" : "umurDisapih",
+			"messagesRequired" : "",
+			"caption" : "Umur Disapih"
+		},
+		{
+			"isNull" : "true",
+			"name" : "masalahDalamMenyusui",
+			"messagesRequired" : "",
+			"caption" : "Masalah Dalam Menyusui"
+		}
+  ]
+}

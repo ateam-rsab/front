@@ -1,0 +1,12 @@
+[
+	{  
+        "id":1,
+        "name":"Jenis Waktu 1"
+    },{
+        "id": 2,
+        "name": "Jenis Waktu 2"
+    },{
+        "id": 3,
+        "name": "Jenis Waktu 3"
+    }
+]

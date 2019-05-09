@@ -1,0 +1,17 @@
+
+<div ng-show="dataVOloaded">
+	<c-panel item="item" header="'Master Sarana Rumah Duka'" disabled>
+        <div class="grid_12">
+            <div class="grid_2">
+                <label c-label item="item" c-label-text="PilihKamar"></label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.kamar" k-data-text-field="'namaKamar'" k-data-value-field="'idKamar'" k-data-source="sourceKamar" k-on-change="getDetilSarana(item.kamar)"/>
+            </div>
+        </div>
+        <!-- <div class="clearfix"></div> -->
+        <div class="grid_12">
+            <div id="gridSarana" kendo-grid k-options="gridOptions"></div>
+        </div>
+	</c-panel>
+	<!-- <div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div> -->
+    <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+</div>

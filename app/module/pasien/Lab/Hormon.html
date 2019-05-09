@@ -1,0 +1,66 @@
+<div ng-controller="HormonCtrl">
+
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Hormon'">
+
+            <!-- Reproduksi -->
+            <div class="grid_12" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="Reproduksi"></label>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_12" style="margin-bottom:5px">
+                <div class="grid_4" ng-repeat="data in listReproduksi">
+                    <input type="checkbox" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" value="{{data.id}}">
+                    <label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+
+                    <div ng-if="data.info == 'true'" kendo-tooltip k-content="'keterangan : ' + data.infoMsg" class="tooltip">
+                          <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+            <hr/ style="background-color:#10C4B2;height: 1px;border: 0;">
+
+            <!-- Lainlain -->
+            <div class="grid_12" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="Lainlain"></label>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_12" style="margin-bottom:5px">
+                <div class="grid_4" ng-repeat="data in listLainlain">
+                    <input type="checkbox" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" value="{{data.id}}">
+                    <label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+
+                    <div ng-if="data.info == 'true'" kendo-tooltip k-content="'keterangan : ' + data.infoMsg" class="tooltip">
+                          <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+            <hr/ style="background-color:#10C4B2;height: 1px;border: 0;">
+
+            <!-- Tiroid -->
+            <div class="grid_12" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="Tiroid"></label>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_12" style="margin-bottom:5px">
+                <div class="grid_4" ng-repeat="data in listTiroid">
+                    <input type="checkbox" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" value="{{data.id}}">
+                    <label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+
+                    <div ng-if="data.info == 'true'" kendo-tooltip k-content="'keterangan : ' + data.infoMsg" class="tooltip">
+                          <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+
+            <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+            <div class="clear"></div>
+        </c-panel>
+    </div>
+</div> 

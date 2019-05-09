@@ -1,0 +1,60 @@
+<div ng-controller="DetailKegiatanUnitCostCtrl">
+    <div class="panel panel-default">
+        <div class="panel-heading"><span class="title" c-translate>DetailKegiatan</span></div>
+        <div class="panel-body">
+            <div class="grid_12">
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="KodeKegiatan"></label>
+                    <input c-text-box type="input" class="k-textbox" ng-model="item.kodeUnitCost" ng-disabled="isDisabled" />
+                </div>
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="NamaKegiatan"></label>
+                    <input c-text-box type="input" class="k-textbox" ng-model="item.namaUnitCost" ng-disabled="isDisabled" />
+
+                </div>
+
+
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="Nama Instalasi"></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.instalasi" k-data-text-field="'namaDepartemen'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listInstalasi" ng-disabled="isDisabled" />
+                </div>
+                <div class="grid_3">
+                    <label c-label item="item" c-label-text="NamaRuangan"></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListRuangan" ng-disabled="isDisabled" />
+                </div>
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="NamaProduk/Layanan"></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.produk" k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listProduk" ng-disabled="isDisabled" />
+                </div>
+            </div>
+            <div class="grid_12" style="margin-top: 10px;">
+                <div kendo-grid k-data-source="dataOrder" k-selectable="'row'" k-options="optionsOrder" k-scrollabe="true">
+                </div>
+            </div>
+            <div ng-include='"../app/module/Shared/TemplateButtonSimpanSRO" '></div>
+        </div>
+    </div>
+    <script id="popup-editor" type="text/x-kendo-template">
+        <div class="grid_12">
+            <label c-label item="item" c-label-text="Jenis"></label>
+            <input kendo-combo-box k-ng-model="dataItem.NamaBarang" style="width: 100%;" k-data-text-field="'namaJenisUnitCost'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listNamaBarang" k-on-change="getSaldoStok(data, dataItem, columns)"
+            />
+        </div>
+        <div class="grid_12">
+            <label c-label item="item" c-label-text="DetailJenis"></label>
+            <input kendo-combo-box k-ng-model="dataItem.unitCostDetailJenis" style="width: 100%;" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDetailJenisUnitCost" />
+        </div>
+        <div class="grid_2">
+            <label c-label item="item" c-label-text="Biaya"></label>
+            <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="dataItem.biaya" k-auto-bind="false" />
+        </div>
+        <div class="grid_2">
+            <label c-label item="item" c-label-text="Qty"></label>
+            <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="dataItem.qty" k-auto-bind="false" />
+        </div>
+        <div class="grid_2">
+            <label c-label item="item" c-label-text="Satuan"></label>
+            <input style="width: 100%;" kendo-combo-box k-ng-model="dataItem.satuanStandar" k-data-text-field="'satuanStandar'" k-data-value-field="'id'" k-data-source="listSatuanStandard" />
+        </div>
+    </script>
+</div>

@@ -1,0 +1,39 @@
+<div ng-controller="DisposisiCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Disposisi'">
+		<div class="grid_6">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="tanggalDisposisi"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tanggalDisposisi" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="jabatan"></label>
+			</div>
+			<div class="grid_8">
+				
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="instruksi"></label>
+			</div>
+			<div class="grid_8">
+				
+			</div>
+		</div>
+		<div class="grid_6">
+			<div class="clear"></div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="penerima"></label>
+			</div>
+			<div class="grid_8">
+				
+			</div>
+		</div>
+		<div class="grid_12" style="margin-top: 10px">
+			<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+		</div>
+		</c-panel>
+	</div>
+</div>

@@ -1,0 +1,5 @@
+<div class="SurveiCtrl">
+    <div class="grid_12">
+        {{currentIndex}}
+    </div>
+</div>

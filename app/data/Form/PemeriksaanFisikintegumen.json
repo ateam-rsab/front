@@ -1,0 +1,43 @@
+{
+	"model":{
+	    "WarnaKulit" : "",
+	    "Kelainan" : "",
+		"ResikoDekubitus" : "",
+		"Nama":"",
+	    "Luka" : ""
+	   
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "WarnaKulit",
+			"messagesRequired" : "Warna Kulit Harus Diisi",
+			"caption" : "Warna kulit"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Nama",
+			"messagesRequired" : "Warna Kulit Harus Diisi",
+			"caption" : "Nama"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Kelainan",
+			"messagesRequired" : "Kelainan Harus Diisi",
+			"caption" : "Kelainan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "ResikoDekubitus",
+			"messagesRequired" : "Resiko Dekubitus Harus Diisi",
+			"caption" : "Resiko Dekubitus"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Luka",
+			"messagesRequired" : "Luka Harus Diisi",
+			"caption" : "Luka"
+		}
+		
+  ]
+}

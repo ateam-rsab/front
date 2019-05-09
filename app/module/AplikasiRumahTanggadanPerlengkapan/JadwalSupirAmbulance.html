@@ -1,0 +1,57 @@
+<div ng-controller="JadwalSupirAmbulanceCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Jadwal Supir Ambulance'" disabled>
+			<div style="margin: 5px" class="grid_3">
+				<label c-label item="item">Ruangan Tempat Bertugas</label>
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.ruangan" disabled />
+			</div>
+			<div class="grid_3" style="margin: 5px">
+				<label c-label item="item">Periode</label>
+				<input style="width: 100%" k-ng-model="periode" k-value=now k-on-change="selectedPeriode(periode)" kendo-date-picker k-options="monthSelectorOptions" k-format="'MMMM yyyy'" placeholer="dd-mm-yyyy"  />
+			</div>
+			
+			<div class="grid_12" style="margin-top: 10px;">
+				<div kendo-grid k-data-source="jadwalSupir" k-selectable="'row'" k-ng-model="select" k-columns="columnJadwal">
+				</div>
+			</div>
+
+
+
+			<!--<c-panel item="item" header="'Keterangan'">-->
+			<!--<div class="grid_12" style="margin-top: 10px;">
+					<div kendo-grid k-data-source="keterangan" k-selectable="'row'" k-ng-model="select" k-columns="keterangan">
+					</div>
+				</div>-->
+			<!--<div class="grid_4" ng-repeat="ket in keterangan">
+					<div class="grid_2">{{ket.reportDisplay}}</div>
+					<div class="grid_6">{{': ' + ket.namaExternal}}</div>
+					<div class="grid_4">{{ket.jamPraktek}}</div>
+				</div>
+				<div class="clear"></div>-->
+
+			<!--</c-panel>-->
+			<!-- <div kendo-scheduler k-options="schedulerOptions">
+            <span k-event-template class='custom-event'>{{dataItem.title}}</span>
+            <div k-all-day-event-template class='custom-all-day-event'>{{dataItem.title}}</div>
+        </div> -->
+			<div class="grid_12" style="margin-top:40px">
+				<div class="grid_6"></div>
+				<div class="grid_3" style="margin-top: 5px" text-align="right">
+					<button class="c-button" ng-click="showKeterangan = true" style="width:100% !important">
+						<span style="font-size:10!important">Keterangan</span>
+					</button>
+				</div>
+				<div class="grid_3" style="margin-top: 5px" text-align="right">
+					<button class="c-button" ng-click="Edit(select)" style="width:100% !important">
+						<span style="font-size:10!important">Edit</span>
+					</button>
+				</div>
+			</div>
+
+			<div ng-show="showKeterangan" class="grid_12" style="margin-top: 50px">
+				<div kendo-grid k-data-source="listKeterangan" k-ng-model="gridKeterangan" k-selectable="'row'" k-columns="columnKeterangan"
+					style="margin-bottom: 10px"></div>
+			</div>
+		</c-panel>
+	</div>
+</div>

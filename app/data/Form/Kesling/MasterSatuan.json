@@ -1,0 +1,22 @@
+
+{
+	"model":{
+		"kodeSatuan":"",
+		"satuan":""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "kodeSatuan",
+			"messagesRequired" : "",
+			"caption" : "Kode Satuan"
+		},{
+			"isNull" : "true",
+			"name" : "satuan",
+			"messagesRequired" : "",
+			"caption" : "Satuan"
+		}
+
+	]
+}

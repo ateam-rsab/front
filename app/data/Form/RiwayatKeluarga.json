@@ -1,0 +1,74 @@
+{  "model":{
+  "Ibu" : "",
+  "Ayah" : "",
+  "UmurAyah" : "",
+  "UmurIbu" : "",
+  "BangsaAyah" : "",
+  "BangsaIbu" : "",
+  "KesehatanAyah": "",
+  "KesehatanIbu": "",
+  "AnakAnakLain": ""
+},
+  "attributes" : [
+    {
+      "isNull" : "true",
+      "name" : "Ibu",
+      "messagesRequired" : "Ibu Harus Diisi",
+      "caption" : "Ibu"
+    },
+    {
+      "isNull" : "true",
+      "name" : "Ayah",
+      "messagesRequired" : "Ayah Harus Diisi",
+      "caption" : "Ayah"
+    },
+    {
+      "isNull" : "true",
+      "name" : "UmurAyah",
+      "messagesRequired" : "Umur Harus Diisi",
+      "caption" : "Umur"
+    },
+    {
+      "isNull" : "true",
+      "name" : "UmurAyah",
+      "messagesRequired" : "Umur Harus Diisi",
+      "caption" : "Umur"
+    },
+    {
+      "isNull" : "true",
+      "name" : "UmurIbu",
+      "messagesRequired" : "Umur Harus Diisi",
+      "caption" : "Umur"
+    },
+    {
+      "isNull" : "true",
+      "name" : "BangsaAyah",
+      "messagesRequired" : "Bangsa Harus Diisi",
+      "caption" : "Bangsa"
+    },
+    {
+      "isNull" : "true",
+      "name" : "BangsaIbu",
+      "messagesRequired" : "Bangsa Harus Diisi",
+      "caption" : "Bangsa"
+    },
+    {
+      "isNull" : "true",
+      "name" : "KesehatanAyah",
+      "messagesRequired" : "Kesehatan Harus Diisi",
+      "caption" : "Kesehatan"
+    },
+    {
+      "isNull" : "true",
+      "name" : "KesehatanIbu",
+      "messagesRequired" : "Kesehatan Harus Diisi",
+      "caption" : "Kesehatan"
+    },
+    {
+      "isNull" : "true",
+      "name" : "AnakAnakLain",
+      "messagesRequired" : "AnakAnakLain Harus Diisi",
+      "caption" : "Anak Anak Lain"
+    }
+  ]
+}

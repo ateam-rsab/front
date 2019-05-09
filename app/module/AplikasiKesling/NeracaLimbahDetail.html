@@ -1,0 +1,109 @@
+<div ng-controller="NeracaLimbahDetailCtrl">
+
+	<div class="panel panel-default container_12">
+		<div class="panel-heading" c-translate>Data Detil Neraca Limbah B3 </div>
+		<div class="panel-body">
+			<div class="grid_12">
+				<div class="panel panel-default container_12">
+					<div class="panel-body">
+						<div class="grid_6">
+							<div class="grid_3">
+								<label c-label item="item" c-label-text="periodeAwal" style="margin-top:10px"></label>
+							</div>
+							<div class="grid_8">
+								<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.periodeAwal" style="width:100%"
+								 disabled />
+							</div>
+						</div>
+						<div class="grid_6">
+							<div class="grid_3">
+								<label c-label item="item" c-label-text="periodeAkhir" style="margin-top:10px"></label>
+							</div>
+							<div class="grid_8">
+								<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.periodeAhir" style="width:100%"
+								 disabled />
+							</div>
+						</div>
+						<!-- <div class="grid_2" style="margin-top: 38px">
+								<button class="c-button"  ng-click="cari()">
+                            	CARI</button>
+							</div> -->
+					</div>
+					<div class="grid_12" style="margin-top: 10px">
+						<div class="grid_5" style="margin: 10px 0 0 25px;">
+							<kendo-grid k-data-source="sourceOrder" k-selectable="'row'" k-columns="columndataJenisAwalLimbah">
+							</kendo-grid>
+						</div>
+						<div class="grid_12">
+
+							<div class="grid_12" style="margin: 10px 0 10px 25px;">
+								<label c-label item="item" c-label-text="catatan"></label>
+							</div>
+
+						</div>
+						<div class="grid_12" style="margin: 0 0 20px 25px;">
+							<textarea ng-model="item.catatan" style="width: 95%; height: 80px;" disabled></textarea>
+						</div>
+					</div>
+
+					<div class="clear"></div>
+					<div class="grid_12">
+						<kendo-grid k-data-source="detailPerlakuan" options="gridPerlakuanLimbah"></kendo-grid>
+					</div>
+
+					<div class="grid_12">
+
+						<div class="grid_5" style="margin: 20px 0 0 60px;">
+							<label c-label item="item" c-label-text="Residu"></label>
+						</div>
+						<div class="grid_3" style="margin: 10px 0 0 15px;">
+							<input c-text-box type="number" filter="'numeric'" class="k-textbox" ng-model="item.residu" style="width: 92%"
+							 ng-keyup="tambahbro()" disabled />
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_5" style="margin: 20px 0 0 60px;">
+							<label c-label item="item" c-label-text="jumlahLimbahYangBelumTerkelola"></label>
+						</div>
+						<div class="grid_3" style="margin: 10px 0 0 15px;">
+							<input c-text-box type="number" filter="'numeric'" class="k-textbox" ng-model="item.jumlahYangBelumTerkelola"
+							 style="width: 92%" ng-keyup="tambahbro()" disabled />
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_5" style="margin: 20px 0 0 60px;">
+							<label c-label item="item" c-label-text="TotalJumlahLimbahYangTersisa"></label>
+						</div>
+						<div class="grid_3" style="margin: 10px 0 0 15px;">
+							<input c-text-box type="number" filter="'numeric'" class="k-textbox" ng-model="item.plus" style="width: 92%"
+							 ng-keyup="tambahbro()" disabled />
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_5" style="margin: 20px 0 0 60px;">
+							<label c-label item="item" c-label-text="kinerjaPengelolaanLimbahB3SelamaPeriodeSkala"></label>
+						</div>
+						<div class="grid_3" style="margin: 10px 0 0 15px;">
+							<input filter="'numeric'" kendo-numeric-text-box k-options="formatPercentage" k-ng-model="item.kinerjaPengelolaan"
+							 style="width: 92%" disabled />
+						</div>
+					</div>
+
+					<div class="grid_4"></div>
+					<div class="grid_4"></div>
+					<div class="grid_4" style="margin-top: 90px">
+						<!-- <button class="cancel" ng-click="kembaliKeNeracaLimbah()">Kembali</button> -->
+						<c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36"
+						 position=" 'right'" class="cancel" ng-click="kembaliKeNeracaLimbah()()">
+							<span class="title">Kembali ke Halaman Awal</span>
+						</c-button>
+					</div>
+					<!-- <div class="grid_12" style="margin-top: 20px">
+				<div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+			</div> -->
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

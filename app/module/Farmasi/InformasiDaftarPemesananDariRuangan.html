@@ -1,0 +1,49 @@
+<div ng-controller="InformasiDaftarPemesananDariRuanganCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Informasi Daftar Pemesanan Dari Ruangan'">
+		<div class="grid_12" style="margin-top: 10px;">
+			<div kendo-grid k-data-source="daftarPemesananBarang" k-selectable="'row'" k-columns="columnPemesananBarang">
+			</div>
+		</div>
+		<div class="grid_6" style="margin-top: 25px">
+			<div class="panel panel-default container_12">
+				<div class="panel-heading" c-translate>Pencarian</div>
+				<div class="panel-body">
+					<div class="grid_6">
+						<label c-label item="item" c-label-text="noOrder"></label>
+					</div>
+					<div class="grid_6">
+						<label c-label item="item" c-label-text="ruanganPemesan"></label>
+					</div>
+					<div class="grid_6">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noOrder" />
+					</div>
+					<div class="grid_6">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.ruanganPemesan" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="grid_12" style="margin-top: 15px">
+			<div class="grid_5"></div>
+			<div class="grid_3">
+				<c-button ng-click="()">
+				<span>Cetak Struk Order Dari Ruangan</span>
+			</c-button>
+		</div>
+		<div class="grid_2">
+			<c-button ng-click="()">
+			<span >Kirim Barang</span>
+		</c-button>
+	</div>
+	<div class="grid_2">
+		<c-button ng-click="()" >
+		<span>Tutup</span>
+	</c-button>
+	</div>
+
+</div>
+</c-panel>
+</div>
+</div>

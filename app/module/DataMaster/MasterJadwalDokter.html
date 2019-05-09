@@ -1,0 +1,159 @@
+<style>
+.style-center{
+	display: inline-block;
+	text-align: center;
+	width: 100%;
+}
+
+.style-right{
+	display: inline-block;
+	text-align: right;
+	width: 100%;
+}
+
+.style-left{
+	display: inline-block;
+	text-align: left;
+	width: 100%;
+}
+.k-grid .k-grid-header .k-header .k-link { 
+	height: auto;
+}
+
+.k-grid .k-grid-header .k-header  {
+	white-space: normal;
+}
+.k-grid .k-grid-header .k-header  {
+	text-align: center;
+}
+button:disabled {
+	background: #B5B2B1;
+}
+
+</style>
+
+
+<div ng-controller="MasterJadwalDokterCtrl">
+	
+	<div ng-show="dataVOloaded">
+		<div class="grid_12 headerBox">
+			<h1 style="color: white;"><b>Master Jadwal Dokter</b></h1>
+		</div> 
+ 
+			 <div class="grid_12 borderBox containerBorderBox">
+					<!-- Ruangan -->
+					<div class="grid_3">
+						<div class="grid_12">
+							<label c-label item="item" c-label-text="Ruangan"></label>
+						</div>
+						<div class="clear"></div>
+
+						<div class="grid_12">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaruangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+						</div>
+					</div>
+
+					 
+					<!-- Hari -->
+					<div class="grid_3">
+						<div class="grid_12">
+							<label c-label item="item" c-label-text="Hari"></label>
+						</div>
+						<div class="clear"></div>
+
+						<div class="grid_12">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.hari" k-data-text-field="'namahari'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listHari" />
+						</div>
+					</div>
+
+					<div class="grid_3 k-edit-buttons  k-state-default " style="margin-top:23px"	>		
+						<button class="k-button k-button-icontext k-primary k-grid-update" ng-click="SearchData()"  style="width:100px"  ><span class="k-sprite k-icon k-i-search"></span>Cari </button>
+						<button class="k-button  k-button-icontext" ng-click="ClearData()"   style="width:100px" ><span class="k-sprite k-icon k-delete"></span>Clear</button>
+					</div>
+
+
+
+			<div class="grid_12 headerBox">
+					<p>Jadwal Dokter</p>
+					<kendo-grid  id="kGrids"  data-source="dataSource" options="columnGrid"
+					k-selectable="'row'" 
+
+					k-sortable="'true'"
+					k-resizable="'true'"
+					k-ng-model="dataSelected"
+					ng-click="klikGrid(dataSelected)"></kendo-grid>
+			</div>
+		</div>
+
+		<div kendo-window="popUpJadwal" k-title="'Tambah Jadwal Dokter'" k-width="500" k-height="320" k-visible="false" k-on-open="win2visible = true" k-on-close="win2visible = false">
+					<div class="panel panel-default container_12" style="padding: 0px 10px;"> 
+						<!-- <fieldset>
+							<legend>-</legend>
+						-->
+
+					<div class="grid_12">
+						<div class="grid_12">
+							<div class="grid_12">
+								<label c-label item="item" c-label-text="Ruangan"></label>
+							</div>
+							<div class="clear"></div> 
+							<div class="grid_12">
+								<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan2" k-data-text-field="'namaruangan'" k-data-value-field="'idRu'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+							</div>
+						</div>
+
+						 
+						<!-- Hari -->
+						<div class="grid_12">
+							<div class="grid_12">
+								<label c-label item="item" c-label-text="Hari"></label>
+							</div>
+							<div class="clear"></div>
+
+							<div class="grid_12">
+								<input style="width: 100%;" kendo-combo-box k-ng-model="item.hari2" k-data-text-field="'namahari'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listHari" />
+							</div>
+						</div>
+					</div> 
+					<!-- dokter -->
+					<div class="grid_12"> 
+							<div class="grid_12">
+								<label c-label item="item" c-label-text="Dokter"></label>
+							</div>
+							<div class="clear"></div>
+
+							<div class="grid_12">
+								<input style="width: 100%;" kendo-combo-box k-ng-model="item.dokter" k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDokter" />
+							</div> 
+					</div> 
+					<!-- jam -->
+					<div class="grid_12"> 
+							<div class="grid_12">
+								<label c-label item="item" c-label-text="Jam"></label>
+							</div>
+							<div class="clear"></div>
+
+							<div class="grid_12">
+								<input style="width: 100%;" kendo-combo-box k-ng-model="item.jam" k-data-text-field="'jampraktek'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJam" />
+							</div> 
+					</div> 
+					<div class="grid_12">
+						<div class="grid_12">
+							<label c-label item="item" >Quota</label>
+						</div>
+						<div class="clear"></div>
+
+						<div class="grid_12">
+							<input c-text-box type="number" filter="" class="k-textbox" 
+							ng-model="item.quota" />
+						</div>
+					</div>
+
+					<div class="k-edit-buttons  k-state-default pull-right" style="margin-top:10px"	>		
+						<button class="k-button k-button-icontext k-primary k-grid-update" ng-click="Save()" ><span class="k-icon k-update"></span>Simpan</button>
+						<button class="k-button  k-button-icontext" ng-click="batal()" ><span class="k-icon k-cancel"></span>Batal</button>
+					</div>
+
+				</div>
+	</div>
+</div>

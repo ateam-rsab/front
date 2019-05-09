@@ -1,0 +1,101 @@
+<div ng-controller="PembayaranTagihanCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Pembayaran Tagihan'" disabled>
+			<!-- -->
+			<!-- <button type="button" ng-click="openWindow()">Open Kendo UI Window</button> -->
+			<!-- <input ng-model="test">
+			{{test | currency:"Rp."}} -->
+
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" c-label-text="NoBkk"></label>
+						<input placeholder="No Bkk" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaSupplier" />
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" c-label-text="Keterangan"></label>
+						<input placeholder="Keterangan" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaSupplier" />
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" c-label-text="Priode Awal"></label>
+						<input style="width: 100%" k-ng-model="item.periodeAwal"  kendo-date-picker k-max="now" placeholer="yyyy" k-format="'yyyy'"/>
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" c-label-text="Priode Akhir"></label>
+						<input style="width: 100%" k-ng-model="item.periodeAkhir"  kendo-date-picker  placeholer="yyyy" k-format="'yyyy'"/>
+					</div>
+					<div class="grid_1" style="margin-top:22px;">
+                        <button class="c-button" style="width: 150px" ng-click="findData()">Cari</button>
+                    </div>
+				</div>
+			<div class="grid_6">
+				<div class="grid_12">
+				</div>
+			</div>
+			<div class="clear"></div>
+
+			<br/>
+
+			
+
+			<!-- PenyusunanTRPNBP -->
+
+			<div class="grid_12">
+				<div class="grid_12 headerBox">
+					<p>Daftar RKA-KL Tahunan</p>
+				</div>
+				<div class="clear"></div>
+
+				
+				<div class="grid_12 borderBox">
+            <div id="kGrid" kendo-grid 
+            k-data-source="dataPenyusunanTRPNBP" 
+            k-selectable="'row'"
+            k-pageable="true"
+            k-sortable="'true'" 
+            k-columns="columnPenyusunanTRPNBP"
+            k-ng-model="dataPasienSelected">
+            <div k-detail-template>
+                <kendo-tabstrip>
+                <div>
+                    <div kendo-grid k-options="detailGridOptions(dataItem)" 
+            			k-sortable="'true'" 
+            			k-selectable="'row'"
+            			k-ng-model="dataPasienSelected">
+                    	<div k-detail-template>
+			                <kendo-tabstrip>
+			                <div>
+			                    <div kendo-grid k-options="detailGridOptionsDua(dataItem)"
+            						 k-selectable="'row'"
+									 k-sortable="'true'" 
+            						 k-ng-model="dataPasienSelected">
+			                    </div>
+			                </div>
+			                </kendo-tabstrip>
+			            </div>
+                    </div>
+                </div>
+                </kendo-tabstrip>
+            </div>
+
+            </div>
+          </div>
+
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+
+			<br/>
+
+		</div>
+		<div class="grid_12" style="margin-top:10px;">
+			<!-- <div class="grid_5"></div> -->
+			<div class="grid_2" style="float:right;">
+				<button class="c-button" ng-click="Save()">Cetak</button>
+			</div>
+		</div>
+
+		<!-- <div class="grid_12" style="margin-top:30px">
+			<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
+		</div> -->
+	</div>
+</div>

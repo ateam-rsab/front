@@ -1,0 +1,60 @@
+<div ng-controller="BillingCtrl">
+    <div class="panel panel-default">
+        <div class="panel-heading" c-translate>Rekam Medis Pasien</div>
+        <div class="panel-body">
+            <div class="grid_12 animated">
+                <div class="grid_12">
+                    <div class="grid_3">
+                        <!-- namaPasien -->
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="NoRekamMedis"></label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.noCm" />
+                        </div>
+                    </div>
+                    <div class="grid_3">
+                        <!-- namaPasien -->
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="namaPasien"></label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.namaPasien" />
+                        </div>
+                    </div>
+                    <div class="grid_3">
+                        <!-- jenisKelamin -->
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="jenisKelamin"></label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.jenisKelamin.jenisKelamin" />
+                        </div>
+                    </div>
+                    <div class="grid_3">
+                        <!-- tglDaftar -->
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="tipePembiayaan"></label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.jenisPasien" />
+                            <!--<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.pasien.tglDaftar" />-->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body" style="padding:0px">
+        <div class="grid_12">
+            <kendo-grid k-ng-model="item" k-data-source="patienGrids" k-selectable="'row'" k-sortable="'true'" k-columns="arrColumnGridResepElektronik"></kendo-grid>
+        </div>
+    </div>
+    <div class="grid_12 place_button">
+        <div class="grid_3">
+            <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" click="cetakEtike">
+                <span class="title"><label  c-label c-label-text='cetakEtiket' font-size="13"></label></span>
+            </c-button>
+        </div>
+
+    </div>
+    <div class="place_button" style="right: 71px;
+    bottom: 0;
+    text-align: right;
+    left: inherit;">
+        <h1>Total Biaya : {{total| currency:"Rp. ":2}}</h1></div>
+
+</div>

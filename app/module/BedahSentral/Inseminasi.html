@@ -1,0 +1,126 @@
+<div ng-controller="InseminasiCtrl">
+    <div ng-show="dataVOloaded">
+        <c-panel item = "item" header="'Inseminasi'">
+        <div class="panel panel-default container_12">
+            <div class="panel-heading"><label c-label c-label-text="Spermiogram" statment></label>
+            </div>
+                <div class="panel-body">
+                    <div class="panel-body" >
+                        <div class="grid_2" >
+                            <label c-label item="item" c-label-text="caraPengeluaran"></label> 
+                        </div>
+                        <div class="grid_2"  ng-repeat="stat in listCaraPengeluaran">    
+                           <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio"  ng-model="item.RadioButton" value="{{stat.name}}">
+                                <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+                        </div>
+
+                        <div class="clear"></div>
+                        <div class="grid_2">
+                            <label c-label item="item" c-label-text="volume"></label> 
+                        </div>
+                        <div class="grid_2" >
+                            <input c-text-box type="number" class="k-textbox" ng-model="item.volume" />
+                        </div>
+                        <div class="grid_2">
+                            <label c-label item="item" c-label-text="konsentrasi"></label> 
+                        </div>
+                        <div class="grid_2" >
+                            <input c-text-box type="number" class="k-textbox" ng-model="item.konsentrasi" />
+                        </div>
+                        <div class="grid_2">
+                            <label c-label item="item" c-label-text="morfologi"></label> 
+                        </div>
+                        <div class="grid_2" >
+                            <input c-text-box type="number" class="k-textbox" ng-model="item.konsentrasi" />
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_2" >
+                                <label c-label item="item" c-label-text="motilitas"></label> 
+                            </div>
+                            <div class="grid_2" ng-repeat = "motilitas in datamotilitas.data" >
+                                <input c-text-box type="number" class="k-textbox"  ng-model="motilitas.value" />                                          
+                        </div>
+                        <div class="clear"></div>
+                        <div class = "grid_12" style="margin-top:5px">
+                         </div>
+                            <div class="grid_2" >
+                            &nbsp;
+                            </div>
+                            <div class="grid_1" >
+                                <c-button ng-click="addField()">
+                                            <span >Tambah</span>
+                                </c-button>
+                            </div>
+                            <div class="grid_1" >
+                                <c-button ng-click="removeField($index)" style="width:10% !important">
+                                            <span >Kurang</span>
+                                </c-button>
+                            </div>
+                                     
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_12" >
+            <div class="grid_3">
+                <label c-label item="item" c-label-text="konsentrasiSesudahPreparasi"></label> 
+            </div>
+            <div class="grid_2" >
+                <input c-text-box type="number" class="k-textbox" ng-model="item.konsentrasiSesudahPreparasi" />
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="panel panel-default container_12" >
+            <div class="panel-heading"><label c-label c-label-text="Inseminasi" statment></label>
+            </div>
+                <div class="panel-body">
+                  
+                        <div class="grid_2">
+                            <label c-label item="item" c-label-text="jumlahSperma"></label> 
+                        </div>
+                        <div class="grid_1" >
+                            <input c-text-box type="number" class="k-textbox" ng-model="item.jumlahSperma" />
+                        </div>                        
+                        <div class="grid_2">
+                            <label c-label item="item" c-label-text="tanggal"></label> 
+                        </div>
+                        <div class="grid_3" >
+                            <input style="width: 100%" k-max="now" k-value='now' kendo-date-time-picker k-ng-model="item.tanggal" placeholer="dd-mm-yyyy h:m" k-format="'dd-MM-yyyy h:m'" />
+                        </div>
+                        
+                   
+                       <div class="clear"></div>
+                 
+                        <div class="grid_2">
+                                <label c-label item="item" c-label-text="volume"></label> 
+                        </div>
+
+                        <div class="grid_1" >
+                            <input c-text-box type="number" class="k-textbox" ng-model="item.volume" />
+                        </div>
+                        <div class="grid_2">
+                            <label c-label item="item" c-label-text="reInseminasi"></label> 
+                        </div>
+                        <div class="grid_2" " ng-repeat="stat in listStatusYaTidak">    
+                            <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio"  ng-model="item.RadioButton" value="{{stat.name}}">
+                            <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+                        </div>                   
+                </div>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_12">
+            <div class="grid_1">
+                <label c-label item="item" c-label-text="catatan"></label> 
+            </div>
+            <div class="grid_9">
+                <textarea class="k-textbox" style="height: 60px; width: 100%; resize: none;" ng-model="item.alasanPembatalan"></textarea>
+            </div>
+        </div>
+        <div class="grid_12" style="margin-bottom:50px">                            
+            <div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+        </div>
+    </div>       
+       
+</div>
+  

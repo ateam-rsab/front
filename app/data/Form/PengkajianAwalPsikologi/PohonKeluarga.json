@@ -1,0 +1,35 @@
+{
+	"model":{
+	    "Level" : "",
+	    "StatusHubungan" : "",
+	    "Nama" : "",
+	    "DataTabel":""
+
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "Level",
+			"messagesRequired" : "",
+			"caption" : "Level"
+		},
+		{
+			"isNull" : "true",
+			"name" : "StatusHubungan",
+			"messagesRequired" : "",
+			"caption" : "Status Hubungan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Nama",
+			"messagesRequired" : "",
+			"caption" : "Nama"
+		},
+		{
+			"isNull" : "true",
+			"name" : "DataTabel",
+			"messagesRequired" : "",
+			"caption" : "DataTabel"
+		}
+  ]
+}

@@ -1,0 +1,51 @@
+<div ng-controller="NilaiPersediaanBarangMedisCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" disabled>
+			<label c-label item="item" c-label-text="tanggalClosing"></label>
+			<div class="grid_2" style="border: 1px solid">
+				<div class="grid_12" ng-repeat="tanggal in tanggalClosing" ng-click="tanggalClicked(tanggal)" style="{{zebra($index)}}">
+					{{tanggal.tanggal}}
+				</div>
+			</div>
+
+			<div class="grid_12" style="margin-top: 10px;">
+				<div kendo-grid k-data-source="" k-selectable="'row'" k-columns="columnPersediaanBarang">
+				</div>
+			</div>
+
+			<div class="grid_12" style="margin-top: 50px">
+				<div class="grid_3">
+					<label c-label item="item" c-label-text="cariJenisBarang"></label>
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jenisBarang"/>
+				</div>
+				<div class="grid_3">
+					<label c-label item="item" c-label-text="cariNamaBarang"></label>
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaBarang"/>
+				</div>
+				<div class="grid_1"></div>
+				<div class="grid_2">
+					<label c-label item="item" c-label-text="totalStok"></label>
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.totalStok" style="height:50px"/>
+				</div>
+				<div class="grid_2">
+					<label c-label item="item" c-label-text="nilaiPersediaan"></label>
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.nilaiPersediaan" style="height:50px" />
+				</div>
+			</div>
+
+			<div class="grid_12" style="margin-top: 50px">
+				<div class="grid_7"></div>
+				<div class="grid_3">
+					<c-button ng-click="" style="width:100% !important">
+						<span style="font-size:10!important">Cetak Nilai Persediaan</span>
+					</c-button>
+				</div>
+				<div class="grid_2">
+					<c-button ng-click="" style="width:100% !important">
+						<span style="font-size:10!important">Tutup</span>
+					</c-button>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

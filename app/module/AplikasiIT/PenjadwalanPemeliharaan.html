@@ -1,0 +1,190 @@
+<style>
+    .error{
+        background-color:white !important;
+    }
+    .yellow{
+        background-color:#ffff00;
+    }
+     .green{
+        background-color:#00ff40
+    }
+      .red{
+        background-color:#FF0000;
+           color:#ffffff;
+    }
+    .k-grid  .k-grid-header  .k-header  .k-link {
+     height: auto;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     white-space: normal;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     text-align: center;
+    }
+</style>
+<div ng-controller="PenjadwalanPemeliharaanCtrl">
+    <c-panel item="item" header="'Penjadwalan Pemeliharaan IT'">
+        <div ng-show="dataVOloaded">
+            <div class="grid_6">
+                <!-- <div class="grid_4">
+                    <label c-label item="item" c-label-text="unitKerja" style="margin-top: 10px" ></label>
+                </div>
+                <div class="grid_8">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.unitKerja" k-data-text-field="'namaUnit'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja"/>
+                </div> -->
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="Ruangan"
+                        style="margin-top: 10px"></label>
+                </div>
+                <div class="grid_8">
+                    <input style="width: 100%;" kendo-combo-box
+                        k-ng-model="item.Ruangan"
+                        k-data-text-field="'namaRuangan'"
+                        k-data-value-field="'id'" k-filter="'contains'"
+                        k-auto-bind="false" k-data-source="listRuangan" k-on-change="barang()" />
+                </div>
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="Tanggal Jadwal"
+                        style="margin-top: 10px"></label>
+                </div>
+                <div class="grid_8">
+                    <input style="width: 100%" kendo-date-picker
+                        k-ng-model="item.tanggalJadwal" placeholer="dd-mm-yyyy"
+                        k-format="'dd-MM-yyyy'" />
+                </div>
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="User Pegawai"
+                        style="margin-top: 10px"></label>
+                </div>
+                <div class="grid_8">
+                    <input c-text-box type="input" filter="'varchar'"
+                        class="k-textbox" ng-model="item.user" disabled="true"
+                        />
+                </div>
+                </div>
+                <div class="grid_6">
+                    <div class="grid_12">
+                        <div class="grid_4">
+                            <label c-label item="item"
+                                c-label-text="tanggalPemeliharaan"
+                                style="margin-top: 10px"></label>
+                        </div>
+                        <div class="grid_5">
+                            <input style="width: 100%" kendo-date-picker
+                                k-ng-model="item.tglPemeliharaan"
+                                placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                        </div>
+                    </div>
+                    <div class="grid_12" ng-repeat="teknisi in arrTeknisi">
+                        <div class="grid_4">
+                            <label c-label item="item"
+                                c-label-text="namaTeknisi" style="margin-top:
+                                10px" ng-show="$index < 1"></label>
+                        </div>
+                        <div class="grid_5">
+                            <div class="grid_11">
+                                <input style="width: 100%;" kendo-combo-box
+                                    k-ng-model="arrTeknisi[$index].teknisi"
+                                    k-data-text-field="'namaPegawai'"
+                                    k-data-value-field="'idPegawai'"
+                                    k-filter="'contains'" k-auto-bind="false"
+                                    k-data-source="listTeknisi" />
+                            </div>
+                            <div class="grid_1">
+                                <label c-label item="item" c-label-text="x"
+                                    ng-click="removeTeknisi($index)"
+                                    ng-show="$index> 0" style="margin-top: 10px;
+                                    text-align: right; cursor: pointer;" ></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="grid_4">
+                    </div>
+                    <div class="grid_8">
+                        <div class="grid_4">
+                            <button class="c-button success"
+                                ng-click="addTeknisi()">Tambah Teknisi</button>
+                        </div>
+
+                    </div>
+                </div>
+                <c-panel item="item" header="'Data Barang'">
+                </c-panel>
+                <div class="grid_6">
+                    <div class="grid_4">
+                        <label c-label item="item" c-label-text="namaBarang"
+                            style="margin-top: 10px"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input style="width: 100%;" kendo-combo-box
+                            k-ng-model="item.namaBarang"
+                            k-data-text-field="'namaProduk'"
+                            k-data-value-field="'id'" k-filter="'contains'"
+                            k-auto-bind="false" k-data-source="listNamaBarang"
+                            k-on-change="OnChangeBarang()" />
+                    </div>
+                    <div class="grid_4">
+                        <label c-label item="item" c-label-text="type"
+                            style="margin-top: 10px"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'varchar'"
+                            class="k-textbox" ng-model="item.type"
+                            disabled="true" />
+                    </div>
+
+                </div>
+                <div class="grid_6">
+                    <div class="grid_4">
+                        <label c-label item="item" c-label-text="merk"
+                            style="margin-top: 10px"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'varchar'"
+                            class="k-textbox" ng-model="item.merk"
+                            disabled="true" />
+                    </div>
+                    <div class="grid_4">
+                        <label c-label item="item" c-label-text="noSeri"
+                            style="margin-top: 10px"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'varchar'"
+                            class="k-textbox" ng-model="item.noSeri" disabled=""
+                            />
+                    </div>
+                </div>
+                <div class="grid_6">
+                    <div class="grid_4"></div>
+                    <div class="grid_4">
+                        <button class="c-button success"
+                            ng-click="AddDataBarang()">Tambah</button>
+                    </div>
+                    <div class="grid_4">
+                        <button class="c-button cancel"
+                            ng-click="CancelBarang()">Cancel</button>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div kendo-grid id="gridBarang" k-ng-model="selectedData"
+                        k-options="mainGridOptions2" k-data-source="dataSource"
+                        k-selectable="'row'"></div>
+                </div>
+                <div class="grid_6"></div>
+                <div class="grid_6">
+                    <div class="grid_4">
+                        <button class="c-button success" ng-click="resetData()">Reset</button>
+                    </div>
+                    <div class="grid_4">
+                        <button class="c-button success" ng-click="simpan()">Simpan</button>
+                    </div>
+                    <div class="grid_4">
+                        <button class="c-button cancel" ng-click="batal()">Batal</button>
+                    </div>
+                </div>
+            </div>
+        </c-panel>
+    </div>

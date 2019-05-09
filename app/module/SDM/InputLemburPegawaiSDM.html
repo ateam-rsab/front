@@ -1,0 +1,166 @@
+<style type="text/css">
+    .k-grid .k-grid-header .k-header .k-link {
+        height: auto;
+        width: auto;
+    }
+    
+    .k-grid .k-grid-header .k-header {
+        white-space: normal;
+    }
+    .rata-tengah {
+        padding-top:12px;
+        font-size: 14px;
+    }
+</style>
+<div>
+    <c-panel item="item" header="'Input Lembur Pegawai (SDM)'" disabled>
+        <div class="panel-body">
+            <div class="grid_12">
+                <div class="panel panel-white k-demo k-container">
+                    <div class="grid_4">
+                        <div class="panel-heading"><label class="title" item="item" c-label-text="" style="margin-left: -12px;">Data Pegawai</label></div>
+                        <div class="panel-body">
+                            <div class="grid_12">
+                                <div class="grid_2">
+                                    <label c-label item="item" c-label-text="periode" class="rata-tengah"></label>
+                                </div>
+                                <div class="grid_8">
+                                    <input kendo-date-picker k-ng-model="item.periode" k-max="now" k-options="yearSelected" k-format="'MMM-yyyy'" style="width: 100%" />
+                                </div>
+                            </div>
+                            <div class="grid_12">
+                                <div class="grid_2">
+                                    <label c-label item="item" c-label-text="namaPegawai"></label>
+                                </div>
+                                <div class="grid_8">
+                                    <input ng-disabled="isDisable" kendo-combo-box k-ng-model="item.pegawai" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" />
+                                </div>
+                                <div class="grid_1" style="margin-top:5px">
+                                    <em ng-click='cari()' id="iconButton" data-role="button" class="k-button k-button-icon k-button-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_1">&nbsp;</div>
+                    <div class="grid_7">
+                        <div class="panel-heading"><label class="title" item="item" c-label-text="" style="margin-left: -12px;">Data Lembur Pegawai</label></div>
+                        <div class="panel-body">
+                            <div class="grid_6">
+                                <div class="grid_6">
+                                    <label c-label item="item" c-label-text="jamYangHarusDipenuhi" class="rata-tengah"></label>
+                                </div>
+                                <div class="grid_4">
+                                    <input c-text-box type="input" kendo-numeric-text-box k-min="0" k-ng-model="item.jamYangHarusDipenuhi" k-options="formatInteger" ng-disabled="item.jamYangHarusDipenuhi"/>
+                                </div>
+                                <div class="grid_2">
+                                    <label c-label item="item">{{item.jumlahHariKerja}} Hari</label>
+                                </div>
+                            </div>
+                            <div class="grid_6">
+                                <div class="grid_6">
+                                    <label c-label item="item" c-label-text="jamEfektif" class="rata-tengah"></label>
+                                </div>
+                                <div class="grid_4">
+                                    <input c-text-box type="input" kendo-numeric-text-box k-min="0" k-ng-model="item.jumlahJamEfektifKerja" k-options="formatInteger" ng-disabled="item.jumlahJamEfektifKerja"/>
+                                </div>
+                            </div>
+                            <div class="grid_6">
+                                <div class="grid_6">
+                                    <label c-label item="item" class="rata-tengah">Jumlah Jam Lembur (menit)</label>
+                                </div>
+                                <div class="grid_4">
+                                    <input c-text-box type="input" kendo-numeric-text-box k-min="0" k-ng-model="item.jumlahJamLemburUnitKerja" k-options="formatInteger" ng-disabled="item.jumlahJamLemburUnitKerja"/>
+                                </div>
+                            </div>
+                            <div class="grid_6">
+                                <div class="grid_6">
+                                    <label c-label item="item" class="rata-tengah">Jumlah Jam Disetujui (menit)</label>
+                                </div>
+                                <div class="grid_4">
+                                    <input c-text-box type="input" kendo-numeric-text-box k-min="0" k-ng-model="item.jumlahJamDisetujui" k-options="formatInteger" ng-disabled="item.jumlahJamDisetujui"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </c-panel>
+    <div class="grid_12" style="margin-bottom:60px !important">
+        <div kendo-grid id="grid" k-data-source="sourceOrder" options="mainGridOption"></div>
+        <!--<div kendo-grid="grid" id="grid" k-data-source="sourceOrder" options="mainGridOption" k-selectable="'row'" style="font-size: small;" k-ng-model="current" ng-click="klik(current)"></div>-->
+    </div>
+    <!--<div class="grid_12">
+        <div class="loading" style="position: relative; margin:25px 0px 20px;" class="animated" ng-show="isLoadingData">
+            <img height="50" src="../app/stylesheets/Flat/loading-image.gif" />
+            <br/> <span>Harap tunggu, sedang memproses data</span>
+        </div>
+    </div>
+    <div class="grid_12" style="margin-top: 10px;">-->
+        <!--<div kendo-grid="grid" id="grid" k-data-source="sourceOrder" options="mainGridOption" k-selectable="'row'" style="font-size: small;" k-ng-model="current" ng-click="klik(current)">
+        </div>-->
+        <!-- Verifikasi data dari grid -->
+        <!--<div class="grid_12" id="dataVerifikasiLembur">
+            <div class="grid_10">
+                <div class="grid_3" style="margin: 15px 0 0 0;">
+                    <label><b>Jam Yang Harus dipenuhi</b></label>
+                </div>
+                <div class="grid_5">
+                    <input c-text-box type="input" filter="'varchar'" readonly="true" class="k-textbox" ng-model="item.jamYangHarusDipenuhi" />
+
+                </div>
+                <div class="grid_3" style="margin: 15px 0 0 0;">
+                    <label><b>{{item.jumlahHariKerja}} Hari</b></label>
+                </div>
+            </div>
+            <div class="grid_10">
+                <div class="grid_3" style="margin: 15px 0 0 0;">
+                    <label><b>Jam Efektif</b> </label>
+                </div>
+                <div class="grid_7">
+                    <input c-text-box type="input" filter="'varchar'" readonly="true" class="k-textbox" ng-model="item.jumlahJamEfektifKerja" />
+                </div>
+            </div>
+            <div class="grid_10">
+                <div class="grid_3" style="margin: 15px 0 0 0;">
+                    <label><b>Jumlah Jam Lembur</b>
+                                </label>
+                </div>
+                <div class="grid_7">
+                    <input c-text-box type="input" filter="'varchar'" readonly="true" class="k-textbox" ng-model="item.jumlahJamLemburUnitKerja" />
+                </div>
+            </div>
+            <div class="grid_10">
+                <div class="grid_3" style="margin: 15px 0 0 0;">
+                    <label><b>Jumlah Jam Disetujui</b> </label>
+                </div>
+                <div class="grid_7">
+                    <input c-text-box type="input" class="k-textbox" ng-model="item.jumlahJamDisetujui" />
+                </div>
+            </div>
+        </div>-->
+        <!-- End Verifikasi Lembur -->
+        <!--<div class="grid_12">
+            <div class="grid_8" style="float:left">
+                <div class="grid_2" style="margin-top: 25px">
+                    <button class="c-button" ng-show="!isLoading" item="item" is-validate click="Cancel">
+                        <span class="title">Batal</span>
+                    </button>
+                </div>
+                <div class="grid_2 " style="margin-top: 25px ">
+                    <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="cetak()">
+                        <span class="title">Cetak</span>
+                    </button>
+                </div>
+
+                <div class="grid_2" style="margin-top: 25px">
+                    <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="save()">
+                        <span class="title">Simpan</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+    <div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
+</div>

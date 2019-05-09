@@ -1,0 +1,128 @@
+<style type="text/css">
+    .style-center {
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .style-right {
+        display: inline-block;
+        text-align: right;
+        width: 100%;
+    }
+    
+    .style-left {
+        display: inline-block;
+        text-align: left;
+        width: 100%;
+    }
+</style>
+
+<div ng-show="dataVOloaded">
+     <div ng-include='"../app/module/pasien/RegistrasiPelayananNew/HeaderDataPasien"'></div>
+     <c-panel item="item" header="'Order Pelayanan'" disabled>
+    <div class="grid_12">
+
+    <div class="grid_4" >
+       
+        <div class="grid_12">
+           
+            <div class="grid_6">
+                <div class="grid_12">
+                    <label c-label item="item" >Dokter Order</label>
+                </div>
+                <div class="grid_12">
+                    <input kendo-combo-box k-ng-model="item.dokter" k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDokter" />
+                </div>
+            </div>
+            <div class="grid_6">
+                <div class="grid_12">
+                    <label c-label item="item" >Ruangan Penunjang</label>
+                </div>
+                <div class="grid_12">
+                    <input kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaruangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan"  k-on-change="getLayanan()"/>
+                </div>
+            </div>
+          
+           
+        </div>
+    </div>
+    <div class="grid_8" >
+       
+        <div class="grid_12">
+            <div class="grid_1">
+                <div class="grid_12">
+                    <label c-label item="item" >No</label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.no" disabled="" />
+                </div>
+            </div>
+            <div class="grid_6">
+                <div class="grid_12">
+                    <label c-label item="item" >Layanan</label>
+                </div>
+                <div class="grid_12">
+                    <input kendo-combo-box k-ng-model="item.layanan" k-data-text-field="'namaproduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listLayanan" />
+                </div>
+            </div>
+            <div class="grid_2">
+                <div class="grid_12">
+                    <label c-label item="item" >Qty</label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.qty" />
+                </div>
+            </div>
+            <div class="grid_1" style="margin-top: 22px">
+                <button class="c-button" ng-click="add()">Tambah</button>
+            </div>
+            <div class="grid_1" style="margin-top: 22px">
+                <button class="c-button" ng-click="hapus()">Hapus</button>
+            </div>
+            <div class="grid_1" style="margin-top: 22px">
+                <button class="c-button" ng-click="batal()">Batal</button>
+            </div>
+        </div>
+        <div class="grid_12">
+             <div class="grid_12 borderBox">
+                <div id="kGrid" 
+                kendo-grid k-data-source="dataGridOrder" 
+                k-selectable="'row'" 
+                k-columns="columnGridOrder" 
+                k-pageable="'true'" 
+                k-sortable="'true'" 
+                k-ng-model="dataSelectedOrder"
+                ng-click="klikGrid(dataSelectedOrder)">
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+        <div class="grid_12">
+            <div class="grid_9">
+            </div>
+        
+            <div class="grid_1" style="margin-top: 22px">
+                <button class="c-button" ng-click="Simpan()">Simpan</button>
+            </div>
+                <div class="grid_1" style="margin-top: 22px">
+                <button class="c-button" ng-click="BatalOrder()">Batal</button>
+            </div>
+            <div class="grid_1" style="margin-top: 22px">
+                <button class="error c-button" ng-click="kembali()">Kembali</button>
+            </div>
+
+        </div>
+
+
+</div>
+<!-- 
+</c-panel>
+</div> -->
+<!-- </div> -->
+
+<div class="grid_12" style="margin-top:60px">
+    <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+</div>

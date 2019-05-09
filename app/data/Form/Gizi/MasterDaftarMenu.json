@@ -1,0 +1,74 @@
+{
+	"model":{
+		"jenisDiet" : "",
+		"kodeMenuDiet":"",
+		"namaMenu":"",
+		"satuanPorsi": "",
+		"jmlPorsi":"",
+		"jumlahKh" :"",
+		"jumlahKalori" : "",
+	    "jumlahProtein" : "",
+	    "jumlahLemak" : "",
+	    "cariMenu" : ""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "jenisDiet",
+			"messagesRequired" : "",
+			"caption" : "Jenis Diet"
+		},{
+			"isNull" : "true",
+			"name" : "kodeMenuDiet",
+			"messagesRequired" : "",
+			"caption" : "Kode Menu Diet"
+		},{
+			"isNull" : "true",
+			"name" : "namaMenu",
+			"messagesRequired" : "",
+			"caption" : "Nama Menu"
+			},{
+			"isNull" : "true",
+			"name" : "satuanPorsi",
+			"messagesRequired" : "",
+			"caption" : "Satuan Porsi"
+		},{
+			"isNull" : "true",
+			"name" : "jmlPorsi",
+			"messagesRequired" : "",
+			"caption" : "Jml Porsi"
+		},{
+			"isNull" : "true",
+			"name" : "jumlahKh",
+			"messagesRequired" : "",
+			"caption" : "Jumlah KH"
+		},{
+			"isNull" : "false",
+			"name" : "jumlahKalori",
+			"messagesRequired" : "",
+			"caption" : "Jumlah Kalori"
+
+		},{
+			"isNull" : "true",
+			"name" : "jumlahProtein",
+			"messagesRequired" : "",
+			"caption" : "Jumlah Protein"
+
+		},{
+			"isNull" : "false",
+			"name" : "jumlahLemak",
+			"messagesRequired" : "",
+			"caption" : "Jumlah Lemak"
+
+		},{
+			"isNull" : "false",
+			"name" : "cariMenu",
+			"messagesRequired" : "",
+			"caption" : "Cari Menu"
+
+		}
+
+	]
+}

@@ -1,0 +1,112 @@
+<div ng-controller="GinekologikCtrl">
+    <c-panel item="item" header="'Laboratorium Patalogi Anatomik'">
+
+
+
+        <div class="clear"> </div>
+        <c-panel item="item" header="'Ginekologik'" disabled>
+
+            <div class="grid_6">
+                <div class="grid_12">
+                    <div class="grid_12" style="margin: 10px 5px 5px 10px;">
+                        <label c-label item="item" c-label-text="Paritas"></label>
+
+                    </div>
+                    <div class="grid_12" style="margin: 10px 5px 5px 10px;">
+                        <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.Paritas" />
+                    </div>
+                </div>
+
+                <div class="grid_12">
+                    <div class="grid_12" style="margin: 10px 5px 5px 10px;">
+                        <label c-label item="item" c-label-text="HaidTerakhir"></label>
+
+                    </div>
+
+                    <div class="grid_11" style="margin: 10px 5px 5px 10px;">
+                        <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.HaidTerakhir" />
+                    </div>
+
+                    <div class="1">
+                        <label>hari</label>
+
+                    </div>
+
+                    <div class="clear"></div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_12" style="margin: 10px 5px 5px 10px;">
+                        <label c-label item="item" c-label-text="TerapiHormon"></label>
+
+                    </div>
+                    <div class="grid_6" style="margin: 10px 5px 5px 10px;">
+                        <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.TerapiHormon" />
+                    </div>
+                    <div class="grid_2" style="margin: 10px 0 5px 0;">
+                        <label c-label item="item" c-label-text="Tanggal"></label>
+
+                    </div>
+                    <div class="grid_4" style="margin: 10px 0 5px 0;">
+                        <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.Tanggal" k-data-text-field="'tanggallahir'" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="grid_6">
+
+
+
+
+
+                <div class="grid_12">
+                    <div class="grid_12" style="margin: 10px 5px 5px 10px;">
+                        <label c-label item="item" c-label-text="Kontrasepsi"></label>
+
+                    </div>
+                    <div class="grid_12" style="margin: 10px 5px 5px 10px;">
+                        <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.Kontrasepsi" />
+                    </div>
+                </div>
+
+                <div class="grid_12">
+                    <div class="grid_12" style="margin: 10px 5px 5px 10px;">
+                        <label c-label item="item" c-label-text="Operasi"></label>
+
+                    </div>
+                    <div class="grid_12" style="margin: 10px 5px 5px 10px;">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.Operasi" />
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+            <div class="clear"> </div>
+            <div class="grid_12">
+                <div class="grid_12" style="margin: 10px 5px 5px 10px;">
+                    <label c-label item="item" c-label-text="StatusGinekologik"></label>
+
+                </div>
+
+                <div class="grid_12" style="margin: 10px 5px 5px 10px;">
+                    <div class="grid_3" ng-repeat="stat in listStatusGinekologik">
+                        <input type="checkbox" name="{{stat.name}}" id="{{stat.name}}" class="k-checkbox" value="{{stat.name}}">
+                        <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </c-panel>
+
+</div>
+
+<div class="grid_12">
+    <div class="grid_12">
+        <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+    </div>
+</div>

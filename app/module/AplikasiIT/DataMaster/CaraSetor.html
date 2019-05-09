@@ -1,0 +1,144 @@
+<!-- <div ng-controller="Cara"> -->
+	<div ng-show="dataVOloaded">
+		<!-- <c-panel item="item" header="'Produk'" disabled> -->
+			<div class="grid_12">
+
+				<div class="grid_12 headerBox">
+					<h1 style="color: white;">
+						<b>Daftar Cara Setor</b>
+					</h1>
+				</div>
+				
+				<div class="grid_12">
+					<div class="grid_1">
+						<div class="grid_12">
+							<label c-label item="item" c-label-text="ID"></label>
+						</div>
+
+
+						<div class="grid_12">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.idCaraSetor" />
+						</div>
+					</div>
+					<div class="grid_2">
+						<div class="grid_12">
+							<label c-label item="item" c-label-text="Kode Cara Setor"></label>
+						</div>
+
+
+						<div class="grid_12">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kdCaraSetor" />
+						</div>
+					</div>
+					<div class="grid_4">
+						<div class="grid_12">
+							<label c-label item="item" c-label-text="Cara Setor"></label>
+						</div>
+
+
+						<div class="grid_12">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.caraSetor" />
+						</div>
+					</div>
+					<div class="grid_3">
+					<!-- <div class="grid_12">
+						<label c-label item="item" c-label-text="Jenis Rekanan"></label>
+					</div>
+					<div class="grid_12">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisrekanan" k-data-text-field="'jenisrekanan'" k-data-value-field="'id'"
+						 k-filter="'contains'" k-auto-bind="false" k-data-source="listjenisrekanan" />
+						</div> -->
+					</div>
+					<div class="grid_1">
+						<button class="success c-button" style="margin-top: 22px" ng-click="cariFilter()">Cari</button>
+					</div>
+					<div class="grid_1">
+						<button class="cancel c-button" style="margin-top: 22px" ng-click="clearSearch()">Clear</button>
+					</div>
+
+					<div class="grid_12">
+
+						<div class="grid_12 borderBox">
+							<kendo-grid options="mainGridOptions"
+							 k-data-source="dataSource"
+							 k-columns="columnGrid" k-ng-model="dataSelected"
+						     k-selectable="'row'" 
+						     ng-click="klik(dataSelected)">
+						</kendo-grid>
+					</div>
+
+				</div>
+			</div>
+
+
+			<!-- </c-panel>
+			-->
+			<div class="grid_12">
+				<div class="grid_6"></div>
+					<div class="grid_2">
+					<button class="c-button" ng-click="hapus()">Hapus</button>
+				</div>
+
+				<div class="grid_2">
+					<button class="c-button" ng-click="edit()">Ubah</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="tambah()">Tambah</button>
+				</div>
+				<div class="grid_12" style="margin-top:60px">
+					<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+				</div>
+			</div>
+		</div>
+		<div kendo-window="popUpWin" k-title="'Cara Setor'" k-width="500" k-height="00" k-visible="false" k-on-open="win2visible = true" k-on-close="win2visible = false">
+			<div class="panel panel-default container_12"> 
+				<fieldset>
+					<legend>Tambah Data</legend>		
+					<div class="grid_12">
+						<div class="grid_4">
+							<div class="grid_12">
+								<label c-label item="item" >ID</label>
+							</div>
+							<div class="clear"></div>
+							<div class="grid_12">
+								<input c-text-box type="text" filter="" class="k-textbox" ng-model="item.inputID" disabled="" />
+							</div>
+						</div>
+						<div class="grid_8">
+							<div class="grid_12">
+								<label c-label item="item">Kd Cara Setor</label>
+							</div>
+							<div class="clear"></div>
+
+							<div class="grid_12">
+								<input c-text-box type="number" filter="" class="k-textbox" ng-model="item.inputKodeCaraSetor" />
+							</div>
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_12">
+							<div class="grid_12">
+								<label c-label item="item">Cara Setor</label>
+							</div>
+							<div class="clear"></div>
+
+							<div class="grid_12">
+								<input c-text-box type="text" filter="" class="k-textbox" ng-model="item.inputCaraSetor" />
+							</div>
+						
+					</div>
+
+
+					<div class="pull-right" style="margin-top:4%">		
+						<button class="k-button" ng-click="save()" >Simpan</button>
+						<!-- <button class="k-button" ng-click="hapus()" >Hapus</button> -->
+
+					</div>
+				</fieldset>
+
+
+
+			</div>
+		</div>
+
+	<!-- </div> -->

@@ -1,0 +1,2519 @@
+[{
+        "name": "Aplikasi IT",
+        "children": [{
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/RevPermintaanPerbaikandariRuanganITNew"
+            },
+            {
+                "name": "Monitoring Perbaikan IT",
+                "link": "#/RespondPerbaikanIT"
+            },
+            {
+                "name": "Daftar Jadwal Pemeliharaan",
+                "link": "#/DaftarJadwalPemeliharaan"
+            },
+            
+            {
+                "name": "Data Alat",
+                "link": "#/AlatSOP"
+            },
+            {
+                "name": "Monitoring Dan Evaluasi Hasil Pekerjaan",
+                "link": "#/MonitoringDanEvaluasiHasilPekerjaan"
+            },
+            {
+                "name": "Rekap Layanan IT Internal",
+                "link": "#/RekapLayananIT"
+            }
+        ]
+    },
+    {
+        "name": "Form Master",
+        "children": [
+            {
+                "name": "Master Pajak",
+                "children": [
+                    {
+                     "name": "Pangkat",
+                     "link": "#/PangkatBaru"
+                    },
+                    {
+                     "name": "Golongan Pegawai",
+                     "link": "#/PegawaiBaru"
+                    },
+                    {
+                     "name": "Jenis Pajak",
+                     "link": "#/JenisPajakBaru"
+                    },
+                    {
+                     "name": "Pajak",
+                     "link": "#/PajakBaru"
+                    },
+                    {
+                     "name": "Objek Pajak",
+                     "link": "#/ObjekPajakBaru"
+                    },
+                    {
+                     "name": "Surat Keputusan Rate Pajak",
+                     "link": "#/SKPajakRate"
+                    },
+                    {
+                     "name": "Pegawai SK Pajak",
+                     "link": "#/PegawaiSKPajak"
+                    },
+                    {
+                     "name": "Penghasilan Tidak Kena Pajak",
+                     "link": "#/PTKP"
+                    }
+                ]
+            },
+            {
+                "name": "Login User",
+                "children": [
+                    {
+                     "name": "Setting Login User",
+                     "link": "#/Aksespegawai"
+                    },
+                    {
+                        "name": "Modul Aplikasi",
+                        "children": [
+                            {
+                                "name": "Modul Aplikasi",
+                                "link": "#/ModulAplikasiRev"
+                            },
+                            {
+                                "name": "Objek Modul Aplikasi",
+                                "link": "#/ObjekModulAplikasiRev"
+                            },
+                            {
+                                "name": "Map Modul Aplikasi To Objek Modul Aplikasi",
+                                "link": "#/MapModulAplikasiToObjekModulAplikasi"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Map Sub Sistem",
+                        "link": "#/MapSubSistem"
+                    },
+                    {
+                        "name": "Daftar Logging User",
+                        "link": "#/DaftarLoggingUser"
+                    },
+                    {
+                        "name": "Daftar Aktivitas User",
+                        "link": "#/AktivitasUser"
+                    }
+
+                ]
+            },
+           
+            {
+                "name": "Activity Pegawai ",
+                "link": "#/ActivityPegawai"
+            },
+            {
+                "name": "Advokasi Hukum Medicolegal ",
+                "link": "#/AdvokasiHukumMedicolegalxx"
+            },
+            {
+                "name": "Agama",
+                "link": "#/Agama"
+            },
+            {
+                "name": "Akun",
+                "link": "#/Akun"
+            },
+            {
+                "name": "Alamat",
+                "link": "#/Alamat"
+            },
+            {
+                "name": "Alasan Pemindahan Pasien ",
+                "link": "#/AlasanPemindahanPasien"
+            },
+            {
+                "name": "Alat Cssd ",
+                "link": "#/AlatCssd"
+            },
+            {
+                "name": "Alat Kesehatan ",
+                "link": "#/AlatKesehatan"
+            },
+            {
+                "name": "Alat",
+                "link": "#/Alat"
+            },
+            {
+                "name": "Alergi",
+                "link": "#/Alergi"
+            },
+            {
+                "name": "Asal Anggaran ",
+                "link": "#/AsalAnggaran"
+            },
+            {
+                "name": "Asal Peserta ",
+                "link": "#/AsalPeserta"
+            },
+            {
+                "name": "Asal Produk ",
+                "link": "#/AsalProdukRev"
+            },
+            {
+                "name": "Asal Rujukan ",
+                "link": "#/AsalRujukan"
+            },
+            {
+                "name": "As Kep Intervensi ",
+                "link": "#/AsKepIntervensi"
+            },
+            {
+                "name": "As Kep Jenis Kajian ",
+                "link": "#/AsKepJenisKajian"
+            },
+            {
+                "name": "As Kep Kajian ",
+                "link": "#/AsKepKajian"
+            },
+            {
+                "name": "As Kep Kategory Kajian ",
+                "link": "#/AsKepKategoryKajian"
+            },
+            {
+                "name": "As Kep Rasional I",
+                "link": "#/AsKepRasionalI"
+            },
+            {
+                "name": "As Kep Tujuan ",
+                "link": "#/AsKepTujuan"
+            },
+            {
+                "name": "Asuransi Pasien Berlaku ",
+                "link": "#/AsuransiPasienBerlaku"
+            },
+            {
+                "name": "Asuransi Pasien ",
+                "link": "#/AsuransiPasien"
+            },
+            {
+                "name": "Audit Data ",
+                "link": "#/AuditData"
+            },
+            {
+                "name": "Bahan Produk",
+                "link": "#/BahanProduk"
+            },
+            {
+                "name": "Bahan Sample ",
+                "link": "#/BahanSample"
+            },
+            {
+                "name": "Baku Mutu ",
+                "link": "#/BakuMutu"
+            },
+            {
+                "name": "Base File Pemantauan Kinerja Pihak Ketiga ",
+                "link": "#/BaseFilePemantauanKinerjaPihakKetiga"
+            },
+            {
+                "name": "Bentuk Produk ",
+                "link": "#/BentukProduk"
+            },
+            {
+                "name": "Bobot Indikator ",
+                "link": "#/BobotIndikator"
+            },
+            {
+                "name": "Bundle Set Alat ",
+                "link": "#/BundleSetAlat"
+            },
+            {
+                "name": "Cairan Fiksasi ",
+                "link": "#/CairanFiksasi"
+            },
+            {
+                "name": "Cara Bayar ",
+                "link": "#/CaraBayar"
+            },
+            {
+                "name": "Cara Lahir Bayi ",
+                "link": "#/CaraLahirBayi"
+            },
+            {
+                "name": "Cara Masuk ",
+                "link": "#/CaraMasuk"
+            },
+            {
+                "name": "Cara Pemberian Obat ",
+                "link": "#/CaraPemberianObat"
+            },
+            {
+                "name": "Cara Pemberian Susu Bayi ",
+                "link": "#/CaraPemberianSusuBayi"
+            },
+            {
+                "name": "Cara Pemindahan Embrio ",
+                "link": "#/CaraPemindahanEmbrio"
+            },
+            {
+                "name": "Cara Pengambilan Ovum ",
+                "link": "#/CaraPengambilanOvum"
+            },
+            {
+                "name": "Cara Pengeluaran Sperma ",
+                "link": "#/CaraPengeluaranSperma"
+            },
+            {
+                "name": "Catatan",
+                "link": "#/Catatan"
+            },
+            {
+                "name": "Chart Of Account ",
+                "link": "#/ChartOfAccoun"
+            },
+            {
+                "name": "Checklist Sanitasi KLDetail ",
+                "link": "#/ChecklistSanitasiKLDetail"
+            },
+            {
+                "name": "Cssd Alat ",
+                "link": "#/CssdAlat"
+            },
+            {
+                "name": "Cssd Bmhp ",
+                "link": "#/CssdBmhp"
+            },
+            {
+                "name": "Cssd Kemasan Linen ",
+                "link": "#/CssdKemasanLinen"
+            },
+            {
+                "name": "Cssd Kemasan Pouches ",
+                "link": "#/CssdKemasanPouches"
+            },
+            {
+                "name": "Cssd Metode Sterilisasi ",
+                "link": "#/CssdMetodeSterilisasi"
+            },
+            {
+                "name": "Cssd Proses Sterilisasi ",
+                "link": "#/CssdProsesSterilisasi"
+            },
+            {
+                "name": "Cssd Set Alat ",
+                "link": "#/CssdSetAlat"
+            },
+            {
+                "name": "Cssd Status Proses Sterilisasi ",
+                "link": "#/CssdStatusProsesSterilisasi"
+            },
+            {
+                "name": "Cssd Uji Visual ",
+                "link": "#/CssdUjiVisual"
+            },
+            {
+                "name": "Dampak Resiko ",
+                "link": "#/DampakResiko"
+            },
+            {
+                "name": "Data Rujukan ",
+                "link": "#/DataRujukan"
+            },
+            {
+                "name": "Departemen",
+                "link": "#/Departemen"
+            },
+            {
+                "name": "DepartemenRev",
+                "link": "#/DepartemenRev"
+            },
+            {
+                "name": "Desa Kelurahan ",
+                "link": "#/DesaKelurahan"
+            },
+            {
+                "name": "Detail Asal Rujukan ",
+                "link": "#/DetailAsalRujukan"
+            },
+            {
+                "name": "Detail Draft Peraturan ",
+                "link": "#/DetailDraftPeraturan"
+            },
+            {
+                "name": "Detail Golongan Produk ",
+                "link": "#/DetailGolonganProduk"
+            },
+            {
+                "name": "Detail Jenis Produk ",
+                "link": "#/DetailJenisProduk2"
+            },
+            {
+                "name": "Detail Kajian Evaluasi ",
+                "link": "#/DetailKajianEvaluasi"
+            },
+            {
+                "name": "Detail Kamar ",
+                "link": "#/DetailKamar"
+            },
+            {
+                "name": "Detail Kategory Pegawai ",
+                "link": "#/DetailKategoryPegawai"
+            },
+            {
+                "name": "Detail Kelompok Pegawai ",
+                "link": "#/DetailKelompokPegawai"
+            },
+            {
+                "name": "Detail SWOT",
+                "link": "#/DetailSWOT"
+            },
+            {
+                "name": "Detail TOWS",
+                "link": "#/DetailTOWS"
+            },
+            {
+                "name": "Detail Triase ",
+                "link": "#/DetailTriase"
+            },
+            {
+                "name": "Diagnosa Keperawatan ",
+                "link": "#/DiagnosaKeperawatanRev"
+            },
+            {
+                "name": "Diagnosa",
+                "link": "#/DiagnosaRev"
+            },
+            {
+                "name": "Diagnosa Onkologi Morfologi ",
+                "link": "#/DiagnosaOnkologiMorfologi"
+            },
+            {
+                "name": "Diagnosa Onkologi Topologi ",
+                "link": "#/DiagnosaOnkologiTopologi"
+            },
+            {
+                "name": "Diagnosa Tindakan ",
+                "link": "#/DiagnosaTindakanRev"
+            },
+            {
+                "name": "Diputuskan",
+                "link": "#/Diputuskan"
+            },
+            {
+                "name": "Dokumen",
+                "link": "#/Dokumen"
+            },
+            {
+                "name": "Draft Peraturan ",
+                "link": "#/DraftPeraturan"
+            },
+            {
+                "name": "Ekstension No Telepon ",
+                "link": "#/EkstensionNoTelepon"
+            },
+            {
+                "name": "Embrio",
+                "link": "#/Embrio"
+            },
+            {
+                "name": "Eselon",
+                "link": "#/Eselon"
+            },
+            {
+                "name": "Event Bayi ",
+                "link": "#/EventBayi"
+            },
+            {
+                "name": "Fungsi Produk ",
+                "link": "#/FungsiProduk"
+            },
+            {
+                "name": "Gambar Muka Kepuasan ",
+                "link": "#/GambarMukaKepuasan"
+            },
+            {
+                "name": "General Detail Jenis Produk ",
+                "link": "#/GeneralDetailJenisProduk"
+            },
+            {
+                "name": "General Jenis Produk ",
+                "link": "#/GeneralJenisProduk"
+            },
+            {
+                "name": "General Kelompok Produk ",
+                "link": "#/GeneralKelompokProduk"
+            },
+            {
+                "name": "General Produk ",
+                "link": "#/GeneralProduk"
+            },
+            {
+                "name": "Generic View ",
+                "link": "#/GenericView"
+            },
+            {
+                "name": "Golongan Asuransi ",
+                "link": "#/GolonganAsuransi"
+            },
+            {
+                "name": "Golongan Darah ",
+                "link": "#/GolonganDarah"
+            },
+            {
+                "name": "Golongan Pegawai ",
+                "link": "#/PegawaiBaru"
+            },
+            {
+                "name": "Golongan Produk ",
+                "link": "#/GolonganProduk"
+            },
+            {
+                "name": "Group Pasien ",
+                "link": "#/GroupPasien"
+            },
+            {
+                "name": "Harga Netto Disc Pasien Pulang ",
+                "link": "#/HargaNettoDiscPasienPulang"
+            },
+            {
+                "name": "Harga Netto Produk By Kelas ",
+                "link": "#/HargaNettoProdukByKelasRev"
+            },
+            {
+                "name": "Harga Netto Produk Cito D",
+                "link": "#/HargaNettoProdukCitoD"
+            },
+            {
+                "name": "Harga Paket Penjamin Luar Paket ",
+                "link": "#/HargaPaketPenjaminLuarPaket"
+            },
+            {
+                "name": "Harga Paket Penjamin ",
+                "link": "#/HargaPaketPenjamin"
+            },
+            {
+                "name": "Hari Libur ",
+                "link": "#/HariLibur"
+            },
+            {
+                "name": "Hari",
+                "link": "#/Hari"
+            },
+            {
+                "name": "History Login Modul Aplikasi",
+                "link": "#/historyLoginModulAplikasi"
+            },
+            {
+                "name": "History Login User ",
+                "link": "#/HistoryLoginUser"
+            },
+            {
+                "name": "Hubungan Keluarga ",
+                "link": "#/HubunganKeluarga"
+            },
+            {
+                "name": "Hubungan Peserta Asuransi ",
+                "link": "#/HubunganPesertaAsuransi"
+            },
+            {
+                "name": "Imunisasi",
+                "link": "#/Imunisasi"
+            },
+            {
+                "name": "Indikator Account ",
+                "link": "#/IndikatorAccount"
+            },
+            {
+                "name": "Indikator Rensar ",
+                "link": "#/IndikatorRensar"
+            },
+            {
+                "name": "Infeksi Nosokomial ",
+                "link": "#/InfeksiNosokomial"
+            },
+            {
+                "name": "Informasi Medis ",
+                "link": "#/InformasiMedis"
+            },
+            {
+                "name": "Instansi Pelaksana ",
+                "link": "#/InstansiPelaksana"
+            },
+            {
+                "name": "Ipsrs Jenis Pemakaian ",
+                "link": "#/IpsrsJenisPemakaian"
+            },
+            {
+                "name": "Ipsrs Kapasitas Jenis Pemakaian ",
+                "link": "#/IpsrsKapasitasJenisPemakaian"
+            },
+            {
+                "name": "Ipsrs Pemeriksaan Alat ",
+                "link": "#/IpsrsPemeriksaanAlat"
+            },
+            {
+                "name": "Ipsrs Sertifikat Kalibrasi ",
+                "link": "#/IpsrsSertifikatKalibrasi"
+            },
+            {
+                "name": "Ipsrs Teknisi Kalibrasi ",
+                "link": "#/IpsrsTeknisiKalibrasi"
+            },
+            {
+                "name": "Ipsrs Teknisi Kontak Service ",
+                "link": "#/IpsrsTeknisiKontakService"
+            },
+            {
+                "name": "Ipsrs Teknisi Pemeliharaan ",
+                "link": "#/IpsrsTeknisiPemeliharaan"
+            },
+            {
+                "name": "Jabatan",
+                "link": "#/Jabatan"
+            },
+            {
+                "name": "Jadwal Dokter ",
+                "link": "#/JadwalDokter"
+            },
+            {
+                "name": "Jadwal Praktek ",
+                "link": "#/JadwalPraktek"
+            },
+            {
+                "name": "Jadwal Rencana Pemeriksaan ",
+                "link": "#/JadwalRencanaPemeriksaan"
+            },
+            {
+                "name": "Jaringan Tubuh ",
+                "link": "#/JaringanTubuh"
+            },
+            {
+                "name": "Jenis Account ",
+                "link": "#/JenisAccount"
+            },
+            {
+                "name": "Jenis Alamat ",
+                "link": "#/JenisAlamat"
+            },
+            {
+                "name": "Jenis Alat Kesehatan ",
+                "link": "#/JenisAlatKesehatan"
+            },
+            {
+                "name": "Jenis Anggaran ",
+                "link": "#/JenisAnggaran"
+            },
+            {
+                "name": "Jenis Arsip ",
+                "link": "#/JenisArsip"
+            },
+            {
+                "name": "Jenis Aset ",
+                "link": "#/JenisAset"
+            },
+            {
+                "name": "Jenis Baku Mutu ",
+                "link": "#/JenisBakuMutu"
+            },
+            {
+                "name": "Jenis Belanja ",
+                "link": "#/JenisBelanja"
+            },
+            {
+                "name": "Jenis Diagnosa ",
+                "link": "#/JenisDiagnosa"
+            },
+            {
+                "name": "Jenis Diet ",
+                "link": "#/JenisDiet"
+            },
+            {
+                "name": "Jenis Dokumen ",
+                "link": "#/JenisDokumen"
+            },
+            {
+                "name": "Jenis Hukuman ",
+                "link": "#/JenisHukuman"
+            },
+            {
+                "name": "Jenis HVA",
+                "link": "#/JenisHVA"
+            },
+            {
+                "name": "Jenis Indikator ",
+                "link": "#/JenisIndikator"
+            },
+            {
+                "name": "Jenis Infeksi Nosokomial ",
+                "link": "#/JenisInfeksiNosokomial"
+            },
+            {
+                "name": "Jenis Isapan Asi ",
+                "link": "#/JenisIsapanAsi"
+            },
+            {
+                "name": "Jenis Jabatan ",
+                "link": "#/JenisJabatan"
+            },
+            {
+                "name": "Jenis Jurnal ",
+                "link": "#/JenisJurnal"
+            },
+            {
+                "name": "Jenis Kartu Detail ",
+                "link": "#/JenisKartuDetail"
+            },
+            {
+                "name": "Jenis Kartu ",
+                "link": "#/JenisKartu"
+            },
+            {
+                "name": "Jenis Kasus Medicolegal ",
+                "link": "#/JenisKasusMedicolegal"
+            },
+            {
+                "name": "Jenis Kelamin ",
+                "link": "#/JenisKelamin"
+            },
+            {
+                "name": "Jenis Kemasan ",
+                "link": "#/JenisKemasan"
+            },
+            {
+                "name": "Jenis Keputusan ",
+                "link": "#/JenisKeputusan"
+            },
+            {
+                "name": "Jenis Kompetensi ",
+                "link": "#/JenisKompetensi"
+            },
+            {
+                "name": "Jenis Komponen Harga ",
+                "link": "#/JenisKomponenHarga"
+            },
+            {
+                "name": "Jenis Komponen Index ",
+                "link": "#/JenisKomponenIndex"
+            },
+            {
+                "name": "Jenis Kondisi Pasien ",
+                "link": "#/JenisKondisiPasien"
+            },
+            {
+                "name": "Jenis Konsumsi ",
+                "link": "#/JenisKonsumsi"
+            },
+            {
+                "name": "Jenis Kontrasepsi ",
+                "link": "#/JenisKontrasepsi"
+            },
+            {
+                "name": "Jenis Kontruksi ",
+                "link": "#/JenisKontruksi"
+            },
+            {
+                "name": "Jenis Limbah B3Masuk ",
+                "link": "#/JenisLimbahB3Masuk"
+            },
+            {
+                "name": "Jenis Linen ",
+                "link": "#/JenisLinen"
+            },
+            {
+                "name": "Jenis Media ",
+                "link": "#/JenisMedia"
+            },
+            {
+                "name": "Jenis Objek Modul Aplikasi ",
+                "link": "#/JenisObjekModulAplikasi"
+            },
+            {
+                "name": "Jenis Operasi ",
+                "link": "#/JenisOperasi"
+            },
+            {
+                "name": "Jenis Order ",
+                "link": "#/JenisOrder"
+            },
+            {
+                "name": "Jenis Organisasi ",
+                "link": "#/JenisOrganisasi"
+            },
+            {
+                "name": "Jenis Pajak ",
+                "link": "#/JenisPajakBaru"
+            },
+            {
+                "name": "Jenis Paket ",
+                "link": "#/JenisPaket"
+            },
+            {
+                "name": "Jenis Pegawai ",
+                "link": "#/JenisPegawai"
+            },
+            {
+                "name": "Jenis Pelayanan Profile ",
+                "link": "#/JenisPelayananProfile"
+            },
+            {
+                "name": "Jenis Pemeriksaan ",
+                "link": "#/JenisPemeriksaan"
+            },
+            {
+                "name": "Jenis Pendidikan ",
+                "link": "#/JenisPendidikan"
+            },
+            {
+                "name": "Jenis Pengadaan ",
+                "link": "#/JenisPengadaan"
+            },
+            {
+                "name": "Jenis Pengantar Pasien ",
+                "link": "#/JenisPengantarPasien"
+            },
+            {
+                "name": "Jenis Penghargaan ",
+                "link": "#/JenisPenghargaan"
+            },
+            {
+                "name": "Jenis Perawatan ",
+                "link": "#/JenisPerawatan"
+            },
+            {
+                "name": "Jenis Periksa Penunjang ",
+                "link": "#/JenisPeriksaPenunjang"
+            },
+            {
+                "name": "Jenis Permintaan ",
+                "link": "#/JenisPermintaan"
+            },
+            {
+                "name": "Jenis Petugas Pelaksana ",
+                "link": "#/JenisPetugasPelaksana"
+            },
+            {
+                "name": "Jenis Produk ",
+                "link": "#/JenisProduk"
+            },
+            {
+                "name": "Jenis Profile ",
+                "link": "#/JenisProfile"
+            },
+            {
+                "name": "Jenis Range ",
+                "link": "#/JenisRange"
+            },
+            {
+                "name": "Jenis Rekanan ",
+                "link": "#/JenisRekanan"
+            },
+            {
+                "name": "Jenis Resep ",
+                "link": "#/JenisResep"
+            },
+            {
+                "name": "Jenis Satuan Kerja ",
+                "link": "#/JenisSatuanKerja"
+            },
+            {
+                "name": "Jenis Sertifikat ",
+                "link": "#/JenisSertifikat"
+            },
+            {
+                "name": "Jenis Surat ",
+                "link": "#/JenisSurat"
+            },
+            {
+                "name": "Jenis Tarif ",
+                "link": "#/JenisTarif"
+            },
+            {
+                "name": "Jenis Tempat ",
+                "link": "#/JenisTempat"
+            },
+            {
+                "name": "Jenis Tindakan Medis ",
+                "link": "#/JenisTindakanMedis"
+            },
+            {
+                "name": "Jenis Transaksi ",
+                "link": "#/JenisTransaksi"
+            },
+            {
+                "name": "Jenis Waktu ",
+                "link": "#/JenisWaktu"
+            },
+            {
+                "name": "K3Facillity Check ",
+                "link": "#/K3FacillityCheck"
+            },
+            {
+                "name": "K3Item Periksa Gedung ",
+                "link": "#/K3ItemPeriksaGedung"
+            },
+            {
+                "name": "K3Kelompok Lpj Gedung ",
+                "link": "#/K3KelompokLpjGedung"
+            },
+            {
+                "name": "Kajian Evaluasi ",
+                "link": "#/KajianEvaluasi"
+            },
+            {
+                "name": "Kalender",
+                "link": "#/Kalender"
+            },
+            {
+                "name": "Kamar",
+                "link": "#/Kamar"
+            },
+            {
+                "name": "View Bed",
+                "link": "#/ViewBed"
+            },
+            {
+                "name": "Kamus Indikator ",
+                "link": "#/KamusIndikator"
+            },
+            {
+                "name": "Kasus Penyakit ",
+                "link": "#/KasusPenyakit"
+            },
+            {
+                "name": "Kategori Skoring ",
+                "link": "#/KategoriSkoring"
+            },
+            {
+                "name": "Kategory Account ",
+                "link": "#/KategoryAccount"
+            },
+            {
+                "name": "Kategory Diagnosa ",
+                "link": "#/KategoryDiagnosa"
+            },
+            {
+                "name": "Kategory Diet ",
+                "link": "#/KategoryDiet"
+            },
+            {
+                "name": "Kategory Dokumen ",
+                "link": "#/KategoryDokumen"
+            },
+            {
+                "name": "Kategory Pegawai ",
+                "link": "#/KategoryPegawai"
+            },
+            {
+                "name": "Kategory Produk ",
+                "link": "#/KategoryProduk"
+            },
+            {
+                "name": "Kb Sebelum Hamil ",
+                "link": "#/KbSebelumHamil"
+            },
+            {
+                "name": "Keadaan Lahir Bayi ",
+                "link": "#/KeadaanLahirBayi"
+            },
+            {
+                "name": "Keadaan Tali Pusat ",
+                "link": "#/KeadaanTaliPusat"
+            },
+            {
+                "name": "Keadaan Umum ",
+                "link": "#/KeadaanUmum"
+            },
+            {
+                "name": "Keaktifan",
+                "link": "#/Keaktifan"
+            },
+            {
+                "name": "Kebangsaan",
+                "link": "#/Kebangsaan"
+            },
+            {
+                "name": "Kecamatan",
+                "link": "#/Kecamatan"
+            },
+            {
+                "name": "Kegiatan Detail ",
+                "link": "#/KegiatanDetail"
+            },
+            {
+                "name": "Kegiatan",
+                "link": "#/Kegiatan"
+            },
+            {
+                "name": "Kelainan Pasien Pasca ",
+                "link": "#/KelainanPasienPasca"
+            },
+            {
+                "name": "KelasRev2",
+                "link": "#/KelasRev2"
+            },
+            {
+                "name": "Kelompok Aset ",
+                "link": "#/KelompokAset"
+            },
+            {
+                "name": "Kelompok Kompetensi ",
+                "link": "#/KelompokKompetensi"
+            },
+            {
+                "name": "Kelompok Pasien ",
+                "link": "#/KelompokPasien"
+            },
+            {
+                "name": "Kelompok Pegawai ",
+                "link": "#/KelompokPegawai"
+            },
+            {
+                "name": "Kelompok Pelayanan ",
+                "link": "#/KelompokPelayanan"
+            },
+            {
+                "name": "Kelompok Pemilik Profile ",
+                "link": "#/KelompokPemilikProfile"
+            },
+            {
+                "name": "Kelompok Penyebab Diagnosa ",
+                "link": "#/KelompokPenyebabDiagnosa"
+            },
+            {
+                "name": "Kelompok Produk ",
+                "link": "#/KelompokProduk"
+            },
+            {
+                "name": "Kelompok Tindakan Medis ",
+                "link": "#/KelompokTindakanMedis"
+            },
+            {
+                "name": "Kelompok Transaksi ",
+                "link": "#/KelompokTransaksi"
+            },
+            {
+                "name": "Kelompok Umur ",
+                "link": "#/KelompokUmur"
+            },
+            {
+                "name": "Kelompok User ",
+                "link": "#/KelompokUser"
+            },
+            {
+                "name": "Keluhan Pelanggan ",
+                "link": "#/KeluhanPelanggan"
+            },
+            {
+                "name": "Kemen Lemb ",
+                "link": "#/KemenLemb"
+            },
+            {
+                "name": "Kemungkinan Resiko Terjadi ",
+                "link": "#/KemungkinanResikoTerjadi"
+            },
+            {
+                "name": "Kepala Ubun Ubun Besar ",
+                "link": "#/KepalaUbunUbunBesar"
+            },
+            {
+                "name": "Keterangan Diet ",
+                "link": "#/KeteranganDiet"
+            },
+            {
+                "name": "Keterangan Lain Lain ",
+                "link": "#/KeteranganLainLain"
+            },
+            {
+                "name": "Keterangan Survey ",
+                "link": "#/KeteranganSurvey"
+            },
+            {
+                "name": "Ketunaan Kelainan ",
+                "link": "#/KetunaanKelainan"
+            },
+            {
+                "name": "Klasifikasi Arsip ",
+                "link": "#/KlasifikasiArsip"
+            },
+            {
+                "name": "Klasifikasi Teknologi ",
+                "link": "#/KlasifikasiTeknologi"
+            },
+            {
+                "name": "Komponen Evaluasi ",
+                "link": "#/KomponenEvaluasi"
+            },
+            {
+                "name": "Komponen Harga Detail R",
+                "link": "#/KomponenHargaDetailR"
+            },
+            {
+                "name": "Komponen Harga ",
+                "link": "#/KomponenHarga"
+            },
+            {
+                "name": "Komponen Harga R",
+                "link": "#/KomponenHargaR"
+            },
+            {
+                "name": "Komponen Index Detail ",
+                "link": "#/KomponenIndexDetail"
+            },
+            {
+                "name": "Komponen Index Detail Range ",
+                "link": "#/KomponenIndexDetailRange"
+            },
+            {
+                "name": "Komponen Index ",
+                "link": "#/KomponenIndex"
+            },
+            {
+                "name": "Komponen Klinis Hasil ",
+                "link": "#/KomponenKlinisHasil"
+            },
+            {
+                "name": "Komponen Klinis ",
+                "link": "#/KomponenKlinis"
+            },
+            {
+                "name": "Komponen",
+                "link": "#/Komponen"
+            },
+            {
+                "name": "Komponen Pemeriksaan Alkes ",
+                "link": "#/KomponenPemeriksaanAlkes"
+            },
+            {
+                "name": "Komponen Pemeriksaan ",
+                "link": "#/KomponenPemeriksaan"
+            },
+            {
+                "name": "Komponen Pemeriksaan Range Nilai K",
+                "link": "#/KomponenPemeriksaanRangeNilaiK"
+            },
+            {
+                "name": "Komponen Pemeriksaan Range Nilai ",
+                "link": "#/KomponenPemeriksaanRangeNilai"
+            },
+            {
+                "name": "Komponen Score ",
+                "link": "#/KomponenScore"
+            },
+            {
+                "name": "Komponen Score Nilai Normal ",
+                "link": "#/KomponenScoreNilaiNormal"
+            },
+            {
+                "name": "Kondisi Aset ",
+                "link": "#/KondisiAset"
+            },
+            {
+                "name": "Kondisi Barang ",
+                "link": "#/KondisiBarang"
+            },
+            {
+                "name": "Kondisi Kendaraan ",
+                "link": "#/KondisiKendaraan"
+            },
+            {
+                "name": "Kondisi Pasien ",
+                "link": "#/KondisiPasien"
+            },
+            {
+                "name": "Kondisi Produk Awal ",
+                "link": "#/KondisiProdukAwal"
+            },
+            {
+                "name": "Kondisi Produk Current ",
+                "link": "#/KondisiProdukCurrent"
+            },
+            {
+                "name": "Kondisi Produk ",
+                "link": "#/KondisiProduk"
+            },
+            {
+                "name": "Kondisi Umum ",
+                "link": "#/KondisiUmum"
+            },
+            {
+                "name": "Kontak Interpersonal ",
+                "link": "#/KontakInterpersonal"
+            },
+            {
+                "name": "Kontrak Kinerja ",
+                "link": "#/KontrakKinerja"
+            },
+            {
+                "name": "Kota Kabupaten ",
+                "link": "#/KotaKabupaten"
+            },
+            {
+                "name": "Kualifikasi Jurusan ",
+                "link": "#/KualifikasiJurusan"
+            },
+            {
+                "name": "Kualitas Hasil ",
+                "link": "#/KualitasHasil"
+            },
+            {
+                "name": "Kuantitas Lahir Bayi ",
+                "link": "#/KuantitasLahirBayi"
+            },
+            {
+                "name": "Letak Janin Bayi ",
+                "link": "#/LetakJaninBayi"
+            },
+            {
+                "name": "Level Produk ",
+                "link": "#/LevelProduk"
+            },
+            {
+                "name": "Limbah B3Masuk ",
+                "link": "#/LimbahB3Masuk"
+            },
+            {
+                "name": "Login User ",
+                "link": "#/LoginUser"
+            },
+            {
+                "name": "Lokasi",
+                "link": "#/Lokasi"
+            },
+            {
+                "name": "Makanan Bayi ",
+                "link": "#/MakananBayi"
+            },
+            {
+                "name": "Map Account To Produk Pelayanan ",
+                "link": "#/MapAccountToProdukPelayanan"
+            },
+            {
+                "name": "Map Angka To Bulan ",
+                "link": "#/MapAngkaToBulan"
+            },
+            {
+                "name": "Map Angka To Hari ",
+                "link": "#/MapAngkaToHari"
+            },
+            {
+                "name": "Map Angka To Romawi ",
+                "link": "#/MapAngkaToRomawi"
+            },
+            {
+                "name": "Map As Kep Intervensi To Produk ",
+                "link": "#/MapAsKepIntervensiToProduk"
+            },
+            {
+                "name": "Map As Kep Intervensi To Rasional ",
+                "link": "#/MapAsKepIntervensiToRasional"
+            },
+            {
+                "name": "Map Diagnosa Kep To As Kep Intervensi ",
+                "link": "#/MapDiagnosaKepToAsKepIntervensi"
+            },
+            {
+                "name": "Map Diagnosa Kep To As Kep Kajian ",
+                "link": "#/MapDiagnosaKepToAsKepKajian"
+            },
+            {
+                "name": "Map Diagnosa Kep To As Kep Tujuan ",
+                "link": "#/MapDiagnosaKepToAsKepTujuan"
+            },
+            {
+                "name": "Map Diagnosa To Produk ",
+                "link": "#/MapDiagnosaToProduk"
+            },
+            {
+                "name": "Map Generik To Produk ",
+                "link": "#/MapGenerikToProduk"
+            },
+            {
+                "name": "Map Golongan Asuransi To Kelas ",
+                "link": "#/MapGolonganAsuransiToKelas"
+            },
+            {
+                "name": "Map Jabatan To Uraian Tugas ",
+                "link": "#/MapJabatanToUraianTugas"
+            },
+            {
+                "name": "Map Jenis Diet To Produk ",
+                "link": "#/MapJenisDietToProduk"
+            },
+            {
+                "name": "Map Jenis Petugas PTo Jenis Pegawai ",
+                "link": "#/MapJenisPetugasPToJenisPegawai"
+            },
+            {
+                "name": "Map Jenis Petugas PTo Produk ",
+                "link": "#/MapJenisPetugasPToProduk"
+            },
+            {
+                "name": "Map Kalender To Hari Libur ",
+                "link": "#/MapKalenderToHariLibur"
+            },
+            {
+                "name": "Map Kasus Penyakit To Diagnosa ",
+                "link": "#/MapKasusPenyakitToDiagnosa"
+            },
+            {
+                "name": "Map Kasus Penyakit To Pegawai ",
+                "link": "#/MapKasusPenyakitToPegawai"
+            },
+            {
+                "name": "Map Kelompok Pasien To Penjamin ",
+                "link": "#/MapKelompokPasienToPenjamin"
+            },
+            {
+                "name": "Map Komponen Klinis To Hasil ",
+                "link": "#/MapKomponenKlinisToHasil"
+            },
+            {
+                "name": "Map Login User To Pengadaan ",
+                "link": "#/MapLoginUserToPengadaan"
+            },
+            {
+                "name": "Map Login User To Pengendali ",
+                "link": "#/MapLoginUserToPengendali"
+            },
+            {
+                "name": "Map Login User To Ruangan ",
+                "link": "#/MapLoginUserToRuangan"
+            },
+            {
+                "name": "Map Objek Modul To Departemen ",
+                "link": "#/MapObjekModulToDepartemen"
+            },
+            {
+                "name": "Map Objek Modul To Kelompok User ",
+                "link": "#/MapObjekModulToKelompokUser"
+            },
+            {
+                "name": "Map Paket Penjamin To Produk ",
+                "link": "#/MapPaketPenjaminToProduk"
+            },
+            {
+                "name": "Map Paket To Produk ",
+                "link": "#/MapPaketToProduk"
+            },
+            {
+                "name": "Map Pegawai To Modul Aplikasi ",
+                "link": "#/MapPegawaiToModulAplikasi"
+            },
+            {
+                "name": "Map Pegawai To Objek Pajak ",
+                "link": "#/MapPegawaiToObjekPajak"
+            },
+            {
+                "name": "Map Pengendali To Jabatan ",
+                "link": "#/MapPengendaliToJabatan"
+            },
+            {
+                "name": "Map Penjamin To Dokumen Registrasi ",
+                "link": "#/MapPenjaminToDokumenRegistrasi"
+            },
+            {
+                "name": "Mapping Alat To Bundle ",
+                "link": "#/MappingAlatToBundle"
+            },
+            {
+                "name": "Mapping Bmhp To Set Alat ",
+                "link": "#/MappingBmhpToSetAlat"
+            },
+            {
+                "name": "Mapping Jenis Risiko Sasaran Strategis ",
+                "link": "#/MappingJenisRisikoSasaranStrategis"
+            },
+            {
+                "name": "Mapping Pasien Pacs ",
+                "link": "#/MappingPasienPacs"
+            },
+            {
+                "name": "Map Produk Menu To Bahan ",
+                "link": "#/MapProdukMenuToBahan"
+            },
+            {
+                "name": "Map Ruangan To Detail Jenis Produk ",
+                "link": "#/MapRuanganToDetailJenisProduk"
+            },
+            {
+                "name": "Map Ruangan To Kasus Penyakit ",
+                "link": "#/MapRuanganToKasusPenyakit"
+            },
+            {
+                "name": "Map Ruangan To Kelas ",
+                "link": "#/MapRuanganToKelas"
+            },
+            {
+                "name": "Map Ruangan To Produk ",
+                "link": "#/DaftarMapRuanganToProduk"
+            },
+            {
+                "name": "Map Tindakan Medis To Kualitas Hasil ",
+                "link": "#/MapTindakanMedisToKualitasHasil"
+            },
+            {
+                "name": "Map Uraian To Jabatan ",
+                "link": "#/MapUraianToJabatan"
+            },
+            {
+                "name": "Map Uraian Tugas To Rincian Kegiatan ",
+                "link": "#/MapUraianTugasToRincianKegiatan"
+            },
+            {
+                "name": "Mata Anggaran ",
+                "link": "#/MataAnggaran"
+            },
+            {
+                "name": "Mata Uang ",
+                "link": "#/MataUang"
+            },
+            {
+                "name": "Menu Diet Bahan ",
+                "link": "#/MenuDietBahan"
+            },
+            {
+                "name": "Menu Diet Cara Masak ",
+                "link": "#/MenuDietCaraMasak"
+            },
+            {
+                "name": "Merk Produk",
+                "link": "#/MerkProduk"
+            },
+            {
+                "name": "Mesin",
+                "link": "#/Mesin"
+            },
+            {
+                "name": "Metode Delivery ",
+                "link": "#/MetodeDelivery"
+            },
+            {
+                "name": "Metode Kirim ",
+                "link": "#/MetodeKirim"
+            },
+            {
+                "name": "Metode Pemeriksaan Penunjang ",
+                "link": "#/MetodePemeriksaanPenunjang"
+            },
+            {
+                "name": "Metode Pengadaan Detail ",
+                "link": "#/MetodePengadaanDetail"
+            },
+            {
+                "name": "Metode Pengadaan Header ",
+                "link": "#/MetodePengadaanHeader"
+            },
+            {
+                "name": "Metode Pengadaan Sub Detail ",
+                "link": "#/MetodePengadaanSubDetail"
+            },
+            {
+                "name": "Metode Penyusutan ",
+                "link": "#/MetodePenyusutan"
+            },
+            {
+                "name": "Metode Sterilisasi ",
+                "link": "#/MetodeSterilisasi"
+            },
+            {
+                "name": "Metodologi Bayi Tabung ",
+                "link": "#/MetodologiBayiTabung"
+            },
+            {
+                "name": "Model Pelayanan ",
+                "link": "#/ModelPelayanan"
+            },
+            {
+                "name": "Modul Aplikasi ",
+                "link": "#/ModulAplikasi"
+            },
+            {
+                "name": "Morfologi Neoplasma ",
+                "link": "#/MorfologiNeoplasma"
+            },
+            {
+                "name": "Negara",
+                "link": "#/Negara"
+            },
+            {
+                "name": "Obat",
+                "link": "#/Obat"
+            },
+            {
+                "name": "Objek Modul Aplikasi ",
+                "link": "#/ObjekModulAplikasi"
+            },
+            {
+                "name": "Objek Pajak ",
+                "link": "#/ObjekPajakBaru"
+            },
+            {
+                "name": "Output",
+                "link": "#/Output"
+            },
+            {
+                "name": "Pajak",
+                "link": "#/PajakBaru"
+            },
+            {
+                "name": "Paket",
+                "link": "#/Paket"
+            },
+            {
+                "name": "Pangkat",
+                "link": "#/Pangkat"
+            },
+            {
+                "name": "Pap Bahan Restorasi ",
+                "link": "#/PapBahanRestorasi"
+            },
+            {
+                "name": "Pap Edukasi ",
+                "link": "#/PapEdukasi"
+            },
+            {
+                "name": "Pap Hambatan Pembelajaran ",
+                "link": "#/PapHambatanPembelajaran"
+            },
+            {
+                "name": "Pap Jenis Obat ",
+                "link": "#/PapJenisObat"
+            },
+            {
+                "name": "Pap Keadaan Gigi ",
+                "link": "#/PapKeadaanGigi"
+            },
+            {
+                "name": "Pap Nama Barang ",
+                "link": "#/PapNamaBarang"
+            },
+            {
+                "name": "Pap Penanggung Jawab ",
+                "link": "#/PapPenanggungJawab"
+            },
+            {
+                "name": "Pap Prosedure ",
+                "link": "#/PapProsedure"
+            },
+            {
+                "name": "Pap Protesa ",
+                "link": "#/PapProtesa"
+            },
+            {
+                "name": "Pap Restorasi ",
+                "link": "#/PapRestorasi"
+            },
+            {
+                "name": "Pap Spesialis ",
+                "link": "#/PapSpesialis"
+            },
+            {
+                "name": "Parameter Check Sanitasi Detail ",
+                "link": "#/ParameterCheckSanitasiDetail"
+            },
+            {
+                "name": "Parameter Check Sanitasi ",
+                "link": "#/ParameterCheckSanitasi"
+            },
+            {
+                "name": "Parameter Kepuasan ",
+                "link": "#/ParameterKepuasan"
+            },
+            {
+                "name": "Parameter",
+                "link": "#/Parameter"
+            },
+            {
+                "name": "Pasien",
+                "link": "#/Pasien"
+            },
+            {
+                "name": "Pegawai Jadwal Kerja Dokter D",
+                "link": "#/PegawaiJadwalKerjaDokterD"
+            },
+            {
+                "name": "Pegawai Jadwal Kerja Dokter ",
+                "link": "#/PegawaiJadwalKerjaDokter"
+            },
+            {
+                "name": "Pegawai Jadwal Kerja ",
+                "link": "#/PegawaiJadwalKerja"
+            },
+            {
+                "name": "Pegawai",
+                "link": "#/Pegawai"
+            },
+            {
+                "name": "Pegawai Pengguna ",
+                "link": "#/PegawaiPengguna"
+            },
+            {
+                "name": "Pegawai SKGaji ",
+                "link": "#/PegawaiSKGaji"
+            },
+            {
+                 "name": "Pegawai SK Pajak",
+                 "link": "#/PegawaiSKPajak"
+            },
+            {
+                "name": "Pekerjaan",
+                "link": "#/Pekerjaan"
+            },
+            {
+                "name": "Pelaksanaan Tugas ",
+                "link": "#/PelaksanaanTugas"
+            },
+            {
+                "name": "Pelayanan Profile ",
+                "link": "#/PelayananProfile"
+            },
+            {
+                "name": "Pemantauan Kinerja Pihak Ketiga ",
+                "link": "#/PemantauanKinerjaPihakKetiga"
+            },
+            {
+                "name": "Pembiusan",
+                "link": "#/Pembiusan"
+            },
+            {
+                "name": "Pemeriksaan Angka Kuman Udara ",
+                "link": "#/PemeriksaanAngkaKumanUdara"
+            },
+            {
+                "name": "Pemeriksaan Tumbuh Kembang ",
+                "link": "#/PemeriksaanTumbuhKembang"
+            },
+            {
+                "name": "Pemeriksa Pasien ",
+                "link": "#/PemeriksaPasien"
+            },
+            {
+                "name": "Pemilik Profile ",
+                "link": "#/PemilikProfile"
+            },
+            {
+                "name": "Pemindahan Embrio Dari Simpan Beku ",
+                "link": "#/PemindahanEmbrioDariSimpanBeku"
+            },
+            {
+                "name": "Pendidikan",
+                "link": "#/Pendidikan"
+            },
+            {
+                "name": "Pengadaan",
+                "link": "#/Pengadaan"
+            },
+            {
+                "name": "Pengecekan Peralatan ",
+                "link": "#/PengecekanPeralatan"
+            },
+            {
+                "name": "Pengecekan Peralatan Mapping ",
+                "link": "#/PengecekanPeralatanMapping"
+            },
+            {
+                "name": "Pengendali",
+                "link": "#/Pengendali"
+            },
+            {
+                 "name": "Penghasilan Tidak Kena Pajak",
+                 "link": "#/PTKP"
+            },
+            {
+                "name": "Pengukuran Kebisingan ",
+                "link": "#/PengukuranKebisingan"
+            },
+            {
+                "name": "Pengukuran Sanitasi KLDetail ",
+                "link": "#/PengukuranSanitasiKLDetail"
+            },
+            {
+                "name": "Penyakit Ibu Hamil ",
+                "link": "#/PenyakitIbuHamil"
+            },
+            {
+                "name": "Penyebab Diagnosa ",
+                "link": "#/PenyebabDiagnosa"
+            },
+            {
+                "name": "Penyebab Infeksi Nosokomial ",
+                "link": "#/PenyebabInfeksiNosokomial"
+            },
+            {
+                "name": "Penyebab Kematian ",
+                "link": "#/PenyebabKematian"
+            },
+            {
+                "name": "Peran",
+                "link": "#/Peran"
+            },
+            {
+                "name": "Periode Pelaporan ",
+                "link": "#/PeriodePelaporan"
+            },
+            {
+                "name": "Perizinan Limbah ",
+                "link": "#/PerizinanLimbah"
+            },
+            {
+                "name": "Perlakuan",
+                "link": "#/Perlakuan"
+            },
+            {
+                "name": "Persen Harga Jual Produk D",
+                "link": "#/PersenHargaJualProdukD"
+            },
+            {
+                "name": "Persen Harga Jual Produk ",
+                "link": "#/PersenHargaJualProduk"
+            },
+            {
+                "name": "Persen Tanggungan Penjamin D",
+                "link": "#/PersenTanggunganPenjaminD"
+            },
+            {
+                "name": "Persen Tanggungan Penjamin ",
+                "link": "#/PersenTanggunganPenjamin"
+            },
+            {
+                "name": "Perspektif",
+                "link": "#/Perspektif"
+            },
+            {
+                "name": "Pertanyaan Survey ",
+                "link": "#/PertanyaanSurvey"
+            },
+            {
+                "name": "Posisi Rahim ",
+                "link": "#/PosisiRahim"
+            },
+            {
+                "name": "Printer",
+                "link": "#/Printer"
+            },
+            {
+                "name": "Produk Detail Laboratorium Hasil ",
+                "link": "#/ProdukDetailLaboratoriumHasil"
+            },
+            {
+                "name": "Produk Detail Laboratorium ",
+                "link": "#/ProdukDetailLaboratorium"
+            },
+            {
+                "name": "Produk Detail Laboratorium Nilai Normal ",
+                "link": "#/ProdukDetailLaboratoriumNilaiNormal"
+            },
+            {
+                "name": "Rm Data Jenis Obat ",
+                "link": "#/RmDataJenisObat"
+            },
+            {
+                "name": "Produk Formula Produksi ",
+                "link": "#/ProdukFormulaProduksi"
+            },
+            {
+                "name": "Produk Kesling Nilai Normal ",
+                "link": "#/ProdukKeslingNilaiNormal"
+            },
+            {
+                "name": "Produk",
+                "link": "#/Produk2"
+            },
+            {
+                "name": "Produk Tidak Di Tanggung ",
+                "link": "#/ProdukTidakDiTanggung"
+            },
+            {
+                "name": "Produsen Produk ",
+                "link": "#/ProdusenProduk"
+            },
+            {
+                "name": "Profile",
+                "link": "#/Profile"
+            },
+            {
+                "name": "Program Kerja Strategis ",
+                "link": "#/ProgramKerjaStrategis"
+            },
+            {
+                "name": "Program",
+                "link": "#/Program"
+            },
+            {
+                "name": "Propinsi",
+                "link": "#/Propinsi"
+            },
+            {
+                "name": "Prosedur Pemindahan Embrio ",
+                "link": "#/ProsedurPemindahanEmbrio"
+            },
+            {
+                "name": "Proses Cuci ",
+                "link": "#/ProsesCuci"
+            },
+            {
+                "name": "Proses Kelahiran ",
+                "link": "#/ProsesKelahiran"
+            },
+            {
+                "name": "Proses Lahir Bayi ",
+                "link": "#/ProsesLahirBayi"
+            },
+            {
+                "name": "Psikologis",
+                "link": "#/Psikologis"
+            },
+            {
+                "name": "Puasa",
+                "link": "#/Puasa"
+            },
+            {
+                "name": "Range",
+                "link": "#/Range"
+            },
+            {
+                "name": "Reinseminasi",
+                "link": "#/Reinseminasi"
+            },
+            {
+                "name": "Rekanan Detail ",
+                "link": "#/RekananDetail"
+            },
+            {
+                "name": "Rekanan",
+                "link": "#/Rekanan2"
+            },
+            {
+                "name": "Resiko Malnutirisi ",
+                "link": "#/ResikoMalnutirisi"
+            },
+            {
+                "name": "Rhesus",
+                "link": "#/Rhesus"
+            },
+            {
+                "name": "Risiko Kerja Ruangan ",
+                "link": "#/RisikoKerjaRuangan"
+            },
+            {
+                "name": "Risiko",
+                "link": "#/Risiko"
+            },
+            {
+                "name": "Route Farmasi ",
+                "link": "#/RouteFarmasi"
+            },
+            {
+                "name": "Ruangan",
+                "link": "#/Ruangan2"
+            },
+            {
+                "name": "Ruangan Posisi Current ",
+                "link": "#/RuanganPosisiCurrent"
+            },
+            {
+                "name": "Sasaran Strategis ",
+                "link": "#/SasaranStrategis"
+            },
+            {
+                "name": "Satuan Anggaran ",
+                "link": "#/SatuanAnggaran"
+            },
+            {
+                "name": "Satuan Aset ",
+                "link": "#/SatuanAset"
+            },
+            {
+                "name": "Satuan Besar ",
+                "link": "#/SatuanBesar"
+            },
+            {
+                "name": "Satuan Hasil ",
+                "link": "#/SatuanHasil"
+            },
+            {
+                "name": "Satuan Indikator ",
+                "link": "#/SatuanIndikator"
+            },
+            {
+                "name": "Satuan Kecil ",
+                "link": "#/SatuanKecil"
+            },
+            {
+                "name": "Satuan Kerja ",
+                "link": "#/SatuanKerja"
+            },
+            {
+                "name": "Satuan Standar ",
+                "link": "#/SatuanStandar"
+            },
+            {
+                "name": "Satuan Waktu Kesling ",
+                "link": "#/SatuanWaktuKesling"
+            },
+            {
+                "name": "Satuan Waktu ",
+                "link": "#/SatuanWaktu"
+            },
+            {
+                "name": "Setting Data Fixed ",
+                "link": "#/SettingDataFixed2"
+            },
+            {
+                "name": "Shift Kerja Formulasi ",
+                "link": "#/ShiftKerjaFormulasi"
+            },
+            {
+                "name": "Akuns ",
+                "link": "#/Akuns"
+            },
+            {
+                "name": "Sifat Kehamilan ",
+                "link": "#/SifatKehamilan"
+            },
+            {
+                "name": "Sifat Surat ",
+                "link": "#/SifatSurat"
+            },
+            {
+                "name": "Siklus Gizi ",
+                "link": "#/SiklusGizi"
+            },
+            {
+                "name": "Siklus Pengobatan Bayi Tabung ",
+                "link": "#/SiklusPengobatanBayiTabung"
+            },
+            {
+                "name": "Skoring Detail ",
+                "link": "#/SkoringDetail"
+            },
+            {
+                "name": "Skoring",
+                "link": "#/Skoring"
+            },
+            {
+                "name": "Status Absensi ",
+                "link": "#/StatusAbsensi"
+            },
+            {
+                "name": "Status Account ",
+                "link": "#/StatusAccount"
+            },
+            {
+                "name": "Status Akreditasi ",
+                "link": "#/StatusAkreditasi"
+            },
+            {
+                "name": "Status Barang ",
+                "link": "#/StatusBarang"
+            },
+            {
+                "name": "Status Bed ",
+                "link": "#/StatusBed"
+            },
+            {
+                "name": "Status Berkas ",
+                "link": "#/StatusBerkas"
+            },
+            {
+                "name": "Status Distribusi ",
+                "link": "#/StatusDistribusi"
+            },
+            {
+                "name": "Status Fungsional ",
+                "link": "#/StatusFungsional"
+            },
+            {
+                "name": "Status Hasil ",
+                "link": "#/StatusHasil"
+            },
+            {
+                "name": "Status Keluar ",
+                "link": "#/StatusKeluar"
+            },
+            {
+                "name": "Status Kontras ",
+                "link": "#/StatusKontras"
+            },
+            {
+                "name": "Status Luka Lesi Pendarahan ",
+                "link": "#/StatusLukaLesiPendarahan"
+            },
+            {
+                "name": "Status Minum Asi ",
+                "link": "#/StatusMinumAsi"
+            },
+            {
+                "name": "Status Pegawai ",
+                "link": "#/StatusPegawai"
+            },
+            {
+                "name": "Status Perkawinan ",
+                "link": "#/StatusPerkawinan"
+            },
+            {
+                "name": "Status Perkawinan Pegawai ",
+                "link": "#/StatusPerkawinanPegawai"
+            },
+            {
+                "name": "Status Produk ",
+                "link": "#/StatusProduk"
+            },
+            {
+                "name": "Status Pulang ",
+                "link": "#/StatusPulang"
+            },
+            {
+                "name": "Status Risiko Kerja ",
+                "link": "#/StatusRisikoKerja"
+            },
+            {
+                "name": "Status Surat Ijin ",
+                "link": "#/StatusSuratIjin"
+            },
+            {
+                "name": "Stigma",
+                "link": "#/Stigma"
+            },
+            {
+                "name": "Stok Produk Global ",
+                "link": "#/StokProdukGlobal"
+            },
+            {
+                "name": "Struktur Account ",
+                "link": "#/StrukturAccount"
+            },
+            {
+                "name": "Struktur Kategory Account ",
+                "link": "#/StrukturKategoryAccount"
+            },
+            {
+                "name": "Struktur No CM",
+                "link": "#/StrukturNoCM"
+            },
+            {
+                "name": "Sub Klasifikasi Arsip ",
+                "link": "#/SubKlasifikasiArsip"
+            },
+            {
+                "name": "Suku",
+                "link": "#/Suku"
+            },
+            {
+                "name": "Surat",
+                "link": "#/Surat"
+            },
+            {
+                "name": "Surat Keputusan",
+                "link": "#/SuratKeputusanRev"
+            },
+            {
+                "name": "Surat Keputusan Rate Pajak",
+                "link": "#/SKPajakRate"
+
+            },
+            {
+                "name": "Survei Detail ",
+                "link": "#/SurveiDetail"
+            },
+            {
+                "name": "Survei",
+                "link": "#/Survei"
+            },
+            {
+                "name": "Swab Alat Permukaan ",
+                "link": "#/SwabAlatPermukaan"
+            },
+            {
+                "name": "SWOT",
+                "link": "#/SWOT"
+            },
+            {
+                "name": "Tahapan Akreditasi ",
+                "link": "#/TahapanAkreditasi"
+            },
+            {
+                "name": "Tahun Perolehan ",
+                "link": "#/TahunPerolehan"
+            },
+            {
+                "name": "Tanda Gejala ",
+                "link": "#/TandaGejala"
+            },
+            {
+                "name": "Tanda Jasa ",
+                "link": "#/TandaJasa"
+            },
+            {
+                "name": "Tanggapan",
+                "link": "#/Tanggapan"
+            },
+            {
+                "name": "Target Indikator ",
+                "link": "#/TargetIndikator"
+            },
+            {
+                "name": "Tempat Lahir Bayi ",
+                "link": "#/TempatLahirBayi"
+            },
+            {
+                "name": "Tempat Tidur ",
+                "link": "#/TempatTidur"
+            },
+            {
+                "name": "Tindakan Medis ",
+                "link": "#/TindakanMedis"
+            },
+            {
+                "name": "Tingkat Kelulusan ",
+                "link": "#/TingkatKelulusan"
+            },
+            {
+                "name": "Tingkat Resiko ",
+                "link": "#/TingkatResiko"
+            },
+            {
+                "name": "Tipe Pengirim Surat ",
+                "link": "#/TipePengirimSurat"
+            },
+            {
+                "name": "Title Pasien ",
+                "link": "#/TitlePasien"
+            },
+            {
+                "name": "Title Pegawai ",
+                "link": "#/TitlePegawai"
+            },
+            {
+                "name": "Tor",
+                "link": "#/Tor"
+            },
+            {
+                "name": "TOWS",
+                "link": "#/TOWS"
+            },
+            {
+                "name": "Transportasi Pasien ",
+                "link": "#/TransportasiPasien"
+            },
+            {
+                "name": "Triase",
+                "link": "#/Triase"
+            },
+            {
+                "name": "Type Pegawai ",
+                "link": "#/TypePegawai"
+            },
+            {
+                "name": "Type Produk ",
+                "link": "#/TypeProduk"
+            },
+            {
+                "name": "Unit Bagian ",
+                "link": "#/UnitBagian"
+            },
+            {
+                "name": "Unit Kerja ",
+                "link": "#/UnitKerja"
+            },
+            {
+                "name": "Unit Laporan ",
+                "link": "#/UnitLaporan"
+            },
+            {
+                "name": "Unit Org ",
+                "link": "#/UnitOrg"
+            },
+            {
+                "name": "Unit Pengelola Prakarsa Surat ",
+                "link": "#/UnitPengelolaPrakarsaSurat"
+            },
+            {
+                "name": "Usia Aset ",
+                "link": "#/UsiaAset"
+            },
+            {
+                "name": "Wajah",
+                "link": "#/Wajah"
+            },
+            {
+                "name": "Warna Produk ",
+                "link": "#/WarnaProduk"
+            },
+            {
+                "name": "Form Hak Akses ",
+                "link": "#/HakAkses"
+            },
+            {
+                "name": "Ruangan Pelayanan ",
+                "link": "#/RuanganPelayanan"
+            },
+            {
+                "name": "SettingLoginUser ",
+                "link": "#/SettingLoginUser"
+            },
+            {
+                "name": "Daftar Pelayanan Medik ",
+                "link": "#/DaftarPelayananMedik"
+            },
+            {
+                "name": "Satuan Produk",
+                "link": "#/Satuan"
+            },
+            {
+                "name": "KumpulanKomponenIndex",
+                "link": "#/KumpulanKomponenIndex"
+            },
+            {
+                "name": "Negara",
+                "link": "#/Negara"
+            },
+            {
+                "name": "Master Diagnosa",
+                "link": "#/KomponenDiagnosa"
+            },
+            {
+                "name": "Kelompok Asuransi",
+                "link": "#/KelompokAsuransi"
+            },
+            {
+                "name": "Kelompok Penyakit",
+                "link": "#/KelompokPenyakit"
+            },
+            {
+                "name": "Kelompok Paket",
+                "link": "#/KelompokPaket"
+            },
+            {
+                "name": "Komponen Harga",
+                "link": "#/KelompokHarga"
+            },
+            {
+                "name": "Kelompok Rujukan",
+                "link": "#/KelompokRujukan"
+            },
+            {
+                "name": "Kelompok Pemeriksaan",
+                "link": "#/KelompokPemeriksaan"
+            },
+            {
+                "name": "Master Profile",
+                "link": "#/KelompokProfile"
+            },
+            {
+                "name": "Alamat",
+                "link": "#/KelompokAlamat"
+            },
+            {
+                "name": "Master Range",
+                "link": "#/KelompokRange"
+            },
+            {
+                "name": "Komponen Score",
+                "link": "#/KelompokScore"
+            },
+            {
+                "name": "Tindakan Medis",
+                "link": "#/KelompokMedis"
+            },
+            {
+                "name": "Akreditasi",
+                "link": "#/KelompokAkreditasi"
+            },
+            {
+                "name": "Kelompok Penjamin",
+                "link": "#/KelompokPenjamin"
+            },
+            {
+                "name": "Rekanan Penjamin",
+                "link": "#/KelompokRekanan"
+            },
+            {
+                "name": "Data Dokumen",
+                "link": "#/KelompokDokumen"
+            },
+            {
+                "name": "Master Kelompok Produk",
+                "link": "#/MasterKelompokProduk"
+            },
+            {
+                "name": "Master Komponen Produk",
+                "link": "#/MasterKomponenProduk"
+            },
+            {
+                "name": "Master Konstruksi",
+                "link": "#/MasterKonstruksi"
+            },
+            {
+                "name": "Master Mata Uang Negara",
+                "link": "#/MasterMataUangNegara"
+            },
+            {
+                "name": "Master Alat Kesehatan",
+                "link": "#/MasterAlatKesehatan"
+            },
+            {
+                "name": "Master Aset",
+                "link": "#/MasterAset"
+            },
+            {
+                "name": "Master General Kelompok Produk",
+                "link": "#/MasterGeneralKelompokProduk"
+            },
+            {
+                "name": "Tarif Produk Pelayanan",
+                "link": "#/TarifProdukPelayanan"
+            },
+            {
+                "name": "Data Pendukung Laboratorium",
+                "link": "#/DataPendukungLaboratorium"
+            },
+            {
+                "name": "Jenis Produk",
+                "link": "#/JenisProduk"
+            },
+            {
+                "name": "Detail Jenis Produk",
+                "link": "#/DetailJenisProduk2"
+            }
+
+
+
+        ]
+    },
+    {
+    "name": "Inventori",
+    "children": [
+        {
+                "name": "Stok Barang",
+                "children": [
+                    {
+                        "name": "Data Stok Ruangan",
+                        "link": "#/Logistik/StokRuangan"
+                    },
+                    {
+                        "name": "Stok Opname",
+                        "link": "#/Logistik/StokOpname"
+                    },
+                    {
+                        "name": "Kartu Stok",
+                        "link": "#/KartuStok"
+                    },
+                    {
+                        "name": "Daftar Barang Kaldu",
+                        "link": "#/KartuStok"
+                    },
+                    {
+                        "name": "Daftar Barang Kadaluarsa",
+                        "link": "#/DaftarBarangKadaluarsa"
+                    }
+                ]
+            },
+            {
+                "name": "Daftar Transfer Barang",
+                "children": [
+                    {
+                        "name": "Order Barang",
+                        "link": "#/OrderBarangLogistik"
+                    },
+                    {
+                        "name": "Daftar Order Barang",
+                        "link": "#/DaftarOrderBarang"
+                    },
+                    {
+                        "name": "Kirim Barang",
+                        "link": "#/KirimBarangLogistik"
+                    },
+                    {
+                        "name": "Daftar Distribusi Barang",
+                        "link": "#/DaftarDistribusiBarang"
+                    }
+                ]
+            }
+       ]
+    },
+    {
+        "name": "Barang Investasi",
+        "children": [
+            {
+                "name": "Registrasi Barang Aset",
+                "link": "#/MasterBarangInvestasiRev"
+            },
+            {
+                "name": "Daftar Barang Investasi",
+                "link": "#/Logistik/DaftarBarangInvestasi"
+            },
+            {
+                "name": "Kirim Barang Aset",
+                "link": "#/KirimBarangAset"
+            }
+           
+        ]
+    },
+    {
+        "name": "SDM",
+        "children": [{
+                "name": "Target Bobot Uraian Tugas",
+                "link": "#/TargetBobot"
+            }, {
+                "name": "Input Logbook",
+                "link": "#/InputLogbook"
+            }, {
+                "name": "Indeks Kinerja Individu",
+                "link": "#/IndeksKinerjaIndividuSDM"
+            }, {
+                "name": "Permohonan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
+                "link": "#/PermohonanPerubahanStatusPegawai"
+            }, {
+				"name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
+				"link": "#/DaftarPenangguhanCuti"
+			}, {
+                "name": "Pengajuan Mutasi Pegawai",
+                "link": "#/PengajuanMutasiPegawai"
+            }, {
+                "name": "Pengajuan Resign Pegawai",
+                "link": "#/PengajuanResignPegawai"
+            }, {
+                "name": "Pengajuan Sanksi Pegawai",
+                "link": "#/PengajuanSanksiPegawai"
+            }, {
+                "name": "Daftar Pengajuan Mutasi Resign Sanksi Pegawai",
+                "link": "#/DaftarPengajuanMutasiSanksiResign"
+            }, {
+				"name": "Monitoring Absensi",
+				"link": "#/MonitoringAbsensiPegawai"
+			}, {
+				"name": "InputLemburPegawaiUnitKerja",
+				"link": "#/InputLemburPegawaiUnitKerja"
+			},{
+                "name": "Verifikasi Uraian Tugas Bawahan",
+                "link": "#/VerifikasiUraianTugasPegawaiLogin"
+            },{
+                "name": "Pengajuan Pelatihan",
+                "children": [
+                    {
+                        "name": "Monitoring Pengajuan Pelatihan",
+                        "link": "#/MonitoringPengajuanPelatihan"
+                    },
+                    {
+                        "name": "Pengajuan Pelatihan",
+                        "link": "#/PermintaaanPelatihanRev"
+                    },
+                    {
+                        "name": "Daftar Undangan Pelatihan",
+                        "link": "#/DaftarUndanganPelatihan"
+                    },
+                    {
+                        "name": "Daftar Kehadiran Peserta Pelatihan",
+                        "link": "#/DaftarKehadiranPesertaPelatihan"
+                    },
+                    {
+                        "name": "Daftar Rekapitulasi Kehadiran Peserta Pelatihan",
+                        "link": "#/DaftarRekapitulasiKehadiran"
+                    }
+                ]
+            }
+        ]
+    }, 
+    {
+        "name": "IP3RS",
+        "children": [
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/PermintaanPerbaikandariRuangan"
+            },
+            {
+                "name": "Respond Perbaikan",
+                "link": "#/RespondPerbaikan"
+            } 
+        ]
+    },  
+    {
+        "name": "Tata Usaha",
+        "children": [{
+                "name": "Membuat Draft Surat",
+                "link": "#/BuatDraftSurat"
+            },
+            {
+                "name": "Daftar Draft",
+                "link": "#/DaftarDraft"
+            },
+            {
+                "name": "Rencana Usulan Barang",
+                "link": "#/DaftarRencanaUsulanPermintaanBarang"
+            },
+            {
+                "name": "Daftar Draft Surat Masuk",
+                "link": "#/DaftarDraftSuratMasuk"
+            },
+            {
+                "name": "Dokumen Verbal Konsep",
+                "link": "#/DokumenVerbalKonsep/"
+            },
+            {
+                "name": "Verbal Konsep",
+                "link": "#/VerbalKonsep/"
+            },
+            {
+                "name": "Surat Masuk Internal dan Eksternal",
+                "link": "#/SuratMasukInternaldanEksternal"
+            },
+            {
+                "name": "Daftar Surat Masuk Internal Eksternal",
+                "link": "#/DaftarSuratMasukInternalEksternal"
+            },
+            {
+                "name": "Nota Dinas",
+                "link": "#/NotaDanDisposisi"
+            },
+            {
+                "name": "Daftar Nota Dinas",
+                "link": "#/ListNotaDinas"
+            }
+        ]
+    },
+    {
+        "name": "Aplikasi Laundry",
+        "children": [
+            {
+                "name": "Permintaan Linen Bersih",
+                "link": "#/PermintaanLinenByRuangan"
+            }
+    ]
+    },
+    {
+        "name": "Rensar",
+        "children": [
+            {
+                "name": "Master",
+                "children": [
+                    {
+                        "name": "Master Indikator",
+                        "link": "#/MasterIndikatorRensar"
+                    },
+                    {
+                        "name": "Master Jenis Indikator",
+                        "link": "#/MasterJenisIndikator"
+                    }
+                ]
+            },
+            {
+                "name": "Target Indikator",
+                "link": "#/TargetIndikatorRev"
+            },
+            {
+                "name": "IKI Dirut",
+                "link": "#/IkiDirutCapaian"
+            }
+         ]
+    },
+    {
+    "name": "Setting",
+    "children": [
+        {
+            "name": "Ubah Password",
+            "link": "#/UbahPassword"  
+        }
+    ]
+}
+]

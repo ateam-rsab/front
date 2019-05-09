@@ -1,0 +1,184 @@
+<div ng-controller="PemindahanCtrl">
+    <!-- AlASAN PEMDINDAHAN PASIEN -->
+    <div class="grid_12">
+        <div class="panel panel-default  ">
+
+            <div class="panel-heading" c-translate>Alasan pemindahan ruangan</div>
+            <div class="panel-body">
+                <div class="grid_12">
+                    <div class="panel" style="border-color:#0d9a8b; margin-left: 10px;margin-right: 10px">
+                        <div class="panel-body">
+                            <div class="grid_6">
+                                <div class="grid_4">
+                                    <input type="checkbox" class="k-radio">
+                                    <label class="k-checkbox-label" c-translate>Kondisi Pasien</label>
+                                </div>
+                                <div class="grid_8">
+                                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.kondisipasien" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="listKondisiPasien" />
+                                </div>
+                                <div class="grid_4">
+                                    <input type="checkbox" class="k-radio">
+                                    <label class="k-checkbox-label" c-translate>Fasilitas</label>
+                                </div>
+                                <div class="grid_8">
+                                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.fasilitas" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="listFasilitas" />
+                                </div>
+                            </div>
+                            <div class="grid_6">
+                                <div class="grid_4">
+                                    <input type="checkbox" class="k-radio">
+                                    <label class="k-checkbox-label" c-translate>Tenaga</label>
+                                </div>
+                                <div class="grid_8">
+                                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.tenaga" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="listTenaga" />
+                                </div>
+                                <div class="grid_4">
+                                    <input type="checkbox" class="k-radio">
+                                    <label class="k-checkbox-label" c-translate>Lain-lain</label>
+                                </div>
+                                <div class="grid_8">
+                                    <input placeholder="Keterangan" style="width: 100%;" k-ng-model="item.lainlain" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid_6">
+        <!-- PASIEN DIBERITAHU ALASAN PEMINDAHAN -->
+        <div class="panel panel-default grid_6 ">
+            <div class="panel-heading" c-translate>Pasien diberitahu alasan pemindahan</div>
+            <div class="panel-body">
+                <div class="grid_12">
+                    <div class="grid_6">
+                        <div class="grid_3">
+                            <input type="checkbox" class="k-radio">
+                            <label class="k-checkbox-label" c-translate>Ya</label>
+                        </div>
+                        <div class="grid_3">
+                            <input type="checkbox" class="k-radio">
+                            <label class="k-checkbox-label" c-translate>Tidak</label>
+                        </div>
+                        <div class="grid_6"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- METODE PEMINDAHAN PASIEN -->
+    <div class="grid_6">
+        <div class="panel panel-default">
+            <div class="panel-heading" c-translate>Metode pemindahan pasien</div>
+            <div class="panel-body">
+                <div class="grid_12">
+                    <div class="grid_3">
+                        <input type="checkbox" class="k-radio">
+                        <label class="k-checkbox-label" c-translate>Kursi Roda</label>
+                    </div>
+                    <div class="grid_3">
+                        <input type="checkbox" class="k-radio">
+                        <label class="k-checkbox-label" c-translate>Brankas</label>
+                    </div>
+                    <div class="grid_4">
+                        <input type="checkbox" class="k-radio">
+                        <label class="k-checkbox-label" c-translate>Tempat Tidur</label>
+                    </div>
+                    <div class="grid_2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- KELUARGA PASIEN DI BERITAHUKAN ALASAN PEMINDAHAN PASIEN -->
+    <div class="panel panel-default ">
+        <div class="panel-heading" c-translate>Keluarga pasien diberitahukan alasan pemindahan pasien</div>
+        <div class="panel-body">
+            <div class="grid_12">
+                <div class="panel" style="border-color:#0d9a8b; margin-left: 10px;margin-right: 10px">
+                    <div class="panel-body">
+                        <div class="grid_6">
+                            <div class="grid_6">
+                                <div class="grid_6">
+                                    <input type="checkbox" class="k-radio">
+                                    <label class="k-checkbox-label" c-translate>Ya</label>
+                                </div>
+                                <div class="grid_6">
+                                    <input type="checkbox" class="k-radio">
+                                    <label class="k-checkbox-label" c-translate>Tidak</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_6"></div>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_6">
+                        <div class="grid_4"><label c-translate>Nama</label><span class="titikDua">:</span></div>
+                        <div class="grid_8">
+                            <input placeholder="Nama Keluarga" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" />
+                        </div>
+                    </div>
+                    <div class="grid_6">
+                        <div class="grid_4"><label c-translate>Hubungan</label><span class="titikDua">:</span></div>
+                        <div class="grid_8">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.hubungan" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="listHubungan" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid_12">
+
+        <div class="panel panel-default ">
+            <div class="panel-heading panel-body" c-translate>Petugas Pendamping</div>
+
+            <div class="panel-body">
+                <div class="">
+                    <div class="grid_2"><label c-translate>Nama Petugas</label><span class="titikDua">:</span></div>
+                    <div class="grid_4">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.petugaspendamping" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="listPetugasPendamping" />
+                    </div>
+                    <div class="grid_6" style="text-align: right">
+                        <div class="grid_4"></div>
+                        <div class="grid_4">
+                            <c-button ng-show="!isLoading" style="width: 100%" item="item" is-validate click="KirimData">
+                                <span c-translate>Tambah</span>
+                            </c-button>
+                        </div>
+                        <div class="grid_4">
+                            <c-button ng-show="!isLoading" style="width: 100%" item="item" is-validate click="KirimData">
+                                <span c-translate>Hapus</span>
+                            </c-button>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_1">
+                        <div class="panel container_1">
+                            <div class="panel-heading" style="background-color:#10c4b2;">No</div>
+                            <div class="panel-body"></div>
+                        </div>
+                    </div>
+                    <div class="grid_11">
+                        <div class="panel container_11">
+                            <div class="panel-heading" style="background-color:#10c4b2;" c-translate>Nama Petugas</div>
+                            <div class="panel-body"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="" style="text-align: right">
+                    <div class="grid_6"></div>
+                    <div class="grid_6">
+                        <div class="grid_6">
+                            <input placeholder="Cari Nama Petugas" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+
+</div>

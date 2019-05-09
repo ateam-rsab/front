@@ -1,0 +1,291 @@
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#aabcfe}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aabcfe;padding: 1px 0px}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aabcfe;color:#039;background-color:#b9c9fe;}
+.tg .tg-yw4l{vertical-align:top;}
+.tg .nilai{vertical-align:middle;text-align: center;font-weight: bold;}
+.tg .jawaban{vertical-align:middle;text-align: center;}
+.secondLine {font-family:Arial, sans-serif;padding-left: 1.5em; text-indent:-1.5em;margin-left:10px; text-align:left}
+.hr .har{
+     border: 1px dashed #cccccc;
+     margin-top: 0px; 
+     margin-bottom: 0px; 
+    display: inline-block;
+    width: 100%;
+}
+</style>
+<div class="container_12">
+    <div class="grid_12">
+        <div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;"
+            class="grid_12">
+            <span style="font-size: 18px; color: white; padding: 5px;">Persetujuan Tindakan Anestesi</span>
+        </div>
+        <div class="grid_6">
+            <div class="grid_12">
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="Tgl Operasi"></label>
+                </div>
+                <div class="grid_4 padDatePicker"  > 
+                    <input  k-ng-model="item.obj[1901300001]"  kendo-datetimepicker k-max="now" placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="Diagnosa"></label>
+                </div>
+                <div class="grid_6" >
+                    <input class="k-textbox" ng-model="item.obj[1901300002]" type="text">
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="R/ Tindakan"></label>
+                </div>
+                <div class="grid_6"  >
+                    <input class="k-textbox" ng-model="item.obj[1901300003]" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="grid_6">
+            <div class="grid_12">
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="dr Anestesi"></label>
+                </div>
+                <div class="grid_6"  >
+                    <input class="k-textbox" ng-model="item.obj[1901300004]" type="text">
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="dr Operator"></label>
+                </div>
+                <div class="grid_6" >
+                    <input class="k-textbox" ng-model="item.obj[1901300005]" type="text">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid_12">
+        <div style="background-color: #10C4B2; height: 12px; margin-top: 3p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;"
+            class="grid_12">
+            <span style="font-size: 14px; color: white; padding: 5px;">Informasi Anestesi</span>
+        </div>
+        <div class="grid_12"  >
+            <table class="tg">
+                <tr ng-repeat="data in item.datalist | orderBy:'id'">
+                    <td style="width: 200px;padding: 0px 0px" > 
+                        <li ng-repeat="data2 in data.col1" >
+                            <div class="grid_10" style="margin-left: 5px;margin-top: 15px;margin-bottom: 5px">
+                                <input type="checkbox" class="k-checkbox"  id="item.obj{{data2.id}}" ng-model="item.obj[data2.id]">
+                                <label class="k-checkbox-label" for="item.obj{{data2.id}}">{{data2.nama}}</label>
+                            </div>
+                            <table class="tg" style="width: 180px;border: 0px;margin-left: 20px" >
+                                <tr>
+                                    <td style="border-width: 0px; ">
+                                        <li ng-repeat="data4 in data2.namacol" >
+                                            <div class="grid_10" style="margin-left: 5px;margin-top: 15px;margin-bottom: 5px">
+                                                <input type="checkbox" class="k-checkbox"  id="item.obj{{data4.id}}" ng-model="item.obj[data4.id]">
+                                                <label class="k-checkbox-label" for="item.obj{{data4.id}}">{{data4.nama}}</label>
+                                            </div>
+                                        </li>
+                                    </td>
+                                </tr>
+                            </table>
+                        </li>
+                    </td>
+                    <td style="padding: 0px 0px">
+                        <table class="tg" style="border: 0px" >
+                            <tr ng-repeat="data3 in data.col2">
+                                <td style="width: 300px">
+                                    <label>{{data3.nama}}</label>
+                                </td>
+                                <td>
+                                    <div ng-switch on="data3.kolom.length > 0" >
+                                        <div ng-switch-when="true" style="">
+                                            <table class="tg" style="border: 0px;" >
+                                                <tr>
+                                                    <td style="border-width: 0px;  ">
+                                                     <li ng-repeat="data5 in data3.kolom" >
+                                                        <div class="grid_10" style="margin-left: 5px;margin-top: 15px;margin-bottom: 5px">
+                                                            <input type="checkbox" class="k-checkbox"  id="item.obj{{data5.id}}" ng-model="item.obj[data5.id]">
+                                                            <label class="k-checkbox-label" for="item.obj{{data5.id}}">{{data5.nama}}</label>
+                                                        </div>
+                                                    </li>
+                                                </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <p ng-s­wit­ch-­def­ault>
+                                            <label >{{data3.nama2}}</label>  
+                                        </p>
+                                    </div>
+                                    
+                                                                  
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <div class="grid_12 borderBox containerBorderBox">
+                <div class="grid_12">
+                    <label c-label="" class="ng-isolate-scope c-label">{{item.keterangan}}</label>
+                </div>
+                <div class="grid_12" style="margin-top: 15px">
+                    <label c-label="" class="ng-isolate-scope c-label">{{item.keterangan2}}</label>
+                </div>
+                <div class="grid_12" style="margin-top: 15px">
+                    <label c-label="" class="ng-isolate-scope c-label">{{item.keterangan3}}</label>
+                </div>
+                <div class="grid_12" style="margin-top: 15px">
+                    <label c-label="" class="ng-isolate-scope c-label">{{item.keterangan4}}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid_12">
+        <div style="background-color: #10C4B2; height: 12px; margin-top: 3p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;"
+            class="grid_12">
+            <span style="font-size: 14px; color: white; padding: 5px;">Persetujuan Tindakan Anestesi</span>
+        </div>
+        <div class="grid_12 borderBox containerBorderBox">
+            <div class="grid_12">
+                <label c-label="" class="ng-isolate-scope c-label">Yang bertanda tangan dibawah ini, saya :</label>
+                <div class="grid_4">
+                    <label c-label="" class="ng-isolate-scope c-label">Nama :</label>
+                </div>
+                <div class="grid_8"  >
+                    <input class="k-textbox" ng-model="item.obj[1901300006]" type="text" >
+                </div>
+                <div class="grid_4">
+                    <label c-label="" class="ng-isolate-scope c-label">Umur :</label> 
+                </div>
+                <div class="grid_8"  >
+                    <input class="k-textbox" ng-model="item.obj[1901300007]" type="text" >
+                </div>
+                <div class="grid_4">
+                    <label c-label="" class="ng-isolate-scope c-label">Jenis Kelamin :</label>
+                </div>
+                <div class="grid_8" >
+                    <input class="k-textbox" ng-model="item.obj[1901300008]" type="text" >
+                </div>
+                <div class="grid_4">
+                    <label c-label="" class="ng-isolate-scope c-label">Alamat :</label>
+                </div>
+                <div class="grid_8"  >
+                    <input class="k-textbox" ng-model="item.obj[1901300009]" type="text" >
+                </div>
+                <label c-label="" class="ng-isolate-scope c-label">dengan ini menyatakan persetujuan untuk dilakukan tindakan anestesi terhadap saya / </label>
+                <div class="grid_4">
+                    <label c-label="" class="ng-isolate-scope c-label">saya, Yang bernama</label>
+                </div>
+                <div class="grid_8"  >
+                    <input class="k-textbox" ng-model="item.obj[1901300010]" type="text" >
+                </div>
+                <div class="grid_4">
+                    <label c-label="" class="ng-isolate-scope c-label">Tanggal Lahir :</label>
+                </div>
+                <div class="grid_8"  >
+                    <input class="k-textbox" ng-model="item.obj[1901300011]" type="text" >
+                </div>
+                <div class="grid_4">
+                    <label c-label="" class="ng-isolate-scope c-label">Nomor Rekam Medis :</label>
+                </div>
+                <div class="grid_8"  >
+                    <input class="k-textbox" ng-model="item.obj[1901300012]" type="text" >
+                </div>
+            </div>
+            <div class="grid_12">
+                
+                <label c-label="" class="ng-isolate-scope c-label">Saya Menyetujui dan meminta tindakan anestesi diberikan oleh dokter anestesi, melalui tim anestesi, termasuk perawat anestesi, dibawah pengawasan seorang dokter anestesi yang sudah kredensial untuk melakukan tindakan anestesi di <i>Rumah Sakit Anak dan Bunda Harapan Kita</i> Jakarta. Saya juga menyetujui alternatif teknik anestesi, jika dibutuhkan sesuai keputusan tim anestesi.</label>
+
+                <label c-label="" class="ng-isolate-scope c-label">Saya Juga menyadari bahwa ilmu kedokteran bukanlah ilmu pasti, maka keberhasilan tindakan kedokteran (anestesi) bukanlah keniscayaan melainkan sangat bergantung kepada izin Tuhan Yang Maha Esa.</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid_12">
+        <div style="background-color: #10C4B2; height: 12px; margin-top: 3p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;"
+            class="grid_12">
+            <span style="font-size: 14px; color: white; padding: 5px;">Persetujuan Transfusi Darah</span>
+        </div>
+        <div class="grid_12 borderBox containerBorderBox">
+            <div class="grid_12">
+                <label c-label="" class="ng-isolate-scope c-label">Kemungkinan prosedur atau tindakan yang dilakukan ini membutuhkan transfusi darah :</label>
+                <div class="grid_12">
+                    <div class="grid_4" >
+                        <input type="checkbox" class="k-checkbox"  id="item.obj[1901300013]" ng-model="item.obj[1901300013]" ng-checked="{{data.value}}">
+                        <label class="k-checkbox-label" for="item.obj[1901300013]">Sangat tidak mungkin</label>
+                    </div>
+                    <div class="grid_4" >
+                        <input type="checkbox" class="k-checkbox"  id="item.obj[1901300014]" ng-model="item.obj[1901300014]" ng-checked="{{data.value}}">
+                        <label class="k-checkbox-label" for="item.obj[1901300014]">Mungkin dibutuhkan</label>
+                    </div>
+                    <div class="grid_4" >
+                        <input type="checkbox" class="k-checkbox"  id="item.obj[1901300015]" ng-model="item.obj[1901300015]" ng-checked="{{data.value}}">
+                        <label class="k-checkbox-label" for="item.obj[1901300015]">Sangat memungkin</label>
+                    </div>
+                </div>
+
+                <label c-label="" class="ng-isolate-scope c-label">Saya mengerti bahwa ada kemungkinan resiko yang timbul dari transfusi darah, walaupun jarang dan ini termasuk reaksi transfusi, Hepatitis dan AIDS (<i>Acquired Immmune Deficiency Syndrome</i>). Beri tanda pada kotak yang sesuai :</label>
+                    <div class="grid_12" >
+                        <input type="checkbox" class="k-checkbox"  id="item.obj[1901300016]" ng-model="item.obj[1901300016]" ng-checked="{{data.value}}">
+                        <label class="k-checkbox-label" for="item.obj[1901300016]">Saya menyetujui dan mengizinkan untuk menerima darah atau komponen darah sesuai dengan yang ditentukan/diputuskan oleh dokter anestesi dan dokter lain yang merawat demi kebaikan saya/keluarga.</label>
+                    </div>
+                    <div class="grid_12" >
+                        <input type="checkbox" class="k-checkbox"  id="item.obj[1901300017]" ng-model="item.obj[1901300017]" ng-checked="{{data.value}}">
+                        <label class="k-checkbox-label" for="item.obj[1901300017]">Saya menyetujui dan mengizinkan untuk menerima darah atau komponen darah hanya pada kondisi darurat menyelamatkan hidup saya/keluarga.</label>
+                    </div>
+                    <div class="grid_12" >
+                        <input type="checkbox" class="k-checkbox"  id="item.obj[1901300018]" ng-model="item.obj[1901300018]" ng-checked="{{data.value}}">
+                        <label class="k-checkbox-label" for="item.obj[1901300018]">Saya tidak menyetujui pemberian darah atau komponen darah pada kondisi apapun/sejelek apapun, terhadap diri saya/keluarga.</label>
+                    </div>
+                </div>
+                <label c-label="" class="ng-isolate-scope c-label">Saya menyatakan dan memberitahu bahwa saya sudah membaca/dibacakan formulir ini, bahwa saya mengerti resikonya, alternatif dan hasil hasil/outcome yang diperkirakan dari tindakan anestesi dan atau transfusi darah dan bahwa saya sudah diberi waktu untuk bertanya dan mempertimbangkan keputusan saya.</label>
+            </div>
+        </div>
+        <div class="grid_6">
+            <div class="grid_4">
+                <label c-label item="item" >Saksi 1 :</label>
+            </div>
+            <div class="grid_8"  >
+                <input class="k-textbox" ng-model="item.obj[1901300019]" type="text" >
+            </div>
+            <div class="grid_4">
+                <label c-label item="item" >Saksi 2 :</label>
+            </div>
+            <div class="grid_8"  >
+                <input class="k-textbox" ng-model="item.obj[1901300020]" type="text" >
+            </div>
+            
+        </div>
+        <div class="grid_6">
+            <div class="grid_4">
+                <label c-label item="item" >Pasien :</label>
+            </div>
+            <div class="grid_8"  >
+                <input class="k-textbox" ng-model="item.obj[1901300021]" type="text" >
+            </div>
+            <div class="grid_4">
+                <label c-label item="item" >Dokter Anestesi :</label>
+            </div>
+            <div class="grid_8"  >
+                <input class="k-textbox" ng-model="item.obj[1901300022]" type="text" >
+            </div>
+            
+        </div>
+        
+    </div>
+    <div class="grid_6"></div>
+    <div class="grid_6">
+        <div class="grid_8">
+        </div>
+        <div class="grid_2">
+            <button class="btnTemplate1"  ng-click="simpan()">Simpan</button>
+        </div>
+        <div class="grid_2">
+            <button class="btnTemplate1"  ng-click="Batal()">Batal</button>
+        </div>
+    </div>
+</div>

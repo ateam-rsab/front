@@ -1,0 +1,662 @@
+<style type="text/css">
+#grid .k-grid-header .k-header .verticalText{
+	display: inline-block;
+	white-space: nowrap;
+	transform: translate(0,100%) rotate(-90deg);
+	transform-origin: 0 0;
+	position: absolute;
+	bottom: 5px;
+}
+
+#grid .k-grid-header .k-header{
+  height: 150px !important;
+}
+
+</style>
+<div ng-controller="MonitoringBiayaSDMCtrl">
+ <div class="panel panel-default container_12">
+    <div class="panel-heading"  c-translate>Monitoring Biaya SDM</div>
+    <div class="panel-body">
+      
+		  
+            <div ng-cloak>
+			
+                <md-content>
+				  
+                    <md-tabs md-dynamic-height md-border-bottom>
+					         
+					          <md-tab label="Penambahan Tenaga">
+                            <md-content class="md-padding">
+                                <div class="grid_12">
+                                	<div class="grid_12">
+										<div class="grid_12">
+											<div class="grid_12">
+												<div class="grid_1" style="margin: 6px 0 0 0;">
+													<label c-label item="item">Tahun</label>
+												</div>
+												<div class="grid_2" >
+													<input required style="width: 100%;" kendo-combo-box k-ng-model="selectedTahun" k-data-text-field="'id'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listTahun" />
+												</div>
+												 
+												
+											</div>
+											 
+										<div class="grid_12">
+											<div class="grid_12">
+												<div class="grid_1" style="margin: 6px 0 0 0;">
+													<label c-label item="item">Unit Kerja</label>
+												</div>
+												<div class="grid_2" >
+													<input style="width: 100%;" kendo-combo-box k-ng-model="item.ptenagaunitKerja" 
+													 k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" 
+													 k-auto-bind="false" k-data-source="ListUnitKerja" />
+												</div>
+												<div class="grid_3" style="margin: 6px 0 0 0;">
+													<label c-label item="item">Alokasi Biaya Penambahan Tenaga</label>
+												</div>
+												<div class="grid_2" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+											</div>
+											 
+										</div>
+										<div class="grid_12">
+											<div class="grid_12">
+												<div class="grid_1" >
+													<label c-label item="item"></label>
+												</div>
+												<div class="grid_2" >
+													 <label c-label item="item"></label>
+												</div>
+												<div class="grid_3" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">Alokasi Biaya Rekrutmen</label>
+												</div>
+												<div class="grid_2" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+											</div>
+											 
+										</div>
+										<div class="grid_12">
+											<div class="grid_12">
+												<div class="grid_1" >
+													<label c-label item="item"></label>
+												</div>
+												<div class="grid_2" >
+													 <label c-label item="item"></label>
+												</div>
+												<div class="grid_3" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">Alokasi Program Orientasi </label>
+												</div>
+												<div class="grid_2" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+											</div>
+											 
+										</div>
+										<div class="grid_12">
+											<div class="grid_12">
+												<div class="grid_1" >
+													<label c-label item="item"></label>
+												</div>
+												<div class="grid_2" >
+													 <label c-label item="item"></label>
+												</div>
+												<div class="grid_3" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">Alokasi Renumerisasi </label>
+												</div>
+												<div class="grid_2" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+											</div>
+											 
+										</div>
+									 
+									
+									<div class="grid_12" >
+										<div id="grid" kendo-grid k-on-change="Select(data)" k-data-source="daftarpendidikan" k-selectable="'row'" options="GridOk">
+									</div>
+									<!-- <div class="grid_12" style="padding-top:20px">
+										<div class="grid_12"></div>
+										<div class="grid_2">
+											<button class="c-button" ng-click="Save()">Batal</button>
+										</div>
+										<div class="grid_2">
+											<button class="c-button" ng-click="Save()">Simpan</button>
+										</div>
+										<div class="grid_2">
+											<button class="c-button" ng-click="print()">Hapus</button>
+										</div>
+									</div> -->
+								</div>
+							</div>
+						</md-content>
+					</md-tab>
+					          <md-tab label="Pengembangan Pegawai">
+                            <md-content class="md-padding">
+                                <div class="grid_12">
+                                	<div class="grid_12">
+										<div class="grid_12">
+											<div class="grid_12">
+												<div class="grid_1" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">Tahun</label>
+												</div>
+												<div class="grid_2" >
+													<input required style="width: 100%;" kendo-combo-box k-ng-model="selectedTahun" k-data-text-field="'id'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listTahun" />
+												</div>
+												 
+												
+											</div>
+											<div class="grid_12">
+												<div class="grid_1" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">Unit Kerja</label>
+												</div>
+												<div class="grid_2" >
+													<input style="width: 100%;" kendo-combo-box k-ng-model="item.ppegawaiunitKerja" 
+													 k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" 
+													 k-auto-bind="false" k-data-source="ListUnitKerja" />
+												</div>
+												<div class="grid_1" >
+													<label c-label item="item"> </label>
+												</div>
+												<div class="grid_1" >
+													<label c-label item="item">  </label>
+												</div>
+												<div class="grid_1" >
+													<label c-label item="item"></label>
+												</div>
+												 
+												<div class="grid_2" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">Alokasi Biaya Pengembangan Tenaga</label>
+												</div>
+												<div class="grid_2" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												<div class="grid_1" >
+													<label c-label item="item"> </label>
+												</div>
+												 
+											</div>
+											<div class="grid_12">
+												<div class="grid_1" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">Set Point </label>
+												</div>
+												<div class="grid_1" >
+													<label c-label item="item"> </label>
+												</div>
+												<div class="grid_1" >
+													<label c-label item="item">  </label>
+												</div>
+												<div class="grid_1" >
+													<label c-label item="item"></label>
+												</div>
+												<div class="grid_1" >
+													<label c-label item="item"> </label>
+												</div>
+												<div class="grid_1" >
+													 <label c-label item="item"></label>
+												</div>
+												<div class="grid_2" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">Alokasi Biaya pendidikan Formal</label>
+												</div>
+												<div class="grid_2" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												 
+											</div>
+											<div class="grid_12">
+												<div class="grid_1" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">DIR </label>
+												</div>
+												<div class="grid_1" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												<div class="grid_1" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">OL </label>
+												</div>
+												<div class="grid_1" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												<div class="grid_1" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">OS </label>
+												</div>
+												<div class="grid_1" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												<div class="grid_2" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">Alokasi Biaya pelatihan</label>
+												</div>
+												<div class="grid_2" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												 
+												
+											</div>
+											<div class="grid_12">
+												<div class="grid_1" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">MS </label>
+												</div>
+												<div class="grid_1" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												<div class="grid_1" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">NS </label>
+												</div>
+												<div class="grid_1" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												<div class="grid_1" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">GR </label>
+												</div>
+												<div class="grid_1" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												<div class="grid_2" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">Alokasi Biaya Pemeliharaan Kompetensi</label>
+												</div>
+												<div class="grid_2" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												 
+												
+											</div>
+											<div class="grid_12">
+												<div class="grid_1" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">M </label>
+												</div>
+												<div class="grid_1" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												<div class="grid_1" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">PM </label>
+												</div>
+												<div class="grid_1" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												<div class="grid_1" >
+													<label c-label item="item"> </label>
+												</div>
+												<div class="grid_1" >
+													<label c-label item="item"> </label>
+												</div>
+												<div class="grid_2" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">Alokasi Biaya Pengembangan Kompetensi</label>
+												</div>
+												<div class="grid_2" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												 
+												
+											</div>
+										</div>
+										<div class="grid_12">
+												<div class="grid_1" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">SL </label>
+												</div>
+												<div class="grid_1" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												<div class="grid_1" >
+													<label c-label item="item"> </label>
+												</div>
+												<div class="grid_1" >
+													<label c-label item="item"> </label>
+												</div>
+												<div class="grid_1" >
+													<button class="c-button" ng-click="Set()">Set</button>
+												</div>
+												<div class="grid_2" >
+													<label c-label item="item"> </label>
+												</div>
+												<div class="grid_2" >
+													<label c-label item="item"> </label>
+												</div>
+												<div class="grid_1" >
+													<label c-label item="item"> </label>
+												</div>
+												
+											</div>
+										</div>
+									</div>
+									
+									<div class="grid_12" >
+										<div kendo-grid k-on-change="Select(data)" k-data-source="daftarperjalanan" k-selectable="'row'" options="mainGridOptions">
+									</div> 
+									
+									<div class="grid_12" style="padding-top:20px">
+										<div class="grid_12"></div>
+										<div class="grid_2">
+											<button class="c-button" ng-click="Save()">Simpan</button>
+										</div>
+										<!-- <div class="grid_2">
+											<button class="c-button" ng-click="print()">Hapus</button>
+										</div>
+										<div class="grid_2">
+											<button class="c-button" ng-click="print()">Batal</button>
+										</div> -->
+									</div>
+								</div>
+							</div>
+						</md-content>
+					</md-tab>
+					                   <md-tab label="Transformasi Budaya Kerja">
+                            <md-content class="md-padding">
+                                <div class="grid_12">
+                                	<div class="grid_12">
+										<div class="grid_12">
+											<div class="grid_12">
+												<div class="grid_1" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">Tahun</label>
+												</div>
+												<div class="grid_2" >
+													<input required style="width: 100%;" kendo-combo-box k-ng-model="selectedTahun" k-data-text-field="'id'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listTahun" />
+												</div>
+												
+											</div>
+											<div class="grid_12">
+												<div class="grid_1" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">Unit Kerja</label>
+												</div>
+												<div class="grid_2" >
+													<input style="width: 100%;" kendo-combo-box k-ng-model="item.tbkerjaunitKerja" 
+													 k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" 
+													 k-auto-bind="false" k-data-source="ListUnitKerja" />
+												</div>
+												<div class="grid_3" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">Alokasi Biaya Transformasi Budaya Kerja</label>
+												</div>
+												<div class="grid_2" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												<div class="grid_1" >
+													<label c-label item="item"></label>
+												</div>
+											</div>
+											 
+											<div class="grid_12">
+												<div class="grid_1" >
+													<label c-label item="item"></label>
+												</div>
+												<div class="grid_2" >
+													<label c-label item="item"></label>
+												</div>
+												<div class="grid_3" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">Alokasi Biaya Assesment Budaya</label>
+												</div>
+												<div class="grid_2" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												 
+												
+												
+											</div>
+											<div class="grid_12">
+												<div class="grid_1" >
+													<label c-label item="item"></label>
+												</div>
+												<div class="grid_2" >
+													<label c-label item="item"></label>
+												</div>
+												<div class="grid_3" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">Alokasi Biaya Merumuskan Nilai Statejik</label>
+												</div>
+												<div class="grid_2" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												 
+											</div>
+										<div class="grid_12">
+												<div class="grid_1" >
+													<label c-label item="item"></label>
+												</div>
+												<div class="grid_2" >
+													<label c-label item="item"></label>
+												</div>
+												<div class="grid_3" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">Alokasi Biaya pembekalan Change Agnet</label>
+												</div>
+												<div class="grid_2" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												 
+										</div>
+										<div class="grid_12">
+												<div class="grid_1" >
+													<label c-label item="item"></label>
+												</div>
+												<div class="grid_2" >
+													<label c-label item="item"></label>
+												</div>
+												<div class="grid_3" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">Alokasi Biaya Implementasi Nilai2 Budaya</label>
+												</div>
+												<div class="grid_2" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												 
+										</div>
+										<div class="grid_12">
+												<div class="grid_1" >
+													<label c-label item="item"></label>
+												</div>
+												<div class="grid_2" >
+													<label c-label item="item"></label>
+												</div>
+												<div class="grid_3" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">Alokasi Biaya  Capacity Building</label>
+												</div>
+												<div class="grid_2" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												 
+										</div>
+									</div>
+									
+									<div class="grid_12" >
+										<div kendo-grid k-on-change="Select(data)" k-data-source="daftarhukuman" k-selectable="'row'" options="Gridhukuman">
+									</div>
+									<div class="grid_12" style="padding-top:20px">
+										<div class="grid_8">
+										<div class="grid_2">
+											<button class="c-button" ng-click="Save()">Simpan</button>
+										</div>
+										<!-- <div class="grid_2">
+											<button class="c-button" ng-click="print()">Hapus</button>
+										</div>
+										<div class="grid_2">
+											<button class="c-button" ng-click="print()">Batal</button>
+										</div> -->
+									</div>	
+									</div>
+								</div>
+							</div>
+						</md-content>
+					</md-tab>
+					        <md-tab label="Perjalanan Dinas">
+                            <md-content class="md-padding">
+                                <div class="grid_12">
+                                	<div class="grid_12">
+										<div class="grid_12">
+											<div class="grid_12">
+												<div class="grid_1" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">Tahun</label>
+												</div>
+												<div class="grid_2" >
+													<input required style="width: 100%;" kendo-combo-box k-ng-model="selectedTahun" k-data-text-field="'id'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listTahun" />
+												</div>
+												
+											</div>
+											<div class="grid_12">
+												<div class="grid_1" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">Unit Kerja</label>
+												</div>
+												<div class="grid_2" >
+													<input style="width: 100%;" kendo-combo-box k-ng-model="item.pdinasunitKerja" 
+													 k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" 
+													 k-auto-bind="false" k-data-source="ListUnitKerja" />
+												</div>
+												<div class="grid_3" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">Alokasi Biaya Perjalanan Dinas</label>
+												</div>
+												<div class="grid_2" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												<div class="grid_1" >
+													<label c-label item="item"></label>
+												</div>
+											</div>
+											<div class="grid_12">
+												<div class="grid_1" >
+													<label c-label item="item"></label>
+												</div>
+												<div class="grid_2" >
+													<label c-label item="item"></label>
+												</div>
+												<div class="grid_3" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">Alokasi Biaya Rapat Kerja Dalam Kota</label>
+												</div>
+												<div class="grid_2" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												 
+												
+												
+											</div>
+											<div class="grid_12">
+												
+												
+												<div class="grid_1" >
+													<label c-label item="item"></label>
+												</div>
+												<div class="grid_2" >
+													<label c-label item="item"></label>
+												</div>
+												<div class="grid_3" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">Alokasi Biaya Rapat Kerja Luar Kota</label>
+												</div>
+												<div class="grid_2" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												 
+											</div>
+										</div>
+										
+									</div>
+									
+									<div class="grid_12" >
+										<div kendo-grid k-on-change="Select(data)" k-data-source="daftarpangkat" k-selectable="'row'" options="Gridpangkat">
+									</div>
+									<div class="grid_12" style="padding-top:20px">
+										<div class="grid_8">
+										<div class="grid_2">
+											<button class="c-button" ng-click="Save()">Simpan</button>
+										</div>
+										<!-- <div class="grid_2">
+											<button class="c-button" ng-click="print()">Hapus</button>
+										</div>
+										<div class="grid_2">
+											<button class="c-button" ng-click="print()">Batal</button>
+										</div> -->
+									</div>	
+									</div>
+								</div>
+							</div>
+						</md-content>
+					</md-tab>
+                        <md-tab label="Medical Check-up">
+                            <md-content class="md-padding">
+                                <div class="grid_12">
+                                	<div class="grid_12">
+										<div class="grid_12">
+											<div class="grid_12">
+												<div class="grid_1" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">Tahun</label>
+												</div>
+												<div class="grid_2" >
+													<input required style="width: 100%;" kendo-combo-box k-ng-model="selectedTahun" k-data-text-field="'id'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listTahun" />
+												</div>
+												
+											</div>
+											<div class="grid_12">
+												<div class="grid_1" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">Unit Kerja</label>
+												</div>
+												<div class="grid_2" >
+													<input style="width: 100%;" kendo-combo-box k-ng-model="item.mcheckupunitKerja" 
+													 k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" 
+													 k-auto-bind="false" k-data-source="ListUnitKerja" />
+												</div>
+												<div class="grid_2" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">Alokasi Biaya Medical Check-up</label>
+												</div>
+												<div class="grid_2" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												<div class="grid_1" >
+													<label c-label item="item"></label>
+												</div>
+											</div>
+											<div class="grid_12">
+												<div class="grid_1" >
+													<label c-label item="item"></label>
+												</div>
+												<div class="grid_2" >
+													 <label c-label item="item"></label>
+												</div>
+												<div class="grid_2" >
+													<label c-label item="item" style="margin: 6px 0 0 0;">Alokasi Biaya MCU Unit Resiko Tinggi</label>
+												</div>
+												<div class="grid_2" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												 
+												
+											</div>
+											<div class="grid_12">
+												<div class="grid_1" >
+													<label c-label item="item"></label>
+												</div>
+												<div class="grid_2" >
+													 <label c-label item="item"></label>
+												</div>
+												<div class="grid_2" >
+													<label c-label item="item"  style="margin: 6px 0 0 0;">Alokasi Biaya MCU Usia > 40</label>
+												</div>
+												<div class="grid_2" >
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												 
+												
+											</div>
+										</div>
+									
+									</div>
+									
+									<div class="grid_12" >
+										<div kendo-grid k-on-change="Select(data)" k-data-source="daftarjabatan" k-selectable="'row'" options="Gridjabatan">
+									</div>
+									<!-- <div class="grid_12" style="padding-top:20px">
+										<div class="grid_8">
+										<div class="grid_2">
+											<button class="c-button" ng-click="Save()">Simpan</button>
+										</div>
+										<div class="grid_2">
+											<button class="c-button" ng-click="print()">Hapus</button>
+										</div>
+										<div class="grid_2">
+											<button class="c-button" ng-click="print()">Batal</button>
+										</div>
+										</div>
+									</div> -->
+								</div>
+							</div>
+						</md-content>
+					</md-tab>
+					
+					</md-tabs>
+				</md-content>
+			</div>
+		</div>
+	</div>
+</div>
+

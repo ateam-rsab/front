@@ -1,0 +1,28 @@
+{
+	"model":{
+		"kodeKegiatan" : "",
+		"namaKegiatan":"",
+		"ketKegiatan":""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "kodeKegiatan",
+			"messagesRequired" : "",
+			"caption" : "Kode Kegiatan"
+		},{
+			"isNull" : "true",
+			"name" : "namaKegiatan",
+			"messagesRequired" : "",
+			"caption" : "Nama Kegiatan"
+		},{
+			"isNull" : "true",
+			"name" : "ketKegiatan",
+			"messagesRequired" : "",
+			"caption" : "Keterangan Kegiatan"
+		}
+
+	]
+}

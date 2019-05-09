@@ -1,0 +1,66 @@
+<div ng-controller="UsulanPemusnahanAssetCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Usulan Pemusnahan Asset'" disabled>
+			<div class="grid_12">
+				<div style="margin: 5px" class="grid_3">
+					<label c-label item="item" c-label-text="noUsulanPemusnahan"></label>
+					<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noUsulanPemusnahan"/>
+				</div>
+				<div style="margin: 5px" class="grid_3">
+					<label c-label item="item" c-label-text="tanggalPemusnahan"></label>
+					<input style="width:100%" kendo-date-picker k-ng-model="item.tanggalPemusnahan" k-max="now" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'"/>
+				</div>
+				<div style="margin: 5px" class="grid_3">
+					<label c-label item="item" c-label-text="namaRuangan"></label>
+					<input c-text-box type="input" class="k-textbox" ng-model="item.namaRuangan"/>
+				</div>
+				<div style="margin: 5px" class="grid_3">
+					<label c-label item="item" c-label-text="userPelapor"></label>
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.userPelapor" k-data-text-field="'user'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceUser" />
+				</div>
+			</div>
+			<div class="grid_12">
+				<div style="margin: 5px" class="grid_6">
+					<label c-label item="item" c-label-text="alasanPemusnahan"></label>
+					<input c-text-box type="input" class="k-textbox" ng-model="item.alasanPemusnahan"/>
+				</div>
+				<div style="margin: 5px" class="grid_6">
+					<label c-label item="item" c-label-text="keteranganPemusnahan"></label>
+					<input c-text-box type="input" class="k-textbox" ng-model="item.keteranganPemusnahan"/>
+				</div>
+			</div>
+			<div style="margin: 5px" class="grid_3">
+				<label c-label item="item">Ka. Ruangan</label>
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.kaRuangan" k-data-text-field="'ka'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceKaRuangan" />
+			</div>
+			<c-panel item="item" header="'Barang Yang Diusulkan'" disabled>
+				<div class="grid_12" ng-show="canEdit">
+					<div style="margin: 5px" class="grid_3">
+						<label c-label item="item" c-label-text="asalBarang"></label>
+						<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="dat.asalBarang"/>
+					</div>
+					<div style="margin: 5px" class="grid_3">
+						<label c-label item="item" c-label-text="ruangan"></label>
+						<input c-text-box type="input" class="k-textbox" ng-model="dat.ruangan"/>
+					</div>
+					<div style="margin: 5px" class="grid_3">
+						<label c-label item="item" c-label-text="namaBarang"></label>
+						<input c-text-box type="input" class="k-textbox" ng-model="dat.namaBarang"/>
+					</div>
+					<div style="margin: 5px" class="grid_3">
+						<label c-label item="item" c-label-text="jumlahPemusnahan"></label>
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="dat.jmlPemusnahan"/>
+					</div>
+				</div>
+				<div class="grid_12" style="margin-top: 10px;">
+					<div kendo-grid k-data-source="dataBarang" k-selectable="'row'" k-columns="columnBarang" k-ng-model="dat" ng-click="klik(dat,$index)">
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" ng-click="tambah()">+ Tambah Data</label>
+					</div>
+				</div>
+			</c-panel>
+		</c-panel>
+		<div ng-include="'../app/module/Shared/TemplateButtonSimpan'"></div>
+	</div>
+</div>

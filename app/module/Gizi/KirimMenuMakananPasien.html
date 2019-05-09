@@ -1,0 +1,80 @@
+<div ng-controller="KirimMenuMakananPasienCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Kirim Menu Makanan Pasien'">
+		<div class="grid_2">
+			<c-button ng-click="Cari()">
+			<span>Cari</span>
+		</div>
+		<div class="grid_1">
+			<label c-label item="item" c-label-text="tanggalPesan"></label>
+		</div>
+		<div class="grid_2">
+		<div class="grid_10">
+			<input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tanggalPesanAwal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+			</div>
+		<div class="grid_2"><label c-label item="item" c-label-text="s/d"></label> 
+		</div>			
+		</div>
+		<div class="grid_2">
+			<input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tanggalPesanAkhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+		</div>
+		<div class="grid_2"></div>
+		<div class="grid_1">
+			<label c-label item="item" c-label-text="tanggalKirim"></label>
+		</div>
+		<div class="grid_2">
+			<input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tanggalKirim" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+		</div>
+		<div class="panel panel-default container_12">
+				<div class="panel-heading" c-translate>Daftar Pasien</div>
+				<div class="panel-body">
+				<div kendo-grid k-data-source="daftarPasien" k-selectable="'row'" k-columns="columnPasien" style="margin-bottom: 20px">
+				</div>
+				<div kendo-grid k-data-source="daftarKeterangan" k-selectable="'row'" k-columns="columnKeterangan">
+				</div>
+		</div>
+		</div>
+		<div class="grid_12" style="margin-bottom: 10px">
+		<input type="checkbox" class="k-checkbox" name="pilihSemua" id="pilihSemua"  ng-click="()">
+					<label class="k-checkbox-label" c-label item="item" c-label-text="pilihSemua" for="pilihSemua"></label>
+		</div>
+		<div class="grid_9">
+			<div class="grid_4"> 
+			<c-button ng-click="ubahMenuGizi()">
+			<span>Ubah Menu Gizi</span>
+			</div>
+			<div class="grid_4"> 
+			<c-button ng-click="kirimMenuDiet()">
+			<span>Kirim Menu Diet</span>
+			</div>
+			<div class="grid_4"> 
+			<c-button ng-click="cetakEtiket()">
+			<span>Cetak Etiket</span>
+			</div>
+			<div class="grid_4"> 
+			<c-button ng-click="Hapus()">
+			<span>Hapus</span>
+			</div>
+			<div class="grid_4"> 
+			<c-button ng-click="Tutup()">
+			<span>Tutup</span>
+			</div>
+			<div class="grid_4"> 
+			<c-button ng-click="Cetak()">
+			<span>Cetak</span>
+			</div>
+			<div class="grid_4"> 
+			<c-button ng-click="cetakPerJenisDiet()">
+			<span>Cetak per Jenis Diet</span>
+			</div>
+		</div>
+		<div class="grid_3">
+			<div class="grid_12" ng-repeat="makananDiet in listMakananDiet" style="margin-bottom: 5px">
+	                    <input type="checkbox" class="k-checkbox" name="{{makananDiet.name}}" id="{{makananDiet.name}}" value="{{makananDiet.id}}" ng-click="cekArrMakananDiet(makananDiet.name)">
+	                    <label class="k-checkbox-label" for="{{makananDiet.name}}">{{makananDiet.name}}</label>
+	                </div>
+		</div>
+		</c-panel>
+	</div>
+</div>

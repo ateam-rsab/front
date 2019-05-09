@@ -1,0 +1,115 @@
+<div ng-controller="FormPermintaanMakananPasienDariRuangRawatCtrl">
+    <div class="panel panel-default panel-white">
+        <div class="panel-heading-white"><span class="title" c-translate>Order Gizi</span></div>
+        <div class="panel-body">
+            <div class="grid_12">
+                <div class="grid_12">
+                    <kendo-grid k-data-source="dataRow" k-sortable="'true'" k-columns="columnData"></kendo-grid>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="namaPemesan"></label>
+                        </div>
+                        <div class="grid_12">
+                            <input c-text-box type="input" ng-disabled="true" filter="'string'" class="k-textbox" ng-model="data.namaPemesan" />
+                        </div>
+                    </div>
+                    <div class="grid_4">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="tglPesan"></label>
+                        </div>
+                        <div class="grid_12">
+                            <input kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-mm-yyyy '" k-ng-model="data.tglPesan" style="width: 100%" />
+                        </div>
+                    </div>
+                    <div class="grid_4">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="jenisDiet"></label>
+                        </div>
+
+                        <div class="grid_12">
+                            <input style="width: 100%;" kendo-combo-box k-data-source="listJenisDiet" k-ng-model="data.jenisDiet" k-data-text-field="'jenisDiet'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" />
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="tipeMakanan"></label>
+                        </div>
+
+                        <div class="grid_12">
+                            <!--<input style="width: 100%;" kendo-combo-box k-data-source="listTipeMakanan" k-ng-model="item.tipeMakanan" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" />-->
+                            <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="data.tipeMakanan" />
+                        </div>
+                    </div>
+
+
+                    <div class="grid_4">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="namaMenu"></label>
+                        </div>
+
+                        <div class="grid_12">
+                            <input style="width: 100%;" kendo-combo-box k-data-source="listNamaMenu" k-ng-model="data.namaMenu" k-data-text-field="'namaProduk'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" />
+                        </div>
+                    </div>
+                    <div class="grid_4">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="jenisWaktu"></label>
+                        </div>
+
+                        <div class="grid_12">
+                            <input style="width: 100%;" kendo-combo-box k-data-source="listJenisWaktu" k-ng-model="data.jenisWaktu" k-data-text-field="'jenisWaktu'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" />
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_2" style="float:right">
+                        <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="addAllDataToRow">
+                            <span class="title">Tambah</span>
+                        </c-button>
+                    </div>
+                    <div class="grid_2" style="float:right">
+                        <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="resetAll">
+                            <span class="title">Batal</span>
+                        </c-button>
+                    </div>
+                </div>
+                <div class="grid_12" style="margin-bottom: 30px;">
+                    <div kendo-grid k-data-source="dataAllRow" k-selectable="row" k-columns="columnAllData" k-ng-model="modelKendoGrid">
+                    </div>
+                </div>
+
+                <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" ' style="margin-bottom:50px"></div>
+            </div>
+        </div>
+    </div>
+</div>
+        <!--<div class="grid_1" style="margin-top:10px">
+            <label c-label item="item" c-label-text="minum"></label>
+        </div>
+        <div class="grid_1" >
+            <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="data.minum" />
+        </div>
+        <div class="grid_1" style="margin-top:10px">
+            <label c-label item="item" c-label-text="frekuensi"></label>
+        </div>
+        <div class="grid_1" >
+            <input style="width: 100%;" kendo-combo-box k-data-source="listFrekuensi" k-ng-model="data.frekuensi" k-data-text-field="'reportDisplay'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" />
+        </div>
+        <div class="grid_1" style="margin-top:10px">
+            <label c-label item="item" c-label-text="volume"></label>
+        </div>
+        <div class="grid_1" >
+            <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="data.volume" />
+        </div>-->
+
+        <!--<div class="grid_4" style="float:right">
+            <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="add">
+                <span class="title">Perubahan Diet Pasien</span>
+            </c-button>
+        </div>-->
+
+        

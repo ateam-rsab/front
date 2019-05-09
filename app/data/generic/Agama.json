@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "kdProfile": "0",
+    "kdAgama": "1",
+    "agama": "Islam",
+    "reportDisplay": "Islam",
+    "qAgama": "8",
+    "kodeExternal": "01",
+    "namaExternal": "Islam",
+    "statusEnabled": "1"
+  },
+  {
+    "id": 2,
+    "kdProfile": "0",
+    "kdAgama": "2",
+    "agama": "Kristen",
+    "reportDisplay": "Kristen",
+    "qAgama": "9",
+    "kodeExternal": "02",
+    "namaExternal": "Kristen",
+    "statusEnabled": "1"
+  },
+  {
+    "id": 3,
+    "kdProfile": "0",
+    "kdAgama": "3",
+    "agama": "Katholik",
+    "reportDisplay": "Katholik",
+    "qAgama": "10",
+    "kodeExternal": "03",
+    "namaExternal": "Katholik",
+    "statusEnabled": "1"
+  },
+  {
+    "id": 4,
+    "kdProfile": "0",
+    "kdAgama": "5",
+    "agama": "Budha",
+    "reportDisplay": "Budha",
+    "qAgama": "12",
+    "kodeExternal": "05",
+    "namaExternal": "Budha",
+    "statusEnabled": "1"
+  },
+  {
+    "id": 5,
+    "kdProfile": "0",
+    "kdAgama": "6",
+    "agama": "Hindu",
+    "reportDisplay": "Hindu",
+    "qAgama": "13",
+    "kodeExternal": "1",
+    "namaExternal": "Hindu",
+    "statusEnabled": "1"
+  }
+]

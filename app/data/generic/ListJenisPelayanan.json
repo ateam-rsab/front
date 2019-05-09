@@ -1,0 +1,15 @@
+[
+	{  
+        "id":1,
+        "name":"Terapi Cairan"
+    },{
+        "id": 2,
+        "name": "Transfusi Darah"
+    },{
+        "id": 3,
+        "name": "Drip Obat"
+    },{
+        "id": 4,
+        "name": "Enteral"
+    }
+]

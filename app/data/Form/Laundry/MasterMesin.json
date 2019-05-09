@@ -1,0 +1,41 @@
+{
+	"model":{
+		"kodeMesin" : "",
+		"mesin" : "",
+		"kodeEksternal" : "",
+		"namaEksternal" : "",
+	   	"statusEnabled" : ""
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "kodeMesin",
+			"messagesRequired" : "",
+			"caption" : "Kode Mesin"
+		},
+		{
+			"isNull" : "true",
+			"name" : "mesin",
+			"messagesRequired" : "",
+			"caption" : "Mesin"
+		},
+		{
+			"isNull" : "true",
+			"name" : "kodeEksternal",
+			"messagesRequired" : "",
+			"caption" : "Kode Eksternal"
+		},
+		{
+			"isNull" : "true",
+			"name" : "namaEksternal",
+			"messagesRequired" : "",
+			"caption" : "Nama Eksternal"
+		},
+		{
+			"isNull" : "true",
+			"name" : "statusEnabled",
+			"messagesRequired" : "",
+			"caption" : "Status Enabled"
+		}
+	]
+}

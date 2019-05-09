@@ -1,0 +1,325 @@
+<style type="text/css">
+    .style-center {
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+    }
+
+    .style-right {
+        display: inline-block;
+        text-align: right;
+        width: 100%;
+    }
+
+    .style-left {
+        display: inline-block;
+        text-align: left;
+        width: 100%;
+    }
+    .k-treeview .k-item {
+        background-color: #f9f9f9 !important;
+    }
+
+    .k-checkbox-label:before {
+        margin: 1px 0px 0px 6px;
+    }
+</style>
+
+<div ng-show="dataVOloaded">
+    <!-- <div class="grid_12 headerBox">
+            <h1 style="color: white;"><b>Setting Login User</b></h1>
+        </div> -->        
+    <div class="grid_12">
+        <div ng-cloak>
+            <md-content>
+                <md-tabs md-dynamic-height md-border-bottom md-selected="myVar">
+                    <md-tab label="Riwayat Pengkajian ICU">
+                        <md-content class="md-padding">
+                            <div class="grid_12">
+                               <!--  <div class="grid_12">
+                                    <div kendo-grid k-data-source="sourcePAP" k-selectable="'row'" options="mainGridOptions" k-ng-model="current"
+                                        ng-click="kl(current)"></div>
+                                </div> -->
+                                <div class="grid_12 borderBox">
+                                    <kendo-grid  id="Grid"  data-source="dataDaftar" options="columnDaftar"
+                                        k-selectable="'row'" 
+                                        k-sortable="'true'"
+                                        k-resizable="'true'"
+                                        k-ng-model="dataSelected"
+                                        ng-click="klikGrid(dataSelected)">
+                                    </kendo-grid>
+                                    
+                                </div>
+                                <div class="grid_12">
+                                    <div class="grid_6"></div>
+                                    <div class="grid_3">
+                                        <button class="c-button" ng-click="Lihat()" style="font-size:20px">Lihat</button>
+                                    </div>
+                                    <div class="grid_3">
+                                        <button class="c-button" ng-click="create()" style="font-size:20px">Buat Baru</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Pengkajian Detail ICU">
+                        <md-content class="md-padding">
+                            <div class="grid_12">
+                                <!-- <div class="grid_3" >
+                                    <div class="grid_12" >
+                                        <div class="grid_12">
+                                            <div id="treeview"
+                                            kendo-tree-view="tree" 
+                                            k-data-source="treeSourceBedah" 
+                                            options="mainTreeViewBedahOption" 
+                                            ng-model="treeView"
+                                            ng-click="klikBedah(tree)">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid_9" >
+                                    <div ui-view></div>
+                                </div> -->
+                                <div class="grid_12">
+                                    <div class="grid_12 headerBox">
+                                        <p>FORMULIR OBSERVASI HARIAN TERINTEGRASI INTENSIVE CARE UNIT</p>
+                                    </div>
+                                    <div class="grid_12 borderBox">
+
+                                        <div id="kGrid" 
+                                            kendo-grid k-data-source="data1"                                             
+                                            k-selectable="'row'"
+                                            k-groupable="'true'" 
+                                            options="columnData1"
+                                            k-pageable="'true'" 
+                                            k-sortable="'true'" 
+                                            k-ng-model="dataSelected">
+                                        </div>
+
+                                       <!--  <kendo-grid  id="kGrid"  data-source="data1" options="columnData1"
+                                            k-selectable="'row'" 
+                                            k-resizable="'true'"
+                                            k-groupable="'true'" 
+                                            k-ng-model="data1Selected"
+                                            ng-click="klikGrid1(data1Selected)">                                                
+                                        </kendo-grid>        -->                                 
+                                    </div>
+                                </div>
+                                <div class="grid_3">
+                                    <div class="grid_12" >
+                                        <div class="grid_12 headerBox">
+                                            <p>GAMB. EKG</p>
+                                        </div>
+                                        <div class="grid_1">
+                                        </div>
+                                        <div class="grid_11" >
+                                            <p>NSR - Normal Sinus Thythim</p>
+                                            <p style="margin-top: -10px;">At. Fib - Atrial Fibrilation</p>
+                                            <p style="margin-top: -10px;">At.Fit - Atrial Flutter</p>
+                                            <p style="margin-top: -10px;">PAC - Premature Atrial Contraction</p>
+                                            <p style="margin-top: -10px;">PVC - Premature Ventricular Contraction</p>
+                                            <p style="margin-top: -10px;">1º HB - First Degree Heart Block</p>
+                                            <p style="margin-top: -10px;">2º HB - Second Degree Heart Block</p>
+                                            <p style="margin-top: -10px;">3º HB - Third Degree Heart Block</p>
+                                            <p style="margin-top: -10px;">SVT - Supra Ventricular Tachycardia - PAT</p>
+                                            <p style="margin-top: -10px;">JR - Junctional Rhtym - Nodal Rhtym</p>
+                                            <p style="margin-top: -10px;">VT - Ventricular Tachycardia</p>
+                                            <p style="margin-top: -10px;">V-Fib - Ventricular Fibrilation</p>
+                                            <p style="margin-top: -10px;">CAP -  Captured</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid_3">
+                                    <div class="grid_12" >
+                                        <div class="grid_12 headerBox">
+                                            <p>TINGKAT KESADARAN</p>
+                                        </div>
+                                        <div class="grid_1">
+                                        </div>
+                                        <div class="grid_11" >
+                                            <p>1. COMPOSMENTHYS : Beraksi segera dengan orientasi sempurna</p>
+                                            <p style="margin-top: -10px;">2. APATIS : Terlihat mengantuk tetapi mudah dibangunkan dan reaksi penglihatan dan perabaan normal.</p>
+                                            <p style="margin-top: -10px;">3. SONMOLENT : Dapat dibangunkan bila dirangsang dapat disuruh dan menjawab pertanyaan. Bila rangsanan berhenti penderita tidur lagi.</p>
+                                            <p style="margin-top: -10px;">4. SOPOR : Dapat membangunkan bila di rangsang dengan kasar dan terus-menerus.</p>
+                                            <p style="margin-top: -10px;">5. SOPOROCOMA : Reflex motoris terjadi hanya bila di rangsang dengan rangsangan nyeri</p>
+                                            <p style="margin-top: -10px;">6. COMA : Tidak ada reflex motoris sekalipun dengan perangsangan nyeri</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid_2">
+                                    <div class="grid_12" >
+                                        <div class="grid_12 headerBox">
+                                            <p>GLASGOW CDMA SCALE</p>
+                                        </div>
+                                       <!--  <div class="grid_1">
+                                        </div> -->
+                                        <div class="grid_12" style="margin-top: 4px">
+
+                                           <!--  <div kendo-grid id="grid" k-groupable="'true'"  k-ng-model="item"
+                                                k-data-source="dataGCS" k-selectable="'row'" k-sortable="'true'"
+                                                options="ColumnGCS" ng-click="klikGrid(item)">
+                                            </div> -->
+                                             <div kendo-grid id="grid" 
+                                                k-data-source="GridPasien"
+                                                options="ColumnPasien"
+                                                class="max-height">
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid_2">
+                                    <div class="grid_12" >
+                                        <div class="grid_12 headerBox">
+                                            <p>MACAM INFUS</p>
+                                        </div>
+                                       <!--  <div class="grid_1">
+                                        </div> -->
+                                        <div class="grid_12" style="margin-top: 4px">
+
+                                            <div kendo-grid id="grid"
+                                                k-data-source="dataInfus" 
+                                                options="ColumnInfus" 
+                                                class="max-height">
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid_2">
+                                    <div class="grid_12" >
+                                        <div class="grid_12 headerBox">
+                                            <p>JENIS VENT</p>
+                                        </div>
+                                       <!--  <div class="grid_1">
+                                        </div> -->
+                                        <div class="grid_12" style="margin-top: 4px">
+
+                                            <div kendo-grid id="grid" 
+                                                k-data-source="dataJenisVent"
+                                                options="ColumnJenisVent"
+                                                class="max-height">
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid_12">
+                                    <div class="grid_3" style="float:right">
+                                        <c-button ng-show="!isLoading" class="success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" is-validate ng-click="simpanERM()">
+                                            <span class="title">Simpan</span>
+                                        </c-button>
+                                    </div>
+
+                                    <div class="grid_3" style="float:right">
+                                        <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" class="cancel" ng-click="BatalEMR()">
+                                            <span class="title">Batal</span>
+                                        </c-button>
+                                    </div>
+                                </div>
+                        </md-content>
+                    </md-tab>
+                </md-tabs>
+            </md-content>            
+        </div>
+    </div>
+    <div class="grid_12" style="margin-top:60px">
+        <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+    </div>
+    <!-- Pop Up End Pop Up Detail Peserta -->
+    <div kendo-window="PopUpDetailPeserta" k-title="'Input Fromulir Observasi Harian'" k-width="800" k-visible="false" k-on-open="win2visible = true" k-on-close="win2visible = false">
+        <div class="panel panel-default container_12" style="padding: 0px 10px;">
+            <div class="grid_12">
+                <div class="grid_12" ng-show="SistoleChart">
+                    <div class="grid_6">
+                        <img src="images/Simbol_Sistole.jpg">
+                    </div>
+                    <div class="grid_6">
+                        <div class="grid_12">
+                            <div class="grid_12">
+                                <label c-label item="item">Group</label>
+                            </div>
+
+                            <div class="grid_12">
+                                <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.GroupHeader" disabled/>
+                            </div>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_12">
+                                <label c-label item="item">Deskripsi</label>
+                            </div>
+
+                            <div class="grid_12">
+                                <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.Deskripsi" disabled/>
+                            </div>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_12">
+                                <label c-label item="item">Jam Input</label>
+                            </div>
+
+                            <div class="grid_12">
+                                <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.JamInput" disabled/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_12" ng-show="NonSistoleChart">
+                     <div class="grid_4">
+                        <div class="grid_12">
+                            <label c-label item="item">Group</label>
+                        </div>
+
+                        <div class="grid_12">
+                            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.GroupHeader" disabled/>
+                        </div>
+                    </div>
+                    <div class="grid_4">
+                        <div class="grid_12">
+                            <label c-label item="item">Deskripsi</label>
+                        </div>
+
+                        <div class="grid_12">
+                            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.Deskripsi" disabled/>
+                        </div>
+                    </div>
+                    <div class="grid_4">
+                        <div class="grid_12">
+                            <label c-label item="item">Jam Input</label>
+                        </div>
+
+                        <div class="grid_12">
+                            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.JamInput" disabled/>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+            <div class="grid_12">
+                <div class="grid_12">
+                    <div class="grid_12">
+                        <label c-label item="item">Isian</label>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="grid_12">
+                        <textarea required class="k-textbox" style="height: 76px; width: 100%; resize: none; margin-top: 5px" ng-model="item.Isian"></textarea>
+                    </div>
+                </div>
+                <div class="grid_6" ng-show="vitalSigns">
+                    <div class="grid_12">
+                        <label c-label item="item">Vital Signs</label>
+                    </div>
+                    <div class="clear"></div>
+                   <div class="grid_12">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.VSigns" k-data-text-field="'simbol'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listVitalSigns" />
+                    </div>
+                </div>
+            </div>
+            <div class="pull-right" style="margin-top:4%">
+                <button class="k-button" ng-click="tambah()">Simpan</button>
+                <button class="k-button" ng-click="batal()">Batal</button>
+            </div>
+        </div>
+    </div> 
+    <!-- End Pop Up Detail Peserta -->    
+</div>

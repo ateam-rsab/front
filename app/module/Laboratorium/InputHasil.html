@@ -1,0 +1,77 @@
+<div ng-controller="LaboratoriumPemeriksaanCtrl">
+    <div ng-include='"../app/module/Shared/headerPasienPenunjang" '></div>
+    <div class="grid_12">
+   
+        <table class="table " ng-repeat="data in listOrders">
+            <tr class='success' ng-show="$index===0">
+                <th style="width:100px"><span c-translate>Nama Pemeriksan</span></th>
+                <th><span c-translate>Hasil</span></th>
+                <th ng-show="cito===false || cito ===undefined" style="width:200px"><span c-translate>Nilai Normal</span></th>
+                <th ng-show="cito===true" style="width:200px"><span c-translate></span></th>
+                <th style="width:100px"><span c-translate>Satuan</span></th>
+                <th style="width:200px"><span c-translate>Keterangan</span></th>
+            </tr>
+             
+            <tr ng-show="cito===true">
+                <td colspan="2">&nbsp;</td>
+                <td rowspan="500" style="width:100px" ng-show="cito===true">
+                    <div class="grid_12">
+                        <div class="grid_6 choice-in-table" ng-repeat="data in choice" ng-click="setData(data)">
+                            {{data}}
+                        </div>
+                    </div>
+                </td>
+            </tr>
+           
+            <tr>
+                <th colspan="5" style="text-align:left">{{data[0].jenisPeriksa}}</th>
+            </tr>
+            <tbody ng-repeat="subData in data">
+                
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;{{subData.namaProduk}} </td>
+                    <td>
+
+                        <input ng-class="{error:!subData.isNormal}" style="width:80%" id="{{subData.uuid}}" c-text-box type="input" class="k-textbox" ng-focus="onFocus(subData)" ng-blur="onBlur(subData)" ng-model="subData.detail.hasil" />
+                        <span ng-if="subData.nilaiNormal === ''">
+                        // Some placeholder
+                        </span>
+                        <span ng-if="subData.nilaiNormal !== ''">
+            <!--                         <input style="width: 100%;" id={{subData.uuid}} kendo-combo-box k-data-source="listPersalinan" ng-focus="onFocus(subData)" k-ng-model="subData.detail.hasil" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="" />
+                                    </span> -->
+
+            <!--                         <i ng-click="showDetail(subData)" style="cursor:pointer;color: black;float: right;top: 0;position: absolute;right: 0;margin-top: 15px;margin-right: 10px;" class="fa fa-search-plus fa-2x" aria-hidden="true"></i> -->
+                    </td>
+                    <td ng-show="cito===false || cito ===undefined">
+                        <span>{{subData.nilaiNormal}}</span>
+                    </td>
+                    <td ng-show="cito===true ">
+                        <div class="grid_12" ng-show="subData.nilaiNormal===''">
+                            <div class="grid_6 choice-in-table" ng-repeat="data in choice" ng-click="subData.detail.hasil = (data)">
+                                <p ng-bind-html="data"></p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>{{subData.satuanStandar.satuanStandar}}</td>
+                    <td><input c-text-box type="input" class="k-textbox" ng-model="subData.detail.comment" /></td>
+                </tr>
+                <tr ng-show='subData.isDetail ===true' ng-dblclick="subData.isDetail=false">
+                    <td colspan="10">
+                        <div style="border: 1px solid gray;padding: 5px;width:100px" ng-repeat="subDetailData in subData.details">
+                            <b style="display:block;text-align:center">{{subDetailData.tgl|date:'dd-MM-yy'}}</b> nilai : {{subDetailData.nilai}}
+                        </div>
+                    </td>
+
+                </tr>
+
+
+            </tbody>
+        </table>
+
+    </div>
+    <div class="grid_11">
+        <label c-label item="item" c-label-text="Keterangan"></label>
+        <textarea ng-model="item.keteranganLainnya" style="width: 100%; height: 80px;"></textarea>
+    </div>
+    <div ng-include='"../app/module/Shared/TemplateButtonSimpanNotFixed"'></div>
+</div>

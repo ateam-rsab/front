@@ -1,0 +1,128 @@
+<div ng-controller="InputRekomendasiHTACtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Input Rekomendasi HTA'"disabled>
+		<div class="grid_6">
+		<div class="panel panel-default container_12">
+	<!--		<div class="panel-heading" c-translate>Periode</div> -->
+	<!--		<div class="panel-body"> -->
+	
+           
+					
+	       
+			
+			
+			
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Judul Review"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaPelatihan" />
+			</div>
+			
+			</div>
+			<div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Nama Pengusul"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaPelatihan" />
+			</div>
+			
+			</div>
+			<div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Unit Kerja"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.unitKerja" k-data-text-field="'keterangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="Listpublikasi" />
+			</div>
+			
+			</div>
+			
+			
+			
+			
+				
+		   </div>
+		   </div>
+<!--		   </div>  -->
+           <div class="grid_6">	
+		   
+		 
+			
+			
+			<div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label>Tanggal Rekomendasi HTA</label>
+			</div>
+			<div class="grid_8">
+				<input kendo-date-picker k-ng-model="item.tanggalSelesai" k-max ="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+			</div>
+			
+			</div>
+			
+				<div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label>Rekomendasi HTA</label>
+			</div>
+			<div class="grid_8">
+				 <textarea ng-disabled="isDisable" ng-model="item.alamat" style="width: 99%; height: 80px;"></textarea>
+			</div>
+			
+			</div>
+			
+				
+		   
+			
+			
+			
+			
+			
+			
+			
+			
+
+		</div>
+	
+		
+	
+		<div class="grid_12">
+				<kendo-grid  k-data-source="daftarBahanLinen" k-pageable="true" k-selectable="'row'" k-columns="columnLaporanUjiHasil"  style="font-size: small;">
+            	</kendo-grid>
+					
+			</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		</c-panel>
+			<div class="grid_12">
+							<div class="grid_8" style="float:left">
+							
+							<div class="grid_2" style="margin-top: 25px">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate click="Cancel">
+                					<span class="title">Batal</span></button>
+							</div>
+							<div class="grid_2 " style="margin-top: 25px ">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Simpan</span>
+									</button>
+							</div>
+							<div class="grid_2 " style="margin-top: 25px ">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Cetak</span>
+									</button>
+							</div>
+							
+							</div>
+						</div>
+		</div>
+	</div>
+</div>
+

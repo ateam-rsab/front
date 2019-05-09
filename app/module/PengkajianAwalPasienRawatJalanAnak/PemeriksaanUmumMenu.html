@@ -1,0 +1,31 @@
+<div class="grid_12">
+    <div class="breadcrum" style='margin-top: 0px;'>
+        <div class="grid_2">
+            <a class="n1" ng-class='{warning:flagPernafasan.status===false}' href="#/Dashboard/Pasien/PengkajianMedis/{{noCM}}/{{tanggal}}/{{noRec}}/{noRecSOAP}/{noRecPasienDaftar}/Pemeriksaan/Pernafasan">Pernafasan</a>
+        </div>
+        <div class="grid_2">
+            <a class="n1" ng-class='{warning:flagSirkulasi.status===false}' href="#/Dashboard/Pasien/PengkajianMedis/{{noCM}}/{{tanggal}}/{{noRec}}/{noRecSOAP}/{noRecPasienDaftar}/Pemeriksaan/Sirkulasi">Sirkulasi</a>
+        </div>
+        <div class="grid_2">
+            <a class="n1" ng-class='{warning:flagNeurologi.status===false}' href="#/Dashboard/Pasien/PengkajianMedis/{{noCM}}/{{tanggal}}/{{noRec}}/{noRecSOAP}/{noRecPasienDaftar}/Pemeriksaan/Neurologi">Neurologi</a>
+        </div>
+        <div class="grid_2">
+            <a class="n1" ng-class='{warning:flagGastrointestinali.status===false}' href="#/Dashboard/Pasien/PengkajianMedis/{{noCM}}/{{tanggal}}/{{noRec}}/{noRecSOAP}/{noRecPasienDaftar}/Pemeriksaan/Gastrointestinal">Gastrointestinal</a>
+        </div>
+        <div class="grid_2">
+            <a class="n1" ng-class='{warning:flagEliminasi.status===false}' href="#/Dashboard/Pasien/PengkajianMedis/{{noCM}}/{{tanggal}}/{{noRec}}/{noRecSOAP}/{noRecPasienDaftar}/Pemeriksaan/Eliminasi">Eliminasi</a>
+        </div>
+        <div class="grid_2">    
+            <a class="n1" ng-class='{warning:flagIntegumen.status===false}' href="#/Dashboard/Pasien/PengkajianMedis/{{noCM}}/{{tanggal}}/{{noRec}}/{noRecSOAP}/{noRecPasienDaftar}/Pemeriksaan/Integumen">Integumen</a>
+        </div>
+        <!--<div class="grid_2">
+            <a class="n1" ng-class='{warning:flagMuskuloskeletal.status===false}' href="#/Dashboard/Pasien/PengkajianMedis/{{noCM}}/{{tanggal}}/{{noRec}}/{noRecSOAP}/{noRecPasienDaftar}/Pemeriksaan/Muskuloskeletal/">Muskuloskeletal</a>
+        </div>-->
+        <div class="grid_2">
+            <a class="n1" ng-class='{warning:flagGenatalia.status===false}' href="#/Dashboard/Pasien/PengkajianMedis/{{noCM}}/{{tanggal}}/{{noRec}}/{noRecSOAP}/{noRecPasienDaftar}/Pemeriksaan/Genatalia">Genitalia</a>
+        </div>
+        <div class="grid_2" ng-show="isDokter">
+            <a current='dashboardpasien.Dokter' data-ng-click=" (GoTo('dashboardpasien.Dokter'))" ng-class="{disabled:listActive['Dokter'] ===false }" class="n1">Pemeriksaan Fisis</a>
+        </div>
+    </div>
+</div>

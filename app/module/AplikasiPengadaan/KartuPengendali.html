@@ -1,0 +1,105 @@
+<div ng-controller="KartuPengendaliCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel class="panel-heading-white" item="item" header="'PembuatanPengajuanUsulanBarangDanJasa'" disabled>
+		<!-- <div class="grid_6" style="min-height:40px;">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="pengendali"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.pengendali.namaPengendali" disabled="" />
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="tanggalVerifikasi"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"/>
+			</div>
+		</div>
+		<div class="clear"></div> -->
+
+		<div class="grid_12">
+			<kendo-grid id="grid" k-data-source="dataSpek" k-selectable="'false'" k-columns="columnKartuPengendali" k-selectable="true" k-editable="true" k-ng-model="current" ng-click="kl(current)">
+            </kendo-grid>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_6">
+			<br/>
+			<div class="grid_4">
+				<label c-label class="label-aja" item="item" c-label-text="namaPaketPengadaan"></label>
+			</div>
+			<div class="grid_8">
+				<input id="namaPaketPengadaan" name="namaPaketPengadaan" type="text" class="k-textbox" ng-model="item.paketPengadaan" style="width:100%" k-auto-bind="false" />
+			</div>
+			<div class="grid_4">
+				<label c-label class="label-aja" item="item" c-label-text="namaAkun"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.mataAnggaran" k-data-text-field="'namaMataAnggaran'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAkun" />
+			</div>
+			<div class="grid_4">
+				<label c-label class="label-aja" item="item" c-label-text="sumberDana"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.asalProduk" k-data-text-field="'asalProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listSumberDana" k-column-menu="true"/>
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="tanggalVerifikasi" style="padding-top:10px"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width:100%" kendo-date-picker k-ng-model="item.tanggal" placeholder="now" k-format="'dd-MM-yyyy'"/>
+			</div>
+			<br/>
+			<div class="grid_4">
+				<label c-label class="label-aja" item="item" c-label-text="keterangan"></label>
+			</div>
+			<div class="grid_8">
+				<textarea rows="8" c-text-box type="input" class="k-textbox label-aja" ng-model="item.keterangan"/>
+			</div>
+		</div>
+		<div class="grid_6">
+			<br/>
+			<div class="grid_4">
+				<label c-label class="label-aja" item="item" c-label-text="jumlah"></label>
+			</div>
+			<div class="grid_8">
+				 <input c-text-box style="text-align:right" for="jumlah" class="k-textbox" disabled ng-model="items.totalSub" />
+			</div>
+			<div class="grid_4">
+				<label c-label class="label-aja" item="item">PPn (10%)</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box style="text-align:right" type="input" for="ppn" class="k-textbox" ng-model="items.ppn" disabled/>
+			</div>
+			<div class="grid_4">
+				<label c-label class="label-aja" item="item" c-label-text="total"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box style="text-align:right" type="input" filter="'varchar'" class="k-textbox" ng-model="items.totalAkhir" disabled/>
+			</div>
+			<div class="grid_4">
+				<label c-label class="label-aja" item="item" c-label-text="pembulatan"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box style="text-align:right" type="input" filter="'varchar'" class="k-textbox" ng-model="items.pembulatan" disabled/>
+			</div>
+
+			<div class="grid_4"></div>
+
+			<div class="grid_4">
+				<button class="c-button" ng-click="tambah()">Buat Pengajuan Usulan</button>
+			</div>
+			<div class="grid_4">
+				<button class="c-button" ng-click="batal()">Kembali</button>
+			</div>
+		</div>
+		</c-panel>
+	</div>
+</div>
+
+<style>
+.label-aja {
+	padding-top:12px;font-size:13px;font-weight:bold;
+	height:22px;
+}
+</style>

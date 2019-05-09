@@ -1,0 +1,162 @@
+<div class="panel panel-default">
+    <div class="panel-heading"><span c-translate>Rekam Medis Pasien</span>
+        <span class="icon fa fa-chevron-circle-down" ng-show="!isShowDetail" style="right:10px" ng-click="showDetail()"></span>
+        <span class="icon fa fa-chevron-circle-up" ng-show="isShowDetail" style="right:10px" ng-click="showDetail()"></span>
+    </div>
+    <div class="panel-body">
+        <div class="grid_12 animated no-padding">
+        <div class="grid_12">
+                        <div class="grid_2">
+                            <!-- <label c-label c-label-text="noRekamMedis"></label> -->
+                            <label c-label>No. Registrasi</label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasienDaftar.noRegistrasi" />
+
+                        </div>
+                        <div class="grid_2">
+                            <!-- <label c-label c-label-text="noRekamMedis"></label> -->
+                            <label c-label>No. Rekam Medis</label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.noCm" />
+
+                        </div>
+                        <div class="grid_2">
+                            <!-- <label c-label c-label-text="umurPasien"></label> -->
+                            <label c-label>Tanggal Masuk</label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.tglRegistrasi" />
+                        </div>
+                        <div class="grid_2">
+                            <!-- <label c-label c-label-text="namaLengkapPasien"></label> -->
+                            <label c-label>Nama Pasien</label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.namaPasien" />
+
+                        </div>
+                        <div class="grid_2">
+                            <!-- <label c-label c-label-text="umurPasien"></label> -->
+                            <label c-label>Umur Pasien</label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.umur" />
+
+                        </div>
+                        <div class="grid_2">
+                            <!-- <label c-label c-label-text="jenisKelamin"></label> -->
+                            <label c-label>Jenis Kelamin</label>
+                            <!--<c-info text='item.jenisKelamin.jenisKelamin' />-->
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.jenisKelamin" />
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_2">
+                            <!-- <label c-label c-label-text="statusPerkawinan"></label> -->
+                            <label c-label>Status Perkawinan</label>
+                            <!--<c-info text='item.statusPerkawinan.statusPerkawinan' /> </div><-->
+                            </-->
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.statusPerkawinan" />
+                        </div>
+                        <div class="grid_4">
+                            <!-- <label c-label c-label-text="alamatPasien"></label> -->
+                            <label c-label>Alamat Pasien</label>
+
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.alamat" />
+                        </div>
+                        <div class="grid_2">
+                            <!-- <label c-label c-label-text="umurPasien"></label> -->
+                            <label c-label>Kelas</label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasienDaftar.kelas.namaKelas" />
+                        </div>
+                        <div class="grid_2">
+                            <!-- <label c-label c-label-text="umurPasien"></label> -->
+                            <label c-label>Ruangan</label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.ruangan.namaRuangan" />
+                        </div>
+                        <div class="grid_2">
+                            <!-- <label c-label c-label-text="umurPasien"></label> -->
+                            <label c-label>No Kamar - No Bed</label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.noKamar" />
+                        </div>
+                        
+                    </div>
+            
+                <div class="grid_12" ng-show="isShowDetail">
+                    <div class="grid_3">
+                        <!-- tglDaftar -->
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="Umur"></label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.umur" />
+                            <!--<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.pasien.tglDaftar" />-->
+                        </div>
+                    </div>
+                    <div class="grid_3">
+                        <!-- alamats -->
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="dokterOperator"></label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasienDaftar.dokterPenanggungJawab.namaLengkap" />
+                        </div>
+                    </div>
+                    <div class="grid_3">
+                        <!-- pekerjaan -->
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="Pembiayaan"></label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasienDaftar.kelompokPasien.kelompokPasien" />
+                            <!--<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.pasien.pekerjaan.pekerjaan" />-->
+                        </div>
+                    </div>
+                    <div class="grid_3">
+                        <!-- pekerjaan -->
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="Cito"></label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.displayCito" />
+                            <!--<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.pasien.pekerjaan.pekerjaan" />-->
+                        </div>
+                    </div>
+                    <div class="grid_3">
+                        <!-- alamats -->
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="nomorTeleponPasien"></label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.noTelepon" />
+                        </div>
+                    </div>
+                    <!--add_hanafi-->
+                    <div class="grid_3">
+                        <!-- asal ruangan -->
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="AsalRuangan"></label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasienDaftar.ruangan.namaRuangan" />
+                            <!--<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.pasien.pekerjaan.pekerjaan" />-->
+                        </div>
+                    </div>
+                    <div class="grid_3">
+                        <!-- asal ruangan -->
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="TeleponDokter"></label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pegawai.noTlp" />
+                            <!--<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.pasien.pekerjaan.pekerjaan" />-->
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <!--end-->
+                    <!-- pendidikan -->
+                    <div class="grid_6">
+                        <label c-label item="item" c-label-text="catatanKlinis"></label>
+                        <!--<input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.keluhan" />-->
+                        <textarea ng-enabled="'false'" ng-model="item.keluhan" style="width: 100%; height: 80px;"></textarea>
+                        <!--<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.pasien.pendidikan.pendidikan" />-->
+                    </div>
+
+                    <div class="grid_3">
+                        <label c-label item="item" c-label-text="keteranganLainnya"></label>
+                        <!--<input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.strukOrder.keteranganLainnya" />-->
+                        <textarea ng-enabled="'false'" ng-model="item.strukOrder.keteranganLainnya" style="width: 100%; height: 80px;"></textarea>
+                        <!--<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.pasien.pendidikan.pendidikan" />-->
+                    </div>
+
+                    <div class="grid_3">
+                        <label c-label item="item" c-label-text="Pesan Internal"></label>
+                        <!--<input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.strukOrder.keteranganLainnya" />-->
+                        <textarea ng-model="item.strukOrder.keteranganKeperluan" style="width: 100%; height: 43px;"></textarea>
+                        <c-button ng-show="!isLoading" class="success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" is-validate click="SimpanInternal">
+                            <span class="title">Simpan Pesan</span>
+                        </c-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

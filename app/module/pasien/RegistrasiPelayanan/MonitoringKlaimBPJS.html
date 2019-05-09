@@ -1,0 +1,49 @@
+<div class="grid_12">
+    <div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
+    <div class="panel panel-default panel-white">
+        <div class="panel-heading-white"><span class="title" c-translate>    Parameter Pencarian</span></div>
+        <div class="panel-body">
+            <div class="grid_4">
+                <div class="grid_12">
+                    <label c-label c-label-text="TanggalMasuk/Keluar"></label>
+                    <div class="grid_6">
+                        <input kendo-date-picker k-max='now' k-value='now' k-ng-model="item.from" placeholder="dd-mm-yyyy" k-format="'dd-MM-yyyy'" style="width: 100%"/>
+                    </div>
+                    <div class="grid_6">
+                        <input kendo-date-picker k-max='now' k-value='now' k-ng-model="item.until" placeholder="dd-mm-yyyy" k-format="'dd-MM-yyyy'" style="width: 100%"/>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4" ng-repeat="stat in listCari">
+                        <input type="radio" name="{{stat.name}}" id="{{stat.id}}" class="k-radio" ng-model="item.statusCari" ng-value="stat"> 
+                        <label class="k-radio-label" for="{{stat.id}}">{{stat.name}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_8">
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label c-label-text="kelasRawat"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.kelasRawat" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="kelompokPasiens"/>
+                    </div>
+                    <div class="grid_4">
+                        <label c-label c-label-text="jenisPelayanan"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPelayanan" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="jenisPelayanans"/>
+                    </div>
+                    <div class="grid_4">
+                        <label c-label c-label-text="Status"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.status" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="listStatus"/>
+                    </div>
+                </div>
+                <div class="grid_4 pull-right">
+                    <button class="c-button" ng-click="find()">CARI</button>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div id="grid" kendo-grid options="mainGridOptions" k-ng-model=current ng-click="kl(current)"></div>
+            <div id="details"></div>
+        </div>
+    </div>
+    <div ui-view></div>
+</div>

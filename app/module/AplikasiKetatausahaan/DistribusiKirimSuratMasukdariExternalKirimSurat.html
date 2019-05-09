@@ -1,0 +1,95 @@
+<div ng-controller="DistribusiKirimSuratMasukdariExternalKirimSuratCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Distribusi Kirim Surat Masukdari External (Kirim Surat)'">
+			<div class="grid_6">
+				<div class="grid_4" style="margin-top:10px">
+					<label c-label item="item" c-label-text="tanggalKirim"></label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%" kendo-date-picker value="now" k-max="now" k-ng-model="item.tanggal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+				</div>
+				<div class="grid_4" style="margin-top:10px">
+					<label c-label item="item" c-label-text="noKirim"></label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noKirim"/>
+				</div>
+				<div class="grid_4" style="margin-top:10px">
+					<label c-label item="item" c-label-text="ruanganPengirim"></label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganPengirim" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceRuangan" />
+				</div>
+				<div class="grid_4" style="margin-top:10px">
+					<label c-label item="item" c-label-text="pengirimSurat"></label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.pengirimSurat" k-data-text-field="'namaUser'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceNamaPengirim" />
+				</div>
+			</div>
+			<div class="grid_6">
+				<div class="grid_4" style="margin-top:10px">
+					<label c-label item="item" c-label-text="ruanganTujuan"></label>
+				</div> 
+				<div class="grid_8" >
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganPenerima" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceRuangan" />
+				</div>
+				<div class="grid_4" style="margin-top:10px">
+					<label c-label item="item" c-label-text="penerimaSurat"></label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.penerimaSurat" k-data-text-field="'namaUser'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceTujuanSurat" />
+				</div>
+			</div>
+			<div class="panel panel-default container_12" style="margin-top:20px">
+				<div class="panel-heading" c-translate>Data Surat Masuk Dari External</div>
+				<div class="panel-body">
+					<div class="grid_6">
+						<div class="grid_4" style="margin-top:10px">
+							<label c-label item="item" c-label-text="noSuratExternal"></label>
+						</div>
+						<div class="grid_8">
+							<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="distribusi.noDokumen_Intern" disabled="true" />
+						</div>
+						<div class="grid_4" style="margin-top:10px">
+							<label c-label item="item" c-label-text="tanggalSurat"></label>
+						</div>
+						<div class="grid_8">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="distribusi.tanggalSurat" disabled="true" />
+						</div>
+						<div class="grid_4" style="margin-top:10px">
+							<label c-label item="item" c-label-text="tujuanSurat"></label>
+						</div>
+						<div class="grid_8">
+							<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="distribusi.tujuanSurat" disabled="true" disabled />
+						</div>
+					</div>
+					<div class="grid_6">
+						<div class="grid_4" style="margin-top:10px">
+							<label c-label item="item" c-label-text="jenisSurat"></label>
+						</div>
+						<div class="grid_8">
+							<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="distribusi.jenisSurat" disabled="true" />
+						</div>
+						<div class="grid_4" style="margin-top:10px">
+							<label c-label item="item" c-label-text="lampiranPerihal"></label>
+						</div>
+						<div class="grid_8">
+							<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="distribusi.perihal" disabled="true" />
+						</div>
+						<div class="grid_4" style="margin-top:10px">
+							<label c-label item="item" c-label-text="keterangan"></label>
+						</div>
+						<div class="grid_8">
+							<textarea style="height: 90px" id="text_area_keterangan" c-text-box type="input" class="k-textbox" ng-model="distribusi.keteranganLainnya" disabled="true" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="grid_12" style="margin-top: 10px">
+				<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+			</div>
+		</c-panel>
+	</div>
+</div>

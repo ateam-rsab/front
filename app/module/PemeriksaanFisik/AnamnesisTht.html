@@ -1,0 +1,184 @@
+<div ng-controller="AnamnesisThtCtrl">
+    <div class="grid_12">
+        <div class="panel panel-default  ">
+            <div class="panel-heading" c-translate>Anamnesis THT</div>
+            <div class="panel-body">
+                <div class="grid_12">
+                    <!-- panel Skrining Gizi -->
+
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="item.telinga"></label>
+                        <!--<div class="grid_12" style="float:left">
+                        <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="displayTelinga" >
+                            <span class="title">Telinga</span>
+                        </c-button>
+                    </div>-->
+                    </div>
+                    <div class="grid_10">
+                        <div class="grid_12" ng-repeat="dataTelinga in item.telinga">
+                            <div class="grid_4">
+                                <label c-label item="item" c-label-text="{{dataTelinga.name}}"></label>
+                            </div>
+                            <div class="grid_4">
+                                <div class="grid_6" ng-repeat="stat in listNormalTidakNormal">
+                                    <input type="radio" name="{{item.telinga+dataTelinga.id+stat.name}}" id="{{item.telinga+dataTelinga.id+stat.name}}" class="k-radio" ng-model="dataTelinga.value" value="{{stat.value}}">
+                                    <label class="k-radio-label" for="{{item.telinga+dataTelinga.id+stat.name}}">{{stat.name}}</label>
+                                </div>
+                            </div>
+                            <div class="grid_4" ng-show="dataTelinga.value==='false'">
+                                <textarea c-text-area type="input" style="height: 40px" filter="'string'" class="k-textbox" ng-model="dataTelinga.catatan" placeholder="Keterangan" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="item.hidung"></label>
+                        <!--<div class="grid_12" style="float:left">
+                        <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="displayHidung" >
+                            <span class="title">Hidung</span>
+                        </c-button>
+                    </div>-->
+                    </div>
+                    <div class="grid_10">
+                        <div class="grid_12" ng-repeat="dataHidung in item.hidung">
+                            <div class="grid_4">
+                                <label c-label item="item" c-label-text="{{dataHidung.name}}"></label>
+                            </div>
+                            <div class="grid_4">
+                                <div class="grid_6" ng-repeat="stat in listNormalTidakNormal">
+                                    <input type="radio" name="{{item.hidung+dataHidung.id+stat.name}}" id="{{item.hidung+dataHidung.id+stat.name}}" class="k-radio" ng-model="dataHidung.value" value="{{stat.value}}">
+                                    <label class="k-radio-label" for="{{item.hidung+dataHidung.id+stat.name}}">{{stat.name}}</label>
+                                </div>
+                            </div>
+                            <div class="grid_4" ng-show="dataHidung.value==='false'">
+                                <textarea c-text-area type="input" style="height: 40px" filter="'string'" class="k-textbox" ng-model="dataHidung.catatan" placeholder="Keterangan"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="item.tenggorok"></label>
+                        <!--<div class="grid_12" style="float:left">
+                        <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="displayTenggorok" >
+                            <span class="title">Tenggorok</span>
+                        </c-button>
+                    </div>-->
+                    </div>
+                    <div class="grid_10">
+                        <div class="grid_12" ng-repeat="dataTenggorok in item.tenggorok">
+                            <div class="grid_4">
+                                <label c-label item="item" c-label-text="{{dataTenggorok.name}}"></label>
+                            </div>
+                            <div class="grid_4">
+                                <div class="grid_6" ng-repeat="stat in listNormalTidakNormal">
+                                    <input type="radio" name="{{item.tenggorok+dataTenggorok.id+stat.name}}" id="{{item.tenggorok+dataTenggorok.id+stat.name}}" class="k-radio" ng-model="dataTenggorok.value" value="{{stat.value}}">
+                                    <label class="k-radio-label" for="{{item.tenggorok+dataTenggorok.id+stat.name}}">{{stat.name}}</label>
+                                </div>
+                            </div>
+                            <div class="grid_4" ng-show="dataTenggorok.value==='false'">
+                                <textarea c-text-area type="input" style="height: 40px" filter="'string'" class="k-textbox" ng-model="dataTenggorok.catatan" placeholder="Keterangan"/>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="clear"></div>
+
+                    <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" ' style="margin-bottom:50px"></div>
+
+
+                </div>
+            </div>
+
+            <div class="panel-heading" c-translate>Pemeriksaan Fisik THT</div>
+            <div class="panel-body">
+                <div class="grid_12">
+                    <!-- panel Skrining Gizi -->
+
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="item.telinga"></label>
+                        <!--<div class="grid_12" style="float:left">
+                        <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="displayTelinga" >
+                            <span class="title">Telinga</span>
+                        </c-button>
+                    </div>-->
+                    </div>
+                    <div class="grid_10">
+                        <div class="grid_12" ng-repeat="dataTelingaPF in item.telingaPF">
+                            <div class="grid_4">
+                                <label c-label item="item" c-label-text="{{dataTelingaPF.name}}"></label>
+                            </div>
+                            <div class="grid_4">
+                                <div class="grid_6" ng-repeat="stat in listNormalTidakNormal">
+                                    <input type="radio" name="{{item.telingaPF+dataTelingaPF.id+stat.name}}" id="{{item.telingaPF+dataTelingaPF.id+stat.name}}" class="k-radio" ng-model="dataTelingaPF.value" value="{{stat.value}}">
+                                    <label class="k-radio-label" for="{{item.telingaPF+dataTelingaPF.id+stat.name}}">{{stat.name}}</label>
+                                </div>
+                            </div>
+                            <div class="grid_4" ng-show="dataTelingaPF.value==='false'">
+                                <textarea c-text-area type="input" style="height: 40px" filter="'string'" class="k-textbox" ng-model="dataTelingaPF.catatan" placeholder="Keterangan" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="item.hidung"></label>
+                        <!--<div class="grid_12" style="float:left">
+                        <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="displayHidung" >
+                            <span class="title">Hidung</span>
+                        </c-button>
+                    </div>-->
+                    </div>
+                    <div class="grid_10">
+                        <div class="grid_12" ng-repeat="dataHidungPF in item.hidungPF">
+                            <div class="grid_4">
+                                <label c-label item="item" c-label-text="{{dataHidungPF.name}}"></label>
+                            </div>
+                            <div class="grid_4">
+                                <div class="grid_6" ng-repeat="stat in listNormalTidakNormal">
+                                    <input type="radio" name="{{item.hidungPF+dataHidungPF.id+stat.name}}" id="{{item.hidungPF+dataHidungPF.id+stat.name}}" class="k-radio" ng-model="dataHidungPF.value" value="{{stat.value}}">
+                                    <label class="k-radio-label" for="{{item.hidungPF+dataHidungPF.id+stat.name}}">{{stat.name}}</label>
+                                </div>
+                            </div>
+                            <div class="grid_4" ng-show="dataHidungPF.value==='false'">
+                                <textarea c-text-area type="input" style="height: 40px" filter="'string'" class="k-textbox" ng-model="dataHidungPF.catatan" placeholder="Keterangan"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="item.tenggorok"></label>
+                        <!--<div class="grid_12" style="float:left">
+                        <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="displayTenggorok" >
+                            <span class="title">Tenggorok</span>
+                        </c-button>
+                    </div>-->
+                    </div>
+                    <div class="grid_10">
+                        <div class="grid_12" ng-repeat="dataTenggorokPF in item.tenggorokPF">
+                            <div class="grid_4">
+                                <label c-label item="item" c-label-text="{{dataTenggorokPF.name}}"></label>
+                            </div>
+                            <div class="grid_4">
+                                <div class="grid_6" ng-repeat="stat in listNormalTidakNormal">
+                                    <input type="radio" name="{{dataTenggorokPF.id+stat.name}}" id="{{dataTenggorokPF.id+stat.name}}" class="k-radio" ng-model="dataTenggorokPF.value" value="{{stat.value}}">
+                                    <label class="k-radio-label" for="{{dataTenggorokPF.id+stat.name}}">{{stat.name}}</label>
+                                </div>
+                            </div>
+                            <div class="grid_4" ng-show="dataTenggorokPF.value==='false'">
+                                <textarea c-text-area type="input" style="height: 40px" filter="'string'" class="k-textbox" ng-model="dataTenggorokPF.catatan" placeholder="Keterangan"/>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="clear"></div>
+
+                    <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" ' style="margin-bottom:50px"></div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

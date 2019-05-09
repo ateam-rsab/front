@@ -1,0 +1,28 @@
+{
+	"model":{
+		"kodeJenisBelanja" : "",
+		"namaJenisBelanja":"",
+		"ketJenisBelanja":""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "kodeJenisBelanja",
+			"messagesRequired" : "",
+			"caption" : "Kode Jenis Belanja"
+		},{
+			"isNull" : "true",
+			"name" : "namaJenisBelanja",
+			"messagesRequired" : "",
+			"caption" : "Nama Jenis Belanja"
+		},{
+			"isNull" : "true",
+			"name" : "ketJenisBelanja",
+			"messagesRequired" : "",
+			"caption" : "Keterangan Jenis Belanja"
+		}
+
+	]
+}

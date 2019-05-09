@@ -1,0 +1,74 @@
+<div>
+    <div class="panel panel-default container_12">
+        <div class="panel-heading"><label class='title' c-label item="item" c-label-text="Daftar Mapping Atasan Pegawai"></label></div>
+        <div class="panel-body">
+            <div class="grid_12">
+                <div class="grid_3">
+                    <label c-label c-label-text="NamaPegawai"></label>
+                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaPegawai" />
+                </div>
+                <div class="grid_3">
+                    <label c-label c-label-text="AtasanLangsung"></label>
+                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaAtasanLangsung" />
+                </div>
+                <div class="grid_3">
+                    <label c-label c-label-text="PejabatPenilai"></label>
+                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaAtasanPejabatPenilai" />
+                </div>
+                <div class="grid_1">
+                    <label c-label c-label-text=""></label>
+                    <em style="margin-top:6px;" ng-click='resetFilter()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="panel-body grid_12">
+                    <div kendo-grid id="gridAtasan" k-data-source="dataSource" options="gridMappingAtasan"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 
+    <div class="grid_12">
+        <div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
+    </div>
+    -->
+</div>
+<!-- popup konfirmasi perubahan data unit kerja / jabatan pegawai -->
+<div kendo-window="dialogPopup" k-title="'Update Required'" k-width="400" k-height="150" k-visible="false" k-on-close="customClicked()">
+    <p>{{notif}}</p>
+    <div class="clearfix">
+    <button class="k-button k-primary" ng-click="clickedPopup()" style="float:right;margin-top:4%">Ok</button>
+</div>
+<script type="text/x-kendo-template" id="kendo-popup-editor">
+	<div class="panel panel-default panel-white">
+        <div class="grid_12" style="margin-top:13px">
+            <label c-label c-label-text="NamaPegawai"></label>
+            <input name="namaPegawai" kendo-combo-box style="width:100%" data-bind="value: pegawai" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="true" data-validasiPegawai-msg="Pegawai tidak boleh kosong" k-data-source="listPegawai"/>
+            <!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai" k-data-text-field="'namaLengkap'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listPegawai" /> -->
+        </div>
+        <div class="grid_12" style="margin-top:13px">
+            <label c-label c-label-text="AtasanLangsung"></label>
+            <input name="atasanLangsung" kendo-combo-box style="width:100%" data-bind="value: atasanLangsung" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="true" data-validasiAtasan-msg="Atasan tidak boleh kosong" k-data-source="listPegawai"/>
+            <!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.atasanLangsung" k-data-text-field="'namaLengkap'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listPegawai" /> -->
+        </div>
+        <div class="grid_12" style="margin-top:13px">
+            <label c-label c-label-text="PejabatPenilai"></label>
+            <input name="atasanPejabatPenilai" kendo-combo-box style="width:100%" data-bind="value: atasanPejabatPenilai" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="true" k-data-source="listPegawai"/>
+            <!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.atasanPejabatPenilai" k-data-text-field="'namaLengkap'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listPegawai" /> -->
+        </div>
+	</div>
+</script>
+<style>
+    p {
+        font-size: 16px;
+        text-align: center;
+    }
+    .k-window-titlebar  {
+        background-color: rgb(214, 54, 33);
+        font-weight: 800;
+    }
+    .k-i-close {
+        display: none;
+    }
+</style>

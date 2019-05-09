@@ -1,0 +1,168 @@
+{
+	"model":{
+	    "kehamilanIni" : "",
+	    "usahaPenguguran" : "",
+	    "keadaanSekarang" : "",
+	    "anc" : "",
+	    "penyakitIbu" : "",
+	    "penyakitKehamilan" : "",
+	    "perawatanPutingSusu" : "",
+	    "kelainanPayudara" : "",
+	    "obatSelamaHamil" : "",
+	    "jamuSelamaHamil" : "",
+	    "obatMenyusui" : "",
+	    "jamuMenyusui" : "",
+	    "penyakitIbu" : "",
+	    "tempatPersalinan" : "",
+	    "caraLahir" : "",
+	    "keadaanBayi" : "",
+	    "skorApgar" : "",
+	    "jumlahBayi" : "",
+	    "beratLahir" : "",
+	    "panjangLahir" : "",
+	    "kelainanBawaan" : "",
+	    "rawatGabung" : "",
+	    "mulaiMenyusui" : "",
+	    "minumanBayi" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "kehamilanIni",
+			"messagesRequired" : "",
+			"caption" : "Kehamilan ini"
+		},
+		{
+			"isNull" : "true",
+			"name" : "usahaPenguguran",
+			"messagesRequired" : "",
+			"caption" : "Usaha Penguguran"
+		},
+		{
+			"isNull" : "true",
+			"name" : "keadaanSekarang",
+			"messagesRequired" : "",
+			"caption" : "Keadaan Sekarang"
+		},
+		{
+			"isNull" : "true",
+			"name" : "anc",
+			"messagesRequired" : "",
+			"caption" : "ANC"
+		},
+		{
+			"isNull" : "true",
+			"name" : "penyakitIbu",
+			"messagesRequired" : "",
+			"caption" : "Penyakit Ibu"
+		},
+		{
+			"isNull" : "true",
+			"name" : "penyakitKehamilan",
+			"messagesRequired" : "",
+			"caption" : "Penyakit Kehamilan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "perawatanPutingSusu",
+			"messagesRequired" : "",
+			"caption" : "Melakukan Perawatan Puting Susu"
+		},
+		{
+			"isNull" : "true",
+			"name" : "kelainanPayudara",
+			"messagesRequired" : "",
+			"caption" : "Kelainan Payudara"
+		},
+		{
+			"isNull" : "true",
+			"name" : "obatSelamaHamil",
+			"messagesRequired" : "",
+			"caption" : "Obat Selama Hamil"
+		},
+		{
+			"isNull" : "true",
+			"name" : "jamuSelamaHamil",
+			"messagesRequired" : "",
+			"caption" : "Jamu Selama Hamil"
+		},
+		{
+			"isNull" : "true",
+			"name" : "obatMenyusui",
+			"messagesRequired" : "",
+			"caption" : "Obat Untuk Kelancaran Menyusui"
+		},
+		{
+			"isNull" : "true",
+			"name" : "jamuMenyusui",
+			"messagesRequired" : "",
+			"caption" : "Jamu Untuk Kelancaran Menyusui"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tempatPersalinan",
+			"messagesRequired" : "",
+			"caption" : "Tempat Persalinan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "caraLahir",
+			"messagesRequired" : "",
+			"caption" : "Cara Lahir"
+		},
+		{
+			"isNull" : "true",
+			"name" : "keadaanBayi",
+			"messagesRequired" : "",
+			"caption" : "Keadaan Bayi"
+		},
+		{
+			"isNull" : "true",
+			"name" : "skorApgar",
+			"messagesRequired" : "",
+			"caption" : "Skor Apgar"
+		},
+		{
+			"isNull" : "true",
+			"name" : "jumlahBayi",
+			"messagesRequired" : "",
+			"caption" : "Jumlah Bayi"
+		},
+		{
+			"isNull" : "true",
+			"name" : "beratLahir",
+			"messagesRequired" : "",
+			"caption" : "Berat Lahir"
+		},
+		{
+			"isNull" : "true",
+			"name" : "panjangLahir",
+			"messagesRequired" : "",
+			"caption" : "Pajang Lahir"
+		},
+		{
+			"isNull" : "true",
+			"name" : "kelainanBawaan",
+			"messagesRequired" : "",
+			"caption" : "Kelainan Bawaan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "rawatGabung",
+			"messagesRequired" : "",
+			"caption" : "Rawat Gabung"
+		},
+		{
+			"isNull" : "true",
+			"name" : "mulaiMenyusui",
+			"messagesRequired" : "",
+			"caption" : "Mulai Menyusui"
+		},
+		{
+			"isNull" : "true",
+			"name" : "minumanBayi",
+			"messagesRequired" : "",
+			"caption" : "Minuman Bayi Selain ASI"
+		}
+  ]
+}

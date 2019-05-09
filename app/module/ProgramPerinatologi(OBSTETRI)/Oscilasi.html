@@ -1,0 +1,80 @@
+<div ng-controller="OscilasiCtrl">
+
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Oscilasi'">
+        <div class="panel-body">
+            <div class="grid_12">
+            <!-- form kiri -->
+                <div class="grid_6">
+                    <!--Frekuensi -->
+                    <div class="grid_12" style="margin-top:10px">
+                        <div class="grid_3">
+                            <label c-label item="item" c-label-text="Frekuensi"></label>
+                        </div>
+                        <div class="grid_6">
+                            <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.Frekuensi" />
+                        </div>
+                        <div class="grid_3">
+                            <label c-label item="item" c-label-text="dpm"></label>
+                        </div>
+                    </div>
+                    <!-- Amplitudo -->
+                    <div class="grid_12" style="margin-top:10px">
+                        <div class="grid_3">
+                            <label c-label item="item" c-label-text="Amplitudo"></label>
+                        </div>
+                        <div class="grid_6">
+                            <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.Amplitudo" />
+                        </div>
+                        <div class="grid_3">
+                            <label c-label item="item" c-label-text="dpm"></label>
+                        </div>
+                    </div>
+                </div>
+            <!-- form kanan -->
+                <div class="grid_6">
+                    <!-- Variabilitas  -->
+                   <div class="grid_12" style="margin-top:10px">
+                        <div class="grid_3">
+                            <label c-label item="item" c-label-text="Variabilitas"></label>
+                        </div>
+                        <div class="grid_9">
+                            <div class="grid_4" ng-repeat="stat in ListVariabilitas">
+                                <input type="radio" name="{{'Variabilitas' + stat.name}}" id="{{'Variabilitas' + stat.name}}" class="k-radio" ng-model="item.Variabilitas" value="{{stat.name}}">
+                                <label class="k-radio-label" for="{{'Variabilitas' + stat.name}}">{{stat.name}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sinusoid -->
+                    <div class="grid_12" style="margin-top:10px">
+                        <div class="grid_3">
+                            <label c-label item="item" c-label-text="Sinusoid"></label>
+                        </div>
+                        <div class="grid_9">
+                            <div class="grid_4" ng-repeat="stat in ListAkselerasi">
+                                <input type="radio" name="{{'Sinusoid' + stat.name}}" id="{{'Sinusoid' + stat.name}}" class="k-radio" ng-model="item.Sinusoid" value="{{stat.name}}">
+                                <label class="k-radio-label" for="{{'Sinusoid' + stat.name}}">{{stat.name}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </c-panel>
+        <!-- button -->
+        <div class="grid_12" style="margin-top:20px">
+            <div class="grid_6">
+            </div>
+            <div class="grid_3">
+                <c-button ng-click="" style="width:100% !important">
+                <span style="font-size:10!important">Sebelumnya</span>
+                </c-button>
+            </div>
+            <div class="grid_3">
+                <c-button ng-click="" style="width:100% !important">
+                <span style="font-size:10!important">Selanjutnya</span>
+                </c-button>
+            </div>
+        </div>
+    </div>
+</div>

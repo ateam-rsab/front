@@ -1,0 +1,89 @@
+<div ng-controller="ReservasiCariCtrl">
+
+	<div ng-show="dataVOloaded">
+		<div class="panel panel-default container_12">
+		
+        <div class="panel-heading" c-translate>Pencarian Data Anggota</div>
+		<div class="grid_6">
+		
+	<!--		<div class="panel-heading" c-translate>Periode</div> -->
+	<!--		<div class="panel-body"> -->
+	
+           
+					
+	       
+			
+			
+			
+			
+			
+			 
+			
+			
+			
+			
+			
+			
+			
+				
+		   </div>
+		   
+<!--		   </div>  -->
+           <div class="grid_6">	
+		   
+		  
+		    
+			
+		   
+			
+			
+			
+
+		</div>
+		
+		<div class="panel-body">
+				<div class="grid_9" >
+							
+							
+							
+							<div class="grid_3" style="margin-top: 10px">
+								<div class="grid_12" style="margin-left:5px">
+									
+								</div>
+								<div class="grid_12" style="margin-top:33px">
+										<label c-label item="item" c-label-text="Pencarian No Anggota / Nama"></label>
+								</div>
+							</div>
+							
+							<div class="grid_3" style="margin-top: 10px">
+								
+								<div class="grid_12" style="margin: 22px 0 0 -26px;">
+										<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.Nama" />
+								</div>
+							</div>
+							<div class="grid_2"  style="margin: 38px 0 0 -25px;">
+								<button class="c-button"  ng-click="cari()">
+								
+                            	CARI</button>
+							</div>
+						</div>
+						</div>
+	
+		<div class="grid_12">
+				<div data-kendo-grid="grid" k-ng-model="item" k-data-source="sourceOrder"  k-pageable="true" k-selectable="'row'" k-columns="columnLaporanUjiHasil"  style="font-size: small;">
+            	</div>
+					
+			</div>
+	
+		
+		
+		
+		
+		
+		
+		</div>
+			
+		</div>
+	</div>
+
+

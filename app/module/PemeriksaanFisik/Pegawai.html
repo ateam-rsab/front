@@ -1,0 +1,475 @@
+<div ng-controller="PegawaiCtrl">
+    <c-panel item="item" header="'Pegawai'">
+      
+		<div class="grid_4">
+		<div class="grid_12">
+	       <div class="grid_6" style="margin: 5px 0 0 0;">
+		   <label c-label item="item" c-label-text="NoId"></label>
+	    </div>
+		   <div class="grid_6" style="margin: 5px -10px 0 0">
+      <input c-text-box type="input" filter="'numeric'" class="k-textbox" id="txtTotalFx"  ng-model="item.id"  />
+		</div>
+		</div>
+		
+			<div class="grid_12">
+	       <div class="grid_6" style="margin: 5px 0 0 0;">
+		   <label c-label item="item" c-label-text="JenisPegawai"></label>
+	    </div>
+		    <div class="grid_6"  style="margin: 5px 0 0 0 ;">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.JenisPegawai"
+                               k-data-text-field="'name'"
+                               k-filter="'contains'"
+							   k-auto-bind="false"
+                               k-data-value-field="'id'"
+                               k-data-source="listJenisPegawai" />
+                    </div>
+		</div>
+		
+		<div class="grid_12">
+	       <div class="grid_6" style="margin: 5px 0 0 0;">
+		   <label c-label item="item" c-label-text="Gelar"></label>
+	    </div>
+		    <div class="grid_6"  style="margin: 5px 0 0 0 ;">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.Gelar"
+                               k-data-text-field="'name'"
+                               k-filter="'contains'"
+							   k-auto-bind="false"
+                               k-data-value-field="'id'"
+                               k-data-source="listGelar" />
+                    </div>
+		</div>
+		
+		
+		<div class="grid_12">
+	       <div class="grid_6" style="margin: 5px 0 0 0;">
+		   <label c-label item="item" c-label-text="NamaLengkap"></label>
+	    </div>
+		  <div class="grid_6" style="margin: 5px -10px 0 0">
+         <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaLengkap" />
+		</div>
+		</div>
+		
+		<div class="grid_12">
+	       <div class="grid_6" style="margin: 5px 0 0 0;">
+		   <label c-label item="item" c-label-text="NamaKeluarga"></label>
+	    </div>
+		   <div class="grid_6" style="margin: 5px -10px 0 0">
+         <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaKeluarga" />
+		</div>
+		</div>
+		
+		<div class="grid_12">
+	       <div class="grid_6" style="margin: 5px 0 0 0;">
+		   <label c-label item="item" c-label-text="NamaPanggilan"></label>
+	    </div>
+		<div class="grid_6" style="margin: 5px -10px 0 0">
+         <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPanggilan" />
+		</div>
+		</div>
+		
+		<div class="grid_12">
+	       <div class="grid_6" style="margin: 5px 0 0 0;">
+		   <label c-label item="item" c-label-text="JenisKelamin"></label>
+	    </div>
+		    <div class="grid_6"  style="margin: 5px 0 0 0 ;">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.jk"
+                               k-data-text-field="'jenisKelamin'"
+                               k-filter="'contains'"
+							   k-auto-bind="false"
+                               k-data-value-field="'id'"
+                               k-data-source="listkelamin" />
+                    </div>
+		</div>
+		
+		<div class="grid_12">
+	       <div class="grid_6" style="margin: 5px 0 0 0;">
+		   <label c-label item="item" c-label-text="TempatLahir"></label>
+	    </div>
+		  <div class="grid_6" style="margin: 5px -10px 0 0">
+         <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.TempatLahir" />
+		</div>
+		</div>
+		<div class="grid_12">
+	       <div class="grid_6" style="margin: 5px 0 0 0;">
+		   <label c-label item="item" c-label-text="TanggalLahir"></label>
+	    </div>
+		    <div class="grid_6" style="margin: 5px -10px 0 0">
+				 <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.TanggalLahir" k-data-text-field="'tanggallahir'" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+				</div> 
+		</div>
+		<div class="grid_12">
+	       <div class="grid_6" style="margin: 5px 0 0 0;">
+		   <label c-label item="item" c-label-text="TanggalMasuk"></label>
+	    </div>
+		     <div class="grid_6" style="margin: 5px -10px 0 0">
+				 <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.TanggalMasuk" k-data-text-field="'tanggallahir'" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+				</div> 
+		</div>
+		
+		
+		
+				<div class="clear"> </div>
+					
+				</div>
+				
+				<div class="grid_4">
+		<div class="grid_12">
+	       <div class="grid_6" style="margin: 5px 0 0 0;">
+		   <label c-label item="item" c-label-text="TanggalKeluar"></label>
+	    </div>
+		    <div class="grid_6" style="margin: 5px -10px 0 0">
+				 <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.TanggalKeluar" k-data-text-field="'tanggallahir'" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+				</div> 
+		</div>
+		
+		
+		<div class="grid_12">
+	       <div class="grid_6" style="margin: 5px 0 0 0;">
+		   <label c-label item="item" c-label-text="NIP"></label>
+	    </div>
+			<div class="grid_6" style="margin: 5px -10px 0 0">
+         <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.Nip" />
+		</div>
+		   
+		</div>
+		
+		<div class="grid_12">
+	       <div class="grid_6" style="margin: 5px 0 0 0;">
+		   <label c-label item="item" c-label-text="PangkatGolongan"></label>
+	    </div>
+		    <div class="grid_4"  style="margin: 5px 0 0 0 ;">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.Pangkat"
+                               k-data-text-field="'name'"
+                               k-filter="'contains'"
+							   k-auto-bind="false"
+                               k-data-value-field="'id'"
+                               k-data-source="listPangkat" />
+                    </div>
+		<div class="grid_2" style="margin: 5px 0 0 5px">
+         <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.golongan" />
+		</div>
+		</div>
+		
+		
+		<div class="grid_12">
+	       <div class="grid_6" style="margin: 5px 0 0 0;">
+		   <label c-label item="item" c-label-text="KualifikasiPendidikan"></label>
+	    </div>
+		    <div class="grid_6"  style="margin: 5px 0 0 0 ;">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.Kualifikasi"
+                               k-data-text-field="'pendidikan'"
+                               k-filter="'contains'"
+							   k-auto-bind="false"
+                               k-data-value-field="'id'"
+                               k-data-source="listPendidikan " />
+                    </div>
+		</div>
+		
+		<div class="grid_12">
+	       <div class="grid_6" style="margin: 5px 0 0 0;">
+		   <label c-label item="item" c-label-text="Jabatan"></label>
+	    </div>
+		    <div class="grid_6"  style="margin: 5px 0 0 0 ;">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.Jabatan"
+                               k-data-text-field="'namaJabatan'"
+                               k-filter="'contains'"
+							   k-auto-bind="false"
+                               k-data-value-field="'id'"
+                               k-data-source="listjabatan" />
+                    </div>
+		</div>
+		
+		<div class="grid_12">
+	       <div class="grid_6" style="margin: 5px 0 0 0;">
+		   <label c-label item="item" c-label-text="JenjangJabatan"></label>
+	    </div>
+		    <div class="grid_6"  style="margin: 5px 0 0 0 ;">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.JenjangJabatan"
+                               k-data-text-field="'name'"
+                               k-filter="'contains'"
+							   k-auto-bind="false"
+                               k-data-value-field="'id'"
+                               k-data-source="listJenjang " />
+                    </div>
+		</div>
+		
+		<div class="grid_12">
+	       <div class="grid_6" style="margin: 5px 0 0 0;">
+		   <label c-label item="item" c-label-text="Eselon"></label>
+	    </div>
+		    <div class="grid_6"  style="margin: 5px 0 0 0 ;">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.Eselon"
+                               k-data-text-field="'eselon'"
+                               k-filter="'contains'"
+							   k-auto-bind="false"
+                               k-data-value-field="'id'"
+                               k-data-source="listEselon " />
+                    </div>
+		</div>
+		<div class="grid_12">
+	       <div class="grid_6" style="margin: 5px 0 0 0;">
+		   <label c-label item="item" c-label-text="TipePegawai"></label>
+	    </div>
+		    <div class="grid_6"  style="margin: 5px 0 0 0 ;">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.TipePegawai"
+                               k-data-text-field="'name'"
+                               k-filter="'contains'"
+							   k-auto-bind="false"
+                               k-data-value-field="'id'"
+                               k-data-source="listTipe " />
+                    </div>
+		</div>
+		<div class="grid_12">
+	       <div class="grid_6" style="margin: 5px 0 0 0;">
+		   <label c-label item="item" c-label-text="DetailKategoriPegawai"></label>
+	    </div>
+		    <div class="grid_6"  style="margin: 5px 0 0 0 ;">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.KategoriPegawai"
+                               k-data-text-field="'name'"
+                               k-filter="'contains'"
+							   k-auto-bind="false"
+                               k-data-value-field="'id'"
+                               k-data-source="listTipe " />
+                    </div>
+		</div>
+		<div class="grid_12">
+	       <div class="grid_6" style="margin: 5px 0 0 0;">
+		   <label c-label item="item" c-label-text="StatusPegawai"></label>
+	    </div>
+		    <div class="grid_6"  style="margin: 5px 0 0 0 ;">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.StatusPegawai"
+                               k-data-text-field="'name'"
+                               k-filter="'contains'"
+							   k-auto-bind="false"
+                               k-data-value-field="'id'"
+                               k-data-source="listTipe" />
+                    </div>
+		</div>
+		
+		
+		
+		
+		
+		
+				<div class="clear"> </div>
+					
+				</div>
+ <div class="grid_4">				
+				   
+					<div class="grid_12">
+	       <div class="grid_6" style="margin: 5px 0 0 10px;">
+		   <label c-label item="item" c-label-text="RuanganKerja"></label>
+	    </div>
+		    <div class="grid_6"  style="margin: 5px -10px 0 0 ;">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.RuanganKerja"
+                               k-data-text-field="'name'"
+                               k-filter="'contains'"
+							   k-auto-bind="false"
+                               k-data-value-field="'id'"
+                               k-data-source="listRuang" />
+                    </div>
+					</div>
+					
+					<div class="grid_12">
+	       <div class="grid_6" style="margin: 5px 0 0 10px;">
+		   <label c-label item="item" c-label-text="PegawaiAtasan"></label>
+	    </div>
+		    <div class="grid_6"  style="margin: 5px -10px 0 0 ;">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.PegawaiAtasan"
+                               k-data-text-field="'name'"
+                               k-filter="'contains'"
+							   k-auto-bind="false"
+                               k-data-value-field="'id'"
+                               k-data-source="listAtasan" />
+                    </div>
+					</div>
+					
+						<div class="grid_12">
+	       <div class="grid_6" style="margin: 5px 0 0 10px;">
+		   <label c-label item="item" c-label-text="Kewarganegaraan"></label>
+	    </div>
+		    <div class="grid_6"  style="margin: 5px -10px 0 0 ;">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.Kewarganegaraan"
+                               k-data-text-field="'namaNegara'"
+                               k-filter="'contains'"
+							   k-auto-bind="false"
+                               k-data-value-field="'id'"
+                               k-data-source="listNegara" />
+                    </div>
+					</div>
+		<div class="grid_12">
+         <div class="grid_6" style="margin: 5px 0 0 10px">
+		  <label c-label item="item" c-label-text="NegaraAsal"></label>
+		 </div>
+		<div class="grid_6" style="margin: 5px -10px 0 0">
+         <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NegaraAsal" />
+		</div>
+        </div>
+		
+					
+
+		<div class="grid_12">
+	       <div class="grid_6" style="margin: 5px 0 0 10px;">
+		   <label c-label item="item" c-label-text="StatusNikah"></label>
+	    </div>
+		    <div class="grid_6"  style="margin: 5px -10px 0 0 ;">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.StatusNikah"
+                               k-data-text-field="'statusPerkawinan'"
+                               k-filter="'contains'"
+							   k-auto-bind="false"
+                               k-data-value-field="'id'"
+                               k-data-source="listStatusPerkawinan" />
+                    </div>
+					</div>
+		<div class="grid_12">
+	       <div class="grid_6" style="margin: 5px 0 0 10px;">
+		   <label c-label item="item" c-label-text="Suku"></label>
+	    </div>
+		    <div class="grid_6"  style="margin: 5px -10px 0 0 ;">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.Suku"
+                               k-data-text-field="'suku'"
+                               k-filter="'contains'"
+							   k-auto-bind="false"
+                               k-data-value-field="'id'"
+                               k-data-source="listSuku" />
+                    </div>
+					</div>
+		<div class="grid_12">
+	       <div class="grid_6" style="margin: 5px 0 0 10px;">
+		   <label c-label item="item" c-label-text="Agama"></label>
+	    </div>
+		    <div class="grid_6"  style="margin: 5px -10px 0 0 ;">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.Agama"
+                               k-data-text-field="'agama'"
+                               k-filter="'contains'"
+							   k-auto-bind="false"
+                               k-data-value-field="'id'"
+                               k-data-source="listAgama" />
+                    </div>
+					</div>
+		<div class="grid_12">
+	       <div class="grid_6" style="margin: 5px 0 0 10px;">
+		   <label c-label item="item" c-label-text="GolonganDarah"></label>
+	    </div>
+		    <div class="grid_6"  style="margin: 5px -10px 0 0 ;">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.GolonganDarah"
+                               k-data-text-field="'golonganDarah'"
+                               k-filter="'contains'"
+							   k-auto-bind="false"
+                               k-data-value-field="'id'"
+                               k-data-source="listgoldar" />
+                    </div>
+					</div>
+		<div class="grid_12">
+	       <div class="grid_6" style="margin: 5px 0 0 10px;">
+		   <label c-label item="item" c-label-text="StatusRhesus"></label>
+	    </div>
+		    <div class="grid_6"  style="margin: 5px -10px 0 0 ;">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.SatuanKecil"
+                               k-data-text-field="'name'"
+                               k-filter="'contains'"
+							   k-auto-bind="false"
+                               k-data-value-field="'id'"
+                               k-data-source="listRhesus" />
+                    </div>
+					</div>
+	
+	 
+		
+		
+  </div>
+
+  
+  
+
+<div class="grid_12 ">
+</br>
+</br>
+</br>
+					
+			            <div class="grid_2 " style="float:right ">
+			                <c-button ng-click="addDataLembarPengobatan() ">
+			                    <span style="font-size:10!important ">Tambah</span>
+			                </c-button>
+			            </div>
+						 <div class="grid_2 " style="float:right ">
+			                <c-button ng-click="addDataRiwayatPenyakitOrObat() ">
+			                    <span style="font-size:12!important ">Batal</span>
+			                </c-button>
+			            </div>
+                      
+						
+                    </div>
+					
+					<div class="grid_6">
+					<div class="grid_12">
+         <div class="grid_6" style="margin: 5px 0 0 0;">
+		  <label c-label item="item" c-label-text="CariNama"></label>
+		 </div>
+		<div class="grid_6" style="margin: 5px 0 0 0;">
+         <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.Cari" />
+		 </div>
+		</div>
+		</div>
+					
+					
+					
+					
+			<div class="grid_12 " style="margin-top: 50px; ">
+			           <div kendo-grid k-data-source="dataLembarPengobatan " k-selectable=" 'row' " k-columns="columnLembarPengobatan ">
+    					</div>
+			        </div>  
+					
+					
+	
+			
+            </div>
+			
+		</c-panel>
+			
+        <!--
+		
+
+		
+		--->
+			
+		<div class="clear"></div>
+		
+     
+		  
+		 
+		 
+		
+
+		 </br>
+		 </br>
+	 <div class="grid_12">
+			<div class="grid_12"><div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>	
+    </div>	  
+		  
+
+
+
+	 
+         
+		 
+		  
+		  
+         
+		 
+		 
+		
+		 
+	     
+	 
+	 
+
+
+		
+		
+		
+		  
+		
+		
+	
+		

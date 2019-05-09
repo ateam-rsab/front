@@ -1,0 +1,221 @@
+<div ng-controller="InputKurikulumPelatihanCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Input Kurikulum Pelatihan'"disabled>      
+		<div class="panel-body">
+				<div class="grid_9" >
+							<div class="grid_3" style="margin-top: 0">
+								<div class="grid_12" style="margin-left:5px">
+									
+								</div>
+								<div class="grid_12" style="margin-top:12px">
+										<label c-label item="item" c-label-text="Nama Pelatihan"></label>
+								</div>
+							</div>
+							
+							<div class="grid_3" style="margin-top: 0">
+								
+								<div class="grid_12" style="margin: 0 0 0 -26px;">
+										 <input ng-disabled="isDisable" style="width: 100%;" kendo-combo-box k-ng-model="item.jenisKelamin" k-data-text-field="'jenisKelamin'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListJenisKelamin" />
+								</div>
+							</div>
+							
+							<div class="grid_3" style="margin-top: 0">
+								<div class="grid_12" style="margin-left:5px">
+									
+								</div>
+								<div class="grid_12" style="margin-top:12px">
+										<label c-label item="item" c-label-text="Judul Kurikulum"></label>
+								</div>
+							</div>
+							
+							<div class="grid_3" style="margin-top: 0">
+								
+								<div class="grid_12" style="margin: 0 0 0 -26px;">
+										<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nomorContoh" />
+								</div>
+							</div>
+							
+						</div>
+				
+						
+						</div>
+		
+	
+		<div class="grid_6">
+		<div class="grid_12" style="margin:0 0 5px 0;">
+										<label><b>BAB I PENDAHULUAN</b></label>
+								</div>
+		  <div class="grid_12" style="margin: 0 0 10px 0;">
+										<label><b>A.Latar Belakang</b></label>
+								</div>						
+		 <div class="grid_12" style="margin: 0 0 0 0;">
+                    <textarea ng-disabled="isDisable" ng-model="item.alamat" style="width: 99%; height: 80px;"></textarea>
+                </div>
+		   <div class="grid_12" style="margin: 10px 0 10px 0;">
+										<label><b>B.Filosofi Pelatihan</b></label>
+								</div>						
+		 <div class="grid_12" style="margin: 0 0 0 0;">
+                    <textarea ng-disabled="isDisable" ng-model="item.alamat" style="width: 99%; height: 80px;"></textarea>
+                </div>	
+         <div class="grid_12" style="margin: 10px 0 10px 0;">
+										<label><b>BAB II PERRAN,FUNGSI DAN KOMPETENSI PESERTA</b></label>
+								</div>						
+		  <div class="grid_12" style="margin: 0 0 10px 0;">
+										<label><b>A.Peran</b></label>
+								</div>
+		   <div class="grid_12" style="margin: 0 0 0 0;">
+                    <textarea ng-disabled="isDisable" ng-model="item.alamat" style="width: 99%; height: 80px;"></textarea>
+                </div>		
+            <div class="grid_12" style="margin: 5px 0 10px 0;">
+										<label><b>B.Fungsi</b></label>
+								</div>
+		   <div class="grid_12" style="margin: 0 0 0 0;">
+                    <textarea ng-disabled="isDisable" ng-model="item.alamat" style="width: 99%; height: 80px;"></textarea>
+                </div>
+			<div class="grid_12" style="margin: 5px 0 10px 0;">
+										<label><b>C.Kompetensi</b></label>
+								</div>
+		   <div class="grid_12" style="margin: 0 0 0 0;">
+                    <textarea ng-disabled="isDisable" ng-model="item.alamat" style="width: 99%; height: 80px;"></textarea>
+                </div>	
+				 <div class="grid_12" style="margin: 10px 0 10px 0;">
+										<label><b>BAB III TUJUAN PELATIHAN</b></label>
+								</div>						
+		  <div class="grid_12" style="margin: 0 0 10px 0;">
+										<label><b>A.Tujuan Umum</b></label>
+								</div>
+		   <div class="grid_12" style="margin: 0 0 0 0;">
+                    <textarea ng-disabled="isDisable" ng-model="item.alamat" style="width: 99%; height: 80px;"></textarea>
+                </div>	
+			 <div class="grid_12" style="margin: 5px 0 10px 0;">
+										<label><b>B.Tujuan Khusus</b></label>
+								</div>
+		   <div class="grid_12" style="margin: 0 0 0 0;">
+                    <textarea ng-disabled="isDisable" ng-model="item.alamat" style="width: 99%; height: 80px;"></textarea>
+                </div>
+<div class="grid_12" style="margin: 15px 0 10px 0;">
+										<label><b>BAB IV STRUKTUR PROGRAM</b></label>
+								</div>	
+		<div class="grid_12" style="margin: 6px 0 0 0;">
+										<label><b></b></label>
+								</div>								
+		  
+		   <div class="grid_12" style="margin: 0 0 0 0;">
+                    <textarea ng-disabled="isDisable" ng-model="item.alamat" style="width: 99%; height: 80px;"></textarea>
+                </div>					
+						
+		
+		
+		
+		
+		
+		</div>
+		<div class="grid_6">
+		  
+			
+			<div class="grid_12" style="margin: 10px 0 10px 0;">
+										<label><b>BAB V GARIS-GARIS BESAR PROGRAM PEMBELAJARAN</b></label>
+								</div>
+			 <div class="grid_12" style="margin: 10px 0 0 0;">
+                    <textarea ng-disabled="isDisable" ng-model="item.alamat" style="width: 99%; height: 80px;"></textarea>
+                </div>		
+		  
+            <div class="grid_12" style="margin: 10px 0 10px 0;">
+										<label><b>BAB VI DIAGRAM PROSES PEMBELAJARAN</b></label>
+								</div>
+		   <div class="grid_12" style="margin: 0 0 0 0;">
+                    <textarea ng-disabled="isDisable" ng-model="item.alamat" style="width: 99%; height: 80px;"></textarea>
+                </div>
+		
+		 <div class="grid_12" style="margin: 10px 0 10px 0;">
+										<label><b>BAB VII PESERTA DAN PELATIH</b></label>
+								</div>						
+		  <div class="grid_12" style="margin: 0 0 10px 0;">
+										<label><b>A.Peserta</b></label>
+								</div>
+		   <div class="grid_12" style="margin: 0 0 0 0;">
+                    <textarea ng-disabled="isDisable" ng-model="item.alamat" style="width: 99%; height: 80px;"></textarea>
+                </div>	
+			
+		
+		
+			
+				
+			 <div class="grid_12" style="margin: 5px 0 10px 0;">
+										<label><b>B.Pelatih/Fasilitator/Instruktur</b></label>
+								</div>
+		   <div class="grid_12" style="margin: 0 0 0 0;">
+                    <textarea ng-disabled="isDisable" ng-model="item.alamat" style="width: 99%; height: 80px;"></textarea>
+                </div>	
+
+
+			 <div class="grid_12" style="margin: 30px 0 10px 0;">
+										<label><b>BAB VIII PENYELENGGARAAN DAN TEMPAT PENYELENGGARAAN</b></label>
+								</div>						
+		  
+		   <div class="grid_12" style="margin: 5px 0 0 0;">
+                    <textarea ng-disabled="isDisable" ng-model="item.alamat" style="width: 99%; height: 80px;"></textarea>
+                </div>	
+			 <div class="grid_12" style="margin: 5px 0 10px 0;">
+										<label><b>BAB IX EVALUASI</b></label>
+								</div>
+		   <div class="grid_12" style="margin: 0 0 0 0;">
+                    <textarea ng-disabled="isDisable" ng-model="item.alamat" style="width: 99%; height: 80px;"></textarea>
+                </div>	
+				
+			 <div class="grid_12" style="margin: 10px 0 10px 0;">
+										<label><b>BAB X SERTIFIKAT</b></label>
+								</div>
+		   <div class="grid_12" style="margin: 10px 0 0 0;">
+                    <textarea ng-disabled="isDisable" ng-model="item.alamat" style="width: 99%; height: 80px;"></textarea>
+                </div>	
+					
+				
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		</div>
+		
+		
+		
+		
+		
+		</c-panel>
+			<div class="grid_12">
+							<div class="grid_8" style="float:left">
+							
+							
+							
+							<div class="grid_2 " style="margin-top: 25px ">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Simpan</span>
+									</button>
+							</div>
+							<div class="grid_2 " style="margin-top: 25px ">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Batal</span>
+									</button>
+							</div>
+							</div>
+						</div>
+		</div>
+	</div>
+</div>
+

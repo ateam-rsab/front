@@ -1,0 +1,17 @@
+[
+    {
+        "id":"1","name":"Normal"
+    },{
+        "id":"2","name":"Tidak Normal"
+    },{
+        "id":"3","name":"Spastik"
+    },{
+        "id":"4","name":"Flaksid"
+    },{
+        "id":"5","name":"Athetoid"
+    },{
+        "id":"6","name":"Ataksia"
+    },{
+        "id":"7","name":"Clumsy"
+    }
+]

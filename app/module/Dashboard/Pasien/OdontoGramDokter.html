@@ -1,0 +1,237 @@
+<style type="text/css">
+    .style-center {
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .style-right {
+        display: inline-block;
+        text-align: right;
+        width: 100%;
+    }
+    
+    .style-left {
+        display: inline-block;
+        text-align: left;
+        width: 100%;
+    }
+    .img-btn{
+        position: absolute;
+        top: 40%;
+        margin-top: -.5em;
+        height: 1.5em;
+        left: 2em;
+}
+c-button-header, .c-button {
+    float: left;
+    text-align: center;
+    cursor: pointer;
+    height: 100%;
+    min-height: 70px;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 12px;
+    color: black;
+    background-color: #fff;
+    width: 100%;
+    border: 1px transparent solid;
+    padding: 5px;
+    -webkit-box-shadow: 0px 3px 15px -1px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 3px 15px -1px rgba(0, 0, 0, 0.25);
+     box-shadow: 0px 3px 15px -1px rgba(0, 0, 0, 0.25);
+}
+c-button-header:hover, .c-button:hover {
+    background-color: #10c4b2;
+}
+c-button-header, .c-button-asli{
+    float: left;
+    text-align: center;
+    cursor: pointer;
+    height: 100%;
+    min-height: 26px;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 14px;
+    color: white;
+    background-color: #10c4b2;
+    width: 100%;
+    border: 1px transparent solid;
+    padding: 5px;
+}
+}
+.title{
+      font-size: 12px;
+}
+</style>
+<div class="grid_1"></div>
+<canvas id="myCanvas" width="1200" height="450" >
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<div class="grid_12" >
+    <div class="grid_3" style="margin-top: 5px">
+        <div class="grid_12" style="margin-top: 5px">
+            <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="BelumErupsi()">
+                <span class="title">Belum Erupsi <img class="img-btn" src="images/odontogram/blmErupsi.bmp"></span>
+            </c-button>
+            <!-- <button class="c-button" ng-click="BelumErupsi()">Belum Erupsi</button> -->
+        </div>
+        <div class="grid_12" style="margin-top: 5px">
+            <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="ErupsiSebagian()">
+                <span class="title">Erupsi Sebagian  <img class="img-btn" src="images/odontogram/erupsiSebagian.bmp"></span>
+            </c-button>
+            <!-- <button class="c-button" ng-click="ErupsiSebagian()">Erupsi Sebagian</button> -->
+        </div>
+        <div class="grid_12" style="margin-top: 5px">
+               <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="AnomaliBentuk()">
+                <span class="title">Anomali Bentuk  <img class="img-btn" src="images/odontogram/anomaliBentuk.bmp"></span>
+            </c-button>
+            <!-- <button class="c-button" ng-click="AnomaliBentuk()">Anomali Bentuk</button> -->
+        </div>
+        <div class="grid_12" style="margin-top: 5px">
+              <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="Karies()">
+                <span class="title">Karies  <img class="img-btn" src="images/odontogram/karies.bmp"></span>
+            </c-button>
+            <!-- <button class="c-button" ng-click="Karies()">Karies</button> -->
+        </div>
+       
+    </div>
+    <div class="grid_3" style="margin-top: 5px">
+        <div class="grid_12" style="margin-top: 5px">
+               <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="TambalanLogam()">
+                <span class="title">Tambalan Logam  <img class="img-btn" src="images/odontogram/tambalanLogam.bmp"></span>
+            </c-button>
+            <!-- <button class="c-button" ng-click="TambalanLogam()">Tambalan Logam</button> -->
+        </div>
+        <div class="grid_12" style="margin-top: 5px">
+             <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="TambalanNonLogam()">
+                <span class="title">Tambalan Non Logam  <img class="img-btn" src="images/odontogram/tambalanNonLogam.bmp"></span>
+            </c-button>
+            <!-- <button class="c-button" ng-click="TambalanNonLogam()">Tambalan Non Logam</button> -->
+        </div>
+        <div class="grid_12" style="margin-top: 5px">
+               <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="MahkotaLogam()">
+                <span class="title">Mahkota Logam  <img class="img-btn" src="images/odontogram/mahkotaLogam.bmp"></span>
+            </c-button>
+            <!-- <button class="c-button" ng-click="MahkotaLogam()">Mahkota Logam</button> -->
+        </div>
+        <div class="grid_12" style="margin-top: 5px">
+               <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="MahkotaNonLogam()">
+                <span class="title">Tambalan Non Logam  <img class="img-btn" src="images/odontogram/mahkotaNonLogam.bmp"></span>
+            </c-button>
+            <!-- <button class="c-button" ng-click="MahkotaNonLogam()">Mahkota Non Logam</button> -->
+        </div>
+        
+    </div>
+    <div class="grid_3" style="margin-top: 5px">
+        <div class="grid_12" style="margin-top: 5px">
+              <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="SisaAkar()">
+                <span class="title">Sisa Akar  <img class="img-btn" src="images/odontogram/sisaAkar.bmp"></span>
+            </c-button>
+            <!-- <button class="c-button" ng-click="SisaAkar()">Sisa Akar</button> -->
+        </div>
+        <div class="grid_12" style="margin-top: 5px">
+                  <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="GigiHilang()">
+                <span class="title">Gigi Hilang  <img class="img-btn" src="images/odontogram/gigiHilang.bmp"></span>
+            </c-button>
+            <!-- <button class="c-button" ng-click="GigiHilang()">Gigi Hilang</button> -->
+        </div>
+        <div class="grid_12" style="margin-top: 5px">
+                  <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="Jembatan()">
+                <span class="title">Jembatan  <img class="img-btn" src="images/odontogram/jembatan.bmp"></span>
+            </c-button>
+            <!-- <button class="c-button" ng-click="Jembatan()">Jembatan</button> -->
+        </div>
+        <div class="grid_12" style="margin-top: 5px">
+                  <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="GigiTiruanLepas()">
+                <span class="title">Gigi Tiruan Lepas  <img class="img-btn" src="images/odontogram/gigiTiruanLepas.bmp"></span>
+            </c-button>
+            <!-- <button class="c-button" ng-click="GigiTiruanLepas()">Gigi Tiruan Lepas</button> -->
+        </div>
+        
+    </div>
+    <div class="grid_3" style="margin-top: 5px">
+          <div class="grid_12" style="margin-top: 5px">
+            <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="NonVital()">
+                <span class="title">Non Vital  <img class="img-btn" src="images/odontogram/nonVital.bmp"></span>
+            </c-button>
+            <!-- <button class="c-button" ng-click="NonVital()">Non Vital</button> -->
+        </div>
+        <div class="grid_12" style="margin-top: 5px">
+               <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="Clear()">
+                <span class="title">Clear</span>
+            </c-button>
+            <!-- <button class="c-button" ng-click="Clear()">Clear</button> -->
+        </div>
+    </div>
+</div>
+
+
+<div class="grid_12" >
+    <div class="grid_10">
+    </div>
+    <div class="grid_1" style="margin-top: 5px">
+        <button class="c-button-asli" ng-click="save()">Simpan</button>
+    </div>
+    <div class="grid_1" style="margin-top: 5px">
+        <button class="error c-button-asli" ng-click="batal()">Batal</button>
+    </div>
+</div>
+<div ng-show="dataVOloaded"><!-- 
+    <canvas id="myCanvas" width="210" height="210" style="border:1px solid #000000;"></canvas>
+    <canvas id="myCanvas" width="210" height="210" style="border:1px solid #000000;"></canvas> -->
+    <div class="grid_3"></div>
+    <div class="grid_9">
+        <div class="grid_12"> 
+            <a ng-repeat="data in listSrc1" > 
+                <!-- <canvas id="myCanvas" width="210" height="210" style="border:1px solid #000000;"></canvas> -->
+                <!-- <img style="padding: 0.5px;" ng-src={{data.src}} ng-modul="item.obj(data.id)" ng-dblclick="kliknol(data)"/> -->
+            </a>
+        </div>
+         <div class="grid_12"> 
+            <a ng-repeat="data in listSrc1" > 
+                <span style="padding: 10px;margin-right:-0.3px;font-family: Tahoma;" ng-style="{color: {false:'white'}[data.colorFont]}">{{data.no}}</span>
+            </a>
+        </div>
+    </div>
+    <div class="grid_3"></div>
+    <div class="grid_9">
+        <div class="grid_12"> 
+            <a ng-repeat="data in listSrc2"> 
+                <img   style="padding: 0.5px;" ng-src={{data.src}} ng-modul="item.obj(data.id)" ng-dblclick="kliknol(data)" />
+            </a>
+        </div>
+        <div class="grid_12">  
+            <a ng-repeat="data in listSrc2" > 
+                <span style="padding: 10px;margin-right:-0.3px;font-family: Tahoma;" ng-style="{color: {false:'white'}[data.colorFont]}">{{data.no}}</span>
+            </a>
+        </div>
+    </div>
+    <div class="grid_3"></div>
+    <div class="grid_9">
+        <div class="grid_12"> 
+            <a ng-repeat="data in listSrc3"> 
+                <img   style="padding: 0.5px;" ng-src={{data.src}} ng-modul="item.obj(data.id)" ng-dblclick="kliknol(data)" />
+            </a>
+        </div>
+        <div class="grid_12">
+            <a ng-repeat="data in listSrc3" > 
+                <span style="padding: 10px;margin-right:-0.3px;font-family: Tahoma;" ng-style="{color: {false:'white'}[data.colorFont]}">{{data.no}}</span>
+            </a>
+        </div>
+    </div>
+    <div class="grid_3"></div>
+    <div class="grid_9">
+        <div class="grid_12"> 
+            <a ng-repeat="data in listSrc4"> 
+                <img   style="padding: 0.5px;" ng-src={{data.src}} ng-modul="item.obj(data.id)" ng-dblclick="kliknol(data)" />
+            </a>
+        </div>
+        <div class="grid_12">
+            <a ng-repeat="data in listSrc4" > 
+                <span style="padding: 10px;margin-right:-0.3px;font-family: Tahoma;" ng-style="{color: {false:'white'}[data.colorFont]}">{{data.no}}</span>
+            </a>
+        </div>
+    </div>
+    
+</div>

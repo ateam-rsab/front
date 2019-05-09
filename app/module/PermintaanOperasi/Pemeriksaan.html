@@ -1,0 +1,40 @@
+<div ng-controller="PemeriksaanCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Pemeriksaan'">
+			<div class="grid_12">
+				<div class="grid_6">
+					<!-- nama pasien -->
+					<div class="grid_4" style="margin-top:5px">
+	                    <label c-label item="item" c-label-text="jenisPemeriksaan"></label>
+	                </div>
+	                <div class="grid_8">
+	                      <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'name'" ng-model="item.jenisPemeriksaan" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitLayanan" />
+	                </div>
+	                <div class="clear"></div>
+				</div>
+
+				
+				<div class="grid_6">
+					<!-- periode -->
+	                <div class="grid_4" style="margin-top:5px">
+	                    <label c-label item="item" c-label-text="namaPemeriksaan"></label>
+	                </div>
+	                <div class="grid_8">
+	                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'name'" ng-model="item.namaPemeriksaan" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitLayanan" />
+	                </div>
+	                 <div class="clear"></div>
+				</div>
+            </div>
+            <div class="clear"></div>
+
+
+			<!-- grid table -->
+			<div class="grid_12" style="margin-top: 10px;">
+              	<kendo-grid options="mainGridOptions" id="dataGrid">
+	            </kendo-grid>
+            </div>
+            <div class="clear"></div>
+		</c-panel>
+	</div>
+</div>

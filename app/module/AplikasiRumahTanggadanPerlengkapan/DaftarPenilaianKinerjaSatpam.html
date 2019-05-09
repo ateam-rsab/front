@@ -1,0 +1,171 @@
+<div>
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Daftar Penilaian Kinerja Satpam'">
+
+			<!-- ButtoN Cetak
+	  		<div class="grid_12">
+                <md-button class="md-fab md-fab-top-right docs-scroll-fab md-button " align="center" style="height: 75px; width: 75px; background-color: #05b72a !important" aria-label="Eat cake">
+                    <md-tooltip md-direction='left'>Cetak Dokumen</md-tooltip>
+                    <md-icon md-svg-src="/app/stylesheets/Images/exam.svg"></md-icon>
+                </md-button>
+            </div>
+            -->
+
+	  		<!-- Pencarian -->
+			<div class="panel panel-default container_12">
+				<div class="grid_7" style="margin-top: 30px">
+					<div class="grid_3" style="margin-top: 10px; " align="right">
+						<label c-label item="item">Nama Pegawai</label>
+					</div>
+					<div class="grid_1" style="margin-top: 10px;">:</div>
+					<div class="grid_5">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.cariNamaPegawai" ng-disabled="enablecariNoUsulan" />
+					</div>
+					<div class="grid_2" style="margin-top: 5px;" style="font-size: 24px; ">
+						<button class="c-button success" ng-show="!isLoading " item="item " ng-click="cariPegawai() ">Cari</button>
+					</div>
+				</div>
+			</div>
+			<div class="grid_5"></div>
+
+
+          <!-- Daftar Grid -->
+			<div class="grid_12 ">
+				<div id="gridPenilaianKinerja" kendo-grid k-options="mainGridOptions" k-ng-model="selectedData"></div>
+			</div>
+			<div class="grid_12 ">
+				<div class="grid_7 "></div>
+				<div class="grid_2 " style="margin-top: 25px; font-size: 24px; ">
+					<button class="c-button " ng-show="!isLoading " item="item " ng-click="hapus() ">
+                    <span class="title ">Hapus</span></button>
+				</div>
+				<div class="grid_3 " style="margin-top: 25px; font-size: 24px; ">
+					<button class="c-button success" ng-show="!isLoading " item="item " ng-click="detailPenilaian(selectedData)">
+                    <span class="title ">Detail Penilaian</span></button>
+				</div>
+
+			</div>
+	</div>
+	</c-panel>
+
+		<!-- Detail Penilaian -->
+		<div ng-show="showDetailPenilaian ">
+			<c-panel item="item " header=" 'Detail Penilaian' ">
+				<div class="panel panel-default container_12 ">
+					<c-panel item="item" header="'Uraian Tugas'">
+						<div class="panel panel-default container_12" ng-hide="isOut">
+
+							<div class="clear"></div>
+							<div class="grid_12" style="margin-top: 25px;">
+								<div kendo-grid="grid1"  k-ng-model="selectedData1"  k-data-source="daftarUraianTugas" k-columns="columnUraianTugas" change="uraianTugas()" data-k-options="mainGridOptions1" data-k-rebind="mainGridOptions1" k-selectable="'row'">
+								</div>
+							</div>
+						</div>
+					</c-panel>
+
+					<c-panel item="item" header="'Kualitas'">
+						<div class="panel panel-default container_12" ng-hide="isOut">
+							<div class="grid_12" style="margin-top: 25px;">
+								<div data-kendo-grid="grid2" k-ng-model="selectedData2" k-data-source="daftarKualitas" k-columns="columnKualitas" k-on-change="selectPegawai(data)" k-options="mainGridOptions2" k-selectable="'row'">
+								</div>
+							</div>
+						</div>
+					</c-panel>
+
+					<c-panel item="item" header="'Sikap Perilaku'">
+						<div class="panel panel-default container_12" ng-hide="isOut">
+							<div class="grid_12" style="margin-top: 25px;">
+								<div data-kendo-grid="grid3" k-ng-model="selectedData3" k-data-source="daftarSikapPerilaku" k-columns="columnSikapPerilaku" k-on-change="selectPegawai(data)" k-options="mainGridOptions3" k-selectable="'row'">
+								</div>
+							</div>
+						</div>
+					</c-panel>
+
+				</div>
+			</c-panel>
+		</div>
+
+
+    </div>
+</div>
+<style>
+    .error{
+        background-color:white !important;
+    }
+    .yellow{
+        background-color:#ffff00
+    }
+     .green{
+        background-color:#00ff40
+    }
+      .red{
+        background-color:#FF0000
+    }
+    .k-grid  .k-grid-header  .k-header  .k-link {
+     height: auto;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     white-space: normal;
+    }
+
+    .style-four {
+        height: 5px;
+        border: 0;
+        box-shadow: inset 0 14px 12px -12px rgba(0, 0, 0, 0.5);
+        }
+    .md-button {
+          padding: 0 6px 0 6px;
+          margin: 6px 8px 6px 8px;
+          min-width: 88px;
+          border-radius: 3px;
+          font-size: 14px;
+          text-align: center;
+          text-transform: uppercase;
+          text-decoration:none;
+          border: none;
+          outline: none;
+          color: green;
+        }
+
+    .k-grid  .k-grid-header  .k-header {
+     text-align: center;
+    }
+
+    .md-tooltip {
+        height: 25px !important;
+        background-color: #363940 !important;
+        color: white !important;
+        border-radius: 5px;
+        font-size: 14px
+     }
+     .md-button.md-fab.md-fab-top-right {
+        top: 30px;
+        right: 41px;
+        bottom: auto;
+        left: auto;
+        position: absolute;
+     }
+     .h1 {
+        position:relative;
+        display:inline-block;
+            }
+      .h1::before, 
+      .h1::after {
+        content:' ';
+        display:block;
+        position:absolute; top:50%; left:-120px;
+        width:100px;
+        border-bottom:1px solid black;
+    }
+    .h1::after {
+        left:auto; right:-120px;
+    }
+</style>
+
+<!-- ===================================Source Old Data=================================== -->
+<!--<input kendo-auto-complete k-on-change="change()" k-ng-model="item.cariNamaPegawai" k-options="pegOptions" k-data-source="dataPegawai"
+style="width:100%" />-->
+<!--<div data-kendo-grid="grid" k-ng-model="selectedData" k-on-change="selectPegawai(data)" k-data-source="daftarDataPegawai"
+k-selectable="'row'" k-columns="columnDataPegawai">
+</div>-->

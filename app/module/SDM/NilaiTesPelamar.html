@@ -1,0 +1,100 @@
+<div ng-controller="NilaiTesPelamarCtrl">
+
+    <div class="panel panel-default container_12">
+        <div class="panel-heading"><label class='title' c-label item="item" c-label-text="Informasi Lamaran"></label></div>
+        <div class="panel-body">
+            <div class="grid_12" ng-disabled="isDisable">
+                <div class="panel panel-default container_12">
+                    <div class="grid_6">
+                        <label c-label item="item" c-label-text="NamaLengkap"></label>
+                        <input ng-disabled="isDisable" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaLengkap" />
+                    </div>
+                    <div class="grid_6" style="margin-bottom: 1px;">
+                        <label c-label item="item" c-label-text="JenisKelamin"></label>
+                        <input ng-disabled="isDisable" style="width: 100%;" kendo-combo-box k-ng-model="item.jenisKelamin" k-data-text-field="'jenisKelamin'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListJenisKelamin" />
+                    </div>
+                    <div class="grid_6">
+                        <div class="grid_6">
+                            <label c-label item="item" c-label-text="No KTP Yang Berlaku" real></label>
+
+                            <input ng-disabled="isDisable" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noKTP" />
+                        </div>
+                        <div class="grid_6">
+                            <label c-label item="item" c-label-text="Agama"></label>
+                            <input ng-disabled="isDisable" style="width: 100%;" kendo-combo-box k-ng-model="item.agama" k-data-text-field="'agama'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListAgama" />
+                        </div>
+                    </div>
+                    <div class="grid_6">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="Tempat/TanggalLahir"></label>
+                        </div>
+                        <div class="grid_6">
+                            <input ng-disabled="isDisable" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.tempatLahir" />
+                        </div>
+                        <div class="grid_6">
+                            <input ng-disabled="isDisable" kendo-date-picker k-ng-model="item.tanggalLahir" k-max="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="panel panel-default container_12">
+        <div class="panel-heading">
+            <label class='title' c-label item="item" c-label-text="Input Nilai"></label>
+            <div style="width: 250px;position: absolute;right: 20px;top: 50%;transform: translateY(-50%)">
+                <md-switch ng-model="item.test" aria-label="Switch 2" ng-true-value="'Lolos'" ng-false-value="'Tidak Lolos'" class="md-primary">
+                    Hasil: {{ item.test }}
+                </md-switch>
+            </div>
+        </div>
+        <div class="panel-body">
+
+            <div class="grid_6">
+
+                <div class="grid_12">
+                    <div class="grid_4">
+
+                        <label c-label item="item" c-label-text="Nilai Tes Tertulis"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.nilaiTertulis" />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label item="item" c-label-text="Nilai Tes Wawancara"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.nilaiWawancara" />
+                    </div>
+
+                </div>
+            </div>
+            <div class="grid_6">
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label item="item" c-label-text="Nilai Tes Psikotest"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.nilaiPsikotes" />
+                    </div>
+
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label item="item" c-label-text="Nilai Tes Kesehatan"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.nilaiKesehatan" />
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+</div>

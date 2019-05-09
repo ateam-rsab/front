@@ -1,0 +1,233 @@
+<div ng-controller="StrukturAccountCtrl">
+<div ng-show="dataVOloaded">
+<c-panel item="item" header="'Struktur Account'" disabled>
+
+<!-- formatAccount -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="formatAccount"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.formatAccount" />
+</div>
+</div>
+
+<!-- historyLoginI -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="historyLoginI"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.historyLoginI" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listhistoryLoginI" />
+</div>
+</div>
+
+<!-- historyLoginIId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="historyLoginIId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.historyLoginIId" />
+</div>
+</div>
+
+<!-- historyLoginS -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="historyLoginS"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.historyLoginS" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listhistoryLoginS" />
+</div>
+</div>
+
+<!-- historyLoginSId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="historyLoginSId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.historyLoginSId" />
+</div>
+</div>
+
+<!-- historyLoginU -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="historyLoginU"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.historyLoginU" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listhistoryLoginU" />
+</div>
+</div>
+
+<!-- historyLoginUId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="historyLoginUId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.historyLoginUId" />
+</div>
+</div>
+
+<!-- jenisAccount -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="jenisAccount"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisAccount" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listjenisAccount" />
+</div>
+</div>
+
+<!-- jenisAccountId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="jenisAccountId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jenisAccountId" />
+</div>
+</div>
+
+<!-- kdStrukturAccount -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kdStrukturAccount"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kdStrukturAccount" />
+</div>
+</div>
+
+<!-- levelAccount -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="levelAccount"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.levelAccount" />
+</div>
+</div>
+
+<!-- noUrutAkhir -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="noUrutAkhir"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noUrutAkhir" />
+</div>
+</div>
+
+<!-- noUrutAwal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="noUrutAwal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noUrutAwal" />
+</div>
+</div>
+
+<!-- strukturAccount -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="strukturAccount"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.strukturAccount" />
+</div>
+</div>
+
+<!-- reportDisplay -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="reportDisplay"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+</div>
+</div>
+
+<!-- kodeExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kodeExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+</div>
+</div>
+
+<!-- namaExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="namaExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+</div>
+</div>
+
+<!-- StrukturAccount -->
+<div class="grid_12">
+<div class="grid_12 headerBox">
+<p>StrukturAccount</p>
+</div>
+<div class="clear"></div>
+
+<!-- grid table -->
+<div class="grid_12 borderBox">
+<div kendo-grid k-data-source="dataStrukturAccount" k-selectable="'row'" k-columns="columnStrukturAccount">
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+
+
+</c-panel>
+
+<div class="grid_12" style="margin-top:30px">
+<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
+</div>
+</div>
+</div>

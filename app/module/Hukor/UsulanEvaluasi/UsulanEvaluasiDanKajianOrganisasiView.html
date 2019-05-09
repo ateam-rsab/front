@@ -1,0 +1,80 @@
+<div ng-controller="UsulanEvaluasiDanKajianOrganisasiViewCtrl">
+    <c-panel item="item" header="'Usulan Evaluasi dan Kajian Organisasi'" disabled>
+        <div class="panel panel-default container_12">
+            <div class="panel-body">
+                <div class="panel panel-default container_12">
+                    <div class="grid_12">
+                        <div class="grid_2" style="margin-top: 10px">
+                            <div class="grid_10">
+                                <label c-label item="item" c-label-text="noUsulan"></label>
+                            </div>
+                            <div class="grid_2" align="right">:</div>
+                        </div>
+                        <div class="grid_3" style="margin: 5px 0 0 10px;">
+                            <input c-text-box type="input" filter="''" class="k-textbox"
+                                   ng-model="item.noUsulan" ng-disabled="true"/>
+                        </div>
+                        <div class="grid_2" style="margin-top: 10px">
+                            <div class="grid_10">
+                                <label c-label item="item" c-label-text="tanggal"></label>
+                            </div>
+                            <div class="grid_2" align="right">:</div>
+                        </div>
+                        <div class="grid_3" style="margin: 5px 0 0 10px;">
+                            <input style="width: 100%" k-ng-model='item.tanggalPengajuan' kendo-date-picker
+                                   placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" init='now'
+                                   k-on-change="selectTanggal()" readonly/>
+                        </div>
+                    </div>
+
+
+                    <div class="grid_11" style="margin: 10px 0 0 10px;">
+                        <div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+                            <p>Pilih Tujuan Dan Penerima</p>
+                        </div>
+                        <div class="grid_12 borderBox containerBorderBox">
+                            <div class="k-block grid_12">
+                                <div class="grid_11">
+                                    <div class="grid_12">
+                                        <div class="grid_12" style="margin: 0 0 0 10px;">
+                                            <div kendo-grid k-data-source="dataPenerima" k-selectable="'row'"
+                                                 k-columns="colDaftarPenerima"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_11" style="margin: 10px 0 0 10px;">
+                        <div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+                            <p>Daftar Evaluasi dan Kajian Organisasi</p>
+                        </div>
+                        <div class="grid_12 borderBox containerBorderBox">
+                            <div class="grid_12">
+                                <div kendo-grid k-data-source="dataUsulan" k-selectable="'row'"
+                                     k-options="colDataUsulan"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="grid_12">
+                        <div class="grid_8"></div>
+                        <div class="grid_3" style="margin-top: 25px">
+                            <button class="c-button" ng-show="!isLoading" item="item" is-validate
+                                    ng-click="redirect()">
+                                <span class="title">Daftar Usulan Evaluasi & Kajian</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_12">
+            <div kendo-grid k-data-source="gridInputPeserta" k-selectable="'row'"
+                 k-options="colInputPeserta" k-ng-model="dataSource">
+            </div>
+        </div>
+
+    </c-panel>
+
+</div>

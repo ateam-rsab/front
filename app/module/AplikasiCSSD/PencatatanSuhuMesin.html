@@ -1,0 +1,146 @@
+<style>
+    .error{
+        background-color:white !important;
+    }
+    .yellow{
+        background-color:#ffff00
+    }
+     .green{
+        background-color:#00ff40
+    }
+      .red{
+        background-color:#FF0000
+    }
+    .k-grid  .k-grid-header  .k-header  .k-link {
+     height: auto;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     white-space: normal;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     text-align: center;
+    }
+/*     .k-header .k-link{
+    text-align: center;
+     }*/
+</style>
+
+<c-panel item="item" header="'Pencatatan Suhu Mesin'">
+	<div class="grid_12">
+		<div class="grid_6">
+			<div class="grid_4">
+				<label c-label item="item" >Tanggal</label>
+			</div>
+			<div class="grid_5">
+				<input style="width:100%" kendo-date-picker k-ng-model="item.tanggal" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'"/>
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" style="margin-top: 10px">Mesin</label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.mesin" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listMesin" />
+			</div>
+			<div class="grid_4" >
+				<label c-label item="item" style="margin-top: 10px">Program Mesin/Cycle</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" class="k-textbox" ng-model="item.cycle"/>
+			</div>
+			<div class="grid_4" >
+				<label c-label item="item" style="margin-top: 10px">Waktu Mulai</label>
+			</div>
+			<div class="grid_5">
+				  <input style="width: 100%" kendo-time-picker k-ng-model="item.waktuMulai" placeholer="HH:mm" k-format="'HH:mm'" k-on-change="SetTotalJam()"/>
+			</div>
+			<div class="grid_4" >
+				<label c-label item="item" style="margin-top: 10px">Waktu Selesai</label>
+			</div>
+			<div class="grid_5">
+				<input style="width: 100%" kendo-time-picker k-ng-model="item.jamAkhir" placeholer="HH:mm" k-format="'HH:mm'" k-on-change="SetTotalJam()"/>
+			</div>
+			<div class="grid_4" >
+				<label c-label item="item" style="margin-top: 10px">Lama Proses</label>
+			</div>
+			<div class="grid_5">
+				<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.lamaProses"  disabled="true" />
+			</div>
+		</div>
+		<!-- Kanan -->
+		<div class="grid_6">
+			<div class="grid_12">
+				<div class="grid_4" >
+					<label c-label item="item" style="margin-top: 10px">Suhu</label>
+				</div>
+				<div class="grid_3">
+					<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.suhu"/>
+				</div>
+				<div class="grid_5" style="text-align: left;margin-top: 10px">°C</div>
+			</div>
+			<div class="grid_4" >
+				<label c-label item="item" style="margin-top: 10px">Tekanan</label>
+			</div>
+			<div class="grid_8">
+     <!--<input style="width: 100%;" kendo-combo-box k-ng-model="item.tekanan" k-data-text-field="'tekanan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listTekanan" /> -->
+	<input c-text-box type="input" class="k-textbox" ng-model="item.tekanan"/>
+			</div>
+			<div class="clear"></div>
+			<div class="grid_4" >
+				<label c-label item="item" style="margin-top: 10px">Nama Petugas</label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.petugas" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="dataMasterPegawai" />
+			</div>
+		</div>
+	</div>
+		<div class="grid_12">
+		<div class="grid_6"></div>
+		<div class="grid_6">
+			<div class="grid_6"></div>
+			<div class="grid_3">
+				<button class="c-button success" ng-click="Save()">Simpan</button>
+			</div>
+			<div class="grid_3">
+				<button class="c-button cancel" ng-click="Batal()">Batal</button>
+			</div>
+		</div>
+	</div>
+</c-panel>
+<c-panel item="item" header="'Daftar Suhu Mesin'">
+		<div class="grid_12">
+			<div class="grid_10" style="margin-top: 10px">
+				<div class="grid_1"></div>
+				<div class="grid_1" style="margin-top: 10px">
+					<label c-label item="item" c-label-text="Pencarian"></label>
+				</div>
+				<div class="grid_1" align="right"  style="margin-top: 10px">
+					<label c-label item="item" c-label-text=":"></label>
+				</div>
+				<div class="grid_3">
+				 <input class=k-textbox type=text ng-model="item.pencarian" placeholder="Petugas / Program Mesin / Mesin" />
+				</div>
+				<div class="grid_1" style="margin-top: 5px">
+					<button class="c-button success" ng-click="Cari(item.pencarian)">Cari</button>
+				</div>
+				<div class="grid_1" style="margin-top: 5px">
+					<button class="c-button cancel" ng-click="ClearCari()">Clear</button>
+				</div>
+				<div class="grid_1" style="margin-top: 5px">
+					<button class="c-button success" ng-click="Refresh()">Refresh</button>
+				</div>
+		</div>
+			<div class="grid_12 borderBox">
+				<div id="kGrid" kendo-grid 
+				k-data-source="dataSource" 
+				k-options="mainGridOptions"
+				k-selectable="'row'" 
+				k-columns="columnPermohonanPerubahanStatus"
+				k-sortable="'true'"
+			    k-pageable="true"
+				k-ng-model="dataSelected"
+				ng-click="klik(dataSelected)">
+				</div>
+			</div>
+</c-panel>
+	

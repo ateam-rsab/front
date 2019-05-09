@@ -1,0 +1,20 @@
+{
+	"model":{
+		"kodeSurat" : "",
+		"namaSurat" : ""
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "kodeSurat",
+			"messagesRequired" : "",
+			"caption" : "Kode Surat"
+		},
+		{
+			"isNull" : "true",
+			"name" : "namaSurat",
+			"messagesRequired" : "",
+			"caption" : "Nama Surat"
+		}
+	]
+}

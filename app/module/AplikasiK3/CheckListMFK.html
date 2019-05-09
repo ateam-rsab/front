@@ -1,0 +1,269 @@
+<div ng-controller="CheckListMFKCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Form Check List Manajemen Fasilitas dan Keamanan'">
+			<div ng-cloak>
+				<md-content>
+					<md-tabs md-dynamic-height md-border-bottom>
+						<md-tab label="fire & Safety">
+							<md-content class="md-padding">
+								<div class="grid_12">
+									<div class="grid_2" style="margin-top:10px;">
+										<label c-label item="item">Ruangan</label>
+									</div>
+									<div class="grid_3">
+										<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'ruanganId'"
+											k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+									</div>
+								</div>
+								<div class="grid_12">
+									<div class="grid_2" style="margin-top:10px">
+										<label c-label item="item">Tanggal</label>
+									</div>
+									<div class="grid_3">
+										<input style="width: 100%" kendo-date-picker k-ng-model="item.tglInput" k-value="now" placeholer="dd-mm-yyyy" k-format="'dd-MMM-yyyy'"
+										/>
+									</div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="alarmGridOptions" k-data-source="alarmData" k-editable=true k-scrollable=false
+										k-selectable="'row'"></div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="aparGridOptions" k-data-source="aparData" k-editable=true k-scrollable=false
+										k-selectable="'row'"></div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="insidenGridOptions" k-data-source="insidenData" k-editable=true
+										k-scrollable=false k-selectable="'row'"></div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="keselamatanKerjaGridOptions" k-data-source="keselamatanKerjaData"
+										k-editable=true k-scrollable=false k-selectable="'row'"></div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="bebasAsapGridOptions" k-data-source="areaBebasAsapRokokData"
+										k-editable=true k-scrollable=false k-selectable="'row'"></div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="pekerjaanGridOptions" k-data-source="pekerjaanKonstruksiRenovasiData"
+										k-editable=true k-scrollable=false k-selectable="'row'"></div>
+								</div>
+
+								<div class="grid_12" style="margin-top:50px">
+									<div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+								</div>
+							</md-content>
+						</md-tab>
+						<md-tab label="erp" ng-click="clickErp()">
+							<md-content class="md-padding">
+								<div class="grid_12">
+									<div class="grid_2" style="margin-top:10px;">
+										<label c-label item="item">Ruangan</label>
+									</div>
+									<div class="grid_3">
+										<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'ruanganId'"
+											k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+									</div>
+								</div>
+								<div class="grid_12">
+									<div class="grid_2" style="margin-top:10px">
+										<label c-label item="item">Tanggal</label>
+									</div>
+									<div class="grid_3">
+										<input style="width: 100%" kendo-date-picker k-ng-model="item.tglInput" k-value="now" placeholer="dd-mm-yyyy" k-format="'dd-MMM-yyyy'"
+										/>
+									</div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="kodeKedaruratanDataGridOptions" k-data-source="kodeKedaruratanData"
+										k-editable=true k-scrollable=false k-selectable="'row'"></div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="saranaEvakuasiGridOptions" k-data-source="saranaEvakuasiData"
+										k-editable=true k-scrollable=false k-selectable="'row'"></div>
+								</div>
+								<div class="grid_12" style="margin-top:50px">
+									<div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+								</div>
+							</md-content>
+						</md-tab>
+						<md-tab label="security" ng-click="clickSecurity()">
+							<md-content class="md-padding">
+								<div class="grid_12">
+									<div class="grid_2" style="margin-top:10px;">
+										<label c-label item="item">Ruangan</label>
+									</div>
+									<div class="grid_3">
+										<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'ruanganId'"
+											k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+									</div>
+								</div>
+								<div class="grid_12">
+									<div class="grid_2" style="margin-top:10px">
+										<label c-label item="item">Tanggal</label>
+									</div>
+									<div class="grid_3">
+										<input style="width: 100%" kendo-date-picker k-ng-model="item.tglInput" k-value="now" placeholer="dd-mm-yyyy" k-format="'dd-MMM-yyyy'"
+										/>
+									</div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="petugasKeamananGridOptions" k-data-source="petugasKeamananData"
+										k-editable=true k-scrollable=false k-selectable="'row'"></div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="insidenSecGridOptions" k-data-source="insidenSecData" k-editable=true
+										k-scrollable=false k-selectable="'row'"></div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="lostFoundGridOptions" k-data-source="lostFoundData" k-editable=true
+										k-scrollable=false k-selectable="'row'"></div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="idCardGridOptions" k-data-source="idCardData" k-editable=true
+										k-scrollable=false k-selectable="'row'"></div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="responTimeGridOptions" k-data-source="responTimeData" k-editable=true
+										k-scrollable=false k-selectable="'row'"></div>
+								</div>
+								<div class="grid_12" style="margin-top:50px">
+									<div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+								</div>
+							</md-content>
+						</md-tab>
+						<md-tab label="medical eq" ng-click="clickMedical()">
+							<md-content class="md-padding">
+								<div class="grid_12">
+									<div class="grid_2" style="margin-top:10px;">
+										<label c-label item="item">Ruangan</label>
+									</div>
+									<div class="grid_3">
+										<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'ruanganId'"
+											k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+									</div>
+								</div>
+								<div class="grid_12">
+									<div class="grid_2" style="margin-top:10px">
+										<label c-label item="item">Tanggal</label>
+									</div>
+									<div class="grid_3">
+										<input style="width: 100%" kendo-date-picker k-ng-model="item.tglInput" k-value="now" placeholer="dd-mm-yyyy" k-format="'dd-MMM-yyyy'"
+										/>
+									</div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="pemeliharaanRutinGridOptions" k-data-source="pemeliharaanRutinData" k-editable=true k-scrollable=false
+										k-selectable="'row'"></div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="perbaikanGridOptions" k-data-source="perbaikanData" k-editable=true k-scrollable=false
+										k-selectable="'row'"></div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="kalibrasiGridOptions" k-data-source="kalibrasiData" k-editable=true k-scrollable=false
+										k-selectable="'row'"></div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="suhuKelembabanTekananGridOptions" k-data-source="suhuKelembabanTekananData" k-editable=true k-scrollable=false
+										k-selectable="'row'"></div>
+								</div>
+								<div class="grid_12" style="margin-top:50px">
+									<div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+								</div>
+
+							</md-content>
+						</md-tab>
+						<md-tab label="hazmat" ng-click="clickHazmat()">
+							<md-content class="md-padding">
+								<div class="grid_12">
+									<div class="grid_2" style="margin-top:10px;">
+										<label c-label item="item">Ruangan</label>
+									</div>
+									<div class="grid_3">
+										<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'ruanganId'"
+											k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+									</div>
+								</div>
+								<div class="grid_12">
+									<div class="grid_2" style="margin-top:10px">
+										<label c-label item="item">Tanggal</label>
+									</div>
+									<div class="grid_3">
+										<input style="width: 100%" kendo-date-picker k-ng-model="item.tglInput" k-value="now" placeholer="dd-mm-yyyy" k-format="'dd-MMM-yyyy'"
+										/>
+									</div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="tumpahanBahanKimiaGridOptions" k-data-source="tumpahanBahanKimiaData" k-editable=true k-scrollable=false
+										k-selectable="'row'"></div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="insidenHazGridOptions" k-data-source="insidenHazData" k-editable=true k-scrollable=false
+										k-selectable="'row'"></div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="petugasKebersihanGridOptions" k-data-source="petugasKebersihanData" k-editable=true k-scrollable=false
+										k-selectable="'row'"></div>
+								</div>
+								<div class="grid_12" style="margin-top:50px">
+									<div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+								</div>
+							</md-content>
+						</md-tab>
+						<md-tab label="utility" ng-click="clickUtility()">
+							<md-content class="md-padding">
+								<div class="grid_12">
+									<div class="grid_2" style="margin-top:10px;">
+										<label c-label item="item">Ruangan</label>
+									</div>
+									<div class="grid_3">
+										<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'ruanganId'"
+											k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+									</div>
+								</div>
+								<div class="grid_12">
+									<div class="grid_2" style="margin-top:10px">
+										<label c-label item="item">Tanggal</label>
+									</div>
+									<div class="grid_3">
+										<input style="width: 100%" kendo-date-picker k-ng-model="item.tglInput" k-value="now" placeholer="dd-mm-yyyy" k-format="'dd-MMM-yyyy'"
+										/>
+									</div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="listrikGridOptions" k-data-source="listrikData" k-editable=true k-scrollable=false
+										k-selectable="'row'"></div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="airGridOptions" k-data-source="airData" k-editable=true k-scrollable=false
+										k-selectable="'row'"></div>
+								</div>
+									<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="gasMedisGridOptions" k-data-source="gasMedisData" k-editable=true k-scrollable=false
+										k-selectable="'row'"></div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="saluranPembuanganGridOptions" k-data-source="saluranPembuanganData" k-editable=true k-scrollable=false
+										k-selectable="'row'"></div>
+								</div>
+									<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="pendinginUdaraGridOptions" k-data-source="pendinginUdaraData" k-editable=true k-scrollable=false
+										k-selectable="'row'"></div>
+								</div>
+								<div class="grid_12">
+									<div kendo-grid="grid" k-ng-model="selectedData" k-options="liftGridOptions" k-data-source="liftData" k-editable=true k-scrollable=false
+										k-selectable="'row'"></div>
+								</div>
+								<div class="grid_12" style="margin-top:50px">
+									<div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+								</div>
+							</md-content>
+						</md-tab>
+					</md-tabs>
+				</md-content>
+			</div>
+		</c-panel>
+	</div>
+</div>

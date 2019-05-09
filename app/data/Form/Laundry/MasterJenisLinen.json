@@ -1,0 +1,41 @@
+{
+	"model":{
+		"kodeJenisLinen" : "",
+		"jenisLinen" : "",
+		"kodeEksternal" : "",
+		"namaEksternal" : "",
+	   	"statusEnabled" : ""
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "kodeJenisLinen",
+			"messagesRequired" : "",
+			"caption" : "Kode Jenis Linen"
+		},
+		{
+			"isNull" : "true",
+			"name" : "jenisLinen",
+			"messagesRequired" : "",
+			"caption" : "Jenis Linen"
+		},
+		{
+			"isNull" : "true",
+			"name" : "kodeEksternal",
+			"messagesRequired" : "",
+			"caption" : "Kode Eksternal"
+		},
+		{
+			"isNull" : "true",
+			"name" : "namaEksternal",
+			"messagesRequired" : "",
+			"caption" : "Nama Eksternal"
+		},
+		{
+			"isNull" : "true",
+			"name" : "statusEnabled",
+			"messagesRequired" : "",
+			"caption" : "Status Enabled"
+		}
+	]
+}

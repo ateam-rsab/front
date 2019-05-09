@@ -1,0 +1,41 @@
+[{
+    "id": 1,
+    "kdProfile": "0",
+    "kdAsalRujukan": "B",
+    "asalRujukan": "Puskesmas",
+    "reportDisplay": "Puskesmas",
+    "qAsalRujukan": "1",
+    "kodeExternal": "01",
+    "namaExternal": "Puskesmas",
+    "statusEnabled": "1"
+}, {
+    "id": 2,
+    "kdProfile": "0",
+    "kdAsalRujukan": "C",
+    "asalRujukan": "Rumah Sakit",
+    "reportDisplay": "Rs pemerintah",
+    "qAsalRujukan": "2",
+    "kodeExternal": "02",
+    "namaExternal": "Rs pemerintah",
+    "statusEnabled": "1"
+}, {
+    "id": 3,
+    "kdProfile": "0",
+    "kdAsalRujukan": "D",
+    "asalRujukan": "Klinik",
+    "reportDisplay": "Rs swasta",
+    "qAsalRujukan": "3",
+    "kodeExternal": "03",
+    "namaExternal": "Rs swasta",
+    "statusEnabled": "1"
+}, {
+    "id": 4,
+    "kdProfile": "0",
+    "kdAsalRujukan": "E",
+    "asalRujukan": "Lain-lain", 
+    "reportDisplay": "Praktek swasta",
+    "qAsalRujukan": "4",
+    "kodeExternal": "04",
+    "namaExternal": "Praktek swasta",
+    "statusEnabled": "1"
+}]

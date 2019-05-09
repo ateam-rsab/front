@@ -1,0 +1,23 @@
+<div ng-controller="PemakaianGasMedisCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Pemakaian Gas Medis'">
+		<div class="grid_6">
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item" c-label-text="periode"></label>
+			</div>
+			<div class="grid_6">
+				<input style="width: 100%" kendo-date-picker k-options="yearSelected" k-ng-model="item.periode" k-format="'yyyy'" />
+			</div>
+			<div class="grid_2" style="margin-top: 6px">
+				<button class="c-button" ng-click="cari()">Cari</button>
+			</div>
+		</div>
+
+		<div class="clear"></div>
+		<div class="grid_12">
+			<div kendo-grid="grid" k-ng-model="selectedData" k-data-source="dataSource" k-options="mainGridPemakaianGasMedis" k-selectable="'row'" style="margin-bottom: 10px"></div>
+		</div>
+		</c-panel>
+	</div>
+</div>

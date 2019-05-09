@@ -1,0 +1,12 @@
+{  "model":{
+  "RiwayatImunisasi" : ""
+},
+  "attributes" : [
+    {
+      "isNull" : "true",
+      "name" : "RiwayatImunisasi",
+      "messagesRequired" : "UsiaKehamilan Harus Diisi",
+      "caption" : "Hasil Imunisasi"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+[{
+    "id": 1,
+    "name": "Darah perifer lengkap",
+    "info": "False",
+    "infoMsg": ""
+}, {
+    "id": 2,
+    "name": "Urin lengkap",
+    "info": "False",
+    "infoMsg": ""
+}, {
+    "id": 3,
+    "name": "Swab avagina/ Cervix",
+    "info": "False",
+    "infoMsg": ""
+}, {
+    "id": 4,
+    "name": "Paps Smear",
+    "info": "False",
+    "infoMsg": ""
+}, {
+    "id": 5,
+    "name": "PHS",
+    "info": "False",
+    "infoMsg": ""
+}]

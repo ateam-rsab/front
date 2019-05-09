@@ -1,0 +1,98 @@
+<style type="text/css">
+	.k-textbox {
+		margin-bottom:20px;
+	}
+</style>
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Detil Barang Medis</div>
+	<div class="panel-body">
+		<div class="grid_12">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="NamaProduk"></label>
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaProduk"/>
+			</div>
+			<div class="grid_8">&nbsp;</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_4">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="komposisiBarang"></label>
+					<textarea style="width:100%" rows="3" c-text-box type="input" class="k-textbox" ng-model="item.komposisiBarang"/>
+				</div>
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="interaksi"></label>
+					<textarea style="width:100%" rows="3" c-text-box type="input" class="k-textbox" ng-model="item.interaksi"/>
+				</div>
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="dosis"></label>
+					<textarea style="width:100%" rows="3" c-text-box type="input" class="k-textbox" ng-model="item.dosis"/>
+				</div>
+			</div>
+			<div class="grid_4">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="indikasi"></label>
+					<textarea style="width:100%" rows="3" c-text-box type="input" class="k-textbox" ng-model="item.indikasi"/>
+				</div>
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="efekSamping"></label>
+					<textarea style="width:100%" rows="3" c-text-box type="input" class="k-textbox" ng-model="item.efekSamping"/>
+				</div>
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="penyimpanan"></label>
+					<textarea style="width:100%" rows="3" c-text-box type="input" class="k-textbox" ng-model="item.penyimpanan"/>
+				</div>
+			</div>
+			<div class="grid_4">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kontraIndikasi"></label>
+					<textarea style="width:100%" rows="3" c-text-box type="input" class="k-textbox" ng-model="item.kontraIndikasi"/>
+				</div>
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="peringatan"></label>
+					<textarea style="width:100%" rows="3" c-text-box type="input" class="k-textbox" ng-model="item.peringatan"/>
+				</div>
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="pustaka"></label>
+					<textarea style="width:100%" rows="3" c-text-box type="input" class="k-textbox" ng-model="item.pustaka"/>
+				</div>
+			</div>
+		</div>
+		<div class="grid_12 headerBox" align="center">&nbsp;</div>
+		<div class="grid_12" style="margin-top: 5px">
+			<div class="grid_3">
+				<label c-label item="item">Cari Data Berdasarkan:</label>
+			</div>
+			<div class="grid_2" style="margin-top: 10px">
+				<label c-label item="item">Nama Barang/Kode Barang</label>
+			</div>
+			<div class="grid_3">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.kodeBarang"/>
+			</div>
+			<div class="grid_1" style="margin-top: 6px">
+				<button class="c-button" ng-click="cari()">Cari</button>
+			</div>
+			<div class="grid_3"></div>
+		</div>
+	</div>
+
+	<div class="grid_12" style="margin-top: 10px">
+		<kendo-grid k-data-source="dataSource" k-selectable="'row'" options="mainGridOptions"></kendo-grid>
+	</div>
+	<div class="grid_12">
+		<div class="grid_8"></div>
+		<div class="grid_4">
+			<div class="grid_6">
+				<button class="c-button" ng-click="detilProduk()">Lihat Detil</button>
+			</div>
+			<div class="grid_6">
+				<button class="c-button" ng-click="Batal()">Kembali</button>
+			</div>
+		</div>
+		<!-- <div class="grid_2">
+			<button class="c-button" ng-click="Delete()">Hapus</button>
+		</div>
+		<div class="grid_2">
+			<button class="c-button">Tutup</button>
+		</div> -->
+	</div>
+</div>

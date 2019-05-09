@@ -1,0 +1,74 @@
+<div ng-controller="DashboardDiagnosisKeperawatanCtrl">
+    <c-panel disabled>
+        <div class="grid_12" style="margin-bottom:60px">
+            <div class="grid_12 headerBox">
+                <h1 style="color: white;"><b>Masalah Keperawatan</b></h1>
+            </div>
+            <div class="clear"></div>
+            <br />
+            <!--<div class="grid_12">
+            <div class="grid_4" ng-repeat="list in items | orderBy:'id'">
+                <input type="checkbox" ng-change="cekArrDiagnosis(bool, list)" ng-model="bool">
+                <label for="{{list.namaDiagnosaKep}}">{{list.namaDiagnosaKep}}</label>
+            </div>
+        </div>-->
+            <div class="grid_12">
+                <div kendo-grid id="kGrid" k-data-source="dataDaftarDiagnosis" k-selectable="'row'" options="opsiDiagnosis">
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_4">
+                    <div class="grid_12 headerBox">
+                        <h1 style="color: white;"><b>Intervensi</b></h1>
+                    </div>
+                    <div class="grid_12" ng-repeat="opsi in arrIntervensi | orderBy:'id'">
+                        <input  class="k-checkbox" type="checkbox" ng-change="checkedDiagnosis(bool, opsi)" 
+                         name="{{opsi.nama}}" id="{{opsi.nama}}" value="{{opsi.id}}"
+                            ng-model="bool" ng-checked="isChecked(opsi.id)">
+                        <label class="k-checkbox-label" for="{{opsi.nama}}"><b>{{opsi.nama}}</b></label>
+                        <div class="grid_12" ng-repeat="subOpsi in opsi.detail" style="padding-left:15px">
+                            <input   class="k-checkbox" type="checkbox" ng-change="checkedDiagnosis(bool, subOpsi)" ng-model="bool"
+                            name="{{subOpsi.name}}" id="{{subOpsi.name}}" value="{{subOpsi.id}}"
+                                ng-checked="isChecked(subOpsi.id)">
+                            <label class="k-checkbox-label"  for="{{subOpsi.name}}">{{subOpsi.name}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_4">
+                    <div class="grid_12 headerBox">
+                        <h1 style="color: white;"><b>Implementasi</b></h1>
+                    </div>
+                    <div class="grid_12" ng-repeat="opsi in arrImplementasi | orderBy:'id'">
+                        <input class="k-checkbox" type="checkbox" ng-change="checkedDiagnosis(bool, opsi)" ng-model="bool" ng-checked="isChecked(opsi.id)"
+                        name="{{opsi.nama}}" id="{{opsi.nama}}" value="{{opsi.id}}">
+                        <label class="k-checkbox-label"  for="{{opsi.nama}}"><b>{{opsi.nama}}</b></label>
+                        <div class="grid_12" ng-repeat="subOpsi in opsi.detail" style="padding-left:15px">
+                            <input class="k-checkbox" type="checkbox" ng-change="checkedDiagnosis(bool, subOpsi)" ng-model="bool" 
+                            name="{{subOpsi.name}}" id="{{subOpsi.name}}" value="{{subOpsi.id}}"
+                                ng-checked="isChecked(subOpsi.id)">
+                            <label class="k-checkbox-label"  for="{{subOpsi.name}}">{{subOpsi.name}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_4">
+                    <div class="grid_12 headerBox">
+                        <h1 style="color: white;"><b>Evaluasi</b></h1>
+                    </div>
+                    <div class="grid_12" ng-repeat="opsi in arrEvaluasi | orderBy:'id'">
+                        <input class="k-checkbox" type="checkbox" ng-change="checkedDiagnosis(bool, opsi)" ng-model="bool" ng-checked="isChecked(opsi.id)"
+                        name="{{opsi.nama}}" id="{{opsi.nama}}" value="{{opsi.id}}">
+                        <label class="k-checkbox-label"  for="{{opsi.nama}}"><b>{{opsi.nama}}</b></label>
+                        <div class="grid_12" ng-repeat="subOpsi in opsi.detail" style="padding-left:15px">
+                            <input class="k-checkbox" type="checkbox" ng-change="checkedDiagnosis(bool, subOpsi)" ng-model="bool"
+                                ng-checked="isChecked(subOpsi.id)"
+                                name="{{subOpsi.name}}" id="{{subOpsi.name}}" value="{{opsi.id}}">
+                            <label class="k-checkbox-label"  for="{{subOpsi.name}}">{{subOpsi.name}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </c-panel>
+    <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+    <!--<div ui-view></div>-->
+</div>

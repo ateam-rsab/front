@@ -1,0 +1,58 @@
+<div ng-controller="PersepsiPasienCtrl">
+    <div ng-show="dataVOloaded">
+
+        <!-- panel utama -->
+
+
+        <c-normal-tidak-normal is-show-form="isShowForm" selanjutnya="selanjutnya">
+        </c-normal-tidak-normal>
+
+        <div ng-show="isShowForm">
+
+            <c-panel item="item" header="'Persepsi Pasien'" disabled>
+                <div class="panel-body">
+                    <div class="grid_12">
+                        <div style="background-color: #10C4B2; height: 25px; margin-top: 5px; text-align: left; border: 1px solid; border-color: #10C4B2;" class="grid_12">
+                            <span style="font-size: 18px; color: white; padding: 5px;">Bagaimana persepsi pasien terhadap kesehatannya ?</span>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+                            <div style="margin-left: 15px;" class="grid_3" ng-repeat="status in listStatusKesehatan">
+                                <input type="radio" name="{{'StatusKesehatan' + status.name}}" id="{{'StatusKesehatan' + status.name}}" class="k-radio" ng-model="item.TanyaStatusKesehatan" ng-value="status">
+                                <label class="k-radio-label" for="{{'StatusKesehatan' + status.name}}">{{status.name}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div style="background-color: #10C4B2; height: 25px; margin-top: 5px; text-align: left; border: 1px solid; border-color: #10C4B2;" class="grid_12">
+                            <span style="font-size: 18px; color: white; padding: 5px;">Bagaimana persepsi pasien terhadap penyebab penyakit ?</span>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+                            <div style="margin-left: 15px;" class="grid_3" ng-repeat="status in listStatusPenyebabPenyakit">
+                                <input type="radio" name="{{'StatusPenyebabPenyakit' + status.name}}" id="{{'StatusPenyebabPenyakit' + status.name}}" class="k-radio" ng-model="item.TanyaPenyebabPenyakit" ng-value="status">
+                                <label class="k-radio-label" for="{{'StatusPenyebabPenyakit' + status.name}}">{{status.name}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div style="background-color: #10C4B2; height: 25px; margin-top: 5px; text-align: left; border: 1px solid; border-color: #10C4B2;" class="grid_12">
+                            <span style="font-size: 18px; color: white; padding: 5px;">Bagaimana perseps pasien apa yang harus di lakukan ?</span>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+                            <div style="margin-left: 15px;" class="grid_3" ng-repeat="status in listStatusYangDilakukan">
+                                <input type="radio" name="{{'StatusYangDilakukan' + status.name}}" id="{{'StatusYangDilakukan' + status.name}}" class="k-radio" ng-model="item.TanyaStatusYangDilakukan" ng-value="status">
+                                <label class="k-radio-label" for="{{'StatusYangDilakukan' + status.name}}">{{status.name}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c-panel>
+
+            <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+
+        </div>
+
+    </div>
+</div>

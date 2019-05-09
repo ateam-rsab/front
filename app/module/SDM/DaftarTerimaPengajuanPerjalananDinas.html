@@ -1,0 +1,27 @@
+<div ng-controller="DaftarTerimaPengajuanPerjalananDinasCtrl">
+	<c-panel item="item" header="'Daftar Terima Pengajuan Perjalanan Dinas'">
+	<div class="grid_12">
+		<div class="grid_2">
+			<label c-label item="item" style="margin-top: 10px">Periode Pengajuan</label>
+		</div>
+		<div class="grid_2">
+			<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalAwal" k-format="'dd-MM-yyyy'"/>
+		</div>
+		<div class="grid_2">
+			<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalAkhir" k-format="'dd-MM-yyyy'"/>
+		</div>
+		<div class="grid_1">
+			<button class="c-button" style="margin-top: 6px" ng-click="()">Cari</button>
+		</div>
+	</div>
+	<div class="grid_12">
+		<kendo-grid options="mainGridOptions" k-data-source="dataGrid" ></kendo-grid>
+	</div>
+	<div class="grid_12">
+		<div class="grid_10"></div>
+		<div class="grid_2">
+			<button class="c-button" ng-click="()">Detail</button>
+		</div>
+	</div>
+	</c-panel>
+</div>

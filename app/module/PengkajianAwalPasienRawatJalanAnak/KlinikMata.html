@@ -1,0 +1,184 @@
+<html>
+
+<head>
+    <style>
+        .xxx {
+            display: table-row-group;
+            vertical-align: middle;
+            border-color: inherit;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div ng-controller="KlinikMataCtrl">
+        <div ng-show="dataVOloaded">
+
+            <c-panel item="item" header="'Kedudukan Bola Mata'" disabled>
+                <div class='grid_12'>
+                </div>
+                <div class="container_12">
+                    <div class="grid_6">
+                        <button class='btnShowNormalTidakNormal' ng-click='changeStat("Normal")' style='position:relative' ng-style="{'background-color': warna.normal}">
+                  <img class="normalTidakNormal" src="stylesheets/eye-os-kiri.jpg" style="width:500px; height:250px;">
+                            <span class="normalTidakNormal">OD</span>
+                    </div>
+                    <div class="grid_6">
+                    <button class='btnShowNormalTidakNormal' ng-click='changeStat("TidakNormal")' style='position:relative' ng-style="{'background-color': warna.tidakNormal}">
+                            <img class="normalTidakNormal" src="stylesheets/eye-os.jpg" style="width:500px; height:250px;">
+                            <span class="normalTidakNormal">OS</span>
+                    </div>
+                </div>
+                <hr style="background-color:#10C4B2;height: 1px;border: 0;" />
+                <div class="container_12">
+                    <div class="grid_7">
+                        <div class="grid_10"><textarea placeholder="Keterangan" ng-model="item.ketMata" style="width: 99%; height: 80px;"></textarea></div>
+                        <!-- <div class="grid_10"><input c-text-box type=25nput" filter="'string'" class="k-textbox" ng-model="tempItem.Ayko" /></div>
+                --></div>
+                    <div class="grid_5" style="margin-top: 10px;">
+                        <div class="container_12">
+                            <div class="grid_3">
+                                <label c-label item="item" c-label-text="KategoriMata"></label></div>
+                            <div class="grid_9">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.kategoriMata" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-data-source="listKategoriKlinikMata" />
+                            </div>
+                        </div>
+                        <div class="grid_12" style=" margin-top: 10px;">
+                            <c-button ng-click="addKategori()" style="width: 10px; align-content: center; align-items: center; align:center">
+                                <center><span style="font-size:10!important;">Tambah</span></center>
+                            </c-button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid_12" style="margin-top: 10px;">
+                    <div kendo-grid k-data-source="dataKategoriMata" k-selectable="'row'" k-columns="columnDataKategoriMata">
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <hr style="background-color:#10C4B2;height: 1px;border: 0;" />
+                <div class="container_12">
+                    <div class="grid_6">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="Visus" class="ng-isolate-scope c-label"></label></div>
+
+                        <div ng-repeat="data in listStatusKlinikMata">
+                            <input type="checkbox" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" value="{{data.id}}" ng-click="cekArray(data, 'arrStatusVisus')" ng-checked="data.isChecked">
+                            <label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+                        </div>
+                    </div>
+                    <div class="grid_6">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="Koreksi" class="ng-isolate-scope c-label"></label></div>
+
+                        <div ng-repeat="data in listStatusKoreksi">
+                           <input type="checkbox" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" value="{{data.id}}" ng-click="cekArray(data, 'arrStatusKoreksi')" ng-checked="data.isChecked">
+                            <label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+                        </div>
+                    </div>
+                    <div class="grid_6">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="Kacamata" class="ng-isolate-scope c-label"></label></div>
+
+                        <div ng-repeat="data in listStatusKacamata">
+                            <input type="checkbox" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" value="{{data.id}}" ng-click="cekArray(data, 'arrStatusKacamata')" ng-checked="data.isChecked">
+                            <label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+                        </div>
+                    </div>
+                </div>
+                <hr style="background-color:#10C4B2;height: 1px;border: 0;" />
+                <div class="container_12">
+                    <label c-label item="item" c-label-text="Streak" class="ng-isolate-scope c-label"></label>
+                    <textarea rows="8" cols="141" ng-model="item.streak"></textarea>
+                </div>
+                <hr style="background-color:#10C4B2;height: 1px;border: 0;" />
+                <div class="container_12">
+                    <div class="grid_6">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="Tonometri" class="ng-isolate-scope c-label"></label></div>
+
+                        <div ng-repeat="data in listStatusTonometri">
+                            <input type="checkbox" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" value="{{data.id}}" ng-click="cekArray(data, 'arrStatusTonometri')" ng-checked="data.isChecked">
+                            <label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+                        </div>
+                    </div>
+                    <div class="grid_6">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="Aplasnasi" class="ng-isolate-scope c-label"></label></div>
+
+                        <div ng-repeat="data in listStatusAplasnasi">
+                             <input type="checkbox" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" value="{{data.id}}" ng-click="cekArray(data, 'arrStatusAplasnasi')" ng-checked="data.isChecked">
+                            <label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+                        </div>
+                    </div>
+                </div>
+            </c-panel>
+        </div>
+
+
+    </div>
+    <hr style="background-color:#10C4B2;height: 1px;border: 0;" />
+    <c-panel item="item" header="'Laboratorium'" disabled>
+        <br/>
+        <div class="container_12">
+            <div class="grid_7"></div>
+            <div class="grid_5">
+                <div class="grid_3">Cari</div>
+                <div class="grid_9"><input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.TekananDarah" /></div>
+            </div>
+        </div>
+        <table id="grid">
+            <colgroup>
+                <col style="width:20px" />
+                <col style="width:150px" />
+                <col style="width:80px" />
+                <col style="width:50px" />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th data-field="make">No</th>
+                    <th data-field="model">Pemeriksaan</th>
+                    <th data-field="year">Tanggal Pemeriksaan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Pemeriksaan Darah</td>
+                    <td>12 Januari 2016</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Pemeriksaan Urine</td>
+                    <td>17 Agustus 2016</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Pemeriksaan Pankreas</td>
+                    <td>1 Desember 2016</td>
+                </tr>
+            </tbody>
+        </table>
+    </c-panel>
+    
+<div class="grid_12" style="margin-top:15px">
+                    <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+                </div>
+    </c-panel>
+    </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    $(document).ready(function() {
+        $("#grid").kendoGrid({
+            height: 150,
+            sortable: true
+        });
+    });
+</script>

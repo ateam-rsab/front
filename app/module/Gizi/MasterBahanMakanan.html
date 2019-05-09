@@ -1,0 +1,90 @@
+<div ng-controller="MasterBahanMakananCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Master Bahan Makanan'">
+		<div class="grid_4">
+			<label c-label item="item" c-label-text="jenisBahanDiet"></label>
+		</div>
+		<div class="grid_4">
+			<label c-label item="item" c-label-text="kodeBahanDiet"></label>
+		</div>
+		<div class="grid_4">
+			<label c-label item="item" c-label-text="namaBahanDiet"></label>
+		</div>
+		<div class="grid_4">
+			<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisBahanDiet" k-data-text-field="'jenisDiet'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisBahanDiet" />
+		</div>
+		<div class="grid_4">
+			<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kodeBahanDiet" />
+		</div>
+		<div class="grid_4">
+			<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaBahanDiet" />
+		</div>
+		<div class="grid_3">
+			<label c-label item="item" c-label-text="spesifikasiBahanDiet"></label>
+		</div>
+		<div class="grid_3">
+			<label c-label item="item" c-label-text="satuan"></label>
+		</div>
+		<div class="grid_3">
+			<label c-label item="item" c-label-text="jmlKemasan"></label>
+		</div>
+		<div class="grid_3">
+			<label c-label item="item" c-label-text="jmlTerkecil"></label>
+		</div>
+		<div class="grid_3">
+			<textarea style="height: 50px" id="text_area_spesifikasi" c-text-box type="input" class="k-textbox" ng-model="item.spesifikasiBahanDiet" />
+		</div>
+		<div class="grid_3">
+			<input style="width: 100%;" kendo-combo-box k-ng-model="item.satuan" k-data-text-field="'satuanHasil'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listSatuan" />
+		</div>
+		<div class="grid_3">
+			<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.jmlKemasan" />
+		</div>
+		<div class="grid_3">
+			<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.jmlTerkecil" />
+		</div>
+		<div class="clear"></div>
+		<div class="grid_3"></div>
+		<div class="grid_3"></div>
+		<div class="grid_3"></div>
+		<div class="grid_3" style="margin-bottom: 10px">
+		<input type="checkbox" class="k-checkbox" name="statusAktif" id="statusAktif"  ng-click="()">
+					<label class="k-checkbox-label" c-label item="item" c-label-text="statusAktif" for="statusAktif"></label>
+		</div>
+		<div class="clear"></div>
+		<div kendo-grid k-data-source="daftarBahanMakanan" k-selectable="'row'" k-columns="columnBahanMakanan" style="margin-bottom: 10px">
+				</div>
+		<div class="grid_3">
+			<label c-label item="item" c-label-text="cariBahanDiet"></label>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_3">
+			<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.cariBahanDiet" />
+		</div>
+		<div class="clear"></div>
+		<div class="grid_6"></div>
+		<div class="grid_6">
+			<div class="grid_3">
+			<c-button ng-click="cetak()">
+			<span>Cetak</span>
+		</div>
+		<div class="grid_3">
+			<c-button ng-click="addBahanMakanan()">
+			<span>Tambah</span>
+		</div>
+		<div class="grid_3">
+			<c-button ng-click="simpan()">
+			<span>Simpan</span>
+		</div>
+		<div class="grid_3">
+			<c-button ng-click="batal()">
+			<span>Batal</span>
+		</div>
+		</div>
+
+		
+
+		</c-panel>
+	</div>
+</div>

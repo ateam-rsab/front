@@ -1,0 +1,68 @@
+<div ng-controller="InformasiMedisCtrl">
+    <div class="panel panel-default container_12">
+        <div class="panel-heading" c-translate>
+            Informiasi Medis
+        </div>
+
+
+        <div class="panel-body">
+            <c-form item="item">
+
+                <div class="panel panel-default container_12" style="margin-bottom:0;">
+
+                    <div class="panel-heading" c-translate>
+                        Gangguan
+                    </div>
+                    <div class="panel-body">
+                        <div class="grid_2" ng-repeat="stat in listInformasiMedis | filter: {kategori:'Gangguan'}">
+                            <input type="checkbox" name="{{stat.name}}" id="{{stat.name}}" class="k-checkbox"
+                                   id="{{stat.name}}" ng-model="TempItem.tempatTinggal" value="stat"
+                                   ng-click="cekArrGangguan(stat)">
+                            <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+
+                            <div class="clear"></div>
+                        </div>
+
+
+                    </div>
+                </div>
+                        <div class="panel panel-default container_12" style="margin-bottom:0;">
+
+                            <div class="panel-heading" c-translate>
+                                Inkontinensia
+                            </div>
+                            <div class="panel-body">
+                                <div class="grid_2" ng-repeat="stat in listInformasiMedis | filter: {kategori:'Inkontinensia'}">
+                                    <input type="checkbox" name="{{stat.name}}" id="{{stat.name}}" class="k-checkbox"
+                                           id="{{stat.name}}" ng-model="TempItem.tempatTinggal" value="stat"
+                                           ng-click="cekArrStatusTempatTinggal(stat)">
+                                    <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+
+                                    <div class="clear"></div>
+                                </div>
+                        </div>
+                </div>
+                        <div class="panel panel-default container_12" style="margin-bottom:0;">
+
+                            <div class="panel-heading" c-translate>
+                                Potensi Untuk Dilakukan Rehabilitasi
+                            </div>
+                            <div class="panel-body">
+
+                                    <div class="grid_2" ng-repeat="stat in listInformasiMedis | filter: {kategori:'Potensi Untuk Dilakukan Rehabilitasi'}">
+                                        <input type="checkbox" name="{{stat.name}}" id="{{stat.name}}" class="k-checkbox"
+                                               id="{{stat.name}}" ng-model="TempItem.tempatTinggal" value="stat"
+                                               ng-click="cekArrStatusTempatTinggal(stat)">
+                                        <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+
+                                        <div class="clear"></div>
+                                    </div>
+
+
+                            </div>
+                        </div>
+                </div>
+
+                <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+        </div>
+    </div>

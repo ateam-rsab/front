@@ -1,0 +1,246 @@
+
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Master SK Asuransi Pegawai'" disabled>
+			<div class="grid_6">
+				<div class="panel panel-default container_12">
+					<!--		<div class="panel-heading" c-translate>Periode</div> -->
+					<!--		<div class="panel-body"> -->
+
+
+
+                    <div class="grid_12">
+	<div class="grid_5" style="margin: 6px 0 0 0;">
+<label><b>No SK</b></label>
+</div>
+<div class="grid_7">
+	<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nosk" />
+</div>
+
+</div>
+  <div class="grid_12">
+	<div class="grid_5" style="margin: 6px 0 0 0;">
+<label><b>Nama SK</b></label>
+</div>
+<div class="grid_7">
+	<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namask" />
+</div>
+
+</div>
+<div class="grid_12">
+			<div class="grid_5" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Tanggal Berlaku Awal"></label>
+			</div>
+			<div class="grid_7">
+				 <input ng-disabled="isDisable" kendo-date-picker k-ng-model="item.c" k-max="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+			</div>
+			</div>
+			
+<div class="grid_12">
+			<div class="grid_5" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Tanggal Berlaku Akhir"></label>
+			</div>
+			<div class="grid_7">
+				 <input ng-disabled="isDisable" kendo-date-picker k-ng-model="item.e"  k-format="'dd-MM-yyyy'" style="width: 100%" />
+			</div>
+			</div>			
+
+
+<div class="grid_12">
+<div class="grid_5" style="margin: 6px 0 0 0;">
+<label c-label item="item" c-label-text="Ruangan"></label>
+</div>
+<div class="grid_7">
+	<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaRuangan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'"
+k-auto-bind="false" k-data-source="ListRuangan" />
+</div>
+</div>
+<div class="grid_12">
+<div class="grid_5" style="margin: 6px 0 0 0;">
+<label c-label item="item" c-label-text="Rekanan Penjamin Asuransi"></label>
+</div>
+<div class="grid_7">
+	<input style="width: 100%;" kendo-combo-box k-ng-model="item.penjaminAsuransi" k-data-text-field="'namaRekanan'" k-data-value-field="'id'" k-filter="'contains'"
+k-auto-bind="false" k-data-source="ListRekananAsuransi" />
+</div>
+</div>
+
+<div class="grid_12">
+			
+			<div class="grid_4" style="margin-top: 10px">
+                            <input type="checkbox" class="k-checkbox" name="dataAktif" id="dataAktif" ng-model="item.cb1" ng-checked="item.cb1"  ng-click="check()">
+							<label class="k-checkbox-label" c-label item="item" c-label-text="Per Bulan" for="dataAktif"></label>
+                        </div>
+			<div class="grid_4" style="margin-top: 10px">
+                            <input type="checkbox" class="k-checkbox" name="dataAktif2" id="dataAktif2" ng-model="item.cb2" ng-click="check2()">
+							<label class="k-checkbox-label" c-label item="item" c-label-text="Per Tahun" for="dataAktif2"></label>
+                        </div>			
+	
+			
+			</div>
+					
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+<!--		   </div>  -->
+<div class="grid_6">
+	
+
+<div class="grid_12">
+	<div class="grid_5" style="margin: 6px 0 0 0;">
+<label><b>Komponen Harga</b></label>
+</div>
+<div class="grid_7">
+	<input style="width: 100%;" kendo-combo-box k-ng-model="item.komponenHarga" k-data-text-field="'komponenHarga'" k-data-value-field="'id'" k-filter="'contains'"
+k-auto-bind="false" k-data-source="ListKomponenHarga" />
+</div>
+
+</div>
+<div class="grid_12">
+	<div class="grid_5" style="margin: 6px 0 0 0;">
+<label><b>Harga Satuan Premi</b></label>
+</div>
+<div class="grid_7">
+<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.hargaSatuanPremi" />
+</div>
+
+</div>
+
+
+
+<div class="grid_12">
+	<div class="grid_5" style="margin: 6px 0 0 0;">
+<label><b>Persen Premi</b></label>
+</div>
+<div class="grid_7">
+	<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.persenPremi" />
+</div>
+
+</div>
+<div class="grid_12">
+	<div class="grid_5" style="margin: 6px 0 0 0;">
+<label><b>Factor Rate</b></label>
+</div>
+<div class="grid_7">
+	<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.factorRate" />
+</div>
+
+</div>
+<div class="grid_12">
+	<div class="grid_5" style="margin: 6px 0 0 0;">
+<label><b>Operator Factor Rate</b></label>
+</div>
+<div class="grid_7">
+	<input style="width: 100%;" kendo-combo-box k-ng-model="item.operatorFactorRate" k-data-text-field="'keterangan'" k-data-value-field="'id'" k-filter="'contains'"
+k-auto-bind="false" k-data-source="Listoperatorfactorrate" />
+</div>
+
+</div>
+
+<div class="grid_12">
+	<div class="grid_5" style="margin: 6px 0 0 0;">
+<label><b>Total Factor Rate Premi</b></label>
+</div>
+<div class="grid_7">
+	<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.totalFactorRatePremi" />
+</div>
+
+</div>
+
+<div ng-show="false">
+<div class="grid_12">
+	<div class="grid_5" style="margin: 6px 0 0 0;">
+<label><b>Pegawai SK Asuransi Id</b></label>
+</div>
+<div class="grid_7">
+	<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.pegawaiSkAsuransiId" />
+</div>
+
+</div>
+</div>
+
+<div ng-show="false">
+<div class="grid_12">
+	<div class="grid_5" style="margin: 6px 0 0 0;">
+<label><b>Surat Keputusan Id</b></label>
+</div>
+<div class="grid_7">
+	<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.suratKeputusanId" />
+</div>
+
+</div>
+</div>
+
+
+
+<div class="grid_8" style="margin-top: 10px">
+                              <input type="checkbox" class="k-checkbox" name="dataAktif" id="dataAktif" value="true" ng-model="item.dataAktif" ng-true-value="'true'" ng-false-value="'false'" ng-checked="vals">
+							<label class="k-checkbox-label" for="dataAktif">Status Aktif</label>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+<div class="grid_12">
+	<kendo-grid id="grid" k-data-source="ListTampilGrid" k-pageable="true" k-selectable="'row'" options="mainGridOptions" k-ng-model="m" ng-click="klik(m)" style="font-size: small;">
+</kendo-grid>
+
+</div>
+
+
+
+
+
+
+
+
+
+</c-panel>
+<div class="grid_12">
+	<div class="grid_7" style="float:left">
+
+
+<div class="grid_2" style="margin-top: 25px">
+<button class="c-button" ng-show="!isLoading" item="item" is-validate click="Cancel">
+                					<span class="title">Batal</span></button>
+</div>
+<div class="grid_2 " style="margin-top: 25px ">
+<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Tambah</span>
+									</button>
+</div>
+
+
+</div>
+</div>
+</div>
+</div>
+</div>

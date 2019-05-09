@@ -1,0 +1,25 @@
+{
+	"model":{
+		"periodeTanggal" : "",
+		"sd":"",
+		"noKasus":""		
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "periodeTanggal",
+			"messagesRequired" : "",
+			"caption" : "Periode"
+		},{
+			"isNull" : "true",
+			"name" : "sd",
+			"messagesRequired" : "",
+			"caption" : "s/d"
+		},{
+			"isNull" : "true",
+			"name" : "noKasus",
+			"messagesRequired" : "",
+			"caption" : "No. Kasus"
+		}
+	]
+}

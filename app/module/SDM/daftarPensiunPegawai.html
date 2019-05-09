@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+    <div class="panel-heading"><label class='title' c-label item="item" c-label-text="pegawaiPensiun"></label></div>
+    <div class="panel-body">
+        <div class="grid_12">
+            <div class="grid_2">
+                <label c-label c-label-text="periodeAwal"></label>
+                <input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAwal" k-options="yearSelected"/>
+            </div>
+            <div class="grid_2">
+                <label c-label c-label-text="periodeAkhir"></label>
+                <input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAkhir" k-options="yearSelected"/>
+            </div>
+            <div class="grid_1">
+                <label c-label c-label-text=""></label>
+                <em style="margin-top:6px;" ng-click='findData(item)' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Find</span></em>
+                <em style="margin-top:6px;" ng-click='loadInit()' id="iconButton" data-role="button" class="k-button k-button-icon cancel" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+            </div>
+        </div>
+        <div class="grid_12">
+            <h2>Daftar Pegawai Pensiun</h2>
+            <div kendo-grid k-data-source="dataPensiun" options="opsiDataPensiun"></div>
+        </div>
+    </div>
+</div>

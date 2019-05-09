@@ -1,0 +1,44 @@
+{
+    "noRegistrasi": "1606000001",
+    "noMasuk": "16060000099",
+    "noOrder": "16060000099",
+    "ruanganTujuan": "LABORATORIUm",
+    "dokterPerujuk": "Dr. Ali",
+    "tglDiRujuk": "1466385600",
+    "orders": [{
+        "kdProduk": "000001",
+        "namaProduk": "Ascites",
+        "bahanSample": {
+            "id": 1,
+            "kdBahanSample": "B",
+            "namaBahanSample": "URINE"
+        },
+        "jenisPeriksa": "KIMIA"
+    }, {
+        "kdProduk": "2",
+        "namaProduk": "Ascites",
+        "bahanSample": {
+            "id": 2,
+            "kdBahanSample": "C",
+            "namaBahanSample": "DARAH"
+        },
+        "jenisPeriksa": "KIMIA"
+    }, {
+        "kdProduk": "3",
+        "namaProduk": "Pleura",
+        "bahanSample": {
+            "id": 2,
+            "kdBahanSample": "C",
+            "namaBahanSample": "DARAH"
+        },
+        "jenisPeriksa": "URINE"
+    }, {
+        "kdProduk": "4",
+        "namaProduk": "Chyllus",
+        "jenisPeriksa": "URINE"
+    }, {
+        "kdProduk": "5",
+        "namaProduk": "Lain-lain",
+        "jenisPeriksa": "URINE"
+    }]
+}

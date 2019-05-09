@@ -1,0 +1,98 @@
+<div ng-controller="AsuransiPasienCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Asuransi Pasien'" disabled>
+
+			
+			
+
+
+			<div class="grid_12">
+				
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="No CM"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.carinocm" />
+					</div>
+				</div>
+
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="No Asuransi"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.carinoasuransi" />
+					</div>
+				</div>
+				
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Nama Peserta"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.carinamapeserta" />
+					</div>
+				</div>
+
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Nama Pasien"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.carinamapasien" />
+					</div>
+				</div>
+
+				
+
+				<div class="grid_2" style="margin-top:21px">
+					<button class="c-button" ng-click="cari()">Cari</button>
+				</div>
+			</div>
+
+			<!-- AsuransiPasien -->
+			<div class="grid_12">
+				<div class="grid_12 headerBox">
+					<p>AsuransiPasien</p>
+				</div>
+				<div class="clear"></div>
+
+				<!-- grid table -->
+				<div class="grid_12 borderBox">
+					<kendo-grid options="mainGridOptions"  k-data-source="dataSource" k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+				</div>
+				<div class="clear"></div>
+			</div>
+
+			<div class="clear"></div>
+
+
+
+		</c-panel>
+
+		<div class="grid_12">
+				<div class="grid_4"></div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="hapus()">Hapus</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="editTambah()">Edit/Tambah</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="simpan()">Simpan</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="batal()">Batal</button>
+				</div>
+			</div>
+	</div>
+</div>

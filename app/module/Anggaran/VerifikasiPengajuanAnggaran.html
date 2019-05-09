@@ -1,0 +1,68 @@
+<div ng-controller="VerifikasiPengajuanAnggaranCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="''" disabled>
+			<div class="grid_12">
+				<div class="grid_1"></div>
+				<div style="margin: 5px" class="grid_3">
+					<label c-label item="item" c-label-text="kemenLeb"></label>
+				</div>
+				<div class="grid_5">
+					<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="spek.headAnggaran.kemenLemb.namaKemenLemb" disabled />
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_1"></div>
+				<div style="margin: 5px" class="grid_3">
+					<label c-label item="item" c-label-text="unitOrganisasi"></label>
+				</div>
+				<div class="grid_5">
+					<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="spek.headAnggaran.unitOrganisasi.namaUnitOrg" disabled />
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_1"></div>
+				<div style="margin: 5px" class="grid_3">
+					<label c-label item="item" c-label-text="unitKerja"></label>
+				</div>
+				<div class="grid_5">
+					<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="spek.headAnggaran.ruangan.namaRuangan" disabled />
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_1"></div>
+				<div style="margin: 5px" class="grid_3">
+					<label c-label item="item" c-label-text="tahun"></label>
+				</div>
+				<div class="grid_5">
+					<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="spek.headAnggaran.tahun" disabled />
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_1"></div>
+				<div style="margin: 5px" class="grid_3">
+					<label c-label item="item" c-label-text="program"></label>
+				</div>
+				<div class="grid_5">
+					<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="spek.headAnggaran.program.namaProgram" disabled />
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_1"></div>
+				<div style="margin: 5px" class="grid_3">
+					<label c-label item="item" c-label-text="kegiatan"></label>
+				</div>
+				<div class="grid_5">
+					<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="spek.kegiatanDetail.namaKegiatanDetail" disabled />
+				</div>
+			</div>
+
+			<div class="grid_12" style="margin-top: 10px;">
+				<div kendo-grid k-data-source="dataSpek" k-selectable="'row'" k-columns="columnSpek" editable="true">
+				</div>
+			</div>
+		</c-panel>
+		<div class="grid_12">
+            	<div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
+        	</div>
+	</div>
+</div>

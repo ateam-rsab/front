@@ -1,0 +1,135 @@
+<div class="panel panel-default container_12">
+    <div class="panel-heading"><label class='title' c-label item="item" c-label-text="Rekapitulasi Index Kehadiran Pegawai"></label></div>
+    <div class="panel-body">
+        <div class="grid_12">
+            <div class="grid_8">
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="Periode"></label>
+                    <input kendo-date-picker k-ng-model="items.periode" k-options="yearSelected" style="width: 100%"/>
+                </div>
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="Unit Kerja"></label>
+                    <input kendo-combo-box k-ng-model="items.unitKerja" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja"/>
+                </div>
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="Sub Unit Kerja"></label>
+                    <input kendo-combo-box k-ng-model="items.subUnitKerja" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listSubUnitKerja"/>
+                </div>
+                <div class="grid_1">
+                    <label c-label c-label-text=""></label>
+                    <em style="margin-top:6px;" ng-click='Cari()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+                </div>
+            </div>
+            <div class="grid_4">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Set Jam Kerja Efektif" class="subtitle"></label>
+                    <div class="grid_4">
+                        <label c-label c-label-text=""></label>
+                    </div>
+                    <div class="grid_3" >
+                        <label c-label item="item" c-label-text="Jam" class="subtitle center"></label>
+                    </div>
+                    <div class="grid_2" >
+                        <label c-label item="item" c-label-text="Hari" class="subtitle center"></label>
+                    </div>
+                </div>
+                <!-- Non Shift-->
+                <div class="grid_12">
+                    <div class="grid_4" style="margin-top: 0">
+                        <label c-label item="item" c-label-text="Non Shift" class="horizontalLabel"></label>
+                    </div>
+                    <div class="grid_3">
+                        <input kendo-numeric-text-box k-ng-model="item.nonShift" k-options="formatInt" style="width:100%"/>
+                        <!-- <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.nonShift"/> -->
+                    </div>
+                    <div class="grid_2">
+                        <input kendo-numeric-text-box k-ng-model="item.hari1" k-options="formatIntNol" style="width:100%"/>
+                        <!-- <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.hari1"/> -->
+                    </div>
+                </div>
+                <!-- Non Shift (+) -->
+                <div class="grid_12">
+                    <div class="grid_4" style="margin-top: 0">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="Non Shift(+)" class="horizontalLabel"></label>
+                        </div>
+                    </div>
+                    <div class="grid_3" >
+                        <input kendo-numeric-text-box k-ng-model="item.shift2" k-options="formatInt" style="width:100%"/>
+                        <!-- <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.shift2"/> -->
+                    </div>
+                    <div class="grid_2" >
+                        <input kendo-numeric-text-box k-ng-model="item.hari2" k-options="formatIntNol" style="width:100%"/>
+                        <!-- <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.hari2"/> -->
+                    </div>
+                </div>
+                <!-- Shift 3 -->
+                <div class="grid_12">
+                    <div class="grid_4" style="margin-top: 0">
+                        <label c-label item="item" c-label-text="Shift 2" class="horizontalLabel"></label>
+                    </div>
+                    <div class="grid_3" >
+                        <input kendo-numeric-text-box k-ng-model="item.shift4" k-options="formatInt" style="width:100%"/>
+                        <!-- <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.shift3"/> -->
+                    </div>
+                    <div class="grid_2" >
+                        <input kendo-numeric-text-box k-ng-model="item.hari4" k-options="formatIntNol" style="width:100%"/>
+                        <!-- <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.hari3"/> -->
+                    </div>
+                </div>
+                <!-- Shift 3 -->
+                <div class="grid_12">
+                    <div class="grid_4" style="margin-top: 0">
+                        <label c-label item="item" c-label-text="Shift 3" class="horizontalLabel"></label>
+                    </div>
+                    <div class="grid_3" >
+                        <input kendo-numeric-text-box k-ng-model="item.shift3" k-options="formatInt" style="width:100%"/>
+                        <!-- <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.shift3"/> -->
+                    </div>
+                    <div class="grid_2" >
+                        <input kendo-numeric-text-box k-ng-model="item.hari3" k-options="formatIntNol" style="width:100%"/>
+                        <!-- <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.hari3"/> -->
+                    </div>
+                    <!-- Button -->
+                    <div class="grid_1">
+                        <em style="margin-top:6px;" ng-click='setFactorRate()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-icon k-i-checklist"></span></em>
+                    </div>
+                    <!-- <div class="grid_2">
+                        <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="setFactorRate()">
+                            <span class="title">Set</span>
+                        </button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid_12">
+        <div kendo-grid id="gridIndeksKehadiran" k-data-source="sourceOrder" options="mainGridOption" k-ng-model="current"></div>
+    </div>
+    <div class="panel panel-default panel-white" ng-show="showSearch" style="margin-bottom:60px">
+        <div class="grid_12 headerBox"><p>Filter Data</p></div>
+        <div class="panel-body">
+            <div class="grid_2">
+                <label c-label item="item" c-label-text="Nip"></label>
+                <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dats.nipPegawai" />
+            </div>
+            <div class="grid_2">
+                <label c-label item="item" c-label-text="Nama Pegawai"></label>
+                <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dats.namaPegawai" />
+            </div>
+            <div class="grid_1">
+                <label c-label c-label-text=""></label>
+                <em style="margin-top:6px;" ng-click='resetFilters()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+            </div>
+        </div>
+    </div>
+    <div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
+</div>
+<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+<style type="text/css">
+.subtitle {font-size: 120%; font-weight: 700}
+.center {text-align: center}
+.horizontalLabel {padding: 10px}
+.cell-right {text-align: right}
+.k-i-checklist {background-position: -48px -32px}
+</style>

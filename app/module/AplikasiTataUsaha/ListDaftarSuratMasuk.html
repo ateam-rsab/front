@@ -1,0 +1,135 @@
+<style>
+    .error{
+        background-color:white !important;
+    }
+    .yellow{
+        background-color:#ffff00
+    }
+     .green{
+        background-color:#00ff40
+    }
+      .red{
+        background-color:#FF0000
+    }
+    .k-grid  .k-grid-header  .k-header  .k-link {
+     height: auto;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     white-space: normal;
+    }
+
+    .style-four {
+        height: 5px;
+        border: 0;
+        box-shadow: inset 0 14px 12px -12px rgba(0, 0, 0, 0.5);
+        }
+    .md-button {
+          padding: 0 6px 0 6px;
+          margin: 6px 8px 6px 8px;
+          min-width: 88px;
+          border-radius: 3px;
+          font-size: 14px;
+          text-align: center;
+          text-transform: uppercase;
+          text-decoration:none;
+          border: none;
+          outline: none;
+          color: green;
+        }
+
+    .k-grid  .k-grid-header  .k-header {
+     text-align: center;
+    }
+
+    .md-tooltip {
+        height: 25px !important;
+        background-color: #363940 !important;
+        color: white !important;
+        border-radius: 5px;
+        font-size: 14px
+     }
+     .md-button.md-fab.md-fab-top-right {
+        top: 60px;
+        right: 41px;
+        bottom: auto;
+        left: auto;
+        position: absolute;
+     }
+     .h1 {
+        position:relative;
+        display:inline-block;
+            }
+      .h1::before, 
+      .h1::after {
+        content:' ';
+        display:block;
+        position:absolute; top:50%; left:-120px;
+        width:100px;
+        border-bottom:1px solid black;
+    }
+    .h1::after {
+        left:auto; right:-120px;
+    }
+</style>
+<div ng-controller="ListDaftarSuratMasukCtrl">
+    <c-panel item="item" header="'Daftar Surat Masuk Distribusi'" disabled>
+        <div class="panel panel-default container_12" disabled>
+
+        <!-- Pencarian -->
+            <div class="grid_12" style="margin-top:10px">
+                <div class="grid_1" style="margin-top:10px;">
+                    <label c-label item="item">Ruangan :</label>
+                </div>
+                <div class="grid_3">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.ruangan" disabled="true"/>
+                </div>                
+                <div class="grid_1" style="margin-top:10px">
+                    <label c-label item="item">Periode :</label>
+                </div>
+                <div class="grid_2">
+                    <input kendo-date-picker k-ng-model="item.tanggalAwal" k-format="'dd-MM-yyyy'" style="width: 100%" kendo-date-picker ng-init="now" />
+                </div>
+                <div class="grid_1" style="margin-top:10px"  align="center">
+                    S/D
+                </div>
+                <div class="grid_2">
+                    <input kendo-date-picker k-ng-model="item.tanggalAkhir" k-format="'dd-MM-yyyy'" style="width: 100%" kendo-date-picker ng-init="now" />
+                </div>
+                <div class="grid_1" style="margin-top: 6px">
+                    <button class="c-button success" ng-click="cari()">Cari</button>
+                </div>
+            </div>
+
+            <!-- Cetak Dokumen -->
+            <div class="grid_12">
+                     <md-button class="md-fab md-fab-top-right docs-scroll-fab md-button " align="center" style="height: 75px; width: 75px; background-color: #05b72a !important" aria-label="Eat cake">
+                       <md-tooltip md-direction='left'>Cetak Dokumen</md-tooltip>
+                            <md-icon md-svg-src="/app/stylesheets/Images/exam.svg"></md-icon>
+                     </md-button>
+            </div>
+            <hr class="style-four">
+
+            <!-- Grid -->
+            <div class="grid_12">
+                <div kendo-grid="grid" id="grid" k-data-source="gridDaftarSurat" k-editable="false" options="colGridDaftarSurat" k-selectable="'row'" style="font-size: small;" k-ng-model="current" ng-click="klik(current)">
+                    <div k-detail-template>
+                        <label c-label item="item">Detail Ruangan</label>
+                        <div kendo-grid k-options="detailGridOptions(dataItem)"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Btton2 -->
+            <div class="grid_12" style="margin-top:10px">
+                <div class="grid_9"></div>
+                <div class="grid_3">
+                     <md-tooltip md-direction='bottom' ng-show="statTooltip">Pilih 1 Data Terlebih dahulu</md-tooltip>
+                    <button class="c-button success" ng-click="redirect()">Distribusi Surat</button>
+                </div>
+            </div>
+            <hr class="style-four">
+        </div>
+    </c-panel>
+
+</div>

@@ -1,0 +1,20 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Daftar Jenis Resiko Berdasarkan Sasaran Strategis</div>
+	<div class="panel-body">
+		<div class="grid_12">
+			<div class="grid_12" style="margin-top: 10px;">
+				<div kendo-grid k-data-source="sourceDaftarJenisRisiko" k-selectable="'row'" options="mainGridOptions"></div>
+				<!-- <div kendo-grid k-data-source="sourceDaftarJenisRisiko" k-selectable="'row'" k-columns="columnDaftarJenisRisiko"></div> -->
+			</div>
+			<div class="grid_12" style="padding-top:30px">
+				<div class="grid_8"></div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="cetak()">Cetak</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="Tutup()">Tutup</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

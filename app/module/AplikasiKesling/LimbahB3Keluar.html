@@ -1,0 +1,107 @@
+<div>
+	<div class="panel panel-default">
+		<div class="panel-heading" c-translate>Limbah B3 Keluar</div>
+		<div class="panel-body">
+			<div class="grid_6">
+				<div class="grid_12" style="margin-top: 5px">
+					<div class="grid_5" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="noDokumen"></label>
+					</div>
+					<div class="grid_7">
+						<input c-text-box filter="'varchar'" class="k-textbox" ng-model="item.noDokumen" />
+					</div>
+					<div class="grid_5" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="tanggal"></label>
+					</div>
+					<div class="grid_7">
+						<input style="width: 100%" kendo-date-time-picker k-ng-model="item.tanggal" k-format="'dd-MM-yyyy hh:mm'" />
+					</div>
+				</div>
+				<div class="grid_12" style="margin-top: 5px">
+					<div class="grid_5" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="JenisLimbah"></label>
+					</div>
+					<div class="grid_7">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisLimbah" k-data-text-field="'jenisLimbahB3masuk'"
+						 k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListLimbah" />
+					</div>
+				</div>
+				<div class="grid_12" style="margin-top: 5px">
+					<div class="grid_5" style="margin-top: 17px">
+						<label c-label item="item" c-label-text="Perlakuan"></label>
+					</div>
+					<div class="grid_7">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.perlakuan" k-data-text-field="'name'"
+						 k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListPerlakuan" on-change="selectedPrelakuan(item.perlakuan)" />
+					</div>
+				</div>
+				<div class="grid_12" style="margin-top: 5px" ng-show="showDropdownrekanan">
+					<div class="grid_5" style="margin-top: 17px">
+						<label c-label item="item" c-label-text="Rekanan"></label>
+					</div>
+					<div class="grid_7">
+						<input style="width: 100%;" c-text-box class="k-textbox" ng-model="item.tujuanPenyerahan" />
+					</div>
+				</div>
+				<!-- <div class="grid_12" style="margin-top: 5px">
+					<div class="grid_5" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="keterangan"></label>
+					</div>
+					<div class="grid_7">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.tujuanPenyerahan" />
+					</div>
+				</div> -->
+			</div>
+			<div class="grid_6">
+				<div class="grid_12" style="margin-top: 5px">
+					<div class="grid_6" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="totalBeratSampahMedis"></label>
+					</div>
+					<div class="grid_5">
+						<input c-text-box type="input" kendo-numeric-text-box k-ng-model="item.sampah.qtySisa" disabled />
+					</div>
+					<div class="grid_1" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="kg"></label>
+					</div>
+				</div>
+				<div class="grid_12" style="margin-top: 5px">
+					<div class="grid_6" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="jumlahLimbahB3Keluar"></label>
+					</div>
+					<div class="grid_5">
+						<!-- <input c-text-box filter="'numeric'" min="0" kendo-numeric-text-box k-on-change="validateJml()" k-ng-model="item.jumlah" /> -->
+						<input c-text-box type="input" kendo-numeric-text-box k-min="0" ng-model="item.jumlah" k-on-change="validateJml()" />
+					</div>
+					<div class="grid_1" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="kg"></label>
+					</div>
+				</div>
+				<div class="grid_12" style="margin-top: 5px">
+					<div class="grid_6" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="Sisa Limbah B3 yang ada di TPS"></label>
+					</div>
+					<div class="grid_5">
+						<input c-text-box type="input" kendo-numeric-text-box k-ng-model="item.sisaLimbah" disabled />
+						<!-- <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.sisaLimbah" /> -->
+					</div>
+					<div class="grid_1" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="kg"></label>
+					</div>
+				</div>
+
+				<div class="grid_12" style="margin-top: 5px">
+					<div class="grid_6" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="maksimalPenyimpanan"></label>
+					</div>
+					<div class="grid_5">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.maksimalPenyimpanan" />
+					</div>
+					<div class="grid_1" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="hari"></label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
+</div>

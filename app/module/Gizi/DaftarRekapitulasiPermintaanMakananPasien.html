@@ -1,0 +1,78 @@
+<div ng-controller="DaftarRekapitulasiPermintaanMakananPasienCtrl">
+    <div class="panel panel-default container_12">
+        <div class="panel-heading" c-translate>Daftar Rekapitulasi Permintaan Makanan Pasien dari Ruang Rawat</div>
+        <div class="panel-body">
+            <div class="grid_12" style="margin: 20px 0 30px 0;">
+                <div class="grid_8">
+                    <div class="grid_12">
+                        <div class="grid_2" align="right">
+                            <c-button ng-click="addDataPermintaanBahanMakanan()" style="width:100% !important">
+                            <span style="font-size:10!important">Cari</span>
+                            </c-button>
+                        </div>
+                        <div class="grid_1">
+                        </div>
+                        <div class="grid_2" align="center" style="margin: 10px 10px 5px 0;">
+                            <label c-label item="item" c-label-text="tglPesan"></label>
+                        </div>
+                        <div class="grid_3">
+                            <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tglpesan" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                        </div>
+                        <div class="grid_1" align="center" style="margin: 10px 5px 5px 0;">
+                            <label c-label item="item" c-label-text="sd"></label>
+                        </div>
+                        <div class="grid_3">
+                            <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tglOrder" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_4">
+                    <div class="grid_12">
+                        <div class="grid_5" align="center" style="margin: 10px 5px 5px 0;">
+                            <label c-label item="item" c-label-text="tglKirim"></label>
+                        </div>
+                        <div class="grid_7">
+                            <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tglKirim" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+     <div class="panel panel-default container_12">
+        <div class="panel-heading" c-translate>Daftar Pasien</div>
+        <div class="panel-body">
+            <div class="grid_12">
+                <kendo-grid options="mainGridOptions" id="dataGrid">
+                </kendo-grid>
+                <!-- <div kendo-grid k-data-source="dataDaftarRekapitulasiPermintaanMakananPasien" k-selectable="'row'" k-columns="columnDaftarRekapitulasiPermintaanMakananPasien" option>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    </div>
+            <div class="grid_12" style="margin: 30px 0 20px 0;">
+                <div class="grid_1"></div>
+                <div class="grid_3"> 
+                    <c-button ng-click="addDataPermintaanBahanMakanan()" style="width:100% !important">
+                    <span style="font-size:10!important">Kirim Menu Makanan Pasien</span>
+                    </c-button>
+                </div>
+                <div class="grid_2">
+                    <c-button ng-click="addDataPermintaanBahanMakanan()" style="width:100% !important">
+                    <span style="font-size:10!important">Cetak Etiket 1</span>
+                    </c-button>
+                </div>
+                <div class="grid_2">
+                    <c-button ng-click="addDataPermintaanBahanMakanan()" style="width:100% !important">
+                    <span style="font-size:10!important">Cetak Etiket 2</span>
+                    </c-button>
+                </div>
+                <div class="grid_2">
+                    <c-button ng-click="addDataPermintaanBahanMakanan()" style="width:100% !important">
+                    <span style="font-size:10!important">Cetak</span>
+                    </c-button>
+                </div>
+                <div class="grid_1"></div>
+            </div>
+        </div>
+    </div>
+</div>

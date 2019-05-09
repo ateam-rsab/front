@@ -1,0 +1,54 @@
+<div ng-controller="KirimDraftCtrl">
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Kirim Draft'" disabled>
+            <div class="panel panel-default container_12" disabled>
+            <div class="grid_12">
+                <div class="grid_6">
+                    <div class="grid_3" style="margin-top: 10px;">
+                        <label c-label item="item">No Draft Surat</label>
+                    </div>                    
+                    <div class="grid_1" style="margin-top: 10px;">
+                        <label c-label item="item">:</label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" class="k-textbox" ng-model="item.noDraft" disabled="true" />
+                    </div>
+                </div>
+                <div class="grid_6">
+                    <div class="grid_3" style="margin-top: 10px;">
+                        <label c-label item="item">Nama Surat</label>
+                    </div>                    
+                    <div class="grid_1" style="margin-top: 10px;">
+                        <label c-label item="item">:</label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" class="k-textbox" ng-model="item.namaSurat" disabled="true" />
+                        <!--<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaSurat" k-data-text-field="'namaSurat'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listNamaSurat" />-->
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12">
+             <md-card>
+             <md-card-header style="background-color:#363940; color:#FFFFFF">
+                 <h7>Pilih Ruangan</h7>
+             </md-card-header>
+                    <div class="grid_12">
+                        <select id="multiSelect" kendo-multi-select k-data-source="ListRuangan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-ng-model="item.ruanganTujuan">
+    					</select>
+                    </div>
+              </md-card>
+            </div>
+
+                <div class="grid_12">
+                    <div class="grid_8"></div>
+                    <div class="grid_2">
+                        <button class="c-button success" ng-click="kirim()">Kirim</button>
+                    </div>
+                    <div class="grid_2">
+                        <button class="c-button cancel" ng-click="redirect()">Tutup</button>
+                    </div>
+                </div>
+            </div>
+        </c-panel>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+{
+	"model":{
+		"idPegawai" : "",
+		"nama":"",
+		"pemeriksaan":"",
+		"tglPemeriksaan":"",
+		"satuanKerja":""
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "idPegawai",
+			"messagesRequired" : "",
+			"caption" : "ID Pegawai"
+		},{
+			"isNull" : "true",
+			"name" : "nama",
+			"messagesRequired" : "",
+			"caption" : "Nama"
+		},{
+			"isNull" : "true",
+			"name" : "pemeriksaan",
+			"messagesRequired" : "",
+			"caption" : "Pemeriksaan"
+		},{
+			"isNull" : "true",
+			"name" : "tglPemeriksaan",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Pemeriksaan"
+		},{
+			"isNull" : "true",
+			"name" : "satuanKerja",
+			"messagesRequired" : "",
+			"caption" : "Satuan Kerja"
+		}
+
+	]
+}

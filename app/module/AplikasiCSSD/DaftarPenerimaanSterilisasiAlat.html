@@ -1,0 +1,118 @@
+<style>
+    .error{
+        background-color:white !important;
+    }
+    .yellow{
+        background-color:#ffff00
+    }
+     .green{
+        background-color:#00ff40
+    }
+      .red{
+        background-color:#FF0000
+    }
+    .k-grid  .k-grid-header  .k-header  .k-link {
+     height: auto;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     white-space: normal;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     text-align: center;
+    }
+/*     .k-header .k-link{
+    text-align: center;
+     }*/
+</style>
+<c-panel item="item" header="'Daftar Penerimaan Sterilisasi Alat'">
+	<div class="grid_12">
+		<div class="grid_6">
+			<div class="grid_12">
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Jenis Permintaan</label>
+				</div>
+				<div class="grid_8">
+					<div class="grid_6" ng-repeat="stat in jenisPermintaan">
+						<input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.jenisPermintaan" value="{{stat.id}}">
+						<label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="grid_12">
+		<!-- <div class="grid_2">
+			<div class="grid_6" ng-repeat="data in dataInternal" style="margin-top: 6px">
+                <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="item.internal" value="{{data.name}}">
+                <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+            </div>
+            <div class="grid_4">
+            	
+            </div>
+        </div> -->
+        <div class="grid_3">
+        	<label c-label item="item" style="margin-top: 10px">Nomor Order</label>
+        	<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noOrder"/>
+        </div>
+        <div class="grid_3">
+        	<label c-label item="item" style="margin-top: 10px">Periode Awal</label>
+        	<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalAwal" placeholer="dd-mm-yyyy" />
+        </div>
+        <div class="grid_3">
+        	<label c-label item="item" style="margin-top: 10px">Periode Akhir</label>
+        	<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalAkhir" placeholer="dd-mm-yyyy" />
+        </div>
+        <div class="grid_1">
+        	<button style="margin-top: 32px" class="c-button" ng-click="cari()">Cari</button>
+        </div>
+        <div class="grid_1">
+        	<button style="margin-top: 32px" class="c-button" ng-click="refresh()">Refresh</button>
+        </div>
+    </div>
+    <div class="grid_12" ng-show="item.jenisPermintaan == 1">
+    	<kendo-grid options="gridDaftarSterelisasiInternal" k-data-source="dataSourceInternal" k-ng-model="internal" ng-click="klik(internal)"></kendo-grid>
+    </div>
+    <div class="grid_12" ng-show="item.jenisPermintaan == 2">
+    	<kendo-grid options="gridDaftarSterelisasiEksternal" k-data-source="dataSourceEksternal" k-ng-model="eksternal" ng-click="klik(eksternal)"></kendo-grid>
+    </div>
+    <div class="grid_12">
+    <div class="grid_1"></div>
+        <div class="grid_2">
+        	<button class="c-button" ng-click="ujiSwab()">Uji SWAB</button>
+        </div>
+        <div class="grid_2">
+        	<button class="c-button" ng-click="decontaminasi()">Decontaminasi</button>
+        </div>
+        <div class="grid_2">
+        	<button class="c-button" ng-click="monitoringDecontaminasiEO()">Monitoring Decontaminasi EO</button>
+        </div>
+        <div class="grid_2">
+        	<button class="c-button" ng-click="monitoringDecontaminasiSteam()">Decontaminasi Steam</button>
+        </div>
+        <div class="grid_2">
+        	<button class="c-button" ng-click="retur()">Retur</button>
+        </div>
+    <div class="grid_1"></div>
+    </div>
+    <div class="grid_12">
+    <div class="grid_1"></div>
+        <div class="grid_2">
+        	<button class="c-button" ng-click="pengemasan()">Pengemasan</button>
+        </div>
+        <div class="grid_2">
+        	<button class="c-button" ng-click="sterelisasi()">Sterilisasi</button>
+        </div>
+        <div class="grid_2">
+        	<button class="c-button" ng-click="penyimpanan()">Penyimpanan</button>
+        </div>
+        <div class="grid_2">
+        	<button class="c-button" ng-click="distribusi()">Distribusi</button>
+        </div>
+        <div class="grid_2">
+        	<button class="c-button" ng-click="Cetak()">Cetak Struk</button>
+        </div>
+    <div class="grid_1"></div>
+    </div>
+</c-panel>

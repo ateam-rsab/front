@@ -1,0 +1,56 @@
+{
+	"model":{
+		"noKasus":"",
+		"tanggal":"",
+		"idUser":"",
+		"jenisKasus":"",
+        "deskripsiKasus":"",
+        "penanggungJawab":"",
+        "inputAnalisaKajian":"",
+        "inputHasilKeputusan":""
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "noKasus",
+			"messagesRequired" : "",
+			"caption" : "No. Kasus"
+		},{
+			"isNull" : "true",
+			"name" : "tanggal",
+			"messagesRequired" : "",
+			"caption" : "Tanggal"
+		},{
+			"isNull" : "true",
+			"name" : "idUser",
+			"messagesRequired" : "",
+			"caption" : "ID User"
+		},{
+			"isNull" : "true",
+			"name" : "jenisKasus",
+			"messagesRequired" : "",
+			"caption" : "Jenis Kasus"
+		},
+        {
+			"isNull" : "true",
+			"name" : "deskripsiKasus",
+			"messagesRequired" : "",
+			"caption" : "Deskripsi Kasus"
+		},{
+			"isNull" : "true",
+			"name" : "penanggungJawab",
+			"messagesRequired" : "",
+			"caption" : "Penanggung Jawab"
+		},{
+			"isNull" : "true",
+			"name" : "inputAnalisaKajian",
+			"messagesRequired" : "",
+			"caption" : "Input Analisa Kajian"
+		},{
+			"isNull" : "true",
+			"name" : "inputHasilKeputusan",
+			"messagesRequired" : "",
+			"caption" : "Input Hasil Keputusan"
+		}
+	]
+}

@@ -1,0 +1,20 @@
+{
+	"model":{
+	    "unitLayanan" : "",
+	    "periode" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "jenisFarmasi",
+			"messagesRequired" : "",
+			"caption" : "Unit layanan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "periode",
+			"messagesRequired" : "",
+			"caption" : "Periode"
+		}
+  ]
+}

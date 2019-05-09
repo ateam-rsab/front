@@ -1,0 +1,316 @@
+<div ng-controller="CatatanPerkembanganPsikologiCtrl">
+
+    <div ng-show="dataVOloaded">
+        <div class="panel panel-default container_12">
+            <div class="panel-heading" c-translate>Identifikasi Masalah / Keluhan</div>
+            <div class="panel-body">
+                <div class="grid_12" style="margin-bottom: 5px">
+                        <label c-label item="item" c-label-text="Keterangan"></label>
+                </div>
+                <div class="grid_12">
+                    <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.IdentifikasiMasalah"></textarea>
+                </div>
+            </div>
+        </div>
+        <c-panel item="item" header="'Observasi dan Wawancara'">
+            <div class="panel panel-default container_12">
+                <div class="panel-heading" c-translate >Rapport</div>
+                    <div class="panel-body">
+                        <div class="grid_12" style="margin-bottom: 5px">
+                            <strong><label c-label item="item" c-label-text="Keterangan"></label></strong>
+                        </div>
+                        <div class="grid_12">
+                            <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.Raport"></textarea>
+                        </div>
+                    </div>
+                </div>
+            <div class="panel panel-default container_12">
+                <div class="panel-heading" c-translate >Ekspresi</div>
+                    <div class="panel-body">
+                        <div class="grid_12" style="margin-bottom: 5px">    
+                            <strong><label c-label item="item" c-label-text="Keterangan"></label></strong>
+                        </div>
+                         <div class="grid_12">
+                            <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.Ekspresi"></textarea>
+                        </div>
+                    </div>
+                </div>
+            <div class="panel panel-default container_12">
+                <div class="panel-heading" c-translate >Komunikasi</div>
+                    <div class="panel-body">
+                        <div class="grid_12" style="margin-bottom: 5px">    
+                            <label c-label item="item" c-label-text="Keterangan"></label>
+                        </div>
+                         <div class="grid_12">
+                            <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.Ekspresi"></textarea>
+                        </div>
+                    </div>
+                </div>
+            <div class="panel panel-default container_12">
+                <div class="panel-heading" c-translate >Respon:</div>
+                    <div class="panel-body">
+                        <div class="grid_12" style="margin-bottom: 5px">
+                            <label c-label item="item" c-label-text="OrangLain"></label>
+                        </div>    
+                        <div class="grid_12" style="margin-bottom: 20px">
+                            <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.OrangLain"></textarea> 
+                        </div>
+                        <div class="grid_12" style="margin-bottom: 5px" >
+                            <label c-label item="item" c-label-text="Lingkungan"></label>  
+                        <div class="grid_12">
+                            <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.Lingkungan"></textarea>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+            <div class="panel panel-default container_12">
+                <div class="panel-heading" c-translate >Relasi:</div>
+                    <div class="panel-body">
+                        <div class="grid_12" style="margin-bottom: 5px">
+                            <label c-label item="item" c-label-text="OrangTua"></label>
+                        </div>    
+                        <div class="grid_12" style="margin-bottom: 20px">
+                            <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.OrangTua"></textarea>
+                        </div>
+                        <div class="grid_12" style="margin-bottom: 5px" >
+                            <label c-label item="item" c-label-text="Pasangan"></label>                 
+                        </div>    
+                        <div class="grid_12" style="margin-bottom: 20px">
+                            <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.Pasangan"></textarea>
+                        </div>
+                        <div class="grid_12" style="margin-top: 5px">
+                            <label c-label item="item" c-label-text="Anak"></label>
+                        </div>    
+                        <div class="grid_12" style="margin-bottom: 20px">
+                            <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.Anak"></textarea>
+                        </div>
+                        <div class="grid_12"style="margin-bottom: 5px">
+                            <label c-label item="item" c-label-text="Saudara"></label>                 
+                        </div>    
+                        <div class="grid_12">
+                            <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.Saudara"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default container_12">
+                <div class="panel-heading" c-translate >Fungsi:</div>
+                    <div class="panel-body">
+                        <div class="grid_12" style="margin-bottom: 5px">
+                            <label c-label item="item" c-label-text="Sosial"></label>
+                        </div>    
+                        <div class="grid_12" style="margin-bottom: 20px">
+                             <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.Sosial"></textarea>
+                        </div>
+                        <div class="grid_12"style="margin-bottom: 5px">
+                            <label c-label item="item" c-label-text="Intelektual"></label>                 
+                        </div>    
+                        <div class="grid_12">
+                            <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.Intelektual"></textarea>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+            <div class="panel panel-default container_12">
+                <div class="panel-heading" c-translate >Atensi</div>
+                    <div class="panel-body">
+                        <div class="grid_12" style="margin-bottom: 5px">    
+                            <strong><label c-label item="item" c-label-text="Keterangan"></label></strong>
+                        </div>
+                         <div class="grid_12">
+                            <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.Atensi"></textarea>
+                        </div>
+                    </div>
+                </div>
+            <div class="panel panel-default container_12">
+                <div class="panel-heading" c-translate >Insigth</div>
+                    <div class="panel-body">
+                        <div class="grid_12" style="margin-bottom: 5px">    
+                            <strong><label c-label item="item" c-label-text="Keterangan"></label></strong>
+                        </div>
+                         <div class="grid_12">
+                            <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.Insight"></textarea>
+                        </div>
+                    </div>
+                </div>
+             <div class="panel panel-default container_12">
+                <div class="panel-heading" c-translate >Orientasi:</div>
+                    <div class="panel-body">
+                        <div class="grid_12" style="margin-bottom: 5px">
+                            <label c-label item="item" c-label-text="Waktu"></label>
+                        </div>    
+                        <div class="grid_12" style="margin-bottom: 20px">
+                            <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.Waktu"></textarea>   
+                        </div>
+                        <div class="grid_12"style="margin-bottom:5px">
+                            <label c-label item="item" c-label-text="Tempat"></label>              
+                        </div>    
+                        <div class="grid_12" style="margin-bottom: 20px">
+                            <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.Tempat"></textarea>
+                        </div>
+                        <div class="grid_12" style="margin-bottom: 5px">
+                            <label c-label item="item" c-label-text="RuangSpasial"></label>
+                        </div>    
+                         <div class="grid_12" style="margin-bottom: 20px">
+                            <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.Ruang"></textarea>
+                        </div>
+                        <div class="grid_12"style="margin-bottom: 5px" >
+                            <label c-label item="item" c-label-text="Keterangan_1"></label>
+                        </div>    
+                        <div class="grid_12">
+                            <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.KeteranganTambahan"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default container_12">
+                <div class="panel-heading" c-translate >Tes Psikologi</div>
+                    <div class="panel-body">
+                        <div class="grid_12" style="margin-bottom: 5px"> 
+                            <div class="grid_4">   
+                                <label c-label item="item" c-label-text="Tanggal"></label>
+                            </div>
+                            <div class="grid_4">   
+                                <label c-label item="item" c-label-text="Jenis Tes"></label>
+                            </div>
+                            <div class="grid_4">   
+                                <label c-label item="item" c-label-text="Tujuan"></label>
+                            </div>
+                        </div>
+                         <div class="grid_12">
+                            <div class="grid_4">
+                                 <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.Tanggal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                            </div>
+                            <div class="grid_4">
+                                <input style="width: 100%;" kendo-combo-box k-ng-model="item.Diagnosis" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListCombo1" />
+                            </div>
+                            <div class="grid_4">
+                                <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.Tujuan"></textarea>
+                            </div>
+                        </div>
+                        <!-- button -->
+                         <div class="grid_12">
+                            <div class="grid_4">
+                            </div>
+                            <div class="grid_4">
+                            </div>
+                            <div class="grid_4" style="margin-top: 10px" align="center">
+                                <c-button ng-click="addDataTesPsikologi()" style="width:100% !important">
+                                <span style="font-size:10!important">Tambah</span>
+                                </c-button>
+                            </div>
+                        </div>
+                        
+                        <div class="grid_12" style="margin-top: 10px;">
+                            <div kendo-grid k-data-source="dataTesPsikologi" k-selectable="'row'" k-columns="columnTesPsikologi">
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                <div class="panel panel-default container_12">
+                <div class="panel-heading" c-translate >Analisis / Psikodinamika</div>
+                    <div class="panel-body">
+                        <div class="grid_12" style="margin-bottom: 5px">    
+                            <strong><label c-label item="item" c-label-text="Keterangan"></label></strong>
+                        </div>
+                         <div class="grid_12">
+                            <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.Insight"></textarea>
+                        </div>
+                    </div>
+                </div>
+            <div class="panel panel-default container_12">
+                <div class="panel-heading" c-translate >Kesan Psikologis - Diagnosis</div>
+                    <div class="panel-body">
+                        <div class="grid_12" style="margin-bottom: 5px">
+                            <div class="grid_1"></div>
+                            <div class="grid_3">   
+                                <label c-label item="item" c-label-text="Axis_1"></label>
+                            </div>
+                            <div class="grid_3">   
+                                <label c-label item="item" c-label-text="Clinical"></label>
+                            </div>
+                            <div class="grid_5">   
+                                <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.ClinicalDisorder"></textarea>
+                            </div>
+                        </div>
+                         <div class="grid_12" style="margin-bottom: 5px"> 
+                            <div class="grid_1"></div>
+                            <div class="grid_3">   
+                                <label c-label item="item" c-label-text="Axis_2"></label>
+                            </div>
+                            <div class="grid_3">   
+                                <label c-label item="item" c-label-text="Personality"></label>
+                            </div>
+                            <div class="grid_5">   
+                                <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.PersonalityDisorder"></textarea>
+                            </div>
+                        </div>
+                         <div class="grid_12" style="margin-bottom: 5px"> 
+                            <div class="grid_1"></div>
+                            <div class="grid_3">   
+                                <label c-label item="item" c-label-text="Axis_3"></label>
+                            </div>
+                            <div class="grid_3">   
+                                <label c-label item="item" c-label-text="General"></label>
+                            </div>
+                            <div class="grid_5">   
+                                <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.General"></textarea>
+                            </div>
+                        </div>
+                         <div class="grid_12" style="margin-bottom: 5px">
+                            <div class="grid_1"></div> 
+                            <div class="grid_3">   
+                                <label c-label item="item" c-label-text="Axis_4"></label>
+                            </div>
+                            <div class="grid_3">   
+                                <label c-label item="item" c-label-text="Psychososial"></label>
+                            </div>
+                            <div class="grid_5">   
+                                <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.Psychososial"></textarea>
+                            </div>
+                        </div>
+                         <div class="grid_12" style="margin-bottom: 5px">
+                            <div class="grid_1"></div> 
+                            <div class="grid_3">   
+                                <label c-label item="item" c-label-text="Axis_5"></label>
+                            </div>
+                            <div class="grid_3">   
+                                <label c-label item="item" c-label-text="Global"></label>
+                            </div>
+                            <div class="grid_5">   
+                                <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.Global"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                <div class="panel panel-default container_12">
+                <div class="panel-heading" c-translate >Psikokonseling dan Psikoterapi</div>
+                    <div class="panel-body">
+                        <div class="grid_12" style="margin-bottom: 5px">    
+                            <strong><label c-label item="item" c-label-text="Keterangan"></label></strong>
+                        </div>
+                         <div class="grid_12">
+                            <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.Insight"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default container_12">
+                <div class="panel-heading" c-translate >Rencana Program dan Intervensi</div>
+                    <div class="panel-body">
+                        <div class="grid_12" style="margin-bottom: 5px">    
+                            <strong><label c-label item="item" c-label-text="Keterangan"></label></strong>
+                        </div>
+                         <div class="grid_12">
+                            <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.Insight"></textarea>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </c-panel>
+
+         <div class="grid_12" style="margin-bottom:20px">
+            <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+        </div>
+    </div>
+</div>

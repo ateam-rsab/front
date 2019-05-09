@@ -1,0 +1,63 @@
+{
+  "name": "simrs",
+  "version": "1.0.0",
+  "description": "WebApp SIMRS untuk rumah sakit harapan kita",
+  "keywords": [
+    "SIMRS",
+    "MEDIFIRST2000",
+    "HARKIT"
+  ],
+  "author": "IGM",
+  "license": "ISC",
+  "private": true,
+  "scripts": {
+    "start": "concurrently \"npm run run-app\" \"npm run watch-css\" && forever start --minUptime 1000 --spinSleepTime 1000 ./bin/www ",
+    "run-app": "nodemon ./bin/www",
+    "watch-css": "gulp watch"
+  },
+  "dependencies": {
+    "amd-loader": "0.0.8",
+    "amqplib": "^0.5.1",
+    "angular-chart.js": "^1.1.1",
+    "angular-socket-io": "^0.7.0",
+    "body-parser": "~1.0.0",
+    "browser-sync": "^2.18.2",
+    "compression": "^1.6.2",
+    "concurrently": "^3.1.0",
+    "cookie-parser": "~1.0.1",
+    "cors": "^2.7.1",
+    "debug": "~0.7.4",
+    "ejs": "^2.4.1",
+    "express": "~3.4.8",
+	"git": "^0.1.5",
+    "grunt": "^1.0.1",
+    "grunt-sass": "^1.2.0",
+    "gulp-sass": "^2.3.2",
+    "hashmap": "^2.1.0",
+    "http-auth": "^2.3.3",
+    "http-server": "^0.6.1",
+    "jade": "~1.3.0",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-firefox-launcher": "^1.0.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-mocha-reporter": "^2.0.4",
+    "morgan": "^1.0.1",
+    "multer": "^1.2.0",
+    "node-sass": "^3.7.0",
+	"node-storage": "0.0.7",
+    "rabbit.js": "^0.4.4",
+    "socket.io": "^1.7.3",
+    "socket.io-client": "^1.7.3",
+    "static-favicon": "~1.0.0",
+    "underscore": "^1.8.3",
+    "uuid": "^2.0.2"
+  },
+  "devDependencies": {
+    "concurrently": "^2.2.0",
+    "debug": "^0.7.4",
+    "gulp": "^3.6.2",
+    "http-server": "^0.6.1"
+  }
+}

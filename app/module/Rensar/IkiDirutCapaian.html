@@ -1,0 +1,171 @@
+<div>
+    <div class="panel panel-default container_12">
+        <div class="panel-heading"><label class='title' c-label item="item">Capaian Indikator Rensar</label></div>
+        <div class="panel-body">
+            <div class="grid_12">
+                  <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Jenis Indikator"></label>
+                </div>
+                <div class="grid_12">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="cari.jenisIndikator" k-data-text-field="'jenisindikator'"
+                        k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisIndikator"
+                        k-on-change='getComboIndikator(cari.jenisIndikator)' />
+                </div>
+            </div>
+                <div class="grid_3">
+                    <label c-label c-label-text="Indikator"></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="cari.indikator" k-data-text-field="'indikator'"
+                        k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listIndikator"
+                   />
+                </div>
+                <div class="grid_1">
+                    <label c-label c-label-text="Bulan"></label>
+                    <input style="width: 100%" k-options="monthUngkul" k-ng-model="cari.bulan" kendo-date-picker
+                        placeholer="MMMM" k-format="'MMMM'" />
+                </div>
+                <div class="grid_1">
+                    <label c-label c-label-text="Tahun"></label>
+                    <input style="width: 100%" k-options="yearUngkul" k-ng-model="cari.tahun" kendo-date-picker
+                        placeholer="YYYY" k-format="'yyyy'" />
+                </div>
+                <div class="grid_1">
+                    <label c-label c-label-text=""></label>
+                    <em style="margin-top:6px;" ng-click='cariFilter()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary"
+                        role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-search">Refresh</span></em>
+                    <em style="margin-top:6px;" ng-click='resetFilter()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary"
+                        role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="panel-body grid_12">
+                    <div kendo-grid id="gridMaster" k-data-source="dataSource" options="optionGridMaster" k-ng-model="dataSelect"
+                        ng-click="klikGrid(dataSelect)" k-selectable="'row'"></div>
+                </div>
+            </div>
+            <div class="grid_12 place_button" style="float:left;" ng-hide="isHide">
+                <div class="grid_2" style="float:right;">
+                    <c-button class="error" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item"
+                        size="36" position=" 'right'" ng-click="hapus()">
+                        <span class="title">Hapus</span>
+                    </c-button>
+                </div>
+                <div class="grid_2" style="float:right">
+                    <c-button style="width: 100%; font-size: 24px; padding:0px, margin:0px;" size="36" position=" 'right'"
+                        ng-click="edit()">
+                        <span class="title">Edit</span>
+                    </c-button>
+                </div>
+                <div class="grid_2" style="float:right;">
+                    <c-button style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36"
+                        position=" 'right'" ng-click="Tambah()">
+                        <span class="title">Tambah</span>
+                    </c-button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- popup konfirmasi -->
+<div kendo-window="dialogPopup" k-title="'Tambah'" k-width="750" k-height="250" k-visible="false" k-on-close="customClicked()">
+    <div class="panel panel-default panel-white container_12">
+        <div class="grid_12">
+            <div class="grid_6">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Jenis Indikator"></label>
+                </div>
+                <div class="grid_12">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisIndikator" k-data-text-field="'jenisindikator'"
+                        k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisIndikator"
+                        k-on-change='getComboIndikator(item.jenisIndikator)' />
+                </div>
+            </div>
+            <div class="grid_6">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Nama Indikator"></label>
+                </div>
+                <div class="grid_12">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.indikator" k-data-text-field="'indikator'"
+                        k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listIndikator"
+                        ng-disabled='disabledIndikator' />
+                </div>
+            </div>
+        </div>
+        <div class="grid_12">
+           <div class="grid_6">
+                <div class="grid_12">
+                    <label c-label item="item" >PIC</label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.pic" disabled />
+                </div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Bulan"></label>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_12">
+                        <input style="width: 100%" k-options="monthUngkul" k-ng-model="item.bulan" kendo-date-picker
+                            placeholer="MMMM" k-format="'MMMM'" />
+                    </div>
+                </div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Tahun"></label>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_12">
+                        <input style="width: 100%" k-options="yearUngkul" k-ng-model="item.tahun" kendo-date-picker
+                            placeholer="YYYY" k-format="'yyyy'" />
+                    </div>
+                </div>
+            </div>
+          
+        </div>
+    <div class="grid_6">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Capaian"></label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.capaian" />
+                </div>
+            </div>
+            <div class="grid_2">
+                <div class="grid_12" style="margin-top:22px">
+                    <label c-label item="item">{{item.satuan}}</label>
+                </div>
+            </div>
+    </div>
+ 
+  <div class="k-edit-buttons k-state-default pull-right" style="margin-top:10px">
+        <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="Save()" ng-disabled='disabledSave'>
+            <span class="k-icon k-update"></span>Simpan
+        </button>
+        <button class="k-button k-button-icontext k-grid-cancel" ng-click="Batal()">
+            <span class="k-icon k-cancel"></span>Batal
+        </button>
+    </div>
+</div>
+<div class="grid_12" style="margin-top:60px">
+    <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+</div>
+<style>
+    p {
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .k-window-titlebar {
+        background-color: #10c4b2;
+        font-weight: 800;
+    }
+
+    .k-i-close {
+        display: none;
+    }
+</style>

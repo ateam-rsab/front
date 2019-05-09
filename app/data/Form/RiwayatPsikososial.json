@@ -1,0 +1,27 @@
+{
+  "model":{
+    "TempatTinggal" : "",
+    "HubunganPasienDenganAnggotaKeluarga" : "Baik",
+    "Keterangan" : ""
+  },
+  "attributes" : [
+    {
+      "isNull" : "true",
+      "name" : "TempatTinggal",
+      "messagesRequired" : "Tempat Tinggal Harus Diisi",
+      "caption" : "Tempat Tinggal"
+    },
+    {
+      "isNull" : "true",
+      "name" : "HubunganPasienDenganAnggotaKeluarga",
+      "messagesRequired" : "Hubungan Pasien Dengan Anggota Keluarga",
+      "caption" : "Hubungan Pasien Dengan Anggota Keluarga"
+    },
+    {
+      "isNull" : "false",
+      "name" : "Keterangan",
+      "messagesRequired" : "",
+      "caption" : "Keterangan"
+    }
+  ]
+}

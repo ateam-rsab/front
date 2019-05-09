@@ -1,0 +1,158 @@
+<style>
+    .error{
+        background-color:white !important;
+    }
+    .yellow{
+        background-color:#ffff00
+    }
+     .green{
+        background-color:#00ff40
+    }
+      .red{
+        background-color:#FF0000
+    }
+    .k-grid  .k-grid-header  .k-header  .k-link {
+     height: auto;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     white-space: normal;
+    }
+
+    .style-four {
+        height: 5px;
+        border: 0;
+        box-shadow: inset 0 14px 12px -12px rgba(0, 0, 0, 0.5);
+        }
+    .md-button {
+          padding: 0 6px 0 6px;
+          margin: 6px 8px 6px 8px;
+          min-width: 88px;
+          border-radius: 3px;
+          font-size: 14px;
+          text-align: center;
+          text-transform: uppercase;
+          text-decoration:none;
+          border: none;
+          outline: none;
+          color: green;
+        }
+
+    .k-grid  .k-grid-header  .k-header {
+     text-align: center;
+    }
+
+    .md-tooltip {
+        height: 25px !important;
+        background-color: #363940 !important;
+        color: white !important;
+        border-radius: 5px;
+        font-size: 14px
+     }
+     .md-button.md-fab.md-fab-top-right {
+        top: 220px;
+        right: 41px;
+        bottom: auto;
+        left: auto;
+        position: absolute;
+     }
+     .h1 {
+        position:relative;
+        display:inline-block;
+            }
+      .h1::before, 
+      .h1::after {
+        content:' ';
+        display:block;
+        position:absolute; top:50%; left:-120px;
+        width:100px;
+        border-bottom:1px solid black;
+    }
+    .h1::after {
+        left:auto; right:-120px;
+    }
+</style>
+<div ng-controller="UploadTemplateSuratCtrl">
+    <c-panel item="item" header="'Upload Template Surat'" disabled>
+        <div class="panel panel-default container_12" disabled>
+            <div class="grid_12">
+              <div class="grid_6">
+                <div class="grid_12">
+                    <div class="grid_3" style="margin-top: 10px;">
+                        <label c-label item="item">Kode Dokumen</label>
+                    </div>                
+                    <div class="grid_1" style="margin-top: 10px;">
+                        <label c-label item="item">:</label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kodeDokumen" disabled="true" />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_3" style="margin-top: 10px;">
+                        <label c-label item="item">Nama Dokumen/Template</label>
+                    </div>                
+                    <div class="grid_1" style="margin-top: 10px;">
+                        <label c-label item="item">:</label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaDokumen" />
+                    </div>
+                </div>
+            </div>
+            <div class="grid_6">
+                <div class="grid_12">
+                    <div class="grid_3" style="margin-top: 10px;">
+                        <label c-label item="item">Jenis Dokumen</label>
+                    </div>                 
+                    <div class="grid_1" style="margin-top: 10px;">
+                        <label c-label item="item">:</label>
+                    </div>
+                    <div class="grid_8">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisDokumen" k-data-text-field="'jenisDokumen'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisDokumen" />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_3" style="margin-top: 10px;">
+                        <label c-label item="item">Kategori Dokumen</label>
+                    </div>                    
+                    <div class="grid_1" style="margin-top: 10px;">
+                        <label c-label item="item">:</label>
+                    </div>
+                    <div class="grid_8">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.kategoriDokumen" k-data-text-field="'kategoryDokumen'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKategoriDokumen" />
+                    </div>
+                </div>                
+                <div class="grid_12">
+                    <div class="grid_3" style="margin-top: 10px;">
+                        <label c-label item="item">Upload Dokumen</label>
+                    </div>                     
+                    <div class="grid_1" style="margin-top: 10px;">
+                        <label c-label item="item">:</label>
+                    </div>                    
+                    <div class="grid_7" style="margin-top:10px">
+                         <input id="filePicker" type="file">
+                    </div>
+                </div>                
+                <div class="grid_12">
+                    <div class="grid_4" style="margin-top: 10px;"></div>                    
+                    <div class="grid_5" style="margin-top: 10px;">
+                          <button class="c-button success" ng-click="upload()">Simpan & Upload File</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <hr class="style-four">
+            <div class="grid_12">
+                 <md-button class="md-fab md-fab-top-right docs-scroll-fab md-button" align="center" style="height: 75px; width: 75px; background-color: #05b72a !important" aria-label="Eat cake">
+                   <md-tooltip md-direction='top'>Cetak Dokumen</md-tooltip>
+                        <md-icon md-svg-src="/app/stylesheets/Images/exam.svg"></md-icon>
+                 </md-button>
+            </div>
+            <div class="grid_12">
+                <div kendo-grid="grid" ng-click="klik()" id="grid" k-data-source="sourceOrder" k-editable="false" options="colGridDaftarTemplate" k-selectable="'row'" style="font-size: small;">
+                </div>
+            </div>
+        </div>
+    </c-panel>
+</div>

@@ -1,0 +1,44 @@
+[
+  {
+    "noRec": "7a276360-ee08-11e6-9ad9-2fe97e99",
+    "tglTransaksi": "2017-02-08 21:11:25",
+    "noRegistrasi": "1702000022",
+    "namaPasien": "Defi Asemuni",
+    "kelasRawat": "Perjanjian",
+    "jenisPasien": "Perjanjian",
+    "umur": "6 Hari. ",
+    "kelasPenjamin": "-",
+    "totalBilling": "1650000.00",
+    "totalKlaim": "1000000.00",
+    "totalBayar": "0.00",
+    "status": "Piutang"
+  },
+  {
+    "noRec": "e4058700-e8f8-11e6-b77a-b705eeed",
+    "tglTransaksi": "2017-02-02 10:37:15",
+    "noRegistrasi": "1701000005",
+    "namaPasien": "Edan Tenan",
+    "kelasRawat": "Perjanjian",
+    "jenisPasien": "Perjanjian",
+    "umur": "12 Hari. ",
+    "kelasPenjamin": "-",
+    "totalBilling": "441000.00",
+    "totalKlaim": "50000.00",
+    "totalBayar": "0.00",
+    "status": "Piutang"
+  },
+  {
+    "noRec": "60598100-e887-11e6-b4c3-4999ce28",
+    "tglTransaksi": "2017-02-01 21:04:41",
+    "noRegistrasi": "1702000003",
+    "namaPasien": "Empong Hasanah",
+    "kelasRawat": "Perjanjian",
+    "jenisPasien": "Perjanjian",
+    "umur": "13 Hari. ",
+    "kelasPenjamin": "-",
+    "totalBilling": "2028000.00",
+    "totalKlaim": "500000.00",
+    "totalBayar": "0.00",
+    "status": "Piutang"
+  }
+]

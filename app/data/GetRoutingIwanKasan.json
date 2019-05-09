@@ -1,0 +1,21 @@
+[
+    "name": "DaftarPasienBaru",
+    "url": "/DaftarPasienBaru",
+    "templateurl": "module/IwanKasan/DaftarPasienBaru.html",
+    "controller": "DaftarPasienBaruCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      }
+      {
+        "module": "IwanKasanService",
+        "define": "IwanKasanService"
+      }
+    ]
+  }
+]

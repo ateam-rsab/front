@@ -1,0 +1,31 @@
+<div ng-controller="NonGinekologikCtrl">
+    <c-panel item="item" header="'Ginekologik'">
+        <div class="container_12">
+            <div class="grid_12">
+            <div class="grid_2"><label c-label="" item="item" c-label-text="BahanDidapatDengan" class="ng-isolate-scope c-label"></label></div>
+            <div class="grid_2" style="margin: 00px 0 0px 10px;" ng-repeat="stat in listStatusDapatBahan">
+                <input type="checkbox" name="{{stat.name}}" id="{{stat.name}}" class="k-checkbox" value="{{stat.name}}">
+                <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+            </div>
+            <div class="gird_8"></div>
+            </div>
+        </div>
+        <div class="grid_12">
+        <label c-label="" item="item" c-label-text="Keterangan" class="ng-isolate-scope c-label"></label>
+            <textarea rows="8" cols="141" type="textarea" ng-model="item.Keterangan" placeholder="Isi Keluhan Utama"></textarea>
+        </div>
+        <hr style="background-color:#10C4B2;height: 1px;border: 0;" />
+        <div class="grid_12">
+            <div class="grid_3" style="float:right">
+                <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="Next">
+                    <span class="title">Selanjutnya</span>
+                </c-button>
+            </div>
+            <div class="grid_3" style="float:right">
+                <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'">
+                    <span class="title">Sebelumnya</span>
+                </c-button>
+            </div>
+        </div>
+    </c-panel>
+</div> 

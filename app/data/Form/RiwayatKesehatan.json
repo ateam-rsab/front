@@ -1,0 +1,49 @@
+{
+	"model":{
+	    "PernahDirawat" : "Tidak",
+	    "AlatImplant" : "Tidak",
+		"RiwayatDalamKeluarga" : "Tidak",
+		"Keterangan": "",
+		"PenyakitMayor": "",
+		"KeteranganAlatImplant" : "",
+		"dataRiwayat" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "PernahDirawat",
+			"messagesRequired" : "Pernah Dirawat Darah Harus Diisi",
+			"caption" : "Pernah Dirawat"
+		},
+		{
+			"isNull" : "true",
+			"name" : "AlatImplant",
+			"messagesRequired" : "Alat Implant Harus Diisi",
+			"caption" : "Apakah Terpasang Alat Implant"
+		},
+		{
+			"isNull" : "true",
+			"name" : "RiwayatDalamKeluarga",
+			"messagesRequired" : "Riwayat Dalam Keluarga Harus Diisi",
+			"caption" : "Apakah ada riwayat dalam keluarga (ayah/ibu dan kakek/nenek) memiliki penyakit mayor"
+		},
+		{
+			"isNull" : "false",
+			"name" : "Keterangan",
+			"messagesRequired" : "keterangan Harus Diisi",
+			"caption" : "Keterangan"
+		},
+		{
+			"isNull" : "false",
+			"name" : "PenyakitMayor",
+			"messagesRequired" : "PenyakitMayor Harus Diisi",
+			"caption" : "PenyakitMayor"
+		},
+		{
+			"isNull" : "false",
+			"name" : "KeteranganAlatImplant",
+			"messagesRequired" : "",
+			"caption" : "KeteranganAlatImplant"
+		}
+  ]
+}

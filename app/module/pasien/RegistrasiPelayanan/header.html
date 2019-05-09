@@ -1,0 +1,68 @@
+<div class="grid_12">
+    <c-panel item="item" header="'Rekam Medis Pasien'" disabled>
+        <core-busy busy="isLoading"></core-busy>
+        <div ui-view></div>
+
+        <div class="panel-place" style="top: -1px;"><i style="cursor:pointer;" ng-click='find()' class="fa  fa-search-plus fa-2x" aria-hidden="true"></i></div>
+        <div class='grid_12'>
+            <div class="grid_12 animated" ng-show="item.pasien.namaPasien!==undefined">
+                <div class="grid_12">
+                    <div class="grid_3">
+                        <!-- namaPasien -->
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="NoRekamMedis"></label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.noCm" />
+                        </div>
+                    </div>
+                    <div class="grid_3">
+                        <!-- namaPasien -->
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="namaPasien"></label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.namaPasien" />
+                        </div>
+                    </div>
+                    <div class="grid_3">
+                        <!-- jenisKelamin -->
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="jenisKelamin"></label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.jenisKelamin.jenisKelamin" />
+                            <!--<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.pasien.jenisKelamin.jenisKelamin" />-->
+                        </div>
+                    </div>
+                    <div class="grid_3">
+                        <!-- tglDaftar -->
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="tanggalLahir"></label>
+                            <input style="width: 100%" k-ng-model="item.pasien.tglLahir" kendo-date-picker placeholder="dd-MM-yyyy" k-format="'dd-MM-yyyy'" ng-disabled="'true'"/>
+                            <!--<input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.tglLahir|date:'dd-MM-yyyy'" />--> <!-- edited because error ngmodel nonassign -->
+                            <!--<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.pasien.tglDaftar" />-->
+                        </div>
+                    </div>
+                    <div class="grid_6">
+                        <!-- alamats -->
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="alamat"></label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.alamat.alamatLengkap" />
+                        </div>
+                    </div>
+                    <div class="grid_3">
+                        <!-- pendidikan -->
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="pendidikan"></label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.pendidikan.reportDisplay" />
+                            <!--<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.pasien.pendidikan.pendidikan" />-->
+                        </div>
+                    </div>
+                    <div class="grid_3">
+                        <!-- pekerjaan -->
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="pekerjaan"></label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.pekerjaan.pekerjaan" />
+                            <!--<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.pasien.pekerjaan.pekerjaan" />-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </c-panel>
+</div>

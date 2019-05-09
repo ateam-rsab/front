@@ -1,0 +1,133 @@
+<div ng-controller="BerkasLamaranCtrl">
+
+    <div>
+        <div class="panel panel-default container_12">
+            <div class="panel-heading"><label class='title' c-label item="item" c-label-text="Ceklist Berkas Lamaran / Terima Dokumen Lamaran"></label></div>
+            <div class="panel-body">
+                <div class="grid_6">
+                    <div class="panel panel-default container_12">
+                        <!--		<div class="panel-heading" c-translate>Periode</div> -->
+                        <!--		<div class="panel-body"> -->
+                        <div class="grid_12">
+                            <div class="grid_4" style="margin: 10px 0 0 0;">
+                                <label c-label item="item" c-label-text="Periode"></label>
+                            </div>
+                            <div class="grid_8">
+                                <!-- <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.bulanMasuk" disabled/> -->
+                                <!-- ini date formatnya mau gimana dari backend -->
+                                <!-- <input kendo-date-picker k-options="monthSelectorOptions" ng-model="item.periode" k-format="'MMMM yyyy'" style="width: 100%;"> -->
+                                <!-- pake yang inputan aja -->
+
+                                <!-- tgl 08-jun-17 ganti jadi date picker -->
+                                <!-- <input kendo-date-picker k-options="monthSelectorOptions" k-ng-model="item.periode" k-format="'MMMM yyyy'" k-value="now" style="width: 100%;"> -->
+
+                                <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.periode" disabled/>
+                                <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.posisiLamarId" ng-show="false"/>
+                                <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.jabatanId" ng-show="false"/>
+                                <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.idK" ng-show="false"/>
+                            </div>
+
+                        </div>
+                     <!--  <div class="grid_12">
+                              <div class="grid_4" style="margin: 10px 0 0 0;">
+                                <label c-label item="item" c-label-text="Tahun"></label>
+                            </div>
+                            <div class="grid_8">
+                                <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.tahunMasuk" disabled/>
+                            </div> 
+                        </div>-->
+                        <div class="grid_12">
+                            <div class="grid_4" style="margin: 10px 0 0 0;">
+                                <label c-label item="item" c-label-text="Nama Pelamar"></label>
+                            </div>
+                            <div class="grid_8">
+                                <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaPelamar" disabled/>
+                            </div>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_4" style="margin: 10px 0 0 0;">
+                                <label c-label item="item" c-label-text="Degree"></label>
+                            </div>
+                            <div class="grid_8">
+                                <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.degree" disabled/>
+                                <!-- <input c-text-box type="input" class="k-textbox" ng-model="item.periode" disabled ng-show="false"/> -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="grid_6">
+                    
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin: 10px 0 0 0;">
+                            <label c-label item="item" c-label-text="Jurusan"></label>
+                        </div>
+                        <div class="grid_8">
+                            <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.jurusan" disabled/>
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin: 10px 0 0 0;">
+                            <label c-label item="item" c-label-text="Nilai"></label>
+                        </div>
+                        <div class="grid_8">
+                            <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nilai" disabled/>
+                            <input c-text-box type="input" class="k-textbox" ng-model="item.qtyPeserta" disabled ng-show="false"/>
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin: 10px 0 0 0;">
+                            <label><b>PNS/Non PNS</b></label>
+                        </div>
+                        <div class="grid_8">
+                            <input style="width: 100%;" id="coP" kendo-combo-box k-ng-model="item.kategoryPegawai" k-data-text-field="'kategoryPegawai'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listStatusPns" k-on-change="dapatBerkas()"/>
+                        </div>
+                    </div>
+                    <div class="grid_4">
+                        <md-switch ng-model="item.isLulus" aria-label="Switch 2" ng-true-value="'1'" ng-false-value="'0'" class="md-primary" >
+                            Hasil: {{ item.isLulus == 0 ? "Tidak Lulus" : "Lulus" }}
+                        </md-switch>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="clear"></div>
+            <!-- <div class="grid_12">
+                <div class="grid_4" ng-repeat="item in daftarBerkasLamaran" ng-dblclick="item.value=!item.value" >
+
+                    <md-checkbox ng-model="item.value" aria-label="">
+                        <b>{{$index+1}}. {{item.uraian}}{{item.value}}</b>
+                    </md-checkbox>
+                </div>
+            </div> -->
+            <!-- <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div> -->
+            
+            <div class="grid_12" ng-show="a">
+            <!-- ganti jadi tadinya listKeterangan jadi listBerkasLamaran -->
+                <div class="grid_6" style="margin-left:5px;" ng-repeat="berkasP in listPns">
+                    <input type="checkbox" class="k-checkbox" name="{{berkasP.namaJudulDokumen}}" id="{{berkasP.namaJudulDokumen}}" value="{{berkasP.dokumenId}}" ng-click="cekArrPns(berkasP)" >
+                    <label class="k-checkbox-label" for="{{berkasP.namaJudulDokumen}}">{{berkasP.namaJudulDokumen}}</label>
+                </div>
+            </div>
+
+           <!--  nantinya ini untuk yang non-pns -->
+           
+           <div class="grid_12" ng-show="b">
+                <div class="grid_6" style="margin: 0;" ng-repeat="berkasN in listNonPns">
+                    <input type="checkbox" class="k-checkbox" name="{{berkasN.namaJudulDokumen}}" id="{{berkasN.namaJudulDokumen}}" value="{{berkasN.dokumenId}}" ng-click="cekArrNon(berkasN)">
+                    <label class="k-checkbox-label" for="{{berkasN.namaJudulDokumen}}">{{berkasN.namaJudulDokumen}}</label>
+                </div>
+            </div>
+
+            <div class="grid_12">
+                <div class="grid_2" style="float:right">
+                    <button class="c-button" ng-click="Save1()">Simpan</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+</div>

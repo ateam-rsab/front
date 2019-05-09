@@ -1,0 +1,92 @@
+<div ng-controller="PenerimaanBarangMedisdanNonMedis(Logistik)Ctrl">
+    <div class="panel panel-default container_12">
+        <div class="panel-heading" c-translate>Penerimaan Barang Medis dan Non Medis(Logistik)</div>
+        <div class="panel-body">
+        	<div class="panel panel-default container_12">
+            	<div class="panel-heading" c-translate>Data Penerimaan</div>
+            	<div class="panel-body">
+           			<div class="grid_12" style="margin: 10px 0 0 5px;">
+           				<div class="grid_3">
+           					<div class="grid_12" ng-repeat="Data in ListNoFaktur">
+								<input type="checkbox" class="k-checkbox" name="{{Data.name}}" 
+								id="{{Data.name}}" value="{{Data.id}}" ng-click="cekRiwayatPenyakit(Data)">
+								<label class="k-checkbox-label" for="{{Data.name}}"> {{Data.name}}</label>
+           					</div>
+           				</div>
+           				<div class="grid_2">
+           					<label c-label item="item" c-label-text="tglTerima"></label>
+           				</div>
+           				<div class="grid_3">
+           					<label c-label item="item" c-label-text="namaSupplier"></label>
+           				</div>
+           				<div class="grid_2">
+           					<label c-label item="item" c-label-text="noFaktur"></label>
+           				</div>	
+           				<div class="grid_2">
+           					<label c-label item="item" c-label-text="tglFaktur"></label>
+           				</div>
+           			</div>
+           			<div class="grid_12" style="margin-top: 5px">
+           				<div class="grid_3">
+           					<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noTerima" />
+           				</div>
+           				<div class="grid_2">
+           					<input style="width: 100%" kendo-date-picker k-ng-model="item.tglTerima" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+           				</div>
+           				<div class="grid_3">
+           					<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaSupplier" k-data-text-field="'name'" k-data-value-field="'id'" 
+                    		k-filter="'contains'" k-auto-bind="false" k-data-source="ListSupplier" />
+           				</div>
+           				<div class="grid_2">
+                     		<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noFaktur" />
+           				</div>
+           				<div class="grid_2">
+           					<input style="width: 100%" kendo-date-picker k-ng-model="item.tglFaktur" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+           				</div>
+           			</div>
+           			<div class="grid_12" style="margin: 20px 0 0 5px;">
+           				<div class="grid_2">
+           					<label c-label item="item" c-label-text="tglJatuhTempo"></label>
+           				</div>
+           				<div class="grid_2">
+           					<label c-label item="item" c-label-text="materai"></label>
+           				</div>
+           			</div>
+           			<div class="grid_12" style="margin-top: 5px">
+           				<div class="grid_2">
+           					<input style="width: 100%" kendo-date-picker k-ng-model="item.tglJatuhTempo" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+           				</div>
+           				<div class="grid_2">
+           					<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.materai" />
+           				</div>
+           			</div>
+           		</div>
+           	</div>
+        <div class="panel panel-default container_12">
+            <div class="panel-heading" c-translate>Data Barang</div>
+            <div class="panel-body">
+            	<div class="grid_12" style="margin: 10px 0 30px 0;">
+        			<kendo-grid  k-data-source="dataPermintaanBahanMakanandariRuangan" k-selectable="'row'" k-columns="columnPermintaanBahanMakanandariRuangan" ng-click="removeDataPermintaanBahanMakanandariRuangan">
+                	</kendo-grid>
+                </div>
+            </div>
+        </div>
+        <div class="grid_12">
+        	<div class="grid_1"></div>
+        	<div class="grid_2">
+                <button class="c-button" ng-click="addDataPermintaanBahanMakanandariRuangan()" k-selectable="'row'" k-columns="columnPermintaanBahanMakanandariRuangan">Validasi</button>
+            </div>
+            <div class="grid_2">
+                <button class="c-button" ng-click="removeDataPermintaanBahanMakanandariRuangan()">Cetak QR Code</button>
+           </div>
+           <div class="grid_3">
+                <button class="c-button" ng-click="addDataPermintaanBahanMakanandariRuangan()" k-selectable="'row'" k-columns="columnPermintaanBahanMakanandariRuangan">Simpan TO SIMAK Persediaan</button>
+            </div>
+            <div class="grid_2">
+               <button class="c-button" ng-click="removeDataPermintaanBahanMakanandariRuangan()">Posting Jurnal</button>
+            </div>
+             <div class="grid_2">
+               <button class="c-button" ng-click="removeDataPermintaanBahanMakanandariRuangan()">Tutup</button>
+            </div>
+        </div>
+    </div>

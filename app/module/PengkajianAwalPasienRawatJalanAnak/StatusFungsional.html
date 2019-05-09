@@ -1,0 +1,415 @@
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#aabcfe;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aabcfe;color:#669;background-color:#e8edff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aabcfe;color:#039;background-color:#b9c9fe;}
+.tg .tg-yw4l{vertical-align:top}
+.subtits{text-align:center; font-style: italic; font-size:10pt; padding-left:8px}
+.header {font-size:120%; font-weight:700;}
+.footer {text-align:center; font-size:120%; font-weight:700; margin-bottom:20px}
+</style>
+
+<div ng-controller="StatusFungsionalCtrl">
+  <div ng-show="dataVOloaded">
+    <div class="grid_12 headerBox">
+        <h1 style="color: white;"><b>{{formMaster.nama}}</b></h1>
+    </div>
+    <div class="clear"></div>
+    <label class="subtits">{{subTitle}}</label>
+    <br/>
+    <div class="grid_12" style="margin-bottom:60px">
+        <!-- form untuk RAWAT JALAN -->
+        <div class="grid_12" ng-show="isRawatJalan">
+            <div class="grid_6" ng-repeat="stat in item.statusFungsionalRwtJln | orderBy:'id'" ng-init="statIndex = $index">
+                <div ng-switch on="stat.detail">
+                    <div ng-switch-when="undefined" class="grid_12">
+                        <div class="grid_4" style="margin-top:6px">
+                            <input type="checkbox" ng-change="cekArrRawatJalan(bool, stat)" ng-model="bool" ng-checked="isChecked(stat.id)">
+                            <label>{{stat.nama}}</label>
+                        </div>
+                        <div class="grid_8">
+                            <input type="input" filter="'varchar'" class="k-textbox" ng-model="stat.value" placeholder="{{stat.value}}" style="width:100%" c-text-box ng-disabled="!bool"/>
+                        </div>
+                    </div>
+                    <div ng-switch-default class="grid_12">
+                        <div class="grid_4" style="margin-left:6px">
+                            <label>{{stat.nama}}</label>
+                        </div>
+                        <div ng-repeat="opsi in stat.detail | orderBy:'id'" class="grid_2">
+                            <input type="radio" ng-model="stat.value" ng-value="opsi.id" ng-click="cekAktivitas(stat, opsi)">
+                            <label for="{{opsi.nama}}">{{opsi.nama}}</label>
+                        </div>
+                    </div>
+                    <!-- <input type="radio" ng-model="item.statusfungsionalRawatJalan" ng-value="stat" ng-click="cekKeterangan(fungsionalRawatJalan, stat)">
+                    <label c-label-text="{{stat.nama}}"></label> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- form untuk RAWAT INAP -->
+        <div class="grid_12" ng-hide="isRawatJalan">
+            <div class="grid_12 headerBox">
+                <h1 style="color: white;"><b>{{item.formTitleRawatInap}}</b></h1>
+            </div>
+            <div class="clear"></div>
+            <br/>
+            <div class="grid_12 header">
+                <div class="grid_1" style="border-bottom:1px solid blue; text-align:center"><b>No</b></div>
+                <div class="grid_2" style="border-bottom:1px solid blue"><b>Fungsi</b></div>
+                <div class="grid_1" style="border-bottom:1px solid blue; text-align:center"><b>Skor</b></div>
+                <div class="grid_7" style="border-bottom:1px solid blue"><b>Keterangan</b></div>
+                <div class="grid_1" style="border-bottom:1px solid blue; text-align:center"><b>Hasil</b></div>
+            </div>
+            <div ng-repeat="parameter in item.statusFungsionalRwtInap | orderBy:'id'">
+                <div ng-repeat="tanya in parameter.detail | orderBy:'id'" ng-init="tanyaIndex = $index + 1">
+                    <div class="grid_12" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index">
+                        <div ng-switch on="jawabIndex">
+                            <div ng-switch-when="0">
+                                <div class="grid_1" style="text-align:center">
+                                    <label>{{tanyaIndex}}</label>
+                                </div>
+                                <div class="grid_2">
+                                    <label><b>{{tanya.nama}}</b></label>
+                                </div>
+                                <div class="grid_1" style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_7">
+                                    <input type="radio" ng-model="tanya.value" ng-value="jawab.id" ng-click="cekTotalSkor(tanya, jawab)">
+                                    <label for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                </div>
+                                <div class="grid_1" style="text-align:center">
+                                    <label>{{tanya.descNilai}}</label>
+                                </div>
+                            </div>
+                            <div ng-switch-default>
+                                <div class="grid_1">&nbsp;</div>
+                                <div class="grid_2">&nbsp;</div>
+                                <div class="grid_1" style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_7">
+                                    <input type="radio" ng-model="tanya.value" ng-value="jawab.id" ng-click="cekTotalSkor(tanya, jawab)">
+                                    <label for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                </div>
+                                <div class="grid_1" style="text-align:center">&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr style="margin: 0px"/>
+                </div>
+            </div>
+            <div class="grid_12 footer" style="border-top:1px solid lightblue">
+                <div class="grid_10">Total Skor</div>
+                <div class="grid_2">{{totalSkor}}</div>
+            </div>
+            <div class="grid_12">
+              <div class="grid_4" style="font-size:14px">
+                  <label>Skor  : Mandiri</label><br><br>
+                  <label>Skor 12 - 19 : Keterangan Ringan</label><br><br>
+                  <label>Skor 9 - 11 : Keterangan Sedang</label><br><br>
+                  <label>Skor 5 - 8 : Keterangan Berat</label><br><br>
+                  <label>Skor 0 - 4 : Keterangan Total</label><br><br>
+              </div>
+          </div>
+        </div>
+    </div>
+    <!-- form tanpa template master -->
+    <c-panel item="item" header="'Status Fungsional'" disabled ng-hide="true">
+      <div class="panel-body" style="margin-bottom: 46px !important">
+        <!-- form untuk RAWAT JALAN -->
+        <div class="grid_12" ng-hide="isRawatInap">
+          <div class="grid_12">
+            <div class="grid_6" ng-repeat="stat in fungsionalRawatJalan">
+              <div class="grid_4">
+                <input type="checkbox" ng-model="item.fungsionalRawatJalan[stat.id]" name="{{stat.name}}" id="{{stat.id}}" ng-value="stat" ng-change="cekDuluBos(item.fungsionalRawatJalan[stat.id], stat)">
+                <label>{{stat.name}}</label>
+                <!-- <input type="radio" ng-model="item.statusfungsionalRawatJalan" ng-value="stat" ng-click="cekKeterangan(fungsionalRawatJalan, stat)">
+                <label c-label-text="{{stat.name}}"></label> -->
+              </div>
+              <div class="grid_8">
+                <input type="input" filter="'varchar'" class="k-textbox" ng-model="item.fungsionalRawatJalan[stat.id].disable" placeholder="{{stat.keterangan}}" ng-disabled="{{stat.disable}}"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid_8">
+            <div class="grid_2">
+              <label c-label item="item" c-label-text="Aktivitas sehari-hari:"></label>
+            </div>
+            <div class="grid_2" ng-repeat="stat in listStatusfungsional">
+                <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-checked="stat.isNilai" ng-model="item.statusFungsional" ng-value="stat">
+                <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+
+        <!-- form untuk RAWAT INAP -->
+        <div class="grid_12" ng-show="isRawatInap">
+          <h1>PENGKAJIAN STATUS FUNGSIONAL MENURUT BARTHEL INDEKS</h1>
+          <table class="tg">
+          <tr>
+              <th class="tg-yw4l">No</th>
+              <th class="tg-yw4l">Fungsi</th>
+              <th class="tg-yw4l">Skor</th>
+              <th class="tg-yw4l">Keterangan</th>
+              <th class="tg-yw4l">Hasil</th>
+          </tr>
+          <tr>
+              <td class="tg-yw4l" rowspan="3">1</td>
+              <td class="tg-yw4l" rowspan="3">Makan</td>
+              <td class="tg-yw4l">0</td>
+              <td class="tg-yw4l">
+                  <input type="radio" ng-model="item.makan" value="0">
+                  <label>Tidak mampu</label>
+              </td>
+              <td class="tg-yw4l" rowspan="3">{{item.makan}}</td>
+          </tr>
+          <tr>
+            <td class="tg-yw4l">1</td>
+            <td class="tg-yw4l">
+                <input type="radio" ng-model="item.makan" value="1">
+                <label>Butuh bantuan</label>
+            </td>
+          </tr>
+          <tr>
+            <td class="tg-yw4l">2</td>
+            <td class="tg-yw4l">
+                <input type="radio" ng-model="item.makan" value="2">
+                <label>Mandiri</label>
+            </td>
+          </tr>
+          <tr>
+              <td class="tg-yw4l" rowspan="2">2</td>
+              <td class="tg-yw4l" rowspan="2">Makan</td>
+              <td class="tg-yw4l">0</td>
+              <td class="tg-yw4l">
+                  <input type="radio" ng-model="item.mandi" value="0">
+                  <label>Tidak mampu</label>
+              </td>
+              <td class="tg-yw4l" rowspan="2">{{item.mandi}}</td>
+          </tr>
+          <tr>
+            <td class="tg-yw4l">1</td>
+            <td class="tg-yw4l">
+                <input type="radio" ng-model="item.mandi" value="1">
+                <label>Butuh bantuan</label>
+            </td>
+          </tr>
+          <tr>
+              <td class="tg-yw4l" rowspan="2">3</td>
+              <td class="tg-yw4l" rowspan="2">Perawatan Diri</td>
+              <td class="tg-yw4l">0</td>
+              <td class="tg-yw4l">
+                  <input type="radio" ng-model="item.perawatanDiri" value="0">
+                  <label>Membutuhkan bantuan orang lain</label>
+              </td>
+              <td class="tg-yw4l" rowspan="2">{{item.perawatanDiri}}</td>
+          </tr>
+          <tr>
+            <td class="tg-yw4l">1</td>
+            <td class="tg-yw4l">
+                <input type="radio" ng-model="item.perawatanDiri" value="1">
+                <label>Mandiri (Membersihkan muka, sikat gigi, sisir rambut)</label>
+            </td>
+          </tr>
+          <tr>
+              <td class="tg-yw4l" rowspan="3">4</td>
+              <td class="tg-yw4l" rowspan="3">Berpakaian</td>
+              <td class="tg-yw4l">0</td>
+              <td class="tg-yw4l">
+                  <input type="radio" ng-model="item.Berpakaian" value="0">
+                  <label>Tergantung orang lain</label>
+              </td>
+              <td class="tg-yw4l" rowspan="3">{{item.Berpakaian}}</td>
+          </tr>
+          <tr>
+            <td class="tg-yw4l">1</td>
+            <td class="tg-yw4l">
+                <input type="radio" ng-model="item.Berpakaian" value="1">
+                <label>Sebagian dibantu (Misal:mengancing baju)</label>
+            </td>
+          </tr>
+          <tr>
+            <td class="tg-yw4l">2</td>
+            <td class="tg-yw4l">
+                <input type="radio" ng-model="item.Berpakaian" value="2">
+                <label>Mandiri</label>
+            </td>
+          </tr>
+          <tr>
+              <td class="tg-yw4l" rowspan="3">5</td>
+              <td class="tg-yw4l" rowspan="3">Buang Air Besar</td>
+              <td class="tg-yw4l">0</td>
+              <td class="tg-yw4l">
+                  <input type="radio" ng-model="item.buangAir" value="0">
+                  <label>Tak terkendali/ Tak teratur (perlu pencahar)</label>
+              </td>
+              <td class="tg-yw4l" rowspan="3">{{item.buangAir}}</td>
+          </tr>
+          <tr>
+            <td class="tg-yw4l">1</td>
+            <td class="tg-yw4l">
+                <input type="radio" ng-model="item.buangAir" value="1">
+                <label>Kadang-kadang terkendali (1x seminggu)</label>
+            </td>
+          </tr>
+          <tr>
+            <td class="tg-yw4l">2</td>
+            <td class="tg-yw4l">
+                <input type="radio" ng-model="item.buangAir" value="2">
+                <label>Terkendali/ Teratur</label>
+            </td>
+          </tr>
+          <tr>
+              <td class="tg-yw4l" rowspan="3">6</td>
+              <td class="tg-yw4l" rowspan="3">Buang Air Kecil</td>
+              <td class="tg-yw4l">0</td>
+              <td class="tg-yw4l">
+                  <input type="radio" ng-model="item.buangAirKecil" value="0">
+                  <label>Tidak terkendali/pakai kateter</label>
+              </td>
+              <td class="tg-yw4l" rowspan="3">{{item.buangAirKecil}}</td>
+          </tr>
+          <tr>
+            <td class="tg-yw4l">1</td>
+            <td class="tg-yw4l">
+                <input type="radio" ng-model="item.buangAirKecil" value="1">
+                <label>Kadang tak terkendali (hanya 1x  tiap 24 jam)</label>
+            </td>
+          </tr>
+          <tr>
+            <td class="tg-yw4l">2</td>
+            <td class="tg-yw4l">
+                <input type="radio" ng-model="item.buangAirKecil" value="2">
+                <label>Mandiri</label>
+            </td>
+          </tr>
+          <tr>
+              <td class="tg-yw4l" rowspan="3">7</td>
+              <td class="tg-yw4l" rowspan="3">Penggunaan Toilet</td>
+              <td class="tg-yw4l">0</td>
+              <td class="tg-yw4l">
+                  <input type="radio" ng-model="item.penggunaanToilet" value="0">
+                  <label>Tergantung bantuan orang lain</label>
+              </td>
+              <td class="tg-yw4l" rowspan="3">{{item.penggunaanToilet}}</td>
+          </tr>
+          <tr>
+            <td class="tg-yw4l">1</td>
+            <td class="tg-yw4l">
+                <input type="radio" ng-model="item.penggunaanToilet" value="1">
+                <label>Membutuhkan bantuan tetapi dapat melakukan beberapa hal sendiri</label>
+            </td>
+          </tr>
+          <tr>
+            <td class="tg-yw4l">2</td>
+            <td class="tg-yw4l">
+                <input type="radio" ng-model="item.penggunaanToilet" value="2">
+                <label>Mandiri</label>
+            </td>
+          </tr>
+          <tr>
+              <td class="tg-yw4l" rowspan="4">8</td>
+              <td class="tg-yw4l" rowspan="4">Transfer</td>
+              <td class="tg-yw4l">0</td>
+              <td class="tg-yw4l">
+                  <input type="radio" ng-model="item.transfer" value="0">
+                  <label>Tidak mampu</label>
+              </td>
+              <td class="tg-yw4l" rowspan="4">{{item.transfer}}</td>
+          </tr>
+          <tr>
+            <td class="tg-yw4l">1</td>
+            <td class="tg-yw4l">
+                <input type="radio" ng-model="item.transfer" value="1">
+                <label>Butuh bantuan 2 orang untuk bisa duduk</label>
+            </td>
+          </tr>
+          <tr>
+            <td class="tg-yw4l">2</td>
+            <td class="tg-yw4l">
+                <input type="radio" ng-model="item.transfer" value="2">
+                <label>Bantuan Kecil (1 orang)</label>
+            </td>
+          </tr>
+          <tr>
+            <td class="tg-yw4l">3</td>
+            <td class="tg-yw4l">
+                <input type="radio" ng-model="item.transfer" value="3">
+                <label>Mandiri</label>
+            </td>
+          </tr>
+          <tr>
+              <td class="tg-yw4l" rowspan="4">9</td>
+              <td class="tg-yw4l" rowspan="4">Mobilitas</td>
+              <td class="tg-yw4l">0</td>
+              <td class="tg-yw4l">
+                  <input type="radio" ng-model="item.mobilitas" value="0">
+                  <label>Immobile (tidak mampu)</label>
+              </td>
+              <td class="tg-yw4l" rowspan="4">{{item.mobilitas}}</td>
+          </tr>
+          <tr>
+            <td class="tg-yw4l">1</td>
+            <td class="tg-yw4l">
+                <input type="radio" ng-model="item.mobilitas" value="1">
+                <label>Menggunakan Kursi Roda</label>
+            </td>
+          </tr>
+          <tr>
+            <td class="tg-yw4l">2</td>
+            <td class="tg-yw4l">
+                <input type="radio" ng-model="item.mobilitas" value="2">
+                <label>Berjalan dengan bantuan 1 orang</label>
+            </td>
+          </tr>
+          <tr>
+            <td class="tg-yw4l">3</td>
+            <td class="tg-yw4l">
+                <input type="radio" ng-model="item.mobilitas" value="3">
+                <label>Mandiri</label>
+            </td>
+          </tr>
+          <tr>
+              <td class="tg-yw4l" rowspan="3">10</td>
+              <td class="tg-yw4l" rowspan="3">Naik Turun Tangga</td>
+              <td class="tg-yw4l">0</td>
+              <td class="tg-yw4l">
+                  <input type="radio" ng-model="item.naikTurunTangga" value="0">
+                  <label>Tidak mampu</label>
+              </td>
+              <td class="tg-yw4l" rowspan="3">{{item.naikTurunTangga}}</td>
+          </tr>
+          <tr>
+            <td class="tg-yw4l">1</td>
+            <td class="tg-yw4l">
+                <input type="radio" ng-model="item.naikTurunTangga" value="1">
+                <label>Membutuhkan bantuan</label>
+            </td>
+          </tr>
+          <tr>
+            <td class="tg-yw4l">2</td>
+            <td class="tg-yw4l">
+                <input type="radio" ng-model="item.naikTurunTangga" value="2">
+                <label>Mandiri</label>
+            </td>
+          </tr>
+          <tr>
+            <td class="tg-yw4l" colspan="4">Total</td>
+            <td class="tg-yw4l" colspan="4">{{item.totalIndexBarthel}}</td>
+          </table>
+          <div class="grid_4" style="padding: 10px auto !important; border: 1pt solid lightgrey; margin: 15px 15px !important">
+            <div clas="grid_12" ng-repeat="skor in skorIndexBarthel">
+              <input type="checkbox" ng-model="item.skorIndexBarthel[skor.id]" name="{{skor.name}}" id="{{skor.id}}" ng-checked="item.totalIndexBarthel >= {{skor.min}} && item.totalIndexBarthel <= {{skor.max}}">
+              <label>{{skor.name}}: {{skor.desc}}</label>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </c-panel>
+  </div>
+  <div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
+</div>
+

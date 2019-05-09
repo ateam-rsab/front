@@ -1,0 +1,25 @@
+{
+	"model":{
+		"noPeraturan":"",
+		"draftPeraturan":"",
+		"koreksiDraftPeraturan":""   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "noPeraturan",
+			"messagesRequired" : "",
+			"caption" : "No. Peraturan"
+		},{
+			"isNull" : "true",
+			"name" : "draftPeraturan",
+			"messagesRequired" : "",
+			"caption" : "Draft Peraturan"
+		},{
+			"isNull" : "true",
+			"name" : "koreksiDraftPeraturan",
+			"messagesRequired" : "",
+			"caption" : "Koreksi Draft Peraturan"
+		}
+	]
+}

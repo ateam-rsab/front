@@ -1,0 +1,238 @@
+ <div ng-include='"../app/module/Dashboard/Pasien/Index" '></div>
+<div ng-controller="LaporanPerhitunganKasaBaruCtrl">
+
+    <div>
+        <c-panel item="item" header="'Laporan PerhitunganKasaDanAlatOperasi'">
+            <div class="grid_12" style="margin-bottom:35px">
+             <div class="grid_12">
+                            <div class="grid_6">
+<!--              <div class="grid_12">  
+             <div class="loading" style="position: relative; margin:25px 0px 20px;" class="animated"
+                            ng-show="isLoadingData2">
+             <img height="150" src="../app/stylesheets/Flat/loading-image.gif"/>
+             <br/> <span>Data Laporan Perhitungan Kasa Baru, Mohon tunggu...</span>
+             </div>
+             </div> -->
+            </div>
+            </div>
+              <div class="grid_6">
+             <div class="grid_12">
+                <c-panel item="item" header="'History Laporan Kassa Baru'">
+                <div class="grid_12">
+                    <div class="grid_12"></div>
+                    <div class="clear"></div>
+                    <!-- grid table -->
+                    <div class="grid_12 borderBox">
+                        <div id="kGrid" kendo-grid 
+                        k-data-source="dataMaster" 
+                        k-selectable="'row'" 
+                        k-columns="columnLaporanKasaBaru"
+                        k-sortable="'true'"
+                        k-pageable="true"
+                        k-ng-model="dataSelected"
+                        ng-click="klik(dataSelected)">
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="clear"></div>
+                </c-panel>
+            </div>
+            </div>
+<!--              <div class="grid_12">
+                    <div class="grid_12" style="margin-bottom:5px">
+                     <label c-label item="item" c-label-text="Nama Set / Alat Yang digunakan"></label>
+                       <textarea ng-model="item.namaSet" placeholder="Ketikan disini ...." style="width: 80%; height: 120px;"></textarea>
+                    </div>
+             </div> -->
+             <div class="grid_12">
+                <div class="grid_4">
+                    <div class="grid_12" style="margin-bottom:5px">
+                        <label c-label item="item" c-label-text="Jenis Alat"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="current.barang" k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listNamaBarang" />
+                    </div>
+                </div>
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="Hitungan Pertama"></label>
+                    <input c-text-box type="input" class="k-textbox" ng-model="current.HitunganPertama" />
+                </div>
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="Penambahan"></label>
+                    <div class="grid_2">
+                    <input c-text-box type="input" class="k-textbox" ng-model="current.penambahan1" />
+                    </div>
+                    <div class="grid_2">
+                    <input c-text-box type="input" class="k-textbox" ng-model="current.penambahan2" />
+                    </div>
+                    <div class="grid_2">
+                    <input c-text-box type="input" class="k-textbox" ng-model="current.penambahan3" />
+                    </div>
+                    <div class="grid_2">
+                    <input c-text-box type="input" class="k-textbox" ng-model="current.penambahan4" />
+                    </div>
+                    <div class="grid_2">
+                    <input c-text-box type="input" class="k-textbox" ng-model="current.penambahan5" />
+                    </div>
+                    <div class="grid_2">
+                    <input c-text-box type="input" class="k-textbox" ng-model="current.penambahan6" />
+                    </div>
+                </div>
+                </div>
+                <div class="grid_12">
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="Hitungan Total"></label>
+                    <input c-text-box type="input" class="k-textbox" ng-model="current.hitunganTotal" />
+                </div>
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="pasien.tglSteril"></label>
+                  <!--   <input required style="width: 100%" kendo-date-picker k-max="now" k-ng-model="current.tglSteril" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" /> -->
+                   <input style="width: 100%" k-ng-model="current.tglSteril" kendo-datetimepicker placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd HH:mm'" />
+
+                </div>
+                 <div class="grid_4">
+                    <label c-label item="item" c-label-text="keterangan"></label>
+                    <input c-text-box type="input" class="k-textbox" ng-model="current.keterangan2" />
+                </div>
+                </div>
+            <div>
+                </div>
+                <div class="grid_12">
+                    <div id="kGrid2" kendo-grid k-data-source="dataJenisKasa" k-selectable="'row'" k-columns="column">
+                    </div>
+                </div>
+                <br/>
+             <div class="grid_4">
+                    <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" click="Add">
+                        <span class="title">Tambah</span>
+                    </c-button>
+                </div>
+                <div class="grid_12"><br><br/></div>
+            <div class="grid_12" style="margin-bottom:35px">
+            <div class="grid_3">
+                    <div class="grid_12" style="margin-bottom:5px">
+                        <label c-label item="item" c-label-text="AhliBedah"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.AhliBedah" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listdokter" />
+                    </div>
+             </div>
+             <div class="grid_3">
+                    <div class="grid_12" style="margin-bottom:5px">
+                        <label c-label item="item" c-label-text="Asisten"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.Asisten" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listdokter" />
+                    </div>
+             </div>
+            <div class="grid_3">
+                    <div class="grid_12" style="margin-bottom:5px">
+                        <label c-label item="item" c-label-text="PerawatInstrumen"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.PerawatInstrumen" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPerawat" />
+                    </div>
+             </div> 
+            <div class="grid_3">
+                    <div class="grid_12" style="margin-bottom:5px">
+                        <label c-label item="item" c-label-text="PerawatSirkuler"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.PerawatSirkuler" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPerawat" />
+                    </div>
+             </div>                    
+            <div class="grid_12" style="margin-bottom:35px">
+             <div class="grid_12">
+                    <div class="grid_10" style="margin-bottom:5px">
+                      <label c-label item="item" c-label-text="KondisiSterilisasi"></label>
+                       <textarea ng-model="item.KondisiSterilisasi" style="width: 60%; height: 30px;"></textarea>
+                    </div>
+             </div>
+             <!-- -->
+             <div class="grid_6">
+              <fieldset style="min-height:150px !important">
+                 <div class="grid_12">
+                        <div class="grid_10" style="margin-bottom:5px">
+                          <label c-label item="loops" c-label-text="Alat/item :"></label>
+                           <textarea ng-model="loops.Produk1" style="width: 100%; height: 30px;"></textarea>
+                        </div>
+                 </div>
+                 <div class="grid_12">
+                        <div class="grid_10" style="margin-bottom:5px">
+                          <label c-label item="loops" c-label-text="Load"></label>
+                           <textarea ng-model="loops.load1" style="width: 100%; height: 30px;"></textarea>
+                        </div>
+                 </div>
+                 <div class="grid_12">
+                        <div class="grid_10" style="margin-bottom:5px">
+                          <label c-label item="loops" c-label-text="Tanggal Steril"></label>
+                           <input style="width: 100%" kendo-date-picker k-ng-model="loops.tglSteril1" data-k-format="'yyyy-MM-dd'"/>
+                        </div>
+                 </div>
+                  </fieldset>
+             </div>
+             <!--  -->
+             <div class="grid_6">
+                <fieldset style="min-height:150px !important">
+                 <div class="grid_12">
+                        <div class="grid_10" style="margin-bottom:5px">
+                          <label c-label item="loops" c-label-text="Alat/item :"></label>
+                           <textarea ng-model="loops.Produk2" style="width: 100%; height: 30px;"></textarea>
+                        </div>
+                 </div>
+                <div class="grid_12">
+                        <div class="grid_10" style="margin-bottom:5px">
+                          <label c-label item="loops" c-label-text="Load"></label>
+                           <textarea ng-model="loops.load2" style="width: 100%; height: 30px;"></textarea>
+                        </div>
+                 </div>
+                <div class="grid_12">
+                        <div class="grid_10" style="margin-bottom:5px">
+                          <label c-label item="loops" c-label-text="Tanggal Steril"></label>
+                           <input style="width: 100%" kendo-date-picker k-ng-model="loops.tglSteril2" data-k-format="'yyyy-MM-dd'"/>
+                        </div>
+                 </div>
+                 </fieldset>
+             </div>
+             <div class="grid_6">
+             <fieldset style="min-height:150px !important">
+                 <div class="grid_12">
+                        <div class="grid_10" style="margin-bottom:5px">
+                          <label c-label item="loops" c-label-text="Alat/item :"></label>
+                           <textarea ng-model="loops.Produk3" style="width: 100%; height: 30px;"></textarea>
+                        </div>
+                 </div>
+                 <div class="grid_12">
+                        <div class="grid_10" style="margin-bottom:5px">
+                          <label c-label item="loops" c-label-text="Load"></label>
+                           <textarea ng-model="loops.load3" style="width: 100%; height: 30px;"></textarea>
+                        </div>
+                 </div>
+                <div class="grid_12">
+                        <div class="grid_10" style="margin-bottom:5px">
+                          <label c-label item="loops" c-label-text="Tanggal Steril"></label>
+                            <input style="width: 100%" kendo-date-picker k-ng-model="loops.tglSteril3" data-k-format="'yyyy-MM-dd'"/>
+                        </div>
+                 </div>
+             </div>
+            <div class="grid_6">
+            <fieldset style="min-height:150px !important">
+                <div class="grid_12">
+                        <div class="grid_10" style="margin-bottom:5px">
+                          <label c-label item="loops" c-label-text="Alat/item :"></label>
+                           <textarea ng-model="loops.Produk4" style="width: 100%; height: 30px;"></textarea>
+                        </div>
+                 </div>
+                 <div class="grid_12">
+                        <div class="grid_10" style="margin-bottom:5px">
+                          <label c-label item="loops" c-label-text="Load"></label>
+                           <textarea ng-model="loops.load4" style="width: 100%; height: 30px;"></textarea>
+                        </div>
+                 </div>
+                <div class="grid_12">
+                        <div class="grid_10" style="margin-bottom:5px">
+                          <label c-label item="loops" c-label-text="Tanggal Steril"></label>
+                            <input style="width: 100%" kendo-date-picker k-ng-model="loops.tglSteril4" data-k-format="'yyyy-MM-dd'"/>
+                        </div>
+                 </div>
+             </fieldset>
+             </div>
+                <br/>
+          
+        </c-panel>
+        <div class="grid_12" style="margin-bottom:50px">
+            <div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+        </div>
+        </div>
+    </div>

@@ -1,0 +1,78 @@
+<div ng-include='"../app/module/Dashboard/Pasien/Index"'></div>
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>{{title}}</div>
+	<div class="panel-body">
+		<div class="grid_12">
+			<div class="grid_3">
+				<div class="grid_12">
+					<label c-label item="item" style="margin-top: 10px">Usia</label>
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.usia" disabled="true" />
+				</div>
+				<div class="grid_12">
+					<label c-label item="item" style="margin-top: 10px">Berat Badan</label>
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.beratBadan" disabled="true" />
+				</div>
+			</div>
+			<div class="grid_3">
+				<div class="grid_12">
+					<label c-label item="item" style="margin-top: 10px">Tinggi Badan</label>
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.tinggiBadan" disabled="true" />
+				</div>
+				<div class="grid_12">
+					<label c-label item="item" style="margin-top: 10px">Luas Permukaan Tubuh</label>
+					<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.luasPermukaanTubuh" />
+				</div>
+			</div>
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" style="margin-top: 10px">Diagnosa</label>
+				</div>
+				<div class="grid_12" style="margin-top:5px">
+					<textarea style="height: 90px" c-text-box type="input" class="k-textbox" ng-model="item.diagnosa" />
+				</div>
+			</div>
+		</div>
+		<div class="grid_12">
+            <div class="grid_7">
+            	<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+					<p>Pencarian Data</p>
+				</div>
+				<div class="grid_12 borderBox containerBorderBox">
+					<div class="grid_2" align="center" style="margin-top:10px">
+						<label c-label item="item">Tanggal</label>
+					</div>
+					<div class="grid_3">
+						<input style="width:100%" kendo-date-time-picker k-ng-model="item.awal" k-format="'dd-MM-yyyy HH:mm'"/>
+					</div>
+					<div class="grid_1" align="center" style="margin-top:10px">
+						<label c-label item="item">s/d</label>
+					</div>
+					<div class="grid_3">
+						<input style="width:100%" kendo-date-time-picker k-ng-model="item.akhir" k-format="'dd-MM-yyyy HH:mm'"/>
+					</div>
+					<div class="grid_2" style="margin:5px">
+						<button class="c-button success" ng-click="search()">Cari</button>
+					</div>
+				</div>
+			</div>
+		</div>
+        <div class="grid_12" style="margin-top:20px">
+			<div id="gridUSCOM" kendo-grid k-data-source="sourceUSCOM" 
+                k-selectable="'row'" 
+                k-options="mainGridOptions"
+                k-on-data-bound="onBound()"
+                k-ng-model="dataSelectedRow">
+            </div>
+		</div>
+		<div class="grid_12" style="margin-top:20px">
+			<div class="grid_6"></div>
+			<div class="grid_3">
+				<button class="c-button cancel" style="font-size:16px" ng-click="Batal()">Batal</button>
+			</div>
+			<div class="grid_3">
+				<button class="c-button success" style="font-size:16px" ng-click="Save()">Simpan</button>
+			</div>
+		</div>
+							
+	</div>
+</div>

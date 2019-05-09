@@ -1,0 +1,39 @@
+<div ng-controller="DaftarSasaranStrategisCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="title" align="center" disabled>
+			<div class="grid_12">
+				<c-panel item="item" header="'Pencarian'" disabled>
+					<div class="grid_7">
+						<div class="grid_3" style="margin-top:15px">
+							<label c-label item="item" c-label-text="periode"></label>
+						</div>
+						<div class="grid_3">
+							<input style="width:100%" kendo-date-picker k-options="yearSelected" k-ng-model="item.awal" k-format="'yyyy'" k-on-change="tahun()"/>
+						</div>
+						<div class="grid_1" align="center" style="margin-top:10px">
+							<label c-label item="item" c-label-text="sd"></label>
+						</div>
+						<div class="grid_3">
+							<input style="width:100%" kendo-date-picker k-ng-model="item.akhir" k-format="'yyyy'" readonly="true" />
+						</div>
+						<div class="grid_2" style="margin:5px">
+							<button class="c-button" ng-click="search()">Cari</button>
+						</div>
+					</div>
+				</c-panel>
+			</div>
+			<div class="grid_12">
+				<div kendo-grid k-data-source="sourceDaftarSasaranStrategis" k-selectable="'row'" k-columns="columndaftarSasaranStrategis"></div>
+			</div>
+			<div class="grid_12" style="padding-top:30px">
+				<div class="grid_8"></div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="cetak()">Cetak</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="Tutup()">Tutup</button>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

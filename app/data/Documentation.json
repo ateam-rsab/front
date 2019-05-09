@@ -1,0 +1,682 @@
+[{
+    "path": "registrasi-pasien/save-registrasi-online",
+    "mothod": "POST",
+    "data": {
+        "pegawai": {
+             "idPegawai":"P00002",
+      "namaPegawai":"Dokter 2",
+      "id":"33"
+        },
+        "Tipe": "EKSEKUTIF",
+        "TypePasien": "Baru",
+        "pasien": {
+            "namaPasien": "asdsad",
+            "tempatLahir": "asdasd",
+            "tglLahir": "2016-06-08T17:00:00.000Z",
+            "noIdentitas": "asdsad",
+            "noBpjs": "asdsad",
+            "noAsuransiLain": "asdas",
+            "namaAyah": "asdsadasd",
+            "namaIbu": "asdasd",
+            "namaSuamiIstri": "asdasd"
+        },
+        "jenisKelamin": {
+            "jenisKelamin": "LAKI-LAKI",
+            "id": 1
+        },
+        "agama": {
+            "id": 1,
+            "agama": "ISLAM"
+        },
+        "pendidikan": {
+            "id": 1,
+            "namaPendidikan": "TK"
+        },
+        "pekerjaan": {
+            "id": 1,
+            "pekerjaan": "ADMINISTRASI"
+        },
+        "statusPerkawinan": {
+            "statusPerkawinan": "BELUM KAWIN",
+            "id": 1
+        },
+        "Kelurahan": {
+            "id": 1,
+            "namaDesaKelurahan": "LEBAKMUNCANG"
+        },
+        "tglReservasi": "2016-06-22",
+        "PoliTujuan": {
+            "id": 1,
+            "namaRuangan": "Alamanda"
+        }
+    }
+}, {
+    "path": "registrasi-pasien/save-registrasi-online",
+    "mothod": "POST",
+    "data": {
+        "Tipe": "EKSEKUTIF",
+        "TypePasien": "Baru",
+        "pasien": {
+            "namaPasien": "asdsad",
+            "tempatLahir": "asdasd",
+            "tglLahir": "2016-06-08T17:00:00.000Z",
+            "noIdentitas": "asdsad",
+            "noBpjs": "asdsad",
+            "noAsuransiLain": "asdas",
+            "namaAyah": "asdsadasd",
+            "namaIbu": "asdasd",
+            "namaSuamiIstri": "asdasd"
+        },
+        "jenisKelamin": {
+            "jenisKelamin": "LAKI-LAKI",
+            "id": 1
+        },
+        "agama": {
+            "id": 1,
+            "agama": "ISLAM"
+        },
+        "pendidikan": {
+            "id": 1,
+            "namaPendidikan": "TK"
+        },
+        "pekerjaan": {
+            "id": 1,
+            "pekerjaan": "ADMINISTRASI"
+        },
+        "statusPerkawinan": {
+            "statusPerkawinan": "BELUM KAWIN",
+            "id": 1
+        },
+        "Kelurahan": {
+            "id": 1,
+            "namaDesaKelurahan": "LEBAKMUNCANG"
+        },
+        "tglReservasi": "2016-06-22",
+        "PoliTujuan": {
+            "id": 1,
+            "namaRuangan": "Alamanda"
+        }
+    }
+}, {
+    "path": "registrasi-pasien/save-registrasi-triage",
+    "mothod": "POST",
+    "dependencyLink": [{
+        "url": "/PemeriksaanTriage?top=50&filter%5Blogic%5D=and&filter%5Bfilters%5D%5B0%5D%5Bfield%5D=jenisPemeriksaan&filter%5Bfilters%5D%5B0%5D%5Boperator%5D=contains&filter%5Bfilters%5D%5B0%5D%5Bvalue%5D=Sirkulasi",
+        "result": [{
+            "id": 9,
+            "kdProfile": 0,
+            "kdTriage": 9,
+            "namaTriage": "Sianosis",
+            "jenisPemeriksaan": "Sirkulasi"
+        }, {
+            "id": 37,
+            "kdProfile": 0,
+            "kdTriage": 9,
+            "namaTriage": "Henti Jantun",
+            "jenisPemeriksaan": "Sirkulasi"
+        }, {
+            "id": 10,
+            "kdProfile": 0,
+            "kdTriage": 9,
+            "namaTriage": "Nadi tidak teraba",
+            "jenisPemeriksaan": "Sirkulasi"
+        }, {
+            "id": 11,
+            "kdProfile": 0,
+            "kdTriage": 9,
+            "namaTriage": "Akral dingin",
+            "jenisPemeriksaan": "Sirkulasi"
+        }, {
+            "id": 12,
+            "kdProfile": 0,
+            "kdTriage": 9,
+            "namaTriage": "Nadi teraba lemah",
+            "jenisPemeriksaan": "Sirkulasi"
+        }, {
+            "id": 13,
+            "kdProfile": 0,
+            "kdTriage": 9,
+            "namaTriage": "Bradikardia",
+            "jenisPemeriksaan": "Sirkulasi"
+        }, {
+            "id": 14,
+            "kdProfile": 0,
+            "kdTriage": 9,
+            "namaTriage": "Takikardia",
+            "jenisPemeriksaan": "Sirkulasi"
+        }, {
+            "id": 15,
+            "kdProfile": 0,
+            "kdTriage": 9,
+            "namaTriage": "Pucat",
+            "jenisPemeriksaan": "Sirkulasi"
+        }, {
+            "id": 16,
+            "kdProfile": 0,
+            "kdTriage": 9,
+            "namaTriage": "Akral dingin",
+            "jenisPemeriksaan": "Sirkulasi"
+        }, {
+            "id": 17,
+            "kdProfile": 0,
+            "kdTriage": 9,
+            "namaTriage": "CRT > 2 detik",
+            "jenisPemeriksaan": "Sirkulasi"
+        }, {
+            "id": 18,
+            "kdProfile": 0,
+            "kdTriage": 9,
+            "namaTriage": "Nadi Kuat",
+            "jenisPemeriksaan": "Sirkulasi"
+        }, {
+            "id": 19,
+            "kdProfile": 0,
+            "kdTriage": 9,
+            "namaTriage": "TDS > 160",
+            "jenisPemeriksaan": "Sirkulasi"
+        }, {
+            "id": 20,
+            "kdProfile": 0,
+            "kdTriage": 9,
+            "namaTriage": "TDD > 100",
+            "jenisPemeriksaan": "Sirkulasi"
+        }, {
+            "id": 21,
+            "kdProfile": 0,
+            "kdTriage": 9,
+            "namaTriage": "Frek nadi normal",
+            "jenisPemeriksaan": "Sirkulasi"
+        }, {
+            "id": 22,
+            "kdProfile": 0,
+            "kdTriage": 9,
+            "namaTriage": "TDS 100-120",
+            "jenisPemeriksaan": "Sirkulasi"
+        }, {
+            "id": 23,
+            "kdProfile": 0,
+            "kdTriage": 9,
+            "namaTriage": "TDD 70-90",
+            "jenisPemeriksaan": "Sirkulasi"
+        }]
+    }],
+    "data": {
+        "jenisKategori": {
+            "id": 3,
+            "jenisKategori": "Kategori 3"
+        },
+        "kategories": [{
+            "id": 0,
+            "kdProfile": 0,
+            "kdTriage": 1,
+            "namaTriage": "Sumbatan",
+            "jenisPemeriksaan": "Jalan Nafas"
+        }, {
+            "id": 3,
+            "kdProfile": 0,
+            "kdTriage": 3,
+            "namaTriage": "Ancaman",
+            "jenisPemeriksaan": "Jalan Nafas"
+        }, {
+            "id": 5,
+            "kdProfile": 0,
+            "kdTriage": 6,
+            "namaTriage": "Mengi",
+            "jenisPemeriksaan": "Pernafasan"
+        }, {
+            "id": 8,
+            "kdProfile": 0,
+            "kdTriage": 9,
+            "namaTriage": "Frek nafas normal",
+            "jenisPemeriksaan": "Pernafasan"
+        }, {
+            "id": 37,
+            "kdProfile": 0,
+            "kdTriage": 9,
+            "namaTriage": "Henti Jantun",
+            "jenisPemeriksaan": "Sirkulasi"
+        }, {
+            "id": 12,
+            "kdProfile": 0,
+            "kdTriage": 9,
+            "namaTriage": "Nadi teraba lemah",
+            "jenisPemeriksaan": "Sirkulasi"
+        }, {
+            "id": 26,
+            "kdProfile": 0,
+            "kdTriage": 9,
+            "namaTriage": "Tak ada respons",
+            "jenisPemeriksaan": "Kesadaran"
+        }, {
+            "id": 29,
+            "kdProfile": 0,
+            "kdTriage": 9,
+            "namaTriage": "Hemiparesis",
+            "jenisPemeriksaan": "Kesadaran"
+        }],
+        "waktu": "00:00:09"
+    }
+}, {
+    "path": "registrasi-pasien/save-registrasi-pasien",
+    "mothod": "POST",
+    "data": {
+        "pasien": {
+            "namaPasien": "dimas",
+            "tempatLahir": "badnung",
+            "jenisKelamin": {
+                "id": 0,
+                "jenisKelamin": "LAKI-LAKI"
+            },
+            "agama": {
+                "id": 0,
+                "agama": "ISLAM"
+            },
+            "pendidikan": {
+                "id": 9,
+                "pendidikan": "Tidak Sekolah"
+            },
+            "pekerjaan": {
+                "id": 0,
+                "pekerjaan": "Tidak Bekerja"
+            },
+            "statusPerkawinan": {
+                "id": 0,
+                "statusPerkawinan": "Tidak Kawin"
+            },
+            "namaAyah": "sada",
+            "namaIbu": "asd",
+            "namaSuamiIstri": "asd",
+            "noIdentitas": "asdasdas",
+            "noBpjs": "asdas",
+            "noAsuransiLain": "dasdas"
+        },
+        "alamat": {
+            "alamatLengkap": "asd",
+            "kelurahan": {
+                "id": 1,
+                "namaDesaKelurahan": "RAWABOGO"
+            },
+            "kecamatan": {
+                "id": 5,
+                "namaExternal": "KERTASARI"
+            }
+        },
+        "alamats": [{}],
+        "kelompokUmur": {
+            "id": 1
+        },
+        "negara": {
+            "id": 1
+        },
+        "titlePasien": null
+    }
+}, {
+    "path": "Pasien/KeluahanUtama/",
+    "mothod": "POST",
+    "data": {
+        "pasien": {
+            "kdProfile": 0,
+            "id": 177,
+            "noRec": "                                ",
+            "reportDisplay": "bbbbbbb",
+            "namaExternal": "aaaaaaaa",
+            "umurPasien": "24 Tahun 10 Bulan 3 Hari",
+            "alergi": "Udang",
+            "alamatPasien": "Komp. Batu Regency no 12",
+            "bankRekeningAtasNama": "",
+            "bankRekeningNama": "",
+            "jenisPembayaran": "BPJS",
+            "bankRekeningNomor": "",
+            "isTemporary": 1,
+            "noCm": "0000001",
+            "noCmAyah": "",
+            "noCmIbu": "",
+            "namaPasien": "Susi",
+            "noCmSuamiIstri": "",
+            "noIdentitas": "",
+            "tglKeluhan": 1466322336000,
+            "keluhanUtama": "dsfdsfsdf"
+        },
+        "tanggal": 1466269200000,
+        "keluhanUtama": "dsfdsfsdf"
+    }
+}, {
+    "path": "Pasien/KeluahanTambahan/",
+    "mothod": "POST",
+    "data": {
+        "pasien": {
+            "kdProfile": 0,
+            "id": 177,
+            "noRec": "                                ",
+            "reportDisplay": "bbbbbbb",
+            "namaExternal": "aaaaaaaa",
+            "umurPasien": "24 Tahun 10 Bulan 3 Hari",
+            "alergi": "Udang",
+            "alamatPasien": "Komp. Batu Regency no 12",
+            "bankRekeningAtasNama": "",
+            "bankRekeningNama": "",
+            "jenisPembayaran": "BPJS",
+            "bankRekeningNomor": "",
+            "isTemporary": 1,
+            "noCm": "0000001",
+            "noCmAyah": "",
+            "noCmIbu": "",
+            "namaPasien": "Susi",
+            "noCmSuamiIstri": "",
+            "noIdentitas": "",
+            "tglKeluhan": 1465977607000,
+            "keluhan": "sakit kepala"
+        },
+        "tanggal": 1465977607000,
+        "keluhanTambaahan": "sakit kepala"
+    }
+}, {
+    "path": "Pasien/PemeriksaanSelanjutnya/",
+    "method": "POST",
+    "data": {
+        "pasien": {
+            "tglPerjanjian": 1466355600000,
+            "kasusPenyakit": {
+                "id": 4,
+                "kdProfile": 0,
+                "kdKasusPenyakit": 5,
+                "kasusPenyakit": "PENYAKIT JIWA",
+                "reportDisplay": "PENYAKIT JIWA",
+                "kdPelayananProfile": "B1",
+                "qKasusPenyakit": 8,
+                "kodeExternal": null,
+                "namaExternal": null,
+                "statusEnabled": 1,
+                "kdHistoryLoginI": 14091,
+                "kdHistoryLoginU": null,
+                "kdHistoryLoginS": null
+            },
+            "keteranganLainnya": "asdasdas"
+        },
+        "tanggalPemeriksaanSelanjutnya": 1466355600000,
+        "kasusPenyakit": {
+            "id": 4,
+            "kdProfile": 0,
+            "kdKasusPenyakit": 5,
+            "kasusPenyakit": "PENYAKIT JIWA",
+            "reportDisplay": "PENYAKIT JIWA",
+            "kdPelayananProfile": "B1",
+            "qKasusPenyakit": 8,
+            "kodeExternal": null,
+            "namaExternal": null,
+            "statusEnabled": 1,
+            "kdHistoryLoginI": 14091,
+            "kdHistoryLoginU": null,
+            "kdHistoryLoginS": null
+        }
+    }
+}, {
+    "path": "Pasien/Pulang/",
+    "method": "POST",
+    "data": {
+        "pasien": {
+            "tglPulang": 1466389898000,
+            "tglKeluar": 1466355600000,
+            "kondisiKeluar": {
+                "id": 5,
+                "kondisiPasien": "MENINGGAL > 24 JAM"
+            },
+            "statusKeluar": {
+                "id": 3,
+                "statusKeluar": "DIRAWAT INAP"
+            },
+            "statusPulang": {
+                "id": 4,
+                "statusPulang": "DIRUJUK KE RS LEBIH RENDAH"
+            },
+            "hubunganKeluarga": {
+                "id": 1,
+                "hubunganKeluarga": "ISTRI"
+            },
+            "namaPembawaPulang": "asdasd"
+        },
+        "tglKeluar": 1466355600000
+    }
+}, {
+    "path": "Pasien/Alergi/",
+    "mothod": "POST",
+    "data": {
+        "pasien": {
+            "kdProfile": 0,
+            "id": 177,
+            "noRec": "                                ",
+            "reportDisplay": "bbbbbbb",
+            "namaExternal": "aaaaaaaa",
+            "umurPasien": "24 Tahun 10 Bulan 3 Hari",
+            "alergi": "Udang",
+            "alamatPasien": "Komp. Batu Regency no 12",
+            "bankRekeningAtasNama": "",
+            "bankRekeningNama": "",
+            "jenisPembayaran": "BPJS",
+            "bankRekeningNomor": "",
+            "isTemporary": 1,
+            "noCm": "0000001",
+            "noCmAyah": "",
+            "noCmIbu": "",
+            "namaPasien": "Susi",
+            "noCmSuamiIstri": "",
+            "noIdentitas": ""
+        },
+        "tanggal": null,
+        "alergies": [{
+            "noCM": "0000001",
+            "alergi": "MAKANAN",
+            "keterangan": "asdad",
+            "reaksi": "sadasdas"
+        }]
+    }
+}, {
+    "path": "Pasien/PengkajianAwal/RiwayatKesehatan/",
+    "mothod": "POST",
+    "data": {
+        "pasien": {
+            "kdProfile": 0,
+            "id": 177,
+            "noRec": "                                ",
+            "reportDisplay": "bbbbbbb",
+            "namaExternal": "aaaaaaaa",
+            "umurPasien": "24 Tahun 10 Bulan 3 Hari",
+            "alergi": "Udang",
+            "alamatPasien": "Komp. Batu Regency no 12",
+            "bankRekeningAtasNama": "",
+            "bankRekeningNama": "",
+            "jenisPembayaran": "BPJS",
+            "bankRekeningNomor": "",
+            "isTemporary": 1,
+            "noCm": "0000001",
+            "noCmAyah": "",
+            "noCmIbu": "",
+            "namaPasien": "Susi",
+            "noCmSuamiIstri": "",
+            "noIdentitas": ""
+        },
+        "tglRegistrasi": 1466355600000,
+        "riwayatKesehatan": {
+            "PernahDirawat": "Ya",
+            "AlatImplant": "Ya",
+            "RiwayatDalamKeluarga": "Tidak",
+            "Keterangan": "",
+            "PenyakitMayor": "",
+            "KeteranganAlatImplant": "keteranagan alat implant",
+            "dataRiwayat": [{
+                "id": 5,
+                "name": "Demam paratifoid, YTT",
+                "tanggal": "20 Juni 2016"
+            }, {
+                "id": 19,
+                "name": "Enterotoxigenic Escherichia coli infection",
+                "tanggal": "17 Juni 2016"
+            }]
+        }
+    }
+}, {
+    "path": "Pasien/PengkajianAwal/RiwayatPsikososial/",
+    "mothod": "POST",
+    "data": {
+        "pasien": {
+            "kdProfile": 0,
+            "id": 177,
+            "noRec": "                                ",
+            "reportDisplay": "bbbbbbb",
+            "namaExternal": "aaaaaaaa",
+            "umurPasien": "24 Tahun 10 Bulan 3 Hari",
+            "alergi": "Udang",
+            "alamatPasien": "Komp. Batu Regency no 12",
+            "bankRekeningAtasNama": "",
+            "bankRekeningNama": "",
+            "jenisPembayaran": "BPJS",
+            "bankRekeningNomor": "",
+            "isTemporary": 1,
+            "noCm": "0000001",
+            "noCmAyah": "",
+            "noCmIbu": "",
+            "namaPasien": "Susi",
+            "noCmSuamiIstri": "",
+            "noIdentitas": ""
+        },
+        "tglRegistrasi": 1466355600000,
+        "riwayatPsikososial": {
+            "TempatTinggal": "Panti",
+            "HubunganPasienDenganAnggotaKeluarga": "Tidak Baik",
+            "Keterangan": "",
+            "keteranganStatusPsikologi": "isi deskripsi keterangan status psikologi",
+            "keteranganStatusSosial": "isi deskripsi keterangan status sosial",
+            "riwayatPsikologi": [{
+                "id": "1",
+                "name": "Cemas"
+            }, {
+                "id": "2",
+                "name": "Takut"
+            }, {
+                "id": "5",
+                "name": "Kecenderungan Bunuh Diri"
+            }]
+        }
+    }
+}, {
+    "path": "Pasien/PengkajianAwal/TandaVital/",
+    "mothod": "POST",
+    "data": {
+        "pasien": {
+            "pasien": {
+                "kdProfile": 0,
+                "id": 177,
+                "noRec": "                                ",
+                "reportDisplay": "bbbbbbb",
+                "namaExternal": "aaaaaaaa",
+                "umurPasien": "24 Tahun 10 Bulan 3 Hari",
+                "alergi": "Udang",
+                "alamatPasien": "Komp. Batu Regency no 12",
+                "bankRekeningAtasNama": "",
+                "bankRekeningNama": "",
+                "jenisPembayaran": "BPJS",
+                "bankRekeningNomor": "",
+                "isTemporary": 1,
+                "noCm": "0000001",
+                "noCmAyah": "",
+                "noCmIbu": "",
+                "namaPasien": "Susi",
+                "noCmSuamiIstri": "",
+                "noIdentitas": ""
+            },
+            "tglRegistrasi": 1466355600000,
+            "tandaVital": {
+                "TekananDarah": "180/80",
+                "Nadi": "200",
+                "Pernafasan": "100",
+                "Suhu": "27",
+                "KesadaranTerganggu": "Ya",
+                "GCS": "E2M2V1"
+            }
+        }
+    }
+}, {
+    "path": "Pasien/PengkajianAwal/SkriningNyeri/",
+    "mothod": "POST",
+    "data": {
+        "pasien": {
+            "kdProfile": 0,
+            "id": 177,
+            "noRec": "                                ",
+            "reportDisplay": "bbbbbbb",
+            "namaExternal": "aaaaaaaa",
+            "umurPasien": "24 Tahun 10 Bulan 3 Hari",
+            "alergi": "Udang",
+            "alamatPasien": "Komp. Batu Regency no 12",
+            "bankRekeningAtasNama": "",
+            "bankRekeningNama": "",
+            "jenisPembayaran": "BPJS",
+            "bankRekeningNomor": "",
+            "isTemporary": 1,
+            "noCm": "0000001",
+            "noCmAyah": "",
+            "noCmIbu": "",
+            "namaPasien": "Susi",
+            "noCmSuamiIstri": "",
+            "noIdentitas": ""
+        },
+        "tglRegistrasi": 1466355600000,
+        "riwayatPsikososial": {
+            "AdakahRasaNyeri": "Tidak Ada",
+            "LokasiNyeri": {
+                "id": "5",
+                "name": "Lokasi Nyeri 5"
+            },
+            "TipeNyeri": "Terus Menerus",
+            "KarateristikNyeri": [{
+                "id": "6",
+                "name": "Tumpul"
+            }, {
+                "id": "5",
+                "name": "Berat"
+            }],
+            "NyeriMempengaruhi": [{
+                "id": "5",
+                "name": "Konsentrasi"
+            }, {
+                "id": "4",
+                "name": "Nafsu Makan"
+            }],
+            "Frekuensi": "80",
+            "Durasi": "20"
+        }
+    }
+}, {
+    "path": "Pasien/PengkajianAwal/SkriningGizi/",
+    "mothod": "POST",
+    "data": {
+        "pasien": {
+            "kdProfile": 0,
+            "id": 177,
+            "noRec": "                                ",
+            "reportDisplay": "bbbbbbb",
+            "namaExternal": "aaaaaaaa",
+            "umurPasien": "24 Tahun 10 Bulan 3 Hari",
+            "alergi": "Udang",
+            "alamatPasien": "Komp. Batu Regency no 12",
+            "bankRekeningAtasNama": "",
+            "bankRekeningNama": "",
+            "jenisPembayaran": "BPJS",
+            "bankRekeningNomor": "",
+            "isTemporary": 1,
+            "noCm": "0000001",
+            "noCmAyah": "",
+            "noCmIbu": "",
+            "namaPasien": "Susi",
+            "noCmSuamiIstri": "",
+            "noIdentitas": ""
+        },
+        "tglRegistrasi": 1466355600000,
+        "skriningGizi": {
+            "TinggiBadan": "145",
+            "BeratBadan": "55",
+            "LingkarKepala": "20",
+            "TotalSkor": 4
+        }
+    }
+}]

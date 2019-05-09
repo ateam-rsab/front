@@ -1,0 +1,59 @@
+<div ng-controller="DaftarHasilPenilaianCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Form Daftar Hasil Penilaian Kredensial'"disabled>      
+		<div class="panel-body">
+				<div class="grid_9" >
+							<div class="grid_3" style="margin-top: 0">
+								<div class="grid_12" style="margin-left:5px">
+								
+								</div>
+								<div class="grid_12" style="margin-top:12px">
+										<label c-label item="item" c-label-text="Cari Nama Pegawai"></label>
+								</div>
+							</div>
+							
+							<div class="grid_3" style="margin-top: 0">
+								
+								<div class="grid_12" style="margin: 0 0 0 -26px;">
+										<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nomorContoh" />
+								</div>
+							</div>
+							<div class="grid_2"  style="margin: 6px 0 0 -25px;">
+								<button class="c-button"  ng-click="cari()">
+								
+                            	Cari</button>
+							</div>
+						</div>
+						</div>
+		
+	
+		<div class="grid_12">
+				<kendo-grid  k-data-source="daftarBahanLinen" k-pageable="true" k-selectable="'row'" k-columns="columnLaporanUjiHasil"  style="font-size: small;">
+            	</kendo-grid>
+					
+			</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		</c-panel>
+			<div class="grid_12">
+							<div class="grid_8" style="float:left">
+							
+							
+							<div class="grid_2" style="margin-top: 25px">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate click="Cancel">
+                					<span class="title">Batal</span></button>
+							</div>
+							
+							</div>
+						</div>
+		</div>
+	</div>
+</div>
+

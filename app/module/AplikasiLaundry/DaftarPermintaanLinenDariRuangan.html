@@ -1,0 +1,84 @@
+<style>
+    .error{
+        background-color:white !important;
+    }
+    .yellow{
+        background-color:#ffff00;
+        color: #ffff00
+        
+    }
+     .green{
+        background-color:#00ff40;
+        color: #00ff40;
+    }
+      .red{
+        background-color:#FF0000
+    }
+    .blue{
+        background-color: blue;
+        color: blue;
+    }
+     .k-grid  .k-grid-header  .k-header  .k-link {
+     height: auto;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     white-space: normal;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     text-align: center;
+    }
+</style>
+<div ng-controller="DaftarPermintaanLinenDariRuanganCtrl">
+    <div class="panel panel-default container_12">
+        <div class="panel-heading" align="center" c-translate>Monitoring Permintaan Linen Bersih Dari Ruangan</div>
+    </div>
+    <!--Pencarian  -->
+    <div class="grid_12" style="margin-top: 15px">
+        <div class="grid_1"></div>
+        <div class="grid_1" style="margin-top: 10px">
+            <label c-label item="item">Pencarian :</label>
+        </div>
+        <div class="grid_2">
+            <input style="width: 100%" kendo-date-picker k-ng-model="item.awal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+        </div>
+        <div class="grid_2">
+            <input style="width: 100%" kendo-date-picker k-ng-model="item.akhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+        </div>
+        <div class="grid_4">
+            <input class=k-textbox type=text ng-model="item.pencarian" style="font-style: italic; font-weight: bold;"
+                placeholder="No Struk / Petugas Yang Mengambil...." />
+        </div>
+        <div class="grid_1" style="margin-top: 5px">
+            <button class="c-button cancel" ng-click="Cari()">Cari</button>
+        </div>
+    </div>
+
+    <!-- Line -->
+    <div class="grid_12">
+        <hr class="style-four">
+    </div>
+
+    <!--Grid -->
+    <div class="grid_12">
+        <kendo-grid id="kGrid" options="mainGridOptions" k-data-source="dataMonitoring" k-selectable="'row'" k-ng-model="selectedDataLinen"
+            ng-dblclick="klik(selectedDataLinen)"></kendo-grid>
+        <div class="grid_12">
+            <hr class="style-four">
+        </div>
+    </div>
+    <!-- popUp -->
+    <div class="grid_12">
+        <div class="popUp" ng-show="isShowPopUp">
+            <div kendo-window="win1" id="winPopUp" k-title="'Detail Permintaan Linen Bersih dari Ruangan'" k-width="'60%'" k-draggable="false"
+                k-position="{ 'top': '30%', 'left':'18%' }" k-on-close="closeWindowLinen()" k-visible="isShowPopUp">                
+                <div class="grid_12">
+                    <kendo-grid id="grid" options="mainGridOptionsLinen" k-data-source="dataDetailLinen" k-ng-model="selectedDataDetail">
+                    </kendo-grid>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</div>

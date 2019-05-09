@@ -1,0 +1,109 @@
+<div ng-controller="LaboratoriumReportPemeriksaanCtrl">
+    <div ng-show="true">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="grid_12">
+                    <div class="grid_6">
+                        <div class="grid_12">
+                            <label c-label c-label-text="TanggalMasuk" real></label>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_6">
+                                <input style="width: 100%" k-value='now' k-ng-model='tglAwal' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                            </div>
+                            <div class="grid_6">
+                                <input style="width: 100%" k-value='now' k-ng-model='tglAkhir' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_6">
+                        <div class="grid_12">
+                            <label c-label c-label-text="pemeriksaan" real></label>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_8">
+                                <input required style="width: 100%;" kendo-combo-box k-ng-model="item.detailJenisProduk" k-data-text-field="'jenisProduk'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listdetailJenisProduk" />
+                            </div>
+                            <div class="grid_4">
+                                <c-button class="c-button" style="padding:0px" click='refresh'>
+                                    <span c-translate>CARI</span>
+                                </c-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Hasil Report Order Summary</div>
+            <div class="panel-body" style="padding:0px">
+                <div class="grid_12">
+                    <div class="k-grid k-widget">
+                        <div class="k-grid-header">
+                            <div class="k-grid-header-wrap k-auto-scrollable">
+                                <table>
+                                    <tr>
+                                        <th class="k-header" style="width:101px">
+                                            Tgl. Pemeriksaan
+                                        </th>
+                                        <th class="k-header" style="width:111px">
+                                            No. Rekam Medis
+                                        </th>
+                                        <th class="k-header" style="width:111px">
+                                            No. Laboratorium
+                                        </th>
+                                        <th class="k-header" style="width:151px">
+                                            Nama Pasien
+                                        </th>
+                                        <th class="k-header" style="width:82px"> Jenis Kelamin
+                                        </th>
+                                        <th class="k-header" style="width:60px">
+                                            Usia
+                                        </th>
+                                        <th class="k-header">
+                                            Dokter Operator
+                                        </th>
+                                        <th class="k-header">
+                                            Asal Ruangan
+                                        </th>
+                                        <th class="k-header">
+                                            Pemeriksaan
+                                        </th>
+                                    </tr>
+                                    <tr ng-repeat="item in listData" style="background-color:white">
+                                        <td style="width:101px">
+                                            {{item.strukOrder.tglOrder|date:'dd-MM-yyyy HH:mm:ss'}}
+                                        </td>
+                                        <td>
+                                            {{item.strukOrder.noCm.noCm}}
+                                        </td>
+                                        <td>
+                                            {{item.strukOrder.noOrderIntern}}
+                                        </td>
+                                        <td>
+                                            {{item.strukOrder.noCm.namaPasien}}
+                                        </td>
+                                        <td style="width:82px"> {{item.strukOrder.noCm.jenisKelamin.jenisKelamin}}
+                                        </td>
+                                        <td style="width:60px">
+                                            {{item.strukOrder.noCm.jenisKelamin.jenisKelamin}}
+                                        </td>
+                                        <td>
+                                            {{item.strukOrder.noRegistrasi.dokterPenanggungJawab.namaLengkap}}
+                                        </td>
+                                        <td>
+                                            {{item.strukOrder.noRegistrasi.ruangan.namaExternal}}
+                                        </td>
+                                        <td>
+                                            {{item.detail.namaExternal}}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

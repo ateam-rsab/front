@@ -1,0 +1,49 @@
+<div ng-controller="TindakanCtrl">
+
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Tindakan'">
+            <div class="panel-body">
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <div class="grid_6" ng-repeat="stat in ListTindakan">
+                            <input type="radio" name="{{'Tindakan' + stat.name}}" id="{{'Tindakan' + stat.name}}" class="k-radio" ng-model="item.Tindakan" value="{{stat.name}}">
+                            <label class="k-radio-label" for="{{'Tindakan' + stat.name}}">{{stat.name}}</label>
+                        </div>
+                    </div>
+                    <div class="grid_2">
+                         <input style="width: 100%;" kendo-combo-box k-ng-model="item.Tindakan_1" k-data-text-field="'tindakanMedis'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListTindakanMedis" />
+                    </div>
+                    <div class="grid_1"></div>
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="Keterangan"></label>
+                    </div>
+                    <div class="grid_3">
+                        <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.Keterangan"></textarea>
+                    </div>
+                </div>
+            </div>
+           <!-- button -->
+        <div class="grid_12" style="margin-top:20px">
+            <div class="grid_6">
+            </div>
+            <div class="grid_3">
+                <c-button ng-click="addTindaka()" style="width:100% !important">
+                <span style="font-size:10!important">Tambah</span>
+                </c-button>
+            </div>
+            <div class="grid_3">
+                <c-button ng-click="" style="width:100% !important">
+                <span style="font-size:10!important">Batal</span>
+                </c-button>
+            </div>
+        </div>
+            <div class="grid_12" style="margin-top: 10px;">
+               <div kendo-grid k-data-source="dataTindakan" k-selectable="'row'" k-columns="columnTindakan">
+                </div>
+            </div>
+        </c-panel>
+        <div class="grid_12" style="margin-top:10px">
+                    <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+            </div>
+    </div>
+</div>

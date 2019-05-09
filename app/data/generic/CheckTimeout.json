@@ -1,0 +1,11 @@
+[{
+    "id": 1,
+    "name": "Cek Sterilisasi Alat"
+}, {
+    "id": 2,
+    "name": "Cek Kesiapan Alat"
+}, {
+    "id": 2,
+    "name": "Cek Kelengkapan obat dan alkes",
+    "keterangan": ""
+}]

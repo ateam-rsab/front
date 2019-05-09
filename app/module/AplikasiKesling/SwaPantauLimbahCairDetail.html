@@ -1,0 +1,128 @@
+<div ng-controller="SwaPantauLimbahCairDetailCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Detil Swa Pantau Limbah Cair'" disabled>
+			<div class="panel panel-default container_12">
+				<div class="panel-body">
+					<div class="grid_12" style="margin-top:40px;">
+						<kendo-grid  k-data-source="arrHasilPemeriksaanLimbah"  k-selectable="'row'" options="gridPerlakuanLimbah"></kendo-grid>
+					</div>
+					<div class="clear"></div>
+					<div class="grid_6" style="margin-top:30px">
+						<c-panel item="item" header="'INLET'"disabled>
+							<div class="grid_4" style="margin-top: 10px">
+								<label c-label item="item" c-label-text="inletMeterAir"></label>
+							</div>
+							<div class="grid_3">
+								<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="items.inletMeterAirSekarang" ng-keyup="debitInlet()" disabled/>
+							</div>
+							<div class="grid_1">
+
+							</div>
+							<div class="clear"></div>
+								<div class="grid_4" style="margin-top: 10px">
+									<label c-label item="item" c-label-text="inletMeterAirLalu"></label>
+								</div>
+								<div class="grid_3">
+									<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="items.inletMeterAirLalu" ng-keyup="debitInlet()" disabled/>
+								</div>
+								<div class="grid_1">
+
+								</div>
+								<div class="clear"></div>
+								<div class="grid_4" style="margin-top: 10px">
+									<label c-label item="item" c-label-text="inletDebit"></label>
+								</div>
+								<div class="grid_3">
+									<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="items.inletDebit" disabled="true" />
+								</div>
+								<div class="grid_1" style="margin-top: 10px">
+									m3
+								</div>
+								<div class="clear"></div>
+							</c-panel>
+						</div>
+
+						<div class="grid_6" style="margin-top:30px">
+							<c-panel item="item" header="'OUTLET'" disabled>
+									<div class="grid_4" style="margin-top: 10px">
+										<label c-label item="item" c-label-text="outletMeterAir"></label>
+									</div>
+									<div class="grid_3">
+										<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="items.outletMeterAirSekarang" ng-keyup="debitOutlet()" disabled/>
+									</div>
+									<div class="grid_1">
+
+									</div>
+									<div class="clear"></div>
+									<div class="grid_4" style="margin-top: 10px">
+										<label c-label item="item" c-label-text="outletMeterAirLalu"></label>
+									</div>
+									<div class="grid_3">
+										<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="items.outletMeterAirLalu" ng-keyup="debitOutlet()" disabled/>
+									</div>
+									<div class="grid_1">
+
+									</div>
+									<div class="clear"></div>
+									<div class="grid_4" style="margin-top: 10px">
+										<label c-label item="item" c-label-text="outletDebit"></label>
+									</div>
+									<div class="grid_3">
+										<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="items.outletDebit" disabled="true" />
+									</div>
+									<div class="grid_1" style="margin-top: 10px">
+										m3
+									</div>
+									<div class="clear"></div>
+							</c-panel>
+						</div>
+						<div class="grid_2"style="margin: 10px 0 0 14px;">
+							<label c-label item="item" c-label-text="keterangan"></label>
+						</div>
+						<div class="grid_5">
+							<textarea style="height: 50px" c-text-box type="input" class="k-textbox" ng-model="items.keterangan" disabled/>
+						</div>
+						
+					<!--	<div class="grid_12 " style="margin-top: 100px ">
+							<div class="grid_4 "></div>
+							<div class="grid_2 " style="margin-top: 10px; " align="right ">
+								<label c-label item="item " c-label-text="periodeTanggal "></label>
+							</div>
+
+							<div class="grid_2 ">
+								<input style="width: 100% " k-value="now" kendo-date-picker k-ng-model="items.periodeAwal" placeholer="dd-mm-yyyy " k-format=" 'dd-MM-yyyy' " />
+							</div>
+							<div class="grid_1 " style="margin-top: 10px; " align="center ">
+								<label c-label item="item " c-label-text="sd"></label>
+							</div>
+							<div class="grid_2 ">
+								<input style="width: 100% " k-value="now" kendo-date-picker k-ng-model="items.periodeAkhir" placeholer="dd-mm-yyyy " k-format=" 'dd-MM-yyyy' " />
+							</div>
+							<div class="grid_1 " style="margin-top: 7px; font-size: 24px; ">
+								<button class="c-button " ng-show="!isLoading " item="item " ng-click="cari() ">
+                                Cari
+                        </button>
+							</div>
+					--><!--</div>
+						<div class="grid_12">
+							<div kendo-grid k-ng-model="selectedData" k-data-source="dataSwaPantauLimbahCair" k-selectable="'row'" k-columns="columnSwaPantauLimbahCair" scrollable="'true'" style="margin-bottom: 10px"></div>
+						</div>
+						<div class="grid_6 "></div>
+						<div class="grid_2" style="margin-top: 25px; font-size: 24px;">
+							<button class="c-button" ng-show="!isLoading" item="item" ng-click="cetak()">
+                                <span class="title">Cetak</span></button>
+						</div>
+						<div class="grid_2" style="margin-top: 25px; font-size: 24px;">
+							<button class="c-button" ng-show="!isLoading" item="item" ng-click="hapus(selectedData)">
+                                <span class="title">Hapus</span></button>
+						</div>
+						<div class="grid_2" style="margin-top: 25px; font-size: 24px;">
+							<button class="c-button" ng-show="!isLoading" item="item" ng-click="tutup()">
+                               <span class="title">Tutup</span></button>
+					</div>
+				
+			-->	</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

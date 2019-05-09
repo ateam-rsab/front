@@ -1,0 +1,145 @@
+<div ng-controller="KelompokUmurCtrl">
+<div ng-show="dataVOloaded">
+<c-panel item="item" header="'Kelompok Umur'" disabled>
+
+<!-- kdKelompokUmur -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kdKelompokUmur"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kdKelompokUmur" />
+</div>
+</div>
+
+<!-- kelompokUmur -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kelompokUmur"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kelompokUmur" />
+</div>
+</div>
+
+<!-- qKelompokUmur -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="qKelompokUmur"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.qKelompokUmur" />
+</div>
+</div>
+
+<!-- statusUmur -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="statusUmur"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.statusUmur" />
+</div>
+</div>
+
+<!-- umurMax -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="umurMax"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.umurMax" />
+</div>
+</div>
+
+<!-- umurMin -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="umurMin"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.umurMin" />
+</div>
+</div>
+
+<!-- reportDisplay -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="reportDisplay"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+</div>
+</div>
+
+<!-- kodeExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kodeExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+</div>
+</div>
+
+<!-- namaExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="namaExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+</div>
+</div>
+
+<!-- KelompokUmur -->
+<div class="grid_12">
+<div class="grid_12 headerBox">
+<p>KelompokUmur</p>
+</div>
+<div class="clear"></div>
+
+<!-- grid table -->
+<div class="grid_12 borderBox">
+					<kendo-grid options="mainGridOptions"  k-data-source="dataSource" k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+				</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+
+
+</c-panel>
+
+<div class="grid_12">
+				<div class="grid_8"></div>
+				<div class="grid_2" ng-show="showEdit">
+					<button class="c-button" ng-click="edit()">Edit</button>
+				</div>
+				<div class="grid_2" ng-hide="showEdit">
+					<button class="c-button" ng-click="tambah()">Tambah</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="batal()">Batal</button>
+				</div>
+			</div>
+</div>
+</div>

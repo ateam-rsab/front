@@ -1,0 +1,67 @@
+<div>
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'LogBook (Poin)'">
+			<div class="panel panel-default container_12">
+				<div class="panel-body">
+					<div class="grid_12">
+						<div class="grid_10">
+							<div class="grid_2">
+								<label><b>Periode</b></label>
+								<input kendo-date-picker k-max ="now" k-ng-model="item.akhir" style="width: 100%" k-options="yearSelected"/>
+							</div>
+							<div class="grid_4">
+								<label><b>Pegawai</b></label>
+								<input kendo-combo-box k-ng-model="item.pegawai" k-data-value-field="'id'" k-data-text-field="'namaLengkap'" k-filter="'contains'" k-auto-bind="true" k-data-source="daftarListPegawai" style="width:100%" ng-disabled="isLoginPegawai"/>
+							</div>
+							<div class="grid_3">
+								<input type="checkbox" class="k-checkbox" id="pegawaiPensiun" ng-click="toogleCheckVerifikasi(pegawaiPensiun)" ng-model="pegawaiPensiun">
+								<label c-label class="k-checkbox-label" for="pegawaiPensiun"><i>Pegawai Pensiun</i></label>
+								
+								<div class="grid_4" style="margin: -10px 0 0 -5px;">
+									<label c-label c-label-text=""></label>
+									<button class="c-button" ng-click="cari()">Cari</button>
+								</div>
+							</div>
+						</div>
+
+							
+					<!--	<div class="grid_12"  style="margin-top: 10px;">
+							<div kendo-grid="grid" k-data-source="sourceOrder" k-selectable="'row'" k-ng-model="selectedData" k-columns="columnJadwal">
+							</div>
+						</div> -->
+						<div class="grid_12" style="width:100%;">
+			                <!--<div kendo-grid id="gridOrder" 
+			                    k-data-source="sourceOrder" 
+			                    k-columns="mainGridOption",
+			                    k-scrollable= "'true'",
+			                    k-selectable="'row'"  style="font-size: small">
+			                </div>-->
+							<div kendo-grid id="gridOrder" k-data-source="sourceOrder" options="mainGridOptions">
+			                </div>
+			                <!--div class="grid_12" ng-show="item.pegawai.id!=undefined"  style="margin-top: 10px;"-->
+			            </div>
+
+						<div class="loading" style="position: relative; margin:25px 0px 20px;" class="animated" ng-show="isLoadingData">
+							<img height="50" src="../app/stylesheets/Flat/loading-image.gif" />
+							<br/> <span>Harap tunggu, sedang memproses data</span>
+						</div>
+					</div>
+
+					<div class="grid_3" style="margin-top: 25px; font-size: 24px;">
+						<button class="c-button" ng-show="!isLoading" item="item" ng-click="navToRencanaPemeriksaan(selectedData)">
+							<span class="title">Cetak</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+	<div kendo-window="winDialog" k-title="'Detil Poin (Log Book)'" k-width="600" k-visible="false" >
+		<span><b>Nama: </b><label c-label item="item">{{item.pegawai.namaLengkap}}</label></span>
+		<span><b>Tanggal: </b><label c-label item="item">{{dats.tgl}}</label></span>
+		<br/>
+		<div kendo-grid="gridDetil" k-data-source="dataDetil" options="detilGridOptions"></div>
+		<span><b>Total Poin: </b><label c-label item="item">{{dats.total}}</label></span>
+        <!--<button class="k-button" ng-click="pilihDokter(item, items.pilihDokter)" style="float:right;margin-top:4%">Simpan</button>-->
+    </div>
+</div>

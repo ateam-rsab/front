@@ -1,0 +1,63 @@
+<div>
+    <div class="panel panel-default ">
+        <div class="panel-heading headerBox"><span class="title" c-translate>Parameter Pencarian</span></div>
+        <div class="panel-body">
+            <div class="grid_12">
+                <div class="grid_6">
+                    <div class="grid_12">
+                        <label c-label >Tanggal Pembatalan</label>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_6">
+                            <input style="width: 100%" k-ng-model='item.from' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                        </div>
+                        <div class="grid_6">
+                            <input style="width: 100%" k-ng-model='item.until' k-max="now" kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                        </div>
+                    </div>
+                </div>
+                 <div class="grid_2" style="margin-top:5px">
+                    <div class="grid_12">
+                        <label c-label >No Registrasi</label>
+                    </div>
+                    <div class="grid_12">
+                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noReg" />
+                    </div>
+                </div>
+                 <div class="grid_1" style="margin-top:5px">
+                    <div class="grid_12">
+                        <label c-label>No Rm</label>
+                    </div>
+                    <div class="grid_12">
+                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noRm" />
+                    </div>
+                </div>
+                 <div class="grid_2" style="margin-top:5px">
+                    <div class="grid_12">
+                        <label c-label >Nama Pasien</label>
+                    </div>
+                    <div class="grid_12">
+                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaPasien" />
+                    </div>
+                </div>
+                
+                <div class="grid_1" style="margin-top:5px">
+                    <label c-label c-label-text=""></label>
+                    <em style="margin-top: 6px;" ng-click='findData()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default panel-white">
+        <div class="panel-heading-white"><span class="title" c-translate>{{title}}</span></div>
+        <div class="panel-body">
+            <div class="grid_12" style="margin-bottom:5px">
+                <kendo-grid k-ng-model="data" k-data-source="dataPasienBatal" options='mainGridOptions' ></kendo-grid>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+    <div class="grid_12" style="margin-top:60px">
+            <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+        </div>

@@ -1,0 +1,60 @@
+<div ng-controller="DaftarMappingCycleCtrl">
+	<div class="panel panel-default container_12">
+		<div class="panel-heading" c-translate>Daftar Mapping Cycle</div>
+			<div class="panel-body">
+        <div class= "grid_6">
+          <div class="grid_2">
+              <label c-label item="item" c-label-text="Pencarian" style="margin-top: 10px"></label>
+          </div>
+          <div class="grid_6">
+            <input class=k-textbox type=text id="txtSearchString" ng-model="Pencarians" placeholder="Nama Mesin / Jenis Linen / Proses Cuci" />
+          </div>
+          <div class="grid_2">
+              <button class="c-button" id="btnSearch">Cari</button>
+         </div>
+         <div class="grid_2">
+              <button class="c-button" id="btnClear">Clear</button>
+         </div>
+        </div>
+    	 <div class="grid_12">
+              <kendo-grid id="GridKendo" options="mainGridOptions_1_1" k-data-source="daftarMappingCycle" k-selectable="'row'" k-ng-model="current" ng-click="Selected(current)">
+                  <div k-detail-template>
+                      <kendo-tabstrip>
+                      <div>
+                          <div kendo-grid k-options="mainGridOptions_1_2(dataItem)"></div>
+                      </div>
+                      </kendo-tabstrip>
+                  </div>
+              </kendo-grid>
+          </div>
+    			<div class="grid_12" style="margin-top: 20px ">
+    				<div class="grid_6"></div>
+    					<div class="grid_2">
+    					  	<button class="c-button" ng-click="baru()">Baru</button>
+              </div>
+         	    <div class="grid_2">
+                 <button class="c-button" ng-click="edit()">Edit</button>
+         	    </div>
+              <div class="grid_2">
+                  <button class="c-button" ng-click="home()">Tutup</button>
+              </div>
+    			</div>
+  		</div>   
+</div>
+</div>
+
+x
+
+<!--<div class="grid_12" style="margin-top: 10px">
+<div kendo-grid k-data-source="daftarMappingCycle" options="mainGridOptions" k-ng-model="current" k-selectable="'row'" k-columns="columndaftarMappingCycle" ng-click=Selected(current)>
+</div>
+</div> -->
+<!--     <div class="grid_3">
+<button id="btnSearch">Search</button>
+</div> -->
+<!-- <div class="grid_3">
+<button id="btnClear">Clear</button>
+</div> -->
+<!--                    <div class="grid_2">
+<button class="c-button" ng-click="home()">Home</button>
+</div> -->

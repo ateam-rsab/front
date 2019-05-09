@@ -1,0 +1,55 @@
+<div class="panel panel-default container_12" style="background-color:transparant">
+    <div class="panel-heading"><label class='title' c-label item="item" c-label-text="Remunerasi Pegawai" real></label></div>
+    <div class="panel-body">
+        <div class="grid_4">
+            <div class="grid_4">
+                <label c-label c-label-text="PilihPeriode"></label>
+                <input kendo-date-picker k-options="yearSelected" k-ng-model="item.DatePickerBulan"  style="width: 100%"/>
+            </div>
+            <div class="grid_1">
+                <label c-label c-label-text=""></label>
+                <em style="margin-top:6px;" ng-click='Cari()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-icon k-i-refresh"></span></em>
+            </div>
+        </div>
+        <div class="grid_8">
+            <div class="grid_4">
+                <label c-label c-label-text="Nomor"></label>
+                <input c-text-box type="input" filter="'varchar'" readonly="true" class="k-textbox" ng-model="item.no" />
+            </div>
+            <div class="grid_4">
+                <label c-label c-label-text="Keterangan"></label>
+                <input c-text-box type="input" filter="'varchar'" readonly="true" class="k-textbox" ng-model="item.Keterangan" />
+            </div>
+            <div class="grid_4">
+                <label c-label c-label-text="jenisPembayaran"></label>
+                <input c-text-box type="input" filter="'varchar'" readonly="true" class="k-textbox" ng-model="item.jenisPembayaran" />
+            </div>
+        </div>
+        <div class="grid_12" style="margin-top: 10px;">
+            <div kendo-grid id="gridRemunerasi" k-data-source="sourceOrder" options="mainGridOption"></div>
+        </div>
+    </div>
+    <div class="panel-body" ng-show="sourceOrder.data.length > 0">
+        <div class="grid_12 headerBox"><p>Filter Data</p></div>
+        <div class="grid_12">
+            <div class="grid_3">
+                <label c-label c-label-text="namaPegawai"></label>
+                <input c-text-box class="k-textbox" filter="string" ng-model="filterModel.namaPegawai"/>
+            </div>
+            <div class="grid_1">
+                <label c-label c-label-text=""></label>
+                <em style="margin-top:6px;" ng-click='resetFilter()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-icon k-i-refresh"></span></em>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+<style>
+    .k-grid  .k-grid-header  .k-header  .k-link {
+        height: auto;
+    }
+    
+    .k-grid  .k-grid-header  .k-header {
+        white-space: normal;
+    }
+</style>

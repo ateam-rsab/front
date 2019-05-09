@@ -1,0 +1,22 @@
+{
+	"model":{
+		"periode" : "",
+		"jenisPemakaian":""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "periode",
+			"messagesRequired" : "",
+			"caption" : "Periode"
+		},{
+			"isNull" : "true",
+			"name" : "jenisPemakaian",
+			"messagesRequired" : "",
+			"caption" : "Jenis Pemakaian"
+		}
+
+	]
+}

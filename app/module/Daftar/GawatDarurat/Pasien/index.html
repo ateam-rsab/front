@@ -1,0 +1,41 @@
+<div ng-controller="DaftarAntrianGawatDaruratPasienCtrl">
+    <div>
+        <div class="grid_12">
+            <div class="grid_5">
+                <div class="grid_12">
+                    <label c-label c-label-text="tanggalRegistrasi"></label>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_6">
+                        <input style="width: 100%" k-ng-model='from' k-value='now' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                    </div>
+                    <div class="grid_6">
+                        <input style="width: 100%" k-ng-model='until' k-max='now' k-value='now' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                    </div>
+                </div>
+            </div>
+            <div class="grid_1" style="margin-top:10px">
+                <label c-label c-label-text=""></label>
+                <em ng-click='findData()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+            </div>
+        </div>
+        <div class="panel panel-default container_12">
+            <div class="panel-heading"><label class='title' c-label item="item" c-label-text="daftarPasienGawatDarurat"></label></div>
+            <div class="panel-body">
+                <div class="grid_12">
+                    <kendo-grid k-ng-model="select" k-data-source="listPasien" k-selectable="'row'" k-height="'350'" k-sortable="'true'" k-pageable="Page" k-columns="Column"></kendo-grid>
+                </div>
+            </div>
+        </div>
+        <div class="grid_12 ">
+            <div class="grid_4">
+                <c-button style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" is-validate click="reconfirm">
+                    <span class="title">Reconfirm</span>
+                </c-button>
+            </div>
+            <div class="grid_8">
+                {{message}}
+            </div>
+        </div>
+    </div>
+</div>

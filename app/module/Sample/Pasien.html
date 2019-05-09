@@ -1,0 +1,16 @@
+define(['initialize'], function(initialize) {
+    'use strict';
+    initialize.controller('!controllerName', ['$scope', 'ModelItem', '$state', function($scope, modelItem, $state) {
+        $scope.item = {};
+        modelItem.get("!domainName").then(function(data) {
+            $scope.item = data;
+        });
+!content
+        $scope.Lanjutkan = function() {
+            modelItem.set("!domainName", $scope.item);
+            !state
+        };
+
+
+    }]);
+});

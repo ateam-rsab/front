@@ -1,0 +1,27 @@
+<div ng-controller="DaftarObatGenerikCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Daftar Obat Generik'">
+		</c-panel>
+		<div class="grid_2">
+			<label c-label item="item" c-label-text="namaGenerik">
+		</div>
+		<div class="grid_3">
+			<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaGenerik" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listNamaGenerik" />
+		</div>
+		<div class="clear"></div>
+		<div class="panel panel-default container_12" style="margin-top: 20px">
+			<div class="panel-heading" c-translate>Daftar Obat</div>
+			<div class="panel-body">
+			<div kendo-grid k-data-source="daftarObat" k-selectable="'row'" k-columns="columnObat">
+		</div>
+		</div>
+		</div>
+		<div class="grid_10"></div>
+		<div class="grid_2">
+			<c-button ng-click="Tutup()">
+			<span>Tutup</span>
+			</c-button>
+		</div>
+	</div>
+</div>

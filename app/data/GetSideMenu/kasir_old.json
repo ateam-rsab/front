@@ -1,0 +1,255 @@
+[{
+        "name": "Tata Rekening",
+        "children": [{
+                "name": "Daftar Pasien Pulang",
+                "link": "#/DaftarPasienPulang"
+            },
+            {
+                "name": "Daftar Piutang Pasien",
+                "link": "#/DaftarPiutangPasien"
+            },
+            {
+                "name": "Daftar Pasien Yang Masih Dirawat",
+                "link": "#/DaftarPasienAktif"
+            },
+            {
+                "name": "Daftar Surat Perjanjian",
+                "link": "#/DaftarSuratPerjanjian"
+            },
+            {
+                "name": "Daftar Registrasi Pasien",
+                "link": "#/DaftarRegistrasiPasien"
+            }
+        ]
+    },
+    {
+        "name": "Kasir",
+        "children": [
+
+            {
+                "name": "Daftar Tagihan Non Layanan",
+                "link": "#/DaftarNonLayananKasir"
+            },
+            {
+                "name": "Daftar Tagihan Pasien",
+                "link": "#/DaftarPasienPulangKasir"
+            },
+            {
+                "name": "Daftar Penjualan Obat Bebas",
+                "link": "#/DaftarPenjualanApotekKasir/obatBebas"
+            },
+            {
+                "name": "Daftar Retur Pasien",
+                "link": "#/DaftarReturPasien"
+            },
+            {
+                "name": "Daftar Piutang",
+                "link": "#/DaftarPiutangKasir"
+            },
+            {
+                "name": "Daftar Pasien Yang Masih Dirawat",
+                "link": "#/DaftarPasienAktif"
+            },
+            {
+                "name": "Penerimaan Umum",
+                "link": "#/PengeluaranUmum/terima"
+            },
+            {
+                "name": "Daftar Penerimaan Umum",
+                "link": "#/DaftarPenjualanApotekKasir/terimaUmum"
+            },
+            {
+                "name": "Daftar Penerimaan SBM",
+                "link": "#/DaftarPenerimaanKasir"
+            }
+        ]
+    },
+    {
+        "name": "Laporan",
+        "children": [
+            {
+                "name": "Laporan Pelayanan",
+                "link": "#/LaporanPelayanan"
+            },
+            {
+                "name": "Laporan Penerimaan Kasir",
+                "link": "#/LaporanPenerimaanKasir"
+            },
+            {
+                "name": "Laporan Pendapatan",
+                "link": "#/LaporanPendapatan"
+            },
+            {
+                "name": "Laporan Pasien Pulang",
+                "link": "#/LaporanPasienPulang"
+            },{
+                "name": "Laporan Pendapatan Ruangan",
+                "link": "#/LaporanPendapatanRuangan"
+            },{
+                "name": "Laporan Pendapatan Poli",
+                "link": "#/LaporanPendapatanPoli"
+            },{
+                "name": "Laporan Piutang Penjamin",
+                "link": "#/LaporanPiutangPenjamin"
+            },
+              {
+                "name": "Laporan Penjualan Obat",
+                "link": "#/LaporanApotek"
+              }
+          ]
+    },
+    {
+    "name": "Inventori",
+    "children": [
+        {
+            "name": "Data Stok Ruangan Rekap",
+            "link": "#/Logistik/RekapStokRuangan"
+        }, {
+            "name": "Data Stok Ruangan Detil",
+            "link": "#/Logistik/StokRuangan"
+        }, {
+            "name": "Order Barang",
+            "link": "#/Logistik/Orders/"
+        }, {
+            "name": "Informasi Permintaan Barang",
+            "children": [
+              {
+                "name": "Daftar Permintaan Barang",
+                "link": "#/Logistik/Terima/Verifikasi"
+              }, {
+                "name": "Daftar Pengiriman Barang",
+                "link": "#/Logistik/OrderKirim/Informasi"
+              }]
+        }, {
+            "name": "Daftar Barang Investasi",
+            "link": "#/Logistik/DaftarBarangInvestasi"
+        }, {
+            "name": "Order Pemusnahan Barang",
+            "link": "#/Logistik/PemusnahanBarang"
+        }, {
+            "name": "Kartu Stok",
+            "link": "#/KartuStok"
+        }, {
+            "name": "Stok Opname",
+            "link": "#/Logistik/StokOpname"
+        }, {
+            "name": "Retur Barang Antar Ruangan",
+            "link": "#/Logistik/ReturPengiriman"
+        }, {
+            "name": "Daftar Retur Barang Antar Ruangan",
+            "link": "#/Logistik/DaftarReturBarangRuangan"
+        }, {
+            "name": "Penerimaan Retur Barang Ruangan",
+            "link": "#/Logistik/PenerimaanReturnBarangRuangan"
+        }, {
+            "name": "Pemakaian Barang Habis Pakai",
+            "link": "#/Logistik/PemakaianBahandanAlat"
+        }, {
+            "name": "Daftar Pemakaian Barang Habis Pakai",
+            "link": "#/Logistik/PemakaianBahandanAlat/Informasi"
+        }, {
+            "name": "Monitoring Fast & Slow Barang",
+            "link": "#/Logistik/monitoringStokRuangan"
+        }
+    ]
+  },
+    {
+        "name": "SDM",
+        "children": [{
+                "name": "Target Bobot Uraian Tugas",
+                "link": "#/TargetBobot"
+            },
+            {
+                "name": "LogBook",
+                "link": "#/InputLogbook"
+            }, {
+                "name": "Indeks Kinerja Individu",
+                "link": "#/IndeksKinerjaIndividuSDM"
+            }, {
+                "name": "Rekapitulasi IKI Pegawai",
+                "link": "#/RekapitulasiIkiPegawai"
+            }, {
+                "name": "Permohonan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
+                "link": "#/PermohonanPerubahanStatusPegawai"
+            }, {
+                "name": "Daftar Pengajuan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
+                "link": "#/DaftarPengajuanPerubahanStatus"
+            }, {
+                "name": "Pengajuan Mutasi Pegawai",
+                "link": "#/PengajuanMutasiPegawai"
+            }, {
+                "name": "Pengajuan Resign Pegawai",
+                "link": "#/PengajuanResignPegawai"
+            }, {
+                "name": "Pengajuan Sanksi Pegawai",
+                "link": "#/PengajuanSanksiPegawai"
+            }, {
+                "name": "Daftar Pengajuan Mutasi Resign Sanksi Pegawai",
+                "link": "#/DaftarPengajuanMutasiSanksiResign"
+            }, {
+				"name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
+				"link": "#/DaftarPenangguhanCuti"
+			}
+        ]
+    }, {
+        "name": "Tata Usaha",
+        "children": [{
+                "name": "Membuat Draft Surat",
+                "link": "#/BuatDraftSurat"
+            },
+            {
+                "name": "Daftar Draft",
+                "link": "#/DaftarDraft"
+            },
+            {
+                "name": "Daftar Draft Surat Masuk",
+                "link": "#/DaftarDraftSuratMasuk"
+            },
+            {
+                "name": "Dokumen Verbal Konsep",
+                "link": "#/DokumenVerbalKonsep/"
+            },
+            {
+                "name": "Verbal Konsep",
+                "link": "#/VerbalKonsep/"
+            },
+            {
+                "name": "Surat Masuk Internal dan Eksternal",
+                "link": "#/SuratMasukInternaldanEksternal"
+            },
+            {
+                "name": "Daftar Surat Masuk Internal Eksternal",
+                "link": "#/DaftarSuratMasukInternalEksternal"
+            },
+            {
+                "name": "Nota Dinas",
+                "link": "#/NotaDanDisposisi"
+            },
+            {
+                "name": "Daftar Nota Dinas",
+                "link": "#/ListNotaDinas"
+            }
+        ]
+    },
+    {
+        "name":"Aplikasi IT",
+        "children":[
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/RevPermintaanPerbaikandariRuanganITNew"
+            }
+        ]
+    },
+    {
+        "name": "Aplikasi Laundry",
+        "children": [
+            {
+                "name": "Permintaan Linen Bersih",
+                "link": "#/PermintaanLinenByRuangan"
+            },{
+                "name": "Verifikasi",
+                "link": "#/VerifikasiTerima"
+            }
+    ]
+    }
+]

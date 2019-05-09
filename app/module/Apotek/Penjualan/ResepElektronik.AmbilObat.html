@@ -1,0 +1,181 @@
+<style type="text/css">
+    .style-center {
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .style-right {
+        display: inline-block;
+        text-align: right;
+        width: 100%;
+    }
+    
+    .style-left {
+        display: inline-block;
+        text-align: left;
+        width: 100%;
+    }
+</style>
+<div ng-controller="ResepElektronikDetailCtrl">
+    <div ng-include='"../app/module/Shared/headerPasienPenunjang" '></div>
+    <div class="panel-body" style="padding:0px">
+        <div class="grid_2">
+
+            <div class="grid_12">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><span c-translate>Pengambil Obat</span>
+                    </div>
+                    <div class="panel-body">
+                        <input type="checkbox" class="k-checkbox" name="isCito" id="isCito" value="true" ng-model="isPegawai">
+                        <label style="    float: right;top: 5px;" class="k-checkbox-label" for="isCito">Pegawai</label>
+                        <label c-label item="item" c-label-text="pengambilObat"></label>
+                        <input ng-show="isPegawai" style="width: 100%; " kendo-combo-box k-ng-model="pegawai" k-data-text-field=" 'namaLengkap' " k-filter=" 'contains' " k-data-value-field=" 'value' " k-auto-bind="false " k-data-source="dokters " />
+                        <input required c-text-box ng-hide="isPegawai" type="input" class="k-textbox" ng-model="namaPengambilOrder" />
+                        <label c-label item="item" c-label-text="tanggalPengambilan"></label>
+                        <input required style="width: 100%" kendo-date-picker k-max="now" k-value="now" k-ng-model="tglPengambilan" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_10">
+            <div class="grid_12">
+                    <!-- <div class="grid_12 headerBox">
+                        <p>Produk</p>
+                    </div> -->
+                    <!-- grid table -->
+                     <div class="grid_12 borderBox">
+                        <div id="kGrid" 
+                        kendo-grid k-data-source="dataGrid" 
+                        k-selectable="'row'" 
+                        k-columns="columnGrid" 
+                        k-pageable="'true'" 
+                        k-sortable="'true'" 
+                        k-ng-model="dataSelected">
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <!-- <table class="table" style="font-size:90%">
+                <tr>
+                    <th rowspan="2" style="vertical-align:middle;width:50px">R Ke</th>
+                    <th rowspan="2" style="vertical-align:middle;width:100px">Nama Generik</th>
+                    <th rowspan="2">Nama Obat</th>
+                    <th colspan="2" style="vertical-align:middle;width:100px">Jumlah</th>
+                    <th rowspan="2" style="vertical-align:middle;width:100px">Harga</th>
+                    <th rowspan="2" style="vertical-align:middle;width:100px">Total <br/>Harga</th>
+                    <th rowspan="2" style="vertical-align:middle;width:50px">Route</th>
+                    <th rowspan="2" style="vertical-align:middle;width:100px">Stigma</th>
+                </tr>
+                <tr>
+                    <th style="width:50px">
+                        Seb
+                    </th>
+                    <th style="width:50px">
+                        Ses
+                    </th>
+
+                </tr>
+            </table> -->
+            <!-- <table class="table" style="font-size:90%" ng-repeat="data in patienGrids">
+                <tr>
+                    <td rowspan="100" style="vertical-align:middle;width:50px"><b>{{'R / '+data.rKe}}</b></td>
+                    <td rowspan="100" style="vertical-align:middle;width:100px">{{data.generik.name}}</td>
+                    <td>
+                        <div ng-show="data.statusOrder ===0">
+                            {{data.produk.namaProduk}}
+                        </div>
+                        <div ng-show="data.statusOrder ===-1 && data.isLoading">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="data.produk" k-data-text-field="'namaObat'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAmbilObat" />
+                        </div>
+                        <div ng-show="data.isLoading===false">
+                            Harap Tunggu
+                        </div>
+                        <div ng-show="data.statusOrder ===1">
+                            <input ng-show="data.produk.namaObat!==undefiened" style="width: 100%;" kendo-combo-box k-ng-model="data.produk" k-data-text-field="'namaObat'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAmbilObat" />                            {{data.produk.namaProduk}}
+                        </div>
+                    </td>
+                    <td style="vertical-align:middle;width:50px">{{data.jumlah}}</td>
+                    <td style="vertical-align:middle;width:50px">{{data.jumlahPembulatan}}</td>
+                    <td style="vertical-align:middle;width:100px"><span rupiah>{{data.hargaJual}}</span></td>
+                    <td style="vertical-align:middle;width:100px"><span rupiah>{{data.hargaJual*data.jumlah}}</span></td>
+                    <td style="vertical-align:middle;text-align:center;width:50px">{{data.route.name}}</td>
+                    <td style="vertical-align:middle;width:100px">
+                        <input ng-show="data.isEdit===true" style="width: 100%;" kendo-combo-box k-ng-model="data.keteranganPakai" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="stigmas" />
+                        <span ng-show="data.isEdit===false || data.isEdit===undefined"> {{data.keteranganPakai.name}}</span>
+                    </td>
+
+                </tr>
+                <tr ng-show="data.racikan.length!==0" ng-repeat="detail in data.racikan">
+                    <td style=";border:none">
+                        <div ng-show="detail.statusOrder ===0">
+                            <span ng-show="data.racikan.length!==0">
+                            <span style="margin-left:10px;display:block;font-size:8pt;font-weight:bold">
+                                {{detail.produk.namaProduk +' '}}
+                                <span ng-show="detail.jenisRacikan==='Miligram'">
+                                    {{detail.totalMgMl+' Ml/Mg' +' '+detail.jumlahKekuatan}}
+                                </span>
+                            <span ng-show="detail.jenisRacikan!=='Miligram'">
+                                    {{detail.jumlahTablet+' Tablet' }}
+                                </span>
+                            </span>
+                            </span>
+                        </div>
+
+                        <div ng-show="detail.statusOrder ===-1">
+                            <input style=" width: 100%; " kendo-combo-box k-ng-model="detail.produk " k-data-text-field=" 'namaObat' " k-data-value-field=" 'id' " k-filter=" 'contains' " k-auto-bind="false " k-data-source="listAmbilObat " />
+                        </div>
+                        <div ng-show="detail.statusOrder ===1">
+                            &nbsp;&nbsp;&nbsp;<b> {{detail.produk.namaProduk +' '}} {{detail.produk.namaObat +' '}}
+                            <span ng-show="detail.jenisRacikan==='Miligram'">
+                                    {{detail.totalMgMl+' Ml/Mg' +' '+detail.jumlahKekuatan}}
+                                </span>
+                            <span ng-show="detail.jenisRacikan!=='Miligram'">
+                                    {{detail.jumlahTablet+' Tablet' }}
+                                </span>
+                                </b>
+                        </div>
+
+                    </td>
+                    <td style="vertical-align:middle;width:50px;border:none ">{{detail.total|number :4}}</td>
+                    <td style="vertical-align:middle;width:50px;border:none ">{{detail.totalPembulatan}}</td>
+                    <td style="vertical-align:middle;width:100px;border:none "><span rupiah>{{data.hargaJual}}</span></td>
+                    <td style="vertical-align:middle;width:100px;border:none "><span rupiah>{{data.hargaJual*data.jumlah}}</span></td>
+                    <td style="vertical-align:middle;text-align:center;width:50px;border:none "></td>
+                    <td style="vertical-align:middle;width:100px;border:none ">
+                    </td>
+
+                </tr>
+            </table> -->
+
+            <!-- <table class="table " style="font-size:90% ">
+                <tr>
+                    <td style="vertical-align:middle;width:100px "></td>
+                    <td>
+                        <b>Jumlah</b>
+                    </td>
+                    <td style="vertical-align:middle;width:50px "><span>{{totalObat|number:0}}</span></td>
+                    <td style="vertical-align:middle;width:50px "><span>{{totalObatSesudahDibulatkan|number:0}}</span></td>
+                    <td style="vertical-align:middle;width:100px "></td>
+                    <td style="vertical-align:middle;width:100px "><span rupiah template="<b style='font-size:120%'>{0}</b>">{{total}}</span>
+                    </td>
+                    <td style="vertical-align:middle;width:50px"></td>
+                    <td style="vertical-align:middle;width:100px">
+                    </td>
+
+                </tr>
+            </table> -->
+            <!--<kendo-grid k-ng-model="item" k-data-source="patienGrids" k-selectable="'row'" k-sortable="'true'" k-columns="arrColumnGridResepElektronik"></kendo-grid>-->
+        </div>
+
+    </div>
+    <div class="grid_12 place_button">
+        <div class="grid_3">
+            <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" click="ambilObat">
+                <span class="title"><label  c-label c-label-text='Simpan' font-size="13"></label></span>
+            </c-button>
+        </div>
+    </div>
+</div>

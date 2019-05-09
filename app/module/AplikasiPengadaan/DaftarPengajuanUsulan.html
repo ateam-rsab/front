@@ -1,0 +1,71 @@
+<div ng-controller="DaftarPengajuanUsulanCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Daftar Pengajuan Usulan'">
+		<div class="grid_6">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="kemenLemb"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kemenLemb" disabled="" />
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="unitOrganisasi"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.unitOrganisasi" disabled="" />
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="unitKerja"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.unitKerja" disabled="" />
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="tahun"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.tahun" disabled="" />
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="program"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.program" disabled="" />
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="kegiatan"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kegiatan" disabled="" />
+			</div>
+		</div>
+		<div class="clear"></div>
+		<!-- <div kendo-grid k-data-source="daftarPengajuanUsulan" k-selectable="'row'" editable="true" pageable="true" k-columns="columnPengajuanUsulan" style="margin-bottom: 10px"></div> -->
+		<div class="clear"></div>
+		<div class="grid_12" style="margin-bottom: 10px">
+			<kendo-grid options="mainGridOptions"></kendo-grid>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_6">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="keterangan"></label>
+			</div>
+			<div class="grid_8">
+				<textarea style="height: 60px" c-text-box type="input" class="k-textbox" ng-model="item.keterangan" />
+			</div>
+		</div>
+		<div class="grid_6">
+			<div class="grid_4">
+				
+			</div>
+			<div class="grid_4">
+				<button class="c-button" ng-click="simpan()">Simpan</button>
+			</div>
+			<div class="grid_4">
+				<button class="c-button" ng-click="batal()">Batal</button>
+			</div>
+		</div>
+		</c-panel>
+	</div>
+</div>

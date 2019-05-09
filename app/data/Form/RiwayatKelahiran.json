@@ -1,0 +1,47 @@
+{  "model":{
+    "UsiaKehamilan" : "",
+    "Persalinan" : "",
+    "BeratBadanLahir" : "",
+    "Menangis" : "",
+    "PanjangBadanLahir": "",
+    "RiwayatKuning": ""
+  },
+  "attributes" : [
+    {
+      "isNull" : "true",
+      "name" : "UsiaKehamilan",
+      "messagesRequired" : "UsiaKehamilan Harus Diisi",
+      "caption" : "Usia Kehamilan"
+    },
+    {
+      "isNull" : "true",
+      "name" : "Persalinan",
+      "messagesRequired" : "Persalinan Harus Diisi",
+      "caption" : "Persalinan"
+    },
+    {
+      "isNull" : "true",
+      "name" : "BeratBadanLahir",
+      "messagesRequired" : "BeratBadanLahir Harus Diisi",
+      "caption" : "Berat Badan Lahir"
+    },
+    {
+      "isNull" : "true",
+      "name" : "Menangis",
+      "messagesRequired" : "Menangis Harus Diisi",
+      "caption" : "Menangis"
+    },
+    {
+      "isNull" : "true",
+      "name" : "PanjangBadanLahir",
+      "messagesRequired" : "PanjangBadanLahir Harus Diisi",
+      "caption" : "Panjang Badan Lahir"
+    },
+    {
+      "isNull" : "true",
+      "name" : "RiwayatKuning",
+      "messagesRequired" : "RiwayatKuning Harus Diisi",
+      "caption" : "Riwayat Kuning"
+    }
+  ]
+}

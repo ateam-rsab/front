@@ -1,0 +1,369 @@
+<div ng-controller="GawatDaruratFormCtrl"><br/>
+    <div ng-include='"../app/module/Dashboard/Pasien/Index"'></div>
+    <div class="panel panel-default container_12">
+        <div class="panel-heading" c-translate>Pengkajian Awal IGD</div>
+        <div class="panel-body">
+            <div class="grid_12">
+                <div class="grid_12" ng-disabled="isDokter">
+                    <div style="background-color: #10C4B2; height: 25px; margin-top: 15px; text-align: left; border: 1px solid; border-color: #10C4B2; color:white; font-size:18px; padding-left:5px;padding-top:5px;" class="grid_12">Skala Nyeri</div>
+                    <div class="grid_12" style="margin-top:10px">
+                        <div class="grid_6" align="center" >
+                            <label c-label item="item" style="font-size:18px" c-label-text="NumericPainRatingScale"></label>
+                        </div>
+                        <div class="grid_12" style="border: 1px solid #10C4B2;">
+                            <div class="grid_12" align="center">
+                                <div class="grid_1" style="text-align: center; vertical-align: middle;">
+                                    <img class="normalTidakNormal" src="stylesheets/skalanyeri/1.png" >
+                                </div>
+                                <div class="grid_1" style="text-align: center; vertical-align: middle;">
+                                    <img class="normalTidakNormal" src="stylesheets/skalanyeri/2.png" >
+                                </div>
+                                <div class="grid_1" style="text-align: center; vertical-align: middle;">
+                                    <img class="normalTidakNormal" src="stylesheets/skalanyeri/3.png" >
+                                </div>
+                                <div class="grid_1" style="text-align: center; vertical-align: middle;">
+                                    <img class="normalTidakNormal" src="stylesheets/skalanyeri/4.png" >
+                                </div>
+                                <div class="grid_1" style="text-align: center; vertical-align: middle;">
+                                    <img class="normalTidakNormal" src="stylesheets/skalanyeri/5.png" >
+                                </div>
+                                <div class="grid_1" style="text-align: center; vertical-align: middle;">
+                                    <img class="normalTidakNormal" src="stylesheets/skalanyeri/6.png" >
+                                </div>
+                            </div>
+                            <div class="grid_12">
+                                <div class="grid_1" ng-repeat="data in sourceGmbrNyeri" style="text-align: center; vertical-align: middle;">
+                                    <input type="radio" name="{{data.skalaNyeri}}" id="{{data.skalaNyeri}}" class="k-radio" ng-model="item.skalaNyeri" ng-value="data.id" ng-click="cekSkorNyeri(stat)" ng-disabled="isDokter">
+                                    <label class="k-radio-label" for="{{data.skalaNyeri}}">{{data.nilai}}<br>{{data.skalaNyeri}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="grid_12" style="border: 1px solid; border-color: #10C4B2; padding-left:5px;">
+                        <div class="grid_2">
+                            <div class="grid_12" style="margin-top:7px;">
+                                <label c-label="" item="item" c-label-text="SkorNyeri" class="ng-isolate-scope c-label"><span class="titikDua">:</span></label>
+                            </div>
+                            <div class="grid_12">
+                                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.skorNyeri"  ng-disabled="isDokter"/>
+                            </div>
+                        </div>
+                        <div class="grid_2">
+                            <div class="grid_12" style="margin-top:7px;">
+                                <label c-label="" item="item" c-label-text="JenisNyeri" class="ng-isolate-scope c-label"><span class="titikDua">:</span></label>
+                            </div>
+                            <div class="grid_12">
+                                <div class="grid_4" ng-repeat="stat in listJenisNyeri">
+                                    <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.jenisNyeri" ng-value="stat.id" ng-disabled="isDokter">
+                                    <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_2">
+                            <div class="grid_12" style="margin-top:7px;">
+                                <label c-label="" item="item" c-label-text="Lokasi" class="ng-isolate-scope c-label"><span class="titikDua">:</span></label>
+                            </div>
+                            <div class="grid_12">
+                                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.lokasi" ng-disabled="isDokter"/>
+                            </div>
+                        </div>
+                        <div class="grid_2">
+                            <div class="grid_12" style="margin-top:7px;">
+                                <label c-label="" item="item" c-label-text="Durasi" class="ng-isolate-scope c-label"><span class="titikDua">:</span></label>
+                            </div>
+                            <div class="grid_12">
+                                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.durasi" ng-disabled="isDokter" />
+                            </div>
+                        </div>
+                        <div class="grid_3">
+                            <div class="grid_12" style="margin-top:7px;">
+                                <label c-label="" item="item" c-label-text="Pencetus" class="ng-isolate-scope c-label"><span class="titikDua">:</span></label>
+                            </div>
+                            <div class="grid_12">
+                                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.pencetus" ng-disabled="isDokter"/>
+                            </div>
+                        </div>
+
+                        <div class="grid_12" style="border: 1px solid; border-color: #10C4B2; margin:10px 5px 10px 5px;"></div>
+                        <div class="grid_12">
+                            <label c-label="" item="item" c-label-text="Status" class="ng-isolate-scope c-label"><span class="titikDua">:</span></label>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_2" ng-repeat="data in DeathOnArrival">
+                                <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="item.statusPasien" ng-value="data.id" ng-disabled="isDokter" ng-click="cekDeathOnArrival()">
+                                <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                            </div>
+                        </div>
+                        <div class="grid_7" ng-show="item.statusPasien === 1">
+                            <div class="grid_12" style="margin-top:7px;">
+                                <label c-label="" item="item" c-label-text="TandaKehidupan" class="ng-isolate-scope c-label"><span class="titikDua">:</span></label>
+                            </div>
+                            <div class="grid_4" style="margin:10px 0 0 0;" ng-repeat="stat in listTandaKehidupan">
+                                <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.tandaKehidupan" ng-value="stat.id" ng-disabled="isDokter">
+                                <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+                            </div>
+                        </div>
+                        <div class="grid_5" ng-show="item.statusPasien === 2">
+                            <div class="grid_5" style="margin-top:7px;">
+                                <label c-label="" item="item" c-label-text="JamPenentuanKematian" class="ng-isolate-scope c-label"><span class="titikDua">:</span></label>
+                            </div>
+                            <div class="grid_9">
+                                <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.jamPenentuanKematian" ng-disabled="isDokter"/>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div style="background-color: #10C4B2; height: 25px; margin-top: 15px; text-align: left; border: 1px solid; border-color: #10C4B2; color:white; font-size:18px; padding-left:5px;padding-top:5px;" class="grid_12">Status Psikologis</div>
+                <div class="grid_12" style="border: 1px solid; border-color: #10C4B2; padding-left:5px;">
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin:10px 0 0 0;" ng-repeat="data in listStatusPsikologis">
+                            <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio"  ng-model="item.psikologis" ng-value="data.id" ng-disabled="isDokter">
+                            <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_12" ng-show="item.psikologis===9">
+                    <textarea placeholder="Lain-lain" ng-model="lainlainPsikologi" ng-disabled="isDokter"></textarea>
+                </div>
+                <div style="background-color: #10C4B2; height: 25px; margin-top: 15px; text-align: left; border: 1px solid; border-color: #10C4B2; color:white; font-size:18px; padding-left:5px;padding-top:5px;" class="grid_12">Risiko Jatuh</div>
+                <div class="grid_12" style="border: 1px solid; border-color: #10C4B2; padding-left:5px;">
+                    <div class="grid_12">
+                        <div class="grid_3" style="margin:10px 0 0 0;" ng-repeat="stat in listResikoJatuh">
+                            <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.resikoJatuh" ng-value="stat.id" ng-disabled="isDokter">
+                            <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+                        </div>
+                    </div>
+                    <div class="grid_2" style="margin-top:10px;">
+                        <label c-label item="item">Skor Resiko Jatuh</label>
+                    </div>
+                    <div class="grid_1">
+                        <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.skorResikoJatuh" ng-disabled="isDokter" />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <div class="grid_12">
+                            <div class="grid_12">
+                                <img src="stylesheets/kajigawatdarurat.png">
+                            </div>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_3" ng-repeat="stat in listStatusImageGawatDarurat">
+                                <input type="checkbox" name="{{stat.name}}" id="{{stat.name}}" class="k-checkbox" value="{{stat.id}}" ng-model="statusGambar" ng-checked="isChecked(stat.id)" ng-click="cekStatusGambar(stat)" ng-disabled="isDokter">
+                                <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="background-color: #10C4B2; height: 25px; margin-top: 15px; text-align: left; border: 1px solid; border-color: #10C4B2; color:white; font-size:18px; padding-left:5px;padding-top:5px;" class="grid_12">Diagnosis Keperawatan</div>
+                <div class="grid_12" style="border: 1px solid; border-color: #10C4B2; padding-left:5px;">
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin:10px 0 0 0;" ng-repeat="stat in listDiagnosaKeperawatan">
+                            <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.diagnosaKeperawatan" ng-value="stat.id" ng-disabled="isDokter">
+                            <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_12" ng-show="item.diagnosaKeperawatan===8">
+                    <textarea placeholder="Lainnya" ng-model="lainlaindiagnosaKeperawatan" ng-disabled="isDokter"></textarea>
+                </div>
+                <div style="background-color: #10C4B2; height: 25px; margin-top: 15px; text-align: left; border: 1px solid; border-color: #10C4B2; color:white; font-size:18px; padding-left:5px;padding-top:5px;" class="grid_12">Rencana dan tindakan keperawatan</div>
+                <div class="grid_12" style="border: 1px solid; border-color: #10C4B2; padding-left:5px;">
+                    <div class="grid_12">
+                        <div class="grid_6">
+                            <div class="grid_12">
+                                <div class="grid_4">
+                                    <input c-text-box type="input" class="k-textbox" ng-model="item.isapLendir" ng-disabled="isDokter" />
+                                </div>
+                                <div class="grid_6" style="margin-top:15px">
+                                    <label c-label item="item">Isap Lendir</label>
+                                </div>
+                            </div>
+                            <div class="grid_12">
+                                <div class="grid_4">
+                                    <input c-text-box type="input" class="k-textbox" ng-model="item.pasangOroPharsingAirway"  ng-disabled="isDokter"/>
+                                </div>
+                                <div class="grid_6" style="margin-top:15px">
+                                    <label c-label item="item">Pasang Oro Pharsing Airway</label>
+                                </div>
+                            </div>
+                            <div class="grid_12">
+                                <div class="grid_4">
+                                    <input c-text-box type="input" class="k-textbox" ng-model="item.aturPosisi1"  ng-disabled="isDokter"/>
+                                </div>
+                                <div class="grid_4" style="margin-top:15px">
+                                    <label c-label item="item">Atur Posisi</label>
+                                </div>
+                                <div class="grid_4">
+                                    <input c-text-box type="input" class="k-textbox" ng-model="item.aturPosisi2"  ng-disabled="isDokter"/>
+                                </div>
+                            </div>
+                            <div class="grid_12">
+                                <div class="grid_4">
+                                    <input c-text-box type="input" class="k-textbox" ng-model="item.monitorIntakeOutput" ng-disabled="isDokter"/>
+                                </div>
+                                <div class="grid_6" style="margin-top:15px">
+                                    <label c-label item="item">Monitor Intake-Output</label>
+                                </div>
+                            </div>
+                            <div class="grid_12">
+                                <div class="grid_4">
+                                    <input c-text-box type="input" class="k-textbox" ng-model="item.monitorTtvdanSp021" ng-disabled="isDokter" />
+                                </div>
+                                <div class="grid_4" style="margin-top:15px">
+                                    <label c-label item="item">Monitor TTV dan Sp.02</label>
+                                </div>
+                                <div class="grid_4">
+                                    <input c-text-box type="input" class="k-textbox" ng-model="item.monitorTtvdanSp022"  ng-disabled="isDokter"/>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div style="background-color: #10C4B2; height: 25px; margin-top: 15px; text-align: left; border: 1px solid; border-color: #10C4B2; color:white; font-size:18px; padding-left:5px;padding-top:5px;" class="grid_12">Kolaborasi</div>
+                        <div class="grid_12" style="border: 1px solid; border-color: #10C4B2; padding-left:5px;">
+                            <div class="grid_12">
+                                <div class="grid_6">
+                                    <div class="grid_12">
+                                        <div class="grid_4">
+                                            <input c-text-box type="input" class="k-textbox" ng-model="item.berikanOksigen1"  ng-disabled="isDokter"/>
+                                        </div>
+                                        <div class="grid_4" style="margin-top:15px">
+                                            <label c-label item="item">Berikan Oksigen</label>
+                                        </div>
+                                        <div class="grid_4">
+                                            <input c-text-box type="input" class="k-textbox" ng-model="item.berikanOksigen2"  ng-disabled="isDokter"/>
+                                        </div>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_4">
+                                            <input c-text-box type="input" class="k-textbox" ng-model="item.pasangInfus1"  ng-disabled="isDokter"/>
+                                        </div>
+                                        <div class="grid_4" style="margin-top:15px">
+                                            <label c-label item="item">Pasang Infus</label>
+                                        </div>
+                                        <div class="grid_4">
+                                            <input c-text-box type="input" class="k-textbox" ng-model="item.pasangInfus2" ng-disabled="isDokter" />
+                                        </div>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_4">
+                                            <input c-text-box type="input" class="k-textbox" ng-model="item.pasangEtt1" ng-disabled="isDokter" />
+                                        </div>
+                                        <div class="grid_4" style="margin-top:15px">
+                                            <label c-label item="item">Pasang ETT</label>
+                                        </div>
+                                        <div class="grid_4">
+                                            <input c-text-box type="input" class="k-textbox" ng-model="item.pasangEtt2" ng-disabled="isDokter" />
+                                        </div>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_4">
+                                            <input c-text-box type="input" class="k-textbox" ng-model="item.defibrasi1" ng-disabled="isDokter" />
+                                        </div>
+                                        <div class="grid_4" style="margin-top:15px">
+                                            <label c-label item="item">Defibrasi</label>
+                                        </div>
+                                        <div class="grid_4">
+                                            <input c-text-box type="input" class="k-textbox" ng-model="item.defibrasi2"  ng-disabled="isDokter"/>
+                                        </div>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_4">
+                                            <input c-text-box type="input" class="k-textbox" ng-model="item.pemeriksaanLaboratorium" ng-disabled="isDokter" />
+                                        </div>
+                                        <div class="grid_4" style="margin-top:15px">
+                                            <label c-label item="item">Pemeriksaan Laboratorium</label>
+                                        </div>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_4">
+                                            <input c-text-box type="input" class="k-textbox" ng-model="item.pemberianObat" ng-disabled="isDokter" />
+                                        </div>
+                                        <div class="grid_3" style="margin-top:15px">
+                                            <label c-label item="item">Pemberian Obat</label>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid_12">
+                        <div class="grid_12" style="margin: 10px 5px 5px 0;">
+                            <label c-label item="item" c-label-text="Lainnya"></label>
+                        </div>
+                        <div class="grid_12" style="margin: 10px 5px 5px 0;">
+                            <textarea style="width: 99%; height: 80px;" ng-disabled="isDokter" ng-model="item.lainnya"></textarea>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="grid_12" ng-show=isDokter>
+                <div class="grid_12" style="border: 1px solid; border-color: #10C4B2; margin:10px 5px 10px 5px;"></div>
+                <!-- <div class="grid_6">
+                    <div class="grid_12" style="margin: 10px 5px 5px 0;">
+                        <label c-label item="item" c-label-text="Anamnesis"></label>
+                    </div>
+                    <div class="grid_12" style="margin: 10px 5px 5px 0;">
+                        <textarea style="width: 99%; height: 80px;" ng-model="item.anamnesis"></textarea>
+                    </div>
+                </div>
+                <div class="grid_6">
+                    <div class="grid_12" style="margin: 10px 5px 5px 0;">
+                        <label c-label item="item" c-label-text="PemeriksaanFisik"></label>
+                    </div>
+                    <div class="grid_12" style="margin: 10px 5px 5px 0;">
+                        <textarea style="width: 99%; height: 80px;" ng-model="item.pemeriksaanFisik"></textarea>
+                    </div>
+                </div> -->
+                <div class="grid_12">
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="Diputuskan"></label>
+                    </div>
+                    <div class="grid_10">
+                        <div class="grid_3" ng-repeat="stat in listStatusKeputusan">
+                            <input type="checkbox" name="{{stat.name}}" id="{{stat.name}}" class="k-checkbox" value="{{stat.id}}" ng-model="diputuskan" ng-checked="isCheckedPutusan(stat.id)" ng-click="cekStatusKeputusan(stat)">
+                            <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="grid_12" style="border: 1px solid; border-color: #10C4B2; margin:10px 5px 10px 5px;"></div>
+                    <div class="grid_12">
+                        <div class="grid_2">
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="Skor"></label>
+                            </div>
+                            <div class="grid_12">
+                                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.skor" />
+                            </div>
+                        </div>
+                        <div class="grid_10">
+                            <div class="grid_2" style="margin:10px 0 0 0;" ng-repeat="stat in listRuangPerawatan">
+                                <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.ruangPerawat" ng-value="stat.id">
+                                <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_12" ng-show="item.ruangPerawat.id===5">
+                        <textarea placeholder="Lain-lain" ng-model="item.lainlainruangPerawat"></textarea>
+                    </div>
+                    <div class="grid_12" style="border: 1px solid; border-color: #10C4B2; margin:10px 5px 10px 5px;"></div>
+                </div>
+                <div class="grid_12" style="border: 1px solid; border-color: #10C4B2; margin:10px 5px 10px 5px;"></div>
+                
+            </div>
+        </div>
+            <!--++++++++++++++++++-->
+        <div class="grid_12">
+            <div class="grid_12">
+                <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" ' style="margin-top:25px"></div>
+            </div>
+        </div>
+    </div>
+</div>

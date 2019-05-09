@@ -1,0 +1,405 @@
+<style type="text/css">
+.gambarAset {
+    margin-top: 15px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid grey;
+}
+</style>
+<div class="panel panel-default container_12">
+	<c-panel item="item" header="'MasterBarangInvestasi'" style="margin-top:50px" disabled>
+	<!-- <div class="panel-heading" c-translate>Master Barang Investasi</div>
+	<div class="panel-body"> -->
+		<div class="grid_12 headerBox">&nbsp;</div>
+		<div class="grid_3" style="margin-top: 5px">
+			<div class="grid_12" id="preview">
+				<img class="gambarAset img-responsive" src="/app/resources/images/no_image.png" />
+            </div>
+            <div class="grid_12">
+				<!-- <label c-label item="item">Upload Gambar</label> -->
+	            <input id="files"
+	                   type="file"
+	                   kendo-upload
+	                   k-async="{ saveUrl: 'save', removeUrl: 'remove', autoUpload: true }"
+	                   k-multiple="false"
+	                   k-select="onSelect"
+	                   ng-disabled="isUnit"/>
+	        </div>
+  			<!-- <div id="base64textarea"></div> -->
+		</div>
+		<!-- <div class="grid_1">&nbsp;</div> -->
+		<div class="grid_4" style="margin-top: 5px">
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item">No. Register Aset</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noRegisterAset"/>
+			</div>
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item" c-label-text="noSertifikat">t</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noSertifikat"/>
+			</div>
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item" c-label-text="tanggalKalibrasi">t</label>
+			</div>
+			<div class="grid_8">
+				<input style="width:100%" kendo-date-picker k-ng-model="item.tglKalibrasi" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'" />
+			</div>
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item" c-label-text="masaGaransi">t</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.masaGaransi"/>
+			</div>
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item">Kode Barang</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kdProduk" disabled/>
+			</div>
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item">Kode BMN</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kodeBmn" ng-disabled="isUnit"/>
+			</div>
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item">Kode Aspak</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kdAspak" ng-disabled="isUnit"/>
+			</div>
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item">Kode RS</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kdRs" ng-disabled="isUnit"/>
+			</div>
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item">Nama Barang</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaProduk" ng-disabled="isUnit"/>
+			</div>
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item">Satuan</label>
+			</div>
+			<div class="grid_8">
+				<!-- <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.satuan"/> -->
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.satuan" k-data-text-field="'satuanStandar'" k-data-value-field="'id'" k-filter="'contains'" k-data-source="listSatuanStandard" ng-disabled="isUnit"/>
+			</div>
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item">Jenis Barang</label>
+			</div>
+			<div class="grid_8">
+				<!-- <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jenis"/> -->
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisProduk" k-data-text-field="'jenisProduk'" k-data-value-field="'id'" k-filter="'contains'" k-data-source="listJenisBarang" ng-disabled="isUnit"/>
+			</div>
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item">Detil Jenis Barang</label>
+			</div>
+			<div class="grid_8">
+				<!-- <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jenisDetil"/> -->
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.detailJenisProduk" k-data-text-field="'detailJenisProduk'" k-data-value-field="'id'" k-filter="'contains'" k-data-source="listDetilJenis" ng-disabled="isUnit"/>
+			</div>
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item">Kelompok Aset</label>
+			</div>
+			<div class="grid_8">
+				<!-- <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.kelompokAset"/> -->
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.kelompokAset" k-data-text-field="'kelompokAset'" k-data-value-field="'id'" k-filter="'contains'" k-data-source="listKelompokAset" ng-disabled="isUnit"/>
+			</div>
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item">Merk</label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.merkProduk" k-data-text-field="'merkProduk'" k-data-value-field="'id'" k-filter="'contains'" k-data-source="listMerk" ng-disabled="isUnit"/>
+			</div>
+			
+			<!-- <div class="grid_8">
+				<img class="gambarAset img-responsive" src="/app/resources/images/QR-code.png" />
+                <span kendo-qrcode k-error-correction="'M'" ng-model="qrcode" style="width:114px"></span>
+                <h5 style="text-align:center;margin-top:4px !important;font-color:#000">QR code</h5>
+            </div> -->
+		</div>
+		<div class="grid_1">&nbsp;</div>
+		<div class="grid_4" style="margin-top: 5px">
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item">Tipe</label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.typeProduk" k-data-text-field="'typeProduk'" k-data-value-field="'id'" k-filter="'contains'" k-data-source="listType" ng-disabled="isUnit"/>
+			</div>
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item">Nomor Seri</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noSeri" ng-disabled="isUnit"/>
+			</div>
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item">Daya Listrik</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.dayaListrik" ng-disabled="isUnit"/>
+			</div>
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item">Klasifikasi Teknologi</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.klasifikasiTeknologi" ng-disabled="isUnit"/>
+			</div>
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item">Harga Perolehan</label>
+			</div>
+			<div class="grid_8">
+				<input kendo-numeric-text-box k-options="formatHarga" k-ng-model="item.hargaPerolehan" style="width:100%;"ng-disabled="isUnit"/>
+			</div>
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item">Harga</label>
+			</div>
+			<div class="grid_8">
+				<input kendo-numeric-text-box k-options="formatHarga" k-ng-model="item.harga" style="width:100%;"ng-disabled="isUnit"/>
+			</div>
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item">PT</label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaPT" k-data-text-field="'namaRekanan'" k-data-value-field="'id'" k-filter="'contains'" k-data-source="listSuplier" ng-disabled="isUnit"/>
+			</div>
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item">Supplier</label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaSupplier" k-data-text-field="'namaRekanan'" k-data-value-field="'id'" k-filter="'contains'" k-data-source="listSuplier" ng-disabled="isUnit"/>
+			</div>
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item" style="margin-top: 10px">Alamat Supplier</label>
+			</div>
+			<div class="grid_8">
+				<textarea  c-text-box type="input" class="k-textbox" ng-model="item.spesifikasi" style="margin-top: 10px" ng-disabled="isUnit"/>
+			</div>
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item">Tahun Perolehan</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="number" filter="'numeric'" class="k-textbox" ng-model="item.tahunPerolehan" k-auto-bind="false" ng-disabled="isUnit"/>
+			</div>
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item">Usia Teknis</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="number" filter="'numeric'" class="k-textbox" ng-model="item.usiaTeknis" k-auto-bind="false" ng-disabled="isUnit"/>
+			</div>
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item">Usia Pakai</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="number" filter="'numeric'" class="k-textbox" ng-model="item.usiaPakai" disabled/>
+			</div>
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item">Sisa Umur</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="number" filter="'numeric'" class="k-textbox" ng-model="item.sisaUmur" disabled/>
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" style="margin-top: 10px">Spesifikasi</label>
+			</div>
+			<div class="grid_8">
+				<textarea rows="6" c-text-box type="input" class="k-textbox" ng-model="item.spesifikasi" style="margin-top: 10px" ng-disabled="isUnit"/>
+			</div>
+		</div>
+		<div class="panel panel-default container_12">
+                <div class="panel-heading" c-translate>Penjadwalan</div>
+                <div class="panel-body">
+                    <div ng-cloak>
+                        <md-content>
+                            <md-tabs md-dynamic-height md-border-bottom>
+                                <md-tab label="History Alat">
+                                    <md-content class="md-padding">
+                                        <div class="grid_12">
+                                        	<kendo-grid options="mainGridHistoryAlat" k-scrollable="false" k-data-source="dataHistoryAlat"></kendo-grid>
+                                        </div>
+                                    </md-content>
+                                </md-tab>
+                                <md-tab label="History Sertifikat">
+                                    <md-content class="md-padding">
+                                    	<div class="grid_12">
+                                    		<div class="grid_6">
+
+                                    		</div>
+                                    		<div class="grid_6">
+                                    			<div class="grid_4">
+                                    				<label c-label item="item" style="margin-top: 10px">Nomor Sertifikat</label>
+                                    			</div>
+                                    			<div class="grid_8">
+                                    				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nomorSertifikat"/>
+                                    			</div>
+                                    			<div class="grid_4">
+                                    				<label c-label item="item" style="margin-top: 10px">Tanggal Sertifikat</label>
+                                    			</div>
+                                    			<div class="grid_8">
+                                    				<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalSertifikat" k-format="'yyyy-MM-dd'" ng-value="now"/>
+                                    			</div>
+                                    		</div>
+                                    	</div>
+                                    	<div class="grid_12">
+                                    		<div class="grid_4"></div>
+                                    		<div class="grid_4"></div>
+                                    		<div class="grid_4">
+                                    			<input name="files"
+												type="file"
+												kendo-upload
+												id="filePicker"
+												k-select="onSelectHistory"
+												/>
+                                    		</div>
+                                    	</div>
+                                    	<div class="grid_12">
+                                    		<div class="grid_2"></div>
+                                    		<div class="grid_2"></div>
+                                    		<div class="grid_2"></div>
+                                    		<div class="grid_2"></div>
+                                    		<div class="grid_2">
+                                    			<button class="c-button" ng-click="uploadHistory()">Upload</button>
+                                    		</div>
+                                    		<div class="grid_2">
+                                    			<button class="c-button" ng-click="downloadHistory()">Download</button>
+                                    		</div>
+                                    	</div>
+                                    	<div class="grid_12">
+                                    		<kendo-grid options="mainGridHistorySertifikat" k-scrollable="false" k-data-source="dataHistorySertifikat" k-selectable="'row'" k-ng-model="selectHistory" ng-click="click(selectHistory)"></kendo-grid>
+                                    	</div>
+                                        
+                                    </md-content>
+                                </md-tab>
+                                <md-tab label="Manual Book">
+                                    <md-content class="md-padding">
+                                    	<div class="grid_12">
+                                    		<div class="grid_1">
+                                    			<label c-label item="item" style="margin-top: 10px">Nama Manual Book</label>
+                                    		</div>
+                                    		<div class="grid_3">
+                                    			<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaManualBook"/>
+                                    		</div>
+                                    	</div>
+                                    	<div class="grid_12">
+                                    		<div class="grid_4">
+                                    			<input name="files"
+												type="file"
+												kendo-upload
+												id="filePicker"
+												k-select="onSelectManualBook"
+												/>
+                                    		</div>
+                                    		<div class="grid_4"></div>
+                                    		<div class="grid_4"></div>
+                                    	</div>
+                                    	<div class="grid_12">
+                                    		<div class="grid_2">
+                                    			<button class="c-button" ng-click="uploadManualBook()">Upload</button>
+                                    		</div>
+                                    		<div class="grid_2">
+                                    			<button class="c-button" ng-click="downloadManualBook()">Download</button>
+                                    		</div>
+                                    		<div class="grid_2"></div>
+                                    		<div class="grid_2"></div>
+                                    		<div class="grid_2"></div>
+                                    		<div class="grid_2"></div>
+                                    	</div>
+                                        <div class="grid_12">
+                                    		<kendo-grid options="mainGridManualBook" k-scrollable="false" k-data-source="dataManualBook" k-ng-model="selectManualBook" ng-click="click(selectManualBook)" k-selectable="'row'"></kendo-grid>
+                                    	</div>
+                                    	
+                                    </md-content>
+                                </md-tab>
+                                <md-tab label="SOP">
+                                    <md-content class="md-padding">
+                                    	<div class="grid_12">
+                                    		<div class="grid_1">
+                                    			<label c-label item="item" style="margin-top: 10px">Nama SOP</label>
+                                    		</div>
+                                    		<div class="grid_3">
+                                    			<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaSop"/>
+                                    		</div>
+                                    	</div>
+                                    	<div class="grid_12">
+                                    		<div class="grid_4">
+                                    			<input name="files"
+												type="file"
+												kendo-upload
+												id="filePicker"
+												k-select="onSelectSop"
+												/>
+                                    		</div>
+                                    		<div class="grid_4"></div>
+                                    		<div class="grid_4"></div>
+                                    	</div>
+                                    	<div class="grid_12">
+                                    		<div class="grid_2">
+                                    			<button class="c-button" ng-click="uploadSop()">Upload</button>
+                                    		</div>
+                                    		<div class="grid_2">
+                                    			<button class="c-button" ng-click="downloadSop()">Download</button>
+                                    		</div>
+                                    		<div class="grid_2"></div>
+                                    		<div class="grid_2"></div>
+                                    		<div class="grid_2"></div>
+                                    		<div class="grid_2"></div>
+                                    	</div>
+                                        <div class="grid_12">
+                                    		<kendo-grid options="mainGridSop" k-scrollable="false" k-data-source="dataSop" k-ng-model="selectSop" ng-click="click(selectSop)" k-selectable="'row'"></kendo-grid>
+                                    	</div>
+                                    </md-content>
+                                </md-tab>
+                            </md-tabs>
+                        </md-content>
+                    </div>
+                </div>
+            </div>
+	<!-- </div> -->
+	</c-panel>
+	<div class="grid_12" style="height:10px">&nbsp;</div>
+
+	<!-- button -->
+	<!-- <div class="grid_12" style="margin-top:20px">
+		<div class="grid_6">
+			<button class="c-button" ng-click="Tambah()" disabled>Tambah</button>
+		</div>
+		<div class="grid_6">
+			<button class="c-button" ng-click="Clear()" disabled>Batal</button>
+		</div>
+	</div>
+
+	<div class="grid_12" style="margin-top: 10px" ng-hide="isDetil">
+		<kendo-grid k-data-source="dataSource" k-selectable="'row'" options="mainGridOptions"></kendo-grid>
+	</div> -->
+
+    <div class="grid_12" style="margin-top:35px">
+        <div ng-include='"../app/module/Shared/TemplateButtonSimpanSRO"'/>
+    </div>
+
+	<!-- <div class="grid_12">
+		<div class="grid_4"></div>
+		<div class="grid_8">
+			<div class="grid_3">&nbsp;</div>
+			<div class="grid_3">
+				<button class="c-button" ng-click="Save()">Simpan</button>
+			</div>
+			<div class="grid_3">
+				<button class="c-button" ng-click="Batal()">Batal</button>
+			</div>
+			<div class="grid_3">
+				<button class="c-button" ng-click="lihatDaftar()">Daftar Barang</button>
+			</div>
+		</div>
+		<div class="grid_2">
+			<button class="c-button" ng-click="Delete()">Hapus</button>
+		</div>
+		<div class="grid_2">
+			<button class="c-button">Tutup</button>
+		</div>
+	</div> -->
+</div>

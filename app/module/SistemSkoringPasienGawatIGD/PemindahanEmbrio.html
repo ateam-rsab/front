@@ -1,0 +1,132 @@
+
+<div ng-controller="PemindahanEmbrioCtrl">
+    <div ng-show="dataVOloaded">
+        <!-- panel Skrining Gizi -->
+
+        <c-panel item="item" header="title" disabled>
+
+            <div class="grid_2" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="prosedur"></label>
+            </div>
+            <div class="grid_4">
+
+                <div class="grid_4" style="margin: 5px 0 5px 0;" ng-repeat="stat in listProsedur">
+                            <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.prosedur" value="{{stat.id}}">
+                            <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+              </div>
+
+            </div>
+            <div class="grid_2" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="waktu"></label>
+            </div>
+            <div class="grid_4" style="margin-bottom:5px">
+                <input kendo-date-time-picker  k-value='now' placeholer="dd-mm-yyyy  h:mm" k-format="'dd-mm-yyyy  h:mm'" k-ng-model="item.waktu" style="width: 100%" />
+            </div>
+            <div class="clear"></div>
+
+            <div class="grid_2" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="dokter"></label>
+            </div>
+           <div class="grid_4">
+              <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.dokter"/>
+            </div>
+            <div class="grid_3"  style="margin-bottom:5px">
+              <label c-label item="item" c-label-text="jlhEmbrioDipindahkan"></label>
+            </div>
+            <div class="grid_3" style="margin-bottom:5px">
+                <input c-text-box type="number"  class="k-textbox" ng-model="item.jlhEmbrioDipindahkan"/>
+            </div>
+            <div class="clear"></div>
+                <div class="grid_12" ng-repeat="data in item.jlhEmbrio">
+                      <div class="grid_2">
+                        <label c-label item="item" c-label-text="{{data.name}}"></label>
+                      </div>
+                      <div class="grid_4">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox"  ng-model="data.jumlah">
+                      </div>
+                      <div class="grid_2">
+                        <label c-label item="item">sel ; kualitas</label>
+                      </div>
+                      <div class="grid_4">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox"  ng-model="data.kualitas">
+                      </div>
+                </div>
+                <div class="clear"></div>
+
+          
+            
+              <div class="grid_2" style="margin-bottom:5px">
+                  <label c-label item="item" c-label-text="pemindahanEmbrio"></label>
+              </div>
+              <div class="grid_4">
+              <div class="grid_4" style="margin: 5px 0 5px 0;" ng-repeat="stat in listPemindahanEmbrio">
+                            <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.pemindahanEmbrio" value="{{stat.id}}">
+                            <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+              </div>
+            </div>
+              <div class="grid_2" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="kateterYgDigunakan"></label>
+            </div>
+            <div class="grid_4">
+                  <input c-text-box type="input" filter="'string'" class="k-textbox"  ng-model="item.kateterYgDigunakan">
+            </div>
+              <div class="clear"></div>
+            
+
+            <div class="grid_2" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="pengobatanFaseLuteal"></label>
+            </div>
+            <div class="grid_4">
+              <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.pengobatanFaseLuteal"/>
+            </div>
+            <div class="clear"></div>
+            <br/>
+
+            <label c-label item="item" style="margin-bottom:5px">KRIOPREVASI</label><br/>
+            <div class="grid_2" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="tanggalKrioprevasi"></label>
+            </div>
+            <div class="grid_4" style="margin-bottom:5px">
+                <input kendo-date-picker  k-value='now' placeholer="dd-mm-yyyy" k-format="'dd-mm-yyyy'" k-ng-model="item.tanggalKrioprevasi" style="width: 100%" />
+            </div>
+             <div class="grid_2" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="simpanBeku"></label>
+            </div>
+            <div class="grid_4">
+              <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.simpanBeku"/>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_12" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="keterangan"></label>
+            </div>
+            <div class="grid_12" ng-repeat="ket in item.keterangan">
+                      <div class="grid_1">
+                        <label c-label item="item">Tanggal</label>
+                      </div>
+
+                      <div class="grid_10">
+                        <div class="grid_6">
+                            <input kendo-date-picker  k-value='now' placeholer="dd-mm-yyyy" k-format="'dd-mm-yyyy'" k-ng-model="ket.tanggal" style="width: 100%" />
+                        </div>
+                        
+                        <div class="grid_6">
+                            <input c-text-box type="input" filter="" class="k-textbox"  ng-model="ket.jumlah">
+                        </div>
+                      </div>
+                      <div class="grid_1">
+                        <label c-label item="item">embrio</label>
+                      </div>
+                </div>
+
+            <div class="grid_3" style="float:right">
+                    <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="add" >
+                        <span class="title">Simpan</span>
+                    </c-button>
+                </div>
+
+            <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" ' style="margin-bottom:50px"></div>
+
+        </c-panel>
+    </div>
+
+</div>

@@ -1,0 +1,58 @@
+<div ng-controller="OrderDarahCtrl">
+    <div class="panel panel-default">
+        <div class="panel-heading" c-translate>Permintaan Bank Darah</div>
+
+
+        <div class="panel-body">
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="tanggalPermintaan"></label>
+            </div>
+            <div class="grid_8">
+                <input style="width: 100%" k-value='now' k-max="now" kendo-date-picker k-ng-model="item.tanggalPermintaan" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+            </div>
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="cito"></label>
+            </div>
+            <div class="grid_8" style="margin-bottom: 10px;">
+                <input type="checkbox" class="k-checkbox" name="isCito" id="isCito" value="true" ng-model="item.cito">
+                <label class="k-checkbox-label" for="isCito">Cito</label>
+
+            </div>
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="keterangan"></label>
+            </div>
+            <div class="grid_8">
+                <textarea ng-model="item.keteranganLainnya" style="width: 100%; height: 80px;"></textarea>
+            </div>
+            <div class="grid_3" style="margin-bottom:5px;">
+                <label c-label item="item" c-label-text="Rhesus" real=true></label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.rhesus" k-data-text-field="'Rhesus'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listRhesus" />
+            </div>
+            <div class="grid_3">
+                <label c-label item="item" c-label-text="bentukDarah" real=true></label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.bentukDarah" k-data-text-field="'namaBentukProduk'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listBentukDarah" />
+
+            </div>
+            <div class="grid_3">
+                <label c-label item="item" c-label-text="golonganDarah" real=true></label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.golonganDarah" k-data-text-field="'golonganDarah'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listGolonganDarah" />
+
+            </div>
+            <div class="grid_3">
+                <label c-label item="item" c-label-text="volume" real=true></label>
+                <input c-text-box type="input" class="k-textbox" ng-model="item.jumlahDarah" />
+            </div>
+            <div class="grid_12">
+                <c-button style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" click="Add">
+                    <span class="title">Tambah</span>
+                </c-button>
+            </div>
+
+            <div class="grid_12" style="margin-top: 10px;">
+                <div kendo-grid k-data-source="dataLabu" k-selectable="'row'" k-columns="columnPenerimaan">
+                </div>
+            </div>
+            <div ng-include='"../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+        </div>
+    </div>
+</div>

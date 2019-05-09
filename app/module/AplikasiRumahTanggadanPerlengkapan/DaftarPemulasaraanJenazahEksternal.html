@@ -1,0 +1,48 @@
+<div ng-show="dataVOloaded">
+    <c-panel item="item" header="'Daftar Pemulasaraan Jenazah (Eksternal)'">
+        <!-- Form Input -->
+        <div class="grid_12">
+            <div class="grid_7">
+                <div class="grid_6">
+                    <div class="grid_3" style="margin-top: 10px">
+                        <label c-label item="item">Periode Awal</label>
+                    </div>							
+                    <div class="grid_1" style="margin-top: 10px">
+                        <label c-label item="item">:</label>
+                    </div>
+                    <div class="grid_8">
+                        <input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAwal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"/>
+                    </div>	
+                </div>					
+                <div class="grid_6">
+                    <div class="grid_3" style="margin-top: 10px">
+                        <label c-label item="item">Periode Akhir</label>
+                    </div>							
+                    <div class="grid_1" style="margin-top: 10px">
+                        <label c-label item="item">:</label>
+                    </div>
+                    <div class="grid_8">
+                        <input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAkhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"/>
+                    </div>	
+                </div>
+            </div>
+            <div class="grid_5" style="margin-top: 12px;">
+                <div class="grid_2">
+                    <button class="c-button success" ng-click="Search()">
+                    <span>Cari</span>
+                    </div>
+                    <div class="grid_2">
+                    <button id="findAll" class="c-button success" ng-click="findAll()">
+                    <span>Reset</span>
+                </div>
+                <!-- <div class="grid_9"></div> -->
+            </div>
+            </div>
+        <!-- Form Daftar -->
+        <div class="panel panel-default container_12">
+            <div class="panel-body">
+                <div id="gridPemulasaraanEksternal" kendo-grid k-options="mainGridOptions" k-ng-model="current" ng-click="kl(current)"></div>
+            </div>
+        </div>
+    </c-panel>
+</div>

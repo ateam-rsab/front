@@ -1,0 +1,149 @@
+<div ng-controller="LoginUserCtrl">
+<div ng-show="dataVOloaded">
+<c-panel item="item" header="'Login User'" disabled>
+
+<!-- kataSandi -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kataSandi"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kataSandi" />
+</div>
+</div>
+
+<!-- kelompokUser -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kelompokUser"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.kelompokUser" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listkelompokUser" />
+</div>
+</div>
+
+<!-- kelompokUserId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kelompokUserId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kelompokUserId" />
+</div>
+</div>
+
+<!-- pegawai -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="pegawai"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listpegawai" />
+</div>
+</div>
+
+<!-- pegawaiId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="pegawaiId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.pegawaiId" />
+</div>
+</div>
+
+<!-- namaUser -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="namaUser"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaUser" />
+</div>
+</div>
+
+<!-- statusLogin -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="statusLogin"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.statusLogin" />
+</div>
+</div>
+
+<!-- reportDisplay -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="reportDisplay"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+</div>
+</div>
+
+<!-- kodeExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kodeExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+</div>
+</div>
+
+<!-- namaExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="namaExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+</div>
+</div>
+
+<!-- LoginUser -->
+<div class="grid_12">
+<div class="grid_12 headerBox">
+<p>LoginUser</p>
+</div>
+<div class="clear"></div>
+
+<!-- grid table -->
+<div class="grid_12 borderBox">
+<div kendo-grid k-data-source="dataLoginUser" k-selectable="'row'" k-columns="columnLoginUser">
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+
+
+</c-panel>
+
+<div class="grid_12" style="margin-top:30px">
+<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
+</div>
+</div>
+</div>

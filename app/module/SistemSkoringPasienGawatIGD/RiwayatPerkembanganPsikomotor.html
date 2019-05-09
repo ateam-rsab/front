@@ -1,0 +1,106 @@
+
+<div ng-controller="RiwayatPerkembanganPsikomotorCtrl">
+    <div ng-show="dataVOloaded">
+        <!-- panel Skrining Gizi -->
+
+        <c-panel item="item" header="title" disabled>
+
+            <div class="grid_1" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="tengkurap"></label>
+            </div>
+            <div class="grid_4">
+                <input c-text-box type="number" class="k-textbox" ng-model="item.tengkurap"/>
+            </div>
+            <div class="grid_1">
+                <label c-label item="item">bulan</label>
+            </div>
+            <div class="grid_1" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="tersenyum"></label>
+            </div>
+            <div class="grid_4">
+                <input c-text-box type="number" class="k-textbox" ng-model="item.tersenyum"/>
+            </div>
+            <div class="grid_1">
+                <label c-label item="item">bulan</label>
+            </div>
+            <div class="clear"></div>
+
+            <div class="grid_1" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="balikTerlentang"></label>
+            </div>
+            <div class="grid_4">
+                <input c-text-box type="number" class="k-textbox" ng-model="item.balikTerlentang"/>
+            </div>
+            <div class="grid_1">
+                <label c-label item="item">bulan</label>
+            </div>
+            <div class="grid_1" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="tertawaBersuara"></label>
+            </div>
+            <div class="grid_4">
+                <input c-text-box type="number" class="k-textbox" ng-model="item.tertawaBersuara"/>
+            </div>
+            <div class="grid_1">
+                <label c-label item="item">bulan</label>
+            </div>
+            <div class="clear"></div>
+            
+            <div class="grid_1" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="dudukMandiri"></label>
+            </div>
+            <div class="grid_4">
+                <input c-text-box type="number" class="k-textbox" ng-model="item.dudukMandiri"/>
+            </div>
+            <div class="grid_1">
+                <label c-label item="item">bulan</label>
+            </div>
+            <div class="grid_1" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="mapada"></label>
+            </div>
+            <div class="grid_4">
+                <input c-text-box type="number" class="k-textbox" ng-model="item.mapada"/>
+            </div>
+            <div class="grid_1">
+                <label c-label item="item">bulan</label>
+            </div>
+            <div class="clear"></div>
+
+            <div class="grid_1" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="berjalan"></label>
+            </div>
+            <div class="grid_4">
+                <input c-text-box type="number" class="k-textbox" ng-model="item.berjalan"/>
+            </div>
+            <div class="grid_1">
+                <label c-label item="item">bulan</label>
+            </div>
+            <div class="grid_1" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="meniruKata"></label>
+            </div>
+            <div class="grid_4">
+                <input c-text-box type="number" class="k-textbox" ng-model="item.meniruKata"/>
+            </div>
+            <div class="grid_1">
+                <label c-label item="item">bulan</label>
+            </div>
+            <div class="clear"></div>
+            
+            <div class="grid_1" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="bicaraBermakna"></label>
+            </div>
+            <div class="grid_4">
+                <input c-text-box type="number" class="k-textbox" ng-model="item.bicaraBermakna"/>
+            </div>
+            <div class="grid_1">
+                <label c-label item="item">bulan</label>
+            </div>
+            
+            <div class="grid_4" style="float:right">
+                    <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="add" >
+                        <span class="title">Simpan</span>
+                    </c-button>
+                </div>
+        </c-panel>
+    </div>
+
+</div>

@@ -1,0 +1,66 @@
+<div>
+    <div ng-show="dataVOloaded">
+        <!-- header absen pegawai -->
+        <c-panel item="item" header="'Fee For Service'" disabled>
+            <div class="panel-body">
+
+
+                <div class="grid_12 panel panel-default panel-white"> 
+                <div class="panel-body">
+                    <div class="grid_9">
+                        <div class="grid_2">
+                            <label><b>Periode</b></label>
+                            <input kendo-date-picker k-max ="now" k-ng-model="item.periodeFee" style="width: 100%" k-options="yearSelected"/>
+                        </div>
+                        <div class="grid_4">
+                            <label><b>Pegawai</b></label>
+                            <input kendo-combo-box k-ng-model="item.pegawai" k-data-value-field="'id'" k-data-text-field="'namaLengkap'" k-filter="'contains'" k-auto-bind="true" k-data-source="listPegawai" style="width:100%"/>
+                        </div>
+                        <div class="grid_1" style="margin-top:5px">
+                            <label c-label c-label-text=""></label>
+                            <button class="c-button"  ng-click="getFeeService()">Cari</button>
+                        </div>
+                        <div class="grid_2" style="margin-top:5px">
+                            <label c-label c-label-text=""></label>
+                            <button class="c-button"  ng-click="cetakDaftarLogBookKinerjaFFS()">Cetak Daftar</button>
+                        </div>
+                          <div class="grid_3 " style="margin-top:5px">
+                            <label c-label c-label-text=""></label>
+                            <button class="c-button"  ng-click="cetakDaftarLogBookKinerjaRekapWithPasienFFs()">Cetak Rekap Rekapitulasi Kinerja dan Detail Pasien</button>
+                        </div> 
+                    </div>
+
+                    <div class="grid_2 pull-right" style="text-align:right;font-style:italic">
+                        <label c-label>Total Capaian:</label>
+                        <input c-text-box type="input" placeholder="0,00" filter="'varchar'" class="k-textbox label-total" ng-model="gridOrderService" style="text-align:right" disabled/>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <!-- grid tindakan pegawai -->
+                    <div class="grid_12" style="margin: 10px 0 50px;">
+                        <!-- <div kendo-grid id="gridLogKinerja" k-data-source="dataSource" k-options="mainGridOption"></div> -->
+                        <div kendo-grid id="gridOrderService" k-options="gridFeeService"></div>
+                    </div>
+
+                   
+                </div>
+            </div>
+        </c-panel>
+        
+    </div>
+</div>
+<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+<div kendo-window="winDialog" k-title="'Detil Logbook Pegawai'" k-width="1100" k-visible="false" >
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="grid_6">
+                <label c-label item="item" c-label-text="Nama"></label>
+                <input c-text-box type="input" class="k-textbox" ng-model="item.pegawai.namaLengkap" readonly />
+            </div>
+            <div class="clearfix"></div>
+            <div class="grid_12" style="margin:20px 0 20px">
+                <div kendo-grid="gridDetil" k-data-source="dataDetil" options="detilGridOptions"></div>
+            </div>
+        </div>
+    </div>
+</div>

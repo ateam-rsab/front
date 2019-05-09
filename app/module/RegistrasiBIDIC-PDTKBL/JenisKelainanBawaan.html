@@ -1,0 +1,64 @@
+<div ng-controller="JenisKelainanBawaanCtrl">
+
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Jenis Kelainan Bawaan'">
+            <div class="panel-body">
+                <div class="grid_12" style="margin-bottom: 10px">
+                    <div class="grid_6">
+                        <div class="grid_12">
+                            <div class="grid_4">
+                                <label c-label item="item" c-label-text="Diagnosis"></label>
+                            </div>
+                            <div class="grid_8">
+                                <input style="width: 100%;" kendo-combo-box k-ng-model="item.Diagnosis" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListDiagnosisKelainanBawaan" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_6">
+                        <div class="grid_5" ng-repeat="stat in ListDiagnosis">
+                            <input type="radio" name="{{'Diagnosis_2' + stat.name}}" id="{{'Diagnosis_2' + stat.name}}" class="k-radio" ng-model="item.Diagnosis_2" value="{{stat.name}}">
+                            <label class="k-radio-label" for="{{'Diagnosis_2' + stat.name}}">{{stat.name}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_6">
+                        <div class="grid_12">
+                            <div class="grid_6">
+                                <input style="width: 100%;" kendo-combo-box k-ng-model="item.ComboBox_1" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListCombo2" />
+                            </div>
+                            <div class="grid_6">
+                                <div class="grid_4" ng-repeat="stat in ListPastiBanding">
+                                    <input type="radio" name="{{'PastiBanding' + stat.name}}" id="{{'PastiBanding' + stat.name}}" class="k-radio" ng-model="item.PastiBanding" value="{{stat.name}}">
+                                    <label class="k-radio-label" for="{{'PastiBanding' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- button -->
+        <div class="grid_12" style="margin-top:20px">
+            <div class="grid_6">
+            </div>
+            <div class="grid_3">
+                <c-button ng-click="addJenisKelainanBawaan()" style="width:100% !important">
+                <span style="font-size:10!important">Tambah</span>
+                </c-button>
+            </div>
+            <div class="grid_3">
+                <c-button ng-click="" style="width:100% !important">
+                <span style="font-size:10!important">Batal</span>
+                </c-button>
+            </div>
+        </div>
+            <div class="grid_12" style="margin-top: 10px;">
+               <div kendo-grid k-data-source="dataJenisKelainanBawaan" k-selectable="'row'" k-columns="columnJenisKelainanBawaan">
+                </div>
+            </div>
+        </c-panel>
+        <div class="grid_12" style="margin-top:10px">
+                    <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+            </div>
+    </div>
+</div>

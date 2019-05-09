@@ -1,0 +1,37 @@
+[{
+    "title": "Keadaan Umum Pasien",
+    "children": [{
+        "name": "Kesadaran",
+        "list": [{
+            "id": 1,
+            "name": "Sadar Penuh"
+        }, {
+            "id": 2,
+            "name": "Tidur"
+        }, {
+            "id": 3,
+            "name": "Menga"
+        }]
+    }]
+}, {
+    "title": "Kelengkapan",
+    "children": [{
+        "name": "Status Pasien",
+        "list": [{
+            "id": 1,
+            "name": "Ya"
+        }, {
+            "id": 2,
+            "name": "Tidak"
+        }]
+    }, {
+        "name": "Foto Radiologi",
+        "list": [{
+            "id": 1,
+            "name": "Ya"
+        }, {
+            "id": 2,
+            "name": "Tidak"
+        }]
+    }]
+}]

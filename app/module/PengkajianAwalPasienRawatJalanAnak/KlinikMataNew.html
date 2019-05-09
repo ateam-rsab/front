@@ -1,0 +1,327 @@
+<div class="container_12">
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Kedudukan Bola Mata'" disabled>
+            <div class='grid_12'>
+                <div class="grid_6">
+                    <button class='btnShowNormalTidakNormal' ng-click='changeStat("Normal")' style='position:relative' ng-style="{'background-color': warna.normal}">
+                        <div class="grid_6">
+                            <img class="normalTidakNormal" src="stylesheets/eye-os-kiri.jpg" style="width:500px; height:250px;">
+                        </div>
+                        <div class="grid_6" style="margin-left:-2%">
+                            <div ng-repeat="stat in listKacamataOD | orderBy:'id'">
+                                <div class="grid_4">
+                                    <input id="stat.id" type="checkbox" ng-change="cekKacaMata(bool, stat)" ng-model="bool" ng-checked="isChecked(stat.id)" ng-hide="stat.name==='hide'">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_12">
+                            <span class="normalTidakNormal">OD</span>
+                        </div>
+                    </button>
+                </div>
+                <div class="grid_6">
+                    <button class='btnShowNormalTidakNormal' ng-click='changeStat("TidakNormal")' style='position:relative' ng-style="{'background-color': warna.tidakNormal}">
+                        <div class="grid_6">
+                            <img class="normalTidakNormal" src="stylesheets/eye-os.jpg" style="width:500px; height:250px;">
+                        </div>
+                        <div class="grid_6" style="margin-left:-53%">
+                            <div ng-repeat="stat in listKacamataOS | orderBy:'id'">
+                                <div class="grid_4">
+                                    <input id="stat.id" type="checkbox" ng-change="cekKacaMata(bool, stat)" ng-model="bool" ng-checked="isChecked(stat.id)" ng-hide="stat.name==='hide'">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_12">
+                            <span class="normalTidakNormal">OS</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            <hr class="pembatas"/>
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="KedudukanMata" class="c-label kapital rataTengah"></label>
+                <div clas="grid_12" style="padding: 5px !important">
+                    <textarea ng-model="item.kedudukanMataOD" style="width: 99%;"></textarea>
+                </div>
+            </div>
+            <hr class="pembatas"/>
+            <div class="grid_12">
+                <div class="grid_4">
+                    <textarea ng-model="item.gerakMataOD" style="width: 99%;"></textarea>
+                </div>
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="gerakMata" class="kapital rataTengah label-komponen"></label>
+                </div>
+                <div class="grid_4">
+                    <textarea ng-model="item.gerakMataOS" style="width: 99%;"></textarea>
+                </div>
+            </div>
+            <hr class="pembatas"/>
+            <div class="grid_12">
+				<label c-label item="item" c-label-text="KategoriMata" class="kapital rataTengah tebal"></label>
+                <hr class="pembatas"/>
+                <div class="grid_12" ng-repeat="list in listKomponenUtama | orderBy: 'id'">
+                    <div class="grid_4">
+                        <textarea ng-model="list.keteranganOD" style="width: 99%;"></textarea>
+                    </div>
+                    <div class="grid_4">
+                        <label c-label item="item" c-label-text="{{list.kategoriName}}" class="kapital rataTengah label-komponen"></label>
+                    </div>
+                    <div class="grid_4">
+                        <textarea ng-model="list.keteranganOS" style="width: 99%;"></textarea>
+                    </div>
+                </div>
+                <!--<div class="grid_4">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="KategoriMata" class="kapital"></label>
+					</div>
+					<div class="grid_12">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.kategoriMata" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-data-source="listKategoriMata" />
+					</div>
+				</div>-->
+            </div>
+            <!--<div class="grid_12">
+                <div class="grid_8">
+					<div class="grid_12">
+						<textarea placeholder="Keterangan" ng-model="item.ktrngKategoriMata" style="width: 99%;" row="4"></textarea>
+					</div>
+                </div>
+            </div>-->
+            <!--<div class="grid_12">
+                <div class="grid_4" style="margin-top: 10px;">
+                    <c-button ng-click="addKategori()" style="width: 10px; align-content: center; align-items: center; align:center">
+                        <center><span style="font-size:10!important;">Tambah</span></center>
+                    </c-button>
+                </div>
+            </div>-->
+
+            <!--<div class="grid_12" style="margin-top: 10px;">
+                <div id="grid" kendo-grid k-data-source="dataKategoriMata" k-selectable="'row'" k-columns="columnDataKategoriMata">
+                </div>
+            </div>-->
+            <hr class="pembatas"/>
+
+            <div class="container_12">
+                <div class="grid_4">
+                    <div class="grid_12 spasi10">
+                        <label c-label item="item" c-label-text="Visus" class="c-label kapital"></label>
+                    </div>
+                    <div class="grid_12 spasi10" >
+                        <textarea placeholder="OD" ng-model="item.visusOD" row="2"></textarea>
+                    </div>
+                    <div class="grid_12 spasi10">
+                        <textarea placeholder="OS" ng-model="item.visusOS" row="2"></textarea>
+                    </div>
+                </div>
+                <div class="grid_4">
+                    <div class="grid_12 spasi10">
+                        <label c-label item="item" c-label-text="koreksi" class="c-label kapital"></label>
+                    </div>
+                    <div class="grid_12 spasi10" >
+                        <textarea placeholder="OD" ng-model="item.koreksiOD" row="2"></textarea>
+                    </div>
+                    <div class="grid_12 spasi10">
+                        <textarea placeholder="OS" ng-model="item.koreksiOS" row="2"></textarea>
+                    </div>
+                    <div class="grid_12 spasi10">
+                        <textarea placeholder="BACA" ng-model="item.koreksiBaca" row="2"></textarea>
+                    </div>
+                </div>
+                <div class="grid_4">
+                    <div class="grid_12 spasi10">
+                        <label c-label item="item" c-label-text="kacamataLama" class="c-label kapital"></label>
+                    </div>
+                    <div class="grid_12 spasi10" >
+                        <textarea placeholder="OD" ng-model="item.kacamataLamaOD" row="2"></textarea>
+                    </div>
+                    <div class="grid_12 spasi10">
+                        <textarea placeholder="OS" ng-model="item.kacamataLamaOS" row="2"></textarea>
+                    </div>
+                    <div class="grid_12 spasi10">
+                        <textarea placeholder="BACA" ng-model="item.kacamataLamaBaca" row="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <hr class="pembatas"/>
+            <div class="grid_12">
+                <div class="grid_4">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="streak" class="kapital"></label>
+					</div>
+					<div class="grid_12 spasi10">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.streakMata" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-data-source="listStreakMata" />
+					</div>
+					<div class="grid_12 spasi10">
+						<textarea placeholder="Keterangan Streak Mata" ng-model="item.keteranganStreak" rows="4"></textarea>
+					</div>
+				</div>
+                <div class="grid_4">
+					<div class="grid_12 spasi10">
+						<label c-label item="item" c-label-text="tonometri" class="kapital"></label>
+					</div>
+					<div class="grid_12 spasi10">
+						<textarea placeholder="OD" ng-model="item.tonometriOD" rows="2"></textarea>
+					</div>
+					<div class="grid_12 spasi10">
+						<textarea placeholder="OS" ng-model="item.tonometriOS" rows="2"></textarea>
+					</div>
+				</div>
+                <div class="grid_4">
+					<div class="grid_12 spasi10">
+						<label c-label item="item" c-label-text="aplanasi" class="kapital"></label>
+					</div>
+					<div class="grid_12 spasi10">
+						<textarea placeholder="OD" ng-model="item.aplanasiOD" rows="2"></textarea>
+					</div>
+					<div class="grid_12 spasi10">
+						<textarea placeholder="OS" ng-model="item.aplanasiOS" rows="2"></textarea>
+					</div>
+				</div>
+            </div>
+            <hr class="pembatas"/>
+            <div class="grid_12">
+                <div class="grid_6">
+					<div class="grid_12 spasi10">
+						<label c-label item="item" c-label-text="anel" class="kapital"></label>
+					</div>
+					<div class="grid_8 spasi10">
+						<textarea placeholder="OD" ng-model="item.anelOD" rows="2"></textarea>
+					</div>
+					<div class="grid_8 spasi10">
+						<textarea placeholder="OS" ng-model="item.anelOS" rows="2"></textarea>
+					</div>
+				</div>
+                <div class="grid_6">
+                    <div class="grid_12">
+                        <div class="grid_4">
+                            <label c-label item="item" c-label-text="sistemLacrimal" class="kapital"></label>
+                        </div>
+                        <div class="grid_8">
+                            <textarea placeholder="Keterangan" ng-model="item.sistemLacrimal" style="width: 99%;" row="2"></textarea>
+                        </div>
+					</div>
+                    <div class="grid_12">
+                        <div class="grid_4">
+                            <label c-label item="item" c-label-text="diagnosaKlinik" class="kapital"></label>
+                        </div>
+                        <div class="grid_8">
+                            <textarea placeholder="Keterangan" ng-model="item.diagnosaKlinik" style="width: 99%;" row="2"></textarea>
+                        </div>
+					</div>
+                    <!-- Di tiadakan sesuai permintaan user klinik mata (rekomendasi Samuel 2017-08-23)
+                        <div class="grid_12">
+                        <div class="grid_4">
+                            <label c-label item="item" c-label-text="kodePenyakit" class="kapital"></label>
+                        </div>
+                        <div class="grid_8">
+                            <textarea placeholder="Keterangan" ng-model="item.kodePenyakit" style="width: 99%;" row="2"></textarea>
+                        </div>
+					</div>-->
+				</div>
+            </div>
+            <hr class="pembatas"/>
+            <div class="grid_12">
+                <div class="grid_6">
+					<div class="grid_12 spasi10">
+						<label c-label item="item" c-label-text="pengobatanPoliklinik" class="kapital"></label>
+					</div>
+					<div class="grid_12 spasi10">
+						<textarea placeholder="Keterangan" ng-model="item.pengobatanPoliklinik" rows="3"></textarea>
+					</div>
+				</div>
+                <div class="grid_6">
+					<div class="grid_12 spasi10">
+						<label c-label item="item" c-label-text="pengobatanDirumah" class="kapital"></label>
+					</div>
+					<div class="grid_12 spasi10">
+						<textarea placeholder="Keterangan" ng-model="item.pengobatanDiRumah" rows="3"></textarea>
+					</div>
+				</div>
+            </div>
+        </c-panel>
+        <c-panel item="item" header="'Laboratorium'">
+            <div class="grid_12">
+                <div class="grid_7"></div>
+                <div class="grid_5">
+                    <div class="grid_3">Cari</div>
+                    <div class="grid_9"><input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.TekananDarah" /></div>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div kendo-grid k-data-source="dataLaboratorium" k-selectable="'row'" k-columns="columnDataLaboratorium">
+                </div>
+            </div>
+        </c-panel>
+        
+        <hr class="pembatas"/>
+        <div class="grid_12">
+            <div class="grid_6">
+                <div class="grid_12 spasi10">
+                    <label c-label item="item" c-label-text="dokterPoliklinik" class="kapital"></label>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4 spasi10">
+                        <label c-label item="item" c-label-text="nama" class="kapital"></label>
+                    </div>
+                    <div class="grid_8">
+                        <label c-label item="item">{{item.dokterPoliklinik}}</label>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label item="item" c-label-text="tandaTangan:" class="kapital"></label>
+                    </div>
+                    <div class="grid_8">
+                        <!--<label c-label item="item" c-label-text="item.dokterPoliklinik" class="kapital"></label>-->
+                    </div>
+                </div>
+            </div>
+            <div class="grid_6">
+                <div class="grid_12 spasi10">
+                    <label c-label item="item" c-label-text="dokterKonsulen" class="kapital"></label>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4 spasi10">
+                        <label c-label item="item" c-label-text="nama:" class="kapital"></label>
+                    </div>
+                    <div class="grid_8">
+                        <label c-label item="item">{{item.dokterPoliklinik}}</label>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label item="item" c-label-text="tandaTangan:" class="kapital"></label>
+                    </div>
+                    <div class="grid_8">
+                        <!--<label c-label item="item" c-label-text="item.dokterPoliklinik" class="kapital"></label>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+</div>
+<style type="text/css">
+    .pembatas {
+        background-color:#10C4B2;
+        height: 1px; border: 0;
+        margin-top:10px; margin-bottom:10px
+    }
+    .spasi10 {
+        margin-bottom: 10px !important;
+    }
+    .kapital {
+        text-transform: uppercase;
+    }
+    .rataTengah {
+        text-align: center;
+    }
+    .label-komponen {
+        padding-top: 1.5%;
+        font-size: 95%;
+    }
+    .tebal {
+        font-size: 120%;
+        font-weight: 700;
+    }
+</style>

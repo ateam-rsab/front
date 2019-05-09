@@ -1,0 +1,12 @@
+[
+	{ "id": "1", "name": "tidak ada kelainan"},
+	{ "id": "2", "name": "eritroplakia"},
+	{ "id": "3", "name": "leukoplakia"},
+	{ "id": "4", "name": "fluor albus"},
+	{ "id": "5", "name": "perdarahan sentuh"},
+	{ "id": "6", "name": "perdarahan abnormal"},
+	{ "id": "7", "name": "servisitis"},
+	{ "id": "8", "name": "lesi mencurigakan"}
+	
+
+]

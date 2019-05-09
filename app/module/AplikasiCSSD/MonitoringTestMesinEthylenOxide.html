@@ -1,0 +1,171 @@
+<style>
+    .error{
+        background-color:white !important;
+    }
+    .yellow{
+        background-color:#ffff00
+    }
+     .green{
+        background-color:#00ff40
+    }
+      .red{
+        background-color:#FF0000
+    }
+    .k-grid  .k-grid-header  .k-header  .k-link {
+     height: auto;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     white-space: normal;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     text-align: center;
+    }
+/*     .k-header .k-link{
+    text-align: center;
+     }*/
+</style>
+<div ng-controller="MonitoringTestMesinEthylenOxideCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Monitoring Test Mesin Ethylen Oxide Dengan Biological'">
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Tanggal Mulai Ingkubasi</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.tglMulai" data-k-format="'yyyy-MM-dd'"/>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Tanggal Selesai Inkubasi</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.tglSelesai" data-k-format="'yyyy-MM-dd'"/>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Jam Mulai</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%" kendo-time-picker k-ng-model="item.jamMulai" placeholer="HH:mm" k-format="'HH:mm'"/>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Jam Selesai</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%" kendo-time-picker k-ng-model="item.jamSelesai" placeholer="HH:mm" k-format="'HH:mm'"/>
+				</div>
+			</div>
+			<div class="grid_6">
+				<div class="grid_12">
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Pemeriksaan Setelah 24 Jam</label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.pemeriksaan"/>
+				</div>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">petugas</label>
+				</div>
+				<div class="grid_8">
+					<!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.petugas" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPetugas" /> -->
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.petugas" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="true" k-data-source="dataMasterPetugas"  />
+				</div>
+			 <div class="grid_12">
+				<div class="grid_6"></div>
+				<div class="grid_6">
+					<div class="grid_2"></div>
+					<div class="grid_5">
+						<button class="c-button success" ng-click="Save()">Simpan</button>
+					</div>
+					<div class="grid_5">
+						<button class="c-button cancel" ng-click="batal()">Batal</button>
+					</div>
+				</div>
+			</div>
+			</div>
+
+		<c-panel item="item" header="'Daftar Monitoring Test Mesin Ethylen Oxide Dengan Biological'">
+		    <div class="grid_12" style="margin-top: 10px">
+		    <div class="grid_10">
+				<div class="grid_1" style="margin-top: 10px">
+					<label c-label item="item" c-label-text="periode"></label>
+				</div>
+				<div class="grid_1" align="right"  style="margin-top: 10px">
+					<label c-label item="item" c-label-text=":"></label>
+				</div>
+				<div class="grid_2">
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.awal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" k-on-change="ChangeDat()"  />
+				</div>
+				<div class="grid_1" align="center" style="margin-top: 10px">
+						<label c-label item="item">s/d</label>
+				</div>
+				<div class="grid_2">
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.akhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" k-on-change="ChangeDat()"/>
+				</div>
+			  </div>
+	        </div>
+			<div class="grid_12">
+				<div class="grid_10" style="margin-top: 10px">
+					  <div class="grid_1" style="margin-top: 10px">
+						 <label c-label item="item" c-label-text="Pencarian"></label>
+					  </div>
+					<div class="grid_1" align="right"  style="margin-top: 10px">
+						<label c-label item="item" c-label-text=":"></label>
+					</div>
+					<div class="grid_5">
+					 	<input class=k-textbox type=text ng-model="item.pencarian" placeholder="Petugas / Pemeriksaan" />
+					</div>
+					<div class="grid_1" style="margin-top: 5px">
+						<button class="c-button success" ng-click="init(item.pencarian)">Cari</button>
+					</div>
+					<div class="grid_1" style="margin-top: 5px">
+						<button class="c-button cancel" ng-click="ClearCari()">Clear</button>
+					</div>
+					<div class="grid_1" style="margin-top: 5px">
+						<button class="c-button success" ng-click="Refresh()">Refresh</button>
+					</div>
+				</div>
+			</div>
+			<div class="grid_12 borderBox">
+				<div id="grid" kendo-grid 
+				k-data-source="dataSource" 
+				k-options="mainGridOptions"
+				k-selectable="'row'" 
+				k-columns="columnTesAlat"
+				k-sortable="'true'"
+			    k-pageable="true"
+				k-ng-model="dataSelected"
+				ng-dblclick="klik(dataSelected)">
+				</div>
+			</div>
+		 </c-panel>
+		</c-panel>
+	</div>
+</div>
+
+<!--<div class="grid_12">
+<div class="grid_2"></div>
+<div class="grid_2"></div>
+<div class="grid_2"></div>
+<div class="grid_2"></div>
+<div class="grid_2">
+<button class="c-button" ng-click="simpan()">Simpan</button>
+</div>
+<div class="grid_2">
+<button class="c-button" ng-click="batal()">Batal</button>
+</div>
+</div> -->
+
+<!-- 			<div class="grid_12">
+				<div class="grid_2"></div>
+				<div class="grid_2"></div>
+				<div class="grid_2"></div>
+				<div class="grid_2"></div>
+				<div class="grid_4">
+					<button class="c-button" ng-click="tambah()">Tambah</button>
+				</div>
+			</div> -->
+<!-- 			<div class="grid_12">
+				<kendo-grid options="gridMonitoringTestMesin" k-scrollable = "false" k-data-source="dataSource"></kendo-grid>
+			</div> -->

@@ -1,0 +1,52 @@
+<div ng-controller="DaftarPasienRuanganCtrl">
+    <div ng-show="dataVOloaded">
+        <div class="grid_12">
+            <div class="grid_6">
+            </div>
+            <div class="grid_5">
+                <div class="grid_12">
+                    <label c-label c-label-text="tglMasuk"></label>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_6">
+                        <input style="width: 100%" kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                    </div>
+                    <div class="grid_6">
+                        <input style="width: 100%" kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                    </div>
+                </div>
+            </div>
+            <div class="grid_1">
+
+            </div>
+        </div>
+
+        <c-panel item='item' header="'DaftarPasienRuangan'" disabled>
+            <div class="grid_12">
+                <kendo-grid k-data-source="listDataPekerjaan" k-height="'500'" k-sortable="'true'" k-pageable="Page" k-columns="Column"></kendo-grid>
+            </div>
+        </c-panel>
+        <div class="grid_12">
+            <div class="grid_3">
+                <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" is-validate click="KirimData">
+                    <span class="title">Batal Periksa</span>
+                </c-button>
+            </div>
+            <div class="grid_3">
+                <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" is-validate click="Lanjutkan">
+                    <span class="title">Order Rawat Inap</span>
+                </c-button>
+            </div>
+            <div class="grid_3">
+                <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" is-validate click="RegistrasiMasukRuangan">
+                    <span class="title">Keluar Kamar</span>
+                </c-button>
+            </div>
+            <div class="grid_3">
+                <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" is-validate click="RegistrasiMasukRuangan">
+                    <span class="title">Pelayanan Pasien</span>
+                </c-button>
+            </div>
+        </div>
+    </div>
+</div>

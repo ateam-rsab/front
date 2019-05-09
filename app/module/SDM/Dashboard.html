@@ -1,0 +1,22 @@
+<div class="DashboardCtrl">
+    <div class="grid_12">
+        <div class="grid_6">
+            <div class="list-item grid_6" style="border: 1px solid black;" class="md-1-line" ng-repeat="data in items" ng-click='selected(data)' ng-style="data.myStyle">
+                <div class="md-list-item-text" layout="column">
+                    <span style="display:block">{{ data.pegawai.namaLengkap  }}</span>
+                    <span style="display:block">{{ data.keterangan   }}</span>
+                    <span style="display:iblock;font-size:70%;"><b>{{ data.tanggalKejadian }}</b></span>
+
+                </div>
+            </div>
+        </div>
+        <div class="grid_6">
+            <div class="panel panel-default panel-white">
+                <div class="panel-heading-white"><span class="title" c-translate>Dashboard</span></div>
+                <div class="panel-body">
+                    <div kendo-chart k-legend="{ position: 'bottom' }" k-series-defaults="{ type: 'area' }" k-series="series" k-data-source="dashboardItems" style="height: 250px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

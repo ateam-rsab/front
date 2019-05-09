@@ -1,0 +1,22 @@
+{
+	"model":{
+		"tindakLanjut" : "",
+		"namaPT":""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "tindakLanjut",
+			"messagesRequired" : "",
+			"caption" : "Tindak Lanjut"
+		},{
+			"isNull" : "true",
+			"name" : "namaPT",
+			"messagesRequired" : "",
+			"caption" : "Nama PT"
+		}
+
+	]
+}

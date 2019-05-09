@@ -1,0 +1,79 @@
+<div ng-show="dataVOloaded">
+	<c-panel item="item" header="title" disabled>
+		<div class="grid_12">
+			<div class="grid_5"></div>
+			<div class="grid_7">
+				<c-panel item="item" header="'Periode'" disabled>
+					<div class="grid_2" style="margin:5px">
+						<button class="c-button" ng-click="search()">Cari</button>
+					</div>
+					<div class="grid_4">
+						<input style="width:100%" kendo-date-picker value="now" k-ng-model="item.awal" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'"/>
+					</div>
+					<div class="grid_1" align="center" style="margin-top:10px">
+						<label c-label item="item" c-label-text="Sd"></label>
+					</div>
+					<div class="grid_4">
+						<input style="width:100%" kendo-date-picker value="now" k-ng-model="item.akhir" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'"/>
+					</div>
+				</c-panel>
+			</div>
+		</div>
+		<div class="grid_12" style="margin-top: 10px;">
+			<div kendo-grid k-data-source="sourceDaftarSuratMasuk" k-selectable="'row'" k-columns="columnSuratMasuk" k-ng-model="current" ng-click="klik(current.noRec)">
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_4"  style="padding-top:50px">
+				<c-panel item="item" header="'Cari Data'" disabled>
+					<label c-label item="item" c-label-text="No Terima / Pengirim Surat"></label>
+					<input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.noTerima"/>
+				</c-panel>
+			</div>
+			<div class="grid_1"></div>
+			<div class="grid_7" style="padding-top:50px">
+				<div class="grid_12">
+					<div class="grid_1"></div>
+					<!-- <div class="grid_3" style="margin:5px">
+						<button class="c-button" ng-click="Search()">Disposisi</button>
+					</div> -->
+					<div class="grid_3" style="margin:5px">
+						<button class="c-button" ng-click="Search()">Hapus</button>
+					</div>
+					<div class="grid_3" style="margin:5px">
+						<button class="c-button" ng-click="Search()">Tutup</button>
+					</div>
+					<div class="grid_3" style="margin:5px">
+						<button class="c-button" ng-click="Search()">Files</button>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_1"></div>
+					
+					<div class="grid_3" style="margin:5px">
+						<button class="c-button" ng-click="Search()">Edit Surat</button>
+					</div>
+					<div class="grid_3" style="margin:5px">
+						<button class="c-button" ng-click="Search()">Kirim Surat</button>
+					</div>
+					<div class="grid_4" style="margin:5px">
+						<button class="c-button" ng-click="Search()">Cetak Pengantar Surat</button>
+					</div>
+				</div>
+				<!-- <div class="grid_12">
+					<div class="grid_2"></div>
+					
+					<div class="grid_4" style="margin:5px">
+						<button class="c-button" ng-click="Search()">Telaah Surat</button>
+					</div>
+				</div> -->
+				<div class="grid_12">
+					<div class="grid_1"></div>
+					<div class="grid_7" style="margin:5px">
+						<button class="c-button" ng-click="navToDistribusiSurat(current)">Distribusi Kirim Surat Masuk External/ Internal</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</c-panel>
+</div>

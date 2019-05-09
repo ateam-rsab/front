@@ -1,0 +1,49 @@
+<div ng-controller="NilaiNilaiCtrl">
+    <div ng-show="dataVOloaded">
+
+        <!-- panel utama -->
+
+
+        <c-normal-tidak-normal is-show-form="isShowForm" selanjutnya="selanjutnya">
+        </c-normal-tidak-normal>
+
+        <div ng-show="isShowForm">
+
+            <c-panel item="item" header="'Nilai-nilai'" disabled>
+                <div class="panel-body">
+                    <div class="grid_12">
+                        <div style="background-color: #10C4B2; height: 25px; margin-top: 5px; text-align: left; border: 1px solid; border-color: #10C4B2;" class="grid_12">
+                            <span style="font-size: 18px; color: white; padding: 5px;">Apa keputusan pasien dalam mengatasi penyakit ?</span>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+                            <div style="margin-left: 15px;" class="grid_3" ng-repeat="status in listStatusMengatasiPenyakit">
+                                <input type="radio" name="{{'HarapanPasien' + status.name}}" id="{{'HarapanPasien' + status.name}}" class="k-radio" ng-model="item.MengatasiPenyakit" ng-value="status">
+                                <label class="k-radio-label" for="{{'HarapanPasien' + status.name}}">{{status.name}}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid_12">
+                        <div style="background-color: #10C4B2; height: 25px; margin-top: 5px; text-align: left; border: 1px solid; border-color: #10C4B2;" class="grid_12">
+                            <span style="font-size: 18px; color: white; padding: 5px;">Apa harapan pasien terhadap penyakit nya ?</span>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+                            <div style="margin-left: 15px;" class="grid_3" ng-repeat="status in listStatusHarapanPasien">
+                                <input type="radio" name="{{'HarapanPasien' + status.name}}" id="{{'HarapanPasien' + status.name}}" class="k-radio" ng-model="item.TanyaHarapanPasien" ng-value="status">
+                                <label class="k-radio-label" for="{{'HarapanPasien' + status.name}}">{{status.name}}</label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </c-panel>
+
+            <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+
+        </div>
+
+    </div>
+</div>

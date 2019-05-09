@@ -1,0 +1,70 @@
+{
+	"model":{
+		"jenisPemakaian" : "",
+		"ruangan":"",
+		"periode":"",
+		"jumlahMeterAwal":"",
+		"jumlahMeterAkhir":"",
+		"jumlahKgAwal":"",
+		"jumlahKgAkhir":"",
+		"jumlahPemakaian":"",
+		"satuan":"",
+		"biayaPerBulan":""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "jenisPemakaian",
+			"messagesRequired" : "",
+			"caption" : "Jenis Pemakaian"
+		},{
+			"isNull" : "true",
+			"name" : "ruangan",
+			"messagesRequired" : "",
+			"caption" : "Ruangan"
+		},{
+			"isNull" : "true",
+			"name" : "periode",
+			"messagesRequired" : "",
+			"caption" : "Periode"
+		},{
+			"isNull" : "true",
+			"name" : "jumlahMeterAwal",
+			"messagesRequired" : "",
+			"caption" : "Jumlah Meter Awal"
+		},{
+			"isNull" : "true",
+			"name" : "jumlahMeterAkhir",
+			"messagesRequired" : "",
+			"caption" : "Jumlah Meter Akhir"
+		},{
+			"isNull" : "true",
+			"name" : "jumlahKgAwal",
+			"messagesRequired" : "",
+			"caption" : "Jumlah Kg Awal"
+		},{
+			"isNull" : "true",
+			"name" : "jumlahKgAkhir",
+			"messagesRequired" : "",
+			"caption" : "Jumlah Kg Akhir"
+		},{
+			"isNull" : "true",
+			"name" : "jumlahPemakaian",
+			"messagesRequired" : "",
+			"caption" : "Jumlah Pemakaian"
+		},{
+			"isNull" : "true",
+			"name" : "satuan",
+			"messagesRequired" : "",
+			"caption" : "Satuan"
+		},{
+			"isNull" : "true",
+			"name" : "biayaPerBulan",
+			"messagesRequired" : "",
+			"caption" : "Biaya/Bulan"
+		}
+
+	]
+}

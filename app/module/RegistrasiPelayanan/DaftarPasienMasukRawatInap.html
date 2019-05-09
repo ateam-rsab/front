@@ -1,0 +1,54 @@
+<div>
+    <div ng-show="dataVOloaded">
+        <div class="panel panel-default panel-white">
+            <div class="panel-heading-white"><span class="title" c-translate>Parameter Pencarian</span></div>
+            <div class="panel-body">
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label c-label-text="tanggalRegistrasi"></label>
+                        <div class="grid_6">
+                            <input style="width: 100%" k-ng-model='from' k-value='now' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                        </div>
+                        <div class="grid_6">
+                            <input style="width: 100%" k-ng-model='until' k-value='now' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                        </div>
+                    </div>
+                    <div class="grid_8">
+                         <div class="grid_4">
+                            <label c-label c-label-text="namaPasien" real></label>
+                            <input c-text-box type="input" filter="'contain'" class="k-textbox" ng-model="item.namaPasien" />
+                        </div>
+                        <div class="grid_3">
+                            <label c-label c-label-text="Kelas"></label>
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.kelas" k-data-text-field="'namaKelas'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKelas" />
+                        </div>
+                        <div class="grid_4">
+                            <label c-label c-label-text="Ruangan"></label>
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+                        </div>
+                        <div class="grid_1">
+                            <label c-label c-label-text=""></label>
+                            <em style="margin-top: 6px;" ng-click='findData()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default panel-white">
+            <div class="panel-heading-white"><span class="title" c-translate>{{title}}</span></div>
+            <div class="panel-body">
+                <div class="grid_12" style="margin-bottom:5px">
+                    <kendo-grid k-ng-model="data" options='mainGridOptions' k-data-source="listDaftar" k-selectable="'row'" k-sortable="'true'" k-columns="columnDaftar"></kendo-grid>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="grid_12 place_button">
+            <div class="grid_3 " style="float:right;margin-right:23px;">
+                <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="masuk">
+                    <span class="title">Masuk</span>
+                </c-button>
+            </div>
+        </div>
+    </div>
+</div>

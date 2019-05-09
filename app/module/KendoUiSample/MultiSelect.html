@@ -1,0 +1,50 @@
+<div class="grid_12 headerBox">
+	<h1 style="color: white;"><b>kendo Multi Select</b></h1>
+</div>
+<div class="clear"></div>
+
+<br/>
+
+
+<!-- Kriteria -->
+<div class="grid_12">
+	<div class="grid_12 borderBox containerBorderBox">
+
+		<!-- Ruangan -->
+		<div class="grid_6">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="Daftar Hobi"></label>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_12">
+				<select 
+					kendo-multi-select 
+					k-data-source="listHobi"
+					k-data-text-field="'namaExternal'" 
+					k-data-value-field="'id'" 
+					k-ng-model="selectedHobi"
+					
+					\>
+				</select>
+
+				<br/>
+				<span> Data </span>
+				<br/>
+				{{selectedHobi}}
+			</div>
+		</div>
+
+
+	</div>
+</div>
+<div class="clear"></div>
+
+<br/>
+
+<div class="grid_12" style="margin-top:30px">
+		<div ng-include='"../app/module/Shared/KendoUiSample/TemplateButton"'></div>
+	</div>
+
+</div>
+

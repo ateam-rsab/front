@@ -1,0 +1,38 @@
+<div ng-controller="InformasiDistribusiSuratCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" disabled>
+			<div class="grid_12">
+				<div class="grid_5"></div>
+				<div class="grid_7">
+					<c-panel item="item" header="'Periode'" disabled>
+						<div class="grid_2" style="margin:5px">
+							<button class="c-button" ng-click="search()">Cari</button>
+						</div>
+						<div class="grid_4">
+							<input style="width:100%" kendo-date-picker value="now" k-ng-model="item.awal" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'"/>
+						</div>
+						<div class="grid_1" align="center" style="margin-top:10px">
+							<label c-label item="item" c-label-text="Sd"></label>
+						</div>
+						<div class="grid_4">
+							<input style="width:100%" kendo-date-picker value="now" k-ng-model="item.akhir" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'"/>
+						</div>
+					</c-panel>
+				</div>
+			</div>
+			<div class="grid_12" style="margin-top: 10px;">
+				<div kendo-grid k-data-source="sourceInformasiDistribusiSurat" k-selectable="'row'" k-columns="columnInformasiDistribusiSurat" k-ng-model="current" ng-click="klik(current.noRec)">
+				</div>
+			</div>
+			<div class="grid_12" style="margin-top:20px">
+				<div class="grid_6"></div>
+				<div class="grid_4" style="margin:5px">
+					<button class="c-button" ng-click="Search()">Cetak Pengantar Surat</button>
+				</div>
+				<div class="grid_2" style="margin:5px">
+					<button class="c-button" ng-click="Search()">Tutup</button>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

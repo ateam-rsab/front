@@ -1,0 +1,36 @@
+
+
+{
+	"model":{
+	    "periodeAwal" : "",
+	    "periodeAkhir" : "",
+	    "penandatangan" : "",
+	    "mesin" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "periodeAwal",
+			"messagesRequired" : "",
+			"caption" : "Periode Awal"
+		},
+		{
+			"isNull" : "true",
+			"name" : "periodeAkhir",
+			"messagesRequired" : "",
+			"caption" : "Periode Akhir"
+		},
+		{
+			"isNull" : "true",
+			"name" : "penandatangan",
+			"messagesRequired" : "",
+			"caption" : "Penandatangan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "mesin",
+			"messagesRequired" : "",
+			"caption" : "Nama Mesin"
+		}
+  ]
+}

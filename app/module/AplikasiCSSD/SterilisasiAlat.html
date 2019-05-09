@@ -1,0 +1,111 @@
+<div ng-controller="SterilisasiAlatCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Sterilisasi Alat'">
+			<div class="grid_8">
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Nomor Order</label>
+					</div>
+					<div class="grid_6">
+						<input style="width: 50%" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noOrder" disabled/>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Operator</label>
+					</div>
+					<div class="grid_6">
+						<input style="width: 50%" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.operator" disabled/>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Ruangan</label>
+					</div>
+					<div class="grid_6">
+						<input style="width: 50%" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.ruangan" disabled/>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">No Bundle</label>
+					</div>
+					<div class="grid_6">
+						<input style="width: 50%" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noBundle" disabled/>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Nama Alat</label>
+					</div>
+					<div class="grid_10">
+						<kendo-grid options="gridSterilisasi" k-scrollable = "false" k-data-source="dataSource"></kendo-grid>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Jenis Sterilisasi</label>
+					</div>
+					<div class="grid_6">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisSterilisasi" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisSterilisasi" />
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Tanggal</label>
+					</div>
+					<div class="grid_6">
+						<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggal" k-format="'yyyy-MM-dd'"/>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Jam Mulai</label>
+					</div>
+					<div class="grid_6">
+						<input style="width: 100%" kendo-time-picker k-ng-model="item.jamMulai" placeholer="HH:mm" k-format="'HH:mm'"/>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Jam Selesai</label>
+					</div>
+					<div class="grid_6">
+						<input style="width: 100%" kendo-time-picker k-ng-model="item.jamSelesai" placeholer="HH:mm" k-format="'HH:mm'"/>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Harga</label>
+					</div>
+					<div class="grid_6">
+						<div class="grid_6" ng-repeat="stat in jenisHarga">
+							<input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.jenisHarga" value="{{stat.name}}">
+							<label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+						</div>
+					</div>
+				</div>
+				<div class="grid_12" ng-show="item.jenisHarga == 'Per Cycle'">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Jumlah Cycle</label>
+					</div>
+					<div class="grid_6">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahCycle"/>
+					</div>
+				</div>
+			</div>
+			<div class="grid_4"></div>
+			<div class="grid_6"></div>
+			<div class="grid_6">
+				<div class="grid_4"></div>
+				<div class="grid_4">
+					<button class="c-button success" ng-click="simpan()">Simpan</button>
+				</div>
+				<div class="grid_4">
+					<button class="c-button cancel" ng-click="batal()">Tutup</button>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

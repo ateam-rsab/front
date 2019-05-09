@@ -1,0 +1,392 @@
+<div ng-controller="KeadaanPasienCtrl">
+
+
+    <div class="panel-body">
+
+        <div class="panel panel-default container_12" style="margin-bottom:0;">
+
+            <div class="panel-heading" c-translate>
+                Keadaan Pasien Saat Pindah
+            </div>
+            <div class="panel-body">
+
+                <c-form item="item">
+
+
+
+                    <!-- form kiri -->
+                    <div class="grid_12">
+
+                        <!-- form kiri -->
+                        <div class="grid_6">
+                            <!--noregistrasi -->
+                            <div class="grid_12">
+                                <div class="grid_4">
+                                    <label c-label item="item" c-label-text="Keadaan Umum"></label>
+
+                                </div>
+
+                                <div class="grid_6">
+                                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namapegawai" />
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                            <!--nocm/rm -->
+                            <div class="grid_12">
+                                <div class="grid_4">
+                                    <label c-label item="item" c-label-text="Kesadaran"></label>
+
+                                </div>
+                                <div class="grid_6">
+                                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.nocm" />
+                                </div>
+                            </div>
+                            <!--namalengkap-->
+                            <div class="clear"></div>
+                            <div class="grid_12">
+                                <div class="grid_4">
+                                    <label c-label item="item" c-label-text="Tekanan Darah"></label>
+
+                                </div>
+                                <div class="grid_6">
+                                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namapegawai" />
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="grid_12">
+                                <div class="grid_4">
+                                    <label c-label item="item" c-label-text="Nadi"></label>
+
+                                </div>
+                                <div class="grid_6">
+                                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namapegawai" />
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <!-- form tengah -->
+                        <div class="grid_6">
+                            <!--noregistrasi -->
+                            <div class="grid_12">
+                                <div class="grid_4">
+                                    <label c-label item="item" c-label-text="Pernapasan"></label>
+
+                                </div>
+                                <div class="grid_8">
+                                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namapegawai" />
+                                </div>
+                            </div>
+                            <!--nocm/rm -->
+                            <div class="clear"></div>
+                            <div class="grid_12">
+                                <div class="grid_4">
+                                    <label c-label item="item" c-label-text="Suhu"></label>
+
+                                </div>
+                                <div class="grid_8">
+                                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.nocm" />
+                                </div>
+                            </div>
+                            <!--namalengkap-->
+                            <div class="clear"></div>
+                            <div class="grid_12">
+                                <div class="grid_4">
+                                    <label c-label item="item" c-label-text="beratBadan"></label>
+
+                                </div>
+                                <div class="grid_8">
+                                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namapegawai" />
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="grid_12">
+                                <div class="grid_4">
+                                    <label c-label item="item" c-label-text="tinggiBadan"></label>
+
+                                </div>
+                                <div class="grid_8">
+                                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namapegawai" />
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                </c-form>
+                </div>
+
+
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+
+    <div class="panel-body">
+
+        <div class="panel panel-default container_12" style="margin-bottom:0;">
+
+            <div class="panel-heading" c-translate>
+                Risiko Jatuh
+            </div>
+            <div class="panel-body">
+
+                <c-form item="item">
+
+                    <div class="grid_12">
+                        <div class="grid_3">
+                            <input type="checkbox" ng-click="addResikoJatuh(0)" class="k-checkbox">
+                            <label class="k-checkbox-label" c-translate>Resiko Rendah</label>
+                        </div>
+                        <div class="grid_3">
+                            <input type="checkbox" ng-click="addResikoJatuh(1)" class="k-checkbox">
+                            <label class="k-checkbox-label" c-translate>Resiko Sedang</label>
+                        </div>
+                        <div class="grid_3">
+                            <input type="checkbox" ng-click="addResikoJatuh(2)" class="k-checkbox">
+                            <label class="k-checkbox-label" c-translate>Tidak Beresiko</label>
+                        </div>
+                        <div class="grid_3">
+                            <input type="checkbox" ng-click="addResikoJatuh(3)" class="k-checkbox">
+                            <label class="k-checkbox-label" c-translate>Resiko Tinggi</label>
+                        </div>
+
+                        <div class="clear"></div>
+                    </div>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="panel-body">
+
+        <div class="panel panel-default container_12" style="margin-bottom:0;">
+
+            <div class="panel-heading" c-translate>
+                Peralatan Yang Menyertai Pasien Saat Pindah
+            </div>
+            <div class="panel-body">
+
+                <c-form item="item">
+
+                    <div class="grid_12">
+                        <div class="grid_4" ng-repeat="data in listPeralatan">
+                            <input type="checkbox" ng-click='adddPeralatan(data)' class="k-checkbox">
+                            <label class="k-checkbox-label" c-translate>{{data.name}}</label>
+                        </div>
+                        <!--<div class="grid_4">
+                            <input type="checkbox" class="k-checkbox">
+                            <label class="k-checkbox-label" c-translate>Kateter Urin</label>
+                        </div>
+                        <div class="grid_4">
+                            <input type="checkbox" class="k-checkbox">
+                            <label class="k-checkbox-label" c-translate>Alat Penghisap</label>
+                        </div>
+                        <div class="grid_4">
+                            <input type="checkbox" class="k-checkbox">
+                            <label class="k-checkbox-label" c-translate>Valve Mask Bag</label>
+                        </div>
+                        <div class="grid_4">
+                            <input type="checkbox" class="k-checkbox">
+                            <label class="k-checkbox-label" c-translate>Sonde Lambung</label>
+                        </div>
+                        <div class="grid_4">
+                            <input type="checkbox" class="k-checkbox">
+                            <label class="k-checkbox-label" c-translate>Ventilator</label>
+                        </div>
+                        <div class="grid_4">
+                            <input type="checkbox" class="k-checkbox">
+                            <label class="k-checkbox-label" c-translate>Pompa Infus</label>
+                        </div>-->
+                        <div class="clear"></div>
+                    </div>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="panel-body">
+
+        <div class="panel panel-default container_12" style="margin-bottom:0;">
+
+            <div class="panel-heading" c-translate>
+                Skala Nyeri
+            </div>
+            <div class="panel-body">
+
+                <c-form item="item">
+
+                    <div class="grid_6">
+
+                        <div class="grid_12">
+                            <div class="grid_6" style="margin: 5px 0 5px 0">
+                                <label c-label item="item" c-label-text="Skor Nyeri"></label>
+
+                            </div>
+                            <div class="grid_6">
+                                <input style="width: 100%;" kendo-combo-box k-ng-model="item.TitlePasien" k-data-text-field="'namaTitle'" k-filter="'contains'" k-data-value-field="'KdTitle'" k-data-source="listDataNamaTitle" />
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="grid_12">
+                            <div class="grid_6" style="margin: 5px 0 5px 0">
+                                <label c-label item="item" c-label-text="Jenis Nyeri"></label>
+
+                            </div>
+
+                            <div class="grid_3">
+                                <input type="checkbox" class="k-checkbox">
+                                <label class="k-checkbox-label" c-translate>Akut</label>
+                            </div>
+                            <div class="grid_3">
+                                <input type="checkbox" class="k-checkbox">
+                                <label class="k-checkbox-label" c-translate>Kronik</label>
+                            </div>
+
+                            <!--penanggungjawab-->
+                        </div>
+
+
+
+
+
+
+                    </div>
+
+
+                    <div class="grid_6">
+
+                        <div class="grid_12">
+                            <div class="grid_2" style="margin: 5px 0 5px 0">
+                                <label c-label item="item" c-label-text="Lokasi"></label>
+
+                            </div>
+                            <div class="grid_3">
+                                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namapegawai" />
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="grid_12">
+                            <div class="grid_2" style="margin: 5px 0 5px 0">
+                                <label c-label item="item" c-label-text="Durasi"></label>
+
+                            </div>
+
+                            <div class="grid_3">
+                                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namapegawai" />
+                            </div>
+                        </div>
+                        <div class="grid_2">
+                            <input type="radio" class="k-radio">
+                            <label class="k-radio-label">Hari</label>
+
+                        </div>
+                        <div class="grid_2">
+                            <input type="radio" class="k-radio">
+                            <label class="k-radio-label">Menit</label>
+
+                        </div>
+                        <div class="grid_2">
+                            <input type="radio" class="k-radio">
+                            <label class="k-radio-label">Detik</label>
+
+                        </div>
+                        <div class="grid_1">
+                            <input type="radio" class="k-radio">
+                            <label class="k-radio-label">Jam</label>
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<div class="panel-body">
+
+    <div class="panel panel-default container_12" style="margin-bottom:0;">
+
+        <div class="panel-heading" c-translate>
+            Status Psikologis
+        </div>
+        <div class="panel-body">
+
+            <c-form item="item">
+
+                <div class="grid_12">
+                    <div class="grid_3">
+                        <input type="checkbox" class="k-checkbox">
+                        <label class="k-checkbox-label" c-translate>Marah</label>
+                    </div>
+                    <div class="grid_3">
+                        <input type="checkbox" class="k-checkbox">
+                        <label class="k-checkbox-label" c-translate>Psikotik</label>
+                    </div>
+                    <div class="grid_3">
+                        <input type="checkbox" class="k-checkbox">
+                        <label class="k-checkbox-label" c-translate>Depresi</label>
+                    </div>
+                    <div class="grid_3">
+                        <input type="checkbox" class="k-checkbox">
+                        <label class="k-checkbox-label" c-translate>Cemas</label>
+                    </div>
+                    <div class="grid_3">
+                        <input type="checkbox" class="k-checkbox">
+                        <label class="k-checkbox-label" c-translate>Takut</label>
+                    </div>
+
+                    <div class="grid_3">
+                        <input type="checkbox" class="k-checkbox">
+                        <label class="k-checkbox-label" c-translate>Kecenderungan Bunuh Diri</label>
+                    </div>
+                    <div class="grid_3">
+                        <input type="checkbox" class="k-checkbox">
+                        <label class="k-checkbox-label" c-translate>Gelisah</label>
+                    </div>
+                    <div class="grid_3">
+                        <input type="checkbox" class="k-checkbox">
+                        <label class="k-checkbox-label" c-translate>Tidak Ada Masalah</label>
+                    </div>
+                    <div class="grid_3">
+                        <input type="checkbox" class="k-checkbox">
+                        <label class="k-checkbox-label" c-translate>Lainnya</label>
+                    </div>
+                </div>
+                <div class="clear"></div>
+        </div>
+
+
+
+
+
+    </div>
+</div>
+</div>
+
+<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+</div>

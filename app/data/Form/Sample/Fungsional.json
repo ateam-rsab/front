@@ -1,0 +1,13 @@
+{
+    "id" : "",
+	"keterangan" : "",
+    
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "keterangan",
+			"messagesRequired" : " Keterangan ke Harus Diisi",
+			"caption" : " Keterangan"
+		}
+  ]
+}

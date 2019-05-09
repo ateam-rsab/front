@@ -1,0 +1,98 @@
+{
+    "id": "",
+	"bicep": [
+            	{
+                    "id":"1",
+                    "name": "kanan"
+                },{
+                    "id":"2",
+                    "name": "kiri"
+                }],
+    "tricep": [
+            	{
+                    "id":"1",
+                    "name": "kanan"
+                },{
+                    "id":"2",
+                    "name": "kiri"
+                }],
+    "brachiodialis": [
+            	{
+                    "id":"1",
+                    "name": "kanan"
+                },{
+                    "id":"2",
+                    "name": "kiri"
+                }],
+    "kpr": [
+            	{
+                    "id":"1",
+                    "name": "kanan"
+                },{
+                    "id":"2",
+                    "name": "kiri"
+                }],
+    "atr": [
+            	{
+                    "id":"1",
+                    "name": "kanan"
+                },{
+                    "id":"2",
+                    "name": "kiri"
+                }],
+    "refleksPatologis": [
+            	{
+                    "id":"1",
+                    "name": "kanan"
+                },{
+                    "id":"2",
+                    "name": "kiri"
+                }],
+    "klonus": [
+            	{
+                    "id":"1",
+                    "name": "kanan"
+                },{
+                    "id":"2",
+                    "name": "kiri"
+                }],
+
+    "attributes" : 
+    [{
+		"isNull" : "true",
+		"name" : "bicep",
+		"messagesRequired" : "Bisep Harus Diisi",
+		"caption" : "Bisep"
+	},{
+        "isNull" : "true",
+        "name" : "tricep",
+        "messagesRequired" : "Trisep Harus Diisi",
+        "caption" : "Trisep"
+	},{
+		"isNull" : "true",
+		"name" : "brachiodialis",
+		"messagesRequired" : "Brachiodialis Harus Diisi",
+		"caption" : "Brachiodialis"
+	},{
+        "isNull" : "true",
+        "name" : "kpr",
+        "messagesRequired" : "KPR Harus Diisi",
+        "caption" : "KPR"
+	},{
+        "isNull" : "true",
+        "name" : "atr",
+        "messagesRequired" : "ATR Harus Diisi",
+        "caption" : "ATR"
+	},{
+		"isNull" : "true",
+		"name" : "refleksPatologis",
+		"messagesRequired" : "Refleks Patologis Harus Diisi",
+		"caption" : "Refleks Patologis"
+	},{
+        "isNull" : "true",
+        "name" : "klonus",
+        "messagesRequired" : "Klonus Harus Diisi",
+        "caption" : "Klonus"
+	}
+	]
+}

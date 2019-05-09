@@ -1,0 +1,21 @@
+{
+	
+	"tanggalPembatalan": "",
+	"alasanPembatalan" : "",	
+
+    "attributes" : [{
+	        "name": "tanggalPembatalan",
+	        "isNull": true,
+	        "type": "DATE",
+	        "messagesRequired": "Tanggal Pembatalan tidak boleh kosong",
+	        "caption": "Tanggal Pembatalan Perjanjian"
+    	},	 
+		{
+			"name" : "alasanPembatalan",
+			"isNull" : "true",
+			"messagesRequired" : "Alasan Pembatalan Harus Diisi",
+			"caption" : "Alasan Pembatalan Perjanjian"
+		}
+		
+	]
+}

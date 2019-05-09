@@ -1,0 +1,456 @@
+<!--<div ng-hide="dataVOloaded">
+    <div class="loading" style="z-index:2;  position: fixed; top: 40%; right: 0; bottom: 0; left: 20%;" class="animated" ng-show="true">
+        <img height="160" src="../app/stylesheets/Flat/loading-image.gif" />
+      <br/> <span>{{keteranganLoading}}</span>
+    </div>
+</div>-->
+
+<div>
+	<div class="grid_12 headerBox">
+    	<h1 style="color: white;"><b>Chart Of Account</b></h1>
+    </div>
+    <div class="clear"></div>
+
+    <br/>
+
+	<div>
+		<div ng-hide="isChooseKategoryCoa">
+			<div class="grid_12">
+				<div class="grid_12 headerBox">
+	            	<p>Tambah Chart Of Account</p>
+	            </div>
+	            <div class="clear"></div>
+	            <div class="grid_12 borderBox containerBorderBox">
+	            	<div class="tiles">
+	            		<div class="loading" style="position: relative" class="animated" ng-show="isLoadingData">
+					        <img height="50" src="../app/stylesheets/Flat/loading-image.gif" />
+					      <br/> <span>{{keteranganLoading}}</span>
+					    </div>
+
+						<!-- kategory AKTIVA -->
+				        <div class="grid_3" ng-repeat="data in listKategoryAccount" ng-click="chooseKategoryCOA(data)">
+				            <div class="tile bg-yellow-saffron {{data.color}}" style="height:100px">
+				                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+				                <div class="check"></div>
+				                <div class="tile-body" style="overflow: initial">
+				                    <i style="font-style: normal;"></i>
+				                </div>
+				                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+				                    <div class="icon-panel">
+				                        <!--<img width="70px" src="stylesheets/sumberDana.png">-->
+				                    </div>
+				                    <div class="text_panel">
+			                            <span class="title"><label c-label="" class="ng-isolate-scope c-label">{{data.kategoryAccount}}</label></span>
+			                            <label c-label="" item="item" c-label-text="" no-bold="" class="sub-detail ng-isolate-scope c-label" style="font-weight: normal;"></label><span></span>
+			                        </div>
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+	            </div>
+	        </div>
+
+	        <div class="clear"></div>
+
+	        <br/>
+
+		    <div class="grid_12">
+				<div class="grid_12 headerBox">
+	            	<p>Edit dan Hapus Chart of Account</p>
+	            </div>
+	            <div class="clear"></div>
+	            <!-- grid table -->
+	            <div class="grid_12 borderBox">
+	            	<!--
+	            	<div class="grid_12 borderBox containerBorderBox">
+            		
+            		<!-- No & Nama Account -->
+					<!--<div class="grid_3">
+						<div class="grid_12">
+							<label>No / Nama Account</label>
+						</div>
+						<div class="clear"></div>
+
+						<div class="grid_12">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="a"/>
+						</div>
+					</div>
+
+					<!-- Struktur Account -->
+					<!--<div class="grid_3">
+						<div class="grid_12">
+							<label>Struktur Account</label>
+						</div>
+						<div class="clear"></div>
+
+						<div class="grid_12">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="a"/>
+						</div>
+					</div>
+
+					<!-- Kategory Account -->
+					<!--<div class="grid_2">
+						<div class="grid_12">
+							<label>Kategory</label>
+						</div>
+						<div class="clear"></div>
+
+						<div class="grid_12">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="a"/>
+						</div>
+					</div>
+
+					<!-- Jenis Account -->
+					<!--<div class="grid_2">
+						<div class="grid_12">
+							<label>Jenis Account</label>
+						</div>
+						<div class="clear"></div>
+
+						<div class="grid_12">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="a"/>
+						</div>
+					</div>
+
+					<!-- Button Search -->
+					<!--<div class="grid_2">
+						<div class="grid_12">
+							<label>&nbsp;</label>
+						</div>
+						<div class="clear"></div>
+
+						<div class="grid_12">
+							<button class="btnCariCoa">Cari COA</button>
+						</div>
+					</div>
+
+					<div class="clear"></div>
+
+	            	</div>
+	            	-->
+	            	
+	            	<div class="grid_12" id="gridCOA" kendo-grid 
+	               		k-data-source="dataCOA" 
+	                    k-selectable="'row'" 
+	                    k-columns="columnCOA"
+	                    k-row-template="rowTemplate"
+	                    k-ng-model="dataSelectedRowCoa">
+	                </div>
+
+	                <br/>
+	                <div class="loading" style="position: relative; margin:25px 0px 20px;" class="animated" ng-show="isLoadingData">
+				        <img height="50" src="../app/stylesheets/Flat/loading-image.gif" />
+				      <br/> <span>{{keteranganLoading}}</span>
+				    </div>
+	            </div>
+	            <div class="clear"></div>
+	        </div>
+	        <div class="clear"></div>
+		</div>		
+
+		<div ng-show="isChooseKategoryCoa"> 
+
+			<!-- -->
+			<div class="grid_12">
+	            <div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+	                <p></p>
+	            </div>
+            	<div class="grid_12 borderBox containerBorderBox">
+            		<!-- StrukturAccount -->
+	                <div class="grid_12">
+	                    <div class="grid_4 fieldPadding">
+		                    <div class="grid_12">
+		                    	<label c-label item="item" c-label-text="StrukturAccount"></label>
+		                    </div>
+		                    <div class="clear"></div>
+						</div>
+
+						<div class="grid_8">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.strukturAccount" k-data-text-field="'strukturAccount'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listStrukturAccount" />
+						</div>
+	                </div>
+	                <div class="clear"></div>
+
+	                <!-- KategoryAccount -->
+	                <div class="grid_12">
+	                    <div class="grid_4 fieldPadding">
+							<label c-label item="item" c-label-text="KategoryAccount"></label>
+						</div>
+
+						<div class="grid_8">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.kategoryAccount" k-data-text-field="'kategoryAccount'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKategoryAccount" ng-disabled="'true'"/>
+						</div>
+	                </div>
+	                <div class="clear"></div>
+
+	                <!-- AccountHead -->
+	                <div class="grid_12">
+	                    <div class="grid_4 fieldPadding">
+							<label c-label item="item" c-label-text="AccountHead"></label>
+						</div>
+
+						<div class="grid_8">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.accountHead" k-data-text-field="'namaAccount'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="true" k-data-source="item.listAccountHead" ng-disabled="isAccHead"/>
+						</div>
+	                </div>
+	                <div class="clear"></div>
+
+	                <!-- JenisAccount -->
+	                <div class="grid_12">
+	                    <div class="grid_4 fieldPadding">
+							<label c-label item="item" c-label-text="JenisAccount"></label>
+						</div>
+
+						<div class="grid_8">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisAccount" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisAccount" ng-disabled="showJenisAccount" />
+						</div>
+	                </div>
+
+	                <div class="grid_12">
+                    	<button class="btnLihatDetail" ng-click="showHideDetail('StrukturAccount')">List Char of Account</button>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="grid_12 borderBox" style="border-left:none; border-right:none;" ng-show="showTreeView">
+                    	<div style="margin-left:5px" kendo-tree-view="tree"
+			             k-data-source="treeData"
+			             k-on-change="selectedItem = dataItem">
+			                <span k-template>
+			                     {{dataItem.reportDisplay}}
+			                 </span>
+			            </div>
+                    </div>
+
+	                <div class="clear"></div>
+
+
+	                <!-- KodeAccountHead -->
+		            <!--<div class="grid_12">
+		                <div class="grid_4 fieldPadding">
+							<label c-label item="item" c-label-text="KodeAccountHead"></label>
+						</div>
+
+						<div class="grid_8">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.accountHead.noAccount" disabled/>
+						</div>
+		            </div>-->
+            	</div>
+            </div>
+            <div class="clear"></div>
+
+            <br/>
+            	
+            <!-- -->
+			<div class="grid_6">
+	            <div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+	                <p></p>
+	            </div>
+            	<div class="grid_12 borderBox containerBorderBox">
+            		<!-- NoAccount -->
+	                <div class="grid_12">
+	                    <div class="grid_4 fieldPadding">
+							<label c-label item="item" c-label-text="NoAccount"></label>
+						</div>
+
+						<div class="grid_4">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.accountHead.noAccount" disabled/>
+						</div>
+
+						<div class="grid_4">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeSubAccount" maxlength="{{maxDigit}}" />
+						</div>
+	                </div>
+
+	                <!-- NamaSubAccount -->
+	                <div class="grid_12">
+	                    <div class="grid_4 fieldPadding">
+							<label c-label item="item" c-label-text="NamaAccount"></label>
+						</div>
+
+						<div class="grid_8">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaAccount" />
+						</div>
+	                </div>
+	                <div class="clear"></div>
+
+
+	                <!-- ReportDisplay -->
+	                <div class="grid_12">
+	                    <div class="grid_4 fieldPadding">
+							<label c-label item="item" c-label-text="ReportDisplay"></label>
+						</div>
+
+						<div class="grid_8">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaAccount" disabled/>
+						</div>
+	                </div>
+
+	                <!-- KodeExternal -->
+	                <div class="grid_12">
+	                    <div class="grid_4 fieldPadding">
+							<label c-label item="item" c-label-text="KodeExternal" disabled></label>
+						</div>
+
+						<div class="grid_8">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeSubAccount" disabled/>
+						</div>
+	                </div>
+
+	                <!-- NamaExternal -->
+	                <div class="grid_12">
+	                    <div class="grid_4 fieldPadding">
+							<label c-label item="item" c-label-text="NamaExternal"></label>
+						</div>
+
+						<div class="grid_8">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaAccount" disabled/>
+						</div>
+	                </div>
+
+            	</div>
+            </div>
+
+            <!-- -->
+			<div class="grid_6">
+	            <div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+	                <p></p>
+	            </div>
+            	<div class="grid_12 borderBox containerBorderBox">
+
+
+            		<!-- SaldoNormalAdd-->
+                    <div class="grid_6">
+	                    <div class="grid_12">
+							<label c-label item="item" c-label-text="SaldoNormalAdd"></label>
+						</div>
+						<div class="clear"></div>
+
+						<div class="grid_12">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.saldoNormalAdd" k-data-text-field="'value'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDK" data-ng-disabled="isShowSaldo" />
+						</div>
+	                </div>
+
+	                <!-- SaldoNormalMin-->
+                    <div class="grid_6">
+	                    <div class="grid_12">
+							<label c-label item="item" c-label-text="SaldoNormalMin"></label>
+						</div>
+						<div class="clear"></div>
+
+						<div class="grid_12">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.saldoNormalMin" k-data-text-field="'value'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDK" data-ng-disabled="isShowSaldo"/>
+						</div>
+	                </div>
+	                <div class="clear"></div>
+
+	                <div ng-show="true">
+	                <!-- AccountEffectAdd -->
+	                <div class="grid_6">
+	                    <div class="grid_12">
+							<label c-label item="item" c-label-text="AccountEffectAdd"></label>
+						</div>
+						<div class="clear"></div>
+
+						<div class="grid_12">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.accEffectAdd" k-data-text-field="'reportDisplay'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="item.listAccount" k-on-change="onChangeEffect(item.accEffectAdd, kendoEvent, 'add')" k-template="templateEffect" ng-disabled="showEffectAdd" />
+						</div>
+	                </div>
+
+	                <!-- SaldoNormalEffectAdd -->
+	                <div class="grid_6">
+	                    <div class="grid_12">
+							<label c-label item="item" c-label-text="SaldoNormalEffectAdd"></label>
+						</div>
+						<div class="clear"></div>
+
+						<div class="grid_12">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.saldoNormalEffectAdd" k-data-text-field="'value'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDK" ng-disabled="showEffectAdd"/>
+						</div>
+	                </div>
+	                <div class="clear"></div>
+
+	                <!-- AccountEffectMin -->
+	                <div class="grid_6">
+	                    <div class="grid_12">
+							<label c-label item="item" c-label-text="AccountEffectMin"></label>
+						</div>
+						<div class="clear"></div>
+
+						<div class="grid_12">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.accEffectMin" k-data-text-field="'reportDisplay'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="item.listAccount" k-on-change="onChangeEffect(item.accEffectMin, kendoEvent, 'min')" k-template="templateEffect" ng-disabled="showEffectAdd"/>
+						</div>
+	                </div>
+
+	                <!-- SaldoNormalEffectMin -->
+	                <div class="grid_6">
+	                    <div class="grid_12">
+							<label c-label item="item" c-label-text="SaldoNormalEffectMin"></label>
+						</div>
+						<div class="clear"></div>
+
+						<div class="grid_12">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.saldoNormalEffectMin" k-data-text-field="'value'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDK" ng-disabled="showEffectAdd"/>
+						</div>
+	                </div>
+	                <div class="clear"></div>
+	                </div>
+
+	                <!-- SaldoAwalKreditTahunBerjalan -->
+	                <!--<div class="grid_6">
+	                    <div class="grid_12">
+							<label c-label item="item" c-label-text="SaldoAwalKreditTahunBerjalan"></label>
+						</div>
+						<div class="clear"></div>
+
+						<div class="grid_12">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.saldoAwalDTahunBerjalan" disabled/>
+						</div>
+	                </div>-->
+
+	                <!-- SaldoAwalDebitTahunBerjalan -->
+	                <!--<div class="grid_6">
+	                    <div class="grid_12">
+							<label c-label item="item" c-label-text="SaldoAwalDebitTahunBerjalan"></label>
+						</div>
+						<div class="clear"></div>
+
+						<div class="grid_12">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.saldoAwalKTahunBerjalan" disabled/>
+						</div>
+	                </div>
+	                <div class="clear"></div>-->
+
+	                <!-- SaldoAkhirKreditTahunBerjalan -->
+	                <!--<div class="grid_6">
+	                    <div class="grid_12">
+							<label c-label item="item" c-label-text="SaldoAkhirKreditTahunBerjalan"></label>
+						</div>
+						<div class="clear"></div>
+
+						<div class="grid_12">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.saldoAkhirKTahunBerjalan" disabled/>
+						</div>
+	                </div>-->
+
+	                <!-- SaldoAkhirDebitTahunBerjalan -->
+	                <!--<div class="grid_6">
+	                    <div class="grid_12">
+							<label c-label item="item" c-label-text="SaldoAkhirDebitTahunBerjalan"></label>
+						</div>
+						<div class="clear"></div>
+
+						<div class="grid_12">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.saldoAkhirDTahunBerjalan" disabled/>
+						</div>
+	                </div>
+	                <div class="clear"></div>-->
+            	</div>
+            </div>
+
+            <div class="clear"></div>
+		</div>
+	</div>
+
+	<div class="grid_12" style="margin-top:30px">
+       <div ng-include='"../app/module/Shared/TemplateButtonSimpanAkuntansi"'></div>
+    </div>
+</div>

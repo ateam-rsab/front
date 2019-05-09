@@ -1,0 +1,28 @@
+[{
+    "noAntrian": "1",
+    "noRegistrasi": "16050000002",
+    "noOrder": "16050000001",
+    "noCm": "0000001",
+    "namaPasien": "Eka",
+    "tglRegistrasi": "1466434800",
+    "asalRujukan": "Rawat Inap",
+    "status": "Sudah keluar hasil"
+}, {
+    "noAntrian": "2",
+    "noRegistrasi": "16050000001",
+    "noOrder": "16060000002",
+    "noCm": "0000002",
+    "namaPasien": "Imah",
+    "tglRegistrasi": "1466435400",
+    "asalRujukan": "Klinik Paramitha",
+    "status": "Sudah diperiksa"
+}, {
+    "noAntrian": "3",
+    "noRegistrasi": "16050000003",
+    "noOrder": "16050000003",
+    "noCm": "0000003",
+    "namaPasien": "Sumiati",
+    "tglRegistrasi": "1466385600",
+    "asalRujukan": "Rawat Jalan",
+    "status": "Menunggu"
+}]

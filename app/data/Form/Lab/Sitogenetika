@@ -1,0 +1,13 @@
+{
+	"model":{
+	    "AnalisaKromosom" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "AnalisaKromosom",
+			"messagesRequired" : "",
+			"caption" : "Analisa Kromosom"
+		}
+  ]
+}

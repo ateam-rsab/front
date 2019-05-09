@@ -1,0 +1,34 @@
+{
+	"model":{
+		"unitKerja" : "",
+		"kegiatan":"",
+		"lokasi":"",
+		"tahunAnggaran":""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "unitKerja",
+			"messagesRequired" : "",
+			"caption" : "Unit Kerja"
+		},{
+			"isNull" : "true",
+			"name" : "kegiatan",
+			"messagesRequired" : "",
+			"caption" : "Kegiatan"
+		},{
+			"isNull" : "true",
+			"name" : "lokasi",
+			"messagesRequired" : "",
+			"caption" : "Lokasi"
+		},{
+			"isNull" : "true",
+			"name" : "tahunAnggaran",
+			"messagesRequired" : "",
+			"caption" : "Tahun Anggaran"
+		}
+
+	]
+}

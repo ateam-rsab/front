@@ -1,0 +1,79 @@
+<div ng-controller="TesPsikologiCtrl">
+
+	<div ng-show="dataVOloaded">
+
+		<c-panel item="item" header="title">
+		<div class="panel panel-default container_12">
+			<div class="panel-heading" c-translate>{{title}}</div>
+			<div class="panel-body">
+
+				<div class="grid_12">
+					<div class="grid_3">
+						<!-- Level -->
+						<div class="grid_12">
+							<label c-label item="item" c-label-text="Tanggal"></label>			
+							<input kendo-date-picker  placeholer="dd-mm-yyyy" k-format="'dd-mm-yyyy'" k-ng-model="item.tanggal" style="width: 100%" />
+						</div>
+					</div>
+					
+					<div class="grid_3">
+						<div class="grid_12">
+							<label c-label item="item" c-label-text="JenisTes"></label>
+							<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jenisTes" />
+						</div>
+					</div>
+					
+					<div class="grid_6">
+						<div class="grid_12">
+							<label c-label item="item" c-label-text="Tujuan"></label>
+							<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.tujuan" />
+						</div>
+					</div>
+
+
+
+					<!-- Button Tambah Ke 2 -->
+					<div class="container_12">
+						<div class="grid_6"></div>
+						<div class="grid_6" style="text-align: right">
+							<div class="grid_4"></div>
+							<div class="grid_4">
+								<c-button ng-click="reset()">
+								<span>Batal</span>
+							</c-button></div>
+							<div class="grid_4">
+								<c-button  ng-click="tambah()" style="width:10% !important">
+								<span>Tambah</span>
+							</c-button></div>
+						</div>
+
+						<!-- Grid Tabel -->
+						<div class="grid_12" style="margin-top: 10px;">
+							<div kendo-grid k-data-source="DaftarTesPsikologi" k-selectable="'row'" k-columns="columnTesPsikologi">
+							</div>
+						</div>
+
+						<div class="container_12">
+							<div class="grid_6"></div>
+							<div class="grid_6" style="text-align: right">
+								<div class="grid_4"></div>
+								<div class="grid_4">
+									<c-button ng-show="!isLoading"  style="width: 100%" item="item" is-validate click="Back">
+									<span>Sebelumnya</span>
+								</c-button></div>
+								<div class="grid_4">
+									<c-button ng-show="!isLoading" style="width: 100%" item="item" is-validate click="Selanjutnya">
+									<span>Selanjutnya >></span>
+								</c-button></div>
+
+
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+<!--<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" ' style="margin-bottom:50px"></div>-->
+			</c-panel>
+		</div>
+	</div>

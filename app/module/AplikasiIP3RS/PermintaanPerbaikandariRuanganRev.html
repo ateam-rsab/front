@@ -1,0 +1,148 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Permintaan Perbaikan dari Ruangan</div>
+	<div class="panel-body">
+		<div class="grid_12">
+			<div class="grid_12">
+				<div class="grid_12" style="padding: 5px 5px 0 5px;">
+					<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+						<p>Order Permintaan</p>
+					</div>
+					<div class="grid_12 borderBox containerBorderBox">
+						<!-- order -->
+						<div class="grid_12">
+							<div class="grid_6">
+								<div class="grid_4" style="padding-top:15px">
+									<label c-label item="item">No</label>
+								</div>
+								<div class="grid_8">
+									<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noUrut" disabled="false"  />
+								</div>
+								<div class="grid_4" style="padding-top:15px">
+									<label c-label item="item">Nomor Order</label>
+								</div>
+								<div class="grid_8">
+									<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noOrder" disabled="true"  />
+								</div>
+								<div class="grid_4" style="padding-top:15px">
+									<label c-label item="item">Kategori Perbaikan</label>
+								</div>
+								<div class="grid_8">
+									<div class="grid_12">
+										<input style="width: 100%;" kendo-combo-box k-ng-model="item.KategoriPerbaikan" k-data-text-field="'kategoriperbaikan'" k-data-value-field="'id'" k-filter="'contains'"  k-data-source="listKategoriPerbaikan"/>
+									</div>
+									<div class="clear"></div>
+								</div>
+								<div class="grid_4" style="padding-top:15px">
+									<label c-label item="item">Kerusakan Peralatan/Gedung</label>
+								</div>
+								<div class="grid_8">
+									<!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaProduk" k-data-text-field="'namaproduk'" k-data-value-field="'id'" k-filter="'contains'"  k-data-source="listRegAset" /> -->
+									
+										<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaProduk" k-data-text-field="'namaproduk'" k-data-value-field="'id'" k-filter="'contains'"  k-data-source="listRegAset"/>
+									<!-- k-on-change="getAsset()" -->
+								</div>
+
+							</div>
+							<!-- COMBOBOX RUANGAN ASAL -->
+							<div class="grid_6">
+								<div class="grid_4" style="padding-top:15px">
+									<label c-label item="item">Ruangan Asal</label>
+								</div>
+								<div class="grid_8">
+									<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganAsal" k-data-text-field="'namaruangan'" k-data-value-field="'id'" k-filter="'contains'"  k-data-source="mapUserLoginToRuangan"  />
+								</div>
+							<!-- END COMBOBOX RUANGAN ASAL -->
+
+							<!-- COMBOBOX RUANGAN TUJUAN -->
+								<div class="grid_4" style="padding-top:15px">
+									<label c-label item="item">Ruangan Tujuan</label>
+								</div>
+								<div class="grid_8">
+									<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganTujuan" k-data-text-field="'namaruangan'" k-data-value-field="'id'" k-filter="'contains'"  k-data-source="listRuangan" disabled="true" />
+								</div>
+							<!-- END COMBOBOX RUANGAN TUJUAN -->
+
+							<!-- USER PELAPOR -->
+								<div class="grid_4" style="padding-top:15px">
+									<label c-label item="item">User Pelapor</label>
+								</div>
+								<div class="grid_8">
+									<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.userPelapor" disabled="true"  />
+								</div>
+							<!-- END USER PELAPOR -->
+							<!-- TANGGAL -->
+								<div class="grid_4" style="padding-top:15px">
+									<label c-label item="item">Tanggal Order</label>
+								</div>
+								<div class="grid_8">
+									<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalPesan" k-format="'dd-MM-yyyy'" />
+								</div>
+							<!-- END TANGGAL -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_12" style="padding: 5px 5px 0 5px;">
+					<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+						<p>Deskripsi Permintaan</p>
+					</div>
+					<div class="grid_12 borderBox containerBorderBox">
+				
+						<div class="grid_12">
+							<div class="grid_8">
+								<div class="grid_4">
+									<label c-label item="item" style="margin-top: 10px">Kerusakan/Keluhan</label>
+								</div>
+								<div class="grid_10">
+									<textarea style="height: 90px" c-text-box type="input" class="k-textbox" ng-model="item.deskPermintaan" />
+								</div>
+							</div>
+						</div>
+						<!-- BUTTON TAMBAH-->
+								<div class="grid_6">
+							        <div class="grid_5" style="margin-top: 10px">
+							            <div class="grid_4">
+							                <button class="btnTemplate1" ng-click="tambah()">Tambah</button>
+							            </div>
+							            <div class="grid_4">
+							                <button class="btnTemplate1" ng-click="hapus()">Hapus</button>
+							            </div>
+							            <div class="grid_4">
+							                <button class="btnTemplate1" ng-click="batal()">Batal</button>
+							            </div>
+							        </div>
+							    </div>
+							<!-- END BUTTON TAMBAH -->
+					</div>
+				</div>
+			</div>
+			<!-- GRID -->
+					<div class="grid_12">
+				         <div class="grid_12 borderBox">
+				            <div id="kGrid" 
+				            kendo-grid k-data-source="dataGrid" 
+				            k-selectable="'row'" 
+				            k-columns="columnGrid" 
+				            k-pageable="'true'" 
+				            k-sortable="'true'" 
+				            k-ng-model="dataSelected"
+				            ng-click="klikGrid(dataSelected)">
+				            </div>
+			       	 	</div>
+		    		</div>
+			<!-- END GRID -->
+			<div class="grid_12">
+				<div class="grid_8"></div>
+				<div class="grid_2">
+					<button class="c-button cancel" style="width: 100%; font-size: 16px; padding:0px, margin:0px;" ng-click="batal()">Batal</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button success" style="width: 100%; font-size: 16px; padding:0px, margin:0px;" ng-click="simpan()" ng-show='tombolSimpanVis'>Simpan</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

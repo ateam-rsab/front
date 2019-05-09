@@ -1,0 +1,15 @@
+{
+	"model":{
+		"namaBundel" : ""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "namaBundel",
+			"messagesRequired" : "",
+			"caption" : "Nama Bundel / Set Alat"
+		}
+
+	]
+}

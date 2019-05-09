@@ -1,0 +1,107 @@
+<div ng-controller="RekapitulasiHasilEvaluasiCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Rekapitulasi Hasil Evaluasi Penyelenggaraan'"disabled>
+		<div class="grid_6">
+		<div class="panel panel-default container_12">
+	<!--		<div class="panel-heading" c-translate>Periode</div> -->
+	<!--		<div class="panel-body"> -->
+	
+           
+					
+	        
+			 
+			
+			
+		
+						<div class="grid_12" >
+							
+							<div class="grid_3" style="margin-top: 10px">
+								<div class="grid_12" style="margin-left:5px">
+									<label c-label item="item" c-label-text="periodeAwal"></label>
+								</div>
+								<div class="grid_12" style="margin-top:5px">
+									<input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAwal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+								</div>
+							</div>
+							<div class="grid_1" style="margin-top: 40px" align="center">
+								 <label c-label item="item" c-label-text="s/d"></label>
+							</div>
+							<div class="grid_3" style="margin-top: 10px">
+								<div class="grid_12" style="margin-left:5px">
+									<label c-label item="item" c-label-text="periodeAkhir"></label>
+								</div>
+								<div class="grid_12" style="margin-top:5px">
+									<input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAkhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+								</div>
+							</div>
+							<div class="grid_2" style="margin-top: 38px">
+								<button class="c-button">
+                            	CARI</button>
+							</div>
+						</div>
+				
+			
+			
+				
+			
+			
+				
+			
+			
+			</div>
+			
+			 
+			
+			</div>
+			 
+		
+	</div>		
+			
+			
+			
+			
+			
+			
+			
+				
+		  
+		
+<!--		   </div>  -->
+          <div class="grid_12">
+				<kendo-grid  k-data-source="daftarBahanLinen" k-pageable="true" k-selectable="'row'" k-columns="columnLaporanUjiHasil"  style="font-size: small;">
+            	</kendo-grid>
+					
+			</div>
+		
+		
+		
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		</c-panel>
+			<div class="grid_12">
+							<div class="grid_8" style="float:left">
+							
+							
+							<div class="grid_2" style="margin-top: 25px">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate click="Cancel">
+                					<span class="title">Batal</span></button>
+							</div>
+							<div class="grid_2 " style="margin-top: 25px ">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Simpan</span>
+									</button>
+							</div>
+							</div>
+						</div>
+		</div>
+	</div>
+</div>
+

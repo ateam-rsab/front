@@ -1,0 +1,142 @@
+<div ng-controller="MasterKelompokEvaluasiCtrl">
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Master Kelompok Evaluasi'" disabled>
+            <div class="grid_6">
+                <div class="panel panel-default container_12">
+
+                    <div class="grid_12">
+                        <div class="grid_5" style="margin: 6px 0 0 0;">
+                            <label c-label item="item" c-label-text="Kode Kelompok Evaluasi"></label>
+                        </div>
+                        <div class="grid_7">
+                            <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kodeKelompokEvaluasi" />
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_5" style="margin: 6px 0 0 0;">
+                            <label c-label item="item" c-label-text="Kelompok Evaluasi"></label>
+                        </div>
+                        <div class="grid_7">
+                            <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kelompokEvaluasi" />
+                        </div>
+                    </div>
+
+                    <div class="grid_12">
+                        <div class="grid_5" style="margin: 6px 0 0 0;">
+                            <label c-label item="item" c-label-text="Kelompok Evaluasi Head"></label>
+                        </div>
+                        <div class="grid_7">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.kelompokEvaluasiHead" k-data-text-field="'kelompokEvaluasi'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKelompokEvaluasiHead" />
+                        </div>
+                    </div>
+
+                    <div class="grid_12">
+                        <div class="grid_5" style="margin: 6px 0 0 0;">
+                            <label c-label item="item" c-label-text="Pendidikan"></label>
+                        </div>
+                        <div class="grid_7">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.pendidikan" k-data-text-field="'namaPendidikan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPendidikan" />
+                        </div>
+                    </div>
+
+                    <div class="grid_12">
+                        <div class="grid_5" style="margin: 6px 0 0 0;">
+                            <label c-label item="item" c-label-text="Kode Eksternal"></label>
+                        </div>
+                        <div class="grid_7">
+                            <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kodeEksternal" />
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_5" style="margin: 6px 0 0 0;">
+                            <label c-label item="item" c-label-text="Nama Eksternal"></label>
+                        </div>
+                        <div class="grid_7">
+                            <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaEksternal" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--        </div>  -->
+            <div class="grid_6">
+                <div class="grid_12">
+                    <div class="grid_5" style="margin: 6px 0 0 0;">
+                        <label c-label item="item" c-label-text="Deskripsi Pengalaman"></label>
+                    </div>
+                    <div class="grid_7">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.pengalaman" />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_5" style="margin: 6px 0 0 0;">
+                        <label c-label item="item" c-label-text="Deskripsi Pelatihan"></label>
+                    </div>
+                    <div class="grid_7">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.pelatihan" />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_5" style="margin: 6px 0 0 0;">
+                        <label c-label item="item" c-label-text="No Urut"></label>
+                    </div>
+                    <div class="grid_7">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noUrut" />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_5" style="margin: 6px 0 0 0;">
+                        <label c-label item="item" c-label-text="Departemen"></label>
+                    </div>
+                    <div class="grid_7">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.departemen" k-data-text-field="'namaDepartemen'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listdepartemen" />
+                    </div>
+                </div>
+
+                <div class="grid_12">
+                    <div class="grid_5" style="margin: 6px 0 0 0;">
+                        <label c-label item="item" c-label-text="Report Display"></label>
+                    </div>
+                    <div class="grid_7">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.reportDisplay" />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_5" style="margin: 6px 0 0 0;">
+                        <label c-label item="item" c-label-text="Status Aktif"></label>
+                    </div>
+                    <div class="grid_7" style="margin-top: 10px">
+
+                        <input type="checkbox" class="k-checkbox" name="dataAktif" id="dataAktif" value="true" ng-model="item.dataAktif" ng-true-value="'true'" ng-false-value="'false'" ng-checked="vals">
+                        <label class="k-checkbox-label" for="dataAktif">Aktif</label>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid_12">
+                <div kendo-grid k-data-source="gridMasterKelompokEvaluasi" k-selectable="'row'" k-pageable="true" k-columns="colGridMasterKelompokEvaluasi" k-ng-model="current" ng-click="klik(current)">
+                </div>
+            </div>
+        </c-panel>
+        <div class="grid_12">
+            <div class="grid_4">
+            </div>
+            <div class="grid_8">
+                <div class="grid_12">
+                    <div class="grid_8"></div>
+                    <div class="grid_2" ng-show="showEdit">
+                        <button class="c-button" ng-click="edit()">Edit</button>
+                    </div>
+                    <div class="grid_2" ng-hide="showEdit">
+                        <button class="c-button" ng-click="tambah()">Tambah</button>
+                    </div>
+                    <div class="grid_2">
+                        <button class="c-button" ng-click="batal()">Batal</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

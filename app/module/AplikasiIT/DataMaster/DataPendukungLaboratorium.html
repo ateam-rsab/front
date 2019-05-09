@@ -1,0 +1,1146 @@
+<div ng-controller="DataPendukungLaboratoriumCtrl">
+ <div class="panel panel-default container_12">
+    <div class="panel-heading"  c-translate>Data Pendukung Laboratorium</div>
+    <div class="panel-body">
+      
+		  
+            <div ng-cloak>
+			
+                <md-content>
+				  
+                    <md-tabs md-dynamic-height md-border-bottom>
+					         
+					          <md-tab label="Bahan Sample">
+                            <md-content class="md-padding">
+                                <!-- alamatEmail -->
+			
+			<div class="grid_12">
+			<!-- kdBahanSample -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kdBahanSample"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kdBahanSample" />
+				</div>
+			</div>
+
+			<!-- satuanKecil -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="satuanKecil"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.satuanKecil" k-data-text-field="'reportDisplay'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listsatuanKecil" />
+				</div>
+			</div>
+</div>
+			<!-- satuanKecilId -->
+			
+
+			<!-- namaBahanSample -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="namaBahanSample"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaBahanSample" />
+				</div>
+			</div>
+
+			<!-- qBahanSample -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="qBahanSample"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.qBahanSample" />
+				</div>
+			</div>
+
+			<!-- reportDisplay -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="reportDisplay"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+				</div>
+			</div>
+
+			<!-- kodeExternal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kodeExternal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+				</div>
+			</div>
+
+			<!-- namaExternal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="namaExternal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+				</div>
+			</div>
+
+			<!-- BahanSample -->
+			<div class="grid_12">
+				<div class="grid_12 headerBox">
+					<p>BahanSample</p>
+				</div>
+				<div class="clear"></div>
+
+				<!-- grid table -->
+				<div class="grid_12 borderBox">
+					<kendo-grid options="mainGridOptions"  k-data-source="dataSource" k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+				</div>
+			</div>
+			<div class="clear"></div>
+		
+		<div class="clear"></div>
+		<div class="grid_12">
+			<div class="grid_8"></div>
+			<div class="grid_2" ng-show="showEdit">
+				<button class="c-button" ng-click="edit()">Edit</button>
+			</div>
+			<div class="grid_2" ng-hide="showEdit">
+				<button class="c-button" ng-click="tambah()">Tambah</button>
+			</div>
+			<div class="grid_2">
+				<button class="c-button" ng-click="batal()">Batal</button>
+			</div>
+			
+		</div>
+
+
+
+</c-panel>
+
+
+			
+						</md-content>
+					</md-tab>
+					          <md-tab label="Jenis Pemeriksaan">
+                            <md-content class="md-padding">
+                               <div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="name"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.name" />
+</div>
+</div>
+
+<!-- reportDisplay -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="reportDisplay"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+</div>
+</div>
+
+<!-- kodeExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kodeExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+</div>
+</div>
+
+<!-- namaExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="namaExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+</div>
+</div>
+
+<!-- JenisPemeriksaan -->
+<div class="grid_12">
+<div class="grid_12 headerBox">
+<p>JenisPemeriksaan</p>
+</div>
+<div class="clear"></div>
+
+<!-- grid table -->
+<div class="grid_12 borderBox">
+					<kendo-grid options="mainGridOptionsv"  k-data-source="dataSourcev" k-ng-model="currentv" ng-click="klikv(currentv)"></kendo-grid>
+				</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+
+
+</c-panel>
+
+	<div class="grid_12">
+				<div class="grid_8"></div>
+				<div class="grid_2" ng-show="showEditv">
+					<button class="c-button" ng-click="editv()">Edit</button>
+				</div>
+				<div class="grid_2" ng-hide="showEditv">
+					<button class="c-button" ng-click="tambahv()">Tambah</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="batalv()">Batal</button>
+				</div>
+			</div>
+						</md-content>
+					</md-tab>
+					     <md-tab label="Satuan Hasil">
+                            <md-content class="md-padding">               
+ 		                  <div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="departemen"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.departemen" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listdepartemen" />
+				</div>
+			</div>
+
+			<!-- departemenId -->
+			
+
+			<!-- kdSatuanHasil -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kdSatuanHasil"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kdSatuanHasil" />
+				</div>
+			</div>
+
+			<!-- qSatuanHasil -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="qSatuanHasil"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.qSatuanHasil" />
+				</div>
+			</div>
+
+			<!-- satuanHasil -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="satuanHasil"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.satuanHasil" />
+				</div>
+			</div>
+
+			<!-- reportDisplay -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="reportDisplay"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+				</div>
+			</div>
+
+			<!-- kodeExternal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kodeExternal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+				</div>
+			</div>
+
+			<!-- namaExternal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="namaExternal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+				</div>
+			</div>
+
+			<!-- SatuanHasil -->
+			<div class="grid_12">
+				<div class="grid_12 headerBox">
+					<p>SatuanHasil</p>
+				</div>
+				<div class="clear"></div>
+
+				<!-- grid table -->
+
+				<div class="grid_12 borderBox">
+					<kendo-grid options="mainGridOptionsp"  k-data-source="dataSourcep" k-ng-model="currentp" ng-click="klikp(currentp)"></kendo-grid>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_12">
+				<div class="grid_8"></div>
+				<div class="grid_2" ng-show="showEditp">
+					<button class="c-button" ng-click="editp()">Edit</button>
+				</div>
+				<div class="grid_2" ng-hide="showEditp">
+					<button class="c-button" ng-click="tambahp()">Tambah</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="batalp()">Batal</button>
+				</div>
+			</div>
+                          </md-content>
+					</md-tab>  
+
+					<md-tab label="Kelompok Umur">
+                            <md-content class="md-padding">               
+ 		        <div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kdKelompokUmur"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.kdKelompokUmur" />
+</div>
+</div>
+
+<!-- kelompokUmur -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kelompokUmur"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.kelompokUmur" />
+</div>
+</div>
+
+<!-- qKelompokUmur -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="qKelompokUmur"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.qKelompokUmur" />
+</div>
+</div>
+
+<!-- statusUmur -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="statusUmur"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.statusUmur" />
+</div>
+</div>
+
+<!-- umurMax -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="umurMax"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.umurMax" />
+</div>
+</div>
+
+<!-- umurMin -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="umurMin"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.umurMin" />
+</div>
+</div>
+
+<!-- reportDisplay -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="reportDisplay"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.reportDisplay" />
+</div>
+</div>
+
+<!-- kodeExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kodeExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.kodeExternal" />
+</div>
+</div>
+
+<!-- namaExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="namaExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaExternal" />
+</div>
+</div>
+
+<!-- KelompokUmur -->
+<div class="grid_12">
+<div class="grid_12 headerBox">
+<p>KelompokUmur</p>
+</div>
+<div class="clear"></div>
+
+<!-- grid table -->
+<div class="grid_12 borderBox">
+					<kendo-grid options="mainGridOptionsx"  k-data-source="dataSourcex" k-ng-model="currentx" ng-click="klikx(currentx)"></kendo-grid>
+				</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+
+
+</c-panel>
+
+<div class="grid_12">
+				<div class="grid_8"></div>
+				<div class="grid_2" ng-show="showEditx">
+					<button class="c-button" ng-click="editx()">Edit</button>
+				</div>
+				<div class="grid_2" ng-hide="showEditx">
+					<button class="c-button" ng-click="tambahx()">Tambah</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="batalx()">Batal</button>
+				</div>
+			</div>
+                          </md-content>
+					</md-tab>
+
+					<md-tab label="Metode Periksa Penunjang">
+                            <md-content class="md-padding">               
+ 		        
+				<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="departemen"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.departemen" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listdepartemen" />
+				</div>
+			</div>
+
+			<!-- departemenId -->
+			
+
+			<!-- kdMetodePeriksa -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kdMetodePeriksa"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kdMetodePeriksa" />
+				</div>
+			</div>
+
+			<!-- keteranganMetode -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="keteranganMetode"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.keteranganMetode" />
+				</div>
+			</div>
+
+			<!-- metodePeriksa -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="metodePeriksa"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.metodePeriksa" />
+				</div>
+			</div>
+
+			<!-- qMetodePeriksa -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="qMetodePeriksa"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.qMetodePeriksa" />
+				</div>
+			</div>
+
+			<!-- reportDisplay -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="reportDisplay"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+				</div>
+			</div>
+
+			<!-- kodeExternal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kodeExternal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+				</div>
+			</div>
+
+			<!-- namaExternal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="namaExternal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+				</div>
+			</div>
+
+			<!-- MetodePemeriksaanPenunjang -->
+			<div class="grid_12">
+				<div class="grid_12 headerBox">
+					<p>MetodePemeriksaanPenunjang</p>
+				</div>
+				<div class="clear"></div>
+
+				<!-- grid table -->
+
+				<div class="grid_12 borderBox">
+					<kendo-grid options="mainGridOptionsy"  k-data-source="dataSourcey" k-ng-model="currenty" ng-click="kliky(currenty)"></kendo-grid>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_12">
+				<div class="grid_8"></div>
+				<div class="grid_2" ng-show="showEdity">
+					<button class="c-button" ng-click="edity()">Edit</button>
+				</div>
+				<div class="grid_2" ng-hide="showEdity">
+					<button class="c-button" ng-click="tambahy()">Tambah</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="bataly()">Batal</button>
+				</div>
+			</div>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+                          </md-content>
+					</md-tab>
+
+					<md-tab label="Komponen Pemeriksaan">
+                            <md-content class="md-padding">               
+ 		        <div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="departemen"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.departemen" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listdepartemen" />
+				</div>
+			</div>
+
+			<!-- departemenId -->
+			
+	
+			<!-- kdKomponenPeriksa -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kdKomponenPeriksa"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kdKomponenPeriksa" />
+				</div>
+			</div>
+
+			<!-- produk -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="produk"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.produk" k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listproduk" />
+				</div>
+			</div>
+	
+			<!-- produkId -->
+			
+
+			<!-- satuanHasil -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="satuanHasil"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.satuanHasil" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listsatuanhasil" />
+				</div>
+			</div>
+		
+			<!-- satuanHasilId -->
+			
+
+			<!-- memoHasilPeriksa -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="memoHasilPeriksa"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.memoHasilPeriksa" />
+				</div>
+			</div>
+
+			<!-- namaKomponenPeriksa -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="namaKomponenPeriksa"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaKomponenPeriksa" />
+				</div>
+			</div>
+
+			<!-- noUrutKomponenPeriksa -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="noUrutKomponenPeriksa"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noUrutKomponenPeriksa" />
+				</div>
+			</div>
+
+			<!-- noUrutProduk -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="noUrutProduk"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noUrutProduk" />
+				</div>
+			</div>
+
+			<!-- qKomponenPeriksa -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="qKomponenPeriksa"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.qKomponenPeriksa" />
+				</div>
+			</div>
+
+			<!-- reportDisplay -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="reportDisplay"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+				</div>
+			</div>
+
+			<!-- kodeExternal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kodeExternal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+				</div>
+			</div>
+
+			<!-- namaExternal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="namaExternal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+				</div>
+			</div>
+
+			<!-- KomponenPemeriksaan -->
+			<div class="grid_12">
+				<div class="grid_12 headerBox">
+					<p>KomponenPemeriksaan</p>
+				</div>
+				<div class="clear"></div>
+
+				<!-- grid table -->
+				<div class="grid_12 borderBox">
+					<kendo-grid options="mainGridOptionss"  k-data-source="dataSources" k-ng-model="currents" ng-click="kliks(currents)"></kendo-grid>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_12">
+				<div class="grid_8"></div>
+				<div class="grid_2" ng-show="showEdits">
+					<button class="c-button" ng-click="edits()">Edit</button>
+				</div>
+				<div class="grid_2" ng-hide="showEdits">
+					<button class="c-button" ng-click="tambahs()">Tambah</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="batals()">Batal</button>
+				</div>
+			</div>
+                          </md-content>
+					</md-tab>
+					
+					<md-tab label="Komponen Pemeriksaan Range Nilai">
+                            <md-content class="md-padding">               
+ 		        <div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="departemen"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.departemen" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listdepartemen" />
+				</div>
+			</div>
+
+			<!-- departemenId -->
+			
+
+			<!-- jenisKelamin -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="jenisKelamin"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisKelamin" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listjenisKelamin" />
+				</div>
+			</div>
+
+			<!-- jenisKelaminId -->
+			
+
+			<!-- kelompokUmur -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kelompokUmur"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.kelompokUmur" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listkelompokUmur" />
+				</div>
+			</div>
+
+			<!-- kelompokUmurId -->
+			
+
+			<!-- komponenPeriksa -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="komponenPeriksa"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.komponenPeriksa" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listkomponenPeriksa" />
+				</div>
+			</div>
+
+			<!-- komponenPeriksaId -->
+			
+
+			<!-- metodePeriksa -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="metodePeriksa"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.metodePeriksa" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listmetodePeriksa" />
+				</div>
+			</div>
+
+			<!-- metodePeriksaId -->
+			
+
+			<!-- satuanHasil -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="satuanHasil"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.satuanHasil" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listsatuanHasil" />
+				</div>
+			</div>
+
+			<!-- satuanHasilId -->
+			
+
+			<!-- keteranganLainnya -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="keteranganLainnya"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.keteranganLainnya" />
+				</div>
+			</div>
+
+			<!-- rangeNilaiMax -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="rangeNilaiMax"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.rangeNilaiMax" />
+				</div>
+			</div>
+
+			<!-- rangeNilaiMin -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="rangeNilaiMin"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.rangeNilaiMin" />
+				</div>
+			</div>
+
+			<!-- rangeNilaiNormal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="rangeNilaiNormal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.rangeNilaiNormal" />
+				</div>
+			</div>
+
+			<!-- reportDisplay -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="reportDisplay"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+				</div>
+			</div>
+
+			<!-- kodeExternal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kodeExternal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+				</div>
+			</div>
+
+			<!-- namaExternal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="namaExternal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+				</div>
+			</div>
+
+			<!-- KomponenPemeriksaanRangeNilai -->
+			<div class="grid_12">
+				<div class="grid_12 headerBox">
+					<p>KomponenPemeriksaanRangeNilai</p>
+				</div>
+				<div class="clear"></div>
+
+				<!-- grid table -->
+				<div class="grid_12 borderBox">
+					<kendo-grid options="mainGridOptionsh"  k-data-source="dataSourceh" k-ng-model="currenth" ng-click="klikh(currenth)"></kendo-grid>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_12">
+				<div class="grid_8"></div>
+				<div class="grid_2" ng-show="showEdith">
+					<button class="c-button" ng-click="edith()">Edit</button>
+				</div>
+				<div class="grid_2" ng-hide="showEdith">
+					<button class="c-button" ng-click="tambahh()">Tambah</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="batalh()">Batal</button>
+				</div>
+			</div>
+                          </md-content>
+					</md-tab>
+					
+					<md-tab label="Mapping Jenis Periksa to Produk">
+                            <md-content class="md-padding">               
+ 		        
+                          </md-content>
+					</md-tab>
+					
+					<md-tab label="Alat">
+                            <md-content class="md-padding">               
+ 		                    	<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kdAlat"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kdAlat" />
+				</div>
+			</div>
+
+			<!-- namaAlat -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="namaAlat"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaAlat" />
+				</div>
+			</div>
+
+			<!-- reportDisplay -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="reportDisplay"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+				</div>
+			</div>
+
+			<!-- kodeExternal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kodeExternal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+				</div>
+			</div>
+
+			<!-- namaExternal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="namaExternal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+				</div>
+			</div>
+
+			<!-- Alat -->
+			<div class="grid_12">
+				<div class="grid_12 headerBox">
+					<p>Alat</p>
+				</div>
+				<div class="clear"></div>
+
+				<!-- grid table -->
+				<div class="grid_12 borderBox">
+					<kendo-grid options="mainGridOptionsc"  k-data-source="dataSourcec" k-ng-model="currentc" ng-click="klikc(currentc)"></kendo-grid>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+
+
+
+		</c-panel>
+
+		<div class="grid_12">
+				<div class="grid_8"></div>
+				<div class="grid_2" ng-show="showEditc">
+					<button class="c-button" ng-click="editc()">Edit</button>
+				</div>
+				<div class="grid_2" ng-hide="showEditc">
+					<button class="c-button" ng-click="tambahc()">Tambah</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="batalc()">Batal</button>
+				</div>
+			</div>
+                          </md-content>
+					</md-tab>
+					<md-tab label="Komponen Alat">
+                            <md-content class="md-padding">               
+ 		        
+                          </md-content>
+					</md-tab>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					</md-tabs>
+				</md-content>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+

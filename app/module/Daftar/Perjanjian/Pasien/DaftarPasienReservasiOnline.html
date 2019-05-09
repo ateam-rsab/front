@@ -1,0 +1,90 @@
+<div ng-controller="DaftarPasienReservasiOnlineCtrl">
+    <div>
+        <br/>
+        <div class="panel panel-default panel-white">
+            <div class="panel-heading"><span class="title" c-translate>Parameter Pencarian</span></div>
+            <div class="panel-body">
+                <div class="grid_12">
+
+                    <div class="grid_5">
+                        <div class="grid_12" style="margin-left: 2px">
+                            <label c-label c-label-text="tanggalPerjanjian"></label>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_6">
+                                <input style="width: 100%" k-ng-model='from' k-value='now' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                            </div>
+                            <div class="grid_6">
+                                <input style="width: 100%" k-ng-model='until' k-value='now' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid_2">
+                        <div class="grid_12" style="margin-bottom: 5px">
+                            <label c-label item="item" c-label-text="Status Pasien"></label>
+                        </div>
+                        <div class="clear"></div>
+
+                        <div class="grid_12">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="status" k-data-text-field="'nama'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listStatus" />
+                        </div>
+                    </div>
+                    <div class="grid_2">
+                        <div class="grid_12" style="margin-bottom: 5px">
+                            <label c-label c-label-text="Nama Pasien" real></label>
+                        </div>
+                        <div class="grid_12">
+                            <input c-text-box type="input" class="k-textbox" ng-model="namaPasien" />
+                        </div>
+                    </div>
+                    <div class="grid_2">
+                        <div class="grid_12" style="margin-bottom: 5px">
+                            <label c-label c-label-text="kodeReservasi" real></label>
+                        </div>
+                        <div class="grid_12">
+                            <input c-text-box type="input" class="k-textbox" ng-model="kodeReservasi" />
+                        </div>
+                    </div>
+                    <div class="grid_1" style="margin-top: 5px">
+                        <label c-label c-label-text=""></label>
+                        <em style="margin-top: 6px;" ng-click='findData()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default container_12">
+            <div class="panel-heading"><label class='title' c-label item="item" c-label-text="daftarPasienPerjanjian"></label></div>
+            <div class="panel-body">
+                <div class="grid_12">
+                    <kendo-grid k-ng-model="item" k-data-source="listPasien" k-selectable="'row'" k-pageable="Page" k-columns="Column"></kendo-grid>
+                </div>
+            </div>
+        </div>
+        <div class="grid_12">
+            <div class="grid_4">
+                <c-button style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" is-validate click="reconfirm">
+                    <span class="title">Reconfirm</span>
+                </c-button>
+            </div>
+            <div class="grid_4">
+                <c-button style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" is-validate click="CetakLaporan">
+                    <span class="title">Cetak</span>
+                </c-button>
+            </div>
+            <!-- <div class="grid_4">
+                <c-button style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" is-validate click="CetakLaporan()">
+                    <span class="title">Cetak</span>
+                </c-button>
+            </div> -->
+            <!-- <div class="grid_8">
+                <span class="title">  {{message}}</span>
+            </div> -->
+        </div>
+        <div class="grid_12" style="margin-top:30px">
+            <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+        </div>
+
+
+    </div>
+</div>

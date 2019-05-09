@@ -1,0 +1,59 @@
+<div ng-controller="KirimBarangCtrl">
+	<div ui-view/>
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Kirim Barang'" disabled>
+			<div style="margin: 5px" class="grid_3">
+				<input type="checkbox" class="k-checkbox" name="noOrder" id="noOrder" value="noOrder" ng-click="cekNoOrder()">
+		        <label class="k-checkbox-label" for="noOrder">{{'No Order'}}</label>
+				<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noOrder" ng-disabled="isNoOrderChecked"/>
+			</div>
+			<div style="margin: 5px" class="grid_3">
+				<label c-label item="item" c-label-text="tanggalOrder"></label>
+				<input style="width:100%" kendo-date-picker k-ng-model="item.tanggalOrder" k-max="now" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'"/>
+			</div>
+			<div style="margin: 5px" class="grid_3">
+				<label c-label item="item" c-label-text="ruanganPemesanan"></label>
+				<input c-text-box type="input" class="k-textbox" ng-model="item.ruanganPemesanan"/>
+			</div>
+			<div style="margin: 5px" class="grid_3">
+				<label c-label item="item" c-label-text="namaPemesan"></label>
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPemesan"/>
+			</div>
+		</c-panel>
+		<c-panel item="item" header="'Data Kirim'" disabled>
+			<div style="margin: 5px" class="grid_3">
+				<label c-label item="item" c-label-text="noKirim"></label>
+				<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noKirim" disabled />
+			</div>
+			<div style="margin: 5px" class="grid_3">
+				<label c-label item="item" c-label-text="tanggalKirim"></label>
+				<input style="width:100%" kendo-date-picker k-ng-model="item.tanggalKirim" k-max="now" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'"/>
+			</div>
+			<div style="margin: 5px" class="grid_3">
+				<label c-label item="item" c-label-text="ruanganPenerimaan"></label>
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganPenerimaan" k-data-text-field="'ruanganPenerimaan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceRuangan" />
+			</div>
+		</c-panel>
+		<c-panel item="item" header="'Data Barang'" disabled>
+			<div class="grid_12" style="margin-top: 10px;">
+				<div kendo-grid k-data-source="sourceBarang" k-selectable="'row'" k-columns="columnBarang">
+				</div>
+			</div>
+		</c-panel>
+		<div class="grid_12">
+			<div class="grid_6"></div>
+			<div class="grid_3" style="margin: 5px" text-align="right">
+				<label c-label item="item" c-label-text=""> </label>
+				<c-button ng-click="" style="width:100% !important">
+					<span style="font-size:10!important">Tutup</span>
+				</c-button>
+			</div>
+			<div class="grid_3" style="margin: 5px" text-align="right">
+				<label c-label item="item" c-label-text=""> </label>
+				<c-button ng-click="saveData()" style="width:100% !important">
+					<span style="font-size:10!important">Simpan</span>
+				</c-button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,168 @@
+<div ng-controller="PenerimaanBarangMedisDanNonMedisCtrl">
+	<div ng-show="dataVOloaded">
+		<!-- Panel Data Order -->
+		<c-panel item="item" header="'Data Order'" disabled>
+			<div class="grid_12">
+				<!-- Field No Order -->
+				<div style="margin: 5px" class="grid_3">
+					<input type="checkbox" class="k-checkbox" name="noOrder" id="noOrder" value="noOrder" ng-click="cekNoOrder()">
+		            <label class="k-checkbox-label" for="noOrder">{{'No Order'}}</label>
+					<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noOrder" ng-disabled="isNoOrderChecked"/>
+				</div>
+				<!-- DatePick Tanggal Order -->
+				<div style="margin: 5px" class="grid_3">
+	                <label c-label item="item" c-label-text="tanggalOrder"></label>
+	                <input style="width:100%" kendo-date-picker k-ng-model="item.tanggalOrder" k-max="now" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'"/>
+	            </div>
+	            <!-- Field Nama Pemesan -->
+	            <div style="margin: 5px" class="grid_3">
+	            	<label c-label item="item" c-label-text="namaPemesan"></label>
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPemesan"/>
+				</div>
+				<!-- Panel Discount By -->
+				<div style="margin: 5px" class="grid_3">
+					<c-panel item="item" header="'Discount By'" disabled>
+						<div class="grid_12">
+							<!-- Radio Button Jenis Diskon -->
+			                <div class="grid_6" ng-repeat="disk in diskon">
+			                    <input type="radio" name="{{disk.name}}" id="{{disk.name}}" class="k-radio" ng-model="item.DiskonBy" value="{{disk.name}}">
+			                    <label class="k-radio-label" for="{{disk.name}}">{{disk.name}}</label>
+			                </div>
+			                <div class="clear"></div>
+			            </div>
+					</c-panel>
+				</div>
+			</div>
+		</c-panel>
+		<!-- Panel Data Penerimaan -->
+		<c-panel item="item" header="'Data Penerimaan'" disabled>
+			<div class="grid_12">
+				<!-- Field No Terima -->
+				<div style="margin: 5px" class="grid_2">
+					<input type="checkbox" class="k-checkbox" name="noTerima" id="noTerima" value="noTerima" ng-click="cekNoTerima()">
+		            <label class="k-checkbox-label" for="noTerima" >{{'No Terima'}}</label>
+					<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noTerima" ng-disabled="isNoTerimaChecked"/>
+				</div>
+				<!-- DatePick Tanggal Terima -->
+				<div style="margin: 5px" class="grid_3">
+	                <label c-label item="item" c-label-text="tanggalTerima"></label>
+	                <input style="width:100%" kendo-date-picker k-ng-model="item.tanggalTerima" k-max="now" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'"/>
+            	</div>
+            	<!-- ComboBox Nama Suplier -->
+				<div style="margin: 5px" class="grid_2">
+					<label c-label item="item" c-label-text="namaSuplier"></label>
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaSuplier" k-data-text-field="'detailJenisPproduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listNamaSuplier" />
+				</div>
+				<!-- Field No Faktur -->
+				<div style="margin: 5px" class="grid_2">
+					<label c-label item="item" c-label-text="noFaktur"></label>
+					<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noFaktur"/>
+				</div>
+				<!-- DatePick Tanggal Faktur -->
+				<div style="margin: 5px" class="grid_3">
+	                <label c-label item="item" c-label-text="tanggalFaktur"></label>
+	                <input style="width:100%" kendo-date-picker k-ng-model="item.tanggalFaktur" k-max="now" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'"/>
+            	</div>
+			</div>
+			<div class="grid_12"> &nbsp; </div>
+			<div class="grid_12">
+				<!-- DatePick Tanggal Jatuh Tempo -->
+				<div style="margin: 5px" class="grid_3">
+	                <label c-label item="item" c-label-text="tanggalJatuhTempo"></label>
+	                <input style="width:100%" kendo-date-picker k-ng-model="item.tanggalJatuhTempo" k-max="now" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'"/>
+            	</div>
+            	<!-- Field Materai -->
+            	<div style="margin: 5px" class="grid_2">
+					<label c-label item="item" c-label-text="Materai"></label>
+					<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.materai"/>
+				</div>
+			</div>
+		</c-panel>
+		<!-- Panel Data Barang -->
+		<c-panel item="item" header="'Data Barang'" disabled>
+			<!-- Grid Informasi Barang -->
+			<div class="grid_12" style="margin-top: 10px;">
+                <div kendo-grid k-data-source="dataBarang" k-selectable="'row'" k-columns="columnBarang">
+            	</div>
+            </div>
+		</c-panel>
+		<div class="grid_12">
+			<div class="grid_4">&nbsp;</div>
+			<div class="grid_4">
+				<div class="grid_12">
+					<!-- CheckBox Diskon -->
+					<div class="grid_4">
+						<input type="checkbox" class="k-checkbox" name="boxDiskon" id="boxDiskon" value="boxDiskon" ng-click="cekBoxDiskon()">
+			            <label class="k-checkbox-label" for="boxDiskon">{{'Diskon'}}</label>
+					</div>
+					<!-- Field Diskon -->
+					<div class="grid_8">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.diskon" ng-disabled="isNoDiskonChecked" />
+					</div>
+				</div>
+				<div class="grid_12">
+					<!-- CheckBox PPN -->
+					<div class="grid_4">
+						<input type="checkbox" class="k-checkbox" name="ppn" id="ppn" value="ppn" ng-click="cekPPN()">
+			            <label class="k-checkbox-label" for="ppn">{{'PPN'}}</label>
+					</div>
+					<!-- Field PPN -->
+					<div class="grid_8">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.ppn" ng-disabled="isNoPPNChecked" />
+					</div>
+				</div>
+			</div>
+			<div class="grid_4">
+				<!-- Field Total Biaya -->
+				<div class="grid_12">
+					<div class="grid_4">
+                		<label c-label item="item" c-label-text="totalBiaya"></label>
+					</div>
+					<div class="grid_8">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.totalBiaya"/>
+					</div>
+				</div>
+				<!-- Field Total Faktur -->
+				<div class="grid_12">
+					<div class="grid_4">
+                		<label c-label item="item" c-label-text="totalFaktur"></label>
+					</div>
+					<div class="grid_8">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.totalFaktur"/>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="grid_12">&nbsp;</div>
+		<!-- Button -->
+		<div class="12">
+			<div class="grid_6">&nbsp;</div>
+			<div class="grid_6">
+				<div class="grid_12">
+					<div class="grid_2">&nbsp;</div>
+					<!-- Batal -->
+	                <div class="grid_3" style="margin: 5px" text-align="right">
+	                    <label c-label item="item" c-label-text=""> </label>
+	                    <c-button ng-click="deleteData()" style="width:100% !important">
+	                        <span style="font-size:10!important">Batal</span>
+	                    </c-button>
+	                </div>
+	                <!-- Simpan -->
+	                <div class="grid_3" style="margin: 5px" text-align="right">
+	                    <label c-label item="item" c-label-text=""> </label>
+	                    <c-button ng-click="saveData()" style="width:100% !important">
+	                        <span style="font-size:10!important">Simpan</span>
+	                    </c-button>
+	                </div>
+	                <!-- Tutup -->
+	                <div class="grid_3" style="margin: 5px" text-align="right">
+	                    <label c-label item="item" c-label-text=""> </label>
+	                    <c-button ng-click="" style="width:100% !important">
+	                        <span style="font-size:10!important">Tutup</span>
+	                    </c-button>
+	                </div>
+	            </div>
+			</div>
+		</div>
+	</div>
+</div>

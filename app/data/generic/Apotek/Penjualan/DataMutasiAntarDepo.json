@@ -1,0 +1,11 @@
+[
+	{ 
+		"id": "1",
+		"kodeBarang": "00001",
+		"namaBarang": "pria",
+		"satuan": "1",
+		"saldoAkhir": "harga 1",
+		"tanggal": "embalace 1",
+		"jml": "diskon 1"
+	}
+]

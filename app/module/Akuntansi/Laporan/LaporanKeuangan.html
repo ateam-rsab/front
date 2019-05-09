@@ -1,0 +1,51 @@
+<div ng-show="dataVOloaded">
+	<c-panel item="item" header="'Laporan Keuangan'" disabled>
+
+		<button class="export-pdf k-button" ng-click="getPDF('.pdf-page')">Export PDF</button>
+
+		<div class="pdf-page">
+			<div class="pdf-header">
+				<p class="judul">Buku Besar</p>
+				<p class="periode">Periode : 04-2016 - April 2016</p>
+				<p class="tanggal">Per Tanggal : 01-04-2016 S/D 30-04-2016</p>
+				<p class="perkiraan">No Perkiraan : 11420000140201</p>
+			</div>
+
+			<div class="pdf-body">
+				<table class="tabelJurnal">
+					<thead>
+						<tr>
+							<th>No. Jurnal</th>
+							<th>Keterangan</th>
+							<th>No. Perkiraan</th>
+							<th>Debit</th>
+							<th>Kredit</th>
+							<th>Saldo</th>
+							<th>Post</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="data in dataJurnal">
+							<td>{{data.NoJurnal}}</td>
+							<td>{{data.Keterangan}}</td>
+							<td>{{data.NoPerkiraan}}</td>
+							<td>{{data.Debit}}</td>
+							<td>{{data.Kredit}}</td>
+							<td>{{data.Saldo}}</td>
+							<td>{{data.Post}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="pdf-footer">
+				<p>Footer</p>
+			</div>
+
+
+		</div>
+
+
+
+	</c-panel>
+</div>

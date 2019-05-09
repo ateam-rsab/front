@@ -1,0 +1,71 @@
+{
+	"model":{
+	    "Nama"      :"",
+		"TanggalLahir":"",
+		"Bangsa"      :"",
+		"Agama"       :"",
+		"Nomribu"     :"",
+		"Ibudirawat"  :"",
+		"Statusperkawinan":"",
+		"Ruang":"",
+		"DitolongOleh":""	 
+		
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "Nama",
+			"messagesRequired" : "Nama Harus Diisi",
+			"caption" : "Nama"
+		},
+		{
+			"isNull" : "true",
+			"name" : "TanggalLahir",
+			"messagesRequired" : "Tanggal Lahir Harus Diisi",
+			"caption" : "Tanggal lahir"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Bangsa",
+			"messagesRequired" : "Bangsa Harus Diisi",
+			"caption" : "Bangsa"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Agama",
+			"messagesRequired" : "Agama Harus Diisi",
+			"caption" : "Agama"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Nomribu",
+			"messagesRequired" : "Nomoribu Harus Diisi",
+			"caption" : "No mr ibu"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Ibudirawat",
+			"messagesRequired" : "Ibudirawat Harus Diisi",
+			"caption" : "Ibu dirawat"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Statusperkawinan",
+			"messagesRequired" : "Status perkawinan Harus Diisi",
+			"caption" : "Status perkawinan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Ruang",
+			"messagesRequired" : "Ruang Harus Diisi",
+			"caption" : "Ruang"
+		},
+		{
+			"isNull" : "true",
+			"name" : "DitolongOleh",
+			"messagesRequired" : "DitolongOleh Harus Diisi",
+			"caption" : "Ditolong Oleh"
+		}
+		
+  ]
+}

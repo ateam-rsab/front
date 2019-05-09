@@ -1,0 +1,115 @@
+<div ng-controller="DetailPelayananPiutangCtrl"> 
+	<div ng-show="dataVOloaded">
+		<!-- <c-panel item="item" header="'Detail Pelayanan'"  disabled> -->
+		<div class="grid_12 headerBox">
+			<h1 style="color: white;"><b>Detail Pelayanan</b></h1>
+		</div>
+		<div class="grid_12">
+			<!-- <div class="grid_12 borderBox containerBorderBox"> -->
+				<!-- NoPiutang -->
+				<div class="grid_2" >
+					<div class="grid_12">
+						<label c-label item="item"  c-label-text="No Registrasi"></label>
+					</div>
+					<div class="grid_12">
+
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noRegistrasi" ng-disabled="true"/>
+					</div>
+				</div>
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Tanggal Registrasi"></label>
+					</div>
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.tanggalRegistrasi" ng-disabled="true"/>
+					</div>
+				</div>
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Nama"></label>
+					</div>
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nama" ng-disabled="true"/>
+					</div>
+				</div>
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Umur"></label>
+					</div>
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.umur" ng-disabled="true"/>
+					</div>
+				</div>
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Ruangan"></label>
+					</div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.ruangan" ng-disabled="true"/>
+					</div>
+				</div>
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Jenis Pasien"></label>
+					</div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jenisPasien" ng-disabled="true"/>
+					</div>
+				</div>
+			<!-- </div> -->
+			
+		</div>
+
+		<div class="grid_12">
+			<div class="grid_12 headerBox">
+				<p>Rincian Pelayanan</p>
+			</div>
+			<div class="clear"></div>
+
+			<!-- grid table -->
+			<div class="grid_12 borderBox">
+				<div id="kGrid" kendo-grid 
+				k-data-source="dataDetailPelayanan" 
+				k-selectable="'row'" 
+				k-columns="columnDetailPelayanan"
+				k-pageable="'true'"
+				k-sortable="'true'"
+				k-ng-model="dataSelected">
+			</div>
+			<div class="clear"></div>
+		</div>
+		
+		<div class="grid_12">
+			<div class="grid_3">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Jumlah Layanan :"></label>
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jlhLayanan" ng-disabled="true"/>
+				</div>
+			</div>
+			<div class="grid_6"></div>
+			<div class="grid_3">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Total :"></label>
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.total" ng-disabled="true"/>
+				</div>
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_1">
+				<label c-label item="item" c-label-text="Terbilang :"></label>
+			</div>
+			<div class="grid_11">
+
+				<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.Terbilang" ng-disabled="true"/>
+			</div>
+		</div>
+
+		<!-- </c-panel> -->
+
+		<div class="grid_12" style="margin-top:30px">
+			<div ng-include='"../app/module/Shared/Keuangan/TemplateButtonPiutang"'></div>
+		</div>
+	</div>
+</div>

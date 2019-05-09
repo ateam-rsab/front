@@ -1,0 +1,46 @@
+<div ng-controller="ReservasiOnlineCtrl">
+    <div class="grid_12">
+        <div class="grid_4">
+            <label c-label c-label-text="StatusPasien"></label> &nbsp;{{item.TypePasien}}
+        </div>
+        <div class="grid_4">
+            <label c-label c-label-text="noRekamMedik"></label> &nbsp;{{item.NoCM}}
+        </div>
+        <div class="grid_4">
+            <label c-label c-label-text="NamaPasien"></label> &nbsp;{{item.KdTitle.NamaTitle +' ' +item.NamaPasien}}
+        </div>
+        <div class="grid_4">
+            <label c-label c-label-text="JenisPasien"></label> &nbsp;{{item.JenisPasien.JenisPasien}}
+        </div>
+        <div class="grid_4">
+            <label c-label c-label-text="NoIdentitas"></label> &nbsp;{{item.NoIdentitasDetail}}
+        </div>
+        <div class="grid_4">
+            <label c-label c-label-text="KdJenisKelamin"></label> &nbsp;{{item.JenisKelamin.JenisKelamin}}
+        </div>
+        <div class="grid_4">
+            <label c-label c-label-text="TempatLahir"></label> &nbsp;{{item.TempatLahir}}
+        </div>
+        <div class="grid_4">
+            <label c-label c-label-text="TglLahir"></label> &nbsp;{{item.TglLahir | date:'dd-MM-yyyy'}} &nbsp; {{ item.UmurTahun +' Tahun '}}
+        </div>
+        <div class="grid_4">
+            <label c-label c-label-text="NoTelepon"></label> &nbsp;{{item.NoTelpon}}
+        </div>
+        <div class="grid_12">
+            <label c-label c-label-text="AlamatPasien"></label> &nbsp;{{item.AlamatPasien +' '+item.Propinsi.NamaPropinsi+', '+item.KotaKabupaten.NamaKotaKabupaten +', '+item.Kecamatan.NamaKecamatan+', '+item.Kelurahan.NamaKelurahan +', RT/RW '+item.RtRw
+            +', Kode Pos '+item.KodePos }}
+        </div>
+        <div class="grid_12">
+            <span class="title">Tanggal Reservasi : <b>{{item.TglDaftar | date :'dd-MM-yyyy'}}</b></span>
+        </div>
+        <div class="grid_12">
+            <span class="title">Ruangan Tujuan : <b>{{item.PoliTujuan.NamaRuangan}}</b></span>
+        </div>
+        <div class="grid_12">
+            <c-button-header ng-show="!isLoading" style="width: 100%; font-size: 24px" class="accent" item="item" is-validate click="Lanjutkan" icon="k-icon k-i-tick">
+                Prosess
+            </c-button-header>
+        </div>
+    </div>
+</div>

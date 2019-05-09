@@ -1,0 +1,62 @@
+
+<div ng-controller="FormPertamaCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="title">
+			
+			<!-- Text Input -->
+			<div class="grid_12" style="margin-bottom:5px">
+					<label c-label item="item" c-label-text="TextInput"> </label>
+				</div>
+				{{item.TextInput}}
+				<div class="clear"></div>
+				<div class="grid_12">
+
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.TextInput" />
+				
+				</div>
+				</br>
+
+			<!-- Radio Button -->
+			<div class="grid_12" style="margin-bottom:5px">
+					<label c-label item="item" c-label-text="RadioButton"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+	                <div class="grid_3" style="margin: 5px 0 5px 0;" ng-repeat="stat in listYaTidak">
+	                    <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.RadioButton" value="{{stat.name}}">
+	                    <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+	                </div>
+	                <div class="clear"></div>
+	            </div>
+	            </br>
+
+	            <!-- <button ng-click="testing()">Button</button> -->
+	         <!-- Combo box -->
+	         <div class="grid_12" style="margin-bottom:5px">
+					<label c-label item="item" c-label-text="ComboBox"></label>
+				</div>
+				{{item.ComboBox}}
+				<div class="clear"></div>
+				<div class="grid_12">
+				{{item.ComboBox}}
+					 <input style="width: 100%;" kendo-combo-box k-ng-model="item.ComboBox" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPenyakitMayor" />
+				</div>
+				</br>
+
+			<!-- CheckBox -->
+			<div class="grid_12" style="margin-bottom:5px">
+					<label c-label item="item" c-label-text="CheckBox"></label>
+				</div>
+
+				<div class="clear"></div>
+				<div class="grid_12" style="margin-bottom:5px">
+	                <div class="grid_2" ng-repeat="karateristikNyeri in listKarateristikNyeri">
+	                    <input type="checkbox" class="k-checkbox" name="{{karateristikNyeri.name}}" id="{{karateristikNyeri.name}}" value="{{karateristikNyeri.id}}" ng-click="cekArrKarateristikNyeri(karateristikNyeri.id)">
+	                    <label class="k-checkbox-label" for="{{karateristikNyeri.name}}">{{karateristikNyeri.name}}</label>
+	                </div>
+	                <div class="clear"></div>
+	            </div>
+		</c-panel>
+	</div>
+</div>

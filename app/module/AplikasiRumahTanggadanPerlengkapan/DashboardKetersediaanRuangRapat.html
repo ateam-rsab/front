@@ -1,0 +1,127 @@
+<style>
+span.icon.fa.fa-chevron-up{
+    display: none;
+}
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h3 {
+    color: rgb(75, 75, 75);;
+}
+
+.card {
+  width: 100%;
+  /* border: 1px solid #EF9A9A;   */
+  border: 1px solid rgb(151, 151, 255);  
+  border-radius: 4px 20px 4px 20px;
+  overflow: hidden;
+  display: flex;
+  height: 300px;
+  flex-direction: column;
+  transition: .4s ease;
+  background-color: rgb(194, 194, 255);
+}
+
+.card:hover {
+    /* display: block; */
+    transform: scale(1.1);
+    transform-style: preserve-3d;
+    border-radius: 20px 4px 20px 4px;
+}
+
+.card-header {
+  color: #fafafa;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  border-bottom: 1px solid rgb(151, 151, 255);
+  /* background-color: #FFEBEE; */
+  background-color: rgb(105, 105, 253);
+  padding: 5px 10px;
+}
+.card-main {
+  display: flex;
+  color: rgb(75, 75, 75);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 15px 0;
+}
+.material-icons {
+  font-size: 36px;
+  color: #D32F2F;
+  margin-bottom: 5px;
+}
+.main-description {
+  color: #D32F2F;
+  font-size: 12px;
+  text-align: center;
+}
+.data-empty {
+    height: 100%;
+    width: 100%;
+}
+</style>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600"
+    rel="stylesheet">
+<div ng-controller="DashboardKetersediaanRuangRapatCtrl">
+    <c-panel item="item" header="'Dashboard Ketersediaan Ruang Rapat'">
+        <div class="grid_12">
+            <div class="grid_6">
+                <div class="grid_3" style="margin-top: 10px">
+                    <label c-label item="item">Periode Awal</label>
+                </div>
+                <div class="grid_1" style="margin-top: 10px">
+                    <label c-label item="item">:</label>
+                </div>
+                <div class="grid_6">
+                    <input style="width: 100%" kendo-date-picker
+                        k-ng-model="item.tanggal" placeholer="dd-mm-yyyy"
+                        k-format="'dd-MM-yyyy'" />
+                </div>
+                <div class="grid_2" style="margin-top: 5.5px">
+                    <button class="c-button success" ng-click="findData()">Cari</button>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_3 gray-theme" ng-repeat="data in dataRuangan">
+                <div class="card">
+                    <div class="card-header gray-theme">{{data.namaRuangan}}</div>
+                    <div class="card-main">
+                        <div class="grid_12">
+                            <div class="grid_4">
+                                <h3>Unit / Ruangan</h3>
+                            </div>
+                            <div class="grid_4">
+                                <h3>Waktu</h3>
+                            </div>
+                            <div class="grid_4">
+                                <h3>Status</h3>
+                            </div>
+                        </div>
+                        <div class="grid_12" ng-repeat="data in
+                            data.ketersediaanRuangan">
+                            <div class="grid_4">
+                                <p><strong>{{data.unitPemesan}}</strong></p>
+                            </div>
+                            <div class="grid_4">
+                                <p>{{data.selesaiRapat}}</p>
+                            </div>
+                            <div class="grid_4">
+                                <p>{{data.status}}</p>
+                            </div>
+                        </div>
+                        <div class="data-empty"
+                            ng-if="data.ketersediaanRuangan.length == 0">
+                            <p style="text-align: center"><strong>Ruangan Masih Kosong</strong></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </c-panel>
+    </div>

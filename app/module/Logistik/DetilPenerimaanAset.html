@@ -1,0 +1,108 @@
+<div>
+	<div ng-show="dataVOloaded">
+		<div class="panel panel-default panel-white">
+            <div class="panel-heading-white"><span class="title" c-translate>Detil Penerimaan Barang</span></div>
+            <div class="panel-body">
+				<div class="grid_12">
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="noDokumen"></label>
+						<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="items.header.noDokumen" style="width:100%" disabled/>
+					</div>
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="tanggalDokumen"></label>
+			            <input style="width: 100%" k-ng-model='items.header.tanggalDokumen' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+					</div>
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="kodeSuplier"></label>
+						<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="items.header.namaSupplier" style="width:100%" disabled/>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="nomorPemesanan"></label>
+						<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="items.header.noPesanan" style="width:100%" disabled/>
+					</div>
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="nomor SPK"></label>
+						<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="items.header.noSpk" style="width:100%" disabled/>
+					</div>
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="tanggal SPK"></label>
+			            <input style="width: 100%" k-ng-model='items.header.tanggalSpk' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="sumberDana"></label>
+						<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="items.header.sumberDana" style="width:100%" disabled/>
+					</div>
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="diskon"></label>
+						<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="items.header.diskon" style="width:100%" k-options="formatPpn" disabled/>
+					</div>
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="ppn"></label>
+						<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="items.header.ppn" style="width:100%" k-options="formatPpn" disabled/>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="kodeGudang"></label>
+						<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="items.header.gudang" style="width:100%" disabled/>
+					</div>
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="nomorKontrak"></label>
+						<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="items.header.noKontrak" style="width:100%" disabled/>
+					</div>
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="tanggalKontrak"></label>
+			            <input style="width: 100%" k-ng-model='items.header.tanggalKontrak' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="sumberDana"></label>
+						<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="items.header.sumberDana" style="width:100%" disabled/>
+					</div>
+					<div class="grid_4">
+						<label c-label item="items" c-label-text="keterangan"></label>
+						<input c-text-box class="k-textbox" ng-model="items.header.keterangan" style="width:100%" disabled/>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+
+		<div class="grid_4">
+			<label c-label item="item">NIP Penerima</label>
+			<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="items.nipYangMenerima" style="width:100%" disabled/>
+		</div>
+		<div class="grid_4">
+			<label c-label item="item">NIP Yang Menyerahkan</label>
+			<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="items.nipYangMennyerahkan" style="width:100%" disabled/>
+		</div>
+		<div class="grid_4">
+			<label c-label item="item">NIP Yang Mengetahui</label>
+			<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="items.nipMengetahui" style="width:100%" disabled/>
+		</div>
+		<div class="grid_4">
+			<label c-label item="item" c-label-text="yangMenerima"></label>
+			<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="items.yangMenerima" style="width:100%" disabled/>
+		</div>
+		<div class="grid_4">
+			<label c-label item="item" c-label-text="yangMenyerahkan"></label>
+			<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="items.yangMennyerahkan" style="width:100%" disabled/>
+		</div>
+		<div class="grid_4">
+			<label c-label item="item" c-label-text="yangMengetahui"></label>
+			<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="items.mengetahui" style="width:100%" disabled/>
+		</div>
+		<!-- grid data -->
+		<div class="grid_12" style="margin-bottom: 10px">
+			<kendo-grid id="kGrid" k-data-source="dataSource" options="mainGridOptions"></kendo-grid>
+		</div>
+	</div>
+	<div class="grid_12" style="margin-top:35px">
+   	    <div ng-include='"../app/module/Shared/TemplateButtonSimpanSRO"'/>
+   	</div>
+</div>

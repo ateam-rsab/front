@@ -1,0 +1,32 @@
+{
+	"model":{
+	    "Bayi" : "",
+	    "Lahirdi" : "",
+		"Kehamilan":""
+		
+	   
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "Bayi",
+			"messagesRequired" : "Bayi Harus Diisi",
+			"caption" : "Bayi"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Lahirdi",
+			"messagesRequired" : "Lahir di Harus Diisi",
+			"caption" : "Lahir di"
+		}, 
+		{
+			"isNull" : "true",
+			"name" : "Kehamilan",
+			"messagesRequired" : "Kehamilan Harus Diisi",
+			"caption" : "Kehamilan"
+		}
+
+	
+		
+  ]
+}

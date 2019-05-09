@@ -1,0 +1,245 @@
+<style>
+	.style-center{
+	display: inline-block;
+	text-align: center;
+	width: 100%;
+}
+
+.style-right{
+	display: inline-block;
+	text-align: right;
+	width: 100%;
+}
+
+.style-left{
+	display: inline-block;
+	text-align: left;
+	width: 100%;
+}
+
+.k-grid .k-grid-header .k-header .k-link {
+	height: auto;
+}
+
+.k-grid .k-grid-header .k-header  {
+	white-space: normal;
+}
+.k-grid .k-grid-header .k-header  {
+	text-align: center;
+}
+button:disabled {
+	background: #B5B2B1;
+}
+.custom-button {
+	margin: 0 0 10px;
+	background: none;
+	color: black;
+	border-radius: 0.8em;
+	border: 1px solid;
+	background-color: white;
+}
+.k-edit, .k-i-download {
+	background-position: -313px -221px;
+}
+a.k-button.k-button-icontext {
+	min-width: 84px;
+	background-color: #e0360b;
+	border: none;
+	margin: .1em;
+}
+.duplicateDate {
+	background-color: red;
+	border: 2px solid red !important;
+}
+span.errorCuti {
+	text-align: center;
+	width: 100%;
+	padding: 10px 20px;
+	color: red;
+	font: italic 14px/30px arial, sans-serif;
+}
+</style>
+
+<div ng-show="dataVOloaded">
+	<c-panel item="item" header="'Daftar Pasien Jatuh'" disabled>
+		<div class="grid_12">
+			<div class="grid_2">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Instalasi"></label>
+				</div>
+				<div class="clear"></div>
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.instalasi" k-data-text-field="'departemen'"
+					 k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDepartemen" k-on-change='getIsiComboRuangan()' />
+				</div>
+			</div>
+			<div class="grid_2">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Ruangan"></label>
+				</div>
+				<div class="clear"></div>
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'ruangan'"
+					 k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+				</div>
+			</div>
+			<div class="grid_2">
+			</div>
+			<div class="grid_1">
+			</div>
+			<div class="grid_4">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Periode Jatuh"></label>
+				</div>
+				<div class="clear"></div>
+				<div class="grid_12">
+					<div class="grid_6 padDatePicker">
+						<input style="width: 100%" k-ng-model="item.periodeAwal" kendo-datetimepicker k-max="now" placeholer="yyyy-MM-dd HH:mm"
+						 k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
+					</div>
+					<div class="grid_6 padDatePicker">
+						<input style="width: 100%" k-ng-model="item.periodeAkhir" kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm"
+						 k-format="'yyyy-MM-dd HH:mm'" />
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+			<div class="grid_1">
+				<label c-label c-label-text=""></label>
+				<em style="margin-top:6px;" ng-click='SearchData()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary"
+				 role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-search">Refresh</span></em>
+				<em style="margin-top:6px;" ng-click='ClearSearch()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary"
+				 role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Reset</span></em>
+			</div>
+		</div>
+	</c-panel>
+
+	<div class="grid_12">
+		<div class="clear"></div>
+		<div class="grid_12 borderBox">
+			<div id="kGrid" kendo-grid k-data-source="sourceGrid" k-selectable="'row'" k-columns="columnGrid" k-pageable="'true'"
+			 k-sortable="'true'" k-ng-model="dataPasienSelected" ng-click="klikGrid(dataPasienSelected)">
+			</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+	<div class="grid_12">
+		<div class="grid_1">
+			<div class="grid_12">
+				<label c-label item="item">No Reg</label>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_12">
+				<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noReg" />
+			</div>
+		</div>
+		<div class="grid_1">
+			<div class="grid_12">
+				<label c-label item="item">No RM</label>
+			</div>
+			<div class="clear"></div>
+			<div class="grid_12">
+				<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noRm" />
+			</div>
+		</div>
+		<div class="grid_2">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="Nama"></label>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_12">
+				<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nama" />
+			</div>
+		</div>
+		<div class="grid_2">
+			<div class="grid_12">
+				<label c-label item="item">Keterangan</label>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_12">
+				<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.keterangan" />
+			</div>
+		</div>
+		<div class="grid_2" style="margin-top: 22px">
+				<button class="c-button primary" style="margin-left: 0;" ng-click="Tambah()">Tambah</button>
+			</div>
+		<div class="grid_2" style="margin-top: 22px">
+			<button class="c-button primary" style="margin-left: 0;" ng-click="Edit()">Edit</button>
+		</div>
+		<div class="grid_2" style="margin-top: 22px">
+			<button class="c-button primary" style="margin-left: 0;" ng-click="Hapus()">Hapus</button>
+		</div>
+
+		<div class="grid_12" style="margin-top:60px">
+			<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+		</div>
+	</div>
+
+</div>
+
+<div kendo-window="dialogPasienJatuh" k-title="'Pasien Jatuh'" k-width="400" k-height="350" k-visible="false" k-on-open="win2visible = true"
+ k-on-close="win2visible = false">
+	<div class="grid_12">
+		<label c-label item="item ">No RM</label>
+		<input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="dialog.nocm" disabled />
+	</div>
+	<div class="grid_12">
+		<label c-label item="item ">Nama Pasien</label>
+		<input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="dialog.namapasien" disabled />
+	</div>
+	<div class="grid_12">
+		<label c-label item="item ">Tgl Jatuh</label>
+		<input style="width: 100%" k-ng-model="dialog.tglJatuh" kendo-datetimepicker k-max="now" placeholer="yyyy-MM-dd HH:mm"
+		 k-format="'yyyy-MM-dd HH:mm'" />
+	</div>
+	<div class="grid_12">
+		<label c-label item="item ">Jumlah</label>
+		<input c-text-box type="number" filter="'number'" class="k-textbox" ng-model="dialog.jumlah" />
+	</div>
+	<div class="grid_12">
+		<label c-label item="item ">Keterangan</label>
+		<input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="dialog.keterangan" />
+	</div>
+	<div class="clear">
+		<button class="k-button" ng-click="simpanJatuh(dialog)" style="float:right;margin-top:4%">Simpan</button>
+	</div>
+
+</div>
+<style type="text/css">
+	.custom-button {
+		margin: 0 0 10px;
+		background: none;
+		color: black;
+		border-radius: 0.8em;
+		border: 1px solid;
+		background-color: white;
+	}
+
+	.k-edit,
+	.k-i-download {
+		background-position: -313px -221px;
+	}
+
+	a.k-button.k-button-icontext {
+		min-width: 84px;
+		background-color: #e0360b;
+		border: none;
+		margin: .1em;
+	}
+
+	.duplicateDate {
+		background-color: red;
+		border: 2px solid red !important;
+	}
+
+	span.errorCuti {
+		text-align: center;
+		width: 100%;
+		padding: 10px 20px;
+		color: red;
+		font: italic 14px/30px arial, sans-serif;
+	}
+</style>

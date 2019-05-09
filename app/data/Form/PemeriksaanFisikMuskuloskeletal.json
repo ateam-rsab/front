@@ -1,0 +1,21 @@
+{
+	"model":{
+	    "KelainanTulang" : "",
+	    "GerakanAnak" : ""
+		
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "KelainanTulang",
+			"messagesRequired" : "Kelainan Tulang Harus Diisi",
+			"caption" : "Kelainan Tulang"
+		},
+		{
+			"isNull" : "true",
+			"name" : "GerakanAnak",
+			"messagesRequired" : "Gerakan Anak Harus Diisi",
+			"caption" : "Gerakan Anak"
+		}
+  ]
+}

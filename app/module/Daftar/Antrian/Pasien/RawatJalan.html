@@ -1,0 +1,72 @@
+<div ng-controller="DaftarAntrianPasienCtrl">
+    <div class="grid_12 queue-board">
+        <div class="grid_10" c-queue>
+            <div class="dashboard">
+                <div class='queue-content'>
+                    <span class='counter animated zoomIn'>{{sumMenunggu}}</span>
+                    <span class="description">{{ruanganMenunggu}}</span>
+                    <img src="stylesheets\waiting.png" />
+                    <span class='title'><h4>Pasien Selanjutnya</h4></span>
+                </div>
+            </div>
+            <div class="dashboard">
+                <div class='queue-content' ng-click="susterClick()">
+                    <span class='counter animated zoomIn'>{{sumSuster}}</span>
+                    <span class="description">{{ruanganSuster}}</span>
+                    <img src="stylesheets\nurse.png" />
+                    <span class='title'><h4>Dipanggil Suster</h4></span>
+                </div>
+            </div>
+            <div class="dashboard">
+                <div class='queue-content'>
+                    <span class='counter animated zoomIn'>{{sumDokter}}</span>
+                    <span class="description">{{ruanganDokter}}</span>
+                    <img src="stylesheets\surgeon.png" />
+                    <span class='title'><h4>Dipanggil Dokter</h4></span>
+                </div>
+            </div>
+            <div class="dashboard">
+                <div class='queue-content'>
+                    <span class='counter animated zoomIn'>{{sumSelesai}}</span>
+                    <span class="description">{{ruanganSelesai}}</span>
+                    <img src="stylesheets\work-done.png" />
+                    <span class='title'><h4>Selesai</h4></span>
+                </div>
+            </div>
+        </div>
+        <div class="grid_2 queue-detail" style="    position: absolute;right: 0px;width: 239px;margin-right: 0px;">
+            <div class="grid_12 " style="height: 69px;">
+                <h2 c-translate class="center-panel">Daftar Antrian Pasien</h2>
+            </div>
+            <div class="grid_12 queue-list" ng-repeat="item in listPatients" ng-click="masukPasien(item)">
+                <span class='no'><span>{{item.noAntrian}}</span></span>
+                <span class='icon'></span>
+                <span class='dest'>{{item.pasien.namaPasien}}</span>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(window).on('resize', function() {
+            // var countIndex = 0;
+            // var parent = undefined;
+            // $(".dashboard").each(function() {
+            //     $(this).addClass('queue');
+            //     parent = $(this).parent();
+            //     countIndex++;
+            // });
+            // console.log(countIndex);
+            // $(".dashboard").each(function() {
+            //     // $(this).width((parent.width() / 2) - 13);
+            //     // $(this).height((parent.height() / 2) + 4);
+            //     countIndex++;
+            // });
+        });
+
+
+
+    })
+</script>

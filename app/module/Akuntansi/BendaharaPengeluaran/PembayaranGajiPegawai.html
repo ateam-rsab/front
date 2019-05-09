@@ -1,0 +1,122 @@
+<style>
+	.style-center{
+		display: inline-block;
+		text-align: center;
+		width: 100%;
+	}
+
+	.style-right{
+		display: inline-block;
+		text-align: right;
+		width: 100%;
+	}
+
+	.style-left{
+		display: inline-block;
+		text-align: left;
+		width: 100%;
+	}
+</style>
+<div ng-controller="PembayaranGajiPegawaiCtrl">
+	<div ng-show="dataVOloaded">
+
+		<div class="grid_12 headerBox">
+			<h1 style="color: white;"><b>Pembayaran Gaji Pegawai</b></h1>
+		</div>
+		<div class="clear"></div>
+
+		<br/>
+
+		<!-- Kriteria -->
+		<div class="grid_12">
+			<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+				<p></p>
+			</div>
+			<div class="grid_12 borderBox containerBorderBox">
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item"  c-label-text="Tanggal Pengajuan :"></label>
+					</div>
+					<div class="grid_4">
+						<input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.tanggalPengajuan" disabled />
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item"  c-label-text="Penggajian Bulan :"></label>
+					</div>
+					<div class="grid_2">
+						<input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.Bulan" disabled />
+					</div>
+					<div class="grid_1">
+						<input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.tahun" disabled/>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item"  c-label-text="Periode :"></label>
+					</div>
+					<div class="grid_5">
+						<input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.keterangan" disabled />
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+
+		<br/>
+
+		<div class="grid_12">
+			<!-- <div class="grid_12 borderBox">
+				<div kendo-grid k-data-source="dataDaftarPenggajian" k-selectable="'row'" k-columns="columnDaftarPenggajian">
+				</div>
+			</div>
+			<div class="clear"></div> -->
+			<div class="grid_12 borderBox">
+					<div id="kGrid" kendo-grid 
+					k-data-source="dataDaftarPenggajian" 
+					k-pageable="true"
+					k-sortable="'true'" 
+					k-columns="columnDaftarPenggajian"
+					k-ng-model="dataSelected">
+						<div k-detail-template>
+							<kendo-tabstrip>
+								<div>
+									<div kendo-grid k-options="detailGridOptions(dataItem)" 
+										k-sortable="'true'" 
+										k-ng-model="dataSelected2">
+									</div>
+								</div>
+							</kendo-tabstrip>
+						</div>
+					</div>
+				</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_8">
+			</div>
+			<div class="grid_1">
+			<label c-label item="item"  c-label-text="Total :"></label>
+			</div>
+			<div class="grid_2">
+				<input c-text-box type="input" style="text-align: right;" filter="'char'" class="k-textbox" ng-model="item.Total" disabled />
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_8">
+			</div>
+			<div class="grid_4">
+				<div class="grid_4">
+					<button class="btnTemplate1" ng-click="Cetak()">Cetak</button>
+				</div>
+				<div class="grid_4">
+					<button class="btnTemplate1" ng-click="Bayar()">Simpan</button>
+				</div>
+				<div class="grid_4">
+					<button class="btnTemplate1" ng-click="Kembali()">Kembali</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

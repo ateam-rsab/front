@@ -1,0 +1,97 @@
+<div ng-controller="InputNilaiCtrl">
+
+	<div ng-show="dataVOloaded">
+	    <c-panel item="item" header="'Input Nilai'"disabled>
+		<div class="grid_6">
+		<div class="panel panel-default container_12">
+
+	       <div class="grid_12">
+			<div class="grid_4" style="margin-top: 10px;">
+				<label c-label item="item" c-label-text="Periode Lowongan"></label>
+			</div>
+			<div class="grid_8">
+                <!-- <input kendo-date-picker k-options="monthSelectorOptions" k-ng-model="item.periodeLowongan" k-format="'MMMM-yyyy'" style="width: 100%;"> -->
+                <!-- <input kendo-date-picker k-options="monthSelectorOptions" k-ng-model="periodeLowongan" k-format="'MMMM-yyyy'" style="width: 100%;" k-on-change="periodeL()"> -->
+                <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="periodeLowongan" disabled/>
+                <!-- <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="idNoRec" ng-show="false" k-selected=/> -->
+			</div>
+			</div>
+
+			<div class="grid_12">
+			<div class="grid_4" style="margin-top: 10px;">
+				<label c-label item="item" c-label-text="Jenis Test"></label>
+			</div>
+			<div class="grid_8">
+				<!-- <input style="width:100%" kendo-combo-box k-ng-model="item.namaP" k-data-text-field="'namaProdukRs'" k-data-value-field="'produkRsId'" k-filter="'contains'" k-auto-bind="false" k-data-source="" /> -->
+				<!-- <input style="width:100%" kendo-combo-box k-ng-model="item.jenisTest" k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisTest" k-on-change="dapatJ()" disabled /> -->
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="jenisT" disabled/>
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="idJ" disabled ng-show="false"/>
+
+			</div>
+			</div>
+			
+			<div class="grid_12">
+			<div class="grid_4" style="margin-top: 10px;">
+				<label c-label item="item" c-label-text="Tanggal pelaksanaan"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="tglPelaksana" disabled/>
+			</div>
+			</div>
+
+			<div class="grid_12">
+			<div class="grid_4" style="margin-top: 10px;">
+				<label c-label item="item" c-label-text="Ruangan"></label>
+			</div>
+			<div class="grid_8">
+			<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="namaRuangan" disabled />
+			</div>
+			</div>
+
+			<div class="grid_12">
+			<div class="grid_4" style="margin-top: 10px;">
+				<label c-label item="item" c-label-text="Petugas Penanggung Jawab"></label>
+			</div>
+			<div class="grid_8">
+			<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="namaPetugas" disabled />
+			</div>
+			</div>
+
+		</div>
+		</div>
+
+			</div>
+		</div>
+
+		<!-- bagian grid -->
+		<div class="grid_12">
+			
+			<div class="grid_12">
+				<kendo-grid  k-data-source="dataSource" k-pageable="true" k-selectable="'row'" k-ng-model="current" ng-click="klik(current)" style="font-size: small;" options="optGridPindah">
+            	</kendo-grid>	
+			</div>	
+			
+		</div>
+		
+		</c-panel>
+
+		<!-- bagian button -->
+		<div class="grid_12">
+	
+						
+				<div class="grid_2" style="margin-top: 25px;float:right">
+					<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="pindahKe()">
+                		<span class="title">Input Jadwal Seleksi</span>
+                	</button>
+				</div>
+				<div class="grid_2" style="margin-top: 25px;float:right">
+					<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+						<span class="title">Simpan</span>
+					</button>
+				</div>				
+			
+		</div>
+	</div>
+</div>
+
+

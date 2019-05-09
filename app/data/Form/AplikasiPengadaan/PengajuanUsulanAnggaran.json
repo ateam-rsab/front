@@ -1,0 +1,184 @@
+{
+	"model":{
+		"unitKerja":"",
+		"tglPengajuan": "",
+		"tahun":"",
+		"pengendali":"",
+		"kementrian":"",
+		"unitOrganisasi":"",
+		"unitKerja":"",
+		"program":"",
+		"kegiatan":"",
+		"output":"",
+		"sumberDana":"",
+	   	"komponen":"",
+	   	"jenisBelanja":"",
+	   	"akun":"",
+	   	"jenisAnggaran":"",
+		"kodeBarang":"",
+		"namaBarang":"",
+		"periode":"",
+	   	"sd":"",
+	   	"totalVolum":"",
+	   	"rata":"",
+	   	"unit":"",
+		"konversi":"",
+		"jumlahProgrusa":"",
+	   	"x12Bln=":"",
+	   	"hargaTerakhir":"",
+	   	"total":"",
+	   	"lokasi":"",
+	   	"spesifikasi":"",
+	   	"tujuanPengiriman":"",
+	   	"namaProduk" : ""
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "unitKerja",
+			"messagesRequired" : "",
+			"caption" : "Unit Kerja"
+		},{
+			"isNull" : "true",
+			"name" : "tahun",
+			"messagesRequired" : "",
+			"caption" : "Tahun"
+		},{
+			"isNull" : "true",
+			"name" : "tglPengajuan",
+			"messagesRequired" : "",
+			"caption" : "Tgl Pengajuan"
+		},{
+			"isNull" : "true",
+			"name" : "kementrian",
+			"messagesRequired" : "",
+			"caption" : "Kementrian"
+		},{
+			"isNull" : "true",
+			"name" : "unitOrganisasi",
+			"messagesRequired" : "",
+			"caption" : "Unit Organisasi"
+		},{
+			"isNull" : "true",
+			"name" : "unitKerja",
+			"messagesRequired" : "",
+			"caption" : "Unit Kerja"
+		},{
+			"isNull" : "true",
+			"name" : "program",
+			"messagesRequired" : "",
+			"caption" : "Program"
+		},{
+			"isNull" : "true",
+			"name" : "kegiatan",
+			"messagesRequired" : "",
+			"caption" : "Kegiatan"
+		},{
+			"isNull" : "true",
+			"name" : "output",
+			"messagesRequired" : "",
+			"caption" : "Output"
+		},{
+			"isNull" : "true",
+			"name" : "komponen",
+			"messagesRequired" : "",
+			"caption" : "Komponen"
+		},{
+			"isNull" : "true",
+			"name" : "akun",
+			"messagesRequired" : "",
+			"caption" : "Akun"
+		},{
+			"isNull" : "true",
+			"name" : "sumberDana",
+			"messagesRequired" : "",
+			"caption" : "Sumber Dana"
+		},{
+			"isNull" : "true",
+			"name" : "jenisAnggaran",
+			"messagesRequired" : "",
+			"caption" : "Jenis Anggaran"
+		},{
+			"isNull" : "true",
+			"name" : "jenisBelanja",
+			"messagesRequired" : "",
+			"caption" : "Jenis Belanja"
+		},{
+			"isNull" : "true",
+			"name" : "kodeBarang",
+			"messagesRequired" : "",
+			"caption" : "Kode Barang"
+		},{
+			"isNull" : "true",
+			"name" : "namaBarang",
+			"messagesRequired" : "",
+			"caption" : "Nama Barang"
+		},{
+			"isNull" : "true",
+			"name" : "periode",
+			"messagesRequired" : "",
+			"caption" : "Periode"
+		},{
+			"isNull" : "true",
+			"name" : "sd",
+			"messagesRequired" : "",
+			"caption" : "s/d"
+		},{
+			"isNull" : "true",
+			"name" : "totalVolum",
+			"messagesRequired" : "",
+			"caption" : "Total Volume"
+		},{
+			"isNull" : "true",
+			"name" : "rata",
+			"messagesRequired" : "",
+			"caption" : "Rata-rata PerBulan"
+		},{
+			"isNull" : "true",
+			"name" : "unit",
+			"messagesRequired" : "",
+			"caption" : "Unit"
+		},{
+			"isNull" : "true",
+			"name" : "konversi",
+			"messagesRequired" : "",
+			"caption" : "Konversi"
+		},{
+			"isNull" : "true",
+			"name" : "jumlahProgrusa",
+			"messagesRequired" : "",
+			"caption" : "Jumlah Progrusa"
+		},{
+			"isNull" : "true",
+			"name" : "Bln",
+			"messagesRequired" : "",
+			"caption" : "x 12 Bln     ="
+		},{
+			"isNull" : "true",
+			"name" : "hargaTerakhir",
+			"messagesRequired" : "",
+			"caption" : "HargaTerakhir"
+		},{
+			"isNull" : "true",
+			"name" : "total",
+			"messagesRequired" : "",
+			"caption" : "Total"
+		},{
+			"isNull" : "true",
+			"name" : "Spesifikasi",
+			"messagesRequired" : "",
+			"caption" : "Spesifikasi"
+		},{
+			"isNull" : "true",
+			"name" : "tujuanPengiriman",
+			"messagesRequired" : "",
+			"caption" : "Tujuan Pengiriman"
+		},{
+			"isNull" : "true",
+			"name" : "namaProduk",
+			"messagesRequired" : "",
+			"caption" : "Nama Produk"
+		}
+
+	]
+}

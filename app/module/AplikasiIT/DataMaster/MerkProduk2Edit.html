@@ -1,0 +1,129 @@
+<!-- <div ng-controller="SettingDataFixed?Ctrl"> -->
+	<div ng-show="dataVOloaded">
+		<!-- <c-panel item="item" header="'Produk'" disabled> -->
+		<div class="grid_12">
+			<div class="grid_12 headerBox">
+				<h1 style="color: white;">
+					<b>Setting Merk Produk</b>
+				</h1>
+			</div>
+			<!-- kdDataFixed -->
+				<div class="grid_1">
+						<div class="grid_12">
+							<label c-label item="item" c-label-text="Id"></label>
+						</div>
+						<div class="grid_12">
+							<input c-text-box type="input" filter="" readonly="readonly" class="k-textbox" ng-model="item.id" disabled />
+						</div>
+					</div>
+				<!-- kdDataFixed -->
+				<div class="grid_2">
+						<div class="grid_12">
+							<label c-label item="item" c-label-text="departemen"></label>
+						</div>
+						<div class="clear"></div>
+
+						<div class="grid_12">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.listnamaDepartemen" k-data-text-field="'namadepartemen'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listnamaDepartemen" />
+						</div>
+				</div>
+
+				<!-- kdDtaFixed -->
+				<div class="grid_3">
+					<div class="grid_12">
+					<label c-label item="item" c-label-text="merkProduk"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.merkProduk" />
+					</div>
+				</div>
+
+				<div class="grid_3">
+					<div class="grid_12">
+					<label c-label item="item" c-label-text="kdMerkProduk"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="number" filter="" class="k-textbox" ng-model="item.kodeMerk" />
+					</div>
+				</div>
+
+				<div class="grid_3">
+					<div class="grid_12">
+					<label c-label item="item" c-label-text="reportDisplay"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+					</div>
+				</div>
+
+				<!-- <div class="grid_3">
+					<div class="grid_12">
+					<label c-label item="item" c-label-text="objectdepartemenfk"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.objectdepartemenfk" />
+					</div>
+				</div> -->
+
+				<div class="grid_3">
+					<div class="grid_12">
+					<label c-label item="item" c-label-text="qMerkProduk"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.qMerkProduk" />
+					</div>
+				</div>
+
+				<div class="grid_3">
+					<div class="grid_12">
+					<label c-label item="item" c-label-text="namaExternal"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+					</div>
+				</div>
+
+				<div class="grid_3">
+					<div class="grid_12">
+					<label c-label item="item" c-label-text="kodeExternal"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+					</div>
+				</div>
+
+				
+			</div>
+
+		<!-- </c-panel>-->
+		<div class="grid_12">
+			<div class="grid_8"></div>
+			<div class="grid_2">
+				<button class="c-button" ng-click="simpan()">Simpan</button>
+			</div>
+			<!-- <div class="grid_2" >
+			<button class="c-button" ng-click="edit()">Update</button>
+		</div> -->
+			<div class="grid_2">
+				<button class="cancel c-button" ng-click="kembali()">Kembali</button>
+			</div>
+			<!-- <div class="grid_12" style="margin-top:60px" ng-show="isRouteLoading()">
+					<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+				</div> -->
+		</div>
+	</div>
+<!-- </div> -->

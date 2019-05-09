@@ -1,0 +1,13 @@
+{
+	"model":{
+	    "CheckBox" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "CheckBox",
+			"messagesRequired" : "",
+			"caption" : "Label CheckBox"
+		}
+  ]
+}

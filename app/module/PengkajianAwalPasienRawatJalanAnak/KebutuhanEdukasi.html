@@ -1,0 +1,30 @@
+<div ng-controller="KebutuhanEdukasiCtrl">
+    <div class="container_12">
+        <div class="grid_12">
+            <div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+                <span style="font-size: 18px; color: white; padding: 5px;">{{formMaster.nama}}</span>
+            </div>
+            <div class="container_12"> <!-- html form goes here -->
+                <div class="grid_12" style="padding: 5pt 10pt">
+                    <div ng-repeat="list in formMaster.detail | orderBy:'id'">
+                        <div class="grid_12">
+                            <div class="grid_12">
+                                <!--<input type="checkbox" ng-model="list.value" ng-change="parentChange($index)">-->
+                                <label for="{{list.nama}}"><b>{{list.nama}}</b></label>
+                            </div>
+                            <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                                <div class="grid_3">
+                                    <input type="checkbox" ng-model="opsi.value">
+                                    <label for="{{opsi.nama}}">{{opsi.nama}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-include='"../app/module/Shared/TemplateButtonSimpan" ' style="margin:25px;"></div>
+
+</div>

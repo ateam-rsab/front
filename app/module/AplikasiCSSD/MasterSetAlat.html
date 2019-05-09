@@ -1,0 +1,163 @@
+<div ng-controller="MasterSetAlatCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Master Set Alat'">
+		<div class="grid_6">
+			<div class="grid_3" style="margin-top: 10px">
+				<div class="grid_10">
+					<label c-label item="item" c-label-text="kdSetAlat" ></label>
+				</div>
+				<div class="grid_2" style="text-align: right;">
+					<label c-label item="item" c-label-text=":" ></label>
+				</div>
+				
+			</div>
+			<div class="grid_4">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kdSetAlat" disabled="true" />
+			</div>
+			<div class="clear"></div>
+			<div class="grid_3" style="margin-top: 10px">
+				<div class="grid_10">
+					<label c-label item="item" c-label-text="namaSet" ></label>
+				</div>
+				<div class="grid_2" style="text-align: right;">
+					<label c-label item="item" c-label-text=":" ></label>
+				</div>
+			</div>
+			<div class="grid_6">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaSet"/>
+			</div>
+			<div class="clear"></div>
+			<div class="grid_3" style="margin-top: 10px">
+				<div class="grid_10">
+					<label c-label item="item" c-label-text="satuan" ></label>
+				</div>
+				<div class="grid_2" style="text-align: right;">
+					<label c-label item="item" c-label-text=":" ></label>
+				</div>
+			</div>
+			<div class="grid_4">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.satuan" k-data-text-field="'satuan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listSatuan" />
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_8">
+			<div class="panel panel-default container_12">
+				<div class="panel-heading" c-translate>Alat</div>
+				<div class="panel-body">
+					<div class="grid_2" style="margin-top: 10px">
+						<div class="grid_10" >
+							<label c-label item="item" c-label-text="namaAlat" ></label>
+						</div>
+						<div class="grid_2" style="text-align: right;">
+							<label c-label item="item" c-label-text=":" ></label>
+						</div>
+					</div>
+					<div class="grid_4">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaAlat"/>
+					</div>
+					<div class="grid_2">
+						<button class="c-button" ng-click="cariAlat()" style="margin-top: 6px">Cari</button>
+					</div>
+					<div class="clear"></div>
+					<div class="grid_2" style="margin-top: 10px">
+						<div class="grid_10" >
+							<label c-label item="item" c-label-text="jumlah" ></label>
+						</div>
+						<div class="grid_2" style="text-align: right;">
+							<label c-label item="item" c-label-text=":" ></label>
+						</div>
+					</div>
+					<div class="grid_2">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlah"/>
+					</div>
+					<div class="grid_2" style="margin-top: 10px; text-align: right;">
+						<div class="grid_10" >
+							<label c-label item="item" c-label-text="satuanAlat" ></label>
+						</div>
+						<div class="grid_2" style="text-align: right;">
+							<label c-label item="item" c-label-text=":" ></label>
+						</div>
+					</div>
+					<div class="grid_2">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.satuanAlat" k-data-text-field="'satuan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listSatuanAlat" />
+					</div>
+					<div class="grid_2">
+						<button class="c-button" ng-click="tambahAlat()" style="margin-top: 6px">Tambah</button>
+					</div>
+					<div class="clear"></div>
+					<div class="grid_12" style="margin-bottom: 10px">
+						<kendo-grid options="mainGridOptionsAlat"></kendo-grid>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="clear"></div>
+		<div class="grid_8">
+			<div class="panel panel-default container_12">
+				<div class="panel-heading" c-translate>BMHP</div>
+				<div class="panel-body">
+					<div class="grid_2" style="margin-top: 6px">
+						<div class="grid_11" >
+							<label c-label item="item" c-label-text="namaBarang" ></label>
+						</div>
+						<div class="grid_1" style="text-align: right;">
+							<label c-label item="item" c-label-text=":" ></label>
+						</div>
+					</div>
+					<div class="grid_4">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaBarang"/>
+					</div>
+					<div class="grid_2">
+						<button class="c-button" ng-click="cariBarang()" style="margin-top: 6px">Cari</button>
+					</div>
+					<div class="clear"></div>
+					<div class="grid_2" style="margin-top: 10px">
+						<div class="grid_11" >
+							<label c-label item="item" c-label-text="jumlahBarang" ></label>
+						</div>
+						<div class="grid_1" style="text-align: right;">
+							<label c-label item="item" c-label-text=":" ></label>
+						</div>
+					</div>
+					<div class="grid_2">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahBarang"/>
+					</div>
+					<div class="grid_2" style="margin-top: 10px;text-align: right;">
+						<div class="grid_11" >
+							<label c-label item="item" c-label-text="satuanBarang" ></label>
+						</div>
+						<div class="grid_1" style="text-align: right;">
+							<label c-label item="item" c-label-text=":" ></label>
+						</div>
+					</div>
+					<div class="grid_2">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.satuanBarang" k-data-text-field="'satuan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listSatuanBarang" />
+					</div>
+					<div class="grid_2">
+						<button class="c-button" ng-click="tambahBarang()" style="margin-top: 6px">Tambah</button>
+					</div>
+					<div class="clear"></div>
+					<div class="grid_12" style="margin-bottom: 10px">
+						<kendo-grid options="mainGridOptionsBarang"></kendo-grid>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_4">
+			
+		</div>
+		<div class="grid_4">
+			<div class="grid_6">
+				<button class="c-button" ng-click="simpan()">Simpan</button>
+			</div>
+			<div class="grid_6">
+				<button class="c-button" ng-click="batal()">Batal</button>
+			</div>
+		</div>
+	</c-panel>
+</div>
+</div>

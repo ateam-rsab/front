@@ -1,0 +1,30 @@
+<div ng-controller="JadwalRetensiArsipCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="Daftar Disposisi" disabled>
+			<div class="grid_12">
+				<div class="grid_5"></div>
+				<div class="grid_7">
+					<c-panel item="item" header="'Pencarian'" disabled>
+						<div class="grid_2" style="margin:5px">
+							<button class="c-button" ng-click="search()">Cari</button>
+						</div>
+						<div class="grid_4">
+							<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.sifatSurat" disabled="true" />
+						</div>
+					</c-panel>
+				</div>
+			</div>
+			<div class="grid_12" style="margin-top: 10px;">
+				<div kendo-grid k-data-source="sourceJadwalRetensiArsip" k-selectable="'row'" k-columns="columnJadwalRetensiArsip" k-ng-model="current" ng-click="klik(current.noRec)">
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_8"  style="padding-top:20px">
+				</div>
+				<div class="grid_2" style="padding-top:20px">
+					<button class="c-button" ng-click="Save()">Simpan</button>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

@@ -1,0 +1,161 @@
+<div ng-controller="DataRumahSakitCtrl">
+
+	<div ng-show="dataVOloaded">
+
+		<c-panel item="item" header="'Data Rumah Sakit Yang Bekerjasama'">
+			
+				
+			
+          			
+			
+				  
+				  
+				  
+				  
+				  
+	
+					
+			
+			
+			
+			<div class="grid_6">
+			<div class="grid_12">
+			<div class="grid_6" style="margin: 0 0 5px 0;">
+	                    <label c-label item="item" c-label-text="No PKS"></label>
+	                </div>
+			
+			<div class="grid_6" style="margin: 0 0 5px 0;">
+			 <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noPks" />
+			</div>
+			<div class="grid_6" style="margin: 0 0 5px 0;">
+	                    <label c-label item="item" c-label-text="Nama Rumah Sakit"></label>
+	                </div>
+			
+			<div class="grid_6" style="margin: 0 0 5px 0;">
+			  <input style="width: 100%;" kendo-combo-box k-ng-model="item.rekanan" k-data-text-field="'namaRekanan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListPerusahaanBekerjasama" />
+			</div>
+			
+			<div class="grid_6" style="margin: 0 0 5px 0;">
+	                    <label c-label item="item" c-label-text="Jumlah Karyawan"></label>
+	                </div>
+					 <div class="grid_6" style="margin: 0 0 5px 0;">
+	                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahKaryawan" />
+	                </div>
+					<div class="grid_6" style="margin: 0 0 5px 0;">
+	                    <label c-label item="item" c-label-text="Plafon"></label>
+	                </div>
+					 <div class="grid_6" style="margin: 0 0 5px 0;">
+	                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.plafon" />
+	                </div>
+					
+				
+					<div class="grid_6" style="margin: 0 0 5px 0;">
+	                  <label c-label item="item" c-label-text="Alamat Penagihan"></label>  
+	                </div>
+					 <div class="grid_6" style="margin: 0 0 5px 0;">
+	                   <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.alamatPenagihan" />
+	                </div>
+					
+					<div class="grid_6" style="margin: 0 0 5px 0;">
+	                  <label c-label item="item" c-label-text="Cara Penagihan"></label>  
+	                </div>
+					 <div class="grid_6" style="margin: 0 0 5px 0;">
+	                   <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.caraPenagihan" />
+	                </div>
+					</div>
+					</div>
+					<div class="grid_6">
+					<div class="grid_6" style="margin: 0 0 5px 0;">
+	                  <label c-label item="item" c-label-text="Contact Person"></label>  
+	                </div>
+					 <div class="grid_6" style="margin: 0 0 5px 0;">
+	                   <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.contactPerson" />
+	                </div>
+					<div class="grid_6">
+					<label c-label item="item" c-label-text="JangkaWaktuPerjanjian"></label>
+					</div>
+					<div class="grid_5">
+							<input style="width: 100%" kendo-date-picker  k-ng-model="item.jangkaAwal" k-data-text-field="'jangkaAwal'" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+					</div>
+					<div class="grid_1">s/d</div>
+					<div class="grid_6">
+
+					</div>
+					<div class="grid_5">
+						<input style="width: 100%" kendo-date-picker  k-ng-model="item.jangkaAkhir" k-data-text-field="'jangkaAkhir'" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+					</div>
+			<div class="grid_1"></div>
+					<div class="grid_6" style="margin: 0 0 5px 0;">
+	                  <label c-label item="item" c-label-text="No Telepon/No Fax"></label>  
+	                </div>
+					 <div class="grid_6" style="margin: 0 0 5px 0;">
+	                   <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noTelpFax" />
+	                </div>
+					<div class="grid_6" style="margin: 0 0 5px 0;">
+	                  <label c-label item="item" c-label-text="Alamat Email"></label>  
+	                </div>
+					 <div class="grid_6" style="margin: 0 0 5px 0;">
+	                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.email" />
+	                </div>
+					<div class="grid_6" style="margin: 0 0 5px 0;">
+	                  <label c-label item="item" c-label-text="Nama File Pks"></label>  
+	                </div>
+					 <div class="grid_6" style="margin: 0 5px 5px 0;">
+	                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaFilePks" />
+	                </div>
+					
+					
+			
+			
+             
+			
+			
+			</div>
+           
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 
+			
+			
+			
+			
+			
+          
+           
+
+            <!-- grid table -->
+			
+            <div class="clear"></div>
+			
+           
+			
+			
+			
+		</c-panel>
+
+		<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+
+</div>
+
+</div>
+

@@ -1,0 +1,255 @@
+<div ng-controller="LaboratoriumDaftarPasienCtrl">
+    <div class="grid_4" id="leftSide" style="position:fixed">
+        <div ng-show="true">
+            <div ng-show="notDetail" class="panel panel-default">
+                <div class="panel-body">
+                    <div class="grid_12">
+                        <div class="grid_6">
+                            <div class="grid_12">
+                                <label c-label c-label-text="TanggalMasuk" real></label>
+                            </div>
+                            <div class="grid_12">
+                                <div class="grid_12">
+                                    <input style="width: 100%" k-value='now' k-ng-model='tglAwal' kendo-date-time-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy hh:mm'" />
+                                </div>
+                                <div class="grid_12">
+                                    <input style="width: 100%" k-value='now' k-ng-model='tglAkhir' kendo-date-time-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy hh:mm'" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_6">
+                            <div class="grid_12">
+                                <label c-label c-label-text="masukkanNoRekamMedis" real></label>
+                            </div>
+                            <div class="grid_12">
+                                <div class="grid_12">
+                                    <input c-text-box type="input" class="k-textbox" ng-model="noCm" />
+                                </div>
+                                <div class="grid_12">
+                                    <c-button class="c-button" style="padding:0px" click='refresh'>
+                                        <span c-translate>CARI</span>
+                                    </c-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+
+
+                <div class="panel-body" style="padding:0px">
+
+                    <div class="grid_12">
+                        <div class="k-grid k-widget">
+                            <!--<div class="k-grid-header">
+                                <div class="k-grid-header-wrap k-auto-scrollable">
+                                    <table>
+                                        <tr>
+                                            <th class="k-header" style="width:25px">
+                                                Cito
+                                            </th>
+                                            <th style="width:150px" class="k-header">
+                                                No. Laboratorium
+                                            </th>
+                                            <th style="width:150px" class="k-header">
+                                                Nama Pasien
+                                            </th>
+                                            <th style="width:125px" class="k-header">
+                                                Tanggal Registrasi
+                                            </th>
+                                            <th style="width:200px" class="k-header">
+                                                Asal Ruangan
+                                            </th>
+                                            <th class="k-header">
+                                                Dokter
+                                            </th>
+                                            <th style="width:200px" class="k-header">
+                                                Status
+                                            </th>
+                                        </tr>
+
+
+                                    </table>
+                                </div>
+
+                            </div>-->
+                            <md-input-container style="width: 100%;margin:0px">
+                                <label>Workstation</label>
+                                <md-select ng-model="selectedJenisProduk" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader" multiple>
+                                    <md-optgroup label="Workstation">
+                                        <md-option ng-value="jenisProduk" ng-repeat="jenisProduk in listJenisProduk | filter:searchTerm">{{jenisProduk.jenisProduk}}</md-option>
+                                    </md-optgroup>
+                                </md-select>
+                            </md-input-container>
+                            <h3 style="line-height: 0px;">Daftar Pasien Laboratorium
+                                <span ng-show="listPasien.length!==0">({{listPasien.length}})</span>
+                                <img ng-show="isLoading" src="../app/stylesheets/Flat/loading-image.gif" style="    width: 32px;position: absolute;right: 10px;" />
+                            </h3>
+                            <md-list class="md-dense" flex style="max-height:350px;overflow:auto">
+                                <div class="list-item grid_6" style="" class="md-1-line" ng-repeat="data in listPasien|any:{items:selectedJenisProduk,key:'jenisProduk',property :'workStation'}|filter:noCm" ng-click="selected(data)" ng-style="data.myStyle">
+                                    <img ng-hide="data.noRec===item.noRec" ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />
+                                    <img ng-show="data.noRec===item.noRec" src="stylesheets/Check.png" class="md-avatar" />
+                                    <div class="md-list-item-text" layout="column" >
+                                        <span style="display:block"><font size="3"><b>{{ data.strukOrder.noOrderIntern  }}</b></font></span>
+                                        <span style="display:block"><font size="2"><b>{{ data.pasien.namaPasien }}</b></font></span>
+                                        <span style="display:block">{{data.pasienDaftar.ruangan.namaRuangan }}</span>
+                                        <span style="display:iblock">
+                                         <b>
+                                        {{  data.strukOrder.pegawaiOrder.namaExternal }}</b></font></span>
+
+                                    </div><br>
+                                </div>
+                            </md-list>
+                            <!--<div class="k-grid-content k-auto-scrollable" style="max-height:256px">
+                                <table role="grid" data-role="selectable" class="k-selectable">
+                                    <tbody role="rowgroup">
+
+                                        <tr role="row" class="ng-scope" ng-repeat="data in listPasien" ng-style="data.myStyle" ng-click='selected(data)' ng-class="{'k-state-selected':item ===data}">
+                                            <td role="gridcell" style="width:25px">
+                                                <input ng-show="data.strukOrder.cito ===true" disabled="" type="checkbox" checked="checked">
+                                                <input ng-show="data.strukOrder.cito !==true" disabled="" type="checkbox">
+                                            </td>
+                                            <td style="width:150px" role="gridcell"><span ng-bind="data.strukOrder.noOrderIntern" class="ng-binding"></span></td>
+                                        <td style="width:150px" role="gridcell"><span ng-bind="data.pasien.namaPasien" class="ng-binding">ii</span></td>
+                                        <td style="width:125px" role="gridcell">11-08-2016</td>
+                                        <td style="width:200px" role="gridcell"><span ng-bind="data.pasienDaftar.ruangan.namaRuangan" class="ng-binding">Laboratorium</span></td>
+                                        <td role="gridcell"><span ng-bind="data.strukOrder.pegawaiOrder.namaExternal" class="ng-binding">Belum ada dokter</span></td>
+                                        <td style="width:200px" role="gridcell"><span ng-bind="data.statusAntrian" class="ng-binding">Check in</span></td>
+
+                                        </tr>
+                                        </tbody>
+                                        </table>
+                                    </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_4">
+                    <span id="square" style="background-color:#FFFC38">&nbsp;&nbsp;&nbsp;</span>
+                    <span>Masuk</span>
+                </div>
+               <!--  <div class="grid_2">
+                    <span id="square" style="background-color:#FF3BAD">&nbsp;&nbsp;&nbsp;</span>
+                    <span>ST</span>
+                </div> -->
+
+                <div class="grid_4">
+                    <span id="square" style="background-color:#89c9f7">&nbsp;&nbsp;&nbsp;</span>
+                    <span>Sample Checkin</span>
+                </div>
+                 <div class="grid_4">
+                    <span id="square" style="background-color:#1da214">&nbsp;&nbsp;&nbsp;</span>
+                    <span>Selesai Periksa</span>
+                </div>
+                <!-- <div class="grid_2">
+                    <span id="square" style="background-color:#701afb">&nbsp;&nbsp;&nbsp;</span>
+                    <span>V</span>
+                </div>
+                <div class="grid_2">
+                    <span id="square" style="background-color:#89c9f7">&nbsp;&nbsp;&nbsp;</span>
+                    <span>HA</span>
+                </div> -->
+            </div>
+            <div ng-show="notDetail" class="grid_12 ">
+                <div class="grid_12">
+                    <!--<md-button class="md-fab" aria-label="Eat cake" ng-click="ambilDataSirs()">
+                        <md-icon md-svg-src="stylesheets/Images/download.svg"></md-icon>
+                        <md-tooltip md-direction="left">
+                            Ambil SIRS
+                        </md-tooltip>
+                    </md-button>-->
+
+             <!--        <md-button class="md-fab" aria-label="Eat cake" 
+                    ng-click="PemeriksaanPasien('LaboratoriumPasien.Pemeriksaan')"> -->
+                       <md-button class="md-fab" aria-label="Eat cake" ng-show="statusLaborat!=0"
+                    ng-click="verifikasi('LaboratoriumPasien.VerifikasiOrder')">
+                        <md-icon md-svg-src="stylesheets/Images/list.svg"></md-icon>
+                        <md-tooltip md-direction="left">
+                            Order
+                        </md-tooltip>
+                    </md-button>
+                    <md-button class="md-fab" aria-label="Eat cake" ng-show="statusLaborat===0"
+                   ng-click="PemeriksaanPasien('LaboratoriumPasien.Pemeriksaan')">
+                        <md-icon md-svg-src="stylesheets/Images/list.svg"></md-icon>
+                        <md-tooltip md-direction="left">
+                            Order
+                        </md-tooltip>
+                    </md-button>
+<!--                     <md-button class="md-fab" aria-label="Eat cake" ng-click="AmbilSpesimen('LaboratoriumPasien.Spesimen')">
+                        <md-icon md-svg-src="stylesheets/Images/microscope.svg"></md-icon>
+                        <md-tooltip md-direction="left">
+                            Ambil Sample
+                        </md-tooltip>
+                    </md-button> -->
+                    <md-button class="md-fab" ng-show="statusLaborat===0" aria-label="Eat cake" ng-click="AmbilSpesimen('LaboratoriumPasien.SitoPatalogiCtrl')">
+                        <md-icon md-svg-src="stylesheets/Images/virus.svg"></md-icon>
+                        <md-tooltip md-direction="left">
+                            Requirment
+                        </md-tooltip>
+                    </md-button>
+<!--                     <md-button class="md-fab" aria-label="Eat cake" ng-click="AmbilSpesimen('LaboratoriumPasien.CheckIn')">
+                        <md-icon md-svg-src="stylesheets/Images/check-mark-in-a-circle.svg"></md-icon>
+                        <md-tooltip md-direction="left">
+                            Check In
+                        </md-tooltip>
+                    </md-button> -->
+                    <md-button class="md-fab" ng-show="statusLaborat!=0" aria-label="Eat cake" ng-click="MasukanHasil('LaboratoriumPasien.InputHasilKlinik')">
+                        <md-icon md-svg-src="stylesheets/Images/medical-result.svg"></md-icon>
+                        <md-tooltip md-direction="left">
+                            Lihat Hasil
+                        </md-tooltip>
+                    </md-button>
+
+                    <md-button class="md-fab" ng-show="statusLaborat===0"  aria-label="Eat cake" ng-click="MasukanHasil('LaboratoriumPasien.InputHasil')">
+                        <md-icon md-svg-src="stylesheets/Images/medical-result.svg"></md-icon>
+                        <md-tooltip md-direction="left">
+                            Lihat Hasil
+                        </md-tooltip>
+                    </md-button>
+
+
+                    <md-button ng-show="!isPjLab;statusLaborat===0" class="md-fab" aria-label="Eat cake" ng-click="verifikasi('LaboratoriumPasien.Verifikasi')">
+                        <md-icon md-svg-src="stylesheets/Images/verification-of-delivery-list-clipboard-symbol.svg"></md-icon>
+                        <md-tooltip md-direction="left">
+                            Verifikasi
+                        </md-tooltip>
+                    </md-button>
+<!--                     <md-button ng-show="isPjLab" class="md-fab" aria-label="Eat cake" ng-click="verifikasi('LaboratoriumPasien.Verifikasi')">
+                        <md-icon md-svg-src="stylesheets/Images/verification-of-delivery-list-clipboard-symbol.svg"></md-icon>
+                        <md-tooltip md-direction="left">
+                            Otoritas
+                        </md-tooltip>
+                    </md-button> -->
+                     <md-button class="md-fab" ng-show="statusLaborat===0" aria-label="Eat cake" ng-click="printLaborat()">
+                        <md-icon md-svg-src="stylesheets/Images/exam.svg"></md-icon>
+                        <md-tooltip md-direction="left">
+                            Cetak Laporan
+                        </md-tooltip>
+                    </md-button>
+                    <md-button class="md-fab" aria-label="Eat cake" ng-click="PengambilanHasil('LaboratoriumPasien.AmbilHasil')">
+                        <md-icon md-svg-src="stylesheets/Images/file.svg"></md-icon>
+                        <md-tooltip md-direction="left">
+                            Ambil Hasil
+                        </md-tooltip>
+                    </md-button> 
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid_8" id="rightSide" style=" position:fixed;overflow:auto;">
+        <div ui-view style="margin-right:35px;"></div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        var height = $(window).height() - 73;
+        $("#rightSide ").css({
+            left: $("#leftSide ").width() + 43,
+            height: height
+        });
+        
+    });
+</script>

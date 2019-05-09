@@ -1,0 +1,49 @@
+{
+	"model":{
+		"tglOrder":"",
+		"ruanganPemesan":"",
+		"namaPemesan" : "",
+		"noKirim" : "",
+		"tglKirim":"",
+		"ruanganPenerima":""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "tglOrder",
+			"messagesRequired" : "",
+			"caption" : "Tgl Order"
+		},{
+			"isNull" : "true",
+			"name" : "ruanganPemesan",
+			"messagesRequired" : "",
+			"caption" : "Ruangan Pemesan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "namaPemesan",
+			"messagesRequired" : "",
+			"caption" : "Nama Pemesan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "noKirim",
+			"messagesRequired" : "",
+			"caption" : "No Kirim"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tglKirim",
+			"messagesRequired" : "",
+			"caption" : "Tgl Kirim"
+		},
+		{
+			"isNull" : "true",
+			"name" : "ruanganPenerima",
+			"messagesRequired" : "",
+			"caption" : "Ruangan Penerima"
+		}
+
+	]
+}

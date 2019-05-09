@@ -1,0 +1,105 @@
+[{
+    "reactionOfMotorBehaviour":[
+        {
+            "id": 1,
+            "name": "Magnet R",
+            "value":"null"
+        },{
+            "id": 2,
+            "name": "Stepping R",
+            "value":"null"
+        },{
+            "id": 3,
+            "name": "Placing R",
+            "value":"null"
+        },{
+            "id": 4,
+            "name": "Glabela R",
+            "value":"null"
+        },{
+            "id": 5,
+            "name": "Galant R",
+            "value":"null"
+        },{
+            "id": 6,
+            "name": "Moro R",
+            "value":"null"
+        },{
+            "id": 7,
+            "name": "Neck Righting R",
+            "value":"null"
+        },{
+            "id": 8,
+            "name": "Rooting R",
+            "value":"null"
+        },{
+            "id": 9,
+            "name": "Dool's Eye Phenomnon",
+            "value":"null"
+        },{
+            "id": 10,
+            "name": "Tonic labyrinthine R",
+            "value":"null"
+        },{
+            "id": 11,
+            "name": "Simetrical Tonic Neck R",
+            "value":"null"
+        },{
+            "id": 12,
+            "name": "Asimetrical Tonic Neck R",
+            "value":"null"
+        },{
+            "id": 13,
+            "name": "Palmar Grasp R",
+            "value":"null"
+        },{
+            "id": 14,
+            "name": "Plantar Grasp R",
+            "value":"null"
+        },{
+            "id": 15,
+            "name": "Landau R",
+            "value":"null"
+        },{
+            "id": 16,
+            "name": "Parachute R",
+            "value":"null"
+        },{
+            "id": 17,
+            "name": "Balance R",
+            "value":"null"
+          
+        },{
+            "id": 18,
+            "name": "BalanceR-Tengkurap",
+            "value":"null"
+        },{
+            "id": 19,
+            "name": "BalanceR-Terlentang",
+            "value":"null"
+        },{
+            "id": 20,
+            "name": "BalanceR-Posisi duduk",
+            "value":"null"
+        },{
+            "id": 21,
+            "name": "BalanceR-PosisiDuduk-KeDepan",
+            "value":"null"
+        },{
+            "id": 22,
+            "name": "BalanceR-PosisiDuduk-KeSamping",
+            "value":"null"
+        },{
+            "id": 23,
+            "name": "BalanceR-PosisiDuduk-KeBelakang",
+            "value":"null"
+    }],
+
+    "attributes":[{
+		"isNull" : "true",
+		"name" : "",
+		"messagesRequired" : "",
+		"caption" : ""
+	}
+	]
+}]

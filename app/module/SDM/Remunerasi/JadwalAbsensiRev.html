@@ -1,0 +1,123 @@
+<div>
+    <div class="panel panel-default container_12" style="background-color:transparant">
+        <div class="panel-heading"><label class='title' c-label item="item" c-label-text="Jadwal Kerja" real></label></div>
+        <div class="panel-body">
+            <div class="grid_12">
+                <div class="grid_1">
+                    <span c-label c-label-text="Bulan" />
+                    <input required style="width: 100%;" kendo-combo-box k-ng-model="item.selectedBulan" k-data-text-field="'name'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listMonth" />
+                </div>
+                <div class="grid_1">
+                    <span c-label c-label-text="Tahun" />
+                    <input required style="width: 100%;" kendo-combo-box k-ng-model="item.selectedTahun" k-data-text-field="'id'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listTahun" />
+                </div>
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="unitKerja"></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.unitKerja" k-data-text-field="'name'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listUnitKerja" ng-disabled="disableUnit"/>
+                </div>
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="subUnitKerja"></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.subUnitKerja" k-data-text-field="'name'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listSubUnitKerja" ng-disabled="disableSubUnit"/>
+                </div>
+                <div class="grid_1">
+                    <label c-label c-label-text=""></label>
+                    <em style="margin-top:6px;" ng-click='refresh()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+                </div>
+            </div>
+            <div class="grid_12">
+                <table class="table">
+                    <tr>
+                        <th rowspan="2">Nama Pegawai</th>
+                        <td ng-repeat="item in listDay">
+                            {{item.id}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td ng-repeat="day in listDay">
+                            {{day.display}}
+                        </td>
+                    </tr>
+                    <tr ng-repeat="item in  listData">
+                        <td>
+                            <label class="gridJadwal">{{item.namaPegawai}}</label>
+                        </td>
+                        <td style="min-width:50px;position:relative" ng-repeat="day in item.listDay">
+                            <div class="position:relative;min-width:60px">
+                                <select kendo-drop-down-list k-ng-model="day.shiftKerja" k-data-text-field="'kodeExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="true" k-data-source="item.pegawai.shiftKerja.detail" ng-disabled="changeShift(item,day)" class="days {{getClassDay(item, day)}}" k-on-change="shiftChanged(item.pegawai, day)" ></select>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="grid_12" ng-show="dataFound">
+                <label c-label c-label-text="keterangan" style="margin-left:40px;font-size:12pt"></label>
+                <ul class="keterangan">
+                    <li ng-repeat="list in listJadwal|orderBy:'namaShift'">
+                        <div class="keterangan"><b>{{list.kodeExternal}}</b> ({{list.namaShift}}): {{list.jamMasuk}} - {{list.jamPulang}}</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="grid_12">
+                <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+            </div>
+            <!--<div ng-include=' "../app/module/Shared/TemplateLoading" '></div>-->
+        </div>
+    </div>
+    <div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
+</div>
+<div kendo-window="dialogPopup" k-title="'Update Required'" k-width="400" k-height="150" k-visible="false">
+    <h3>Peringatan!</h3>
+    <p>Data <b>unit kerja</b> dan/atau <b>sub unit kerja</b><br/>anda belum di set!</p>
+    <div class="clearfix">
+</div>
+<style type="text/css">
+    p, h3 {
+        font-size: 16px;
+        text-align: center;
+    }
+    .k-window-titlebar  {
+        background-color: rgb(214, 54, 33);
+        font-weight: 800;
+    }
+    ul .keterangan {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    
+    li .keterangan {
+        float: left;
+    }
+    
+    li .keterangan {
+        display: block;
+        /*text-align: center;*/
+        padding: 7px 8px;
+        text-decoration: none;
+        font-style: italic
+    }
+    .label-aja {
+        margin-top: 8px;
+        text-align: right;
+    }
+    span.k-widget.k-dropdown.k-header.days {
+        margin: 3px 0;
+        width: 60px;
+    }
+    .days.masuk .k-dropdown-wrap .k-input{
+        background-color: #89dc9e;
+    }
+    .days.libur .k-dropdown-wrap .k-input{
+        background-color: rgb(231, 34, 34);
+    }
+    days {
+        height: auto !important;
+    }
+    .gridJadwal {
+        display: block;
+        min-width: 270px;
+        margin-right: 5px;
+        font-size: 10pt;
+    }
+</style>

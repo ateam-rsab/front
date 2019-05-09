@@ -1,0 +1,37 @@
+<div ng-controller="TandaVitalCtrl"><br/>
+
+    <div ng-show="dataVOloaded">
+        <c-form item='item'>
+            <c-panel item="item" header="'Tanda Vital'">
+                <div class="grid_12">
+                    <div class="grid_3" ng-repeat="data in arrTandaVital">
+                        <div ng-switch on="data.type">
+                            <div ng-switch-when="numeric">
+                                <div class="grid_12" style="margin-bottom:5px">
+                                    <label c-label item="item" c-label-text="{{data.name}}"></label>
+                                </div>
+
+                                <div class="grid_12 parentKeteranganFieldTambahan">
+                                    <input kendo-numeric-text-box ng-model="data.nilai" style="width: 100%;" />
+                                    <!--<input c-text-box type="input" filter="data.type" class="k-textbox" ng-model="data.nilai" />-->
+                                    <label class="keteranganFieldTambahan numericPAP">&#8451;</label>
+                                </div>
+                            </div>
+                            <div ng-switch-default>
+                                <div class="grid_12" style="margin-bottom:5px">
+                                    <label c-label item="item" c-label-text="{{data.name}}"></label>
+                                </div>
+
+                                <div class="grid_12 parentKeteranganFieldTambahan">
+                                    <input c-text-box type="input" filter="data.type" class="k-textbox" ng-model="data.nilai" />
+                                    <label class="keteranganFieldTambahan">{{data.ket}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c-panel>
+        </c-form>
+    </div>
+     <div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div> 
+</div>

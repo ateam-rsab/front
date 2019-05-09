@@ -1,0 +1,63 @@
+{
+	"model":{
+  "NoCM" : "",
+    "NamaPasien" : "",
+		"NamaKeluarga" : "",
+    "JenisKelamin" : "",
+    "TglLahir": "",
+    "Alamat": "",
+    "PoliklinikTujuan" : "",
+    "Pembayaran" : "",
+    "HariReservasi" : "",
+    "JamPraktek" : "",
+    "DokterTujuan" : "",
+    "BiayaPelayanan" : [],
+    "CardNumber" : "",
+    "CardBrand" : "",
+    "CardExpiryDate" : "",
+    "SecurityCode" : "",
+    "NameOnCard" : "",
+    "BillingAddress" : {
+		"Address":"",
+		"City":"",
+		"PostalCode":"",
+		"Province":"",
+		"Country":""
+	},
+	"EmailAddress" :"",
+	"PhoneNumber" :""
+	},
+  "attributes" : [ 
+  	  {
+	    "isNull" : "true",
+	    "name" : "NoCM",
+	    "messagesRequired" : "NoCM Harus Diisi",
+	    "caption" : "No. RM"
+  	  },{
+	    "isNull" : "false",
+	    "name" : "JenisKelamin",
+	    "messagesRequired" : "Jenis Kelamin  Harus Diisi",
+	    "caption" : "Jenis Kelamin",
+			"alternate" : "Patient Name",
+			"length" : "45",
+		"alternate" : "Patient Name"
+  	  },
+		{
+	    "isNull" : "true",
+	    "name" : "NamaPasien",
+	    "messagesRequired" : "Nama Pasien  Harus Diisi",
+	    "caption" : "Nama Pasien",
+			"alternate" : "Patient Name",
+			"length" : "45",
+		"alternate" : "Patient Name"
+  	  },
+			{
+	    "isNull" : "true",
+	    "name" : "NamaKeluarga",
+	    "messagesRequired" : "Nama Keluarga Harus Diisis akjdhajks dhjaskd jaskd jaksdh asjkd hasjkdh asjkdh asjkd hasjkd hasjkdhsajkdhsajkdhsajkdh",
+	    "caption" : "NamaKeluarga",
+			"length" : "45",
+		"alternate" : "Patient Name"
+  	  }
+  ]
+}

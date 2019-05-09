@@ -1,0 +1,13 @@
+{
+	"model":{
+	    "CairanTubuh" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "CairanTubuh",
+			"messagesRequired" : "",
+			"caption" : "Cairan Tubuh"
+		}
+  ]
+}

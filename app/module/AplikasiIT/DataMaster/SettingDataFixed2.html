@@ -1,0 +1,102 @@
+<!-- <div ng-controller="RekananCtrl2"> -->
+	<div ng-show="dataVOloaded">
+		<!-- <c-panel item="item" header="'Produk'" disabled> -->
+		<div class="grid_12">
+
+			<div class="grid_12 headerBox">
+				<h1 style="color: white;">
+					<b>Setting Data Fixed</b>
+				</h1>
+			</div>
+			<div class="grid_12">
+				<div class="grid_1">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="ID"></label>
+					</div>
+
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.idfixed" />
+					</div>
+				</div>
+				<div class="grid_4">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Keterangan Fungsi"></label>
+					</div>
+
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.ketFungsi" />
+					</div>
+				</div>
+				<div class="grid_5">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Nama Field"></label>
+					</div>
+
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaFild" />
+					</div>
+				</div>
+				<!-- <div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Jenis Rekanan"></label>
+					</div>
+					<div class="grid_12">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisrekanan" k-data-text-field="'jenisrekanan'" k-data-value-field="'id'"
+						 k-filter="'contains'" k-auto-bind="false" k-data-source="listjenisrekanan" />
+					</div>
+				</div> -->
+				<div class="grid_1">
+					<button class="success c-button" style="margin-top: 22px" ng-click="cariFilter()">Cari</button>
+				</div>
+				<div class="grid_1">
+					<button class="cancel c-button" style="margin-top: 22px" ng-click="clearSearch()">Clear</button>
+				</div>
+
+			<!-- 	<div class="grid_12">
+
+					<div class="grid_12 borderBox">
+						<kendo-grid options="mainGridOptions" k-data-source="dataSourceDataFixed" k-columns="columnDataFixed" k-ng-model="dataPasienSelected"
+						 ng-click="klik(dataPasienSelected)">
+						</kendo-grid>
+					</div>
+
+				</div>
+ -->				<div class="grid_12">		
+						<div class="grid_12 borderBox">
+							<div id="kGrid" kendo-grid 
+							k-data-source="dataSourceDataFixed" 
+							k-selectable="'row'" 
+							k-columns="columnDataFixed"
+							k-pageable="'true'"
+							k-sortable="'true'"
+							k-ng-model="dataPasienSelected"
+			            	ng-click="click(dataPasienSelected)">
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+			</div>
+
+
+			<!-- </c-panel>
+	-->
+			<div class="grid_12">
+				<div class="grid_6"></div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="hapus()">Hapus</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="edit()">Ubah</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="tambah()">Tambah</button>
+				</div>
+				<div class="grid_12" style="margin-top:60px">
+					<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+				</div>
+			</div>
+		</div>
+	<!-- </div> -->

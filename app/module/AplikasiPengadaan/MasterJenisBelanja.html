@@ -1,0 +1,38 @@
+<div ng-controller="MasterJenisBelanjaCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Master Jenis Belanja'">
+		<div class="grid_6">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="kodeJenisBelanja"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kodeJenisBelanja"/>
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="namaJenisBelanja"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaJenisBelanja"/>
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="ketJenisBelanja"></label>
+			</div>
+			<div class="grid_8">
+				<textarea style="height: 50px" c-text-box type="input" class="k-textbox" ng-model="item.ketJenisBelanja" />
+			</div>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_6">
+			<div class="grid_4">
+			</div>
+			<div class="grid_4">
+				<button class="c-button" ng-click="simpan()">Simpan</button>
+			</div>
+			<div class="grid_4">
+				<button class="c-button" ng-click="batal()">Batal</button>
+			</div>
+		</div>
+		</c-panel>
+	</div>
+</div>

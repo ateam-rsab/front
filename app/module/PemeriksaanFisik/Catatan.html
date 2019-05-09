@@ -1,0 +1,46 @@
+<div ng-controller="CatatanCtrl"><br/>
+    <div ng-show="dataVOloaded">
+
+        <!-- panel utama -->
+        <c-panel item="item" header="'Catatan'">
+            <div class="panel-body">
+                <c-form item="item">
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="DataRujukan"></label>
+                    </div>
+                    <div class="grid_10">
+                        <div class="grid_3" ng-repeat="data in listStatusrujukan">
+                            <input type="checkbox" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" value="{{data.id}}" ng-click="cekArrStatRujukan(data)">
+                            <label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+                        </div>
+
+
+
+                         <div clas="clear"></div>
+                    </div>
+                    <div clas="clear"></div>
+
+
+                    <div class="grid_12">
+                        <div ng-show="isAdaGangguansatu">
+                           <div class="grid_12">
+                                <div class="grid_2" style="margin: 10px 5px 5px 10px;">
+                                   <label c-label item="item" c-label-text="Keterangan"></label>
+                                </div>
+                                <div class="grid_10" style="margin: 10px 5px 5px 10px;">
+                                   <textarea style="width: 99%; height: 80px;"></textarea>
+                                </div>
+                                <div class="clear"></div>
+                           </div>
+                       </div>
+                    </div>
+                   <div class="clear"></div>
+                </c-form>
+            </div>
+        </c-panel>
+
+        <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+
+    </div>          
+
+</div>

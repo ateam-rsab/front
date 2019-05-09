@@ -1,0 +1,78 @@
+<div ng-controller="KirimBarangCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Kirim Barang'">
+		<div class="panel panel-default container_12">
+			<div class="panel-heading" c-translate>Data Order</div>
+			<div class="panel-body">
+				<div class="grid_3">
+					<input type="checkbox" class="k-checkbox" name="NoOrder" id="NoOrder"  ng-click="()">
+					<label class="k-checkbox-label" c-label item="item" c-label-text="noOrder" for="NoOrder"></label>
+				</div>
+				<div class="grid_3">
+					<label c-label item="item" c-label-text="tglOrder"></label>
+				</div>
+				<div class="grid_3">
+					<label c-label item="item" c-label-text="ruanganPemesan"></label>
+				</div>
+				<div class="grid_3">
+					<label c-label item="item" c-label-text="namaPemesan"></label>
+				</div>
+
+				<div class="grid_3">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noOrder" ng-disabled="enableNoOrder" />
+				</div>
+				<div class="grid_3">
+					<input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tglOrder" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+				</div>
+				<div class="grid_3">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.ruanganPemesan" />
+				</div>
+				<div class="grid_3">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaPemesan" />
+				</div>
+
+			</div>
+		</div>
+		<div class="panel panel-default container_12">
+			<div class="panel-heading" c-translate>Data Kirim</div>
+			<div class="panel-body">
+				<div class="grid_3">
+					<label c-label item="item" c-label-text="noKirim"></label>
+				</div>
+				<div class="grid_3">
+					<label c-label item="item" c-label-text="tglKirim"></label>
+				</div>
+				<div class="grid_3">
+					<label c-label item="item" c-label-text="ruanganPenerima"></label>
+				</div>
+
+				<div class="clear"></div>
+
+				<div class="grid_3">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noKirim" />
+				</div>
+				<div class="grid_3">
+					<input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tglKirim" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+				</div>
+				<div class="grid_3">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganPenerima" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+				</div>
+
+			</div>
+		</div>
+		<div class="panel panel-default container_12">
+			<div class="panel-heading" c-translate>Data Barang</div>
+			<div class="panel-body">
+				<div class="grid_9" style="margin-top: 10px;">
+					<div kendo-grid k-data-source="dataBarang" k-selectable="'row'" k-columns="columnDataBarang">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="grid_12" style="margin-top:10px">
+			<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+    	</div>
+	</c-panel>
+</div>
+</div>

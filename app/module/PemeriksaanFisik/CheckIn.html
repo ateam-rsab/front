@@ -1,0 +1,119 @@
+<div ng-controller="CheckInCtrl">
+    <div class="panel panel-default">
+        <div class="panel-heading" c-translate>Check In</div>
+        <div class="panel-body">
+            <div class="grid_6">
+                <div class="grid_3">
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="beratBadan"></label>
+                    </div>
+
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.beratBadan" />
+                    </div>
+                    <div class="grid_4 parentKeteranganFieldTambahan">
+                        <label class="keteranganFieldTambahan">Kg</label>
+                    </div>
+                </div>
+                <div class="grid_3">
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="TinggiBadan"></label>
+                    </div>
+
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.tinggiBadan" />
+                    </div>
+                    <div class="grid_4 parentKeteranganFieldTambahan">
+                        <label class="keteranganFieldTambahan">Cm</label>
+                    </div>
+                </div>
+
+                <div class="grid_6" style="margin-bottom: 4px;">
+                    <label c-label item="item" c-label-text="jenisOperasi"></label>
+                    <input kendo-combo-box style="width:100%" k-ng-model="item.jenisOperasi" k-data-text-field="'jenisOperasi'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceJenisOperasi" />
+                </div>
+                <div class="grid_6">
+                    <label c-label item="item" c-label-text="puasa"></label>
+                    <input kendo-combo-box style="width:100%" k-ng-model="item.puasa" k-data-text-field="'puasa'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourcePuasa" />
+                </div>
+
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="makan/MinumTerakhir"></label>
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jamMakanTerakhir" />
+                </div>
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="jumlah"></label>
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahMakanTerakhir" />
+                </div>
+                <div class="grid_12">
+                    <c-panel item="item" header="'keadaanUmum'" disabled>
+                        <div class="grid_6">
+                            <div class="grid_4">
+                                <label c-label item="item" c-label-text="Kesadaran"></label>
+                            </div>
+                            <div class="grid_8">
+                                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.kesadadan" />
+                            </div>
+
+                        </div>
+                        <div class="grid_6">
+                            <div class="grid_4">
+                                <div class="grid_4">
+                                    <label c-label item="item" c-label-text="TD" real=true></label>
+                                </div>
+                                <div class="grid_8">
+                                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.TD" />
+                                </div>
+                            </div>
+                            <div class="grid_4">
+                                <div class="grid_4">
+                                    <label c-label item="item" c-label-text="N" real=true></label>
+                                </div>
+                                <div class="grid_8">
+                                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.N" />
+                                </div>
+                            </div>
+                            <div class="grid_4">
+                                <div class="grid_4">
+                                    <label c-label item="item" c-label-text="RR" real=true></label>
+                                </div>
+                                <div class="grid_8">
+                                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.RR" />
+                                </div>
+                            </div>
+                        </div>
+                    </c-panel>
+                </div>
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="alatYangTerpasang"></label>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_6" ng-repeat="data in listAlatYangTerpasang">
+                        <input type="checkbox" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" value="{{data.id}}" ng-click="manageCheck(data)">
+                        <label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="grid_6">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="pengobatanKhusus"></label>
+                </div>
+                <div class="grid_12" ng-repeat="data in listPengobatanKhusus">
+                    <div class="grid_8">
+                        <p style="    margin-top: 0px;">{{data.name}}</p>
+                    </div>
+                    <div class="grid_2" ng-repeat="stat in listStatusYaTidak">
+                        <input type="radio" ng-model="data.value" id="{{data.id + stat.name}}" class="k-radio" value="{{stat.name}}">
+                        <label class="k-radio-label" for="{{data.id + stat.name}}" ng-if="stat.name != 'Ya'">{{stat.name}}</label>
+                        <label class="k-radio-label" for="{{data.id + stat.name}}" ng-if="stat.name == 'Ya'">{{stat.name}}</label>
+                    </div>
+
+
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+        </div>
+    </div>
+</div>

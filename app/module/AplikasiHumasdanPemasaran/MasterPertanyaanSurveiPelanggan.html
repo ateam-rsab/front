@@ -1,0 +1,36 @@
+<div ng-controller="MasterPertanyaanSurveiPelangganCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Master Pertanyaan Survei Pelanggan'">
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="pertanyaan"></label>
+				</div>
+				<div class="grid_8">
+					<textarea style="height: 90px" c-text-box type="input" class="k-textbox" ng-model="item.pertanyaan" />
+				</div>
+				<div class="grid_4"></div>
+				<div class="grid_4">
+					<button class="c-button" ng-click="tambah()">Tambah</button>
+				</div>
+				<div class="grid_4">
+					<button class="c-button" ng-click="batal()">Batal</button>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div class="grid_6" style="margin-bottom: 10px">
+				<kendo-grid options="mainGridOptions" k-data-source="dataPertanyaan" k-selectable="'row'" k-ng-model="current" ng-click="kl(current)"></kendo-grid>
+			</div>
+			<div class="clear"></div>
+			<div class="grid_6">
+				<div class="grid_4"></div>
+				<div class="grid_4">
+					
+				</div>
+				<div class="grid_4">
+					<button class="c-button" ng-click="hapus()">Hapus</button>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

@@ -1,0 +1,34 @@
+{
+	"model":{
+	    "tgl" : "",
+	    "spesialis" : "",
+		"peketrehab" : "",
+		"keterangan" : ""  
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "tgl",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Perjianjian"
+		},
+		{
+			"isNull" : "true",
+			"name" : "spesialis",
+			"messagesRequired" : "",
+			"caption" : "Spesialis"
+		},
+		{
+			"isNull" : "true",
+			"name" : "paketrehab",
+			"messagesRequired" : "",
+			"caption" : "Paket Rehab Medik"
+		},
+		{
+			"isNull" : "true",
+			"name" : "keterangan",
+			"messagesRequired" : "",
+			"caption" : "Keterangan Lainnya"
+		}
+  ]
+}

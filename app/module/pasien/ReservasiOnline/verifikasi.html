@@ -1,0 +1,96 @@
+<div ng-controller="ReservasiOnlineNewCtrl">
+
+    <div class="grid_12">
+        <div class="grid_4" ng-show="state==='UMUM'">
+            <label c-label c-label-text='NoRekamMedis' real></label>
+            <input is-busy='isBusyNoCm' c-text-box type="input" class="k-textbox" ng-model="item.NoCM" />
+            <kendo-button sprite-css-class="'k-icon k-i-lock'" ng-click="VerificationNoCm()" style="width: 100%">Verifikasi Nomor Rekam Medis</kendo-button>
+        </div>
+        <div class="grid_12" ng-show="state==='NONUMUM'">
+            <label c-label c-label-text='noRekamMedik'></label>
+            <input c-text-box type="input" class="k-textbox" ng-model="item.NoCM" />
+        </div>
+        <div class="grid_12" ng-show="state==='NONUMUM'">
+            <label c-label c-label-text='asuransiPasien'></label>
+            <div class="tiles">
+                <div class="grid_2" ng-repeat="data in asuransiPasiens">
+                    <div class="tile bg-yellow-saffron green" ng-click="item.JenisPasien =data" ng-class='{selected:item.JenisPasien===data}'>
+                        <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                        <div class="check"></div>
+                        <div class="tile-body" style="overflow: initial;">
+                            <i style="font-style: normal;">{{data.kelompokPasien[0]}}</i>
+                        </div>
+                        <div class="tile-object">
+                            <div class="name" style="bottom:0px;top:inherit">{{data.kelompokPasien}} </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <div class="grid_12" ng-show="state==='NONUMUM'">
+            <kendo-button sprite-css-class="'k-icon k-i-lock'" style="width: 100%" ng-click="VerificationNoCm()">Verifikasi Data</kendo-button>
+        </div>
+        <div class="grid_4" ng-show="state==='BPJS'">
+            <label c-label>No Kartu</label>
+            <input c-text-box type="input" class="k-textbox" ng-model="item.NoIdentitasDetail" />
+            <kendo-button sprite-css-class="'k-icon k-i-lock'" ng-click="Verification()" style="width: 100%">Verifikasi No Kartu</kendo-button>
+        </div>
+        <div class="grid_12">
+            &nbsp;
+        </div>
+        <div class="panel panel-default panel-white">
+            <div class="panel-heading-white"><span class="title" c-translate>Rekam Medis Pasien</span></div>
+            <div class="panel-body">
+                <div class="grid_4">
+                    <!-- <label c-label c-label-text="JenisKelamin"></label> -->
+                    <label c-label>Jenis Kelamin</label>
+                    <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.jenisKelamin.jenisKelamin" />
+                </div>
+                <div class="grid_4">
+                    <!-- <label c-label c-label-text="NamaPasien"></label> -->
+                    <label c-label>Nama Pasien</label>
+                    <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.namaPasien" />
+                </div>
+
+                <div class="grid_4">
+                    <!-- <label c-label c-label-text="TglLahir"></label> -->
+                    <label c-label>Tanggal Lahir</label>
+                    <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.tglLahir | date:'dd-MM-yyyy'" />
+                </div>
+                <div class="grid_4">
+                    <!-- <label c-label c-label-text="Agama"></label> -->
+                    <label c-label>Agama</label>
+                    <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.agama.agama" />
+                </div>
+                <div class="grid_4">
+                    <!-- <label c-label c-label-text="AlamatPasien"></label> -->
+                    <label c-label>Alamat Pasien</label>
+                    <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.pasien.alamat[0].alamatLengkap" />
+                </div>
+            </div>
+        </div>
+        <div class="grid_12">
+            <div class="grid_12" style="position: absolute; bottom: 0;left: 0">
+                <div class="grid_6">
+                    <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px" item="item" size="36" position="'left'" is-back icon="'icon-prev'">
+                        <span class="title" c-translate>Kembali</span>
+                    </c-button>
+                </div>
+                <div class="grid_6">
+                    <c-button ng-show="!isLoading" class="success" style="width: 100%; font-size: 24px" item="item" size="36" position="'right'" is-validate click="Prosses" icon="'icon-next'">
+                        <span class="title" c-translate>Lanjutkan</span>
+                    </c-button>
+                </div>
+            </div>
+            <div class="panel-message">
+
+            </div>
+            <div ng-include=' "../app/module/Shared/TemplateButtonSelanjutnya" '></div>
+        </div>
+        <div class="grid_12">
+            <c-loading ng-show="isLoading" message="message"></c-loading>
+        </div>
+    </div>
+</div>

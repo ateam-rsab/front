@@ -1,0 +1,36 @@
+<div ng-controller="KonsepDiriCtrl">
+    <div ng-show="dataVOloaded">
+
+        <!-- panel utama -->
+
+
+        <c-normal-tidak-normal is-show-form="isShowForm" selanjutnya="selanjutnya">
+        </c-normal-tidak-normal>
+
+        <div ng-show="isShowForm">
+
+            <c-panel item="item" header="'Konsep Diri'" disabled>
+                <div class="panel-body">
+
+                    <div class="grid_12">
+                        <div style="background-color: #10C4B2; height: 25px; margin-top: 5px; text-align: left; border: 1px solid; border-color: #10C4B2;" class="grid_12">
+                            <span style="font-size: 18px; color: white; padding: 5px;">Gambaran diri ?</span>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+                            <div style="margin-left: 15px;" class="grid_2" ng-repeat="status in listNormalTidakNormal">
+                                <input type="radio" name="{{'NormalTidakNormal' + status.name}}" id="{{'NormalTidakNormal' + status.name}}" class="k-radio" ng-model="item.KonsepDiri" ng-value="status">
+                                <label class="k-radio-label" for="{{'NormalTidakNormal' + status.name}}">{{status.name}}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </c-panel>
+
+            <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+
+        </div>
+
+    </div>
+</div>

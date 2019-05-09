@@ -1,0 +1,52 @@
+<div ng-controller="MonitoringStokBarangMedisCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" disabled>
+			<c-panel item="item" header="'Daftar Stok Barang Medis Ruangan'" disabled>
+				<div class="grid_12" style="margin-top: 10px;">
+					<div kendo-grid k-data-source="" k-selectable="'row'" k-columns="columnStokBarang">
+					</div>
+				</div>
+			</c-panel>
+			<c-panel style="margin-top:50px" class="grid_11" item="item" header="'Pencarian'" disabled>
+				<div class="grid_12">
+					<div style="margin: 5px" class="grid_4">
+						<label c-label item="item" c-label-text="jenisBarang"></label>
+						<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jenisBarang"/>
+					</div>
+					<div style="margin: 5px" class="grid_4">
+						<label c-label item="item" c-label-text="namaBarang"></label>
+						<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaBarang"/>
+					</div>
+					<div style="margin: 5px" class="grid_4">
+						<label c-label item="item" c-label-text="asalBarang"></label>
+						<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.asalBarang"/>
+					</div>
+				</div>
+			</c-panel>
+
+			<div class="grid_12" style="margin-top:50px">
+				<div style="margin: 5px" class="grid_3">
+					<input type="checkbox" class="k-checkbox" name="monitoringStokRuangan" id="monitoringStokRuangan" value="monitoringStokRuangan" ng-click="cekMonitoringStokRuangan()">
+		            <label class="k-checkbox-label" for="monitoringStokRuangan">{{'Monitoring Stok Ruangan'}}</label>
+		            <input style="width: 100%;" kendo-combo-box k-ng-model="item.monitoringStokRuangan" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceMonitoringStokRuangan" ng-disabled="!checked" />
+				</div>
+				<div class="grid_3"></div>
+				<div class="grid_2" style="margin-top:20px">
+					<c-button ng-click="" style="width:100% !important">
+						<span style="font-size:10!important">Batal</span>
+					</c-button>
+				</div>
+				<div class="grid_2" style="margin-top:20px">
+					<c-button ng-click="" style="width:100% !important">
+						<span style="font-size:10!important">Cetak</span>
+					</c-button>
+				</div>
+				<div class="grid_2" style="margin-top:20px">
+					<c-button ng-click="" style="width:100% !important">
+						<span style="font-size:10!important">Tutup</span>
+					</c-button>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

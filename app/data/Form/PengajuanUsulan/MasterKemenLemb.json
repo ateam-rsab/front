@@ -1,0 +1,28 @@
+{
+	"model":{
+		"kodeKemenLemb" : "",
+		"namaKemenLemb":"",
+		"ketKemenLemb":""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "kodeKemenLemb",
+			"messagesRequired" : "",
+			"caption" : "Kode KemenLemb"
+		},{
+			"isNull" : "true",
+			"name" : "namaKemenLemb",
+			"messagesRequired" : "",
+			"caption" : "Nama KemenLemb"
+		},{
+			"isNull" : "true",
+			"name" : "ketKemenLemb",
+			"messagesRequired" : "",
+			"caption" : "Keterangan KemenLemb"
+		}
+
+	]
+}

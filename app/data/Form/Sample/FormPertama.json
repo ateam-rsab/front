@@ -1,0 +1,13 @@
+{
+	"model":{
+	    "Nama" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "Nama",
+			"messagesRequired" : "",
+			"caption" : "Label ini yang keluar Nama"
+		}
+  ]
+}

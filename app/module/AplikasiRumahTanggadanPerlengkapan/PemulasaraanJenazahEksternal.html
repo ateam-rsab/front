@@ -1,0 +1,55 @@
+<div ng-show="dataVOloaded">
+    <c-panel item="item" header="'Pemulasaraan Jenazah (Eksternal)'" disabled>
+        <div class="panel panel-default container_12">
+            <div class="grid_12">
+                <div class="grid_6">
+                    <div class="grid_4" style="margin-top:10px">
+                        <label item="item" c-label c-label-text="namaPemesan"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" ng-model="item.namaPemesan" class="k-textbox" style="width:100%"/>
+                    </div>
+                    <div class="grid_4" style="margin-top:10px">
+                        <label item="item" c-label c-label-text="noKtp"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" ng-model="item.noKtp" class="k-textbox" style="width:100%"/>
+                    </div>
+                </div>
+                <div class="grid_6">
+                    <div class="grid_4" style="margin-top:10px">
+                        <label item="item" c-label c-label-text="tanggalOrder"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input kendo-date-picker k-ng-model="item.tglStruk" k-format="'dd-MM-yyyy'" style="width:100%"/>
+                    </div>
+                    <div class="grid_12" ng-show="isShowDetil">
+                        <div class="grid_4" style="margin-top:10px">
+                            <label item="item" c-label c-label-text="tanggalFaktur"></label>
+                        </div>
+                        <div class="grid_8">
+                            <input kendo-date-picker k-ng-model="item.tglfaktur" k-format="'dd-MM-yyyy'" style="width:100%"/>
+                        </div>
+                    </div>
+                    <div class="grid_4" style="margin-top:10px">
+                        <label c-label item="item" c-label-text="noTelepon"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" ng-model="item.noTelp" class="k-textbox" style="width:100%"/>
+                    </div>
+                    <div class="grid_4" style="margin-top:10px">
+                        <label c-label item="item" c-label-text="alamat"></label>
+                    </div>
+                    <div class="grid_8">
+                        <textarea class="k-textbox" row="4" ng-model="item.alamat" style="margin-top:7px"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div id="gridData" kendo-grid k-options="gridOptions"></div>
+            </div>
+        </div>
+    </c-panel>
+    <div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
+</div>
+<div ng-include='"../app/module/Shared/TemplateLoading"'></div>

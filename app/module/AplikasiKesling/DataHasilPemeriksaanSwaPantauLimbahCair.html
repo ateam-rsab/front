@@ -1,0 +1,64 @@
+<div>
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Data Hasil Pemeriksaan Swa Pantau Limbah Cair'" disabled>
+			<div class="panel-body panel-default">
+				<div class="grid_12">
+					<!-- <div class="grid_2">
+						<label c-label item="item" c-label-text="cariBerdasarkan"></label>
+						<input  style="width: 100%;" kendo-combo-box k-ng-model="item.paramsCari" k-data-value-field="'value'" k-data-text-field="'name'" k-data-source="parameterCari"/>
+					</div> -->
+					<!-- <div class="grid_1" >&nbsp;</div> -->
+					<div class="grid_4">
+						<div class="grid_12">
+							<label c-label item="item" c-label-text="tanggalAwal"></label>
+						</div>
+						<div class="grid_12">
+							<input style="width: 100%" kendo-date-picker k-value="firstDay" k-ng-model="item.tglAwal" placeholer="dd-mm-yyyy " k-format=" 'dd-MM-yyyy' " />
+							<!-- <input style="width: 100%" id="idTglAwal" k-ng-model="item.tglAwal"/> -->
+						</div>
+					</div>
+					<div class="grid_1" align="center">
+						<label c-label item="item" style="margin-top:25px">s/d</label>
+					</div>
+					<div class="grid_4">
+						<div class="grid_12">
+							<label c-label item="item" c-label-text="tanggalAkhir"></label>
+						</div>
+						<div class="grid_12">
+							<input style="width: 100%" kendo-date-picker k-value="lastDay" k-ng-model="item.tglAkhir" placeholer="dd-mm-yyyy " k-format=" 'dd-MM-yyyy' "  />
+							<!-- <input style="width: 100%" id="idtglAkhir" k-ng-model="item.tglAkhir"/> -->
+						</div>
+					</div>
+					<!-- <div class="grid_1" >&nbsp;</div> -->
+					<!-- <div class="grid_8">
+						<label c-label item="item" c-label-text="periode"></label>
+						<input style="width: 100%" kendo-date-picker k-ng-model="item.periode" k-format="'MMM yyyy'" k-options="monthSelectorOptions"/>
+					</div> -->
+					<div class="grid_3">
+						<div class="grid_6">
+							<label c-label item="item">&nbsp;</label>
+							<button ng-click='cari()' id="iconButton" data-role="button" class="k-button k-button-icon"
+							 role="button" aria-disabled="false" tabindex="0">Search <span class="k-sprite k-icon k-i-refresh"></span></button>
+						</div>
+						<div class="grid_6">
+							<label c-label item="item">&nbsp;</label>
+							<button ng-click='cetak()' id="iconButton" data-role="button" class="k-button k-button-icon"
+							 role="button" aria-disabled="false" tabindex="0">Cetak <span class="k-sprite k-icon k-i-pdf"></span></button>
+						</div>
+
+					</div>
+					<!-- <div class="grid_2">
+						
+					</div> -->
+				</div>
+			</div>
+			<div class="panel-body panel-default">
+				<div id="gridSwaPantau" kendo-grid k-options="gridOptions"></div>
+				<!-- <kendo-grid k-data-source="sourceOrder" k-selectable="'row'" k-columns="columnMonitoringStatusPKS" k-ng-model="current" ng-click="kl(current.hasilPemeriksaanSwaPantauLimbahCair)" style="margin-bottom: 10px"></kendo-grid> -->
+			</div>
+		</c-panel>
+		<!-- <div class="grid_2" style="margin-top: 2px;float:right;">
+			<button class="c-button"  ng-click="navToDetail()" >DETAIL</button>
+		</div> -->
+	</div>
+</div>

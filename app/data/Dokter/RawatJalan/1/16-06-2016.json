@@ -1,0 +1,9 @@
+[{
+    "idPegawai": "P00001",
+    "namaPegawai": "Dokter 1",
+    "jamPraktek": "09.00-11.00"
+}, {
+    "idPegawai": "P00002",
+    "namaPegawai": "Dokter 2",
+    "jamPraktek": "09.45-11.45"
+}]

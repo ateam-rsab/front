@@ -1,0 +1,15 @@
+[
+	{  
+        "id":1,
+        "name":"Tipe 1"
+    },{
+        "id": 2,
+        "name": "Tipe 2"
+    },{
+        "id": 3,
+        "name": "Tipe 3"},
+    {
+        "id": 4,
+        "name": "Tipe 4"
+    }
+]

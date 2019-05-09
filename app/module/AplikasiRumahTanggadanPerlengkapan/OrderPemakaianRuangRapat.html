@@ -1,0 +1,235 @@
+<div ng-controller="OrderPemakaianRuangRapatCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Order Pemakaian Ruang Rapat'" >
+			<div class="grid_6">
+				<div class="grid_12">
+					<div style="margin: 5px" class="grid_3">
+						<label c-label item="item">Unit Pemesan</label>
+					</div>					
+					<div style="margin: 5px" class="grid_1" style="margin-top: 10px">
+						<label c-label item="item">:</label>
+					</div>
+					<div class="grid_7">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.unitPemesan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'"
+							k-filter="'contains'" k-auto-bind="false" k-data-source="sourceRuangRapat" />
+					</div>
+				</div>
+				<div class="grid_12">
+					<div style="margin: 5px" class="grid_3">
+						<label c-label item="item" >Tema Rapat</label>
+					</div>
+					 <div style="margin: 5px" class="grid_1" style="margin-top: 10px">
+						<label c-label item="item">:</label>
+					</div>
+					<div class="grid_7">
+						<input c-text-box type="input" class="k-textbox" ng-model="item.temaRapat" />
+					</div>
+				</div>
+				<div class="grid_12">					
+					<div style="margin: 5px" class="grid_3">
+						<label c-label item="item" >Waktu Mulai</label>
+					</div>
+					 <div style="margin: 5px" class="grid_1" style="margin-top: 10px">
+						<label c-label item="item">:</label>
+					</div>
+					<div class="grid_5">
+						<input style="width:100%" kendo-date-time-picker k-ng-model="item.tglMulaiRapat" placeholder="'dd-mm-yyyy HH:mm'" k-format="'dd-MM-yyyy HH:mm'"/>
+					</div>
+				</div>
+				<div class="grid_12">					
+					<div style="margin: 5px" class="grid_3">
+						<label c-label item="item">Waktu Selesai</label>
+					</div>
+					<div style="margin: 5px" class="grid_1" style="margin-top: 10px">
+						<label c-label item="item">:</label>
+					</div>
+					<div class="grid_5">
+						<input style="width:100%" kendo-date-time-picker k-ng-model="item.tglSelesaiRapat" placeholder="'dd-mm-yyyy HH:mm'" k-format="'dd-MM-yyyy HH:mm'" />
+					</div>
+				</div>
+			</div>
+			<div class="grid_6" style="margin-bottom: 50px">
+
+				<div class="grid_12">
+					<div style="margin: 5px" class="grid_3">
+						<label c-label item="item">Jumlah Panitia</label>
+					</div>
+					<div style="margin: 5px" class="grid_1" style="margin-top: 10px">
+						<label c-label item="item">:</label>
+					</div>
+					<div class="grid_7">
+						<input c-text-box type="number" class="k-textbox" k-ng-model="item.jumlahPanitia" ng-model="item.jumlahPanitia" show-meridian="false"
+						/>
+					</div>
+				</div>
+				<div class="grid_12">
+
+					<div style="margin: 5px" class="grid_3">
+						<label c-label item="item">Jumlah Peserta</label>
+					</div>
+					<div style="margin: 5px" class="grid_1" style="margin-top: 10px">
+						<label c-label item="item">:</label>
+					</div>
+					<div class="grid_7">
+						<input c-text-box type="number" class="k-textbox" k-ng-model="item.jumlahPeserta" ng-model="item.jumlahPeserta" show-meridian="false"
+						/>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div style="margin: 5px" class="grid_3">
+						<label c-label item="item" >Nama Ruangan</label>
+					</div>
+					 <div style="margin: 5px" class="grid_1" style="margin-top: 10px">
+						<label c-label item="item">:</label>
+					</div>
+					<div class="grid_7">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaRuangRapat" k-data-text-field="'namaRuangan'" k-data-value-field="'id'"
+							k-filter="'contains'" k-auto-bind="false" k-data-source="sourceRuangRapat2" />
+					</div>
+				</div>
+				<div class="grid_12">
+
+					<div style="margin: 5px" class="grid_3">
+						<label c-label item="item" >Jenis Konsumsi</label>
+					</div>
+					 <div style="margin: 5px" class="grid_1" style="margin-top: 10px">
+						<label c-label item="item">:</label>
+					</div>
+					<div class="grid_7" style="margin: 5px">
+						<div class="grid_6" ng-repeat="konsumsi in jenisKonsumsi">
+							<input type="checkbox" class="k-checkbox" name="{{konsumsi.nama}}" id="{{konsumsi.nama}}" value="{{konsumsi.nama}}" ng-click="cekArrKonsumsi(konsumsi)">
+							<label class="k-checkbox-label" for="{{konsumsi.nama}}">{{konsumsi.nama}}</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<c-panel item="item" header="'Penambahan Kebutuhan Sarana'" >
+				<div class="grid_12">
+					<div data-kendo-grid="grid" k-ng-model="selectedData" k-on-change="selectPegawai(data)" k-options="dataBarangOptions" k-selectable="'row'">
+					</div>
+				</div>
+			</c-panel>
+			<div class="grid_12">
+				<div class="grid_8"></div>
+				<div class="grid_2">
+					<button class="c-button success" ng-click="Save()">Save</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button cancel" ng-click="Cancel">Cancel</button>
+				</div>
+			</div>
+		</c-panel>
+
+	</div>
+</div>
+
+<style>
+    .error{
+        background-color:white !important;
+    }
+    .yellow{
+        background-color:#ffff00
+    }
+     .green{
+        background-color:#00ff40
+    }
+      .red{
+        background-color:#FF0000
+    }
+    .k-grid  .k-grid-header  .k-header  .k-link {
+     height: auto;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     white-space: normal;
+    }
+
+    .style-four {
+        height: 5px;
+        border: 0;
+        box-shadow: inset 0 14px 12px -12px rgba(0, 0, 0, 0.5);
+        }
+    .md-button {
+          padding: 0 6px 0 6px;
+          margin: 6px 8px 6px 8px;
+          min-width: 88px;
+          border-radius: 3px;
+          font-size: 14px;
+          text-align: center;
+          text-transform: uppercase;
+          text-decoration:none;
+          border: none;
+          outline: none;
+          color: green;
+        }
+
+    .k-grid  .k-grid-header  .k-header {
+     text-align: center;
+    }
+
+    .md-tooltip {
+        height: 25px !important;
+        background-color: #363940 !important;
+        color: white !important;
+        border-radius: 5px;
+        font-size: 14px
+     }
+     .md-button.md-fab.md-fab-top-right {
+        top: 100px;
+        right: 41px;
+        bottom: auto;
+        left: auto;
+        position: absolute;
+     }
+     .h1 {
+        position:relative;
+        display:inline-block;
+            }
+      .h1::before, 
+      .h1::after {
+        content:' ';
+        display:block;
+        position:absolute; top:50%; left:-120px;
+        width:100px;
+        border-bottom:1px solid black;
+    }
+    .h1::after {
+        left:auto; right:-120px;
+    }
+</style>
+
+
+<!-- ================================ Source Old Data =========================================== -->
+<!--<div class="grid_12">					
+<div style="margin: 5px" class="grid_3">
+<label c-label item="item" c-label-text="hari"></label>
+</div>
+<div class="grid_8">
+<input c-text-box type="input" class="k-textbox" ng-model="item.hari" disabled />
+</div>
+</div>-->
+<!--<div class="grid_12">
+
+<div style="margin: 5px" class="grid_3">
+<label c-label item="item" c-label-text="lamaPenggunaan"></label>
+</div>
+<div class="grid_8">
+<input c-text-box type="input" class="k-textbox" ng-model="item.lamaPenggunaan" />
+</div>
+</div>-->
+<!--<label c-label item="item" c-label-text="penambahanKebutuhanSarana" style="margin-top:50px"></label>-->
+<!--<div kendo-grid k-data-source="dataBarang" k-options="" k-selectable="'row'" k-columns="columnBarang" editable="true">
+</div>-->
+<!--<div class="grid_2">
+<label c-label item="item" ng-click="tambah()">+ Tambah Data</label>
+</div>-->
+
+<!--<div class="grid_8" style="margin-top:50px">
+<div class="grid_9"></div>
+<div class="grid_3" style="margin-top: 5px" text-align="right">
+<label c-label item="item" c-label-text=""> </label>
+<button class="c-button" ng-click="" style="width:100% !important">
+<span style="font-size:10!important">Tutup</span>
+</button>
+</div>
+</div>-->

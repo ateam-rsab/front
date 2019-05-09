@@ -1,0 +1,41 @@
+<div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
+<div class="panel panel-default container_12">
+    <div class="panel-body">
+        <div class="grid_12">
+            <div class="grid_4">
+                <div class="grid_12">
+                    <div class="grid_6">
+                        <label c-label >Nomor SEP :</label>
+                        <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.noSep" />
+                    </div>
+                    <div class="grid_6">
+                        <label c-label>Tanggal Pulang :</label>
+                        <input style="width: 100% " k-max="now" kendo-date-time-picker k-ng-model="item.tglPulang " k-format="'dd-MM-yyyy HH:mm:ss'" />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_1 pull-right">
+                        <em style="margin-top:6px;" ng-click='clear()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Clear</span></em>
+                    </div>
+                    <div class="grid_1 pull-right">
+                        <button style="margin-top:6px;" class="k-button k-primary k-button-icon" ng-click="findDataBySep(item)"><span class="k-sprite k-icon k-i-search">Find</span></button>
+                        <!--<em style="margin-top:6px;" ng-click="findDataBySep(item.namaPasien)" id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-search">Find</span></em>-->
+                    </div>
+                </div>
+            </div>
+            <div class="grid_8">
+                <div class="grid_12">
+                    <label c-label>Results :</label>
+                </div>
+                <pre id="json" class="json-viewer"></pre>
+            </div>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+.json-viewer {
+    margin-top:26px;
+    padding: 2em 0 2em 5em;
+    background: lightgrey;
+}
+</style>

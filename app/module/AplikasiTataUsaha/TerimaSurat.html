@@ -1,0 +1,89 @@
+<div ng-controller="TerimaSuratCtrl">
+		<c-panel item="item" header="'Terima Surat'" disabled>
+			<div class="panel panel-default container_12" disabled>
+			<c-panel item="item" header="'Informasi Surat'" disabled style="margin: 0 0 0 10px;">
+					<div class="grid_12">
+						<div class="grid_2" style="margin: 10px 0 0 10px;">
+							<label c-label item="item">Tanggal Kirim</label>
+						</div>
+						<div class="grid_3">
+							<input kendo-date-picker k-ng-model="item.tanggal"  k-format="'dd-MM-yyyy'" style="width: 100%" kendo-date-picker  readonly="true" />
+						</div>
+						<div class="grid_2" style="margin: 10px 0 0 10px;">
+							<label c-label item="item">Nama Pengantar Surat</label>
+						</div>
+						<div class="grid_3">
+							<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaPengantar" disabled="true" />
+						</div>
+					</div>
+					 <div class="grid_12">
+						<div class="grid_2" style="margin: 10px 0 0 10px;">
+							<label c-label item="item">No Surat</label>
+						</div>
+						<div class="grid_3">
+							<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noSurat" disabled="true" />
+						</div>
+						<div class="grid_2" style="margin: 10px 0 0 10px;">
+							<label c-label item="item">Di serahkan (Jam)</label>
+						</div>
+						<div class="grid_3">
+							<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.jamDiserahkan" disabled="true" />
+						</div>
+					</div>
+ 					<div class="grid_12">
+						<div class="grid_2" style="margin: 10px 0 0 10px;">
+							<label c-label item="item">Nama Surat</label>
+						</div>
+						<div class="grid_3">
+							<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaSurat" disabled="true" />
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_2" style="margin: 10px 0 0 10px;">
+							<label c-label item="item">Nama Pengirim Surat</label>
+						</div>
+						<div class="grid_3">
+							<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaPengirim" disabled="true" />
+						</div>
+					</div>
+			</c-panel>
+			<c-panel item="item" header="'Terima Surat'" disabled style="margin: 0 0 0 10px;">
+					<div class="grid_12">
+						<div class="grid_2" style="margin: 10px 0 0 10px;">
+							<label c-label item="item">Nama Penerima</label>
+						</div>
+						<div class="grid_3">
+							<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaPenerima" disabled="true" />
+						</div>
+						<div class="grid_2" style="margin: 10px 0 0 10px;">
+							<label c-label item="item">Download File</label>
+						</div>
+						<div class="grid_3">
+							<button class="c-button success" ng-click="download()">Download</button>
+						</div>
+					</div>
+ 					<div class="grid_12">
+						<div class="grid_2" style="margin: 10px 0 0 10px;">
+							<label c-label item="item">Diterima (Jam)</label>
+						</div>
+						 <div class="grid_3"> 
+			               <input kendo-time-picker 
+			                  k-ng-model="item.jamDiterima"
+			                  k-format="'HH:mm'"
+			                  style="width: 100%;" />
+			            </div>
+					</div>
+			</c-panel> 
+					<div class="grid_12">
+							<div class="grid_8"></div>
+							<div class="grid_2">
+								<button class="c-button success" ng-click="save()">Simpan</button>
+							</div> 
+							<div class="grid_2">
+								<button class="c-button cancel" ng-click="tutup()">Tutup</button>
+							</div> 
+					</div>
+			</div>
+		</c-panel>
+ 
+</div>

@@ -1,0 +1,11 @@
+[
+    {
+        "id":"1","name":"Programmer"
+    },{
+        "id":"2","name":"Analyst"
+    },{
+        "id":"3","name":"Project Manager"
+    },{
+        "id":"4","name":"Documenter"
+    }
+]

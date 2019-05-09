@@ -1,0 +1,22 @@
+[
+	{ 
+		"id": "1",
+		"noResep": "00001",
+		"pasienRs": "pasienRs 1",
+		"namaPasien": "namaPasien 1",
+		"namaDokter": "namaDokter 1",
+		"jmlBarang": "jmlBarang 1",
+		"subtotal": "subtotal 1",
+		"embalace": "embalace 1",
+		"jasa": "jasa 1",
+		"diskon": "diskon 1",
+		"ppn": "ppn 1",
+		"pembulatan": "pembulatan 1",
+		"total": "total 1",
+		"totalnya": "totalnya 1",
+		"jasa": "jasa 1",
+		"embalace": "embalace 1",
+		"ppn": "ppn 1",
+		"total": "total 1"
+	}
+]

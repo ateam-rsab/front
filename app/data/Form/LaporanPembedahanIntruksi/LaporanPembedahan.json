@@ -1,0 +1,150 @@
+{
+	"model":{
+	    "Operator" : "",
+	    "Anestesiologis" : "",
+	    "AsistenOperator" : "",
+	    "PenataAnestesi" : "",
+	    "PerawatInstrumen" : "",
+	    "Anestesiologis":"",
+	    "PenataAnestesi":"",
+	    "DiagnosisPrabedah":"",
+	    "DiagnosisPascabedah":"",
+	    "TindakanPembedahan":"",
+	    "TglPembedahan":"",
+	    "MulaiJam":"",
+	    "SelesaiJam":"",
+	    "LamaBedah":"",
+	    "TipePenanganan":"",
+	    "KategoriPenanganan":"",
+	    "DataTabel":"",
+	    "UraianPembedahan":"",
+	    "JaringanPatologi":"",
+	    "MacamJaringan":"",
+	    "LabelPasien":""
+
+
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "Operator",
+			"messagesRequired" : "",
+			"caption" : "Operator"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Anestesiologis",
+			"messagesRequired" : "",
+			"caption" : "Anestesiologis"
+		},
+		{
+			"isNull" : "true",
+			"name" : "PenataAnestesi",
+			"messagesRequired" : "",
+			"caption" : "Penata Anestesi"
+		},
+		{
+			"isNull" : "true",
+			"name" : "PerawatInstrumen",
+			"messagesRequired" : "",
+			"caption" : "Perawat Instrumen"
+		},
+		{
+			"isNull" : "true",
+			"name" : "AsistenOperator",
+			"messagesRequired" : "",
+			"caption" : "Asisten Operator"
+		},
+		{
+			"isNull" : "true",
+			"name" : "PenataAnestesi",
+			"messagesRequired" : "",
+			"caption" : "Penata Anestesi"
+		},
+		{
+			"isNull" : "true",
+			"name" : "DiagnosisPrabedah",
+			"messagesRequired" : "",
+			"caption" : "Diagnosis Pra Bedah"
+		},
+		{
+			"isNull" : "true",
+			"name" : "DiagnosisPascabedah",
+			"messagesRequired" : "",
+			"caption" : "Diagnosis Pasca Bedah"
+		},
+		{
+			"isNull" : "true",
+			"name" : "TindakanPembedahan",
+			"messagesRequired" : "",
+			"caption" : "Tindakan Pembedahan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "TglPembedahan",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Pembedahan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "MulaiJam",
+			"messagesRequired" : "",
+			"caption" : "Mulai Jam"
+		},
+		{
+			"isNull" : "true",
+			"name" : "SelesaiJam",
+			"messagesRequired" : "",
+			"caption" : "Selesai Jam"
+		},
+		{
+			"isNull" : "true",
+			"name" : "LamaBedah",
+			"messagesRequired" : "",
+			"caption" : "Lama Bedah"
+		},
+		{
+			"isNull" : "false",
+			"name" : "TipePenanganan",
+			"messagesRequired" : "",
+			"caption" : "Tipe Penanganan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "KategoriOperasi",
+			"messagesRequired" : "",
+			"caption" : "Kategori Operasi"
+		},
+		{
+			"isNull" : "true",
+			"name" : "DataTabel",
+			"messagesRequired" : "",
+			"caption" : ""
+		},
+		{
+			"isNull" : "true",
+			"name" : "UraianPembedahan",
+			"messagesRequired" : "",
+			"caption" : "Uraian Pembedahan sesuai dengan Instruksi Kerja"
+		},
+		{
+			"isNull" : "false",
+			"name" : "JaringanPatologi",
+			"messagesRequired" : "",
+			"caption" : "Jaringan Ke Patologi"
+		},  
+		{
+			"isNull" : "true",
+			"name" : "MacamJaringan",
+			"messagesRequired" : "",
+			"caption" : "Macam Jaringan yang dikirim"
+		},
+		{
+			"isNull" : "true",
+			"name" : "LabelPasien",
+			"messagesRequired" : "",
+			"caption" : "Label Pasien Sudah di Tempel"
+		}                  
+
+  ]
+}

@@ -1,0 +1,131 @@
+<div ng-controller="KirimProdukCtrl">
+    <div class="panel panel-default panel-white">
+        <div class="panel-heading-white"><span class="title" c-translate>Data Order</span></div>
+        <div class="panel-body">
+            <div class="grid_12">
+                <div class="grid_2">
+                    <div class="grid_12">
+                        <input type="checkbox" class="k-checkbox" name="isOrder" id="isOrder" value="isOrder" ng-model="isOrder">
+                        <label class="k-checkbox-label" for="isOrder">No Order</label>
+                    </div>
+                    <div class="grid_12">
+                        <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noOrder" />
+                    </div>
+                </div>
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="RuanganPemesan"></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganPemesan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuanganTujuan" />
+                </div>
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="TanggalOrder"></label>
+                    <input style="width: 100%" k-ng-model="item.tglOrder" k-value='now' kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                </div>
+                <div class="grid_2">
+                    <label>Nama Pemesan</label>
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="namaPemesan" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="panel panel-default panel-white">
+        <div class="panel-heading-white"><span class="title" c-translate>Data Kirim</span></div>
+        <div class="panel-body">
+            <div class="grid_12">
+                <div class="grid_2">
+                    <div class="grid_12">
+                        <label for="isOrder">No Kirim</label>
+                        <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noKirim" />
+                    </div>
+                </div>
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="RuanganPengirim"></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganTujuan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuanganTujuan" disabled/>
+                </div>
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="tanggalKirim"></label>
+                    <input style="width: 100%" k-ng-model="item.tglKirim" k-value='now' kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                </div>
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="RuanganPenerimaan"></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganPemesan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuanganTujuan" disabled/>
+                </div>
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="jenisPermintaan"></label>
+                    <div class="grid_6" ng-repeat="stat in listJenisPemeriksaan" > 
+                        <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" k-ng-model="item.jenisPermintaan" ng-checked="item.jenisPermintaan.id===stat.id" k-ng-value="stat" disabled>
+                        <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="grid_12">
+        <!-- <div class="grid_2">
+            <label c-label item="item" c-label-text="NamaBarang"></label>
+            <input style="width: 100%;" kendo-combo-box k-ng-model="tempItem.NamaBarang" k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listNamaBarang" />
+        </div>
+        <div class="grid_2">
+            <label c-label item="item" c-label-text="Stok"></label>
+            <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="tempItem.stok" />
+        </div>
+        <div class="grid_2">
+            <label c-label item="item" c-label-text="Qty"></label>
+            <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="tempItem.qty" />
+        </div>
+        <div class="grid_2">
+            <label c-label item="item" c-label-text="Satuan"></label>
+            <input style="width: 100%;" kendo-combo-box k-ng-model="tempItem.satuan" k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listSatuanStandard" />
+        </div>
+        <div class="grid_2">
+            <c-none></c-none>
+            <c-button ng-click="addProduk()" style="width:100% !important">
+                <span style="font-size:10!important">Tambah</span>
+            </c-button>
+        </div> -->
+
+        <script id="notificationTemplate" class="notification" type="text/x-kendo-template">
+            <div class="validError">
+                <img class="img-responsive" src="images/notification_error.png"/>
+                <h3>#= title #</h3>
+                <p>#= message #</p>
+            </div>
+        </script>
+
+        <div kendo-notification="notf1" class="ui-notification" k-options="notf1Options"></div>
+
+    </div>
+
+    <div class="grid_12" style="margin-top: 10px;">
+        <kendo-grid k-data-source="dataOrder" k-selectable="'row'" k-columns="columnOrder"></kendo-grid>
+    </div>
+
+    <div ng-include='"../app/module/Shared/TemplateButtonSimpanSRO"' style="margin-top:60px"></div>
+</div>
+<style>
+.label-aja {
+    padding-top:12px;font-size:13px;font-weight:bold;
+    text-align:right;
+    height:22px;
+}
+.k-window > div.k-popup-edit-form {
+    padding: 1em;
+}
+  .contact-info-form {
+    list-style-type: none;
+    margin: 30px 0;
+    padding: 0;
+  }
+
+  .contact-info-form li {
+    margin: 10px 0;
+  }
+
+  .contact-info-form label {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    font-weight: bold;
+  }
+</style>

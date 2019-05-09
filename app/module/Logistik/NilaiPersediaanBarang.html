@@ -1,0 +1,57 @@
+<div ng-controller="NilaiPersediaanBarangCtrl">
+    <div class="panel panel-default container_12">
+        <div class="panel-heading" c-translate>Nilai Persediaan Barang</div>
+        <div class="panel-body">
+            <div class="grid_12">
+                <div class="grid_8">
+                    <form class="k-content">
+                        <fieldset>
+                        <legend><h2>Periode Pencarian:</h2></legend>
+                            <div class="grid_2">
+                                <label c-label class="label-aja" item="item" c-label-text="tanggal" style="margin-top:10px"></label>
+                            </div>
+                            <div class="grid_4">
+                                <input kendo-date-picker k-format="'dd-MM-yyyy'" style="width: 100%;" k-ng-model="item.periodeAwal"/>
+                            </div>
+                            <div class="grid_4">
+                                <input kendo-date-picker k-format="'dd-MM-yyyy'" style="width: 100%;" k-ng-model="item.periodeAhir"/>
+                            </div>
+                            <div class="grid_2 pull-right" style="margin-top:6px">
+                                <button class="c-button" ng-click="cari()">Cari</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="grid_4">
+                    <form class="k-content">
+                        <fieldset style="min-height:300px !important">
+                        <legend><h2>Daftar Stok Opname:</h2></legend>
+                            <div class="grid_12" ng-repeat="stok in listStokOpname" ng-show="klikCari">
+                                <input type="radio" name="{{stok.tglClosing}}" id="{{stok.tglClosing}}" class="k-radio" ng-model="item.dataStokOpname" ng-checked="item.dataStokOpname.tglClosing===stok.tglClosing" ng-value="stok">
+                                <label class="k-radio-label" for="{{stok.tglClosing}}">{{stok.tglClosing}}</label>
+                            </div>
+                        </fieldset>
+                    </form>
+                    <div class="grid_4 pull-right" style="margin-top:6px">
+                        <button class="c-button" ng-click="lihatDetil()">Lihat Data</button>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12" style="margin: 10px 0 10px 0;">
+                <kendo-grid  k-data-source="dataStokOpname" k-selectable="'row'" k-options="optionsDataStokOpname" k-ng-model="current" ng-click="kl(current)">
+                </kendo-grid>
+            </div>
+            <div class="grid_3 pull-right">
+                <input c-text-box type="input" filter="'number'" class="k-textbox" style="width: 100%;" ng-model="item.jmlTotal" disabled/>
+            </div>
+            <div class="grid_2 pull-right">
+                <label c-label class="label-aja" item="item" c-label-text="total Nilai Persediaan" style="margin-top:10px"></label>
+            </div>
+            <div class="grid_12" style="margin-top:48px">
+                <div ng-include='"../app/module/Shared/TemplateButtonLogistik"'/>
+            </div>
+
+        </div>
+        </div>
+    </div>
+</div> 

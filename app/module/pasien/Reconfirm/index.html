@@ -1,0 +1,61 @@
+<div class="grid_12">
+    <div ng-controller="ReconfirmCtrl">
+        <div class="panel panel-default container_12">
+
+            <div class="panel-heading" c-translate style="text-align: center;font-size: 20px">Reconfirm Registrasi Online</div>
+            <div class="panel-body">
+
+                <div class="grid_12">
+                    <br>
+                    <br>
+
+                    <div class="grid_3"></div>
+                    <div class="grid_6">
+                        <div class="title">Input nomor reservasi</div>
+                        <span ng-hide="isLoading" class="k-textbox k-space-left" style="width: 100%;">
+                        <input style="font-size:24pt" type="text" ng-model="noReconfirm"  class="k-input k-textboxlarge"/>
+                        <a ng-click="checkNoReconfirm()" class="k-icon k-i-search">&nbsp;</a>
+                         
+                    </span>
+                        <button class="c-button" ng-click="checkNoReconfirm()">
+                                 Cek No Reservasi</button>
+                        <div ng-show="isLoading" style="    position: relative;" class="loading" style="z-index:2" class="animated" ng-show="isRouteLoading">
+                            <br/>&nbsp;
+                            <br/>&nbsp;
+                            <img src="../app/stylesheets/Flat/loading-image.gif" />
+                            <br/> <span>Harap Tunggu</span>
+                        </div>
+
+                    </div>
+                    <div class="grid_3"></div>
+
+                </div>
+                <div class="grid_12" style="height: 250px">
+                    <div class="grid_2"> </div>
+                    <div class="grid_8">
+                        <div class="panel panel-default container_12">
+
+                            <div class="panel-body">
+                                <div class="title">{{message}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <div ng-click="back()">
+                            <div class="card">
+                                <div class="card-action">
+                                    Kembali
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_8">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

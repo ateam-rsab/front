@@ -1,0 +1,48 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Daftar Pemesanan Laundry</div>
+	<div class="panel-body">
+		<div class="grid_12" style="margin-top:20px">
+			<div class="grid_1"></div>
+			<div class="grid_11">
+				<div class="grid_1" style="margin-top:15px">
+					<label c-label item="item">Periode</label>
+				</div>
+				<div class="grid_2">
+					<input style="width:100%" kendo-date-picker value="now" k-ng-model="item.awal" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'"/>
+				</div>
+				<div class="grid_1" align="center" style="margin-top:15px">
+					<label c-label item="item">s/d</label>
+				</div>
+				<div class="grid_2">
+					<input style="width:100%" kendo-date-picker value="now" k-ng-model="item.akhir" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'"/>
+				</div>
+				<div class="grid_1"></div>
+				<div class="grid_1" style="margin-top:15px">
+					<label c-label item="item">Nomor Order</label>
+				</div>
+				<div class="grid_2">
+					<input c-text-box type="input" filter="'text'" class="k-textbox" ng-model="item.noOrder" />
+				</div>
+				<div class="grid_1" style="margin:5px">
+					<button class="c-button success" ng-click="search()">Cari</button>
+				</div>
+			</div>
+		</div>
+		<div class="grid_12" style="margin-top: 20px">
+		<div kendo-grid k-data-source="daftarPelipatan" k-selectable="'row'" k-columns="columndaftarPelipatan" k-ng-model="dataSelected" ng-click="klik(dataSelected)">
+			</div>
+		</div>
+		<div class="grid_12" style="margin: 20px 0 10px 0; ">
+			<div class="grid_6"></div>
+	        <div class="grid_2">
+				<button class="c-button success" ng-click="kirim()">Kirim</button>
+	        </div>
+	        <div class="grid_2">
+				<button class="c-button success" ng-click="detailOrder()">Daftar Detail Order</button>
+	        </div>
+	        <div class="grid_2">
+				<button class="c-button success" ng-click="daftardistribusi()">Daftar Distribusi</button>
+	        </div>
+		</div>
+	</div>
+</div>

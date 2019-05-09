@@ -1,0 +1,61 @@
+<div ng-controller="MasterDokumenCtrl">
+	
+	<div ng-show="dataVOloaded">
+
+		<c-panel item="item" header="'Master Dokumen'"disabled>
+		
+		<div class="grid_6">
+			<div class="panel panel-default container_12">
+
+				<div class="grid_12">
+					<div class="grid_4" style="margin-top: 10px;">
+						<label c-label item="item" c-label-text="Ruangan"></label>
+					</div>
+					<div class="grid_8">
+						<input style="width:100%" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataRuangan" />
+						<!-- <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.ruangan" disabled /> -->
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_4" style="margin-top: 10px;">
+					<label c-label item="item" c-label-text="Kategori Dokumen"></label>
+				</div>
+				<div class="grid_8">
+					<input style="width:100%" kendo-combo-box k-ng-model="item.kategoriDokumen" k-data-text-field="'kategoryDokumen'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKatDokumen" />
+				</div>
+				</div>
+
+				<div class="grid_12">
+					<div class="grid_4" style="margin-top: 10px;">
+						<label c-label item="item" c-label-text="Nama Dokumen"></label>
+					</div>
+					<div class="grid_8">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaDm" />
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- bagian grid -->
+	
+		<div class="grid_12">
+			<div class="grid_12">
+				<kendo-grid  k-data-source="dataSource" id="kgrid" style="font-size: small;" options="optDataMasterD" k-ng-model="current">
+            	</kendo-grid>	
+			</div>	
+		</div>
+			
+		</c-panel>
+
+		<!-- bagian button -->
+		<div class="grid_12">
+			<div class="grid_2" style="margin-top: 25px;float:right">
+				<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+					<span class="title">Simpan</span>
+				</button>
+			</div>	
+		</div>
+	</div>
+
+</div>

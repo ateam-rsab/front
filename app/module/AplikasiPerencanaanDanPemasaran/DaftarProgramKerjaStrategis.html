@@ -1,0 +1,16 @@
+<div ng-show="dataVOloaded">
+	<c-panel item="item" header="title" align="center" disabled>
+		<div class="grid_12" style="margin-top: 10px;">
+			<div kendo-grid k-data-source="sourceDaftarProgramKerjaStrategis" k-selectable="'row'" k-columns="columnDaftarProgramKerjaStrategis"></div>
+		</div>
+		<div class="grid_12" style="padding-top:30px">
+			<div class="grid_8"></div>
+			<div class="grid_2">
+				<button class="c-button" ng-click="Search()">Cetak</button>
+			</div>
+			<div class="grid_2">
+				<button class="c-button" ng-click="Search()">Tutup</button>
+			</div>
+		</div>
+	</c-panel>
+</div>

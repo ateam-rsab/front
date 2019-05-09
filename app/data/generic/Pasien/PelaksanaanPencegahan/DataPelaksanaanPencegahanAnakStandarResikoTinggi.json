@@ -1,0 +1,115 @@
+[
+    {
+        "id": 1,
+        "name": "Pakaikan gelang risiko jatuh berwarna kuning",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    },{
+        "id": 2,
+        "name": "memsag tanda peringatan risiko jatuh, berupa segitiga kuning yang dipasang pada bed pasien",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    },{
+        "id": 3,
+        "name": "Melakukan observasi pasien minimal setiap satu jam",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    },{
+        "id": 4,
+        "name": "Menemani pasien pada saat mobilisasi",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    },{
+        "id": 5,
+        "name": "Tempat tidur pasien disesuaikan dengan perkembangan tubuh pasien",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    },{
+        "id": 6,
+        "name": "Pasien yang memerlukan perhatian diletakan dekat nurse station",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    },{
+        "id": 7,
+        "name": "Perbandingan pasien dengan perawat 1:3, libatkan keluaga sementara perbandingan belum memadai",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    }
+]

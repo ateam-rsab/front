@@ -1,0 +1,251 @@
+<!--<div ng-hide="dataVOloaded">
+    <div class="loading" style="z-index:2;  position: fixed; top: 40%; right: 0; bottom: 0; left: 20%;" class="animated" ng-show="true">
+        <img height="160" src="../app/stylesheets/Flat/loading-image.gif" />
+      <br/> <span>{{keteranganLoading}}</span>
+    </div>
+</div>-->
+
+<div>
+    <div class="grid_12 headerBox">
+        <h1 style="color: white;"><b>Periode Akuntansi</b></h1>
+    </div>
+    <div class="clear"></div>
+
+    <br/>
+
+   
+
+	<div class="grid_12">
+
+    <div class="grid_4">
+        <div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+            <p>Masukkan Detail Periode</p>
+        </div>
+        <div class="grid_12 borderBox containerBorderBox">
+            <!-- PeriodeAccount -->
+            <div class="grid_12">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="namaPeriode"></label>
+                </div>
+                <div class="clear"></div>
+
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.periodeAccount" ng-disabled="isEditing"/>
+                </div>
+            </div>
+            <div class="clear"></div>
+            
+            <!-- TanggalAwalPeriode -->
+            <div class="grid_12">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="TanggalAwalPeriode"></label>
+                </div>
+                <div class="clear"></div>
+
+                <div class="grid_12">
+                    <input style="width: 100%" k-ng-model="item.tanggalAwalPeriode"  kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" ng-disabled="isEditing"/>
+                </div>
+            </div>
+            <div class="clear"></div>
+
+            <!-- TanggalAkhirPeriode -->
+            <div class="grid_12">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="TanggalAkhirPeriode"></label>
+                </div>
+                <div class="clear"></div>
+
+                <div class="grid_12">
+                    <input style="width: 100%" k-ng-model="item.tanggalAkhirPeriode"  kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" ng-disabled="isEditing"/>
+                </div>
+            </div>
+            <div class="clear"></div>
+
+            <!-- JenisAccount -->
+            <div class="grid_12">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="JenisAccount"></label>
+                </div>
+                <div class="clear"></div>
+
+                <div class="grid_12">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisAccount" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisAccount" ng-disabled="isEditing"/>
+                </div>
+            </div>
+            <div class="clear"></div>
+
+            <!-- Keterangan -->
+            <div class="grid_12">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Keterangan"></label>
+                </div>
+                <div class="clear"></div>
+
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.keterangan" ng-disabled="isEditing"/>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+    <div class="grid_8">
+        <div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+            <p>List periode account</p>
+        </div>
+        <div class="grid_12 borderBox containerBorderBox" style="padding:0px">
+            <div id="gridListPeriode" kendo-grid k-data-source="dataListPeriode" 
+                k-selectable="'row'" 
+                k-columns="columnListPeriode"
+                k-row-template="rowTemplateListPeriode"
+                k-ng-model="dataSelectedPeriode">
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    
+
+    <br/>
+
+    <div class="grid_12">
+        <div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+            <p>Keterangan Saldo</p>
+        </div>
+        <div class="grid_12 borderBox containerBorderBox">
+            <!-- Total Saldo D -->
+            <div class="grid_3">
+                <div class="grid_12">
+                    <span style="color:black"><b>Saldo Awal (D)</b></span>
+                </div>
+                <div class="clear"></div>
+
+                <div class="grid_12">
+                    <span style="color:black; margin-top:-5px">{{saldo.saldoAwalDFormated}}</span>
+                </div>
+            </div>
+
+            <!-- Total Saldo K -->
+            <div class="grid_3">
+                <div class="grid_12">
+                    <span style="color:black"><b>Saldo Awal (K)</b></span>
+                </div>
+                <div class="clear"></div>
+
+                <div class="grid_12">
+                    <span style="color:black; margin-top:-5px">{{saldo.saldoAwalKFormated}}</span>
+                </div>
+            </div>
+
+            <!-- Total Saldo K -->
+            <div class="grid_3">
+                <div class="grid_12">
+                    <span style="color:black"><b>Selisih</b></span>
+                </div>
+                <div class="clear"></div>
+
+                <div class="grid_12">
+                    <span style="color:black; margin-top:-5px">{{saldo.selisihFormated}}</span>
+                </div>
+            </div>
+
+            <!-- Keterangan -->
+            <div class="grid_3">
+                <div class="grid_12">
+                    <span style="color:black"><b>Keterangan</b></span>
+                </div>
+                <div class="clear"></div>
+
+                <div class="grid_12">
+                    <span>{{saldo.balanceTotalSaldo}}</span>
+                </div>
+            </div>
+            <div class="clear"></div>
+
+        </div>
+        <div class="grid_12 borderBox containerBorderBox">
+            <!-- ASET -->
+            <div class="grid_3">
+                <div class="grid_12">
+                    <span style="color:black"><b>ASET</b></span>
+                </div>
+                <div class="clear"></div>
+
+                <div class="grid_12">
+                    <span style="color:black; margin-top:-5px">{{saldo.saldoAsetFormated}}</span>
+                </div>
+            </div>
+
+            <!-- KEWAJIBAN -->
+            <div class="grid_3">
+                <div class="grid_12">
+                    <span style="color:black"><b>KEWAJIBAN</b></span>
+                </div>
+                <div class="clear"></div>
+
+                <div class="grid_12">
+                    <span style="color:black; margin-top:-5px">{{saldo.saldoKewajibanFormated}}</span>
+                </div>
+            </div>
+
+            <!-- EKUITAS -->
+            <div class="grid_3">
+                <div class="grid_12">
+                    <span style="color:black"><b>EKUITAS</b></span>
+                </div>
+                <div class="clear"></div>
+
+                <div class="grid_12">
+                    <span style="color:black; margin-top:-5px">{{saldo.saldoEkuitasFormated}}</span>
+                </div>
+            </div>
+
+            <!-- Keterangan -->
+            <div class="grid_3">
+                <div class="grid_12">
+                    <span style="color:black"><b>Keterangan</b></span>
+                </div>
+                <div class="clear"></div>
+
+                <div class="grid_12">
+                    <span>{{saldo.balanceNeraca}}</span>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+    
+    <div class="clear"></div>
+
+	<div class="grid_12">
+		<div class="grid_12 headerBox">
+        	<p>Saldo Chart of Account</p>
+        </div>
+        <div class="clear"></div>
+        <!-- grid table -->
+        <div class="grid_12 borderBox">
+           <div id="gridCOA" kendo-grid k-data-source="dataCOA" 
+                k-selectable="'row'" 
+                k-columns="columnCOA" 
+                k-on-edit="editGrid(kendoEvent)" 
+                k-editable="true" 
+                k-row-template="rowTemplate"
+                k-on-data-bound="onBound()"
+                k-auto-bind="false">
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+
+
+    <br/>
+
+    
+
+	</div>
+
+	<div class="grid_12" style="margin-top:30px">
+       <div ng-include='"../app/module/Shared/TemplateButtonSimpanAkuntansi"'></div>
+    </div>
+</div>

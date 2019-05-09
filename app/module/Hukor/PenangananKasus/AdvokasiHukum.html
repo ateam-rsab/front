@@ -1,0 +1,136 @@
+<div ng-controller="AdvokasiHukumCtrl">
+    <c-panel item="item" header="'Advokasi Hukum & Medicolegal'" disabled>
+        <div class="panel panel-default container_12">
+            <div class="grid_12">
+                <div class="grid_6">
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin-top: 10px">
+                            <div class="grid_10">
+                                <label c-label item="item" c-label-text="noKasus"></label>
+                            </div>
+                            <div class="grid_2" align="right">:</div>
+                        </div>
+                        <div class="grid_6" style="margin: 5px 0 0 10px;">
+                            <input c-text-box type="input" filter="''" class="k-textbox"
+                                   ng-model="item.noKasus" ng-disabled="true"/>
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin-top: 10px">
+                            <div class="grid_10">
+                                <label c-label item="item" c-label-text="tanggal"></label>
+                            </div>
+                            <div class="grid_2" align="right">:</div>
+                        </div>
+                        <div class="grid_6" style="margin: 5px 0 0 10px;">
+                            <input style="width:100%" readonly kendo-date-picker value="now" k-ng-model="item.tanggal" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'" />
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin-top: 10px">
+                            <div class="grid_10">
+                                <label c-label item="item" c-label-text="jenisKasusHukum"></label>
+                            </div>
+                            <div class="grid_2" align="right">:</div>
+                        </div>
+                        <div class="grid_6" style="margin: 5px 0 0 10px;">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.pidana"
+                                   k-data-text-field="'nama'" k-data-value-field="'id'" k-filter="'contains'"
+                                   k-auto-bind="false" k-data-source="listPidana"/>
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin-top: 10px">
+                            <div class="grid_10">
+                                <label c-label item="item" c-label-text="upload"></label>
+                            </div>
+                            <div class="grid_2" align="right">:</div>
+                        </div>
+                        <div class="grid_6" style="margin: 10px 0 0 10px">
+                            <input id="filePicker" valid-extensions="doc" data-max-size="2048" kendo-upload k-multiple="false" , k-select="onSelectFile" type="file">
+                        </div>
+                    </div>
+
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin-top: 10px">
+                            <div class="grid_10">
+                                <label c-label item="item" c-label-text="saran"></label>
+                            </div>
+                            <div class="grid_2" align="right">:</div>
+                        </div>
+                        <div class="grid_6" style="margin: 5px 0 0 10px;">
+                            <input c-text-box type="input" filter="''" class="k-textbox"
+                                   ng-model="item.saran" ng-disabled="false"/>
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin-top: 10px">
+                            <div class="grid_10">
+                                <label c-label item="item" c-label-text="isiKajian"></label>
+                            </div>
+                            <div class="grid_2" align="right">:</div>
+                        </div>
+                        <div class="grid_6" style="margin: 5px 0 0 10px;">
+                            <input c-text-box type="input" filter="''" class="k-textbox"
+                                   ng-model="item.isiKajian" ng-disabled="false"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_6">
+
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin-top: 10px">
+                            <div class="grid_10">
+                                <label c-label item="item" c-label-text="Status Kasus"></label>
+                            </div>
+                            <div class="grid_2" align="right">:</div>
+                        </div>
+                        <div class="grid_6" style="margin: 5px 0 0 10px;">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.kasus"
+                                   k-data-text-field="'nama'" k-data-value-field="'id'" k-filter="'contains'"
+                                   k-auto-bind="false" k-data-source="listKasus"/>
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin-top: 10px">
+                            <div class="grid_10">
+                                <label c-label item="item" c-label-text="tujuanRekomendasi"></label>
+                            </div>
+                            <div class="grid_2" align="right">:</div>
+                        </div>
+                        <div class="grid_6" style="margin: 5px 0 0 10px;">
+                            <select kendo-multi-select
+                                    k-data-source="ListRuangan"
+                                    k-data-text-field="'namaRuangan'"
+                                    k-data-value-field="'id'"
+                                    k-placeholder="'-- Pilih Ruangan --'"
+                                    k-ng-model="item.ruanganTujuan">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin-top: 10px">
+                            <div class="grid_10">
+                                <label c-label item="item" c-label-text="rekomendasi"></label>
+                            </div>
+                            <div class="grid_2" align="right">:</div>
+                        </div>
+                        <div class="grid_6" style="margin: 5px 0 0 10px;">
+                            <textarea c-text-box type="input" filter="''" class="k-textbox"
+                                   ng-model="item.rekomendasi" ng-disabled="false"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_12">
+            <div class="grid_8"></div>
+            <div class="grid_3" style="margin-top: 25px">
+                <button class="c-button" ng-show="!isLoading" item="item" is-validate
+                        ng-click="save()">
+                    <span class="title">Simpan</span></button>
+            </div>
+
+        </div>
+    </c-panel>
+</div>

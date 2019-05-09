@@ -1,0 +1,131 @@
+<div ng-controller="PengirimanSuratKeluarCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" disabled>
+			<div class="grid_12">
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="No Surat"></label>
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noSurat"/>
+					</div>
+				</div>
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="lampiran"></label>
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.lampiran"/>
+					</div>
+				</div>
+			</div>
+			<div class="grid_12" style="padding-top:10px">
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="kepada"></label>
+						<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.kepada"/>
+					</div>
+				</div>
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="perihal"></label>
+	                	<textarea ng-model="item.perihal" style="width: 99%; height: 80px"></textarea>      
+					</div>
+				</div>
+			</div>
+			<div class="grid_12" style="padding-top:10px">
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="sifatSurat"></label>
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.sifatSurat" k-data-text-field="'sifatSurat'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceSifatSurat" />
+					</div>
+				</div>
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="klasifikasiArsip"></label>
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.klasifikasiArsip" k-data-text-field="'klasifikasi'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceKlasifikasi" />
+					</div>
+				</div>
+			</div>
+			<div class="grid_12" style="padding-top:10px">
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="statusBerkas"></label>
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.statusBerkas" k-data-text-field="'statusBerkas'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceStatusBerkas" />
+					</div>
+				</div>
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="subKlasifikasiArsip"></label>
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.subKlasifikasiArsip" k-data-text-field="'subKlasifikasiArsip'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceSubKlasifikasiArsip" />
+					</div>
+				</div>
+			</div>
+			<div class="grid_12" style="padding-top:10px">
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="jenisSurat"></label>
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisSurat" k-data-text-field="'jenisSurat'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceJenisSurat" />
+					</div>
+				</div>
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="dikirimAtasNama"></label>
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaPengirim" k-data-text-field="'namaPengirim'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceNamaPengirim" />
+					</div>
+				</div>
+			</div>
+			<div class="grid_12" style="padding-top:10px">
+				<div class="grid_6">
+					<div class="grid_10">
+						<label c-label item="item" c-label-text="namaKonseptorPemeriksa"></label>
+	                	<textarea ng-model="item.namaPemeriksa" style="width: 99%; height: 160px"></textarea>      
+					</div>
+				</div>
+				<div class="grid_6">
+					<div class="grid_10" style="padding-top:10px">
+						<label c-label item="item" c-label-text="ditandatanganiOleh"></label>
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.tandaTangan" k-data-text-field="'tandaTangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceTandaTangan" />
+					</div>
+					<div class="grid_10" style="padding-top:10px">
+						<label c-label item="item" c-label-text="MetodeKirim"></label>
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.metodeKirim" k-data-text-field="'metodeKirim'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceMetodeKirim" />
+					</div>
+					<div class="grid_10" style="padding-top:10px">
+						<label c-label item="item" c-label-text="petugasKirim"></label>
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.petugasKirim" k-data-text-field="'namaPetugas'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourcePetugasKirim" />
+					</div>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_2">
+					<label c-label item="item" c-label-text=""> </label>
+					<c-button ng-click="" style="width:100% !important">
+						<span style="font-size:10!important">Upload File</span>
+					</c-button>
+				</div>
+				<div class="grid_2"></div>
+				<div class="grid_2">
+					<label c-label item="item" c-label-text=""> </label>
+					<c-button ng-click="" style="width:100% !important">
+						<span style="font-size:10!important">Kirim</span>
+					</c-button>
+				</div>
+				<div class="grid_2">
+					<label c-label item="item" c-label-text=""> </label>
+					<c-button ng-click="Save()" style="width:100% !important">
+						<span style="font-size:10!important">Simpan</span>
+					</c-button>
+				</div>
+				<div class="grid_2">
+					<label c-label item="item" c-label-text=""> </label>
+					<c-button ng-click="" style="width:100% !important">
+						<span style="font-size:10!important">Hapus</span>
+					</c-button>
+				</div>
+				<div class="grid_2">
+					<label c-label item="item" c-label-text=""> </label>
+					<c-button ng-click="" style="width:100% !important">
+						<span style="font-size:10!important">Tutup</span>
+					</c-button>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

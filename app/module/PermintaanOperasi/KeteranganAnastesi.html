@@ -1,0 +1,65 @@
+
+<div ng-controller="KeteranganAnastesiCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Nama Form'">
+			<div class="grid_4">
+				<!-- dokter anastesi -->
+				<div class="grid_4" style="margin-top:5px">
+                    <label c-label item="item" c-label-text="dokterAnastesi"></label>
+                </div>
+                <div class="grid_8">
+                      <input style="width: 100%;" kendo-combo-box k-ng-model="item.dokterAnastesi" k-data-text-field="'name'" ng-model="item.jenisPemeriksaan" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitLayanan" />
+                </div>
+                <div class="clear"></div>
+
+                <!-- hari operasi -->
+				<div class="grid_4" style="margin-top:5px">
+                    <label c-label item="item" c-label-text="hariOperasi"></label>
+                </div>
+                <div class="grid_8">
+                      <input style="width: 100%" k-ng-model="item.periode"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                </div>
+                <div class="clear"></div>
+			</div>
+			<div class="grid_4">
+				<!-- macam anastesi -->
+				<div class="grid_4" style="margin-top:5px">
+                    <label c-label item="item" c-label-text="macamAnastesi"></label>
+                </div>
+                <div class="grid_8">
+                      <input style="width: 100%;" kendo-combo-box k-ng-model="item.macamAnastesi" k-data-text-field="'name'" ng-model="item.jenisPemeriksaan" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitLayanan" />
+                </div>
+                <div class="clear"></div>
+
+                <!-- dokter mengerjakan -->
+				<div class="grid_4" style="margin-top:5px">
+                    <label c-label item="item" c-label-text="dokterMengerjakan"></label>
+                </div>
+                <div class="grid_8">
+                      <input style="width: 100%;" kendo-combo-box k-ng-model="item.dokterMengerjakan" k-data-text-field="'name'" ng-model="item.jenisPemeriksaan" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitLayanan" />
+                </div>
+                <div class="clear"></div>
+			</div>
+			<div class="grid_4">
+				<!-- lama operasi -->
+				<div class="grid_4" style="margin-top:5px">
+                    <label c-label item="item" c-label-text="lamaOperasi"></label>
+                </div>
+                <div class="grid_8">
+                     <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.lamaOperasi" />
+                </div>
+                <div class="clear"></div>
+
+                <!-- ruang rawat -->
+				<div class="grid_4" style="margin-top:5px">
+                    <label c-label item="item" c-label-text="ruangRawat"></label>
+                </div>
+                <div class="grid_8">
+                      <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangRawat" k-data-text-field="'name'" ng-model="item.jenisPemeriksaan" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitLayanan" />
+                </div>
+                <div class="clear"></div>
+			</div>
+		</c-panel>
+	</div>
+</div>

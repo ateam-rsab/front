@@ -1,0 +1,166 @@
+[
+    {
+        "id": 1,
+        "name": "Umur",
+        "children":[
+            {
+                "id": 1,
+                "name": "Dibawah 3 tahun",
+                "score": 4
+            },
+            {
+                "id": 2,
+                "name": "3 - 7 tahun",
+                "score": 3
+            },
+            {
+                "id": 3,
+                "name": "7 - 13 tahun",
+                "score": 2
+            },
+            {
+                "id": 4,
+                "name": "> 13 tahun",
+                "score": 1
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 2,
+        "name": "Jenis kelamin",
+        "children":[
+            {
+                "id": 1,
+                "name": "Laki-laki",
+                "score": 2
+            },
+            {
+                "id": 2,
+                "name": "Perempuan",
+                "score": 1
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 3,
+        "name": "Diagnosis",
+        "children":[
+            {
+                "id": 1,
+                "name": "gangguan Neurologis",
+                "score": 4
+            },
+            {
+                "id": 2,
+                "name": "Perubahan dalam oksigenisasi (masalah saluran nafas, dehidrasi, anemia, anorexio, sinkop, Sakit kepala, dll)",
+                "score": 3
+            },
+            {
+                "id": 3,
+                "name": "Kelainan psikis / perilaku",
+                "score": 2
+            },
+            {
+                "id": 4,
+                "name": "Diagnosis lain",
+                "score": 1
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 4,
+        "name": "Gangguan kognitif",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak sadar terhadap keterbatasan",
+                "score": 3
+            },
+            {
+                "id": 2,
+                "name": "lupa keterbatasan",
+                "score": 2
+            },
+            {
+                "id": 3,
+                "name": "Mengetahui kemampuan diri",
+                "score": 1
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 5,
+        "name": "Faktor lingkungan",
+        "children": [
+            {
+                "id": 1,
+                "name": "Riwayat jatuh dari temmpat tidur saat bayi / anak",
+                "score": 4
+            },
+            {
+                "id": 2,
+                "name": "Pasien menggunakan alat bantu atau box / mebel",
+                "score": 3
+            },
+            {
+                "id": 3,
+                "name": "Pasien berada di tempat tidur",
+                "score": 2
+            },
+            {
+                "id": 4,
+                "name": "Pasien diluar ruang rawat",
+                "score": 1
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 6,
+        "name": "Respon terhadap operasi/obat penenang/efek anasthesi",
+        "children":[
+            {
+                "id": 1,
+                "name": "Dalam 24 jam",
+                "score": 3
+            },
+            {
+                "id": 2,
+                "name": "Dalam 48 jam",
+                "score": 2
+            },
+            {
+                "id": 3,
+                "name": "> 48 jam",
+                "score": 1
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 7,
+        "name": "Penggunaan Obat",
+        "children":[
+            {
+                "id": 1,
+                "name": "Penggunaan obat:sedative (kecuali pasien ICU, yang menggunakan sedasi dan paralisis) hipnotik, barbiturat, fenotialin, antidepresan, laksatif/diuretika, narkotik",
+                "score": 3
+            },
+            {
+                "id": 2,
+                "name": "Salah satu dari pengobatan diatas",
+                "score": 2
+            },
+            {
+                "id": 3,
+                "name": "Pengobatan lain",
+                "score": 1
+            }
+        ],
+        "score":0
+    } 
+]

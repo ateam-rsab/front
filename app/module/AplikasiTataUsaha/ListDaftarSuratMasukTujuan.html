@@ -1,0 +1,40 @@
+<div ng-controller="ListDaftarSuratMasukTujuanCtrl">
+
+    <c-panel item="item" header="'Daftar Surat Masuk'" disabled>
+        <div class="panel panel-default container_12" disabled>
+            <div class="grid_12">
+                <div class="grid_2">
+                    <label c-label item="item" style="margin: 10px 0 0 10px;">Periode</label>
+                </div>
+                <div class="grid_3">
+                    <input kendo-date-picker k-ng-model="item.tanggalAwal" k-format="'dd-MM-yyyy'" style="width: 100%" kendo-date-picker k-max="now" ng-init="now" />
+                </div>
+                <div class="grid_1" style="margin-top: 10px; text-align: center;">
+                    s/d
+                </div>
+                <div class="grid_3">
+                    <input kendo-date-picker k-ng-model="item.tanggalAkhir" k-format="'dd-MM-yyyy'" style="width: 100%" kendo-date-picker k-max="now" ng-init="now" />
+                </div>
+                <div class="grid_2" style="margin-top: 6px">
+                    <button class="c-button" ng-click="cari()">cari</button>
+                </div>
+            </div>
+
+            <div class="grid_12">
+                <div kendo-grid="grid" id="grid" k-data-source="gridDaftarSurat" k-editable="true" options="colGridDaftarSurat" k-selectable="'row'" style="font-size: small;">
+                </div>
+            </div>
+
+            <div class="grid_12">
+                <div class="grid_8"></div>
+                <div class="grid_4">
+                    <button class="c-button" ng-click="verbalKonsep()">Verbal Konsep</button>
+                </div>
+                <div class="grid_4">
+                    <button class="c-button" ng-click="close()">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </c-panel>
+
+</div>

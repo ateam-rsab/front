@@ -1,0 +1,67 @@
+<style>
+    button:disabled {
+        background: #B5B2B1;
+    }
+</style>
+<div ng-show="dataVOloaded">
+    <div class="grid_12">
+        <div class="grid_6">
+        </div>
+        <div class="grid_2">
+            <label c-label item="item" c-label-text="Tanggal awal"></label>
+            <input style="width: 100%" k-ng-model="item.tglawal" kendo-datetimepicker placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd HH:mm'"
+            />
+        </div>
+        <div class="grid_2">
+            <label c-label item="item" c-label-text="Tanggal Akhir"></label>
+            <input style="width: 100%" k-ng-model="item.tglakhir" kendo-datetimepicker placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd HH:mm'"
+            />
+        </div>
+        <div class="grid_1">
+            <div class="grid_12">
+                <label>&nbsp;</label>
+            </div>
+            <div class="grid_12">
+                <button class="primary c-button" style="margin-top: 6px" ng-click="CariData()">Cari</button>
+            </div>
+        </div>
+        <div class="grid_1">
+            <div class="grid_12">
+                <label>&nbsp;</label>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_12">
+                <button class="cancel c-button" style="margin-top: 6px" ng-click="ClearSearch()">Clear</button>
+            </div>
+        </div>
+    </div>
+    <div class="grid_12" style="margin-top:10px">
+        <div class="grid_12 headerBox">
+            <p>Data Jenis Pembiayaan </p>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_12 borderBox">
+            <div id="kGrid" kendo-grid k-groupable="'true'" k-aggregate='aggregate' k-data-source="sourceLaporan" k-selectable="'row'"
+                k-columns="columnLaporan" k-pageable="'true'" k-sortable="'true'" k-ng-model="dataPasienSelected" ng-click="click(dataPasienSelected)">
+            </div>
+        </div>
+    </div>
+    <div class="grid_12">
+        <div class="grid_12" style="float:right">
+            <div class="grid_10"></div>
+        </div>
+    </div>
+    <div class="grid_12" style="margin-top:60px" ng-show="isLoadingData">
+        <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+    </div>
+    <br/>
+    </c-panel>
+</div>
+
+<!-- <style type="text/css">
+    .json-viewer {
+        margin-top: 26px;
+        padding: 2em 0 2em 5em;
+        background: lightgrey;
+    }
+</style> -->

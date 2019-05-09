@@ -1,0 +1,55 @@
+{
+	"model":{
+		"mesin" : "",
+		"jenisLinen" : "",
+		"kapasitas" : "",
+		"prosesCuci" : "",
+		"namaBahan" : "",
+		"jumlah" : "",
+	   	"satuan" : ""
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "mesin",
+			"messagesRequired" : "",
+			"caption" : "Mesin"
+		},
+		{
+			"isNull" : "true",
+			"name" : "jenisLinen",
+			"messagesRequired" : "",
+			"caption" : "Jenis Linen"
+		},
+		{
+			"isNull" : "true",
+			"name" : "kapasitas",
+			"messagesRequired" : "",
+			"caption" : "Kapasitas"
+		},
+		{
+			"isNull" : "true",
+			"name" : "prosesCuci",
+			"messagesRequired" : "",
+			"caption" : "Proses Cuci"
+		},
+		{
+			"isNull" : "true",
+			"name" : "namaBahan",
+			"messagesRequired" : "",
+			"caption" : "Nama Bahan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "jumlah",
+			"messagesRequired" : "",
+			"caption" : "Jumlah"
+		},
+		{
+			"isNull" : "true",
+			"name" : "satuan",
+			"messagesRequired" : "",
+			"caption" : "Satuan"
+		}
+	]
+}

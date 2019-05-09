@@ -1,0 +1,13 @@
+{
+	"model":{
+	    "Grid" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "Grid",
+			"messagesRequired" : "",
+			"caption" : "Label Grid"
+		}
+  ]
+}

@@ -1,0 +1,89 @@
+<div ng-controller="SkriningKekhususanRiwayatKelahiranCtrl">
+
+    <div>
+        <div class="container_12">
+            <!-- panel Skrining Riwayat Kelahiran -->
+            <div class="grid_12" style="margin-bottom:30px">
+                <div class="grid_12 headerBox">
+                    <h1 style="color: white;"><b>{{formMaster.nama}}</b></h1>
+                </div>
+                <div class="clear"></div>
+                <br/>
+                <div class="container_12"> <!-- html form goes here -->
+                    <div ng-repeat="list in formMaster.detail | orderBy:'id'" ng-init="listIndex = $index">
+                        <div class="grid_1">&nbsp;</div>
+                        <div ng-switch on="listIndex">
+                            <div ng-switch-when="0">
+                                <div class="grid_2">
+                                    <input type="radio" ng-model="formMaster.value" ng-value="list.id" ng-click="checkRadio(formMaster, list)">
+                                    <label for="{{'formMaster' + list.nama}}">{{list.nama}}</label>
+                                </div>
+                            </div>
+                            <div ng-switch-default>
+                                <div class="grid_2">
+                                    <input type="radio" ng-model="formMaster.value" ng-value="list.id" ng-click="checkRadio(formMaster, list)">
+                                    <label for="{{'formMaster' + list.nama}}">{{list.nama}}</label>
+                                </div>
+                                <div class="grid_4" ng-show="adaMasalah">
+                                    <textarea c-text-area type="input" filter="'string'" class="k-textbox" ng-model="list.value" placeholder="Keterangan"/>
+                                    <!-- <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.riwayat" /> -->
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="grid_6" style="margin:6px auto">
+                            <div class="grid_1" style="text-align:right">{{listIndex}})</div>
+                            <div class="grid_3">
+                                <label><b>{{list.nama}} : </b></label>
+                            </div>
+                            <div ng-repeat="opsi in listYaTidak | orderBy:'id'">
+                                <div class="grid_3">
+                                    <label for="{{opsi.nama}}" class="radio-inline">
+                                        <input type="radio" ng-model="list.value" ng-value="opsi.id" ng-click="klikOption(list, opsi)">{{opsi.nama}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <c-panel item="item" header="'Riwayat Kelahiran'" disabled ng-hide="true">
+            <div class="grid_12">
+                <div class="grid_12">
+                    <div class="grid_1"></div>
+                    <div class="grid_4">
+                        <div class="grid_12">
+                            <div class="grid_6" ng-repeat="stat in ListRadio">
+                                <input type="radio" name="{{'riwayatKelahiran' + stat.name}}" id="{{'riwayatKelahiran' + stat.name}}" class="k-radio" ng-model="item.riwayatKelahiran" ng-value="stat.name" ng-click="checkRadio()">
+                                <label class="k-radio-label" for="{{'riwayatKelahiran' + stat.name}}">{{stat.name}}</label>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>  
+                </div>
+                <div class="grid_12" ng-show="adaMasalah">
+                    <div class="grid_1"></div>
+                    <div class="grid_4">
+                        <div class="grid_12">
+                            <textarea c-text-area type="input" filter="'string'" class="k-textbox" ng-model="item.riwayat" placeholder="Keterangan"/>
+                             <!-- <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.riwayat" /> -->
+                        </div>
+                    </div>  
+                </div>
+            </div>
+                    
+            <div class="grid_12">
+                <div class="grid_6"></div>
+                <div class="grid_3">
+                    <button class="c-button cancel" style="font-size:18px" ng-click="Batal()">Batal</button>
+                </div>
+                <div class="grid_3">
+                    <button class="c-button success" style="font-size:18px" ng-click="Save()">Simpan</button>
+                </div>
+            </div>
+        </c-panel>
+        
+        <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div> 
+        <!-- <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div> -->
+    </div>
+</div>

@@ -1,0 +1,58 @@
+<div ng-controller="SkriningKekhususanRiwayatImunisasiDasarCtrl">
+
+    <div ng-show="dataVOloaded">
+        <!-- panel Skrining Nyeri -->
+        <div class="container_12">
+            <!--New Riwayat Imunisasi Dasar's form goes here-->
+            <div class="grid_12" style="margin-bottom:30px">
+                <div class="grid_12 headerBox">
+                    <h1 style="color: white;"><b>{{formMaster.nama}}</b></h1>
+                </div>
+                <div class="clear"></div>
+                <br/>
+                <div class="container_12"> <!-- html form goes here -->
+                    <div ng-repeat="list in formMaster.detail | orderBy:'id'">
+                        <div class="grid_3">
+                            <div class="grid_2">&nbsp;</div>
+                            <div class="grid_6">
+                                <input type="radio" ng-model="formMaster.value" ng-value="list.id" ng-click="klikOption(formMaster, list)">
+                                <label><b>{{list.nama}}</b></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div> 
+        </div>
+
+        <c-panel item="item" header="'Riwayat Imunisasi Dasar'" disabled ng-hide="true">
+            <div class="grid_12">
+                <div class="grid_12">
+                    <div class="grid_1"></div> 
+                    <div class="grid_6">
+                        <div class="grid_12">
+                            <label c-label item="item"></label>
+                        </div>
+                        <div class="grid_12" style="margin-bottom:5px">
+                            <div class="grid_4" ng-repeat="stat in ListRadio">
+                                <input type="radio" name="{{'riwayatImunisasi' + stat.name}}" id="{{'riwayatImunisasi' + stat.name}}" class="k-radio" ng-model="item.riwayatImunisasi" ng-value="stat.name">
+                                <label class="k-radio-label" for="{{'riwayatImunisasi' + stat.name}}">{{stat.name}}</label>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+                   
+                <div class="grid_12">
+                    <div class="grid_6"></div>
+                    <div class="grid_3">
+                        <button class="c-button cancel" style="font-size:18px" ng-click="Batal()">Batal</button>
+                    </div>
+                    <div class="grid_3">
+                        <button class="c-button success" style="font-size:18px" ng-click="Save()">Simpan</button>
+                    </div>
+                </div>
+            </div>
+        </c-panel>
+        <!-- <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div> -->
+    </div>
+</div>

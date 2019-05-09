@@ -1,0 +1,65 @@
+<div ng-controller="InformasiDaftarGajiPegawaiHonorCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Informasi Daftar Gaji Pegawai Honor'" disabled>
+			<div class="panel panel-default">
+				<div class="grid_6">
+					<kendo-grid options="mainGridOptions" k-data-source="dataSource" k-ng-model="current"></kendo-grid>
+				</div>
+				<div class="grid_6">
+					<div class="grid_12">
+						<div class="grid_4">
+							<label c-label item="item" c-label-text="Periode"></label>
+						</div>
+						<div class="grid_3">
+							<input c-textbox type="input" class="k-textbox" ng-model="item.Periode">
+						</div>
+					</div>
+					<div class="clear"></div>
+					<div class="grid_12">
+						<div class="grid_4">
+							<label c-label item="item" c-label-text="NO Gaji"></label>
+						</div>
+						<div class="grid_3">
+							<input type="input" class="k-textbox" ng-model="item.NoGaji">
+						</div>
+					</div>
+						<div class="clear"></div>
+					<div class="grid_12">
+						<div class="grid_4">
+							<label c-label item="item" c-label-text="Pegawai"></label>
+						</div>
+						<div class="grid_3">
+							<input c-textbox type="input" class="k-textbox" ng-model="item.Pegawai">
+						</div>
+					</div>
+						<div class="clear"></div>
+					<div class="grid_12">
+						<div class="grid_4">
+							<label c-label item="item" c-label-text="Ket"></label>
+						</div>
+
+						<div class="grid_3">
+							<input c-textbox type="input" class="k-textbox" ng-model="item.keterangan">
+						</div>
+					</div>
+						<div class="grid_12">
+							<div class="grid_12">
+								<label c-label item="item" c-label-text="Pilihan" style="margin: 0px 0px 10px"></label>
+								<div class="grid_12" style="margin: 0px 0px 10px" ng-repeat="data in listPilihan">
+									<input type="checkbox" class="k-checkbox" name="{{data.keterangan}}" id="{{data.keterangan}}" value="{{data.id}}">
+									<label class="k-checkbox-label" for="{{data.keterangan}}">{{data.keterangan}}</label>
+								</div>	
+							</div>	                    
+		                </div>
+					</div>
+				</div>
+			</div>
+		</c-panel>
+		<div class="grid_6"></div>
+		<div class="grid_6">
+			<div class="grid_4">
+				<button class="c-button" ng-click="Detail()">Detail</button>
+			</div>
+		</div>
+	</div>
+</div>

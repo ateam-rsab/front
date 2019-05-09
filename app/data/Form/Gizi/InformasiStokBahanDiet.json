@@ -1,0 +1,15 @@
+{
+	"model":{
+		"cariBahanDiet" : ""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "cariBahanDiet",
+			"messagesRequired" : "",
+			"caption" : "Cari Bahan Diet"
+		}
+
+	]
+}

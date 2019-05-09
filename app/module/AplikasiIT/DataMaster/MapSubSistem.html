@@ -1,0 +1,355 @@
+<style>
+.style-center {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+
+.style-right {
+    display: inline-block;
+    text-align: right;
+    width: 100%;
+}
+
+.style-left {
+    display: inline-block;
+    text-align: left;
+    width: 100%;
+}
+
+.k-treeview .k-item {
+    background-color: #f9f9f9 !important;
+}
+
+.k-checkbox-label:before {
+    margin: 1px 0px 0px 6px;
+}
+</style>
+<div ng-controller="MapSubSistemCtrl">
+	<div ng-show="dataVOloaded">
+		<!-- <c-panel item="item" header="'Harga Netto Produk By Kelas'" disabled> -->
+		<div class="grid_12 headerBox">
+			<h1 style="color: white;"><b>Map Sub Sistem</b></h1>
+		</div>
+
+		<div class="grid_12">
+			<div class="grid_3">
+				<div class="grid_12 headerBox">
+					<p>Daftar Sub Sistem</p>
+				</div>
+				<div class="grid_12 borderBox" style="overflow-y: scroll; height:370px;">
+					<div id="kGrid" kendo-grid 
+						k-data-source="data1" 
+						k-selectable="'row'" 
+						k-columns="column1"
+						k-pageable="'true'"
+						k-sortable="'true'"
+						k-ng-model="dataSelected1" 
+						ng-click="klik1(dataSelected1)"
+						>
+					</div>
+				</div>
+			</div>
+			<div class="grid_3">
+				<div class="grid_12 headerBox">
+					<p>Daftar Modul Aplikasi</p>
+				</div>
+				<div class="grid_12 borderBox" style="overflow-y: scroll; height:370px;">
+					<div id="kGrid" kendo-grid 
+						k-data-source="data2" 
+						k-selectable="'row'" 
+						k-columns="column2"
+						k-pageable="'true'"
+						k-sortable="'true'"
+						k-ng-model="dataSelected2" 
+						ng-click="klik2(dataSelected2)"
+						>
+					</div>
+				</div>
+			</div>
+			<!-- <div class="grid_6" >
+                <div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+                    <p>Modul</p>
+                </div>
+                <div class="grid_12 borderBox containerBorderBox" style="overflow-y: scroll; height:400px;">
+                    <div class="grid_12">
+                        <div kendo-tree-view="tree2" 
+                        k-data-source="treeDataMenu2" 
+                        options="mainTreeViewOption2" 
+                        ng-model="treeView2"
+                        ng-click="klik2(tree2)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+ -->        <div class="grid_6" >
+                <div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+                    <p>Menu</p>
+                </div>
+                <div class="grid_12 borderBox containerBorderBox" style="overflow-y: scroll; height:305px;">
+                    <div class="grid_12">
+                        <div kendo-tree-view="tree" 
+                        k-data-source="treeDataMenu" 
+                        options="mainTreeViewOption" 
+                        ng-model="treeView"
+                        ng-click="klik3(tree)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<!-- <div class="grid_12">
+				<div class="grid_12 headerBox">
+					<p>Daftar Menu</p>
+				</div>
+				<div class="grid_12 borderBox">
+					<div id="kGrid" kendo-grid 
+						k-data-source="data3" 
+						k-selectable="'row'" 
+						k-columns="column3"
+						k-pageable="'true'"
+						k-sortable="'true'"
+						k-ng-model="dataSelected3" 
+						ng-click="klik3(dataSelected3)">
+					</div>
+				</div>
+			</div> -->
+			<div class="grid_6">
+				<div class="grid_2"  >
+	                <div class="grid_12">
+	                    <label c-label item="item" c-label-text="Id Head Menu" real></label>
+	                </div>
+	                <div class="clear"></div>
+	                <div class="grid_12">
+	                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.idHeadMenu" ng-keypress="($event.which == 13)? cariMenuHead():item.idHeadMenu"/>
+	                </div>
+	            </div>
+				<div class="grid_8"  >
+	                <div class="grid_12">
+	                    <label c-label item="item" c-label-text="Nama Modul Head" real></label>
+	                </div>
+	                <div class="clear"></div>
+	                <div class="grid_12">
+	                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nmModulHead" ng-disabled="true" />
+	                </div>
+	            </div>
+				<div class="grid_2" style="margin-top: 20px">
+					<button class="c-button" ng-click="tambahChildren()">Tambah</button>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		
+		<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_12 headerBox">
+					<p>Detail Modul</p>
+				</div>
+				<div class="grid_12 borderBox" style=" height:200px;">
+					<div class="grid_2"  >
+		                <div class="grid_12">
+		                    <label c-label item="item" c-label-text="Id Modul" real></label>
+		                </div>
+		                <div class="clear"></div>
+		                <div class="grid_12">
+		                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.idModul" ng-disabled="true"/>
+		                </div>
+		            </div>
+					<div class="grid_5"  >
+		                <div class="grid_12">
+		                    <label c-label item="item" c-label-text="Nama Modul" real></label>
+		                </div>
+		                <div class="clear"></div>
+		                <div class="grid_12">
+		                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nmModul" />
+		                </div>
+		            </div>
+		             <div class="grid_5" >
+		                <div class="grid_12">
+		                    <label c-label item="item" c-label-text="Icon Image" real></label>
+		                </div>
+		                <div class="clear"></div>
+		                <div class="grid_12">
+		                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.iconImage" />
+		                </div>
+		            </div>
+		             <div class="grid_6"  >
+		                <div class="grid_12">
+		                    <label c-label item="item" c-label-text="No Urut" real></label>
+		                </div>
+		                <div class="clear"></div>
+		                <div class="grid_12">
+		                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noUrut" />
+		                </div>
+		            </div>
+		            <div class="grid_6" style="margin-top: 80px" >
+						<div class="grid_4" >
+							<button class="c-button" ng-click="simpan1()">Simpan</button>
+						</div>
+						<div class="grid_4" >
+							<button class="c-button" ng-click="hapus1()">Hapus</button>
+						</div>
+						<div class="grid_4" >
+							<button class="c-button" ng-click="batal1()">Batal</button>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+			<div class="grid_6">
+				<div class="grid_12 headerBox">
+					<p>Detail Menu</p>
+				</div>
+				<div class="grid_12 borderBox" style=" height:200px;">
+					<div class="grid_2"  >
+		                <div class="grid_12">
+		                    <label c-label item="item" c-label-text="Id Menu" real></label>
+		                </div>
+		                <div class="clear"></div>
+		                <div class="grid_12">
+		                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.idMenu" ng-disabled="showIdMenu" ng-keypress="($event.which == 13)? cariMenuid():item.idMenu"/>
+		                </div>
+		            </div>
+					 <div class="grid_5"  >
+		                <div class="grid_12">
+		                    <label c-label item="item" c-label-text="Nama Menu" real></label>
+		                </div>
+		                <div class="clear"></div>
+		                <div class="grid_12">
+		                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nmMenu" />
+		                </div>
+		            </div>
+		             <div class="grid_5" >
+		                <div class="grid_12">
+		                    <label c-label item="item" c-label-text="Fungsi" real></label>
+		                </div>
+		                <div class="clear"></div>
+		                <div class="grid_12">
+		                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.fungsi" />
+		                </div>
+		            </div>
+		             <div class="grid_8"  >
+		                <div class="grid_12">
+		                    <label c-label item="item" c-label-text="Keterangan" real></label>
+		                </div>
+		                <div class="clear"></div>
+		                <div class="grid_12">
+		                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.keterangan" />
+		                </div>
+		            </div>
+		             <div class="grid_2"  >
+		                <div class="grid_12">
+		                    <label c-label item="item" c-label-text="No Urut" real></label>
+		                </div>
+		                <div class="clear"></div>
+		                <div class="grid_12">
+		                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noUrut2" />
+		                </div>
+		            </div>
+		          <!--   <div class="grid_2"  >
+		                <div class="grid_12">
+		                    <label c-label item="item" c-label-text="Id Head" real></label>
+		                </div>
+		                <div class="clear"></div>
+		                <div class="grid_12">
+		                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.idHead" />
+		                </div>
+		            </div> -->
+		             <div class="grid_6"  >
+		                <div class="grid_12">
+		                    <label c-label item="item" c-label-text="Url" real></label>
+		                </div>
+		                <div class="clear"></div>
+		                <div class="grid_12">
+		                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.url" />
+		                </div>
+		            </div>
+		            <div class="grid_6" style="margin-top: 17px">
+						<div class="grid_3" >
+							<button class="c-button" ng-click="simpan2()">Simpan</button>
+						</div>
+						<div class="grid_3" >
+							<button class="c-button" ng-click="hapus2()">Hapus</button>
+						</div>
+						<div class="grid_4" >
+							<button class="c-button" ng-click="hapus2Map()">Hapus Map</button>
+						</div>
+						<div class="grid_2" >
+							<button class="c-button" ng-click="batal2()">Batal</button>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="grid_12">
+			 <div class="grid_12 borderBox"   style=" height:500px;">
+				<div class="grid_12 headerBox">
+					<p>Map Menu to Kelompok User</p>
+				</div>
+				<div class="grid_6">
+					<div class="grid_12 borderBox" style=" height:200px;">
+			            <div class="grid_12 borderBox"  >
+							<div id="kGrid" kendo-grid 
+								k-data-source="data4" 
+								k-selectable="'row'" 
+								k-columns="column4"
+								k-pageable="'true'"
+								k-sortable="'true'"
+								k-ng-model="dataSelected4" 
+								ng-click="klik4(dataSelected4)">
+							</div>
+						</div>
+		            </div>
+	            </div>
+	            <div class="grid_6 borderBox" style=" height:200px;margin-top: 5px">
+		            <div class="grid_12">
+		            	<!-- <div class="grid_12 headerBox">
+							<p>Detail Map Menu to Kelompok User</p>
+						</div> -->
+						<div class="grid_12 borderBox" style=" height:70px;">
+				            <div class="grid_6"  >
+				                <div class="grid_12">
+				                    <label c-label item="item" c-label-text="Kelompok User" real></label>
+				                </div>
+				               <!--  <div class="clear"></div>
+				                <div class="grid_12">
+				                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kelompokUser" />
+				                </div> -->
+				                <div class="grid_12">
+									<input style="width: 100%;" kendo-combo-box k-ng-model="item.kelompokuser" k-data-text-field="'kelompokuser'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKelompokUser" />
+								</div>
+				            </div>
+				            <div class="grid_6" style="margin-top: 20px">
+					            <div class="grid_3" ng-repeat="Data in listChk">
+									<input type="checkbox" class="k-checkbox" name="{{Data.name}}" 
+									id="{{Data.name}}" value="{{Data.id}}" ng-checked="isChecked(Data.name)" ng-click="klikChk(Data)">
+									<label class="k-checkbox-label" for="{{Data.name}}"> {{Data.name}}</label>
+								</div>
+								<!-- <input type="checkbox" class="k-checkbox" checked="checked"  >Simpan</input>
+								<input type="checkbox" checked="chkBool()"  >Edit</input> -->
+							</div>
+						</div>
+			        </div>
+		            <div class="grid_6">
+		            </div>
+					<div class="grid_6" style="margin-top: 17px">
+						<div class="grid_4" >
+							<button class="c-button" ng-click="simpan3()">Simpan</button>
+						</div>
+						<div class="grid_4" >
+							<button class="c-button" ng-click="hapus3()">Hapus</button>
+						</div>
+						<div class="grid_4" >
+							<button class="c-button" ng-click="batal3()">Batal</button>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+<!-- 
+</c-panel> -->
+</div>
+</div>

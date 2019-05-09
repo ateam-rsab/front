@@ -1,0 +1,39 @@
+<div ng-controller="MasterMappingKategoriPendidikanToProgramPendidikanCtrl">
+	<c-panel item="item" header="'Master Mapping Kategori Pendidikan To Program Pendidikan'">
+		<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Kategori Pendidikan</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.kategoriPendidikan" k-data-text-field="'diklatKategori'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKategoriPendidikan" />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Pendidikan</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.pendidikan" k-data-text-field="'namaPendidikan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPendidikan" />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Jurusan Peminatan</label>
+				</div>
+				<div class="grid_8">
+					<select kendo-multi-select k-data-source="listJurusan" k-data-text-field="'diklatJurusan'" k-data-value-field="'id'" k-ng-model="item.jurusan"\></select>
+				</div>
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_6">
+				<kendo-grid options="mainGridOptions" k-data-source="dataGridMaster"></kendo-grid>
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_10"></div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="simpan()">Simpan</button>
+				</div>
+			</div>
+		</div>
+	</c-panel>
+</div>

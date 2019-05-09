@@ -1,0 +1,104 @@
+{
+	"model":{
+	    "tekananDarah" : "",
+	    "suhu" : "",
+	    "nadi" : "",
+	    "pernafasan" : "",
+	    "minuman" : "",
+	    "keteranganMinuman" : "",
+	    "makanan" : "",
+	    "keteranganMakanan" : "",
+	    "macam" : "",
+	    "jumlah" : "",
+	    "tetesan" : "",
+	    "jenisObat" : "",
+	    "namaObat" : "",	
+	    "keteranganObat" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "tekananDarah",
+			"messagesRequired" : "",
+			"caption" : "Tekanan Darah Setiap"
+		},
+		{
+			"isNull" : "true",
+			"name" : "suhu",
+			"messagesRequired" : "",
+			"caption" : "Suhu Setiap"
+		},
+		{
+			"isNull" : "true",
+			"name" : "nadi",
+			"messagesRequired" : "",
+			"caption" : "Nadi Setiap"
+		},
+		{
+			"isNull" : "true",
+			"name" : "pernafasan",
+			"messagesRequired" : "",
+			"caption" : "Pernafasan Setiap"
+		},
+		{
+			"isNull" : "true",
+			"name" : "minuman",
+			"messagesRequired" : "",
+			"caption" : "Minuman"
+		},
+		{
+			"isNull" : "true",
+			"name" : "keteranganMinuman",
+			"messagesRequired" : "",
+			"caption" : "Keterangan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "makanan",
+			"messagesRequired" : "",
+			"caption" : "Keterangan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "keteranganMakanan",
+			"messagesRequired" : "",
+			"caption" : "Keterangan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "macam",
+			"messagesRequired" : "",
+			"caption" : "Macam"
+		},
+		{
+			"isNull" : "true",
+			"name" : "jumlah",
+			"messagesRequired" : "",
+			"caption" : "Jumlah"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tetesan",
+			"messagesRequired" : "",
+			"caption" : "Tetesan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "jenisObat",
+			"messagesRequired" : "",
+			"caption" : "JenisObat"
+		},
+		{
+			"isNull" : "true",
+			"name" : "namaObat",
+			"messagesRequired" : "",
+			"caption" : "Nama Obat"
+		},
+		{
+			"isNull" : "true",
+			"name" : "keteranganObat",
+			"messagesRequired" : "",
+			"caption" : "Keterangan"
+		}
+  ]
+}

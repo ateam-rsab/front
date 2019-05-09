@@ -1,0 +1,40 @@
+<div ng-controller="AmbilSpesimenCtrl">
+    <div ng-include='"../app/module/Shared/headerPasienPenunjang" '></div>
+    <c-panel item="item" header="'Order'" disabled>
+        <div class="grid_4">
+            <table class="table " ng-repeat="data in listOrders2">
+                <tr class='success'>
+                </tr>
+                <tr>
+                    <th colspan="5" style="text-align:left">
+                        {{data[0].jenisPeriksa}}</th>
+                </tr>
+                <tr ng-repeat="subData in data" ng-click='checked(subData)'>
+                    <td style="width:20px">
+                        <img width="14px" src='stylesheets/work-done24.png' />
+                        <td>&nbsp;&nbsp;&nbsp;{{subData.namaProduk }} </td>
+                        <!--{{subData.bahanSample.namaBahanSample}}-->
+                </tr>
+            </table>
+        </div>
+        <div class="grid_8">
+            <div class="grid_12">
+                <table class="table table-striped">
+                    <tr>
+                        <th><span c-translate>Bahan Spesimen</span></th>
+                        <th><span c-translate>Jumlah</span></th>
+                        <!--<th><span c-translate></span></th>-->
+                    </tr>
+                    <tr ng-repeat="data in listSpesimens">
+                        <td>{{data.bahanSample.namaBahanSample+" - "+data.bahanSample.kodeExternal}}</td>
+                        <td>{{data.jumlah}}</td>
+                        <!--<td>
+                            <button="k-button" ng-click="remove(data)"> Hapus</button>
+                        </td>-->
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </c-panel>
+</div>

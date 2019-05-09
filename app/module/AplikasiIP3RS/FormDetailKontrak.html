@@ -1,0 +1,152 @@
+<div class="panel panel-default container_12">
+    <div class="panel-heading" align="center" c-translate>Form Detail Kontrak</div>
+    <div class="panel-body">
+    	<div class="grid_12">
+    		<div class="grid_12" style="padding: 5px 5px 0 5px;">
+		        <div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+		        </div>
+		        <div class="grid_12 borderBox containerBorderBox">
+		            <!-- order -->
+		            <div class="grid_12">
+		            	<div class="grid_5">
+		            		<div class="grid_12">
+				            	<div class="grid_4" style="padding-top:15px">
+				            		<label c-label item="item">No. Kontrak/SK</label>
+				            	</div>
+				            	<div class="grid_8">
+				            		<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noKontrak" readonly="true" disabled="true" />
+				            	</div>
+				            </div>
+				            <div class="grid_12">
+				            	<div class="grid_4" style="padding-top:15px">
+				            		<label c-label item="item">Nama Rekanan</label>
+				            	</div>
+				            	<div class="grid_8">
+				            		<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaRakanan" readonly="true" disabled="true"/>
+				            	</div>
+				            </div>
+				            <div class="grid_12">
+				            	<div class="grid_4" style="padding-top:15px">
+				            		<label c-label item="item">Nama Kontrak</label>
+				            	</div>
+				            	<div class="grid_8">
+				            		<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaKontrak" readonly="true" disabled="true" />
+				            	</div>
+				            </div>
+				            <div class="grid_12">
+				            	<div class="grid_4" style="padding-top:15px">
+				            		<label c-label item="item">Detail Pekerjaan</label>
+				            	</div>
+				            	<div class="grid_8">
+				            		<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.detailPekerjaan" />
+				            	</div>
+				            </div>
+				             <div class="grid_12">
+				            	<div class="grid_4" style="padding-top:15px">
+				            		<label c-label item="item">Quantity</label>
+				            	</div>
+				            	<div class="grid_8">
+				            		<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.quantity"/>
+				            	</div>
+				            </div>
+				             <div class="grid_12">
+				            	<div class="grid_4" style="padding-top:15px">
+				            		<label c-label item="item">Satuan Standar</label>
+				            	</div>
+				            	<div class="grid_8">
+				            		<input style="width: 100%;" kendo-combo-box k-ng-model="item.satuanStandar" k-data-text-field="'satuanStandar'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="dataSatuanStandar" />
+				            	</div>
+				            </div>
+				            
+				        </div>
+				        <div class="grid_7">
+		            		<div class="grid_12">
+				            	<div class="grid_5" style="padding-top:15px">
+				            		<label c-label item="item">Nilai Kontrak</label>
+				            	</div>
+				            	<div class="grid_7">
+				            		<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.nilaiKontrak"/>
+				            	</div>
+				            </div>
+				            <div class="grid_12">
+				            	<div class="grid_5" style="padding-top:15px">
+				            		<label c-label item="item">Tanggal Awal Kontrak</label>
+				            	</div>
+				            	<div class="grid_7">
+				            		<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalAwal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+				            	</div>
+				            </div>
+				            <div class="grid_12">
+				            	<div class="grid_5" style="padding-top:15px">
+				            		<label c-label item="item">Tanggal Akhir Kontrak</label>
+				            	</div>
+				            	<div class="grid_7">
+				            		<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalAkhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"  k-on-change="getTanggalHari()"/>
+				            	</div>
+				            </div>
+				            <div class="grid_12">
+				            	<div class="grid_5" style="padding-top:15px">
+				            		<label c-label item="item">Jangka Waktu Kontrak</label>
+				            	</div>
+				            	<div class="grid_7">
+				            		<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jangkaWaktu" readonly="true" disabled="true"/>
+				            	</div>
+				            </div>
+				            <div class="grid_12">
+				            	<div class="grid_5" style="padding-top:15px">
+				            		<label c-label item="item">Nama Penanggung Jawab Rekanan</label>
+				            	</div>
+				            	<div class="grid_7">
+				            		<input style="width: 100%;" kendo-combo-box k-ng-model="item.penanggungJawab" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="dataPegawai" />
+				            	</div>
+				            </div>
+				            <div class="grid_12">
+				            	<div class="grid_5" style="padding-top:15px">
+				            		<label c-label item="item">Jabatan Penanggung Jawab Rekanan</label>
+				            	</div>
+				            	<div class="grid_7">
+				            		<input style="width: 100%;" kendo-combo-box k-ng-model="item.jabatan" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="dataJabatan" />
+				            	</div>
+				            </div>
+				            <div class="grid_12">
+				            	<div class="grid_5" style="padding-top:15px">
+				            		<label c-label item="item">Keterangan Lainnya</label>
+				            	</div>
+				            	<div class="grid_7">
+				            		<textarea style="height: 90px" c-text-box type="input" class="k-textbox" ng-model="item.keterangan" />
+				            	</div>
+				            </div>
+				            <div class="grid_12">
+				            	<div class="grid_5" style="padding-top:15px">
+				            	</div>
+				            	<div class="grid_7">
+				            		<div class="grid_6">
+					            		<button class="c-button cancel" style="font-size:16px" ng-click="batal()">Batal</button>
+					            	</div>
+					            	<div class="grid_6">
+					            		<button class="c-button success" style="font-size:16px" ng-click="save_detailKontrak()">Simpan</button>
+					            	</div>
+				            	</div>
+				            </div>
+				        </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+		<div class="grid_12">
+    		<div class="grid_12" style="padding: 5px 5px 0 5px;">
+		        <div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+		            <p>Daftar Detail Kontrak</p>
+		        </div>
+		        <div class="grid_12 borderBox containerBorderBox">
+		            <!-- order -->
+		            <div class="grid_12">
+					    <div class="grid_12" style="padding-top:10px">
+			            	<kendo-grid options="mainGridOptions" k-scrollable="false" k-data-source="dataKontrak" k-selectable="'row'" k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+			           	</div>
+			        </div>
+			    </div>
+			</div>
+    	</div>
+    </div>
+</div>

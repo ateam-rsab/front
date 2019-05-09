@@ -1,0 +1,93 @@
+<div ng-controller="ProperLingkunganCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Proper Lingkungan'">
+			<div class="panel panel-default container_12">
+				<div class="panel-body">
+					<div class="grid_12">
+
+						<div class="grid_6" style="margin-top: 25px">
+							<div class="grid_12">
+								<div class="grid_4" style="margin-top: 15px">
+									<label c-label item="item" c-label-text="periode"></label>
+								</div>
+								<div class="grid_3" align="center">
+									<input kendo-date-picker k-ng-model="item.periodeAwal" k-value="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+								</div>
+								<div class="grid_1" style="margin-top: 15px;margin-left:10px">
+									<label c-label item="item" >s/d</label>
+								</div>
+								<div class="grid_3" align="center">
+									<input kendo-date-picker k-ng-model="item.periodeAkhir" k-value="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+								</div>
+							</div>
+							<div class="grid_12">
+								<div class="grid_4" style="margin-top: 15px">
+									<label c-label item="item" c-label-text="kriteriaProper"></label>
+								</div>
+								<div class="grid_8" >
+									<input style="width: 90%;" kendo-combo-box k-ng-model="item.kriteriaProper" k-data-text-field="'namakriteria'" k-data-value-field="'kriteriaId'"
+										k-filter="'contains'" k-auto-bind="false" k-on-change="selectedRuangan()" k-data-source="listKriteria" />
+								</div>
+							</div>
+							<div class="grid_12">
+								<div class="grid_4" style="margin-top: 15px">
+									<label c-label item="item">Aspek Penilaian</label>
+								</div>
+								<div class="grid_8" >
+									<input style="width: 90%;" kendo-combo-box k-ng-model="item.aspekPenilaian" k-data-text-field="'namaAspekPenilaian'" k-data-value-field="'aspekPenilaianId'"
+										k-filter="'contains'" k-auto-bind="false" k-on-change="selectedJenisB3()" k-data-source="listAspekPenilaian" />
+								</div>
+							</div>
+							<div class="grid_12">
+								<div class="grid_4" style="margin-top: 15px">
+									<label c-label item="item">Elemen Penilaian</label>
+								</div>
+								<div class="grid_8" >
+									<input style="width: 90%;" kendo-combo-box k-ng-model="item.elemenPenilaian" k-data-text-field="'namaElemenPenilaian'" k-data-value-field="'elemenPenilaianId'"
+										k-filter="'contains'" k-auto-bind="false" k-on-change="selectedJenisB3()" k-data-source="listElemenPenilaian" />
+								</div>
+							</div>
+							
+
+
+						</div>
+
+						<div class="grid_6" style="margin-top: 25px">
+							
+						</div>
+
+
+					</div>
+					<div class="grid_12">
+						<div class="grid_8"></div>
+						<div class="grid_2" style="margin-top: 25px; font-size: 24px;">
+							<button class="c-button" ng-show="!isLoading" item="item" ng-click="tambah()">
+                            <span class="title">Tambah</span></button>
+						</div>
+						<div class="grid_2" style="margin-top: 25px; font-size: 24px;">
+							<button class="c-button" ng-show="!isLoading" item="item" ng-click="hapus()">
+                            <span class="title">Hapus</span></button>
+						</div>
+					</div>
+
+					<div class="grid_12" style="margin-top: 25px;">
+						<div kendo-grid="grid" k-data-source="listProper" k-ng-model="selectedData" k-columns="columnProper" change="changeProper()" k-options="optionsProper"
+							k-selectable="'row'">
+						</div>
+					</div>
+
+					<!--<div class="grid_12">
+						<div class="grid_9"></div>
+						<div class="grid_3" style="margin-top: 25px; font-size: 24px;">
+							<button class="c-button" ng-show="!isLoading" item="item" ng-click="hapus(selectedData)">
+                            <span class="title">Hapus</span></button>
+						</div>
+					</div>-->
+					<div class="grid_12">
+						<div ng-include='"../app/module/Shared/TemplateButtonSimpanC" '></div>
+					</div>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

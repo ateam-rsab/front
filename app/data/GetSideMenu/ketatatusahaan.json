@@ -1,0 +1,140 @@
+[
+    {
+        "name": "Ketatausahaan",
+        "children": [
+            {
+                "name": "Surat Masuk",
+                "link": "#/SuratMasuk"
+            },
+            {
+                "name": "Daftar Surat Masuk",
+                "link": "#/DaftarSuratMasuk"
+            },
+            {
+                "name": "Membuat Draft Surat",
+                "link": "#/MembuatDraftSurat"
+            },
+            {
+                "name": "Files",
+                "link": "#/Files"
+            },
+            {
+                "name": "Disposisi",
+                "link": "#/Disposisi"
+            },
+            {
+                "name": "Daftar Disposisi",
+                "link": "#/DaftarDisposisi"
+            },
+            {
+                "name": "Distribusi Kirim Surat Masuk",
+                "link": "#/DistribusiKirimSuratMasukdariExternalKirimSurat"
+            },
+            {
+                "name": "Informasi Distribusi Surat",
+                "link": "#/InformasiDistribusiSurat"
+            },
+            {
+                "name": "Lembar Verbal Konsep",
+                "link": "#/LembarVerbalKonsep"
+            },
+            {
+                "name": "Jadwal Retensi Arsip",
+                "link": "#/JadwalRetensiArsip"
+            },
+            {
+                "name": "Pengiriman Surat Keluar",
+                "link": "#/PengirimanSuratKeluar"
+            },
+            {
+                "name": "Cetak Pengantar Surat",
+                "link": "#/CetakPengantarSurat"
+            }
+        ]
+    },
+    {
+        "name": "SDM",
+        "children": [{
+            "name": "Target Bobot Uraian Tugas",
+            "link": "#/TargetBobot"
+        }, {
+            "name": "Input Logbook",
+            "link": "#/InputLogbook"
+        }, {
+            "name": "Indeks Kinerja Individu",
+            "link": "#/IndeksKinerjaIndividuSDM"
+        }, {
+            "name": "Permohonan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
+            "link": "#/PermohonanPerubahanStatusPegawai"
+        }, {
+			"name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
+			"link": "#/DaftarPenangguhanCuti"
+		}, {
+            "name": "Pengajuan Mutasi Pegawai",
+            "link": "#/PengajuanMutasiPegawai"
+        }, {
+            "name": "Pengajuan Resign Pegawai",
+            "link": "#/PengajuanResignPegawai"
+        }, {
+            "name": "Pengajuan Sanksi Pegawai",
+            "link": "#/PengajuanSanksiPegawai"
+        }, {
+            "name": "Daftar Pengajuan Mutasi Resign Sanksi Pegawai",
+            "link": "#/DaftarPengajuanMutasiSanksiResign"
+        }, {
+			"name": "Monitoring Absensi",
+			"link": "#/MonitoringAbsensiPegawai"
+		}, {
+			"name": "InputLemburPegawaiUnitKerja",
+			"link": "#/InputLemburPegawaiUnitKerja"
+		},{
+            "name": "Verifikasi Uraian Tugas Bawahan",
+            "link": "#/VerifikasiUraianTugasPegawaiLogin"
+        },{
+                "name": "Pengajuan Pelatihan",
+                "children": [
+                    {
+                        "name": "Monitoring Pengajuan Pelatihan",
+                        "link": "#/MonitoringPengajuanPelatihan"
+                    },
+                    {
+                        "name": "Pengajuan Pelatihan",
+                        "link": "#/PermintaaanPelatihanRev"
+                    },
+                    {
+                        "name": "Daftar Undangan Pelatihan",
+                        "link": "#/DaftarUndanganPelatihan"
+                    },
+                    {
+                        "name": "Daftar Kehadiran Peserta Pelatihan",
+                        "link": "#/DaftarKehadiranPesertaPelatihan"
+                    },
+                    {
+                        "name": "Daftar Rekapitulasi Kehadiran Peserta Pelatihan",
+                        "link": "#/DaftarRekapitulasiKehadiran"
+                    }
+                ]
+            }]
+    },
+    {
+        "name":"Aplikasi IT",
+        "children":[
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/RevPermintaanPerbaikandariRuanganITNew"
+            }
+        ]
+    },
+    {
+        "name": "Aplikasi Laundry",
+        "children": [
+            {
+                "name": "Permintaan Linen Bersih",
+                "link": "#/PermintaanLinenByRuangan"
+            },{
+                "name": "Verifikasi",
+                "link": "#/VerifikasiTerima"
+            }
+    ]
+    }
+]

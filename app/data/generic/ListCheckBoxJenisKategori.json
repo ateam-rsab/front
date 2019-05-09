@@ -1,0 +1,14 @@
+[
+	{  
+            "id":1,
+            "name":"Jam"
+         },
+
+	{
+    "id": 2,
+    "name": "Saat berangkat ke ruangan"
+    },
+
+	{"id": 3,
+    "name": "Saat tiba di ruangan"}
+]

@@ -1,0 +1,78 @@
+<div ng-controller="PersetujuanUmumDuaCtrl">
+    <c-panel item="item" header="'Persetujuan Umum Duakuuu '" disabled>
+        <div class="grid_12">
+
+            <div class="grid_6">
+                <!--<div class="grid_3">
+                        <label c-label item="item" c-label-text="NoRekamMedis"></label>
+                    </div>
+                    <div class="grid_9">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NoRekamMedis" />
+                    </div>
+                    <div class="grid_3">
+                        <label c-label item="item" c-label-text="NamaKeluarga"></label>
+                    </div>
+                    <div class="grid_9">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaKeluarga" />
+                    </div>
+                    <div class="grid_3">
+                        <label c-label item="item" c-label-text="NamaPasien"></label>
+                    </div>
+                    <div class="grid_9">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" />
+                    </div>
+                    <div class="grid_3">
+                        <label c-label item="item" c-label-text="TanggalLahir"></label>
+                    </div>
+                    <div class="grid_9">
+                        <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.TanggalLahir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                    </div>
+                    <div class="grid_3">
+                        <label c-label item="item" c-label-text="jenisKelamin"></label>
+                    </div>
+                    <div class="grid_9">
+                        <div class="grid_3" ng-repeat="stat in listJenisKelamin">
+                            <input type="radio" name="{{'jenisKelamin' + stat.name}}" id="{{'jenisKelamin' + stat.name}}" class="k-radio" ng-model="item.JK" value="{{stat.name}}">
+                            <label class="k-radio-label" for="{{'jenisKelamin' + stat.name}}">{{stat.name}}</label>
+                        </div>
+                        <div class="clear"></div>
+                    </div>-->
+                <!--<div class="grid_6">
+                    <label c-label item="item" c-label-text="ruangan"></label>
+                </div>
+                <div class="grid_6">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganTujuan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuang" />
+                </div>-->
+                <div class="grid_6">
+                    <label c-label item="item" c-label-text="kelasPerawatan"></label>
+                </div>
+                <div class="grid_6">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.kelasPerawatan" k-data-text-field="'namaKelas'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKelasPerawatan" />
+                </div>
+
+            </div>
+            <div class="grid_6">
+                <div class=grid_12>
+                    <div class="grid_3">
+                        <label c-label item="item" c-label-text="Rencana"></label>
+                    </div>
+                    <div class="grid_9">
+                        <input style="width: 100%" kendo-date-picker k-min="now" k-ng-model="item.tglRencana" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_3">
+                        <label c-label item="item" c-label-text="tipePembayaran"></label>
+                    </div>
+                    <div class="grid_9">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPembayaran" k-data-text-field="'kelompokPasien'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisPembayaran" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+
+    </c-panel>
+    <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" ' style="margin-bottom:50px"></div>
+
+</div>

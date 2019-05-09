@@ -1,0 +1,85 @@
+<div ng-controller="MappingPasienPacsCtrl">
+<div ng-show="dataVOloaded">
+<c-panel item="item" header="'Mapping Pasien Pacs'" disabled>
+
+<!-- pasienDaftar -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="pasienDaftar"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.pasienDaftar" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listpasienDaftar" />
+</div>
+</div>
+
+<!-- pasienId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="pasienId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.pasienId" />
+</div>
+</div>
+
+<!-- studyInstanceUid -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="studyInstanceUid"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.studyInstanceUid" />
+</div>
+</div>
+
+<!-- noMr -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="noMr"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noMr" />
+</div>
+</div>
+
+<!-- MappingPasienPacs -->
+<div class="grid_12">
+<div class="grid_12 headerBox">
+<p>MappingPasienPacs</p>
+</div>
+<div class="clear"></div>
+
+<!-- grid table -->
+<div class="grid_12 borderBox">
+					<kendo-grid options="mainGridOptions"  k-data-source="dataSource" k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+				</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+
+
+</c-panel>
+
+<div class="grid_12">
+				<div class="grid_8"></div>
+				<div class="grid_2" ng-show="showEdit">
+					<button class="c-button" ng-click="edit()">Edit</button>
+				</div>
+				<div class="grid_2" ng-hide="showEdit">
+					<button class="c-button" ng-click="tambah()">Tambah</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="batal()">Batal</button>
+				</div>
+			</div>
+</div>
+</div>

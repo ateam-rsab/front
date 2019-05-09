@@ -1,0 +1,128 @@
+<div ng-controller="InputJamLemburCtrl">
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Input Jam Lembur Pegawai(Ruangan)'" disabled>
+            <div class="grid_6">
+                <div class="panel panel-default container_12">
+                    <!--		<div class="panel-heading" c-translate>Periode</div> -->
+                    <!--		<div class="panel-body"> -->
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin: 10px 0 0 0;">
+                            <label c-label item="item">Unit Kerja</label>
+                        </div>
+                        <div class="grid_8">
+                            <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.unitKerja" />
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin: 10px 0 0 0;">
+                            <label c-label item="item">Nama Pegawai</label>
+                        </div>
+                        <div class="grid_8">
+                            <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaPegawai">
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin: 10px 0 0 0;">
+                            <label>NIP</label>
+                        </div>
+                        <div class="grid_8">
+                            <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.NIP" />
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin: 10px 0 0 0;">
+                            <label c-label item="item">Status Pegawai</label>
+                        </div>
+                        <div class="grid_8">
+                            <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.statusPegawai" />
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin: 10px 0 0 0;">
+                            <label c-label item="item">Jabatan</label>
+                        </div>
+                        <div class="grid_8">
+                            <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.jabatan" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--		   </div>  -->
+            <div class="grid_6">
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label c-label item="item">Tanggal Lembur</label>
+                    </div>
+                    <div class="grid_8">
+                        <input kendo-date-picker k-ng-model="item.tanggalLembur" style="width: 100%" />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label c-label item="item">Jam Lembur</label>
+                    </div>
+                    <div class="grid_2">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.jamLembur" />
+                    </div>
+                    <div class="grid_1" style="margin: 10px 0 0 0;">
+                        <label>s/d</label>
+                    </div>
+                    <div class="grid_2">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.jamLembur2" />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label c-label item="item">Total Jam Lembur</label>
+                    </div>
+                    <div class="grid_2">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.totalJamLembur" />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label c-label item="item">Keterangan Lembur</label>
+                    </div>
+                    <div class="grid_8" style="margin: 0 0 0 0;">
+                        <textarea ng-model="item.keterangan" style="width: 99%; height: 80px;"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12">
+            	<kendo-grid options="mainGridOptions" k-data-source="dataSource" k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+                <!-- <kendo-grid k-data-source="daftarBahanLinen" k-pageable="true" k-selectable="'row'" k-columns="columnLaporanUjiHasil" style="font-size: small;">
+                </kendo-grid> -->
+            </div>
+            <div class="grid_12">
+            	<div class="grid_6"></div>
+            	<div class="grid_2">
+            		<button class="c-button" ng-click="cetak()">Cetak</button>
+            	</div>
+            	<div class="grid_2">
+            		<button class="c-button" ng-click="simpan()">Simpan</button>
+            	</div>
+            	<div class="grid_2">
+            		<button class="c-button" ng-click="tutup()">Tutup</button>
+            	</div>
+            </div>
+        </c-panel>
+        <!-- <div class="grid_12">
+            <div class="grid_8" style="float:left">
+                <div class="grid_2" style="margin-top: 25px">
+                    <button class="c-button" ng-show="!isLoading" item="item" is-validate click="Cancel">
+                        <span class="title">Cetak</span></button>
+                </div>
+                <div class="grid_2" style="margin-top: 25px">
+                    <button class="c-button" ng-show="!isLoading" item="item" is-validate click="Cancel">
+                        <span class="title">Ubah</span></button>
+                </div>
+                <div class="grid_2 " style="margin-top: 25px ">
+                    <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+                        <span class="title">Simpan</span>
+                    </button>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</div>
+</div>

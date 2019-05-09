@@ -1,0 +1,70 @@
+<div ng-controller="DaftarPengajuanBelanjaCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Daftar Pengajuan Belanja'">
+		<!-- <div class="grid_6">
+			<div class="grid_4" style="margin-top:10px">
+				<label c-label item="item" c-label-text="caraPengadaan"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.pengadaan" k-data-text-field="'namaPengadaan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPengadaan"/>
+			</div>
+		</div>
+		<div class="grid_6">
+			<div class="grid_4" style="margin-top:10px">
+				<label c-label item="item" c-label-text="tahunAnggaran"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.tahunAnggaran" k-data-text-field="''" k-data-value-field="''" k-filter="'contains'" k-auto-bind="false" k-data-source="listTahun" k-on-change=""/>
+			</div>
+		</div>
+		<div class="grid_6">
+			<div class="grid_4" style="margin-top:10px">
+				<label c-label item="item" c-label-text="status"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.status" k-data-text-field="'status'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="isVerifikasi" k-on-change=""/>
+			</div>
+		</div>
+		<div class="clear"></div> -->
+		<div class="grid_5">
+			<div class="grid_4" style="margin-top:10px">
+				<label c-label item="item" c-label-text="periode"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalAwal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"/>
+			</div>
+		</div>
+		<div class="grid_5">
+			<div class="grid_2" style="margin-top:10px;text-align:center">
+				<label c-label item="item" c-label-text="sampai"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"/>
+			</div>
+		</div>
+		<div class="grid_1"></div>
+		<div class="grid_1">
+			<button class="c-button" ng-click="cari()">Cari</button>
+		</div>
+		<!-- <div kendo-grid k-data-source="daftarPengajuanUsulan" k-selectable="'row'" editable="true" pageable="true" k-columns="columnPengajuanUsulan" style="margin-bottom: 10px"></div> -->
+		</c-panel>
+		<div class="clear"></div>
+		<div class="grid_12" style="margin-bottom: 10px">
+			 <kendo-grid k-data-source="dataSource" options="mainGridOptions" k-column-menu="true" k-sortable="true" k-selectable="'multiple'" k-filterable="true"></kendo-grid>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_6"></div>
+		<div class="grid_6">
+			<div class="grid_4">
+				
+			</div>
+			<div class="grid_4">
+				<button class="c-button" ng-click="simpan()">Verifikasi</button>
+			</div>
+			<div class="grid_4">
+				<button class="c-button" ng-click="batal()">Unverifikasi</button>
+			</div>
+		</div>
+	</div>
+</div>

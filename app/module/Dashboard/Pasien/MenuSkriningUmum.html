@@ -1,0 +1,32 @@
+<div ng-controller="PsikologiCtrl">
+    <c-panel item="item" header="'Psikologi'">
+        <div class="panel panel-default container_12">
+            <div class="breadcrum" style='margin-top: 0px;'>
+                <div class="grid_2">
+                    <a class="n1" ng-class='{warning:flagDomisili.status===false}' ng-click="nav('dashboardpasien.PengkajianMedis.PemeriksaanKhusus.Psikologi.Domisili')">Domisili</a>
+                </div>
+
+                <div class="grid_2">
+                    <a class="n1" ng-class='{warning:flagKomposisiKeluarga.status===false}' ng-click="nav('dashboardpasien.PengkajianMedis.PemeriksaanKhusus.Psikologi.KomposisiKeluarga')">Komposisi Keluarga</a>
+                </div>
+
+                <div class="grid_2">
+                    <a class="n1" ng-class='{warning:flagPohonKeluarga.status===false}' ng-click="nav('dashboardpasien.PengkajianMedis.PemeriksaanKhusus.Psikologi.PohonKeluarga')">Pohon Keluarga</a>
+                </div>
+            </div>
+        </div>
+    </c-panel>
+    <div ui-view></div>
+</div>
+
+<div class="grid_12" align="center">
+    <div class="breadcrum" style='margin-top: 0px;'>
+        <div class="grid_4">
+        	<a class="n1" href="#/Dashboard/Pasien/{{noCM}}/{{tanggal}}/{{noRec}}/{noRecSOAP}/{noRecPasienDaftar}/TandaVital"
+        	>Tanda Vital</a>
+        </div>  
+        <div class="grid_4">
+            <a class="n1" href="#/Dashboard/Pasien/PengkajianMedis/{{noCM}}/{{tanggal}}/{{noRec}}/{noRecSOAP}/{noRecPasienDaftar}/DashboardDiagnosis/DiagnosisICD10">Diagnosis ICD 10</a>
+        </div>   
+    </div>
+</div>

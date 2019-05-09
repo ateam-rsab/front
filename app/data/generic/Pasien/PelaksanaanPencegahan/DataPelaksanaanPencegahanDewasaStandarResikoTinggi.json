@@ -1,0 +1,138 @@
+[
+    {
+        "id": 1,
+        "name": "Pakaikan gelang risiko jatuh berwarna kuning, Pasang tanda risiko jatuh segitiga warna kuning pada bed pasien",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 2,
+        "name": "Melakukan intervensi jatuh standar",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 3,
+        "name": "Melakukan pencegahan jatuh dengan penilaian jatuh yang lebih detail seperti analisa cara berjalan dengan intervensi spesifik",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 4,
+        "name": "menempatkan pasien di dekat nurse station",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 5,
+        "name": "Memasang Handrail yang kokoh dan mudah dijangkau pasien",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 6,
+        "name": "Menyiapkan komod dan alat bantu jalan",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 7,
+        "name": "Menjaga lantai kamar mandi dengan karpet anti slip / tidak licin, serta anjurkan menggunakan tampat duduk di kamar mandi saat pasien mandi",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 8,
+        "name": "Dampingi pasien bila ke kamar mandi, jangan tinggalkan sendiri di toilet, informasikan cara menggunakan bel di toilet untuk memanggil perawat, pintu kamar mandi jangan dikunci",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    }
+]

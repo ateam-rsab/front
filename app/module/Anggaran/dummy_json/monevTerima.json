@@ -1,0 +1,46 @@
+{ "tahun": 2017,
+  "result": [
+    {
+      "namaProduk": "DIVALPROEX Na ER 500MG TAB (GEN.BERMERK)",
+      "harga": 2000,
+      "produkId": 1250,
+      "volumeTarget": 25,
+      "totalTarget": 50000,
+      "kdProduk": "8G04E01014",
+      "volumeRealisasi": 10,
+      "totalRealisasi": 0
+    },
+    {
+      "namaProduk": "DIVALPROEX Na ER 500MG TAB (GEN.BERMERK)",
+      "harga": 2000,
+      "produkId": 1250,
+      "volumeTarget": 50,
+      "totalTarget": 100000,
+      "kdProduk": "8G04E01014",
+      "volumeRealisasi": 10,
+      "totalRealisasi": 0
+    },
+    {
+      "namaProduk": "VIABLE CELL COUNTS 1 X 10 CFU",
+      "harga": 1000,
+      "produkId": 1370,
+      "volumeTarget": 20,
+      "totalTarget": 20000,
+      "kdProduk": "8G01B04012",
+      "volumeRealisasi": 10,
+      "totalRealisasi": 0
+    },
+    {
+      "namaProduk": "VIABLE CELL COUNTS 1 X 10 CFU",
+      "harga": 1000,
+      "produkId": 1370,
+      "volumeTarget": 40,
+      "totalTarget": 40000,
+      "kdProduk": "8G01B04012",
+      "volumeRealisasi": 10,
+      "totalRealisasi": 0
+    }
+  ],
+  "totalRow": 4,
+  "totalPages": 1
+}

@@ -1,0 +1,83 @@
+<div ng-controller="PermintaanBarangNonMediskeLogistikCtrl">
+    <div class="panel panel-default container_12">
+        <div class="panel-heading" c-translate>Permintaan Barang Non Medis ke Logistik</div>
+        <div class="panel-body">
+            <div class="panel panel-default container_12">
+            <div class="panel-heading" c-translate>Data Order</div>
+            <div class="panel-body">
+            <div class="grid_12">
+                <div class="grid_3">
+                    <label c-label item="item" c-label-text="noOrder"></label>
+                </div>
+                 <div class="grid_3">
+                    <label c-label item="item" c-label-text="tglOrder"></label>
+                </div>
+                 <div class="grid_3">
+                    <label c-label item="item" c-label-text="statusBarang"></label>
+                </div>
+                 <div class="grid_3">
+                    <label c-label item="item" c-label-text="ruangTujuanPemesanan"></label>
+                </div>
+            </div>
+            <div class="grid_12" style="margin-top: 5px">
+                <div class="grid_3">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noOrder" />
+                </div>
+                 <div class="grid_3">
+                    <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tglOrder" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                </div>
+                 <div class="grid_3">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.statusBarang" k-data-text-field="'name'" k-data-value-field="'id'" 
+                    k-filter="'contains'" k-auto-bind="false" k-data-source="ListstatusBarang" />
+                </div>
+                 <div class="grid_3">
+                     <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.ruangTujuanPemesanan" />
+                </div>
+            </div>
+            </div>
+            </div>
+            <div class="grid_12" style="margin-top: 10px">
+                <div class="grid_3">
+                    <label c-label item="item" c-label-text="namaBarang"></label>
+                </div>
+                <div class="grid_1" style="margin-left: 5px">
+                    <label c-label item="item" c-label-text="stok"></label>
+                </div>
+                <div class="grid_1" style="margin-left: 5px;">
+                    <label c-label item="item" c-label-text="qty"></label>
+                </div>
+                <div class="grid_3" style="margin-left: 5px;">
+                    <label c-label item="item" c-label-text="satuan"></label>
+                </div>
+                <div class="grid_4"></div>
+            </div>
+             <div class="grid_12" style="margin-top: 5px">
+                <div class="grid_3">
+                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaBarang" />
+                </div>
+                <div class="grid_1">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.stok"  />
+                </div>
+                <div class="grid_1">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.qty" />
+                </div>
+                <div class="grid_3">
+                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.satuan" />
+                </div>
+                <div class="grid_2">
+                    <button class="c-button" ng-click="addDataPermintaanBahanMakanandariRuangan()" k-selectable="'row'" k-columns="columnPermintaanBahanMakanandariRuangan">Tambah</button>
+                </div>
+                <div class="grid_2">
+                    <button  class="c-button" ng-click="removeDataPermintaanBahanMakanandariRuangan()">Hapus</c-button>
+                </div>
+            </div>
+        	<div class="grid_12" style="margin: 30px 0 30px 0;">
+        		<kendo-grid  k-data-source="dataPermintaanBahanMakanandariRuangan" k-selectable="'row'" k-columns="columnPermintaanBahanMakanandariRuangan" ng-click="removeDataPermintaanBahanMakanandariRuangan">
+                </kendo-grid>
+                </div>
+            </div>
+            <div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+        </div>
+        </div>
+    </div>
+</div>

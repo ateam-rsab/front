@@ -1,0 +1,70 @@
+<div ng-controller="KontraksiHitsCtrl">
+
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Kontraksi/Hits'">
+        <div class="panel-body">
+            <div class="grid_12">
+            <!-- form kiri -->
+                    <!--Frekuensi -->
+                <div class="grid_12" style="margin-top:10px">
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="KontraksiHits"></label>
+                    </div>
+                    <div class="grid_4">
+                        <div class="grid_4" ng-repeat="stat in ListAkselerasi">
+                            <input type="radio" name="{{'KontraksiHits' + stat.name}}" id="{{'KontraksiHits' + stat.name}}" class="k-radio" ng-model="item.KontraksiHits" value="{{stat.name}}">
+                            <label class="k-radio-label" for="{{'KontraksiHits' + stat.name}}">{{stat.name}}</label>
+                        </div>
+                    </div>
+                    <div class="grid_6"></div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_6"style="margin-top:10px">    
+                        <!-- Amplitudo -->
+                        <div class="grid_12" style="margin-top:10px">
+                            <div class="grid_3">
+                                <label c-label item="item" c-label-text="Frekuensi"></label>
+                            </div>
+                            <div class="grid_6">
+                                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.Frekuensi" />
+                            </div>
+                            <div class="grid_3">
+                                <label c-label item="item" c-label-text="Dalam"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_6" style="margin-top:10px">
+                        <!-- Ampltudo -->
+                        <div class="grid_12" style="margin-top:10px">
+                            <div class="grid_3">
+                                <label c-label item="item" c-label-text="Amplitudo"></label>
+                            </div>
+                            <div class="grid_6">
+                                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.Amplitudo" />
+                            </div>
+                            <div class="grid_3">
+                                <label c-label item="item" c-label-text="MenH2O"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+        </c-panel>
+         <!-- button -->
+        <div class="grid_12" style="margin-top:20px">
+            <div class="grid_6">
+            </div>
+            <div class="grid_3">
+                <c-button ng-click="" style="width:100% !important">
+                <span style="font-size:10!important">Sebelumnya</span>
+                </c-button>
+            </div>
+            <div class="grid_3">
+                <c-button ng-click="" style="width:100% !important">
+                <span style="font-size:10!important">Selanjutnya</span>
+                </c-button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,287 @@
+<div ng-controller="RujukLuarCtrl">
+ <div class="panel panel-default">
+    	<div class="panel-heading">
+        	REGISTRASI PELAYANAN PASIEN
+        </div>
+        <div class="panel-body">
+        	<c-form item="item">
+
+        
+            <div class="grid_12"><input type="checkbox"> Pegawai Rumah Sakit(blm)</div>
+            <!-- form kiri -->
+            <div class="grid_4">
+        		<!-- nama pegawai -->
+        		<div class="grid_12">
+				         <div class="grid_12" style="margin: 5px 0 0 0;">
+                        <label c-label item="item" c-label-text="no registrasi"></label></div>
+						<div class="grid_12" style="margin: 5px -10px 0 0">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namapegawai" />
+						</div>
+          		</div>
+				
+				<div class="grid_12">
+				<div class="grid_12"  style="margin: 5px 0 0 0;">
+                        <label c-label item="item" c-label-text="no cm/rm"></label></div> 
+<div class="grid_12" style="margin: 5px -10px 0 0">						
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namapegawai" />
+						</div>
+          		</div>
+				
+				<div class="grid_12" style="margin: 5px 0 0 0;">
+				   <div class="grid_12">
+                        <label c-label item="item" c-label-text="nama lengkap"></label> </div>
+					<div class="grid_12" style="margin: 5px -10px 0 0">						
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namapegawai" />
+						</div>
+          		</div>
+
+                <!-- Agama -->
+                
+        		<!-- suku bangsa -->
+    			
+        		<!-- golongan darah -->
+        	
+            </div>
+        
+            <!-- form tengah -->
+            <div class="grid_4">
+        	<!-- no cm ayah -->
+        		<div class="grid_12" style="margin: 5px 0 0 0;">
+                    <div class="grid_12" style="margin: 5px 0 0 0;">
+                        <label c-label item="item" c-label-text="Jenis Kelamin"></label>
+                    </div>
+                    <div class="grid_12" style="margin: 5px -10px 0 0">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisKelamin"
+                               k-data-text-field="'jenisKelamin'"
+                               k-filter="'contains'"
+                               k-data-value-field="'id'"
+                               k-data-source="listDataJenisKelamin" />
+                    </div>
+                </div>
+        	<!-- nama lengkap ayah -->
+        		<div class="grid_12">
+                    <div class="grid_12" style="margin: 5px 0 0 0;">
+                        <label c-label item="item" c-label-text="UmurPasien"></label></div>
+						 <div class="grid_12" style="margin: 5px -10px 0 0">
+                        <input style="width:30px;" /> Tahun
+                        <input style="width:30px;" /> Bulan
+                        <input style="width:30px;" /> Hari
+						 </div>
+                    </div>
+                
+        	<!-- no cm ibu -->
+        		<div class="grid_12">
+                    <div class="grid_12" style="margin: 5px 0 0 0;">
+                        <label c-label item="item" c-label-text="TanggalKeanggotaan"></label>
+                    </div>
+                    <div class="grid_12" style="margin: 5px -10px 0 0">
+
+                         <input style="width:100%" kendo-date-picker k-max="now" k-ng-model="item.tgllahir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+
+                    </div>
+                </div>
+				
+				</div>
+        	<!-- nama lengkap ibu -->
+        		
+          
+        
+            <!-- form kanan -->
+            <div class="grid_4">
+        	<!-- no cm suami/istri -->
+        		<div class="grid_12">
+				   <div class="grid_12" style="margin: 5px 0 0 0;">
+                        <label c-label item="item" c-label-text="pendidikan terakhir"></label> </div>
+					<div class="grid_12" style="margin: 5px -10px 0 0">						
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namapegawai" />
+						</div>
+          		</div>
+        	<!-- no cm suami/istri -->
+        		<div class="grid_12">
+				   <div class="grid_12" style="margin: 5px 0 0 0;">
+                        <label c-label item="item" c-label-text="pekerjaan"></label> </div>
+					<div class="grid_12"  style="margin: 5px -10px 0 0">						
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namapegawai" />
+						</div>
+          		</div>
+				   <div class="grid_12">
+                	<div class="grid_12" style="margin: 5px 0 0 0;">
+                        <label c-label item="item" c-label-text="Kelompok Pasien"></label>
+                    </div>
+                    <div class="grid_12" style="margin: 5px -10px 0 0">
+                        <input style="width: 100%;" kendo-combo-box  k-ng-model=""
+                               k-data-text-field="''"
+                               k-filter="'contains'"
+                               k-minLength="'3'" 
+                               k-data-value-field="'id'"
+                               k-data-source="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        </c-form>
+        </div>
+<div class="panel panel-default">
+        <div class="panel-heading">
+            ALAMAT PASIEN
+        </div>
+        <div class="panel-body">
+            <c-form item="item">
+
+        <div class="grid_12">
+        
+            <!-- form kiri -->
+       
+        
+            <!-- form tengah -->
+         
+                <!-- kelurahan -->
+        <div class="grid_12" style="margin-top:20px;">
+        
+            <!-- form kiri -->
+            <div class="grid_6">
+            	<!-- no cm -->
+                <div class="grid_12">
+                    <div class="grid_12" style="margin: 5px 0 0 0;">
+                        <label c-label item="item" c-label-text="Nomor rujukan"></label>
+                    </div>
+                    <div class="grid_12" style="margin: 5px -10px 0 0">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.nocm" />
+                    </div>
+				</div>
+				 <div class="grid_12">
+					<div class="grid_12" style="margin: 5px 0 0 0;">
+                        <label c-label item="item" c-label-text="Nomor ppk"></label>
+                    </div>
+                    <div class="grid_12" style="margin: 5px -10px 0 0">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.nocm" />
+                    </div>
+					</div>
+               
+            	<!-- nama depan -->
+                	<div class="grid_12">
+                    <div class="grid_12" style="margin: 5px 0 0 0;">
+                        <label c-label item="item" c-label-text="Tanggal rujukan"></label>
+                    </div>
+                    <div class="grid_12" style="margin: 5px -10px 0 0">
+
+                         <input style="width:100%" kendo-date-picker k-max="now" k-ng-model="item.tgllahir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+
+                    </div>
+                </div>
+				
+					<div class="grid_12">
+                    <div class="grid_12" style="margin: 5px 0 0 0;">
+                        <label c-label item="item" c-label-text="Tanggal Berlaku rujukan sampai dengan"></label>
+                    </div>
+                    <div class="grid_12" style="margin: 5px -10px 0 0">
+
+                         <input style="width:100%" kendo-date-picker k-max="now" k-ng-model="item.tgllahir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+
+                    </div>
+                </div>
+				 <div class="grid_12">
+                	<div class="grid_12" style="margin: 5px 0 0 0;">
+                        <label c-label item="item" c-label-text="Asal Rujukan"></label>
+                    </div>
+                    <div class="grid_12" style="margin: 5px -10px 0 0">
+                        <input style="width: 100%;" kendo-combo-box  k-ng-model=""
+                               k-data-text-field="''"
+                               k-filter="'contains'"
+                               k-minLength="'3'" 
+                               k-data-value-field="'id'"
+                               k-data-source="" />
+                    </div>
+                </div>
+			
+                <!-- nama lengkap -->
+                
+                <!-- nama panggilan -->
+               
+			
+                <!-- status perkawinan -->
+               
+                <!-- Warga Negara -->
+              </div>
+            <!-- form kanan -->
+            <div class="grid_6">
+                <!-- tanggal registrasi -->
+                	 <div class="grid_12">
+                	<div class="grid_12" style="margin: 5px 0 0 0;">
+                        <label c-label item="item" c-label-text="Detail Asal Rujukan"></label>
+                    </div>
+                    <div class="grid_12" style="margin: 5px -10px 0 0">
+                        <input style="width: 100%;" kendo-combo-box  k-ng-model=""
+                               k-data-text-field="''"
+                               k-filter="'contains'"
+                               k-minLength="'3'" 
+                               k-data-value-field="'id'"
+                               k-data-source="" />
+                    </div>
+                </div>
+                <!-- Jenis identitas  -->
+                <div class="grid_12">
+                	<div class="grid_12" style="margin: 5px 0 0 0;">
+                        <label c-label item="item" c-label-text="Diagnosa Rujukan"></label>
+                    </div>
+                    <div class="grid_12" style="margin: 5px -10px 0 0">
+                        <input style="width: 100%;" kendo-combo-box  k-ng-model=""
+                               k-data-text-field="''"
+                               k-filter="'contains'"
+                               k-minLength="'3'" 
+                               k-data-value-field="'id'"
+                               k-data-source="" />
+                    </div>
+                </div>
+				   <div class="grid_12">
+                	<div class="grid_12" style="margin: 5px 0 0 0;">
+                        <label c-label item="item" c-label-text="Dokter/Bidan/Mantri Perujuk"></label>
+                    </div>
+                    <div class="grid_12" style="margin: 5px -10px 0 0">
+                        <input style="width: 100%;" kendo-combo-box  k-ng-model=""
+                               k-data-text-field="''"
+                               k-filter="'contains'"
+                               k-minLength="'3'" 
+                               k-data-value-field="'id'"
+                               k-data-source="" />
+                    </div>
+                </div>
+                <!-- no identitas  -->
+               
+                <!-- tempat lahir  -->
+               <div class="grid_12">
+                    <div class="grid_12" style="margin: 7px 0 0 0;">
+                        <label c-label item="item" c-label-text="Qty Maksimum Kunjungan"></label>
+                    </div>
+                    <div class="grid_12" style="margin: 5px -10px 0 0">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.nocm" />
+                    </div>
+					 <div class="grid_12" style="margin: 5px 0 0 0;">
+                        <label c-label item="item" c-label-text="Qty Kunjungan Ke"></label>
+                    </div>
+                    <div class="grid_12" style="margin: 5px -10px 0 0">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.nocm" />
+                    </div>
+                </div>
+				
+			
+			
+				
+				
+                <!-- tanggal lahir -->
+       
+		
+				
+			
+                <!-- umur  -->
+                </div>
+        </div>
+        </c-form>
+       
+</div>
+</div>
+</div>
+
+ <div class="grid_12">
+			<div class="grid_12"><div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>	
+    </div>	

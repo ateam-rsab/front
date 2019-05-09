@@ -1,0 +1,40 @@
+<div class="grid_12" ng-controller="DashboarPasienCtrl">
+    <div class="tiles">
+        <div class="grid_6">
+            <div class="tile bg-yellow-saffron orange" style="height:100px" ng-click="NavToDiagnosi()">
+                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                <div class="check"></div>
+                <div class="tile-body" style="overflow: initial">
+                    <i style="font-style: normal;"></i>
+                </div>
+                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                    <div class="icon-panel">
+                        <img width='70px' src='stylesheets/diagnosis-icon.png' />
+                    </div>
+                    <div class="text_panel">
+                        <span class="title"><label c-label c-label-text="Diagnosis"></label></span>
+                        <span>{{diagnosis}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_6">
+            <div class="tile bg-yellow-saffron blue" style="height:100px" ng-click="NavToAlergi()">
+                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                <div class="check"></div>
+                <div class="tile-body" style="overflow: initial">
+                    <i style="font-style: normal;"></i>
+                </div>
+                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                    <div class="icon-panel">
+                        <img width='70px' src='stylesheets/alergi-icon.png' />
+                    </div>
+                    <div class="text_panel">
+                        <span class="title"><label c-label c-label-text="Alergi"></label></span>
+                        <span>{{alergi}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

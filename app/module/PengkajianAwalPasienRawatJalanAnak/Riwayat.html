@@ -1,0 +1,239 @@
+<div ng-controller="RiwayatCtrl">
+    <!-- Riwayat Imunisasi dasar -->
+    <div class="panel panel-default container_12">
+        <div class="panel-heading">RIWAYAT IMUNISASI DASAR</div>
+        <div class="panel-body">
+            <div class="grid_6">
+                <div class="grid_2">Umur</div>
+                <div class="grid_4">
+                    <input style="width: 100%;" kendo-combo-box k-data-text-field="'name'" k-filter="'contains'" k-ng-model="item.lokasiumur" k-data-value-field="'id'" k-auto-bind="false" k-data-source="listLokasiUmur" /></div>
+                <div class="grid_2">
+                    <input type="radio" class="k-radio" >
+                    <label class="k-radio-label">Tahun</label>
+                </div>
+                <div class="grid_3">
+                    <input type="radio" class="k-radio" >
+                    <label class="k-radio-label">Bulan</label>
+                </div>
+                <div class="grid_6"></div>
+            </div>
+        </div>
+        <div class="grid_12">
+            <div class="panel" style="border-color:#0d9a8b; margin-left: 10px;margin-right: 10px">
+                <div class="panel-body">
+                    <div class="grid_6">
+                        <div class="grid_12">
+                            <div class="grid_4">
+                                <input type="checkbox" class="k-radio" >
+                                <label class="k-checkbox-label">BCG</label>
+                            </div>
+                            <div class="grid_4">
+                                <input type="checkbox" class="k-radio" >
+                                <label class="k-checkbox-label">Hepatitis B</label>
+                            </div>
+                            <div class="grid_4">
+                                <input type="checkbox" class="k-radio" >
+                                <label class="k-checkbox-label">Campak</label>
+                            </div>
+                        </div>
+                        <div class="grid_12">
+
+                            <div class="grid_4">
+                                <input type="checkbox" class="k-radio" >
+                                <label class="k-checkbox-label">DPT</label>
+                            </div>
+
+                            <div class="grid_4">
+                                <input type="checkbox" class="k-radio" >
+                                <label class="k-checkbox-label">Polio</label>
+                            </div>
+
+                            <div class="grid_4">
+                                <input type="checkbox" class="k-radio" >
+                                <label class="k-checkbox-label">Dll</label>
+                            </div>
+                        </div>
+                    </div></div>
+                <div class="grid_6"></div>
+
+            </div>
+        </div>
+        <div class="grid_12">
+            <div class="grid_8"></div>
+            <div class="grid_2"><label>Hasil Imunisasi</label><span class="titikDua">:</span></div>
+            <div class="grid_2">
+                <input style="width: 100%;" kendo-combo-box k-data-text-field="'name'" k-filter="'contains'" k-ng-model="item.hasilimunisasi" k-data-value-field="'id'" k-auto-bind="false" k-data-source="listHasilImunisasi" /></div>
+        </div>
+        </div>
+    </div>
+    <!-- Riwayat Keluarga -->
+    <div class="panel panel-default container_12">
+        <div class="panel-heading" style="background-color:#10c4b2;">RIWAYAT KELUARGA</div>
+        <div class="panel-body">
+            <div class="grid_3">
+                <div class="grid_12">
+                    <div class="grid_5">
+                        <label c-label="" item="item" c-label-text="Ibu" class="ng-isolate-scope c-label"><span class="titikDua">:</span></label>
+                    </div>
+                    <div class="grid_7">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" /></div>
+                    <div class="grid_5">
+                        <label c-label="" item="item" c-label-text="Ayah" class="ng-isolate-scope c-label"><span class="titikDua">:</span></label>
+                    </div>
+                    <div class="grid_7">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" /></div>
+                </div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label="" item="item" c-label-text="Umur" class="ng-isolate-scope c-label"><span class="titikDua">:</span></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" />
+                    </div>
+                    <div class="grid_4">
+                        <label c-label="" item="item" c-label-text="Umur" class="ng-isolate-scope c-label"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" />
+                    </div></div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label="" item="item" c-label-text="Bangsa" class="ng-isolate-scope c-label"><span class="titikDua">:</span></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" /></div>
+                    <div class="grid_4">
+                        <label c-label="" item="item" c-label-text="Bangsa" class="ng-isolate-scope c-label"><span class="titikDua">:</span></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" /></div></div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label="" item="item" c-label-text="Kesehatan" class="ng-isolate-scope c-label"><span class="titikDua">:</span></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" /></div>
+                    <div class="grid_4">
+                        <label c-label="" item="item" c-label-text="Kesehatan" class="ng-isolate-scope c-label"><span class="titikDua">:</span></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" /></div></div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_5">
+                    <label c-label="" item="item" c-label-text="Anak anak lain" class="ng-isolate-scope c-label"><span class="titikDua">:</span></label>
+                </div>
+                <div class="grid_7">
+                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" /></div></div>
+            <div class="grid_6"></div>
+        </div>
+    </div>
+    <!-- Riwayat Psikososial -->
+    <div class="panel panel-default container_12">
+        <div class="panel-heading" style="background-color:#10c4b2;">RIWAYAT PSIKOSOSIAL</div>
+        <div class="panel-body">
+            <!-- Status Psikologi -->
+            <div class="panel panel-default container_12">
+                <div class="panel-heading" style="background-color:#10c4b2;">Status Psikologi</div>
+                <div class="panel-body">
+                    <div class="grid_12">
+                        <div class="grid_10">
+                            <div class="grid_12">
+                                <div class="grid_2">
+                                    <input type="checkbox" class="k-checkbox" >
+                                    <label class="k-checkbox-label">Cemas</label>
+                                </div>
+                                <div class="grid_2">
+                                    <input type="checkbox" class="k-checkbox" >
+                                    <label class="k-checkbox-label">Takut</label>
+                                </div>
+                                <div class="grid_2">
+                                    <input type="checkbox" class="k-checkbox" >
+                                    <label class="k-checkbox-label">Marah</label>
+                                </div>
+                                <div class="grid_2">
+                                    <input type="checkbox" class="k-checkbox" >
+                                    <label class="k-checkbox-label">Sedih</label>
+                                </div>
+                                <div class="grid_4">
+                                    <input type="checkbox" class="k-checkbox" >
+                                    <label class="k-checkbox-label">Kecenderungan Bunuh Diri</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_2"></div></div>
+                    <div class="grid_12">
+                        <div class="grid_10">
+                            <div class="grid_12">
+                                <div class="grid_2">
+                                    <input type="checkbox" class="k-radio" >
+                                    <label class="k-checkbox-label">Lainnya</label>
+                                </div>
+                                <div class="grid_4">
+                                    <input placeholder="Keterangan Lainnya" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_2"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Status Sosial -->
+            <div class="panel panel-default container_12">
+                <div class="panel-heading" style="background-color:#10c4b2;">Status Sosial</div>
+                <div class="panel-body">
+                    <div class="grid_12">
+                        <div class="grid_10">
+                            <div class="grid_6"><label>Hubungan Pasien Dengan Anggota Keluarga</label><span class="titikDua">:</span></div>
+                            <div class="grid_2">
+                                <input type="radio" class="k-radio" >
+                                <label class="k-radio-label">Baik</label>
+                            </div>
+                            <div class="grid_2">
+                                <input type="radio" class="k-radio" >
+                                <label class="k-radio-label">Tidak Baik</label>
+                            </div>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_10">
+                                <div class="grid_6"><label>Tempat Tinggal</label><span class="titikDua">:</span></div>
+                                <div class="grid_2">
+                                    <input type="radio" class="k-radio" >
+                                    <label class="k-radio-label">Rumah</label>
+                                </div>
+                                <div class="grid_2">
+                                    <input type="radio" class="k-radio" >
+                                    <label class="k-radio-label">Apartemen</label>
+                                </div>
+                                <div class="grid_2">
+                                    <input type="radio" class="k-radio" >
+                                    <label class="k-radio-label">Panti</label>
+                                </div>
+                            </div>
+                            <div class="grid_2"></div>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_10">
+                                <div class="grid_6"></div>
+                                <div class="grid_2">
+                                    <input type="radio" class="k-radio" >
+                                    <label class="k-radio-label">Lainnya</label>
+                                </div>
+                                <div class="grid_4">
+                                    <input placeholder="Keterangan Lainnya" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" />
+                                    </div>
+                            <div class="grid_2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

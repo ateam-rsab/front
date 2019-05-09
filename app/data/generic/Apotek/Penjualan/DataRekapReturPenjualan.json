@@ -1,0 +1,19 @@
+[
+	{ 
+		"id": "1",
+		"noReg": "00001",
+		"noRetur": "noRetur 1",
+		"noResep": "noResep 1",
+		"namaPasien": "namaPasien 1",
+		"jenisKelamin": "jenisKelamin 1",
+		"umur": "umur 1",
+		"namaDokter": "namaDokter 1",
+		"unitLayanan": "unitLayanan 1",
+		"jmlResep": "jmlResep 1",
+		"diskon": "diskon 1",
+		"jasa": "jasa 1",
+		"embalace": "embalace 1",
+		"total": "total 1",
+		"status": "status 1"
+	}
+]

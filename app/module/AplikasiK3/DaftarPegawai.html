@@ -1,0 +1,197 @@
+<div ng-controller="DaftarPegawaiCtrl">
+	<div class="panel panel-default container_12">
+		<c-panel item="item" header="'Master Pegawai'">
+			<div class="panel-body">
+				<div class="panel panel-default container_12" style="margin-top: 10px">
+					<div class="panel-heading" c-translate>Data Pegawai</div>
+					<div class="panel-body">
+						<div class="grid_12">
+							<div class="grid_2">
+								<div class="grid_12" style="margin-top: 17px">
+									<div class="grid_10">
+										<label c-label item="item" c-label-text="id"></label>
+									</div>
+									<div class="grid_2" align="right">:</div>
+								</div>
+								<div class="grid_12" style="margin-top: 17px">
+									<div class="grid_10">
+										<label c-label item="item" c-label-text="jenisPegawai"></label>
+									</div>
+									<div class="grid_2" align="right">:</div>
+								</div>
+								<div class="grid_12" style="margin-top: 17px">
+									<div class="grid_10">
+										<label c-label item="item" c-label-text="namaPegawai"></label>
+									</div>
+									<div class="grid_2" align="right">:</div>
+								</div>
+								<div class="grid_12" style="margin-top: 17px">
+									<div class="grid_10">
+										<label c-label item="item" c-label-text="jenisKelamin"></label>
+									</div>
+									<div class="grid_2" align="right">:</div>
+								</div>
+								<div class="grid_12" style="margin-top: 20px">
+									<div class="grid_10">
+										<label c-label item="item" c-label-text="tempatLahir"></label>
+									</div>
+									<div class="grid_2" align="right">:</div>
+								</div>
+								<div class="grid_12" style="margin-top: 20px">
+									<div class="grid_10">
+										<label c-label item="item" c-label-text="tglLahir"></label>
+									</div>
+									<div class="grid_2" align="right">:</div>
+								</div>
+								<div class="grid_12" style="margin-top: 20px">
+									<div class="grid_10">
+										<label c-label item="item" c-label-text="tglMasuk"></label>
+									</div>
+									<div class="grid_2" align="right">:</div>
+								</div>
+							</div>
+							<div class="grid_3">
+								<div class="grid_12" style="margin: 10px 0 0 0;">
+									<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noId" ng-disabled="enableNoId" />
+								</div>
+								<div class="grid_12" style="margin: 10px 0 0 0;">
+
+									<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jenisPegawai"  ng-disabled="enableJenisPegawai" />
+								</div>
+								<div class="grid_12" style="margin: 10px 0 0 0;">
+									<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaLengkap" ng-disabled="enableNamaLengkap" />
+								</div>
+								<div class="grid_12" style="margin: 10px 0 0 0;">
+									<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jenisKelamin" ng-disabled="enableJenisKelamin" />
+								</div>
+								<div class="grid_12" style="margin: 10px 0 0 0;">
+									<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.tempatLahir" ng-disabled="enableTempatLahir" />
+								</div>
+								<div class="grid_12" style="margin: 10px 0 0 0;">
+									<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.tglLahir" ng-disabled="enableTglLahir" />
+								</div>
+								<div class="grid_12" style="margin: 10px 0 0 0;">
+									<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.tglMasuk" ng-disabled="enableTglMasuk" />
+								</div>
+							</div>
+							<div class="grid_1"></div>
+							<div class="grid_2">
+								<div class="grid_12" style="margin-top: 20px">
+									<div class="grid_10">
+										<label c-label item="item" c-label-text="nip"></label>
+									</div>
+									<div class="grid_2" align="right">:</div>
+								</div>
+								<div class="grid_12" style="margin-top: 20px">
+									<div class="grid_10">
+										<label c-label item="item" c-label-text="jabatanStruktural"></label>
+									</div>
+									<div class="grid_2" align="right">:</div>
+								</div>
+								<div class="grid_12" style="margin-top: 20px">
+									<div class="grid_11">
+										<label c-label item="item" c-label-text="jabatanFungsional"></label>
+									</div>
+									<div class="grid_1" align="right">:</div>
+								</div>
+								<div class="grid_12" style="margin-top: 17px">
+									<div class="grid_10">
+										<label c-label item="item" c-label-text="noBPJS"></label>
+									</div>
+									<div class="grid_2" align="right">:</div>
+								</div>
+								<div class="grid_12" style="margin-top: 18px">
+									<div class="grid_10">
+										<label c-label item="item" c-label-text="satuanKerja"></label>
+									</div>
+									<div class="grid_2" align="right">:</div>
+								</div>
+
+							</div>
+							<div class="grid_3">
+								<div class="grid_12" style="margin: 10px 0 0 0;">
+									<input c-text-box type="input" filter="''" class="k-textbox" ng-model="item.nipPns" ng-disabled="enableNip" />
+								</div>
+								<div class="grid_12" style="margin: 10px 0 0 0;">
+									<input c-text-box type="input" filter="''" class="k-textbox" ng-model="item.jabatanStruktural" ng-disabled="enableJabatanStruktural" />
+								</div>
+								<div class="grid_12" style="margin: 10px 0 0 0;">
+									<input c-text-box type="input" filter="''" class="k-textbox" ng-model="item.jabatanFungsional" ng-disabled="enableJabatanFungsional" />
+								</div>
+								<div class="grid_12" style="margin: 10px 0 0 0;">
+									<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noBpjs" ng-disabled="enableNoBPJS" />
+								</div>
+								<div class="grid_12" style="margin: 10px 0 0 0;">
+									<input c-text-box type="input" filter="''" class="k-textbox" ng-model="item.satuanKerja" ng-disabled="enableSatuanKerja" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="grid_3" style="margin-top: 30px">	
+					<label c-label item="item" c-label-text="cariPegawai" real></label>				
+					<!--<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="searchPegawai" />-->
+					<input kendo-auto-complete k-ng-model="item.cariPegawai" k-options="pegOptions" k-data-source="dataPegawai" style="width:100%" />
+				</div>				
+				<div class="grid_1" style="margin-top: 30px">
+					<label c-label c-label-text=""></label>
+					<em ng-click='findData()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+				</div>
+				<div class="grid_12" style="margin-top: 30px">
+					<div data-kendo-grid="grid" k-ng-model="selectedData" options='mainGridOptions' k-on-change="selectPegawai(data)" k-data-source="daftarDataPegawai" k-selectable="'row'" k-pageable="Page" k-columns="columnDataPegawai">
+					</div>
+					<!--<div class="grid_12" style="margin-top: 10px;">
+             			<kendo-grid options="mainGridOptions" id="dataGrid">
+	            		</kendo-grid>
+            		</div>-->
+				</div>
+				
+				<div class="grid_12" style="margin-top: 20px">
+					<div class="grid_6">
+						<div class="grid_12">
+							<div class="grid_3">
+								<c-button ng-click="cetak()" style="width:100% !important" k-selectable="'row'" k-columns="columnPermintaanBahanMakanandariRuangan">
+									<span style="font-size:10!important">Cetak</span>
+								</c-button>
+							</div>
+							<div class="grid_3">
+								<c-button ng-click="navToRiwayat(selectedData)" style="width:100% !important">
+									<span style="font-size:10!important">Riwayat</span>
+								</c-button>
+							</div>
+							<div class="grid_6">
+								<c-button ng-click="navToJadwalRencanaPemeriksaan()" style="width:100% !important">
+									<span style="font-size:10!important">Jadwal Rencana Pemeriksaan</span>
+								</c-button>
+							</div>
+						</div>
+					</div>
+					<div class="grid_6">
+						<div class="grid_12">
+							<div class="grid_3">
+								<!--<c-button ng-click="" style="width:100% !important">
+									<span style="font-size:10!important">Batal</span>
+								</c-button>-->
+							</div>
+							<div class="grid_3">
+								<!--<c-button ng-click="" style="width:100% !important">
+									<span style="font-size:10!important">Hapus</span>
+								</c-button>-->
+							</div>
+							<div class="grid_3">
+								<!--<c-button ng-click="" style="width:100% !important">
+									<span style="font-size:10!important">Simpan</span>
+								</c-button>-->
+							</div>
+							<div class="grid_3">
+								<c-button ng-click="" style="width:100% !important">
+									<span style="font-size:10!important">Tutup</span>
+								</c-button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

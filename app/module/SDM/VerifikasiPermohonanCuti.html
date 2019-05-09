@@ -1,0 +1,187 @@
+<div ng-controller="VerifikasiPermohonanCutiCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Verifikasi Permohonan Cuti'"disabled>
+		<div class="grid_6">
+		<div class="panel panel-default container_12">
+	<!--		<div class="panel-heading" c-translate>Periode</div> -->
+	<!--		<div class="panel-body"> -->
+	
+           
+					
+	        <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Nomor Permohonan"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nomorUang" />
+			</div>
+			
+			</div>
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label>NIP</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nomorUang" />
+			</div>
+			
+			</div>
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Nama Pegawai"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nomorUang" />
+			</div>
+			
+			</div>
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Unit Kerja"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nomorUang" />
+			</div>
+			
+			</div>
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Pola Jadwal"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nomorUang" />
+			</div>
+			
+			</div>
+			
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Jenis Cuti"></label>
+			</div>
+			<div class="grid_8">
+				  <input ng-disabled="isDisable" style="width: 100%;" kendo-combo-box k-ng-model="item.degree" k-data-text-field="'namaPendidikan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListPendidikan" />
+			</div>
+			
+			</div>
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Tahun"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nomorUang" />
+			</div>
+			
+			</div>
+			
+			
+			
+			
+			
+			
+			
+				
+		   </div>
+		   </div>
+<!--		   </div>  -->
+           <div class="grid_6">	
+		   
+		    <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Jatah Cuti"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nomorUang" />
+			</div>
+			
+			</div>
+			
+			<div class = "grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Tanggal Cuti"></label>
+			</div>
+			<div class="grid_4">
+				<input kendo-date-picker k-ng-model="item.tanggalLahir" k-max ="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+			</div>
+			<div class="grid_1" style="margin: 10px 0 0 0;">
+				<label>s/d</label>
+			</div>
+			<div class="grid_3" style="margin: 0 0 0 0;">
+				<input kendo-date-picker k-ng-model="item.tanggalLahir" k-max ="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+			</div>
+			</div>
+			
+			
+		   
+		   <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label><b>Jumlah Hari</b></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nomorUang" />
+			</div>
+			
+			</div>
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Sisa Cuti"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nomorUang" />
+			</div>
+			
+			</div>
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Keterangan"></label>
+			</div>
+			<div class="grid_8" style="margin: 0 0 0 0;">
+					<textarea ng-model="item.alamat" style="width: 99%; height: 80px;"></textarea>
+			</div>
+			
+			</div>
+		  
+			
+			
+
+		</div>
+	
+		
+	
+			
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		</c-panel>
+		
+			<div class="grid_12">
+							<div class="grid_8" style="float:left">
+							
+							<div class="grid_2 " style="margin-top: 25px ">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Cetak</span>
+									</button>
+							</div>
+							
+							<div class="grid_2 " style="margin-top: 25px ">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Tolak</span>
+									</button>
+							</div>
+							<div class="grid_2 " style="margin-top: 25px ">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Setuju</span>
+									</button>
+							</div>
+							</div>
+						</div>
+		</div>
+	</div>
+</div>
+

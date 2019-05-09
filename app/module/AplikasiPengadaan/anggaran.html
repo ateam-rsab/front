@@ -1,0 +1,130 @@
+<div ng-controller="anggaranCtrl">
+	<div class="panel panel-default container_12"> 
+		<div item="item" header="'Daftar Pengajuan Anggaran (Unit Kerja)'">
+			<div class="grid_12" >
+				<!-- <div class="grid_4" >
+					<label c-label item="item" c-label-text="Unit Kerja"></label>
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaProduk" style="width:100%"/>
+				</div> -->
+				<div class="grid_3" >
+					<label c-label item="item" c-label-text="Tahun Anggaran"></label>
+					<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.tahun" style="width:100%"/>
+				</div>
+				<div class="grid_3" >
+					<label c-label item="item" c-label-text="PeriodePengajuan"></label>
+					<input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tanggalPengajuanAwal" k-data-text-field="'jangkaAwal'" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+				</div>
+				<div class="grid_3">
+					<label c-label item="item" c-label-text="PeriodePengajuan" style="visibility:hidden"></label>
+					<input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tanggalPengajuanAhir" k-data-text-field="'jangkaAwal'" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+				</div>
+				<div class="grid_3" >
+					<label c-label item="item" c-label-text="Pengendali"></label>
+					 <input style="width: 100%;" kendo-combo-box k-ng-model="item.pengendali" k-data-text-field="'namaPengendali'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListDataAnggaran" />
+				</div>
+			</div>
+			<div class="grid_4 pull-right">
+				<div class="grid_6">
+			        <c-button   style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" ng-click="cari()" >
+			            <span class="title"><label  c-label c-label-text='Cari' font-size="13"></label></span>
+			        </c-button>
+			    </div>
+			    <div class="grid_6">
+			         <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" ng-click="clear()" >
+			            <span class="title"><label  c-label c-label-text='Batal' font-size="13"></label></span>
+			        </c-button>
+			    </div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="grid_12">
+	        <!-- <kendo-grid  id="usersGrid" k-options="ok" k-pageable="Page" k-data-source="sourceOrder" k-selectable="'multiple'" k-columns="kolomDataPengajuan" k-ng-model="current" ng-click="kl(current)"> -->
+	        <kendo-grid k-data-source="arrPengadaan" options="mainGridOptions" k-column-menu="true" k-sortable="true" k-selectable="'row'" k-filterable="true" k-ng-model="dataPasienSelected" ng-click="kl(current)" k-on-change="handleChange(data, dataItem, columns)"></kendo-grid>
+        </div>
+        <div class="clear"></div>
+	    <div class="grid_10">
+	        <!-- {{item.filters.name}} - {{current}} -->
+	    </div>
+	    <!-- <div class="grid_2">
+	        <label c-label class="label-aja">Verifikasi Berdasarkan:</label>
+	    </div>
+	    <div class="grid_2">
+            <input kendo-combo-box k-ng-model="item.filters" k-data-text-field="'name'" k-data-value-field="'kd'" k-filter="'contains'" k-auto-bind="false" k-data-source="listFilters" />
+	    </div>
+	    <div class="grid_2">
+	        <button kendo-button ng-click="NavToVerifikasi()" style="margin-top:6px;width:100%;background-color:green">Verifikasi</button>
+	    </div> -->
+	    
+	    <!-- grid edit data saat sebelum di verifikasi maupun status usulan unverifikasi  -->
+	    <div class="grid_2 pull-right">
+	        <button kendo-button ng-click="edit()" style="margin-top:6px;width:100%;background-color:green">Edit</button>
+	    </div>
+		<div class="clear"></div>
+	</div>
+
+	<script id="popup-editor" type="text/x-kendo-template">
+		// <!-- template for edit function -->
+		<label for="kegiatan" class="required">Kegiatan</label>
+        <input type="text" id="kegiatan" name="fullname" class="k-textbox" data-bind="value:kegiatan" required validationMessage="Enter {0}" disabled="true"/>
+
+		<label for="kegiatanDetail" class="required">Kegiatan Detail</label>
+        <input type="text" id="kegiatanDetail" name="fullname" class="k-textbox" data-bind="value:kegiatanDetail" required validationMessage="Enter {0}" disabled="true"/>
+
+		<label for="spesifikasi" class="required">Kegiatan Detail</label>
+        <input type="text" id="spesifikasi" name="fullname" class="k-textbox" data-bind="value:spesifikasi" required validationMessage="Enter {0}" disabled="true"/>
+
+		<label for="tahunAnggaran" class="required">Tahun Anggaran</label>
+        <input type="text" id="tahunAnggaran" name="fullname" class="k-textbox" data-bind="value:spesifikasi" required validationMessage="Enter {0}" disabled="true"/>
+
+		<label c-label item="item" c-label-text="tahunAnggaran"></label>
+		<input kendo-date-time-picker data-bind="value:tahunAnggaran"/ disabled="true">
+
+		<label c-label item="item" c-label-text="kegiatanDetail"></label>
+		<textarea id="tahap" filter="'varchar'" data-bind="value:kegiatanDetail" rows="2" cols="10" disabled="true"></textarea>
+
+		<label c-label item="item" c-label-text="namaProduk"></label>
+		<input c-text-box type="input" filter="'varchar'" class="k-textbox" data-bind="value:namaProduk" disabled="true"/>
+
+		<label c-label item="item" c-label-text="tanggalPengajuan"></label>
+		<input kendo-date-time-picker data-bind="value:tanggalPengajuan"/ disabled="true">
+
+		<label c-label item="item" c-label-text="namaSatuan"></label>
+		<input c-text-box type="input" filter="'varchar'" class="k-textbox" data-bind="value:namaSatuan" disabled="true"/>
+			
+		<label c-label item="item" c-label-text="volume"></label>
+		<input data-role="numerictextbox" data-bind="value:volume"/>
+				
+		<label c-label item="item" c-label-text="hargaSatuan"></label>
+		<input data-role="numerictextbox" data-bind="value:hargaSatuan"/>
+				
+		<label c-label item="item" c-label-text="jumlahBiaya"></label>
+		<input data-role="numerictextbox" data-bind="value:jumlahBiaya"/>
+				
+		<label c-label item="item" c-label-text="sumberDana"></label>
+		<input c-text-box type="input" filter="'varchar'" class="k-textbox" data-bind="value:sumberDana" disabled="true"/>
+				
+		<label c-label item="item" c-label-text="statusCode"></label>
+		<input c-text-box type="input" filter="'varchar'" class="k-textbox" data-bind="value:statusCode" disabled="true"/>
+
+	</script>
+</div>
+
+<style>
+.label-aja {
+	padding-top:12px;font-size:13px;font-weight:bold;
+	text-align:right;
+	height:22px;
+}
+.k-window > div.k-popup-edit-form {
+    padding: 1em;
+}
+.approved {
+        background-color: green;
+        color: #fff;
+    }
+
+.unapproved{
+        background-color: red;
+        color: #fff;
+    }
+</style>

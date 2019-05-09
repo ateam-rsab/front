@@ -1,0 +1,38 @@
+<div ng-controller="GridCtrl">
+
+	<div ng-show="dataVOloaded">
+
+		<c-panel item="item" header="'Tambah Hapus di Grid'">
+			<div class="grid_12">
+				<!-- combo box -->
+                <div class="grid_5" style="margin: 5px">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="tempItem.riwayatPenyakitOrObat" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataPenyakitMayor" />
+                </div>
+
+                <!-- date picker -->
+                <div class="grid_5" style="margin: 5px">
+                    <input style="width: 100%" k-ng-model="tempItem.tanggalRiwayat"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                </div>
+
+                <!-- button -->
+                <div class="grid_2" style="margin: 5px">
+                    <c-button ng-click="addDataRiwayatPenyakitOrObat()" style="width:100% !important">
+                        <span style="font-size:10!important">Tambah</span>
+                    </c-button>
+                </div>
+            </div>
+
+            <div class="clear"></div>
+
+            <!-- grid table -->
+			<div class="grid_12" style="margin-top: 10px;">
+               <div kendo-grid k-data-source="dataRiwayatPenyakitOrObat" k-selectable="'row'" k-columns="columnRiwayatPenyakitOrObat">
+                </div>
+            </div>
+            <div class="clear"></div>
+		</c-panel>
+
+
+	</div>
+
+</div>

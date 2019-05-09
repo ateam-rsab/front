@@ -1,0 +1,59 @@
+<style>
+fieldset {
+    min-height: 74.67px;
+}
+</style>
+
+<div ng-controller="RekapLayananITCtrl">
+    <div class="panel panel-default container_12">
+        <div class="panel-heading" align="center" c-translate>Rekap Layanan IT
+            Internal</div>
+        <div class="panel-body">
+            <div class="grid_4">
+                <fieldset>
+                    <legend>Pilih Periode</legend>
+                    <div class="grid_6">
+                        <label>Tanggal Awal</label>
+                        <input kendo-date-picker k-ng-model="item.tglAwal"
+                            k-format="'dd-MM-yyyy'" style="width: 100%" />
+                    </div>
+                    <div class="grid_6">
+                            <label>Tanggal Akhir</label>
+                        <input kendo-date-picker k-ng-model="item.tglAkhir"
+                            k-format="'dd-MM-yyyy'" style="width: 100%" />
+                    </div>
+                </fieldset>
+            </div>
+            <div class="grid_4">
+                <fieldset>
+                    <legend>Pilih Ruangan</legend>
+                    <div class="grid_12">
+                        <input style="width: 100%;" kendo-combo-box
+                            k-ng-model="item.namaRuangan"
+                            k-data-text-field="'namaRuangan'"
+                            k-data-value-field="'id'" k-filter="'contains'"
+                            k-auto-bind="false" k-data-source="listRuangan" />
+                    </div>
+                </fieldset>
+            </div>
+            <div class="grid_4">
+                <fieldset>
+                    <legend>Pilih Status Pekerjaan</legend>
+                    <div class="grid_12">
+                        <input style="width: 100%;" kendo-combo-box
+                            k-ng-model="item.statusPekerjaan"
+                            k-data-text-field="'name'"
+                            k-data-value-field="'id'" k-filter="'contains'"
+                            k-auto-bind="false" k-data-source="dataStatusPekerjaan" />
+                    </div>
+                </fieldset>
+            </div>
+            <div class="grid_12" style="margin-top: 5px">
+            <div class="grid_2">
+                <button class="c-button success"
+                    ng-click="cetakLaporanPerbaikan()">Cetak Laporan Perbaikan</button>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

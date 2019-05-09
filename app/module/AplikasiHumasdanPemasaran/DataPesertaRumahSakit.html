@@ -1,0 +1,105 @@
+<div ng-controller="DataPesertaRumahSakitCtrl">
+	<div class="panel panel-default container_12"> 
+		<c-panel item="item" header="'Data Peserta Rumah Sakit Yang Bekerjasama'">
+			<div class="panel-body">
+				<div class="grid_6" style="margin-top: 20px">
+					<div class="grid_12">
+					<div class="grid_5" style="margin-top: 5px">
+						<label c-label item="item" c-label-text="NamaRumahSakit"></label>
+					</div>
+					<div class="grid_7">
+						 <!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.noRec" k-data-text-field="'rekanan.namaExternal'" k-data-value-field="'noRec'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListDataPerusahaanBekerjasama" />	 -->					 
+						 <input style="width: 100%;" kendo-combo-box k-ng-model="item.NamaRumahSakit" k-data-text-field="'namaRekanan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="true" k-data-source="ListDataPerusahaanBekerjasama" />
+					</div>
+					<div class="grid_5" style="margin-top: 5px">
+						<label c-label item="item" c-label-text="NamaPeserta"></label>
+					</div>
+					<div class="grid_7">
+						<input c-text-box type="input" class="k-textbox" ng-model="item.namaPeserta"/>
+					</div>
+					<div class="grid_5" style="margin-top: 5px">
+						<label c-label item="item" c-label-text="JenisKelamin"></label>
+					</div>
+					<div class="grid_7">
+						<input type="radio" name="Laki-laki" id="1" class="k-radio" ng-model="item.jenisKelamin.id" value="1">
+						<label class="k-radio-label" for="1">Laki-laki</label>
+					
+						<input type="radio" name="Perempuan" id="2" class="k-radio" ng-model="item.jenisKelamin.id" value="2">
+						<label class="k-radio-label" for="2">Perempuan</label>
+					</div>
+					<div class="grid_5" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="JumlahKeluarga"></label>
+					</div>
+					<div class="grid_7">
+						<input c-text-box type="input" class="k-textbox" filter="'numeric'" ng-model="item.jumlahKeluarga"/>
+					</div>
+					</div>
+					</div>
+					<div class="grid_6" style="margin-top: 20px">
+					<div class="grid_5" style="margin-top: 5px">
+						<label c-label item="item" c-label-text="Plafon yang dijamin"></label>
+					</div>
+					<div class="grid_7">
+						<input c-text-box type="input" class="k-textbox" ng-model="item.plafonYangDijamin"/>
+					</div>
+					<div class="grid_5" style="margin-top: 5px">
+						<label c-label item="item" c-label-text="Alamat"></label>
+					</div>
+					<div class="grid_7">
+						<input c-text-box type="input" class="k-textbox" ng-model="item.alamat"/>
+					</div>
+					<div class="grid_5" style="margin-top: 5px">
+						<label c-label item="item" c-label-text="No Telp"></label>
+					</div>
+					<div class="grid_7">
+						<input c-text-box type="input" class="k-textbox" ng-model="item.noTlp"/>
+					</div>
+					</div>
+				</div>
+
+			   <c-panel item="item" header='"Daftar Peserta Rumah Sakit"'>
+			   		<div class="grid_12">
+			   		  <div class="grid_1"></div>
+			   			<div class="grid_1" style="margin-top: 10px">
+			   				<label c-label item="item" c-label-text="Pencarian"></label>	
+			   			</div>
+			   			<div class="grid_1" style="margin-top: 10px">
+			   			     <label c-label align="right" item="item" c-label-text=":"></label>
+			   			</div>
+			   			<div class="grid_4">
+			   				<input style="width: 100%" c-text-box type="input" class="k-textbox" ng-model="item.Pencarian" placeholder="Nama Peserta / Jenis Kelamin / Alamat / No Telp">
+			   			</div>
+			   			<div class="grid_1" style="margin-top: 8px">
+			   				<button class="c-button success" ng-click="Cari(item.Pencarian)">Cari</button>
+			   			</div>
+			   			<div class="grid_1" style="margin-top: 8px">
+			   			     <button class="c-button cancel" ng-click="Clear()">Clear</button>
+			   			</div>
+			   	   </div>
+				   <div class="grid_12" style="margin: 0 0 30px 0;">
+		                <div class="grid_1"></div>
+		                <div class="grid_12">
+		        			<kendo-grid  k-data-source="sourceOrder" options="mainGridOptions" k-selectable="'row'" k-columns="columndataMasterDataPerusahaan" k-ng-model="current" ng-click="kl">
+		                    </kendo-grid>
+		                </div>
+		            </div>
+	            </c-panel>
+				<!-- <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div> -->
+				<div class="grid_12">
+					<div class="grid_6"></div>
+					<div class="grid_2">
+						<button class="c-button success" ng-click="Save()">Save</button>
+					</div>
+					<div class="grid_2">
+						<button class="c-button cancel" ng-click="cancel()">Cancel</button>
+					</div>
+					<div class="grid_2">
+					<button class="c-button" ng-click="Cetak()">Cetak</button>
+					</div>
+				</div>
+			</c-panel>
+			
+		</div>
+		
+	</div>
+	

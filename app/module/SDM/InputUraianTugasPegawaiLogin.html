@@ -1,0 +1,75 @@
+<style>
+	button:disabled {
+    background: #B5B2B1;
+}
+</style>
+<div>
+    <c-panel item="item" header="'Uraian Tugas Pegawai'" disabled>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <md-content>
+                    <md-tabs md-selected="selectedIndex" md-dynamic-height md-border-bottom>
+                        <md-tab label="Input Uraian Tugas Pegawai" md-on-select="onTabChanges(0)">
+                            <md-content class="md-padding">
+                                <div class="grid_12">
+                                    <div class="grid_2">
+                                        <label c-label item="item" c-label-text="tanggal"></label>
+                                        <input kendo-date-picker k-ng-model="item.tanggal" k-format="'dd-MM-yyyy'" style="width:100%"/>
+                                    </div>
+                                    <div class="grid_3">
+                                        <label c-label item="item" c-label-text="PegawaiLogin"></label>
+                                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="pegawai.namaLengkap" disabled="true"/>
+                                    </div>
+                                    <div class="grid_3">
+                                        <label c-label item="item" c-label-text="Jabatan"></label>
+                                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="pegawai.jabatanFungsional.namaJabatan" disabled="true"/>
+                                    </div>
+                                    <!-- <div class="grid_3">
+                                        <label c-label item="item" c-label-text="AtasanLangsung"></label>
+                                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="pegawai.jabatanFungsional.namaJabatan" disabled="true"/>
+                                    </div> -->
+                                    <div class="grid_1">
+                                        <label c-label c-label-text=""></label>
+                                        <em style="margin-top:6px;" ng-click='loadGrid()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+                                    </div>
+                                </div>
+                                <div class="grid_12">
+                                    <div kendo-grid k-data-source="dataSource" k-options="dataGridUraiantugas"></div>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="Daftar Verifikasi Uraian Tugas" md-on-select="onTabChanges(1)">
+                            <md-content class="md-padding">
+                                <div class="grid_12">
+                                    <div class="grid_2">
+                                        <label c-label item="item" c-label-text="tanggal"></label>
+                                        <input kendo-date-picker k-ng-model="item.periode" style="width:100%" k-options="monthSelectorOptions" />
+                                    </div>
+                                    <div class="grid_3">
+                                        <label c-label item="item" c-label-text="PegawaiLogin"></label>
+                                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="pegawai.namaLengkap" disabled="true"/>
+                                    </div>
+                                    <div class="grid_3">
+                                        <label c-label item="item" c-label-text="Jabatan"></label>
+                                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="pegawai.jabatanFungsional.namaJabatan" disabled="true"/>
+                                    </div>
+                                    <!-- <div class="grid_3">
+                                        <label c-label item="item" c-label-text="AtasanLangsung"></label>
+                                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="pegawai.jabatanFungsional.namaJabatan" disabled="true"/>
+                                    </div> -->
+                                    <div class="grid_1">
+                                        <label c-label c-label-text=""></label>
+                                        <em style="margin-top:6px;" ng-click='loadGridVerif()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+                                    </div>
+                                </div>
+                                <div class="grid_12">
+                                    <div kendo-grid k-data-source="dataSourceVerif" k-options="dataGridUraiantugasVerif"></div>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                    </md-tabs>
+                </md-content>
+            </div>
+        </div>
+    </c-panel>
+</div>

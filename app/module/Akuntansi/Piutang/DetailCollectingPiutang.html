@@ -1,0 +1,144 @@
+<style>
+	.style-center{
+		display: inline-block;
+		text-align: center;
+		width: 100%;
+	}
+
+	.style-right{
+		display: inline-block;
+		text-align: right;
+		width: 100%;
+	}
+
+	.style-left{
+		display: inline-block;
+		text-align: left;
+		width: 100%;
+	}
+</style>
+<div ng-show="dataVOloaded">
+	<!-- <c-panel item="item" header="'Detail Collecting Piutang'" disabled> -->
+	<div class="grid_12 headerBox">
+		<h1 style="color: white;"><b>Detail Collecting Piutang</b></h1>
+	</div>
+	<!-- Kriteria -->
+	<div class="grid_12">
+		<div class="grid_12">
+			<!-- Nama -->
+			<div class="grid_2">
+				<div class="grid_12">
+					<label c-label item="item" style="margin-top: 10px">No Collect</label>
+				</div>
+				<div class="grid_12">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noCollect" disabled="true" />
+				</div>
+			</div>
+			<div class="grid_3">
+				<div class="grid_12">
+					<label c-label item="item" style="margin-top: 10px">Nama Collector</label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaCollector" disabled="true" />
+				</div>
+			</div>
+
+			<!-- Penjamin -->
+			<div class="grid_3">
+				<div class="grid_12">
+					<label c-label item="item" style="margin-top: 10px">Tanggal Collect</label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.tglCollect" disabled="true" />
+				</div>
+			</div>
+
+			<!-- Periode Pulang -->
+			<div class="grid_6">
+				
+			</div>
+
+		</div>
+
+		
+	</div>
+
+	<br/>
+
+	<!-- DaftarPiutang -->
+	<div class="grid_12">
+
+		<!-- grid table -->
+		<div class="grid_12 headerBox">
+			<p>Daftar Piutang Pasien</p>
+		</div>
+		<div class="grid_12 borderBox">
+			<div class="grid_12 borderBox">
+				<div id="kGrid" kendo-grid 
+				k-data-source="dataSource"
+				options="mainGridOptions"
+				k-ng-model="dataSelected"
+				k-groupable="'true'"
+				ng-click="klik(dataSelected)">
+			</div>
+		</div>
+	</div>
+	<!-- </div> -->
+	<div class="grid_12">
+		<div class="grid_1">
+			<label c-label item="item" style="margin-top: 10px">Total Pasien</label>
+		</div>
+		<div class="grid_1">
+			<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.totalPasien" disabled="true" />
+		</div>
+		<div class="grid_1">
+			<label c-label item="item" style="margin-top: 10px">Org</label>
+		</div>
+		<div class="grid_3">
+		</div>
+		<div class="grid_3">
+		</div>
+		<div class="grid_1">
+			<label c-label item="item" style="margin-top: 10px">Total Klaim</label>
+		</div>
+		<div class="grid_2">
+			<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.totalKlaim" disabled="true"/>
+		</div>
+
+	</div>
+	<div class="grid_12">
+		<div class="grid_1">
+			<button class="c-button" ng-click="BatalCollect()">Batal Collect</button>
+		</div>
+		<div class="grid_1"></div>
+		<div class="grid_2">
+			<button class="c-button" ng-click="BayarTagihan()">Bayar Tagihan</button>
+		</div>
+		<div class="grid_2">
+			<button class="c-button" ng-click="CetakTagihan()">Cetak Tagihan</button>
+		</div>
+		<div class="grid_2">
+			<button class="c-button" ng-click="CetakKwitansi()">Cetak Kwitansi</button>
+		</div>
+		<div class="grid_2">
+			<button class="c-button" ng-click="CetakSuratTagihan()">Cetak Surat</button>
+		</div>
+		<div class="grid_2">
+			<button class="c-button" ng-click="Back()">Kembali</button>
+		</div>
+
+	</div>
+
+
+	<!-- <div class="grid_12" style="margin-top:30px">
+		<div ng-include='"../app/module/Shared/Keuangan/TemplateButtonKasir"'></div>
+	</div> -->
+
+</c-panel>
+
+</div>
+

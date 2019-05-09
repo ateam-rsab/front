@@ -1,0 +1,104 @@
+[
+    {
+        "id": 1,
+        "name": "Meningkatkan observasi bantuan yang sesuai saat ambulasi",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 2,
+        "name": "Keselamatan lingkungan: menghindari ruangan yang kacau balau, dekatkan bel dan telepon, biarkan pintu terbuka, gunakan lampu malam hari serta pagar tempat tidur",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 3,
+        "name": "Monitor kebutuhan pasien secara berkala (minimalnya tiap 2 jam) : jadwalkan ke belakang (kamar kecil) secara teratur",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 4,
+        "name": "Edukasi perilaku untuk mencegah jatuh kepada pasien dan keluarga, berikan brosur mencegah jatuh",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 5,
+        "name": "Gunakan alat bantu jalan (walker, handrail)",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 6,
+        "name": "Anjurkan pasien menggunakan kaus kai atau sepatu yang tidak licin",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    }
+]

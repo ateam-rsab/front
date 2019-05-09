@@ -1,0 +1,543 @@
+<style>
+
+.k-grid .k-grid-header .k-header .k-link {
+	height: auto;
+}
+
+.k-grid .k-grid-header .k-header  {
+	white-space: normal;
+}
+.k-grid .k-grid-header .k-header  {
+	text-align: center;
+}
+
+</style>
+
+<div ng-show="dataVOloaded">
+	<c-panel item="item" header="'Master Kelompok Anggaran'" disabled>
+	</c-panel>
+	<!-- -->
+	<div class="grid_12">
+		<div ng-cloak>
+			<md-content>
+				<md-tabs md-dynamic-height md-border-bottom>
+					<md-tab label="Kelompok Head">
+						<md-content class="md-padding">
+
+							<div class="grid_12">
+								<div class="grid_2">
+									<div class="grid_12">
+										<label c-label item="item" >Kode Kelompok Head</label>
+									</div>
+									<div class="clear"></div>
+
+									<div class="grid_12">
+										<input c-text-box type="text" filter="" class="k-textbox" ng-model="item.kodeHead" />
+									</div>
+								</div>
+								<div class="grid_2">
+									<div class="grid_12">
+										<label c-label item="item" >Nama Kelompok Head</label>
+									</div>
+									<div class="clear"></div>
+
+									<div class="grid_12">
+										<input c-text-box type="text" filter="" class="k-textbox" ng-model="item.namaHead" />
+									</div>
+								</div>
+								<div class="grid_2">
+									<div class="grid_12">
+										<label c-label item="item" >Kode External</label>
+									</div>
+									<div class="clear"></div>
+
+									<div class="grid_12">
+										<input c-text-box type="text" filter="" class="k-textbox" ng-model="item.kodeExternalHead" />
+									</div>
+								</div>
+
+								<div class="grid_2">
+									<div class="grid_12">
+										<label c-label item="item" >Nama External</label>
+									</div>
+									<div class="clear"></div>
+
+									<div class="grid_12">
+										<input c-text-box type="text" filter="" class="k-textbox" ng-model="item.namaExternalHead" />
+									</div>
+								</div>
+								<div class="grid_1">
+									<div class="grid_12">
+										<label>&nbsp;</label>
+									</div>
+									<div class="clear"></div>
+
+									<div class="grid_12">
+										<button class="btnTemplate1" style="margin-left: 0;" ng-click="saveHead()">Simpan</button>
+									</div>
+								</div>
+								<div class="grid_1">
+									<div class="grid_12">
+										<label>&nbsp;</label>
+									</div>
+									<div class="clear"></div>
+
+									<div class="grid_12">
+										<button class="btnTemplate1" style="margin-left: 0;" ng-click="hapusHead()">Hapus</button>
+									</div>
+								</div>
+								<div class="grid_1">
+									<div class="grid_12">
+										<label>&nbsp;</label>
+									</div>
+									<div class="clear"></div>
+
+									<div class="grid_12">
+										<button class="btnTemplate1" style="margin-left: 0;" ng-click="batal()">Batal</button>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="clear"></div>
+
+							<br/>
+							<div class="grid_12">
+								<div class="grid_12 headerBox">
+									<p>Daftar Kelompok Head</p>
+								</div>
+								<div class="clear"></div>
+
+								<div class="grid_12 borderBox">
+									<div id="kGrid" 
+									kendo-grid 
+									k-columns="columnKelompokHead" 
+									k-selectable="'row'" 
+									k-pageable="true"
+									k-sortable="true"
+									k-data-source="dataSourceHead" 
+									k-ng-model="dataHeadSelected" 
+									ng-click="klik(dataHeadSelected)">
+								</div>
+							</div>
+						</div>
+
+						<!-- <br/> -->
+						<div class="clear"></div>
+
+					</md-content>
+
+				</md-tab>
+				<md-tab label="Kelompok Pertama">
+					<md-content class="md-padding">
+						<div class="grid_12">
+							<div class="grid_2">
+								<div class="grid_12">
+									<label c-label item="item" >Kode Kelompok Pertama</label>
+								</div>
+								<div class="clear"></div>
+
+								<div class="grid_12">
+									<input c-text-box type="text" filter="" class="k-textbox" ng-model="item.kodeKelompokPertama" />
+								</div>
+							</div>
+							<div class="grid_2">
+								<div class="grid_12">
+									<label c-label item="item" >Nama Kelompok Pertama</label>
+								</div>
+								<div class="clear"></div>
+
+								<div class="grid_12">
+									<input c-text-box type="text" filter="" class="k-textbox" ng-model="item.namaKelompokPertama" />
+								</div>
+							</div>
+							<div class="grid_2">
+								<div class="grid_12">
+									<label c-label item="item" >Kode External</label>
+								</div>
+								<div class="clear"></div>
+
+								<div class="grid_12">
+									<input c-text-box type="text" filter="" class="k-textbox" ng-model="item.kodeExternalPertama" />
+								</div>
+							</div>
+
+							<div class="grid_2">
+								<div class="grid_12">
+									<label c-label item="item" >Nama External</label>
+								</div>
+								<div class="clear"></div>
+
+								<div class="grid_12">
+									<input c-text-box type="text" filter="" class="k-textbox" ng-model="item.namaExternalPertama" />
+								</div>
+							</div>
+							<div class="grid_1">
+								<div class="grid_12">
+									<label>&nbsp;</label>
+								</div>
+								<div class="clear"></div>
+
+								<div class="grid_12">
+									<button class="btnTemplate1" style="margin-left: 0;" ng-click="saveKelPertama()">Simpan</button>
+								</div>
+							</div>
+							<div class="grid_1">
+								<div class="grid_12">
+									<label>&nbsp;</label>
+								</div>
+								<div class="clear"></div>
+
+								<div class="grid_12">
+									<button class="btnTemplate1" style="margin-left: 0;" ng-click="hapusKelPertama()">Hapus</button>
+								</div>
+							</div>
+							<div class="grid_1">
+								<div class="grid_12">
+									<label>&nbsp;</label>
+								</div>
+								<div class="clear"></div>
+
+								<div class="grid_12">
+									<button class="btnTemplate1" style="margin-left: 0;" ng-click="batal()">Batal</button>
+								</div>
+							</div>
+						</div>
+						<div class="clear"></div>
+
+						<br/>
+						<div class="grid_12">
+							<div class="grid_12 headerBox">
+								<p>Daftar Kelompok Pertama</p>
+							</div>
+							<div class="clear"></div>
+
+							<div class="grid_12 borderBox">
+								<div id="kGrid" 
+								kendo-grid 
+								k-columns="columnKelompokPertama" 
+								k-selectable="'row'" 
+								k-pageable="true"
+								k-sortable="true"
+								k-data-source="dataSourcePertama" 
+								k-ng-model="dataPertamaSelected" 
+								ng-click="klikPertama(dataPertamaSelected)">
+							</div>
+						</div>
+					</div>
+
+					<div class="clear"></div>
+				</md-content>
+			</md-tab>
+			<md-tab label="Kelompok Kedua">
+				<md-content class="md-padding">
+					<div class="grid_12">
+						<div class="grid_2">
+							<div class="grid_12">
+								<label c-label item="item" >Kode Kelompok Kedua</label>
+							</div>
+							<div class="clear"></div>
+
+							<div class="grid_12">
+								<input c-text-box type="text" filter="" class="k-textbox" ng-model="item.kodeKelompokKedua" />
+							</div>
+						</div>
+						<div class="grid_2">
+							<div class="grid_12">
+								<label c-label item="item" >Nama Kelompok Kedua</label>
+							</div>
+							<div class="clear"></div>
+
+							<div class="grid_12">
+								<input c-text-box type="text" filter="" class="k-textbox" ng-model="item.namaKelompokKedua" />
+							</div>
+						</div>
+						<div class="grid_2">
+							<div class="grid_12">
+								<label c-label item="item" >Kode External</label>
+							</div>
+							<div class="clear"></div>
+
+							<div class="grid_12">
+								<input c-text-box type="text" filter="" class="k-textbox" ng-model="item.kodeExternalKedua" />
+							</div>
+						</div>
+
+						<div class="grid_2">
+							<div class="grid_12">
+								<label c-label item="item" >Nama External</label>
+							</div>
+							<div class="clear"></div>
+
+							<div class="grid_12">
+								<input c-text-box type="text" filter="" class="k-textbox" ng-model="item.namaExternalKedua" />
+							</div>
+						</div>
+						<div class="grid_1">
+							<div class="grid_12">
+								<label>&nbsp;</label>
+							</div>
+							<div class="clear"></div>
+
+							<div class="grid_12">
+								<button class="btnTemplate1" style="margin-left: 0;" ng-click="saveKelKedua()">Simpan</button>
+							</div>
+						</div>
+						<div class="grid_1">
+							<div class="grid_12">
+								<label>&nbsp;</label>
+							</div>
+							<div class="clear"></div>
+
+							<div class="grid_12">
+								<button class="btnTemplate1" style="margin-left: 0;" ng-click="hapusKelKedua()">Hapus</button>
+							</div>
+						</div>
+						<div class="grid_1">
+							<div class="grid_12">
+								<label>&nbsp;</label>
+							</div>
+							<div class="clear"></div>
+
+							<div class="grid_12">
+								<button class="btnTemplate1" style="margin-left: 0;" ng-click="batal()">Batal</button>
+							</div>
+						</div>
+					</div>
+					<div class="clear"></div>
+
+					<br/>
+					<div class="grid_12">
+						<div class="grid_12 headerBox">
+							<p>Daftar Kelompok Head</p>
+						</div>
+						<div class="clear"></div>
+
+						<div class="grid_12 borderBox">
+							<div id="kGrid" 
+							kendo-grid 
+							k-columns="columnKelompokKedua" 
+							k-selectable="'row'" 
+							k-pageable="true"
+							k-sortable="true"
+							k-data-source="dataSourceKedua" 
+							k-ng-model="dataKeduaSelected" 
+							ng-click="klikKedua(dataKeduaSelected)">
+						</div>
+					</div>
+				</div>
+
+				<div class="clear"></div>
+			</md-content>
+		</md-tab>
+		<md-tab label="Kelompok Ketiga">
+			<md-content class="md-padding">
+				<div class="grid_12">
+					<div class="grid_2">
+						<div class="grid_12">
+							<label c-label item="item" >Kode Kelompok Ketiga</label>
+						</div>
+						<div class="clear"></div>
+
+						<div class="grid_12">
+							<input c-text-box type="text" filter="" class="k-textbox" ng-model="item.kodeKelompokKetiga" />
+						</div>
+					</div>
+					<div class="grid_2">
+						<div class="grid_12">
+							<label c-label item="item" >Nama Kelompok Ketiga</label>
+						</div>
+						<div class="clear"></div>
+
+						<div class="grid_12">
+							<input c-text-box type="text" filter="" class="k-textbox" ng-model="item.namaKelompokKetiga" />
+						</div>
+					</div>
+					<div class="grid_2">
+						<div class="grid_12">
+							<label c-label item="item" >Kode External</label>
+						</div>
+						<div class="clear"></div>
+
+						<div class="grid_12">
+							<input c-text-box type="text" filter="" class="k-textbox" ng-model="item.kodeExternalKetiga" />
+						</div>
+					</div>
+
+					<div class="grid_2">
+						<div class="grid_12">
+							<label c-label item="item" >Nama External</label>
+						</div>
+						<div class="clear"></div>
+
+						<div class="grid_12">
+							<input c-text-box type="text" filter="" class="k-textbox" ng-model="item.namaExternalKetiga" />
+						</div>
+					</div>
+					<div class="grid_1">
+						<div class="grid_12">
+							<label>&nbsp;</label>
+						</div>
+						<div class="clear"></div>
+
+						<div class="grid_12">
+							<button class="btnTemplate1" style="margin-left: 0;" ng-click="saveKelKetiga()">Simpan</button>
+						</div>
+					</div>
+					<div class="grid_1">
+						<div class="grid_12">
+							<label>&nbsp;</label>
+						</div>
+						<div class="clear"></div>
+
+						<div class="grid_12">
+							<button class="btnTemplate1" style="margin-left: 0;" ng-click="hapusKelKetiga()">Hapus</button>
+						</div>
+					</div>
+					<div class="grid_1">
+						<div class="grid_12">
+							<label>&nbsp;</label>
+						</div>
+						<div class="clear"></div>
+
+						<div class="grid_12">
+							<button class="btnTemplate1" style="margin-left: 0;" ng-click="batal()">Batal</button>
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+
+				<br/>
+				<div class="grid_12">
+					<div class="grid_12 headerBox">
+						<p>Daftar Kelompok Head</p>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12 borderBox">
+						<div id="kGrid" 
+						kendo-grid 
+						k-columns="columnKelompokKetiga" 
+						k-selectable="'row'" 
+						k-pageable="true"
+						k-sortable="true"
+						k-data-source="dataSourceKetiga" 
+						k-ng-model="dataKetigaSelected" 
+						ng-click="klikKetiga(dataKetigaSelected)">
+					</div>
+				</div>
+			</div>
+
+			<div class="clear"></div>
+		</md-content>
+	</md-tab>
+	<md-tab label="Kelompok Keempat">
+		<md-content class="md-padding">
+			<div class="grid_12">
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" >Kode Kelompok Keempat</label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="text" filter="" class="k-textbox" ng-model="item.kodeKelompokKeempat" />
+					</div>
+				</div>
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" >Nama Kelompok Keempat</label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="text" filter="" class="k-textbox" ng-model="item.namaKelompokKeempat" />
+					</div>
+				</div>
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" >Kode External</label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="text" filter="" class="k-textbox" ng-model="item.kodeExternalKeempat" />
+					</div>
+				</div>
+
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" >Nama External</label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="text" filter="" class="k-textbox" ng-model="item.namaExternalKeempat" />
+					</div>
+				</div>
+				<div class="grid_1">
+					<div class="grid_12">
+						<label>&nbsp;</label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<button class="btnTemplate1" style="margin-left: 0;" ng-click="saveKelKeempat()">Simpan</button>
+					</div>
+				</div>
+				<div class="grid_1">
+					<div class="grid_12">
+						<label>&nbsp;</label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<button class="btnTemplate1" style="margin-left: 0;" ng-click="hapusKelKeempat()">Hapus</button>
+					</div>
+				</div>
+				<div class="grid_1">
+					<div class="grid_12">
+						<label>&nbsp;</label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<button class="btnTemplate1" style="margin-left: 0;" ng-click="batal()">Batal</button>
+					</div>
+				</div>
+			</div>
+			<div class="clear"></div>
+
+			<br/>
+			<div class="grid_12">
+				<div class="grid_12 headerBox">
+					<p>Daftar Kelompok Head</p>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12 borderBox">
+					<div id="kGrid" 
+					kendo-grid 
+					k-columns="columnKelompokKeempat" 
+					k-selectable="'row'" 
+					k-pageable="true"
+					k-sortable="true"
+					k-data-source="dataSourceKeempat" 
+					k-ng-model="dataKeempatSelected" 
+					ng-click="klikKeempat(dataKeempatSelected)">
+				</div>
+			</div>
+		</div>
+
+		<div class="clear"></div>
+	</md-content>
+</md-tab>
+</md-tabs>
+</md-content>
+</div>
+
+<br/>
+
+</div>
+</div>
+<div ng-include='"../app/module/Shared/TemplateLoading"'></div>

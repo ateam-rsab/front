@@ -1,0 +1,25 @@
+<div ng-controller="ApotekPemeriksaanCtrl">
+    <div ng-include='"../app/module/Shared/headerPasienPenunjang" '></div>
+    <div class="grid_12">
+        <table class="table " ng-repeat="data in listOrders">
+            <tr class='success'>
+                <th><span c-translate>Nama Pemeriksan</span></th>
+                <th><span c-translate>Hasil</span></th>
+                <th><span c-translate>Nilai Normal</span></th>
+                <th><span c-translate>Metode</span></th>
+            </tr>
+            <tr>
+                <th colspan="5" style="text-align:left">{{data[0].jenisPeriksa}}</th>
+
+            </tr>
+            <tr ng-repeat="subData in data">
+                <td>&nbsp;&nbsp;&nbsp;{{subData.namaProduk}}</td>
+                <td><input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="subData.detail.hasil" /></td>
+                <td>{{subData.nilaiNormal}}</td>
+                <td>{{subData.metode}}</td>
+            </tr>
+        </table>
+
+    </div>
+    <div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+</div>

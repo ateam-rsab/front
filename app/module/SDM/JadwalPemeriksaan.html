@@ -1,0 +1,31 @@
+<div ng-controller="JadwalPemeriksaanCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Informasi Jadwal Pemeriksaan Kesehatan Berkala'">
+			<div class="panel panel-default container_12">
+				<div class="panel-body">
+					<div class="grid_12">
+
+						<div class="grid_12" style="margin-top: 25px">
+							<div class="grid_2" style="margin-top: 15px">
+								<label c-label item="item" c-label-text="satuanKerja"></label>
+							</div>
+							<div class="grid_3" align="center">
+								<input style="width: 100%;" kendo-combo-box k-ng-model="item.satuanKerja" k-data-text-field="'satuanKerja'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-on-change="findSatuanKerja()" k-data-source="listSatuanKerja" />
+							</div>
+						</div>
+
+						<div class="grid_12" ng-show="item.satuanKerja.id!=undefined" style="margin-top: 10px;">
+							<div kendo-grid k-data-source="jadwalSupir" k-selectable="'row'" k-ng-model="selectedData" k-columns="columnJadwal">
+							</div>
+						</div>
+					</div>
+
+					<div class="grid_3" style="margin-top: 25px; font-size: 24px;">
+						<button class="c-button" ng-show="!isLoading" item="item" ng-click="navToRencanaPemeriksaan(selectedData)">
+                                <span class="title">Cetak</span></button>
+					</div>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

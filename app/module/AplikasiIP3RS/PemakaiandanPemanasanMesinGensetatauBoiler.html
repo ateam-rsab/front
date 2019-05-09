@@ -1,0 +1,120 @@
+<div ng-controller="PemakaiandanPemanasanMesinGensetatauBoilerCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Pemakaian dan Pemanasan Mesin (Genset atau Boiler)'">
+		<div class="grid_6">
+			<div class="grid_4" style="margin-top: 10px">
+				<label c-label item="item" c-label-text="jenisMesin"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisMesin" k-data-text-field="'jenisMesin'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisMesin" k-on-change="jenisMesin()" />
+			</div>
+			<div class="clear"></div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="tanggal" style="margin-top: 10px"></label>
+			</div>
+			<div class="grid_8">
+				<input kendo-date-picker k-ng-model="item.tanggal" k-format="'yyyy-MM-dd'" style="width: 100%" />
+			</div>
+			 <!-- k-max ="now" -->
+			<div class="clear"></div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="namaMesin" style="margin-top: 10px"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaMesin" k-data-text-field="'namaMesin'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listMesin" k-on-change="kapasitasMesin()" />
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="kapasitas"  style="margin-top: 10px"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.kapasitas" style="width: 40%" disabled="" />
+			</div>
+			<div class="clear"></div>
+			
+		</div>
+		<div class="grid_6">
+			<div class="grid_4" ng-show="showGenset">
+				<label c-label item="item" c-label-text="pemakaianAwal"  style="margin-top: 10px"></label>
+			</div>
+			<div class="grid_8" ng-show="showGenset">
+				<input style="width: 40%" kendo-time-picker k-ng-model="item.pemakaianAwal" placeholer="HH:mm" k-format="'HH:mm'"  />
+			</div>
+			<div class="grid_4" ng-show="showGenset">
+				<label c-label item="item" c-label-text="pemakaianAkhir"  style="margin-top: 10px"></label>
+			</div>
+			<div class="grid_8" ng-show="showGenset">
+				<input style="width: 40%" kendo-time-picker k-ng-model="item.pemakaianAkhir" placeholer="HH:mm" k-format="'HH:mm'" k-on-change="lamaPakai()" />
+			</div>
+			<div class="grid_4" ng-show="showGenset">
+				<label c-label item="item" c-label-text="lamaPemakaian" disabled=""  style="margin-top: 10px"></label>
+			</div>
+			<div class="grid_8" ng-show="showGenset">
+				<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.lamaPemakaian" style="width: 40%" />
+			</div>
+			<div class="grid_4" ng-show="showBoiler">
+				<label c-label item="item" c-label-text="literAwal"  style="margin-top: 10px"></label>
+			</div>
+			<div class="grid_8" ng-show="showBoiler">
+				<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.literAwal" style="width: 40%" />
+			</div>
+			<div class="grid_4" ng-show="showBoiler">
+				<label c-label item="item" c-label-text="literAkhir"  style="margin-top: 10px"></label>
+			</div>
+			<div class="grid_8" ng-show="showBoiler">
+				<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.literAkhir" style="width: 40%" ng-keyup="totalPakai()"/>
+			</div>
+			<div class="grid_4" ng-show="showBoiler">
+				<label c-label item="item" c-label-text="totalPemakaian"  style="margin-top: 10px"></label>
+			</div>
+			<div class="grid_8" ng-show="showBoiler">
+				<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.totalPemakaian" style="width: 40%" disabled="" />
+			</div>
+			<div class="clear"></div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="petugas"  style="margin-top: 10px"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaPetugas" disabled="" />
+			</div>
+<!-- 			<div class="grid_4">
+				
+			</div>
+			<div class="grid_4">
+				<button class="c-button" ng-click="simpanBoiler()">Simpan</button>
+			</div>
+			<div class="grid_4">
+				<button class="c-button" ng-click="batal()">Batal</button>
+			</div> -->
+			<div class="grid_3">
+			</div>
+			<div class="grid_3">
+				<button class="c-button" ng-click="simpanBoiler()">Simpan</button>
+			</div>
+			<div class="grid_3">
+				<button class="c-button" ng-click="batal()">Batal</button>
+			</div>
+			<div class="grid_3">
+				<button class="c-button" ng-click="baru()">Baru</button>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_12" ng-show="showGridGenset">
+		<label c-label item="item" c-label-text="Genset"  style="margin-top: 10px"></label>
+		<div kendo-grid options="mainGridOptions" k-data-source="dataPemanasanGenset" k-selectable="'row'" k-columns="columnPemanasanGenset" style="margin-bottom: 10px" k-ng-model="isi" ng-click="klGenset(isi)">
+				</div>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_12" ng-show="showGridBoiler">
+		<label c-label item="item" c-label-text="Boiler"  style="margin-top: 10px"></label>
+		<div kendo-grid options="mainGridOptions" k-data-source="dataPemakaianBoiler" k-selectable="'row'" k-columns="columnPemakaianBoiler" style="margin-bottom: 10px" k-ng-model="isi" ng-click="klBoiler(isi)">
+				</div>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_6"></div>
+		<div class="grid_6">
+			
+		</div>
+		</c-panel>
+	</div>
+</div>

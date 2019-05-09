@@ -1,0 +1,19 @@
+{
+    "noKamar" : "",
+    "nomorTempatTidur" : "",
+
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "noKamar",
+			"messagesRequired" : "Kamar Harus Diisi",
+			"caption" : "Nomor Kamar"
+		},
+		{
+			"isNull" : "true",
+			"name" : "nomorTempatTidur",
+			"messagesRequired" : "Nomor Tempat Tidur Harus Diisi",
+			"caption" : "Nomor Tempat Tidur"
+		}
+  ]
+}

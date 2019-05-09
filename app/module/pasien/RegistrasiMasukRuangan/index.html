@@ -1,0 +1,118 @@
+<div class="grid_12" ng-controller="RegistrasiMasukRuanganCtrl">
+	<pasien-daftar-header>
+	</pasien-daftar-header>
+	<core-busy busy="isLoading"></core-busy>
+	<div class="grid_6">
+		<div class="grid_12">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="ruanganPelayanan"></label>
+			</div>
+			<div class="grid_8">
+				&nbsp;<span class='c-label'>{{item.Ruangan.NamaRuangan}}</label>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="kelas"></label>
+				</div>
+				<div class="grid_8">
+					&nbsp;<span class='c-label'>{{item.Kelas.NamaKelas}}</label>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="asalRujukan"></label>
+				</div>
+				<div class="grid_8">
+					&nbsp;<span class='c-label'>{{item.AsalRujukan.Rujukan}}</label>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="kelompokPasien"></label>
+				</div>
+				<div class="grid_8">
+					&nbsp;<span class='c-label'>{{item.KelompokPasien.JenisPasien}}</label>
+				</div>
+			</div>			
+		</div>
+		<div class="grid_6">
+			<div class='grid_12'>
+				<c-panel item="item" header="'PasienGawatDarurat'" disabled>
+					<div class="grid_12">
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="transportasiUmum"></label>
+				</div>
+				<div class="grid_8">
+					   <input style="width: 100%;" kendo-combo-box k-ng-model="item.transportasiUmum"
+                               k-data-text-field="'TransportasiPasien'"
+                               k-filter="'contains'"
+                               k-data-value-field="'value'"
+                               k-data-source="transportasiPasiens" />
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="keadaanUmum"></label>
+				</div>
+				<div class="grid_8">
+					   <input style="width: 100%;" kendo-combo-box k-ng-model="item.keadaanUmum"
+                               k-data-text-field="'KeadaanUmum'"
+                               k-filter="'contains'"
+                               k-data-value-field="'value'"
+                               k-data-source="keadaanUmums" />
+				</div>
+			</div>
+					</c-panel>
+				</div>
+			<div class="grid_12">
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="tanggalMasuk"></label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tglMasuk" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="caraMasuk"></label>
+				</div>
+				<div class="grid_8">
+					   <input style="width: 100%;" kendo-combo-box k-ng-model="item.caraMasuk"
+                               k-data-text-field="'CaraMasuk'"
+                               k-filter="'contains'"
+                               k-data-value-field="'id'"
+                               k-data-source="caraMasuks" />
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="dokterPemeriksa"></label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.dokter"
+                               k-data-text-field="'CaraMasuk'"
+                               k-filter="'contains'"
+                               k-data-value-field="'id'"
+                               k-data-source="listDataJenisKelamin" />
+				</div>
+			</div>
+			
+			</div>
+		<div class="grid_12">
+			<div class="grid_8">
+				&nbsp;
+			</div>
+			<div class="grid_2">
+				<c-button ng-show="!isLoading" style="width:100px;" item="item" position="'left'" is-back icon="'fa-chevron-left'">
+					<span class="title">Kembali</span>
+				</c-button>
+			</div>
+			<div class="grid_2">
+				<c-button ng-show="!isLoading" item="item" size="36" position="'right'" is-validate click="Lanjutkan" icon="'fa fa-chevron-right'">
+					<span class="title">Proses</span>
+				</c-button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,59 @@
+<div ng-controller="JadwalMenuDietPeriodeCtrl">
+    <div class="panel panel-default container_12">
+        <div class="panel-heading" c-translate>Jadwal Menu Diet Periode</div>
+        <div class="panel-body">
+        	<div class="grid_12" style="margin-top: 30px">
+        		<div class="grid_3">
+                    <label c-label item="item" c-label-text="namaSiklus"></label>
+                </div>
+               	<div class="grid_3">
+                    <label c-label item="item" c-label-text="hariKe"></label>
+                </div>
+                <div class="grid_3">
+                    <label c-label item="item" c-label-text="jenisWaktu"></label>
+                </div>
+                <div class="grid_3">
+                    <label c-label item="item" c-label-text="jenisDiet"></label>
+                </div>
+            </div>
+            <div class="grid_12" style="margin-top: 5px">
+            	<div class="grid_3">
+            		<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaSiklus" k-data-text-field="'name'" k-data-value-field="'id '" k-filter="'contains '" k-auto-bind="false" k-data-source="ListNamaSiklus" />
+            	</div>
+            	<div class="grid_3">
+            		<input style="width: 100%;" kendo-combo-box k-ng-model="item.hariKe" k-data-text-field="'name'" k-data-value-field="'id '" k-filter="'contains '" k-auto-bind="false" k-data-source="ListhariKe" />
+            	</div>
+            	<div class="grid_3">
+            		<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisWaktu" k-data-text-field="'jenisWaktu'" k-data-value-field="'id '" k-filter="'contains '" k-auto-bind="false" k-data-source="ListjenisWaktu" />
+            	</div>
+            	<div class="grid_3">
+            		<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisDiet" k-data-text-field="'jenisDiet'" k-data-value-field="'id '" k-filter="'contains '" k-auto-bind="false" k-data-source="ListjenisDiet" />
+            	</div>
+            </div>
+            <div class="grid_12" style="margin-top: 30px">
+                <label c-label item="item" c-label-text="menuDiet"></label>
+            </div>
+            <div class="grid_12" style="margin-top: 5px">
+             	<hr>
+            </div>
+            <div class="grid_12">
+             	<div class="grid_1">
+             	</div>
+             	<div class="grid_9">
+                    <div class="grid_12" style="margin-top: 10px" ng-repeat="data in ListMenuMakanan">
+                	   <input type="checkbox" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" value="{{data.id}}" ng-click="addAlegri(data.id)">
+       				 <label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+                    </div>
+                </div>
+                <div class="grid_2">
+             	</div>
+            </div>
+           	<div class="grid_12" style="margin-top: 30px">
+             	<hr>
+            </div>
+            <div class="grid_12" style="margin-top: 10px">
+            	<div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,195 @@
+{  "model":{
+  "Rutin" : "",
+  "Khusus" : "",
+  "Koagulasi" : "",
+  "Anemia" : "",
+  "BankDarah" : "",
+  "Diabetes" : "",
+  "FaalGinjal" : "",
+  "Tinja" : "",
+  "Urine" : "",
+  "FaalHati" : "",
+  "Elektrolit" : "",
+  "FaalPankreas" : "",
+  "FaalJantung" : "",
+  "ProfilLemak" : "",
+  "AnalisaGasDarah" : "",
+  "KadarObat" : "",
+  "Imunologi" : "",
+  "Umum" : "",
+  "Torch" : "",
+  "SkriningHIV" : "",
+  "Hepatitis" : "",
+  "Reproduksi" : "",
+  "Tiroid" : "",
+  "Lainlain" : "",
+  "Mikroskopik" : "",
+  "BiakanResistensiBahan" : "",
+  "Pcr" : ""
+
+},
+  "attributes" : [
+    {
+      "isNull" : "true",
+      "name" : "Rutin",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "Rutin "
+    },
+    {
+      "isNull" : "true",
+      "name" : "Khusus",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "Khusus"
+    },
+    {
+      "isNull" : "true",
+      "name" : "Koagulasi",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "Koagulasi"
+    },
+    {
+      "isNull" : "true",
+      "name" : "Anemia",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "Anemia"
+    },
+    {
+      "isNull" : "true",
+      "name" : "BankDarah",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "BankDarah"
+    },
+    {
+      "isNull" : "true",
+      "name" : "Diabetes",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "Diabetes"
+    },
+    {
+      "isNull" : "true",
+      "name" : "FaalGinjal",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "Faal Ginjal"
+    },
+    {
+      "isNull" : "true",
+      "name" : "Tinja",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "Tinja"
+    },
+    {
+      "isNull" : "true",
+      "name" : "Urine",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "Urine"
+    },
+    {
+      "isNull" : "true",
+      "name" : "FaalHati",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "Faal Hati"
+    },
+    {
+      "isNull" : "true",
+      "name" : "Elektrolit",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "Elektrolit"
+    },
+    {
+      "isNull" : "true",
+      "name" : "FaalPankreas",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "FaalPankreas"
+    },
+    {
+      "isNull" : "true",
+      "name" : "FaalJantung",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "Faal Jantung"
+    },
+    {
+      "isNull" : "true",
+      "name" : "ProfilLemak",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "Profil Lemak"
+    },
+    {
+      "isNull" : "true",
+      "name" : "AnalisaGasDarah",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "Analisa Gas Darah"
+    },
+    {
+      "isNull" : "true",
+      "name" : "KadarObat",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "Kadar Obat"
+    },
+    {
+      "isNull" : "true",
+      "name" : "Imunologi",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "Imunologi"
+    },
+    {
+      "isNull" : "true",
+      "name" : "Umum",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "Umum"
+    },
+    {
+      "isNull" : "true",
+      "name" : "Torch",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "Torch"
+    },
+    {
+      "isNull" : "true",
+      "name" : "SkriningHIV",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "Skrining HIV"
+    },
+    {
+      "isNull" : "true",
+      "name" : "Hepatitis",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "Hepatitis"
+    },
+    {
+      "isNull" : "true",
+      "name" : "Reproduksi",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "Reproduksi"
+    },
+    {
+      "isNull" : "true",
+      "name" : "Tiroid",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "Tiroid"
+    },
+    {
+      "isNull" : "true",
+      "name" : "Lainlain",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "Lain-lain"
+    },
+    {
+      "isNull" : "true",
+      "name" : "Mikroskopik",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "Mikroskopik"
+    },
+    {
+      "isNull" : "true",
+      "name" : "BiakanResistensiBahan",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "Biakan Resistensi Bahan"
+    },
+    {
+      "isNull" : "true",
+      "name" : "Pcr",
+      "messagesRequired" : "Hambatan Pembelajaran Harus Diisi",
+      "caption" : "Pcr"
+    }
+  ]
+}

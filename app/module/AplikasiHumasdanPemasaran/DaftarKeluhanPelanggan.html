@@ -1,0 +1,48 @@
+<div ng-controller="DaftarKeluhanPelangganCtrl">
+	<div class="panel panel-default container_12">
+		<div class="panel-heading" c-translate>Daftar Keluhan Pelanggan</div>
+			<div class="panel-body">
+             <fieldset style="min-height:50px !important" align="left">
+                 <legend><h2>Periode</h2></legend>
+                    <div class="grid_12">
+                      <div class="grid_1" style="margin: 10px 0 30px 0;" >
+                        <label c-translate>Bulan</label>
+                      </div>
+                    <div class="grid_2">
+                     <input style="width: 100%" k-options="monthUngkul" k-ng-model="item.bulan"  kendo-date-picker  placeholer="--Pilih Bulan--" k-format="'MMMM'" k-on-change="OnChangeBulan(item.bulan, item.tahun)"/>
+                    </div>
+                    <div class="grid_1" style="margin: 10px 0 30px 0;">
+                         <label c-translate>Tahun</label>
+                    </div>
+                    <div class="grid_2">
+                         <input style="width: 100%" k-options="tahunpilih" k-ng-model="item.tahun"  kendo-date-picker  placeholer="--Pilih Bulan--" k-format="'yyyy'" k-on-change="OnChangeBulan(item.bulan, item.tahun)"/>
+                    </div>
+                 <div class="grid_2">
+                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.Cari" placeholder="Email /Umur" />
+                 </div>
+                    <div class="grid_1" style="margin-top: 5px">
+                        <button class="c-button success" ng-click="CariKeluhan(item.Cari)">
+                        Cari
+                        </button>
+                    </div>
+                    <div class="grid_1" style="margin-top:5px">
+                        <button class="c-button cancel" ng-click="ClearCari()">Clear</button>    
+                    </div>
+                 </div>
+
+                    </fieldset>
+				<div class="grid_12">
+                    <kendo-grid id="kGrid" options="mainGridOptions" k-data-source="sourceOrder" k-selectable="'row'" k-ng-model="current" ng-click="kl(current)"></kendo-grid>
+        			</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_10"></div>
+					<div class="grid_2">
+            	     <button class="c-button success" ng-click="pindah()">
+                     Reply
+                    </button>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>

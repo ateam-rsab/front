@@ -1,0 +1,29 @@
+[{
+    "caption": "Rekam Medik",
+    "link": "#/RekamMedik",
+    "shortcut": "ctrl+1"
+}, {
+    "caption": "Layanan Medik",
+    "link": "#/LayananMedik",
+    "shortcut": "ctrl+1"
+}, {
+    "caption": "Sarana & Prasarana",
+    "link": "#/Sarpras",
+    "shortcut": "ctrl+1"
+}, {
+    "caption": "Keuangan",
+    "link": "#/Keuangan",
+    "shortcut": "ctrl+1"
+},  {
+    "caption": "SDM",
+    "link": "#/DashboardSDM",
+    "shortcut": "ctrl+1"
+},{
+    "caption": "Manajemen",
+    "link": "#/Menejemen",
+    "shortcut": "ctrl+1"
+}, {
+    "caption": "logout",
+    "link": "/app/Logout",
+    "shortcut": "ctrl+1"
+}]

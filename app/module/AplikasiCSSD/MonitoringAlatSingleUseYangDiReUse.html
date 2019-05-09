@@ -1,0 +1,87 @@
+<div ng-controller="MonitoringAlatSingleUseYangDiReUseCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Monitoring Alat Single Use Yang Di Re - Use'" disabled>
+			<div class="grid_12">
+				<div class="grid_3" style="margin:15px">
+					<label c-label item="item" c-label-text="tanggal"></label>
+				</div>
+				<div class="grid_6" style="margin:5px">
+					<input style="width:100%" kendo-date-picker k-ng-model="item.tanggal" k-max="now" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'"/>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_3" style="margin:15px">
+					<label c-label item="item" c-label-text="ruangan"></label>
+				</div>
+				<div class="grid_6" style="margin:5px">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'ruangan'" k-data-value-field="'ruangan'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceRuangan" />
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_3" style="margin:15px">
+					<label c-label item="item" c-label-text="namaAlatYangDiRe - Use"></label>
+				</div>
+				<div class="grid_6" style="margin:5px">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaAlat" k-data-text-field="'name'" k-data-value-field="'name'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceAlat" />
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_3" style="margin:15px">
+					<label c-label item="item" c-label-text="jumlah"></label>
+				</div>
+				<div class="grid_2" style="margin:5px">
+					<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlah"/>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_3" style="margin:15px">
+					<label c-label item="item" c-label-text="batasPensterilan"></label>
+				</div>
+				<div class="grid_6">
+					<div class="grid_1" ng-repeat="batas in batasPensterilan" style="margin-top:10px">
+						<input type="radio" name="{{batas.batas}}" id="{{batas.batas}}" class="k-radio" ng-model="item.batas" value="{{batas.batas}}" >
+						<label class="k-radio-label" for="{{batas.batas}}" style="margin:5px">{{batas.batas}}</label>
+					</div>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div kendo-grid k-data-source="sourceUjiVisual" k-selectable="'row'" k-columns="columnUjiVisual">
+				</div>
+			</div>
+		</c-panel>
+		<div class="grid_12">
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="catatan" style="margin-top:30px"></label>
+			</div>
+			<div class="grid_4">
+	                <textarea ng-model="item.catatan" style="width: 99%; height: 80px"></textarea>      
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_3" style="margin: 5px" text-align="right">
+				<label c-label item="item" c-label-text=""> </label>
+				<c-button ng-click="" style="width:100% !important">
+					<span style="font-size:10!important">Batal</span>
+				</c-button>
+			</div>
+			<div class="grid_3" style="margin: 5px" text-align="right">
+				<label c-label item="item" c-label-text=""> </label>
+				<c-button ng-click="Save()" style="width:100% !important">
+					<span style="font-size:10!important">Simpan</span>
+				</c-button>
+			</div>
+			<div class="grid_3" style="margin: 5px" text-align="right">
+				<label c-label item="item" c-label-text=""> </label>
+				<c-button ng-click="" style="width:100% !important">
+					<span style="font-size:10!important">Cetak</span>
+				</c-button>
+			</div>
+			<div class="grid_3" style="margin: 5px" text-align="right">
+				<label c-label item="item" c-label-text=""> </label>
+				<c-button ng-click="" style="width:100% !important">
+					<span style="font-size:10!important">Tutup</span>
+				</c-button>
+			</div>
+		</div>
+	</div>
+</div>

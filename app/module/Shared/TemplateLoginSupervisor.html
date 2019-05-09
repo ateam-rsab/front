@@ -1,0 +1,43 @@
+<div class="grid_12" style="float:left; margin:15px -20px 15px -20px">
+    <div class="popUpLoginSupervisor" ng-show="showContWindowLoginSupervisor">
+		 <div kendo-window="win1" id="windowLoginSupervisor"
+		 	k-title="'Login Supervisor'" 
+		 	k-width="'25%'"
+		 	k-draggable="true"
+  			k-position="{ 'top': '50%', 'left':'50%' }"
+		 	k-on-close="closeWindowLoginSupervisor()"
+		 	k-visible="showContWindowLoginSupervisor">
+
+            <!-- Username -->
+			<div class="grid_12">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Username"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="dataLoginSupervisor.UserName" required />
+				</div>
+			</div>
+
+			<!-- Password -->
+			<div class="grid_12">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Password"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="password" filter="" class="k-textbox" ng-model="dataLoginSupervisor.Password" required />
+				</div>
+			</div>
+
+			 <!-- Button -->
+			<div class="grid_12">
+				<div class="grid_6">
+					<button class='btnEdit' ng-click='loginSupervisor()'> Login </button><p style="color:red">{{msgErorLoginSupervisor}}</p>
+				</div>
+			</div>
+        </div>
+    </div>
+</div>

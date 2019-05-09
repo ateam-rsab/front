@@ -1,0 +1,100 @@
+<div ng-controller="PekerjaanCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Pekerjaan'" disabled>
+
+			<!-- kdPekerjaan -->
+<!-- 				<div class="grid_6">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="kdPekerjaan"></label>
+					</div>
+				    <div class="clear"></div>
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kdPekerjaan" />
+					</div>
+				</div> -->
+
+				<!-- pekerjaan -->
+				<div class="grid_6">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="pekerjaan"></label>
+					</div>
+				<div class="clear"></div>
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.pekerjaan" />
+					</div>
+				</div>
+
+				<!-- qPekerjaan -->
+<!-- 				<div class="grid_6">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="qPekerjaan"></label>
+					</div>
+				<div class="clear"></div>
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.qPekerjaan" />
+				</div>
+				</div> -->
+
+				<!-- reportDisplay -->
+				<div class="grid_6">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="reportDisplay"></label>
+					</div>
+					<div class="clear"></div>
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+					</div>
+				</div>
+
+				<!-- kodeExternal -->
+				<div class="grid_6">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="kodeExternal"></label>
+					</div>
+					<div class="clear"></div>
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+					</div>
+				</div>
+
+				<!-- namaExternal -->
+				<div class="grid_6">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="namaExternal"></label>
+					</div>
+					<div class="clear"></div>
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+					</div>
+				</div>
+
+				<!-- Pekerjaan -->
+				<div class="grid_12">
+					<div class="grid_12 headerBox">
+						<p>Pekerjaan</p>
+					</div>
+				<div class="clear"></div>
+
+				<!-- grid table -->
+				<div class="grid_12 borderBox">
+					<kendo-grid options="mainGridOptions"  k-data-source="dataSource" k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+				</div>
+				<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+		</c-panel>
+
+		<div class="grid_12">
+			<div class="grid_6"></div>
+			<div class="grid_2">
+				<button class="c-button success" ng-click="Save()">Simpan</button>
+			</div>
+			<div class="grid_2">
+				<button class="c-button" ng-click="Baru()">Baru</button>
+			</div>
+			<div class="grid_2">
+				<button class="c-button cancel" ng-click="batal()">Batal</button>
+			</div>
+		</div>
+</div>
+</div>

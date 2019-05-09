@@ -1,0 +1,281 @@
+[
+
+    {
+        "name": "Daftar Piutang Pasien",
+        "link": "#/DaftarPiutangPasien"
+    },
+    {
+        "name": "Daftar Pencatatan Piutang Layanan",
+        "link": "#/PencatatanPiutangDaftarLayanan"
+    },
+    {
+        "name": "Daftar Pencatatan Piutang Non Layanan",
+        "link": "#/PencatatanPiutangDaftarNonLayanan"
+    },
+    {
+        "name": "Daftar Collecting Piutang",
+        "link": "#/DaftarCollectingPiutang"
+    },   
+    {
+        "name": "Daftar Kartu Piutang Perusahaan",
+        "link": "#/DaftarKartuPiutangRev"
+    },
+    {
+        "name": "Daftar Pembayaran Piutang",
+        "link": "#/PembayaranPiutangPerusahaanPeriode"
+    },
+    {
+        "name": "Daftar Penerimaan Harian",
+        "link": "#/DaftarPenerimaanHarianPiutang"
+    },
+    {
+        "name": "Daftar Histori Piutang",
+        "link": "#/DaftarHisoriPiutang"
+    },
+    {
+        "name": "Master Perusahaan",
+        "link": "#/Rekanan2"
+    },
+    {
+        "name": "BPJS",
+        "children": [
+            {
+                "name": "Rekap Klaim By Diagnosa",
+                "link": "#/RekapKlaimByDiagnosa"
+            },
+            {
+                "name": "BPJS Klaim",
+                "link": "#/BPJSKlaim"
+            },
+            {
+                "name": "Data Checklist Klaim BPJS",
+                "link": "#/DataChecklistKlaim"
+            },
+            {
+                "name": "Gagal Hitung Klaim BPJS",
+                "link": "#/DataGagalKlaimBPJS"
+            }
+        ]
+    },
+    {
+        "name": "Laporan",
+        "children": [
+            {
+                "name": "Laporan Piutang Penjamin",
+                "link": "#/LaporanPiutangPenjamin"
+            },
+            {
+                "name": "Laporan Pasien Pulang",
+                "link": "#/LaporanPasienPulang"
+            }
+        ]
+    },
+    {
+    "name": "Inventori",
+    "children": [
+        {
+                "name": "Stok Barang",
+                "children": [
+                    {
+                        "name": "Data Stok Ruangan",
+                        "link": "#/Logistik/StokRuangan"
+                    },
+                    {
+                        "name": "Stok Opname",
+                        "link": "#/Logistik/StokOpname"
+                    },
+                    {
+                        "name": "Kartu Stok",
+                        "link": "#/KartuStok"
+                    },
+                    {
+                        "name": "Daftar Nilai Persediaan",
+                        "link": "#/DaftarNilaiPersediaan"
+                    }
+                ]
+            },
+            {
+                "name": "Daftar Transfer Barang",
+                "children": [
+                    {
+                        "name": "Order Barang",
+                        "link": "#/OrderBarangLogistik"
+                    },
+                    {
+                        "name": "Daftar Order Barang",
+                        "link": "#/DaftarOrderBarang"
+                    },
+                    {
+                        "name": "Kirim Barang",
+                        "link": "#/KirimBarangLogistik"
+                    },
+                    {
+                        "name": "Daftar Distribusi Barang",
+                        "link": "#/DaftarDistribusiBarang"
+                    }
+                ]
+            }
+    ]
+    },
+    {
+        "name": "Barang Investasi",
+        "children": [
+            {
+                "name": "Registrasi Barang Aset",
+                "link": "#/MasterBarangInvestasiRev"
+            },
+            {
+                "name": "Daftar Barang Investasi",
+                "link": "#/Logistik/DaftarBarangInvestasi"
+            },
+            {
+                "name": "Kirim Barang Aset",
+                "link": "#/KirimBarangAset"
+            }
+           
+        ]
+    },
+    {
+        "name": "SDM",
+        "children": [{
+            "name": "Input Logbook",
+            "link": "#/InputLogbook"
+        }, {
+            "name": "Indeks Kinerja Individu",
+            "link": "#/IndeksKinerjaIndividuSDM"
+        }, {
+            "name": "Permohonan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
+            "link": "#/PermohonanPerubahanStatusPegawai"
+        }, {
+			"name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
+			"link": "#/DaftarPenangguhanCuti"
+		}, {
+            "name": "Pengajuan Mutasi Pegawai",
+            "link": "#/PengajuanMutasiPegawai"
+        }, {
+            "name": "Pengajuan Resign Pegawai",
+            "link": "#/PengajuanResignPegawai"
+        }, {
+            "name": "Pengajuan Sanksi Pegawai",
+            "link": "#/PengajuanSanksiPegawai"
+        }, {
+            "name": "Daftar Pengajuan Mutasi Sanksi Resign",
+            "link": "#/DaftarPengajuanMutasiSanksiResign"
+        }, {
+			"name": "Monitoring Absensi",
+			"link": "#/MonitoringAbsensiPegawai"
+		}, {
+			"name": "InputLemburPegawaiUnitKerja",
+			"link": "#/InputLemburPegawaiUnitKerja"
+		},{
+            "name": "Verifikasi Uraian Tugas Bawahan",
+            "link": "#/VerifikasiUraianTugasPegawaiLogin"
+        },{
+                "name": "Pengajuan Pelatihan",
+                "children": [
+                    {
+                        "name": "Monitoring Pengajuan Pelatihan",
+                        "link": "#/MonitoringPengajuanPelatihan"
+                    },
+                    {
+                        "name": "Pengajuan Pelatihan",
+                        "link": "#/PermintaaanPelatihanRev"
+                    },
+                    {
+                        "name": "Daftar Undangan Pelatihan",
+                        "link": "#/DaftarUndanganPelatihan"
+                    },
+                    {
+                        "name": "Daftar Kehadiran Peserta Pelatihan",
+                        "link": "#/DaftarKehadiranPesertaPelatihan"
+                    },
+                    {
+                        "name": "Daftar Rekapitulasi Kehadiran Peserta Pelatihan",
+                        "link": "#/DaftarRekapitulasiKehadiran"
+                    }
+                ]
+            }]
+    }, 
+   {
+        "name": "IP3RS",
+        "children": [
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/PermintaanPerbaikandariRuangan"
+            },
+            {
+                "name": "Respond Perbaikan",
+                "link": "#/RespondPerbaikan"
+            } 
+        ]
+    }, 
+    {
+        "name": "Tata Usaha",
+        "children": [{
+                "name": "Membuat Draft Surat",
+                "link": "#/BuatDraftSurat"
+            },
+            {
+                "name": "Daftar Draft",
+                "link": "#/DaftarDraft"
+            },
+            {
+                "name": "Daftar Draft Surat Masuk",
+                "link": "#/DaftarDraftSuratMasuk"
+            },
+            {
+                "name": "Dokumen Verbal Konsep",
+                "link": "#/DokumenVerbalKonsep/"
+            },
+            {
+                "name": "Verbal Konsep",
+                "link": "#/VerbalKonsep/"
+            },
+            {
+                "name": "Surat Masuk Internal dan Eksternal",
+                "link": "#/SuratMasukInternaldanEksternal"
+            },
+            {
+                "name": "Daftar Surat Masuk Internal Eksternal",
+                "link": "#/DaftarSuratMasukInternalEksternal"
+            },
+            {
+                "name": "Nota Dinas",
+                "link": "#/NotaDanDisposisi"
+            },
+            {
+                "name": "Daftar Nota Dinas",
+                "link": "#/ListNotaDinas"
+            }
+        ]
+    },
+    {
+    "name": "Setting",
+    "children": [
+        {
+            "name": "Ubah Password",
+            "link": "#/UbahPassword"  
+        }
+    ]
+},
+{
+    "name":"Aplikasi IT",
+    "children":[
+        {
+            "name": "Permintaan Perbaikan dari Ruangan",
+            "link": "#/RevPermintaanPerbaikandariRuanganITNew"
+        }
+    ]
+},
+{
+    "name": "Aplikasi Laundry",
+    "children": [
+        {
+            "name": "Permintaan Linen Bersih",
+            "link": "#/PermintaanLinenByRuangan"
+        },{
+			"name": "Verifikasi",
+			"link": "#/VerifikasiTerima"
+		}
+]}
+]

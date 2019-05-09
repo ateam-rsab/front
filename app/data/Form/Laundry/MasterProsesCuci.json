@@ -1,0 +1,41 @@
+{
+	"model":{
+		"kodeProsesCuci" : "",
+		"prosesCuci" : "",
+		"kodeEksternal" : "",
+		"namaEksternal" : "",
+	   	"statusEnabled" : ""
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "kodeProsesCuci",
+			"messagesRequired" : "",
+			"caption" : "Kode Proses Cuci"
+		},
+		{
+			"isNull" : "true",
+			"name" : "prosesCuci",
+			"messagesRequired" : "",
+			"caption" : "Proses Cuci"
+		},
+		{
+			"isNull" : "true",
+			"name" : "kodeEksternal",
+			"messagesRequired" : "",
+			"caption" : "Kode Eksternal"
+		},
+		{
+			"isNull" : "true",
+			"name" : "namaEksternal",
+			"messagesRequired" : "",
+			"caption" : "Nama Eksternal"
+		},
+		{
+			"isNull" : "true",
+			"name" : "statusEnabled",
+			"messagesRequired" : "",
+			"caption" : "Status Enabled"
+		}
+	]
+}

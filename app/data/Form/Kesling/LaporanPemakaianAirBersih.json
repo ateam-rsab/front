@@ -1,0 +1,29 @@
+
+
+{
+	"model":{
+	    "periodeAwal" : "",
+	    "periodeAkhir" : "",
+	    "penandatangan" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "periodeAwal",
+			"messagesRequired" : "",
+			"caption" : "Periode Awal"
+		},
+		{
+			"isNull" : "true",
+			"name" : "periodeAkhir",
+			"messagesRequired" : "",
+			"caption" : "Periode Akhir"
+		},
+		{
+			"isNull" : "true",
+			"name" : "penandatangan",
+			"messagesRequired" : "",
+			"caption" : "Penandatangan"
+		}
+  ]
+}

@@ -1,0 +1,27 @@
+{
+	"model":{
+		"periodeAwal":"",
+		"sd":"",
+		"periodeAkhir":""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "periodeAwal",
+			"messagesRequired" : "",
+			"caption" : "Periode Awal"
+		},{
+			"isNull" : "true",
+			"name" : "sd",
+			"messagesRequired" : "",
+			"caption" : "s/d"
+		},{
+			"isNull" : "true",
+			"name" : "periodeAkhir",
+			"messagesRequired" : "",
+			"caption" : "Periode Akhir"
+		}
+
+	]
+}

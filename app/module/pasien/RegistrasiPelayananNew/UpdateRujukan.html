@@ -1,0 +1,86 @@
+<div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
+<div class="panel panel-default container_12">
+    <div class="panel-body">
+        <div class="grid_12">
+            <div class="grid_4">
+              <div class="grid_12"> 
+                <div class="grid_6" style="padding-left:6px">
+         
+                    <div class="grid_12" style="margin-top:5px">
+                        <input type="checkbox" class="k-checkbox" ng-model="model.cekNoRujukan" id="cekNoRujukan">
+                        <label class="c-label k-checkbox-label" for="cekNoRujukan">No. Rujukan</label>
+                    </div>
+                    <div class="grid_12" style="position:relative" >
+                        <input ng-blur="checkNoRujukanPeserta()" class="k-textbox" ng-model="item.noRujukan">
+                        <img ng-show="isLoadingNoKartu" style="position:absolute;right:0;top:7px;" height="24" src="stylesheets\Flat\loading-image.gif" />
+                    </div>
+    
+          
+                </div>
+
+                <div class="grid_6">
+                    <label c-label>Tanggal Rujukan</label>
+                    <input style="width: 100% " k-max="now" kendo-date-time-picker k-ng-model="item.tglRujukan " k-format="'dd-MM-yyyy HH:mm:ss'" />
+                </div>
+            </div>
+
+            <div class="grid_12" >
+                <div class="grid_6">
+                    <label c-label>Nama Tempat Dirujuk</label>
+                    <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.ppkDirujuk" />
+                </div>
+            <div class="grid_6">
+                    <label c-label>Tipe Rujukan</label>
+                      <input style="width: 100%; " kendo-combo-box k-ng-model="item.tipeRujukan" k-data-text-field="'tiperujukan'" k-filter="'contains'" k-data-value-field="'value'" k-auto-bind="false" k-data-source="listTipeRujukan"/>
+                </div>
+            </div>
+
+            <div class="grid_12" >
+             <div class="grid_6" >
+                <label c-label>Jenis Pelayanan :</label>
+                <!-- </div> -->
+                <!-- <div class="grid_7"> -->
+                    <div class="grid_6" ng-repeat="listjenispelayanan in jenisPelayanan">
+                        <input type="radio" name="{{listjenispelayanan.jenispelayanan}}" id="{{listjenispelayanan.idjenispelayanan}}" class="k-radio" ng-model="item.jenisPelayanan" ng-value="listjenispelayanan">
+                        <label class="k-radio-label" for="{{listjenispelayanan.idjenispelayanan}}" style="margin:5px">{{listjenispelayanan.jenispelayanan}}</label>
+                    </div>
+                </div>
+                    <div class="grid_6">
+                        <label c-label>Poli Rujukan</label>
+                        <input style="width: 100%; " kendo-combo-box k-ng-model="item.poliTujuan" k-data-text-field="'namaruangan'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="ruangans"/>
+                    </div>
+                    <div class="grid_4" >
+                    </div>
+                    <div class="grid_12" style="padding-left:6px;padding-right:6px;margin-top: 10px">
+                        <label c-label>Catatan</label>
+                        <textarea type="input" class="k-textbox" rows="2" ng-model="item.catatan"></textarea>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_8">
+                        </div>
+                        <div class="grid_2">
+                            <button style="margin-top:6px;" class="k-button k-primary k-button-icon" ng-click="generateSep(item)"><span class="k-sprite k-icon k-i-search">Find</span></button>
+                            <!--<em style="margin-top:6px;" ng-click="findDataBySep(item.namaPasien)" id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-search">Find</span></em>-->
+                        </div>
+                        <div class="grid_2">
+                            <em style="margin-top:6px;" ng-click='clear()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Clear</span></em>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_8">
+                <div class="grid_12">
+                    <label c-label>Results :</label>
+                </div>
+                <pre id="json" class="json-viewer"></pre>
+            </div>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+.json-viewer {
+    margin-top:26px;
+    padding: 2em 0 2em 5em;
+    background: lightgrey;
+}
+</style>

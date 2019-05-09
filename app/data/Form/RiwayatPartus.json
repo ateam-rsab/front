@@ -1,0 +1,48 @@
+{
+  "model":{
+    "MasukKamarBersalinTgl" : "",
+    "Tanggal" : "",
+    "Jam" : "",
+    "HISMelaluiTanggal" : "",
+    "HISJam" : "",
+    "Ketuban" : ""
+  },
+  "attributes" : [
+    {
+      "isNull" : "true",
+      "name" : "MasukKamarBersalinTgl",
+      "messagesRequired" : "Fiksasi Harus Diisi",
+      "caption" : "Masuk kamar bersalin tanggal"
+    },
+    {
+      "isNull" : "true",
+      "name" : "Tanggal",
+      "messagesRequired" : "Hubungan Pasien Dengan Anggota Keluarga",
+      "caption" : "Tanggal"
+    },
+    {
+      "isNull" : "true",
+      "name" : "Jam",
+      "messagesRequired" : "Hubungan Pasien Dengan Anggota Keluarga",
+      "caption" : "Jam"
+    },
+    {
+      "isNull" : "true",
+      "name" : "HISMelaluiTanggal",
+      "messagesRequired" : "Hubungan Pasien Dengan Anggota Keluarga",
+      "caption" : "HIS melalui tanggal"
+    },
+    {
+      "isNull" : "true",
+      "name" : "HISJam",
+      "messagesRequired" : "Hubungan Pasien Dengan Anggota Keluarga",
+      "caption" : "Jam"
+    },
+    {
+      "isNull" : "true",
+      "name" : "Ketuban",
+      "messagesRequired" : "Hubungan Pasien Dengan Anggota Keluarga",
+      "caption" : "Ketuban"
+    }
+  ]
+} 

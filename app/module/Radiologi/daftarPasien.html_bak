@@ -1,0 +1,173 @@
+<div ng-controller="RadiologiDaftarPasienCtrl">
+    <div ng-show="true">
+        <div ng-show="notDetail" class="panel panel-default">
+            <div class="panel-body">
+                <div class="grid_12" ng-show="notDetail">
+                    <div class="grid_6">
+                        <div class="grid_12">
+                            <label c-label c-label-text="TanggalMasuk" real></label>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_6">
+                                <input style="width: 100%" k-value='now' k-ng-model='tglAwal' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                            </div>
+                            <div class="grid_6">
+                                <input style="width: 100%" k-value='now' k-ng-model='tglAkhir' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_6">
+                        <label c-label c-label-text="namaDokterPerujuk" real></label>
+                        <input style="width: 100%; " kendo-combo-box k-ng-model="dokter " k-data-text-field=" 'namaLengkap' " k-filter=" 'contains' " k-data-value-field=" 'value' " k-auto-bind="false " k-data-source="dokters " />
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_3">
+                            <label c-label c-label-text="NamaPasien" real></label>
+                            <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="namaPasien" />
+                        </div>
+                        <div class="grid_3">
+                            <label c-label c-label-text="NoRekamMedis" real></label>
+                            <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="noCm" />
+                        </div>
+                        <div class="grid_3">
+                            <label c-label c-label-text="tanggalLahir" real></label>
+                            <input style="width: 100%" k-value='now' k-ng-model='tglLahir' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                        </div>
+                        <div class="grid_3">
+                            <label c-label c-label-text="asalRuangan" real></label>
+                            <input style="width: 100%; " kendo-combo-box k-ng-model="ruangan " k-data-text-field=" 'namaRuangan' " k-filter=" 'contains' " k-data-value-field=" 'value' " k-auto-bind="false " k-data-source="ruangans " />
+                        </div>
+
+                    </div>
+                    <div class="grid_12">
+                        <c-button class="c-button" style="padding:0px" click='refresh'>
+                            <span c-translate>CARI</span>
+                        </c-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="panel panel-default">
+
+            <div class="panel-heading">{{title}}</div>
+            <div class="panel-body" style="padding:0px">
+
+                <div class="grid_12">
+                    <div class="k-grid k-widget">
+                        <div class="k-grid-header">
+                            <div class="k-grid-header-wrap k-auto-scrollable">
+                                <table>
+                                    <tr>
+                                        <th class="k-header" style="width:25px">
+                                            Cito
+                                        </th>
+                                        <th style="width:150px" class="k-header">
+                                            No. Pemesanan
+                                        </th>
+                                        <th style="width:150px" class="k-header">
+                                            No. Rekam medis
+                                        </th>
+                                        <th style="width:150px" class="k-header">
+                                            Nama Pasien
+                                        </th>
+                                        <th style="width:155px" class="k-header">
+                                            Tanggal Registrasi
+                                        </th>
+                                        <th style="width:100px" class="k-header">
+                                            Tanggal Lahir
+                                        </th>
+                                        <th style="width:200px" class="k-header">
+                                            Asal Ruangan
+                                        </th>
+                                        <th class="k-header">
+                                            Dokter
+                                        </th>
+                                        <!--<th style="width:200px" class="k-header">
+                                            Status
+                                        </th>-->
+                                    </tr>
+
+
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="k-grid-content k-auto-scrollable" style="max-height:256px">
+                            <table role="grid" data-role="selectable" class="k-selectable">
+                                <tbody role="rowgroup">
+
+                                    <tr role="row" class="ng-scope" ng-repeat="data in listDataPasien" ng-style="data.myStyle" ng-click='selected(data)' ng-class="{'k-state-selected':item ===data}">
+                                        <td role="gridcell" style="width:25px">
+                                            <input ng-show="data.strukOrder.cito ===true" disabled="" type="checkbox" checked="checked">
+                                            <input ng-show="data.strukOrder.cito !==true" disabled="" type="checkbox">
+                                        </td>
+                                        <td style="width:150px" role="gridcell">
+                                            <span ng-bind="data.strukOrder.noOrderIntern" class="ng-binding"></span></td>
+                                        <td style="width:150px" role="gridcell">
+                                            <span ng-bind="data.pasienDaftar.pasien.noCm" class="ng-binding"></span></td>
+                                        <td style="width:150px" role="gridcell"><span ng-bind="data.pasien.namaPasien" class="ng-binding">ii</span></td>
+                                        <td style="width:155px" role="gridcell">{{data.strukOrder.tglOrder | date:'dd-MM-yyyy HH:mm:ss'}}</td>
+                                        <td style="width:100px" role="gridcell">{{data.pasienDaftar.pasien.tglLahir | date:'dd-MM-yyyy'}}</td>
+                                        <td style="width:200px" role="gridcell"><span ng-bind="data.pasienDaftar.ruangan.namaRuangan" class="ng-binding">Laboratorium</span></td>
+                                        <td role="gridcell"><span ng-bind="data.strukOrder.pegawaiOrder.namaExternal" class="ng-binding">Belum ada dokter</span></td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!--<kendo-grid k-ng-model="item" k-data-source="listDataPasien" k-selectable="'row'" k-height="'500'" k-sortable="'true'" k-columns="Column"></kendo-grid>-->
+                </div>
+                <div style="grid_12">
+                    <span id="square" style="background-color:#FFFC38">&nbsp;&nbsp;&nbsp;</span>
+                    <span>Menunggu</span>
+                    <span id="square" style="background-color:#FF3BAD">&nbsp;&nbsp;&nbsp;</span>
+                    <span>Sample di Terima</span>
+                    <span id="square" style="background-color:#1da214">&nbsp;&nbsp;&nbsp;</span>
+                    <span>Selesai Periksa</span>
+
+                    <!--<span id="square" style="background-color:#f6a8ff">&nbsp;&nbsp;&nbsp;</span>
+                    <span>Release Analis</span>
+                    <span id="square" style="background-color:#701afb">&nbsp;&nbsp;&nbsp;</span>
+                    <span>Validasi</span>-->
+                    <span id="square" style="background-color:#89c9f7">&nbsp;&nbsp;&nbsp;</span>
+                    <span>Hasil di Ambil</span>
+
+                </div>
+            </div>
+        </div>
+        <div class="grid_12 place_button" ng-show="notDetail">
+            <!--<div class="grid_3">
+                <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" click="AmbilSpesimen">
+                    <span class="title"><label  c-label c-label-text='persiapan' font-size="13"></label></span>
+                </c-button>
+            </div>-->
+            <div class="grid_2">
+                <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" click="PemeriksaanPasien">
+                    <span class="title"><label  c-label c-label-text='pemeriksaan' font-size="13"></label></span>
+                </c-button>
+            </div>
+            <div class="grid_2">
+                <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" click="MasukanHasil">
+                    <span class="title"><label  c-label c-label-text='masukanHasil' font-size="13"></label></span>
+                </c-button>
+            </div>
+            <div class="grid_2">
+                <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" click="PengambilanHasil">
+                    <span class="title"><label  c-label c-label-text='penyerahanHasil' font-size="13"></label></span>
+                </c-button>
+            </div>
+            <div class="grid_2">
+                <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" click="Mapping">
+                    <span class="title"><label  c-label c-label-text='Mapping Gambar' font-size="13"></label></span>
+                </c-button>
+            </div>
+            <div class="grid_2">
+                <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" click="selesaiPeriksa">
+                    <span class="title"><label  c-label c-label-text='Selesai Periksa' font-size="13"></label></span>
+                </c-button>
+            </div>
+        </div>
+    </div>
+</div>

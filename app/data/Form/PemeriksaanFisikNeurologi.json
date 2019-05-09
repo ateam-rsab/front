@@ -1,0 +1,34 @@
+{
+	"model":{
+	    "Kesadaran" : "coma",
+	    "GangguanNeurologis" : "Tidak Ada",
+		"Keterangan" : "",
+		"KeteranganGangguan" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "Kesadaran",
+			"messagesRequired" : "Kesadaran Darah Harus Diisi",
+			"caption" : "Kesadaran"
+		},
+		{
+			"isNull" : "true",
+			"name" : "GangguanNeurologis",
+			"messagesRequired" : "Gangguan Neurologis Harus Diisi",
+			"caption" : "Gangguan Neurologis"
+		},
+		{
+			"isNull" : "false",
+			"name" : "Keterangan",
+			"messagesRequired" : "",
+			"caption" : "Keterangan"
+		},
+		{
+			"isNull" : "false",
+			"name" : "KeteranganGangguan",
+			"messagesRequired" : "",
+			"caption" : "KeteranganGangguan"
+		}
+  ]
+}

@@ -1,0 +1,53 @@
+[
+	{ 
+		"id": "1",
+		"noResep": "00001",
+		"tanggal": "Farmasi1",
+		"jamMasuk": "Farmasi1",
+		"waktuLayanan": "19 juni 2016",
+		"jamSelesai": "Farmasi1",
+		"unitLayanan": "Farmasi1",
+		"keterangan": "Farmasi1"
+	},
+	{ 
+		"id": "2",
+		"noResep": "00002",
+		"tanggal": "Farmasi2",
+		"jamMasuk": "Farmasi2",
+		"waktuLayanan": "19 juni 2016",
+		"jamSelesai": "Farmasi2",
+		"unitLayanan": "Farmasi2",
+		"keterangan": "Farmasi2"
+	},
+	{ 
+		"id": "3",
+		"noResep": "00003",
+		"tanggal": "Farmasi3",
+		"jamMasuk": "Farmasi3",
+		"waktuLayanan": "19 juni 2016",
+		"jamSelesai": "Farmasi3",
+		"unitLayanan": "Farmasi3",
+		"keterangan": "Farmasi3"
+	},
+	{ 
+		"id": "4",
+		"noResep": "00004",
+		"tanggal": "Farmasi4",
+		"jamMasuk": "Farmasi4",
+		"waktuLayanan": "19 juni 2016",
+		"jamSelesai": "Farmasi4",
+		"unitLayanan": "Farmasi4",
+		"keterangan": "Farmasi4"
+	},
+	{ 
+		"id": "5",
+		"noResep": "00005",
+		"tanggal": "Farmasi5",
+		"jamMasuk": "Farmasi5",
+		"waktuLayanan": "19 juni 2016",
+		"jamSelesai": "Farmasi5",
+		"unitLayanan": "Farmasi5",
+		"keterangan": "Farmasi5"
+	}
+	
+]

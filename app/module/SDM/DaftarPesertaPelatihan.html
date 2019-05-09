@@ -1,0 +1,61 @@
+<div ng-controller="DaftarPesertaPelatihanCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Daftar Peserta Yang Pernah Mengikuti Pelatihan'"disabled>      
+		<div class="panel-body">
+				<div class="grid_9" >
+							<div class="grid_3" style="margin-top: 0">
+								<div class="grid_12" style="margin-left:5px">
+									
+								</div>
+								<div class="grid_12" style="margin-top:12px">
+										<label c-label item="item" c-label-text="Nama Pelatihan"></label>
+								</div>
+							</div>
+							
+							<div class="grid_3" style="margin-top: 0">
+								
+								<div class="grid_12" style="margin: 0 0 0 -26px;">
+										 <input ng-disabled="isDisable" style="width: 100%;" kendo-combo-box k-ng-model="item.jenisKelamin" k-data-text-field="'jenisKelamin'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListJenisKelamin" />
+								</div>
+							</div>
+							
+						</div>
+						</div>
+		
+	
+		<div class="grid_12">
+				<kendo-grid  k-data-source="daftarBahanLinen" k-pageable="true" k-selectable="'row'" k-columns="columnLaporanUjiHasil"  style="font-size: small;">
+            	</kendo-grid>
+					
+			</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		</c-panel>
+			<div class="grid_12">
+							<div class="grid_8" style="float:left">
+							
+							
+							
+							<div class="grid_2 " style="margin-top: 25px ">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Cetak</span>
+									</button>
+							</div>
+							<div class="grid_2 " style="margin-top: 25px ">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Batal</span>
+									</button>
+							</div>
+							</div>
+						</div>
+		</div>
+	</div>
+</div>
+

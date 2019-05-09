@@ -1,0 +1,104 @@
+<div ng-controller="RegistrasiReservasiOnlineCtrl">
+    <core-busy busy="isLoading"></core-busy>
+    <div class="grid_6">
+        <div class="grid_12">
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="JamPraktekDokter"></label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.JamPraktekDokter" k-data-text-field="'JamPraktekDokter'" k-filter="'contains'" k-data-value-field="'value'" k-auto-bind="false" k-data-source="jamPraktekDokter" />
+            </div>
+            <div class="grid_4">
+                <label c-label c-label-text="Dokter"></label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.Dokter" k-data-text-field="'Dokter'" k-filter="'contains'" k-data-value-field="'value'" k-auto-bind="false" k-data-source="dokters" />
+            </div>
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="Poliklinik"></label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.Poliklinik" k-data-text-field="'Poliklinik'" k-filter="'contains'" k-data-value-field="'value'" k-auto-bind="false" k-data-source="polikliniks" />
+            </div>
+            <div class="grid_12">
+                <table class="table table-striped">
+                    <tr>
+                        <th><label c-label item="item" c-label-text="Poliklinik"></label></th>
+                        <th><label c-label item="item" c-label-text="JamPraktekDokter"></label></th>
+                        <th><label c-label item="item" c-label-text="Dokter"></label></th>
+                    </tr>
+                    <tr>
+                        <td><label c-label item="item" c-label-text="Poliklinik"></label></td>
+                        <td><label c-label item="item" c-label-text="JamPraktekDokter"></label></td>
+                        <td><label c-label item="item" c-label-text="Dokter"></label></td>
+                    </tr>
+                    <tr>
+                        <td><label c-label item="item" c-label-text="Poliklinik"></label></td>
+                        <td><label c-label item="item" c-label-text="JamPraktekDokter"></label></td>
+                        <td><label c-label item="item" c-label-text="Dokter"></label></td>
+                    </tr>
+                    <tr>
+                        <td><label c-label item="item" c-label-text="Poliklinik"></label></td>
+                        <td><label c-label item="item" c-label-text="JamPraktekDokter"></label></td>
+                        <td><label c-label item="item" c-label-text="Dokter"></label></td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <c-form item="item">
+        <div class="grid_6">
+            <div class="grid_12">
+                <div class="grid_6">
+                    <label c-label item="item" c-label-text="NamaPasien"></label> {{item.NamaPasien}}
+                </div>
+                <div class="grid_6">
+                    <label c-label c-label-text="NamaKeluarga"></label> {{item.NamaKeluarga}}
+                </div>
+                <div class="grid_6">
+                    <label c-label item="item" c-label-text="JenisKelamin"></label> {{item.JenisKelamin}}
+                </div>
+                <div class="grid_6">
+                    <label c-label c-label-text="TglLahir"></label> {{item.TglLahir}}
+                </div>
+                <div class="grid_6">
+                    <label c-label c-label-text="AlamatPasien"></label> {{item.AlamatPasien}}
+                </div>
+            </div>
+
+            <div class="grid_12">
+                <div class="grid_6">
+                    <label c-label item="item" c-label-text="NoCm"></label>
+                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NoCm" />
+                </div>
+                <div class="grid_6">
+                    <label c-label c-label-text="TglLahir"></label>
+                    <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.TglLahir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                </div>
+                <div class="grid_6">
+                    <label c-label item="item" c-label-text="Poliklinik"></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.Poliklinik" k-data-text-field="'Poliklinik'" k-filter="'contains'" k-data-value-field="'value'" k-auto-bind="false" k-data-source="polikliniks" />
+                </div>
+                <div class="grid_6">
+                    <label c-label item="item" c-label-text="Pembayaran"></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.Pembayaran" k-data-text-field="'Pembayaran'" k-filter="'contains'" k-data-value-field="'value'" k-auto-bind="false" k-data-source="pembayarans" />
+                </div>
+                <div class="grid_6">
+                    <label c-label item="item" c-label-text="Hari"></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.Hari" k-data-text-field="'Hari'" k-filter="'contains'" k-data-value-field="'value'" k-auto-bind="false" k-data-source="haris" />
+                </div>
+                <div class="grid_6">
+                    <label c-label item="item" c-label-text="JamPraktek"></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.JamPraktek" k-data-text-field="'JamPraktek'" k-filter="'contains'" k-data-value-field="'value'" k-auto-bind="false" k-data-source="jamPraktek" />
+                </div>
+            </div>
+        </div>
+        <div class="grid_12" style="position:absolute;bottom:0px;left:0px;">
+            <div class="grid_6">
+                <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px" item="item" size="36" position="'left'" is-back icon="'icon-prev'">
+                    <span class="title">Kembali</span>
+                </c-button>
+            </div>
+            <div class="grid_6">
+                <c-button ng-show="!isLoading" link="'#/ReservasiOnline/Pembayaran'" style="width: 100%; font-size: 24px" item="item" size="36" position="'right'" is-validate click="Lanjutkan" icon="'icon-next'">
+                    <span class="title">Proses</span>
+                </c-button>
+            </div>
+        </div>
+    </c-form>
+</div>

@@ -1,0 +1,211 @@
+<div ng-controller="DepartemenCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Departemen'" disabled>
+
+			<!-- alamatEmail -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="alamatEmail"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.alamatEmail" />
+				</div>
+			</div>
+
+			<!-- faksimile -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="faksimile"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.faksimile" />
+				</div>
+			</div>
+
+			<!-- fixedPhone -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="fixedPhone"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.fixedPhone" />
+				</div>
+			</div>
+
+			<!-- kdDepartemen -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kdDepartemen"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kdDepartemen" />
+				</div>
+			</div>
+
+			<!-- jenisPerawatan -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="jenisPerawatan"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPerawatan" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listjenisPerawatan" />
+				</div>
+			</div>
+
+			<!-- jenisPerawatanId -->
+			
+
+			<!-- pegawaiKepala -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="pegawaiKepala"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.pegawaiKepala" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listpegawaiKepala" />
+				</div>
+			</div>
+
+			<!-- pegawaiKepalaId -->
+			
+
+			<!-- mobilePhone -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="mobilePhone"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.mobilePhone" />
+				</div>
+			</div>
+
+			<!-- namaDepartemen -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="namaDepartemen"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaDepartemen" />
+				</div>
+			</div>
+
+			<!-- prefixNoAntrian -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="prefixNoAntrian"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.prefixNoAntrian" />
+				</div>
+			</div>
+
+			<!-- qDepartemen -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="qDepartemen"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.qDepartemen" />
+				</div>
+			</div>
+
+			<!-- website -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="website"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.website" />
+				</div>
+			</div>
+
+			<!-- reportDisplay -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="reportDisplay"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+				</div>
+			</div>
+
+			<!-- kodeExternal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kodeExternal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+				</div>
+			</div>
+
+			<!-- namaExternal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="namaExternal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+				</div>
+			</div>
+
+			<!-- Departemen -->
+			<div class="grid_12">
+				<div class="grid_12 headerBox">
+					<p>Departemen</p>
+				</div>
+				<div class="clear"></div>
+
+				<!-- grid table -->
+				<div class="grid_12 borderBox">
+					<kendo-grid options="mainGridOptions"  k-data-source="dataSource" k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_12">
+				<div class="grid_8"></div>
+				<div class="grid_2" ng-show="showEdit">
+					<button class="c-button" ng-click="edit()">Edit</button>
+				</div>
+				<div class="grid_2" ng-hide="showEdit">
+					<button class="c-button" ng-click="tambah()">Tambah</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="batal()">Batal</button>
+				</div>
+			</div>
+
+
+
+		</c-panel>
+	</div>
+</div>

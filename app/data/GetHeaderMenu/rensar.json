@@ -1,0 +1,10 @@
+[{
+    "caption": "Dashboard",
+    "link": "/bi-rensar",
+    "shortcut": "ctrl+1"
+},
+{
+    "caption": "SDM",
+    "link": "#/DashbboardSDM",
+    "shortcut": "ctrl+1"
+}]

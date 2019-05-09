@@ -1,0 +1,56 @@
+[{
+    "id": 1,
+    "kdProfile": "0",
+    "kdStatusPulang": "1",
+    "statusPulang": "Diketahui / diizinkan oleh dokter",
+    "reportDisplay": "Dirawat inap",
+    "isSendOut": "0",
+    "qStatusPulang": "1",
+    "kodeExternal": "01",
+    "namaExternal": "Dirawat inap",
+    "statusEnabled": "1"
+}, {
+    "id": 2,
+    "kdProfile": "0",
+    "kdStatusPulang": "2",
+    "statusPulang": "Atas permintaan sendiri / keluarga",
+    "reportDisplay": "Diizinkan pulang",
+    "isSendOut": "0",
+    "qStatusPulang": "2",
+    "kodeExternal": "02",
+    "namaExternal": "Diizinkan pulang",
+    "statusEnabled": "1"
+}, {
+    "id": 3,
+    "kdProfile": "0",
+    "kdStatusPulang": "3",
+    "statusPulang": "Melarikan diri",
+    "reportDisplay": "Dikirim ke panti lain",
+    "isSendOut": "1",
+    "qStatusPulang": "3",
+    "kodeExternal": "03",
+    "namaExternal": "Dikirim ke panti lain",
+    "statusEnabled": "1"
+}, {
+    "id": 4,
+    "kdProfile": "0",
+    "kdStatusPulang": "4",
+    "statusPulang": "Dirujuk ke rumah sakit lain",
+    "reportDisplay": "Dikirim ke rs lain",
+    "isSendOut": "1",
+    "qStatusPulang": "4",
+    "kodeExternal": "04",
+    "namaExternal": "Dikirim ke rs lain",
+    "statusEnabled": "1"
+}, {
+    "id": 5,
+    "kdProfile": "0",
+    "kdStatusPulang": "5",
+    "statusPulang": "Dirujuk balik ke rs / puskesmas / klinik",
+    "reportDisplay": "Dirujuk ke rs lebih rendah",
+    "isSendOut": "1",
+    "qStatusPulang": "5",
+    "kodeExternal": "05",
+    "namaExternal": "Dirujuk ke rs lebih rendah",
+    "statusEnabled": "1"
+}]

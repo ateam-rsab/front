@@ -1,0 +1,41 @@
+{
+	"model":{
+	    "tanggalPenutupan" : "",
+	    "cariBarang" : "",
+	    "keterangan" : "",
+	    "totalStokReal" : "",
+	    "totalStokSystem" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "tanggalPenutupan",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Penutupan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "cariBarang",
+			"messagesRequired" : "",
+			"caption" : "Cari Barang"
+		},
+		{
+			"isNull" : "true",
+			"name" : "keterangan",
+			"messagesRequired" : "",
+			"caption" : "Keterangan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "totalStokReal",
+			"messagesRequired" : "",
+			"caption" : "Total Stok Real"
+		},
+		{
+			"isNull" : "true",
+			"name" : "totalStokSystem",
+			"messagesRequired" : "",
+			"caption" : "Total Stok System"
+		}
+  ]
+}

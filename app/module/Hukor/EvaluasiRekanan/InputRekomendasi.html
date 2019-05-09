@@ -1,0 +1,76 @@
+<div ng-controller="InputRekomendasiCtrl">
+    <c-panel item="item" header="'Input Rekomendasi'" disabled>
+        <div class="panel panel-default container_12">
+            <div class="panel-body">
+                <div class="panel panel-default container_12">
+                    <div class="grid_12">
+
+                        <div class="grid_2" style="margin-top: 10px">
+                            <div class="grid_10">
+                                <label c-label item="item" c-label-text="NoEvaluasi"></label>
+                            </div>
+                            <div class="grid_2" align="right">:</div>
+                        </div>
+                        <div class="grid_3" style="margin: 5px 0 0 10px;">
+                            <input c-text-box type="input" filter="''" class="k-textbox"
+                                   ng-model="item.noEvaluasi" ng-disabled="true"/>
+                        </div>
+                        <div class="grid_2" style="margin-top: 10px">
+                            <div class="grid_10">
+                                <label c-label item="item" c-label-text="TanggalEvaluasi"></label>
+                            </div>
+                            <div class="grid_2" align="right">:</div>
+                        </div>
+                        <div class="grid_3" style="margin: 5px 0 0 10px;">
+                            <input style="width: 100%" k-ng-model='item.tglEvaluasi' kendo-date-picker
+                                   placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" init='now' readonly/>
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_2" style="margin-top: 10px">
+                            <div class="grid_10">
+                                <label c-label item="item" c-label-text="Rekanan"></label>
+                            </div>
+                            <div class="grid_2" align="right">:</div>
+                        </div>
+                        <div class="grid_3" style="margin: 5px 0 0 10px;">
+                            <!-- <input readonly="true" style="width: 100%;" kendo-combo-box k-ng-model="item.rekanan" k-data-text-field="'namaRekanan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRekanans" />
+                            -->
+                            <input c-text-box type="input" filter="''" class="k-textbox"
+                                   ng-model="item.namaRekanan" readonly="true"/>
+                        </div>
+                        <div class="grid_2" style="margin-top: 10px">
+                            <div class="grid_10">
+                                <label c-label item="item" c-label-text="RuanganTujuan"></label>
+                            </div>
+                            <div class="grid_2" align="right">:</div>
+                        </div>
+                        <div class="grid_3" style="margin: 5px 0 0 10px;">
+                            <input c-text-box type="input" filter="''" class="k-textbox"
+                                   ng-model="item.ruangan" readonly="true"/>
+                        </div>
+                    </div>
+
+                    <br/><br/>
+                    <div class="grid_11" style="margin: 10px 0 0 10px;">
+                        <div class="grid_12">
+                            <div kendo-grid k-data-source="dataRekomendasi" k-selectable="'row'"
+                                 k-options="colDataRekomendasi"></div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="grid_12">
+                        <div class="grid_8"></div>
+                        <div class="grid_3" style="margin-top: 25px">
+                            <button class="c-button" ng-show="!isLoading" item="item" is-validate
+                                    ng-click="simpan()">
+                                <span class="title">Simpan</span></button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </c-panel>
+</div>

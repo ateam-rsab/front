@@ -1,0 +1,28 @@
+{
+	"model":{
+		"kodeJenisPengadaan" : "",
+		"namaJenisPengadaan":"",
+		"ketJenisPengadaan":""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "kodeJenisPengadaan",
+			"messagesRequired" : "",
+			"caption" : "Kode Jenis Pengadaan"
+		},{
+			"isNull" : "true",
+			"name" : "namaJenisPengadaan",
+			"messagesRequired" : "",
+			"caption" : "Nama Jenis Pengadaan"
+		},{
+			"isNull" : "true",
+			"name" : "ketJenisPengadaan",
+			"messagesRequired" : "",
+			"caption" : "Keterangan Jenis Pengadaan"
+		}
+
+	]
+}

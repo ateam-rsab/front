@@ -1,0 +1,166 @@
+<div ng-controller="ResepElektronikDetailCtrl">
+    <div ng-include='"../app/module/Shared/headerPasienPenunjang" '></div>
+    <div class="panel-body" style="padding:0px">
+        <div class="grid_12">
+            <table class="table" style="font-size:90%">
+                <tr>
+                    <th rowspan="2" style="vertical-align:middle;width:50px">R Ke</th>
+                    <!-- <th rowspan="2" style="vertical-align:middle;width:150px">Nama Generik</th> -->
+                    <th rowspan="2" style="vertical-align:middle;width:300px">Nama Obat</th>
+                    <th colspan="2" style="vertical-align:middle;width:100px">Jumlah</th>
+                    <th rowspan="2" style="vertical-align:middle;width:100px">Harga</th>
+                    <th rowspan="2" style="vertical-align:middle;width:100px">Total <br/>Harga</th>
+                    <th rowspan="2" style="vertical-align:middle;width:50px">Route</th>
+                    <th rowspan="2" style="vertical-align:middle;width:100px">Stigma</th>
+                    <th colspan="1" style="width:150px">
+                        <input type="checkbox" class="k-checkbox" name="Benar" id="Benar" ng-click="selectAll('Benar',$event)">
+                        <label class="k-checkbox-label" for="Benar">7 Benar</label>
+                    </th>
+                </tr>
+                <tr>
+                    <th style="width:50px">
+                        Seb
+                    </th>
+                    <th style="width:50px">
+                        Ses
+                    </th>
+                </tr>
+            </table>
+            <table class="table" style="font-size:90%" ng-repeat="data in patienGrids">
+                <tr ng-click="load(data)">
+                    <td rowspan="100" style="vertical-align:middle;width:50px" align="center"><b>{{'R / '+data.rKe}}</b></td>
+                    <td rowspan="100" style="vertical-align:middle;width:300px">{{data.produk.namaProduk}}{{data.produk.namaObat}}</td>
+                   <!--  <td>
+                        <div ng-show="data.statusOrder ===0">
+                            {{data.produk.namaProduk}}
+                        </div>
+                        <div ng-show="data.statusOrder ===-1">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="data.produk" k-data-text-field="'namaObat'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAmbilObat" />
+                        </div>
+                        <div ng-show="data.statusOrder ===1">
+                            {{data.produk.namaProduk}}{{data.produk.namaObat}}
+                        </div>
+                    </td> -->
+                    <td style="vertical-align:middle;width:50px" align="center">{{data.jumlah}}</td>
+                    <td style="vertical-align:middle;width:50px" align="center">{{data.jumlahPembulatan}}</td>
+                    <td style="vertical-align:middle;width:100px" align="center"><span rupiah>{{data.hargaJual}}</span></td>
+                    <td style="vertical-align:middle;width:100px" align="center"><span rupiah>{{data.hargaJual*data.jumlah}}</span></td>
+                    <td style="vertical-align:middle;width:50px" align="center">{{data.route.name}}</td>
+                    <td style="vertical-align:middle;width:100px"  align="center">
+                        <input ng-init="init(data)" ng-show="data.isEdit===true" style="width: 100%;" kendo-combo-box k-ng-model="data.keteranganPakai" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="stigmas" />
+                        <span ng-show="data.isEdit===false"> {{data.keteranganPakai.name}}</span>
+                    </td>
+                    <th style="vertical-align:middle;width:150px">
+                        <input type="checkbox" class="k-checkbox" name="{{data.noRec+'Benar'}}" id="{{data.noRec+'Benar'}}" value="data.isBenar" ng-model="data.isBenar">
+                        <label class="k-checkbox-label" for="{{data.noRec+'Benar'}}">7 Benar</label>
+                    </th>
+                    <!-- <th style="vertical-align:middle;width:50px">
+                        <input type="checkbox" class="k-checkbox" name="{{data.noRec+'Obat'}}" id="{{data.noRec+'Obat'}}" value="{{data.noRec+'Obat'}}" ng-model="data.isObat">
+                        <label class="k-checkbox-label" for="{{data.noRec+'Obat'}}">Obat</label>
+                    </th>
+                    <th style="vertical-align:middle;width:50px">
+                        <input type="checkbox" class="k-checkbox" name="{{data.noRec+'Dosis'}}" id="{{data.noRec+'Dosis'}}" value="{{data.noRec+'Dosis'}}" ng-model="data.isDosis">
+                        <label class="k-checkbox-label" for="{{data.noRec+'Dosis'}}">Dosis</label>
+                    </th>
+                    <th style="vertical-align:middle;width:50px">
+                        <input type="checkbox" class="k-checkbox" name="{{data.noRec+'Waktu'}}" id="{{data.noRec+'Waktu'}}" value="{{data.noRec+'Waktu'}}" ng-model="data.isWaktu">
+                        <label class="k-checkbox-label" for="{{data.noRec+'Waktu'}}">Waktu</label>
+                    </th>
+                    <th style="vertical-align:middle;width:50px">
+                        <input type="checkbox" class="k-checkbox" name="{{data.noRec+'Route'}}" id="{{data.noRec+'Route'}}" value="{{data.noRec+'Route'}}" ng-model="data.isRoute">
+                        <label class="k-checkbox-label" for="{{data.noRec+'Route'}}">Route</label>
+                    </th>
+                    <th style="vertical-align:middle;width:50px">
+                        <input type="checkbox" class="k-checkbox" name="{{data.noRec+'Dokumentasi'}}" id="{{data.noRec+'Dokumentasi'}}" value="{{data.noRec+'Dokumentasi'}}" ng-model="data.isDokumentasi">
+                        <label class="k-checkbox-label" for="{{data.noRec+'Dokumentasi'}}">Dok.</label>
+                    </th>
+                    <th style="vertical-align:middle;width:50px">
+                        <input type="checkbox" class="k-checkbox" name="{{data.noRec+'Informasi'}}" id="{{data.noRec+'Informasi'}}" value="{{data.noRec+'Informasi'}}" ng-model="data.isInformasi">
+                        <label class="k-checkbox-label" for="{{data.noRec+'Informasi'}}">Info.</label>
+                    </th> -->
+                </tr>
+                <tr ng-click="load(detail)" ng-show="data.racikan.length!==0" ng-repeat="detail in data.racikan">
+                    <td style=";border:none">
+                        <div ng-show="detail.statusOrder ===0">
+                            <span ng-show="data.racikan.length!==0">
+                            <span style="margin-left:10px;display:block;font-size:8pt;font-weight:bold">
+                                {{detail.produk.namaProduk +' '}}
+                                <span ng-show="detail.jenisRacikan==='Puyer'">
+                                    {{detail.totalMgMl+' Ml/Mg' +' '+detail.jumlahKekuatan}}
+                                </span>
+                            <span ng-show="detail.jenisRacikan!=='Puyer'">
+                                    {{detail.jumlahTablet+' Tablet' }}
+                                </span>
+                            </span>
+                            </span>
+                        </div>
+
+                        <div ng-show="detail.statusOrder ===-1">
+                            <input style=" width: 100%;" kendo-combo-box k-ng-model="detail.produk " k-data-text-field=" 'namaObat' " k-data-value-field=" 'id' " k-filter=" 'contains' " k-auto-bind="false " k-data-source="listAmbilObat " />
+                        </div>
+                        <div ng-show="detail.statusOrder ===1">
+                            &nbsp;&nbsp;&nbsp;<b> {{detail.produk.namaProduk +' '}} {{detail.produk.namaObat +' '}}
+                            <span ng-show="detail.jenisRacikan==='Puyer'">
+                                    {{detail.totalMgMl+' Ml/Mg' +' '+detail.jumlahKekuatan}}
+                                </span>
+                            <span ng-show="detail.jenisRacikan!=='Puyer'">
+                                    {{detail.jumlahTablet+' Tablet' }}
+                                </span>
+                                </b>
+                        </div>
+
+                    </td>
+                    <td style="vertical-align:middle;width:50px;border:none ">{{detail.total|number :4}}</td>
+                    <td style="vertical-align:middle;width:50px;border:none ">{{detail.totalPembulatan}}</td>
+                    <td style="vertical-align:middle;width:100px;border:none "><span rupiah>{{data.hargaJual}}</span></td>
+                    <td style="vertical-align:middle;width:100px;border:none "><span rupiah>{{data.hargaJual*data.jumlah}}</span></td>
+                    <td style="vertical-align:middle;text-align:center;width:50px;border:none "></td>
+                    <td style="vertical-align:middle;width:100px;border:none ">
+                    </td>
+                    <th style="vertical-align:middle;width:50px;border:none ">
+                    </th>
+                    <th style="vertical-align:middle;width:50px;border:none ">
+                    </th>
+                    <th style="vertical-align:middle;width:50px;border:none ">
+                    </th>
+                    <th style="vertical-align:middle;width:50px;border:none ">
+                    </th>
+                    <th style="vertical-align:middle;width:50px;border:none ">
+                    </th>
+                    <th style="vertical-align:middle;width:50px;border:none ">
+                    </th>
+                    <th style="vertical-align:middle;width:50px;border:none ">
+                    </th>
+                </tr>
+            </table>
+
+            <table class="table " style="font-size:90% ">
+                <tr>
+                    <td style="vertical-align:middle;width:50px"></td>
+                    <td style="vertical-align:middle;width:100px"></td>
+                    <td style="vertical-align:middle;width:100px ">
+                        <b style='font-size:120%'>Jumlah</b>
+                    </td>
+                    <td style="vertical-align:middle;width:30px"><b style='font-size:120%'><span>{{totalObat|number:0}}</span></b></td>
+                    <td style="vertical-align:middle;width:30px"><b style='font-size:120%'><span>{{totalObatSesudahDibulatkan|number:0}}</span></b></td>
+                    <td style="vertical-align:middle;width:50px"><span rupiah template="<b style='font-size:120%'>{0}</b>">{{total}}</span>
+                    </td>
+                    <td style="vertical-align:middle;width:50px">
+                    </td>
+                    <td style="vertical-align:middle;width:100px">
+                    </td>
+                    <td style="vertical-align:middle;width:150px">
+                    </td>
+                </tr>
+            </table>
+            <!--<kendo-grid k-ng-model="item" k-data-source="patienGrids" k-selectable="'row'" k-sortable="'true'" k-columns="arrColumnGridResepElektronik"></kendo-grid>-->
+        </div>
+    </div>
+    <div class="grid_12 place_button">
+        <div class="grid_3">
+            <c-button class="c-button success" ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" click="simpanVerifikasi">
+                <span class="title"><label  c-label c-label-text='Simpan' font-size="13"></label></span>
+            </c-button>
+        </div>
+    </div>
+</div>

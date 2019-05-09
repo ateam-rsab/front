@@ -1,0 +1,66 @@
+<div ng-controller="MonitoringStokBarangMedisCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Monitoring Stok Barang Medis'">
+		<div class="panel panel-default container_12">
+			<div class="panel-heading" c-translate>Daftar Stok Barang Medis Ruangan</div>
+			<div class="panel-body">
+				<div class="grid_12">
+					<div kendo-grid k-data-source="daftarStokBarangMedisRuangan" k-selectable="'row'" k-columns="columnStokBarangMedisRuangan">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default container_12">
+			<div class="panel-heading" c-translate>Pencarian</div>
+			<div class="panel-body">
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="jenisBarang"></label>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="namaBarang"></label>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="asalBarang"></label>
+				</div>
+				<div class="grid_4">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.jenisBarang" />
+				</div>
+				<div class="grid_4">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaBarang" />
+				</div>
+				<div class="grid_4">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.asalBarang" />
+				</div>
+			</div>
+		</div>
+		<div class="grid_4" style="margin-left: 12px">
+			<input type="checkbox" class="k-checkbox" name="cbMonitorStokRuangan" id="cbMonitorStokRuangan"  ng-click="()">
+			<label class="k-checkbox-label" c-label item="item" c-label-text="monitorStokRuangan" for="cbMonitorStokRuangan"></label>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_12" style="margin-top: 15px; margin-left: 12px">
+		<div class="grid_4">
+			<input style="width: 100%;" kendo-combo-box k-ng-model="item.monitorStokRuangan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listMonitorStokRuanganr" />
+		</div>
+		<div class="grid_2"></div>
+		<div class="grid_2">
+			<c-button ng-click="Batal()">
+				<span>Batal</span>
+			</c-button>
+		</div>
+		<div class="grid_2">
+			<c-button ng-click="Cetak()">
+				<span>Cetak</span>
+			</c-button>
+		</div>
+		<div class="grid_2">
+			<c-button ng-click="Tutup()">
+				<span>Tutup</span>
+			</c-button>
+		</div>
+		</div>
+
+	</c-panel>
+</div>
+</div>

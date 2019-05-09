@@ -1,0 +1,47 @@
+<div>
+    <div class="panel panel-default container_12">
+        <div class="panel-heading"><label class='title' c-label item="item" c-label-text="daftarAntrianPasienGawatDarurat"></label></div>
+        <div class="panel-body">
+            <div class="grid_12">
+                <div class="grid_5">
+                    <div class="grid_12" style="padding-left:5px">
+                        <label c-label c-label-text="tanggalRegistrasi"></label>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_4">
+                            <input style="width: 100%" k-ng-model='from' kendo-date-time-picker k-options="formatJam24"/>
+                            <!--<input style="width: 100%" k-ng-model='from' k-value='now' kendo-date-time-picker k-format="'dd-MM-yyyy HH:mm'" />-->
+                        </div>
+                        <div class="grid_4">
+                            <input style="width: 100%" k-ng-model='until' kendo-date-time-picker k-options="formatJam24"/>
+                            <!--<input style="width: 100%" k-ng-model='until' k-max='now' k-value='now' kendo-date-time-picker k-format="'dd-MM-yyyy '" />-->
+                        </div>
+                        <div class="grid_1" style="margin-top:6px">
+                            <!--<label c-label c-label-text=""></label>-->
+                            <em ng-click='loadDaftarAntrian()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12">
+                <!--<kendo-grid k-ng-model="select" k-data-source="listPasien" k-selectable="'row'" k-height="'350'" k-sortable="'true'" k-pageable="Page" k-columns="Column"></kendo-grid>-->
+                <kendo-grid id="mainGrid" options="gridAntrian" k-ng-model="selectedData"></kendo-grid>
+            </div>
+        </div>
+    </div>
+    <div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
+    <!--<div class="grid_12 ">
+        <div class="grid_3">
+            <c-button click='pasienPulang' style="width: 100%; padding:0px;margin:0px;" item="item" position="'right'" is-validate click="Lanjutkan">
+                <span class="title">Pindah atau Pulang</span>
+            </c-button>
+        </div>
+    </div>-->
+</div>
+<div class="grid_12 place_button" ng-hide="isHide">
+    <div class="grid_3 pull-right">
+        <c-button click='pasienPulang' style="width: 100%; padding:0px;margin:0px;" item="item" position="'right'" is-validate click="Lanjutkan">
+            <span class="title">Pindah atau Pulang</span>
+        </c-button>
+    </div>
+</div>

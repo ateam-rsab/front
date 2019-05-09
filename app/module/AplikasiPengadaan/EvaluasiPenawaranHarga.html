@@ -1,0 +1,84 @@
+<div ng-controller="EvaluasiPenawaranHargaCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Evaluasi Penawaran Harga'">
+		<div class="grid_4">
+			<div class="grid_12" style="margin-top:10px">
+				<label c-label item="item" c-label-text="noUsulan"></label>
+				<input style="width: 100%" c-text-box type="numeric" filter="'varchar'" class="k-textbox" ng-model="item.noUsulan" disabled="true"/>
+			</div>
+		</div>
+		<div class="grid_4">
+			<div class="grid_12" style="margin-top:10px">
+				<label c-label item="item" c-label-text="caraPengadaan"></label>
+				<input style="width: 100%" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.pengadaan" disabled="true"/>
+			</div>
+		</div>
+		<div class="grid_4">
+			<div class="grid_12" style="margin-top:10px">
+				<label c-label item="item" c-label-text="tanggal"></label>
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" disabled="true"/>
+			</div>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_8"></div>
+		<div class="grid_2">
+			<div class="grid_12" style="margin-top:10px">
+				<label c-label item="item" c-label-text="jumlahItem"></label>
+				<input style="width: 100%" c-text-box type="number" filter="'varchar'" placeholder="{{item.jumlah}}" class="k-textbox" ng-model="item.jumlah" style="text-align:right" disabled="true"/>
+			</div>
+		</div>
+		<div class="grid_2">
+			<div class="grid_12" style="margin-top:10px;">
+				<label c-label item="item" c-label-text="totalPengajuan" style="text-align:left"></label>
+				<input style="width: 100%" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.total" style="text-align:right" disabled="true"/>
+			</div>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_6">
+		</div>
+		<div class="grid_6"></div>
+		<div class="clear"></div>
+		<!-- <div kendo-grid k-data-source="daftarPengajuanUsulan" k-selectable="'row'" editable="true" pageable="true" k-columns="columnPengajuanUsulan" style="margin-bottom: 10px"></div> -->
+		</c-panel>
+		<div class="clear"></div>
+		<div class="grid_12" style="margin-bottom: 10px">
+			<kendo-grid options="mainGridOptions"></kendo-grid>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_6">
+			<label for="filePicker">Choose or drag a file:</label><br>
+       		<input type="file" id="filePicker">
+       		<br/>
+       		<div>
+		        <h1>Base64 encoded version</h1>
+		        <textarea id="base64textarea" placeholder="Base64 will appear here" cols="50" rows="15"></textarea>
+		    </div>
+			<!-- <div class="grid_12" style="margin-top:10px">
+						<input id="files"
+						name="files"
+						type="file"
+						valid-extensions="jpg,png,img" 
+						data-max-size="2048"
+						kendo-upload
+						k-multiple= "false",
+						k-select="onSelectFile" 
+						/>
+					</div>
+					<div class="demo-section k-content">
+               	<input name="files" id="files" type="file" ng-model="item.uploadFile"/>
+            </div> -->
+        </div>
+		<div class="grid_6">
+			<div class="grid_4">
+				<button class="c-button" ng-click="upload()">Upload File</button>
+			</div>
+			<div class="grid_4">
+				<button class="c-button" ng-click="" disabled>Rekap Pemenang</button>
+			</div>
+			<div class="grid_4">
+				<button class="c-button" ng-click="simpan()" disabled>Simpan</button>
+			</div>
+		</div>
+	</div>
+</div>

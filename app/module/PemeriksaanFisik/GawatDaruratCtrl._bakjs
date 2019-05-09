@@ -1,0 +1,314 @@
+define(['initialize'], function(initialize) {
+    'use strict';
+    initialize.controller('GawatDaruratCtrl', ['$rootScope', '$scope', 'ModelItem', '$state', 'ManagePasien', 'ModelItem', 'FindPasien', 'DateHelper',
+        function($rootScope, $scope, ModelItem, $state, managePasien, modelItem, findPasien, DateHelper) {
+            $scope.title = "Gawat Darurat";
+            $scope.item = {};
+            $scope.data = {};
+            $scope.now = new Date();
+            $scope.isRegistrasi = $state.current.name === 'GawatDaruratDetailNext';
+
+            $scope.item.tanggalRegistrasi = $scope.now;
+            $scope.item.tanggalKejadian = $scope.now;
+            $rootScope.isOpen = true;
+            if ($state.params.noCm !== undefined && $state.params.noCm !== '') {
+                findPasien.getByNoCM($state.params.noCm).then(function(data) {
+                    $scope.currentPasien = data.data.data;
+                    $rootScope.currentPasien = data.data.data;
+                    ModelItem.set("CurrentPasien", data.data.data);
+                    $scope.item = data.data.data;
+                    $scope.item.tipePasien = "Lama";
+                    $scope.item.tglLahir = new Date($scope.currentPasien.tglLahir); //DateHelper.formatDate($scope.currentPasien.tglLahir,DD-MM-YYYY);
+                    $scope.item.namaLengkap = $scope.currentPasien.namaLengkap;
+                    $scope.item.tempNoCm = $scope.currentPasien.noCm;
+
+                });
+            } else {
+                if ($scope.isRegistrasi === true) {
+                    findPasien.getHasilTriage($state.params.noRec).then(function(e) {
+                        debugger;
+                        $scope.currentPasien = e.data.pasien;
+                        $rootScope.currentPasien = e.data.pasien;
+                        ModelItem.set("CurrentPasien", e.data.pasien);
+                        $scope.item = e.data.pasien;
+                        $scope.item.tipePasien = "Lama";
+                        $scope.item.tglLahir = new Date($scope.currentPasien.tglLahir); //DateHelper.formatDate($scope.currentPasien.tglLahir,DD-MM-YYYY);
+                        $scope.item.namaLengkap = $scope.currentPasien.namaLengkap;
+                        $scope.item.tempNoCm = $scope.currentPasien.noCm;
+                    })
+                }
+            }
+            ModelItem.getDataDummyGeneric("StatusKeputusan", false).then(function(data) {
+                $scope.listStatusKeputusan = data;
+            })
+            ModelItem.getDataDummyGeneric("HubunganKeluarga", false).then(function(data) {
+                $scope.listHubunganKeluarga = data;
+            })
+
+            ModelItem.getDataDummyGeneric("StatusImageGawatDarurat", false).then(function(data) {
+                $scope.listStatusImageGawatDarurat = data;
+            })
+
+            ModelItem.getDataDummyGeneric("StatusBawa", false).then(function(data) {
+                $scope.listStatusBawa = data;
+            })
+
+
+            ModelItem.getDataDummyGeneric("StatusRuangRawat", false).then(function(data) {
+                $scope.listStatusRuangRawat = data;
+            })
+
+            ModelItem.getDataDummyGeneric("StatusKelamin", false).then(function(data) {
+                $scope.listKelamin = data;
+            })
+
+
+            ModelItem.getDataDummyGeneric("StatusPasien", false).then(function(data) {
+                $scope.listStatusPasien = data;
+                if (window.noCm != undefined) {
+                    $scope.item.tipePasien = "Lama";
+                    $scope.item.namaLengkap = $scope.currentPasien.namaPasien;
+                    $scope.item.tempNoCm = $scope.currentPasien.noCm;
+                    if ($rootScope.$$phase === undefined)
+                        $scope.$apply();
+                }
+            })
+
+
+            $scope.now = new Date();
+            if (window.noCm != undefined) {
+
+                findPasien.getByNoCM(window.noCm).then(function(data) {
+                    // $state.go('dashboardpasien.pasien', {
+                    //     noCM: $scope.item.noCM
+                    // });
+                    if ($state.current.name === 'dashboardpasien.stigma') {
+
+                    } else {
+
+
+                        // if ($state.params.noCm === '-') {
+                        //     window.location = "#/Dashboard/Pasien/Main/" + e.noCm;
+                        // } else if (e !== undefined && e.noCm !== undefined) {
+                        //     window.location = "#/Dashboard/Pasien/Main/" + e.noCm;
+                        // }
+
+                    }
+                    $rootScope.currentPasien = data.data.data;
+                    ModelItem.set("CurrentPasien", data.data.data);
+                    //$scope.item = data.data.data;
+                    $scope.item.tglLahir = new Date($scope.currentPasien.tglLahir); //DateHelper.formatDate($scope.currentPasien.tglLahir,DD-MM-YYYY);
+                    $scope.item.namaPasien = $scope.currentPasien.namaLengkap;
+                    $scope.item.tempNoCm = $scope.currentPasien.noCm;
+                });
+            }
+            window.noCm = undefined;
+
+            $scope.$watch('noCm', function(e) {
+                if (e === undefined) return;
+                if (e === window.noCm) return;
+                window.noCm = e;
+                // console.log(new Date());
+                $scope.pasiens = $scope.dataPasien;
+
+                findPasien.getDataPasien(undefined, e).then(function(e) {
+                    $scope.pasiens = e.data.data.listData;
+
+                })
+            })
+            $scope.findData = function() {
+                $state.go('GawatDaruratFind', {
+                    noRec: $state.params.noRec
+                });
+            }
+            $scope.$watch('currentPasien', function(e) {
+                if (e === undefined) return;
+                if (e === $scope.item) return;
+                if (e === undefined) return;
+                if (e.noCm === undefined) return;
+
+                if (e.noCm === $scope.noCm) return;
+                $scope.noCm = e.noCm;
+                findPasien.getByNoCM(e.noCm).then(function(data) {
+                    // $state.go('dashboardpasien.pasien', {
+                    //     noCM: $scope.item.noCM
+                    // });
+                    if ($state.current.name === 'dashboardpasien.stigma') {
+
+                    } else {
+
+
+                        // if ($state.params.noCm === '-') {
+                        //     window.location = "#/Dashboard/Pasien/Main/" + e.noCm;
+                        // } else if (e !== undefined && e.noCm !== undefined) {
+                        //     window.location = "#/Dashboard/Pasien/Main/" + e.noCm;
+                        // }
+
+                    }
+                    $rootScope.currentPasien = data.data.data;
+                    ModelItem.set("CurrentPasien", data.data.data);
+                    //$scope.item = data.data.data;
+                    $scope.item.tglLahir = new Date($scope.currentPasien.tglLahir); //DateHelper.formatDate($scope.currentPasien.tglLahir,DD-MM-YYYY);
+                    $scope.item.namaLengkap = $scope.currentPasien.namaLengkap;
+                    $scope.item.tempNoCm = $scope.currentPasien.noCm;
+                });
+            });
+
+            $scope.onSelect = function(a) {
+                $rootScope.currentPasien = a.sender._old;
+
+            };
+
+            $scope.item.jenisKelamin = {};
+            $scope.radioKelamin = function(data) {
+                var isExist = _.find($scope.item.jenisKelamin, function(dataExist) {
+                    return dataExist.id == data.id;
+                });
+                if (isExist == undefined) {
+                    $scope.item.jenisKelamin = {
+                        id: data.id,
+                        kdProfile: data.kdProfile
+                    };
+                } else {
+                    $scope.item.jenisKelamin = _.without($scope.item.jenisKelamin, isExist);
+                }
+
+                console.log('list : ' + JSON.stringify($scope.item.jenisKelamin));
+            };
+
+            $scope.headerTemplate = '<table><tr><th width="100px">No. RM</th><th width="200px">Nama Pasien</th></tr></table>';
+            $scope.template = '<table><tr><td width="100px">#: data.noCm #</td><td width="200px">#: data.namaLengkap #</td></tr></table>';
+
+            $scope.statusLukaLesiPendarahan = {};
+            $scope.cekStatusGawatDarurat = function(data) {
+                var isExist = _.find($scope.statusLukaLesiPendarahan, function(dataExist) {
+                    return dataExist.id == data.id;
+                });
+                if (isExist == undefined) {
+                    $scope.statusLukaLesiPendarahan = {
+                        id: data.id
+                    };
+                } else {
+                    $scope.statusGawatDarurat = _.without($scope.statusLukaLesiPendarahan, isExist);
+                }
+
+                console.log('list : ' + JSON.stringify($scope.statusLukaLesiPendarahan));
+            };
+
+            $scope.diputuskanDetailSet = [];
+            $scope.cekStatusKeputusan = function(data) {
+                var diputuskan = {};
+                var isExist = _.find($scope.diputuskanDetailSet, function(dataExist) {
+                    return dataExist.id == data.id;
+                });
+
+                if (isExist == undefined) {
+                    $scope.diputuskanDetailSet.push({
+                        diputuskan: {
+                            id: data.id
+                        }
+                    });
+                } else {
+                    $scope.diputuskanDetailSet = _.without($scope.diputuskanDetailSet, isExist);
+                }
+
+                console.log('list : ' + JSON.stringify($scope.diputuskanDetailSet));
+            };
+
+            $scope.Save = function() {
+
+                $scope.data.namaPasien = $scope.item.namaPasien;
+                $scope.data.tipePasien = $scope.item.tipePasien;
+                $scope.data.transportasiPasien = $scope.item.transportasiPasien;
+                $scope.data.tglLahir = DateHelper.formatDate($scope.item.tglLahir);
+                $scope.data.hubunganKeluarga = $scope.item.hubunganKeluarga;
+                $scope.data.tempatKejadian = $scope.item.tempatKejadian;
+                $scope.data.tanggalRegistrasi = $scope.item.tanggalRegistrasi;
+                $scope.data.jenisKelamin = $scope.item.jenisKelamin;
+                $scope.data.tanggalKejadian = $scope.item.tanggalKejadian;
+                $scope.data.titlePasien = {
+                    id: 1,
+                    kdProfile: 0
+                };
+                $scope.data.pendidikan = {
+                    id: 1,
+                    kdProfile: 0
+                };
+                $scope.data.pekerjaan = {
+                    id: 1,
+                    kdProfile: 0
+                };
+                $scope.data.kelompokPasien = {
+                    id: 1,
+                    kdProfile: 0
+                };
+                $scope.data.asalRujukan = {
+                    id: 1,
+                    kdProfile: 0
+                };
+                $scope.data.agama = {
+                    id: 1,
+                    kdProfile: 0
+                };
+                $scope.data.golonganDarah = {
+                    id: 1,
+                    kdProfile: 0
+                };
+
+                if ($scope.currentPasien !== undefined) {
+                    $scope.data.pasien = $scope.currentPasien;
+                } else
+                    $scope.data.pasien = $scope.item;
+                $scope.data.namaPasien = $scope.item.namaPasien;
+                $scope.data.namaIbu = "";
+                $scope.data.pegawai = {
+                    id: 1,
+                    kdProfile: 0
+                };
+                $scope.data.ruangan = {
+                    id: 1,
+                    kdProfile: 0
+                };
+                $scope.data.statusPerkawinan = {
+                    id: 1,
+                    kdProfile: 0
+                };
+                $scope.data.pekerjaan = {
+                    id: 1,
+                    kdProfile: 0
+                };
+                $scope.tempBerikanOksigen = [$scope.item.berikanOksigen1, $scope.item.berikanOksigen2, $scope.item.berikanOksigen3];
+                $scope.data.berikanOksigen = $scope.tempBerikanOksigen.join();
+                $scope.tempPasangInfus = [$scope.item.pasangInfus1, $scope.item.pasangInfus2];
+                $scope.data.pasangInfus1 = $scope.tempPasangInfus.join();
+                $scope.tempPasangEtt = [$scope.item.pasangEtt1, $scope.item.pasangEtt2];
+                $scope.data.pasangEtt = $scope.tempPasangEtt.join();
+                $scope.tempDefibrasi = [$scope.item.defibrasi1, $scope.item.defibrasi2];
+                $scope.data.defibrasi = $scope.tempDefibrasi.join();
+                $scope.data.lainnya = $scope.item.lainnya;
+                $scope.data.statusLukaLesiPendarahan = $scope.statusLukaLesiPendarahan;
+                $scope.data.diputuskanDetailSet = $scope.diputuskanDetailSet;
+                // delete $scope.item.attributes;
+                // var dataVO =  $scope.item;
+                if ($state.params.noRec !== undefined) {
+                    $scope.data.hasilTriase = {
+                        noRec: $state.params.noRec
+                    }
+                }
+                $scope.data.pasien.nocm = $scope.noCm;
+                if ($scope.isRegistrasi === true) {
+                    managePasien.saveRegistrasiPasienGawatDarurat(modelItem.beforePost($scope.data));
+
+                } else
+                    managePasien.saveGawatDarurat(modelItem.beforePost($scope.data)).then(function() {
+                        $state.go('DaftarAntrianGawatDaruratPasienCtrl');
+                    });
+
+            };
+
+
+
+
+        }
+    ]);
+});

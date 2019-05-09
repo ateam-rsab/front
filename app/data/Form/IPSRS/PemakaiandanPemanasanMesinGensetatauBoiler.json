@@ -1,0 +1,69 @@
+{
+	"model":{
+	    "tanggal" : "",
+	    "namaMesin" : "",
+	    "lamaPemakaian" : "",
+	    "keterangan" : "",
+	    "pemakaianAwal" : "",
+	    "pemakaianAkhir" : "",
+	    "literAwal" : "",
+	    "literAkhir" : "",
+	    "totalPemakaian" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "tanggal",
+			"messagesRequired" : "",
+			"caption" : "Tanggal"
+		},
+		{
+			"isNull" : "true",
+			"name" : "namaMesin",
+			"messagesRequired" : "",
+			"caption" : "Nama Mesin"
+		},
+		{
+			"isNull" : "true",
+			"name" : "lamaPemakaian",
+			"messagesRequired" : "",
+			"caption" : "Lama Pemakaian"
+		},
+		{
+			"isNull" : "true",
+			"name" : "keterangan",
+			"messagesRequired" : "",
+			"caption" : "Keterangan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "pemakaianAwal",
+			"messagesRequired" : "",
+			"caption" : "Pemakaian Awal"
+		},
+		{
+			"isNull" : "true",
+			"name" : "pemakaianAkhir",
+			"messagesRequired" : "",
+			"caption" : "Pemakaian Akhir"
+		},
+		{
+			"isNull" : "true",
+			"name" : "literAwal",
+			"messagesRequired" : "",
+			"caption" : "Liter Awal"
+		},
+		{
+			"isNull" : "true",
+			"name" : "literAkhir",
+			"messagesRequired" : "",
+			"caption" : "Liter Akhir"
+		},
+		{
+			"isNull" : "true",
+			"name" : "totalPemakaian",
+			"messagesRequired" : "",
+			"caption" : "Total Pemakaian"
+		}
+  ]
+}

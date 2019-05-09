@@ -1,0 +1,37 @@
+<div class="grid_12">
+    <div class="panel panel-default panel-white">
+        <div class="panel-heading text-center"><span class="title">BPJS Tools</span></div>
+        <div class="panel-body">
+            <div class="breadcrum">
+                <div class="grid_2">
+                    <button class="btn k-button k-primary" ng-class="{'active': currentState == 'toolBpjs.cekKepesertaan'}" ng-click="nav('toolBpjs.cekKepesertaan')">Cek Kepesertaan</button>
+                </div>
+                <div class="grid_2">
+                    <button class="btn k-button k-primary" ng-class="{'active': currentState == 'toolBpjs.cekRujukan'}" ng-click="nav('toolBpjs.cekRujukan')">Cek Nomor Rujukan</button>
+                </div>
+                <div class="grid_1">
+                    <button class="btn k-button k-primary" ng-class="{'active': currentState == 'toolBpjs.cekSep'}" ng-click="nav('toolBpjs.cekSep')">Cek SEP</button>
+                </div>
+                <div class="grid_2">
+                    <button class="btn k-button k-primary" ng-class="{'active': currentState == 'toolBpjs.createSEP'}" ng-click="nav('toolBpjs.createSEP')">Generate SEP</button>
+                </div>
+                <div class="grid_2">
+                    <button class="btn k-button k-primary" ng-class="{'active': currentState == 'toolBpjs.updateSEP'}" ng-click="nav('toolBpjs.updateSEP')">Update SEP</button>
+                </div>
+                <div class="grid_1">
+                    <button class="btn k-button k-primary" ng-class="{'active': currentState == 'toolBpjs.hapusSEP'}" ng-click="nav('toolBpjs.hapusSEP')">Hapus SEP</button>
+                </div>
+                <div class="grid_2">
+                    <button class="btn k-button k-primary" ng-class="{'active': currentState == 'toolBpjs.updateTglPulang'}" ng-click="nav('toolBpjs.updateTglPulang')">Update Tanggal Pulang</button>
+                </div>
+            </div>
+        </div>
+        <div ui-view></div>
+    </div>
+</div>
+<style type="text/css">
+.k-button {width:100%;font-weight:600;font-size: 100%;}
+.text-center {text-align: center}
+.active {background: blue;color: #f6f6f6;display: block;padding: 10px;font-size: 120%;}
+.btn{display: block;padding: 10px;}
+</style>

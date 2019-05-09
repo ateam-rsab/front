@@ -1,0 +1,61 @@
+<div ng-controller="ReservasiPasienCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Reservasi Pasien'">
+		<div class="grid_12">
+			<div class="grid_6">
+				<label c-label item="item" c-label-text="InputField"></label>
+
+			
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.InputField" />
+				{{item.InputField}}
+			</div>
+			<div class="grid_6">
+				<label c-label item="item" c-label-text="CheckBox"></label>
+				
+				<div class="grid_2" ng-repeat="Data in listDataCheckbox">
+	                    <input type="checkbox" class="k-checkbox" name="{{Data.name}}" 
+	                    id="{{Data.name}}" value="{{Data.id}}" >
+	                    <label class="k-checkbox-label" for="{{Data.name}}"> {{Data.name}}</label>
+	                </div>
+	                <div class="clear"></div>
+
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_6">
+				<label c-label item="item" c-label-text="Combobox"></label>
+
+				
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.ComboBox" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataCombobox" /> 
+				
+			</div>
+			<div class="grid_6">
+				<label c-label item="item" c-label-text="Radio"></label>
+				
+				<div class="grid_3" ng-repeat="stat in listYaTidak">
+	                    <input type="radio" name="{{'Data' + stat.name}}" id="{{'Data' + stat.name}}" class="k-radio" ng-model="item.RadioButton" value="{{stat.name}}">
+	                    <label class="k-radio-label" for="{{'Data' + stat.name}}">{{stat.name}}</label>
+	                </div>
+	                <div class="clear"></div>
+			</div>
+		</div>
+
+		<div class="grid_12">
+		
+				<label c-label item="item" c-label-text="DatePicker"></label>
+
+				<input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.DatePicker" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+			
+		</div>
+
+		<div class="grid_12" style="margin-top:10px">
+
+			<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '>
+			</div>
+    	</div>          
+
+
+		</c-panel>
+	</div>
+</div>

@@ -1,0 +1,71 @@
+<div ng-controller="PerencanaanPengadaanBarangInventarisRTDPCtrl">
+
+	<div ng-show="dataVOloaded">
+
+		<c-panel item="item" header="'Perencanaan Pengadaan Barang Inventaris (Rumah Tangga dan Perlengkapan)'" disabled>
+			<div class="grid_8">
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="noPerencanaan"></label>
+					<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noPerencanaan"/>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="tanggalPerencanaan"></label>
+					<input style="width:100%" kendo-date-picker k-ng-model="item.tglPerencanaan" k-max="now" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'"/>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="totalAnggaran"></label>
+					<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.totalAnggaran"/>
+					<label c-label item="item" c-label-text="ruangan" style="margin-top:15px"></label>
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.ruangan" disabled />
+				</div>
+			</div>
+
+			<div class="grid_12" style="margin-top: 10px;">
+				<div kendo-grid k-data-source="" k-selectable="'row'" k-columns="columnBarang">
+				</div>
+			</div>
+
+			<div class="grid_12">
+				<div class="grid_8"></div>
+				<div class="grid_4">
+					<div class="grid_5" style="padding-top:15px">
+						<label c-label item="item" c-label-text="totalPerencanaan"></label>
+					</div>
+					<div style="margin-top: 5px" class="grid_7">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.totalPerencanaan"/>
+					</div>
+					<div class="grid_5" style="padding-top:15px">
+						<label c-label item="item" c-label-text="sisaAnggaran"></label>
+					</div>
+					<div style="margin-top: 5px" class="grid_7">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.sisaAnggaran"/>
+					</div>
+				</div>
+			</div>
+			<div class="grid_12" style="margin-top:50px">
+				<div class="grid_7"></div>
+				<div class="grid_5">
+					<div class="grid_4">
+						<c-button ng-click="" style="width:100% !important">
+							<span style="font-size:10!important">Batal</span>
+						</c-button>
+					</div>
+					<div class="grid_4">
+						<c-button ng-click="Save()" style="width:100% !important">
+							<span style="font-size:10!important">Simpan</span>
+						</c-button>
+					</div>
+					<div class="grid_4">
+						<c-button ng-click="" style="width:100% !important">
+							<span style="font-size:10!important">Tutup</span>
+						</c-button>
+					</div>
+				</div>
+			</div>
+		</c-panel>
+
+
+	</div>
+
+</div>
+

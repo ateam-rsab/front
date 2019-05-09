@@ -1,0 +1,95 @@
+<div class="grid_12" ng-controller="DashboarPasienKeluhanUtamaCtrl">
+    <c-panel item="item" header="'DataAlergi'" disabled     >
+
+        <section class="cd-horizontal-timeline" c-time-line item="listTimeLine" click="Bind">
+            <div class="timeline">
+                <div class="events-wrapper">
+                    <div class="events">
+                        <ol>
+                            <li><a href="#0" ng-click='ChoiceDate($index)' ng-class="{selected :(listTimeLine.length-1 < 0 && $index===0)|| $index ===listTimeLine.length-1 || $index===selectedIndex}" data-date="{{data.tanggal}}" ng-repeat="data in listTimeLine">{{data.display}}</a></li>
+                        </ol>
+
+                        <span class="filling-line" aria-hidden="true"></span>
+                    </div>
+                    <!-- .events -->
+                </div>
+                <!-- .events-wrapper -->
+
+                <ul class="cd-timeline-navigation">
+                    <li><a href="#0" class="prev inactive">Prev</a></li>
+                    <li><a href="#0" class="next">Next</a></li>
+                </ul>
+                <!-- .cd-timeline-navigation -->
+
+            </div>
+
+            <!-- .timeline -->
+            <!-- .events-content -->
+        </section>
+        <div class="grid_12">
+            <div class="grid_6">
+                <c-panel item="item" header="'DataKeluhanPasien'">
+                    <div class="grid_12">
+                        <!-- <label c-label item="item" c-label-text="keluhanUtama"></label> -->
+                        <label c-label>Keluhan Utama</label>
+                        <div class="grid_12" style="margin: 0px 0px 5px 0px;">
+                            <textarea style="width: 99%; height: 80px;" ng-model="item.keluhanUtama"></textarea>
+                        </div>
+                    </div>
+                    <div class="grid_4">
+                        &nbsp; &nbsp;
+                    </div>
+                    <div class="grid_8">
+                        <c-button ng-show="!isLoading" class="success" item="item" size="36" position="'right'" is-validate click="SimpanKeluhanUtama" icon="'fa fa-chevron-right'">
+                            <span class="title" c-translate ng-if="editMode != true">Simpan Keluhan Utama</span>
+                            <span class="title" c-translate ng-if="editMode == true">Edit Keluhan Utama</span>
+                        </c-button>
+                    </div>
+                    <div class="grid_12">
+                        <!-- Tanggal Keluar -->
+                        <!-- <label c-label item="item" c-label-text="tanggalMerasaKeluhan"></label> -->
+                        <label c-label>Tanggal Merasa Keluhan</label>
+                        <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tglKeluhan" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                    </div>
+                    <div class="grid_12">
+                        <!-- Kondisi Keluar -->
+                        <!-- <label c-label item="item" c-label-text="keluhanTambahan"></label> -->
+                        <label c-label>Keluhan Tambahan</label>
+                        <input c-text-box type="input" class="k-textbox" ng-model="item.keluhan" />
+                    </div>
+                    <div class="grid_12">
+                        &nbsp; &nbsp;
+                    </div>
+                    <div class="grid_4">
+                        &nbsp; &nbsp;
+                    </div>
+                    <div class="grid_8">
+                        <c-button ng-show="!isLoading" class="success" item="item" size="36" position="'right'
+                        " is-validate click="AddKeluhan" icon="'fa fa-chevron-right'">
+                            <span class="title" c-translate>Simpan Keluhan Tambahan</span>
+                        </c-button>
+                    </div>
+
+
+                </c-panel>
+            </div>
+            <div class="grid_6">
+                <div ng-show="detailKeluhan !==undefined" class="panel panel-default panel-white">
+                    <div class="panel-heading-white"><span class="title" c-translate>Daftar keluhan Tambahan</span></div>
+                    <div class="panel-body">
+                        <div ng-repeat="keluhan in detailKeluhan">
+                            <div class="grid_6">
+                                {{keluhan.keluhanTambahan}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </c-panel>
+
+    <div class="grid_12" style="margin-top:15px">
+        <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+    </div>
+</div>

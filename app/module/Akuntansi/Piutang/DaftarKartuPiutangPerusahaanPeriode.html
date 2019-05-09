@@ -1,0 +1,192 @@
+<div ng-show="dataVOloaded">
+	<!-- <c-panel item="item" header="'Daftar Tagihan Rekanan'" disabled> -->
+	<div class="grid_12 headerBox">
+		<h1 style="color: white;"><b>Kartu Piutang Perusahaan</b></h1>
+	</div>
+	<div class="grid_12">
+			<div class="grid_12">
+				<div class="grid_10">
+					<div class="grid_3" style="margin-top:5px">
+						<label c-label item="item">Periode</label>
+						<div class="grid_6" ng-repeat="stat in listPeriode">
+		                    <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.periode" value="{{stat.name}}" ng-click="klikPeriode(stat)">
+		                    <label class="k-radio-label" for="{{ stat.name}}"><b>{{stat.name}}</b></label>
+		                </div>
+					</div>
+					<div class="grid_2" style="margin-top:5px" ng-show="isMonth">
+						<label c-label item="item">Bulan</label>
+			            <input kendo-date-picker
+			             k-options="monthSelectorOptions"
+			             k-ng-model="item.tgl"
+			             k-format="'MMMM yyyy'"
+			             style="width: 100%;"/>
+					</div>
+					<div class="grid_3" ng-show="isDate">
+						<div class="grid_6">
+				            <label c-label item="item">Tanggal Awal</label>
+				            <input style="width: 100%" k-ng-model="item.tglawal" kendo-datepicker placeholer="yyyy-MM-dd" k-format="'yyyy-MM-dd'"
+				            />
+				        </div>
+
+				        <div class="grid_6">
+				            <label c-label item="item">Tanggal Akhir</label>
+				            <input style="width: 100%" k-ng-model="item.tglakhir" kendo-datepicker placeholer="yyyy-MM-dd" k-format="'yyyy-MM-dd'"
+				            />
+				        </div>
+				    </div>
+			        <div class="grid_3" style="margin-top:5px">
+			            <label c-label item="item">Nama Perusahaan</label>
+			            <input style="width: 100%;" kendo-combo-box k-ng-model="item.perusahaan" k-data-text-field="'namarekanan'" k-data-value-field="'id'"
+			                k-filter="'contains'" k-auto-bind="false" k-data-source="listRekanan"/>
+			        </div>
+			         <div class="grid_2" style="margin-top:5px">
+			            <label c-label item="item">No Collecting</label>
+			        	<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noCollect"/>
+			        </div>
+			        <div class="grid_1" style="margin-top:20px">
+			        	<button class="btnTemplate1" ng-click="loadData()">Cari</button>
+			        </div>
+			    </div>
+		    </div>
+		    <div class="grid_12">
+		    	<div class="grid_12">
+					<div id="kGrid" kendo-grid 
+						k-data-source="dataSource"	
+						selectable="'true'"
+						class="max-height" 
+						options="detailOption"
+						k-ng-model="dataSelected">
+					</div>
+				</div>
+			</div>
+		<div class="grid_12" style="margin-top:60px">
+	      	<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+	    </div>
+	</div>
+</div>
+				<!-- <div class="grid_8">
+
+					<fieldset>
+						<legend><b>Pencarian</b></legend>
+				    </fieldset>
+				</div>
+				<div class="grid_4">
+					<fieldset>
+						<legend><b>Cetak Laporan</b></legend>
+						<div class="grid_12">
+							<div class="grid_5" style="margin-top:15px">
+								<button class="btnTemplate1" ng-click="cetak()">Cetak Laporan</button>
+							</div>
+						</div>
+					</fieldset>
+				</div> -->
+		    <!-- </div> -->
+		    
+			<!-- <md-content>
+				<md-tabs md-dynamic-height md-border-bottom>
+					<md-tab label="Kartu Piutang Perusahaan">
+						<md-content class="md-padding">
+							<div class="grid_12 headerBox">
+								<p>Daftar Laporan Pembayaran Piutang Perusahaan</p>
+							</div>
+							<div class="grid_12 borderBox">
+								<div id="kGrid" kendo-grid 
+									k-data-source="dataSource"	
+									class="max-height" 
+									options="detailOption"
+									k-ng-model="dataSelected">
+								</div>
+							</div> -->
+							<!-- <div class="grid_12">
+								<div class="grid_8"></div>
+								<div class="grid_2">
+									<button class="btnTemplate1" ng-click="cetak()">Cetak</button>
+								</div>
+								<div class="grid_2">
+									<button class="btnTemplate1" is-back>Kembali</button>
+								</div>
+							</div> -->
+						<!-- </md-content>
+					</md-tab> -->
+					<!-- <md-tab label="Rekapitulasi Kartu Piutang Perusahaan">
+						<md-content class="md-padding">
+							<div class="grid_12 borderBox">
+								<div id="kGridRekap" kendo-grid 
+									k-data-source="dataSourceRekap" 
+									class="max-height" 
+									options="rekapOption"
+									k-ng-model="dataSelected">
+								</div>
+							</div> -->
+							<!-- <div class="grid_12">
+								<div class="grid_11" style="margin-left: 10px">
+									<label c-label item="item" style="text-align: left;font-size: 16px">Terbilang : </label>
+									<label c-label item="item" style="text-align: left;font-size: 16px;font-style: italic;">{{terbilang}}</label>
+								</div>
+							</div> -->
+						<!-- </md-content>
+					</md-tab>
+				</md-tabs>
+			</md-content> -->
+		
+	<!-- <div class="grid_12">
+		<div class="grid_8">
+			<fieldset>
+				<legend><b>Pencarian</b></legend>
+				<div class="grid_2">
+		            <label c-label item="item">Tanggal Awal</label>
+		            <input style="width: 100%" k-ng-model="item.tglawal" kendo-datepicker placeholer="yyyy-MM-dd" k-format="'yyyy-MM-dd'"
+		            />
+		        </div>
+
+		        <div class="grid_2">
+		            <label c-label item="item">Tanggal Akhir</label>
+		            <input style="width: 100%" k-ng-model="item.tglakhir" kendo-datepicker placeholer="yyyy-MM-dd" k-format="'yyyy-MM-dd'"
+		            />
+		        </div>
+		        <div class="grid_4">
+		            <label c-label item="item">Nama Perusahaan</label>
+		            <input style="width: 100%;" kendo-combo-box k-ng-model="item.perusahaan" k-data-text-field="'namarekanan'" k-data-value-field="'id'"
+		                k-filter="'contains'" k-auto-bind="false" k-data-source="listRekanan"/>
+		        </div>
+		         <div class="grid_2">
+		            <label c-label item="item">No Collecting</label>
+		        	<input c-text-box type="input" filter="number" class="k-textbox" ng-model="item.noCollect"/>
+		        </div>
+				<div class="grid_2" style="margin-top: 15px;">
+					<button class="btnTemplate1" style="margin-left: 0;" ng-click="loadData()">Cari</button>
+				</div>
+			</fieldset>
+		</div>
+		<div class="grid_4">
+			<fieldset>
+				<legend><b>Cetak Laporan</b></legend>
+				<div class="grid_6" style="margin-top: 15px">
+					<button class="btnTemplate1" style="margin-left: 0;" ng-click="Cetak()">Cetak Laporan</button>
+	            </div>
+				<div class="grid_6" style="margin-top: 15px">
+					<button class="btnTemplate1" style="margin-left: 0;" ng-click="CetakObat()">Cetak Rekap Laporan</button>
+	            </div>
+			</fieldset>
+			</div>
+		</div>	
+	<br/>
+	</div>
+	<div class="grid_12 headerBox">
+		<p>Daftar Kartu Piutang Perusahaan</p>
+		<div class="grid_12">			
+			<kendo-grid id="grid" k-data-source="dataSource" class="max-height" options="mainGroupOption">
+				<div k-detail-template>
+	                <kendo-tabstrip>
+	                <div>
+	                    <div kendo-grid k-options="detailGridOptions(dataItem)"></div>
+	                </div>
+	                </kendo-tabstrip>
+	            </div>
+			</kendo-grid>
+		</div>
+	</div>
+	<div class="grid_12" style="margin-top:60px">
+		<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+	</div> -->
+<!-- </div> -->

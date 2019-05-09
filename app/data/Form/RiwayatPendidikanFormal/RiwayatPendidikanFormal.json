@@ -1,0 +1,104 @@
+{
+	"model":{
+	    "no" : "",
+	    "pendidikan" : "",
+	    "namaTempatPendidikan" : "",
+	    "jurusan" : "",
+	    "tanggalMasuk" : "",
+	    "tanggalLulus" : "",
+	    "nilaiIPK" : "",
+	    "tingkatKelulusan" : "",
+	    "noIjazah" : "",
+	    "tanggalIjazah" : "",
+	    "tandaTanganIjazah" : "",
+	    "alamatTempatPendidikan" : "",
+	    "pimpinanPendidikan" : "",
+	    "keterangan" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "no",
+			"messagesRequired" : "",
+			"caption" : "No."
+		},
+		{
+			"isNull" : "true",
+			"name" : "pendidikan",
+			"messagesRequired" : "",
+			"caption" : "Pendidikan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "namaTempatPendidikan",
+			"messagesRequired" : "",
+			"caption" : "Nama Tempat Pendidikan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "jurusan",
+			"messagesRequired" : "",
+			"caption" : "Jurusan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tanggalMasuk",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Masuk"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tanggalLulus",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Lulus"
+		},
+		{
+			"isNull" : "true",
+			"name" : "nilaiIPK",
+			"messagesRequired" : "",
+			"caption" : "Nilai IPK"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tingkatKelulusan",
+			"messagesRequired" : "",
+			"caption" : "Tingkat Kelulusan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "noIjazah",
+			"messagesRequired" : "",
+			"caption" : "No. Ijazah"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tanggalIjazah",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Ijazah"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tandaTanganIjazah",
+			"messagesRequired" : "",
+			"caption" : "Tanda Tangan Ijazah"
+		},
+		{
+			"isNull" : "true",
+			"name" : "alamatTempatPendidikan",
+			"messagesRequired" : "",
+			"caption" : "Alamat Tempat Pendidikan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "pimpinanPendidikan",
+			"messagesRequired" : "",
+			"caption" : "Pimpinan Pendidikan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "keterangan",
+			"messagesRequired" : "",
+			"caption" : "Keterangan"
+		}
+  ]
+}

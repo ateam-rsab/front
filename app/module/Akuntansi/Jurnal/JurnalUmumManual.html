@@ -1,0 +1,209 @@
+<!--<div ng-hide="dataVOloaded">
+<div class="loading" style="z-index:2;  position: fixed; top: 40%; right: 0; bottom: 0; left: 20%;" class="animated" ng-show="true">
+    <img height="160" src="../app/stylesheets/Flat/loading-image.gif" />
+  <br/> <span>{{keteranganLoading}}</span>
+</div>
+</div>-->
+
+<div>
+    <div class="grid_12 headerBox">
+        <h1 style="color: white;"><b>Jurnal Umum Manual</b></h1>
+    </div>
+    <div class="clear"></div>
+
+    <br/>
+
+    <div ng-show="jurnalChecked">
+
+		<div class="grid_12">
+			<div class="grid_8">
+                <div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+                    <p></p>
+                </div>
+                <div class="grid_12 borderBox containerBorderBox">
+                    <!-- Button Search -->
+                    <div class="grid_2">
+                        <div class="grid_12">
+                            <button class="btnTemplate1" ng-click="tambahTransaksi()">Tambah</button>
+                        </div>
+                    </div>
+                
+                    <!-- Tanggal Transaksi -->
+                    <div class="grid_6">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="TanggalTransaksi"></label>
+                        </div>
+                        <div class="clear"></div>
+
+                        <div class="grid_12">
+                            <input style="width: 100%" k-ng-model="item.tanggalTransaksi"  kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                        </div>
+                    </div>
+
+                    <!-- NoBukti -->
+                    <div class="grid_6">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="noBukti"></label>
+                        </div>
+                        <div class="clear"></div>
+
+                        <div class="grid_12">
+                            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noBukti" />
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+
+                    <!-- Keterangan Jurnal -->
+                    <div class="grid_12">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="keterangan"></label>
+                        </div>
+                        <div class="clear"></div>
+
+                        <div class="grid_12">
+                            <textarea style="width: 99%; height: 50px;resize: none;margin-top: 6px;" ng-model="item.keteranganJurnal">{{item.keteranganJurnal}}</textarea>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+            <div class="grid_4">
+                <div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+                    <p>Informasi</p>
+                </div>
+                <div class="grid_12 borderBox containerBorderBox">
+                    {{feedback.feedbackMessage}}
+                </div>
+            </div>
+            <div class="clear"></div>
+
+            <br/>
+
+            <div class="grid_12 headerBox">
+                <p>Jurnal Umum Manual</p>
+            </div>
+            <!-- grid table -->
+            <div class="grid_12 borderBox">
+                <!-- Button Search -->
+                <div class="grid_2">
+                    <div class="grid_12">
+                        <button class="btnTemplate1" ng-click="tambahTransaksi()">Tambah</button>
+                    </div>
+                </div>
+
+                <div class="clear"></div>
+
+               <div id="gridTransaksiJurnal" kendo-grid k-data-source="dataJurnal" 
+                    k-selectable="'row'" 
+                    k-columns="columnJurnal" 
+                    k-row-template="rowTemplate"
+                    k-on-data-bound="onBound()"
+                    k-ng-model="dataSelectedRowJurnal">
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+
+        <br/>
+
+        <!--<div class="grid_12">
+            <div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+                <p>Keterangan Saldo</p>
+            </div>
+            <div class="grid_12 borderBox containerBorderBox">
+                
+                <div class="grid_4">
+                    <div class="grid_12">
+                        <h3 style="color:black">Total Debit</h3>
+                    </div>
+                    <div class="clear"></div>
+
+                    <div class="grid_12">
+                        <h1 style="color:black; margin-top:-5px">{{formatRupiah(totalDebit,"Rp.", false)}}</h1>
+                    </div>
+                </div>
+
+                
+                <div class="grid_4">
+                    <div class="grid_12">
+                        <h3 style="color:black">Total Kredit</h3>
+                    </div>
+                    <div class="clear"></div>
+
+                    <div class="grid_12">
+                        <h1 style="color:black; margin-top:-5px">{{formatRupiah(totalKredit,"Rp.", false)}}</h1>
+                    </div>
+                </div>
+
+                
+                <div class="grid_4">
+                    <div class="grid_12">
+                        <h3 style="color:black">Balance</h3>
+                    </div>
+                    <div class="clear"></div>
+
+                    <div class="grid_12">
+                        <h1 style="color:black; margin-top:-5px">{{formatRupiah(selisih,"Rp.", false)}}</h1>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="clear"></div>-->
+
+    </div>
+
+    <br/>
+    <hr/ style="background-color:#10C4B2;height: 1px;border: 0;">
+    <br/>
+
+    <div ng-show="jurnalChecked">
+        <div class="grid_12">
+            <table>
+              <thead>
+                <tr>
+                  <th>Tanggal</th>
+                  <th>No. Bukti</th>
+                  <th>No. Perkiraan</th>
+                  <th>Perkiraaan</th>
+                  <th>Keterangan</th>
+                  <!--<th>Mission Centre</th>
+                  <th>Service Centre</th>-->
+                  <th>Debit</th>
+                  <th>Kredit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="data in dataFixJurnal.data">
+                  <td>{{dataFixJurnal.tanggal}}</td>
+                  <td>{{dataFixJurnal.noBukti}}</td>
+                  <td>{{data.perkiraan.noAccount}}</td>
+                  <td>{{data.perkiraan.namaAccount}}</td>
+                  <td>{{dataFixJurnal.keteranganJurnal}}</td>
+                  <!--<td>{{data.mc.value}}</td>
+                  <td>{{data.sc.value}}</td>-->
+                  <td>{{formatRupiah(data.debit,"Rp.", true)}}</td>
+                  <td>{{formatRupiah(data.kredit,"Rp.", true)}}</td>                     
+                </tr>
+              </tbody>
+            </table>
+            
+        </div>
+    </div>
+
+    <br/>
+    <br/>
+    <br/>
+    <hr/ style="background-color:#10C4B2;height: 1px;border: 0;margin-bottom: 150px">
+    
+
+    <div class="grid_12" style="margin-top:30px">
+       <div ng-include='"../app/module/Shared/Keuangan/TemplateButtoJurnal"'></div>
+    </div>
+
+	</div>
+
+	
+</div>

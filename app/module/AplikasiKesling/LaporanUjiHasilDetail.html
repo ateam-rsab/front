@@ -1,0 +1,66 @@
+<div>
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Laporan Hasil Pemeriksaan LAB kesehatan Lingkungan'"disabled>
+			<div class="grid_6">
+			<div class="panel panel-default container_12">
+	<!--		<div class="panel-heading" c-translate>Periode</div> -->
+	<!--		<div class="panel-body"> -->
+			<div class="grid_5" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="nomor"></label>
+			</div>
+			<div class="grid_7">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nomorContoh" disabled/>
+			</div>
+			<div class="clear"></div>
+			<div class="grid_5" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="uraianContoh"></label>
+			</div>
+			<div class="grid_7">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.uraianContoh" disabled/>
+			</div>
+			<div class="clear"></div>
+			
+			<div class="clear"></div>
+			<div class="grid_5" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="tanggalDiterimaLab"></label>
+			</div>
+			<div class="grid_7">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.tanggalditerimalab" style="width: 100%" disabled/>
+			</div>
+			
+				
+		   </div>
+		   </div>
+<!--		   </div>  -->
+           <div class="grid_6">	
+		   <div class="grid_5" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="tanggalPengujian"></label>
+			</div>
+			<div class="grid_3">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.tanggalpengujiandari" style="width: 100%" disabled/>
+			</div>
+			<div class="grid_1" style="margin: 10px 0 0 0;">
+				<label>s/d</label>
+			</div>
+			<div class="grid_3">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.tanggalpengujiansampai" style="width: 100%" disabled/>
+			</div>
+		  
+		
+           <div class="grid_5" style="margin: 6px 0 0 0;">
+				<label c-label item="item">PT</label>
+			</div>
+			<div class="grid_7">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaRekanan" style="width: 100%" disabled/>
+			</div>
+			</div>
+		</c-panel>
+
+		<c-panel item="item" header="'Hasil Pengujian'"disabled>
+			<div class="grid_12">
+				<kendo-grid k-data-source="sourceOrder" k-selectable="'row'" options="gridOptions" style="margin-bottom: 10px"></kendo-grid>
+			</div>
+		</c-panel>
+	</div>
+</div>
+

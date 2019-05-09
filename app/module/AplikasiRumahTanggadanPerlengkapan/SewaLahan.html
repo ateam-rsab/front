@@ -1,0 +1,185 @@
+<div ng-controller="SewaLahanCtrl">
+	<c-panel item="item" header="'Sewa Lahan'">
+		<div class="grid_6" style="margin-bottom: 65px">
+			<div class="grid_4" style="margin-top:10px" ng-show="isOut">
+				<label c-label item="item">No. Order</label>
+			</div>
+			<div class="grid_8" ng-show="isOut">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noOrder" ng-disabled="isOut" style="width: 100%"
+				/>
+			</div>
+			<div class="grid_4" style="margin-top:10px">
+				<label c-label item="item">Nama Penyewa</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaPenyewa" ng-disabled="isOut" />
+			</div>
+			<div class="grid_4" style="margin-top:10px">
+				<label c-label item="item">No. KTP</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noKtp" ng-disabled="isOut" />
+			</div>
+			<div class="grid_4" style="margin-top:10px">
+				<label c-label item="item">No. Telp / Handphone</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noTelpMobile" style="width: 100%" ng-disabled="isOut"
+				/>
+			</div>
+			<div class="grid_4" style="margin-top:10px">
+				<label c-label item="item" c-label-text="alamat"></label>
+			</div>
+			<div class="grid_8">
+				<textarea style="height: 85px" c-text-box type="input" class="k-textbox" ng-model="item.alamat" ng-disabled="isOut" />
+			</div>
+		</div>
+		<div class="grid_6" style="margin-bottom: 50px">
+			<div class="grid_5" style="margin-top:10px">
+				<label c-label item="item">Nama Lahan</label>
+			</div>
+			<div class="grid_7">
+				<input kendo-combo-box k-ng-model="item.lahan" k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-filter="'contains'"
+					k-auto-bind="false" k-data-source="sourceLahan" ng-disabled="isOut" />
+			</div>
+			<div class="grid_5" style="margin-top:10px">
+				<label c-label item="item">Tanggal Mulai Sewa Lahan</label>
+			</div>
+			<div class="grid_7">
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.tglPelayananAwal" k-options="monthSelectorOptions" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"
+					ng-disabled="isOut" />
+			</div>
+			<div class="grid_5" style="margin-top:10px">
+				<label c-label item="item">Tanggal Akhir Sewa Lahan</label>
+			</div>
+			<div class="grid_7">
+				<div>
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.tglPelayananAkhir" k-options="monthSelectorOptions" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" ng-disabled="isOut"/>
+				</div>
+			</div>			
+			<div class="grid_5" style="margin-top:10px">
+				<label c-label item="item">Lama Sewa Lahan</label>
+			</div>
+			<div class="grid_7">
+				<div class="grid_6">
+					<input c-text-box type="number" filter="'numeric'" class="k-textbox" ng-model="item.lamaSewa" ng-disabled="isOut" />
+				</div>
+				<div class="grid_6">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.satuan" k-data-text-field="'satuanWaktu'" k-data-value-field="'id'"
+						k-filter="'contains'" k-auto-bind="false" k-data-source="satuanWaktu" ng-disabled="isOut" />
+				</div>
+			</div>
+			<div class="grid_5" style="margin-top:10px">
+				<label c-label item="item">Harga Sewa Lahan</label>
+			</div>
+			<div class="grid_7">
+				<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.totalHargaSatuan" style="width: 100%" disabled 
+				/>
+			</div>
+			<div class="grid_5" style="margin-top:10px" ng-show="isOut">
+				<label c-label item="item">Waktu Keluar</label>
+			</div>
+			<div class="grid_7" ng-show="isOut">
+				<input style="width: 100%" kendo-date-time-picker k-ng-model="item.tglKeluar" k-options="monthSelectorOptions" placeholer="dd-mm-yyyy HH:mm" k-format="'dd-MM-yyyy HH:mm'"
+				/>
+			</div>
+		</div>
+		<hr class="style-four">
+		<div class="grid_12" style="margin-bottom: 20px" ng-hide="isHide">
+			<div class="grid_6"></div>
+			<div class="grid_2" style="margin-top: 20px; font-size: 24px;">
+				<button class="c-button" ng-show="!isLoading" item="item" ng-click="NavToDaftarSewaLahan()">
+        					<span class="title">Daftar Sewa Lahan</span>
+							</button>
+			</div>
+			<div class="grid_2" style="margin-top: 20px; font-size: 24px;">
+				<button class="c-button cancel" ng-show="!isLoading" item="item" ng-click="Back()">
+        					<span class="title">Batal</span>
+							</button>
+			</div>
+			<div class="grid_2"  style="margin-top: 20px; font-size: 24px;">
+				<button class="c-button success"  ng-show="!isLoading" item="item" ng-click="Save()">
+        					<span class="title">Save</span>
+				</button>
+			</div>
+		</div>
+	</c-panel>	
+</div>
+
+<style>
+    .error{
+        background-color:white !important;
+    }
+    .yellow{
+        background-color:#ffff00
+    }
+     .green{
+        background-color:#00ff40
+    }
+      .red{
+        background-color:#FF0000
+    }
+    .k-grid  .k-grid-header  .k-header  .k-link {
+     height: auto;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     white-space: normal;
+    }
+
+    .style-four {
+        height: 5px;
+        border: 0;
+        box-shadow: inset 0 14px 12px -12px rgba(0, 0, 0, 0.5);
+        }
+    .md-button {
+          padding: 0 6px 0 6px;
+          margin: 6px 8px 6px 8px;
+          min-width: 88px;
+          border-radius: 3px;
+          font-size: 14px;
+          text-align: center;
+          text-transform: uppercase;
+          text-decoration:none;
+          border: none;
+          outline: none;
+          color: green;
+        }
+
+    .k-grid  .k-grid-header  .k-header {
+     text-align: center;
+    }
+
+    .md-tooltip {
+        height: 25px !important;
+        background-color: #363940 !important;
+        color: white !important;
+        border-radius: 5px;
+        font-size: 14px
+     }
+     .md-button.md-fab.md-fab-top-right {
+        top: 270px;
+        right: 41px;
+        bottom: auto;
+        left: auto;
+        position: absolute;
+     }
+     .h1 {
+        position:relative;
+        display:inline-block;
+            }
+      .h1::before, 
+      .h1::after {
+        content:' ';
+        display:block;
+        position:absolute; top:50%; left:-120px;
+        width:100px;
+        border-bottom:1px solid black;
+    }
+    .h1::after {
+        left:auto; right:-120px;
+    }
+</style>
+<!--<div class="grid_12" style="margin-top:150px">
+<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+</div>		-->

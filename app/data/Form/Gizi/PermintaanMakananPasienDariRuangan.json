@@ -1,0 +1,67 @@
+{
+	"model":{
+		"tanggalPesan" : "",
+		"jenisDiet":"",
+		"kategoryDiet":"",
+		"jenisWaktu": "",
+		"keterangan":"",
+		"jumlahMenu" :"",
+		"minum" : "",
+	    "frekuensi" : "",
+	    "namaPemesan" : ""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "tanggalPesan",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Pesan"
+		},{
+			"isNull" : "true",
+			"name" : "jenisDiet",
+			"messagesRequired" : "",
+			"caption" : "Jenis Diet"
+		},{
+			"isNull" : "true",
+			"name" : "kategoryDiet",
+			"messagesRequired" : "",
+			"caption" : "Kategory Diet"
+			},{
+			"isNull" : "true",
+			"name" : "jenisWaktu",
+			"messagesRequired" : "",
+			"caption" : "Jenis Waktu"
+		},{
+			"isNull" : "true",
+			"name" : "keterangan",
+			"messagesRequired" : "",
+			"caption" : "Keterangan"
+		},{
+			"isNull" : "true",
+			"name" : "jumlahMenu",
+			"messagesRequired" : "",
+			"caption" : "Jumlah Menu"
+		},{
+			"isNull" : "false",
+			"name" : "minum",
+			"messagesRequired" : "",
+			"caption" : "Minum"
+
+		},{
+			"isNull" : "true",
+			"name" : "frekuensi",
+			"messagesRequired" : "",
+			"caption" : "Frekuensi"
+
+		},{
+			"isNull" : "false",
+			"name" : "namaPemesan",
+			"messagesRequired" : "",
+			"caption" : "Nama Pemesan"
+
+		}
+
+	]
+}

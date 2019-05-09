@@ -1,0 +1,616 @@
+{
+    "telinga": [
+        {
+            "id": 1,
+            "name": "Gangguan Pendengaran"
+        },{
+            "id": 2,
+            "name": "Tinitus"
+        },{
+            "id": 3,
+            "name": "Telinga Tersumbat"
+        },{
+            "id": 4,
+            "name": "Telinga Gatal"
+        },{
+            "id": 5,
+            "name": "Nyeri Telinga"
+        },{
+            "id": 6,
+            "name": "Telinga mengeluarkan lendir"
+        },{
+            "id": 7,
+            "name": "Telinga Berdarah"
+        },{
+            "id": 8,
+            "name": "Benda asing di dalam telinga"
+        },{
+            "id": 9,
+            "name": "Bisul di daun telinga"
+        },{
+            "id": 10,
+            "name": "Bisul di depan telinga"
+        },{
+            "id": 11,
+            "name": "Bisul di belakang telinga"
+        },{
+            "id": 12,
+            "name": "Benjolan di daun telinga"
+        },{
+            "id": 13,
+            "name": "Benjolan di sekitar telinga"
+        },{
+            "id": 14,
+            "name": "Bintul di daun telinga"
+        },{
+            "id": 15,
+            "name": "Bintul di sekitar telinga"
+        },{
+            "id": 16,
+            "name": "Kulit daun telinga tidak normal"
+        },{
+            "id": 17,
+            "name": "Kulit di sekitar telinga tidak normal"
+        },{
+            "id": 18,
+            "name": "Lubang abnormal di depan telinga"
+        },{
+            "id": 19,
+            "name": "Bentuk daun telinga tidak normal"
+        },{
+            "id": 20,
+            "name": "Lubang telinga tidak ada"
+        },{
+            "id": 21,
+            "name": "Pusing berputar"
+        },{
+            "id": 22,
+            "name": "Gangguan keseimbangan"
+        },{
+            "id": 23,
+            "name": "Nyeri Kepala"
+        },{
+            "id": 24,
+            "name": "Demam"
+        },{
+            "id": 25,
+            "name": "Muka mencong"
+        },{
+            "id": 26,
+            "name": "Riwayat operasi telinga sebelumnya"
+        },{
+            "id": 27,
+            "name": "Trauma pada telinga"
+        }
+    ],
+    "hidung":[
+        {
+            "id": 1,
+            "name": "Ingus bening"
+        },{
+            "id": 2,
+            "name": "Ingus mukopurulen"
+        },{
+            "id": 3,
+            "name": "Ingus bercampur darah"
+        },{
+            "id": 4,
+            "name": "Mimisan"
+        },{
+            "id": 5,
+            "name": "Ingus belakang hidung"
+        },{
+            "id": 6,
+            "name": "Hidung tersumbat"
+        },{
+            "id": 7,
+            "name": "Hidung gatal"
+        },{
+            "id": 8,
+            "name": "Bersin"
+        },{
+            "id": 9,
+            "name": "Penciuman terganggu"
+        },{
+            "id": 10,
+            "name": "Nyeri sekitar wajah"
+        },{
+            "id": 11,
+            "name": "Nyeri kepala"
+        },{
+            "id": 12,
+            "name": "Nyeri daerah gusi"
+        },{
+            "id": 13,
+            "name": "Nyeri rahang atas"
+        },{
+            "id": 14,
+            "name": "Bau mulut"
+        },{
+            "id": 15,
+            "name": "Hidung berbau abnormal"
+        },{
+            "id": 16,
+            "name": "Benda asing di hidung"
+        },{
+            "id": 17,
+            "name": "Benjolan di hidung"
+        },{
+            "id": 18,
+            "name": "Benjolan sekitar hidung"
+        },{
+            "id": 19,
+            "name": "Kulit hidung abnormal"
+        },{
+            "id": 20,
+            "name": "Kulit di sekitar hidung abnormal"
+        },{
+            "id": 21,
+            "name": "Bentuk hidung abnormal"
+        },{
+            "id": 22,
+            "name": "Riwayat operasi hidung sebelumnya"
+        },{
+            "id": 23,
+            "name": "Riwayat operasi hidung sebelumnya"
+        }
+    ],
+    "tenggorok":[
+        {
+            "id": 1,
+            "name": "Nyeri Menelan"
+        },{
+            "id": 2,
+            "name": "Nyeri Tenggorok"
+        },{
+            "id": 3,
+            "name": "Rasa mengganjal di tenggorok"
+        },{
+            "id": 4,
+            "name": "Rasa gatal di tenggorok"
+        },{
+            "id": 5,
+            "name": "Sulit menelan"
+        },{
+            "id": 6,
+            "name": "Tidak bisa menelan"
+        },{
+            "id": 7,
+            "name": "Tersedak saat makan atau minum"
+        },{
+            "id": 8,
+            "name": "Batuk"
+        },{
+            "id": 9,
+            "name": "Gangguan bernapas"
+        },{
+            "id": 10,
+            "name": "Suara serak"
+        },{
+            "id": 11,
+            "name": "Suara hilang"
+        },{
+            "id": 12,
+            "name": "Suara cadel"
+        },{
+            "id": 13,
+            "name": "Suara sengau"
+        },{
+            "id": 14,
+            "name": "Tertelan benda asing"
+        },{
+            "id": 15,
+            "name": "Terhirup benda asing"
+        },{
+            "id": 16,
+            "name": "Sariawan pada mulut"
+        },{
+            "id": 17,
+            "name": "Sariawan pada lidah"
+        },{
+            "id": 18,
+            "name": "Sariawan pada tenggorok"
+        },{
+            "id": 19,
+            "name": "Mulut berbau"
+        },{
+            "id": 20,
+            "name": "Kelainan pada bibir"
+        },{
+            "id": 21,
+            "name": "Kelainan pada lidah"
+        },{
+            "id": 22,
+            "name": "Kelainan pada mulut"
+        },{
+            "id": 23,
+            "name": "Benjolan pada dagu"
+        },{
+            "id": 24,
+            "name": "Benjolan pada leher"
+        },{
+            "id": 25,
+            "name": "Benjolan pada mulut"
+        },{
+            "id": 26,
+            "name": "Kulit leher abnormal"
+        },{
+            "id": 27,
+            "name": "Bisul pada dagu"
+        },{
+            "id": 28,
+            "name": "Bisul pada leher"
+        },{
+            "id": 29,
+            "name": "Trauma pada mulut"
+        },{
+            "id": 30,
+            "name": "Trauma pada leher"
+        },{
+            "id": 31,
+            "name": "Tidur mendengkur"
+        },{
+            "id": 32,
+            "name": "Sulit bernapas saat tidur"
+        },{
+            "id": 33,
+            "name": "Napas terhenti saat tidur"
+        },{
+            "id": 34,
+            "name": "Muntah"
+        },{
+            "id": 35,
+            "name": "Muntah darah"
+        },{
+            "id": 36,
+            "name": "Batuk Darah"
+    }],
+    "telingaPF": [
+        {
+            "id": 1,
+            "name": "Kulit daun telinga abnormal"
+        },{
+            "id": 2,
+            "name": "Bentuk telinga abnormal"
+        },{
+            "id": 3,
+            "name": "Kulit sekitar telinga abnormal"
+        },{
+            "id": 4,
+            "name": "Cawliflower ear"
+        },{
+            "id": 5,
+            "name": "Fistula pre aurikula"
+        },{
+            "id": 6,
+            "name": "Abses pre aurikula"
+        },{
+            "id": 7,
+            "name": "Abses post auricular"
+        },{
+            "id": 8,
+            "name": "Atresia liang telinga"
+        },{
+            "id": 9,
+            "name": "Serumen prop"
+        },{
+            "id": 10,
+            "name": "Darah di liang telinga"
+        },{
+            "id": 11,
+            "name": "Sekret di liang telinga"
+        },{
+            "id": 12,
+            "name": "Massa di liang telinga"
+        },{
+            "id": 13,
+            "name": "Jaringan granulasi di liang telinga"
+        },{
+            "id": 14,
+            "name": "Cairan abnormal di liang telinga"
+        },{
+            "id": 15,
+            "name": "Benda asing di liang telinga"
+        },{
+            "id": 16,
+            "name": "Jamur di liang telinga"
+        },{
+            "id": 17,
+            "name": "Kolesteatoma di liang telinga"
+        },{
+            "id": 18,
+            "name": "Swimmer’s ear"
+        },{
+            "id": 19,
+            "name": "Membran timpani hiperemis"
+        },{
+            "id": 20,
+            "name": "Membran timpani perforasi subtotal"
+        },{
+            "id": 21,
+            "name": "Membran timpani perforasi total"
+        },{
+            "id": 22,
+            "name": "Membran timpani perforasi sentral"
+        },{
+            "id": 23,
+            "name": "Grommet tube pada membrane timpani"
+        },{
+            "id": 24,
+            "name": "Membran timpani retraksi"
+        },{
+            "id": 25,
+            "name": "Plak pada membran timpani"
+        },{
+            "id": 26,
+            "name": "Gambaran cairan pada membran timpani"
+        },{
+            "id": 27,
+            "name": "Darah di telinga tengah"
+        },{
+            "id": 28,
+            "name": "Sekret di telinga tengah"
+        },{
+            "id": 29,
+            "name": "Massa di telinga tengah"
+        },{
+            "id": 30,
+            "name": "Jaringan granulasi di telinga tengah"
+        },{
+            "id": 31,
+            "name": "Cairan abnormal di telinga tengah"
+        },{
+            "id": 32,
+            "name": "Benda asing di telinga tengah"
+        },{
+            "id": 33,
+            "name": "Kolesteatoma di telinga tengah"
+        },{
+            "id": 34,
+            "name": "Jamur di telinga tengah"
+        },{
+            "id": 35,
+            "name": "Erosi tulang pendengaran"
+        }
+    ],
+    "hidungPF":[
+        {
+            "id": 1,
+            "name": "Kulit hidung abnormal"
+        },{
+            "id": 2,
+            "name": "Bentuk hidung abnormal"
+        },{
+            "id": 3,
+            "name": "Bisul pada vestibulum"
+        },{
+            "id": 4,
+            "name": "Vestibulum hiperemis"
+        },{
+            "id": 5,
+            "name": "Konka hipotrofi"
+        },{
+            "id": 6,
+            "name": "Konka hipertrofi"
+        },{
+            "id": 7,
+            "name": "Konka edema"
+        },{
+            "id": 8,
+            "name": "Konka hiperemisBersin"
+        },{
+            "id": 9,
+            "name": "Konka livid"
+        },{
+            "id": 10,
+            "name": "Konka pucat"
+        },{
+            "id": 11,
+            "name": "Polip pada konka"
+        },{
+            "id": 12,
+            "name": "Sekret serous pada meatus inferior"
+        },{
+            "id": 13,
+            "name": "Sekret serous pada meatus media"
+        },{
+            "id": 14,
+            "name": "Sekret mukopurulen pada meatus inferior"
+        },{
+            "id": 15,
+            "name": "Sekret mukopurulen pada meatus media"
+        },{
+            "id": 16,
+            "name": "Darah pada meatus inferior"
+        },{
+            "id": 17,
+            "name": "Darah pada meatus media"
+        },{
+            "id": 18,
+            "name": "Benda asing pada meatus inferior"
+        },{
+            "id": 19,
+            "name": "Benda asing pada meatus media"
+        },{
+            "id": 20,
+            "name": "Massa pada meatus inferior"
+        },{
+            "id": 21,
+            "name": "Massa pada meatus media"
+        },{
+            "id": 22,
+            "name": "Jamur pada meatus inferior"
+        },{
+            "id": 23,
+            "name": "Jamur pada meatus media"
+        },{
+            "id": 24,
+            "name": "Polip pada meatus inferior"
+        },{
+            "id": 25,
+            "name": "Polip pada meatus media"
+        },{
+            "id": 26,
+            "name": "Jaringan granulasi pada meatus inferior"
+        },{
+            "id": 27,
+            "name": "Jaringan granulasi pada meatus media"
+        },{
+            "id": 28,
+            "name": "Sekret serous pada kavum nasi"
+        },{
+            "id": 29,
+            "name": "Sekret mukopurulen pada kavum nasi"
+        },{
+            "id": 30,
+            "name": "Darah pada kavum nas"
+        },{
+            "id": 31,
+            "name": "Benda asing pada kavum nasi"
+        },{
+            "id": 32,
+            "name": "Massa pada kavum nasi"
+        },{
+            "id": 33,
+            "name": "Jamur pada kavum nasi"
+        },{
+            "id": 34,
+            "name": "Polip pada kavum nasi"
+        },{
+            "id": 35,
+            "name": "Jaringan granulasi pada kavum nasi"
+        },{
+            "id": 36,
+            "name": "Atresia koana parsial"
+        },{
+            "id": 37,
+            "name": "Atresia koana total"
+        },{
+            "id": 38,
+            "name": "Post nasal drip"
+        },{
+            "id": 39,
+            "name": "Massa pada nasofaring"
+        },{
+            "id":40,
+            "name": "Polip antrokoanal"
+        },{
+            "id": 41,
+            "name": "Hipertrofi adenoid"
+        },{
+            "id": 42,
+            "name": "Nyeri tekan pada wajah"
+        }
+    ],
+    "tenggorokPF":[
+        {
+            "id": 1,
+            "name": "Celah bibir"
+        },{
+            "id": 2,
+            "name": "Celah langit-langit"
+        },{
+            "id": 3,
+            "name": "Tongue tie"
+        },{
+            "id": 4,
+            "name": "Kista sublingual"
+        },{
+            "id": 5,
+            "name": "Stomatitis intra oral"
+        },{
+            "id": 6,
+            "name": "Mukositis intra oral"
+        },{
+            "id": 7,
+            "name": "Massa intra oral"
+        },{
+            "id": 8,
+            "name": "Massa pada lidah"
+        },{
+            "id": 9,
+            "name": "Massa pada faring"
+        },{
+            "id": 10,
+            "name": "Massa pada hipofaring"
+        },{
+            "id": 11,
+            "name": "Benda asing pada lidah"
+        },{
+            "id": 12,
+            "name": "Benda asing pada faring"
+        },{
+            "id": 13,
+            "name": "Benda asing pada tonsil"
+        },{
+            "id": 14,
+            "name": "Benda asing pada hipofaring"
+        },{
+            "id": 15,
+            "name": "Leukoplakia intra oral"
+        },{
+            "id": 16,
+            "name": "Leukoplakia pada lidah"
+        },{
+            "id": 17,
+            "name": "Geographic tongue"
+        },{
+            "id": 18,
+            "name": "Uvula bifida"
+        },{
+            "id": 19,
+            "name": "Tonsil T1 (ada kanan dan kirinya)"
+        },{
+            "id": 20,
+            "name": "Tonsil T2"
+        },{
+            "id": 21,
+            "name": "Tonsil T3"
+        },{
+            "id": 22,
+            "name": "Kripta tonsil melebar"
+        },{
+            "id": 23,
+            "name": "Detritus pada kripta tonsil"
+        },{
+            "id": 24,
+            "name": "Pseudomembran intra oral"
+        },{
+            "id": 25,
+            "name": "Pseudomembran pada tonsil"
+        },{
+            "id": 26,
+            "name": "Abses pada tonsil"
+        },{
+            "id": 27,
+            "name": "Abses peritonsil"
+        },{
+            "id": 28,
+            "name": "Edema laring"
+        },{
+            "id": 29,
+            "name": "Epiglotis omega"
+        },{
+            "id": 30,
+            "name": "Laring hiperemis"
+        },{
+            "id": 31,
+            "name": "Massa pada laring"
+        },{
+            "id": 32,
+            "name": "Massa pada pita suara"
+        },{
+            "id": 33,
+            "name": "Nodul pita suara"
+        },{
+            "id": 34,
+            "name": "Benda asing pada laring"
+        },{
+            "id": 35,
+            "name": "Plak pada mukosa laring"
+        },{
+            "id": 36,
+            "name": "Rima glottis sempit"
+        }
+    ]
+}

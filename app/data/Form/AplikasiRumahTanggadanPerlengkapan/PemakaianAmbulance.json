@@ -1,0 +1,86 @@
+{
+	"model":{
+		"namaBarang":"",
+		"noRegistrasi":"",
+		"noAmbulance":"",
+		"tglOrder":"",
+		"namaPasien":"",
+		"namaPenangggungJawab":"",
+		"noHpPenanggungJawab":"",
+		"namaTempatTujuan":"",
+		"alamatLengkapTujuan":"",
+		"namaPelayanan":"",
+	   	"keteranganLainnya":"",
+	   	"supir":"",
+	   	"namaPerawat":""
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "namaBarang",
+			"messagesRequired" : "",
+			"caption" : "Nama Barang/Asset"
+		},{
+			"isNull" : "true",
+			"name" : "noRegistrasi",
+			"messagesRequired" : "",
+			"caption" : "No Registrasi Asset"
+		},{
+			"isNull" : "true",
+			"name" : "noAmbulance",
+			"messagesRequired" : "",
+			"caption" : "No Ambulance"
+		},{
+			"isNull" : "true",
+			"name" : "tglOrder",
+			"messagesRequired" : "",
+			"caption" : "Tgl Order"
+		},{
+			"isNull" : "true",
+			"name" : "namaPasien",
+			"messagesRequired" : "",
+			"caption" : "Nama Pasien"
+		},{
+			"isNull" : "true",
+			"name" : "namaPenangggungJawab",
+			"messagesRequired" : "",
+			"caption" : "Nama Penangggung Jawab Keluarga"
+		},{
+			"isNull" : "true",
+			"name" : "noHpPenanggungJawab",
+			"messagesRequired" : "",
+			"caption" : "No HP Penanggung Jawab Keluarga"
+		},{
+			"isNull" : "true",
+			"name" : "namaTempatTujuan",
+			"messagesRequired" : "",
+			"caption" : "Nama Tempat Tujuan"
+		},{
+			"isNull" : "true",
+			"name" : "alamatLengkapTujuan",
+			"messagesRequired" : "",
+			"caption" : "Alamat Lengkap Tujuan"
+		},{
+			"isNull" : "true",
+			"name" : "namaPelayanan",
+			"messagesRequired" : "",
+			"caption" : "Nama Pelayanan"
+		},{
+			"isNull" : "true",
+			"name" : "keteranganLainnya",
+			"messagesRequired" : "",
+			"caption" : "Keterangan Lainnya"
+		},{
+			"isNull" : "true",
+			"name" : "supir",
+			"messagesRequired" : "",
+			"caption" : "Supir"
+		},{
+			"isNull" : "true",
+			"name" : "namaPerawat",
+			"messagesRequired" : "",
+			"caption" : "Nama Perawat"
+		}
+
+	]
+}

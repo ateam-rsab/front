@@ -1,0 +1,157 @@
+<div ng-controller="FormulirPendidikanPasienDanKeluargaTerintegrasiRawatJalanCtrl">
+	<div class="panel panel-default container_12">
+		<div class="panel-heading">
+			<div style="text-align: center;">
+				Formulir Pendidikan Pasien Dan Keluarga Terintegrasi Rawat Jalan
+			</div>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_12">
+			<div class="grid_8">
+			
+			</div>
+			<div>
+				<div class="borderBox containerBorderBox grid_4">
+					<div class="grid_4">
+						<label c-label c-label-text="NoRekamMedis" real style="margin: 10px 0px 0px;"></label>
+					</div>
+					<div class="grid_8">
+						<input c-text-box type="input" class="k-textbox" ng-model="item.noRekamMedis">
+					</div>
+					<div class="clear"></div>
+					<div class="grid_4">
+						<label c-label c-label-text="NamaLengkap" real style="margin: 10px 0px 0px"></label>
+					</div>
+					<div class="grid_8"> 
+						<input c-text-box type="input" class="k-textbox" ng-model="item.namaLengkap">
+					</div>
+					<div class="clear"></div>
+					<div class="grid_4">
+						<label c-label c-label-text="TanggalLahir" real style="margin: 10px 0px 0px"></label>
+					</div>
+					<div class="grid_3">
+						<input kendo-date-picker k-ng-model="item.tanggalLahir" placeholder="dd-MM-yyyy" k-format="'dd-MM-yyyy'" style="width: 100%">
+					</div>
+					<div class="grid_3">
+						<label c-label c-label-text="JenisKelamin" real style="margin: 10px 0px 0px"></label>
+					</div>
+					<div class="grid_2">
+						<div ng-repeat="data in listJenisKelamin">
+							<input type="radio" class="k-radio" ng-model="item.jenisKelamin" name="{{data}}" id="{{data}}" value="{{data}}">
+							<label class="k-radio-label" for="{{data}}">{{data}}</label>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<div class="grid_4">
+						<label c-label style="margin: 10px 0px 0px">Ruang / Klinik</label>
+					</div>
+					<div class="grid_8">
+						<input c-text-box type="input" class="k-textbox" ng-model="item.ruangKlinik">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+		<div style="padding: 0px 2px;">
+			<div class="borderBox containerBorderBox grid_12" style="margin: 5px 0px">
+				<div class="grid_12">
+					<label c-label>Pengkajian Kebutuhan Pendidikan / Belajar:</label>
+				</div>
+				<div class="clear"></div>
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label c-label-text="Bahasa" real style="margin: 10px 0px 0px"></label>
+					</div>
+					<div class="grid_4">
+						<div class="grid_3" ng-repeat="data in listBahasa">
+							<input type="radio" class="k-radio" name="{{data}}" ng-model="item.bahasa" value="{{data}}" id="{{data}}">
+							<label class="k-radio-label" for="{{data}}">{{data}}</label>
+						</div>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label c-label-text="KebutuhanPenterjemah" real style="margin: 10px 0px 0px"></label>
+					</div>
+					<div class="grid_4">
+						<div class="grid_3" ng-repeat="data in listYaTidak">
+							<input type="radio" class="k-radio" ng-model="item.KebutuhanPenterjemah" name="{{data}}" id="{{data}}" value="{{data}}">
+							<label class="k-radio-label" for="{{data}}">{{data}}</label>
+						</div>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label c-label-text="PendidikanPasien" real style="margin: 10px 0px 0px"></label>
+					</div>
+					<div class="grid_4">
+						<div class="grid_3" ng-repeat="data in listPendidikanPasien">
+							<input type="radio" class="k-radio" ng-model="item.pendidikanPasien" name="{{data}}" id="{{data}}" value="{{data}}">
+							<label class="k-radio-label" for="{{data}}">{{data}}</label>
+						</div>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label c-label-text="BacaDanTulis" real style="margin: 10px 0px 0px"></label>
+					</div>
+					<div class="grid_4">
+						<div class="grid_3" ng-repeat="data in listBacaTulis">
+							<input type="radio" class="k-radio" ng-model="item.listBacaTulis" name="{{data}}" id="{{data}}" value="{{data}}">
+							<label class="k-radio-label" for="{{data}}">{{data}}</label>
+						</div>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label c-label-text="PilihanTipePembelajaran" real style="margin: 10px 0px 0px"></label>
+					</div>
+					<div class="grid_4">
+						<div class="grid_3" ng-repeat="data in listTipePembelajaran">
+							<input type="radio" class="k-radio" ng-model="item.tipePembelajaran" name="{{data}}" id="{{data}}" value="{{data}}">
+							<label class="k-radio-label" for="{{data}}">{{data}}</label>
+						</div>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_4">
+						<label c-label c-label-text="HambatanPendidikan" real></label>	
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_7">
+						<div class="grid_3" ng-repeat="data in listHambatanPendidikan" real>
+							<input type="radio" class="k-radio" ng-model="item.hambatanPendidikan" name="{{data}}" id="{{data}}" value="{{data}}">
+							<label class="k-radio-label" for="{{data}}">{{data}}</label>
+						</div>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_6">
+						<label c-label c-label-text="PenjelasanPendidikanTentang" real style="margin: 0px 0px 10px"></label>
+						<textarea c-text-box class="k-textbox" type="input" ng-model="item.penjelasanPendidikan"></textarea>
+					</div>
+					<div class="grid_6">
+						<label c-label c-label-text="SasaranPendidikan" real style="margin: 0px 0px 10px"></label>
+						<textarea c-text-box class="k-textbox" type="input" ng-model="item.saranaPendidikan"></textarea>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_4">
+						<label c-label c-label-text="Evaluasi" real style="margin: 10px 0px 0px"></label>
+					</div>
+					<div class="grid_4">
+						<div class="grid_4" ng-repeat="data in listEvaluasi">
+							<input type="radio" class="k-radio" ng-model="item.evaluasi" name="{{data}}" id="{{data}}" value="{{data}}">
+							<label class="k-radio-label" for="{{data}}">{{data}}</label>
+						</div>
+					</div>
+				</div>
+				<div class="grid_12">
+					<kendo-grid options="mainGridOptions" k-data-source="dataSource"></kendo-grid>	
+				</div>
+					
+			</div>
+		</div>	
+	</div>
+</div>

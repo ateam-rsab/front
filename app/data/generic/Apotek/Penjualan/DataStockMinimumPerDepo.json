@@ -1,0 +1,13 @@
+[
+	{ 
+		"id": "1",
+		"kodeBarang": "00001",
+		"namaBarang": "namaBarang 1",
+		"sediaan": "sediaan 1",
+		"stokMinimal": "stokMinimal 1",
+		"stokMaksimal": "stokMaksimal 1",
+		"buatPermintaan": "buatPermintaan 1",
+		"jmlDiminta": "jmlDiminta 1",
+		"saldoGudangTerminalFarmasi": "saldoGudangTerminalFarmasi 1"
+	}
+]

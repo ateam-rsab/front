@@ -1,0 +1,51 @@
+
+<div ng-controller="PerutCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="title">
+			
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="perut"> </label>
+			</div>
+			<div class="grid_10">
+				<div class="grid_3" style="margin: 5px 0 5px 0;" ng-repeat="stat in statusPerut">
+	                    <input type="radio" name="{{stat.name}}" id="{{ stat.name}}" class="k-radio" ng-model="item.perut" value="{{stat.id}}">
+	                    <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+	               </div>
+			</div>
+            <div class="clear"></div>
+
+            <div class="grid_2">
+				<label c-label item="item" c-label-text="bisingUsus"> </label>
+			</div>
+			<div class="grid_10">
+				<div class="grid_3" style="margin: 5px 0 5px 0;" ng-repeat="stat in statusBisingUsus">
+	                    <input type="radio" name="{{stat.name}}" id="{{ stat.name}}" class="k-radio" ng-model="item.bisingUsus" value="{{stat.id}}">
+	                    <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+	               </div>
+			</div>
+            <div class="clear"></div>
+
+            <div class="grid_2">
+				<label c-label item="item" c-label-text="hati"> </label>
+			</div>
+			<div class="grid_10">
+				<div class="grid_3" style="margin: 5px 0 5px 0;" ng-repeat="stat in statusHati">
+	                    <input type="radio" name="{{statusHati+stat.name}}" id="{{statusHati+stat.name}}" class="k-radio" ng-model="item.hati" value="{{stat.id}}">
+	                    <label class="k-radio-label" for="{{statusHati+stat.name}}">{{stat.name}}</label>
+	               </div>
+			</div>
+            <div class="clear"></div>
+
+            <div class="grid_2">
+				<label c-label item="item" c-label-text="limpa"> </label>
+			</div>
+			<div class="grid_10">
+				<div class="grid_3" style="margin: 5px 0 5px 0;" ng-repeat="stat in statusLimpa">
+	                    <input type="radio" name="{{statusLimpa.id+stat.name}}" id="{{statusLimpa.id+stat.name}}" class="k-radio" ng-model="item.limpa" value="{{stat.id}}">
+	                    <label class="k-radio-label" for="{{statusLimpa.id+stat.name}}">{{stat.name}}</label>
+	               </div>
+			</div>
+
+		</c-panel>
+	</div>
+</div>

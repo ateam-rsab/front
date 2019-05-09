@@ -1,0 +1,15 @@
+{
+	"model":{
+		"program":""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "program",
+			"messagesRequired" : "",
+			"caption" : "Program"
+		}
+
+	]
+}

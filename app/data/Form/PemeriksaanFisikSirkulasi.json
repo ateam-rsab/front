@@ -1,0 +1,62 @@
+{
+	"model":{
+	    "Sianosis" : "Tidak Ada",
+	    "Pucat" : "Tidak Ada",
+		"IntensitasNadi" : "Lemah",
+	    "IramaNadi" : "Tidak Ada",
+	    "Edema": "Tidak Ada",
+	  	"Akral": "Hangat",
+	    "CRT": "< 3 Detik",
+	    "ClubbingFinger": "Tidak Ada"
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "Sianosis",
+			"messagesRequired" : "Sianosis Darah Harus Diisi",
+			"caption" : "Sianosis"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Pucat",
+			"messagesRequired" : "Pucat Harus Diisi",
+			"caption" : "Pucat"
+		},
+		{
+			"isNull" : "true",
+			"name" : "IntensitasNadi",
+			"messagesRequired" : "Intensitas Nadi Harus Diisi",
+			"caption" : "Intensitas Nadi"
+		},
+		{
+			"isNull" : "true",
+			"name" : "IramaNadi",
+			"messagesRequired" : "Irama Nadi Harus Diisi",
+			"caption" : "Irama Nadi"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Edema",
+			"messagesRequired" : "Edema Terganggu Harus Diisi",
+			"caption" : "Edema"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Akral",
+			"messagesRequired" : "Akral Terganggu Harus Diisi",
+			"caption" : "Akral"
+		},
+		{
+			"isNull" : "true",
+			"name" : "CRT",
+			"messagesRequired" : "CRT Terganggu Harus Diisi",
+			"caption" : "CRT"
+		},
+		{
+			"isNull" : "true",
+			"name" : "ClubbingFinger",
+			"messagesRequired" : "Clubbing Finger Terganggu Harus Diisi",
+			"caption" : "Clubbing Finger"
+		}
+  ]
+}

@@ -1,0 +1,109 @@
+{
+	"model":{
+		"Dokter1" : "",
+		"PemberiInfo" : "",
+		"PenerimaInfo" :"",
+	    "Diagnosis" : "",
+   	    "Dasar_diagnosis" : "",
+   	    "Tindakan_Dokter" : "",
+   	    "Indikasi" : "",
+   	    "Rb_TataCara" : "",
+   	    "Txt_TataCara":"",
+   	    "Tujuan" : "",
+   	    "Resiko" : "",
+   	    "Komplikasi":"",
+   	    "Prognosis":"",
+   	    "Alternatif":"",
+   	    "Ck_Tindakan":"",
+   	    "Txt_Tindakan":""
+
+
+
+	},
+    "attributes" : [ 
+    	{
+			"isNull" : "true",
+			"name" : "Dokter1",
+			"messagesRequired" : "",
+			"caption" : "Dokter Pelaksana Tindakan"
+		},{
+			"isNull" : "true",
+			"name" : "PemberiInfo",
+			"messagesRequired" : "",
+			"caption" : "Pemberi Info"
+		},{
+			"isNull" : "true",
+			"name" : "PenerimaInfo",
+			"messagesRequired" : "",
+			"caption" : "Penerima Informasi"
+		},{
+			"isNull" : "true",
+			"name" : "Diagnosis",
+			"messagesRequired" : "",
+			"caption" : "Diagnosis WD & DD"
+		},{
+			"isNull" : "true",
+			"name" : "Dasar_diagnosis",
+			"messagesRequired" : "",
+			"caption" : "Dasar Diagnosis"
+		},{
+			"isNull" : "true",
+			"name" : "Tindakan_Dokter",
+			"messagesRequired" : "",
+			"caption" : "Tindakan Kedokteran"
+		},{
+			"isNull" : "true",
+			"name" : "Indikasi",
+			"messagesRequired" : "",
+			"caption" : "Indikasi Tindakan"
+		},{
+			"isNull" : "false",
+			"name" : "Rb_TataCara",
+			"messagesRequired" : "",
+			"caption" : "Tata Cara"
+
+		},{
+			"isNull" : "true",
+			"name" : "Txt_TataCara",
+			"messagesRequired" : "",
+			"caption" : ""
+		},{
+			"isNull" : "true",
+			"name" : "Tujuan",
+			"messagesRequired" : "",
+			"caption" : "Tujuan"
+		},{
+			"isNull" : "true",
+			"name" : "Resiko",
+			"messagesRequired" : "",
+			"caption" : "Resiko"
+		},{
+			"isNull" : "true",
+			"name" : "Komplikasi",
+			"messagesRequired" : "",
+			"caption" : "Komplikasi"
+		},{
+			"isNull" : "true",
+			"name" : "Alternatif",
+			"messagesRequired" : "",
+			"caption" : "Alternatif & Resiko"
+		},{
+			"isNull" : "true",
+			"name" : "Ck_Tindakan",
+			"messagesRequired" : "",
+			"caption" : "Hal lain yang akan dilakukan untuk Menyelamatkan Pasien"
+		},{
+			"isNull" : "true",
+			"name" : "Prognosis",
+			"messagesRequired" : "",
+			"caption" : "Prognosis"
+		},{
+			"isNull" : "true",
+			"name" : "Txt_Tindakan",
+			"messagesRequired" : "",
+			"caption" : ""
+		}
+		
+
+	]
+}

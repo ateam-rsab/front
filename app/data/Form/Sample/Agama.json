@@ -1,0 +1,28 @@
+{
+	"id" : null,
+	"kodeAgama" : "",
+	"namaAgama" : "",
+	"detailAgama" : "",
+
+    "attributes" : [{
+		"isNull" : "true",
+		"name" : "kodeAgama",
+		"messagesRequired" : "Kode Agama Harus Diisi",
+		"caption" : "Kode Agama"
+	}, 
+		{
+			"isNull" : "true",
+			"name" : "namaAgama",
+			"messagesRequired" : "Nama Agama  Harus Diisi",
+			"caption" : "Nama Agama"
+		},
+	 
+		{
+			"isNull" : "true",
+			"name" : "detailAgama",
+			"messagesRequired" : "Detail Agama Harus Diisi",
+			"caption" : "Detail Agama"
+		}
+		
+	]
+}

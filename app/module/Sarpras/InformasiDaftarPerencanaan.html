@@ -1,0 +1,48 @@
+<div ng-controller="InformasiDaftarPerencanaanCtrl">
+    <c-panel item="item" header="title" disabled>
+    <div ng-show="dataVOloaded">
+        <!-- panel Skrining Gizi -->
+
+            <div class="grid_4" style="font-weight:bold; margin-bottom:5px: margin-top: 15px; text-align: left; border: 1px solid; border-color: #10C4B2;">
+                <label c-label item="item" c-label-text="pencarian" style="margin-bottom:5px"></label>
+                    <div class="grid_4" style="float:left">
+                        <div class="grid_12" style="margin-top:25px">
+                            <c-button ng-show="!isLoading" style="width: 100%; font-size: 12px; padding:0px, margin:0px;" item="item" size="18" position="'right'" is-validate click="" >
+                                <span class="title">Cari</span>
+                            </c-button>
+                        </div>
+                        
+                    </div>
+                    <div class="grid_8" style="margin-bottom:5px">
+                        <div class="grid_12" style="margin-bottom:5px">
+                            <label c-label item="item" c-label-text="noPerencanaan"></label>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="grid_12" style="margin-bottom:5px">
+                            <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.noPerencanaan" />
+                        </div>
+                    </div>
+            </div>
+
+            
+            
+            <div class="grid_12" style="margin-bottom: 15px;">
+                <div kendo-grid k-data-source="dataAllRow" k-selectable="row" k-columns="columnAllData" k-ng-model="modelKendoGrid">
+                </div>
+            </div>
+            
+            <div class="clear" ></div>
+            
+            <div class="grid_3" style="float:right">
+                <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="" >
+                    <span class="title">Detail Perencanaan</span>
+                </c-button>
+            </div>            
+            <div class="clear" ></div>
+
+            <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" ' style="margin-bottom:50px"></div>
+
+     
+    </div>
+ </c-panel>
+</div>

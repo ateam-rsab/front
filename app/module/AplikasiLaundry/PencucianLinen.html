@@ -1,0 +1,271 @@
+ <style>
+	.dropdown-header {
+	                border-width: 0 0 1px 0;
+	                text-transform: uppercase;
+	            }
+	            .dropdown-header > span {
+	                display: inline-block;
+	                padding: 10px;
+	            }
+
+	            .dropdown-header > span:first-child {
+	                width: 50px;
+	            }
+
+	            .k-list-container > .k-footer {
+	                padding: 10px;
+	            }
+
+	            #customers-list .k-item {
+	                line-height: 1em;
+	                min-width: 300px;
+	            }
+</style>
+<div ng-controller="PencucianLinenCtrl">
+	<div class="panel panel-default container_12">
+		<div class="panel-heading" align="center" c-translate>Pencucian Linen</div>
+		<div class="panel-body">
+			<div class="grid_12">
+				<div class="grid_1"></div>
+				<div class="grid_5">
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top: 10px">
+							<div class="grid_10">
+								<label c-label item="item" c-label-text="Tanggal Mulai Cuci"></label>
+							</div>
+							<div class="grid_2" align="right">
+								<label c-label item="item" c-label-text=":"></label>
+							</div>
+						</div>
+						<div class="grid_6">
+							<!-- <input style="width: 100%" k-ng-model="item.tglPencucian"  kendo-datetimepicker  placeholer="dd-MM-yyyy HH:mm" k-format="'dd-MM-yyyy HH:mm'" /> -->
+							 <input style="width: 100%" kendo-date-picker k-ng-model="item.tglPencucian" placeholer="DD-MM-YYYY" k-format="'dd-MM-yyyy'" k-on-change="SetTotalJam()" />
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top: 10px">
+							<div class="grid_10">
+								<label c-label item="item" c-label-text="Tanggal Selesai Cuci"></label>
+							</div>
+							<div class="grid_2" align="right">
+								<label c-label item="item" c-label-text=":"></label>
+							</div>
+						</div>
+						<div class="grid_6">
+						<input style="width: 100%" kendo-date-picker k-ng-model="item.tglSelesaiPencucian" placeholer="DD-MM-YYYY" k-format="'dd-MM-yyyy'" k-on-change="SetTotalJam()" />
+<!-- 					<input style="width: 100%" k-ng-model="item.tglSelesaiPencucian"  kendo-datetimepicker  placeholer="dd-MM-yyyy HH:mm" k-format="'dd-MM-yyyy HH:mm'" /> -->
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top: 10px">
+							<div class="grid_10">
+								<label c-label item="item" c-label-text="Jam Awal s/d Akhir"></label>
+							</div>
+							<div class="grid_2" align="right">
+								<label c-label item="item" c-label-text=":"></label>
+							</div>
+						</div>
+						<div class="grid_6">
+		                    <div class="grid_6">
+		                        <input style="width: 100%" kendo-time-picker k-ng-model="item.jamAwal" placeholer="HH:mm" k-format="'HH:mm'" k-on-change="SetTotalJam()"/>
+		                    </div>
+		                    <div class="grid_6">
+		                        <input style="width: 100%" kendo-time-picker k-ng-model="item.jamAkhir" placeholer="HH:mm" k-format="'HH:mm'" k-on-change="SetTotalJam()"/>
+		                    </div>
+		                </div>
+	                </div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top: 10px">
+							<div class="grid_10">
+								<label c-label item="item" c-label-text="Total Waktu Cuci"></label>
+							</div>
+							<div class="grid_2" align="right">
+								<label c-label item="item" c-label-text=":"></label>
+							</div>
+						</div>
+						<div class="grid_6">
+						<!-- <input style="width: 100%" kendo-date-picker  k-ng-model="item.TotalJam" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy hh:mm:ss'" ng-disabled ="true" /> -->
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.TotalJam"  disabled="true" />
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top: 10px">
+							<div class="grid_10">
+								<label c-label item="item" c-label-text="mesin"></label>
+							</div>
+							<div class="grid_2" align="right">
+								<label c-label item="item" c-label-text=":"></label>
+							</div>
+						</div>
+						<div class="grid_6">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.mesin" k-data-text-field="'namaMesin'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceMasterMesin" k-on-change="satuan()" />
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top: 10px">
+							<div class="grid_10">
+								<label c-label item="item" c-label-text="kapasitas"></label>
+							</div>
+							<div class="grid_2" align="right">
+								<label c-label item="item" c-label-text=":"></label>
+							</div>
+						</div>
+						<div class="grid_6">
+							<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.kapasitas"  disabled="true" />
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top: 10px">
+							<div class="grid_10">
+								<label c-label item="item" c-label-text="Satuan"></label>
+							</div>
+							<div class="grid_2" align="right">
+								<label c-label item="item" c-label-text=":"></label>
+							</div>
+						</div>
+						<div class="grid_6">
+							<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.satuan"  disabled="true" />
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div class="grid_5">
+				<div class="grid_12">
+					<div class="grid_4" style="margin-top: 10px">
+						<div class="grid_10">
+							<label c-label item="item" c-label-text="Operator/Petugas"></label>
+						</div>
+						<div class="grid_2" align="right">
+							<label c-label item="item" c-label-text=":"></label>
+						</div>
+					</div>
+					<div class="grid_6">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.petugas" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="dataMasterPetugas"  />
+					</div>
+				</div>
+				<div class="grid_12">
+						<div class="grid_4" style="margin-top: 10px">
+							<div class="grid_10">
+								<label c-label item="item" c-label-text="beratLinen"></label>
+							</div>
+							<div class="grid_2" align="right">
+								<label c-label item="item" c-label-text=":"></label>
+							</div>
+						</div>
+						<div class="grid_6">
+							<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.bobots" />
+						</div>
+				  </div>
+				   <div class="grid_12">
+						<div class="grid_4" style="margin-top: 10px">
+							<div class="grid_10">
+								<label c-label item="item" c-label-text="Hasil / Keterangan"></label>
+							</div>
+							<div class="grid_2" align="right">
+								<label c-label item="item" c-label-text=":"></label>
+							</div>
+						</div>
+						<div class="grid_6">
+							<textarea style="height: 50px" c-text-box type="input" class="k-textbox" ng-model="item.keterangan" placeholder="Cuci Ulang / Hasil Pencucian" />
+						</div>
+				    </div>
+				   <div class="grid_12">
+						<div class="grid_4" style="margin-top: 10px">
+							<div class="grid_10">
+								<label c-label item="item" c-label-text="prosesCuci"></label>
+							</div>
+							<div class="grid_2" align="right">
+								<label c-label item="item" c-label-text=":"></label>
+							</div>
+						</div>
+						<div class="grid_6">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.prosesCuci" k-data-text-field="'prosesCuci'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceMasterProsesCuci" k-on-change="addBahanLinen()"/>
+						</div>
+					</div>
+			 </div>
+			</div>
+
+			<div class="grid_12" style="margin-top: 10px">
+				<div class="grid_1"></div>
+				<div class="grid_10">
+				<div class="panel panel-default container_12">
+					<div class="panel-heading" c-translate>Bahan Baku Pencucian</div>
+					<div class="panel-body">
+						<div class="grid_12">
+							<div class="grid_1"></div>
+							<div class="grid_1" style="margin-top: 10px" align="center">
+								<label c-label item="item" c-label-text="bahan"></label>
+							</div>
+							<div class="grid_3">
+								<input style="width: 100%;" kendo-combo-box k-ng-model="item.bahan" k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listbahan" />
+							</div>
+							<div class="grid_1" style="margin-top: 10px" align="center">
+								<label c-label item="item" c-label-text="Jumlah"></label>
+							</div>
+							<div class="grid_1">
+								<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlah" />
+							</div>
+							<div class="grid_1" style="margin-top: 10px" align="center">
+								<label c-label item="item" c-label-text="satuan"></label>
+							</div>
+							<div class="grid_3">
+								<input style="width: 100%;" kendo-combo-box k-ng-model="item.satuanBahan" k-data-text-field="'namaSatuanStandar'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceSatuan"/>
+							</div>
+						</div>
+						<div class="grid_12">
+						</div>
+					   <div class="grid_12">
+						<div class="grid_2"></div>
+							<div class="grid_3">
+								<button class="c-button" ng-click="addDataPencucianLinen()" k-selectable="'row'" k-columns="columndataBahan">Tambah</button>
+							</div>
+						</div>
+						<div class="grid_12" style="margin-top: 10px">
+							<div kendo-grid  id="grid" options="mainGridOptions" k-data-source="DaftarPencucianLinen" k-selectable="'row'" k-columns="columndataBahan"></div>
+						</div>
+						
+			        <script type="text/x-kendo-template" id="todo-template">
+			            <label>Product Name <input k-on-change="dataItem.dirty=true" kendo-dropdownlist k-data-source="productNames" data-bind="value: ProductName" /><label>
+			            <br />
+			            <label>Unit Price <input k-on-change="dataItem.dirty=true" kendo-numeric-text-box data-bind="value: UnitPrice" /></label>
+			            <br />
+			            <label my-directive>Discontinued <input type="checkbox" ng-change="dataItem.dirty=true" ng-model="dataItem.Discontinued" /></label>
+			        </script>
+					</div>
+				</div>
+			 </div>
+			</div>
+			<div class="grid_12" style="margin-top: 10px">
+				<div class="grid_7"></div>
+				<div class="grid_2">
+					<button class="c-button success" ng-click="Save()">Simpan</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button cancel" ng-click="daftar()">Daftar Proses Pencucian</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!--<div class="grid_12" ng-repeat="teknisi in arrTeknisi">
+<div class="grid_4">
+<label c-label item="item" c-label-text=":"></label>
+</div>
+<div class="grid_8">
+<div class="grid_10">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.teknisi[$index]" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="dataMasterPetugas"/>
+</div>
+<div class="grid_2">
+<label c-label item="item" c-label-text="x" ng-click="removeTeknisi($index)" ng-show="$index > -1" style="margin-top: 10px; text-align: right;" ></label>
+</div>
+</div>
+</div>
+<div class="grid_12">
+<div class="grid_4"></div>
+<div class="grid_6">
+<button class="c-button" ng-click="tambahTeknisi()" ng-disabled="user">(+) Operator Laundry</button>
+</div>
+</div> -->

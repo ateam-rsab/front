@@ -1,0 +1,69 @@
+<div ng-controller="RiwayatAsupanMakanCtrl">
+    <c-panel item="item" header="title">
+
+        <div class="grid_12">
+            <div class="grid_3" style="margin: 5px 0 0 0;">
+                <label c-label item="item" c-label-text="Keterangan Bayi"></label>
+            </div>
+            <div class="grid_9" style="margin: 5px 0 0 0;">
+                <div class="grid_3" ng-repeat="stat in statMendapatIMD">
+                    <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.mendapatIMD" value="{{stat.id}}">
+                    <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+            <div class="grid_3" style="margin: 15px 0 0 0;">
+                <label c-label item="item" c-label-text="Menyusu"></label>
+            </div>
+            <div class="grid_1" style="margin: 5px 0 0 0;">
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.menyusu" />
+            </div>
+            <!--<div class="grid_1" style="margin: 5px 0 0 0;"></div>-->
+            <div class="grid_4" style="margin: 15px 0 0 0;">
+                <label c-label item="item" c-label-text="jam setelah lahir"></label>
+            </div>
+
+        <div class="clear"></div>
+        <div class="grid_12">
+            <div class="grid_3" style="margin: 5px 0 0 0;">
+                <label c-label item="item" c-label-text="ASI, sampai usia"></label>
+            </div>
+            <div class="grid_2" style="margin: 5px 0 0 0;">
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.waktuAsi" />
+            </div>
+        </div>
+        <div class="clear" ></div>
+        <div class="grid_10" style="margin: 10px 0 0 0;">
+            <div class="grid_4"  ng-repeat="stat in listASI">
+                <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.listAsi" value="{{stat.id}}">
+                <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+            </div>
+        </div>
+        <div class="grid_3" ng-show="item.asi==='1'">
+            <input c-text-box type="input"  class="k-textbox" ng-model="stat.keterangan" placeholder="keterangan susu formula"/>
+        </div>
+        <div class="clear" ></div>
+
+        <div class="grid_12">
+            <div class="grid_2"  ng-repeat="stat in listMulaiMakan">
+                <input type="checkbox"  name="{{stat.id+stat.name}}" id="{{stat.id+stat.name}}" class="k-checkbox" value="stat.id" ng-model="stat.mulaiMakan"  ng-checked="isNilai == true" >
+                <label class="k-checkbox-label" for="{{stat.id+stat.name}}">{{stat.name}}</label>
+                <input c-text-box type="input"  class="kn-textbox" ng-model="stat.usia" placeholder="keterangan"/>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_12">
+            <div class="grid_3" style="margin: 5px 0 0 0;">
+                <label c-label item="item" c-label-text="Kemampuan Mengunyah"></label>
+            </div>
+            <div class="grid_9" style="margin: 5px 0 0 0;">
+                <textarea style="width: 99%; height: 40px;" ng-model="item.kemampuanMengunyah"></textarea>
+            </div>
+        </div>
+        <div class="grid_12" style="margin: 25px 0 0 0;">
+            <div class="grid_12">
+                <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+            </div>
+        </div>
+</div>

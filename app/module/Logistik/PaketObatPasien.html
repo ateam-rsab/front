@@ -1,0 +1,499 @@
+<style type="text/css">
+    .style-center {
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .style-right {
+        display: inline-block;
+        text-align: right;
+        width: 100%;
+    }
+    
+    .style-left {
+        display: inline-block;
+        text-align: left;
+        width: 100%;
+    }
+</style>
+
+<!-- <div ng-controller="KirimBarangLogistikCtrl"> -->
+    <div ng-show="dataVOloaded">
+        <!-- <c-panel item="item" header="'Produk'" disabled> -->
+        <div class="grid_12">
+            
+        <div class="grid_12 headerBox">
+            <h1 style="color: white;"><b>Kirim Paket Obat</b></h1>
+        </div>
+        <div class="grid_9 borderBox" style=" height:170px;margin-top: 5px">
+
+            <div class="grid_12 headerBox">
+                <p>Data Pasien</p>
+            </div>
+            <div class="grid_2">
+                <div class="grid_12">
+                    <label c-label item="item" >No.MR</label>
+                </div>
+
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noMr" ng-disabled="true" />
+                </div>
+            </div>
+          <!--  <div class="grid_2">
+                <div class="grid_12">
+                    <label c-label item="item" >No.Registrasi</label>
+                </div>
+
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noregistrasi" ng-disabled="true" />
+                </div>
+            </div> -->
+
+           <div class="grid_2">
+                <div class="grid_12">
+                    <label c-label item="item" >Kelas</label>
+                </div>
+                <div class="grid_12">
+                    <input kendo-combo-box k-ng-model="item.kelas" k-data-text-field="'namakelas'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKelas" ng-disabled='true'/>
+                </div>
+            </div>
+
+           <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" >Tgl. Registrasi</label>
+                </div>
+
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.tglRegistrasi" ng-disabled="true" />
+                </div>
+            </div>
+           <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" >Jenis Penjamin</label>
+                </div>
+
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jenisPenjamin" ng-disabled="true" />
+                </div>
+            </div>
+
+
+            <div class="grid_4">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Nama Pasien"></label>
+                </div>
+
+                <div class="grid_12">
+                    <input c-text-box type="input"  filter="" class="k-textbox" ng-model="item.namaPasien" ng-disabled="true" />
+                </div>
+            </div>
+            <div class="grid_2">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Jenis Kelamin"></label>
+                </div>
+
+                <div class="grid_12">
+                    <input c-text-box type="input"  filter="" class="k-textbox" ng-model="item.jenisKelamin" ng-disabled="true" />
+                </div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Umur"></label>
+                </div>
+
+                <div class="grid_12">
+                    <input c-text-box type="input"  filter="" class="k-textbox" ng-model="item.umur" ng-disabled="true" />
+                </div>
+            </div>
+           <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" >Kelompok Pasien</label>
+                </div>
+
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kelompokPasien" ng-disabled="true" />
+                </div>
+            </div>
+        </div>
+        <div class="grid_3 borderBox" style=" height:170px;margin-top: 5px">
+            <div class="grid_12 headerBox">
+                <p>Pengkajian</p>
+            </div>
+            <div class="grid_12" >
+                <div class="grid_12">
+                    <label c-label item="item" >Berat Badan</label>
+                </div>
+
+                <div class="grid_5">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.beratBadan" ng-disabled="true" />
+                </div>
+                <div class="grid_4" >
+                    <label c-label item="item" >Kg</label>
+                </div>
+            </div>
+            <div class="grid_12" >
+                <div class="grid_12" >
+                    <label c-label item="item" >Status Alergi</label>
+                </div>
+
+                <div class="grid_10">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.AlergiYa" ng-disabled="true"/>
+                </div>
+            </div>
+        </div>
+        <div class="grid_12">
+           <!--  <div class="grid_12 headerBox">
+                <p>Data Resep</p>
+            </div> -->
+            <div class="grid_2">
+                <div class="grid_12">
+                    <label c-label item="item" >No Kirim</label>
+                </div>
+
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noKirim" />
+                </div>
+            </div>
+            <div class="grid_2">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Tanggal Kirim"></label>
+                </div>
+                <div class="grid_12 padDatePicker">
+                    <input style="width: 100%" k-ng-model="item.tglAwal"  kendo-date-picker k-max="now" placeholer="dd-MM-yyyy hh:mm" k-format="'dd-MM-yyyy hh:mm'" />
+                </div>
+            </div>
+
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Ruangan Pengirim"></label>
+                </div>
+
+                <div class="grid_12">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaruangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" k-on-change='getDataCombo()'/>
+                </div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Ruangan Tujuan"></label>
+                </div>
+
+                <div class="grid_12">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganTujuan" k-data-text-field="'namaruangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuanganTujuan" />
+                </div>
+            </div>
+            <div class="grid_2">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Jenis Kirim"></label>
+                </div>
+
+                <div class="grid_12">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisKirim" k-data-text-field="'jenis'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisKirim" />
+                </div>
+            </div>
+        </div>
+        
+        
+   
+<div class="grid_12"  ng-show='showInputObat'>
+
+    <div class="grid_12 headerBox">
+        <p>Detail Barang</p>
+    </div>
+    <div class="grid_3">
+        <div class="grid_12">
+            <label c-label item="item" c-label-text="Produk"></label>
+        </div>
+        <div class="grid_12">
+            <input kendo-combo-box k-ng-model="item.produk" k-data-text-field="'namaproduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listProduk" k-on-change='getSatuan()'/>
+        </div>
+    </div>
+
+    <div class="grid_1">
+        <div class="grid_12">
+            <label c-label item="item" c-label-text="Satuan"></label>
+        </div>
+        <div class="grid_12">
+            <input kendo-combo-box k-ng-model="item.satuan" k-data-text-field="'satuanstandar'" k-data-value-field="'ssid'" k-filter="'contains'" k-auto-bind="false" k-data-source="listSatuan" k-on-change='getNilaiKonversi()'/>
+        </div>
+    </div>
+    <div class="grid_1">
+        <div class="grid_12">
+            <label c-label item="item" c-label-text="Konversi"></label>
+        </div>
+        <div class="grid_12">
+            <input c-text-box type="input"  style="text-align: right" filter="" class="k-textbox" ng-model="item.nilaiKonversi" ng-disabled="true" />
+        </div>
+    </div>
+    <div class="grid_1">
+        <div class="grid_12">
+            <label c-label item="item" c-label-text="Stok"></label>
+        </div>
+        <div class="grid_12">
+            <input c-text-box type="input"  style="text-align: right" filter="" class="k-textbox" ng-model="item.stok" ng-disabled="true" />
+        </div>
+    </div>
+    <div class="grid_1">
+        <div class="grid_12">
+            <label c-label item="item" c-label-text="Jumlah"></label>
+        </div>
+        <div class="grid_12">
+            <input c-text-box type="input" style="text-align: right" filter="" class="k-textbox" ng-model="item.jumlah" />
+        </div>
+    </div>
+    
+    <div class="grid_2">
+        <div class="grid_12" style="margin-top: 10px">
+            <div class="grid_4">
+                <button class="btnTemplate1" ng-click="tambah()">Tambah</button>
+            </div>
+            <div class="grid_4">
+                <button class="btnTemplate1" ng-click="hapus()">Hapus</button>
+            </div>
+            <div class="grid_4">
+                <button class="btnTemplate1" ng-click="batal()">Batal</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid_12">
+         <div class="grid_12 borderBox">
+            <div id="kGrid" 
+            kendo-grid k-data-source="dataGrid" 
+            k-selectable="'row'" 
+            k-columns="columnGrid" 
+            k-pageable="'true'" 
+            k-sortable="'true'" 
+            k-ng-model="dataSelected"
+            ng-click="klikGrid(dataSelected)">
+            </div>
+        </div>
+    </div>
+    <!-- <div class="grid_12">
+        <div class="grid_8">
+        </div>
+        <div class="grid_4">
+            <div class="grid_3" style="margin-top: 10px">
+                <label c-label item="item" c-label-text="Sub Total :"></label>
+
+            </div>
+            <div class="grid_8">
+                <input c-text-box type="input" style="text-align: right" filter="" class="k-textbox" ng-model="item.totalSubTotal" ng-disabled="true" />
+            </div>
+        </div>
+    </div> -->
+            
+    <!-- NamaKegiatan -->
+    <div class="grid_12">
+        <div class="grid_6">
+        </div>
+        <div class="grid_6">
+            <div class="grid_6">
+            </div>
+            <div class="grid_2" style="margin-top: 22px">
+                <button class="c-button" ng-click="simpan()" ng-show='saveShow'>Simpan</button>
+            </div>
+           <!--  <div class="grid_2" style="margin-top: 22px">
+                <button class="c-button" ng-click="Cetak()">Cetak</button>
+            </div> -->
+            <div class="grid_2" style="margin-top: 22px">
+                <button class="c-button" ng-click="Batal()">Batal</button>
+            </div>
+            <div class="grid_2" style="margin-top: 22px">
+                <button class="c-button" ng-click="kembali()">Kembali</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="grid_12" ng-show='showRacikan'>
+
+    <div class="grid_12 headerBox">
+        <p>## Input Obat Racikan ##</p>
+    </div>
+    <div class="grid_12" style="margin-top: -5px">
+        <div class="grid_1">
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="No"></label>
+            </div>
+            <div class="grid_12">
+                <input c-text-box type="input"  filter="" class="k-textbox" ng-model="item.no"  ng-disabled='true'/>
+            </div>
+        </div>
+        <div class="grid_1">
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="R/ke"></label>
+            </div>
+            <div class="grid_12">
+                <input c-text-box type="input"  filter="" class="k-textbox" ng-model="item.rke"/>
+            </div>
+        </div>
+        <div class="grid_2">
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="Jenis Kemasan"></label>
+            </div>
+            <div class="grid_12">
+                <input kendo-combo-box k-ng-model="item.jenisKemasan" k-data-text-field="'jeniskemasan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisKemasan" ng-disabled='true'/>
+            </div>
+        </div>
+        <div class="grid_2">
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="Asal"></label>
+            </div>
+            <div class="grid_12">
+                <input kendo-combo-box k-ng-model="item.asal" k-data-text-field="'asalproduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAsalProduk"  k-on-change='getSatuan()'/>
+            </div>
+        </div>
+
+        <div class="grid_1">
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="Aturan Pakai"></label>
+            </div>
+            <div class="grid_12">
+                <input kendo-combo-box k-ng-model="item.aturanPakai" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAturanPakai" />
+            </div>
+        </div>
+        <div class="grid_1">
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="Route"></label>
+            </div>
+            <div class="grid_12">
+                <input kendo-combo-box k-ng-model="item.route" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRoute" />
+            </div>
+        </div>
+    </div>
+    <div class="grid_3">
+        <div class="grid_12">
+            <label c-label item="item" c-label-text="Produk"></label>
+        </div>
+        <div class="grid_12">
+            <input kendo-combo-box k-ng-model="item.produk" k-data-text-field="'namaproduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listProduk" k-on-change='getSatuan()'/>
+        </div>
+    </div>
+
+    <div class="grid_1">
+        <div class="grid_12">
+            <label c-label item="item" c-label-text="Satuan"></label>
+        </div>
+        <div class="grid_12">
+            <input kendo-combo-box k-ng-model="item.satuan" k-data-text-field="'satuanstandar'" k-data-value-field="'ssid'" k-filter="'contains'" k-auto-bind="false" k-data-source="listSatuan" k-on-change='getNilaiKonversi()'/>
+        </div>
+    </div>
+    <div class="grid_1">
+        <div class="grid_12">
+            <label c-label item="item" c-label-text="Konversi"></label>
+        </div>
+        <div class="grid_12">
+            <input c-text-box type="input"  style="text-align: right" filter="" class="k-textbox" ng-model="item.nilaiKonversi" ng-disabled="true" />
+        </div>
+    </div>
+    <div class="grid_1">
+        <div class="grid_12">
+            <label c-label item="item" c-label-text="Stok"></label>
+        </div>
+        <div class="grid_12">
+            <input c-text-box type="input"  style="text-align: right" filter="" class="k-textbox" ng-model="item.stok" ng-disabled="true" />
+        </div>
+    </div>
+    <div class="grid_1">
+        <div class="grid_12">
+            <label c-label item="item" c-label-text="Jumlah"></label>
+        </div>
+        <div class="grid_12">
+            <input c-text-box type="input" style="text-align: right" filter="" class="k-textbox" ng-model="item.jumlah" />
+        </div>
+    </div>
+    <div class="grid_1">
+        <div class="grid_12">
+            <label c-label item="item" c-label-text="Harga Satuan"></label>
+        </div>
+        <div class="grid_12">
+            <input c-text-box type="input" style="text-align: right" filter="" class="k-textbox" ng-model="item.hargaSatuan" ng-disabled="true" />
+        </div>
+    </div>
+    <div class="grid_1">
+        <div class="grid_12">
+            <label c-label item="item" c-label-text="Harga Diskon"></label>
+        </div>
+        <div class="grid_12">
+            <input c-text-box type="input" style="text-align: right" filter="" class="k-textbox" ng-model="item.hargadiskon"/>
+        </div>
+    </div>
+    <div class="grid_1">
+        <div class="grid_12">
+            <label c-label item="item" c-label-text="Total"></label>
+        </div>
+        <div class="grid_12">
+            <input c-text-box type="input" style="text-align: right" filter="" class="k-textbox" ng-model="item.total" ng-disabled="true" ng-disabled="txtbiaya"  />
+        </div>
+    </div>
+    <div class="grid_2">
+        <div class="grid_12" style="margin-top: 10px">
+            <div class="grid_4">
+                <button class="btnTemplate1" ng-click="tambahR()">Tambah</button>
+            </div>
+            <div class="grid_4">
+                <button class="btnTemplate1" ng-click="hapusR()">Hapus</button>
+            </div>
+            <div class="grid_4">
+                <button class="btnTemplate1" ng-click="batalR()">Batal</button>
+            </div>
+        </div>
+    </div>
+    <div class="grid_12">
+         <div class="grid_12 borderBox">
+            <div id="kGrid" 
+            kendo-grid k-data-source="dataGridR" 
+            k-selectable="'row'" 
+            k-columns="columnGridR" 
+            k-pageable="'true'" 
+            k-sortable="'true'" 
+            k-ng-model="dataSelectedR"
+            ng-click="klikGridR(dataSelectedR)">
+            </div>
+        </div>
+    </div>
+
+    <div class="grid_12">
+        <div class="grid_4">
+        </div>
+        <div class="grid_4">
+            <div class="grid_3" style="margin-top: 10px">
+                <label c-label item="item" c-label-text="Sub Total Diskon :"></label>
+
+            </div>
+            <div class="grid_8">
+                <input c-text-box type="input" style="text-align: right" filter="" class="k-textbox" ng-model="item.totalDiskonR" ng-disabled="true" />
+            </div>
+        </div>
+        <div class="grid_4">
+            <div class="grid_3" style="margin-top: 10px">
+                <label c-label item="item" c-label-text="Sub Total :"></label>
+
+            </div>
+            <div class="grid_8">
+                <input c-text-box type="input" style="text-align: right" filter="" class="k-textbox" ng-model="item.totalSubTotalR" ng-disabled="true" />
+            </div>
+        </div>
+    </div>
+    <div class="grid_12">
+        <div class="grid_6">
+        </div>
+        <div class="grid_6">
+            <div class="grid_6">
+            </div>
+            <div class="grid_3" style="margin-top: 22px">
+                <button class="c-button" ng-click="simpanR()">Simpan Racikan</button>
+            </div>
+            <div class="grid_3" style="margin-top: 22px">
+                <button class="c-button" ng-click="BatalR()">Batal Racikan</button>
+            </div>
+            
+        </div>
+    </div>
+</div> -->
+    
+    
+
+
+</div>
+<!-- </div> -->

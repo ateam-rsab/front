@@ -1,0 +1,132 @@
+<style>
+  .error {
+    background-color: white !important;
+  }
+
+  .yellow {
+    background-color: #ffff00
+  }
+
+  .green {
+    background-color: #00ff40
+  }
+
+  .red {
+    background-color: #FF0000
+  }
+
+  .k-grid .k-grid-header .k-header .k-link {
+    height: auto;
+  }
+
+  .k-grid .k-grid-header .k-header {
+    white-space: normal;
+  }
+
+  .style-four {
+    height: 5px;
+    border: 0;
+    box-shadow: inset 0 14px 12px -12px rgba(0, 0, 0, 0.5);
+  }
+
+  .md-button {
+    padding: 0 6px 0 6px;
+    margin: 6px 8px 6px 8px;
+    min-width: 88px;
+    border-radius: 3px;
+    font-size: 14px;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    color: green;
+  }
+
+  .k-grid .k-grid-header .k-header {
+    text-align: center;
+  }
+
+  .md-tooltip {
+    height: 25px !important;
+    background-color: #363940 !important;
+    color: white !important;
+    border-radius: 5px;
+    font-size: 14px
+  }
+
+  /*     .k-header .k-link{
+    text-align: center;
+     }*/
+</style>
+
+<c-panel item="item" header="'Dashboard Perbaikan IT'">
+  <div ng-show="dataVOloaded">
+
+    <div class="grid_12" style="margin-top: 10px">
+      <div class="grid_6">
+        <div class="grid_2" style="margin-top: 10px">
+          <label c-label item="item" c-label-text="periode"></label>
+        </div>
+        <div class="grid_2" align="right" style="margin-top: 15px">
+          <label c-label item="item" c-label-text=":"></label>
+        </div>
+        <div class="grid_3" style="margin-top: 5px">
+          <input style="width: 100%" kendo-date-picker k-ng-model="item.awal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"
+            k-on-change="ChangeData()" />
+        </div>
+        <div class="grid_1" align="center" style="margin-top: 15px">
+          <label c-label item="item">s/d</label>
+        </div>
+        <div class="grid_3" style="margin-top: 5px">
+          <input style="width: 100%" kendo-date-picker k-ng-model="item.akhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"
+            k-on-change="ChangeData()" />
+        </div>
+      </div>
+      <div class="grid_1">
+        <label c-label item="item">&nbsp;</label>
+        <button class="c-button success" ng-click="cari()">Cari</button>
+      </div>
+      <div class="grid_1">
+        <label c-label item="item">&nbsp;</label>
+        <button class="c-button" ng-click="refresh()">Refresh</button>
+      </div>
+    </div>
+    <!-- <div class="grid_1" align="right">
+      <md-button class="md-fab md-fab-top-right docs-scroll-fab md-button " align="center" style="height: 70px; width: 70px; background-color: #05b72a !important"
+        aria-label="Eat cake">
+        <md-tooltip md-direction='left'>Cetak Dokumen</md-tooltip>
+        <md-icon md-svg-src="/app/stylesheets/Images/exam.svg"></md-icon>
+      </md-button>
+    </div> -->
+    <hr class="style-four">
+
+    <div class="grid_12">
+      <div class="grid_2"><label c-label item="item" style="margin-bottom:19px; margin-left: 5px; margin-top:10; font-weight: bold;">
+          Finalisasi Hasil Pekerjaan:</label></div>
+      <div class="grid_1">
+        <span id="square" style="background-color:#FFFF00">&nbsp;&nbsp;&nbsp;</span>
+        <span style="font-weight: bold">: Pending</span>
+      </div>
+      <div class="grid_1">
+        <span id="square" style="background-color: #00FF00">&nbsp;&nbsp;&nbsp;</span>
+        <span style="font-weight: bold">: Selesai</span>
+      </div>
+      <div class="grid_2">
+        <span id="square" style="background-color: #FF0000">&nbsp;&nbsp;&nbsp;</span>
+        <span style="font-weight: bold">: Belum Dikerjakan</span>
+      </div>
+    </div>
+    <div class="grid_12">
+      <kendo-grid options="mainGridOptions" id="grid" k-columns="columnDashboard" k-data-source="dataSource"
+        k-selectable="'row'" k-ng-model="current" ng-click="click(current)"></kendo-grid>
+    </div>
+    <div class="grid_12">
+      <div class="grid_10"></div>
+      <div class="grid_2">
+        <button class="c-button success" style="margin-top: 15px">Detail</button>
+      </div>
+    </div>
+    <hr class="style-four">
+  </div>
+</c-panel>

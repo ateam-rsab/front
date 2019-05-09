@@ -1,0 +1,47 @@
+{
+	"model":{
+		"InputField" : "",
+		"Checkbox" : "",
+		"Combobox" :"",
+	    "DatePicker" : "",
+	    "Radio" : ""
+	},
+    "attributes" : [ 
+    	{
+			"isNull" : "true",
+			"name" : "InputField",
+			"messagesRequired" : "",
+			"caption" : "DARI INPUTFIELD"
+		},
+
+		{
+			"isNull" : "false",
+			"name" : "CheckBox",
+			"messagesRequired" : "",
+			"caption" : "DARI CHECKBOX"
+		},
+
+		{
+			"isNull" : "true",
+			"name" : "Combobox",
+			"messagesRequired" : "",
+			"caption" : "DARI COMBOBOX"
+		},
+
+		{
+			"isNull" : "true",
+			"name" : "DatePicker",
+			"messagesRequired" : "",
+			"caption" : "DARI DATEPICKER"
+		},
+
+		{
+			"isNull" : "false",
+			"name" : "Radio",
+			"messagesRequired" : "",
+			"caption" : "DARI RADIO"
+		}
+
+		
+  ]
+}

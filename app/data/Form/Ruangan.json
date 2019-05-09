@@ -1,0 +1,2462 @@
+{
+  "data": {
+    "listSideMenu": [
+      {
+        "ruanganId": 1,
+        "namaRuangan": "Inst.Teknologi & Informasi"
+      },
+      {
+        "ruanganId": 59,
+        "namaRuangan": "Farmasi 1",
+        "listModul": [{
+          "id": 10,
+          "namaModul": "Depo Farmasi / Apotik",
+          "listObjectModulHead": [{
+            "id": 10,
+            "namaObjekModulHead": "Depo Farmasi / Apotik"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 203,
+        "namaRuangan": "K3"
+      },
+      {
+        "ruanganId": 245,
+        "namaRuangan": "Klinik Remaja",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 80,
+        "namaRuangan": "Ruang Rawat Sehari ( RRS )",
+        "listModul": [{
+          "id": 11,
+          "namaModul": "Perawatan Rawat Inap",
+          "listObjectModulHead": [{
+            "id": 11,
+            "namaObjekModulHead": "Perawatan Rawat Inap"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 89,
+        "namaRuangan": "Klinik Subspesialis Nefrologi (Ginjal) dan Dialisis"
+      },
+      {
+        "ruanganId": 93,
+        "namaRuangan": "Laundry",
+        "listModul": [{
+          "id": 18,
+          "namaModul": "Binatu / Laundry"
+        }]
+      },
+      {
+        "ruanganId": 97,
+        "namaRuangan": "Klinik Spesialis Kebidanan & Kandungan Umum (Flamboyan)",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 229,
+        "namaRuangan": "IP3RS",
+        "listModul": [{
+          "id": 41,
+          "namaModul": "IP3RS",
+          "listObjectModulHead": [{
+            "id": 41,
+            "namaObjekModulHead": "IP3RS"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 328,
+        "namaRuangan": "ICU / Ruang Wijaya Kusuma",
+        "listModul": [{
+          "id": 11,
+          "namaModul": "Perawatan Rawat Inap",
+          "listObjectModulHead": [{
+            "id": 11,
+            "namaObjekModulHead": "Perawatan Rawat Inap"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 255,
+        "namaRuangan": "Klinik Subspesialis Tumbuh Kembang dan Pediatri Sosial"
+      },
+      {
+        "ruanganId": 159,
+        "namaRuangan": "Gudang Pemakai C S S D"
+      },
+      {
+        "ruanganId": 177,
+        "namaRuangan": "Gd. Sub. Pemakai Bangsal Widuri"
+      },
+      {
+        "ruanganId": 52,
+        "namaRuangan": "Gudang Terminal Laundry"
+      },
+      {
+        "ruanganId": 132,
+        "namaRuangan": "Poliklinik Spes.Penj.& Ppk"
+      },
+      {
+        "ruanganId": 134,
+        "namaRuangan": "K.P.P."
+      },
+      {
+        "ruanganId": 138,
+        "namaRuangan": "Farmasi 2"
+      },
+      {
+        "ruanganId": 151,
+        "namaRuangan": "Inst. Pemeliharaan Sarana Non Medik"
+      },
+      {
+        "ruanganId": 238,
+        "namaRuangan": "Ambulan",
+        "listModul": [{
+          "id": 8,
+          "namaModul": "Laboratorium",
+          "listObjectModulHead": [{
+            "id": 8,
+            "namaObjekModulHead": "Laboratorium"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 456,
+        "namaRuangan": "Testing Lab"
+      },
+      {
+        "ruanganId": 276,
+        "namaRuangan": "Laboratorium Patologi Klinik",
+        "listModul": [{
+          "id": 8,
+          "namaModul": "Laboratorium",
+          "listObjectModulHead": [{
+            "id": 8,
+            "namaObjekModulHead": "Laboratorium"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 337,
+        "namaRuangan": "Kepala Instalasi Teknologi Informasi"
+      },
+      {
+        "ruanganId": 338,
+        "namaRuangan": "Kepala Instalasi Bedah Sentral dan RRS"
+      },
+      {
+        "ruanganId": 339,
+        "namaRuangan": "Kepala Instalasi Gawat Darurat"
+      },
+      {
+        "ruanganId": 340,
+        "namaRuangan": "Kepala Instalasi Gizi"
+      },
+      {
+        "ruanganId": 341,
+        "namaRuangan": "Kepala Instalasi Humas dan Pelayanan Pelanggan"
+      },
+      {
+        "ruanganId": 342,
+        "namaRuangan": "Kepala Instalasi Intensive Care Uniit"
+      },
+      {
+        "ruanganId": 343,
+        "namaRuangan": "Kepala Instalasi Logistik"
+      },
+      {
+        "ruanganId": 344,
+        "namaRuangan": "Kepala Instalasi Pemeliharaan Sarana Rumah Sakit"
+      },
+      {
+        "ruanganId": 98,
+        "namaRuangan": "Klinik Subspesialis Kardiologi",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id":  5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 139,
+        "namaRuangan": "Bag. Umum",
+        "listModul": [{
+          "id": 24,
+          "namaModul": "Unit Layanan Umum dan Administrasi",
+          "listObjectModulHead": [{
+            "id": 24,
+            "namaObjekModulHead": "Unit Layanan Umum dan Administrasi"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 222,
+        "namaRuangan": "Pelatihan",
+        "listModul": [{
+          "id": 28,
+          "namaModul": "Pendidikan dan Pelatihan",
+          "listObjectModulHead": [{
+            "id": 28,
+            "namaObjekModulHead": "Pendidikan dan Pelatihan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 230,
+        "namaRuangan": "Klinik Akupunktur",
+        "listModul": [{
+          "id": 5, 
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 232,
+        "namaRuangan": "Ruang Kantil",
+        "listModul": [{
+          "id": 11,
+          "namaModul": "Perawatan Rawat Inap",
+          "listObjectModulHead": [{
+            "id": 11,
+            "namaObjekModulHead": "Perawatan Rawat Inap"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 240,
+        "namaRuangan": "Klinik Bedah Urologi",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 268,
+        "namaRuangan": "Klinik Subspesialis Neurologi",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 329,
+        "namaRuangan": "Ruang Rapat Sidang B"
+      },
+      {
+        "ruanganId": 330,
+        "namaRuangan": "Ruang Rapat ICU"
+      },
+      {
+        "ruanganId": 331,
+        "namaRuangan": "Ruang Rapat Auditorium"
+      },
+      {
+        "ruanganId": 332,
+        "namaRuangan": "Ruang Pemulasaraan Jenazah"
+      },
+      {
+        "ruanganId": 334,
+        "namaRuangan": "Kepala Bagian Penyusunan dan Evaluasi Anggaran"
+      },
+      {
+        "ruanganId": 335,
+        "namaRuangan": "Kepala Bagian Sumber Daya Manusia"
+      },
+      {
+        "ruanganId": 336,
+        "namaRuangan": "Kepala Bidang Keperawatan"
+      },
+      {
+        "ruanganId": 444,
+        "namaRuangan": "Kasir",
+        "listModul": [{
+          "id": 31, 
+          "namaModul": "Kasir Sentral",
+          "listObjectModulHead": [{
+            "id": 31,
+            "namaObjekModulHead": "Kasir Sentral"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 445,
+        "namaRuangan": "Pengelola Urusan Pajak"
+      },
+      {
+        "ruanganId": 3,
+        "namaRuangan": "Klinik Spesialis Kebidanan & Kandungan Swasta (Anyelir)",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 50,
+        "namaRuangan": "Gd. Sentral - Inst. Logistik",
+        "listModul": [{
+          "id": 15,
+          "namaModul": "Logistik",
+          "listObjectModulHead": [{
+            "id": 15,
+            "namaObjekModulHead": "Logistik"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 54,
+        "namaRuangan": "Ruang Gizi",
+        "listModul": [{
+          "id": 13,
+          "namaModul": "Gizi dan Kantin",
+          "listObjectModulHead": [{
+            "id": 13,
+            "namaObjekModulHead": "Gizi dan Kantin"
+          }] 
+        }]
+      },
+      {
+        "ruanganId": 55,
+        "namaRuangan": "Sarana Sandang dan Sterilisasi Sentral",
+        "listModul": [{
+          "id": 19,
+          "namaModul": "Central Sterile Supply",
+          "listObjectModulHead": [{
+            "id": 19,
+            "namaObjekModulHead": "Central Sterile Supply"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 58,
+        "namaRuangan": "Inst. Prasarana Dan Sarana RS",
+        "listModul": [{
+          "id": 41,
+          "namaModul": "IP3RS",
+          "listObjectModulHead": [{
+            "id": 41,
+            "namaObjekModulHead": "IP3RS"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 243,
+        "namaRuangan": "Klinik Laktasi",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 309,
+        "namaRuangan": "Klinik False Emergency",
+        "listModul": [{
+          "id": 6,
+          "namaModul": "Gawat Darurat",
+          "listObjectModulHead": [{
+            "id": 6,
+            "namaModul": "Gawat Darurat"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 125,
+        "namaRuangan": "Farmasi 7"
+      },
+      {
+        "ruanganId": 94,
+        "namaRuangan": "Farmasi"
+      },
+      {
+        "ruanganId": 126,
+        "namaRuangan": "Asist. Direktur Keperawatan"
+      },
+      {
+        "ruanganId": 10,
+        "namaRuangan": "Psykologi",
+        "listModul": [{
+          "id": 7,
+          "namaModul": "Rehabilitasi Medik",
+          "listObjectModulHead": [{
+            "id": 7,
+            "namaObjekModulHead": "Rehabilitasi Medik"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 345,
+        "namaRuangan": "Kepala Instalasi Piutang & Jaminan"
+      },
+      {
+        "ruanganId": 346,
+        "namaRuangan": "Kepala Instalasi Sarana Sandang & Sterilisasi Sentral"
+      },
+      {
+        "ruanganId": 347,
+        "namaRuangan": "Kepala Seksi Asuhan Keperawatan"
+      },
+      {
+        "ruanganId": 348,
+        "namaRuangan": "Kepala Seksi Pelayanan Medik"
+      },
+      {
+        "ruanganId": 349,
+        "namaRuangan": "Kepala Seksi Penged. Yan Keperawatan"
+      },
+      {
+        "ruanganId": 350,
+        "namaRuangan": "Kepala Seksi Penunjang Medik"
+      },
+      {
+        "ruanganId": 351,
+        "namaRuangan": "Kepala Seksi Rekam Medik"
+      },
+      {
+        "ruanganId": 352,
+        "namaRuangan": "Kepala SPI"
+      },
+      {
+        "ruanganId": 353,
+        "namaRuangan": "Kepala Subbagian Administrasi Kepegawaian"
+      },
+      {
+        "ruanganId": 354,
+        "namaRuangan": "Kepala Subbagian Akuntansi Keuangan"
+      },
+      {
+        "ruanganId": 355,
+        "namaRuangan": "Kepala Subbagian Akuntansi Manaj. & Verifikasi"
+      },
+      {
+        "ruanganId": 356,
+        "namaRuangan": "Kepala Subbagian Diklat Kesehatan"
+      },
+      {
+        "ruanganId": 357,
+        "namaRuangan": "Kepala Subbagian Diklat Non Kesehatan"
+      },
+      {
+        "ruanganId": 358,
+        "namaRuangan": "Kepala Subbagian Evaluasi Anggaran"
+      },
+      {
+        "ruanganId": 359,
+        "namaRuangan": "Kepala Subbagian Kesejahteraan dan Imbal Jasa"
+      },
+      {
+        "ruanganId": 360,
+        "namaRuangan": "Kepala Subbagian Mobilisasi dana"
+      },
+      {
+        "ruanganId": 361,
+        "namaRuangan": "Kepala Subbagian Pemasaran"
+      },
+      {
+        "ruanganId": 362,
+        "namaRuangan": "Kepala Subbagian Pengembangan Sdm"
+      },
+      {
+        "ruanganId": 363,
+        "namaRuangan": "Kepala Subbagian Penyusunan Anggaran"
+      },
+      {
+        "ruanganId": 116,
+        "namaRuangan": "Farmasi 4"
+      },
+      {
+        "ruanganId": 195,
+        "namaRuangan": "Penjelia"
+      },
+      {
+        "ruanganId": 201,
+        "namaRuangan": "Farmasi 5"
+      },
+      {
+        "ruanganId": 219,
+        "namaRuangan": "Direktorat Umum & Operasional"
+      },
+      {
+        "ruanganId": 227,
+        "namaRuangan": "Farmasi 3 OK"
+      },
+      {
+        "ruanganId": 233,
+        "namaRuangan": "Farmasi 6"
+      },
+      {
+        "ruanganId": 236,
+        "namaRuangan": "Farmasi 9"
+      },
+      {
+        "ruanganId": 251,
+        "namaRuangan": "Klinik Subspesialis Endokrin"
+      },
+      {
+        "ruanganId": 253,
+        "namaRuangan": "Klinik Subspesialis Obstetri Sosial"
+      },
+      {
+        "ruanganId": 198,
+        "namaRuangan": "Klinik Bedah Saraf"
+      },
+      {
+        "ruanganId": 275,
+        "namaRuangan": "Ka Instalasi Laboratorium"
+      },
+      {
+        "ruanganId": 281,
+        "namaRuangan": "Ka Instalasi Farmasi"
+      },
+      {
+        "ruanganId": 282,
+        "namaRuangan": "Farmasi Rawat Jalan"
+      },
+      {
+        "ruanganId": 283,
+        "namaRuangan": "Farmasi Rawat Inap"
+      },
+      {
+        "ruanganId": 289,
+        "namaRuangan": "K K T K"
+      },
+      {
+        "ruanganId": 323,
+        "namaRuangan": "Asrama Lantai VI"
+      },
+      {
+        "ruanganId": 324,
+        "namaRuangan": "Asrama Lantai VII"
+      },
+      {
+        "ruanganId": 325,
+        "namaRuangan": "Asrama Lantai VIII"
+      },
+      {
+        "ruanganId": 326,
+        "namaRuangan": "Ruang Rapat Dewas"
+      },
+      {
+        "ruanganId": 327,
+        "namaRuangan": "Ruang Rapat Sidang A"
+      },
+      {
+        "ruanganId": 364,
+        "namaRuangan": "Kepala Subbagian Perbendaharaan"
+      },
+      {
+        "ruanganId": 365,
+        "namaRuangan": "Kepala Subbagian Perencanaan dan Evaluasi"
+      },
+      {
+        "ruanganId": 366,
+        "namaRuangan": "Kepala Subbagian Perlengkapan"
+      },
+      {
+        "ruanganId": 367,
+        "namaRuangan": "Kepala Subbagian Rumah Tangga"
+      },
+      {
+        "ruanganId": 368,
+        "namaRuangan": "Kepala Subbagian Tata Usaha"
+      },
+      {
+        "ruanganId": 369,
+        "namaRuangan": "Ketua Komite Hukum"
+      },
+      {
+        "ruanganId": 370,
+        "namaRuangan": "Ketua Komite Medik"
+      },
+      {
+        "ruanganId": 371,
+        "namaRuangan": "Ketua Komite Mutu"
+      },
+      {
+        "ruanganId": 372,
+        "namaRuangan": "Ketua ULP",
+        "listModul": [{
+          "id": 16,
+          "namaModul": "Unit Layanan Pengadaan",
+          "listObjectModulHead": [{
+            "id": 16,
+            "namaObjekModulHead": "Unit Layanan Pengadaan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 250,
+        "namaRuangan": "Klinik Subspesialis Fetomaternal"
+      },
+      {
+        "ruanganId": 249,
+        "namaRuangan": "Klinik Subspesialis Uroginekologi "
+      },
+      {
+        "ruanganId": 47,
+        "namaRuangan": "Pendaftaran UGD",
+        "listModul": [{
+          "id": 2,
+          "namaModul": "Registrasi Pasien",
+          "listObjectModulHead": [{
+            "id": 2,
+            "namaObjekModulHead": "Registrasi Pasien"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 104,
+        "namaRuangan": "Kasir 8 (Lab)",
+        "listModul": [{
+          "id": 31,
+          "namaModul": "Kasir Sentral",
+          "listObjectModulHead": [{
+            "id": 31,
+            "namaObjekModulHead": "Kasir Sentral"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 158,
+        "namaRuangan": "Gudang Pemakai Laborat Terpadu"
+      },
+      {
+        "ruanganId": 194,
+        "namaRuangan": "Laboratorium Gigi Dan Mulut"
+      },
+      {
+        "ruanganId": 248,
+        "namaRuangan": "Klinik Perinatologi"
+      },
+      {
+        "ruanganId": 60,
+        "namaRuangan": "Bag. Evaluasi Anggaran"
+      },
+      {
+        "ruanganId": 61,
+        "namaRuangan": "Sub Bag. Akuntansi Keuangan"
+      },
+      {
+        "ruanganId": 69,
+        "namaRuangan": "Keperawatan"
+      },
+      {
+        "ruanganId": 84,
+        "namaRuangan": "Kasir 5 (UGD)",
+        "listModul": [{
+          "id": 31,
+          "namaModul": "Kasir Sentral",
+          "listObjectModulHead": [{
+            "id": 31,
+            "namaObjekModulHead": "Kasir Sentral"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 85,
+        "namaRuangan": "Kasir 6",
+        "listModul": [{
+          "id": 31,
+          "namaModul": "Kasir Sentral",
+          "listObjectModulHead": [{
+            "id": 31,
+            "namaObjekModulHead": "Kasir Sentral"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 70,
+        "namaRuangan": "Klinik Karyawan"
+      },
+      {
+        "ruanganId": 86,
+        "namaRuangan": "Kasir 7",
+        "listModul": [{
+          "id": 31,
+          "namaModul": "Kasir Sentral",
+          "listObjectModulHead": [{
+            "id": 31,
+            "namaObjekModulHead": "Kasir Sentral"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 87,
+        "namaRuangan": "Kasir Radiologi",
+        "listModul": [{
+          "id": 31,
+          "namaModul": "Kasir Sentral",
+          "listObjectModulHead": [{
+            "id": 31,
+            "namaObjekModulHead": "Kasir Sentral"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 96,
+        "namaRuangan": "Pensiunan"
+      },
+      {
+        "ruanganId": 99,
+        "namaRuangan": "Direktur Utama"
+      },
+      {
+        "ruanganId": 100,
+        "namaRuangan": "Sub Bag. Kesekretariatan Rs"
+      },
+      {
+        "ruanganId": 79,
+        "namaRuangan": "RRS Emergency",
+        "listModul": [{
+          "id": 6,
+          "namaModul": "Gawat Darurat",
+          "listObjectModulHead": [{
+            "id": 6,
+            "namaObjekModulHead": "Gawat Darurat"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 81,
+        "namaRuangan": "Kasir 2 (TPP1)",
+        "listModul": [{
+          "id": 31,
+          "namaModul": "Kasir Sentral",
+          "listObjectModulHead": [{
+            "id": 31,
+            "namaObjekModulHead": "Kasir Sentral"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 82,
+        "namaRuangan": "Kasir 3",
+        "listModul": [{
+          "id": 31,
+          "namaModul": "Kasir Sentral",
+          "listObjectModulHead": [{
+            "id": 31,
+            "namaObjekModulHead": "Kasir Sentral"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 88,
+        "namaRuangan": "Sub Bag. Mobilisasi Dana"
+      },
+      {
+        "ruanganId": 120,
+        "namaRuangan": "Inst. Peralatan Medik"
+      },
+      {
+        "ruanganId": 122,
+        "namaRuangan": "Inst. Farmasi"
+      },
+      {
+        "ruanganId": 123,
+        "namaRuangan": "Inst. Loundry"
+      },
+      {
+        "ruanganId": 124,
+        "namaRuangan": "Bag. Penunjang Diagnostik"
+      },
+      {
+        "ruanganId": 127,
+        "namaRuangan": "Instalasi Rawat Inap"
+      },
+      {
+        "ruanganId": 90,
+        "namaRuangan": "Kasir KKTK"
+      },
+      {
+        "ruanganId": 91,
+        "namaRuangan": "Kasir Balita"
+      },
+      {
+        "ruanganId": 95,
+        "namaRuangan": "Gudang Terminal Farmasi"
+      },
+      {
+        "ruanganId": 103,
+        "namaRuangan": "Gudang Terminal GIP3M"
+      },
+      {
+        "ruanganId": 113,
+        "namaRuangan": "Rumah Tangga"
+      },
+      {
+        "ruanganId": 117,
+        "namaRuangan": "Inst. Penyed. Prasarana"
+      },
+      {
+        "ruanganId": 118,
+        "namaRuangan": "Inst. Sanitasi "
+      },
+      {
+        "ruanganId": 119,
+        "namaRuangan": "Inst. Pemeliharaan Sarana "
+      },
+      {
+        "ruanganId": 298,
+        "namaRuangan": "Kepala Bagian Perbendaharaan Dan Mobilisasi Dana"
+      },
+      {
+        "ruanganId": 314,
+        "namaRuangan": "Farmasi 8 - Temporary Depo"
+      },
+      {
+        "ruanganId": 315,
+        "namaRuangan": "Farmasi 10"
+      },
+      {
+        "ruanganId": 449,
+        "namaRuangan": "Klinik Subspesialis Gastrohepatologi"
+      },
+      {
+        "ruanganId": 450,
+        "namaRuangan": "Klinik Subspesialis Neonatologi"
+      },
+      {
+        "ruanganId": 452,
+        "namaRuangan": "Klinik Pedodonti (Gigi Anak)"
+      },
+      {
+        "ruanganId": 454,
+        "namaRuangan": "Klinik Gigi Konservasi"
+      },
+      {
+        "ruanganId": 455,
+        "namaRuangan": "Klinik Bedah Mulut"
+      },
+      {
+        "ruanganId": 42,
+        "namaRuangan": "RRS Kebidanan"
+      },
+      {
+        "ruanganId": 43,
+        "namaRuangan": "USG",
+        "listModul": [{
+          "id": 9,
+          "namaModul": "Radiologi",
+          "listObjectModulHead": [{
+            "id":  9,
+            "namaModul": "Radiologi"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 49,
+        "namaRuangan": "Kasir 1 ",
+        "listModul": [{
+          "id": 31,
+          "namaModul": "Kasir Sentral",
+          "listObjectModulHead": [{
+            "id": 31,
+            "namaObjekModulHead": "Kasir Sentral"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 51,
+        "namaRuangan": "Gudang Terminal Gizi",
+        "listModul": [{
+          "id": 13,
+          "namaModul": "Gizi dan Kantin",
+          "listObjectModulHead": [{
+            "id": 13,
+            "namaModul": "Gizi dan Kantin"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 53,
+        "namaRuangan": "Inst Perawatan Jenazah"
+      },
+      {
+        "ruanganId": 56,
+        "namaRuangan": "Sub Bag. Perlengkapan"
+      },
+      {
+        "ruanganId": 57,
+        "namaRuangan": "Bag. SDM",
+        "listModul": [{
+          "id": 27,
+          "namaModul": "Sumber Daya Manusia",
+          "listObjectModulHead": [{
+            "id": 27,
+            "namaObjekModulHead": "Sumber Daya Manusia"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 83,
+        "namaRuangan": "Kasir 4",
+        "listModul": [{
+          "id": 31,
+          "namaModul": "Kasir Sentral",
+          "listObjectModulHead": [{
+            "id": 31,
+            "namaObjekModulHead": "Kasir Sentral"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 453,
+        "namaRuangan": "Klinik Ortodonti"
+      },
+      {
+        "ruanganId": 108,
+        "namaRuangan": "Bag. Diklit"
+      },
+      {
+        "ruanganId": 107,
+        "namaRuangan": "Sub Bag. Kesej. & Imbal Jasa"
+      },
+      {
+        "ruanganId": 109,
+        "namaRuangan": "Sub Bag. Penelitian"
+      },
+      {
+        "ruanganId": 110,
+        "namaRuangan": "Bag. Informasi & Rekam Medik"
+      },
+      {
+        "ruanganId": 111,
+        "namaRuangan": "Bagian Perbendaharaan"
+      },
+      {
+        "ruanganId": 112,
+        "namaRuangan": "Bag. Akuntansi Manajemen & Verifikasi"
+      },
+      {
+        "ruanganId": 114,
+        "namaRuangan": "Inst. Peng.Sarana Dinas"
+      },
+      {
+        "ruanganId": 115,
+        "namaRuangan": "Inst. Peng.Lingkungan RS"
+      },
+      {
+        "ruanganId": 121,
+        "namaRuangan": "Bidang Medik"
+      },
+      {
+        "ruanganId": 129,
+        "namaRuangan": "Instalasi Peristi"
+      },
+      {
+        "ruanganId": 130,
+        "namaRuangan": "Instalasi Rawat Jalan "
+      },
+      {
+        "ruanganId": 131,
+        "namaRuangan": "Pendaftaran Balita"
+      },
+      {
+        "ruanganId": 133,
+        "namaRuangan": "Bag. Bedah Sentral & Gawat Darurat"
+      },
+      {
+        "ruanganId": 135,
+        "namaRuangan": "Komite Keperawatan"
+      },
+      {
+        "ruanganId": 136,
+        "namaRuangan": "Komite Hukum"
+      },
+      {
+        "ruanganId": 137,
+        "namaRuangan": "Kasir Kebidanan"
+      },
+      {
+        "ruanganId": 140,
+        "namaRuangan": "Bag. Keuangan"
+      },
+      {
+        "ruanganId": 141,
+        "namaRuangan": "Sub Bag. Pemasaran"
+      },
+      {
+        "ruanganId": 142,
+        "namaRuangan": "Staf Medik Fungsional Anak"
+      },
+      {
+        "ruanganId": 143,
+        "namaRuangan": "Staf Medik Fungsional Kebidanan"
+      },
+      {
+        "ruanganId": 144,
+        "namaRuangan": "Direktur Umum & Operasional"
+      },
+      {
+        "ruanganId": 145,
+        "namaRuangan": "Direktur Keuangan"
+      },
+      {
+        "ruanganId": 146,
+        "namaRuangan": "Bisnis Centre"
+      },
+      {
+        "ruanganId": 147,
+        "namaRuangan": "Instalasi Rawat Jalan "
+      },
+      {
+        "ruanganId": 149,
+        "namaRuangan": "Gudang Terminal Sekretariat"
+      },
+      {
+        "ruanganId": 150,
+        "namaRuangan": "Gudang Terminal Produksi"
+      },
+      {
+        "ruanganId": 152,
+        "namaRuangan": "Per.Ruang Kamar Bersalin"
+      },
+      {
+        "ruanganId": 153,
+        "namaRuangan": "Per.Ruang Bedah Sentral"
+      },
+      {
+        "ruanganId": 154,
+        "namaRuangan": "Ok ( RSCC)"
+      },
+      {
+        "ruanganId": 155,
+        "namaRuangan": "Kasir 9 (Alamanda)"
+      },
+      {
+        "ruanganId": 156,
+        "namaRuangan": "Gudang Pemakai Gizi / Dapur"
+      },
+      {
+        "ruanganId": 157,
+        "namaRuangan": "Gudang Pemakai RMI"
+      },
+      {
+        "ruanganId": 166,
+        "namaRuangan": "Gd. Sub Pemakai Makanan / Gizi"
+      },
+      {
+        "ruanganId": 169,
+        "namaRuangan": "Gd. Sub. Pemakai Poli / R. J. Anak"
+      },
+      {
+        "ruanganId": 170,
+        "namaRuangan": "Gudang Terminal RT"
+      },
+      {
+        "ruanganId": 171,
+        "namaRuangan": "Gd. Sub. Pem. Bedah Sentral O. K"
+      },
+      {
+        "ruanganId": 172,
+        "namaRuangan": "Gd. Sub. Pemakai Konsultasi Gizi"
+      },
+      {
+        "ruanganId": 173,
+        "namaRuangan": "Gd. Sub. Pemakai U. Kamar Kuret"
+      },
+      {
+        "ruanganId": 174,
+        "namaRuangan": "Gd. Sub. Pemakai Bangsal Gambir"
+      },
+      {
+        "ruanganId": 175,
+        "namaRuangan": "Gd. Sub. Pemakai Bangsal Teratai"
+      },
+      {
+        "ruanganId": 176,
+        "namaRuangan": "Gd. Sub. Pemakai Kamar Bersalin"
+      },
+      {
+        "ruanganId": 228,
+        "namaRuangan": "Apotik Alamanda"
+      },
+      {
+        "ruanganId": 305,
+        "namaRuangan": "Bagian Perencanaan Dan Pemasaran"
+      },
+      {
+        "ruanganId": 106,
+        "namaRuangan": "Bagian SDM",
+        "listModul": [{
+          "id": 27,
+          "namaModul": "Sumber Daya Manusia",
+          "listObjectModulHead": [{
+            "id": 27,
+            "namaObjekModulHead": "Sumber Daya Manusia"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 128,
+        "namaRuangan": "Perinatal & Resiko Tinggi"
+      },
+      {
+        "ruanganId": 277,
+        "namaRuangan": "Genetika Klinik"
+      },
+      {
+        "ruanganId": 218,
+        "namaRuangan": "Kasir BRI"
+      },
+      {
+        "ruanganId": 271,
+        "namaRuangan": "Ka Instalasi Gawat Darurat Dan ICU"
+      },
+      {
+        "ruanganId": 161,
+        "namaRuangan": "Gudang Pemakai Tu"
+      },
+      {
+        "ruanganId": 162,
+        "namaRuangan": "Gudang Pemakai Teknik P2FRS"
+      },
+      {
+        "ruanganId": 163,
+        "namaRuangan": "Gudang Pemakai Poli Karyawan"
+      },
+      {
+        "ruanganId": 164,
+        "namaRuangan": "Gd. Pemakai Gas Medis & Solar"
+      },
+      {
+        "ruanganId": 165,
+        "namaRuangan": "Gd. Pemakai Linen & Detergent"
+      },
+      {
+        "ruanganId": 167,
+        "namaRuangan": "Gudang Sub Pemakai Radiologi"
+      },
+      {
+        "ruanganId": 168,
+        "namaRuangan": "Gd. Sub. Pemakai Rawat Jalan Anak"
+      },
+      {
+        "ruanganId": 178,
+        "namaRuangan": "Gd. Sub. Pemakai Ruang Kemuning"
+      },
+      {
+        "ruanganId": 179,
+        "namaRuangan": "Gd. Sub. Pemakai Gawat Darurat"
+      },
+      {
+        "ruanganId": 180,
+        "namaRuangan": "Gd. Sub. Pem. U. Bedah Sent / Anestesi"
+      },
+      {
+        "ruanganId": 181,
+        "namaRuangan": "Gd. Sub. Pemakai Poli Kebidanan"
+      },
+      {
+        "ruanganId": 182,
+        "namaRuangan": "Gd. Sub. Pem. Unit USG / Peri Keb."
+      },
+      {
+        "ruanganId": 183,
+        "namaRuangan": "Gd. Sub. Pemakai Bangsal Anggrek"
+      },
+      {
+        "ruanganId": 184,
+        "namaRuangan": "Gd. Sub. Pemakai Bangsal I. C. U"
+      },
+      {
+        "ruanganId": 185,
+        "namaRuangan": "Gd. Sub. Pemakai Bangsal Seruni"
+      },
+      {
+        "ruanganId": 186,
+        "namaRuangan": "Gd. Sub. Pemakai Bangsal Melati"
+      },
+      {
+        "ruanganId": 187,
+        "namaRuangan": "Gd. Sub. Pemakai Bangsal Mawar"
+      },
+      {
+        "ruanganId": 188,
+        "namaRuangan": "Gd. Sub. Pemakai Bangsal Kenanga"
+      },
+      {
+        "ruanganId": 189,
+        "namaRuangan": "Gd. Sub. Pemakai Bangsal Menur"
+      },
+      {
+        "ruanganId": 190,
+        "namaRuangan": "Gd. Sub. Pemakai Bangsal Cempaka"
+      },
+      {
+        "ruanganId": 191,
+        "namaRuangan": "Gd. Sub. Pemakai Fisioterapi"
+      },
+      {
+        "ruanganId": 192,
+        "namaRuangan": "Gd. Sub. Pemakai Unt. Rehabiltasi"
+      },
+      {
+        "ruanganId": 193,
+        "namaRuangan": "Gudang Sub Pemakai Unit Melati"
+      },
+      {
+        "ruanganId": 200,
+        "namaRuangan": "Gd. Apotik"
+      },
+      {
+        "ruanganId": 202,
+        "namaRuangan": "Direktorat Pel.Medik & Keperawatan"
+      },
+      {
+        "ruanganId": 204,
+        "namaRuangan": "Dewan Pengawas"
+      },
+      {
+        "ruanganId": 205,
+        "namaRuangan": "Direktur Administrasi & Keu."
+      },
+      {
+        "ruanganId": 206,
+        "namaRuangan": "Gudang Pemakai SIRS"
+      },
+      {
+        "ruanganId": 207,
+        "namaRuangan": "Gudang Pemakai Laundry"
+      },
+      {
+        "ruanganId": 208,
+        "namaRuangan": "Pendaftaran Anyelir"
+      },
+      {
+        "ruanganId": 209,
+        "namaRuangan": "Pendaftaran Radiologi"
+      },
+      {
+        "ruanganId": 210,
+        "namaRuangan": "Pendaftaran PM"
+      },
+      {
+        "ruanganId": 211,
+        "namaRuangan": "Gudang Gizi"
+      },
+      {
+        "ruanganId": 212,
+        "namaRuangan": "Direktur Pelayanan Medik & Keperawatan"
+      },
+      {
+        "ruanganId": 214,
+        "namaRuangan": "Kasir Urm",
+        "listModul": [{
+          "id": 31,
+          "namaModul": "Kasir Sentral",
+          "listObjectModulHead": [{
+            "id": 31,
+            "namaObjekModulHead": "Kasir Sentral"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 215,
+        "namaRuangan": "Layanan Inf.R.Inap"
+      },
+      {
+        "ruanganId": 223,
+        "namaRuangan": "Bagian Penyusunan & Evaluasi Anggaran",
+        "listModul": [{
+          "id": 30,
+          "namaModul": "Perencanaan dan Anggaran",
+          "listObjectModulHead": [{
+            "id": 30,
+            "namaObjekModulHead": "Perencanaan dan Anggaran"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 242,
+        "namaRuangan": "ULP",
+        "listModul": [{
+          "id": 16,
+          "namaModul": "Unit Layanan Pengadaan",
+          "listObjectModulHead": [{
+            "id": 16,
+            "namaObjekModulHead": "Unit Layanan Pengadaan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 160,
+        "namaRuangan": "Gudang Pemakai Sub Bag. Ppa"
+      },
+      {
+        "ruanganId": 246,
+        "namaRuangan": "Komite Mutu"
+      },
+      {
+        "ruanganId": 290,
+        "namaRuangan": "Instalasi Informasi Kesehatan",
+        "listModul": [{
+          "id": 3,
+          "namaModul": "Rekam Medis",
+          "listObjectModulHead": [{
+            "id": 3,
+            "namaObjekModulHead": "Rekam Medis"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 17,
+        "namaRuangan": "Klinik Gizi",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 292,
+        "namaRuangan": "Sub Bag Administrasi Kepegawaian",
+        "listModul": [{
+          "id": 27,
+          "namaModul": "Sumber Daya Manusia",
+          "listObjectModulHead": [{
+            "id": 27,
+            "namaObjekModulHead": "Sumber Daya Manusia"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 293,
+        "namaRuangan": "Sub Bag Pengembangan Sumber Daya Manusia",
+        "listModul": [{
+          "id": 27,
+          "namaModul": "Sumber Daya Manusia",
+          "listObjectModulHead": [{
+            "id": 27,
+            "namaModul": "Sumber Daya Manusia",
+            "listObjectModulHead": [{
+              "id": 27,
+              "namaObjekModulHead": "Sumber Daya Manusia"
+            }]
+          }]
+        }]
+      },
+      {
+        "ruanganId": 296,
+        "namaRuangan": "Sub Bag Penyusunan Anggaran",
+        "listModul": [{
+          "id": 30,
+          "namaModul": "Perencanaan dan Anggaran",
+          "listObjectModulHead": [{
+            "id": 30,
+            "namaObjekModulHead": "Perencanaan dan Anggaran"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 297,
+        "namaRuangan": "Sub Bag Evaluasi Anggaran",
+        "listModul": [{
+          "id": 30,
+          "namaModul": "Perencanaan dan Anggaran",
+          "listObjectModulHead": [{
+            "id": 30,
+            "namaObjekModulHead": "Perencanaan dan Anggaran"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 294,
+        "namaRuangan": "Sub Bag Kesejahteraan Pegawai",
+        "listModul": [{
+          "id": 27,
+          "namaModul": "Sumber Daya Manusia",
+          "listObjectModulHead": [{
+            "id": 27,
+            "namaModul": "Sumber Daya Manusia",
+            "listObjectModulHead": [{
+              "id": 27,
+              "namaObjekModulHead": "Sumber Daya Manusia"
+            }]
+          }]
+        }]
+      },
+      {
+        "ruanganId": 299,
+        "namaRuangan": "Sub Bagian Perbendaharaan",
+        "listModul": [{
+          "id": 30,
+          "namaModul": "Perencanaan dan Anggaran",
+          "listObjectModulHead": [{
+            "id": 30,
+            "namaObjekModulHead": "Perencanaan dan Anggaran"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 300,
+        "namaRuangan": "Kepala Bagian Akuntansi Dan Verifikasi"
+      },
+      {
+        "ruanganId": 225,
+        "namaRuangan": "-"
+      },
+      {
+        "ruanganId": 226,
+        "namaRuangan": "Sub Bagian Perencanaan",
+        "listModul": [{
+          "id": 30,
+          "namaModul": "Perencanaan dan Anggaran",
+          "listObjectModulHead": [{
+            "id": 30,
+            "namaObjekModulHead": "Perencanaan dan Anggaran"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 239,
+        "namaRuangan": "(Tidak Dipakai)"
+      },
+      {
+        "ruanganId": 254,
+        "namaRuangan": "Inst. Piutang"
+      },
+      {
+        "ruanganId": 256,
+        "namaRuangan": "Instalasi (Tidak Dipakai)"
+      },
+      {
+        "ruanganId": 257,
+        "namaRuangan": "Instalasi Humas"
+      },
+      {
+        "ruanganId": 258,
+        "namaRuangan": "SPGDT"
+      },
+      {
+        "ruanganId": 259,
+        "namaRuangan": "Sekretaris Direktur Utama"
+      },
+      {
+        "ruanganId": 260,
+        "namaRuangan": "Direktorat Medik & Keperawatan"
+      },
+      {
+        "ruanganId": 261,
+        "namaRuangan": "Kepala Bidang Medik"
+      },
+      {
+        "ruanganId": 262,
+        "namaRuangan": "Seksi Pengelolaan Pelayanan Medik"
+      },
+      {
+        "ruanganId": 263,
+        "namaRuangan": "Seksi Pengelolaan Penunjang Medik"
+      },
+      {
+        "ruanganId": 264,
+        "namaRuangan": "Seksi Rekam Medik"
+      },
+      {
+        "ruanganId": 265,
+        "namaRuangan": "Seksi Asuhan Keperawatan"
+      },
+      {
+        "ruanganId": 266,
+        "namaRuangan": "Seksi Pengendalian Pelayanan Keperawatan"
+      },
+      {
+        "ruanganId": 267,
+        "namaRuangan": "Kepala Instalasi Rawat Jalan"
+      },
+      {
+        "ruanganId": 269,
+        "namaRuangan": "Kepala Instalasi Rawat Inap"
+      },
+      {
+        "ruanganId": 270,
+        "namaRuangan": "Instalasi ICU"
+      },
+      {
+        "ruanganId": 272,
+        "namaRuangan": "Instalasi Bedah Sentral Dan RRS"
+      },
+      {
+        "ruanganId": 273,
+        "namaRuangan": "Instalasi Perinatal Resiko Tinggi"
+      },
+      {
+        "ruanganId": 274,
+        "namaRuangan": "Ka Instalasi Perinatal Dan Resiko Tinggi"
+      },
+      {
+        "ruanganId": 279,
+        "namaRuangan": "Instalasi Radiologi"
+      },
+      {
+        "ruanganId": 280,
+        "namaRuangan": "Ka Instalasi Radiologi"
+      },
+      {
+        "ruanganId": 284,
+        "namaRuangan": "Instalasi Rehabilitasi Medik"
+      },
+      {
+        "ruanganId": 285,
+        "namaRuangan": "Ka Instalasi Rehabilitasi Medik",
+        "listModul": [{
+          "id": 7,
+          "namaModul": "Rehabilitasi dan Medik",
+          "listObjectModulHead": [{
+            "id": 7,
+            "namaObjekModulHead": "Rehabilitasi dan Medik"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 288,
+        "namaRuangan": "Orthetil …… ( Pengembangan )"
+      },
+      {
+        "ruanganId": 291,
+        "namaRuangan": "Kepala Instalasi Informasi Kesehatan",
+        "listModul": [{
+          "id": 30,
+          "namaModul": "Rekam Medis",
+          "listObjectModulHead": [{
+            "id": 30,
+            "namaObjekModulHead": "Rekam Medis"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 301,
+        "namaRuangan": "Sub Bagian Akuntansi Manajemen Dan Verifikasi"
+      },
+      {
+        "ruanganId": 302,
+        "namaRuangan": "Kepala Instalasi Piutang"
+      },
+      {
+        "ruanganId": 303,
+        "namaRuangan": "Kepala Bagian Umum"
+      },
+      {
+        "ruanganId": 306,
+        "namaRuangan": "Kepala Bagian Perencanaan Dan Pemasaran"
+      },
+      {
+        "ruanganId": 307,
+        "namaRuangan": "Sub Bagian Pemasaran"
+      },
+      {
+        "ruanganId": 216,
+        "namaRuangan": "Asrama Lantai V"
+      },
+      {
+        "ruanganId": 19,
+        "namaRuangan": "Klinik Melati – IVF",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 38,
+        "namaRuangan": "Inst. Laboratorium",
+        "listModul": [{
+          "id": 8,
+          "namaModul": "Laboratorium",
+          "listObjectModulHead": [{
+            "id": 8,
+            "namaObjekModulHead": "Laboratorium"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 46,
+        "namaRuangan": "Pendaftaran TPP 1",
+        "listModul": [{
+          "id": 2,
+          "namaModul": "Registrasi Pasien",
+          "listObjectModulHead": [{
+            "id": 2,
+            "namaObjekModulHead": "Registrasi Pasien"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 286,
+        "namaRuangan": "Terapi Wicara",
+        "listModul": [{
+          "id": 7,
+          "namaModul": "Rehabilitasi Medik",
+          "listObjectModulHead": [{
+            "id": 7,
+            "namaObjekModulHead": "Rehabilitasi Medik"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 310,
+        "namaRuangan": "Klinik Bidic",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 319,
+        "namaRuangan": "Klinik HIV",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 320,
+        "namaRuangan": "Klinik Intertilitas dan Konsepsi Buatan",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 448,
+        "namaRuangan": "Klinik Gastro Hepato Nutrisi",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 92,
+        "namaRuangan": "Ruang Larat",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Inap",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Inap"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 102,
+        "namaRuangan": "Komite Medik"
+      },
+      {
+        "ruanganId": 105,
+        "namaRuangan": "Sub Bag. P2 SDM",
+        "listModul": [{
+          "id": 27,
+          "namaModul": "Sumber Daya Manusia",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Sumber Daya Manusia"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 287,
+        "namaRuangan": "Okupasi Terapi",
+        "listModul": [{
+          "id": 7,
+          "namaModul": "Rehabilitasi Medik",
+          "listObjectModulHead": [{
+            "id": 7,
+            "namaObjekModulHead": "Rehabilitasi Medik"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 295,
+        "namaRuangan": "Pendidikan dan Penelitian",
+        "listModul": [{
+          "id": 28,
+          "namaModul": "Pendidikan dan Pelatihan",
+          "listObjectModulHead": [{
+            "id": 28,
+            "namaObjekModulHead": "Pendidikan dan Pelatihan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 308,
+        "namaRuangan": "Panitia Penerima Hasil Pekerjaan"
+      },
+      {
+        "ruanganId": 311,
+        "namaRuangan": "Klinik Perioperatif & Manajemen Nyeri (Anestesi)",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 312,
+        "namaRuangan": "Pengendalian Penyuluhan Infeksi"
+      },
+      {
+        "ruanganId": 316,
+        "namaRuangan": "PPK RM"
+      },
+      {
+        "ruanganId": 317,
+        "namaRuangan": "PPK BLU"
+      },
+      {
+        "ruanganId": 318,
+        "namaRuangan": "Kesehatan Lingkungan (KESLING)",
+        "listModul": [{
+          "id": 22,
+          "namaModul": "Kesehatan dan Keselamatan Kerja",
+          "listObjectModulHead": [{
+            "id": 22,
+            "namaObjekModulHead": "Kesehatan dan Keselamatan Kerja"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 333,
+        "namaRuangan": "Kepala Bagian Pendidikan dan Penelitian"
+      },
+      {
+        "ruanganId": 446,
+        "namaRuangan": "Klinik Subspesialis Respirologi"
+      },
+      {
+        "ruanganId": 447,
+        "namaRuangan": "Klinik Subspesialis Nutrisi dan Penyakit Metabolik"
+      },
+      {
+        "ruanganId": 8,
+        "namaRuangan": "Klinik Syaraf Dewasa",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 6,
+        "namaRuangan": "Klinik THT",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 14,
+        "namaRuangan": "Klinik Bedah Umum",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 199,
+        "namaRuangan": "Staf Medik Fungsional Non Anak & Kebidanan"
+      },
+      {
+        "ruanganId": 213,
+        "namaRuangan": "Direktur SDM dan Pendidikan"
+      },
+      {
+        "ruanganId": 217,
+        "namaRuangan": "Direktorat SDM dan Pendidikan"
+      },
+      {
+        "ruanganId": 220,
+        "namaRuangan": "Direktorat Keuangan"
+      },
+      {
+        "ruanganId": 221,
+        "namaRuangan": "Bidang Keperawatan"
+      },
+      {
+        "ruanganId": 237,
+        "namaRuangan": "Klinik Dahlia",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 31,
+        "namaRuangan": "Klinik Nefrologi Hipertensi",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 241,
+        "namaRuangan": "Klinik Aster",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 247,
+        "namaRuangan": "Klinik Anak Asoka",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 278,
+        "namaRuangan": "Mikrobiologi Klinik"
+      },
+      {
+        "ruanganId": 73,
+        "namaRuangan": "Ruang Teratai",
+        "listModul": [{
+          "id": 11,
+          "namaModul": "Perawatan Rawat Inap",
+          "listObjectModulHead": [{
+            "id": 11,
+            "namaObjekModulHead": "Perawatan Rawat Inap"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 74,
+        "namaRuangan": "Ruang Kenanga",
+        "listModul": [{
+          "id": 11,
+          "namaModul": "Perawatan Rawat Inap",
+          "listObjectModulHead": [{
+            "id": 11,
+            "namaObjekModulHead": "Perawatan Rawat Inap"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 75,
+        "namaRuangan": "Ruang Kemuning",
+        "listModul": [{
+          "id": 11,
+          "namaModul": "Perawatan Rawat Inap",
+          "listObjectModulHead": [{
+            "id": 11,
+            "namaObjekModulHead": "Perawatan Rawat Inap"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 76,
+        "namaRuangan": "Ruang Seruni",
+        "listModul": [{
+          "id": 11,
+          "namaModul": "Perawatan Rawat Inap",
+          "listObjectModulHead": [{
+            "id": 11,
+            "namaObjekModulHead": "Perawatan Rawat Inap"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 77,
+        "namaRuangan": "Ruang Widuri",
+        "listModul": [{
+          "id": 11,
+          "namaModul": "Perawatan Rawat Inap",
+          "listObjectModulHead": [{
+            "id": 11,
+            "namaObjekModulHead": "Perawatan Rawat Inap"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 78,
+        "namaRuangan": "RI ICU Anak",
+        "listModul": [{
+          "id": 11,
+          "namaModul": "Perawatan Rawat Inap",
+          "listObjectModulHead": [{
+            "id": 11,
+            "namaObjekModulHead": "Perawatan Rawat Inap"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 322,
+        "namaRuangan": "Poliklinik Tumbuh Kembang Anak Sehat (POTAS)",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 63,
+        "namaRuangan": "Ruang Gambir",
+        "listModul": [{
+          "id": 11,
+          "namaModul": "Perawatan Rawat Inap",
+          "listObjectModulHead": [{
+            "id": 11,
+            "namaObjekModulHead": "Perawatan Rawat Inap"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 23,
+        "namaRuangan": "Parent Education",
+        "listModul": [{
+          "id": 7,
+          "namaModul": "Rehabilitasi Medik",
+          "listObjectModulHead": [{
+            "id": 7,
+            "namaObjekModulHead": "Rehabilitasi Medik"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 18,
+        "namaRuangan": "Klinik Spesialis Anak Umum (Alamanda)",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 12,
+        "namaRuangan": "Klinik Bedah Plastik",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 25,
+        "namaRuangan": "Medical Check Up",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 5,
+        "namaRuangan": "Klinik Mata",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 7,
+        "namaRuangan": "Klinik Kulit dan Penyakit Kelamin",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 9,
+        "namaRuangan": "Klinik Penyakit Dalam",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 11,
+        "namaRuangan": "Klinik Bedah Anak",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 16,
+        "namaRuangan": "Fisiotherapi",
+        "listModul": [{
+          "id": 7,
+          "namaModul": "Rehabilitasi Medik",
+          "listObjectModulHead": [{
+            "id": 7,
+            "namaObjekModulHead": "Rehabilitasi Medik"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 20,
+        "namaRuangan": "Rehabilitasi Medik",
+        "listModul": [{
+          "id": 7,
+          "namaModul": "Rehabilitasi Medik",
+          "listObjectModulHead": [{
+            "id": 7,
+            "namaObjekModulHead": "Rehabilitasi Medik"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 21,
+        "namaRuangan": "KKTK",
+        "listModul": [{
+          "id": 7,
+          "namaModul": "Rehabilitasi Medik",
+          "listObjectModulHead": [{
+            "id": 7,
+            "namaObjekModulHead": "Rehabilitasi Medik"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 26,
+        "namaRuangan": "Klinik CLP – Pusat Pelayanan celah bibir dan langit-langit",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 30,
+        "namaRuangan": "Klinik Subspesialis Hemato-Onkologi",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 32,
+        "namaRuangan": "Klinik Subspesialis Infeksi dan Penyakit Tropis",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 33,
+        "namaRuangan": "Klinik Subspesialis Endokrinologi",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 34,
+        "namaRuangan": "CSSD",
+        "listModul": [{
+          "id": 19,
+          "namaModul": "Central Sentral Supply",
+          "listObjectModulHead": [{
+            "id": 19,
+            "namaObjekModulHead": "Central Sentral Supply"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 35,
+        "namaRuangan": "Radiologi",
+        "listModul": [{
+          "id": 9,
+          "namaModul": "Radiologi",
+          "listObjectModulHead": [{
+            "id": 9,
+            "namaObjekModulHead": "Radiologi"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 36,
+        "namaRuangan": "Gawat Darurat(Emergency)",
+        "listModul": [{
+          "id": 6,
+          "namaModul": "Gawat Darurat",
+          "listObjectModulHead": [{
+            "id": 6,
+            "namaObjekModulHead": "Gawat Darurat"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 37,
+        "namaRuangan": "Laboratorium Gigi",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 39,
+        "namaRuangan": "Laboratorium Patologi Anatomi",
+        "listModul": [{
+          "id": 8,
+          "namaModul": "Laboratorium",
+          "listObjectModulHead": [{
+            "id": 8,
+            "namaObjekModulHead": "Laboratorium"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 40,
+        "namaRuangan": "Mikrobiologi",
+        "listModul": [{
+          "id": 8,
+          "namaModul": "Laboratorium",
+          "listObjectModulHead": [{
+            "id": 8,
+            "namaObjekModulHead": "Laboratorium"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 41,
+        "namaRuangan": "Bank Darah",
+        "listModul": [{
+          "id": 8,
+          "namaModul": "Laboratorium",
+          "listObjectModulHead": [{
+            "id": 8,
+            "namaObjekModulHead": "Laboratorium"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 44,
+        "namaRuangan": "Ruang Bedah Sentral ( OK )",
+        "listModul": [{
+          "id": 12,
+          "namaModul": "Bedah Sentral",
+          "listObjectModulHead": [{
+            "id": 12,
+            "namaObjekModulHead": "Bedah Sentral"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 45,
+        "namaRuangan": "Ruang Kamar Bersalin ( VK )",
+        "listModul": [{
+          "id": 11,
+          "namaModul": "Perawatan Rawat Inap",
+          "listObjectModulHead": [{
+            "id": 11,
+            "namaObjekModulHead": "Perawatan Rawat Inap"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 48,
+        "namaRuangan": "Inst. Infokes",
+        "listModul": [{
+          "id": 11,
+          "namaModul": "Perawatan Rawat Inap",
+          "listObjectModulHead": [{
+            "id": 11,
+            "namaObjekModulHead": "Perawatan Rawat Inap"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 62,
+        "namaRuangan": "Ruang Melati",
+        "listModul": [{
+          "id": 11,
+          "namaModul": "Perawatan Rawat Inap",
+          "listObjectModulHead": [{
+            "id": 11,
+            "namaObjekModulHead": "Perawatan Rawat Inap"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 64,
+        "namaRuangan": "Ruang Mawar",
+        "listModul": [{
+          "id": 11,
+          "namaModul": "Perawatan Rawat Inap",
+          "listObjectModulHead": [{
+            "id": 11,
+            "namaObjekModulHead": "Perawatan Rawat Inap"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 65,
+        "namaRuangan": "Ruang Menur",
+        "listModul": [{
+          "id": 11,
+          "namaModul": "Perawatan Rawat Inap",
+          "listObjectModulHead": [{
+            "id": 11,
+            "namaObjekModulHead": "Perawatan Rawat Inap"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 66,
+        "namaRuangan": "Ruang Anggrek",
+        "listModul": [{
+          "id": 11,
+          "namaModul": "Perawatan Rawat Inap",
+          "listObjectModulHead": [{
+            "id": 11,
+            "namaObjekModulHead": "Perawatan Rawat Inap"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 67,
+        "namaRuangan": "Ruang Cempaka",
+        "listModul": [{
+          "id": 11,
+          "namaModul": "Perawatan Rawat Inap",
+          "listObjectModulHead": [{
+            "id": 11,
+            "namaObjekModulHead": "Perawatan Rawat Inap"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 68,
+        "namaRuangan": "SPI"
+      },
+      {
+        "ruanganId": 13,
+        "namaRuangan": "Klinik Bedah Ortopedi",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 72,
+        "namaRuangan": "Ruang Tanjung",
+        "listModul": [{
+          "id": 11,
+          "namaModul": "Perawatan Rawat Inap",
+          "listObjectModulHead": [{
+            "id": 11,
+            "namaObjekModulHead": "Perawatan Rawat Inap"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 224,
+        "namaRuangan": "Customer Service",
+        "listModul": [{
+          "id": 21,
+          "namaModul": "Humas Pemasaran",
+          "listObjectModulHead": [{
+            "id": 21,
+            "namaObjekModulHead": "Humas Pemasaran"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 304,
+        "namaRuangan": "Sub Bagian Tata Usaha",
+        "listModul": [{
+          "id": 25,
+          "namaModul": "Tata Usaha",
+          "listObjectModulHead": [{
+            "id": 25,
+            "namaObjekModulHead": "Tata Usaha"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 4,
+        "namaRuangan": "Klinik Gigi dan Mulut",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 27,
+        "namaRuangan": "Klinik Hepato Gastro Enterologi Anak",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 28,
+        "namaRuangan": "Klinik Pulmonologi Anak",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 29,
+        "namaRuangan": "Klinik Subspesialis Alergi Imunologi",
+        "listModul": [{
+          "id": 5,
+          "namaModul": "Perawatan Rawat Jalan",
+          "listObjectModulHead": [{
+            "id": 5,
+            "namaObjekModulHead": "Perawatan Rawat Jalan"
+          }]
+        }]
+      },
+      {
+        "ruanganId": 0,
+        "namaRuangan": "Belum Pilih Ruangan"
+      }
+    ]
+  }
+}

@@ -1,0 +1,325 @@
+<style type="text/css">
+#treeview-left,
+#treeview-right
+{
+	overflow: visible;
+}
+.ui-datepicker-calendar {
+	display: none;
+	}​
+
+	.layout-row{
+		display: inline-block;
+		clear: both;
+	}
+
+	.layout-left {
+		float: left;
+		display: inline-block;
+	}
+
+	.layout-right {
+		float: right;
+		display: inline-block;
+	}
+
+	.layout-1 {
+		position: absolute;
+		left: 200px;
+		display: table-cell;
+	}
+	.layout-2 {
+		position: absolute;
+		left: 300px;
+		display: table-cell;;
+
+	}
+	.layout-row{
+		display: inline-block;
+		clear: both;
+	}
+	.item-styling{
+		display: inline-block;
+		text-align: left;
+		width: 150px;
+	}
+	.move{
+		margin-left: 17px;
+	}
+
+	.style-center {
+		display: inline-block;
+		text-align: center;
+		width: 100%;
+	}
+
+	.style-right {
+		display: inline-block;
+		text-align: right;
+		width: 100%;
+	}
+
+	.style-left {
+		display: inline-block;
+		text-align: left;
+		width: 100%;
+	}
+
+	.k-treeview .k-item {
+		background-color: #f9f9f9 !important;
+	}
+
+	.k-checkbox-label:before {
+		margin: 1px 0px 0px 6px;
+	}
+	.style-center{
+		display: inline-block;
+		text-align: center;
+		width: 100%;
+	}
+
+	.style-right{
+		display: inline-block;
+		text-align: right;
+		width: 100%;
+	}
+
+	.style-left{
+		display: inline-block;
+		text-align: left;
+		width: 100%;
+	}
+
+	.k-grid .k-grid-header .k-header .k-link {
+		height: auto;
+	}
+
+	.k-grid .k-grid-header .k-header  {
+		white-space: normal;
+	}
+	.k-grid .k-grid-header .k-header  {
+		text-align: center;
+	}
+	.k-grid-content {
+		max-height: 600px;
+	}
+
+</style>
+
+</style>
+
+<div ng-show="dataVOloaded">
+	<c-panel item="item" header="'Monitoring Belanja'" disabled>
+	</c-panel>
+	<div class="grid_12">
+		<div ng-cloak>
+			<md-content>
+				<md-tabs md-dynamic-height md-border-bottom>
+					<md-tab label="Monitoring Realisasi">
+						<md-content class="md-padding">
+
+							<div class="grid_12">
+
+								<div class="grid_2">
+									<div class="grid_12">
+										<label c-label item="item" >Tahun Anggaran</label>
+									</div>
+									<div class="clear"></div>
+
+									<div class="grid_12">
+										<input style="width: 100%" k-ng-model="item.periodeTahun"  kendo-date-picker k-max="now" placeholer="yyyy" k-format="'yyyy'" k-options="monthSelectorOptions()"/>
+									</div>
+								</div>
+								<div class="grid_2">
+									<div class="grid_12">
+										<label c-label item="item" >Revisi Diva Ke</label>
+									</div>
+									<div class="clear"></div>
+
+									<div class="grid_12">
+										<input style="width: 100%;" kendo-combo-box k-ng-model="item.revisiKe" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRevisiKe" />
+									</div>
+								</div>
+								<div class="grid_2">
+									<div class="grid_12">
+										<label c-label item="item" >Mata Anggaran</label>
+									</div>
+									<div class="clear"></div>
+
+									<div class="grid_12">
+										<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaMataAnggaran" ng-keypress="($event.which == 13)? CariFilter():item.namaMataAnggaran"/>
+									</div>
+								</div>
+
+
+								<div class="grid_1">
+									<div class="grid_12">
+										<label>&nbsp;</label>
+									</div>
+									<div class="clear"></div>
+
+									<div class="grid_12">
+										<button class="btnTemplate1" style="margin-left: 0;" ng-click="findData()">Cari</button>
+									</div>
+								</div>
+							</div>
+							<div class="clear"></div>
+
+							<br/>
+							<div class="grid_12">
+								<div class="grid_12 headerBox">
+									<p>Detail Anggaran</p>
+								</div>
+								<div class="clear"></div>
+								<div class="grid_12 borderBox">
+									<div id="gridAnggaran" 
+									kendo-grid options="columnAnggaran" 
+									k-selectable="'row'" 
+									
+									k-data-source="dataSourceAnggaran" 
+									k-ng-model="dataAnggaranSelected" 
+									ng-click="klikGrid(dataAnggaranSelected)">
+								</div>
+							</div>
+						</div>
+
+						<div class="clear"></div>
+						<div class="grid_6"></div>
+						<!-- <div class="grid_4"></div> -->
+						<div class="grid_6">
+							<fieldset>
+								<legend>Saldo</legend>
+								<div class="grid_4">
+									<div class="grid_12">
+										<label c-label item="item"> Total Saldo Awal RM</label>
+									</div>
+									<div class="clear"></div>
+									<div class="grid_12" style="margin-top: 5px; margin-bottom: 10px">
+
+										{{totalRM | currency: "Rp. "}}
+									</div>
+								</div>
+								<div class="grid_4">
+									<div class="grid_12">
+										<label c-label item="item"> Total Saldo Awal BLU</label>
+									</div>
+									<div class="clear"></div>
+									<div class="grid_12" style="margin-top: 5px; margin-bottom: 10px">
+
+										{{totalBLU| currency: "Rp. "}}
+									</div>
+								</div>
+								<div class="grid_4">
+									<div class="grid_12">
+										<label c-label item="item"> Total Realisasi</label>
+									</div>
+									<div class="clear"></div>
+									<div class="grid_12" style="margin-top: 5px; margin-bottom: 10px">
+
+										{{totalBelanja| currency: "Rp. "}}
+									</div>
+								</div>
+							</fieldset>
+						</div>
+					</md-content>
+				</md-tab>
+				<md-tab label="Riwayat Realisasi">
+					<md-content class="md-padding">
+						<c-panel item="item" header="'Riwayat Pemakaian Anggaran'" disabled>
+							<div class="grid_12" style="margin-top: 10px;">
+								<div class="grid_2">
+									<label c-label item="item" c-label-text="Tahun :"></label>
+								</div>
+								<div class="grid_3">
+									<input c-text-box type="input" filter="'number'" class="k-textbox" ng-model="item.tahun" disabled/>
+								</div>
+							</div>
+							<!-- <div class="clear"></div> -->
+
+							<div class="grid_12">
+								<div class="grid_2">
+									<label c-label item="item" c-label-text="Mata Anggaran :"></label>
+								</div>
+								<div class="grid_2">
+									<input c-text-box type="input" filter="'number'" class="k-textbox" ng-model="item.kodeMataAnggaranD" disabled/>
+								</div>
+								<div class="grid_4">
+									<input c-text-box type="input" filter="'number'" class="k-textbox" ng-model="item.namaMataAnggaranD" disabled/>
+								</div>
+							</div>
+							<div class="grid_12">
+								<div class="grid_2">
+									<label c-label item="item" c-label-text="Pagu Anggaran :"></label>
+								</div>
+								<div class="grid_3">
+									<input c-text-box type="input" filter="'number'" class="k-textbox" style="text-align: right" ng-model="item.totalMata" disabled/>
+								</div>
+							</div>
+							<div class="grid_12">
+								<div class="grid_2">
+									<label c-label item="item" c-label-text="Realisasi Belanja :"></label>
+								</div>
+								<div class="grid_3">
+									<input c-text-box type="input" filter="'number'"  style="text-align: right" class="k-textbox" ng-model="item.realisasiBelanja" disabled/>
+								</div>
+							</div>
+
+							<div class="grid_12">
+								<div class="grid_2">
+									<label c-label item="item" c-label-text="Sisa :"></label>
+								</div>
+								<div class="grid_3">
+									<input c-text-box type="input" filter="'number'"  style="text-align: right" class="k-textbox" ng-model="item.sisa" disabled/>
+								</div>
+							</div>
+
+							<div class="clear"></div>
+
+							<br/>
+							<div class="grid_12">
+								<div class="grid_12 headerBox">
+									<p>Detail Riwayat Realisasi</p>
+								</div>
+								<div class="clear"></div>
+								
+								<div class="grid_12 borderBox">
+									<div id="kGrid" kendo-grid 
+									k-data-source="dataGrid" 
+									k-pageable="true"
+									k-sortable="'true'" 
+									k-columns="columnGrid"
+									k-ng-model="dataPasienSelected">
+										<div k-detail-template>
+											<kendo-tabstrip>
+												<div>
+													<div kendo-grid k-options="detailGridOptions(dataItem)" 
+													k-sortable="'true'" 
+													k-ng-model="dataPasienSelected">
+												</div>
+											</kendo-tabstrip>
+										</div>
+									</div>
+								</div>
+							</div>
+							<br/>
+					</c-panel>
+					<!-- <div class="grid_12" style="margin-top:10px;"> -->
+						<!-- <div class="grid_5"></div> -->
+						<!-- <div class="grid_2" style="float:right;">
+							<button class="c-button" ng-click="Save()">Revisi</button>
+						</div>
+						<div class="grid_2" style="float:right;">
+							<button class="c-button" ng-click="Batal()">Distribusi</button>
+						</div>
+						<div class="grid_2" style="float:right;">
+							<button class="c-button" ng-click="refresh()">Refresh</button>
+						</div> -->
+					<!-- </div> -->
+					</md-content>
+				</md-tab>
+			</md-tabs>
+		</md-content>
+	</div>
+</div>
+<br/>
+	<div ng-include='"../app/module/Shared/TemplateLoading"'></div>

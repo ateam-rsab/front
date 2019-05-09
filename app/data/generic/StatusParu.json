@@ -1,0 +1,11 @@
+[
+    {
+        "id":"1","name":"Suara Nafas Normal"
+    },{
+        "id":"2","name":"Tidak Normal"
+    },{
+        "id":"3","name":"Ronkhi"
+    },{
+        "id":"4","name":"Wheezing"
+    }
+]

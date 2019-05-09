@@ -1,0 +1,28 @@
+{
+	"model":{
+		"kodeKomponen" : "",
+		"namaKomponen":"",
+		"ketKomponen":""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "kodeKomponen",
+			"messagesRequired" : "",
+			"caption" : "Kode Komponen"
+		},{
+			"isNull" : "true",
+			"name" : "namaKomponen",
+			"messagesRequired" : "",
+			"caption" : "Nama Komponen"
+		},{
+			"isNull" : "true",
+			"name" : "ketKomponen",
+			"messagesRequired" : "",
+			"caption" : "Keterangan Komponen"
+		}
+
+	]
+}

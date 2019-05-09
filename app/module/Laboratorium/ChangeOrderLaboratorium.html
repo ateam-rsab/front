@@ -1,0 +1,77 @@
+<div class="grid_12" ng-controller="ChangeOrderLaboratoriumCtrl">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Permintaan Laboratorium</div>
+        <div class="panel-body">
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="tanggalPermintaan"></label>
+            </div>
+            <div class="grid_8">
+                <input style="width: 100%" k-value='now' k-max="now" kendo-date-picker k-ng-model="item.tanggalPermintaan" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+            </div>
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="cito"></label>
+            </div>
+            <div class="grid_8" style="margin-bottom: 10px;">
+                <input type="checkbox" class="k-checkbox" name="isCito" id="isCito" value="true" ng-model="item.cito" ng-true-value="'1'" ng-false-value="'0'"  ng-checked="vals">
+                <label class="k-checkbox-label" for="isCito">Cito</label>
+
+            </div>
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="keterangan"></label>
+            </div>
+            <div class="grid_8">
+                <textarea ng-model="item.keteranganLainnya" style="width: 100%; height: 80px;"></textarea>
+            </div>
+
+            <div class="grid_2">
+                <label c-label item="item" c-label-text="KelompokKerja" real></label>
+                <div class="breadcrum">
+                    <div class="grid_12">
+                        <div ng-repeat="data in listJenisProduk">
+                            <a class="n1 green" ng-click='item.jenisProduk=data'>{{data.jenisProduk}}</a>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="grid_3">
+                <label c-label item="item" c-label-text="detailJenisPemeriksaan" real></label>
+                <div class="breadcrum">
+                    <div class="grid_12">
+                        <div ng-repeat="data in listDetailJenisProduk">
+                            <a class="n1 purple" ng-click='item.detailProduk=data'>{{data.detailJenisProduk}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_7">
+                <label c-label item="item" c-label-text="pemeriksaan" real></label>
+                <div class="breadcrum">
+                    <div class="grid_12">
+                        <input style="width:100%" c-text-box type="input" class="k-textbox" ng-model="pencarianData" />
+                    </div>
+
+                    <div class="grid_12" flex style="max-height:250px;overflow:auto"  >  
+                                <div class="grid_6" ng-repeat="data in listProduk |filter:pencarianData">
+                                    <a class="n1" ng-click='AddProduk(data)'>{{data.namaProduk}}</a>
+                                </div>   
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12">
+                &nbsp;
+            </div>
+
+            <!-- grid diagnosis -->
+            <div class="grid_12" style="float: left;">
+                <div kendo-grid k-data-source="dataPemeriksaanLaboratorium" k-selectable="'row'" k-columns="columnPemeriksaanLaboratorium">
+                </div>
+            </div>
+        </div>
+        
+        <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+    </div>
+</div>
+ 

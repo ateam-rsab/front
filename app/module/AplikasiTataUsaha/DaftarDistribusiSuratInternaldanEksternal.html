@@ -1,0 +1,42 @@
+<div ng-controller="DaftarDistribusiSuratInternaldanEksternalCtrl">
+	 
+		<c-panel item="item" header="'Daftar Hasil Distribusi Surat Internal dan Eksternal'" disabled>
+			<div class="panel panel-default container_12" disabled>
+					 <div class="grid_12">
+					     <div class="grid_1"></div>
+						<div class="grid_1" style="margin: 10px 0 0 10px;">
+							<label c-label item="item">Periode</label>
+						</div>
+						<div class="grid_2">
+							<input kendo-date-picker k-ng-model="item.tanggalAwal"  k-format="'dd-MM-yyyy'" style="width: 100%" kendo-date-picker/>
+						</div>
+						<div class="grid_1"  style="margin: 10px 0 0 10px;text-align: center;">
+							<label c-label item="item">s/d</label>
+						</div>
+						<div class="grid_2">
+							<input kendo-date-picker k-ng-model="item.tanggalAkhir"  k-format="'dd-MM-yyyy'" style="width: 100%" kendo-date-picker />
+						</div>
+						<div class="grid_1" style="margin: 5px 0 0 0;">
+							<button class="c-button success" ng-click="cari()">Cari</button>
+						</div>
+					</div>
+
+					<div class="grid_12">
+ 						<div kendo-grid="grid" id="grid" k-data-source="gridDaftarDistribusi" k-editable="false"  
+							 options="colGridDaftarDistribusi" k-selectable="'row'"  style="font-size: small;" k-ng-model="current" ng-click="klik(current)">
+							 <div k-detail-template>
+							 <label c-label item="item">Detail Ruangan</label>
+	                            <div kendo-grid k-options="detailGridOptions(dataItem)"></div>
+	                        </div>
+						</div>
+					</div>
+			</div>
+		</c-panel>
+</div>
+
+<!-- <div class="grid_1" style="margin: 10px 0 0 10px;">
+<label c-label item="item">No. Surat</label>
+</div>
+<div class="grid_2">
+<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noSurat"/>
+</div> -->

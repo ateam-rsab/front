@@ -1,0 +1,27 @@
+<div ng-controller="SitogenetikaCtrl">
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Sitogenetika'">
+            <!-- AnalisaKromosom -->
+            <div class="grid_12" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="AnalisaKromosom"></label>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_12" style="margin-bottom:5px">
+                <div class="grid_4" ng-repeat="data in listAnalisaKromoson">
+
+                    <input type="checkbox" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" value="{{data.id}}">
+                    <label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+
+                    <div ng-if="data.info == 'true'" kendo-tooltip k-content="'keterangan : ' + data.infoMsg" class="tooltip">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+
+
+            <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+        </c-panel>
+    </div>
+</div>

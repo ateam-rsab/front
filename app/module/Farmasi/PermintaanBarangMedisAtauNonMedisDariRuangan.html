@@ -1,0 +1,88 @@
+<div ng-controller="PermintaanBarangMedisAtauNonMedisDariRuanganCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Permintaan Barang Medis Atau Non Medis Dari Ruangan'">
+		<div class="panel panel-default container_12">
+			<div class="panel-heading" c-translate>Data Order</div>
+			<div class="panel-body">
+				<div class="grid_3">
+					<label c-label item="item" c-label-text="noOrder"></label>
+				</div>
+				<div class="grid_3">
+					<label c-label item="item" c-label-text="tglOrder"></label>
+				</div>
+				<div class="grid_3">
+					<label c-label item="item" c-label-text="statusBarang"></label>
+				</div>
+				<div class="grid_3">
+					<label c-label item="item" c-label-text="ruanganTujuanPesanan"></label>
+				</div>
+
+
+				<div class="grid_3">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noOrder" />
+				</div>
+				<div class="grid_3">
+					<input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tglOrder" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+				</div>
+				<div class="grid_3">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.statusBarang" k-data-text-field="'statusProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listStatusBarang" />
+				</div>
+				<div class="grid_3">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.ruanganTujuanPesanan" />
+				</div>
+			</div>
+		</div>
+		<div class="grid_5">
+			<label c-label item="item" c-label-text="namaBarang"></label>
+		</div>
+		<div class="grid_1">
+			<label c-label item="item" c-label-text="stok"></label>
+		</div>
+		<div class="grid_1">
+			<label c-label item="item" c-label-text="qty"></label>
+		</div>
+		<div class="grid_3">
+			<label c-label item="item" c-label-text="satuan"></label>
+		</div>
+		<div class="clear"></div>
+
+		<div class="grid_5">
+			<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaBarang" />
+		</div>
+		<div class="grid_1">
+			<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.stok" />
+		</div>
+		<div class="grid_1">
+			<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.qty" />
+		</div>
+		<div class="grid_3">
+			<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.satuan" />
+		</div>
+		<div class="clear"></div>
+		<div class="grid_5">
+		</div>
+		<div class="grid_1">
+
+		</div>
+		<div class="grid_1">
+
+		</div>
+		<div class="grid_3">
+			<c-button ng-click="addPermintaanBarang()">
+			<span>Tambah</span>
+		</c-button>
+	</div>
+	<div class="clear"></div>
+	<div class="grid_10">
+		<div kendo-grid k-data-source="daftarPermintaanBarang" k-selectable="'row'" k-columns="columnPermintaanBarang">
+		</div>
+	</div>
+	<div class="clear"></div>
+	<div class="grid_12" style="margin-top:40px">
+			<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+    	</div>
+
+</c-panel>
+</div>
+</div>

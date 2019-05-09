@@ -1,0 +1,48 @@
+<div ng-controller="DetailDaftarGajiPnsCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Detail Daftar Gaji'" disabled>
+			<div class="panel panel-default">	
+				<div class="grid_4">
+					<div class="grid_3">
+						<label c-label item="item" c-label-text="Periode" style="margin: 10px 0px 0px;"></label>
+					</div>
+					<div class="grid_6">
+						<input c-text-box type="input" class="k-textbox" ng-model="item.Periode" disabled="">
+					</div>
+				</div>
+				<div class="grid_4">
+					<div class="grid_3">
+						<label c-label item="item" c-label-text="Jenis Gaji" style="margin: 10px 0px 0px;"></label>
+					</div>
+					<div class="grid_6">
+						<input c-text-box type="input" class="k-textbox" ng-model="item.jenisGaji" disabled="">
+					</div>
+				</div>
+				<div class="clear"></div>
+				<div class="grid_12">
+					<div kendo-grid k-options="mainGridOptions" k-data-source="dataSource">
+						<div k-detail-template>
+		                    <div kendo-grid k-options="detailGridOptions(dataItem)"></div>
+		                </div>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<div class="grid_8"></div>
+				<div class="grid_4">
+					<div class="grid_3">
+						<label c-label="item" c-label-text="Total" style="margin: 10px 0px 0px;"></label>
+					</div>
+					<div class="grid_6"><input c-text-box type="input" class="k-textbox" ng-model="item.TotalKeseluruhan" disabled=""></div>
+				</div>
+			</div>
+			
+			
+		</c-panel>
+		<div class="grid_12">
+			<div class="grid_8"></div>
+			<div class="grid_3">
+				<button  class="c-button" ngl-click="Cetak()">Cetak</button>
+			</div>
+		</div>
+	</div>
+</div>

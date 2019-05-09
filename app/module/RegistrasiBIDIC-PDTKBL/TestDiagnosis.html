@@ -1,0 +1,50 @@
+<div ng-controller="TestDiagnosisCtrl">
+
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Test Diagnosis yang dilakukan/ditunda'">
+            <div class="panel-body">
+                <div class="grid_12">
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="TestDiagnosis"></label>
+                    </div>
+                    <div class="grid_3">
+                        <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.Test"></textarea>
+                    </div>
+                    <div class="grid_1">
+                    </div>
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="Keterangan"></label>
+                    </div>
+                    <div class="grid_3">
+                        <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.Keterangan"></textarea>
+                    </div>
+                    <div class="grid_1">
+                    </div>
+                </div>
+            </div>
+             <!-- button -->
+        <div class="grid_12" style="margin-top:20px">
+            <div class="grid_6">
+            </div>
+            <div class="grid_3">
+                <c-button ng-click="addTestDiagnosis()" style="width:100% !important">
+                <span style="font-size:10!important">Tambah</span>
+                </c-button>
+            </div>
+            <div class="grid_3">
+                <c-button ng-click="" style="width:100% !important">
+                <span style="font-size:10!important">Batal</span>
+                </c-button>
+            </div>
+        </div>
+           
+            <div class="grid_12" style="margin-top: 10px;">
+               <div kendo-grid k-data-source="dataTestDiagnosis" k-selectable="'row'" k-columns="columnTestDiagnosis">
+                </div>
+            </div>
+        </c-panel>
+         <div class="grid_12" style="margin-top:10px">
+                    <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+            </div>
+    </div>
+</div>

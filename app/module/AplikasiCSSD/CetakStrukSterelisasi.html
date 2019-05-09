@@ -1,0 +1,32 @@
+<div ng-controller="CetakStrukSterelisasiCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Cetak Struk Sterelisasi'">
+		<div class="grid_6">
+			<div class="grid_12">
+				<label c-label item="item" style="margin-top: 10px">Dengan</label>
+			</div>
+			<div class="grid_12">
+				<div class="grid_6" ng-repeat="data in dataCheckbox">
+					<input type="checkbox" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" value="{{data.id}}" ng-click="cekArrInternal(data.name)">
+					<label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+				</div>
+			</div>
+			<div class="grid_12">
+				<label c-label item="item" style="margin-top: 10px">Proses Sterelisasi</label>
+			</div>
+			<div class="grid_12">
+				<div class="grid_6" ng-repeat="data in prosesSterelisasi">
+					<input type="checkbox" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" value="{{data.id}}" ng-click="cekArrBarangBersih(data.name)">
+					<label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+				</div>
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_6">
+				
+			</div>
+		</div>
+		</c-panel>
+	</div>
+</div>

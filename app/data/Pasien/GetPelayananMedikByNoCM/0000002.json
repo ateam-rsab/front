@@ -1,0 +1,12 @@
+[{
+    "tanggal": "01/06/2016T00:00:00",
+    "diagnosa": "[A00.0] Cholera due to Vibrio cholerae 01, biovar cholerae",
+    "laboratorium": [],
+    "radiologi": [],
+    "konsultasi": [],
+    "tindakan": "[00.0] Therapeutic Ultrasound ",
+    "obat": ["Panadol", "Paramex"],
+    "dpjp": [],
+    "display": "1 Jun",
+    "isKajianAwal": true
+}]  

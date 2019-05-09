@@ -1,0 +1,57 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Daftar Siklus Menu</div>
+	<div class="panel-body">
+		<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_12" style="margin-top: 5px">
+					<div class="grid_3"></div>
+					<div class="grid_2" style="margin-top: 10px">
+						<label c-label item="item">Waktu Makan</label>
+					</div>
+					<div class="grid_4">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.waktuMakan" k-data-text-field="'waktuMakan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListwaktuMakan" />
+					</div>
+				</div>
+				<div class="grid_12" style="margin-top: 5px">
+					<div class="grid_3"></div>
+					<div class="grid_2" style="margin-top: 10px">
+						<label c-label item="item">Hari Ke</label>
+					</div>
+					<div class="grid_4">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.hariKe" k-data-text-field="'hariKe'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListhariKe" />
+					</div>
+				</div>
+			</div>
+			<div class="grid_6">
+				<div class="grid_12" style="margin-top: 5px">
+					<div class="grid_3"></div>
+					<div class="grid_2" style="margin-top: 10px">
+						<label c-label item="item">Kelas</label>
+					</div>
+					<div class="grid_4">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.kelas" k-data-text-field="'kelas'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="Listkelas" />
+					</div>
+				</div>
+			</div>
+			<div class="grid_12" style="margin-top: 10px">
+				<div class="grid_2"></div>
+				<div class="grid_8">
+					<div data-kendo-grid="grid" k-groupable="'true'" k-aggregate='aggregate' k-ng-model="item" k-data-source="patienGrids" k-selectable="'row'" k-sortable="'true'" k-columns="Column">
+            		</div>
+					<!-- <div kendo-grid k-on-change="SelectDampak(data)" k-data-source="sourceDampakRisiko" k-selectable="'row'" k-columns="columnDampakRisiko" pageable="true" pagesize="2" scrollable="false">
+					</div> -->
+				</div>
+				<div class="grid_1"></div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_5"></div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="Ubah()">Ubah</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="Cetak()">Cetak</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

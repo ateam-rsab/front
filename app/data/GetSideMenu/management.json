@@ -1,0 +1,154 @@
+[
+    {
+        "name": "Design",
+        "link": "#/Management/Design"
+    }, 
+    {
+        "name": "Dashboard",
+        "children": [
+            {
+                "name": "Kunjungan",
+                "link": "#/Management/Dashboard2/Rekammedis"
+            },
+            {
+                "name": "Penerimaan",
+                "link": "#/dashboardPenerimaan"
+            },
+            {
+                "name": "Indikator Kinerja Terpilih",
+                "link": "#/DashboardVisiteDokter"
+            },
+            {
+                "name": "Indikator Kinerja Individu Direktur Utama",
+                "link": "#/DashboardIkiDirut"
+            },
+            {
+                "name": "Dashboard Diagnosa",
+                "link": "#/DashboardDiagnosa"
+            },
+            {
+                "name": "Ketersediaan Tempat Tidur",
+                "link": "#/KetersediaanTempatTidur"
+            }
+        ]
+    },
+    {
+        "name": "Dashboard Beta",
+        "children": [
+            {
+                "name": "Dashboard Penerimaan",
+                "link": "#/DashboardPenerimaan2"
+            }
+        ]
+    },
+    {
+        "name": "IP3RS",
+        "children": [
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/PermintaanPerbaikandariRuangan"
+            },
+            {
+                "name": "Respond Perbaikan",
+                "link": "#/RespondPerbaikan"
+            } 
+        ]
+    },
+    {
+        "name": "SDM",
+        "children": [{
+                "name": "Target Bobot Uraian Tugas",
+                "link": "#/TargetBobot"
+            }, {
+                "name": "Input Logbook",
+                "link": "#/InputLogbook"
+            }, {
+                "name": "Indeks Kinerja Individu",
+                "link": "#/IndeksKinerjaIndividuSDM"
+            }, {
+                "name": "Permohonan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
+                "link": "#/PermohonanPerubahanStatusPegawai"
+            }, {
+                "name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
+                "link": "#/DaftarPenangguhanCuti"
+            }, {
+                "name": "Pengajuan Mutasi Pegawai",
+                "link": "#/PengajuanMutasiPegawai"
+            }, {
+                "name": "Pengajuan Resign Pegawai",
+                "link": "#/PengajuanResignPegawai"
+            }, {
+                "name": "Pengajuan Sanksi Pegawai",
+                "link": "#/PengajuanSanksiPegawai"
+            }, {
+                "name": "Daftar Pengajuna Mutasi Sanksi Resign",
+                "link": "#/DaftarPengajuanMutasiSanksiResign"
+            }, {
+                "name": "Monitoring Absensi",
+                "link": "#/MonitoringAbsensiPegawai"
+            }, {
+                "name": "InputLemburPegawaiUnitKerja",
+                "link": "#/InputLemburPegawaiUnitKerja"
+            },{
+                "name": "Verifikasi Uraian Tugas Bawahan",
+                "link": "#/VerifikasiUraianTugasPegawaiLogin"
+            },{
+                "name": "Pengajuan Pelatihan",
+                "children": [
+                    {
+                        "name": "Monitoring Pengajuan Pelatihan",
+                        "link": "#/MonitoringPengajuanPelatihan"
+                    },
+                    {
+                        "name": "Pengajuan Pelatihan",
+                        "link": "#/PermintaaanPelatihanRev"
+                    },
+                    {
+                        "name": "Daftar Undangan Pelatihan",
+                        "link": "#/DaftarUndanganPelatihan"
+                    },
+                    {
+                        "name": "Daftar Kehadiran Peserta Pelatihan",
+                        "link": "#/DaftarKehadiranPesertaPelatihan"
+                    },
+                    {
+                        "name": "Daftar Rekapitulasi Kehadiran Peserta Pelatihan",
+                        "link": "#/DaftarRekapitulasiKehadiran"
+                    }
+                ]
+            }
+        ]
+      },
+    {
+        "name": "Keuangan",
+        "link": "#/Management/Dashboard/Keuangan"
+    },
+    {
+        "name":"Aplikasi IT",
+        "children":[
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/RevPermintaanPerbaikandariRuanganITNew"
+            }
+        ]
+    },
+    {
+        "name": "Aplikasi Laundry",
+        "children": [
+            {
+                "name": "Permintaan Linen Bersih",
+                "link": "#/PermintaanLinenByRuangan"
+            },{
+                "name": "Verifikasi",
+                "link": "#/VerifikasiTerima"
+            }
+    ]},
+    {"name": "Alur Pengadaan Barang",
+        "children": [
+            {"name": "Verifikasi Bagian Anggaran","link": "#/daftarKartuPengendaliAnggaran"},
+            {"name": "Verifikasi Pembayaran Suplier","link": "#/VerifikasiTagihanSupplier"},
+            {"name": "Verifikasi Pembayaran Gaji","link": "#/DaftarTagihanSupplier"}
+        ]
+    }
+    
+]

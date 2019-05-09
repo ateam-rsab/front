@@ -1,0 +1,132 @@
+<!-- <div ng-controller="SettingDataFixed?Ctrl"> -->
+	<div ng-show="dataVOloaded">
+		<!-- <c-panel item="item" header="'Produk'" disabled> -->
+		<div class="grid_12">
+			<div class="grid_12 headerBox">
+				<h1 style="color: white;">
+					<b>Setting Data Fixed</b>
+				</h1>
+			</div>
+			<!-- kdDataFixed -->
+				<div class="grid_1">
+						<div class="grid_12">
+							<label c-label item="item" c-label-text="Id"></label>
+						</div>
+						<div class="grid_12">
+							<input c-text-box type="input" filter="" readonly="readonly" class="k-textbox" ng-model="item.id" disabled />
+						</div>
+					</div>
+				<!-- kdDataFixed -->
+				<div class="grid_2">
+						<div class="grid_12">
+							<label c-label item="item" c-label-text="Kode External"></label>
+						</div>
+
+
+						<div class="grid_12">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+						</div>
+				</div>
+
+				<!-- kdDtaFixed -->
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Nama External"></label>
+					</div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+					</div>
+				</div>
+
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Riport Display"></label>
+					</div>
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.riportDisplay" />
+					</div>
+				</div>
+
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Field Key Tabel Relasi"></label>
+					</div>
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.keytabelRelasi" />
+					</div>
+				</div>
+
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Field Report Display Tabel Relasi"></label>
+					</div>
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.fieldreportdisplaytabelrelasi" />
+					</div>
+				</div>
+
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Keterangan Fungsi"></label>
+					</div>
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.ketFungsi" />
+					</div>
+				</div>
+
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Nama Field"></label>
+					</div>
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaField" />
+					</div>
+				</div>
+
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Nilai"></label>
+					</div>
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nilai" />
+					</div>
+				</div>
+
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Tabel Relasi"></label>
+					</div>
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.tabelRelasi" />
+					</div>
+				</div>
+
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Type Field"></label>
+					</div>
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.typeField" />
+					</div>
+				</div>
+			</div>
+
+		<!-- </c-panel>-->
+		<div class="grid_12">
+			<div class="grid_8"></div>
+			<div class="grid_2">
+				<button class="c-button" ng-click="simpan()">Simpan</button>
+			</div>
+			<!-- <div class="grid_2" >
+			<button class="c-button" ng-click="edit()">Update</button>
+		</div> -->
+			<div class="grid_2">
+				<button class="cancel c-button" ng-click="kembali()">Kembali</button>
+			</div>
+			<!-- <div class="grid_12" style="margin-top:60px" ng-show="isRouteLoading()">
+					<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+				</div> -->
+		</div>
+	</div>
+<!-- </div> -->

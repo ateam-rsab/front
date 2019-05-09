@@ -1,0 +1,81 @@
+<div ng-controller="InputJadwalOrientasiCtrl">
+
+    <div>
+        <c-panel item="item" header="'Input Jadwal Orientasi'" disabled>
+            <div class="grid_6">
+                <div class="panel panel-default container_12">
+                    <!--		<div class="panel-heading" c-translate>Periode</div> -->
+                    <!--		<div class="panel-body"> -->
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin: 10px 0 0 0;">
+                            <label c-label item="item" c-label-text="Materi Orientasi"></label>
+                        </div>
+                        <div class="grid_8">
+                            <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.materiOrientasi" />
+                        </div>
+
+                    </div>
+
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin: 10px 0 0 0;">
+                            <label c-label item="item" c-label-text="Hari/Tanggal"></label>
+                        </div>
+                        <div class="grid_3">
+                            <input ng-disabled="isDisable" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.tempatLahir" />
+                        </div>
+                        <div class="grid_4" style="margin: 0 0 0 0;">
+                            <input kendo-date-picker k-ng-model="item.tglOrientasi" k-max="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--		   </div>  -->
+            <div class="grid_6">
+
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label c-label item="item" c-label-text="Jam"></label>
+                    </div>
+                    <div class="grid_8">
+                        <!--<mdp-time-picker mdp-auto-switch="true" ng-model="currentTime"></mdp-time-picker>-->
+                        <input c-text-box type="input" class="k-textbox" ng-model="item.jam" />
+                    </div>
+
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label c-label item="item" c-label-text="Narasumber"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" class="k-textbox" ng-model="item.naraSumber" />
+                    </div>
+
+                </div>
+            </div>
+            <div class="grid_12">
+                <kendo-grid k-data-source="listJadwalOrientasi" k-pageable="true" k-selectable="'row'" k-columns="columnJadwalOrientasi" style="font-size: small;">
+                </kendo-grid>
+            </div>
+        </c-panel>
+        <div class="grid_12">
+            <div class="grid_8" style="float:left">
+                <div class="grid_2" style="margin-top: 25px">
+                    <button class="c-button" ng-show="!isLoading" item="item" is-validate click="Cancel">
+                					<span class="title">Batal</span></button>
+                </div>
+                <div class="grid_2 " style="margin-top: 25px ">
+                    <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Simpan</span>
+									</button>
+                </div>
+                <div class="grid_2 " style="margin-top: 25px ">
+                    <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Cetak</span>
+									</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>

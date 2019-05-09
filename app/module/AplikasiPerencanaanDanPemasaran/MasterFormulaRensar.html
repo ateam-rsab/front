@@ -1,0 +1,36 @@
+<div ng-show="dataVOloaded">
+	<c-panel item="item" header="title" align="center" disabled>
+		<div class="grid_12" style="margin-top:5px">
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="definisiOperasional"></label>
+			</div>
+		</div>
+		<div class="grid_12">
+			<input style="width: 100%;" kendo-combo-box k-ng-model="item.definisiOperasional" k-data-text-field="'definisiOperasional'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourcedefinisiOperasionalr" />
+		</div>
+		<div class="grid_12" style="margin-top:10px">
+			<div class="grid_1">
+				<label c-label item="item" c-label-text="formula"></label>
+			</div>
+		</div>
+		<div class="grid_12" style="margin-top:10px">
+			<textarea ng-model="item.formula" style="width: 99%; height: 200px;" ng-keypress="($event.which == 13)? Save():item.formula"></textarea>
+		</div>
+		<div class="grid_12">
+			<div class="grid_8"></div>
+			<div class="grid_2">
+				<button class="c-button" ng-click="Save()">Simpan</button>
+			</div>
+			<div class="grid_2">
+				<button class="c-button" ng-click="Batal()">Batal</button>
+			</div>
+		</div>
+		<div class="grid_12" style="padding-top:10px">
+			<c-panel item="item" header="title2" disabled>
+				<div class="grid_12">
+					<div kendo-grid k-on-change="SelectGrid(data)" k-data-source="SourceMasterFormulaRensar" k-selectable="'row'" k-columns="columnSourceMasterFormulaRensar" pageable="true" scrollable="true"></div>
+				</div>
+			</c-panel>
+		</div>
+	</c-panel>
+</div>

@@ -1,0 +1,19 @@
+<div ng-controller="FormEkstensionCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Form Ekstension'">
+		<div class="grid_6">
+			<div class="grid_12" style="margin-bottom: 10px">
+			<kendo-grid options="mainGridOptions" k-data-source="dataEkstension"></kendo-grid>
+			<div class="clear"></div>
+			</br>
+			</br>
+			<div class="grid_4" style="margin-top: 10">
+				<button class="c-button" ng-click="tambah()">Tutup</button>
+			</div>
+		</div>
+		</div>
+		
+		</c-panel>
+	</div>
+</div>

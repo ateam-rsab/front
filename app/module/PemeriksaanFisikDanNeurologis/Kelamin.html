@@ -1,0 +1,26 @@
+
+<div ng-controller="KelaminCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="title">
+			
+			<div class="grid_1">
+				<label c-label item="item" c-label-text="kelamin"> </label>
+			</div>
+			<div class="grid_4">
+				<div class="grid_4" style="margin: 5px 0 5px 0;" ng-repeat="stat in statusKelamin">
+	                    <input type="radio" name="{{statusKelamin+stat.name}}" id="{{statusKelamin+stat.name}}" class="k-radio" ng-model="item.kelamin" value="{{stat.id}}">
+	                    <label class="k-radio-label" for="{{statusKelamin+stat.name}}">{{stat.name}}</label>
+	               </div>
+			</div>
+
+            <div class="grid_1">
+				<label c-label item="item" c-label-text="keterangan"> </label>
+			</div>
+			<div class="grid_6">
+				<textarea style="height: 40px" id="text_area" c-text-box type="input" class="k-textbox" ng-model="item.keterangan" />
+			</div>
+            <div class="clear"></div>
+
+		</c-panel>
+	</div>
+</div>

@@ -1,0 +1,153 @@
+<div>
+    <c-panel item="item" header="'Daftar Mapping Uraian Tugas Pegawai'"disabled>      
+        <div class="panel-body">
+            <div class="grid_12">
+                <div class="grid_3">
+                    <label c-label c-label-text="Pilih Jabatan" real></label>
+                    <input kendo-combo-box style="width:100%" k-ng-model="item.pilihJabatan" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJabatan" />
+                    <!-- <div class="grid_10">
+                        <label c-label c-label-text="Pilih Jabatan" real></label>
+                        <input kendo-combo-box style="width:100%" k-ng-model="item.jabatan" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJabatan" />
+                    </div>
+                    <div class="grid_1">
+                        <label c-label c-label-text=""></label>
+                        <em style="margin-top:6px;" ng-click='findData()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+                    </div>
+                    <div class="grid_1">
+                        <label c-label c-label-text=""></label>
+                        <em style="margin-top:6px;" ng-click='clearData()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Cancel</span></em>
+                    </div> -->
+                </div>
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="Pelaksanaan Tugas"></label>
+                    <input kendo-combo-box style="width:100%" k-ng-model="item.pilihPelaksanaan" k-data-text-field="'pelaksanaanTugas'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPelaksana" />
+                </div>
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="Rincian Kegiatan"></label>
+                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.pilihKegiatan" />
+                </div>
+                <div class="grid_1">
+                    <label c-label c-label-text=""></label>
+                    <em style="margin-top:6px;" ng-click='resetDatasource()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+                </div>
+            </div>
+            <div class="grid_12">
+                <kendo-grid id="gridMappingTugas" k-data-source="gridUraianTugas" options="dataGridUraiantugas">
+                </kendo-grid>
+            </div>
+        </div>
+    </c-panel>
+    <!--<div id="details"></div>-->
+    <!--<div ng-include='"../app/module/shared/TemplateButtonSimpanNotFixed"'></div>-->
+</div>
+<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+<script type="text/x-kendo-template" id="kendo-popup-editor">
+	<div class="panel panel-default container_12"> 
+		<div class="grid_12">
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="rincianKegiatan"></label>
+			</div>
+			<div class="grid_10">
+                <input name="uraianTugas" kendo-combo-box style="width:100%" data-bind="value: rincianKegiatan" k-data-text-field="'rincianKegiatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" data-validasiUraian-msg="Rincian tidak boleh kosong" k-data-source="listKegiatan"/>
+				<!--<textarea name="uraianTugas" c-text-box class="k-textbox" rows="3" style="width:100%" data-bind="value: rincianKegiatan" data-validasiUraian-msg="Rincian tidak boleh kosong"></textarea>-->
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="satuan"></label>
+			</div>
+			<div class="grid_10">
+				<input name="satuan" type="input" c-text-box class="k-textbox" style="width:100%" data-bind="value: satuan" data-validasiSatuan-msg="Satuan tidak boleh kosong"/>
+			</div>
+		</div>
+		<!--<div class="grid_10">
+			<div class="grid_2 pull-right">
+				<c-button ng-show="!isLoading" class="success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" is-validate click="Save">
+					<span class="title">Simpan</span>
+				</c-button>
+			</div>
+		</div>-->
+	</div>
+</script>
+<div kendo-window="mappingTugas" k-title="'Mapping Uraian Tugas'" k-width="550" k-visible="false">
+    <!--<div class="panel panel-default container_12">-->
+        <div class="grid_12">
+            <div class="grid_12">
+                <div class="grid_12">
+                    <label c-label c-label-text="rincianKegiatan"></label>                                
+                </div>
+                <div class="grid_12">
+                    <input kendo-combo-box style="width:100%" k-ng-model="item.rincianKegiatan" k-data-text-field="'rincianKegiatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKegiatan"/>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="grid_12">
+                <div class="grid_12">
+                    <label c-label c-label-text="jabatan" style="padding-top:14px;"></label>                                
+                </div>
+                <div class="grid_12">
+                    <input kendo-combo-box style="width:100%" k-ng-model="item.jabatan" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJabatan" />
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="grid_12">
+                <div class="grid_12">
+                    <label c-label c-label-text="pelaksanaanTugas" style="padding-top:14px"></label>                               
+                </div>
+                <div class="grid_12">
+                    <input kendo-combo-box style="width:100%" k-ng-model="item.pelaksanaanTugas" k-data-text-field="'pelaksanaanTugas'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPelaksana"/>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="grid_12">
+                <div class="grid_12">
+                    <label c-label c-label-text="statusEnabled" style="padding-top:14px"></label>
+                </div>
+                <div class="grid_6" ng-repeat="status in statusEnabled">
+                    <input type="radio" name="{{status.name}}" id="{{status.name}}" class="k-radio" ng-model="item.statusEnabled" ng-value="status.value" style="width:100%">
+                    <label class="k-radio-label" for="{{status.name}}">{{status.name}}</label>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="grid_12">
+                <div class="grid_12">
+                    <div class="grid_3">
+                        <button class="k-button label-button success" ng-click="keDaftarMapping(item)">Lihat Daftar</button>
+                    </div>
+                    <div class="grid_3" ng-hide="true">
+                        <button id="btn" class="k-button label-button success" ng-click="click()">&nbsp</button>
+                    </div>
+                    <div class="grid_6 pull-right">
+                        <button class="k-button label-button error" ng-click="closeMappingTugas()">Batal</button>
+                    </div>
+                    <div class="grid_6 pull-right">
+                        <button class="k-button label-button success" ng-click="simpanMappingTugas(item)">Simpan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+        function loadFunction() {
+            alert("Image is loaded");
+        }
+        </script>
+    <!--</div>-->
+</div>
+<style type="text/css">
+.label-button {
+    float: left;
+    width: 120px;
+    font-size: 12pt;
+    height: 40px;
+}
+.k-edit-form-container {
+    width: 600px
+}
+.k-edit-label {
+    width: 20%
+}
+.k-edit-field {
+    width: 70%
+}
+</style>
+

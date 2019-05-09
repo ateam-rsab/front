@@ -1,0 +1,90 @@
+<div ng-controller="InformasiPemesananDanPenerimaanBarangCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" disabled>
+			<div class="grid_12">
+				<div class="grid_1"></div>
+				<div class="grid_4">
+					<c-panel item="item" header="'Status Barang'" disabled>
+						<!-- Radio Button Status -->
+			            <div class="grid_6" ng-repeat="status in statusBarang">
+			                <input type="radio" name="{{status.name}}" id="{{status.name}}" class="k-radio" ng-model="item.status" value="{{status.name}}" ng-click="cekStatus(status.id)" checked="{{status.id}}">
+			                <label class="k-radio-label" for="{{status.name}}">{{status.name}}</label>
+			            </div>
+			            <div class="clear"></div>
+					</c-panel>
+				</div>
+			    <div class="grid_7">
+			      	<c-panel item="item" header="'Periode'" disabled>
+						<div class="grid_2" style="margin:5px">
+							<c-button ng-click="Search()" style="width:100% !important">
+								<span style="font-size:10!important">Cari</span>
+							</c-button>
+						</div>
+						<div class="grid_4">
+							<input style="width:100%" kendo-date-picker k-ng-model="item.awal" k-max="now" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'"/>
+						</div>
+						<label c-label item="item" c-label-text="Sd" class="grid_1" style="margin-top:10px;padding-left:10px"></label>
+						<div class="grid_4">
+							<input style="width:100%" kendo-date-picker k-ng-model="item.akhir" k-max="now" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'"/>
+						</div>
+			       	</c-panel>
+			    </div>
+			</div>
+			<div ng-hide="statusDiterima">
+				<c-panel item="item" header="'Belum Dikirim'" disabled>
+					<div class="grid_12" style="margin-top: 10px;">
+						<div kendo-grid k-data-source="sourceDikirim" k-selectable="'row'" k-columns="columnDikirim">
+						</div>
+					</div>
+					<div class="grid_12" style="margin-top:50px">
+						<div class="grid_4"></div>
+						<div class="grid_2">
+							<c-button ng-click="" style="width:100% !important">
+								<span style="font-size:10!important">Detail</span>
+							</c-button>
+						</div>
+						<div class="grid_2">
+							<c-button ng-click="" style="width:100% !important">
+								<span style="font-size:10!important">Cetak</span>
+							</c-button>
+						</div>
+					</div>
+				</c-panel>
+			</div>
+			<div ng-show="statusDiterima">
+				<c-panel item="item" header="'Sudah Diterima'" disabled>
+					<div class="grid_12" style="margin-top: 10px;">
+						<div kendo-grid k-data-source="sourceDiterima" k-selectable="'row'" k-columns="columnDiterima">
+						</div>
+					</div>
+					<div class="grid_12" style="margin-top:50px">
+						<div class="grid_3"></div>
+						<div class="grid_2">
+							<c-button ng-click="" style="width:100% !important">
+								<span style="font-size:10!important">Detail</span>
+							</c-button>
+						</div>
+						<div class="grid_2">
+							<c-button ng-click="" style="width:100% !important">
+								<span style="font-size:10!important">Verifikasi</span>
+							</c-button>
+						</div>
+						<div class="grid_2">
+							<c-button ng-click="" style="width:100% !important">
+								<span style="font-size:10!important">Cetak</span>
+							</c-button>
+						</div>
+					</div>
+				</c-panel>
+			</div>
+			<div class="grid_12" style="margin-top:50px">
+				<div class="grid_10"></div>
+				<div class="grid_2">
+					<c-button ng-click="" style="width:100% !important">
+						<span style="font-size:10!important">Tutup</span>
+					</c-button>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

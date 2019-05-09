@@ -1,0 +1,31 @@
+<div class="grid_12">
+    <div class="breadcrum main" id="MenuNav">
+
+        <div class="grid_2" ng-hide="israwatinap">
+            <a class="n1" ng-class="{'active': activeMenuDashboardPAP == 'dashboardpasien.DashboardSkriningUmum'}" data-ng-click="navigasiPap('dashboardpasien.DashboardSkriningUmum')" >Skrining Umum</a>
+        </div>
+
+        <div class="grid_2">
+            <a class="n1"  ng-class="{'active': activeMenuDashboardPAP == 'dashboardpasien.DashboardSkriningKekhususan'}"data-ng-click="navigasiPap('dashboardpasien.DashboardSkriningKekhususan')">Skrining Kekhususan</a>
+        </div>
+
+        <div class="grid_2" ng-hide="israwatinap">
+            <a class="n1"  ng-class="{'active': activeMenuDashboardPAP == 'dashboardpasien.DashboardDiagnosisKeperawatan'}"data-ng-click="navigasiPap('dashboardpasien.DashboardDiagnosisKeperawatan')">Masalah Keperawatan</a>
+        </div>
+
+        <div class="grid_2" ng-hide="israwatinap || isRawatJalan && isNeonatal || isAnak || isRawatJalan && isDewasa ">
+            <a class="n1"  ng-class="{'active': activeMenuDashboardPAP == 'dashboardpasien.MasalahKeperawatan'}"data-ng-click="navigasiPap('dashboardpasien.MasalahKeperawatan')">Diagnosis Kebidanan</a>
+        </div>
+
+        <!-- <div class="grid_2" ng-hide="israwatinap || isRawatJalan && isNeonatal || isRawatJalan && isAnak || isRawatJalan && isDewasa">
+            <a class="n1"  ng-class="{'active': activeMenuDashboardPAP == 'dashboardpasien.PerencanaanPulang'}"data-ng-click="navigasiPap('dashboardpasien.PerencanaanPulang')">Perencanaan Pulang</a>
+        </div> -->
+        <div class="grid_2" ng-hide="israwatinap || isRawatJalan && isNeonatal || isRawatJalan && isAnak || isRawatJalan && isDewasa">
+            <a class="n1"  ng-class="{'active': activeMenuDashboardPAP == 'dashboardpasien.PerencanaanPulangRev'}"data-ng-click="navigasiPap('dashboardpasien.PerencanaanPulangRev')">Perencanaan Pulang</a>
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+.active {background-color:white !important; color: #00AABB !important; display: block;padding: 10px 0 20px;font-weight: 600;}
+</style>

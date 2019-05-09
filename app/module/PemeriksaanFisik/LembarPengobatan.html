@@ -1,0 +1,150 @@
+<div ng-controller="LembarPengobatanCtrl">
+    <c-panel item="item" header="'Lembar Pengobatan'">
+      
+		<div class="grid_4">
+		<div class="grid_12">
+	       <div class="grid_12" style="margin: 10px 5px 5px 10px;">
+		   <label c-label item="item" c-label-text="NamaObat"></label>
+	    </div>
+		    <div class="grid_12"  style="margin: 10px 5px 5px 10px;">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.NamaObat"
+                               k-data-text-field="'name'"
+                               k-filter="'contains'"
+							   k-auto-bind="false"
+                               k-data-value-field="'id'"
+                               k-data-source="listNamaObat " />
+                    </div>
+		</div>
+		
+				<div class="clear"> </div>
+					 <div class="grid_12" style="margin: 10px 5px 5px 10px;">
+				  <label c-label item="item" c-label-text="TanggalDiberikan"></label>
+		</div>
+		
+       
+       		
+				  
+				  
+				   <div class="grid_12" style="margin: 10px 5px 5px 10px;">
+				 <input style="width: 100%" kendo-date-time-picker k-max="now" k-ng-model="item.Tanggal" k-data-text-field="'tanggallahir'" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy hh:mm:ss'" />
+				</div> 
+				</div>
+ <div class="grid_4">				
+				   
+					 <div class="grid_12">
+					  <div class="grid_12" style="margin: 10px 5px 5px 10px;">
+				  <label c-label item="item" c-label-text="Dokter"></label>
+				  </div>
+				  <div class="grid_12"  style="margin: 10px 5px 5px 10px;">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.Dokter"
+                               k-data-text-field="'nama'"
+							   k-auto-bind="false"
+                               k-filter="'contains'"
+                               k-data-value-field="'id'"
+                               k-data-source="listNamaDokter" />
+                    </div>
+					
+					 <div class="grid_12" style="margin: 10px 5px 5px 10px;">
+					 <label c-label item="item" c-label-text="Pharmasi"></label>
+					 </div>
+
+					  <div class="grid_12" style="margin: 10px 5px 5px 10px;">
+				         <input style="width: 100%;" kendo-combo-box k-ng-model="item.Pharmasi"
+                               k-data-text-field="'name'"
+                               k-filter="'contains'"
+                               k-data-value-field="'id'"
+                               k-data-source="listPharmasi" />
+					 </div>
+					 
+					 
+			</div>	
+  </div>			
+   <div class="grid_4">				
+				   
+					<div class="grid_12">
+                                <div class="grid_12" style="margin: 10px 5px 5px 10px;">
+                                    <label c-label item="item" c-label-text="KeteranganKlinik"></label>
+                                    
+                                </div>
+                                <div class="grid_12" style="margin: 10px 5px 5px 10px;">
+                                    <textarea style="width: 99%; height: 100px;" ng-model="item.Keterangan"></textarea>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+  </div>	
+
+<div class="grid_12 ">
+					
+			            <div class="grid_2 " style="float:right ">
+			                <c-button ng-click="addDataLembarPengobatan() ">
+			                    <span style="font-size:10!important ">Simpan</span>
+			                </c-button>
+			            </div>
+						 <div class="grid_2 " style="float:right ">
+			                <c-button ng-click="addDataRiwayatPenyakitOrObat() ">
+			                    <span style="font-size:12!important ">Batal</span>
+			                </c-button>
+			            </div>
+                      
+						
+                    </div>
+					
+					
+			<div class="grid_12 " style="margin-top: 50px; ">
+			           <div kendo-grid k-data-source="dataLembarPengobatan " k-selectable=" 'row' " k-columns="columnLembarPengobatan ">
+    					</div>
+			        </div>  
+					
+					
+	
+			
+            </div>
+			
+		</c-panel>
+			
+        <!--
+		
+
+		
+		--->
+			
+		<div class="clear"></div>
+		
+     
+		  
+		 
+		 
+		
+
+		 </br>
+		 </br>
+	 <div class="grid_12">
+			<div class="grid_12"><div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>	
+    </div>	  
+		  
+
+
+
+	 
+         
+		 
+		  
+		  
+         
+		 
+		 
+		
+		 
+	     
+	 
+	 
+
+
+		
+		
+		
+		  
+		
+		
+	
+		

@@ -1,0 +1,181 @@
+<div ng-controller="EntryResepCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Entry Resep'">
+			
+			<div class="grid_12">
+				<div class="grid_8">
+					<div class="grid_12">
+						<!-- tanggal jam -->
+						<div class="grid_3">
+							<div class="grid_12" style="margin-top:5px">
+			                <label c-label item="item" c-label-text="Tanggal"></label>
+				            </div>
+				            <div class="grid_12">
+				                <input style="width: 100%" k-ng-model="item.periode"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+				            </div>
+						</div>
+
+						<!-- no resep -->
+						<div class="grid_3">
+							<div class="grid_12" style="margin-top:5px">
+			                <label c-label item="item" c-label-text="NoResep"></label>
+				            </div>
+				            <div class="grid_12">
+				                 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPasien" />
+				            </div>
+						</div>
+
+						<!-- tipe pasien -->
+						<div class="grid_3">
+							<div class="grid_12" style="margin-top:5px">
+			                <label c-label item="item" c-label-text="TipePasien"></label>
+				            </div>
+				            <div class="grid_12">
+				                 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPasien" />
+				            </div>
+						</div>
+
+						<!-- diskon -->
+						<div class="grid_3">
+							<div class="grid_12" style="margin-top:5px">
+			                <label c-label item="item" c-label-text="Diskon"></label>
+				            </div>
+				            <div class="grid_12">
+				                 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPasien" />
+				            </div>
+						</div>
+						<div class="clear"></div>
+					</div>
+
+					<div class="grid_12">
+						<!-- tipe bayar -->
+						<div class="grid_3">
+							<div class="grid_12" style="margin-top:5px">
+			                <label c-label item="item" c-label-text="TipeBayar"></label>
+				            </div>
+				            <div class="grid_12">
+				                  <input style="width: 100%;" kendo-combo-box k-ng-model="item.ComboBox" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataComboBox" />
+				            </div>
+						</div>
+
+						<!-- jenis transaksi -->
+						<div class="grid_3">
+							<div class="grid_12" style="margin-top:5px">
+			                <label c-label item="item" c-label-text="JenisTransaksi"></label>
+				            </div>
+				            <div class="grid_12">
+				                  <input style="width: 100%;" kendo-combo-box k-ng-model="item.ComboBox" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataComboBox" />
+				            </div>
+						</div>
+						<div class="clear"></div>
+					</div>
+
+					<div class="grid_12">
+						<!-- ga tau -->
+						<div class="grid_3">
+							<div class="grid_12" style="margin-top:5px">
+			                <label c-label item="item" c-label-text="NoReg"></label>
+				            </div>
+				            <div class="grid_12">
+				                 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPasien" />
+				            </div>
+						</div>
+
+						<!-- nama pasien -->
+						<div class="grid_3">
+							<div class="grid_12" style="margin-top:5px">
+			                <label c-label item="item" c-label-text="NamaPasien"></label>
+				            </div>
+				            <div class="grid_12">
+				                 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPasien" />
+				            </div>
+						</div>
+
+						<!-- jenis kelamins -->
+						<div class="grid_3">
+							<div class="grid_12" style="margin-top:5px">
+			                <label c-label item="item" c-label-text="JenisKelamin"></label>
+				            </div>
+				            <div class="grid_12">
+				                 <input style="width: 100%;" kendo-combo-box k-ng-model="item.ComboBox" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataComboBox" />
+				            </div>
+						</div>
+
+						<!-- umur -->
+						<div class="grid_3">
+							<div class="grid_12" style="margin-top:5px">
+			                <label c-label item="item" c-label-text="Umur"></label>
+				            </div>
+				            <div class="grid_12">
+				                 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPasien" />
+				            </div>
+						</div>
+						<div class="clear"></div>
+					</div>
+
+					<div class="grid_12">
+						<!-- dokter -->
+						<div class="grid_3">
+							<div class="grid_12" style="margin-top:5px">
+			                <label c-label item="item" c-label-text="Dokter"></label>
+				            </div>
+				            <div class="grid_12">
+				                  <input style="width: 100%;" kendo-combo-box k-ng-model="item.ComboBox" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataComboBox" />
+				            </div>
+						</div>
+
+						<!-- asal resep -->
+						<div class="grid_3">
+							<div class="grid_12" style="margin-top:5px">
+			                <label c-label item="item" c-label-text="AsalResep"></label>
+				            </div>
+				            <div class="grid_12">
+				                 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPasien" />
+				            </div>
+						</div>
+						<div class="clear"></div>
+					</div>
+
+				</div>
+
+				<div class="grid_4">
+					<!-- berat badan -->
+					<div class="grid_12" style="margin-top:5px">
+		                <label c-label item="item" c-label-text="BeratBadan"></label>
+		            </div>
+		            <div class="grid_12">
+		                 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPasien" />
+		            </div>
+
+		            <!-- alergi obat -->
+					<div class="grid_12" style="margin-top:5px">
+		                <label c-label item="item" c-label-text="AlergiObat"></label>
+		            </div>
+		            <div class="grid_12">
+		                <div class="grid_3" ng-repeat="stat in listYaTidak">
+		                    <input type="radio" name="{{'Radio' + stat.name}}" id="{{'Radio' + stat.name}}" class="k-radio" ng-model="item.RadioButton" value="{{stat.name}}">
+		                    <label class="k-radio-label" for="{{'Radio' + stat.name}}">{{stat.name}}</label>
+		                </div>
+		            </div>
+		            <div class="grid_12" ng-show="isAdaAlergi">
+		                 <textarea placeholder="Sebutkan" ng-model="item.KeteranganBentukDada" style="width: 99%; height: 30px;"></textarea>
+
+		            </div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+
+			<!-- grid table -->
+			<div class="grid_12" style="margin-top: 10px;">
+              	<kendo-grid options="mainGridOptions" id="dataGrid">
+	            </kendo-grid>
+            </div>
+            <div class="clear"></div>
+
+	        <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" ' style="margin-top:15px"></div>
+
+		</c-panel>
+	</div>
+</div> 

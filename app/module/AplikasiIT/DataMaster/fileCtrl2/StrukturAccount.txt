@@ -1,0 +1,241 @@
+////header nya
+define(['initialize'], function(initialize) {
+	'use strict';
+initialize.controller('StrukturAccountCtrl', ['$q', '$rootScope', '$scope', 'IPSRSService',
+ function($q, $rootScope, $scope,IPSRSService) {
+ $scope.item = {};
+ $scope.dataVOloaded = true;
+ $scope.now = new Date();
+ var init = function () {
+IPSRSService.getFieldsMasterTable("get-data-master?className=StrukturAccount", true).then(function(dat){
+$scope.listDataMaster = dat.data.data.StrukturAccount;
+                                    					
+$scope.dataSource = new kendo.data.DataSource({
+pageSize: 10,
+data: $scope.listDataMaster,
+autoSync: true
+
+});
+
+});
+}
+init();
+
+
+
+
+$scope.columnStrukturAccount = [
+{
+"field": "No",
+"title": "No"
+},
+{
+"field": "formatAccount",
+"title": "format Account"
+},
+{
+"field": "historyLoginI",
+"title": "history Login I"
+},
+{
+"field": "historyLoginIId",
+"title": "history Login IId"
+},
+{
+"field": "historyLoginS",
+"title": "history Login S"
+},
+{
+"field": "historyLoginSId",
+"title": "history Login SId"
+},
+{
+"field": "historyLoginU",
+"title": "history Login U"
+},
+{
+"field": "historyLoginUId",
+"title": "history Login UId"
+},
+{
+"field": "jenisAccount",
+"title": "jenis Account"
+},
+{
+"field": "jenisAccountId",
+"title": "jenis Account Id"
+},
+{
+"field": "kdStrukturAccount",
+"title": "kd Struktur Account"
+},
+{
+"field": "levelAccount",
+"title": "level Account"
+},
+{
+"field": "noUrutAkhir",
+"title": "no Urut Akhir"
+},
+{
+"field": "noUrutAwal",
+"title": "no Urut Awal"
+},
+{
+"field": "strukturAccount",
+"title": "struktur Account"
+},
+{
+"field": "id",
+"title": "id"
+},
+{
+"field": "reportDisplay",
+"title": "report Display"
+},
+{
+"field": "kodeExternal",
+"title": "kode External"
+},
+{
+"field": "namaExternal",
+"title": "nama External"
+},
+{
+"field": "statusEnabled",
+"title": "status Enabled"
+},
+
+{
+	"title" : "Action",
+	"width" : "200px",
+	"template" : "<button class='btnEdit' ng-click='enableData()'>Enable</button>"+
+"<button class='btnHapus' ng-click='disableData()'>Disable</button>"
+}
+];
+$scope.mainGridOptions = { 
+ pageable: true,
+ columns: $scope.columnStrukturAccount,
+ editable: "popup",
+ selectable: "row",
+ scrollable: false
+ };
+////fungsi klik untuk edit
+ $scope.klik = function(current){
+$scope.showEdit = true;
+$scope.current = current;
+$scope.item.formatAccount = current.formatAccount;
+$scope.item.historyLoginI = current.historyLoginI;
+$scope.item.historyLoginIId = current.historyLoginIId;
+$scope.item.historyLoginS = current.historyLoginS;
+$scope.item.historyLoginSId = current.historyLoginSId;
+$scope.item.historyLoginU = current.historyLoginU;
+$scope.item.historyLoginUId = current.historyLoginUId;
+$scope.item.jenisAccount = current.jenisAccount;
+$scope.item.jenisAccountId = current.jenisAccountId;
+$scope.item.kdStrukturAccount = current.kdStrukturAccount;
+$scope.item.levelAccount = current.levelAccount;
+$scope.item.noUrutAkhir = current.noUrutAkhir;
+$scope.item.noUrutAwal = current.noUrutAwal;
+$scope.item.strukturAccount = current.strukturAccount;
+$scope.item.id = current.id;
+$scope.item.noRec = current.noRec;
+$scope.item.reportDisplay = current.reportDisplay;
+$scope.item.kodeExternal = current.kodeExternal;
+$scope.item.namaExternal = current.namaExternal;
+$scope.item.statusEnabled = current.statusEnabled;
+};
+$scope.disableData=function(){
+ IPSRSService.getClassMaster("delete-master-table?className=StrukturAccount&&id="+$scope.item.id+"&&statusEnabled=false").then(function(dat){
+ init();
+ });
+ };
+$scope.enableData=function(){
+ IPSRSService.getClassMaster("delete-master-table?className=StrukturAccount&&id="+$scope.item.id+"&&statusEnabled=true").then(function(dat){
+ init();
+
+	});
+};
+
+$scope.tambah = function()
+ {
+var data = {
+	"class": "StrukturAccount",
+	"listField": {
+"formatAccount": $scope.item.formatAccount,
+"historyLoginI": $scope.item.historyLoginI,
+"historyLoginIId": $scope.item.historyLoginIId,
+"historyLoginS": $scope.item.historyLoginS,
+"historyLoginSId": $scope.item.historyLoginSId,
+"historyLoginU": $scope.item.historyLoginU,
+"historyLoginUId": $scope.item.historyLoginUId,
+"jenisAccount": $scope.item.jenisAccount,
+"jenisAccountId": $scope.item.jenisAccountId,
+"kdStrukturAccount": $scope.item.kdStrukturAccount,
+"levelAccount": $scope.item.levelAccount,
+"noUrutAkhir": $scope.item.noUrutAkhir,
+"noUrutAwal": $scope.item.noUrutAwal,
+"strukturAccount": $scope.item.strukturAccount,
+"id": $scope.item.id,
+"reportDisplay": $scope.item.reportDisplay,
+"kodeExternal": $scope.item.kodeExternal,
+"namaExternal": $scope.item.namaExternal,
+}
+	}
+ IPSRSService.saveDataMaster(data,"save-master-table").then(function(e) {
+console.log(JSON.stringify(e.data));
+init();
+$scope.item = {};
+ });
+  }
+
+ $scope.edit = function()
+  {	
+   var data = {
+ "class": "StrukturAccount",
+	"listField": {
+"formatAccount": $scope.item.formatAccount,
+"historyLoginI": $scope.item.historyLoginI,
+"historyLoginIId": $scope.item.historyLoginIId,
+"historyLoginS": $scope.item.historyLoginS,
+"historyLoginSId": $scope.item.historyLoginSId,
+"historyLoginU": $scope.item.historyLoginU,
+"historyLoginUId": $scope.item.historyLoginUId,
+"jenisAccount": $scope.item.jenisAccount,
+"jenisAccountId": $scope.item.jenisAccountId,
+"kdStrukturAccount": $scope.item.kdStrukturAccount,
+"levelAccount": $scope.item.levelAccount,
+"noUrutAkhir": $scope.item.noUrutAkhir,
+"noUrutAwal": $scope.item.noUrutAwal,
+"strukturAccount": $scope.item.strukturAccount,
+"id": $scope.item.id,
+"noRec": $scope.item.noRec,
+"reportDisplay": $scope.item.reportDisplay,
+"kodeExternal": $scope.item.kodeExternal,
+"namaExternal": $scope.item.namaExternal,
+"statusEnabled": $scope.item.statusEnabled
+ }
+ }
+IPSRSService.saveDataMaster(data,"update-master-table").then(function(e){console.log(JSON.stringify(e.data));
+init();
+});
+}
+$scope.batal = function () {
+$scope.showEdit = false;
+$scope.item = {};
+}
+IPSRSService.getFieldListData("HistoryLoginModulAplikasi&select=id,namaExternal", true).then(function(dat){
+$scope.listhistorylogini= dat.data;
+});
+IPSRSService.getFieldListData("HistoryLoginModulAplikasi&select=id,namaExternal", true).then(function(dat){
+$scope.listhistorylogins= dat.data;
+});
+IPSRSService.getFieldListData("HistoryLoginModulAplikasi&select=id,namaExternal", true).then(function(dat){
+$scope.listhistoryloginu= dat.data;
+});
+IPSRSService.getFieldListData("JenisAccount&select=id,namaExternal", true).then(function(dat){
+$scope.listjenisaccount= dat.data;
+});
+}
+]);
+});

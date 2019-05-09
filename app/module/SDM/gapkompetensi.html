@@ -1,0 +1,93 @@
+<style type="text/css">
+#grid .k-grid-header .k-header .verticalText{
+	display: inline-block;
+	white-space: nowrap;
+	transform: translate(0,100%) rotate(-90deg);
+	transform-origin: 0 0;
+	position: absolute;
+	bottom: 5px; 
+}
+
+#grid .k-grid-header .k-header{
+  height: 350px !important;
+}
+
+</style>
+<div ng-controller="gapkompetensiCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'GAP Kompetensi'"disabled>      
+			<div class="panel-body">
+
+				<div class="grid_9" >
+					<div class="grid_3" style="margin-top: 0">
+						<div class="grid_12" style="margin-left:5px">
+
+						</div>
+						<div class="grid_12" style="margin-top:12px">
+							<label c-label item="item" c-label-text="Instalasi"></label>
+						</div>
+					</div>
+
+					<div class="grid_3" style="margin-top: 0">
+
+						<div class="grid_12" style="margin: 0 0 0 -26px;">
+							<input style="min-width: 250px;" kendo-combo-box k-ng-model="item.unitKerja" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja" />
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="grid_9" >
+				<div class="grid_3" style="margin-top: 0">
+					<div class="grid_12" style="margin-left:5px">
+
+					</div>
+					<div class="grid_12" style="margin-top:12px">
+						<label c-label item="item" c-label-text="Tanggal Penilaian"></label>
+					</div>
+				</div>
+
+				<div class="grid_3" style="margin-top: 0">
+
+					<div class="grid_12" style="margin: 0 0 0 -26px;">
+						<input ng-disabled="isDisable" kendo-date-picker k-options="yearSelected" k-ng-model="item.tanggalGAP" k-max="now" k-format="'MMMM yyyy'" style="width: 100%" />
+					</div>
+				</div>
+				<div class="grid_2"  style="margin: 6px 0 0 -25px;">
+					<button class="c-button"  ng-click="cari()">
+
+						Cari</button>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="grid_12">
+ 					<div id="grid" kendo-grid k-on-change="Select(data)" k-data-source="gapkompetensiGrid" k-selectable="'row'" options="gapkompetensiGridCol"  style="font-size: small;" k-scrollable="true">
+					</div>
+			</div>
+</c-panel>
+<div class="grid_12">
+	<div class="grid_8" style="float:left">
+
+							<!-- <div class="grid_2" style="margin-top: 25px">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate click="Cancel">
+                					<span class="title">Simpan</span></button>
+                				</div> -->
+                				<div class="grid_2" style="margin-top: 25px">
+                					<button class="c-button" ng-show="!isLoading" item="item" is-validate click="Cancel">
+                						<span class="title">Batal</span></button>
+                					</div>
+
+                					<div class="grid_2 " style="margin-top: 25px ">
+                						<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="">
+                							<span class="title">Cetak</span>
+                						</button>
+                					</div>
+                				</div>
+                			</div>
+  </div>
+ </div>
+</div>
+

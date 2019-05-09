@@ -1,0 +1,156 @@
+
+<div ng-controller="KelasCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="title">
+			
+			<!-- Label-->
+			<div class="grid_4" style="margin-bottom:5px">
+				<label c-label item="item" c-label-text="kdProfile"> </label>
+			</div>
+			<div class="grid_4" style="margin-bottom:5px">
+				<label c-label item="item" c-label-text="statusEnabled"> </label>
+			</div>
+			<!-- <div class="grid_4" style="margin-bottom:5px">
+				<label c-label item="item" c-label-text="noRec"> </label>
+			</div>	 -->
+			<div class="clear"></div>
+			<!-- Text Input-->
+			<div class="grid_4">
+				<input c-text-box type="number" filter="" class="k-textbox" ng-model="item.kdProfile" min="0" max="32767" integer />
+			</div>
+			<div class="grid_4">
+				<div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="stat in listYaTidak">
+	                    <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.statusEnabled" value="{{stat.value}}">
+	                    <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+	               </div>
+			</div>
+			<!-- <div class="grid_4">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.noRec" />
+			</div> -->
+			<div class="clear"></div>
+
+			<!-- Label-->
+			<div class="grid_4" style="margin-bottom:5px">
+				<label c-label item="item" c-label-text="reportDisplay"> </label>
+			</div>
+			<div class="grid_4" style="margin-bottom:5px">
+				<label c-label item="item" c-label-text="kodeExternal"> </label>
+			</div>
+			<div class="grid_4" style="margin-bottom:5px">
+				<label c-label item="item" c-label-text="namaExternal"> </label>
+			</div>	
+			<div class="clear"></div>
+			<!-- Text Input-->
+			<div class="grid_4">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.reportDisplay" />
+			</div>
+			<div class="grid_4">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.kodeExternal" />
+			</div>
+			<div class="grid_4">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaExternal" />
+			</div>
+			<div class="clear"></div>
+
+			<!-- Label-->
+			<div class="grid_4" style="margin-bottom:5px">
+				<label c-label item="item" c-label-text="namaKelas"> </label>
+			</div>
+			<div class="grid_4" style="margin-bottom:5px">
+				<label c-label item="item" c-label-text="noUrut"> </label>
+			</div>
+			<div class="grid_4" style="margin-bottom:5px">
+				<label c-label item="item" c-label-text="kelas"> </label>
+			</div>	
+			<div class="clear"></div>
+			<!-- Text Input-->
+			<div class="grid_4">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaKelas" />
+			</div>
+			<div class="grid_4">
+				<input c-text-box type="number" filter="" class="k-textbox" ng-model="item.noUrut" min="0" max="32767" integer />
+			</div>
+			<div class="grid_4">
+				 <input style="width: 100%;" kendo-combo-box k-ng-model="item.kelas" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKelas" />
+			</div>
+			<div class="clear"></div>
+				<input type="hidden" ng-model="item.id" />
+			</br>
+			
+
+	        
+
+			<hr style="background-color:#10C4B2;height: 1px;border: 0;" />
+			<!--Button AddKelas-->
+			<div class="grid_12">
+                <div class="grid_3" style="float:right">
+                    <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="addKelas" >
+                        <span class="title">Simpan</span>
+                    </c-button>
+                    <!-- <button ng-click="AddAgama(item.id)">button</button> -->
+                </div>
+                <div class="grid_3" style="float:right">
+                    <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="editKelas" >
+                        <span class="title">Edit</span>
+                    </c-button>
+                    
+                </div>
+            </div>
+
+            <div class="clear"></div>
+            <hr style="background-color:#10C4B2;height: 1px;border: 0;" />
+            <div class="grid_12">
+                    <kendo-grid k-ng-model="item" options='mainGridOptions' k-data-source="dataKelas" k-select='select'  k-change='selectKelas' k-selectable="'row'" k-height="'500'" k-sortable="'true'" k-pageable="Page" k-columns="columnKelas"></kendo-grid>
+                </div>
+			<div class="clear"></div>
+            <!-- 
+
+            <div class="div_12">
+				<div class="grid_2" style="margin-bottom:5px" >
+					<label c-label item="item" c-label-text="reportDisplay"> </label>
+				</div>
+				<div class="grid_2" style="margin-bottom:5px">
+					<label c-label item="item" c-label-text="kodeExternal"> </label>
+				</div>
+				<div class="grid_2" style="margin-bottom:5px">
+					<label c-label item="item" c-label-text="namaExternal"> </label>
+				</div>
+				<div class="grid_2" style="margin-bottom:5px">
+					<label c-label item="item" c-label-text="namaKelas"> </label>
+				</div>
+				<div class="grid_2" style="margin-bottom:5px">
+					<label c-label item="item" c-label-text="noUrut"> </label>
+				</div>
+				<div class="grid_2" style="margin-bottom:5px">
+					<label c-label item="item" c-label-text="Action"> </label>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div class="div_12" ng-repeat="i in dataAgama" ng-show="showGridData" >
+				<div class="grid_2">
+					{{i.reportDisplay}}
+				</div>
+				<div class="grid_2">
+					{{i.kodeExternal}}
+				</div>
+				<div class="grid_2">
+					{{i.namaExternal}}
+				</div>
+				<div class="grid_2">
+					{{i.namaKelas}}
+				</div>
+				<div class="grid_2">
+					{{i.noUrut}}
+				</div>
+				
+				
+				<div class="grid_1">
+                    <a href="javascript:void(0)" style="background-color:#10C4B2" ng-click="UpdateKelas(i.id)">Edit</a>
+                </div>
+	            <div class="grid_1">
+                    <a href="javascript:void(0)" style="background-color:#10C4B2" ng-click="DeleteKelas(i.id)">Delete</a>
+                </div>
+	         </div> -->
+		</c-panel>
+	</div>
+</div>

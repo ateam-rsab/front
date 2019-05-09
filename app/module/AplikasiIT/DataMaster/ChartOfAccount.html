@@ -1,0 +1,361 @@
+<div ng-controller="ChartOfAccounCtrl">
+<div ng-show="dataVOloaded">
+<c-panel item="item" header="'Chart Of Account'" disabled>
+
+<!-- kdAccount -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kdAccount"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kdAccount" />
+</div>
+</div>
+
+<!-- kdAccountEffectAdd -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kdAccountEffectAdd"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kdAccountEffectAdd" />
+</div>
+</div>
+
+<!-- kdAccountEffectMin -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kdAccountEffectMin"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kdAccountEffectMin" />
+</div>
+</div>
+
+<!-- accountHead -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="accountHead"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.accountHead" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listaccountHead" />
+</div>
+</div>
+
+<!-- accountHeadId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="accountHeadId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.accountHeadId" />
+</div>
+</div>
+
+<!-- jenisAccount -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="jenisAccount"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisAccount" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listjenisAccount" />
+</div>
+</div>
+
+<!-- jenisAccountId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="jenisAccountId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jenisAccountId" />
+</div>
+</div>
+
+<!-- kategoryAccount -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kategoryAccount"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.kategoryAccount" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listkategoryAccount" />
+</div>
+</div>
+
+<!-- kategoryAccountId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kategoryAccountId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kategoryAccountId" />
+</div>
+</div>
+
+<!-- statusAccount -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="statusAccount"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.statusAccount" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="liststatusAccount" />
+</div>
+</div>
+
+<!-- statusAccountId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="statusAccountId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.statusAccountId" />
+</div>
+</div>
+
+<!-- strukturAccount -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="strukturAccount"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.strukturAccount" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="liststrukturAccount" />
+</div>
+</div>
+
+<!-- strukturAccountId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="strukturAccountId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.strukturAccountId" />
+</div>
+</div>
+
+<!-- namaAccount -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="namaAccount"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaAccount" />
+</div>
+</div>
+
+<!-- noAccount -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="noAccount"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noAccount" />
+</div>
+</div>
+
+<!-- qAccount -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="qAccount"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.qAccount" />
+</div>
+</div>
+
+<!-- saldoAkhirDTahunBerjalan -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="saldoAkhirDTahunBerjalan"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.saldoAkhirDTahunBerjalan" />
+</div>
+</div>
+
+<!-- saldoAkhirKTahunBerjalan -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="saldoAkhirKTahunBerjalan"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.saldoAkhirKTahunBerjalan" />
+</div>
+</div>
+
+<!-- saldoAwalDTahunBerjalan -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="saldoAwalDTahunBerjalan"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.saldoAwalDTahunBerjalan" />
+</div>
+</div>
+
+<!-- saldoAwalKTahunBerjalan -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="saldoAwalKTahunBerjalan"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.saldoAwalKTahunBerjalan" />
+</div>
+</div>
+
+<!-- saldoNormalAdd -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="saldoNormalAdd"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.saldoNormalAdd" />
+</div>
+</div>
+
+<!-- saldoNormalEffectAdd -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="saldoNormalEffectAdd"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.saldoNormalEffectAdd" />
+</div>
+</div>
+
+<!-- saldoNormalEffectMin -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="saldoNormalEffectMin"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.saldoNormalEffectMin" />
+</div>
+</div>
+
+<!-- saldoNormalMin -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="saldoNormalMin"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.saldoNormalMin" />
+</div>
+</div>
+
+<!-- reportDisplay -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="reportDisplay"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+</div>
+</div>
+
+<!-- kodeExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kodeExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+</div>
+</div>
+
+<!-- namaExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="namaExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+</div>
+</div>
+
+<!-- ChartOfAccount -->
+<div class="grid_12">
+<div class="grid_12 headerBox">
+<p>ChartOfAccount</p>
+</div>
+<div class="clear"></div>
+
+<!-- grid table -->
+<div class="grid_12 borderBox">
+					<kendo-grid options="mainGridOptions"  k-data-source="dataSource" k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+				</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+
+
+</c-panel>
+
+<div class="grid_12">
+				<div class="grid_8"></div>
+				<div class="grid_2" ng-show="showEdit">
+					<button class="c-button" ng-click="edit()">Edit</button>
+				</div>
+				<div class="grid_2" ng-hide="showEdit">
+					<button class="c-button" ng-click="tambah()">Tambah</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="batal()">Batal</button>
+				</div>
+			</div>
+</div>
+</div>

@@ -1,0 +1,121 @@
+<div ng-controller="PenilaianKinerjaSatpamCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Penilaian Kinerja Satpam'">
+			<div class="panel panel-default container_12">
+				<div class="panel-body">
+					<div class="grid_12">
+						<div class="grid_12">
+							<!--<div class="grid_6">
+								
+							</div>-->
+							<div class="grid_12">
+								<div class="grid_2" style="margin-top:10px">
+									<label c-label item="item">Nama Pegawai</label>
+								</div>
+								<div class="grid_3">
+									<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaSatpam" style="width: 100%" />
+									<!--<input style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai" k-data-text-field="'namaLengkap'" k-data-value-field="'id'"
+										k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" ng-disabled="unavailable || isOut" />-->
+								</div>
+							</div>
+							<!--<div class="grid_12">
+								<div class="grid_4" ng-hide=true style="margin-top:10px; margin-bottom:50px">
+									<label c-label item="item">Tanggal Penilaian</label>
+								</div>
+								<div class="grid_7" ng-hide=true>
+									<input style="width: 100%" k-ng-model='until' k-value='now' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"
+										ng-disabled="true" />
+								</div>
+
+							</div>-->
+							<div class="grid_12">
+								<div class="grid_2" style="margin-top:10px; margin-bottom:50px">
+									<label c-label item="item">Tanggal Penilaian</label>
+								</div>
+								<div class="grid_8">
+									<div class="grid_12">
+										<div class="grid_5">
+											<input style="width: 92%" k-ng-model='item.tglPelayananAwal' k-value='now' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"
+											/>
+										</div>
+										<div class="grid_1" style="margin-top:10px; margin-bottom:50px">
+											<label c-label item="item">s/d</label>
+										</div>
+										<div class="grid_5">
+											<input style="width: 92%" k-ng-model='item.tglPelayananAkhir' k-value='now' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"
+											/>
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+
+
+						</div>
+						<c-panel item="item" header="'Uraian Tugas'">
+							<div class="panel panel-default container_12" ng-hide="isOut">
+
+								<div class="clear"></div>
+								<div class="grid_12" style="margin-top: 25px;">
+									<!--<div data-kendo-grid="grid" k-ng-model="selectedData" k-on-change="selectPegawai(data)" k-data-source="daftarDataPegawai"
+								k-selectable="'row'" k-columns="columnDataPegawai">
+							</div>-->
+									<div kendo-grid="grid" k-ng-model="selectedData" change="uraianTugas()" k-options="mainGridOptions1" k-selectable="'row'">
+									</div>
+								</div>
+							</div>
+						</c-panel>
+
+						<c-panel item="item" header="'Kualitas'">
+							<div class="panel panel-default container_12" ng-hide="isOut">
+								<div class="grid_12" style="margin-top: 25px;">
+									<div data-kendo-grid="grid" k-ng-model="selectedData" k-on-change="selectPegawai(data)" k-options="mainGridOptions2" k-selectable="'row'">
+									</div>
+								</div>
+							</div>
+						</c-panel>
+
+						<c-panel item="item" header="'Sikap Perilaku'">
+							<div class="panel panel-default container_12" ng-hide="isOut">
+								<div class="grid_12" style="margin-top: 25px;">
+									<div data-kendo-grid="grid" k-ng-model="selectedData" k-on-change="selectPegawai(data)" k-options="mainGridOptions3" k-selectable="'row'">
+									</div>
+								</div>
+							</div>
+						</c-panel>
+
+						<div class="grid_6" style="margin-top:50px">
+							<div class="grid_5" style="margin-top:10px">
+								<label c-label item="item">Total Nilai</label>
+							</div>
+							<div class="grid_7">
+								<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.totalNilai" ng-disabled="true" style="width: 100%;"
+								/>
+							</div>
+						</div>
+						<div class="grid_2" style="margin-top:56px; font-size: 24px;">
+							<button class="c-button" ng-show="!isLoading" item="item" ng-click="kalkulasi()">
+       						 <span >Kalkulasi</span></button>
+						</div>
+						<div class="grid_12">
+							<div class="grid_6">
+								<div class="grid_5" style="margin-top:10px">
+									<label c-label item="item">Nama Pemberi Penilaian</label>
+								</div>
+								<div class="grid_7">
+									<input style="width: 100%;" kendo-combo-box k-ng-model="item.pemberiPenilaian" k-data-text-field="'namaLengkap'" k-data-value-field="'id'"
+										k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" ng-disabled="unavailable || isOut" />
+								</div>
+							</div>
+						</div>
+
+						<div class="grid_12" style="margin-top: 30px;">
+							<div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

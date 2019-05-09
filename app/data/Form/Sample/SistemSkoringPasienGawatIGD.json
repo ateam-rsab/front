@@ -1,0 +1,23 @@
+{
+	"id" : "",
+	"score": "",
+	"jenisKategori":"",
+	"jam":"",
+    "attributes" : [{
+		"isNull" : "true",
+		"name" : "score",
+		"messagesRequired" : "Score Harus Diisi"
+	},{
+		"isNull" : "true",
+		"name" : "jenisKategori",
+		"messagesRequired" : "Jenis Kategori Harus Diisi",
+		"caption":"Jenis Kategori"
+	},{
+		"isNull" : "true",
+		"name" : "jam",
+		"messagesRequired" : "Jam Harus Diisi",
+		"caption":"Jam "
+	}
+		
+	]
+}

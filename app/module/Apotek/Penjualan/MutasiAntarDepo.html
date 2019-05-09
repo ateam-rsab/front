@@ -1,0 +1,150 @@
+<div ng-controller="MutasiAntarDepoCtrl">
+
+	<div ng-show="dataVOloaded">
+
+		<c-panel item="item" header="'Mutasi Antar Depo'">
+
+		<div class="grid_12">
+			<div class="grid_3">
+				<!-- nama pasien -->
+				<div class="grid_12" style="margin-top:5px">
+	                <label c-label item="item" c-label-text="NoDokumen"></label>
+	            </div>
+	            <div class="clear"></div>
+
+	            <div class="grid_12">
+	                 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPasien" />
+	            </div>
+	            <div class="clear"></div>
+			</div>
+			
+			<div class="grid_3">
+				<!-- tanggal -->
+				<div class="grid_12" style="margin-top:5px">
+	                <label c-label item="item" c-label-text="Tanggal"></label>
+	            </div>
+	            <div class="clear"></div>
+
+	            <div class="grid_12">
+	                  <input style="width: 100%" k-ng-model="item.periode"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+	            </div>
+	            <div class="clear"></div>
+			</div>
+			
+			<div class="grid_3">
+				<!-- dari depo -->
+				<div class="grid_12" style="margin-top:5px">
+	                <label c-label item="item" c-label-text="DariDepo"></label>
+	            </div>
+	            <div class="clear"></div>
+
+	            <div class="grid_12">
+	                 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPasien" />
+	            </div>
+	            <div class="clear"></div>
+			</div>
+
+			<div class="grid_3">
+				<!-- untuk depo -->
+				<div class="grid_12" style="margin-top:5px">
+	                <label c-label item="item" c-label-text="UntukDepo"></label>
+	            </div>
+	            <div class="clear"></div>
+
+	            <div class="grid_12">
+	                  <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+	            </div>
+	            <div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+
+		<div class="grid_12">
+			<div class="grid_3">
+				<!-- pembuat -->
+				<div class="grid_12" style="margin-top:5px">
+	                <label c-label item="item" c-label-text="Pembuat"></label>
+	            </div>
+	            <div class="clear"></div>
+
+	            <div class="grid_12">
+	                 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPasien" />
+	            </div>
+	            <div class="clear"></div>
+			</div>
+			
+			<div class="grid_3">
+				<!-- jabatan pembuat -->
+				<div class="grid_12" style="margin-top:5px">
+	                <label c-label item="item" c-label-text="JabatanPembuat"></label>
+	            </div>
+	            <div class="clear"></div>
+
+	            <div class="grid_12">
+	                 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPasien" />
+	            </div>
+	            <div class="clear"></div>
+			</div>
+			
+			<div class="grid_3">
+				<!-- nip -->
+				<div class="grid_12" style="margin-top:5px">
+	                <label c-label item="item" c-label-text="NIP"></label>
+	            </div>
+	            <div class="clear"></div>
+
+	            <div class="grid_12">
+	                 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPasien" />
+	            </div>
+	            <div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+
+		<div class="grid_12">
+			<div class="grid_3">
+				<!-- penerima -->
+				<div class="grid_12" style="margin-top:5px">
+	                <label c-label item="item" c-label-text="Penerima"></label>
+	            </div>
+	            <div class="clear"></div>
+
+	            <div class="grid_12">
+	                 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPasien" />
+	            </div>
+	            <div class="clear"></div>
+			</div>
+			
+			<div class="grid_3">
+				<!-- nip -->
+				<div class="grid_12" style="margin-top:5px">
+	                <label c-label item="item" c-label-text="NIP"></label>
+	            </div>
+	            <div class="clear"></div>
+
+	            <div class="grid_12">
+	                 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPasien" />
+	            </div>
+	            <div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+		</div>
+
+		<!-- grid table -->
+		<div class="grid_12" style="margin-top: 10px;">
+          	<kendo-grid options="mainGridOptions" id="dataGrid">
+            </kendo-grid>
+        </div>
+        <div class="clear"></div>
+
+
+        <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" ' style="margin-top:15px"></div>
+		</c-panel>
+
+
+
+	</div>
+
+</div>

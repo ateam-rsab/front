@@ -1,0 +1,71 @@
+<div ng-controller="DaftarPesanAmbulanceCtrl">
+	<div class="panel panel-default container_12">
+		<div class="panel-heading" c-translate>Daftar Pesan Ambulance</div>
+		<div class="panel-body">
+			<div class="grid_6">
+				<div class="panel panel-default container_12">
+					
+					<div class="panel-body">
+
+						<div class="grid_4">
+							<label c-label item="item" c-label-text="periodeAwal"></label>
+						</div>
+						<div class="grid_4">
+							<label c-label item="item" c-label-text="periodeAkhir"></label>
+						</div>
+						<div class="clear"></div>
+
+
+						<div class="grid_4">
+							<input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAwal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"
+							/>
+						</div>
+						<div class="grid_4">
+							<input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAkhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"
+							/>
+						</div>
+						<div class="grid_3" style="margin-top:7px; align:center">
+							<button class="c-button" ng-click="find()">
+                             	CARI</button>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default container_12">
+				<!--<div class="panel-heading" c-translate>Daftar Pesan Ambulance</div>-->
+				<div class="panel-body">
+					<div class="grid_12" >
+						<kendo-grid k-data-source="DaftarPesanAmbulance" k-selectable="'row'" k-columns="columnDaftarPesanAmbulance" edittable="true"
+							k-ng-model="current">
+						</kendo-grid>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_4"></div>
+			<!--<div class="grid_2" style="margin-top: 10px">
+				<button class="c-button" ng-click="find()">
+                    Tutup</button>
+			</div>-->
+			<div class="grid_3" style="margin-top: 10px">
+				<button class="c-button" ng-click="out(current.produk.id, current.strukOrder.status, current.noOrder.noOrder)">
+                    Selesai Pemakaian</button>
+			</div>
+			<div class="grid_3" style="margin-top: 10px">
+				<button class="c-button" ng-click="NavToPemakaianAmbulance(current)">
+                    Pemakaian Ambulance</button>
+			</div>
+			<div class="grid_2" style="margin-top: 10px">
+				<button class="c-button" ng-click="find()">
+                    Cetak</button>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</div>

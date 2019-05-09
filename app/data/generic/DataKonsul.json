@@ -1,0 +1,62 @@
+{
+	"model":{
+	    "NoRekamMedis" : "",
+	    "NoRegistrasi" : "",
+		"InstalasiTujuanKonsul" : "",
+		"NamaPasien": "",
+		"JenisKelamin": "",
+		"DokterPerujuk" : "",
+		"TanggalPendaftaran" : "",
+		"Keterangan": ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "NoRekamMedis",
+			"messagesRequired" : "NoRekamMedis Harus Diisi",
+			"caption" : "No. Rekam medis"
+		},
+		{
+			"isNull" : "true",
+			"name" : "NoRegistrasi",
+			"messagesRequired" : "NoRegistrasi Harus Diisi",
+			"caption" : "No. Pendaftaran"
+		},
+		{
+			"isNull" : "true",
+			"name" : "InstalasiTujuanKonsul",
+			"messagesRequired" : "InstalasiTujuanKonsul Harus Diisi",
+			"caption" : "Instalasi tujuan konsul"
+		},
+		{
+			"isNull" : "true",
+			"name" : "NamaPasien",
+			"messagesRequired" : "NamaPasien Harus Diisi",
+			"caption" : "Nama pasien"
+		},
+		{
+			"isNull" : "true",
+			"name" : "JenisKelamin",
+			"messagesRequired" : "JenisKelamin Harus Diisi",
+			"caption" : "Jenis kelamin"
+		},
+		{
+			"isNull" : "true",
+			"name" : "DokterPerujuk",
+			"messagesRequired" : "",
+			"caption" : "Dokter perujuk"
+		},
+		{
+			"isNull" : "true",
+			"name" : "TanggalPendaftaran",
+			"messagesRequired" : "",
+			"caption" : "Tanggal pendaftaran"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Keterangan",
+			"messagesRequired" : "",
+			"caption" : "Keterangan"
+		}
+  ]
+}

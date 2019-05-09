@@ -1,0 +1,119 @@
+
+
+<div ng-show="dataVOloaded">
+	<c-panel item="item" header="'Daftar Pengembalian Buku'"disabled>
+		<div class="grid_12">
+			<div class="grid_2">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Judul Buku"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.judulBuku" >
+				</div>
+			</div>
+			<div class="grid_1">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Tipe Anggota"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.tipeAnggota" >
+				</div>
+			</div>
+			<div class="grid_2">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Nama Peminjam"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nama" >
+				</div>
+			</div>
+			<div class="grid_2">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Nama Pengarang"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaPengarang" >
+				</div>
+			</div>
+
+			<!-- Periode Pulang -->
+			<div class="grid_4">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Periode Pengembalian"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<!-- AwalPeriode -->
+					<div class="grid_6 padDatePicker">
+						<input style="width: 100%" k-ng-model="item.periodeAwal"  kendo-datetimepicker k-max="now" placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
+					</div>
+
+					<!-- AkhirPeriode -->
+					<div class="grid_6 padDatePicker">
+						<input style="width: 100%" k-ng-model="item.periodeAkhir"  kendo-datetimepicker  placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" />
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+			<div class="grid_1">
+				<label c-label c-label-text=""></label>
+				<em style="margin-top:6px;" ng-click='Search()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-search">Refresh</span></em>
+				<em style="margin-top:6px;" ng-click='Clear()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Reset</span></em>
+			</div>
+
+		</div>
+	</c-panel>
+
+
+	<div class="grid_12">
+		<kendo-grid id="kGrid"  k-data-source="sourceReservasi" k-pageable="true" k-selectable="'row'" k-columns="columnReservasi"  
+		k-ng-model="dataSelected"
+		k-sortable="true"
+		k-reorderable="true"
+		k-pageable="true"
+		k-groupable="true"
+		k-resizable="true"
+
+		k-scrollable="'true'"
+		ng-click="klikReserv(dataSelected)"
+		style="font-size: small;">
+	</kendo-grid>
+
+</div>
+<div class="grid_12">
+	<div class="grid_10"></div>
+	<div class="grid_2" >
+		<button class="btnTemplate1" style="margin-left: 0;" ng-click="Edit()">Edit</button>
+	</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="grid_12" style="margin-top:60px">
+	<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+</div>
+
+
+<style>
+.k-grid .k-grid-header .k-header .k-link {
+	height: auto;
+}
+
+.k-grid .k-grid-header .k-header  {
+	white-space: normal;
+}
+.k-grid .k-grid-header .k-header  {
+	text-align: center;
+}
+</style>

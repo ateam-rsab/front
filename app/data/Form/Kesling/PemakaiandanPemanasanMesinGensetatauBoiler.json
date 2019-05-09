@@ -1,0 +1,35 @@
+
+{
+	"model":{
+	    "tanggal" : "",
+	    "namaMesin" : "",
+	    "lamaPemakaian" : "",
+	    "keterangan" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "tanggal",
+			"messagesRequired" : "",
+			"caption" : "Tanggal"
+		},
+		{
+			"isNull" : "true",
+			"name" : "namaMesin",
+			"messagesRequired" : "",
+			"caption" : "Nama Mesin"
+		},
+		{
+			"isNull" : "true",
+			"name" : "lamaPemakaian",
+			"messagesRequired" : "",
+			"caption" : "Lama Pemakaian/Pemanasan Mesin"
+		},
+		{
+			"isNull" : "true",
+			"name" : "keterangan",
+			"messagesRequired" : "",
+			"caption" : "Keterangan"
+		}
+  ]
+}

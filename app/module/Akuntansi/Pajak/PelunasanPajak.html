@@ -1,0 +1,143 @@
+<div ng-show="dataVOloaded">
+	<c-panel item="item" header="'Pelunasan'" disabled>
+
+		<!-- Kriteria -->
+		<div class="grid_12">
+			<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+				<p></p>
+			</div>
+			<div class="grid_12 borderBox containerBorderBox">
+
+				<!-- Tanggal -->
+				<div class="grid_6">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Tanggal"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.tanggal" ng-disabled="true"/>
+					</div>
+				</div>
+
+				<!-- JenisPajak -->
+				<div class="grid_6">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="JenisPajak"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jenisPajak" ng-disabled="true"/>
+					</div>
+				</div>
+
+				<!-- Nama -->
+				<div class="grid_6">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Nama"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nama" ng-disabled="true"/>
+					</div>
+				</div>
+				<div class="clear"></div>
+
+				<!-- Npwp -->
+				<div class="grid_6">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Npwp"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.npwp" ng-disabled="true"/>
+					</div>
+				</div>
+
+				<!-- TanggalDiajukan -->
+				<div class="grid_6">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="TanggalDiajukan"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.tanggalDiajukan" ng-disabled="true"/>
+					</div>
+				</div>
+				<div class="clear"></div>
+
+				<!-- NilaiObjekPajak -->
+				<div class="grid_6">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="NilaiObjekPajak"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nilaiObjekPajak" ng-disabled="true"/>
+					</div>
+				</div>
+
+				<!-- PersentasePajak -->
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="PersentasePajak"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.persentasePajak" ng-disabled="true"/>
+					</div>
+				</div>
+
+				<!-- NominalPajak -->
+				<div class="grid_4">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="NominalPajak"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nominalPajak" ng-disabled="true"/>
+					</div>
+				</div>
+				<div class="clear"></div>
+
+				<!-- Ntpn -->
+				<div class="grid_6">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Ntpn"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.ntpn" />
+					</div>
+				</div>
+				<div class="clear"></div>
+
+				<!-- TanggalNtpn -->
+				<div class="grid_6">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="TanggalNtpn"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input style="width: 100%" k-ng-model="item.tanggalNtpn"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</c-panel>
+
+	<div class="grid_12" style="margin-top:30px">
+		<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
+	</div>
+</div>

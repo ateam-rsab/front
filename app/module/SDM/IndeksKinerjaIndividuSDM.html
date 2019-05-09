@@ -1,0 +1,299 @@
+
+<div>
+    <c-panel item="item" header="'Indeks Kerja Individu'" disabled>
+        <div class="panel panel-default container_12">
+            <div class="panel-body">
+                <div class="grid_10">
+                    <div class="grid_2">
+                        <label><b>Bulan</b></label>
+                        <input kendo-date-picker k-options="yearSelected" k-ng-model="item.akhir" k-on-change="findSatuanKerja()" k-max="now" k-format="'MMMM yyyy'" style="width: 100%"/>
+                    </div>
+                    <div class="grid_4">
+                        <label><b>Pegawai</b></label>
+                        <input kendo-combo-box k-ng-model="item.pegawai" k-data-value-field="'id'" k-data-text-field="'namaLengkap'" k-filter="'contains'" k-auto-bind="true" k-data-source="daftarListPegawai" style="width:100%" ng-disabled="isLoginPegawai"/>
+                    </div>
+                    <div class="grid_3">
+                        <input type="checkbox" class="k-checkbox" id="pegawaiPensiun" ng-click="toogleCheckVerifikasi(pegawaiPensiun)" ng-model="pegawaiPensiun" ng-disabled="isLoginAtasan">
+                        <label c-label class="k-checkbox-label" for="pegawaiPensiun"><i>Pegawai Pensiun</i></label>
+                        
+                        <div class="grid_4" style="margin: -10px 0 0 -5px;">
+                            <label c-label c-label-text=""></label>
+                            <button class="c-button" ng-click="cari()">Cari</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_12" ng-show="dataVoLoaded">
+                    <div class="grid_12" style="padding: 5px 5px 0 5px;">
+                        <div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+                            <p>Kuantitas(50%)</p>
+                        </div>
+                        <div class="grid_12 borderBox containerBorderBox">
+                            <div class="grid_12" style="width:100%;">
+                                <kendo-grid id="gridOrder" k-data-source="gridKuantitas" options="opsiKuantitas"></kendo-grid>
+                                <!--div class="grid_12" ng-show="item.pegawai.id!=undefined"  style="margin-top: 10px;"-->
+                            </div>
+
+
+                            <div class="loading" style="position: relative; margin:25px 0px 20px;" class="animated"
+                                ng-show="isLoadingData">
+                                <img height="50" src="../app/stylesheets/Flat/loading-image.gif"/>
+                                <br/> <span>Harap tunggu, sedang memproses data</span>
+                            </div>
+                            <div class="grid_12">
+                                <div class="grid_3" style="margin: 5px 0 50px 0;">
+                                    <label>Total Kuantitas : </label>
+                                </div>
+                                <div class="grid_4">
+                                    <input c-text-box type="input" kendo-numeric-text-box filter="'numeric'"
+                                        style="text-align: right" class="k-textbox" ng-model="totalKuantitas"
+                                        ng-readonly="true"/>
+                                </div>
+                                <div class="grid_5">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_12" style="padding: 5px 5px 0 5px;">
+                        <div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+                            <p>Kualitas (20%)</p>
+                        </div>
+                        <div class="grid_12 borderBox containerBorderBox">
+                            <div class="grid_12" style="margin: 10px 0 10px 0;">
+                                <kendo-grid id="gridQty" k-data-source="kualitasGrid" options="kualitasGridOpt" k-ng-model="gridkualitas" ng-click="kl(gridkualitas)">
+                                    <div k-detail-template>
+                                        <kendo-tabstrip>
+                                            <ul><li class="k-state-active"></i>Definition of Operation</i></li></ul>
+                                            <div>
+                                                <textarea c-text-area type="input" row="2" class="k-textbox" ng-model="dataItem.keterangan"/>
+                                            </div>
+                                        </kendo-tabstrip>
+                                    </div>
+                                </kendo-grid>
+                                <div class="grid_12">
+                                    <div class="grid_3" style="margin: 5px 0 50px 0;">
+                                        <label>Total Kualitas : </label>
+                                    </div>
+                                    <div class="grid_4">
+                                        <input c-text-box type="input" kendo-numeric-text-box filter="'numeric'"
+                                            style="text-align: right" class="k-textbox" ng-model="totalKualitas"
+                                            ng-readonly="true"/>
+                                    </div>
+                                    <div class="grid_5">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid_12" style="padding: 5px 5px 0 5px;">
+                        <div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+                            <p>Perilaku (20%)</p>
+                        </div>
+                        <div class="grid_12 borderBox containerBorderBox">
+                            <div class="grid_12 " style="margin: 10px 0 50px 0;">
+
+                                <kendo-grid k-data-source="prilakuGrid" k-selectable="'row'" k-options="prilakuGridOpt" k-ng-model="gridprilaku" ng-click="kl2(gridprilaku)">
+                                </kendo-grid>
+                                <div class="grid_12">
+                                    <div class="grid_3" style="margin: 5px 0 20px 0;">
+                                        <label>Total Perilaku : </label>
+                                    </div>
+                                    <div class="grid_4">
+                                        <input c-text-box type="input" kendo-numeric-text-box filter="'numeric'"
+                                            style="text-align: right" class="k-textbox" ng-model="totalPrilaku"
+                                            ng-readonly="true"/>
+                                    </div>
+                                    <div class="grid_5">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_12" style="padding: 5px 5px 0 5px;">
+                        <div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+                            <p>Inovasi (10%)</p>
+                        </div>
+                        <div class="grid_12 borderBox containerBorderBox">
+                            <div class="grid_12  " style="margin: 10px 0 10px 0;">
+
+                                <kendo-grid k-data-source="inovasiGrid" k-selectable="'row'" k-options="inovasiGridOpt" k-ng-model="gridinovasi" ng-click="kl3(gridinovasi)">
+                                    <div k-detail-template>
+                                        <kendo-tabstrip>
+                                            <ul>
+                                                <li class="k-state-active"></i>Definition of Operation</i></li>
+                                            </ul>
+                                            <div>
+                                                <ul>
+                                                    <li>
+                                                        <label c-label c-label-text="Keterangan"></label> 
+                                                        <textarea c-text-area type="input" row="3" class="k-textbox" ng-model="dataItem.keterangan" placeholder="Keterangan" />
+                                                        <!--<text-area class="k-textbox" ng-model="dataItem.Country" />-->
+                                                        <!--<label>Home phone:</label> {{dataItem.HomePhone}}-->
+                                                    </li>
+                                                    <!--<li><label>Home phone:</label> {{dataItem.HomePhone}}</li>-->
+                                                </ul>
+                                            </div>
+                                        </kendo-tabstrip>
+                                    </div>
+                                </kendo-grid>
+                                <div class="grid_12">
+                                    <div class="grid_3" style="margin: 5px 0 50px 0;">
+                                        <label>Total Inovasi : </label>
+                                    </div>
+                                    <div class="grid_4">
+                                        <input c-text-box type="input" kendo-numeric-text-box filter="'numeric'"
+                                            style="text-align: right" class="k-textbox" ng-model="totalInovasi"
+                                            ng-readonly="true"/>
+                                    </div>
+                                    <div class="grid_5">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_12" style="padding: 5px 5px 0 5px;">
+                        <div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+                            <p>Total Kinerja Individu</p>
+                        </div>
+                        <div class="grid_12 borderBox containerBorderBox">
+                            <div class="grid_12">
+
+                                <div class="grid_3" style="margin: 5px 0 0 0;">
+                                    <label>Total Nilai Kinerja Individu : </label>
+                                </div>
+                                <div class="grid_4">
+                                    <input c-text-box type="input" kendo-numeric-text-box filter="'numeric'"
+                                        style="text-align: right" class="k-textbox" ng-model="totalNilaiKinerja"
+                                        ng-readonly="true"/>
+                                </div>
+                            </div>
+                            <div class="grid_12">
+
+                                <div class="grid_3" style="margin: 5px 0 0 0;">
+                                    <label>Nilai Indeks Kinerja Individu : </label>
+                                </div>
+                                <div class="grid_4">
+                                    <input c-text-box type="input" kendo-numeric-text-box filter="'numeric'"
+                                        style="text-align: right" class="k-textbox" ng-model="indeksKinerjaIndividu"
+                                        ng-readonly="true"/>
+                                </div>
+                            </div>
+
+                            <div class="grid_12">
+                                <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </c-panel>
+    <div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
+    
+    
+    <script id="popup-editor-prilaku" type="text/x-kendo-template">
+        <div class="grid_2">
+            <label c-label item="item" c-label-text="Komponen"></label>
+            <input c-text-box type="input" ng-disabled="true" class="k-textbox" ng-model="dataItem.komponenIKI"
+                   k-auto-bind="false"/>
+        </div>
+        <div class="grid_2">
+            <label c-label item="item" c-label-text="Target %"></label>
+            <input c-text-box type="input" filter="'numeric'" ng-disabled="true" style="text-align: right"
+                   class="k-textbox" ng-model="dataItem.target" k-auto-bind="false"/>
+        </div>
+        <div class="grid_2">
+            <label c-label item="item" c-label-text="Bobot %"></label>
+            <input c-text-box type="input" filter="'numeric'" ng-disabled="true" style="text-align: right"
+                   class="k-textbox" ng-model="dataItem.bobot" k-auto-bind="false"/>
+        </div>
+        <div class="grid_2">
+            <label c-label item="item" c-label-text="Capaian %"></label>
+            <input c-text-box type="input" filter="'numeric'" ng-disabled="false" style="text-align: right"
+                   class="k-textbox" ng-model="dataItem.capaian" k-auto-bind="false"/>
+        </div>
+        <div class="grid_2">
+            <label c-label item="item" c-label-text="Total"></label>
+            <input c-text-box type="input" filter="'numeric'" ng-disabled="true" style="text-align: right"
+                   class="k-textbox" ng-model="dataItem.total" k-auto-bind="false"/>
+        </div>
+        <div class="grid_2">
+            <label c-label item="item" c-label-text="Nilai"></label>
+            <input c-text-box type="input" filter="'numeric'" ng-disabled="true" style="text-align: right"
+                   class="k-textbox" ng-model="dataItem.nilai" k-auto-bind="false"/>
+        </div>
+        <div class="grid_2">
+            <label c-label item="item" c-label-text="Hasil"></label>
+            <input c-text-box type="input" filter="'numeric'" ng-disabled="true" style="text-align: right"
+                   class="k-textbox" ng-model="dataItem.hasil" k-auto-bind="false"/>
+        </div>
+    </script>
+
+    <script id="popup-editor-kualitas" type="text/x-kendo-template">
+        <div class="panel panel-default container_12"> 
+            <div class="grid_12">
+                <div class="grid_11">
+                    <label c-label item="item" c-label-text="Komponen"></label>
+                    <input name="komponen" c-text-box type="input" ng-disabled="false" class="k-textbox" ng-model="dataItem.item" k-auto-bind="false" data-validasiKomponen-msg="komponen tidak boleh kosong"/>
+                </div>
+                <div class="grid_11">
+                    <label c-label item="item" c-label-text="Target"></label>
+                    <input kendo-numeric-text-box k-min="0" k-ng-model="dataItem.target" k-auto-bind="false"/>
+                    <!--<input c-text-box type="input" filter="'numeric'" ng-disabled="false" style="text-align: right" class="k-textbox" ng-model="dataItem.target" k-auto-bind="false"/>-->
+                </div>
+                <div class="grid_11">
+                    <label c-label item="item" c-label-text="Bobot"></label>
+                    <input kendo-numeric-text-box k-min="0" k-ng-model="dataItem.bobot" k-auto-bind="false"/>
+                </div>
+                <div class="grid_11">
+                    <label c-label item="item" c-label-text="Capaian"></label>
+                    <input kendo-numeric-text-box k-min="0" k-ng-model="dataItem.capaian" k-auto-bind="false"/>
+                </div>
+                <div class="grid_11">
+                    <label c-label item="item" c-label-text="Keterangan"></label>
+                    <textarea name="keterangan" c-text-area type="input" row="2" ng-disabled="false" class="k-textbox" ng-model="dataItem.keterangan" k-auto-bind="false" data-validasiKeterangan-msg="Keterangan tidak boleh kosong"/>
+                    <!--<input c-text-box type="input" filter="'numeric'" ng-disabled="false" style="text-align: right" class="k-textbox" ng-model="dataItem.capaian" k-auto-bind="false"/>-->
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script id="popup-editor-inovasi" type="text/x-kendo-template">
+        <div class="panel panel-default container_12"> 
+            <div class="grid_12">
+                <div class="grid_11">
+                    <label c-label item="item" c-label-text="Komponen"></label>
+                    <input name="komponen" c-text-box type="input" ng-disabled="false" class="k-textbox" ng-model="dataItem.item" k-auto-bind="false" data-validasiKomponen-msg="komponen tidak boleh kosong"/>
+                </div>
+                <div class="grid_11">
+                    <label c-label item="item" c-label-text="Target"></label>
+                    <input kendo-numeric-text-box k-min="0" k-ng-model="dataItem.target" k-auto-bind="false"/>
+                    <!--<input c-text-box type="input" filter="'numeric'" ng-disabled="false" style="text-align: right" class="k-textbox" ng-model="dataItem.target" k-auto-bind="false"/>-->
+                </div>
+                <div class="grid_11">
+                    <label c-label item="item" c-label-text="Bobot"></label>
+                    <input kendo-numeric-text-box k-min="0" k-ng-model="dataItem.bobot" k-auto-bind="false"/>
+                </div>
+                <div class="grid_11">
+                    <label c-label item="item" c-label-text="Capaian"></label>
+                    <input kendo-numeric-text-box k-min="0" k-ng-model="dataItem.capaian" k-auto-bind="false"/>
+                </div>
+                <div class="grid_11">
+                    <label c-label item="item" c-label-text="Keterangan"></label>
+                    <textarea name="keterangan" c-text-area type="input" row="2" ng-disabled="false" class="k-textbox" ng-model="dataItem.keterangan" k-auto-bind="false" data-validasiKeterangan-msg="Keterangan tidak boleh kosong"/>
+                    <!--<input c-text-box type="input" filter="'numeric'" ng-disabled="false" style="text-align: right" class="k-textbox" ng-model="dataItem.capaian" k-auto-bind="false"/>-->
+                </div>
+            </div>
+        </div>
+    </script>
+
+</div>
+<style type="text/css">
+.table-cell-right {text-align: right; font-size: 14px}
+.table-cell-center {text-align: center; font-size: 14px}
+</style>
+

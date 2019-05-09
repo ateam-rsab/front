@@ -1,0 +1,16 @@
+<div ng-controller="TextInputCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Text Input'">
+				<div class="grid_12" style="margin-bottom:5px">
+					<label c-label item="item" c-label-text="TextInput"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.TextInput" />
+				</div>
+				
+		</c-panel>
+	</div>
+</div>

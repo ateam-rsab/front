@@ -1,0 +1,88 @@
+<div ng-controller="ManajemenPromosiCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'ManajemenPromosi'" disabled>
+			<div class="grid_12">
+				<div class="grid_1"></div>
+				<div style="margin: 10px" class="grid_3">
+					<label c-label item="item">No PKS</label>
+				</div>
+				<div class="grid_5">
+					<input c-text-box type="input" class="k-textbox" ng-model="item.noPks"/>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_1"></div>
+				<div style="margin: 10px" class="grid_3">
+					<label c-label item="item" c-label-text="JenisMedia"></label>
+				</div>
+				<div class="grid_5">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisMedia" k-data-text-field="'namaJenisMedia'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceJenisMedia" />
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_1"></div>
+				<div style="margin: 10px" class="grid_3">
+					<label c-label item="item" c-label-text="lokasi"></label>
+				</div>
+				<div class="grid_5">
+					<input c-text-box type="input" class="k-textbox" ng-model="item.lokasi"/>
+				</div>
+			</div>
+			<label c-label item="item" c-label-text="Jadwal" style="margin-top:50px"></label>
+			<div kendo-grid k-data-source="dataJadwal" k-selectable="'row'" k-columns="columnJadwal" k-ng-model="data" ng-click="edit(data)">
+			</div>
+			<div class="grid_2">
+				<label c-label item="item" ng-click="tambah()">+ Tambah Data</label>
+			</div>
+			<div class="grid_12" style="margin-top:20px" ng-show="canEdit">      
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" c-label-text="tanggalDanJam"></label>
+						<input style="width:100%" kendo-date-time-picker k-ng-model="dat.tanggal" placeholder="'dd-mm-yyyy HH:mm'" k-format="'dd-mm-yyyy HH:mm'"/>
+					</div>
+					<div class="grid_3">
+						<label c-label item="item" c-label-text="durasi"></label>
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="dat.jumlah"/>
+					</div>
+					<div class="grid_2" style="margin-top: 5px" text-align="right">
+						<label c-label item="item">&nbsp;</label>
+						<c-button ng-click="selesai(dat)" style="width:100% !important">
+							<span style="font-size:10!important">Selesai</span>
+						</c-button>
+					</div>
+				</div>
+			</div>
+
+			<div class="grid_12" style="margin-top:50px">
+				<div class="grid_1"></div>
+				<div style="margin: 10px" class="grid_3">
+					<label c-label item="item">Nama File PKS</label>
+				</div>
+				<div class="grid_5">
+					<input c-text-box type="input" class="k-textbox" ng-model="item.namaFilePks" disabled/>
+				</div>
+			</div>
+			<div class="grid_12" style="margin-top:50px">
+				<div class="grid_3"></div>
+				<div class="grid_3" style="margin-top: 5px" text-align="right">
+					<label c-label item="item" c-label-text=""> </label>
+					<c-button ng-click="Save()" style="width:100% !important">
+						<span style="font-size:10!important">Simpan</span>
+					</c-button>
+				</div>
+				<div class="grid_3" style="margin-top: 5px" text-align="right">
+					<label c-label item="item" c-label-text=""> </label>
+					<c-button ng-click="" style="width:100% !important">
+						<span style="font-size:10!important">Upload PKS</span>
+					</c-button>
+				</div>
+				<div class="grid_3" style="margin-top: 5px" text-align="right">
+					<label c-label item="item" c-label-text=""> </label>
+					<c-button ng-click="" style="width:100% !important">
+						<span style="font-size:10!important">Tutup</span>
+					</c-button>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

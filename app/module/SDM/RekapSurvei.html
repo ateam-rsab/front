@@ -1,0 +1,32 @@
+<div class="RekapSurveiCtrl">
+    <div class="grid_6 accent-bc-color" ng-click="state='ByResponded'">
+        <i class="fa fa-pencil-square-o fa-4x bright-color" aria-hidden="true"></i>
+        <br /> By Respondend
+    </div>
+    <div class="grid_6 primary-bc-color" ng-click="state='byGroup'">
+        <i class=" fa fa-sign-in fa-4x bright-color " aria-hidden="true "></i>
+        <br /> By Group
+    </div>
+    <div class="grid_12" style="position:relative">
+        <div style="position:absolute" class="grid_12 animated" ng-class="{slideInLeft :state==='ByResponded',slideOutLeft :state!=='ByResponded'}">
+            <div class="grid_2">
+                <div class="grid_12" ng-repeat="respond in listResponded">
+                    <md-button class="md-raised md-primary" ng-click="changeLayout(respond)">{{respond.key}}</md-button>
+                </div>
+            </div>
+            <div class="grid_10">
+                <div id="chart"></div>
+            </div>
+        </div>
+        <div style="position:absolute" class="grid_12 animated" ng-class="{slideInLeft :state==='byGroup',slideOutLeft :state!=='byGroup'}">
+            <div class="grid_10">
+                <div id="chartGroup"></div>
+            </div>
+            <div class="grid_2">
+                <div class="grid_12" ng-repeat="respond in listResponded">
+                    <md-button class="md-raised md-primary" ng-click="changeLayoutDetail(respond)">{{respond.key}}</md-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

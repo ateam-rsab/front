@@ -1,0 +1,151 @@
+<div ng-controller="LaboratoriumReportPemeriksaanCtrl">
+    <div ng-show="true">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="grid_12">
+                    <div class="grid_6">
+                        <div class="grid_12">
+                            <label c-label c-label-text="TanggalMasuk" real></label>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_6">
+                                <input style="width: 100%" k-value='now' k-ng-model='tglAwal' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                            </div>
+                            <div class="grid_6">
+                                <input style="width: 100%" k-value='now' k-ng-model='tglAkhir' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_6">
+                        <div class="grid_12">
+                            <label c-label c-label-text="pemeriksaan" real></label>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_8">
+                                <input required style="width: 100%;" kendo-combo-box k-ng-model="item.detailJenisProduk" k-data-text-field="'jenisProduk'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listdetailJenisProduk" />
+                            </div>
+                            <div class="grid_4">
+                                <c-button class="c-button" style="padding:0px" click='refresh'>
+                                    <span c-translate>CARI</span>
+                                </c-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+
+            <div class="panel-heading">Hasil Report Per Pemeriksaan</div>
+            <div class="panel-body" style="padding:0px">
+
+                <div class="grid_12">
+                    <div class="k-grid k-widget">
+                        <div class="k-grid-header">
+                            <div class="k-grid-header-wrap k-auto-scrollable">
+                                <table>
+                                    <tr>
+                                        <th class="k-header" style="width:101px">
+                                            Tgl. Pemeriksaan
+                                        </th>
+                                        <th class="k-header" style="width:111px">
+                                            No. Rekam Medis
+                                        </th>
+                                        <th class="k-header" style="width:111px">
+                                            No. Laboratorium
+                                        </th>
+                                        <th class="k-header" style="width:151px">
+                                            Nama Pasien
+                                        </th>
+                                        <th class="k-header" style="width:82px"> Jenis Kelamin
+                                        </th>
+                                        <th class="k-header" style="width:60px">
+                                            Usia
+                                        </th>
+                                        <th class="k-header">
+                                            Dokter Operator
+                                        </th>
+                                        <th class="k-header">
+                                            Asal Ruangan
+                                        </th>
+                                        <th class="k-header">
+                                            Pemeriksaan
+                                        </th>
+                                        <th class="k-header">
+                                            Hasil
+                                        </th>
+                                        <th class="k-header" style="width:60px">
+                                            Normal
+                                        </th>
+                                        <th class="k-header">
+                                            Cetak
+                                        </th>
+                                    </tr>
+                                    <tr ng-repeat="item in listData" style="background-color:white">
+                                        <td style="width:101px">
+                                            {{item.strukHasilPemeriksaan.tglHasil|date:'dd-MM-yyyy HH:mm:ss'}}
+                                        </td>
+                                        <td>
+                                            {{item.strukHasilPemeriksaan.strukOrder.noCm.noCm}}
+                                        </td>
+                                        <td>
+                                            {{item.strukHasilPemeriksaan.strukOrder.noOrderIntern}}
+                                        </td>
+                                        <td>
+                                            {{item.strukHasilPemeriksaan.strukOrder.noCm.namaPasien}}
+                                        </td>
+                                        <td style="width:82px"> {{item.strukHasilPemeriksaan.strukOrder.noCm.jenisKelamin.jenisKelamin}}
+                                        </td>
+                                        <td style="width:60px">
+                                            {{item.strukHasilPemeriksaan.strukOrder.noCm.jenisKelamin.jenisKelamin}}
+                                        </td>
+                                        <td>
+                                            {{item.strukHasilPemeriksaan.strukOrder.noRegistrasi.dokterPenanggungJawab.namaLengkap}}
+                                        </td>
+                                        <td>
+                                            {{item.strukHasilPemeriksaan.strukOrder.noRegistrasi.ruangan.namaExternal}}
+                                        </td>
+                                        <td>
+                                            {{item.detail.namaExternal}}
+                                        </td>
+                                        <td>
+                                            {{item.hasil}}
+                                        </td>
+                                        <td style="width:60px">
+                                            &nbsp;
+                                        </td>
+                                        <td>
+                                            <button class="btnTemplate1" style="margin-left: 0;" ng-click="cetakLaporan(item.strukHasilPemeriksaan.strukOrder.noOrderIntern)">Cetak</button>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </div>
+
+                        </div>
+                        <!--<div class="k-grid-content k-auto-scrollable" style="max-height:256px">
+                            <table role="grid" data-role="selectable" class="k-selectable">
+                                <tbody role="rowgroup">
+
+                                    <tr role="row" class="ng-scope" ng-repeat="data in listPasien" ng-style="data.myStyle" ng-click='selected(data)' ng-class="{'k-state-selected':item ===data}">
+                                        <td role="gridcell" style="width:25px">
+                                            <input ng-show="data.strukOrder.cito ===true" disabled="" type="checkbox" checked="checked">
+                                            <input ng-show="data.strukOrder.cito !==true" disabled="" type="checkbox">
+                                        </td>
+                                        <td style="width:150px" role="gridcell"><span ng-bind="data.strukOrder.noOrderIntern" class="ng-binding"></span></td>
+                                        <td style="width:150px" role="gridcell"><span ng-bind="data.pasien.namaPasien" class="ng-binding">ii</span></td>
+                                        <td style="width:125px" role="gridcell">11-08-2016</td>
+                                        <td style="width:200px" role="gridcell"><span ng-bind="data.pasienDaftar.ruangan.namaRuangan" class="ng-binding">Laboratorium</span></td>
+                                        <td role="gridcell"><span ng-bind="data.strukOrder.pegawaiOrder.namaExternal" class="ng-binding">Belum ada dokter</span></td>
+                                        <td style="width:200px" role="gridcell"><span ng-bind="data.statusAntrian" class="ng-binding">Check in</span></td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

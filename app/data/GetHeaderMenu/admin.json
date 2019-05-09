@@ -1,0 +1,32 @@
+[{
+    "caption": "Rekam Medik",
+    "link": "#/Dashboard/RekamMedik",
+    "shortcut": "ctrl+1"
+}, {
+    "caption": "Layanan Medik",
+    "link": "#/Dashboard/LayananMedik",
+    "shortcut": "ctrl+1"
+}, {
+    "caption": "Sarana & Prasarana",
+    "link": "#/Dashboard/Sarpras",
+    "shortcut": "ctrl+1"
+}, {
+    "caption": "Keuangan",
+    "link": "#/Dashboard/Keuangan",
+    "shortcut": "ctrl+1"
+}, {
+    "caption": "SDM",
+    "link": "#/Dashboard/SDM",
+    "shortcut": "ctrl+1"
+}, {
+    "caption": "Manajemen",
+    "link": "#/Dashboard/Menejemen",
+    "shortcut": "ctrl+1"
+}, {
+    "caption": "logout",
+    "link": "/app/Logout",
+    "shortcut": "ctrl+1"
+},{
+    "name": "Laporan Obat Antibiotik",
+    "link": "#/LaporanObatAntibiotik"
+}]

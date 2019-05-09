@@ -1,0 +1,248 @@
+<style>
+.style-center{
+	display: inline-block;
+	text-align: center;
+	width: 100%;
+}
+
+.style-right{
+	display: inline-block;
+	text-align: right;
+	width: 100%;
+}
+
+.style-left{
+	display: inline-block;
+	text-align: left;
+	width: 100%;
+}
+.k-grid .k-grid-header .k-header .k-link {
+	height: auto;
+}
+
+.k-grid .k-grid-header .k-header  {
+	white-space: normal;
+}
+.k-grid .k-grid-header .k-header  {
+	text-align: center;
+}
+button:disabled {
+	background: #B5B2B1;
+}
+
+</style>
+
+
+<div ng-controller="RiwayatPendidikanPegawaiCtrl">
+
+	<div class="panel panel-default">
+		<div class="panel-heading">  
+			<span class="title" c-translate>Riwayat Pendidikan</span>
+		</div>
+		<div class="grid_12 borderBox containerBorderBox"> 
+			<div class="grid_12">
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="No SK"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noSk" />
+					</div>
+				</div> 
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="tanggalBerlakuAwal"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input kendo-date-picker k-max="now" k-ng-model="tempItem.tanggalBerlakuAwal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+					</div>
+				</div> 
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="tanggalBerlakuAkhir"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input  kendo-date-picker k-max="now" k-ng-model="tempItem.tanggalBerlakuAkhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+					</div>
+				</div>
+			</div> 		
+
+			<div class="grid_12"> 
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="pendidikan"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input  kendo-combo-box k-ng-model="tempItem.Pendidikan" k-data-text-field="'namaPendidikan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPendidikan" />
+					</div>
+				</div> 
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="noIjazah"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="tempItem.NoIjazah" />
+					</div>
+				</div> 
+
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="tanggalIjazah"></label>
+					</div>
+					<div class="clear"></div>
+					<div class="grid_12">
+						<input  kendo-date-picker k-max="now" k-ng-model="tempItem.TanggalIjazah" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />	
+					</div>
+				</div> 
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="tanggalMasuk"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input kendo-date-picker k-max="now" k-ng-model="tempItem.TanggalMasuk" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+					</div>
+				</div> 
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="tanggalLulus"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input  kendo-date-picker k-max="now" k-ng-model="tempItem.TanggalLulus" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+					</div>
+				</div>
+
+
+			</div>	
+			<div class="grid_12">
+
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="nilaiIPK"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="'integer'" class="k-textbox" ng-model="tempItem.NilaiIPK" />
+					</div>
+				</div>		
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="tingkatKelulusan"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input  kendo-combo-box k-ng-model="tempItem.TingkatKelulusan" k-data-text-field="'tingkatKelulusan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listTingkatKelulusan" />
+
+					</div>
+				</div>
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="tandaTanganIjazah"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="tempItem.TandaTanganIjazah" />	
+					</div>
+				</div>  
+			</div>
+
+
+			<div class="grid_12">
+
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="namaTempatPendidikan"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="tempItem.NamaTempatPendidikan" />
+					</div>
+				</div>
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="jurusan"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="tempItem.Jurusan" />
+					</div>
+				</div>
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="pimpinanPendidikan"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="tempItem.PimpinanPendidikan" />
+
+					</div>
+				</div> 
+			</div>
+			<div class="grid_12">
+				<div class="grid_5">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="alamatTempatPendidikan"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box  style="height: 40px" type="input" class="k-textbox" ng-model="tempItem.AlamatTempatPendidikan" />
+					</div>
+				</div>  
+				<div class="grid_5">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="keterangan"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<div class="grid_12">
+							<input c-text-box type="input" style="height: 40px"  class="k-textbox" ng-model="tempItem.Keterangan" />
+						</div>
+					</div> 						
+				</div>
+			</div>
+
+
+		</div>
+		<div class="grid_12" style="margin-top: 10px;" style="margin-bottom: 10px">
+			<div kendo-grid k-data-source="dataRiwayatPendidikanFormal" k-selectable="'row'" k-columns="columnRiwayatPendidikanFormal">
+			</div>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_12" >
+			<div class="grid_11" >
+				<div class="k-edit-buttons  k-state-default pull-right">	
+					<button class="k-button  k-button-icontext" ng-click="batal()" ><span class="k-icon k-cancel">						</span>Batal</button>	
+					<button class="k-button k-button-icontext k-primary k-grid-update" ng-click="Save()" >
+						<span class="k-icon k-update"></span>Simpan</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div> 
+
+
+</c-panel>
+
+</div>

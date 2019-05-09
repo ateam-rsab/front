@@ -1,0 +1,124 @@
+<style>
+    .error{
+        background-color:white !important;
+    }
+    .yellow{
+        background-color:#ffff00
+    }
+     .green{
+        background-color:#00ff40
+    }
+      .red{
+        background-color:#FF0000
+    }
+    .k-grid  .k-grid-header  .k-header  .k-link {
+     height: auto;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     white-space: normal;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     text-align: center;
+    }
+     .style-four {
+        height: 5px;
+        border: 0;
+        box-shadow: inset 0 14px 12px -12px rgba(0, 0, 0, 0.5);
+        }
+/*     .k-header .k-link{
+    text-align: center;
+     }*/
+</style>
+<div ng-controller="BuatDraftSuratCtrl">
+    <c-panel item="item" header="'Master Draft Surat'" disabled>
+        <div class="panel panel-default container_12" disabled>
+        <div class="grid_6">
+           <div class="grid_12">
+                <div class="grid_2" style="margin-top: 10px">
+                    <label c-label item="item">No Draft Surat</label>
+                </div>                
+                <div class="grid_1" style="margin-top: 10px">
+                    <label c-label item="item">:</label>
+                </div>
+                <div class="grid_8">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noDraft" disabled="true" />
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_2  " style="margin-top:10px">
+                    <label c-label item="item">Tanggal</label>
+                </div>                
+                <div class="grid_1" style="margin-top:10px">
+                    <label c-label item="item">:</label>
+                </div>
+                <div class="grid_8">
+                    <input style="width:100%" readonly kendo-date-picker value="now" k-ng-model="item.tanggal" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'" />
+
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_2" style="margin-top: 10px">
+                    <label c-label item="item">Nama Dokumen/Template</label>
+                </div>                
+                <div class="grid_1" style="margin-top: 10px">
+                    <label c-label item="item">:</label>
+                </div>
+                <div class="grid_8">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.dokumenTemplate" k-data-text-field="'deskripsiDokumen'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDaftarDokumenTemplate" />
+                    <!--<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaSurat" k-data-text-field="'namaSurat'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listNamaSurat" />-->
+                </div>
+            </div>
+        </div>
+        <div class="grid_6">
+            <div class="grid_12">
+                <div class="grid_2" style="margin-top: 10px;">
+                    <label c-label item="item">Download File</label>
+                </div>                
+                <div class="grid_1" style="margin-top: 10px;">
+                    <label c-label item="item">:</label>
+                </div>
+                <div class="grid_1"></div>
+                    <div class="grid_6" style="margin-top: 10px;">
+                        <button class="c-button success" ng-click="downloadFormat()">Download Format</button>
+                    </div>
+                <div class="grid_1"></div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_2" style="margin-top: 10px;">
+                    <label c-label item="item">Nama Surat</label>
+                </div>          
+                <div class="grid_1" style="margin-top: 10px;">
+                    <label c-label item="item">:</label>
+                </div>
+                <div class="grid_8">
+                    <input c-text-box type="input" class="k-textbox" ng-model="item.judulSurat" />
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_2">
+                    <label c-label item="item">Upload File</label>
+                </div>          
+                <div class="grid_1">
+                    <label c-label item="item">:</label>
+                </div>
+                <div class="grid_8">
+                    <input id="filePicker" valid-extensions="doc" data-max-size="2048" kendo-upload k-multiple="false" , k-select="onSelectFile" type="file">
+                </div>
+            </div>
+        </div>
+        <hr class="style-four">
+            <div class="grid_12" style="margin-top:-10px">
+                <div class="grid_8"></div>
+                <div class="grid_2">
+                    <button class="c-button success" ng-click="save()">Simpan</button>
+                </div>
+                <div class="grid_2">
+                    <button class="c-button" ng-click="redirect()">Daftar Draft</button>
+                </div>
+            </div>
+        </div>
+    </c-panel>
+
+</div>

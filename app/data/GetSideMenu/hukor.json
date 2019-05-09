@@ -1,0 +1,256 @@
+[
+    {
+        "name": "Hukor",
+        "children": [
+            {
+                "name": "Master Hukor",
+                "children": [
+                    {
+                        "name": "Master Kelompok Evaluasi",
+                        "link": "#/MasterKelompokEvaluasi"
+                    },
+                    {
+                        "name": "Master Komponen Evaluasi",
+                        "link": "#/MasterKomponenEvaluasi"
+                    }
+                ]
+            },
+            {
+                "name": "Diseminasi",
+                "children": [
+                    {
+                        "name": "RencanaDiseminasi",
+                        "link": "#/RencanaDiseminasi"
+                    },
+                    { 
+                        "name": "InformasiRencanaDiseminasi",
+                        "link": "#/InformasiRencanaDiseminasi"
+                    },
+                    { 
+                        "name": "DaftarPelaksanaanDiseminasi",
+                        "link": "#/DaftarPelaksanaanDiseminasi"
+                    },
+                    {
+                        "name": "DaftarRegistrasiPesertaDiseminasi",
+                        "link": "#/DaftarRegistrasiPesertaDiseminasi"
+                    }
+                ]
+            },
+            {
+                "name": "Usulan Evaluasi",
+                "children" : [
+                    {
+                        "name": "Usulan Evaluasi Dan Kajian Organisasi",
+                        "link": "#/UsulanEvaluasiDanKajianOrganisasi"
+                    },
+                    {
+                        "name": "Daftar Usulan Evaluasi Dan Kajian Organisasi",
+                        "link": "#/DaftarUsulanEvaluasiDanKajianOrganisasi"
+                    },
+                    {
+                        "name": "Daftar Usulan Evaluasi Dan Kajian Organisasi ( Tujuan )",
+                        "link": "#/DaftarUsulanEvaluasiDanKajianOrganisasiTujuan"
+                    }
+                ]
+            } ,
+            {
+                "name": "Evaluasi Rekanan",
+                "children": [
+                    {
+                        "name": "Evaluasi Rekanan",
+                        "link": "#/EvaluasiRekanan"
+                    },
+                    {
+                        "name": "Daftar Evaluasi Pekerjaan",
+                        "link": "#/DaftarEvaluasiPekerjaan"
+                    }
+                ]
+            },
+            {
+                "name": "Penanganan Kasus",
+                "children": [
+                    {
+                        "name": "Daftar Laporan Penanganan Kasus Pelayanan Kesehatan Pasien",
+                        "link": "#/DaftarLaporanPenangananKasusPelayananKesehatanPasien"
+                    },
+                    {
+                        "name": "Laporan Penanganan Kasus Pelayanan Kesehatan Pasien",
+                        "link": "#/LaporanPenangananKasusPelayananKesehatanPasien"
+                    },
+                    {
+                        "name": "Advokasi Hukum & Medicolegal",
+                        "link": "#/AdvokasiHukum"
+                    },
+                    {
+                        "name": "Daftar Advokasi Hukum & Medicolegal",
+                        "link": "#/DaftarAdvokasiHukum"
+                    },
+                    {
+                        "name": "Daftar Advokasi Hukum & Medicolegal (Tujuan)",
+                        "link": "#/DaftarAdvokasiHukumTujuan"
+                    } 
+                ]
+            },
+            {
+                "name": "Monitoring & Evaluasi",
+                "children": [
+                    {
+                        "name": "Monitoring & Evaluasi Perundangan",
+                        "link": "#/MonitoringEvaluasiPerundangan"
+                    },
+                    {
+                        "name": "Daftar Monitoring & Evaluasi Perundangan",
+                        "link": "#/DaftarMonitoringEvaluasiPerundangan"
+                    },
+                    {
+                        "name": "Daftar Monitoring & Evaluasi Perundangan (Tujuan)",
+                        "link": "#/DaftarMonitoringEvaluasiPerundanganTujuan"
+                    }
+                ]
+            } 
+        ]
+},
+{
+    "name": "Inventori",
+    "children": [
+        {
+                "name": "Stok Barang",
+                "children": [
+                    {
+                        "name": "Data Stok Ruangan",
+                        "link": "#/Logistik/StokRuangan"
+                    },
+                    {
+                        "name": "Stok Opname",
+                        "link": "#/Logistik/StokOpname"
+                    },
+                    {
+                        "name": "Kartu Stok",
+                        "link": "#/KartuStok"
+                    },
+                    {
+                        "name": "Daftar Nilai Persediaan",
+                        "link": "#/DaftarNilaiPersediaan"
+                    },
+                    {
+                        "name": "Daftar Barang Kadaluarsa",
+                        "link": "#/DaftarBarangKadaluarsa"
+                    }
+                ]
+            },
+            {
+                "name": "Daftar Transfer Barang",
+                "children": [
+                    {
+                        "name": "Order Barang",
+                        "link": "#/OrderBarangLogistik"
+                    },
+                    {
+                        "name": "Daftar Order Barang",
+                        "link": "#/DaftarOrderBarang"
+                    },
+                    {
+                        "name": "Kirim Barang",
+                        "link": "#/KirimBarangLogistik"
+                    },
+                    {
+                        "name": "Daftar Distribusi Barang",
+                        "link": "#/DaftarDistribusiBarang"
+                    }
+                ]
+            }
+    ]
+    },
+    {
+        "name": "Barang Investasi",
+        "children": [
+            {
+                "name": "Registrasi Barang Aset",
+                "link": "#/MasterBarangInvestasiRev"
+            },
+            {
+                "name": "Daftar Barang Investasi",
+                "link": "#/Logistik/DaftarBarangInvestasi"
+            },
+            {
+                "name": "Kirim Barang Aset",
+                "link": "#/KirimBarangAset"
+            }
+           
+        ]
+    },
+    {
+        "name":"Aplikasi IT",
+        "children":[
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/RevPermintaanPerbaikandariRuanganITNew"
+            }
+        ]
+    },
+   {
+        "name": "IP3RS",
+        "children": [
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/PermintaanPerbaikandariRuangan"
+            },
+            {
+                "name": "Respond Perbaikan",
+                "link": "#/RespondPerbaikan"
+            } 
+        ]
+    }, 
+{
+    "name": "SDM",
+    "children": [{
+        "name": "Target Bobot Uraian Tugas",
+        "link": "#/TargetBobot"
+    }, {
+        "name": "Input Logbook",
+        "link": "#/InputLogbook"
+    }, {
+        "name": "Indeks Kinerja Individu",
+        "link": "#/IndeksKinerjaIndividuSDM"
+    }, {
+        "name": "Permohonan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
+        "link": "#/PermohonanPerubahanStatusPegawai"
+    }, {
+		"name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
+		"link": "#/DaftarPenangguhanCuti"
+	}, {
+        "name": "Pengajuan Mutasi Pegawai",
+        "link": "#/PengajuanMutasiPegawai"
+    }, {
+        "name": "Pengajuan Resign Pegawai",
+        "link": "#/PengajuanResignPegawai"
+    }, {
+        "name": "Pengajuan Sanksi Pegawai",
+        "link": "#/PengajuanSanksiPegawai"
+    }, {
+        "name": "Daftar Pengajuan Mutasi Resign Sanksi Pegawai",
+        "link": "#/DaftarPengajuanMutasiSanksiResign"
+    }, {
+		"name": "Monitoring Absensi",
+		"link": "#/MonitoringAbsensiPegawai"
+	}, {
+		"name": "InputLemburPegawaiUnitKerja",
+		"link": "#/InputLemburPegawaiUnitKerja"
+	},{
+        "name": "Verifikasi Uraian Tugas Bawahan",
+        "link": "#/VerifikasiUraianTugasPegawaiLogin"
+    }]
+},
+{
+    "name": "Aplikasi Laundry",
+    "children": [
+        {
+            "name": "Permintaan Linen Bersih",
+            "link": "#/PermintaanLinenByRuangan"
+        },{
+			"name": "Verifikasi",
+			"link": "#/VerifikasiTerima"
+		}
+]
+}
+]

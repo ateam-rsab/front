@@ -1,0 +1,232 @@
+<div ng-controller="RadiologiCtrl">
+    <c-panel item="item" header="'PERMINTAAN RADIOLOGI DAN PENUNJANG'">
+
+   
+      
+   
+		
+		
+ <div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+            <span style="font-size: 18px; color: white; padding: 5px;">RADIOLOGI</span>
+        </div>
+        <div class="panel" style="border-color:#0d9a8b; padding: 10px 0 500px 10px;">
+      
+       
+     
+			
+			<div class="grid_6">
+			 <div class="grid_12">
+                                <div class="grid_12">
+                                    <label c-label item="item" c-label-text="Keluhan"></label>
+                                    
+                                </div>
+                                <div class="grid_12">
+                                    <textarea style="width: 99%; height: 80px;"></textarea>
+                                </div>
+                                
+                            </div>
+                 <div class="grid_12">
+				 <div class="grid_12">
+				  <label c-label item="item" c-label-text="Diagnosis klinis/Diagnosis banding/Diagnosis"></label>
+				  </div>
+				   <div class="grid_12">
+				   <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.Tengkurap" />
+				   
+				     </div>
+					 <div class="grid_12">
+					 <label c-label item="item" c-label-text="Tanggal Haid Terakhir"></label>
+					 </div>
+					  <div class="grid_12">
+					<input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tanggallahir" k-data-text-field="'tanggallahir'" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+					 </div>
+					 
+						<div class="grid_12">
+                                <div class="grid_12">
+                                    <label c-label item="item" c-label-text="Lainnya"></label>
+                                    
+                                </div>
+                                <div class="grid_12">
+                                    <textarea style="width: 99%; height: 80px;"></textarea>
+                                </div>
+                                
+                            </div>	
+						 <div class="grid_12">
+				  <label c-label item="item" c-label-text="Dokter Pengirim"></label>
+				  </div>
+				   <div class="grid_12">
+				   <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.Tengkurap" />
+				   
+				     </div>	
+							
+			 
+					
+			
+
+			
+			</div>
+			
+        </div>
+		
+		 
+		
+		</div>
+		
+				
+ <div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+            <span style="font-size: 18px; color: white; padding: 5px;">PERMINTAAN USG YANG DIMINTA</span>
+        </div>
+        <div class="panel" style="border-color:#0d9a8b; padding: 10px 0 150px 10px;">
+      
+        <div class="grid_12">
+
+				 <div class="grid_5" ng-repeat="stat in listStatusUsg">
+                       <input type="checkbox"  name="{{stat.name}}" id="{{stat.name}}" class="k-checkbox"  value="{{stat.name}}"  >
+                        <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+						
+                </div>
+				
+						
+
+               
+            </div>
+     
+			
+		
+		
+		 
+		
+		</div>
+		
+		
+		 <div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+            <span style="font-size: 18px; color: white; padding: 5px;">PERMINTAAN RONTGEN YANG DIMINTA</span>
+        </div>
+        <div class="panel" style="border-color:#0d9a8b; padding: 10px 0 110px 10px;">
+      
+       <div class="panel panel-default container_12">
+
+            <div class="panel-body" style="padding:0;">
+
+                  <div class="grid_12">
+                    <ul kendo-panel-bar>
+                          <li>
+                            <span style="margin-left: -6px;">PEMERIKSAAN KONTRAS</span>
+                        <div class="grid_12">
+
+				 <div class="grid_5" ng-repeat="stat in listStatusKontras">
+                       <input type="checkbox"  name="{{stat.name}}" id="{{stat.name}}" class="k-checkbox"  value="{{stat.name}}"  >
+                        <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+						
+                </div>
+				
+						
+
+               
+            </div>
+                           </li>
+						   
+                           <li>
+                            <span style="margin-left: -6px;">PEMERIKSAAN NON-KONTRAS</span>
+                            <!-- Karateristik Nyeri -->
+                  <div class="grid_12">
+
+				 <div class="grid_5" ng-repeat="stat in listStatusNonKontras">
+                       <input type="checkbox"  name="{{stat.name}}" id="{{stat.name}}" class="k-checkbox"  value="{{stat.name}}"  >
+                        <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+						
+                </div>
+				
+						
+
+               
+            </div>
+                               
+                          </li>
+             
+                  
+         
+                         
+                        </ul>
+                </div>
+           
+              
+
+            </div>
+        </div>
+			
+		
+		
+		 
+		
+		</div>
+		
+		<div class="grid_12">
+                
+                <div class="grid_12" ng-repeat="stat in listStatusScan">
+                 <input type="checkbox"  name="{{stat.name}}" id="{{stat.name}}" class="k-checkbox" ng-model="item.WarnaKulit" value="{{stat.name}}"  >
+                 <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+                 
+               </div>
+            </div>
+   </br>
+   </br>
+
+   <div class="panel" style="border-color:#0d9a8b; padding: 10px 0 200px 10px;">
+      
+        <div class="grid_12">
+
+				 <div class="grid_4" ng-repeat="stat in listStatusBrain">
+                       <input type="checkbox"  name="{{stat.name}}" id="{{stat.name}}" class="k-checkbox"  value="{{stat.name}}"  >
+                        <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+						
+                </div>
+				
+						
+
+               
+            </div>
+     
+			
+		
+		
+		 
+		
+		</div>
+		
+		 <div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+            <span style="font-size: 18px; color: white; padding: 5px;">PERMINTAAN PENUNJANG</span>
+        </div>
+        <div class="panel" style="border-color:#0d9a8b; padding: 10px 0 150px 10px;">
+      
+        <div class="grid_12">
+
+				 <div class="grid_5" ng-repeat="stat in listStatusPenunjang">
+                       <input type="checkbox"  name="{{stat.name}}" id="{{stat.name}}" class="k-checkbox"  value="{{stat.name}}"  >
+                        <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+						
+                </div>
+				
+						
+
+               
+            </div>
+     
+			
+		
+		
+		 
+		
+		</div>
+
+
+
+
+
+		
+		
+		</c-panel>
+		  
+		
+		
+		</div>
+		

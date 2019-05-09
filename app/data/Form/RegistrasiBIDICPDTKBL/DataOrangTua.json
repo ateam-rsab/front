@@ -1,0 +1,168 @@
+{
+	"model":{
+	    "namaDepanAyah" : "",
+	    "tglLahirAyah" : "",
+	    "rasSukuAyah" : "",
+	    "namaBelakangAyah" : "",
+	    "umurAyah" : "",
+	    "pekerjaanAyah" : "",
+	    "namaDepanIbu" : "",
+	    "tglLahirIbu" : "",
+	    "rasSukuIbu" : "",
+	    "namaBelakangIbu" : "",
+	    "umurIbu" : "",
+	    "pekerjaanIbu" : "",
+	    "alamatUtama" : "",
+	    "alamatSekarang" : "",
+	    "noTelpHp" : "",
+	    "jumlahKehamilan" : "",
+	    "jumlahLahirMati" : "",
+	    "jumlahAbortusSpontan" : "",
+	    "jumlahTerminasiKelahiran" : "",
+	    "statusMasuk" : "",
+	    "tglMasuk" : "",
+	    "statusKeluar" : "",
+	    "tglPulang" : ""
+
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "namaDepanAyah",
+			"messagesRequired" : "",
+			"caption" : "Nama Depan Ayah"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tglLahirAyah",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Lahir Ayah"
+		},
+		{
+			"isNull" : "true",
+			"name" : "rasSukuAyah",
+			"messagesRequired" : "",
+			"caption" : "Ras/Suku Ayah"
+		},
+		{
+			"isNull" : "true",
+			"name" : "namaBelakangAyah",
+			"messagesRequired" : "",
+			"caption" : "Nama Belakang Ayah"
+		},
+		{
+			"isNull" : "true",
+			"name" : "umurAyah",
+			"messagesRequired" : "",
+			"caption" : "Umur Ayah"
+		},
+		{
+			"isNull" : "true",
+			"name" : "pekerjaanAyah",
+			"messagesRequired" : "",
+			"caption" : "Pekerjaan Ayah"
+		},
+		{
+			"isNull" : "true",
+			"name" : "namaDepanIbu",
+			"messagesRequired" : "",
+			"caption" : "Nama Depan Ibu"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tglLahirIbu",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Lahir Ibu"
+		},
+		{
+			"isNull" : "true",
+			"name" : "rasSukuIbu",
+			"messagesRequired" : "",
+			"caption" : "Ras/Suku Ibu"
+		},
+		{
+			"isNull" : "true",
+			"name" : "namaBelakangIbu",
+			"messagesRequired" : "",
+			"caption" : "Nama Belakang Ibu"
+		},
+		{
+			"isNull" : "true",
+			"name" : "umurIbu",
+			"messagesRequired" : "",
+			"caption" : "Umur Ibu"
+		},
+		{
+			"isNull" : "true",
+			"name" : "pekerjaanIbu",
+			"messagesRequired" : "",
+			"caption" : "Pekerjaan Ibu"
+		},
+		{
+			"isNull" : "true",
+			"name" : "alamatUtama",
+			"messagesRequired" : "",
+			"caption" : "Alamat Utama Selama Kehamilan Trimester Pertama"
+		},
+		{
+			"isNull" : "true",
+			"name" : "noTelpHp",
+			"messagesRequired" : "",
+			"caption" : "No Telepon/HP"
+		},
+		{
+			"isNull" : "true",
+			"name" : "alamatSekarang",
+			"messagesRequired" : "",
+			"caption" : "Alamat Sekarang"
+		},
+		{
+			"isNull" : "true",
+			"name" : "jumlahKehamilan",
+			"messagesRequired" : "",
+			"caption" : "Jumlah Kehamilan Sebelumnya"
+		},
+		{
+			"isNull" : "true",
+			"name" : "jumlahLahirMati",
+			"messagesRequired" : "",
+			"caption" : "Jumlah Lahir Mati"
+		},
+		{
+			"isNull" : "true",
+			"name" : "jumlahAbortusSpontan",
+			"messagesRequired" : "",
+			"caption" : "Jumlah Abortus Spontan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "jumlahTerminasiKelahiran",
+			"messagesRequired" : "",
+			"caption" : "Jumlah Terminasi Kelahiran"
+		},
+		{
+			"isNull" : "true",
+			"name" : "statusMasuk",
+			"messagesRequired" : "",
+			"caption" : "Status Masuk"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tglMasuk",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Masuk"
+		},
+		{
+			"isNull" : "true",
+			"name" : "statusKeluar",
+			"messagesRequired" : "",
+			"caption" : "Status Keluar"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tglPulang",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Pulang"
+		}
+  ]
+}

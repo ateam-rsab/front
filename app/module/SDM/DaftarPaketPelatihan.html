@@ -1,0 +1,35 @@
+<div ng-controller="DaftarPaketPelatihanCtrl">
+	<c-panel item="item" header="'Daftar Paket Pelatihan/Seminar'">
+	<div class="grid_12">
+		<div class="grid_2">
+			<label c-label item="item" style="margin-top: 10px">Tanggal Rencana Pelaksanaan</label>
+		</div>
+		<div class="grid_2">
+			<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalRencana" k-format="'dd-MM-yyyy'"/>
+		</div>
+		<div class="grid_1" style="text-align: center">
+			<label c-label item="item" style="margin-top: 10px">s/d</label>
+		</div>
+		<div class="grid_2">
+			<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalRencanaSelesai" k-format="'dd-MM-yyyy'"/>
+		</div>
+		<div class="grid_1">
+			<button style="margin-top: 6px" class="c-button" ng-click="cari()">Cari</button>
+		</div>
+	</div>
+	<div class="grid_12">
+		<kendo-grid options="mainGridOptions" k-data-source="dataGridMaster" k-ng-model="gridItem" ng-click="klik(gridItem)"></kendo-grid>
+	</div>
+	<div class="grid_12">
+		<div class="grid_2">
+			<button class="c-button" ng-click="agendaAcara()">Input Agenda Acara</button>
+		</div>
+		<div class="grid_2">
+			<button class="c-button" ng-click="()">Isi Pelatihan</button>
+		</div>
+		<div class="grid_2">
+			<button class="c-button" ng-click="()">Pelaksanaan Pelatihan</button>
+		</div>
+	</div>
+	</c-panel>
+</div>

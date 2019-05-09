@@ -1,0 +1,109 @@
+<div ng-controller="InformasiOrderProdukCtrl">
+    <div class="panel panel-default panel-white">
+        <div class="panel-heading-white"><span class="title" c-translate>Informasi Data Order</span></div>
+        <div class="panel-body">
+            <div class="grid_12">
+                <div class="grid_5">
+                    <div class="grid_12">
+                        <label c-label c-label-text="tanggalMasuk" real></label>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_6">
+                            <input style="width: 100%" k-ng-model='from' k-value='now' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                        </div>
+                        <div class="grid_6">
+                            <input style="width: 100%" k-ng-model='until' k-max='now' k-value='now' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_3">
+                    <div class="grid_12">
+                        <label c-label c-label-text="noOrder" real></label>
+                    </div>
+                    <div class="grid_12">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="noOrder" />
+                    </div>
+                </div>
+                <div class="grid_1">
+                    <label c-label c-label-text=""></label>
+                    <em style="margin-top: 6px;" ng-click='findData()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+                    <em style="margin-top: 6px;" ng-click='clear()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Batal</span></em>
+                </div>
+            </div>
+            <div class="grid_12" style="margin-top: 10px;">
+                <div kendo-grid k-data-source="dataOrder" k-ng-model="item" k-selectable="'row'" k-columns="columnOrder">
+                </div>
+            </div>
+            <div class="grid_12">&nbsp;</div>
+            <div class="grid_12 ">
+                <div class="grid_3">
+                    <!-- <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" click="AmbilSpesimen">
+                        <span class="title"><label  c-label c-label-text='cetakStrukOrderDariRuangan' font-size="13"></label></span>
+                    </c-button> -->
+                </div>
+               
+				<div class="grid_3">
+                    <c-button ng-if="hideKirimBarang"  style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" click="showKirimOrder">
+                        <span class="title"><label  c-label c-label-text='konfirmasi' font-size="13"></label></span>
+                    </c-button>
+                </div>
+				 <div class="grid_3">
+					<c-button   style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" click="navToVerif">
+                        <span class="title"><label  c-label c-label-text='verifikasi' font-size="13"></label></span>
+                    </c-button>
+				</div>
+                <div class="grid_3">
+                    <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" click="showDetailOrder">
+                        <span class="title"><label  c-label c-label-text='DetailOrder' font-size="13"></label></span>
+                    </c-button>
+                </div>
+                
+                <!-- <div class="grid_3">
+                    <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" click="showVerifikasiKirim">
+                        <span class="title"><label  c-label c-label-text='verifikasiPenerimaan' font-size="13"></label></span>
+                    </c-button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+        <script id="notificationTemplate" class="notification" type="text/x-kendo-template">
+            <div class="validError">
+                <img class="img-responsive" src="images/notification_error.png"/>
+                <h3>#= title #</h3>
+                <p>#= message #</p>
+            </div>
+        </script>
+
+        <div kendo-notification="notf1" class="ui-notification" k-options="notf1Options"></div>
+</div>
+<style>
+.label-aja {
+    padding-top:12px;font-size:13px;font-weight:bold;
+    text-align:right;
+    height:22px;
+}
+.k-window > div.k-popup-edit-form {
+    padding: 1em;
+}
+/* Error template */
+.k-notification-error.k-group {
+    background: red;
+    color: #ffffff;
+}
+  .contact-info-form {
+    list-style-type: none;
+    margin: 30px 0;
+    padding: 0;
+  }
+
+  .contact-info-form li {
+    margin: 10px 0;
+  }
+
+  .contact-info-form label {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    font-weight: bold;
+  }
+</style>

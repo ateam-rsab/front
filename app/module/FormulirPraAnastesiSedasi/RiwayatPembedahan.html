@@ -1,0 +1,74 @@
+<div ng-controller="RiwayatPembedahanCtrl">
+
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Riwayat Pembedahan'">
+            <div class="panel-body">
+                <div class="grid_12">
+                    <div class="grid_6">
+                        <div class="grid_12" style="margin-bottom: 10px">
+                            <div class="grid_4">
+                                <label c-label item="item" c-label-text="Pembedahan"></label>
+                            </div>
+                            <div class="grid_8">
+                                <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                    <input type="radio" name="{{'Pembedahan' + stat.name}}" id="{{'Pembedahan' + stat.name}}" class="k-radio" ng-model="item.Pembedahan" value="{{stat.name}}">
+                                    <label class="k-radio-label" for="{{'Pembedahan' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_6">
+                        <div class="grid_12" style="margin-bottom: 10px">
+                            <div class="grid_5">
+                                <label c-label item="item" c-label-text="Tahun"></label>
+                            </div>
+                            <div class="grid_3">
+                                <input c-text-box type="input" filter="'number'" class="k-textbox" ng-model="item.Tahun_1" />
+                            </div>
+                            <div class="grid_4"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_6">
+                        <div class="grid_12" style="margin-bottom: 10px">
+                            <div class="grid_4">
+                                <label c-label item="item" c-label-text="JenisOperasi"></label>
+                            </div>
+                            <div class="grid_6">
+                                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.JenisOperasi" />
+                            </div>
+                            <div class="grid_2"></div>
+                        </div>
+                    </div>
+                    <div class="grid_6">
+                        <div class="grid_12" style="margin-bottom: 10px">
+                            <div class="grid_5">
+                                <label c-label item="item" c-label-text="JenisAnastesi"></label>
+                            </div>
+                            <div class="grid_7">
+                                 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.ReaksiTranfusi" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                        <div class="grid_12">
+                            <div class="grid_2">
+                                <label c-label item="item" c-label-text="Keluhan"></label>
+                            </div>
+                            <div class="grid_6">
+                                <textarea class="k-textbox" style="height: 80px; width: 100%; resize: none;" ng-model="item.TextArea"></textarea>
+                            </div>
+                            <div class="grid_4">
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </c-panel>
+         <!-- button -->
+        <div class="grid_12" style="margin-top:10px">
+            <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+            </div>
+        </div>
+    </div>
+</div>

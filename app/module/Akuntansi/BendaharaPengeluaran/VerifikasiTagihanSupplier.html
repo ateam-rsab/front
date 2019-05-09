@@ -1,0 +1,100 @@
+<style>
+	.style-center{
+		display: inline-block;
+		text-align: center;
+		width: 100%;
+	}
+
+	.style-right{
+		display: inline-block;
+		text-align: right;
+		width: 100%;
+	}
+
+	.style-left{
+		display: inline-block;
+		text-align: left;
+		width: 100%;
+	}
+</style>
+<div ng-controller="VerifikasiTagihanSupplierCtrl">
+	<div ng-show="dataVOloaded">
+		<!-- <c-panel item="item" header="'Daftar Tagihan Rekanan'" disabled> -->
+		<div class="grid_12 headerBox">
+			<h1 style="color: white;"><b>Verifikasi Tagihan Rekanan</b></h1>
+		</div>
+
+		<div class="grid_12">
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="NoFaktur"></label>
+				<input placeholder="No Faktur" c-text-box type="input"  class="k-textbox" ng-model="item.noFaktur" />
+			</div>
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="NamaSupplier"></label>
+				<input placeholder="Nama Supplier" c-text-box type="input"  class="k-textbox" ng-model="item.NamaSupplier" />
+			</div>
+
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="Periode Awal"></label>
+				<input style="width: 100%" k-ng-model="item.tanggalAwal"  kendo-date-picker k-max="now" placeholer="yyyy-MM-dd" k-format="'yyyy-MM-dd'"/>
+			</div>
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="Periode Akhir"></label>
+				<input style="width: 100%" k-ng-model="item.tanggalAkhir"  kendo-date-picker  placeholer="yyyy-MM-dd" k-format="'yyyy-MM-dd'"/>
+			</div>
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="Status"></label>
+				<input style="width: 100%;"  kendo-combo-box k-data-source="listStatus" k-ng-model="item.status" k-data-text-field="'namaStatus'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="" />
+			</div>
+			<div class="grid_1" style="margin-top:22px;">
+				<button class="c-button" style="width: 150px" ng-click="cariData()">Cari</button>
+			</div>
+		</div>
+		<div class="grid_6">
+			<div class="grid_12">
+			</div>
+		</div>
+		<div class="clear"></div>
+
+		<br/>
+
+		<div class="grid_12">
+			<div class="grid_12 headerBox">
+				<p>Tagihan Rekanan</p>
+			</div>
+			<div class="clear"></div>
+
+
+			<div class="grid_12 borderBox">
+				<div id="kGrid" kendo-grid 
+				k-data-source="dataGrid" 
+				k-selectable="'row'"
+				k-pageable="'true'"
+				k-sortable="'true'" 
+				k-columns="columnGrid"
+				k-ng-model="dataSelected">
+			</div>
+		</div>
+
+		<div class="clear"></div>
+		<!-- </div> -->
+		<div class="clear"></div>
+
+		<br/>
+
+	</div>
+	<div class="grid_12" style="margin-top:10px;">
+		<!-- <div class="grid_5"></div> -->
+		<div class="grid_2" style="float:right;">
+			<button class="c-button" ng-click="Verifikasi()">Verifikasi</button>
+		</div>
+		<div class="grid_2" style="float:right;">
+			<button class="c-button" ng-click="Detail()">Detail Tagihan</button>
+		</div>
+	</div>
+
+		<!-- <div class="grid_12" style="margin-top:30px">
+			<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
+		</div> -->
+	</div>
+</div>

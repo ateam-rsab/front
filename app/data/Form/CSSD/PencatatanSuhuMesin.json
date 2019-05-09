@@ -1,0 +1,79 @@
+{
+	"model":{
+		"tanggal" : "",
+		"mesin":"",
+		"programMesin":"",
+		"waktuMulai" : "",
+		"waktuSelesai" : "",
+		"suhu":"",
+		"o":"",
+		"celcius" : "",
+		"tekanan":"",
+		"lamaProses" : "",
+		"namaPetugas" : ""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "tanggal",
+			"messagesRequired" : "",
+			"caption" : "Tanggal"
+		},{
+			"isNull" : "true",
+			"name" : "mesin",
+			"messagesRequired" : "",
+			"caption" : "Mesin"
+		},{
+			"isNull" : "true",
+			"name" : "programMesin",
+			"messagesRequired" : "",
+			"caption" : "Program Mesin"
+		},
+		{
+			"isNull" : "true",
+			"name" : "waktuMulai",
+			"messagesRequired" : "",
+			"caption" : "Waktu Mulai"
+		},
+		{
+			"isNull" : "true",
+			"name" : "waktuSelesai",
+			"messagesRequired" : "",
+			"caption" : "Waktu Selesai"
+		},{
+			"isNull" : "true",
+			"name" : "suhu",
+			"messagesRequired" : "",
+			"caption" : "Suhu"
+		},{
+			"isNull" : "true",
+			"name" : "celcius",
+			"messagesRequired" : "",
+			"caption" : "C"
+		},{
+			"isNull" : "true",
+			"name" : "o",
+			"messagesRequired" : "",
+			"caption" : "o"
+		},{
+			"isNull" : "true",
+			"name" : "tekanan",
+			"messagesRequired" : "",
+			"caption" : "Tekanan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "lamaProses",
+			"messagesRequired" : "",
+			"caption" : "Lama Proses"
+		},
+		{
+			"isNull" : "true",
+			"name" : "namaPetugas",
+			"messagesRequired" : "",
+			"caption" : "Nama Petugas"
+		}
+
+	]
+}

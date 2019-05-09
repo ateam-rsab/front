@@ -1,0 +1,142 @@
+<div ng-controller="MonitoringDanEvaluasiHasilPekerjaanCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Monitoring Dan Evaluasi Hasil Pekerjaan'">
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="namaBarang" style="margin-top: 10px" ></label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaBarang" disabled="" />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="merk" style="margin-top: 10px" ></label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.merk" disabled="" />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="type" style="margin-top: 10px" ></label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.type" disabled="" />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="noSeri" style="margin-top: 10px" ></label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noSeri" disabled="" />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="tglPerbaikan" style="margin-top: 10px" ></label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.tglPerbaikan" placeholer="dd-mm-yyyy" />
+				</div>
+			</div>
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="namaPT" style="margin-top: 10px" ></label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaPT" disabled="" />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="alamat" style="margin-top: 10px" ></label>
+				</div>
+				<div class="grid_8">
+					<textarea style="height: 90px" c-text-box type="input" class="k-textbox" ng-model="item.alamat" disabled="" />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="noTelepon" style="margin-top: 10px" ></label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noTelepon" disabled="" />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="namaTeknisiInternal" style="margin-top: 10px" ></label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaTeknisiInternal"/>
+				</div>
+			</div>
+			<div class="panel panel-default container_12">
+				<div class="panel-heading" c-translate>Monitoring Dan Evaluasi</div>
+				<div class="panel-body">
+					<div class="grid_6">
+						<div class="grid_4">
+							<label c-label item="item" c-label-text="kondisiBarang" style="margin-top: 10px" ></label>
+						</div>
+						<div class="grid_8">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.kondisiBarang" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKondisiBarang" />
+						</div>
+						<div class="grid_4">
+							<label c-label item="item" c-label-text="statusPekerjaan" style="margin-top: 10px" ></label>
+						</div>
+						<div class="grid_8">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.statusPekerjaan" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listStatusPekerjaan" />
+						</div>
+						<div class="grid_4">
+							<label c-label item="item" c-label-text="ketepatanWaktu" style="margin-top: 10px" ></label>
+						</div>
+						<div class="grid_8">
+							<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.ketepatanWaktu" />
+						</div>
+						<div class="grid_4">
+							<label c-label item="item" c-label-text="hasilService" style="margin-top: 10px" ></label>
+						</div>
+						<div class="grid_8">
+							<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.hasilService" />
+						</div>
+						<div class="grid_4">
+							<label c-label item="item" c-label-text="namaSukuCadang" style="margin-top: 10px" ></label>
+						</div>
+						<div class="grid_8">
+							<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaSukuCadang" />
+						</div>
+					</div>
+					<div class="grid_6">
+						<div class="grid_4">
+							<label c-label item="item" c-label-text="jenisPekerjaan" style="margin-top: 10px" ></label>
+						</div>
+						<div class="grid_8">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPekerjaan" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisPekerjaan" />
+						</div>
+						<div class="grid_4">
+							<label c-label item="item" c-label-text="frekuensiKerusakan" style="margin-top: 10px" ></label>
+						</div>
+						<div class="grid_8">
+							<textarea style="height: 50px" c-text-box type="input" class="k-textbox" ng-model="item.frekuensiKerusakan" />
+						</div>
+						<div class="grid_4">
+							<label c-label item="item" c-label-text="tindakLanjutComplain" style="margin-top: 10px" ></label>
+						</div>
+						<div class="grid_8">
+							<textarea style="height: 50px" c-text-box type="input" class="k-textbox" ng-model="item.tindakLanjutComplain" />
+						</div>
+						
+
+					</div>
+					<div class="clear"> </div>
+					<div class="grid_6"></div>
+					<div class="grid_6">
+						<div class="grid_4">
+							<button class="c-button" ng-click="checklist()">Check List Kontrak</button>
+						</div>
+						<div class="grid_4">
+							<button class="c-button" ng-click="tambah()">Tambah</button>
+						</div>
+						<div class="grid_4">
+							<button class="c-button" ng-click="hapus()">Hapus</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div class="grid_12" style="margin-bottom: 10px">
+				<kendo-grid options="mainGridOptions"></kendo-grid>
+			</div>
+		</c-panel>
+	</div>
+</div>

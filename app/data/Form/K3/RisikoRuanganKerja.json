@@ -1,0 +1,27 @@
+{
+	"model":{
+		"kode" : "",
+		"nama":"",
+		"risiko":""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "kode",
+			"messagesRequired" : "",
+			"caption" : "Kode Ruangan"
+		},{
+			"isNull" : "true",
+			"name" : "nama",
+			"messagesRequired" : "",
+			"caption" : "Nama Ruangan"
+		},{
+			"isNull" : "true",
+			"name" : "risiko",
+			"messagesRequired" : "",
+			"caption" : "Risiko Kerja"
+		}
+
+	]
+}

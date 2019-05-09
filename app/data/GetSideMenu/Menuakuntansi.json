@@ -1,0 +1,64 @@
+[
+  {
+    "name": "Akuntansi 1",
+    "children": [
+      {
+        "name": "Akuntansi 1 : Sub Menu 1",
+        "link": "#"
+      },
+      {
+        "name": "Akuntansi 1 : Sub Menu 2",
+        "link": "#"
+      }
+    ]
+  },
+  {
+    "name": "Akuntansi 2",
+    "children": [
+      {
+        "name": "Akuntansi 2: Sub Menu 1",
+        "link": "#"
+      },
+      {
+        "name": "Akuntansi 2 : Sub Menu 2",
+        "link": "#"
+      }
+    ]
+  },
+  {
+    "name": "Akuntansi 3",
+    "link": "#"
+  },
+  {
+    "name": "Akuntansi 4",
+    "link": "#"
+  },
+  {
+    "name": "Akuntansi 5",
+    "link": "#"
+  },
+  {
+    "name": "Akuntansi 6",
+    "link": "#"
+  },
+  {
+    "name":"Aplikasi IT",
+    "children":[
+        {
+            "name": "Permintaan Perbaikan dari Ruangan",
+            "link": "#/RevPermintaanPerbaikandariRuanganITNew"
+        }
+    ]
+},
+  {
+    "name": "Aplikasi Laundry",
+    "children": [
+        {
+            "name": "Permintaan Linen Bersih",
+            "link": "#/PermintaanLinenByRuangan"
+        },{
+          "name": "Verifikasi",
+          "link": "#/VerifikasiTerima"
+        }
+]}
+]

@@ -1,0 +1,97 @@
+<div ng-controller="DaftarKeanggotaanCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Daftar Keanggotaan'"disabled>
+		<div class="grid_6">
+		<div class="panel panel-default container_12">
+	<!--		<div class="panel-heading" c-translate>Periode</div> -->
+	<!--		<div class="panel-body"> -->
+	
+           
+					
+	        <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Nama"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nama" />
+			</div>
+			
+			</div>
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Email"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.email" />
+			</div>
+			</div>
+			
+			
+			
+			 
+			
+			
+			
+			
+			
+			
+			
+				
+		   </div>
+		   </div>
+<!--		   </div>  -->
+           <div class="grid_6">	
+		   
+		   <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Password"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="password" filter="'varchar'" class="k-textbox" ng-model="item.kunci" />
+			</div>
+			</div>
+		    <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Ulangi Password"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="password" filter="'varchar'" class="k-textbox" ng-model="item.ulangiPassword" />
+			</div>
+			</div>
+			
+		  
+			
+			
+			
+
+		</div>
+	
+		
+	
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		</c-panel>
+			<div class="grid_12">
+							<div class="grid_8" style="float:left">
+							
+							
+							<div class="grid_2 " style="margin-top: 25px ">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Register</span>
+									</button>
+							</div>
+							
+							</div>
+						</div>
+		</div>
+	</div>
+</div>
+

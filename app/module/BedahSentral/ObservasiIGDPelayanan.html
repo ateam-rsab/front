@@ -1,0 +1,88 @@
+<div ng-controller="ObservasiIGDPelayananCtrl">
+    <c-panel item="item" header="title">
+
+        <div class="grid_12">
+            <div class="grid_1" style="margin-top:10px">
+                <label c-label item="item" c-label-text="Pelayanan"></label>
+            </div>
+            <div class="grid_2">
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPelayanan" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisPelayanan" />
+            </div>
+            <div class="grid_4">
+                <div class="grid_4" style="margin-top:10px">
+                    <label c-label item="item" c-label-text="Waktu Layanan"></label>
+                </div>
+                <div class="grid_8">
+                    <input style="width: 100%"  k-value='now' kendo-date-time-picker k-ng-model="item.jam" placeholer="dd-mm-yyyy hh:mm" k-format="'dd-MM-yyyy hh:mm'" />
+                </div>
+            </div>
+            <div class="grid_5">
+                <textarea class="k-textbox" style="height: 40px; width: 100%; resize: none;" ng-model="item.keterangan" placeholder="keterangan"></textarea>
+            </div>
+        </div>
+        <!-- Button Tambah Ke 2 -->
+        <div class="container_12">
+            <div class="grid_6"></div>
+            <div class="grid_6" style="text-align: right">
+                <div class="grid_4"></div>
+                <div class="grid_4">
+                    <c-button ng-click="reset()">
+                        <span>Batal</span>
+                    </c-button>
+                </div>
+                <div class="grid_4">
+                    <c-button ng-click="tambah()" style="width:10% !important">
+                        <span>Tambah</span>
+                    </c-button>
+                </div>
+            </div>
+
+            <!-- Grid Tabel -->
+            <div class="grid_12" style="margin-top: 10px;">
+                <div kendo-grid k-data-source="DaftarPelayanan" k-selectable="'row'" k-columns="columnPelayanan">
+                </div>
+            </div>
+        </div>
+
+        <c-panel item="item" header="'Tindakan Lain'" disabled>
+			<div class="grid_12">
+				<div class="grid_1" style="margin: 5px 0 0 0;">
+					<label c-label item="item" c-label-text="Inhalasi"></label>
+				</div>
+				<div class="grid_2" style="margin: 5px 0 0 0;">
+					<input c-text-box type="input"  class="k-textbox" id="txtTotalFx" ng-model="item.inhalasi" />
+				</div>
+                <div class="grid_1"></div>
+				<div class="grid_1" style="margin: 5px 0 0 0;">
+					<label c-label item="item" c-label-text="Jam Obat"></label>
+				</div>
+				<div class="grid_2" style="margin: 5px 0 0 0;">
+					<input style="width: 100%"  k-value='now' kendo-time-picker k-ng-model="item.jamObat" placeholer="hh:mm" k-format="'hh:mm'" />
+				</div>
+			</div>
+            <div class="grid_12" style="text-align: right">
+                <div class="grid_8"></div>
+                <div class="grid_2">
+                    <c-button ng-click="resetTindakanLain()">
+                        <span>Batal</span>
+                    </c-button>
+                </div>
+                <div class="grid_2">
+                    <c-button ng-click="tambahTindakanLain()" style="width:10% !important">
+                        <span>Tambah</span>
+                    </c-button>
+                </div>
+            </div>
+            <div class="grid_12" style="margin-top: 10px;">
+                <div kendo-grid k-data-source="DaftarTindakanLain" k-selectable="'row'" k-columns="columnTindakanLain">
+                </div>
+            </div>
+			
+		</c-panel>
+
+        <div class="grid_12">
+            <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" ' style="margin-top:30px"></div>
+        </div>
+    </c-panel>
+    <div ui-view></div>
+</div>

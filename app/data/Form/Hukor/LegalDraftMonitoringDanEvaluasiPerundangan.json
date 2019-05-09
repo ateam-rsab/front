@@ -1,0 +1,37 @@
+{
+	"model":{
+		"userId" : "",
+		"noPeraturan":"",
+		"namaPeraturan":"",
+		"evaluasiPeraturan":"",
+		"tujuan":""		   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "userId",
+			"messagesRequired" : "",
+			"caption" : "User ID"
+		},{
+			"isNull" : "true",
+			"name" : "noPeraturan",
+			"messagesRequired" : "",
+			"caption" : "No. Peraturan Perundang - Undangan"
+		},{
+			"isNull" : "true",
+			"name" : "namaPeraturan",
+			"messagesRequired" : "",
+			"caption" : "Nama Peraturan"
+		},{
+			"isNull" : "true",
+			"name" : "evaluasiPeraturan",
+			"messagesRequired" : "",
+			"caption" : "Evaluasi Peraturan"
+		},{
+			"isNull" : "true",
+			"name" : "tujuan",
+			"messagesRequired" : "",
+			"caption" : "Tujuan"
+		}
+	]
+}

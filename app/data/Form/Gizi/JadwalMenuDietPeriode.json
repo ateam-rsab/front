@@ -1,0 +1,39 @@
+{
+	"model":{
+		"namaSiklus" : "",
+		"hariKe":"",
+		"jenisWaktu":"",
+		"jenisDiet": "",
+		"menuDiet":""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "namaSiklus",
+			"messagesRequired" : "",
+			"caption" : "Nama Siklus"
+		},{
+			"isNull" : "true",
+			"name" : "hariKe",
+			"messagesRequired" : "",
+			"caption" : "Hari Ke"
+		},{
+			"isNull" : "true",
+			"name" : "jenisWaktu",
+			"messagesRequired" : "",
+			"caption" : "Jenis Waktu"
+			},{
+			"isNull" : "true",
+			"name" : "jenisDiet",
+			"messagesRequired" : "",
+			"caption" : "Jenis Diet"
+		},{
+			"isNull" : "true",
+			"name" : "menuDiet",
+			"messagesRequired" : "",
+			"caption" : "Menu Diet"
+		}
+
+	]
+}

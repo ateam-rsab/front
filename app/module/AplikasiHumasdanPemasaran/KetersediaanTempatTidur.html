@@ -1,0 +1,89 @@
+<div ng-controller="KetersediaanTempatTidurCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" disabled>
+			<c-panel class="grid_5" item="item" header="'Pencarian'" disabled>
+				<div class="grid_3" style="padding-top:15px">
+					<label c-label item="item" c-label-text="Ruangan"></label>
+				</div>
+				<div style="margin: 5px" class="grid_8">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaruangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListRuangan" />
+					<!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaruangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceRuangan" /> -->
+				</div>
+				<div class="grid_3" style="padding-top:15px">
+					<label c-label item="item" c-label-text="kelas"></label>
+				</div>
+				<div style="margin: 5px" class="grid_8">
+					 <input style="width: 100%;" kendo-combo-box k-ng-model="item.kelas" k-data-text-field="'namakelas'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListKelas" />
+					<!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.kelas" k-data-text-field="'namakelas'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceKelas" /> -->
+				</div>
+				<div class="grid_12">
+					<div class="grid_4" style="margin-top:20px;margin-left: 220px;">
+						<button class="c-button" ng-click="SearchData()">Cari Kamar</button>
+						<!-- <c-button ng-click="Search()">Cari Kamar</c-button> -->
+					</div>
+				</div>
+			</c-panel>
+
+			<div class="grid_6" style="margin-left: 100px;">
+				<h2 style="margin-right: 180px;">{{'Info Data Terakhir Pada ' + tanggal + ', Jam ' + jam}}</h2>
+				<div class="grid_12" ng-repeat="kamar in infoKamar" style="margin:10px; padding-left:15px">
+					<div class="grid_1"><img src="{{kamar.path}}" width="30px"></div>
+					<div class="grid_5" style="margin-top:10px">{{kamar.title}}</div>
+					<div class="grid_1"></div>
+					<div class="grid_1" style="margin-top:10px">{{kamar.value}}</div>
+				</div>
+			</div>
+			<c-panel item="item" header="'Info Kamar'" disabled>
+				<div class="grid_12">
+					<div class="grid_12 borderBox">
+						<div id="kGrid" kendo-grid 
+						k-data-source="dataSource2" 
+						k-selectable="'row'" 
+						k-columns="columnPencatatanPiutang2"
+						k-pageable="'true'"
+						k-sortable="'true'"
+						k-ng-model="dataSelected">
+						<div k-detail-template>	
+							<kendo-tabstrip>
+								<div>
+									<div id="kGridDetail" kendo-grid k-options="data2(dataItem)" 
+									k-sortable="'true'" 
+									k-selectable="'row'" 
+									k-ng-model="dataSelected2">
+										<div k-detail-template>
+											<kendo-tabstrip>
+												<div id="kGridDetail" kendo-grid k-options="data3(dataItem)" 
+												k-sortable="'true'" 
+												k-ng-model="dataSelected3"
+												k-selectable="'row'" 
+												ng-click="klik(dataSelected3)"
+												k-options="mainGridOptions">
+												</div>
+											</kendo-tabstrip>
+										</div>
+									</div>
+								</div>
+							</kendo-tabstrip>
+						</div>	
+						</div>
+					</div>
+				</div>
+				<!-- <div class="grid_12" style="margin-top: 10px;">
+					<div kendo-grid k-data-source="sourceInfoKamar" k-selectable="'row'" k-columns="columnKamar">
+					</div>
+				</div> -->
+			</c-panel>
+			<div class="grid_12" style="margin-top:60px">
+				<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+			</div>
+			<!-- <div class="grid_12" style="margin-top:50px">
+				<div class="grid_10"></div>
+				<div class="grid_2">
+					<c-button ng-click="" style="width:100% !important">
+						<span style="font-size:10!important">Tutup</span>
+					</c-button>
+				</div>
+			</div> -->
+		</c-panel>
+	</div>
+</div>

@@ -1,0 +1,164 @@
+<style>
+    .error{
+        background-color:white !important;
+    }
+    .yellow{
+        background-color:#ffff00
+    }
+     .green{
+        background-color:#00ff40
+    }
+      .red{
+        background-color:#FF0000
+    }
+    .k-grid  .k-grid-header  .k-header  .k-link {
+     height: auto;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     white-space: normal;
+    }
+
+    .style-four {
+        height: 5px;
+        border: 0;
+        box-shadow: inset 0 14px 12px -12px rgba(0, 0, 0, 0.5);
+        }
+    .md-button {
+          padding: 0 6px 0 6px;
+          margin: 6px 8px 6px 8px;
+          min-width: 88px;
+          border-radius: 3px;
+          font-size: 14px;
+          text-align: center;
+          text-transform: uppercase;
+          text-decoration:none;
+          border: none;
+          outline: none;
+          color: green;
+        }
+
+    .k-grid  .k-grid-header  .k-header {
+     text-align: center;
+    }
+
+    .md-tooltip {
+        height: 25px !important;
+        background-color: #363940 !important;
+        color: white !important;
+        border-radius: 5px;
+        font-size: 14px
+     }
+     .md-button.md-fab.md-fab-top-right {
+        top: 100px;
+        right: 41px;
+        bottom: auto;
+        left: auto;
+        position: absolute;
+     }
+     .h1 {
+        position:relative;
+        display:inline-block;
+            }
+      .h1::before, 
+      .h1::after {
+        content:' ';
+        display:block;
+        position:absolute; top:50%; left:-120px;
+        width:100px;
+        border-bottom:1px solid black;
+    }
+    .h1::after {
+        left:auto; right:-120px;
+    }
+</style>
+<div ng-controller="DaftarDraftCtrl">
+    <c-panel item="item" header="'Draft Surat'" disabled>
+        <div class="panel panel-default container_12" disabled>
+            <!--<div class="grid_12">
+                <div class="grid_2" style="margin: 10px 0 0 0;">
+                    <label c-label item="item">Periode</label>
+                </div>
+                <div class="grid_3">
+                    <input kendo-date-picker k-ng-model="item.tanggalAwal" k-format="'dd-MM-yyyy'" style="width: 100%" kendo-date-picker k-max="now" ng-init="now" />
+                    <label c-label item="item">Periode</label>
+                </div>
+
+                <div class="grid_2">
+                    <input kendo-date-picker k-ng-model="item.tanggalAkhir" k-format="'dd-MM-yyyy'" style="width: 100%" kendo-date-picker k-max="now" ng-init="now" />
+                </div>
+                <div class="grid_1">
+                    <button class="c-button" ng-click="cari()">cari</button>
+                </div>
+            </div>-->
+<!--             <div class="grid_12">
+               <div id="window">
+                <h4>Armchair 402</h4>
+                  <div class="armchair"><img src="../content/web/window/armchair-402.png" alt="Armchair 402" /> Artek Alvar Aalto - Armchair 402</div>
+                  <p>Alvar Aalto is one of the greatest names in modern architecture and design. Glassblowers at the iittala factory still meticulously handcraft the legendary vases that are variations on one theme, fluid organic shapes that let the end user decide the use. Interpretations of the shape in new colors and materials add to the growing Alvar Aalto Collection that remains true to his original design.</p>
+
+                  <p>Born Hugo Alvar Henrik Aalto (February 3, 1898 - May 11, 1976) in Kuortane, Finland, was noted for his humanistic approach to modernism. He studied architecture at the Helsinki University of Technology from 1916 to 1921. In 1924 he married architect Aino Marsio.</p>
+
+                  <p>Alvar Aalto was one of the first and most influential architects of the Scandinavian modern movement, and a member of the Congres Internationaux d'Architecture Moderne. Major architectural works include the Finlandia Hall in Helsinki, Finland, and the campus of Helsinki University of Technology.</p>
+                  <p>Source: <a href="https://www.aalto.com/about-alvar-aalto.html" title="About Alvar Aalto">www.aalto.com</a></p>
+              </div>
+            </div> -->
+
+            <span id="undo" style="display:none" class="k-button hide-on-narrow">Click here to open the window.</span>
+
+            <div class="grid_12" style="margin-top:15px">
+                <div class="grid_1"></div>
+                <div class="grid_1">
+                    <label c-label item="item" style="margin: 10px">Periode</label>
+                </div>                
+                <div class="grid_1">
+                    <label c-label item="item" style="margin: 10px">:</label>
+                </div>
+                <div class="grid_2">
+                    <input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalAwal" data-k-format="'dd-MM-yyyy'" k-max="now" ng-init="now" />
+                </div>
+                <div class="grid_1">
+                    <label c-label item="item" style="margin-top: 10px; text-align: center;">s/d</label>
+                </div>
+                <div class="grid_2">
+                    <input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalAkhir" data-k-format="'dd-MM-yyyy'" k-max="now" ng-init="now" />
+                </div>
+                <div class="grid_1" style="margin-top: 6px">
+                    <button class="c-button success" ng-click="cari()">Cari</button>
+                </div>                
+<!--                 <div class="grid_1" style="margin-top: 6px">
+                    <button class="c-button cancel" ng-click="clear()">Clear</button>
+                </div> -->
+                <div class="grid_2"></div>
+            </div>
+            <hr class="style-four">
+           <div class="grid_12">
+                     <md-button class="md-fab md-fab-top-right docs-scroll-fab md-button " align="center" style="height: 75px; width: 75px; background-color: #05b72a !important" aria-label="Eat cake">
+                       <md-tooltip md-direction='left'>Cetak Dokumen</md-tooltip>
+                            <md-icon md-svg-src="/app/stylesheets/Images/exam.svg"></md-icon>
+                     </md-button>
+            </div>
+            <div class="grid_12">
+                <div kendo-grid id="usersGrid" k-options="mainGridOptions" k-data-source="dataSource" ng-click="klik()">
+                <!-- <div k-detail-template>
+                        <div kendo-grid k-options="detailGridOptions(dataItem)"></div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="grid_12" style="margin-top:10px">
+                <div class="grid_7"></div>
+
+                <div class="grid_2">
+                     <md-tooltip md-direction='bottom' ng-show="awalan">Pilih Daftar Terlebih dahulu</md-tooltip>
+                    <button class="c-button success" ng-click="redirect()">Kirim Draft To Ruangan</button>
+                </div>
+                
+                <div class="grid_3">
+                      <md-tooltip md-direction='bottom' ng-show="awalan">Pilih Daftar Terlebih dahulu</md-tooltip>
+                    <button class="c-button success" ng-click="redirect2()">Lihat Dokumen Verbal Konsep</button>
+                </div>
+            </div>
+            <hr class="style-four">
+        </div>
+    </c-panel>
+</div>

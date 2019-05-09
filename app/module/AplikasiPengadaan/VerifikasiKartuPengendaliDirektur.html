@@ -1,0 +1,145 @@
+<div ng-controller="VerifikasiKartuPengendaliDirekturCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'VerifikasiPengajuanUsulanBarangDanJasa'" disabled>
+		<div class="grid_8">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="namaPengendali"></label>
+			</div>
+			<div class="grid_8 garisBawah">
+				<label class="tebal">: {{items.namaPengendali}}</label>
+			</div>
+			<div class="clear" style="margin:2px 0 10px"></div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="asalProduk"></label>
+			</div>
+			<div class="grid_8 garisBawah">
+				<label class="tebal">: {{items.asalProduk}}</label>
+			</div>
+		</div>
+		<div class="grid_4">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="noUsulan"></label>
+			</div>
+			<div class="grid_8 garisBawah">
+				<label class="tebal">: {{items.noUsulan}}</label>
+			</div><div class="clear" style="margin-bottom:10px"></div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="tanggalUsulan"></label>
+			</div>
+			<div class="grid_8 garisBawah">
+				<label class="tebal">: {{items.tanggal}}</label>
+			</div>
+			<div class="clear" style="margin-bottom:10px"></div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="kdAccount"></label>
+			</div>
+			<div class="grid_8 garisBawah">
+				<label class="tebal">: {{items.kdAccount}}</label>
+			</div>
+			<div class="clear" style="margin-bottom:10px"></div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="namaAccount"></label>
+			</div>
+			<div class="grid_8 garisBawah">
+				<label class="tebal">: {{items.namaAccount}}</label>
+			</div>
+			<div class="clear" style="margin-bottom:10px"></div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="Jumlah"></label>
+			</div>
+			<div class="grid_8 garisBawah">
+				<label class="tebal">: {{items.total}}</label>
+			</div>
+			<div class="clear" style="margin-bottom:10px"></div>
+
+		</div>
+
+		<!-- <div class="grid_6" style="min-height:40px;">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="pengendali"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.pengendali.namaPengendali" disabled="" />
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="tanggalVerifikasi"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"/>
+			</div>
+		</div>
+		<div class="clear"></div> -->
+		<div class="grid_12" style="margin:15px 0 15px;">
+			<kendo-grid id="grid" k-data-source="dataSpek" k-columns="columnKartuPengendali">
+            </kendo-grid>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_6">
+			<br/>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="tanggalVerifikasi" style="padding-top:10px"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"/>
+			</div>
+			<br/>
+				<label c-label item="item" c-label-text="keterangan"></label>
+				<textarea rows="8" c-text-box type="input" class="k-textbox" ng-model="item.keterangan" />
+		</div>
+		<div class="grid_6">
+			<br/>
+			<div class="grid_4">
+				<label c-label class="label-aja" item="item" c-label-text="SubTotal"></label>
+			</div>
+			<div class="grid_8">
+				 <input c-text-box style="text-align:right" for="jumlah" class="k-textbox" disabled ng-model="items.subtotal" />
+			</div>
+			<div class="grid_4">
+				<label c-label class="label-aja" item="item">PPn (10%)</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box style="text-align:right" type="input" for="ppn" class="k-textbox" ng-model="items.totalPpn" disabled/>
+			</div>
+			<div class="grid_4">
+				<label c-label class="label-aja" item="item" c-label-text="total"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box style="text-align:right" type="input" filter="'varchar'" class="k-textbox" ng-model="items.total" disabled/>
+			</div>
+			<!-- <div class="grid_4">
+				<label c-label class="label-aja" item="item" c-label-text="pembulatan"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box style="text-align:right" type="input" filter="'varchar'" class="k-textbox" ng-model="items.pembulatan" disabled/>
+			</div> -->
+
+			<div class="grid_4"></div>
+
+			<div class="grid_4">
+				<button class="c-button" ng-click="save()">Verifikasi</button>
+			</div>
+			<div class="grid_4">
+				<button class="c-button" ng-click="batal()">Batal</button>
+			</div>
+		</div>
+		</c-panel>
+	</div>
+</div>
+
+<style>
+h2  {
+	text-align: left;
+}
+.garisBawah {
+	border-bottom: dashed black 1px;
+}
+.tebal {
+	font-style: italic;
+}
+.label-aja {
+	padding-top:12px;font-size:13px;font-weight:bold;
+	text-align:right;
+	height:22px;
+}
+</style>

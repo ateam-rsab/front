@@ -1,0 +1,75 @@
+<div ng-controller="DaftarUsulanEvaluasiDanKajianOrganisasiCtrl">
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Daftar Usulan Evaluasi dan Kajian Organisasi'" disabled>
+            <div class="panel panel-default container_12">
+                <div class="grid_4">
+                    <div class="grid_3" style="margin-top: 10px; ">
+                        <label c-label item="item" c-label-text="cariNoUsulan"></label>
+                    </div>
+                    <div class="grid_8" style="margin-top: 5px; ">
+                        <!--<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.cariNoUsulan" ng-disabled="enablecariNoUsulan" />-->
+           <!--             <input kendo-auto-complete k-ng-model="item.cariNoUsulan" k-options="pegOptions"
+                               k-data-source="dataNoUsulan" style="width:100%"/>-->
+
+                        <input c-text-box type="input" class="k-textbox"
+                               ng-model="item.noUsulan" />
+                    </div>
+                </div>
+                <div class="grid_8">
+                    <div class="grid_2" style="margin-top: 10px; ">
+                        <label c-label item="item" c-label-text="periodeTanggal"></label>
+                    </div>
+                    <div class="grid_2">
+                        <input style="width: 100%" kendo-date-picker k-value="now" k-ng-model="item.periodeAwal"
+                               placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"
+                        />
+                    </div>
+                    <div class="grid_1" style="margin-top: 10px; " align="center">
+                        <label c-label item="item" c-label-text="sd"></label>
+                    </div>
+                    <div class="grid_2">
+                        <input style="width: 100%" kendo-date-picker k-value="now" k-ng-model="item.periodeAkhir"
+                               placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"
+                        />
+                    </div>
+                    <div class="grid_2 " style="margin-top: 6px;  font-size: 24px;">
+                        <button class="c-button" ng-show="!isLoading" item="item" ng-click="cari()">
+                            Cari
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="clear "></div>
+                <div class="grid_12 ">
+                    <div kendo-grid="grid" id="grid" k-data-source="daftarEvaluasi" k-editable="false"
+                         k-options="columnEvaluasi" k-selectable="'row'"  style="font-size: small;"
+                         k-ng-model="current" ng-click="klik(current)">
+                        <div k-detail-template>
+                            <label c-label item="item">Detail</label>
+                            <div kendo-grid k-options="detailGridOptions(dataItem)"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="grid_12 ">
+                    <div class="grid_6 "></div>
+
+                    <div>
+                        <div class="grid_2 "></div>
+                        <div class="grid_2 " style="margin-top: 25px; font-size: 24px; ">
+                            <button class="c-button " ng-show="!isLoading " item="item "
+                                    ng-click="detailUsulan()">
+                                <span class="title ">Detail Usulan</span></button>
+                        </div>
+                        <div class="grid_2 " style="margin-top: 25px; font-size: 24px; ">
+                            <button class="c-button " ng-show="!isLoading " item="item " ng-click="rekomendasi() ">
+                                <span class="title ">Melihat Rekomendasi</span></button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </c-panel>
+    </div>
+</div>

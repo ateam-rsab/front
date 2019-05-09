@@ -1,0 +1,60 @@
+{
+	"model":{
+		"jenisBahanDiet" : "",
+		"kodeBahanDiet":"",
+		"namaBahanDiet":"",
+		"spesifikasiBahanDiet": "",
+		"satuan":"",
+		"jmlKemasan" :"",
+		"jmlTerkecil" : "",
+	    "cariBahanDiet" : ""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "jenisBahanDiet",
+			"messagesRequired" : "",
+			"caption" : "Jenis Bahan Diet"
+		},{
+			"isNull" : "true",
+			"name" : "kodeBahanDiet",
+			"messagesRequired" : "",
+			"caption" : "Kode Bahan Diet"
+		},{
+			"isNull" : "true",
+			"name" : "namaBahanDiet",
+			"messagesRequired" : "",
+			"caption" : "Nama Bahan Diet"
+			},{
+			"isNull" : "true",
+			"name" : "spesifikasiBahanDiet",
+			"messagesRequired" : "",
+			"caption" : "Spesifikasi Bahan Diet"
+		},{
+			"isNull" : "true",
+			"name" : "satuan",
+			"messagesRequired" : "",
+			"caption" : "Satuan"
+		},{
+			"isNull" : "true",
+			"name" : "jmlKemasan",
+			"messagesRequired" : "",
+			"caption" : "Jml Kemasan"
+		},{
+			"isNull" : "false",
+			"name" : "jmlTerkecil",
+			"messagesRequired" : "",
+			"caption" : "Jml Terkecil"
+
+		},{
+			"isNull" : "true",
+			"name" : "cariBahanDiet",
+			"messagesRequired" : "",
+			"caption" : "Cari Bahan Diet"
+
+		}
+
+	]
+}

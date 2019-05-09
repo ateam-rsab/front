@@ -1,0 +1,17 @@
+{
+    "kdProfile": 0,
+    "id": 177,
+    "noRegistrasi": "16050000001",
+    "pasien": {
+        "namaPasien": "Eka",
+        "noCm": "0000002",
+        "umurPasien":"25 th 4 bln 3 hr",
+        "alamatPasien":"Komp. Gading Regency",
+        "jenisKelamin" :"Permpuan",
+        "statusPerkawinan":"Belum Kawin"
+
+    },
+    "alergi":"Garam",
+    "ruanganAsal": "Poli Alamanda",
+    "dokterPerujuk": "dr. Aditya Suryansyah, Sp.A"
+}  

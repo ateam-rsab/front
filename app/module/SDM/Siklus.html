@@ -1,0 +1,372 @@
+ <div class="panel panel-default container_12">
+    <div class="panel-heading"  c-translate>Riwayat Pegawai</div>
+    <div class="panel-body">
+      
+		  
+            <div ng-cloak>
+			
+                <md-content>
+				  
+                    <md-tabs md-dynamic-height md-border-bottom>
+					         
+					          <md-tab label="Riwayat Pendidikan Formal">
+                            <md-content class="md-padding">
+                                <div class="grid_12">
+                                	<div class="grid_12">
+										<div class="grid_12">
+											<div class="grid_12">
+												<div class="grid_3" style="padding-top:10px">
+													<label c-label item="item">Waktu Makan</label>
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+													<label c-label item="item">Jenis Hukuman</label>
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+													<label c-label item="item">No SK</label>
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+													<label c-label item="item">Tanggal SK</label>
+												</div>
+											</div>
+											<div class="grid_12">
+												<div class="grid_3" style="padding-top:10px">
+												<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+											    <input style="width: 100%;" kendo-combo-box k-ng-model="item.hari" k-data-text-field="'hari'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceHari" />
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+												<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+											    <input kendo-date-picker k-ng-model="item.tanggalPinjam" k-max ="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+												</div>
+											</div>
+										</div>
+										<div class="grid_12">
+											<div class="grid_12">
+												<div class="grid_3" style="padding-top:10px">
+													<label c-label item="item">Tanggal Mulai</label>
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+													<label c-label item="item">Tanggal Selesai</label>
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+													<label c-label item="item">Keterangan</label>
+												</div>
+											</div>
+											<div class="grid_12">
+												<div class="grid_3" style="padding-top:10px">
+													 <input kendo-date-picker k-ng-model="item.tanggalPinjam" k-max ="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+													 <input kendo-date-picker k-ng-model="item.tanggalPinjam" k-max ="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+													<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												<!-- <div class="grid_4" ng-repeat="Data in listDataPenyakit">
+													<input type="checkbox" class="k-checkbox" name="{{Data.name}}" 
+													id="{{Data.name}}" value="{{Data.id}}" ng-click="cekRiwayatPenyakit(Data)">
+													<label class="k-checkbox-label" for="{{Data.name}}"> {{Data.name}}</label>
+												</div> -->
+											</div>
+										</div>
+									</div>
+									
+									<div class="grid_12" style="padding-top:10px">
+										<div kendo-grid k-on-change="Select(data)" k-data-source="daftarpendidikan" k-selectable="'row'" options="GridOk">
+									</div>
+									<div class="grid_12" style="padding-top:20px">
+										<div class="grid_12"></div>
+										<div class="grid_2">
+											<button class="c-button" ng-click="Save()">Batal</button>
+										</div>
+										<div class="grid_2">
+											<button class="c-button" ng-click="Save()">Simpan</button>
+										</div>
+										<div class="grid_2">
+											<button class="c-button" ng-click="print()">Hapus</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</md-content>
+					</md-tab>
+					          <md-tab label="Riwayat Perjalanan Dinas">
+                            <md-content class="md-padding">
+                                <div class="grid_12">
+                                	<div class="grid_12">
+										<div class="grid_12">
+											<div class="grid_12">
+												<div class="grid_3" style="padding-top:10px">
+													<label c-label item="item">Nomor</label>
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+													<label c-label item="item">Kota Tujuan</label>
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+													<label c-label item="item">Negara Tujuan</label>
+												</div>
+												
+											</div>
+											<div class="grid_12">
+												<div class="grid_3" style="padding-top:10px">
+												<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+											    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+												<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												
+											</div>
+											<div class="grid_12">
+												<div class="grid_3" style="padding-top:10px">
+													<label c-label item="item">Tujuan Kunjungan</label>
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+													<label c-label item="item">Tanggal Pergi</label>
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+													<label c-label item="item">Tanggal Pulang</label>
+												</div>
+												
+											</div>
+											<div class="grid_12">
+												<div class="grid_3" style="padding-top:10px">
+												<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+											     <input kendo-date-picker k-ng-model="item.tanggalPinjam" k-max ="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+												 <input kendo-date-picker k-ng-model="item.tanggalPinjam" k-max ="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+												</div>
+												
+											</div>
+											<div class="grid_12">
+												<div class="grid_3" style="padding-top:10px">
+													<label c-label item="item">Kendaraan</label>
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+													<label c-label item="item">Penyandang Dana</label>
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+													<label c-label item="item">Keterangan</label>
+												</div>
+												
+											</div>
+											<div class="grid_12">
+												<div class="grid_3" style="padding-top:10px">
+												<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+											    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+												<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												
+											</div>
+										</div>
+										
+									</div>
+									
+									<div class="grid_12" style="padding-top:10px">
+										<div kendo-grid k-on-change="Select(data)" k-data-source="daftarperjalanan" k-selectable="'row'" options="mainGridOptions">
+									</div>
+									</br>
+									<div kendo-grid k-on-change="Select(data)" k-data-source="daftarkendaraan" k-selectable="'row'" options="Gridkendaraan">
+									</div>
+									<div class="grid_12" style="padding-top:20px">
+										<div class="grid_12"></div>
+										<div class="grid_2">
+											<button class="c-button" ng-click="Save()">Simpan</button>
+										</div>
+										<div class="grid_2">
+											<button class="c-button" ng-click="print()">Hapus</button>
+										</div>
+										<div class="grid_2">
+											<button class="c-button" ng-click="print()">Batal</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</md-content>
+					</md-tab>
+					                   <md-tab label="Riwayat Hukuman">
+                            <md-content class="md-padding">
+                                <div class="grid_12">
+                                	<div class="grid_12">
+										<div class="grid_12">
+											<div class="grid_12">
+												<div class="grid_3" style="padding-top:10px">
+													<label c-label item="item">Nomor</label>
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+													<label c-label item="item">Jenis Hukuman</label>
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+													<label c-label item="item">Nomor SK </label>
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+													<label c-label item="item">Tanggal SK </label>
+												</div>
+												
+											</div>
+											<div class="grid_12">
+												<div class="grid_3" style="padding-top:10px">
+												<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+											    <input style="width: 100%;" kendo-combo-box k-ng-model="item.hari" k-data-text-field="'hari'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceHari" />
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+												<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+											    <input kendo-date-picker k-ng-model="item.tanggalPinjam" k-max ="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+												</div>
+											</div>
+											<div class="grid_12">
+												<div class="grid_3" style="padding-top:10px">
+													<label c-label item="item">Tanggal Mulai</label>
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+													<label c-label item="item">Tanggal Selesai</label>
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+													<label c-label item="item">Keterangan </label>
+												</div>
+												
+												
+											</div>
+											<div class="grid_12">
+												<div class="grid_3" style="padding-top:10px">
+											    <input kendo-date-picker k-ng-model="item.tanggalPinjam" k-max ="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+											    <input kendo-date-picker k-ng-model="item.tanggalPinjam" k-max ="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+												</div>
+												<div class="grid_3" style="padding-top:10px">
+												<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+											</div>
+										</div>
+									
+									</div>
+									
+									<div class="grid_12" style="padding-top:10px">
+										<div kendo-grid k-on-change="Select(data)" k-data-source="daftarhukuman" k-selectable="'row'" options="Gridhukuman">
+									</div>
+									<div class="grid_12" style="padding-top:20px">
+										<div class="grid_8"></div>
+										<div class="grid_2">
+											<button class="c-button" ng-click="Save()">Simpan</button>
+										</div>
+										<div class="grid_2">
+											<button class="c-button" ng-click="print()">Hapus</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</md-content>
+					</md-tab>
+					        <md-tab label="Riwayat Pangkat Golongan">
+                            <md-content class="md-padding">
+                                <div class="grid_12">
+                                	<div class="grid_12">
+										<div class="grid_12">
+											<div class="grid_12">
+												<div class="grid_2" style="padding-top:10px">
+													<label c-label item="item">Nomor</label>
+												</div>
+												<div class="grid_2" style="padding-top:10px">
+													<label c-label item="item">Nama Pangkat</label>
+												</div>
+												<div class="grid_2" style="padding-top:10px">
+													<label c-label item="item">Golongan </label>
+												</div>
+												<div class="grid_2" style="padding-top:10px">
+													<label c-label item="item">Nomor</label>
+												</div>
+												<div class="grid_2" style="padding-top:10px">
+													<label c-label item="item">Tanggal SK </label>
+												</div>
+												
+											</div>
+											<div class="grid_12">
+												<div class="grid_2" style="padding-top:10px">
+												<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												<div class="grid_2" style="padding-top:10px">
+											    <input style="width: 100%;" kendo-combo-box k-ng-model="item.hari" k-data-text-field="'hari'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceHari" />
+												</div>
+												<div class="grid_2" style="padding-top:10px">
+												<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												<div class="grid_2" style="padding-top:10px">
+												<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+												<div class="grid_2" style="padding-top:10px">
+											    <input kendo-date-picker k-ng-model="item.tanggalPinjam" k-max ="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+												</div>
+											</div>
+											<div class="grid_12">
+												<div class="grid_2" style="padding-top:10px">
+													<label c-label item="item">Tanggal Berlaku</label>
+												</div>
+												<div class="grid_2" style="padding-top:10px">
+													<label c-label item="item">Keterangan</label>
+												</div>
+												
+												
+											</div>
+											<div class="grid_12">
+												
+												
+												<div class="grid_2" style="padding-top:10px">
+											    <input kendo-date-picker k-ng-model="item.tanggalPinjam" k-max ="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+												</div>
+												<div class="grid_2" style="padding-top:10px">
+												<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jabatan" />
+												</div>
+											</div>
+										</div>
+										
+									</div>
+									
+									<div class="grid_12" style="padding-top:10px">
+										<div kendo-grid k-on-change="Select(data)" k-data-source="daftarpangkat" k-selectable="'row'" options="Gridpangkat">
+									</div>
+									<div class="grid_12" style="padding-top:20px">
+										<div class="grid_8"></div>
+										<div class="grid_2">
+											<button class="c-button" ng-click="Save()">Simpan</button>
+										</div>
+										<div class="grid_2">
+											<button class="c-button" ng-click="print()">Hapus</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</md-content>
+					</md-tab>
+                        <md-tab label="Riwayat Jabatan">
+                            <md-content class="md-padding">
+                             
+						</md-content>
+					</md-tab>
+					<md-tab label="Riwayat Tugas Belajar">
+                            <md-content class="md-padding">
+                               
+							</md-content>
+						</md-tab>
+					</md-tabs>
+				</md-content>
+			</div>
+		</div>
+	</div>
+</div>

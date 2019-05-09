@@ -1,0 +1,117 @@
+<div class="container">
+    <c-panel item="item" header="'Data Cuti Pegawai'"disabled>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <md-content>
+                    <md-tabs md-selected="selectedIndex" md-dynamic-height md-border-bottom>
+                        <md-tab label="Cuti Per-Shift" md-on-select="onTabChanges(0)">
+                            <md-content class="md-padding">
+                                <div class="grid_6">
+                                    <div class="grid_2">
+                                        <label c-label item="item" class="label-aja" c-label-text="Periode"></label>
+                                        <input style="width: 100% " kendo-date-picker k-ng-model="item.periode" k-options="formatThn" k-auto-bind="true"/>
+                                    </div>
+                                    <div class="grid_8">
+                                        <label c-label item="item" class="label-aja" c-label-text="Komponen Index"></label>
+                                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.komponenIndex" k-data-text-field="'komponenIndex'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listStatusPegawai"/>
+                                    </div>
+                                </div>
+                                <div class="grid_6">
+                                    <div class="grid_12">
+                                        <h3 style="text-align:left">Kelompok Shift</h3>
+                                    </div>
+                                    <div class="grid_12" ng-repeat="list in listKelompokShift | orderBy: 'id'">
+                                        <div class="grid_3">
+                                            <label class="displayInline">
+                                                <span class="number">{{list.id}}.</span>
+                                                <span>{{list.name}}</span>
+                                            </label>
+                                        </div>
+                                        <div class="grid_4">
+                                            <input kendo-numeric-text-box k-ng-model="list.value" k-options="formatInt"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="Cuti Per-Pegawai" md-on-select="onTabChanges(1)">
+                            <md-content class="md-padding">
+                                <div class="grid_6">
+                                    <div class="grid_12">
+                                        <div class="grid_2">
+                                            <label c-label item="item" c-label-text="Periode"></label>
+                                            <input style="width: 100% " kendo-date-picker k-ng-model="item.periode" k-options="formatThn"/>
+                                        </div>
+                                        <div class="grid_6">
+                                            <label c-label item="item" c-label-text="Komponen Index"></label>
+                                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.komponenIndexPegawai" k-data-text-field="'komponenIndex'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listStatusPegawai"/>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="grid_12">
+                                        <div class="grid_8">
+                                            <label c-label item="item" c-label-text="Pilih Pegawai"></label>
+                                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" k-on-change="getDataPegawai()"/>
+                                        </div>
+                                        <div class="grid_1">
+                                            <em ng-click='findDataCuti()'  id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0" style="margin-top:22px;" ><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid_6">
+                                    <div class="grid_12">
+                                        <h3 style="text-align:left">Jumlah Cuti Pegawai</h3>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_6">
+                                            <label c-label item="item" class="label-aja">Nama Lengkap:</label>
+                                            <input c-text-box type="input" filter="" class="k-textbox" ng-model="tempItem.namaLengkap" disabled="true"/>
+                                        </div>
+                                        <div class="grid_6">
+                                            <label c-label item="item" class="label-aja">Nip Pegawai:</label>
+                                            <input c-text-box type="input" filter="" class="k-textbox" ng-model="tempItem.nipPns" disabled="true"/>
+                                        </div>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_6">
+                                            <label c-label item="item" class="label-aja">Unit Kerja:</label>
+                                            <input c-text-box type="input" filter="" class="k-textbox" ng-model="tempItem.unitKerja" disabled="true"/>
+                                        </div>
+                                        <div class="grid_6">
+                                            <label c-label item="item" class="label-aja">Subunit Kerja:</label>
+                                            <input c-text-box type="input" filter="" class="k-textbox" ng-model="tempItem.subUnitKerja" disabled="true"/>
+                                        </div>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_2">
+                                            <label c-label item="item" class="label-aja" c-label-text="jumlah"></label>
+                                        </div>
+                                        <div class="grid_4">
+                                            <input kendo-numeric-text-box k-ng-model="item.jmlCuti" k-options="formatInt" style="width: 70%"/>
+                                        </div>
+                                        <div class="grid_2">
+                                            <label c-label item="item" class="label-aja" c-label-text="sisa"></label>
+                                        </div>
+                                        <div class="grid_4">
+                                            <input kendo-numeric-text-box k-ng-model="item.sisaCuti" k-options="formatInt" style="width: 70%" disabled/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grid_12">
+                                    <kendo-grid id="gridCutiPegawai" k-data-source="daftarPegawai" options="daftarpegawaiOpt"></kendo-grid>
+                                </div>
+
+
+                            </md-content>
+                        </md-tab>
+                    </md-tabs>
+                </md-content>
+            </div>
+        </div>
+    </c-panel>
+    <div ng-include='"../app/module/Shared/TemplateButtonSimpanNotFixed"'></div>
+</div>
+<div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
+
+

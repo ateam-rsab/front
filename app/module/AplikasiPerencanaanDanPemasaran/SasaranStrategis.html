@@ -1,0 +1,104 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Sasaran Strategis</div>
+	<div class="panel-body">
+		<div class="grid_12">
+			<div class="grid_12">
+				<div class="grid_7">
+					<div class="grid_12">
+						<div class="grid_3" style="margin-top:15px">
+							<label c-label item="item">Jenis Indikator</label>
+						</div>
+						<div class="grid_3">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisIndikator" k-data-text-field="'jenisIndikator'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceJenisIndikator" k-on-change="IDPerspektif()"/>
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_3" style="margin-top:15px">
+							<label c-label item="item">Perspektif</label>
+						</div>
+						<div class="grid_9">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.perspektif" k-data-text-field="'perspektif'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourcePerspektif" k-on-change="KDSasaran()"/>
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_3" style="margin-top:10px">
+							<label c-label item="item">Sasaran Strategis</label>
+						</div>
+						<div class="grid_9" style="margin-top:5px">
+							<textarea ng-model="item.sasaranStrategis" style="width: 99%; height: 80px;"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="grid_5">
+					<div class="grid_12">
+						<div class="grid_5" style="margin-top:15px">
+							<label c-label item="item">Kode Sasaran Strategis</label>
+						</div>
+						<div class="grid_7">
+							<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.kodeSasaranStrategis"/>
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_5" style="margin-top:15px">
+							<label c-label item="item">Periode</label>
+						</div>
+						<div class="grid_3">
+							<input style="width:100%" kendo-date-picker k-options="yearSelected" value="now" k-ng-model="item.awal" k-format="'yyyy'" k-on-change="tahun()"/>
+						</div>
+						<div class="grid_1" align="center" style="margin-top:10px">
+							<label c-label item="item">s/d</label>
+						</div>
+						<div class="grid_3">
+							<input style="width:100%" kendo-date-picker value="now" k-ng-model="item.akhir" k-format="'yyyy'" readonly="true" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_8"></div>
+				<div class="grid_2">
+					<button class="c-button success" ng-click="Save()">Simpan</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button cancel" ng-click="Batal()">Batal</button>
+				</div>
+			</div>
+			<div class="grid_12" style="margin-top:10px">
+				<c-panel item="item" header="titled">
+					<div class="grid_12">
+						<div class="grid_7">
+							<div class="grid_2" style="margin-top:15px">
+								<label c-label item="item">Periode</label>
+							</div>
+							<div class="grid_3">
+								<input style="width:100%" kendo-date-picker k-options="yearSelected" k-ng-model="item.awal" k-format="'yyyy'" k-on-change="tahun()"/>
+							</div>
+							<div class="grid_1" align="center" style="margin-top:10px">
+								<label c-label item="item">s/d</label>
+							</div>
+							<div class="grid_3">
+								<input style="width:100%" kendo-date-picker k-ng-model="item.akhir" k-format="'yyyy'" readonly="true" />
+							</div>
+							<div class="grid_2" style="margin:5px">
+								<button class="c-button success	" ng-click="search()">Cari</button>
+							</div>
+						</div>
+					</div>
+					<div class="grid_12" style="margin-top:10px">
+						<div kendo-grid k-on-change="Select(data)" k-data-source="sourceDaftarSasaranStrategis" k-selectable="'row'" options="mainGridOptions"></div>
+						<!-- <div kendo-grid ng-selected="select(data)" k-data-source="sourceDaftarSasaranStrategis" k-selectable="'row'" k-columns="columndaftarSasaranStrategis" pageable="true" ></div> -->
+					</div>
+					<div class="grid_12" style="padding-top:30px">
+						<div class="grid_8"></div>
+						<div class="grid_2">
+							<button class="c-button success" ng-click="cetak()">Cetak</button>
+						</div>
+						<div class="grid_2">
+							<button class="c-button cancel" ng-click="Tutup()">Tutup</button>
+						</div>
+					</div>
+				</c-panel>
+			</div>
+		</div>
+	</div>
+</div>

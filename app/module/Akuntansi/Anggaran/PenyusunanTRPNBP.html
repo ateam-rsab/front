@@ -1,0 +1,78 @@
+<div ng-controller="PenyusunanTRPNBPCtrl">
+	<div ng-show="dataVOloaded">
+		<div item="item" header="'Penyusunan TRPNBP'" disabled>
+
+			<!-- -->
+			<div class="grid_12" style="margin-top:10px">
+				<!-- PenyusunanTRPNBPTahun -->
+				<!-- <div class="grid_12"> -->
+				<div class="grid_2">
+					<!-- <label c-label item="item" c-label-text="Penyusunan TR-PNBP Tahun"></label> -->
+					<b>Penyusunan TR-PNBP Tahun :</b>
+				</div>
+				<div class="grid_1" >
+					<input style="width: 100%" kendo-combo-box k-ng-model="item.tahun" k-data-source="dataListTahun" k-data-value-field="'id'" k-data-text-field="'FieldTahun'"/>
+				</div>
+				<div class="grid_1" style="margin-top:7px">
+					<button class="c-button"  style="width: 100%" ng-click="Cari()">Cari</button>
+				</div>
+			</div>
+			<hr/>
+			<div class="grid_12">
+				<div class="grid_2">
+					<label c-label item="item" c-label-text="Tanggal Awal"></label>
+					<input k-ng-model="item.tglAwal" style="width: 100%"  kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" value="now" />
+				</div>
+				<div class="grid_2">
+					<label c-label item="item" c-label-text="Tanggal Akhir"></label>
+					<input k-ng-model="item.tglAkhir" style="width: 100%" kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" value="now"/>
+				</div>
+				<div class="grid_3">
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="Prosentase" ></label>
+						<input c-text-box type="input" filter="'number'" class="k-textbox" ng-model="item.prosentase" />
+					</div>
+					<div class="grid_8">
+						<label c-label item="item" c-label-text="Status"></label>
+						<input style="width: 100%" kendo-combo-box k-ng-model="item.status" k-data-source="dataStatus" k-data-value-field="'idStatus'" k-data-text-field="'Status'" />
+					</div>
+				</div>
+				<div class="grid_2">
+					<button class="c-button"  style="width: 100%;margin-top: 20px" ng-click="loadData()">Load Data</button>
+				</div>
+			</div>
+
+			
+
+			<!-- PenyusunanTRPNBP -->
+			<div class="grid_12">
+				<div class="grid_12 headerBox">
+					<p>PenyusunanTRPNBP</p>
+				</div>
+				<div class="grid_12 borderBox" style="margin-top: 15px;margin-bottom: 30px">
+					<div kendo-grid k-data-source="dataPenyusunanTRPNBP" k-selectable="'row'" k-pageable="true" k-sortable="'true'" k-selectable="'row'" k-ng-model="dataPasienSelected" k-columns="columnPenyusunanTRPNBP">
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+			<br/>
+			
+
+		</c-panel>
+		<div class="grid_6">
+		</div>
+		<div class="grid_6">
+			<div class="grid_6">
+				<button class="c-button"  style="width: 100%" ng-click="Simpan()">Simpan</button>
+			</div>
+			<div class="grid_6">
+				<button class="c-button"  style="width: 100%" ng-click="Batal()">Kembali</button>
+			</div>
+		</div>
+
+		<!-- <div class="grid_12" style="margin-top:30px">
+			<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
+		</div> -->
+	</div>
+</div>

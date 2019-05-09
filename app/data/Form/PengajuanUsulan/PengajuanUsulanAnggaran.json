@@ -1,0 +1,167 @@
+{
+	"model":{
+		"ruanganUnitKerja" : "",
+		"pengendali":"",
+		"tahun":"",
+		"kemenLemb": "",
+		"unitOrganisasi":"",
+		"unitKerja" :"",
+		"program" : "",
+	    "kegiatan" : "",
+	    "output" : "",
+	    "komponen" : "",
+	    "sumberDana" :"",
+	    "akun" :"",
+	    "detail" : "",
+	    "spesifikasi" :"",
+	    "volume": "",
+	    "unit": "",
+	    "hargaSatuan":"",
+	    "total":"",
+	    "jenisBelanja":"",
+	    "jenisPengadaan":"",
+	    "tujuanPengiriman":"",
+	   	"namaProduk" : "",
+	   	"lokasi": ""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "ruanganUnitKerja",
+			"messagesRequired" : "",
+			"caption" : "Unit Kerja"
+		},
+		{
+			"isNull" : "true",
+			"name" : "pengendali",
+			"messagesRequired" : "",
+			"caption" : "Pegendali"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tahun",
+			"messagesRequired" : "",
+			"caption" : "Tahun"
+		},
+		{
+			"isNull" : "true",
+			"name" : "kemenLemb",
+			"messagesRequired" : "",
+			"caption" : "Kemen/Lemb"
+		},
+		{
+			"isNull" : "true",
+			"name" : "unitOrganisasi",
+			"messagesRequired" : "",
+			"caption" : "Unit Organisasi"
+		},
+		{
+			"isNull" : "true",
+			"name" : "unitKerja",
+			"messagesRequired" : "",
+			"caption" : "Unit Kerja"
+		},
+		{
+			"isNull" : "true",
+			"name" : "program",
+			"messagesRequired" : "",
+			"caption" : "Program"
+		},
+		{
+			"isNull" : "true",
+			"name" : "kegiatan",
+			"messagesRequired" : "",
+			"caption" : "Kegiatan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "output",
+			"messagesRequired" : "",
+			"caption" : "Output"
+		},
+		{
+			"isNull" : "true",
+			"name" : "komponen",
+			"messagesRequired" : "",
+			"caption" : "Komponen"
+		},
+		{
+			"isNull" : "true",
+			"name" : "akun",
+			"messagesRequired" : "",
+			"caption" : "Akun"
+		},
+		{
+			"isNull" : "true",
+			"name" : "sumberDana",
+			"messagesRequired" : "",
+			"caption" : "Sumber Dana"
+		},
+		{
+			"isNull" : "true",
+			"name" : "detail",
+			"messagesRequired" : "",
+			"caption" : "Detail"
+		},
+		{
+			"isNull" : "true",
+			"name" : "spesifikasi",
+			"messagesRequired" : "",
+			"caption" : "Spesifikasi"
+		},
+		{
+			"isNull" : "true",
+			"name" : "volume",
+			"messagesRequired" : "",
+			"caption" : "Volume"
+		},
+		{
+			"isNull" : "true",
+			"name" : "unit",
+			"messagesRequired" : "",
+			"caption" : "Unit"
+		},
+		{
+			"isNull" : "true",
+			"name" : "hargaSatuan",
+			"messagesRequired" : "",
+			"caption" : "Harga Satuan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "total",
+			"messagesRequired" : "",
+			"caption" : "Total"
+		},
+		{
+			"isNull" : "true",
+			"name" : "jenisBelanja",
+			"messagesRequired" : "",
+			"caption" : "Jenis Belanja"
+		},
+		{
+			"isNull" : "true",
+			"name" : "jenisPengadaan",
+			"messagesRequired" : "",
+			"caption" : "Jenis Pengadaan"
+		},{
+			"isNull" : "true",
+			"name" : "tujuanPengiriman",
+			"messagesRequired" : "",
+			"caption" : "Tujuan Pengiriman"
+		},{
+			"isNull" : "true",
+			"name" : "namaProduk",
+			"messagesRequired" : "",
+			"caption" : "Nama Produk"
+		},{
+			"isNull" : "true",
+			"name" : "lokasi",
+			"messagesRequired" : "",
+			"caption" : "Lokasi"
+		}
+
+	]
+}

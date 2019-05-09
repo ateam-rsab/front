@@ -1,0 +1,48 @@
+<div ng-controller="DaftarPembayaranPiutangPerusahaanCtrl"> 
+	<div ng-show="dataVOloaded">
+		<!-- <c-panel item="item" header="'Daftar Collecting Piutang'" disabled> -->
+		<div class="grid_12 headerBox">
+			<h1 style="color: white;"><b>LAPORAN PEMBAYARAN PIUTANG PERUSAHAAN</b></h1>
+		</div>
+		<!-- <div class="grid_12 headerBox">
+			<p>Daftar Kartu Piutang Pasien</p>
+		</div> -->
+		<div class="grid_12 borderBox">
+			<div id="kGrid" kendo-grid 
+			k-data-source="dataSource" 
+			k-selectable="'row'" 
+			options="option"
+			k-ng-model="dataSelected">
+		</div>
+
+	</div>
+	<div class="grid_12">
+		<div class="grid_12" style="margin-top: 10px">
+			<div class="grid_1" style="margin-left: 10px">
+				<label c-label item="item" style="text-align: left;font-size: 20px">Terbilang : </label>
+			</div>
+			<div class="grid_10">
+				<label c-label item="item" style="text-align: left;font-size: 20px;font-style: italic;">{{terbilang}}</label>
+			</div>
+		</div>
+		<!-- <div class="grid_1">
+			<label c-label item="item" style="margin-top: 10px;text-align: left;font-size: 20px">Total : </label>
+		</div> -->
+		<!-- <div class="grid_2">
+			<label c-label item="item" style="margin-top: 10px;text-align: left;font-size: 20px">{{formatRupiah(totalBayar,"Rp. ", false)}}</label>
+		</div> -->
+	</div>
+	<div class="grid_12">
+		<div class="grid_8"></div>
+		<div class="grid_2">
+			<button class="c-button" ng-click="cetak()">Cetak</button>
+		</div>
+		<div class="grid_2">
+			<button class="c-button" is-back>Kembali</button>
+		</div>
+	</div>
+	<div class="grid_12" style="margin-top:60px">
+      <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+    </div>
+</div>
+</div>

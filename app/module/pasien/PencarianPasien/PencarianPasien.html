@@ -1,0 +1,97 @@
+<div ng-controller="PencarianPasienCtrl">
+    <div style="position:relative;" ng-show="dataVOloaded">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="grid_12">
+                    <div class="panel panel-default panel-white">
+                        <div class="panel-heading-white"><span class="title" c-translate>    Parameter Pencarian</span></div>
+                        <div class="panel-body">
+                            <div class="grid_4">
+                                <div class="grid_12">
+                                    <label c-label c-label-text="TanggalDaftar" real></label>
+                                </div>
+
+                                <div class="grid_12">
+                                    <div class="grid_6">
+                                        <input style="width: 100%" k-max='now' k-value='now' k-ng-model="item.from" kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                                    </div>
+                                    <div class="grid_6">
+                                        <input style="width: 100%" k-max='now' k-value='now' kendo-date-picker k-ng-model="item.until" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid_8">
+                                <div class="grid_4">
+                                    <label c-label c-label-text="masukanNamaPasienAtauNoRM" real></label>
+                                    <input c-text-box type="input" filter="'contain'" class="k-textbox" ng-model="item.noCm" />
+                                </div>
+                                <div class="grid_4">
+                                    <label c-label c-label-text="masukanTanggalLahir" real></label>
+                                    <input style="width: 100%" kendo-date-picker placeholer="dd-mm-yyyy" k-ng-model="item.tglLahir" k-format="'dd-MM-yyyy'" />
+                                </div>
+                                <div class="grid_4">
+                                    <label c-label c-label-text="masukanNamaAyahKandung" real></label>
+                                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaAyahKandug" />
+                                </div>
+
+                            </div>
+                            <div class="grid_12">
+
+                                <button class="c-button" ng-click="find()">
+                             CARI</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_12">
+            <div class="panel panel-default panel-white">
+                <div class="panel-body">
+                    <div data-kendo-grid="grid" k-ng-model="data" options='mainGridOptions' k-data-source="listPasien" k-select='select' k-change='selectPasien' k-selectable="'row'" k-sortable="'true'" k-pageable="Page" k-columns="Column">
+                    </div>
+                    
+                    <!-- loading image -->
+                    <div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid_12 place_button" ng-show="isHide">
+            <div class="grid_4">
+                &nbsp;
+            </div>
+            <div class="grid_2">
+                <c-button class="cencel" ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" link="'#/Registrasi/Pelayanan/0000001'" item="item" position="'right'" is-validate click="KirimData">
+                    <span class="title"><label  c-label c-label-text='hapusData' font-size="13"></label></span>
+                </c-button>
+            </div>
+            <!--<div class="grid_2">
+                <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" link="'#/Registrasi/Pelayanan/0000001'" item="item" position="'right'" is-validate click="Lanjutkan">
+                    <span class="title"><label  c-label c-label-text='dataDetailPasien' font-size="13"></label></span>
+                </c-button>
+            </div>-->
+            <div class="grid_2">
+                <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" is-validate click="registrasiPelayanan">
+                    <span class="title"><label  c-label c-label-text='registrasiPelayanan' font-size="13"></label></span>
+                </c-button>
+            </div>
+            <div class="grid_2">
+                <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" is-validate click="registrasiPasien">
+                    <span class="title"><label  c-label c-label-text='registrasiPasien' font-size="13"></label></span>
+                </c-button>
+            </div>
+            <div class="grid_2">
+                <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" is-validate click="detailPasien">
+                    <span class="title"><label  c-label c-label-text='detailPasien' font-size="13"></label></span>
+                </c-button>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+</div>

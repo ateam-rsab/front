@@ -1,0 +1,91 @@
+{
+	"model":{
+	    "caraPengeluaran" : "",
+	    "volume" : "",
+		"konsentrasi" : "",
+		"motilitas": "",
+		"morfologi": "",
+		"konsentrasiSesudahReparasi" : "",
+		"jumlahSperma" : "",
+		"volume": "",
+		"tanggal": "",
+		"pukul": "",
+		"reInseminasi": "",
+		"catatan": ""
+	},
+    "attributes" : [{
+	        "name": "caraPengeluaran",
+	        "isNull": "true",
+	        "messagesRequired": "Cara Pengeluaran tidak boleh kosong",
+	        "caption": "Cara Pengeluaran"
+    	},	 
+		{
+			"name" : "volume",
+			"isNull" : "true",
+			"messagesRequired" : "Cara Pengeluaran Harus Diisi",
+			"caption" : "Volume"
+		},	 
+		{
+			"name" : "konsentrasi",
+			"isNull" : "true",
+			"messagesRequired" : "Konsentrasi Harus Diisi",
+			"caption" : "Konsentrasi"
+		},	 
+		{
+			"name" : "motilitas",
+			"isNull" : "true",
+			"messagesRequired" : "Motilitas Harus Diisi",
+			"caption" : "Motilitas"
+		},	 
+		{
+			"name" : "morfologi",
+			"isNull" : "true",
+			"messagesRequired" : "Morfologi Harus Diisi",
+			"caption" : "Morfologi"
+		},	 
+		{
+			"name" : "konsentrasiSesudahPreparasi",
+			"isNull" : "true",
+			"messagesRequired" : "Konsentrasi Sesudah Preparasi Harus Diisi",
+			"caption" : "Konsentrasi Sesudah Reparasi"
+		},	 
+		{
+			"name" : "jumlahSperma",
+			"isNull" : "true",
+			"messagesRequired" : "Jumlah Sperma Harus Diisi",
+			"caption" : "Jumlah Sperma"
+		},	 
+		{
+			"name" : "volume",
+			"isNull" : "true",
+			"messagesRequired" : "Volume Harus Diisi",
+			"caption" : "Volume"
+		},	 
+		{
+			"name" : "tanggal",
+			"isNull" : "true",
+			"type": "DATE",
+			"messagesRequired" : "Tanggal Harus Diisi",
+			"caption" : "Tanggal"
+		},	 
+		{
+			"name" : "pukul",
+			"isNull" : "true",
+			"messagesRequired" : "Pukul Harus Diisi",
+			"caption" : "Pukul"
+		},	 
+		{
+			"name" : "reInseminasi",
+			"isNull" : "true",
+			"messagesRequired" : "Reinseminasi Harus Diisi",
+			"caption" : "Reinseminasi"
+		},	 
+		{
+			"name" : "catatan",
+			"isNull" : "true",
+			"messagesRequired" : "Catatan Harus Diisi",
+			"caption" : "Catatan"
+		}
+		
+	]
+  }

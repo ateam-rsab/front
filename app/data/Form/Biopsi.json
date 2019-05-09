@@ -1,0 +1,59 @@
+{
+	"model":{
+	    "Lokasi" : "",
+	    "DiagnosisKlinik" : "",
+		
+	    "DiambilTanggal" : "",
+		 "Kelainan" : "",
+		  "Mikroskopik" : "",
+		 "KeteranganKlinik" : "",
+		  "DiisiOlehLaboratorium" : "",
+		  "Tanggal":""
+		 
+		
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "Lokasi",
+			"messagesRequired" : "Lokasi Harus Diisi",
+			"caption" : "Lokasi"
+		},
+		{
+			"isNull" : "true",
+			"name" : "DiagnosisKlinik",
+			"messagesRequired" : "Diagnosis Klinik Harus Diisi",
+			"caption" : "Diagnosis Klinik"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Kelainan",
+			"messagesRequired" : "Kelainan Harus Diisi",
+			"caption" : "Kelainan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Mikroskopik",
+			"messagesRequired" : "Mikroskopik Harus Diisi",
+			"caption" : "Mikroskopik"
+		},
+		{
+			"isNull" : "true",
+			"name" : "KeteranganKlinik",
+			"messagesRequired" : "KeteranganKlinik Harus Diisi",
+			"caption" : "Keterangan Klinik"
+		},
+		{
+			"isNull" : "true",
+			"name" : "DiisiOlehLaboratorium",
+			"messagesRequired" : "KarakteristikFeses Harus Diisi",
+			"caption" : "Diisi Oleh laboratorium"
+     	},
+	    {
+			"isNull" : "true",
+			"name" : "Tanggal",
+			"messagesRequired" : "Tanggal Harus Diisi",
+			"caption" : "Tanggal"
+     }
+  ]
+}

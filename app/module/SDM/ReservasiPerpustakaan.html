@@ -1,0 +1,168 @@
+
+
+<div ng-show="dataVOloaded">
+	<c-panel item="item" header="'Reservasi'"disabled>
+		<div class="grid_6">
+			<div class="panel panel-default container_12">
+
+				<div class="grid_12">
+					<div class="grid_4" style="margin: 10px 0 0 0;">
+						<label c-label item="item" c-label-text="No Anggota"></label>
+					</div>
+					<div class="grid_6">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nomoranggota" />
+					</div>
+					<div class="grid_2"  style="margin: 7px 0 0 0;">
+						<button class="c-button"  ng-click="cariAnggota()">
+
+						Cari</button>
+					</div>
+
+				</div>
+				<div class="grid_12">
+					<div class="grid_4" style="margin: 10px 0 0 0;">
+						<label c-label item="item" c-label-text="Tipe Keanggotaan"></label>
+					</div>
+					<div class="grid_8">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.tipekeanggotaanfk" ng-show="showanggota" /disabled>
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.tipekeanggotaan" /disabled>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_4" style="margin: 10px 0 0 0;">
+						<label c-label item="item" c-label-text="Nama"></label>
+					</div>
+					<div class="grid_8">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nama" /disabled>
+					</div>
+
+				</div>
+				<div class="grid_12">
+					<div class="grid_4" style="margin: 8px 0 0 0;">
+
+						<label><b>Judul Buku/ISSN</b></label>
+					</div>
+					<div class="grid_8">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.judulBuku" k-data-text-field="'judulbuku'" k-data-value-field="'norec'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJudulBuku" k-on-change='getEksemplar(item.judulBuku)'/>
+
+					</div>
+					
+				</div>
+
+			</div>
+		</div>
+		<!--		   </div>  -->
+		<div class="grid_6">	
+
+			<div class="grid_12">
+				<div class="grid_4" style="margin: 10px 0 0 0;">
+					<label c-label item="item" c-label-text="Kode Eksemplar"></label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kodeEksemplar" /disabled>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_4" style="margin: 10px 0 0 0;">
+					<label c-label item="item" c-label-text="Tanggal Pinjam"></label>
+				</div>
+				<div class="grid_8">
+					<input kendo-date-picker k-ng-model="item.tanggalPinjam" k-format="'dd-MM-yyyy'" style="width: 100%" />
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_4" style="margin: 10px 0 0 0;">
+					<label c-label item="item" c-label-text="Tanggal Harus Kembali"></label>
+				</div>
+				<div class="grid_8">
+					<input kendo-date-picker k-ng-model="item.tanggalKembali" k-format="'dd-MM-yyyy'" style="width: 100%"  disabled="true"  >
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.no"ng-show="noShow">
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_6"></div>
+				<div class="grid_6" style="margin-top: 10px">
+					<div class="grid_4">
+						<button class="btnTemplate1" ng-click="tambah()">Tambah</button>
+					</div>
+					<div class="grid_4">
+						<button class="btnTemplate1" ng-click="hapus()">Hapus</button>
+					</div>
+					<div class="grid_4">
+						<button class="btnTemplate1" ng-click="batal()">Batal</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</c-panel>
+
+
+	<div class="grid_12">
+		<kendo-grid id="kGrid"  k-data-source="sourceReservasi" k-pageable="true" k-selectable="'row'" k-columns="columnReservasi"  
+	k-ng-model="dataSelected"
+			ng-click="klikReserv(dataSelected)"
+		style="font-size: small;">
+		</kendo-grid>
+
+	</div>
+
+	<div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+</div>
+
+</div>
+<div kendo-window="popupAnggota" k-title="'Cari Anggota'" k-width="900" k-height="400" k-visible="false">
+	<div class="panel panel-default container_12" style="padding: 0px 10px;"> 
+		<div class="panel-body">
+			<div class="grid_12" style="margin-top: 10px">
+				<div class="grid_2">
+					<div class="grid_12" >
+						<label c-label item="item" c-label-text="No Anggota"></label>
+					</div>
+					<div class="grid_12">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="popup.nomorAnggota" >
+					</div>
+				</div>
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Nama Anggota"></label>
+					</div>
+					<div class="grid_12">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="popup.namaAnggota" >
+					</div>
+				</div>
+				<div class="grid_1">
+
+					<label c-label c-label-text=""></label>
+					<!-- <em style="margin-top:6px;" ng-click='Search()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-search">Refresh</span></em> -->
+					<em style="margin-top:6px;" ng-click='resetFilter()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Reset</span></em>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="grid_12">
+			<div class="grid_12 borderBox">
+				<div data-kendo-grid="grid" id="kgridAnggota" k-ng-model="item" k-data-source="sourceAnggota"  k-pageable="true" k-selectable="'row'" k-columns="columnAnggota"  style="font-size: small;">
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<style>
+.k-grid .k-grid-header .k-header .k-link {
+	height: auto;
+}
+
+.k-grid .k-grid-header .k-header  {
+	white-space: normal;
+}
+.k-grid .k-grid-header .k-header  {
+	text-align: center;
+}
+</style>

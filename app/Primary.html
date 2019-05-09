@@ -1,0 +1,50 @@
+<div ng-controller="MainCtrl">
+    <div class="grid_6">
+        <div class="panel panel-default panel-white">
+            <div class="panel-heading-white"><span class="title" c-translate>Monitoring Stok Obat</span></div>
+            <div class="panel-body">
+                <div class="grid_12" style="margin-bottom:5px">
+                    <label c-label item="item" c-label-text="NamaBarang"></label>
+                </div>
+                <div class="grid_12">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="tempItem.NamaBarang" k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listNamaBarang" />
+                </div>
+                <div class="grid_12">
+                    <table>
+                        <tr>
+                            <th>Tanggal</th>
+                            <th>Keterangan</th>
+                            <th>Masuk</th>
+                            <th>Keluar</th>
+                            <th>Saldo Akhir</th>
+                        </tr>
+                        <tr ng-repeat="data in listStok">
+                            <td>{{data.tglKejadian| date:'dd-MM-yyyy HH:mm:ss'}}</td>
+                            <td>{{data.keterangan}}</td>
+                            <td><span ng-hide="data.keterangan!=='Stok Op Name'">{{data.jumlah}}</span>
+                                <span ng-hide="data.keterangan==='Stok Op Name'">0</span></td>
+                            <td> <span ng-hide="data.keterangan!=='Stok Op Name'">0</span>
+                                <span ng-hide="data.keterangan==='Stok Op Name'">{{data.jumlah}}</span></td>
+                            <td>
+                                <span ng-hide="data.keterangan!=='Stok Op Name'">{{data.jumlah}}</span>
+                                <span ng-hide="data.keterangan==='Stok Op Name'">{{data.saldoAwal-data.jumlah}}</span></td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="grid_3">
+        <div class="panel panel-default panel-white">
+            <div class="panel-heading-white"><span class="title" c-translate>Aktifitas Pegawai</span></div>
+            <div class="panel-body">
+                <div class="grid_12" ng-repeat="data in listIki">
+                    <span class="c-label">{{data.tanggalKejadian| date:'dd-MM-yyyy HH:mm:ss'}}</span>
+                    <span class="detail">{{data.pegawai.namaLengkap}}</span>
+                    <span> {{data.keterangan}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+<style type="text/css">
+    .style-four {
+    	height: 5px;
+    	border: 0;
+    	box-shadow: inset 0 14px 12px -12px rgba(0, 0, 0, 0.5);
+	}
+</style>
+<div ng-controller="DaftarMappingInfectionAndNonCtrl">
+	<div ng-show="dataVOloaded">
+		<center><c-panel item="item" header="'Daftar Bahan Baku By Infection And Non Infection'"disabled></center>
+			   <!--Pencarian  -->
+	    <div class="grid_12" style="margin-top: 15px">
+	   		<div class="grid_1"></div>
+			<div class="grid_1" style="margin-top: 10px">
+				<label c-label item="item">Pencarian :</label>
+			</div>
+			<div class="grid_2">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.JenisPencucian" k-data-source="sourceJenisLinen" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-on-change="ChangePencucian(item.JenisPencucian)" />
+			</div>
+			<div class="grid_6">
+			 <input class=k-textbox type=text ng-model="item.pencarian" style="font-style: italic; font-weight: bold;" placeholder="Jenis Linen / Produk / Nama Mesin" />
+			</div>
+			<div class="grid_1" style="margin-top: 5px">
+				<button class="c-button cancel" ng-click="ClearCari()">Clear</button>
+			</div>
+	    </div>
+		<div class="grid_12">
+			<div class="panel panel-default container_12">
+			    <div class="grid_12" >
+			            <div class="panel panel-default container_12">
+							<div id="grid" kendo-grid
+								options="mainGridOptions"
+								k-data-source="dataSourceMasterMapping" 
+								k-selectable="'row'" 
+								k-columns="columnDataAlat"
+								k-pageable="'true'"
+								k-sortable="'true'"
+								k-ng-model="dataSelected" 
+								ng-click="klik2(dataSelected)">
+							</div>
+			            </div>
+		             <div class="grid_12">
+		             	<div class="grid_10"></div>
+		             	<div class="grid_2">
+		             		<button class="c-button success" ng-click="Input()">Input</button>
+		             	</div>
+		            </div>
+				   <div class="grid_12">
+				   		<br><hr class="style-four">
+				   		<div class="grid_12" style="margin-bottom: 35px">
+				   			<br>
+				   		</div>
+				   </div>
+			   <div class="grid_12"><br></div>
+			</div> 
+	    </div>
+	   </div>
+	</div>
+		</c-panel>
+
+<style type="text/css">
+.gambarAset {
+    width: 60%;
+    height: 100%;
+    border: 1px solid grey;
+}
+			

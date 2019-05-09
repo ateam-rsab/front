@@ -1,0 +1,328 @@
+////header nya
+define(['initialize'], function(initialize) {
+	'use strict';
+initialize.controller('PemeriksaanTumbuhKembangCtrl', ['$q', '$rootScope', '$scope', 'IPSRSService',
+ function($q, $rootScope, $scope,IPSRSService) {
+ $scope.item = {};
+ $scope.dataVOloaded = true;
+ $scope.now = new Date();
+ var init = function () {
+IPSRSService.getFieldsMasterTable("get-data-master?className=PemeriksaanTumbuhKembang", true).then(function(dat){
+$scope.listDataMaster = dat.data.data.PemeriksaanTumbuhKembang;
+                                    					
+$scope.dataSource = new kendo.data.DataSource({
+pageSize: 10,
+data: $scope.listDataMaster,
+autoSync: true
+
+});
+
+});
+}
+init();
+
+
+
+
+$scope.columnPemeriksaanTumbuhKembang = [
+{
+"field": "No",
+"title": "No"
+},
+{
+"field": "kondisiUmum",
+"title": "kondisi Umum"
+},
+{
+"field": "kondisiUmumId",
+"title": "kondisi Umum Id"
+},
+{
+"field": "kontakInterpersonal",
+"title": "kontak Interpersonal"
+},
+{
+"field": "kontakInterpersonalId",
+"title": "kontak Interpersonal Id"
+},
+{
+"field": "keaktifan",
+"title": "keaktifan"
+},
+{
+"field": "keaktifanId",
+"title": "keaktifan Id"
+},
+{
+"field": "kepalaUbunUbunBesar",
+"title": "kepala Ubun Ubun Besar"
+},
+{
+"field": "kepalaUbunUbunBesarId",
+"title": "kepala Ubun Ubun Besar Id"
+},
+{
+"field": "wajah",
+"title": "wajah"
+},
+{
+"field": "wajahId",
+"title": "wajah Id"
+},
+{
+"field": "kelainanTingkahLaku",
+"title": "kelainan Tingkah Laku"
+},
+{
+"field": "motorikKasar",
+"title": "motorik Kasar"
+},
+{
+"field": "motorikKasarUmur",
+"title": "motorik Kasar Umur"
+},
+{
+"field": "motorikHalus",
+"title": "motorik Halus"
+},
+{
+"field": "motorikHalusUmur",
+"title": "motorik Halus Umur"
+},
+{
+"field": "bicaraExspresif",
+"title": "bicara Exspresif"
+},
+{
+"field": "bicaraExspresifUmur",
+"title": "bicara Exspresif Umur"
+},
+{
+"field": "reseptif",
+"title": "reseptif"
+},
+{
+"field": "reseptifUmur",
+"title": "reseptif Umur"
+},
+{
+"field": "kognisis",
+"title": "kognisis"
+},
+{
+"field": "kognisisUmur",
+"title": "kognisis Umur"
+},
+{
+"field": "sosialisasi",
+"title": "sosialisasi"
+},
+{
+"field": "sosialisasiUmur",
+"title": "sosialisasi Umur"
+},
+{
+"field": "perilaku",
+"title": "perilaku"
+},
+{
+"field": "perilakuUmur",
+"title": "perilaku Umur"
+},
+{
+"field": "organArtikulasiBibir",
+"title": "organ Artikulasi Bibir"
+},
+{
+"field": "organArtikulasiLidah",
+"title": "organ Artikulasi Lidah"
+},
+{
+"field": "organArtikulasiPelatum",
+"title": "organ Artikulasi Pelatum"
+},
+{
+"field": "gigiGeligi",
+"title": "gigi Geligi"
+},
+{
+"field": "keteranganWajah",
+"title": "keterangan Wajah"
+},
+{
+"field": "statusEnabled",
+"title": "status Enabled"
+},
+
+{
+	"title" : "Action",
+	"width" : "200px",
+	"template" : "<button class='btnEdit' ng-click='enableData()'>Enable</button>"+
+"<button class='btnHapus' ng-click='disableData()'>Disable</button>"
+}
+];
+$scope.mainGridOptions = { 
+ pageable: true,
+ columns: $scope.columnPemeriksaanTumbuhKembang,
+ editable: "popup",
+ selectable: "row",
+ scrollable: false
+ };
+////fungsi klik untuk edit
+ $scope.klik = function(current){
+$scope.showEdit = true;
+$scope.current = current;
+$scope.item.kondisiUmum = current.kondisiUmum;
+$scope.item.kondisiUmumId = current.kondisiUmumId;
+$scope.item.kontakInterpersonal = current.kontakInterpersonal;
+$scope.item.kontakInterpersonalId = current.kontakInterpersonalId;
+$scope.item.keaktifan = current.keaktifan;
+$scope.item.keaktifanId = current.keaktifanId;
+$scope.item.kepalaUbunUbunBesar = current.kepalaUbunUbunBesar;
+$scope.item.kepalaUbunUbunBesarId = current.kepalaUbunUbunBesarId;
+$scope.item.wajah = current.wajah;
+$scope.item.wajahId = current.wajahId;
+$scope.item.kelainanTingkahLaku = current.kelainanTingkahLaku;
+$scope.item.motorikKasar = current.motorikKasar;
+$scope.item.motorikKasarUmur = current.motorikKasarUmur;
+$scope.item.motorikHalus = current.motorikHalus;
+$scope.item.motorikHalusUmur = current.motorikHalusUmur;
+$scope.item.bicaraExspresif = current.bicaraExspresif;
+$scope.item.bicaraExspresifUmur = current.bicaraExspresifUmur;
+$scope.item.reseptif = current.reseptif;
+$scope.item.reseptifUmur = current.reseptifUmur;
+$scope.item.kognisis = current.kognisis;
+$scope.item.kognisisUmur = current.kognisisUmur;
+$scope.item.sosialisasi = current.sosialisasi;
+$scope.item.sosialisasiUmur = current.sosialisasiUmur;
+$scope.item.perilaku = current.perilaku;
+$scope.item.perilakuUmur = current.perilakuUmur;
+$scope.item.organArtikulasiBibir = current.organArtikulasiBibir;
+$scope.item.organArtikulasiLidah = current.organArtikulasiLidah;
+$scope.item.organArtikulasiPelatum = current.organArtikulasiPelatum;
+$scope.item.gigiGeligi = current.gigiGeligi;
+$scope.item.keteranganWajah = current.keteranganWajah;
+$scope.item.noRec = current.noRec;
+$scope.item.statusEnabled = current.statusEnabled;
+};
+$scope.disableData=function(){
+ IPSRSService.getClassMaster("delete-master-table?className=PemeriksaanTumbuhKembang&&id="+$scope.item.id+"&&statusEnabled=false").then(function(dat){
+ init();
+ });
+ };
+$scope.enableData=function(){
+ IPSRSService.getClassMaster("delete-master-table?className=PemeriksaanTumbuhKembang&&id="+$scope.item.id+"&&statusEnabled=true").then(function(dat){
+ init();
+
+	});
+};
+
+$scope.tambah = function()
+ {
+var data = {
+	"class": "PemeriksaanTumbuhKembang",
+	"listField": {
+"kondisiUmum": $scope.item.kondisiUmum,
+"kondisiUmumId": $scope.item.kondisiUmumId,
+"kontakInterpersonal": $scope.item.kontakInterpersonal,
+"kontakInterpersonalId": $scope.item.kontakInterpersonalId,
+"keaktifan": $scope.item.keaktifan,
+"keaktifanId": $scope.item.keaktifanId,
+"kepalaUbunUbunBesar": $scope.item.kepalaUbunUbunBesar,
+"kepalaUbunUbunBesarId": $scope.item.kepalaUbunUbunBesarId,
+"wajah": $scope.item.wajah,
+"wajahId": $scope.item.wajahId,
+"kelainanTingkahLaku": $scope.item.kelainanTingkahLaku,
+"motorikKasar": $scope.item.motorikKasar,
+"motorikKasarUmur": $scope.item.motorikKasarUmur,
+"motorikHalus": $scope.item.motorikHalus,
+"motorikHalusUmur": $scope.item.motorikHalusUmur,
+"bicaraExspresif": $scope.item.bicaraExspresif,
+"bicaraExspresifUmur": $scope.item.bicaraExspresifUmur,
+"reseptif": $scope.item.reseptif,
+"reseptifUmur": $scope.item.reseptifUmur,
+"kognisis": $scope.item.kognisis,
+"kognisisUmur": $scope.item.kognisisUmur,
+"sosialisasi": $scope.item.sosialisasi,
+"sosialisasiUmur": $scope.item.sosialisasiUmur,
+"perilaku": $scope.item.perilaku,
+"perilakuUmur": $scope.item.perilakuUmur,
+"organArtikulasiBibir": $scope.item.organArtikulasiBibir,
+"organArtikulasiLidah": $scope.item.organArtikulasiLidah,
+"organArtikulasiPelatum": $scope.item.organArtikulasiPelatum,
+"gigiGeligi": $scope.item.gigiGeligi,
+"keteranganWajah": $scope.item.keteranganWajah,
+}
+	}
+ IPSRSService.saveDataMaster(data,"save-master-table").then(function(e) {
+console.log(JSON.stringify(e.data));
+init();
+$scope.item = {};
+ });
+  }
+
+ $scope.edit = function()
+  {	
+   var data = {
+ "class": "PemeriksaanTumbuhKembang",
+	"listField": {
+"kondisiUmum": $scope.item.kondisiUmum,
+"kondisiUmumId": $scope.item.kondisiUmumId,
+"kontakInterpersonal": $scope.item.kontakInterpersonal,
+"kontakInterpersonalId": $scope.item.kontakInterpersonalId,
+"keaktifan": $scope.item.keaktifan,
+"keaktifanId": $scope.item.keaktifanId,
+"kepalaUbunUbunBesar": $scope.item.kepalaUbunUbunBesar,
+"kepalaUbunUbunBesarId": $scope.item.kepalaUbunUbunBesarId,
+"wajah": $scope.item.wajah,
+"wajahId": $scope.item.wajahId,
+"kelainanTingkahLaku": $scope.item.kelainanTingkahLaku,
+"motorikKasar": $scope.item.motorikKasar,
+"motorikKasarUmur": $scope.item.motorikKasarUmur,
+"motorikHalus": $scope.item.motorikHalus,
+"motorikHalusUmur": $scope.item.motorikHalusUmur,
+"bicaraExspresif": $scope.item.bicaraExspresif,
+"bicaraExspresifUmur": $scope.item.bicaraExspresifUmur,
+"reseptif": $scope.item.reseptif,
+"reseptifUmur": $scope.item.reseptifUmur,
+"kognisis": $scope.item.kognisis,
+"kognisisUmur": $scope.item.kognisisUmur,
+"sosialisasi": $scope.item.sosialisasi,
+"sosialisasiUmur": $scope.item.sosialisasiUmur,
+"perilaku": $scope.item.perilaku,
+"perilakuUmur": $scope.item.perilakuUmur,
+"organArtikulasiBibir": $scope.item.organArtikulasiBibir,
+"organArtikulasiLidah": $scope.item.organArtikulasiLidah,
+"organArtikulasiPelatum": $scope.item.organArtikulasiPelatum,
+"gigiGeligi": $scope.item.gigiGeligi,
+"keteranganWajah": $scope.item.keteranganWajah,
+"noRec": $scope.item.noRec,
+"statusEnabled": $scope.item.statusEnabled
+ }
+ }
+IPSRSService.saveDataMaster(data,"update-master-table").then(function(e){console.log(JSON.stringify(e.data));
+init();
+});
+}
+$scope.batal = function () {
+$scope.showEdit = false;
+$scope.item = {};
+}
+IPSRSService.getFieldListData("KondisiUmum&select=id,namaExternal", true).then(function(dat){
+$scope.listkondisiumum= dat.data;
+});
+IPSRSService.getFieldListData("KontakInterpersonal&select=id,namaExternal", true).then(function(dat){
+$scope.listkontakinterpersonal= dat.data;
+});
+IPSRSService.getFieldListData("Keaktifan&select=id,namaExternal", true).then(function(dat){
+$scope.listkeaktifan= dat.data;
+});
+IPSRSService.getFieldListData("KepalaUbunUbunBesar&select=id,namaExternal", true).then(function(dat){
+$scope.listkepalaubunubunbesar= dat.data;
+});
+IPSRSService.getFieldListData("Wajah&select=id,namaExternal", true).then(function(dat){
+$scope.listwajah= dat.data;
+});
+}
+]);
+});

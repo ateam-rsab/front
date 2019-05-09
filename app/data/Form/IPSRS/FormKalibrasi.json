@@ -1,0 +1,155 @@
+{
+	"model":{
+		"mulaiDiperiksaTanggal" : "",
+		"analisaTeknisi":"",
+		"analisaKerusakan":"",
+		"petugasTeknisi":"",
+		"namaUser":"",
+		"noOrder" : "",
+		"kodeBarang":"",
+		"namaBarang":"",
+		"tglPesan": "",
+		"jam":"",
+		"merk" :"",
+		"type" : "",
+	    "noSeri" : "",
+	    "kerusakan" : "",
+		"user":"",
+		"mulaiDiperiksaTanggal":"",
+		"jam": "",
+		"analisaTeknisi":"",
+		"pilihTeknisi" :"",
+		"keteranganRespond" : "",
+	    "analisaKerusakan" : "",
+	    "status" : "",
+	    "namaUser" : "",
+	    "namaPT" : ""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "mulaiDiperiksaTanggal",
+			"messagesRequired" : "",
+			"caption" : "Mulai Diperiksa Tanggal"
+		},{
+			"isNull" : "true",
+			"name" : "analisaTeknisi",
+			"messagesRequired" : "",
+			"caption" : "Analisa Teknisi"
+		},{
+			"isNull" : "true",
+			"name" : "analisaKerusakan",
+			"messagesRequired" : "",
+			"caption" : "Analisa Kerusakan"
+		},{
+			"isNull" : "true",
+			"name" : "petugasTeknisi",
+			"messagesRequired" : "",
+			"caption" : "Petugas Teknisi"
+		}
+		,{
+			"isNull" : "true",
+			"name" : "namaUser",
+			"messagesRequired" : "",
+			"caption" : "Nama User"
+		},{
+			"isNull" : "true",
+			"name" : "noOrder",
+			"messagesRequired" : "",
+			"caption" : "No Order"
+		},{
+			"isNull" : "true",
+			"name" : "kodeBarang",
+			"messagesRequired" : "",
+			"caption" : "Kode Barang"
+		},{
+			"isNull" : "true",
+			"name" : "namaBarang",
+			"messagesRequired" : "",
+			"caption" : "Nama Barang"
+		},{
+			"isNull" : "true",
+			"name" : "tglPesan",
+			"messagesRequired" : "",
+			"caption" : "Tgl Pesan"
+		},{
+			"isNull" : "true",
+			"name" : "jam",
+			"messagesRequired" : "",
+			"caption" : "Jam"
+		},{
+			"isNull" : "true",
+			"name" : "merk",
+			"messagesRequired" : "",
+			"caption" : "Merk"
+		},{
+			"isNull" : "true",
+			"name" : "type",
+			"messagesRequired" : "",
+			"caption" : "Type"
+		},{
+			"isNull" : "true",
+			"name" : "noSeri",
+			"messagesRequired" : "",
+			"caption" : "No Seri"
+		},{
+			"isNull" : "true",
+			"name" : "kerusakan",
+			"messagesRequired" : "",
+			"caption" : "Kerusakan"
+		},{
+			"isNull" : "true",
+			"name" : "user",
+			"messagesRequired" : "",
+			"caption" : "User"
+		},{
+			"isNull" : "true",
+			"name" : "mulaiDiperiksaTanggal",
+			"messagesRequired" : "",
+			"caption" : "Mulai Diperiksa Tanggal"
+		},{
+			"isNull" : "true",
+			"name" : "jam",
+			"messagesRequired" : "",
+			"caption" : "Jam"
+		},{
+			"isNull" : "true",
+			"name" : "analisaTeknisi",
+			"messagesRequired" : "",
+			"caption" : "Analisa Teknisi"
+		},{
+			"isNull" : "true",
+			"name" : "pilihTeknisi",
+			"messagesRequired" : "",
+			"caption" : "Pilih Teknisi"
+		},{
+			"isNull" : "true",
+			"name" : "keteranganRespond",
+			"messagesRequired" : "",
+			"caption" : "Keterangan Respond"
+		},{
+			"isNull" : "true",
+			"name" : "analisaKerusakan",
+			"messagesRequired" : "",
+			"caption" : "Analisa Kerusakan"
+		},{
+			"isNull" : "true",
+			"name" : "satatus",
+			"messagesRequired" : "",
+			"caption" : "Status"
+		},{
+			"isNull" : "true",
+			"name" : "namaUser",
+			"messagesRequired" : "",
+			"caption" : "Nama User"
+		},{
+			"isNull" : "true",
+			"name" : "namaPT",
+			"messagesRequired" : "",
+			"caption" : "Nama PT"
+		}
+
+	]
+}

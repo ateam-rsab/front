@@ -1,0 +1,13 @@
+{
+	"model":{
+	    "namaGenerik" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "namaGenerik",
+			"messagesRequired" : "",
+			"caption" : "Nama Generik"
+		}
+  ]
+}

@@ -1,0 +1,138 @@
+<div ng-controller="KeluhanPelangganCtrl">
+
+	<div ng-show="dataVOloaded">
+
+		<c-panel item="item" header="'Keluhan Pelanggan'">
+			
+				
+			<div class="grid_6">
+			<div class="grid_12">
+			<div class="grid_6" style="margin: 0 0 5px 0;">
+	                    <label c-label item="item" c-label-text="Nama Pasien"></label>
+	                </div>
+			
+			<div class="grid_6" style="margin: 0 0 5px 0;">
+			 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPasien" />
+			</div>
+			<div class="grid_6" style="margin: 0 0 5px 0;">
+	                    <label c-label item="item" c-label-text="No Rm"></label>
+	                </div>
+			
+			<div class="grid_6" style="margin: 0 0 5px 0;">
+			 <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noRm" />
+			</div>
+			
+			<div class="grid_6" style="margin: 0 0 5px 0;">
+	                    <label c-label item="item" c-label-text="Umur"></label>
+	                </div>
+					 <div class="grid_5" style="margin: 0 0 5px 0;">
+	                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.umur" />
+	                </div>
+					<div class="grid_1" style="margin: 0 0 5px 0;">
+	                    <label> tahun </label>
+	                </div>
+					<div class="grid_6" style="margin: 0 0 5px 0;">
+	                  <label c-label item="item" c-label-text="Email"></label> 
+					  
+	                </div>
+			
+	
+					 <div class="grid_6" style="margin: 0 0 5px 0;">
+	                   <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.email" />
+	                </div>
+					</div>
+					</div>
+					<div class="grid_6">
+					<div class="grid_6" style="margin: 0 0 5px 0;">
+	                  <label c-label item="item" c-label-text="Alamat"></label>  
+	                </div>
+					 <div class="grid_6" style="margin: 0 0 5px 0;">
+	                   <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.alamat" />
+	                </div>
+					<div class="grid_6" style="margin: 0 0 5px 0;">
+	                  <label c-label item="item" c-label-text="Telepon/HP"></label>  
+	                </div>
+					 <div class="grid_6" style="margin: 0 0 5px 0;">
+	                   <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noTlp" />
+	                </div>
+					<div class="grid_6" style="margin: 0 0 5px 0;">
+	                  <label c-label item="item" c-label-text="Lokasi keluhan"></label>  
+	                </div>
+					 <div class="grid_6" style="margin: 0 0 5px 0;">
+	                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="LokasiKeluhan" />
+	                </div>
+					<div class="grid_6" style="margin: 0 0 5px 0;">
+	                  <label c-label item="item" c-label-text="Pekerjaan"></label>  
+	                </div>
+					 <div class="grid_6" style="margin: 0 0 5px 0;">
+	                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.pekerjaan" k-data-text-field="'pekerjaan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="Pekerjaan" />
+	                </div>
+					
+			
+			
+             
+			</div>
+			
+			</div>
+           
+			 <div class="grid_12" style="margin: 0 0 5px 0;">
+			<div class="grid_6" style="margin: 0 0 5px 0;">
+                <label c-label item="item" c-label-text="Keluhan"></label>
+	            </div>
+	            <div class="grid_12">
+	                 <textarea ng-model="item.keluhan" style="width: 99%; height: 80px;"></textarea>      
+	            </div>
+				<div class="grid_6" style="margin: 0 0 5px 0;">
+                <label c-label item="item" c-label-text="Saran"></label>
+	            </div>
+	            <div class="grid_12">
+	                 <textarea ng-model="item.saran" style="width: 99%; height: 80px;"></textarea>      
+	            </div>
+				</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 
+			
+			
+			
+			
+			
+          
+           
+
+            <!-- grid table -->
+			
+            <div class="clear"></div>
+			
+           
+			
+			
+			
+		</c-panel>
+
+		<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+
+</div>
+
+</div>
+

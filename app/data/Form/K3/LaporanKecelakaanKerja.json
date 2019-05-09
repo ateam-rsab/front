@@ -1,0 +1,41 @@
+{
+	"model":{
+		"tempatKejadian" : "",
+		"awalKejadian":"",
+		"kondisiSaatKejadian":"",
+		"tindakanPertolongan":"",
+		"penolongPertama":""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "tempatKejadian",
+			"messagesRequired" : "",
+			"caption" : "Tempat Kejadian"
+		},{
+			"isNull" : "true",
+			"name" : "awalKejadian",
+			"messagesRequired" : "",
+			"caption" : "Awal Kejadian"
+		},{
+			"isNull" : "true",
+			"name" : "kondisiSaatKejadian",
+			"messagesRequired" : "",
+			"caption" : "Kondisi Saat Kejadian"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tindakanPertolongan",
+			"messagesRequired" : "",
+			"caption" : "Tindakan Pertolongan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "penolongPertama",
+			"messagesRequired" : "",
+			"caption" : "Penolong Pertama"
+		}
+
+	]
+}

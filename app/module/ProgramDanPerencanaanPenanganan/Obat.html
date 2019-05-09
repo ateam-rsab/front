@@ -1,0 +1,52 @@
+
+<div ng-controller="ObatCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="title">
+			
+				
+			<div class="grid_1" style="margin-bottom:5px">
+				<label c-label item="item" c-label-text="jenisObat"></label>
+			</div>
+			<div class="grid_2">
+				 <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisObat" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisObat" />
+			</div>
+			
+            <div class="grid_1" style="margin-bottom:5px">
+				<label c-label item="item" c-label-text="namaObat"></label>
+			</div>
+			<div class="grid_2">
+				 <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaObat" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listNamaObat" />
+			</div>
+            <div class="grid_1" style="margin-bottom:5px">
+                    <label c-label item="item" c-label-text="keterangan"></label>
+                </div>
+                <div class="grid_5">
+                    <textarea style="height: 40px" id="text_area" c-text-box type="input" class="k-textbox" ng-model="item.keterangan" />
+                </div>
+			<div class="clear"></div>
+			
+	        <div class="grid_12">
+	            	<div class="grid_2" style="float:right">
+	                    <c-button click="addDataToRow" style="width:100% font-size: 24px; padding:0px, margin:0px; !important" is-validate >
+                             <span class="title">Simpan</span>
+                        </c-button>
+                	</div>
+        			<div class="grid_2" style="float:right">
+	                    <c-button click="reset" style="width:100% font-size: 24px; padding:0px, margin:0px; !important" is-validate >
+                             <span class="title">Batal</span>
+                        </c-button>
+                	</div>
+	        </div>
+            
+	        <div class="clear"></div>
+
+	        <div class="grid_12" style="margin-bottom: 30px;">
+               		<div kendo-grid k-data-source="dataRow" k-selectable="'row'" k-columns="columnData">
+                	</div>
+            </div>
+            <div class="clear"></div>	
+
+			
+		</c-panel>
+	</div>
+</div>

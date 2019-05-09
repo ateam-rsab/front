@@ -1,0 +1,118 @@
+{
+	"model":{
+		"namaBarang" : "",
+		"merk" : "",
+		"type" : "",
+		"noSeri" : "",
+		"alamat" : "",
+		"noTelepon" : "",
+		"tglPerbaikan":"",
+		"kondisiBarang":"",
+		"statusPekerjaan":"",
+		"jenisPekerjaan":"",
+		"keterangan":"",
+		"namaPT":"",
+		"namaTeknisiInternal":"",
+		"ketepatanWaktu":"",
+		"hasilService":"",
+		"namaSukuCadang":"",
+		"frekuensiKerusakan":"",
+		"tindakLanjutComplain":""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "namaBarang",
+			"messagesRequired" : "",
+			"caption" : "Nama Barang"
+		},{
+			"isNull" : "true",
+			"name" : "kondisiBarang",
+			"messagesRequired" : "",
+			"caption" : "Kondisi Barang"
+		},{
+			"isNull" : "true",
+			"name" : "statusPekerjaan",
+			"messagesRequired" : "",
+			"caption" : "Status Pekerjaan"
+		},{
+			"isNull" : "true",
+			"name" : "jenisPekerjaan",
+			"messagesRequired" : "",
+			"caption" : "Jenis Pekerjaan"
+		},{
+			"isNull" : "true",
+			"name" : "keterangan",
+			"messagesRequired" : "",
+			"caption" : "Keterangan"
+		},{
+			"isNull" : "true",
+			"name" : "merk",
+			"messagesRequired" : "",
+			"caption" : "Merk"
+		},{
+			"isNull" : "true",
+			"name" : "type",
+			"messagesRequired" : "",
+			"caption" : "Type"
+		},{
+			"isNull" : "true",
+			"name" : "noSeri",
+			"messagesRequired" : "",
+			"caption" : "No Seri"
+		},{
+			"isNull" : "true",
+			"name" : "alamat",
+			"messagesRequired" : "",
+			"caption" : "Alamat"
+		},{
+			"isNull" : "true",
+			"name" : "noTelepon",
+			"messagesRequired" : "",
+			"caption" : "Kontak"
+		},{
+			"isNull" : "true",
+			"name" : "tglPerbaikan",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Perbaikan"
+		},{
+			"isNull" : "true",
+			"name" : "namaPT",
+			"messagesRequired" : "",
+			"caption" : "Nama PT"
+		},{
+			"isNull" : "true",
+			"name" : "namaTeknisiInternal",
+			"messagesRequired" : "",
+			"caption" : "Nama Teknisi Internal"
+		},{
+			"isNull" : "true",
+			"name" : "ketepatanWaktu",
+			"messagesRequired" : "",
+			"caption" : "Ketepatan Waktu"
+		},{
+			"isNull" : "true",
+			"name" : "hasilService",
+			"messagesRequired" : "",
+			"caption" : "Hasil Service"
+		},{
+			"isNull" : "true",
+			"name" : "frekuensiKerusakan",
+			"messagesRequired" : "",
+			"caption" : "Frekuensi Kerusakan"
+		},{
+			"isNull" : "true",
+			"name" : "tindakLanjutComplain",
+			"messagesRequired" : "",
+			"caption" : "Tindak Lanjut Complain"
+		},{
+			"isNull" : "true",
+			"name" : "namaSukuCadang",
+			"messagesRequired" : "",
+			"caption" : "Nama Suku Cadang"
+		}
+
+	]
+}

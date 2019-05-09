@@ -1,0 +1,45 @@
+{
+	"model":{
+		"pencarian" : "",
+		"pengendali":"",
+		"periodePengajuan":"",
+		"dari":"",
+		"sampai": ""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "pencarian",
+			"messagesRequired" : "",
+			"caption" : "Pencarian"
+		},{
+			"isNull" : "true",
+			"name" : "pengendali",
+			"messagesRequired" : "",
+			"caption" : "Pengendali"
+		},{
+			"isNull" : "true",
+			"name" : "periodePengajuan",
+			"messagesRequired" : "",
+			"caption" : "Periode Pengajuan"
+		},{
+			"isNull" : "true",
+			"name" : "ppn",
+			"messagesRequired" : "",
+			"caption" : "PPN 10%"
+		},{
+			"isNull" : "true",
+			"name" : "dari",
+			"messagesRequired" : "",
+			"caption" : "Dari"
+		},{
+			"isNull" : "true",
+			"name" : "sampai",
+			"messagesRequired" : "",
+			"caption" : "Sampai"
+		}
+
+	]
+}

@@ -1,0 +1,56 @@
+<div ng-controller="NilaiPersediaanBarangMedisCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Nilai Persediaan Barang Medis'">
+			<div class="grid_3">
+				<label c-label item="item" c-label-text="tanggalPenutupan"></label>
+			</div>
+			<div class="clear"></div>
+			<div class="grid_3">
+				<div kendo-grid k-data-source="daftarTanggalPenutupan" k-selectable="'row'" k-columns="columnTanggalPenutupan">
+					</div>
+			</div>
+			<div class="clear"></div>
+			<div class="grid_12">
+				<div kendo-grid k-data-source="daftarPersediaanBarangMedis" k-selectable="'row'" k-columns="columnPersediaanBarangMedis">
+					</div>
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="cariJenisBarang"></label>
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="cariNamaBarang"></label>
+			</div>
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="totalStok"></label>
+			</div>
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="nilaiPersediaan"></label>
+			</div>
+			<div class="grid_4">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.cariJenisBarang" />
+			</div>
+			<div class="grid_4">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.cariNamaBarang" />
+			</div>
+			<div class="grid_2">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.totalStok" />
+			</div>
+			<div class="grid_2">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nilaiPersediaan" />
+			</div>
+			<div class="grid_4"></div>
+			<div class="grid_3"></div>
+			<div class="grid_3">
+				<c-button ng-click="Cetak()">
+				<span>Cetak Nilai Persediaan</span>
+			</c-button>
+			</div>
+			<div class="grid_2">
+				<c-button ng-click="Tutup()">
+				<span>Tutup</span>
+			</c-button>
+			</div>
+		</c-panel>
+	</div>
+</div>

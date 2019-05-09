@@ -1,0 +1,211 @@
+<div ng-controller="DiagnosaCtrl">
+    <div class="container_12" style="margin-bottom: 10px;">
+        <div class="grid_3" class='box'>
+            <div class="grid_12">
+                <div class="grid_6"><label c-label="" item="item" c-label-text="Tanggal Masuk" class="ng-isolate-scope c-label"></label></div>
+                <span class="grid_1">:</span>
+                <div class="grid_5">30/05/2016</div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_6"><label c-label="" item="item" c-label-text="Jam Masuk" class="ng-isolate-scope c-label"></label></div>
+                <span class="grid_1">:</span>
+                <div class="grid_5">09.00</div>
+            </div>
+        </div>
+        <div class="grid_3" class='box'>
+            <div class="grid_12">
+                <div class="grid_6"><label c-label="" item="item" c-label-text="Tanggal Pindah" class="ng-isolate-scope c-label"></label></div>
+                <span class="grid_1">:</span>
+                <div class="grid_5">31/05/2016</div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_6"><label c-label="" item="item" c-label-text="Jam Pindah" class="ng-isolate-scope c-label"></label></div>
+                <span class="grid_1">:</span>
+                <div class="grid_5">09.00</div>
+            </div>
+        </div>
+        <div class="grid_2" class='box'>
+            <div class="grid_12">
+                <div class="grid_11"><label c-label="" item="item" c-label-text="Asal Ruang Rawat" class="ng-isolate-scope c-label"></label></div>
+                <span class="grid_1">:</span>
+                <div class="grid_12">Asal Ruangan</div>
+            </div>
+        </div>
+        <div class="grid_3" class='box'>
+            <div class="grid_12">
+                <div class="grid_11"><label c-label="" item="item" c-label-text="Ruangan Rawat Selanjutnya" class="ng-isolate-scope c-label"></label></div>
+                <span class="grid_1">:</span>
+                <div class="grid_12">
+                    <input style="width: 100%;" kendo-combo-box k-data-text-field="'name'" k-filter="'contains'" k-ng-model="item.ruangrawatlanjut" k-data-value-field="'id'" k-auto-bind="false" k-data-source="listRuangRawatLanjut" /></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container_12" style="margin-bottom: 10px;">
+    <div class="grid_6" class='box'>
+        <div class="grid_6"><label c-label="" item="item" c-label-text="Dari Dokter IGD/Jaga Ruangan" class="ng-isolate-scope c-label"></label></div>
+        <span class="grid_1">:</span>
+        <div class="grid_4"><input style="width: 100%;" kendo-combo-box k-data-text-field="'name'" k-filter="'contains'" k-ng-model="item.dokterjagaruang" k-data-value-field="'id'" k-auto-bind="false" k-data-source="listDokterJagaRuang" /></div>
+    </div>
+    <div class="grid_5" class='box'>
+        <div class="grid_7"><label c-label="" item="item" c-label-text="Dokter Penanggung Jawab (DPJP)" class="ng-isolate-scope c-label"></label></div>
+        <span class="grid_1">:</span>
+        <div class="grid_4"><input style="width: 100%;" kendo-combo-box k-data-text-field="'name'" k-filter="'contains'" k-ng-model="item.dpjp" k-data-value-field="'id'" k-auto-bind="false" k-data-source="listDPJP" /></div>
+    </div>
+</div>
+
+</div>
+<!-- Diagnosa Utama -->
+<div class="panel panel-default container_12">
+    <div class="panel-heading"><label c-label c-label-text="DiagnosisUtama" statment></label></div>
+    <div class="panel-body">
+        <div class="panel-body">
+            <div class="grid_2">
+                <input type="radio" class="k-radio">
+                <label class="k-radio-label">Kode Diagnosis</label>
+            </div>
+            <div class="grid_2">
+                <input type="radio" class="k-radio">
+                <label class="k-radio-label">Nama Diagnosis</label>
+            </div>
+            <div class="grid_3">
+                <input style="width: 100%;" kendo-combo-box k-data-text-field="'name'" k-filter="'contains'" k-ng-model="item.diagnosautama" k-data-value-field="'id'" k-auto-bind="false" k-data-source="listDiagnosaUtama" /></div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- Diagnosa Sekunder  -->
+<div class="panel panel-default container_12">
+    <div class="panel-heading">Diagnosa Sekunder</div>
+    <div class="panel-body">
+        <div class="panel-body">
+            <div class="grid_2">
+                <input type="radio" class="k-radio">
+                <label class="k-radio-label">Kode Diagnosis</label>
+            </div>
+            <div class="grid_2">
+                <input type="radio" class="k-radio">
+                <label class="k-radio-label"><label c-label c-label-text="NamaDiagnosis" statment></label></label>
+            </div>
+            <div class="grid_3">
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.diagnosasekunder" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="listDiagnosaSekunder" />
+            </div>
+            <div class="grid_5" style="text-align: right">
+                <div class="grid_4"></div>
+                <div class="grid_4">
+                    <c-button ng-show="!isLoading" style="width: 100%" item="item" is-validate click="KirimData">
+                        <span>Tambah</span>
+                    </c-button>
+                </div>
+                <div class="grid_4">
+                    <c-button ng-show="!isLoading" style="width: 100%" item="item" is-validate click="KirimData">
+                        <span>Hapus</span>
+                    </c-button>
+                </div>
+            </div>
+
+            <div class="grid_12">
+                <div class="grid_1">
+                    <div class="panel container_3">
+                        <div class="panel-heading" style="background-color:#10c4b2;">No</div>
+                        <div class="panel-body">1</div>
+                    </div>
+                </div>
+                <div class="grid_3">
+                    <div class="panel container_3">
+                        <div class="panel-heading" style="background-color:#10c4b2;">Kode Diagnosis</div>
+                        <div class="panel-body">D51</div>
+                    </div>
+                </div>
+                <div class="grid_8">
+                    <div class="panel container_6">
+                        <div class="panel-heading" style="background-color:#10c4b2;">Diagnosis</div>
+                        <div class="panel-body">Vitamin B12 deficiency anemia</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- -->
+<div class="panel panel-default container_12">
+    <div class="panel-heading"><label c-label c-label-text="DiagnosisSekunder" statment></label></div>
+    <div class="panel-body">
+        <div class="container_12">
+            <div class="grid_3">
+                <div class="grid_6">
+                    <input type="checkbox" class="k-checkbox">
+                    <label class="k-checkbox-label">Alergi</label>
+                </div>
+                <div class="grid_6">
+                    <input type="checkbox" class="k-checkbox">
+                    <label class="k-checkbox-label">MRSA</label>
+                </div>
+            </div>
+
+            <div class="grid_8" style="padding: 5px 5px 5px 5px; border:1px solid black;color:black; margin-bottom: 10px">
+                <div class="grid_6">
+                    <div class="grid_3"><label c-label="" item="item" c-label-text="Alergi" class="ng-isolate-scope c-label"><span class="titikDua">:</span></label>
+                        <span class="grid_1 titikDua">:</span></div>
+                    <div class="grid_8">
+                        <input placeholder="Nama Alergi" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" />
+                    </div>
+                </div>
+                <div class="grid_6">
+                    <div class="grid_3"><label c-label="" item="item" c-label-text="Keterangan" class="ng-isolate-scope c-label"><span class="titikDua">:</span></label>
+                        <span class="grid_1 titikDua">:</span></div>
+                    <div class="grid_8">
+                        <input placeholder="Keterangan" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" />
+                    </div>
+                </div>
+
+                <div class="grid_12" style="text-align: right">
+                    <div class="grid_4"></div>
+                    <div class="grid_4">
+                        <c-button ng-show="!isLoading" style="width: 100%" item="item" is-validate click="KirimData">
+                            <span>Tambah</span>
+                        </c-button>
+                    </div>
+                    <div class="grid_4">
+                        <c-button ng-show="!isLoading" style="width: 100%" item="item" is-validate click="KirimData">
+                            <span>Hapus</span>
+                        </c-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container_12">
+            <div class="grid_1">
+                <div class="panel container_3">
+                    <div class="panel-heading" style="background-color:#10c4b2;">No</div>
+                    <div class="panel-body">1</div>
+                </div>
+            </div>
+            <div class="grid_3">
+                <div class="panel container_3">
+                    <div class="panel-heading" style="background-color:#10c4b2;">Alergi</div>
+                    <div class="panel-body">D51</div>
+                </div>
+            </div>
+            <div class="grid_8">
+                <div class="panel container_6">
+                    <div class="panel-heading" style="background-color:#10c4b2;">Keterangan</div>
+                    <div class="panel-body">Vitamin B12 deficiency anemia</div>
+                </div>
+            </div>
+        </div>
+        <div class="container_12" style="text-align: right">
+            <div class="grid_6"></div>
+            <div class="grid_6">
+                <div class="grid_6">
+                    <label c-label="" item="item" c-label-text="Cari" class="ng-isolate-scope c-label"><span class="titikDua">:</span></label>
+                </div>
+                <div class="grid_6">
+                    <input placeholder="Cari" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+
+</div>

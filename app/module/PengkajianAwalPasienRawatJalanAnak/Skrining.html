@@ -1,0 +1,211 @@
+
+<div ng-controller="SkriningCtrl">
+
+    <c-panel item="item" header="'header'">
+            <div class="grid_12">
+            
+            ahsdfjasgdfjag
+            </div>
+        </c-panel>
+
+
+    <div ng-show="dataVOloaded">
+        <!-- panel Skrining Nyeri --> 
+        <div class="panel panel-default container_12">
+
+            <div class="panel-heading">SKRINING NYERI</div>
+            <div class="panel-body">
+
+                <!-- adakah rasa nyeri -->
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="AdakahRasaNyeri"></label>
+                    <span class="titikDua">:</span>
+                </div>
+                <div class="grid_10">
+                    <div class="grid_2" ng-repeat="stat in listStatusRasaNyeri">
+                        <input type="radio" name="{{'AdakahRasaNyeri' + stat.name}}" id="{{'AdakahRasaNyeri' + stat.name}}" class="k-radio" ng-model="item.rasaNyeri" ng-value="stat">
+                        <label class="k-radio-label" for="{{'AdakahRasaNyeri' + stat.name}}">{{stat.name}}</label>
+                    </div>
+
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+
+                <!-- lokasi -->
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="Lokasi"></label>
+                    <span class="titikDua">:</span>
+                </div>
+                <div class="grid_10">
+                    <div class="grid_4">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.lokasiNyeri" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="listLokasiNyeri" />
+                    </div>
+                    <div class="grid_4">
+                        <div class="grid_4">
+                            <label c-label item="item" c-label-text="Frekuensi"></label>
+                            <span class="titikDua">:</span>
+                        </div>
+                        <div class="grid_8">
+                            <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" />
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="grid_4">
+                        <div class="grid_4">
+                            <label c-label item="item" c-label-text="Durasi"></label>
+                            <span class="titikDua">:</span>
+                        </div>
+                        <div class="grid_8">
+                            <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" />
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+
+                <!-- Tipe Nyeri -->
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="TipeNyeri"></label>
+                    <span class="titikDua">:</span>
+                </div>
+                <div class="grid_10">
+
+                    <div class="grid_2" ng-repeat="stat in listTipeNyeri">
+                        <input type="radio" name="{{'TipeNyeri' + stat.name}}" id="{{'TipeNyeri' + stat.name}}" class="k-radio" ng-model="item.typeNyeri" ng-value="stat">
+                        <label class="k-radio-label" for="{{'TipeNyeri' + stat.name}}">{{stat.name}}</label>
+                    </div>
+
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+
+                <!-- Karateristik Nyeri -->
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="KarateristikNyeri"></label>
+                    <span class="titikDua">:</span>
+                </div>
+                <div class="grid_10">
+                    <div class="grid_2" ng-repeat="karateristikNyeri in listKaraterisitikNyeri">
+                        <input type="checkbox" class="k-checkbox" >
+                        <label class="k-checkbox-label">{{karateristikNyeri.name}}</label>
+                    </div>
+                    
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+
+                <!-- Nyeri Mempengaruhi -->
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="NyeriMempengaruhi"></label>
+                    <span class="titikDua">:</span>
+                </div>
+                <div class="grid_10">
+                    <div class="grid_2" ng-repeat="pengaruhNyeri in listPengaruhNyeri">
+                        <input type="checkbox" class="k-checkbox" >
+                        <label class="k-checkbox-label">{{pengaruhNyeri.name}}</label>
+                    </div>
+                    
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+
+        <!-- panel Skrining Nyeri --> 
+        <div class="panel panel-default container_12">
+
+            <div class="panel-heading">SKRINING GIZI</div>
+            <div class="panel-body">
+
+                <!-- tinggi badan - berat badan - lingkar kepala -->
+                <div class="grid_4">
+                    <div class="grid_4">
+                        <label c-label item="item" c-label-text="TinggiBadan"></label>
+                        <span class="titikDua">:</span>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" />
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="grid_4">
+                    <div class="grid_4">
+                        <label c-label item="item" c-label-text="BeratBadan"></label>
+                        <span class="titikDua">:</span>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" />
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="grid_4">
+                    <div class="grid_4">
+                        <label c-label item="item" c-label-text="LingkarKepala"></label>
+                        <span class="titikDua">:</span>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" />
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+
+                <!-- panel skrining gizi anak usia 1 bla bla bla... --> 
+                <div class="panel panel-default container_12">
+
+                    <div class="panel-heading">Skrining Gizi Anak Usia 1 Bulan - 18 Tahun (Modifikasi Strong - Kids)</div>
+                    <div class="panel-body">
+
+                        <div class="panel panel-default container_12" ng-repeat="skriningGizi in listDataSkriningGizi">
+                            <div class="panel-body">
+                                <div class="grid_12">
+                                    <div class="grid_8">
+                                    <p style="margin: 0px; text-align: justify;">{{skriningGizi.deskripsi}}</p>
+                                    </div>
+                                    <div class="grid_2" style="text-align: center;">
+                                        <input type="checkbox" class="k-checkbox" >
+                                        <label class="k-checkbox-label">Tidak(0)</label>
+                                    </div>
+                                    <div class="grid_2" style="text-align: center;">
+                                        <input type="checkbox" class="k-checkbox" >
+                                        <label class="k-checkbox-label">Tidak(1)</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <!-- button action -->
+        <div class="grid_4">
+        </div>
+        <div class="grid_8">
+            <div class="grid_3" style="float:right">
+                <c-button ng-show="!isLoading" style="width: 100%" item="item" is-validate click="KirimData">
+                    <span style="font-size:10!important">Selanjutnya</span>
+                </c-button>
+            </div>
+            <div class="grid_3" style="float:right">
+                <c-button ng-show="!isLoading" style="width: 100%;" item="item" is-validate click="Lanjutkan">
+                    <span style="font-size:10!important">Summary List</span>
+                </c-button>
+            </div>
+            <div class="grid_4" style="float:right">
+                <c-button ng-show="!isLoading" style="width: 100%" item="item" is-validate click="Lanjutkan">
+                    <span style="font-size:10!important">Riwayat Tumbuh Kembang</span>
+                </c-button>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+

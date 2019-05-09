@@ -1,0 +1,89 @@
+<div ng-controller="PenyusunanRBAPelayananServiceCentreCtrl">
+<div ng-show="dataVOloaded">
+<c-panel item="item" header="'Penyusunan RBAPelayanan Service Centre'" disabled>
+
+<!-- PeriodePenyusunanRBA -->
+<div class="grid_12">
+<div class="grid_12">
+<label c-label item="item" c-label-text="PeriodePenyusunanRBA"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%" k-ng-model="item.periodePenyusunanRBA"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+</div>
+</div>
+
+<!-- PeriodeTransaksiBiaya -->
+<div class="grid_12">
+<div class="grid_12">
+<label c-label item="item" c-label-text="PeriodeTransaksiBiaya"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%" k-ng-model="item.periodeTransaksiBiaya"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+</div>
+</div>
+
+<!-- PeriodeTransaksiBiaya -->
+<div class="grid_12">
+<div class="grid_12">
+<label c-label item="item" c-label-text="PeriodeTransaksiBiaya"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%" k-ng-model="item.periodeTransaksiBiaya"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+</div>
+</div>
+
+<!-- PenyusunanRBANPelayanan -->
+<div class="grid_12">
+<div class="grid_12 headerBox">
+<p>PenyusunanRBANPelayanan</p>
+</div>
+<div class="clear"></div>
+
+<!-- grid table -->
+<div class="grid_12 borderBox">
+<div kendo-grid k-data-source="dataPenyusunanRBANPelayanan" k-selectable="'row'" k-columns="columnPenyusunanRBANPelayanan">
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+<!-- Prognosa -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="Prognosa"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.prognosa" />
+</div>
+</div>
+
+<!-- Proyeksi -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="Proyeksi"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.proyeksi" />
+</div>
+</div>
+
+
+
+</c-panel>
+
+<div class="grid_12" style="margin-top:30px">
+<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
+</div>
+</div>
+</div>

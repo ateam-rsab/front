@@ -1,0 +1,22 @@
+
+{
+	"model":{
+		"jumlahLimbahyangbelumterkelola":"",
+		"kinerjapengelolaanlimbahb3selamaperiodeskala":""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "jumlahLimbahYangBelumTerkelola",
+			"messagesRequired" : "",
+			"caption" : "Jumlah Limbah yang Belum Terkelola"
+		},{
+			"isNull" : "true",
+			"name" : "kinerjaPengelolaanLimbahB3SelamaPeriodeSkala",
+			"messagesRequired" : "",
+			"caption" : "Kinerja Pengelolaan Limbah B3 Selama Periode Skala"
+		}
+
+	]
+}

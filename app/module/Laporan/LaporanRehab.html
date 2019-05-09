@@ -1,0 +1,67 @@
+
+<div ng-controller="LaporanRehabCtrl">
+	<div ng-show="dataVOloaded">
+		<!-- <c-panel item="item" header="'Daftar Tagihan Rekanan'" disabled> -->
+		<div class="grid_12 headerBox">
+			<h1 style="color: white;"><b>Laporan Rehabilitasi Medik</b></h1>
+		</div>
+		<div class="grid_12">
+			<div class="grid_6">
+				<fieldset>
+					<legend><b>Pencarian</b></legend>
+					<div class="grid_5">
+						<label c-label item="item" c-label-text="Periode"></label>
+						<input kendo-date-picker
+			             k-options="monthSelectorOptions"
+			             k-ng-model="item.tglawal"
+			             k-format="'MMMM yyyy'"
+			             style="width: 100%;" />
+						<!-- <input style="width: 100%" k-ng-model="item.tglawal" kendo-monthpicker k-format="'MMMM yyyy'" />
+ -->
+					</div>
+					<div class="grid_5">
+						<label c-label item="item" c-label-text="Departemen"></label>
+						<input  style="width: 100%;" kendo-combo-box k-ng-model="item.departement" k-data-text-field="'departemen'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDepartemen"/>
+					</div>
+					<div class="grid_2" style="margin-top: 15px;">
+						<button class="btnTemplate1" style="margin-left: 0;" ng-click="loadData()">Cari</button>
+					</div>
+				</fieldset>
+			</div>
+			<div class="grid_6">
+				<fieldset>
+					<legend><b>Cetak Laporan</b></legend>
+					<div class="grid_4" style="margin-top: 15px">
+						<button class="btnTemplate1" style="margin-left: 0;" ng-click="Cetak()">Cetak Laporan</button>
+		            </div>
+					<div class="grid_4 " style="margin-top: 15px">
+						<button class="btnTemplate1" style="margin-left: 0;" ng-click="CetakObat()">Cetak Laporan Obat</button>
+		            </div>
+				</fieldset>
+				</div>
+			</div>	
+		<br/>
+		</div>
+		<div class="grid_12 headerBox">
+			<p>Data Laporan Rehabilitasi Medik</p>
+			<div class="grid_12">			
+				<kendo-grid data-source="dataSourceLaporanRehabService" class="max-height" options="mainGroupOptionLaporanRehab"></kendo-grid>
+			</div>
+		</div>
+		<!-- <div class="grid_12">
+			<div class="grid_3 " style="margin-top: 20px">
+                <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Cetak()">
+                    <span class="title">Cetak Laporan</span>
+                </button>
+            </div>
+            <div class="grid_3 " style="margin-top: 20px">
+                <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakObat()">
+                    <span class="title">Cetak Laporan Obat</span>
+                </button>
+            </div>
+		</div> -->
+		<div class="grid_12" style="margin-top:60px">
+			<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+		</div>
+	</div>
+</div>

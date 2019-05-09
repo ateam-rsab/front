@@ -1,0 +1,538 @@
+<div ng-controller="FormulirPraAnastesiSedasiCtrl">
+    <div class="panel panel-default">
+        <div class="panel-body">
+          <div ng-include='"../app/module/Dashboard/Pasien/Index" '></div>
+            <div class="grid_12">  
+         <div class="loading" style="position: relative; margin:25px 0px 20px;" class="animated"
+         ng-show="isLoadingData">
+          <img height="250" src="../app/stylesheets/Flat/loading-image.gif"/>
+           <br/> <span style="font-weight: bold;">Data Formulir Pra Anestesi Sedang di load, Mohon tunggu...</span>
+            </div>
+             </div>
+                <div class="grid_12" style="margin-top:20px" ng-show="showdat">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" align="center" c-translate>{{title}}</div>
+                        <div class="panel-body">
+                         <div class="grid_12">
+                            <div class="grid_6">
+                             <c-panel item="item" header="'History Formulir Pra Anestesi Sedasi'">
+                              <div class="grid_12">
+                               <div class="grid_12"></div>
+                                <div class="clear"></div>
+                                <div class="grid_12 borderBox">
+                               <div id="kGrid" kendo-grid 
+                              k-data-source="dataMaster" 
+                              k-selectable="'row'" 
+                             k-columns="columnFormulirPasien"
+                             k-sortable="'true'"
+                             k-pageable="true"
+                             k-ng-model="dataSelected"
+                            ng-click="click(dataSelected)">
+                            </div>
+                            </div>
+
+                            </div>
+                            <div class="clear"></div>
+                            </c-panel>
+                            </div>
+                            </div>  
+                            <div class="grid_12">
+                              <div class="loading" style="position: relative; margin:25px 0px 20px;" class="animated"
+                               ng-show="isLoadingDetail">
+                              <img height="150" src="../app/stylesheets/Flat/loading-image.gif"/>
+                               <br/> <span> load, Mohon tunggu...</span>
+                             </div>
+                            </div>
+                           <div class="grid_12" style="margin:10px 0 0 10px">
+                                <label c-label item="item" c-label-text="Identitas Pasien:"></label>
+                            </div>
+                            <div class="grid_12">
+                             <div class="grid_4">
+                            <div class="grid_6">
+                            <label c-label item="item" c-label-text="NamaPasien"></label>
+                            </div>
+                            <div class="grid_12">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.pasien" k-data-text-field="'namaPasien'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataPasien" k-on-change="dataPasien()" disabled="true"/>
+                            </div>
+                            </div>
+                            <div class="grid_4">
+                            <div class="grid_6">
+                            <label c-label item="item" c-label-text="umur"></label>
+                            </div>
+                            <div class="grid_12">
+                            <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.umur" readonly="true" disabled="true"/>
+                            </div>
+                            </div>
+                            <div class="grid_4">
+                            <div class="grid_6">
+                            <label c-label item="item" c-label-text="jenisKelamin"></label>
+                            </div>
+                            <div class="grid_12">
+                            <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.jenisKelamin" readonly="true" disabled="true"/>
+                            </div>
+                            </div>
+                            </div>
+                            <div class="grid_12">
+                                &nbsp;
+                            </div>
+                            <div class="grid_12" style="border: 1px solid; border-color: #10C4B2;"></div>
+                            <div class="grid_12">
+                                <div class="grid_3">
+                                    <div class="grid_6">
+                                    <div class="grid_12" style="margin:5px 0 0 10px">
+                                    <label c-label item="item" c-label-text="Kebiasaan:"></label>
+                                     </div>
+                                        <div class="grid_12" style="margin:10px 0 0 20px">
+                                            <label c-label item="item">1. Merokok</label>
+                                        </div>
+                                        <div class="grid_4" ng-repeat="stat in listStatusYaTidak" style="margin-left:20px">
+                                            <input type="radio" name="{{'merokok' + stat.name}}" id="{{'merokok' + stat.name}}" class="k-radio" ng-model="item.merokok" ng-value="stat.id" ng-disabled="isDokter" ng-click="klik()">
+                                            <label class="k-radio-label" for="{{'merokok' +stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="grid_6">
+                                        <div class="grid_12" style="margin-top: 10px;">
+                                            <label c-label item="item">Sebanyak</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.qmerokok" ng-disabled="item.merokok==1"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid_3">
+                                    <div class="grid_6">
+                                        <div class="grid_12" style="margin:10px 0 0 20px">
+                                            <label c-label item="item">2. Alkohol</label>
+                                        </div>
+                                        <div class="grid_4" ng-repeat="stat in listStatusYaTidak" style="margin-left:20px">
+                                             <input type="radio" name="{{'alkohol' + stat.name}}" id="{{'alkohol' + stat.name}}" class="k-radio" ng-model="item.alkohol" ng-value="stat.id" ng-disabled="isDokter" ng-click="klik()">
+                                            <label class="k-radio-label" for="{{'alkohol' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="grid_6">
+                                        <div class="grid_12" style="margin-top: 10px;">
+                                            <label c-label item="item">Sebanyak</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.qalkohol" ng-disabled="item.alkohol==1"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid_3">
+                                    <div class="grid_6">
+                                        <div class="grid_12" style="margin:10px 0 0 20px">
+                                            <label c-label item="item">3. Kopi / Teh / Cola</label>
+                                        </div>
+                                        <div class="grid_4" ng-repeat="stat in listStatusYaTidak" style="margin-left:20px">
+                                             <input type="radio" name="{{'kopi' + stat.name}}" id="{{'kopi' + stat.name}}" class="k-radio" ng-model="item.kopi" ng-value="{{stat.id}}" ng-disabled="isDokter" ng-click="klik()">
+                                            <label class="k-radio-label" for="{{'kopi' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="grid_6">
+                                        <div class="grid_12" style="margin-top: 10px;">
+                                            <label c-label item="item">Sebanyak</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.qkopi" ng-disabled="item.kopi==1"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid_3">
+                                    <div class="grid_6">
+                                        <div class="grid_12" style="margin:10px 0 0 20px">
+                                            <label c-label item="item">4. Olahraga Rutin</label>
+                                        </div>
+                                        <div class="grid_4" ng-repeat="stat in listStatusYaTidak" style="margin-left:20px">
+                                             <input type="radio" name="{{'olahraga' + stat.name}}" id="{{'olahraga' + stat.name}}" class="k-radio" ng-model="item.olahraga" ng-value="{{stat.id}}" ng-disabled="isDokter" ng-click="klik()">
+                                            <label class="k-radio-label" for="{{'olahraga' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="grid_6">
+                                        <div class="grid_12" style="margin-top: 10px;">
+                                            <label c-label item="item">Sebanyak</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.qolahraga" ng-disabled="item.olahraga==1"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_12" style="border: 1px solid; border-color: #10C4B2;"></div>
+                        <div class="grid_12">
+                            <div class="grid_12" style="margin:5px 0 0 10px">
+                                <label c-label item="item" c-label-text="Obat-obat yang biasa dikonsumsi:"></label>
+                            </div>
+                            <div class="grid_12">
+                                <div class="grid_4">
+                                    <div class="grid_6">
+                                        <div class="grid_12" style="margin:10px 0 0 20px">
+                                            <label c-label item="item">1. Obat Pengencer Darah</label>
+                                        </div>
+                                        <div class="grid_4" ng-repeat="stat in listStatusYaTidak" style="margin-left:20px">
+                                             <input type="radio" name="{{'obatPengencer' + stat.name}}" id="{{'obatPengencer' + stat.name}}" class="k-radio" ng-model="item.obatPengencerDarah" ng-value="{{stat.id}}" ng-disabled="isDokter" ng-click="klik()">
+                                            <label class="k-radio-label" for="{{'obatPengencer' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="grid_6">
+                                        <div class="grid_6">
+                                            <div class="grid_12" style="margin-top: 5px;">
+                                                <label c-label item="item">Dosis</label>
+                                                <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.dObatPengencerDarah" ng-disabled="item.obatPengencerDarah==1" />
+                                            </div>
+                                        </div>
+                                        <div class="grid_6">
+                                            <div class="grid_12" style="margin-top: 5px;">
+                                                <label c-label item="item">Frekuensi</label>
+                                                <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.fObatPengencerDarah" ng-disabled="item.obatPengencerDarah==1" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid_4">
+                                    <div class="grid_6">
+                                        <div class="grid_12" style="margin:10px 0 0 20px">
+                                            <label c-label item="item">2. Obat Anti Sakit</label>
+                                        </div>
+                                        <div class="grid_4" ng-repeat="stat in listStatusYaTidak" style="margin-left:20px">
+                                             <input type="radio" name="{{'obatAntiSakit' + stat.name}}" id="{{'obatAntiSakit' + stat.name}}" class="k-radio" ng-model="item.obatAntiSakit" ng-value="{{stat.id}}" ng-disabled="isDokter" ng-click="klik()">
+                                            <label class="k-radio-label" for="{{'obatAntiSakit' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="grid_6">
+                                        <div class="grid_6">
+                                            <div class="grid_12" style="margin-top: 5px;">
+                                                <label c-label item="item">Dosis</label>
+                                                <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.dObatAntiSakit" ng-disabled="item.obatAntiSakit==1" />
+                                            </div>
+                                        </div>
+                                        <div class="grid_6">
+                                            <div class="grid_12" style="margin-top: 5px;">
+                                                <label c-label item="item">Frekuensi</label>
+                                                <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.fObatAntiSakit" ng-disabled="item.obatAntiSakit==1" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid_4">
+                                    <div class="grid_6">
+                                        <div class="grid_12" style="margin:10px 0 0 20px">
+                                            <label c-label item="item">3. Lainnya</label>
+                                        </div>
+                                        <div class="grid_4" ng-repeat="stat in listStatusYaTidak" style="margin-left:20px">
+                                             <input type="radio" name="{{'lainnyaObat' + stat.name}}" id="{{'lainnyaObat' + stat.name}}" class="k-radio" ng-model="item.lainnyaObat" ng-value="{{stat.id}}" ng-disabled="isDokter" ng-click="klik()">
+                                            <label class="k-radio-label" for="{{'lainnyaObat' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="grid_6">
+                                        <div class="grid_12" style="margin-top:10px">
+                                            <label c-label item="item">Sebutkan</label>
+                                            <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.KetLainnyaObat" ng-disabled="item.lainnyaObat===1" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_12" style="border: 1px solid; border-color: #10C4B2;"></div>
+                        <div class="grid_12">
+                            <div class="grid_12" style="margin:5px 0 0 10px">
+                                <label c-label item="item" c-label-text="RiwayatAlergi:"></label>
+                            </div>
+                            <div class="grid_12">
+                                <div class="grid_6">
+                                    <div class="grid_4">
+                                        <div class="grid_12" style="margin:10px 0 0 20px">
+                                            <label c-label item="item">1. Alergi Obat</label>
+                                        </div>
+                                        <div class="grid_4" ng-repeat="stat in listStatusYaTidak" style="margin-left:20px">
+                                             <input type="radio" name="{{'alergiObat' + stat.name}}" id="{{'alergiObat' + stat.name}}" class="k-radio" ng-model="item.alergiObat" ng-value="{{stat.id}}" ng-disabled="isDokter" ng-click="klik()">
+                                            <label class="k-radio-label" for="{{'alergiObat' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="grid_8">
+                                        <div class="grid_8">
+                                            <div class="grid_12" style="margin-top: 5px;">
+                                                <label c-label item="item">Nama Obat</label>
+                                                <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.namaObat" ng-disabled="item.alergiObat==1" />
+                                            </div>
+                                        </div>
+                                        <div class="grid_4">
+                                            <div class="grid_12" style="margin-top: 5px;">
+                                                <label c-label item="item">Tipe Reaksi</label>
+                                                <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.tipeReaksiObat" ng-disabled="item.alergiObat==1" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid_6">
+                                    <div class="grid_4">
+                                        <div class="grid_12" style="margin:10px 0 0 20px">
+                                        <label c-label item="item">2. Alergi Makanan</label>
+                                    </div>
+                                    <div class="grid_4" ng-repeat="stat in listStatusYaTidak" style="margin-left:20px">
+                                         <input type="radio" name="{{'alergiMakanan' + stat.name}}" id="{{'alergiMakanan' + stat.name}}" class="k-radio" ng-model="item.alergiMakanan" ng-value="{{stat.id}}" ng-disabled="isDokter" ng-click="klik()">
+                                        <label class="k-radio-label" for="{{'alergiMakanan' + stat.name}}">{{stat.name}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_8">
+                                    <div class="grid_8">
+                                        <div class="grid_12" style="margin-top: 5px;">
+                                            <label c-label item="item">Nama Makanan</label>
+                                            <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.namaMakanan" ng-disabled="item.alergiMakanan==1" />
+                                        </div>
+                                    </div>
+                                    <div class="grid_4">
+                                        <div class="grid_12" style="margin-top: 5px;">
+                                            <label c-label item="item">Tipe Reaksi</label>
+                                            <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.tipeReaksiMakanan" ng-disabled="item.alergiMakanan==1" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_12" style="border: 1px solid; border-color: #10C4B2;"></div>
+                    <div class="grid_12">
+                        <div class="grid_12" style="margin:5px 0 0 10px">
+                            <label c-label item="item" c-label-text="RiwayatPenyakit:"></label>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_3">
+                                <div class="grid_12" style="margin:10px 0 0 20px">
+                                    <label c-label item="item">1. Astma</label>
+                                </div>
+                                <div class="grid_4" ng-repeat="stat in listStatusYaTidak" style="margin-left:20px">
+                                    <input type="radio" name="{{'riwayatPenyakit' + stat.name}}" id="{{'riwayatPenyakit' + stat.name}}" class="k-radio" ng-model="item.astma" ng-value="{{stat.id}}" ng-disabled="isDokter">
+                                    <label class="k-radio-label" for="{{'riwayatPenyakit' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                            </div>
+                            <div class="grid_3">
+                                <div class="grid_12" style="margin:10px 0 0 20px">
+                                    <label c-label item="item">2. Tekanan Darah Tinggi</label>
+                                </div>
+                                <div class="grid_4" ng-repeat="stat in listStatusYaTidak" style="margin-left:20px">
+                                    <input type="radio" name="{{'tekananDarah' + stat.name}}" id="{{'tekananDarah' + stat.name}}" class="k-radio" ng-model="item.tekananDarahTinggi" ng-value="{{stat.id}}" ng-disabled="isDokter">
+                                    <label class="k-radio-label" for="{{'tekananDarah' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                            </div>
+                            <div class="grid_3">
+                                <div class="grid_12" style="margin:10px 0 0 20px">
+                                    <label c-label item="item">3. Kencing Manis</label>
+                                </div>
+                                <div class="grid_4" ng-repeat="stat in listStatusYaTidak" style="margin-left:20px">
+                                    <input type="radio" name="{{'kencingManis' + stat.name}}" id="{{'kencingManis' + stat.name}}" class="k-radio" ng-model="item.kencingManis" ng-value="{{stat.id}}" ng-disabled="isDokter">
+                                    <label class="k-radio-label" for="{{'kencingManis' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                            </div>
+                            <div class="grid_3">
+                                <div class="grid_12" style="margin:10px 0 0 20px">
+                                    <label c-label item="item">4. Maag</label>
+                                </div>
+                                <div class="grid_4" ng-repeat="stat in listStatusYaTidak" style="margin-left:20px">
+                                    <input type="radio" name="{{'maag' + stat.name}}" id="{{'maag' + stat.name}}" class="k-radio" ng-model="item.maag" ng-value="{{stat.id}}" ng-disabled="isDokter">
+                                    <label class="k-radio-label" for="{{'maag' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                            </div>
+                            <div class="grid_3">
+                                <div class="grid_12" style="margin:10px 0 0 20px">
+                                    <label c-label item="item">5. Kelainan Jantung</label>
+                                </div>
+                                <div class="grid_4" ng-repeat="stat in listStatusYaTidak" style="margin-left:20px">
+                                    <input type="radio" name="{{'kelainanJantung' + stat.name}}" id="{{'kelainanJantung' + stat.name}}" class="k-radio" ng-model="item.kelainanJantung" ng-value="{{stat.id}}" ng-disabled="isDokter">
+                                    <label class="k-radio-label" for="{{'kelainanJantung' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                            </div>
+                            <div class="grid_3">
+                                <div class="grid_12" style="margin:10px 0 0 20px">
+                                    <label c-label item="item">6. Kejang / epilepsi / ayan</label>
+                                </div>
+                                <div class="grid_4" ng-repeat="stat in listStatusYaTidak" style="margin-left:20px">
+                                    <input type="radio" name="{{'kejang' + stat.name}}" id="{{'kejang' + stat.name}}" class="k-radio" ng-model="item.kejang" ng-value="{{stat.id}}" ng-disabled="isDokter">
+                                    <label class="k-radio-label" for="{{'kejang' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                            </div>
+                            <div class="grid_4">
+                                <div class="grid_5">
+                                    <div class="grid_12" style="margin:10px 0 0 20px">
+                                        <label c-label item="item">7. Penyakit Berat Lainnya....</label>
+                                    </div>
+                                    <div class="grid_4" ng-repeat="stat in listStatusYaTidak" style="margin-left:20px">
+                                         <input type="radio" name="{{'lainnyaRiwayatPenyakit' + stat.name}}" id="{{'lainnyaRiwayatPenyakit' + stat.name}}" class="k-radio" ng-model="item.lainnyaRiwayatPenyakit" ng-value="{{stat.id}}" ng-disabled="isDokter" ng-click="klik()">
+                                        <label class="k-radio-label" for="{{'lainnyaRiwayatPenyakit' + stat.name}}">{{stat.name}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_7">
+                                    <div class="grid_12" style="margin-top:10px">
+                                        <label c-label item="item">Sebutkan</label>
+                                        <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.KetLainnyaRiwayatPenyakit" ng-disabled="item.lainnyaRiwayatPenyakit===1"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_12" style="border: 1px solid; border-color: #10C4B2;"></div>
+                    <div class="grid_12">
+                        <div class="grid_12" style="margin:5px 0 0 10px">
+                            <label c-label item="item" c-label-text="RiwayatTranfusiDarah:"></label>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_4">
+                                <div class="grid_6">
+                                    <div class="grid_12" style="margin:10px 0 0 20px">
+                                        <label c-label item="item">1. Riwayat Tranfusi Darah ?</label>
+                                    </div>
+                                    <div class="grid_4" ng-repeat="stat in listStatusYaTidak" style="margin-left:20px">
+                                         <input type="radio" name="{{'tranfusiDarah' + stat.name}}" id="{{'tranfusiDarah' + stat.name}}" class="k-radio" ng-model="item.riwayatTranfusiDarah" ng-value="{{stat.id}}" ng-disabled="isDokter" ng-click="klik()">
+                                        <label class="k-radio-label" for="{{'tranfusiDarah' + stat.name}}">{{stat.name}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_6">
+                                    <div class="grid_12" style="margin-top: 10px;">
+                                        <label c-label item="item">Tahun Berapa</label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.tahunTranfusi" ng-disabled="item.riwayatTranfusiDarah==1"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid_3">
+                                <div class="grid_6">
+                                    <div class="grid_12" style="margin:10px 0 0 20px">
+                                        <label c-label item="item">2. Reaksi Tranfusi</label>
+                                    </div>
+                                    <div class="grid_4" ng-repeat="stat in listStatusYaTidak" style="margin-left:20px">
+                                         <input type="radio" name="{{'reaksiTranfusi' + stat.name}}" id="{{'reaksiTranfusi' + stat.name}}" class="k-radio" ng-model="item.reaksiTranfusi" ng-value="{{stat.id}}" ng-disabled="isDokter" ng-click="klik()">
+                                        <label class="k-radio-label" for="{{'reaksiTranfusi' + stat.name}}">{{stat.name}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_6">
+                                    <div class="grid_12" style="margin-top: 10px;">
+                                        <label c-label item="item">Reaksinya</label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.reaksiTranfusiDarah" ng-disabled="item.reaksiTranfusi==1"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid_5">
+                                <div class="grid_6">
+                                    <div class="grid_12" style="margin:10px 0 0 20px">
+                                        <label c-label item="item">3. Apakah pernah melakukan pemeriksaan HIV?</label>
+                                    </div>
+                                    <div class="grid_4" ng-repeat="stat in listStatusYaTidak" style="margin-left:20px">
+                                         <input type="radio" name="{{'hiv' + stat.name}}" id="{{'hiv' + stat.name}}" class="k-radio" ng-model="item.hiv" ng-value="{{stat.id}}" ng-disabled="isDokter" ng-click="klik()">
+                                        <label class="k-radio-label" for="{{'hiv' + stat.name}}">{{stat.name}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_6">
+                                    <div class="grid_6">
+                                        <div class="grid_12" style="margin-top: 5px;">
+                                            <label c-label item="item">Tahun Berapa</label>
+                                            <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.tahunPeriksaHiv" ng-disabled="item.hiv==1" />
+                                        </div>
+                                    </div>
+                                    <div class="grid_6">
+                                        <div class="grid_12" style="margin-top: 5px;">
+                                            <label c-label item="item">Hasil</label>
+                                            <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.hasilPeriksaHiv" ng-disabled="item.hiv==1" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_12" style="border: 1px solid; border-color: #10C4B2;"></div>
+                    <div class="grid_12">
+                        <div class="grid_12" style="margin:5px 0 0 10px">
+                            <label c-label item="item" c-label-text="Assesories:"></label>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_3">
+                                <div class="grid_12" style="margin:10px 0 0 20px">
+                                    <label c-label item="item">1. Kacamata/ Soft lens</label>
+                                </div>
+                                <div class="grid_4" ng-repeat="stat in listStatusYaTidak" style="margin-left:20px">
+                                    <input type="radio" name="{{'kacamata' + stat.name}}" id="{{'kacamata' + stat.name}}" class="k-radio" ng-model="item.kacamata" ng-value="{{stat.id}}" ng-disabled="isDokter">
+                                    <label class="k-radio-label" for="{{'kacamata' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                            </div>
+                            <div class="grid_3">
+                                <div class="grid_12" style="margin:10px 0 0 20px">
+                                    <label c-label item="item">2. Alat bantu dengar</label>
+                                </div>
+                                <div class="grid_4" ng-repeat="stat in listStatusYaTidak" style="margin-left:20px">
+                                    <input type="radio" name="{{'alatBantuDengar' + stat.name}}" id="{{'alatBantuDengar' + stat.name}}" class="k-radio" ng-model="item.alatBantuDengar" ng-value="{{stat.id}}" ng-disabled="isDokter">
+                                    <label class="k-radio-label" for="{{'alatBantuDengar' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                            </div>
+                            <div class="grid_3">
+                                <div class="grid_12" style="margin:10px 0 0 20px">
+                                    <label c-label item="item">3. Gigi palsu</label>
+                                </div>
+                                <div class="grid_4" ng-repeat="stat in listStatusYaTidak" style="margin-left:20px">
+                                    <input type="radio" name="{{'gigiPalsu' + stat.name}}" id="{{'gigiPalsu' + stat.name}}" class="k-radio" ng-model="item.gigiPalsu" ng-value="{{stat.id}}" ng-disabled="isDokter">
+                                    <label class="k-radio-label" for="{{'gigiPalsu' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                            </div>
+                            <div class="grid_3">
+                                <div class="grid_12" style="margin:10px 0 0 20px">
+                                    <label c-label item="item">4. Perhiasan</label>
+                                </div>
+                                <div class="grid_4" ng-repeat="stat in listStatusYaTidak" style="margin-left:20px">
+                                    <input type="radio" name="{{'perhiasan' + stat.name}}" id="{{'perhiasan' + stat.name}}" class="k-radio" ng-model="item.perhiasan" ng-value="{{stat.id}}" ng-disabled="isDokter">
+                                    <label class="k-radio-label" for="{{'perhiasan' + stat.name}}">{{stat.name}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_12" style="border: 1px solid; border-color: #10C4B2;"></div>
+                    <div class="grid_12">
+                        <div class="grid_12" style="margin:5px 0 0 10px">
+                            <label c-label item="item" c-label-text="RiwayatPembedahan:"></label>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_12">
+                                <div class="grid_2">
+                                    <div class="grid_12" style="margin:10px 0 0 20px">
+                                        <label c-label item="item">Riwayat Pembedahan</label>
+                                    </div>
+                                    <div class="grid_4" ng-repeat="stat in listStatusYaTidak" style="margin-left:20px">
+                                         <input type="radio" name="{{'riwayatPembedahan' + stat.name}}" id="{{'riwayatPembedahan' + stat.name}}" class="k-radio" ng-model="item.riwayatPembedahan" ng-value="{{stat.id}}" ng-disabled="isDokter" ng-click="klik()">
+                                        <label class="k-radio-label" for="{{'riwayatPembedahan' + stat.name}}">{{stat.name}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_10">
+                                    <div class="grid_2">
+                                        <div class="grid_12" style="margin-top: 5px;">
+                                            <label c-label item="item">Tahun Berapa</label>
+                                            <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.tahunPembedahan"  ng-disabled="item.riwayatPembedahan==1"/>
+                                        </div>
+                                    </div>
+                                    <div class="grid_2">
+                                        <div class="grid_12" style="margin-top: 5px;">
+                                            <label c-label item="item">Jenis Operasi</label>
+                                            <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.jenisOperasi" ng-disabled="item.riwayatPembedahan==1" />
+                                        </div>
+                                    </div>
+                                    <div class="grid_2">
+                                        <div class="grid_12" style="margin-top: 5px;">
+                                            <label c-label item="item">Jenis Anestesi</label>
+                                            <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.jenisAnestesi" ng-disabled="item.riwayatPembedahan==1" />
+                                        </div>
+                                    </div>
+                                    <div class="grid_6">
+                                        <div class="grid_12" style="margin-top: 5px;">
+                                            <label c-label item="item">Keluhan</label>
+                                            <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.keluhan" ng-disabled="item.riwayatPembedahan==1" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>     
+            <div class="grid_12" style="border: 1px solid; border-color: #10C4B2;"></div>
+            <div class="grid_12" style="margin-top: 50px"></div>
+            <div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
+        </div>
+    </div>
+</div>

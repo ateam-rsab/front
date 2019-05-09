@@ -1,0 +1,188 @@
+{
+	"model":{
+	    "Nama" : "",
+	    "HubunganPasien" : "",
+		"TanggalKejadian":"",
+		"KodeTriage":"",
+		"TanggalLahir":"",
+		"DibawaDengan":"",
+		"Pasien":"",
+		"TempatKejadian":"",
+		"JenisKelamin":"",
+		"PasienPindah":"",
+		"Diputuskan":"",
+		"Skor":"",
+		"BerikanOksigen1":"",
+		"BerikanOksigen2":"",
+		"PasangInfus1":"",
+		"PasangInfus2":"",
+		"BerikanOksigen3":"",
+		"Pasangett1":"",
+		"Pasangett2":"",
+		"Defibrasi1":"",
+		"Defibrasi2":"",
+		"PemeriksaanLab":"",
+		"StatusImage":"",
+		"PemberianObat":""
+		
+		
+		
+		
+		
+		
+	   
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "Nama",
+			"messagesRequired" : "Nama Harus Diisi",
+			"caption" : "Nama"
+		},
+		{
+			"isNull" : "true",
+			"name" : "HubunganPasien",
+			"messagesRequired" : "HubunganPasien harus diisi di Harus Diisi",
+			"caption" : "Hubungan Pasien"
+		}, 
+		{
+			"isNull" : "true",
+			"name" : "TanggalKejadian",
+			"messagesRequired" : "Tanggal Kejadian Harus Diisi",
+			"caption" : "Tanggal/Jam Kejadian"
+		}, 
+		{
+			"isNull" : "true",
+			"name" : "KodeTriage",
+			"messagesRequired" : "Kode Triage Harus Diisi",
+			"caption" : "Kode Triage"
+		}, 
+		{
+			"isNull" : "true",
+			"name" : "TanggalLahir",
+			"messagesRequired" : "Tanggal Lahir Harus Diisi",
+			"caption" : "Tanggal Lahir"
+		},
+		{
+			"isNull" : "true",
+			"name" : "DibawaDengan",
+			"messagesRequired" : "Dibawa dengan Harus Diisi",
+			"caption" : "Dibawa dengan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Pasien",
+			"messagesRequired" : "Pasien Harus Diisi",
+			"caption" : "Pasien"
+		},
+		{
+			"isNull" : "true",
+			"name" : "TempatKejadian",
+			"messagesRequired" : "Tempat Kejadian Harus Diisi",
+			"caption" : "Tempat Kejadian"
+		},
+
+		{
+			"isNull" : "true",
+			"name" : "JenisKelamin",
+			"messagesRequired" : "Jenis Kelamin Harus Diisi",
+			"caption" : "Jenis Kelamin"
+		},
+	    {
+			"isNull" : "true",
+			"name" : "StatusImage",
+			"messagesRequired" : "Status Image Harus Diisi",
+			"caption" : "StatusImage"
+		},
+        {
+			"isNull" : "true",
+			"name" : "PasienPindah",
+			"messagesRequired" : "Pasien Pindah ke ruangan perawatan harus diisi",
+			"caption" : "Pasien Pindah ke ruangan perawatan"
+		},	
+		{
+			"isNull" : "true",
+			"name" : "Diputuskan",
+			"messagesRequired" : "Diputuskan Untuk harus diisi",
+			"caption" : "Diputuskan Untuk"
+		},
+        {
+			"isNull" : "true",
+			"name" : "Skor",
+			"messagesRequired" : "Skor harus diisi",
+			"caption" : "Skor"
+		},
+
+		{
+			"isNull" : "true",
+			"name" : "BerikanOksigen1",
+			"messagesRequired" : "Berikan Oksigen Harus Diisi",
+			"caption" : "Berikan Oksigen"
+		},
+        {
+			"isNull" : "true",
+			"name" : "BerikanOksigen2",
+			"messagesRequired" : "Berikan Oksigen harus diisi",
+			"caption" : "Berikan Oksigen"
+		},	
+		{
+			"isNull" : "true",
+			"name" : "PasangInfus1",
+			"messagesRequired" : "Pasang Infus harus diisi",
+			"caption" : "Pasang Infus"
+		},
+        {
+			"isNull" : "true",
+			"name" : "PasangInfus2",
+			"messagesRequired" : "Pasang Infus harus diisi",
+			"caption" : "Pasang Infus"
+		},
+		 {
+			"isNull" : "true",
+			"name" : "BerikanOksigen3",
+			"messagesRequired" : "Berikan Oksigen harus diisi",
+			"caption" : "Berikan Oksigen"
+		},	
+		{
+			"isNull" : "true",
+			"name" : "PemeriksaanLab",
+			"messagesRequired" : "Pemeriksaan Lab harus diisi",
+			"caption" : "Pemeriksaan Lab"
+		},
+        {
+			"isNull" : "true",
+			"name" : "PemberianObat",
+			"messagesRequired" : "Pemberian Obat harus diisi",
+			"caption" : "Pemberian Obat"
+		},
+         {
+			"isNull" : "true",
+			"name" : "Pasangett1",
+			"messagesRequired" : "Pasang Infus harus diisi",
+			"caption" : "Pasang ett"
+		},
+        {
+			"isNull" : "true",
+			"name" : "Pasangett2",
+			"messagesRequired" : "Pasang Infus harus diisi",
+			"caption" : "Pasang ett"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Defibrasi1",
+			"messagesRequired" : "Pemeriksaan Lab harus diisi",
+			"caption" : "Defibrasi"
+		},
+        {
+			"isNull" : "true",
+			"name" : "Defibrasi2",
+			"messagesRequired" : "Pemberian Obat harus diisi",
+			"caption" : "Defibrasi"
+		}		
+
+
+
+	
+		
+  ]
+}

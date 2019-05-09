@@ -1,0 +1,145 @@
+<div ng-controller="SkalaNyeriCtrl">
+<div class="panel panel-default container_12">
+        <div class="panel-heading" c-translate>Skala Nyeri</div>
+        <div class="panel-body">
+           
+            <div class="grid_12">
+                <div class="panel panel-default container_12">
+
+                    
+                    <div class="panel-body">
+                    <div class="grid_12">
+                    	<div class="grid_4">
+                    	    <div class="grid_4" style="margin-top:10px;">
+			                    <label c-label item="item" c-label-text="TanggalInput"></label>
+			                </div>
+			                <div class="grid_8">
+			                    <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tglPartus" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"/>
+			                </div>
+                    	</div>
+                    	<div class="grid_4">
+                    	    <div class="grid_4" style="margin-top:10px;">
+			                    <label c-label item="item" c-label-text="UmurHamil"></label>
+			                </div>
+			                <div class="grid_8">
+			                    <input c-text-box type="input"  filter="'numeric'" class="k-textbox" ng-model="item.umurHamil" />
+			                </div>
+			                </div>
+                    	<div class="grid_4">
+                    	    <div class="grid_4" style="margin-top:10px;">
+			                    <label c-label item="item" c-label-text="PenolongPersalinan"></label>
+			                </div>
+			                <div class="grid_8">
+			                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.penolongPersalinan" />
+			                </div>
+                    	</div>
+                    </div>
+                    <div class="grid_12">
+                    	<div class="grid_4">
+                    	    <div class="grid_4" style="margin-top:10px;">
+			                    <label c-label item="item" c-label-text="TempatPartus"></label>
+			                </div>
+			                <div class="grid_8">
+			                    <textarea ng-model="item.tempatPartus"></textarea>
+			                </div>
+                    	</div>
+                    	<div class="grid_4">
+                    	    <div class="grid_4" style="margin-top:10px;">
+			                    <label c-label item="item" c-label-text="JenisPersalinan"></label>
+			                </div>
+			                <div class="grid_8">
+			                    <textarea ng-model="item.jenisPersalinan"></textarea>
+			                </div>
+			                </div>
+                    	<div class="grid_4">
+                    	    <div class="grid_4" style="margin-top:10px;">
+			                    <label c-label item="item" c-label-text="Penyakit"></label>
+			                </div>
+			                <div class="grid_8">
+			                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.penyakit" />
+			                </div>
+                    	</div>
+                    </div>
+                    <div class="grid_12">
+                    	<div class="grid_4">
+                    	    <div class="grid_4" style="margin-top:10px;">
+			                    <label c-label item="item" c-label-text="BeratBadanLahir"></label>
+			                </div>
+			                <div class="grid_8">
+			                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.beratBadanLahir" />
+			                </div>
+                    	</div>
+                    	<div class="grid_4">
+                    	    <div class="grid_4" style="margin-top:10px;">
+			                    <label c-label item="item" c-label-text="Status"></label>
+			                </div>
+			                <div class="grid_8">
+			                    <div class="grid_4" ng-repeat="data in sourceJenisDiet">
+							<input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="item.status" ng-value="data">
+							<label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+						</div>
+			                </div>
+			                </div>
+                    	<div class="grid_4">
+                            <div class="grid_12">
+                                &nbsp;
+                            </div>
+                            <div class="grid_12">
+                                <div class="grid_6">
+                                    <c-button click="addJenisDiet">
+                                        <span style="font-size:10!important">Tambah</span>
+                                    </c-button>
+                                </div>
+                                <div class="grid_6">
+                                    <c-button click="removeJenisDiet">
+                                        <span style="font-size:10!important">Hapus</span>
+                                    </c-button>
+                                </div>
+
+                            </div>
+                    	</div>
+                    </div>
+
+                       <!--  <div class="grid_3">
+                            <label c-label item="item" c-label-text="JenisDiet" real></label>
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisDiet" k-data-text-field="'jenisDiet'" k-data-value-field="'id '" k-filter="'contains '" k-auto-bind="false" k-data-source="sourceJenisDiet" />
+                        </div> -->
+                    <div class="grid_12">
+                        <div class="grid_1" style="text-align: center; vertical-align: middle;">
+                             <img class="normalTidakNormal" src="stylesheets/skalanyeri/1.png" >
+                        </div>
+                        <div class="grid_1" style="text-align: center; vertical-align: middle;">
+                             <img class="normalTidakNormal" src="stylesheets/skalanyeri/2.png" >
+                        </div>
+                        <div class="grid_1" style="text-align: center; vertical-align: middle;">
+                             <img class="normalTidakNormal" src="stylesheets/skalanyeri/3.png" >
+                        </div>
+                        <div class="grid_1" style="text-align: center; vertical-align: middle;">
+                             <img class="normalTidakNormal" src="stylesheets/skalanyeri/4.png" >
+                        </div>
+                        <div class="grid_1" style="text-align: center; vertical-align: middle;">
+                             <img class="normalTidakNormal" src="stylesheets/skalanyeri/5.png" >
+                        </div>
+                        <div class="grid_1" style="text-align: center; vertical-align: middle;">
+                             <img class="normalTidakNormal" src="stylesheets/skalanyeri/6.png" >
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                    <div class="grid_1" ng-repeat="data in sourceGmbrNyeri" style="text-align: center; vertical-align: middle;">
+                            <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="item.status" ng-value="data">
+                            <label class="k-radio-label" for="{{data.name}}">{{data.nilai}}<br>{{data.name}}</label>
+                       
+                    </div>
+                    </div>
+                        <div class="grid_12" style="margin-top: 10px; margin-bottom:80px;">
+                            <div kendo-grid k-data-source="jenisMenuDiet" k-selectable="'row'" k-columns="column">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+        </div>
+    </div>
+</div>

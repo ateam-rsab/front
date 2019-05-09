@@ -1,0 +1,144 @@
+<div class="SimulasiPendapatanCtrl">
+    <div class="panel panel-default container_12" style="background-color:transparant">
+        <div class="panel-heading"><label class='title' c-label item="item" c-label-text="Menghitung PIR" real></label></div>
+        <div class="panel-body">
+            <div class="grid_2">
+                <span c-label c-label-text="Tahun" />
+                <input required style="width: 100%;" kendo-combo-box k-ng-model="selectedTahun" k-data-text-field="'id'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listTahun" />
+            </div>
+            <div class="grid_12">
+                <table class="table">
+                    <tr>
+                        <th>
+                            <span c-label c-label-text="Uraian" />
+                        </th>
+                        <th>
+                            <span c-label c-label-text="Jumlah" />
+                        </th>
+                        <th>
+                            <span c-label c-label-text="Persen" />
+                        </th>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            Proyeksi Pendapatan PNBP 1 Tahun yang akan datang (2016)
+                        </td>
+                        <td>
+                            <input required c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.pendapatan" ng-change="calculate()" />
+                            <span class="info">Rp. {{item.pendapatan|number :0}}</span>
+                        </td>
+                        <td>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            Pagu Remunerasi
+                        </td>
+                        <td>
+                            <input ng-disabled="'true'" required c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahRemun" ng-change="calculate()" />
+                            <span class="info">Rp. {{item.jumlahRemun|number :0}}</span>
+                        </td>
+                        <td>
+                            <input required c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.persenRemun" ng-change="calculate()" />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            Kebutuhan anggaran Pay For Position (P1)
+                        </td>
+                        <td>
+                            <input ng-disabled="'true'" required c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahP1" ng-change="calculate()" />
+                            <span class="info">Rp. {{item.jumlahP1|number :0}}</span>
+                        </td>
+                        <td>
+                            <input required c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.persenP1" ng-change="calculate()" />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            Kebutuhan anggaran Pay For Performance (P2)
+                        </td>
+                        <td>
+                            <input ng-disabled="'true'" required c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahP2" ng-change="calculate()" />
+                            <span class="info">Rp. {{item.jumlahP2|number :0}}</span>
+                        </td>
+                        <td>
+                            <input required c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.persenP2" ng-change="calculate()" />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            Kebutuhan anggaran Pay For People (P3) Dll
+                        </td>
+                        <td>
+                            <input required c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahP3" ng-change="calculate()" />
+                            <span class="info">Rp. {{item.jumlahP3|number :0}}</span>
+                        </td>
+                        <td>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            Total Job Value
+                        </td>
+                        <td>
+                            <input required c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.totalJobValue" ng-change="calculate()" />
+                            <span class="info"> {{item.totalJobValue|number :0}}</span>
+                        </td>
+                        <td>
+
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            Anggaran remunerasi Setelah dikurangi P3 dll (P1 + P2) Total Job Value
+                        </td>
+                        <td>
+                            <input ng-disabled="'true'" required c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.anggaranRemunerasi" ng-change="calculate()" />
+                            <span class="info">Rp. {{item.anggaranRemunerasi|number :0}}</span>
+                        </td>
+                        <td>
+
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            Kebutuhan Remunerasi per bulan
+                        </td>
+                        <td>
+                            <input ng-disabled="'true'" required c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.kebutuhanRemunerasi" ng-change="calculate()" />
+                            <span class="info">Rp. {{item.kebutuhanRemunerasi|number :0}}</span>
+                        </td>
+                        <td>
+
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            Poin Indeks Rupiah (PIR)
+                        </td>
+                        <td>
+                            <span>Rp. {{item.poinPir|number :0}}</span>
+                        </td>
+                        <td>
+
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+            <div class="grid_12">
+                <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+            </div>
+        </div>
+    </div>
+</div>

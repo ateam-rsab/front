@@ -1,0 +1,134 @@
+<style type="text/css">
+	.style-four {
+		height: 5px;
+		border: 0;
+		box-shadow: inset 0 14px 12px -12px rgba(0, 0, 0, 0.5);
+	}
+</style>
+<!-- <div ng-app="MappingInfectionAndNon"> -->
+	<!-- <div ng-controller="MappingInfectionAndNonCtrl"> -->
+		<div ng-show="dataVOloaded">
+			<center>
+				<c-panel item="item" header="'Mapping Infection And Non Infection To Bahan Baku'" disabled>
+			</center>
+			<div class="grid_3">
+				<div class="panel panel-default container_12">
+					<div class="grid_12">
+						<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+							<p>Jenis Pencucian</p>
+						</div>
+						<div class="grid_12">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.JenisPencucian" k-data-source="sourceJenisLinen"
+							 k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="grid_9">
+				<div class="panel panel-default container_12">
+					<div class="grid_12">
+						<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+							<p>Input Bahan Baku</p>
+						</div>
+
+						<div class="grid_12">
+							<div class="grid_2">
+								<label c-label item="item" c-label-text="Nama Mesin" style="margin-top: 10px"></label>
+							</div>
+							<div class="grid_1">
+								<label c-label item="item" c-label-text=":" style="margin-top: 10px"></label>
+							</div>
+							<div class="grid_6">
+								<input style="width: 100%;" kendo-combo-box k-ng-model="item.mesin" k-data-text-field="'namaMesin'"
+								 k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceMasterMesin"
+								 k-on-change="satuan()" />
+							</div>
+						</div>
+
+
+						<div class="grid_12">
+							<div class="grid_2">
+								<label c-label item="item" c-label-text="Nama Bahan Baku" style="margin-top: 10px"></label>
+							</div>
+							<div class="grid_1">
+								<label c-label item="item" c-label-text=":" style="margin-top: 10px"></label>
+							</div>
+							<div class="grid_6">
+								<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaBahanBaku" k-filter="'contains'"
+								 k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-data-source="listbahan" />
+							</div>
+						</div>
+						<div class="grid_12">
+							<div class="grid_2">
+								<label c-label item="item" c-label-text="Satuan" style="margin-top: 10px"></label>
+							</div>
+							<div class="grid_1">
+								<label c-label item="item" c-label-text=":" style="margin-top: 10px"></label>
+							</div>
+							<div class="grid_6">
+								<input style="width: 100%;" kendo-combo-box k-ng-model="item.satuanBahan" k-data-text-field="'satuanStandar'"
+								 k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceSatuan" />
+							</div>
+						</div>
+						<div class="grid_12">
+							<div class="grid_2">
+								<label c-label item="item" c-label-text="Jumlah" style="margin-top: 10px"></label>
+							</div>
+							<div class="grid_1">
+								<label c-label item="item" c-label-text=":" style="margin-top: 10px"></label>
+							</div>
+							<div class="grid_6">
+								<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.qty" />
+							</div>
+						</div>
+						<div class="grid_12">
+							<div class="grid_5"></div>
+							<div class="grid_2">
+								<md-tooltip md-direction='left'>Untuk Menambah Data Ke Daftar Bahan Baku</md-tooltip>
+								<button class="c-button success" ng-click="AddInfection()">Tambah</button>
+							</div>
+							<div class="grid_2">
+								<md-tooltip md-direction='right'>Membersihkan Keseluruhan Form yang terisi</md-tooltip>
+								<button class="c-button" ng-click="Clear()">Clear</button>
+							</div>
+							<div class="grid_3"></div>
+						</div>
+						<c-panel item="item" header="'Daftar Bahan Baku'">
+							<div class="panel panel-default container_12">
+								<div id="kGrid" kendo-grid kendo-grid options="mainGridOptions" k-data-source="DaftarMappingInfectionNon"
+								 k-selectable="'row'" k-columns="columnDataAlat" k-pageable="'true'" k-sortable="'true'" k-ng-model="dataSelected"
+								 ng-click="klik2(dataSelected)">
+								</div>
+							</div>
+						</c-panel>
+						<div class="grid_12" style="margin-bottom:-16px">
+							<div class="grid_8"></div>
+							<div class="grid_2">
+								<button class="c-button success" ng-click="Save()">Save</button>
+							</div>
+							<div class="grid_2">
+								<button class="c-button cancel" ng-click="Cancel()">Kembali</button>
+							</div>
+						</div>
+						<div class="grid_12">
+							<br>
+							<hr class="style-four">
+							<div class="grid_12" style="margin-bottom: 35px">
+								<br>
+							</div>
+						</div>
+						<div class="grid_12"><br>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</c-panel>
+	<!-- </div> -->
+<!-- </div> -->
+<style type="text/css">
+	.gambarAset {
+		width: 60%;
+		height: 100%;
+		border: 1px solid grey;
+	}

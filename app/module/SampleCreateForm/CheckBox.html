@@ -1,0 +1,20 @@
+<div ng-controller="CheckBoxCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Check Box'">
+				<div class="grid_12" style="margin-bottom:5px">
+					<label c-label item="item" c-label-text="CheckBox"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12" style="margin-bottom:5px">
+	                <div class="grid_2" ng-repeat="karateristikNyeri in listKarateristikNyeri">
+	                    <input type="checkbox" class="k-checkbox" name="{{karateristikNyeri.name}}" id="{{karateristikNyeri.name}}" value="{{karateristikNyeri.id}}" ng-click="cekArrKarateristikNyeri(karateristikNyeri.id)">
+	                    <label class="k-checkbox-label" for="{{karateristikNyeri.name}}">{{karateristikNyeri.name}}</label>
+	                </div>
+	                <div class="clear"></div>
+	            </div>
+	            
+		</c-panel>
+	</div>
+</div>

@@ -1,0 +1,108 @@
+<style type="text/css">
+    .style-center {
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .style-right {
+        display: inline-block;
+        text-align: right;
+        width: 100%;
+    }
+    
+    .style-left {
+        display: inline-block;
+        text-align: left;
+        width: 100%;
+    }
+</style>
+
+    <div ng-show="dataVOloaded">
+        <div class="grid_12">
+            <div class="grid_12 headerBox">
+                <h1 style="color: white;"><b>Map Pegawai To Kelompok Kerja</b></h1>
+            </div>
+            <div class="grid_12">
+                <div class="grid_2">
+                    <div class="grid_12">
+                        <label c-label item="item" >Kelompok Kerja Head</label>
+                    </div>
+
+                    <div class="grid_12">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.KkHead" k-data-text-field="'kelompokkerjahead'"
+                        k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKkHead"/>
+                    </div>
+                </div>
+                <div class="grid_3">
+                    <div class="grid_12">
+                        <label c-label item="item" >Kelompok Kerja</label>
+                    </div>
+                    <div class="grid_12">
+                         <input style="width: 100%;" kendo-combo-box k-ng-model="item.Kkerja" k-data-text-field="'kelompokkerja'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKkerja"/>
+                    </div>
+                </div>
+                <div class="grid_1" style="margin-top: 22px">
+                    <button class="c-button"  ng-click="cariFilter()">Cari</button>
+                </div>
+                <div class="grid_6"></div>
+            </div>
+            <div class="grid_6">
+                         <kendo-grid id="kGrid" 
+                            k-data-source="dataGrid" 
+                            k-selectable="'row'" 
+                            options="columnGridExcel" 
+                            class="max-height"
+                            k-pageable="'true'" 
+                            k-sortable="'true'" 
+                            k-ng-model="dataSelected"
+                            ng-click="klikGrid(dataSelected)"></kendo-grid>                    
+                <div class="grid_12">
+                </div>    
+            </div>
+            <div class="grid_6">
+                <div class="grid_12">
+                    <div class="grid_12">
+                        <label c-label item="item">Id Pegawai</label>
+                    </div>
+
+                    <div class="grid_12">
+                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.IdPegawai" ng-disabled="disable"/>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_12">
+                        <label c-label item="item">Nama Pegawai</label>
+                    </div>
+
+                    <div class="grid_12">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.Pegawai" k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" k-on-change='getIdPegawai()'/>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_12">
+                        <label c-label item="item" >Kelompok Kerja</label>
+                    </div>
+                    <div class="clear"></div>
+
+                    <div class="grid_12">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.KkerjaInsert" k-data-text-field="'kelompokkerja'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKkerja"/>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_6">
+                    </div>
+                    <div class="grid_3" style="margin-top: 22px">
+                        <button class="c-button"  ng-click="simpan()">Simpan</button>
+                    </div>
+                    <div class="grid_3" style="margin-top: 22px">
+                        <button class="c-button"  ng-click="Batal()">Batal</button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="grid_12" style="margin-top:60px">
+                <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,112 @@
+<div ng-controller="RouteFarmasiCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Route Farmasi'" disabled>
+
+			<!-- name -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="name"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.name" />
+				</div>
+			</div>
+
+			<!-- reportDisplay -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="reportDisplay"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+				</div>
+			</div>
+
+			<!-- kodeExternal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kodeExternal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+				</div>
+			</div>
+
+			<!-- namaExternal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="namaExternal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+				</div>
+			</div>
+
+			<!-- RouteFarmasi -->
+			<div class="grid_12">
+				<div class="grid_12 headerBox">
+					<p>RouteFarmasi</p>
+				</div>
+				<div class="clear"></div>
+
+				<!-- grid table -->
+				<!-- <div class="grid_12 borderBox">
+				<div kendo-grid k-data-source="dataSource" k-selectable="'row'" k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+
+					
+
+				</div> -->
+
+				<!-- grid table -->
+	<div class="grid_12 borderBox">
+						<kendo-grid options="mainGridOptions"  k-data-source="dataSource" k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+	</div>
+
+				<div class="clear"></div>
+			</div>
+			
+			<div class="clear"></div>
+
+
+		</c-panel>
+
+
+		<div class="grid_12" style="margin-top:30px">
+
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="routeFarmasi" style="margin-left:5px"></label>
+			</div>
+
+			<div class="grid_4" style="margin-top:-5px">
+				<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.cariRouteFarmasi" />
+			</div>
+							
+			<div class="grid_2" style="margin-top:1px">
+				<button class="c-button" ng-click="cari()">Cari</button>
+			</div>
+
+			<div class="grid_2"></div>
+
+			<div class="grid_2" ng-show="showEdit">
+					<button class="c-button" ng-click="simpan()">Edit</button>
+			</div>
+			<div class="grid_2" ng-hide="showEdit">
+				<button class="c-button" ng-click="simpan()">Simpan</button>
+			</div>
+			<div class="grid_2">
+				<button class="c-button" ng-click="batal()">Batal</button>
+			</div>
+
+		</div>
+
+	</div>
+
+</div>

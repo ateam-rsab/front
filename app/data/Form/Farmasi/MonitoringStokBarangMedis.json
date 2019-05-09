@@ -1,0 +1,34 @@
+{
+	"model":{
+	    "jenisBarang" : "",
+	    "namaBarang" : "",
+	    "asalBarang" : "",
+	    "monitoringStokBarang" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "jenisBarang",
+			"messagesRequired" : "",
+			"caption" : "Jenis Barang"
+		},
+		{
+			"isNull" : "true",
+			"name" : "namaBarang",
+			"messagesRequired" : "",
+			"caption" : "Nama Barang"
+		},
+		{
+			"isNull" : "true",
+			"name" : "asalBarang",
+			"messagesRequired" : "",
+			"caption" : "Asal Barang"
+		},
+		{
+			"isNull" : "true",
+			"name" : "monitoringStokBarang",
+			"messagesRequired" : "",
+			"caption" : "Monitoring Stok Barang"
+		}
+  ]
+}

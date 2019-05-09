@@ -1,0 +1,105 @@
+<div ng-controller="DaftarSetoranKasirBendaharaPenerimaanCtrl">
+	<div ng-show="dataVOloaded">
+		<div class="grid_12 headerBox">
+			<h1 style="color: white;"><b>Daftar Setoran Kasir</b></h1>
+		</div>
+	<!-- <c-panel item="item" header="'Daftar Setoran Kasir'" disabled>
+-->
+<!-- Kriteria -->
+<div class="grid_12">
+
+	<div class="grid_12 borderBox containerBorderBox">
+		<!-- NamaKasir -->
+		<div class="grid_3">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="NamaKasir"></label>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_12">
+				<!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaKasir" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listNamaKasir" /> -->
+				<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaKasir" />
+			</div>
+		</div>
+
+		<!-- Periode -->
+		<div class="grid_4">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="Periode"></label>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_12" style="margin-top: -5px">
+				<!-- PeriodeAwal -->
+				<div class="grid_6">
+					<div class="grid_12">
+						<input style="width: 100%" k-ng-model="item.tglAwal"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+					</div>
+				</div>
+
+				<!-- PeriodeAkhir -->
+				<div class="grid_6">
+					<div class="grid_12">
+						<input style="width: 100%" k-ng-model="item.tglAkhir"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+
+		<!-- Status -->
+				<!-- <div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Status"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.status" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listStatus" />
+					</div>
+				</div> -->
+
+				<!-- Button Search -->
+				<div class="grid_2">
+					<div class="grid_12">
+						<label>&nbsp;</label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<button class="btnTemplate1" ng-click="SearchData()">Cari</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="clear"></div>
+
+		<br/>
+
+		<!-- DaftarSetoranKasir -->
+		<div class="grid_12">
+			<div class="grid_12 headerBox">
+				<p>DaftarSetoranKasir</p>
+			</div>
+			<div class="grid_12">
+				<div class="grid_12 borderBox">
+					<div id="kGrid" kendo-grid 
+					k-data-source="dataSource" 
+					k-selectable="'row'" 
+					k-columns="columnGrid"
+					k-pageable="'true'"
+					k-sortable="'true'"
+					k-ng-model="dataSelected">
+				</div>
+			</div>
+		</div>
+
+		<!-- </c-panel> -->
+
+		<div class="grid_12" style="margin-top:30px">
+			<div ng-include='"../app/module/Shared/Keuangan/TemplateButtonBendaharaPenerimaan"'></div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,56 @@
+<div class="grid_12" style="margin: 10px auto; padding: 10px auto">
+    <div class="panel panel-default">
+        <div class="panel-heading"><span class="title" c-translate>Detil Kunjungan</span></div>
+        <div class="panel-body">
+            <div class="grid_12">
+                <div class="grid_1">
+                    <label class="c-label">Nama</label>
+                </div>
+                <div class="grid_3">
+                    <label class="c-label">: &nbsp;<label class="label-nilai">{{peserta.peserta.nama}}</label></label>
+                </div>
+                <div class="grid_1">
+                    <label class="c-label">No Kartu</label>
+                </div>
+                <div class="grid_3">
+                    <label class="c-label">: &nbsp;<label class="label-nilai">{{peserta.peserta.noKartu}}</label></label>
+                </div>
+                <div class="grid_1">
+                    <label class="c-label">NIK</label>
+                </div>
+                <div class="grid_3">
+                     <label class="c-label">: &nbsp;<label class="label-nilai">{{peserta.peserta.nik}}</label></label>
+                </div>
+                <div class="grid_1">
+                    <label class="c-label">Tgl Lahir</label>
+                </div>
+                <div class="grid_3">
+                    <label class="c-label">: &nbsp;<label class="label-nilai">{{peserta.tglLahir}}</label></label>
+                </div>
+                <div class="grid_1">
+                    <label class="c-label">Pelayanan</label>
+                </div>
+                <div class="grid_3">
+                    <label class="c-label">: &nbsp;<label class="label-nilai">{{peserta.jnsPelayanan}}</label></label>
+                </div>
+                <div class="grid_1">
+                    <label class="c-label">Kelas</label>
+                </div>
+                <div class="grid_3">
+                    <label class="c-label">: &nbsp;<label class="label-nilai">{{peserta.klsRawat.nmKelas}}</label></label>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
+                <div kendo-grid k-data-source="gridDataK" options="gridKunjungan"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .label-nilai {
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-weight: 600;
+        font-size: 18px;
+    }
+</style>

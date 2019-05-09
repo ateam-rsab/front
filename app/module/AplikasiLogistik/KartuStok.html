@@ -1,0 +1,66 @@
+<div ng-controller="KartuStokCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" disabled>
+			<div class="grid_8">
+			    <c-panel item="item" header="'Periode'" disabled>
+					<label c-label item="item" c-label-text="Periode" class="grid_2" style="margin-top:10px"></label>
+					<div class="grid_4">
+						<input style="width:100%" kendo-date-picker k-ng-model="item.awal" k-max="now" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'"/>
+					</div>
+					<label c-label item="item" c-label-text="Sd" class="grid_1" style="margin-top:10px;padding-left:10px"></label>
+					<div class="grid_4">
+						<input style="width:100%" kendo-date-picker k-ng-model="item.akhir" k-max="now" placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'"/>
+					</div>
+		       	</c-panel>
+		    </div>
+
+		    <div class="grid_9">
+		    	<div class="grid_6">
+		    		<div class="grid_4">
+						<label c-label item="item" c-label-text="asalBarang" style="margin-top:10px"></label>
+		    		</div>
+		    		<div class="grid_8">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.asalBarang" k-data-text-field="'asalBarang'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceAsalBarang" />
+		    		</div>
+		    	</div>
+		    	<div class="grid_6">
+		    		<div class="grid_4" style="margin-top:10px">
+						<input type="checkbox" class="k-checkbox" name="namaBarang" id="namaBarang" value="namaBarang" ng-click="cekNamaBarang()">
+		           		<label class="k-checkbox-label" for="namaBarang">{{'Nama Barang'}}</label>
+		    		</div>
+		    		<div class="grid_8">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaBarang" k-data-text-field="'namaBarang'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceNamaBarang" ng-disabled="!barangChecked" />
+		    		</div>
+		    	</div>
+		    </div>
+
+		    <div class="grid_2" style="margin-top:5px">
+		    	<c-button ng-click="" style="width:100% !important">
+					<span style="font-size:10!important">Proses</span>
+				</c-button>
+				<label c-label item="item" c-label-text=""> </label>
+				<c-button ng-click="" style="width:100% !important">
+					<span style="font-size:10!important">Batal</span>
+				</c-button>
+		    </div>
+
+		    <div class="grid_12" style="margin-top:50px">
+				<div kendo-grid k-data-source="" k-selectable="'row'" k-columns="columnStok"></div>
+		    </div>
+
+		    <div class="grid_12" style="margin-top:50px">
+		    	<div class="grid_8"></div>
+		    	<div class="grid_2" style="margin-top:5px">
+			    	<c-button ng-click="" style="width:100% !important">
+						<span style="font-size:10!important">Cetak</span>
+					</c-button>
+				</div>
+				<div class="grid_2" style="margin-top:5px">
+			    	<c-button ng-click="" style="width:100% !important">
+						<span style="font-size:10!important">Tutup</span>
+					</c-button>
+				</div>
+		    </div>
+		</c-panel>
+	</div>
+</div>

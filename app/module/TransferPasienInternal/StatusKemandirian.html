@@ -1,0 +1,33 @@
+<div ng-controller="StatusKemandirianCtrl">
+    <div class="panel panel-default container_12">
+        <div class="panel-heading" c-translate>
+            Status Kemandirian
+        </div>
+        <div class="panel-body">
+
+            <div class="panel panel-default container_12" style="margin-bottom:0;" ng-repeat="(key, value) in listAktivitasKemandirian | groupBy: 'kategori'">
+                <div class="panel-heading" c-translate>
+                    {{ key }}
+                </div>
+
+                <div class="panel-body">
+                    <div class="grid_12" style="margin: 5px 0px 5px 0px" ng-repeat="item in value">
+                        <div class="grid_3">
+                            {{item.name}}
+                        </div>
+                        <div class="grid_9">
+                            <div class="grid_3" ng-repeat="data in listStatusMandiri">
+                                <input type="radio" name="{{item.name + item.id + data.name}}" id="{{item.name + item.id + data.name}}" class="k-radio" ng-model="item.data" ng-value="data" ng-click="clickRadioOption(item, data)">
+                                <label class="k-radio-label" for="{{item.name + item.id + data.name}}">{{data.name}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+    <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+
+</div>

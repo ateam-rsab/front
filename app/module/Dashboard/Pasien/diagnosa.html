@@ -1,0 +1,46 @@
+<div ng-controller="DashboarDiagnosisCtrl" style="position:relative;">
+
+    <c-panel item="item" header="'Diagnosis'" disabled>
+        <c-loading ng-show="isLoadingDiagnosis"></c-loading>
+        <div class="panel-place">
+            <a ng-hide='hideButtonAdd' class="n1" href="#/Dashboard/Pasien/PengkajianMedis/{{noCM}}/{{tanggal}}/{{noRec}}/{noRecSOAP}/{noRecPasienDaftar}/Diagnosis">
+                <div class="cd-timeline-img cd-picture add animated">
+                    <img src="stylesheets/Add.png" alt="Picture">
+                </div>
+            </a>
+        </div>
+        <div class="grid_12">
+            <div class="grid_1" style="margin:20px 0 0 30px;">
+                <label c-label c-label-text="tanggal"></label>
+            </div>
+            <div class="grid_2" style="margin-top:10px">
+                <input style="width: 100%" k-ng-model='from' k-value='now' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+            </div>
+            <div class="grid_2" style="margin-top:10px">
+                <input style="width: 100%" k-ng-model='until' k-max='now' k-value='now' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+            </div>
+            <div class="grid_1">
+                <label c-label c-label-text=""></label>
+                <em  ng-click='' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+            </div>
+        </div>
+        <div class="grid_12" style="margin-top:20px">
+            <div ng-hide="isLoadingDiagnosis">
+                <table class='table table-condensed'>
+                    <tr>
+                        <th width="100px"><label c-label c-label-text="tanggal" statment></label></th>
+                        <th width="100px"><label c-label c-label-text="JenisDiagnosis" statment></label></th>
+                        <th width="100px"><label c-label c-label-text="KodeDiagnosis" statment></label></th>
+                        <th width="300px"><label c-label c-label-text="NamaDiagnosis" statment></label></th>
+                    </tr>
+                    <tr ng-repeat="data in listDiagnosa">
+                        <td width="150px">{{data.diagnosaPasien.tanggalPendaftaran | date : 'dd-MM-yyyy'}}</td>
+                        <td width="150px">{{data.jenisDiagnosa.jenisDiagnosa}}</td>
+                        <td width="150px">{{data.diagnosa.kdDiagnosa}}</td>
+                        <td width="300px">{{data.diagnosa.namaDiagnosa}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </c-panel>
+</div>

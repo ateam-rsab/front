@@ -1,0 +1,14 @@
+{
+	"model":{
+		"JenisBahan" : ""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "JenisBahan",
+			"messagesRequired" : "",
+			"caption" : "Jenis Bahan"
+		}
+	]
+}

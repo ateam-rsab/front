@@ -1,0 +1,41 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Daftar Bahan Makanan/Minuman</div>
+	<div class="panel-body">
+		<div class="grid_12" style="margin-top: 5px">
+			<div class="grid_3">
+				<label c-label item="item">Cari Data Berdasarkan:</label>
+			</div>
+			<div class="grid_2" style="margin-top: 10px">
+				<label c-label item="item">Nama Barang/Kode Barang</label>
+			</div>
+			<div class="grid_3">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.kodeBarang"/>
+			</div>
+			<div class="grid_1" style="margin-top: 6px">
+				<button class="c-button" ng-click="cari()">Cari</button>
+			</div>
+			<div class="grid_3"></div>
+		</div>
+	</div>
+
+	<div class="grid_12" style="margin-top: 10px">
+		<kendo-grid k-data-source="dataSource" k-selectable="'row'" options="mainGridOptions"></kendo-grid>
+	</div>
+	<div class="grid_12">
+		<div class="grid_8"></div>
+		<div class="grid_4">
+			<div class="grid_6">
+				<button class="c-button" ng-click="ubah()">Ubah</button>
+			</div>
+			<div class="grid_6">
+				<button class="c-button" ng-click="Batal()">Kembali</button>
+			</div>
+		</div>
+		<!-- <div class="grid_2">
+			<button class="c-button" ng-click="Delete()">Hapus</button>
+		</div>
+		<div class="grid_2">
+			<button class="c-button">Tutup</button>
+		</div> -->
+	</div>
+</div>

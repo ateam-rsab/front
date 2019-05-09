@@ -1,0 +1,68 @@
+{
+	"model":{
+		"pengendali" : "",
+		
+		"periode":"",
+		"keterangan": "",
+		"kemenLemb": "",
+		"unitOrganisasi": "",
+		"tahun":"",
+		"unitKerja": "",
+		"program": "",
+		"kegiatan": ""
+
+
+
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "pengendali",
+			"messagesRequired" : "",
+			"caption" : "Pengendali"
+		},{
+			"isNull" : "true",
+			"name" : "unitKerja",
+			"messagesRequired" : "",
+			"caption" : "Unit Kerja"
+		},{
+			"isNull" : "true",
+			"name" : "tahun",
+			"messagesRequired" : "",
+			"caption" : "Tahun"
+		},{
+			"isNull" : "true",
+			"name" : "periode",
+			"messagesRequired" : "",
+			"caption" : "Periode"
+		},{
+			"isNull" : "true",
+			"name" : "keterangan",
+			"messagesRequired" : "",
+			"caption" : "Keterangan Unverifikasi"
+		},{
+			"isNull" : "true",
+			"name" : "kemenLemb",
+			"messagesRequired" : "",
+			"caption" : "Kemen/Lemb"
+		},{
+			"isNull" : "true",
+			"name" : "unitOrganisasi",
+			"messagesRequired" : "",
+			"caption" : "Unit Organisasi"
+		},{
+			"isNull" : "true",
+			"name" : "program",
+			"messagesRequired" : "",
+			"caption" : "Program"
+		},{
+			"isNull" : "true",
+			"name" : "kegiatan",
+			"messagesRequired" : "",
+			"caption" : "Kegiatan"
+		}
+
+	]
+}

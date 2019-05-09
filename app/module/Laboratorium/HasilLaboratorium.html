@@ -1,0 +1,43 @@
+<style>
+    .red {
+        color: red;
+    }
+
+    .green {
+        color: green;
+    }
+
+    .blue {
+        color: blue;
+    }
+
+    button:disabled {
+        background: #B5B2B1;
+    }
+
+    .italic {
+        font-style: italic;
+        font-size:15px
+    }
+</style>
+
+<div class="grid_12">
+    <div ng-include='"../app/module/pasien/RegistrasiPelayananNew/HeaderRekamMedis"'></div>
+    <div class="grid_12">
+        <kendo-grid data-source="resultGrids" options="ColumnResult" k-ng-model="dataSelected" ng-click="klikGrid(dataSelected)"
+            k-groupable="true"></kendo-grid>
+        <!-- <div kendo-grid="grid" k-groupable="'true'" k-ng-model="dataSelected" k-data-source="resultGrids" k-selectable="'row'"
+            k-sortable="'true'" k-columns="ColumnResult">
+        </div> -->
+    </div>
+
+  
+    <div class="grid_12">
+            <br>
+        <span class="italic">&nbsp;&nbsp; *<b>Catatan:</b> Penilaian hasil Laboratorium hanya dapat diberikan oleh
+            dokter
+            yang memiliki data klinis pasien. Laporan ini sudah diverifikasi oleh elektronik, tanda tangan petugas
+            tidak diperlukan.</span>
+        </div>
+    <div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
+</div>

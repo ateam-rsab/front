@@ -1,0 +1,112 @@
+ <!-- PERJANJIAN -->
+ <div class="grid_12">
+    <c-form item='item'>
+        <div ng-include='"../app/module/pasien/RegistrasiPelayananNew/HeaderDataPasien"'></div>        
+    </c-form>
+</div> 
+<div class="grid_12">
+    <div class="panel-body">
+        <md-content class="md-padding">
+            <div class="grid_12">
+                <div class="tiles" ng-hide="isDisable">
+                    <div class="grid_12">
+                        <div class="tile bg-yellow-saffron orange" style="height:100px">
+                            <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                            <div class="check"></div>
+                            <div class="tile-body" style="overflow: initial">
+                                <i style="font-style: normal;"></i>
+                            </div>
+                            <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                                <div class="icon-panel">
+                                    <img width='70px' src='stylesheets/sumberDana.png' />
+                                </div>
+                                <div class="text_panel">
+                                    <span class="title"><label class="c-label">
+                                            Jumlah Reservasi {{perjanjian.tglPerjanjian|date:'dd-MM-yyyy'}}</label>
+                                    </span>
+                                    <span class="sub-title">{{jumlahReservasi}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_4">
+                    <!-- Tanggal Keluar -->
+                    <label c-label item="item" c-label-text="tanggalPerjanjian"></label>
+                </div>
+                <div class="grid_8">
+                    <input style="width: 100%" kendo-date-time-picker k-min="now" k-ng-model="perjanjian.tglPerjanjian"
+                        placeholer="Hari-Bln-Thn" k-format="'dd-MM-yyyy HH:mm'" k-on-change="pilihTanggal()" />
+                </div>
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="poliklinik"></label>
+                </div>
+                <div class="grid_8">
+                    <input ng-disabled="isDisable" style="width: 100%;" kendo-combo-box k-ng-model="perjanjian.ruangan"
+                           k-data-text-field="'namaruangan'" k-filter="'contains'" k-data-value-field="'id'"
+                           k-auto-bind="false" k-data-source="listRuangan" k-on-change="getPegawai(item.ruangan)" />
+                </div>
+
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="dokter"></label>
+                </div>
+                <div class="grid_8">
+                    <input ng-disabled="isDisable" style="width: 100%;" kendo-combo-box k-ng-model="perjanjian.dokter"
+                           k-data-text-field="'namalengkap'" k-filter="'contains'" k-data-value-field="'value'"
+                           k-auto-bind="false" k-data-source="listDokter" />
+                </div>
+                <div class="grid_4" ng-show="perjanjian.ruangan.id===20">
+                    <label c-label item="item" c-label-text="jumlahKunjungan"></label>
+                </div>
+                <div class="grid_8" ng-show="perjanjian.ruangan.id===20">
+                    <div class="grid_12">
+                        <input ng-disabled="isDisable" c-text-box type="input" filter="'numeric'" class="k-textbox"
+                            ng-model="perjanjian.jumlahKunjungan" />
+                    </div>
+
+                    <div class="grid_8" ng-show="limit!==0&&isRehabMedik===true">
+                        <input ng-disabled="isDisable" c-text-box ng-disabled="'true'" type="input" filter="'numeric'"
+                            class="k-textbox" ng-model="perjanjian.informasi" />
+                    </div>
+                </div>
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="keteranganLainnya"></label>
+                </div>
+                <div class="grid_8">
+                    <textarea ng-disabled="isDisable" ng-model="perjanjian.keteranganLainnya" style="width: 99%; height: 80px;"></textarea>
+                </div>
+                <div class="grid_12" style="padding-top:10px">
+                    <div class="grid_6"></div>
+                    <div class="grid_6">
+                        <div class="grid_3">
+                            <button class="c-button" ng-click="Cetak()">
+                                <span style="font-size:10!important">Cetak</span>
+                            </button>
+                        </div>
+                        <div class="grid_3">
+                            <button class="c-button success" ng-click="tambahPerjanjian()">
+                                <span style="font-size:10!important">Tambah</span>
+                            </button>
+                        </div>
+                        <div class="grid_3">
+                            <button class="c-button cancel" ng-click="hapusPerjanjian()">
+                                <span style="font-size:10!important">Hapus</span>
+                            </button>
+                        </div>
+                        <div class="grid_3">
+                            <button class="c-button" ng-click="batal()">
+                                <span style="font-size:10!important">Batal</span>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="grid_12" style="margin-bottom:15px">
+                    <div kendo-grid k-data-source="sourcePerjanjian" k-ng-model="dataPerjanjian" ng-click="klikPerjanjian(dataPerjanjian)"
+                         k-selectable="'row'" options="gridPerjanjian"></div>
+                </div>
+            </div>
+        </md-content>
+    </div>
+</div>   
+<!-- END PERJANJIAN -->

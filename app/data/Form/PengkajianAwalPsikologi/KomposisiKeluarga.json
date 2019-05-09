@@ -1,0 +1,49 @@
+{
+	"model":{
+	    "Nama" : "",
+	    "JenisKelamin" : "",
+	    "Umur" : "",
+	    "Pekerjaan" : "",
+	    "Keterangan" : "",
+	    "DataTabel":""
+
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "Nama",
+			"messagesRequired" : "",
+			"caption" : "Nama"
+		},
+		{
+			"isNull" : "false",
+			"name" : "JenisKelamin",
+			"messagesRequired" : "",
+			"caption" : "Jenis Kelamin"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Umur",
+			"messagesRequired" : "",
+			"caption" : "Umur"
+		},
+		{
+			"isNull" : "false",
+			"name" : "Pekerjaan",
+			"messagesRequired" : "",
+			"caption" : "Pekerjaan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Keterangan",
+			"messagesRequired" : "",
+			"caption" : "Keterangan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "DataTabel",
+			"messagesRequired" : "",
+			"caption" : "DataTabel"
+		}
+  ]
+}

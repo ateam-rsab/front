@@ -1,0 +1,113 @@
+<div ng-controller="SurveiDetailCtrl">
+<div ng-show="dataVOloaded">
+<c-panel item="item" header="'Survei Detail'" disabled>
+
+<!-- survei -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="survei"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.survei" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listsurvei" />
+</div>
+</div>
+
+<!-- surveiId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="surveiId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.surveiId" />
+</div>
+</div>
+
+<!-- name -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="name"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.name" />
+</div>
+</div>
+
+<!-- report -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="report"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.report" />
+</div>
+</div>
+
+<!-- reportDisplay -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="reportDisplay"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+</div>
+</div>
+
+<!-- kodeExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kodeExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+</div>
+</div>
+
+<!-- namaExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="namaExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+</div>
+</div>
+
+<!-- SurveiDetail -->
+<div class="grid_12">
+<div class="grid_12 headerBox">
+<p>SurveiDetail</p>
+</div>
+<div class="clear"></div>
+
+<!-- grid table -->
+<div class="grid_12 borderBox">
+<div kendo-grid k-data-source="dataSurveiDetail" k-selectable="'row'" k-columns="columnSurveiDetail">
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+
+
+</c-panel>
+
+<div class="grid_12" style="margin-top:30px">
+<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
+</div>
+</div>
+</div>

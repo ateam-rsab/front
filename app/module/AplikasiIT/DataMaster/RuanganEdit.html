@@ -1,0 +1,243 @@
+<div ng-controller="RuanganEditCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item"  >
+		<div class="grid_12">
+			<div class="grid_12 headerBox">
+				<h1 style="color: white;">
+					<b>Tambah Ruangan</b>
+				</h1>
+			</div>
+			<!-- kdProduk -->
+			<div class="grid_2">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Kode Ruangan"></label>
+				</div>
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kdRuangan" />
+				</div>
+			</div>
+
+			<!-- namaruangan -->
+			<div class="grid_3">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Nama Ruangan"></label>
+				</div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaRuangan" />
+				</div>
+			</div>
+			<!-- departemen -->
+			<div class="grid_3">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Departemen"></label>
+				</div>
+
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.departemen" k-data-text-field="'departemen'" k-data-value-field="'id'"
+					 k-filter="'contains'" k-auto-bind="false" k-data-source="listDepartemen" />
+				</div>
+			</div>
+			<!-- modul aplikasi -->
+			<div class="grid_2">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Modul Aplikasi"></label>
+				</div>
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.modulaplikasi" k-data-text-field="'modulaplikasi'" k-data-value-field="'id'"
+					 k-filter="'contains'" k-auto-bind="false" k-data-source="listModulAplikasi	" />
+				</div>
+			</div>
+			<!-- modul aplikasi -->
+			<div class="grid_2">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Pegawai Kepala"></label>
+				</div>
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai" k-data-text-field="'namalengkap'" k-data-value-field="'id'"
+					 k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" />
+				</div>
+			</div>
+
+		</div>
+	 
+		<div class="grid_12">
+			<div class="grid_2">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kode external"></label>
+				</div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kdExternal" />
+				</div>
+			</div>
+			<!-- nama ext -->
+			<div class="grid_3">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Nama external"></label>
+				</div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+				</div>
+			</div>
+			<!-- nama ext -->
+			<div class="grid_3">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Report display"></label>
+				</div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+				</div>
+			</div>
+			<!-- kode ext -->
+
+			<!-- lokasi -->
+			<div class="grid_4">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="lokasi ruangan"></label>
+				</div>
+
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.lokasiRuangan" />
+				</div>
+			</div>
+		</div>
+		<div class="grid_12">
+			<div ng-cloak>
+				<md-content>
+					<md-tabs md-dynamic-height md-border-bottom>
+
+
+						<md-tab label="Detail">
+							<md-content class="md-padding">
+								<div class="grid_12">
+
+									<!-- fungsiProduk -->
+									<div class="grid_3">
+										<div class="grid_12">
+											<label c-label item="item" c-label-text="alamat email"></label>
+										</div>
+
+										<div class="grid_12">
+											<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.email" />
+										</div>
+									</div>
+									<div class="grid_2">
+										<div class="grid_12">
+											<label c-label item="item" c-label-text="faksimile"></label>
+										</div>
+
+										<div class="grid_12">
+											<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.faksimile" />
+										</div>
+									</div>
+									<!-- bahanProduk -->
+									<div class="grid_2">
+										<div class="grid_12">
+											<label c-label item="item" c-label-text="fixed phone"></label>
+										</div>
+
+										<div class="grid_12">
+											<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.fixedPhone" />
+										</div>
+									</div>
+									<div class="grid_1">
+										<label c-label item="item" c-label-text="Jam Buka"></label>
+										<input style="width: 100%" k-ng-model="item.jamBuka" kendo-timepicker placeholer="HH:mm" k-format="'HH:mm'" />
+									</div>
+									<!-- warnaProduk -->
+									<div class="grid_1">
+										<label c-label item="item" c-label-text="Jam Tutup"></label>
+										<input style="width: 100%" k-ng-model="item.jamTutup" kendo-timepicker placeholer="HH:mm" k-format="'HH:mm'" />
+									</div>
+
+									<div class="grid_3">
+										<label c-label item="item" c-label-text="Tanggal "></label>
+										<input style="width: 100%" k-ng-model="item.tanggal" kendo-datepicker placeholer="yyyy-MM-dd" k-format="'yyyy-MM-dd'" />
+									</div>
+
+								</div>
+								<div class="grid_12">
+									<div class="grid_3">
+										<div class="grid_12">
+											<label c-label item="item" c-label-text="mobile phone"></label>
+										</div>
+
+
+										<div class="grid_12">
+											<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.mobilePhone" />
+										</div>
+									</div>
+
+									<!-- detailObat -->
+									<div class="grid_4">
+										<div class="grid_12">
+											<label c-label item="item" c-label-text="website"></label>
+										</div>
+
+										<div class="grid_12">
+											<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.website" />
+										</div>
+									</div>
+									<!-- spesifikasi -->
+									<div class="grid_1">
+										<div class="grid_12">
+											<label c-label item="item" c-label-text="No Counter"></label>
+										</div>
+
+										<div class="grid_12">
+											<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noCounter" />
+										</div>
+									</div>
+									<!-- golonganProduk -->
+									<div class="grid_1">
+										<div class="grid_12">
+											<label c-label item="item" c-label-text="No Ruangan"></label>
+										</div>
+										<div class="grid_12">
+											<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noRuangan" />
+										</div>
+									</div>
+									<!-- detailGolonganProduk -->
+									<div class="grid_3">
+										<div class="grid_12">
+											<label c-label item="item" c-label-text="prefix no antrian"></label>
+										</div>
+										<div class="grid_12">
+											<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.prefixNoAntrian" />
+										</div>
+									</div>
+
+
+								</div>
+							</md-content>
+						</md-tab>
+
+
+					</md-tabs>
+				</md-content>
+			</div>
+		</div>
+
+
+
+
+		<div class="grid_12">
+			<div class="grid_8"></div>
+			<div class="grid_2">
+				<button class="c-button" ng-click="simpan()">Simpan</button>
+			</div>
+			<!-- <div class="grid_2" >
+			<button class="c-button" ng-click="edit()">Update</button>
+		</div> -->
+			<div class="grid_2">
+				<button class="cancel c-button" ng-click="kembali()">Kembali</button>
+			</div>
+		</div>
+	</c-panel>
+	</div>
+</div>

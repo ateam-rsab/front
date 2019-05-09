@@ -1,0 +1,41 @@
+	<div class="panel panel-default container_12">
+		<div class="panel-heading" align="center" c-translate>Master Bundel</div>
+		<div class="panel-body">
+			<!-- filter="'string'" -->
+			<div class="grid_12" style="margin-top: 10px">
+				<div class="grid_3"></div>
+				<div class="grid_2" style="margin-top: 10px">
+					<label c-label item="item" c-label-text="namaBundel"></label>
+				</div>
+				<div class="grid_4">
+					<input c-text-box type="input"  class="k-textbox" ng-model="item.namaEksternal" />
+				</div>
+			</div>
+			<div class="grid_12">
+			<div class="grid_3"></div>
+			<div class="grid_2"></div>
+				<div class="grid_2">
+					<button class="c-button success" ng-click="Save()">Simpan</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button success" ng-click="baru()">Baru</button>
+				</div>
+				<div class="grid_2"></div>
+			</div>
+			<div class="grid_12" style="margin-top: 30px">
+				<div class="grid_1"></div>
+				<div class="grid_10">
+					<div kendo-grid k-on-change="SelectJenisLinen(data)" options="mainGridOptions" k-data-source="sourceMasterJenisLinen" k-selectable="'row'" k-columns="columndataJenisLinen">
+					</div>
+				</div>
+				<div class="grid_1"></div>
+			</div>			
+			<div class="grid_12" style="margin-top: 30px">
+					<div class="grid_1"></div>
+					   <div class="grid_8"></div>
+					   <div class="grid_2"><button class="c-button cancel" ng-click="tutup()">Tutup</button></div>
+					<div class="grid_1"></div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,43 @@
+<div ng-controller="DashboardRekamMedikCtrl">
+    <div class="grid_12">
+        <div class="grid_6">
+            <div class="panel panel-default container_12">
+                <div class="panel-heading"><label class='title' c-label c-label-text="daftarPasienPerPegawai"></label></div>
+                <div class="panel-body">
+                    <div class="grid_12">
+                        <div class="grid_5">
+                            <div class="grid_12">
+                                <label c-label c-label-text="tanggalMasuk"></label>
+                            </div>
+                            <div class="grid_12">
+                                <div class="grid_6">
+                                    <input style="width: 100%" k-ng-model='from' k-value='now' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                                </div>
+                                <div class="grid_6">
+                                    <input style="width: 100%" k-ng-model='until' k-max='now' k-value='now' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_1">
+                            <label c-label c-label-text=""></label>
+                            <em style="margin-top:6px;" ng-click='findData()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div data-kendo-grid="grid" k-groupable="'true'" k-aggregate='aggregate' k-ng-model="item" k-data-source="patienGrids" k-selectable="'row'" k-sortable="'true'" k-columns="Column">
+                </div>
+            </div>
+        </div>
+        <div class="grid_6">
+            <div class="panel panel-default panel-white">
+                <div class="panel-heading-white"><span class="title" c-translate>Dashboard</span></div>
+                <div class="panel-body">
+                    <input style="width: 100%; " kendo-combo-box k-ng-model="groupItem " k-data-text-field=" 'name' " k-filter=" 'contains' " k-data-value-field=" 'value' " k-auto-bind="false " k-data-source="kelompok" />
+                    <div id="chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

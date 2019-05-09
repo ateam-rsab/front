@@ -1,0 +1,29 @@
+<div ng-controller="RadiologiPemeriksaanCtrl">
+    <div ng-include='"../app/module/Shared/headerPasienPenunjang" '></div>
+
+    <div class="grid_12">
+        <table class="table " ng-repeat="data in listOrders">
+            <tr class='success'>
+                <th style="width:250px"><span c-translate>Nama Pemeriksan</span></th>
+                <th><span c-translate>Klinis</span></th>
+                <th><span c-translate>Expertise</span></th>
+            </tr>
+            <tr>
+                <th colspan="5">{{data[0].jenisPeriksa}}</th>
+            </tr>
+            <tr ng-repeat="subData in data">
+                <td><a href="#/Radiologi/Pasien/Detail/{{subData.noRec}}/{{noRecPasien}}/{{noOrder}}">&nbsp;&nbsp;&nbsp;{{subData.namaProduk}}</a></td>
+                <td><textarea placeholder="Klinis" ng-model="subData.klinis" style="width: 99%; height: 80px;"></textarea></td>
+                <td><textarea placeholder="Expertise" ng-model="subData.expertise" style="width: 99%; height: 80px;"></textarea></td>
+            </tr>
+
+            <tr ng-repeat="pac in listPacs">
+                <td ng-click="openPACSService(pac.noMr, pac.ID)">
+                    {{pac.X3343521E}}
+                </td>
+            </tr>
+        </table>
+
+    </div>
+    <div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+</div>

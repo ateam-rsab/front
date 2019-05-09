@@ -1,0 +1,34 @@
+[{
+    "id": 1,
+    "kdProfile": "0",
+    "kdStatusKeluar": "1",
+    "statusKeluar": "Pulang",
+    "reportDisplay": "Meninggal",
+    "kdJenisKondisiPasien": "B",
+    "qStatusKeluar": "5",
+    "kodeExternal": null,
+    "namaExternal": null,
+    "statusEnabled": "1"
+}, {
+    "id": 2,
+    "kdProfile": "0",
+    "kdStatusKeluar": "2",
+    "statusKeluar": "Rawat Jalan",
+    "reportDisplay": "Pindah",
+    "kdJenisKondisiPasien": "A",
+    "qStatusKeluar": "6",
+    "kodeExternal": null,
+    "namaExternal": null,
+    "statusEnabled": "1"
+}, {
+    "id": 3,
+    "kdProfile": "0",
+    "kdStatusKeluar": "3",
+    "statusKeluar": "Rujuk",
+    "reportDisplay": "Pulang",
+    "kdJenisKondisiPasien": "C",
+    "qStatusKeluar": "7",
+    "kodeExternal": null,
+    "namaExternal": null,
+    "statusEnabled": "1"
+}]

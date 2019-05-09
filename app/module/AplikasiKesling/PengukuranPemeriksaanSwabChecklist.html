@@ -1,0 +1,625 @@
+<style>
+	.label-aja {
+		margin-top: 10px;
+	}
+</style>
+<div ng-controller="PengukuranPemeriksaanSwabChecklistCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Form Pengukuran dan Pemeriksaan'">
+			<div ng-cloak>
+				<md-content>
+					<md-tabs md-dynamic-height md-border-bottom>
+						<md-tab label="Pengukuran Kebisingan" md-on-select="onTabChanges(1)">
+							<md-content class="md-padding">
+								<div class="panel panel-default container_12">
+									<div class="panel-body">
+										<div class="grid_6">
+											<input style="width: 100%;" ng-hide='true' c-text-box ng-model="item.idKebisingan" class="k-textbox" />
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Tanggal</label>
+											</div>
+											<div class="grid_8">
+												<input kendo-date-picker k-ng-model="item.tglPengukuran" k-format="'dd-MM-yyyy'" style="width: 100%" />
+											</div>
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Ruangan / Unit</label>
+											</div>
+											<div class="grid_8">
+												<input style="width: 100%;" c-text-box ng-model="item.namaRuanganKebisingan" class="k-textbox" />
+											</div>
+										</div>
+										<div class="grid_6">
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Nilai Baku Mutu</label>
+											</div>
+											<div class="grid_8">
+												<input style="width: 100%;" c-text-box type="input" c-text-box class="k-textbox" ng-blur="countKeterangan(1)"
+												 ng-model="item.bakuMutuPengKebisingan" />
+											</div>
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Hasil Pengukuran</label>
+											</div>
+											<div class="grid_8">
+												<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-blur="countKeterangan(1)" ng-model="item.hasilPengukuran" />
+											</div>
+										</div>
+										<div class="grid_6"></div>
+										<div class="grid_6">
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Keterangan</label>
+											</div>
+											<div class="grid_8">
+												<input c-text-box type="input" class="k-textbox" ng-model="item.keteranganKebisingan" />
+											</div>
+										</div>
+										<div class="grid_12" style="float:left">
+											<div>
+												&nbsp;
+											</div>
+											<div class="grid_3" style="float:right">
+												<c-button ng-show="!isLoading" class="success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;"
+												 item="item" size="36" position=" 'right'" ng-click="savePengukuranKebisingan()">
+													<span class="title">Simpan</span>
+												</c-button>
+											</div>
+											<div class="grid_3" style="float:right">
+												<c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item"
+												 size="36" position=" 'right'" class="cancel" ng-click="refresh()">
+													<span class="title">Batal</span>
+												</c-button>
+											</div>
+										</div>
+									</div>
+									<div class="grid_12" style="margin-top: 25px;">
+										<div kendo-grid="grid" k-data-source="listGridPengukuran" k-ng-model="selectedDataKebisingan" k-columns="columnPengukuran"
+										 change="changeB3()" k-options="optionsGridPengukuran" k-selectable="'row'">
+										</div>
+									</div>
+									<div class="grid_3"></div>
+									<div class="grid_3" style="margin-top: 25px; font-size: 24px;">
+										<c-button class="primary" item="item" ng-click="editDataKebisingan(selectedDataKebisingan)">
+											<span class="title" style="text-align:center;">Edit</span></c-button>
+									</div>
+									<div class="grid_3" style="margin-top: 25px; font-size: 24px;">
+										<c-button class="primary" item="item" ng-click="showDialogKebisingan($event)">
+											<span class="title" style="text-align:center;">Cetak</span></c-button>
+									</div>
+									<div class="grid_3" style="margin-top: 25px; font-size: 24px;">
+										<c-button class="cancel" ng-show="!isLoading" item="item" ng-click="hapusDataKebisingan(selectedDataKebisingan)">
+											<span class="title" style="text-align:center;">Hapus</span></c-button>
+									</div>
+
+								</div>
+							</md-content>
+						</md-tab>
+						<md-tab label="Pemeriksaan Angka Kuman Udara" md-on-select="onTabChanges(2)">
+							<md-content class="md-padding">
+								<div class="panel panel-default container_12">
+									<div class="panel-body">
+										<div class="grid_6">
+											<input c-text-box type="input" ng-hide='true' filter="'numeric'" ng-model="item.idKebisingan" class="k-textbox" />
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Tanggal</label>
+											</div>
+
+											<div class="grid_8">
+												<input kendo-date-picker k-ng-model="item.tglPemantauan" k-format="'dd-MM-yyyy'" style="width: 100%" />
+											</div>
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Ruangan / Unit</label>
+											</div>
+											<div class="grid_8">
+												<input style="width: 100%;" c-text-box class="k-textbox" ng-model="item.ruanganPemAngkaKuman" />
+											</div>
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Volume</label>
+											</div>
+											<div class="grid_8">
+												<input c-text-box type="input" filter="'numeric'" ng-model="item.volume" class="k-textbox" />
+											</div>
+										</div>
+										<div class="grid_6">
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Nilai Baku Mutu</label>
+											</div>
+											<div class="grid_8">
+												<input style="width: 100%;" type="input" filter="'numeric'" ng-blur="countKeterangan(2)" ng-model="item.bakuMutuPemAngkaKuman"
+												 c-text-box class="k-textbox" />
+											</div>
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Hasil Pengukuran</label>
+											</div>
+											<div class="grid_8">
+												<input style="width: 100%;" c-text-box class="k-textbox" ng-blur="countKeterangan(2)" ng-model="item.hasilPengukuranAngkaKuman" />
+											</div>
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Keterangan</label>
+											</div>
+											<div class="grid_8">
+												<input style="width: 100%;" ng-model="ketAngkaKuman" c-text-box class="k-textbox" />
+											</div>
+										</div>
+										<div class="grid_6" style="margin-top:10px">
+											<div class="grid_12">
+												<div class="grid_4">
+													<label c-label class="label-aja" item="item">Upload File</label>
+												</div>
+												<div class="grid_8">
+													<input id="fileCOA" name="files" type="file" valid-extensions="jpg,png,img,xls,xlsx,doc,docx,txt"
+													 data-max-size="2048" kendo-upload k-multiple="false" , k-select="onSelectFile" />
+												</div>
+											</div>
+										</div>
+										<div class="grid_12" style="float:left">
+											<div>
+												&nbsp;
+											</div>
+											<div class="grid_3" style="float:right">
+												<c-button ng-show="!isLoading" class="success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;"
+												 item="item" size="36" position=" 'right'" ng-click="savePemeriksaanAngkaKuman()">
+													<span class="title">Simpan</span>
+												</c-button>
+											</div>
+											<div class="grid_3" style="float:right">
+												<c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item"
+												 size="36" position=" 'right'" class="cancel" ng-click="refresh()">
+													<span class="title">Batal</span>
+												</c-button>
+											</div>
+										</div>
+									</div>
+									<div class="grid_12" style="margin-top: 25px;">
+										<div kendo-grid="grid" k-data-source="listGridPemantauan" k-ng-model="selectedDataPemeriksaanKuman" k-columns="columnPemantauan"
+										 k-options="optionsGridPemantauan" k-selectable="'row'">
+										</div>
+									</div>
+									<div class="grid_3" style="margin-top: 25px; font-size: 24px;">
+										<c-button class="primary" item="item" ng-click="editPemeriksaanKumanUdara(selectedDataPemeriksaanKuman)">
+											<span class="title" style="text-align:center;">Edit</span></c-button>
+									</div>
+									<div class="grid_3" style="margin-top: 25px; font-size: 24px;">
+										<c-button class="primary" item="item" ng-click="showDialogKebisingan()">
+											<span class="title" style="text-align:center;">Cetak</span></c-button>
+									</div>
+									<div class="grid_3" style="margin-top: 25px; font-size: 24px;">
+										<c-button class="success" item="item" ng-click="downloadFileKumanUdara(selectedDataPemeriksaanKuman)">
+											<span class="title" style="text-align:center;">Download File</span></c-button>
+									</div>
+									<div class="grid_3" style="margin-top: 25px; font-size: 24px;">
+										<c-button class="cancel" ng-show="!isLoading" item="item" ng-click="hapusDataPemeriksaanAngkaKuman(selectedDataPemeriksaanKuman)">
+											<span class="title" style="text-align:center;">Hapus</span></c-button>
+									</div>
+								</div>
+							</md-content>
+						</md-tab>
+						<md-tab label="Swab Alat / Permukaan" md-on-select="onTabChanges(3)">
+							<md-content class="md-padding">
+								<div class="panel panel-default container_12">
+									<div class="panel-body">
+										<div class="grid_6">
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Tanggal</label>
+											</div>
+											<div class="grid_8">
+												<input kendo-date-picker k-ng-model="item.tglSwab" k-format="'dd-MM-yyyy'" style="width: 100%" />
+											</div>
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Jenis Alat / Permukaan yang Diperiksa</label>
+											</div>
+											<div class="grid_8">
+												<input c-text-box type="input" filter="''" class="k-textbox" ng-model="item.jenisAlat" />
+											</div>
+
+										</div>
+										<div class="grid_6">
+											<!-- old -->
+											<!-- <div class="grid_4">
+												<label c-label class="label-aja" item="item">Nama Ruangan</label>
+											</div>
+											<div class="grid_8">
+												<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganSwab" k-data-text-field="'namaRuangan'"
+												 k-data-value-field="'ruanganId'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuanganSwab" />
+											</div> -->
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Ruangan / Unit</label>
+											</div>
+											<div class="grid_8">
+												<input style="width: 100%;" c-text-box class="k-textbox" ng-model="item.ruanganSwab" />
+											</div>
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Hasil Pemeriksaan</label>
+											</div>
+											<div class="grid_8">
+												<textarea c-text-box type="input" class="k-textbox" ng-model="item.hasilPemeriksaan" style="width: 100%; height: 80px;max-width: 427px;"></textarea>
+											</div>
+											<div class="grid_12" style="margin-top:10px">
+												<div class="grid_12">
+													<div class="grid_4">
+														<label c-label class="label-aja" item="item">Upload File</label>
+													</div>
+													<div class="grid_8">
+														<input id="fileCOA" name="files" type="file" valid-extensions="jpg,png,img,xls,xlsx,doc,docx,txt"
+														 data-max-size="2048" kendo-upload k-multiple="false" k-select="onSelectFile" />
+													</div>
+												</div>
+											</div>
+
+										</div>
+										<div class="grid_12" style="float:left">
+											<div>
+												&nbsp;
+											</div>
+											<div class="grid_3" style="float:right">
+												<c-button ng-show="!isLoading" class="success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;"
+												 item="item" size="36" position=" 'right'" ng-click="saveSwab()">
+													<span class="title">Simpan</span>
+												</c-button>
+											</div>
+											<div class="grid_3" style="float:right">
+												<c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item"
+												 size="36" position=" 'right'" class="cancel" ng-click="refresh()">
+													<span class="title">Batal</span>
+												</c-button>
+											</div>
+										</div>
+									</div>
+									<div class="grid_12" style="margin-top: 25px;">
+										<div kendo-grid="grid" k-data-source="listGridSwab" k-ng-model="selectedSwabAlat" k-columns="columnPengukuranSwab"
+										 change="changeB3()" k-options="optionsGridPengukuran" k-selectable="'row'">
+										</div>
+									</div>
+									<div class="grid_3"></div>
+									<!-- <div class="grid_3" style="margin-top: 25px; font-size: 24px;">
+										<c-button class="primary" item="item" ng-click="cetakSwabAlat(selectedSwabAlat)">
+											<span class="title" style="text-align:center;">Cetak</span></c-button>
+									</div> -->
+									<!-- <div class="grid_3" style="margin-top: 25px; font-size: 24px;">
+										<c-button class="success" item="item" ng-click="downloadFileKumanUdara(selectedDataPemeriksaanKuman)">
+											<span class="title" style="text-align:center;">Download File</span></c-button>
+									</div> -->
+									<div class="grid_3" style="margin-top: 25px; font-size: 24px;">
+										<c-button class="success" item="item" ng-click="downloadFileSwabAlat(selectedSwabAlat)">
+											<span class="title" style="text-align:center;">Download File</span></c-button>
+									</div>
+									<div class="grid_3" style="margin-top: 25px; font-size: 24px;">
+										<c-button class="cancel" ng-show="!isLoading" item="item" ng-click="hapusDataSwab(selectedSwabAlat)">
+											<span class="title" style="text-align:center;">Hapus</span></c-button>
+									</div>
+								</div>
+								<!-- <div class="grid_12" style="margin-top:50px">
+									<div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+								</div> -->
+							</md-content>
+						</md-tab>
+						<md-tab label="Monitoring Evaluasi Pengolalahan Limbah" md-on-select="onTabChanges(4)">
+							<md-content class="md-padding">
+								<div class="grid_12">
+									<div class="grid_12">
+										<div class="grid_2" style="margin-top:10px;">
+											<label c-label item="item">Ruangan</label>
+										</div>
+										<div class="grid_3">
+											<!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganSanitasi" k-data-text-field="'namaRuangan'"
+											 k-data-value-field="'ruanganId'" k-filter="'contains'" k-auto-bind="false" k-data-source="lisRuanganChecklistSanitasi" /> -->
+											<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganSanitasi" k-data-text-field="'namaRuangan'"
+											 k-data-value-field="'ruanganId'" k-filter="'contains'" k-auto-bind="false" k-data-source="lisRuanganChecklistSanitasi" />
+										</div>
+									</div>
+									<div class="grid_12">
+										<div class="grid_2" style="margin-top:10px;">
+											<label c-label item="item">Penanggung Jawab Ruangan</label>
+										</div>
+										<div class="grid_3">
+											<input style="width: 100%;" kendo-combo-box k-ng-model="item.pjRuangan" k-data-text-field="'namaPetugas'"
+											 k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPjRuangan" />
+										</div>
+									</div>
+									<div class="grid_12">
+										<div class="grid_2" style="margin-top:10px">
+											<label c-label item="item">Tanggal</label>
+										</div>
+										<div class="grid_3">
+											<input style="width: 100%" kendo-date-picker k-ng-model="item.tglChecklist" k-format="'dd-MMM-yyyy'" />
+										</div>
+									</div>
+									<div class="grid_12">
+										<div class="grid_2" style="margin-top:10px">
+											<label c-label item="item">Petugas</label>
+										</div>
+										<div class="grid_3">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.petugas.name" />
+										</div>
+									</div>
+									<div class="grid_12">
+										<div kendo-grid="grid" k-ng-model="selectedData" k-options="kondisiRuangOptions" k-data-source="kondisiRuangData"
+										 k-editable=true k-scrollable=false k-selectable="'row'"></div>
+									</div>
+									<div class="grid_12">
+										<div kendo-grid="grid" k-ng-model="selectedData" k-options="kondisiToiletOptions" k-data-source="kondisiToiletData"
+										 k-editable=true k-scrollable=false k-selectable="'row'"></div>
+									</div>
+									<div class="grid_12">
+										<div kendo-grid="grid" k-ng-model="selectedData" k-options="limbahMedisOptions" k-data-source="limbahMedisData"
+										 k-editable=true k-scrollable=false k-selectable="'row'"></div>
+									</div>
+									<div class="grid_12" style="margin-top:30px">
+										<div kendo-grid="grid" k-ng-model="selectedData" k-options="kualitasUdaraOptions" k-data-source="kualitasUdaraData"
+										 k-editable=true k-scrollable=false k-selectable="'row'"></div>
+									</div>
+
+									<div class="grid_12" style="margin-top:50px">
+										<div>
+											&nbsp;
+										</div>
+										<div class="grid_3" style="float:right">
+											<c-button ng-show="!isLoading" class="success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;"
+											 item="item" size="36" position=" 'right'" ng-click="saveSanitasi()">
+												<span class="title">Simpan</span>
+											</c-button>
+										</div>
+										<div class="grid_3" style="float:right">
+											<c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item"
+											 size="36" position=" 'right'" class="cancel" ng-click="refresh()">
+												<span class="title">Batal</span>
+											</c-button>
+										</div>
+									</div>
+								</div>
+							</md-content>
+						</md-tab>
+						<md-tab label="Pengukuran Pencahayaan" md-on-select="onTabChanges(5)">
+							<md-content class="md-padding">
+								<div class="panel panel-default container_12">
+									<div class="panel-body">
+										<div class="grid_6">
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Tanggal</label>
+											</div>
+											<div class="grid_8">
+												<input kendo-date-picker k-ng-model="item.tglPencahayaan" k-format="'dd-MM-yyyy'" style="width: 100%" />
+											</div>
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Ruangan / Unit</label>
+											</div>
+											<div class="grid_8">
+												<input style="width: 100%;" c-text-box ng-model="item.namaRuanganPencahayaan" class="k-textbox" />
+											</div>
+
+										</div>
+										<div class="grid_6">
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Nilai Baku Mutu</label>
+											</div>
+											<div class="grid_8">
+												<input style="width: 100%;" c-text-box type="input" filter="'numeric'" c-text-box class="k-textbox" ng-blur="countKeterangan(3)"
+												 ng-model="item.bakuMutuPencahayaan" />
+											</div>
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Hasil Pengukuran</label>
+											</div>
+											<div class="grid_8">
+												<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-blur="countKeterangan(3)" ng-model="item.hasilPencahayaan" />
+											</div>
+										</div>
+										<div class="grid_6"></div>
+										<div class="grid_6">
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Keterangan</label>
+											</div>
+											<div class="grid_8">
+												<input c-text-box type="input" class="k-textbox" ng-model="keteranganPencahayaan" />
+											</div>
+										</div>
+										<div class="grid_12" style="float:left">
+											<div>
+												&nbsp;
+											</div>
+											<div class="grid_3" style="float:right">
+												<c-button ng-show="!isLoading" class="success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;"
+												 item="item" size="36" position=" 'right'" ng-click="savePengukuranPencahayaan()">
+													<span class="title">Simpan</span>
+												</c-button>
+											</div>
+											<div class="grid_3" style="float:right">
+												<c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item"
+												 size="36" position=" 'right'" class="cancel" ng-click="refresh()">
+													<span class="title">Batal</span>
+												</c-button>
+											</div>
+										</div>
+									</div>
+									<div class="grid_12" style="margin-top: 25px;">
+										<div kendo-grid="grid" k-data-source="listGridPengukuranPencahayaan" k-ng-model="selectedDataPencahayaan"
+										 k-columns="columnPengukuranPencahayaan" k-options="optionsGridPengukuranPencahayaan" k-selectable="'row'">
+										</div>
+									</div>
+									<div class="grid_3"></div>
+									<div class="grid_3" style="margin-top: 25px; font-size: 24px;">
+										<c-button class="primary" item="item" ng-click="editDataPencahayaan(selectedDataPencahayaan)">
+											<span class="title" style="text-align:center;">Edit</span></c-button>
+									</div>
+									<div class="grid_3" style="margin-top: 25px; font-size: 24px;">
+										<c-button class="primary" item="item" ng-click="showDialogKebisingan($event)">
+											<span class="title" style="text-align:center;">Cetak</span></c-button>
+									</div>
+									<div class="grid_3" style="margin-top: 25px; font-size: 24px;">
+										<c-button class="cancel" ng-show="!isLoading" item="item" ng-click="hapusDataPencahayaan(selectedDataPencahayaan)">
+											<span class="title" style="text-align:center;">Hapus</span></c-button>
+									</div>
+
+								</div>
+							</md-content>
+						</md-tab>
+						<md-tab label="Pengukuran Suhu" md-on-select="onTabChanges(6)">
+							<md-content class="md-padding">
+								<div class="panel panel-default container_12">
+									<div class="panel-body">
+										<div class="grid_6">
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Tanggal</label>
+											</div>
+											<div class="grid_8">
+												<input kendo-date-picker k-ng-model="item.tglSuhu" k-format="'dd-MM-yyyy'" style="width: 100%" />
+											</div>
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Ruangan / Unit</label>
+											</div>
+											<div class="grid_8">
+												<input style="width: 100%;" c-text-box ng-model="item.namaRuanganSuhu" class="k-textbox" />
+											</div>
+
+										</div>
+										<div class="grid_6">
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Nilai Baku Mutu</label>
+											</div>
+											<div class="grid_8">
+												<input style="width: 100%;" c-text-box type="input" filter="'numeric'" c-text-box class="k-textbox" ng-blur="countKeterangan(4)"
+												 ng-model="item.bakuMutuSuhu" />
+											</div>
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Hasil Pengukuran</label>
+											</div>
+											<div class="grid_8">
+												<input style="width: 100%;" c-text-box class="k-textbox" ng-blur="countKeterangan(4)" ng-model="item.hasilSuhu" />
+											</div>
+										</div>
+										<div class="grid_6"></div>
+										<div class="grid_6">
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Keterangan</label>
+											</div>
+											<div class="grid_8">
+												<input c-text-box type="input" class="k-textbox" ng-model="keteranganSuhu" />
+											</div>
+										</div>
+										<div class="grid_12" style="float:left">
+											<div>
+												&nbsp;
+											</div>
+											<div class="grid_3" style="float:right">
+												<c-button ng-show="!isLoading" class="success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;"
+												 item="item" size="36" position=" 'right'" ng-click="savePengukuranSuhu()">
+													<span class="title">Simpan</span>
+												</c-button>
+											</div>
+											<div class="grid_3" style="float:right">
+												<c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item"
+												 size="36" position=" 'right'" class="cancel" ng-click="refresh()">
+													<span class="title">Batal</span>
+												</c-button>
+											</div>
+										</div>
+									</div>
+									<div class="grid_12" style="margin-top: 25px;">
+										<div kendo-grid="grid" k-data-source="listGridPengukuranSuhu" k-ng-model="selectedDataSuhu" k-columns="columnPengukuranSuhu"
+										 change="changeB3()" k-options="optionsGridPengukuranSuhu" k-selectable="'row'">
+										</div>
+									</div>
+									<div class="grid_3"></div>
+									<div class="grid_3" style="margin-top: 25px; font-size: 24px;">
+										<c-button class="primary" item="item" ng-click="editDataSuhu(selectedDataSuhu)">
+											<span class="title" style="text-align:center;">Edit</span></c-button>
+									</div>
+									<div class="grid_3" style="margin-top: 25px; font-size: 24px;">
+										<c-button class="primary" item="item" ng-click="showDialogKebisingan($event)">
+											<span class="title" style="text-align:center;">Cetak</span></c-button>
+									</div>
+									<div class="grid_3" style="margin-top: 25px; font-size: 24px;">
+										<c-button class="cancel" ng-show="!isLoading" item="item" ng-click="hapusDataSuhu(selectedDataSuhu)">
+											<span class="title" style="text-align:center;">Hapus</span></c-button>
+									</div>
+
+								</div>
+							</md-content>
+						</md-tab>
+						<md-tab label="Pengukuran Kelembapan" md-on-select="onTabChanges(7)">
+							<md-content class="md-padding">
+								<div class="panel panel-default container_12">
+									<div class="panel-body">
+										<div class="grid_6">
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Tanggal</label>
+											</div>
+											<div class="grid_8">
+												<input kendo-date-picker k-ng-model="item.tglKelembapan" k-format="'dd-MM-yyyy'" style="width: 100%" />
+											</div>
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Ruangan / Unit</label>
+											</div>
+											<div class="grid_8">
+												<input style="width: 100%;" c-text-box ng-model="item.namaRuanganKelembapan" class="k-textbox" />
+											</div>
+
+										</div>
+										<div class="grid_6">
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Nilai Baku Mutu</label>
+											</div>
+											<div class="grid_8">
+												<input style="width: 100%;" c-text-box type="input" filter="'numeric'" c-text-box class="k-textbox" ng-blur="countKeterangan(5)"
+												 ng-model="item.bakuMutuKelembapan" />
+											</div>
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Hasil Pengukuran</label>
+											</div>
+											<div class="grid_8">
+												<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-blur="countKeterangan(5)" ng-model="item.hasilKelembapan" />
+											</div>
+										</div>
+										<div class="grid_6"></div>
+										<div class="grid_6">
+											<div class="grid_4">
+												<label c-label class="label-aja" item="item">Keterangan</label>
+											</div>
+											<div class="grid_8">
+												<input c-text-box type="input" class="k-textbox" ng-model="keteranganKelembapan" />
+											</div>
+										</div>
+										<div class="grid_12" style="float:left">
+											<div>
+												&nbsp;
+											</div>
+											<div class="grid_3" style="float:right">
+												<c-button ng-show="!isLoading" class="success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;"
+												 item="item" size="36" position=" 'right'" ng-click="savePengukuranKelembapan()">
+													<span class="title">Simpan</span>
+												</c-button>
+											</div>
+											<div class="grid_3" style="float:right">
+												<c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item"
+												 size="36" position=" 'right'" class="cancel" ng-click="refresh()">
+													<span class="title">Batal</span>
+												</c-button>
+											</div>
+										</div>
+									</div>
+									<div class="grid_12" style="margin-top: 25px;">
+										<div kendo-grid="grid" k-data-source="listGridPengukuranKelembapan" k-ng-model="selectedDataKelembapan"
+										 k-columns="columnPengukuranKelembapan" change="changeB3()" k-options="optionsGridPengukuranKelembapan"
+										 k-selectable="'row'">
+										</div>
+									</div>
+									<div class="grid_3"></div>
+									<div class="grid_3" style="margin-top: 25px; font-size: 24px;">
+										<c-button class="primary" item="item" ng-click="editDataKelembapan(selectedDataKelembapan)">
+											<span class="title" style="text-align:center;">Edit</span></c-button>
+									</div>
+									<div class="grid_3" style="margin-top: 25px; font-size: 24px;">
+										<c-button class="primary" item="item" ng-click="showDialogKebisingan($event)">
+											<span class="title" style="text-align:center;">Cetak</span></c-button>
+									</div>
+									<div class="grid_3" style="margin-top: 25px; font-size: 24px;">
+										<c-button class="cancel" ng-show="!isLoading" item="item" ng-click="hapusDataKelembapan(selectedDataKelembapan)">
+											<span class="title" style="text-align:center;">Hapus</span></c-button>
+									</div>
+								</div>
+							</md-content>
+						</md-tab>
+					</md-tabs>
+				</md-content>
+			</div>
+		</c-panel>
+	</div>
+</div>
+<div ng-include=' "../app/module/Shared/TemplateLoading" '></div>

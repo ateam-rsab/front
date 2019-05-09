@@ -1,0 +1,69 @@
+{
+	"model":{
+	    "Mulut" : "Mukosa Lembab",
+	    "Muntah" : "Tidak Ada",
+		"Mual" : "Tidak Ada",
+	    "PeristaltikUsus" : "",
+	    "NyeriUluhati": "Tidak Ada",
+	  	"Ascites": "Tidak Ada",
+	    "LingkarPerut": "",
+	    "Keterangan": "",
+	    "KeteranganMulut": ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "Mulut",
+			"messagesRequired" : "Mulut Harus Diisi",
+			"caption" : "Mulut"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Muntah",
+			"messagesRequired" : "Muntah Harus Diisi",
+			"caption" : "Muntah"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Mual",
+			"messagesRequired" : "Mual Harus Diisi",
+			"caption" : "Mual"
+		},
+		{
+			"isNull" : "true",
+			"name" : "PeristaltikUsus",
+			"messagesRequired" : "Peristaltik Usus Harus Diisi",
+			"caption" : "Peristaltik Usus"
+		},
+		{
+			"isNull" : "true",
+			"name" : "NyeriUluhati",
+			"messagesRequired" : "Nyeri Uluhati Harus Diisi",
+			"caption" : "Nyeri Uluhati"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Ascites",
+			"messagesRequired" : "Ascites Harus Diisi",
+			"caption" : "Ascites"
+		},
+		{
+			"isNull" : "true",
+			"name" : "LingkarPerut",
+			"messagesRequired" : "Lingkar Perut Harus Diisi",
+			"caption" : "Lingkar Perut"
+		},
+		{
+			"isNull" : "false",
+			"name" : "Keterangan",
+			"messagesRequired" : "Keterangan Harus Diisi",
+			"caption" : "Keterangan"
+		},
+		{
+			"isNull" : "false",
+			"name" : "KeteranganMulut",
+			"messagesRequired" : "KeteranganMulut Harus Diisi",
+			"caption" : "KeteranganMulut"
+		}
+  ]
+}

@@ -1,0 +1,359 @@
+<div ng-controller="MutasiPegawaiCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Perubahan atau Mutasi Pegawai'">
+			<div class="grid_12">
+				<div class="grid_6">
+					<div class="grid_12">
+						<div class="grid_4" style="margin: 10px 0 0 0;">
+							<label c-label item="item">No Agenda</label>
+						</div>
+						<div class="grid_7">
+							<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nomorAgenda" disabled="true" />
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin: 10px 0 0 0;">
+							<label c-label item="item">Nama Pegawai</label>
+						</div>
+						<div class="grid_7" ng-show="disablePegawai==true">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" ng-disabled="disablePegawai" />
+						</div>
+						<div class="grid_7" ng-hide="disablePegawai==true">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" ng-disabled="disablePegawai" k-on-change="changePegawai(item.pegawai.id)"/>
+						</div>
+						<!-- <div class="grid_1" ng-show="disablePegawai==true"> -->
+						<div class="grid_1">
+	                        <label c-label c-label-text=""></label>
+	                        <em style="margin-top:-10px; margin-left: 17px" ng-click='resetPegawai()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+	                    </div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin: 10px 0 0 0;">
+							<label c-label item="item">Jenis SK</label>
+						</div>
+
+						<div class="grid_7">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisSK2" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisSk" ng-disabled="disableJenisSK"/>
+						</div>
+
+						<!-- Percobaan tombol disabled enabled -->
+						<div class="grid_1">
+	                        <label c-label c-label-text=""></label>
+	                        <em style="margin-top:-10px; margin-left: 17px" ng-click='enableDisableIsian("disableJenisSK")' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+	                    </div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin: 10px 0 0 0;">
+							<label c-label item="item">Tanggal SK/SMPT</label>
+						</div>
+						<div class="grid_7">
+							<input kendo-date-picker k-ng-model="item.tanggalSK"  k-format="'dd-MM-yyyy'" style="width: 100%" ng-disabled="disableTanggalSK"/>
+						</div>
+
+						<!-- Percobaan tombol disabled enabled -->
+						<div class="grid_1">
+	                        <label c-label c-label-text=""></label>
+	                        <em style="margin-top:-10px; margin-left: 17px" ng-click='enableDisableIsian("disableTanggalSK")' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+	                    </div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin: 10px 0 0 0;">
+							<label c-label item="item">Nomor</label>
+						</div>
+						<div class="grid_7">
+							<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nomor" ng-disabled="disableNomor"/>
+						</div>
+
+						<!-- Percobaan tombol disabled enabled -->
+						<div class="grid_1">
+	                        <label c-label c-label-text=""></label>
+	                        <em style="margin-top:-10px; margin-left: 17px" ng-click='enableDisableIsian("disableNomor")' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+	                    </div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin: 10px 0 0 0;">
+							<label c-label item="item">Uraian</label>
+						</div>
+						<div class="grid_7">
+							<textarea required class="k-textbox" style="height: 76px; width: 100%; resize: none;" ng-model="item.uraian" ng-disabled="disableUraian"></textarea>
+							<!-- <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.uraian" /> -->
+						</div>
+
+						<!-- Percobaan tombol disabled enabled -->
+						<div class="grid_1" >
+	                        <label c-label c-label-text=""></label>
+	                        <em style="margin-top:-10px; margin-left: 17px" ng-click='enableDisableIsian("disableUraian")' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+	                    </div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin: 10px 0 0 0;">
+							<label c-label item="item">SK Dari</label>
+						</div>
+						<!-- <div class="grid_8">
+							<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.skDari" />
+						</div> -->
+						<div class="grid_7">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.skDari" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" ng-disabled="disableSKDari"/>
+						</div>
+
+						<!-- Percobaan tombol disabled enabled -->
+						<div class="grid_1">
+	                        <label c-label c-label-text=""></label>
+	                        <em style="margin-top:-10px; margin-left: 17px" ng-click='enableDisableIsian("disableSKDari")' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+	                    </div>
+					</div>
+					<div class="grid_4" style="margin: 10px 0 0 0;">
+						<label c-label item="item">Status Pegawai</label>
+					</div>
+					<div class="grid_7">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.kategoryPegawai" k-data-text-field="'kategoryPegawai'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listStatusPegawai" ng-disabled="disableStatusPegawai"/>
+					</div>
+					<!-- Percobaan tombol disabled enabled -->
+					<div class="grid_1" >
+                        <label c-label c-label-text=""></label>
+                        <em style="margin-top:-10px; margin-left: 17px" ng-click='enableDisableIsian("disableStatusPegawai")' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+                    </div>
+
+					<div class="grid_4" style="margin: 10px 0 0 0;">
+						<label c-label item="item">Kedudukan</label>
+					</div>
+					<div class="grid_7">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.kedudukan" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKedudukan" ng-disabled="disableKedudukan"/>
+					</div>
+
+					<!-- Percobaan tombol disabled enabled -->
+					<div class="grid_1" >
+                        <label c-label c-label-text=""></label>
+                        <em style="margin-top:-10px; margin-left: 17px" ng-click='enableDisableIsian("disableKedudukan")' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+                    </div>
+
+					<div class="grid_4" style="margin: 10px 0 0 0;" >
+						<label c-label item="item">Tanggal Meninggal</label>
+					</div>
+					
+					<div class="grid_7" style="margin: 0 0 0 0;">
+						<input kendo-date-picker k-ng-model="item.tanggalMeninggal"  k-format="'dd-MM-yyyy'" style="width: 100%" ng-disabled="disableTanggalMeninggal"/>
+					</div>
+
+					<!-- Percobaan tombol disabled enabled -->
+					<div class="grid_1" >
+                        <label c-label c-label-text=""></label>
+                        <em style="margin-top:-10px; margin-left: 17px" ng-click='enableDisableIsian("disableTanggalMeninggal")' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+                    </div>
+					
+					<div class="grid_12">
+						<div class="grid_4" style="margin: 10px 0 0 0;">
+							<label c-label item="item">Golongan</label>
+						</div>
+						<div class="grid_7">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.golonganPegawai" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listGolongan" ng-disabled="disableGolongan"/>
+						</div>
+
+						<!-- Percobaan tombol disabled enabled -->
+						<div class="grid_1" >
+	                        <label c-label c-label-text=""></label>
+	                        <em style="margin-top:-10px; margin-left: 17px" ng-click='enableDisableIsian("disableGolongan")' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+	                    </div>
+					</div>
+					<!-- <div class="grid_12">
+						<div class="grid_4" style="margin: 10px 0 0 0;">
+							<label c-label item="item">Jabatan Struktural</label>
+						</div>
+						<div class="grid_8">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.jabatanStruktural" k-data-text-field="'namaEksternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJabatanStruktural" />
+						</div>				
+					</div> -->
+				</div>
+				<div class="grid_6">
+					<div class="grid_12">
+						<div class="grid_4" style="margin: 10px 0 0 0;">
+							<label c-label item="item">Pensiun</label>
+						</div>
+						<div class="grid_2">
+							<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.pensiun" ng-disabled="disablePegawai"/>
+						</div>
+						<div class="grid_1" style="margin-top:10px;">
+							<label>tahun</label>
+						</div>
+
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin: 10px 0 0 0;">
+							<label c-label item="item">Jabatan Struktural</label>
+						</div>
+						<div class="grid_7">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.jabatanStruktural" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJabatanStruktural" ng-disabled="disableJabatanStruktural"/>
+						</div>
+
+						<!-- Percobaan tombol disabled enabled -->
+						<div class="grid_1" >
+	                        <label c-label c-label-text=""></label>
+	                        <em style="margin-top:-10px; margin-left: 17px" ng-click='enableDisableIsian("disableJabatanStruktural")' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+	                    </div>
+
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin: 10px 0 0 0;">
+							<label c-label item="item">Jabatan Fungsional</label>
+						</div>
+						<div class="grid_7">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.jabatanFungsional" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJabatanFungsional" ng-disabled="disableJabatanFungsional"/>
+						</div>
+
+						<!-- Percobaan tombol disabled enabled -->
+						<div class="grid_1" >
+	                        <label c-label c-label-text=""></label>
+	                        <em style="margin-top:-10px; margin-left: 17px" ng-click='enableDisableIsian("disableJabatanFungsional")' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+	                    </div>
+					</div>
+					<!-- <div class="grid_12">
+						<div class="grid_4" style="margin: 10px 0 0 0;">
+							<label c-label item="item">Jabatan Internal</label>
+						</div>
+						<div class="grid_8">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.jabatanInternal" k-data-text-field="'namaEksternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJabatanInternal" />
+						</div>
+					</div> -->
+					<div class="grid_12">
+						<div class="grid_4" style="margin: 10px 0 0 0;">
+							<label c-label item="item">Status Kawin</label>
+						</div>
+						<div class="grid_7">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.statusPerkawinanPegawai" k-data-text-field="'statusPerkawinan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listStatusKawin" ng-disabled="disableStatusKawin"/>
+						</div>
+
+						<!-- Percobaan tombol disabled enabled -->
+						<div class="grid_1" >
+	                        <label c-label c-label-text=""></label>
+	                        <em style="margin-top:-10px; margin-left: 17px" ng-click='enableDisableIsian("disableStatusKawin")' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+	                    </div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin: 10px 0 0 0;">
+							<label c-label item="item">Grade</label>
+						</div>
+						<div class="grid_7">
+							<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.grade" disabled="true" />
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin: 10px 0 0 0;">
+							<label c-label item="item">Tanggal TMT/SPMT</label>
+						</div>
+						<div class="grid_7">
+							<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalTmt" data-k-format="'yyyy-MM-dd'" ng-disabled="disableTanggalTMT"/>
+						</div>
+
+						<!-- Percobaan tombol disabled enabled -->
+						<div class="grid_1">
+	                        <label c-label c-label-text=""></label>
+	                        <em style="margin-top:-10px; margin-left: 17px" ng-click='enableDisableIsian("disableTanggalTMT")' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+	                    </div>
+
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin: 10px 0 0 0;">
+							<label c-label item="item">Tanggal Berlaku Akhir</label>
+						</div>
+						<div class="grid_7">
+							<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalBerlakuAkhir" data-k-format="'yyyy-MM-dd'" ng-disabled="disableTanggalBerlakuAkhir"/>
+						</div>
+
+						<!-- Percobaan tombol disabled enabled -->
+						<div class="grid_1" >
+	                        <label c-label c-label-text=""></label>
+	                        <em style="margin-top:-10px; margin-left: 17px" ng-click='enableDisableIsian("disableTanggalBerlakuAkhir")' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+	                    </div>
+					</div>
+					<!-- <div class="grid_12">
+						<div class="grid_4" style="margin: 10px 0 0 0;">
+							<label c-label item="item">Ruangan Kerja</label>
+						</div>
+						<div class="grid_8">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganKerja" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuanganKerja" />
+						</div>
+					</div> -->
+					<div class="grid_12">
+						<div class="grid_4" style="margin: 10px 0 0 0;">
+							<label c-label item="item">Eselon</label>
+						</div>
+						<div class="grid_7">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.eselon" k-data-text-field="'eselon'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listEselon" ng-disabled="disableEselon"/>
+						</div>
+
+						<!-- Percobaan tombol disabled enabled -->
+						<div class="grid_1" >
+	                        <label c-label c-label-text=""></label>
+	                        <em style="margin-top:-10px; margin-left: 17px" ng-click='enableDisableIsian("disableEselon")' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+	                    </div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin: 10px 0 0 0;">
+							<label c-label item="item">Jenis Hukuman</label>
+						</div>
+						<div class="grid_7">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisHukuman" k-data-text-field="'jenisHukuman'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisHukuman" ng-disabled="disableJenisHukuman"/>
+						</div>
+
+						<!-- Percobaan tombol disabled enabled -->
+						<div class="grid_1" >
+	                        <label c-label c-label-text=""></label>
+	                        <em style="margin-top:-10px; margin-left: 17px" ng-click='enableDisableIsian("disableJenisHukuman")' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+	                    </div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin: 10px 0 0 0;">
+							<label c-label item="item">Tanggal Keluar</label>
+						</div>
+						<div class="grid_7">
+							<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalKeluar" data-k-format="'yyyy-MM-dd'" ng-disabled="disableTanggalKeluar"/>
+						</div>
+
+						<!-- Percobaan tombol disabled enabled -->
+						<div class="grid_1" >
+	                        <label c-label c-label-text=""></label>
+	                        <em style="margin-top:-10px; margin-left: 17px" ng-click='enableDisableIsian("disableTanggalKeluar")' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+	                    </div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin: 10px 0 0 0;">
+							<label c-label item="item">Tanggal Rekam</label>
+						</div>
+						<div class="grid_7">
+							<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalRekam" data-k-format="'yyyy-MM-dd'" ng-disabled="disableTanggalRekam"/>
+						</div>
+
+						<!-- Percobaan tombol disabled enabled -->
+						<div class="grid_1" n>
+	                        <label c-label c-label-text=""></label>
+	                        <em style="margin-top:-10px; margin-left: 17px" ng-click='enableDisableIsian("disableTanggalRekam")' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+	                    </div>
+					</div>
+
+					
+				</div>
+			</div>
+			<div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
+			<!-- <div class="grid_2"></div>
+			<div class="grid_2"></div>
+			<div class="grid_2"></div>
+			<div class="grid_2"></div>
+			<div class="grid_2"><button class="c-button cancel" ng-click="batal()">Batal</button></div>
+			<div class="grid_2"><button class="c-button success" ng-click="tambah()">Tambah</button></div> -->
+		</div>
+		<div class="grid_12">
+            <div class="panel-header panel-white"><span class="title" c-translate>Jabatan Internal </span></div>
+            <div id="grid" kendo-grid options="gridJabatanInternal" data-source="dataSource"></div>
+        </div>
+        <div class="grid_12">
+            <div class="grid_2"></div>
+			<div class="grid_2"></div>
+			<div class="grid_2"></div>
+			<div class="grid_2"></div>
+			<div class="grid_2"><button class="c-button cancel" ng-click="batal()">Batal</button></div>
+			<div class="grid_2"><button class="c-button success" ng-click="tambah()">Tambah</button></div>
+        </div> 
+	</div>
+</div>
+

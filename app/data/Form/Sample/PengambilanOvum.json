@@ -1,0 +1,124 @@
+{
+	"id" : "",
+	"waktu": "",
+	"dokter": "",
+	"cara":"",
+	"pembiusan" : "",
+	"catatan":"",
+	"jumlahFolikel" : "",
+	"jumlahOosit":"",
+	"fungsiOvarium" : [
+            	{
+                "id": 1,
+                "name": "Ovarium Kanan"
+                },{
+        		"id": 2,
+        		"name": "Ovarium Kiri"
+	            }
+              ],
+	"oosit" : [
+            	{
+                "id": 1,
+                "name": "kualitas 1",
+                "children":[
+	                	{
+	                		"id": 1,
+	                		"name": "Ovarium Kanan"
+	                	},
+	                	{
+	                		"id": 2,
+	                		"name": "Ovarium Kiri"
+	                	}
+                	]
+	            },
+	            {
+                "id": 2,
+                "name": "kualitas 2",
+                "children":[
+	                	{
+	                		"id": 3,
+	                		"name": "Ovarium Kanan"
+	                	},
+	                	{
+	                		"id": 4,
+	                		"name": "Ovarium Kiri"
+	                	}
+                	]
+	            },
+	            {
+                "id": 3,
+                "name": "kualitas 3",
+                "children":[
+	                	{
+	                		"id": 5,
+	                		"name": "Ovarium Kanan"
+	                	},
+	                	{
+	                		"id": 6,
+	                		"name": "Ovarium Kiri"
+	                	}
+                	]
+	            },
+	            {
+                "id": 4,
+                "name": "kualitas 4",
+                "children":[
+	                	{
+	                		"id": 7,
+	                		"name": "Ovarium Kanan"
+	                	},
+	                	{
+	                		"id": 8,
+	                		"name": "Ovarium Kiri"
+	                	}
+                	]
+	            }],
+
+	"attributes" : [{
+		"isNull" : "true",
+		"name" : "waktu",
+		"messagesRequired" : "Waktu Harus Diisi",
+		"caption" : "Waktu"
+	},{
+			"isNull" : "true",
+			"name" : "dokter",
+			"pukul" : "Dokter Harus Diisi",
+			"caption" : "Dokter"
+		},{
+			"isNull" : "true",
+			"name" : "cara",
+			"messagesRequired" : "Cara Harus Diisi",
+			"caption" : "Cara"
+		},{
+			"isNull" : "true",
+			"name" : "pembiusan",
+			"messagesRequired" : " Pembiusan Harus Diisi",
+			"caption" : " Pembiusan"
+		},{
+			"isNull" : "true",
+			"name" : "fungsiOvarium",
+			"messagesRequired" : "Fungsi Ovarium Harus Diisi",
+			"caption" : "Fungsi Ovarium"
+		},{
+			"isNull" : "true",
+			"name" : "jumlahFolikel",
+			"messagesRequired" : "Jumlah Folikel Harus Diisi",
+			"caption" : "Jumlah Folikel"
+		},{
+			"isNull" : "true",
+			"name" : "oosit",
+			"messagesRequired" : "Oosit Harus Diisi",
+			"caption" : " Oosit"
+		},{
+			"isNull" : "true",
+			"name" : "jumlahOosit",
+			"messagesRequired" : "Jumlah Oosit Harus Diisi",
+			"caption" : "Jumlah Oosit"
+		},{
+			"isNull" : "true",
+			"name" : "catatan",
+			"messagesRequired" : "Catatan Harus Diisi",
+			"caption" : "Catatan"
+		}
+	]
+}

@@ -1,0 +1,189 @@
+<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Detail Jenis Produk'" disabled>
+
+			
+
+			<div class="grid_12">
+
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="kdDetailJenisProduk"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kddetailjenisproduk" />
+					</div>
+				</div>
+
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="detailJenisProduk"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.detailjenisproduk" />
+					</div>
+				</div>
+
+				
+				<!-- qDetailJenisProduk -->
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="qDetailJenisProduk"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="number" filter="" class="k-textbox" ng-model="item.qdetailjenisproduk" />
+					</div>
+				</div>
+
+
+				<!-- jenisProduk -->
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="jenisProduk"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisproduk" k-data-text-field="'jenisproduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listjenisproduk" />
+					</div>
+				</div>
+
+				
+
+
+			</div>
+
+			
+
+
+			<div class="grid_12">
+
+				<!-- account -->
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="account"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.account" k-data-text-field="'namaaccount'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listaccount" />
+					</div>
+				</div>
+				<!-- accountId -->
+		
+
+				<!-- departemen -->
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="departemen"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.departemen" k-data-text-field="'namadepartemen'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listdepartemen" />
+					</div>
+				</div>
+
+				
+				
+				<!-- persenHargaCito -->
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="persenHargaCito"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="number" filter="" class="k-textbox" ng-model="item.persenhargacito" />
+					</div>
+				</div>
+
+				<!-- isRegistrasiAset -->
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="isRegistrasiAset"></label>
+					</div>
+					<div class="clear"></div>
+
+					<!-- <div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.isregistrasiaset" />
+					</div> -->
+
+					<div ng-repeat="opsi in radioIsRegistrasiAset | orderBy:'id'">
+
+                		<div class="grid_2">
+	                    	<input type="radio" name="{{opsi.nama}}" id="{{opsi.nama}}" class="k-radio" ng-model="item.isregistrasiaset" value="{{opsi.id}}">
+	                    	<label class="k-radio-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+                		</div>
+            		</div>
+
+				</div>
+
+			</div>
+
+			
+
+			<div class="grid_12">
+
+				<!-- reportDisplay -->
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="reportDisplay"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportdisplay" />
+					</div>
+				</div>
+
+				<!-- kodeExternal -->
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="kodeExternal"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeexternal" />
+					</div>
+				</div>
+
+				<!-- namaExternal -->
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="namaExternal"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaexternal" />
+					</div>
+				</div>
+
+			</div>			
+
+			
+			
+			
+			<div class="clear"></div>
+			<div class="grid_12">
+				<div class="grid_8"></div>
+				
+				<div class="grid_2" ng-hide="showEdit">
+					<button class="c-button" ng-click="simpan()">Simpan</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="batal()">Batal</button>
+				</div>
+				
+			</div>
+
+
+		</c-panel>
+</div>

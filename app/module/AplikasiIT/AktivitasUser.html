@@ -1,0 +1,83 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" c-translate>Daftar Aktivitas user</div>
+	<div class="panel-body">
+        <fieldset style="min-height:50px !important" align="left">
+            <legend><h2>Pencarian</h2></legend>
+          <!--   <div class="grid_4">
+                <div class="grid_6">
+                    <label c-label item="item">Tanggal Awal</label>
+                    <input style="width: 100%" k-ng-model="item.tglawal" kendo-datetimepicker placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd HH:mm'" />
+                </div>
+                <div class="grid_6">
+                    <label c-label item="item">Tanggal Akhir</label>
+                    <input style="width: 100%" k-ng-model="item.tglakhir" kendo-datetimepicker placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd HH:mm'" />
+                </div>
+            </div> -->
+            <div class="grid_3" style="margin-top: 6px;">
+                <div class="grid_12">
+                    <label c-label item="item">Nama Pegawai</label>
+                </div>
+                <div class="grid_12">
+                      <input style="width: 100%;" kendo-combo-box k-ng-model="item.User" k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUser" />
+                </div>
+            </div>
+            <div class="grid_2" style="margin-top: 6px;">
+                <div class="grid_12">
+                    <label c-label item="item">Jenis Pegawai</label>
+                </div>
+                <div class="grid_12">
+                      <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPegawai" k-data-text-field="'jenispegawai'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisPegawai" />
+                </div>
+            </div>
+            <div class="grid_1" style="margin-top: 6px">
+                <label c-label c-label-text=""></label>
+                <em style="margin-top:6px;" ng-click='SearchData()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary"
+                    role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-search">Refresh</span></em>
+                <em style="margin-top:6px;" ng-click='ClearData()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary"
+                    role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+
+            </div>
+           <!--  <div class="grid_1 k-edit-buttons  k-state-default " style="margin-top:27px"    >       
+                <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="SearchData()"  style="width:100px"  ><span class="k-sprite k-icon k-i-search"></span>Cari </button>
+                <button class="k-button  k-button-icontext" ng-click="ClearData()"   style="width:100px" ><span class="k-sprite k-icon k-delete"></span>Clear</button>
+            </div>         --> 
+        </fieldset>
+		<div class="grid_12">
+            <kendo-grid  
+                        k-data-source="DataKeluhan" 
+                        k-selectable="'row'" 
+                        k-groupable="'true'"
+                        k-options="optionsDataKeluhan" 
+                        k-ng-model="current" 
+                        ng-click="kl(current)"
+                        k-aggregate='aggregate' >
+            </kendo-grid>
+		</div>   
+      <!--   <div class="grid_1" >
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="Rows"></label>
+            </div>
+            <div class="clear"></div>
+
+            <div class="grid_12">
+                <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jmlRows" />
+            </div>
+        </div>    -->      
+	</div>
+    <div class="grid_12" style="margin-top:60px">
+       <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+    </div>
+	<!-- <div class="grid_12">
+		<div class="grid_8"></div>
+        <div class="grid_2">
+            <c-button ng-show="!isLoading" class="success" style="width: 99.5%; font-size: 24px; padding:0px, margin:0px; text-align: center;" item="item" size="36" position=" 'right'" is-validate ng-click="pindah()">
+                <span class="title">Reply</span>
+            </c-button>
+        </div>
+        <div class="grid_2">
+            <c-button ng-show="!isLoading" style="width: 99.5%; font-size: 24px; padding:0px, margin:0px; text-align: center;" item="item" size="36" position=" 'right'" is-validate ng-click="Cetak()">
+                <span class="title">Cetak</span>
+            </c-button>
+        </div>
+    </div> -->
+</div>  

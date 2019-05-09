@@ -1,0 +1,103 @@
+<div ng-controller="RiwayatCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Riwayat'">
+		<div class="panel panel-default container_12">
+			<div class="panel-heading" c-translate>Masa Kehamilan</div>
+			<div class="panel-body">
+				<div class="grid_2">
+					<label c-label item="item" c-label-text="kehamilanDiinginkan"></label>	
+				</div>
+				<div class="grid_4">
+					<div class="grid_4" ng-repeat="stat in listYaTidak">
+						<input type="radio" name="{{'kehamilanDiinginkan' + stat.name}}" id="{{'kehamilanDiinginkan' + stat.name}}" class="k-radio" ng-model="item.RadioButton" value="{{stat.name}}">
+						<label class="k-radio-label" for="{{'kehamilanDiinginkan' + stat.name}}">{{stat.name}}</label>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="grid_2">
+					<label c-label item="item" c-label-text="kehamilanDirencanakan"></label>	
+				</div>
+				<div class="grid_4">
+					<div class="grid_4" ng-repeat="stat in listYaTidak">
+						<input type="radio" name="{{'kehamilanDirencanakan' + stat.name}}" id="{{'kehamilanDirencanakan' + stat.name}}" class="k-radio" ng-model="item.RadioButton" value="{{stat.name}}">
+						<label class="k-radio-label" for="{{'kehamilanDirencanakan' + stat.name}}">{{stat.name}}</label>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+				<div class="grid_2">
+					<label c-label item="item" c-label-text="pemeriksaanKehamilan"></label>
+				</div>
+				<div class="grid_4">
+					<div class="grid_4" ng-repeat="stat in listPemeriksaanKehamilan">
+						<input type="radio" name="{{'pemeriksaanKehamilan' + stat.name}}" id="{{'pemeriksaanKehamilan' + stat.name}}" class="k-radio" ng-model="item.RadioButton" value="{{stat.name}}">
+						<label class="k-radio-label" for="{{'pemeriksaanKehamilan' + stat.name}}">{{stat.name}}</label>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="grid_2">
+					<label c-label item="item" c-label-text="dilakukanOleh"></label>
+				</div>
+				<div class="grid_4">
+					<div class="grid_4" ng-repeat="stat in listPemeriksaKehamilan">
+						<input type="radio" name="{{'dilakukanOleh' + stat.name}}" id="{{'dilakukanOleh' + stat.name}}" class="k-radio" ng-model="item.RadioButton" value="{{stat.name}}">
+						<label class="k-radio-label" for="{{'dilakukanOleh' + stat.name}}">{{stat.name}}</label>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+				<div class="grid_2">
+					<label c-label item="item" c-label-text="kebiasaanIbu"></label>
+				</div>
+				<div class="grid_6">
+					<div class="grid_4" ng-repeat="kebiasaanIbu in listKebiasaanIbu" style="font-size: 12px">
+						<input type="checkbox" class="k-checkbox" name="{{kebiasaanIbu.name}}" id="{{kebiasaanIbu.name}}" value="{{kebiasaanIbu.id}}" ng-click="cekArrkebiasaanIbu(kebiasaanIbu)">
+						<label class="k-checkbox-label" for="{{kebiasaanIbu.name}}">{{kebiasaanIbu.name}}</label>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+				<div ng-show="showObatDigunakan">
+					<div class="grid_2">
+						<label c-label item="item" c-label-text="Obat yang digunakan"></label>
+					</div>
+					<div class="grid_4">
+						<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.ObatYgDigunakan" />
+					</div>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_2">
+					<label c-label item="item" c-label-text="penyakitYgDiderita"></label>
+				</div>
+				<div class="grid_4">
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.PenyakitYgDiderita" />
+				</div>
+				<div class="grid_2">
+					<label c-label item="item" c-label-text="riwayatKeguguran"></label>
+				</div>
+				<div class="grid_4">
+					<div class="grid_4" ng-repeat="stat in listYaTidak">
+						<input type="radio" name="{{'riwayatKeguguran' + stat.name}}" id="{{'riwayatKeguguran' + stat.name}}" class="k-radio" ng-model="item.RiwayatKeguguran" value="{{stat.name}}">
+						<label class="k-radio-label" for="{{'riwayatKeguguran' + stat.name}}">{{stat.name}}</label>
+					</div>
+					<div class="grid_4" ng-show="showTextArea">
+						<textarea id="text_area_alamat" c-text-box type="input" class="k-textbox" ng-model="item.riwayatKeguguran" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default container_12">
+			<div class="panel-heading" c-translate>Kelahiran</div>
+			<div class="panel-body">
+			</div>
+		</div>
+		<div class="panel panel-default container_12">
+			<div class="panel-heading" c-translate>Keadaan Setelah Lahir</div>
+			<div class="panel-body">
+			</div>
+		</div>
+	</c-panel>
+</div>
+</div>

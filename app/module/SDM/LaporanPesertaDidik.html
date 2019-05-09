@@ -1,0 +1,67 @@
+<div ng-controller="LaporanPesertaDidikCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Cetak Laporan Jumlah Peserta Didik'"disabled>      
+		<div class="panel-body">
+				
+							
+								<div class="grid_1">
+								<div class="grid_1" style="margin: 10px 0 0 0;">
+										<label c-label item="item" c-label-text="Periode"></label>
+								</div>
+								</div>
+						
+							<div class="grid_10">
+							<div class="grid_2">
+								<input kendo-date-picker k-options="yearSelected" k-ng-model="item.awal" k-max ="now" k-format="'yyyy'" style="width: 100%" />
+							</div>
+							
+							<div class="grid_1" style="margin: 10px 0 0 0;" >
+								<label>s/d</label>
+							</div>
+							<div class="grid_2">
+								<input kendo-date-picker k-options="yearSelected" k-ng-model="item.akhir" k-max ="now" k-format="'yyyy'" style="width: 100%" />
+							</div>
+							
+							<div class="grid_1" style="margin: 7px 0 0 0;">
+								<button class="c-button"  ng-click="cari()">
+								
+                            	Cari</button>
+							</div>
+				            </div>
+						
+		
+	
+		<div class="grid_12">
+				<kendo-grid  k-data-source="daftarBahanLinen" k-pageable="true" k-selectable="'row'" k-columns="columnLaporanUjiHasil"  style="font-size: small;">
+            	</kendo-grid>
+					
+			</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		</c-panel>
+			<div class="grid_12">
+							<div class="grid_8" style="float:left">
+							
+							
+							<div class="grid_2" style="margin-top: 25px">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate click="Cancel">
+                					<span class="title">Batal</span></button>
+							</div>
+							<div class="grid_2 " style="margin-top: 25px ">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Cetak</span>
+									</button>
+							</div>
+							</div>
+						</div>
+		</div>
+	</div>
+</div>
+

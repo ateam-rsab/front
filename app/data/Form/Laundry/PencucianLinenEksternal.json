@@ -1,0 +1,42 @@
+{
+	"model":{
+		"noMesin":"",
+		"kapasitas":"",
+		"jenisLinen" : "",
+		"jumlah" : "",
+		"hargaSatuan":""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "noMesin",
+			"messagesRequired" : "",
+			"caption" : "No Mesin"
+		},{
+			"isNull" : "true",
+			"name" : "kapasitas",
+			"messagesRequired" : "",
+			"caption" : "Kapasitas"
+		},
+		{
+			"isNull" : "true",
+			"name" : "jenisLinen",
+			"messagesRequired" : "",
+			"caption" : "Jenis Linen"
+		},
+		{
+			"isNull" : "true",
+			"name" : "jumlah",
+			"messagesRequired" : "",
+			"caption" : "Jumlah"
+		},
+		{
+			"isNull" : "true",
+			"name" : "hargaSatuan",
+			"messagesRequired" : "",
+			"caption" : "Harga Satuan"
+		}
+
+	]
+}

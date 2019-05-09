@@ -1,0 +1,143 @@
+<div class="grid_12" style="margin-bottom:60px!important">
+    <div class="grid_12 headerBox">
+        <h1 style="color: white;"><b>{{title}}</b></h1>
+    </div>
+    <div class="clear"></div>
+    <br/>
+    <div class="container_12"> <!-- html form goes here -->
+        <!-- homeCare -->
+        <div class="grid_12" ng-repeat="list in listHomeCare | orderBy:'id'" style="margin-top:10px">
+            <div class="grid_1" align="center" style="margin-top: 5px">
+                <b>1</b>
+            </div>
+            <div class="grid_3" style="margin-top: 5px">
+                <b>{{list.nama}}</b>
+            </div>
+            <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                <div class="grid_2">
+                    <input type="radio" name="{{opsi.nama}}" id="{{opsi.nama}}" class="k-radio" ng-model="item.homeCare" value="{{opsi.id}}">
+                    <label class="k-radio-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+                </div>
+            </div>
+            <div class="grid_4">
+                <textarea c-text-area type="input" class="k-textbox" ng-model="item.ketHomeCare"/>
+            </div>
+        </div>
+        <hr style="margin:5px auto"/>
+        <!-- implant -->
+        <div class="grid_12" ng-repeat="list in listImplant | orderBy:'id'">
+            <div class="grid_1" align="center" style="margin-top: 5px">
+                <b>2</b>
+            </div>
+            <div class="grid_3" style="margin-top: 5px">
+                <b>{{list.nama}}</b>
+            </div>
+            <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                <div class="grid_2">
+                    <input type="radio" name="{{opsi.nama}}" id="{{opsi.nama}}" class="k-radio" ng-model="item.implant" value="{{opsi.id}}">
+                    <label class="k-radio-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+                </div>
+            </div>
+            <div class="grid_4">
+                <textarea c-text-area type="input" class="k-textbox" ng-model="item.ketImplant"/>
+            </div>
+        </div>
+        <hr style="margin:5px auto"/>
+        <!-- alatBantu -->
+        <div class="grid_12" ng-repeat="list in listAlatBantu | orderBy:'id'">
+            <div class="grid_1" align="center" style="margin-top: 5px">
+                <b>3</b>
+            </div>
+            <div class="grid_3" style="margin-top: 5px">
+                <b>{{list.nama}}</b>
+            </div>
+            <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                <div class="grid_2">
+                    <input type="radio" name="{{opsi.nama}}" id="{{opsi.nama}}" class="k-radio" ng-model="item.alatBantu" value="{{opsi.id}}">
+                    <label class="k-radio-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+                </div>
+            </div>
+            <div class="grid_4">
+                <textarea c-text-area type="input" class="k-textbox" ng-model="item.ketAlatBantu"/>
+            </div>
+        </div>        
+        <hr style="margin:5px auto"/>
+        <!-- alat -->
+        <div class="grid_12" ng-repeat="list in listAlat | orderBy:'id'">
+            <div class="grid_1" align="center" style="margin-top: 5px">
+                <b>4</b>
+            </div>
+            <div class="grid_3" style="margin-top: 5px">
+                <b>{{list.nama}}</b>
+            </div>
+            <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                <div class="grid_2">
+                    <input type="radio" name="{{opsi.nama}}" id="{{opsi.nama}}" class="k-radio" ng-model="item.alat" value="{{opsi.id}}">
+                    <label class="k-radio-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+                </div>
+            </div>
+            <div class="grid_4">
+                <textarea c-text-area type="input" class="k-textbox" ng-model="item.ketAlat"/>
+            </div>
+        </div>        
+        <hr style="margin:5px auto"/>
+        <!-- komunitas -->
+        <div class="grid_12" ng-repeat="list in listKomunitas | orderBy:'id'">
+            <div class="grid_1" align="center" style="margin-top: 5px">
+                <b>5</b>
+            </div>
+            <div class="grid_3" style="margin-top: 5px">
+                <b>{{list.nama}}</b>
+            </div>
+            <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                <div class="grid_2">
+                    <input type="radio" name="{{opsi.nama}}" id="{{opsi.nama}}" class="k-radio" ng-model="item.komunitas" value="{{opsi.id}}">
+                    <label class="k-radio-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+                </div>
+            </div>
+            <div class="grid_4">
+                <textarea c-text-area type="input" class="k-textbox" ng-model="item.ketKomunitas"/>
+            </div>
+        </div>
+        <hr style="margin:5px auto"/>
+        <!-- terapis -->
+        <div class="grid_12" ng-repeat="list in listTerapis | orderBy:'id'">
+            <div class="grid_1" align="center" style="margin-top: 5px">
+                <b>6</b>
+            </div>
+            <div class="grid_3" style="margin-top: 5px">
+                <b>{{list.nama}}</b>
+            </div>
+            <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                <div class="grid_2">
+                    <input type="radio" name="{{opsi.nama}}" id="{{opsi.nama}}" class="k-radio" ng-model="item.terapis" value="{{opsi.id}}">
+                    <label class="k-radio-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+                </div>
+            </div>
+            <div class="grid_4">
+                <textarea c-text-area type="input" class="k-textbox" ng-model="item.ketTerapis"/>
+            </div>
+        </div>
+        <hr style="margin:5px auto"/>
+        <!-- gizi -->
+        <div class="grid_12" ng-repeat="list in listGizi | orderBy:'id'">
+            <div class="grid_1" align="center" style="margin-top: 5px">
+                <b>7</b>
+            </div>
+            <div class="grid_3" style="margin-top: 5px">
+                <b>{{list.nama}}</b>
+            </div>
+            <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                <div class="grid_2">
+                    <input type="radio" name="{{opsi.nama}}" id="{{opsi.nama}}" class="k-radio" ng-model="item.gizi" value="{{opsi.id}}">
+                    <label class="k-radio-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+                </div>
+            </div>
+            <div class="grid_4">
+                <textarea c-text-area type="input" class="k-textbox" ng-model="item.ketGizi"/>
+            </div>
+        </div>
+        <hr style="margin:5px auto"/>            
+    </div>
+    <div ng-include='"../app/module/Shared/TemplateButtonSimpanNotFixed"'></div>
+</div>

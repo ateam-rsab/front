@@ -1,0 +1,145 @@
+<div ng-controller="PenyusunanRUPCtrl">
+	<div class="panel panel-default container_12">
+        <div kendo-notification="notf1" class="ui-notification" k-options="notf1Options"></div>
+		<script id="notificationTemplate" type="text/x-kendo-template">
+       		<div class="validError">
+                <img class="img-responsive" src="images/notification_error.png"/>
+                <h3>#= title #</h3>
+                <p>#= message #</p>
+            </div>
+        </script>
+
+		<c-panel item="item" header="'Penyusunan RUP'" disabled>
+		<!-- header data rup -->
+		<!-- <div class="grid_6">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="kemenLemb"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="spek.headAnggaran.kemenLemb.namaKemenLemb" disabled="" />
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="unitOrganisasi"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="spek.headAnggaran.unitOrganisasi.namaUnitOrg" disabled="" />
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="unitKerja"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="spek.headAnggaran.unitKerja.namaExternal" disabled="" />
+			</div>
+		</div>
+		<div class="grid_6">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="tahun"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="spek.headAnggaran.tahun" disabled="" />
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="program"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="spek.headAnggaran.program.namaProgram" disabled="" />
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="kegiatan"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="spek.kegiatanDetail.namaKegiatanDetail" disabled="" />
+			</div>
+		</div>
+		<div class="grid_12" style="min-height:50px">&nbsp;</div>
+		<div class="clear"></div> -->
+
+		<!-- <div kendo-grid k-data-source="dataSpek" k-selectable="'row'" k-columns="columnPenyusunanRUP" style="margin-bottom: 10px"></div>
+		<div class="clear"></div> -->
+		<kendo-grid k-columns="columnPenyusunanRUP" k-data-source="dataSpek" k-pageable="true" k-selectable="'false'"></kendo-grid>
+		
+		<div class="grid_12">
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="caraPengadaan:" style="margin-top:5px"></label>
+           	</div>
+           	<div class="clear"></div>
+           	<div class="grid_8 radio-inline">
+           		<div ng-repeat="list in listPengadaan" style="display:block; float:left; clear: none; margin-right:24px">
+           			<input type="radio" name="{{list.namaPengadaan}}" id="{{list.id}}" class="k-radio" ng-model="item.pengadaan" ng-click="pengadaanArray()" ng-value="{{list}}">
+    				<label class="k-radio-label" for="{{list.id}}">{{list.namaPengadaan}}</label>
+           		</div>
+           		<!-- <label class="k-radio-label" style="margin:2px 20px 0 0" ng-repeat="list in listPengadaan">
+           		<input type="radio" class="k-radio" name="list.namaPengadaan" id="list.id" class="k-radio" ng-model="item.pengadaan.id" value="list.id">{{list.namaPengadaan}}</label> -->
+           		<!-- <label style="margin:2px 20px 0 0" ng-repeat="list in listPengadaan"><input type="checkbox" ng-click="pengadaanArray(list)"/>{{list.namaPengadaan}}</label> -->
+			</div>
+		<div class="clear"></div>
+
+		<div class="grid_6" style="margin-top:17px">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="pelaksanaanPemilihan"></label>
+			</div>
+			<div class="grid_6">
+				<label c-label item="item" c-label-text="awal"></label>
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.awalPemilihan" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"/>
+			</div>
+			<div class="grid_6">
+				<label c-label item="item" c-label-text="akhir"></label>
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.akhirPemilihan" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"/>
+			</div>
+		</div>
+		<div class="grid_6" style="margin-top:17px">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="pelaksanaanPekerjaan"></label>
+			</div>
+			<div class="grid_6">
+				<label c-label item="item" c-label-text="awal"></label>
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.awalPekerjaan" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"/>
+			</div>
+			<div class="grid_6">
+				<label c-label item="item" c-label-text="akhir"></label>
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.akhirPekerjaan" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"/>
+			</div>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_6" style="margin-top:17px">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="keterangan"></label>
+			</div>
+			<div class="grid_8">
+				<textarea style="height: 50px" c-text-box type="input" class="k-textbox" ng-model="item.keterangan" />
+			</div>
+		</div>
+		<div class="clear"></div>
+		<!--
+		<div class="grid_6">
+			<div class="grid_4">
+				
+			</div>
+			<div class="grid_4">
+						<button class="c-button" ng-click="simpan()">Simpan</button>
+					</div>
+					<div class="grid_4">
+						<button class="c-button" ng-click="batal()">Batal</button>
+					</div>
+		</div>
+		-->
+		</c-panel>
+
+	<!-- <div class="grid_12">
+        	<div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
+    	</div> -->
+    	<div class="grid_8"></div>
+		<div class="grid_2">
+			<button style="width:100%" class="c-button  button-primary" ng-click="Save()">Buat RUP</button>
+		</div>
+		<div class="grid_2">
+	        <button style="width:100%" class="c-button btn-danger" ng-click="batal()">Kembali</button>
+		</div>
+		
+	</div>
+</div>
+<style type="text/css">
+.k-window > div.k-popup-edit-form {
+    padding: 1em;
+}
+</style>

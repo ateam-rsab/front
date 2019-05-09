@@ -1,0 +1,253 @@
+[
+  {
+    "name": "Pasien",
+    "children": [{
+      "name": "Registrasi Pasien Baru",
+      "link": "#/RegistrasiPasienBaru"
+    }, {
+      "name": "Pencarian Pasien",
+      "link": "#/PencarianPasien"
+    }]
+  },
+  {
+    "name": "Transaksi",
+    "children": [{
+      "name": "Registrasi Online",
+      "link": "#/ReservasiOnline/JenisPasien"
+    },{
+      "name": "Registrasi Pelayanan",
+      "link": "#/Registrasi/Pelayanan"
+    }, {
+      "name": "Daftar Antrian",
+      "link": "#/Daftar/Antrian"
+    }, {
+      "name": "Registrasi Masuk Ruangan",
+      "link": "#/RegistrasiMasuk/Ruangan"
+    }, {
+      "name": "Daftar Pasien Ruangan",
+      "link": "#/Daftar/Ruangan"
+    }, {
+      "name": "Pasien Pulang",
+      "link": "#/Pasien/Pulang"
+    }, {
+      "name": "Dashboard Pasien",
+      "link": "#/Dashboard/Pasien/Main"
+    }
+  ]},
+  {
+    "name": "Pengkajian Awal Pasien",
+    "children": [
+      {
+        "name": "Pemeriksaan Fisik",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/PengkajianPemeriksaanFisik"
+      }, 
+      {
+        "name": "Pengkajian",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/Pengkajian"
+      },
+      {
+        "name": "Pengkajian Medis",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/PengkajianMedis"
+      }, 
+      {
+        "name": "Riwayat",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/Riwayat"
+      },
+      {
+        "name": "RiwayatKesehatan",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/RiwayatKesehatan"
+      },
+      {
+        "name": "RiwayatTumbuhKembang",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/RiwayatTumbuhKembang"
+      },
+      {
+        "name": "Skrining Nyeri",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/SkriningNyeri"
+      }, 
+      {
+        "name": "Skrining Gizi",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/SkriningGizi"
+      }, 
+      {
+        "name": "Status Fungsional",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/StatusFungsional"
+
+      },
+      {
+        "name": "Keluhan Utama",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/KeluhanUtama"
+      },
+      {
+        "name": "Riwayat Kelahiran",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/RiwayatKelahiran"
+      },
+      {
+        "name": "Riwayat Imunisasi Dasar",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/RiwayatImunisasiDasar"
+
+      },
+      {
+        "name": "Tanda Vital",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/TandaVital"
+      },
+	    {
+        "name": "Genetalia",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/Genetalia"
+      },
+	    {
+        "name": "Integumen",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/Integumen"
+
+      },
+	  {
+        "name": "Muskuloskeletal",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/Muskuloskeletal"
+
+      },
+	  {
+        "name": "Eliminasi",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/Eliminasi"
+
+      },
+	  {
+        "name": "Catatan",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/Catatan"
+
+      },
+      {
+        "name": "Gastrointestinal",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/Gastrointestinal"
+
+      },
+      {
+        "name": "Neurologi",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/Neurologi"
+
+      },
+      {
+        "name": "Pernafasan",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/Pernafasan"
+
+      },
+      {
+        "name": "Sirkulasi",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/Sirkulasi"
+
+      },
+	    {
+        "name": "Riwayat Keluarga",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/RiwayatKeluarga"
+
+      },
+	  {
+        "name": "Riwayat Yang Lalu",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/RiwayatLalu"
+
+      },
+	  
+	   {
+        "name": "Informasi Ibu",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/InformasiIbu"
+
+      },
+	  
+	  {
+        "name": "Radiologi",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/Radiologi"
+
+      },
+	  {
+        "name": "KajiMedis",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/KajiMedis"
+
+      },{
+        "name": "GawatDarurat",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/GawatDarurat"
+		
+	 },{
+        "name": "PatologiAnatomik",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/PatologiAnatomik"
+	},{
+        "name": "Ginekologik",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/Ginekologik"
+		
+	},{
+        "name": "HistoPatologi",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/HistoPatologi"
+
+	},{
+        "name": "Biopsi",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/Biopsi"	
+	
+	},{
+        "name": "CheckIn",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/CheckIn"
+	},{
+        "name": "KehamilanSekarang",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/KehamilanSekarang"
+	},{
+        "name": "TimeOut",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/TimeOut"	
+    },{
+        "name": "Riwayat Psikososial",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/RiwayatPsikososial"
+
+    },{
+        "name": "Kebutuhan Edukasi",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/KebutuhanEdukasi"
+
+      },
+	    {
+        "name": "Masalah Keperawatan",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/MasalahKeperawatan"
+      },
+	    {
+        "name": "Perencanaan Pulang",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/PerencanaanPulang"
+      },
+	    {
+        "name": "Laboratorium",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/Laboratorium"
+      },
+	    {
+        "name": "Cap Kaki Bayi",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/CapKakiBayi"
+      },
+	    {
+        "name": "klinik Mata",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/KlinikMata"
+      }
+    ]
+  },
+  {
+    "name": "Transfer Pasien Internal",
+    "children": [
+      {
+        "name": "Diagnosa",
+        "link": "#/TransferPasienInternal/Diagnosa"
+      }, 
+      {
+        "name": "Informasi Medis",
+        "link": "#/TransferPasienInternal/InformasiMedis"
+      },
+      {
+        "name": "Keadaan Pasien",
+        "link": "#/TransferPasienInternal/KeadaanPasien"
+      }, 
+      {
+        "name": "Pemeriksaan Fisik",
+        "link": "#/TransferPasienInternal/TransferPemeriksaanFisik"
+      },
+      {
+        "name": "Pemindahan",
+        "link": "#/TransferPasienInternal/Pemindahan"
+      }, 
+      {
+        "name": "Status Kemandirian",
+        "link": "#/TransferPasienInternal/StatusKemandirian"
+      }
+    ]
+  }
+]
+

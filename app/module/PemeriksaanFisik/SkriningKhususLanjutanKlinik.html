@@ -1,0 +1,32 @@
+<style>
+.keteranganFieldTambahan {
+    left: 5px !important;
+}
+hr {
+    margin-bottom: 0px !important; 
+}
+</style>
+<div>
+    <div class="container_12">
+        <!-- panel Golongan Darah -->
+        <div class="grid_12" ng-repeat="klinik in klinik | orderBy:'id'">
+            <div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+                <span style="font-size: 18px; color: white; padding: 5px;">{{klinik.nama}}</span>
+            </div>
+            <div class="container_12"> <!-- html form goes here -->
+                <div class="grid_12" ng-repeat="list in klinik.detail | orderBy:'id'" ng-init="listIndex = $index">
+                    <div class="grid_1"><label for="{{'klinik' + list.nama}}"><b>{{list.nama}}</b> : </label></div>
+                    <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                        <div class="grid_1">
+                            <input type="radio" ng-model="list.value" ng-value="opsi.id" ng-click="radioKlik(list, opsi)">
+                            <label for="{{'formMaster' + opsi.nama}}">{{opsi.nama}}</label>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+</div>
+                  	

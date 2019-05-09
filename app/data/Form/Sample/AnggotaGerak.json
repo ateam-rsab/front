@@ -1,0 +1,32 @@
+{
+    "id": "",
+	"anggotaGerak": "",
+    "defomitas": [
+            	{
+                    "status":"",
+                    "catatan": ""
+                }],
+    "koordinasi": [
+            	{
+                    "status":"",
+                    "catatan": ""
+                }],
+    
+    "attributes" : [{
+		"isNull" : "true",
+		"name" : "anggotaGerak",
+		"messagesRequired" : "Anggota Gerak Harus Diisi",
+		"caption" : "Anggota Gerak"
+	},{
+			"isNull" : "true",
+			"name" : "defomitas",
+			"messagesRequired" : "Defomitas Harus Diisi",
+			"caption" : "Defomitas"
+	},{
+			"isNull" : "true",
+			"name" : "koordinasi",
+			"messagesRequired" : "Koordinasi Harus Diisi",
+			"caption" : "Koordinasi"
+	}
+	]
+}

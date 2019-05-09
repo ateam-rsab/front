@@ -1,0 +1,43 @@
+<div ng-controller="PengirimanBarangCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Pengiriman Barang'">
+		<div class="grid_8">
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="tanggal" style="margin-top: 10px"></label>
+			</div>
+			<div class="grid_3">
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"/>
+			</div>
+			<div class="clear"></div>
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="petugas" style="margin-top: 10px"></label>
+			</div>
+			<div class="grid_3">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.petugas" k-data-text-field="'namaPetugas'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPetugas" />
+			</div>
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="ruangan" style="margin-top: 10px"></label>
+			</div>
+			<div class="grid_3">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+			</div>
+			<div class="clear"></div>
+			<div class="grid_12" style="margin-bottom: 10px; margin-top: 10px">
+				<kendo-grid options="mainGridOptions"></kendo-grid>
+			</div>
+			<div class="clear"></div>
+			<div class="grid_6"></div>
+			<div class="grid_2">
+				<button class="c-button" ng-click="cetak()">Cetak</button>
+			</div>
+			<div class="grid_2">
+				<button class="c-button" ng-click="kirim()">Kirim</button>
+			</div>
+			<div class="grid_2">
+				<button class="c-button" ng-click="tutup()">Tutup</button>
+			</div>
+		</div>
+		</c-panel>
+	</div>
+</div>

@@ -1,0 +1,226 @@
+<div ng-controller="MonitoringDecontaminasiEOCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Monitoring Dekontaminasi'">
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Nomor Order</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 50%" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noOrder" disabled/>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Operator</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 50%" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.operator" disabled/>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Ruangan Asal</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 50%" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.ruanganAsal" disabled/>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Tanggal</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 50%" kendo-date-picker k-ng-model="item.tanggal" k-format="'yyyy-MM-dd'"/>
+				</div>
+			</div>
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Nomor Bundle</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 50%" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noBundle" disabled/>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Ruangan Tujuan</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 50%" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.ruanganTujuan" disabled/>
+				</div>
+			</div>
+			<div class="grid_12">
+				<kendo-grid options="gridMonitoringDecontaminasi" k-data-source="dataSource" k-ng-model="current" ng-dblclick="klik(current)"></kendo-grid>
+			</div>
+			<div class="grid_12">
+				<div class="panel panel-default container_12">
+					<div class="panel-heading" c-translate>Uji Visual</div>
+					<div class="panel-body">
+						<div class="grid_6">
+							<div class="grid_4">
+								<label c-label item="item" style="margin-top: 10px">Kebersihan Alat</label>
+							</div>
+							<div class="grid_8">
+								<div class="grid_4" ng-repeat="stat in ketKebersihan">
+									<input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.kebersihanAlat" value="{{stat.id}}">
+									<label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+								</div>
+							</div>
+							<div class="grid_4">
+								<label c-label item="item" style="margin-top: 10px">Kondisi Alat</label>
+							</div>
+							<div class="grid_8">
+								<div class="grid_4" ng-repeat="stat in ketKondisi">
+									<input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.kondisiAlat" value="{{stat.id}}">
+									<label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+								</div>
+							</div>
+							<div class="grid_4">
+								<label c-label item="item" style="margin-top: 10px">Kelenturan Alat</label>
+							</div>
+							<div class="grid_8">
+								<div class="grid_6" ng-repeat="stat in ketKelenturan">
+									<input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.kelenturanAlat" value="{{stat.id}}">
+									<label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+								</div>
+							</div>
+							<div class="grid_4">
+								<label c-label item="item" style="margin-top: 10px">Ketajaman Alat</label>
+							</div>
+							<div class="grid_8">
+								<div class="grid_6" ng-repeat="stat in ketKetajaman">
+									<input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.ketajamanAlat" value="{{stat.id}}">
+									<label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+								</div>
+							</div>
+							<div class="grid_4">
+								<label c-label item="item" style="margin-top: 10px">Alat Berkarat?</label>
+							</div>
+							<div class="grid_8">
+								<div class="grid_6" ng-repeat="stat in ketKarat">
+									<input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.alatBerkarat" value="{{stat.id}}">
+									<label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+								</div>
+							</div>
+						</div>
+						<div class="grid_6">
+							<div class="grid_4">
+								<label c-label item="item" style="margin-top: 10px">Warna Alat</label>
+							</div>
+							<div class="grid_8">
+								<div class="grid_4" ng-repeat="stat in ketWarna">
+									<input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.warnaAlat" value="{{stat.id}}">
+									<label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+								</div>
+							</div>
+							<div class="grid_4">
+								<label c-label item="item" style="margin-top: 10px">Kelayakan Alat</label>
+							</div>
+							<div class="grid_8">
+								<div class="grid_6" ng-repeat="stat in ketLayak">
+									<input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.kelayakanAlat" value="{{stat.id}}">
+									<label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+								</div>
+							</div>
+							<div class="grid_4">
+								<label c-label item="item" style="margin-top: 10px">Kemampuan Menjepit</label>
+							</div>
+							<div class="grid_8">
+								<div class="grid_6" ng-repeat="stat in ketMenjepit">
+									<input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.kemampuanMenjepit" value="{{stat.id}}">
+									<label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+								</div>
+							</div>
+							<div class="grid_4">
+								<label c-label item="item" style="margin-top: 10px">Keutuhan Alat</label>
+							</div>
+							<div class="grid_8">
+								<div class="grid_6" ng-repeat="stat in ketUtuh">
+									<input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.keutuhanAlat" value="{{stat.id}}">
+									<label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+								</div>
+							</div>
+							<div class="grid_4">
+								<label c-label item="item" style="margin-top: 10px">Linen Yang Dikemas</label>
+							</div>
+							<div class="grid_8">
+								<div class="grid_6" ng-repeat="stat in ketLinen">
+									<input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.linenYangDikemas" value="{{stat.id}}">
+									<label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="panel panel-default container_12">
+					<div class="panel-heading" c-translate>Pensterilan Alat Menggunakan Mesin</div>
+					<div class="panel-body">
+						<div class="grid_6">
+							<div class="grid_4">
+								<label c-label item="item" style="margin-top: 10px">Jam Mulai Sterilisasi</label>
+							</div>
+							<div class="grid_8">
+								<input style="width: 100%" kendo-time-picker k-ng-model="item.jamMulaiSterilisasi" placeholer="HH:mm" k-format="'HH:mm'"  />
+							</div>
+							<div class="grid_4">
+								<label c-label item="item" style="margin-top: 10px">Jam Selesai Sterilisasi</label>
+							</div>
+							<div class="grid_8">
+								<input style="width: 100%" kendo-time-picker k-ng-model="item.jamSelesaiSterilisasi" placeholer="HH:mm" k-format="'HH:mm'"  />
+							</div>
+							<div class="grid_4">
+								<label c-label item="item" style="margin-top: 10px">Hasil Chemical Indikator</label>
+							</div>
+							<div class="grid_8">
+								<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.hasilChemicalIndikator"/>
+							</div>
+							<div class="grid_4">
+								<label c-label item="item" style="margin-top: 10px">Hasil Label Indikator</label>
+							</div>
+							<div class="grid_8">
+								<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.hasilLabelIndikator"/>
+							</div>
+						</div>
+						<div class="grid_6">
+							<div class="grid_4">
+								<label c-label item="item" style="margin-top: 10px">Petugas</label>
+							</div>
+							<div class="grid_8">
+								<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.operator" disabled/>
+							</div>
+							<div class="grid_4">
+								<label c-label item="item" style="margin-top: 10px">Tindakan</label>
+							</div>
+							<div class="grid_8">
+								<input style="width: 100%;" kendo-combo-box k-ng-model="item.tindakan" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listTindakan" />
+							</div>
+						</div>
+						<div class="grid_12">
+							<div class="grid_2"></div>
+							<div class="grid_2"></div>
+							<div class="grid_2"></div>
+							<div class="grid_2"></div>
+							<div class="grid_2">
+								<button class="c-button success" ng-click="tambahDataTemp()">Tambah</button>
+							</div>
+							<div class="grid_2">
+								<button class="c-button cancel" ng-click="batalTemp()">Batal</button>
+							</div>
+						</div>
+						<div class="grid_12">
+							<kendo-grid options="mainGridOptionAlat" k-data-source="dataSourceTemp"></kendo-grid>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="grid_12">
+				<div class="grid_2"></div>
+				<div class="grid_2"></div>
+				<div class="grid_2"></div>
+				<div class="grid_2"></div>
+				<div class="grid_2">
+					<button class="c-button success" ng-click="simpan()">Simpan</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button cancel" ng-click="batal()">Tutup</button>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

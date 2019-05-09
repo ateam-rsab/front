@@ -1,0 +1,36 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Daftar Order/Detail Order</div>
+	<div class="panel-body">
+		<div class="grid_12" style="margin-top:20px">
+			<div class="grid_2"></div>
+			<div class="grid_10">
+				<div class="grid_1" style="margin-top:15px">
+					<label c-label item="item" c-label-text="nomorKirim"></label>
+				</div>
+				<div class="grid_3">
+					<input c-text-box type="input" filter="'text'" class="k-textbox" ng-model="item.noOrder" readonly="true" ng-disabled="true" />
+				</div>
+				<div class="grid_1"></div>
+				<div class="grid_1" style="margin-top:15px">
+					<label c-label item="item" c-label-text="petugas"></label>
+				</div>
+				<div class="grid_3">
+					<input c-text-box type="input" filter="'text'" class="k-textbox" ng-model="item.petugas" readonly="true" ng-disabled="true"/>
+				</div>
+			</div>
+		</div>
+		<div class="grid_12" style="margin-top: 20px">
+			<div kendo-grid k-data-source="daftarDetailOrder" k-selectable="'row'" k-columns="columndaftarDetailOrder" editable= "true">
+			</div>
+		</div>
+		<div class="grid_12" style="margin: 20px 0 10px 0; ">
+			<div class="grid_8"></div>
+	        <div class="grid_2">
+				<button class="c-button success" ng-click="kirim()">Kirim</button>
+	        </div>
+	        <div class="grid_2">
+				<button class="c-button cancel" ng-click="kembali()">Kembali</button>
+	        </div>
+		</div>
+	</div>
+</div>

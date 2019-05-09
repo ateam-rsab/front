@@ -1,0 +1,123 @@
+<style type="text/css">
+    .k-grid .k-grid-header .k-header .k-link {
+        height: auto;
+        width: auto;
+    }
+
+    .k-grid .k-grid-header .k-header {
+        white-space: normal;
+    }
+</style>
+
+
+<div ng-show="dataVOloaded">
+    <c-panel item="item" header="'Rekapitulasi Kehadiran Pegawai'" disabled>
+        <div class="panel-body">
+            <div class="grid_2">
+                <label c-label item="item" c-label-text="Periode"></label>
+                <input kendo-date-picker k-options="yearSelected" k-ng-model="item.periode1" k-max="now" k-format="'MMMM yyyy'" style="width: 100%"/>
+            </div>
+            <div class="grid_3">
+                <label c-label item="item" c-label-text="Unit Kerja"></label>
+                <input  kendo-combo-box k-ng-model="item.unitKerja" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja"  />
+            </div>
+            <div class="grid_3">
+                <label c-label item="item" c-label-text="Sub Unit Kerja"></label>
+                <input  kendo-combo-box k-ng-model="item.subUnitKerja" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listSubUnitKerja"  />
+            </div>
+            <div class="grid_1">
+                <label c-label c-label-text=""></label>
+                <em style="margin-top:6px;" ng-click='Cari()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Cari</span></em>
+            </div>
+            <!-- <div class="grid_9">
+                <div class="grid_2" style="margin-top: 0">
+                    <div class="grid_12" style="margin-top:12px">
+                        <label c-label item="item" c-label-text="Unit Kerja"></label>
+                        <input  kendo-combo-box k-ng-model="item.unitKerja" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja"  />
+                    </div>
+                </div>
+                <div class="grid_3" style="margin-top: 0">
+                    <div class="grid_12" style="margin: 0 0 0 -26px;">
+                        <input  kendo-combo-box k-ng-model="item.unitKerja" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja"  />
+                    </div>
+                </div>
+                <div class="grid_2" style="margin-top: 0">
+                    <div class="grid_12" style="margin-top:12px">
+                        <label c-label item="item" c-label-text="Periode"></label>
+                    </div>
+                </div>
+                <div class="grid_3" style="margin-top: 0">
+                    <div class="grid_12" style="margin: 0 0 0 -26px;">
+                        <input kendo-date-picker k-options="yearSelected" k-ng-model="item.periode1" k-max="now" k-format="'MMMM yyyy'" style="width: 100%"/>
+                    </div>
+                </div>
+
+                <div class="grid_2" style="margin-top: 0">
+                    <div class="grid_12" style="margin: 0 0 0 -26px;">
+                        <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Cari()">
+                            <span class="title">Cari</span>
+                        </button>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+
+        <!-- <div class="loading" style="position: relative; margin:25px 0px 20px;" class="animated"
+             ng-show="isLoadingData">
+            <img height="50" src="../app/stylesheets/Flat/loading-image.gif"/>
+            <br/> <span>Harap tunggu, sedang memproses data</span>
+        </div> -->
+        <div class="grid_12" style="margin-top: 10px;">
+            <div kendo-grid id="gridRekapKehadiran" k-data-source="sourceOrder" options="mainGridOption" k-ng-model="current"></div>
+        </div>
+
+    </c-panel>
+    <div class="panel panel-default panel-white" ng-show="showSearch">
+        <div class="grid_12 headerBox"><p>Filter Data</p></div>
+        <div class="panel-body">
+            <div class="grid_8">
+                <div class="grid_3">
+                    <label c-label item="item" c-label-text="Nip"></label>
+                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dats.nipPegawai" />
+                </div>
+                <div class="grid_3">
+                    <label c-label item="item" c-label-text="Nama Pegawai"></label>
+                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dats.namaPegawai" />
+                </div>
+                <div class="grid_1">
+                    <label c-label c-label-text=""></label>
+                    <em style="margin-top:6px;" ng-click='resetFilters()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+                </div>
+            </div>
+            <div class="grid_4 pull-right">
+                <div class="grid_8">
+                    <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="redirect()">
+                        <span class="title">Hitung Indeks Kehadiran</span></button>
+                </div>
+                <div class="grid_4">
+                    <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+                        <span class="title">Simpan</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-include="'../app/module/Shared/TemplateLoading'"></div>
+<!-- <div class="grid_12 place_button">
+    <div class="grid_4 pull-right">
+        <div class="grid_8">
+            <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="redirect()">
+                <span class="title">Hitung Indeks Kehadiran</span></button>
+        </div>
+        <div class="grid_4">
+            <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+                <span class="title">Simpan</span>
+            </button>
+        </div>
+    </div>
+</div> -->
+<style type="text/css">
+.cell-right {text-align: right}
+</style>
+

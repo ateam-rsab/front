@@ -1,0 +1,49 @@
+{
+	"model":{
+		"tglTerima":"",
+		"namaSupplier":"",
+		"noFaktur" : "",
+		"tglFaktur" : "",
+		"tglJatuhTempo":"",
+		"materai":""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "tglTerima",
+			"messagesRequired" : "",
+			"caption" : "Tgl Terima"
+		},{
+			"isNull" : "true",
+			"name" : "namaSupplier",
+			"messagesRequired" : "",
+			"caption" : "Nama Supplier"
+		},
+		{
+			"isNull" : "true",
+			"name" : "noFaktur",
+			"messagesRequired" : "",
+			"caption" : "No Faktur"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tglFaktur",
+			"messagesRequired" : "",
+			"caption" : "Tgl Faktur"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tglJatuhTempo",
+			"messagesRequired" : "",
+			"caption" : "Tgl Jatuh Tempo"
+		},
+		{
+			"isNull" : "true",
+			"name" : "materai",
+			"messagesRequired" : "",
+			"caption" : "Materai"
+		}
+
+	]
+}

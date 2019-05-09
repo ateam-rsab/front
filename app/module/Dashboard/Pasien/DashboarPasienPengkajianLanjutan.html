@@ -1,0 +1,56 @@
+<div ng-controller="DashboarPasienPengkajianLanjutanCtrl">
+    <c-panel item="item" header="'SkriningUmum'">
+        <div class="panel panel-default container_12">
+            <div class="breadcrum" style='margin-top: 0px;'>
+                <div class="grid_2">
+                    <a class="n1" ng-class='{warning:flagDomisili.status===false}' ng-click="nav('dashboardpasien.DashboardSkriningUmum.TandaVital')">Tanda Vital</a>
+                </div>
+
+                <div class="grid_2">
+                    <a class="n1" ng-class='{warning:flagKomposisiKeluarga.status===false}' ng-click="nav('dashboardpasien.DashboardSkriningUmum.inputAlergi')">Alergi</a>
+                </div>
+
+                <div class="grid_2" ng-show="isDewasa && isRawatInap">
+                    <a class="n1" ng-class='{warning:flagKomposisiKeluarga.status===false}' ng-click="nav('dashboardpasien.DashboardSkriningUmum.SkriningGiziDewasa')">Skrining Gizi</a>
+                </div>
+
+                <div class="grid_2" ng-hide="isAnak && isRawatInap || isRawatInap && isDewasa">
+                    <a class="n1" ng-class='{warning:flagKomposisiKeluarga.status===false}' ng-click="nav('dashboardpasien.DashboardSkriningUmum.SkriningGiziNeo')">Skrining Gizi</a>
+                </div>
+
+                <div class="grid_2" ng-show="isAnak && isRawatInap">
+                    <a class="n1" ng-class='{warning:flagKomposisiKeluarga.status===false}' ng-click="nav('dashboardpasien.DashboardSkriningUmum.SkriningGiziAnak')">Skrining Gizi</a>
+                </div>
+
+                <div class="grid_2">
+                    <a class="n1" ng-class='{warning:flagKomposisiKeluarga.status===false}' ng-click="nav('dashboardpasien.DashboardSkriningUmum.SkriningNyeri')">Skrining Nyeri</a>
+                </div>
+
+                 <div class="grid_2" ng-hide="isNeonatal">
+                    <a class="n1" ng-class='{warning:flagKomposisiKeluarga.status===false}' ng-click="nav('dashboardpasien.DashboardSkriningUmum.ResikoJatuh')">Resiko Jatuh</a>
+                </div>
+
+                <div class="grid_2" ng-hide="isNeonatal">
+                    <a class="n1" ng-class='{warning:flagKomposisiKeluarga.status===false}' ng-click="nav('dashboardpasien.DashboardSkriningUmum.StatusFungsional')">Status Fungsional</a>
+                </div>
+
+                <div class="grid_2" >
+                    <a class="n1" ng-class='{warning:flagKomposisiKeluarga.status===false}' ng-click="nav('dashboardpasien.DashboardSkriningUmum.KebutuhanEdukasi')">Kebutuhan Edukasi</a>
+                </div>
+
+               <!--  <div class="grid_2">
+                    <a class="n1" ng-class='{warning:flagKomposisiKeluarga.status===false}' ng-click="nav('dashboardpasien.DashboardSkriningUmum.KebutuhanDasar')">Data Kebutuhan Dasar Dokter</a>
+                </div> -->
+
+                <div class="grid_2" ng-show="isRawatInap">
+                    <a class="n1" ng-class='{warning:flagKomposisiKeluarga.status===false}' ng-click="nav('dashboardpasien.DashboardSkriningUmum.KebutuhanDasarSuster')">Pengkajian Kebutuhan Dasar</a>
+                </div>
+
+                <div class="grid_2" ng-show="isRawatInap">
+                    <a class="n1" ng-class='{warning:flagKomposisiKeluarga.status===false}' ng-click="nav('dashboardpasien.DashboardSkriningUmum.Psikososial')">Psikososial</a>
+                </div>
+            </div>
+        </div>
+    </c-panel>
+    <div ui-view></div>
+</div>

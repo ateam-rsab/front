@@ -1,0 +1,49 @@
+<div ng-controller="AnamesisKhususCtrl">
+    <!-- panel anamnsis -->
+    <div class="panel panel-default container_12">
+
+        <div class="panel-heading">Anamnesis Khusus</div>
+        <div class="panel-body">
+
+            <!-- anamnesis tambahan dokters -->
+            <div class="grid_12" style="margin: 0px 0px 10px 0px;">
+                <textarea style="width: 99%; height: 80px;" ng-model="item.keluhanUtamaKhusus"></textarea>
+            </div>
+            <div class="clear"></div>
+
+            <!-- riwayat penyakit -->
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="riwayatPenyakit" real></label>
+                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.riwayatPenyakit" />
+            </div>
+            <div class="grid_4" ">
+                          <label c-label item="item " c-label-text="riwayatPengobatanYangDiterima " real></label>
+                <input c-text-box type="input " filter=" 'string' " class="k-textbox " ng-model="item.riwayatPengobatan " />
+                    </div>
+                    <!-- button tambah, hapus -->
+                    <div class="grid_4 ">
+                       <div class="grid_3 " style="float:right ">
+			                <c-button ng-click="removeRiwayatPenyakitOrObat() ">
+			                    <span style="font-size:10!important ">Hapus</span>
+			                </c-button>
+			            </div>
+			            <div class="grid_3 " style="float:right ">
+			                <c-button ng-click="addDataRiwayatPenyakitOrObat() ">
+			                    <span style="font-size:10!important ">Tambah</span>
+			                </c-button>
+			            </div>
+                    </div>
+                    <div class="clear "></div>
+
+                    <!-- grid diagnosis -->
+                    <div class="grid_12 " style="margin-top: 10px; ">
+			           <div kendo-grid k-data-source="dataRiwayatPenyakitOrObat " k-selectable=" 'row' " k-columns="columnRiwayatPenyakitOrObat ">
+    					</div>
+			        </div>
+                    <div class="clear "></div>
+		        </div>
+		    </div>
+            
+            <!--<div ng-include=' "../app/module/PengkajianAwalPasienRawatJalanAnak/PemeriksaanKhususMenu " '></div>-->
+            <div ng-include=' "../app/module/Shared/TemplateButtonSimpan " '></div>
+</div>

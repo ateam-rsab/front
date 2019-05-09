@@ -1,0 +1,94 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Master Jenis Diet</div>
+	<div class="panel-body">
+		<div class="grid_12">
+			<div class="grid_3"></div>
+			<div class="grid_6">
+				<div class="grid_12">
+					<div class="grid_3" style="margin-top: 10px">
+						<label c-label item="item">Kode Jenis Diet</label>
+					</div>
+					<div class="grid_3">
+						<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.kodeJenisDiet" disabled="true" />
+					</div>
+				</div>
+				<div class="grid_12" style="margin-top: 5px">
+					<div class="grid_3" style="margin-top: 10px">
+						<label c-label item="item">Jenis Diet</label>
+					</div>
+					<div class="grid_9">
+						<input c-text-box type="input" class="k-textbox" ng-model="item.jenisDiet" k-on-change=ChangeData()/>
+					</div>
+				</div>
+				<div class="grid_12" style="margin-top: 5px">
+					<div class="grid_3" style="margin-top: 10px">
+						<label c-label item="item">Keterangan</label>
+					</div>
+					<div class="grid_9">
+ 	
+						<textarea style="height: 90px" c-text-box type="input" class="k-textbox" ng-model="item.keterangan" />
+					</div>
+
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_5"></div>
+				<div class="grid_2">
+					<button class="c-button success" ng-click="Save()">Simpan</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button cancel" ng-click="Batal()">Batal</button>
+				</div>
+			</div>
+		</div>
+	  
+		 <div class="grid_12">
+		 <div class="grid_12">
+		 	 <div class="grid_1"></div>
+			 <div class="grid_10">
+			 	<c-panel item="item" header="'Daftar Jenis Diet'"> </c-panel>	
+			 </div>
+			 <div class="grid_1"></div>
+		 </div>
+		 <div class="grid_12">
+		 	<div class="grid_1"></div>
+			<div class="grid_10" style="margin-top: 10px">
+				  <div class="grid_1" style="margin-top: 10px">
+					 <label c-label item="item" c-label-text="Pencarian"></label>
+				  </div>
+				<div class="grid_1" align="right"  style="margin-top: 10px">
+					<label c-label item="item" c-label-text=":"></label>
+				</div>
+				<div class="grid_5">
+				 	<input class=k-textbox type=text ng-model="item.pencarian" placeholder="Kode /Jenis Diet / Keterangan" />
+				</div>
+				<div class="grid_1" style="margin-top: 5px">
+					<button class="c-button success" ng-click="Cari(item.pencarian)">Cari</button>
+				</div>
+				<div class="grid_1" style="margin-top: 5px">
+					<button class="c-button cancel" ng-click="ClearCari()">Clear</button>
+				</div>
+				<div class="grid_1" style="margin-top: 5px">
+					<button class="c-button success" ng-click="Refresh()">Refresh</button>
+				</div>
+			</div>
+			<div class="grid_1"></div>
+		</div>
+	</div>
+	 <div class="grid_12" style="margin-top: 10px">
+		<div class="grid_1"></div>
+		<div class="grid_10">
+			<div kendo-grid id="grid" k-on-change="Select(data)" k-data-source="sourceJenisGizi" k-selectable="'row'" options="mainGridOptions">
+			</div>
+     	</div>
+	 </div>
+</div>
+
+
+<!-- SOURCE DATA OLD -->
+<!-- <div kendo-grid k-on-change="SelectDampak(data)" k-data-source="sourceDampakRisiko" k-selectable="'row'" k-columns="columnDampakRisiko" pageable="true" pagesize="2" scrollable="false">
+</div> -->
+
+<!-- filter="'char'" maxlength="50" -->
+<!--<textarea ng-model="item.keterangan" ng-keypress="($event.which == 13)? Save():item.keterangan"></textarea> -->
+<!-- style="width: 99%; height: 80px;" -->

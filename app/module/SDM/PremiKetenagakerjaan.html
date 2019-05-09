@@ -1,0 +1,133 @@
+<div ng-controller="PremiKetenagakerjaanCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Perhitungan Premi BPJS Ketenagakerjaan'"disabled>
+		<div class="grid_6">
+		<div class="panel panel-default container_12">
+	<!--		<div class="panel-heading" c-translate>Periode</div> -->
+	<!--		<div class="panel-body"> -->
+	
+           
+					
+	        <div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="No Gaji"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nomorGaji" />
+			</div>
+			
+			</div>
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Satuan Kerja"></label>
+			</div>
+			<div class="grid_8">
+				 <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisGaji" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListNamaAsuransi" />
+			</div>
+			</div>
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Tanggal Proses"></label>
+			</div>
+			<div class="grid_8">
+				<input kendo-date-picker k-ng-model="item.tanggalProses" k-max ="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+			</div>
+			
+			</div>
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Jenis Gaji"></label>
+			</div>
+			<div class="grid_8">
+			 <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisGaji" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListNamaAsuransi" />
+			</div>
+			
+			</div>
+			
+			 
+			
+			
+			
+			
+			
+			
+			
+				
+		   </div>
+		   </div>
+<!--		   </div>  -->
+           <div class="grid_6">	
+		   
+		  
+		    <div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label><b>UMR Thn</b></label>
+			</div>
+			<div class="grid_3">
+				 <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisGaji" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListNamaAsuransi" />
+			</div>
+			<div class="grid_1" style="margin: 9px 0 0 0;">
+				<label>Rp</label>
+			</div>
+			<div class="grid_4">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.jumlahUMR" />
+			</div>
+			</div>
+			<div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Nama Asuransi"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaAsuransi" />
+			</div>
+			</div>
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Keterangan"></label>
+			</div>
+			<div class="grid_8" style="margin: 0 0 0 0;">
+					<textarea ng-model="item.keterangan" style="width: 99%; height: 80px;"></textarea>
+			</div>
+			</div>
+		 
+			
+			
+			
+
+		</div>
+	
+		
+	
+		<div class="grid_12">
+				<kendo-grid  k-data-source="daftarBahanLinen" k-pageable="true" k-selectable="'row'" k-columns="columnLaporanUjiHasil"  style="font-size: small;">
+            	</kendo-grid>
+					
+			</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		</c-panel>
+			<div class="grid_12">
+							<div class="grid_8" style="float:left">
+							
+							<div class="grid_2" style="margin-top: 25px">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate click="Cancel">
+                					<span class="title">Batal</span></button>
+							</div>
+							<div class="grid_2 " style="margin-top: 25px ">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Simpan</span>
+									</button>
+							</div>
+							</div>
+						</div>
+		</div>
+	</div>
+</div>
+

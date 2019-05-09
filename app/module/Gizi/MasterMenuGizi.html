@@ -1,0 +1,116 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Master Menu</div>
+	<div class="panel-body">
+		<div class="grid_12" style="margin-top: 5px">
+<!-- 			<div class="grid_6">
+				<div class="grid_12">
+					<div class="grid_4" style="margin-top: 10px">
+						<label c-label item="item">Siklus Menu Makanan/Minuman</label>
+					</div>
+					<div class="grid_8">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.siklusMenu"/>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_4" style="margin-top: 10px">
+						<label c-label item="item">Waktu Makan</label>
+					</div>
+					<div class="grid_8">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.waktuMakan" k-data-text-field="'jenisWaktu'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listWaktuMakan" />
+					</div>
+				</div>
+				
+			</div>	 -->		
+			<div class="grid_6">
+				<div class="grid_12">
+					<div class="grid_4" style="margin-top: 10px">
+						<label c-label item="item">Detail Jenis Produk</label>
+					</div>
+					<div class="grid_8">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisProduk" k-data-text-field="'jenisProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDetail" />
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_4" style="margin-top: 10px">
+						<label c-label item="item">Nama Produk</label>
+					</div>
+					<div class="grid_8">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaProduk" k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listProduk" />
+					</div>
+				</div>
+			</div>
+			<div class="grid_6">
+<!-- 				<div class="grid_12" ng-repeat="menu in arrMenuMakanan">
+					<div class="grid_4" style="margin-top: 10px">
+						<label c-label item="item"  ng-show="$index < 1" >Menu Makanan/Minuman</label>
+					</div>
+					<div class="grid_8">
+						<div class="grid_10">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="arrMenuMakanan[$index].menuMakanan" k-data-text-field="'namaMenu'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="dataTeknisi" />
+						</div>
+						<div class="grid_2">
+							<label c-label item="item" c-label-text="x" ng-click="removeMenu($index)" ng-show="$index > 0" style="margin-top: 10px; text-align: right;" ></label>
+						</div>
+					</div>
+				</div> -->
+				 <div class="grid_12">
+						<div class="grid_4" style="margin-top: 10px">
+							<label c-label item="item">Bentuk Produk</label>
+						</div>
+						<div class="grid_8">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.benukProduk" k-data-text-field="'bentukProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listBentuk" />
+						</div>
+				 </div>
+				<div class="grid_12">
+					<div class="grid_4"></div>
+					<div class="grid_8">
+						<div class="grid_10">
+							<button class="c-button" ng-click="addMenuMakanan()">Tambah Menu</button>
+						</div>
+						<div class="grid_2">
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<c-panel item="item" header="'Daftar Master Menu Gizi'"></c-panel>
+			<div class="grid_12">
+				<div class="grid_10" style="margin-top: 10px">
+					  <div class="grid_1" style="margin-top: 10px">
+						 <label c-label item="item" c-label-text="Pencarian"></label>
+					  </div>
+					<div class="grid_1" align="right"  style="margin-top: 10px">
+						<label c-label item="item" c-label-text=":"></label>
+					</div>
+					<div class="grid_5">
+					 	<input class=k-textbox type=text ng-model="item.pencarian" placeholder="Kode/ Detail Jenis Produk /Menu / Jenis" />
+					</div>
+					<div class="grid_1" style="margin-top: 5px">
+						<button class="c-button success" ng-click="Cari(item.pencarian)">Cari</button>
+					</div>
+					<div class="grid_1" style="margin-top: 5px">
+						<button class="c-button cancel" ng-click="ClearCari()">Clear</button>
+					</div>
+					<div class="grid_1" style="margin-top: 5px">
+						<button class="c-button success" ng-click="Refresh()">Refresh</button>
+					</div>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_12" style="margin-top: 10px">
+					<div kendo-grid id="grid" k-on-change="Select(data)" k-data-source="SourceMenuGizi" k-selectable="'row'" options="mainGridOptions"></div>
+						<!-- <div kendo-grid k-on-change="SelectDampak(data)" k-data-source="sourceDampakRisiko" k-selectable="'row'" k-columns="columnDampakRisiko" pageable="true" pagesize="2" scrollable="false"> -->
+					</div>
+			 </div>
+			 <div class="grid_12">
+			 	 <div class="grid_8"></div>
+		 		 <div class="grid_2" style="margin-top: 5px">
+					<button class="c-button success" ng-click="save()">Save</button>
+				</div>		 		 
+				<div class="grid_2" style="margin-top: 5px">
+					<button class="c-button cancel" ng-click="batal()">Batal</button>
+				</div>
+			 </div>
+			</div>
+		</div>
+	</div>

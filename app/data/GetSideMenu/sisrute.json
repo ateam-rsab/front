@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Rujukan",
+        "children": [
+        {
+            "name": "Rujukan Keluar",
+            "link": "#/RujukanKeluar"
+        },
+        {
+            "name": "Riwayat Rujukan Keluar",
+            "link": "#/DaftarRujukan"
+        },
+        {
+            "name": "Riwayat Rujukan Masuk",
+            "link": "#/RiwayatRujukanMasuk"
+        }
+    ] 
+    }, 
+    {
+        "name": "Referensi",
+        "link": "#/ReferensiRujukan"
+    },
+    {
+        "name": "Setting",
+        "children": [
+            {
+                "name": "Ubah Password",
+                "link": "#/UbahPassword"
+            }
+        ]
+    }
+]

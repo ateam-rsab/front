@@ -1,0 +1,56 @@
+<!-- <div ng-controller="DetailJenisProdukCtrl"> -->
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Detail Jenis Produk'" disabled>
+
+
+			<div class="grid_6">
+				<div class="grid_12" style="margin-left:5px">
+					<label c-label item="item" c-label-text="Detail Jenis Produk"></label>
+				</div>
+		
+			<!-- <div class="clear"></div>
+			 -->
+				<div class="grid_6" style="margin-top:-5px">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.caridetailjenisproduk" />
+				</div>
+			
+				<div class="grid_1" style="margin-top:1px">
+					<button class="c-button" ng-click="cari()">Cari</button>
+				</div>
+
+			</div>
+
+			<!-- DetailJenisProduk -->
+			<div class="grid_12">
+				<div class="grid_12 headerBox">
+					<p>DetailJenisProduk</p>
+				</div>
+				<div class="clear"></div>
+
+				<!-- grid table -->
+				<div class="grid_12 borderBox">
+					<kendo-grid options="mainGridOptions"  k-data-source="dataSource" k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+			<div class="grid_12">
+				<div class="grid_4"></div>
+				<div class="grid_3">
+					<button class="c-button" ng-click="edit()">Edit</button>
+				</div>
+				<div class="grid_3" ng-hide="showEdit">
+					<button class="c-button" ng-click="tambah()">Tambah</button>
+				</div>
+				<!-- <div class="grid_2">
+					<button class="c-button" ng-click="batal()">Batal</button>
+				</div> -->
+				<div class="grid_2">
+					<button class="c-button" ng-click="hapus()">Hapus</button>
+				</div>
+			</div>
+
+
+		</c-panel>
+	</div>
+<!-- </div> -->

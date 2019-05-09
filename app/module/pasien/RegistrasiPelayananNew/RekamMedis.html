@@ -1,0 +1,135 @@
+<div class="grid_12">
+    <div class="grid_12">
+        <div class=' grid_12 panel panel-default'>
+            <div class='panel-heading'>
+                <span c-translate>Data Pasien</span>
+                <div class="panel-place">
+                    <a ng-hide='hideButtonAdd' class="
+                 " ng-click="cetakLaporan()" style="margin-left: 0;width: 100px;height: 1.2em;font-size: 20px;position: absolute;top: 5px;right: -50px;">
+                        <div class="cd-timeline-img cd-picture add animated">
+                            <img src="stylesheets/cetak.png" alt="Picture">
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class='panel-body animated'>
+                <div class='grid_12'>
+                    <div class="grid_12 animated" ng-show="header.noregistrasi!==undefined">
+                        <div class="grid_2">
+
+                            <!-- <div class="grid_2">
+                                <label c-label item="item">No.Registrasi</label>
+                            </div> -->
+
+                            <div class="grid_12">
+                                <input type="checkbox" class="k-checkbox" id="Generate" ng-model="checkNoregis" ng-click="getRekamMedisCheck()" checked>
+                                    <label class="k-checkbox-label" for="Generate"><b>No Registrasi</b></label>
+                               <!--  <input type="checkbox" class="k-checkbox" ng-model="header.Generate" id="cekGenerateNoTerima" value="true" ng-click="Generate(header.Generate)">
+                                <label class="k-checkbox-label" for="cekGenerateNoTerima">No.Registrasi</label>            -->                   
+                            </div>
+
+                            <div class="grid_12">
+                                <input c-text-box type="input" filter="" class="k-textbox" ng-model="header.noregistrasi" ng-disabled="true"/>
+                            </div>
+
+                        </div>
+                        <div class="grid_2">
+                            <div class="grid_12">
+                                <label c-label item="item">Tgl. Registrasi</label>
+                            </div>
+
+                            <div class="grid_12">
+                                <input c-text-box type="input" filter="" class="k-textbox" ng-model="header.tglregistrasi"
+                                    ng-disabled="true" />
+                            </div>
+                        </div>
+                        <div class="grid_2">
+                            <div class="grid_12">
+                                <label c-label item="item">No.MR</label>
+                            </div>
+
+                            <div class="grid_12">
+                                <input c-text-box type="input" filter="" class="k-textbox" ng-model="header.nocm"
+                                    ng-disabled="true" />
+                            </div>
+                        </div>
+
+                        <div class="grid_3">
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="Nama Pasien"></label>
+                            </div>
+
+                            <div class="grid_12">
+                                <input c-text-box type="input" filter="" class="k-textbox" ng-model="header.namapasien"
+                                    ng-disabled="true" />
+                            </div>
+                        </div>
+                        <div class="grid_3">
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="Umur"></label>
+                            </div>
+
+                            <div class="grid_12">
+                                <input c-text-box type="input" filter="" class="k-textbox" ng-model="header.umur"
+                                    ng-disabled="true" />
+                            </div>
+                        </div>
+                        <div class="grid_2">
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="Jenis Kelamin"></label>
+                            </div>
+
+                            <div class="grid_12">
+                                <input c-text-box type="input" filter="" class="k-textbox" ng-model="header.jeniskelamin"
+                                    ng-disabled="true" />
+                            </div>
+                        </div>
+
+                        <div class="grid_2">
+                            <div class="grid_12">
+                                <label c-label item="item">Kelompok Pasien</label>
+                            </div>
+
+                            <div class="grid_12">
+                                <input c-text-box type="input" filter="" class="k-textbox" ng-model="header.kelompokpasien"
+                                    ng-disabled="true" />
+                            </div>
+                        </div>
+                        <div class="grid_2">
+                            <div class="grid_12">
+                                <label c-label item="item">Kelas</label>
+                            </div>
+                            <div class="grid_12">
+                                <input c-text-box type="input" filter="" class="k-textbox" ng-model="header.namakelas"
+                                    ng-disabled="true" />
+                            </div>
+                        </div>
+                        <div class="grid_3">
+                            <div class="grid_12">
+                                <label c-label item="item">Ruangan</label>
+                            </div>
+
+                            <div class="grid_12">
+                                <input c-text-box type="input" filter="" class="k-textbox" ng-model="header.namaruangan"
+                                    ng-disabled="true" />
+                            </div>
+                        </div>
+                        <div class="grid_3">
+                            <div class="grid_12">
+                                <label c-label item="item">Alamat</label>
+                            </div>
+
+                            <div class="grid_12">
+                                <input c-text-box type="input" filter="" class="k-textbox" ng-model="header.alamatlengkap"
+                                    ng-disabled="true" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-hide="showMenuRekMed" ng-include='"../app/module/RekamMedis/menuRekamMedis" '></div>
+    <div ui-view></div>
+</div>

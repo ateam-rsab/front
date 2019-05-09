@@ -1,0 +1,55 @@
+{
+	"model":{
+	    "AdakahRasaNyeri" : "Ada",
+	    "LokasiNyeri" : {"id": "3", "name": "Lokasi Nyeri 3"},
+		"TipeNyeri" : "Terus Menerus",
+		"KarateristikNyeri" : "",
+		"NyeriMempengaruhi" : "",
+		"Frekuensi": "",
+		"Durasi": ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "AdakahRasaNyeri",
+			"messagesRequired" : "Adakah RasaNyeri Harus Diisi",
+			"caption" : "Adakah Rasa Nyeri"
+		},
+		{
+			"isNull" : "true",
+			"name" : "LokasiNyeri",
+			"messagesRequired" : "LokasiNyeri Harus Diisi",
+			"caption" : "LokasiNyeri"
+		},
+		{
+			"isNull" : "true",
+			"name" : "TipeNyeri",
+			"messagesRequired" : "Type Nyeri Harus Diisi",
+			"caption" : "Type Nyeri Kepala"
+		},
+		{
+			"isNull" : "true",
+			"name" : "KarateristikNyeri",
+			"messagesRequired" : "Karateristik Nyeri Harus Diisi",
+			"caption" : "Karateristik Nyeri"
+		},
+		{
+			"isNull" : "true",
+			"name" : "NyeriMempengaruhi",
+			"messagesRequired" : "Nyeri Mempengaruhi Harus Diisi",
+			"caption" : "Nyeri Mempengaruhi"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Frekuensi",
+			"messagesRequired" : "Frekuensi Harus Diisi",
+			"caption" : "Frekuensi"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Durasi",
+			"messagesRequired" : "Durasi Harus Diisi",
+			"caption" : "Durasi"
+		}
+  ]
+}

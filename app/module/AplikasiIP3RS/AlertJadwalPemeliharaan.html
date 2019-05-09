@@ -1,0 +1,66 @@
+<div ng-controller="AlertJadwalPemeliharaanCtrl">
+    <c-panel item="item" header="title" disabled>
+        <div ng-show="dataVOloaded">
+            <div class="grid_8">
+                <div class="grid_4">
+                    <div class="grid_10" style="margin-top:10px">
+                        <label c-label item="item" c-label-text="namaAlat"></label>
+                    </div>
+                    <div class="grid_2" style="margin-top:10px">:</div>
+                </div>
+                <div class="grid_7">
+                    <div class="grid_12" style="margin-bottom:5px">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaAlat" />
+                    </div>
+                    <div class="clear" ></div>
+                    <div class="grid_12" style="margin-bottom:5px">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaAlat" />
+                    </div>
+                </div>
+                <div class="grid_1" style="margin-top:13px ;margin-left:1px">
+                    <input type="checkbox" class="k-checkbox" ng-model="lembarKerja" checked="true" id="lembarKerja">
+                    <label class="k-checkbox-label" for="lembarKerja"></label>
+                </div>
+                <div class="clear" ></div>
+                <div class="grid_4">
+                    <div class="grid_10" style="margin-top:10px">
+                        <label c-label item="item" c-label-text="tanggal"></label>
+                    </div>
+                    <div class="grid_2" style="margin-top:10px">:</div>
+                </div>
+                <div class="grid_5" >
+                    <div class="grid_12" style="margin-bottom:5px">
+                        <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tanggal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" disabled="true" />
+                    </div>
+                </div>
+                <div class="clear" ></div>
+                <div class="grid_4">
+                    <div class="grid_10" style="margin-top:10px">
+                        <label c-label item="item" c-label-text="ruangan"></label>
+                    </div>
+                     <div class="grid_2" style="margin-top:10px">:</div>
+                </div> 
+                <div class="grid_5" >
+                    <div class="grid_12" style="margin-bottom:5px">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.ruangan" disabled="true"/>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="grid_4">
+                    <div class="grid_10" style="margin-top:10px">
+                        <label c-label item="item" c-label-text="teknisi"></label>
+                    </div>
+                    <div class="grid_1" style="margin-top:10px">:</div>
+                </div>
+                <div class="grid_5" >
+                    <div class="grid_12" style="margin-bottom:5px">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.teknisi" disabled="true"/>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_3" align="center" style="margin-top:50px">
+                 <img src="stylesheets/alert.png" style="height: 150px; width: 150px" >
+            </div>
+        </div>
+    </c-panel>
+</div>

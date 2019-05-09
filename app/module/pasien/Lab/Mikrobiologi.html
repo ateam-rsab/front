@@ -1,0 +1,68 @@
+<div ng-controller="MikrobiologiCtrl">
+
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Mikrobiologi'">
+            <!-- Mikroskopik -->
+            <div class="grid_12" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="Mikroskopik"></label>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_12" style="margin-bottom:5px">
+                <div class="grid_4" ng-repeat="data in listMikroskopik">
+                    <input type="checkbox" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" value="{{data.id}}">
+                    <label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+
+                    <div ng-if="data.info == 'true'" kendo-tooltip k-content="'keterangan : ' + data.infoMsg" class="tooltip">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+
+
+            <!-- BiakanResistensiBahan -->
+            <div class="grid_12" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="BiakanResistensiBahan"></label>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_12" style="margin-bottom:5px">
+                <div class="grid_4" ng-repeat="data in listBiakanResistensiBahan">
+                    <input type="checkbox" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" value="{{data.id}}">
+                    <label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+
+                    <div ng-if="data.info == 'true'" kendo-tooltip k-content="'keterangan : ' + data.infoMsg" class="tooltip">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+
+
+            <!-- PCR -->
+            <div class="grid_12" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="PCR"></label>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_12" style="margin-bottom:5px">
+                <div class="grid_4" ng-repeat="data in listPCR">
+                    <input type="checkbox" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" value="{{data.id}}">
+                    <label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+
+                    <div ng-if="data.info == 'true'" kendo-tooltip k-content="'keterangan : ' + data.infoMsg" class="tooltip">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+
+
+
+            <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+
+
+        </c-panel>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+
+<div ng-controller="AnggotaGerakCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="title">
+			
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="anggotaGerak"> </label>
+			</div>
+			<div class="grid_10">
+	            <div class="grid_2" ng-repeat="list in listAnggotaGerak">
+	                    <input type="checkbox" class="k-checkbox" name="{{list.name}}" id="{{list.name}}" value="{{list.id}}" ng-click="cekArrList(list.id)">
+	                    <label class="k-checkbox-label" for="{{list.name}}">{{list.name}}</label>
+	            </div>
+			</div>
+            <div class="clear"></div>
+            <div class="grid_2">
+				<label c-label item="item" c-label-text="deformitas"> </label>
+			</div>
+			<div class="grid_4">
+				<div class="grid_4" style="margin: 5px 0 5px 0;" ng-repeat="stat in statusDeformitas">
+	                    <input type="radio" name="{{statusDeformitas+stat.name}}" id="{{statusDeformitas+stat.name}}" class="k-radio" ng-model="item.deformitas" value="{{stat.id}}">
+	                    <label class="k-radio-label" for="{{statusDeformitas+stat.name}}">{{stat.name}}</label>
+	            </div>
+			</div>
+            <div class="grid_6">
+                <textarea style="height: 40px" id="text_area" c-text-box type="input" class="k-textbox" ng-model="item.deformitas.catatan" />
+            </div>
+            <div class="clear"></div>
+            <div class="grid_2">
+				<label c-label item="item" c-label-text="koordinasi"> </label>
+			</div>
+			<div class="grid_4">
+				<div class="grid_4" style="margin: 5px 0 5px 0;" ng-repeat="stat in statusKoordinasi">
+	                    <input type="radio" name="{{statusKoordinasi+stat.name}}" id="{{statusKoordinasi+stat.name}}" class="k-radio" ng-model="item.koordinasi" value="{{stat.id}}">
+	                    <label class="k-radio-label" for="{{statusKoordinasi+stat.name}}">{{stat.name}}</label>
+	               </div>
+			</div>
+            <div class="grid_6">
+                    <textarea style="height: 40px" id="text_area" c-text-box type="input" class="k-textbox" ng-model="item.koordinasi.catatan" />
+                </div>
+
+            <div class="clear"></div>
+
+		</c-panel>
+	</div>
+</div>

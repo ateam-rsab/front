@@ -1,0 +1,38 @@
+<div ng-controller="DaftarTagihanBusinessCenterCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Daftar Tagihan Business Center'">
+		<div class="grid_8">
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="periode" style="margin-top: 10px"></label>
+			</div>
+			<div class="grid_4">
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAwal" placeholer="dd-mm-yyyy" />
+			</div>
+			<div class="grid_1">
+				<label c-label item="item" c-label-text="s/d" style="margin-top: 10px"></label>
+			</div>
+			<div class="grid_4">
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAkhir" placeholer="dd-mm-yyyy" />
+			</div>
+			<div class="grid_1">
+				<button class="c-button" ng-click="cari()" style="margin-top: 6px">Cari</button>
+			</div>
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="jenisPemakaian" style="margin-top: 10px"></label>
+			</div>
+			<div class="grid_4">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPemakaian" k-data-text-field="'jenisPemakaian'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisPemakaian" />
+			</div>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_12" style="margin-bottom: 10px">
+			<div kendo-grid options="mainGridOptions" k-data-source="dataBusinessCenter" k-selectable="'row'" k-columns="columnBusinessCenter" style="margin-bottom: 10px"></div>
+		</div>
+		<div class="grid_8"></div>
+		<div class="grid_4">
+			<button class="c-button" ng-click="tutup()">Tutup</button>
+		</div>
+		</c-panel>
+	</div>
+</div>

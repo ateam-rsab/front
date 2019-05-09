@@ -1,0 +1,66 @@
+<div ng-controller="UploadPenawaranCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Upload File Excel Penawaran'" disabled>
+		<div class="grid_6">&nbsp;</div>
+		<div class="grid_6">
+			<div class="grid_4" style="margin-top:10px">
+				<label c-label item="item" c-label-text="pilihSupplier"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaRekanan" k-data-text-field="'namaRekanan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="true" k-data-source="listSuplier" />
+			</div>
+		</div>
+		<!-- <div class="grid_8">
+			<label c-label item="item" c-label-text="Choose or drag a file:" for="filePicker"></label>
+       		<input type="file" id="filePicker" class="k-upload">
+       		<br/>
+		</div> -->
+		<!-- <div class="grid_4">
+			<div class="grid_12" style="margin-top:10px">
+				<label c-label item="item" c-label-text="tanggal"></label>
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" disabled="true"/>
+			</div>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_8"></div>
+		<div class="grid_2">
+			<div class="grid_12" style="margin-top:10px">
+				<label c-label item="item" c-label-text="jumlahItem"></label>
+				<input style="width: 100%" c-text-box type="number" filter="'varchar'" placeholder="{{item.jumlah}}" class="k-textbox" ng-model="item.jumlah" style="text-align:right" disabled="true"/>
+			</div>
+		</div>
+		<div class="grid_2">
+			<div class="grid_12" style="margin-top:10px;">
+				<label c-label item="item" c-label-text="totalPengajuan" style="text-align:left"></label>
+				<input style="width: 100%" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.total" style="text-align:right" disabled="true"/>
+			</div>
+		</div> -->
+		<div class="clear"></div>
+		<div class="grid_6">
+		</div>
+		<div class="grid_6"></div>
+		<div class="clear"></div>
+		<!-- <div kendo-grid k-data-source="daftarPengajuanUsulan" k-selectable="'row'" editable="true" pageable="true" k-columns="columnPengajuanUsulan" style="margin-bottom: 10px"></div> -->
+		</c-panel>
+		<div class="clear"></div>
+		<div class="grid_12" style="margin-bottom: 10px">
+			<kendo-grid options="mainGridOptions"></kendo-grid>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_6">
+			<label for="filePicker">Choose or drag a file:</label><br>
+       		<input type="file" id="filePicker">
+       		<br/>
+        </div>
+		<div class="grid_6">
+			<div class="grid_4">&nbsp;</div>
+			<div class="grid_4">
+				<button class="c-button" ng-click="upload()">Upload File</button>
+			</div>
+			<div class="grid_4">
+				<button class="c-button" ng-click="Save()">Simpan</button>
+			</div>
+		</div>
+	</div>
+</div>

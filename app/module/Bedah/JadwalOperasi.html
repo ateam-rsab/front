@@ -1,0 +1,105 @@
+<div ng-controller="JadwalOperasiCtrl">
+	<div ng-show="dataVOloaded">
+		<div class="grid_12">
+			<div class="popUp" ng-show="isShowPopUp">
+				<div kendo-window="win1" id="winPopUp"
+				 	k-title="'Form Jadwal Operasi'" 
+				 	k-width="'30%'"
+				 	k-higth="'40%'"
+				 	k-draggable="false"
+		  			k-position="{ 'top': '30%', 'left':'35%', 'right':'35%' }"
+				 	k-on-close="closeWindow()"
+				 	k-visible="isShowPopUp">
+
+				 	<div class="grid_12">
+				 		<div class="grid_12" style="margin-top:10px">
+			 				<label c-label item="item">No Rec Struk Order Id</label>
+			 				<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.strukOrderId" disabled="true" />
+			 			</div>
+			 			<div class="grid_12" style="margin-top:10px">
+			 				<label c-label item="item">No CM</label>
+			 				<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noRecAntrian" disabled="true" />
+			 			</div>
+				 		<div class="grid_12" style="margin-top:10px">
+			 				<label c-label item="item">No RM</label>
+			 				<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noRM" disabled="true" />
+			 			</div>
+			 			<div class="grid_12" style="margin-top:10px">
+			 				<label c-label item="item">Nama Pasien</label>
+			 				<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.namaPasien" disabled="true" />
+			 			</div>
+						<div class="grid_12" style="margin-top:10px">
+							<label c-label item="item">Tgl Operasi</label>
+						</div>
+						<div class="grid_12">
+							<input style="width:100%" kendo-date-picker value="now" k-ng-model="item.tglOperasi" k-format="'dd-MM-yyyy'"/>
+						</div>
+
+						<!-- Button -->
+						<div class="grid_12" style="margin-top:10px">
+							<div class="grid_6">
+								<button class='k-button success' ng-click='simpanRencanaOperasi()'>Simpan</button>
+							</div>
+							<div class="grid_6">
+								<button class='k-button cancel' ng-click='close()'>Tutup</button>
+							</div>
+						</div>
+					</div>
+		        </div>
+		    </div>
+		</div>
+		<div class="grid_12">
+			<div class="panel panel-default panel-white">
+	            <div class="panel-heading-white"><span class="title" c-translate>Parameter Pencarian</span></div>
+	            <div class="panel-body">
+	            	<div class="grid_12">
+						<div class="grid_4" style="margin-top:20px">
+							<div class="grid_12" style="margin-left:10px">
+								<label c-label item="item" c-label-text="Periode"></label>
+							</div>
+							<div class="grid_5">
+								<input style="width: 100%" k-ng-model="item.tanggalAwal"  kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+							</div>
+							<div class="grid_1" style="margin-top:10px" align="center">
+								<label c-label item="item">s/d</label>
+							</div>
+							<div class="grid_5">
+								<input style="width: 100%" k-ng-model="item.tanggalAkhir"  kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+							</div>
+						</div>
+						<div class="grid_3" style="margin-top:20px">
+							<div class="grid_12">
+								<label c-label item="item">Nama / No Rm</label>
+							</div>
+							<div class="grid_12">
+								<input c-text-box type="input" style="text-align: left; margin-top: 10px" filter="" class="k-textbox" ng-model="item.cariNamaPasien" ng-disable="false"/>
+							</div>
+						</div>
+						<div class="grid_3" style="margin-top:20px">
+							<div class="grid_6">
+								<button class="btnTemplate1" style="margin-top: 20px" ng-click="btnCari()">Cari</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="panel panel-default panel-white">
+	            <div class="panel-heading-white"><span class="title" c-translate>Daftar Rencana Operasi</span></div>
+	            <div class="panel-body">
+					<div class="grid_12" style="margin-top:10px">
+						<div kendo-grid k-data-source="sourceDaftarRencanaOperasi" k-selectable="'row'" options="mainGridOptions" k-ng-model="dataSelectedRow"></div>
+					</div>
+				</div>
+			</div>				
+		</div>
+		<div class="grid_12">
+			<div class="grid_10">
+			</div>
+			<div class="grid_2">
+				<button class="btnTemplate1" style="font-size:16px" ng-click="goVerify()" >Verifikasi Jadwal Operasi</button>
+			</div>
+		</div>
+	</div>
+</div>

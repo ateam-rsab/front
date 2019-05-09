@@ -1,0 +1,40 @@
+<div ng-show="dataVOloaded">
+	<c-panel item="item" header="'Detail Master BMHP'">
+		<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Nama Produk</label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box style="width: 50%;" type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaProduk" disabled="true" />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Kode Produk</label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box style="width: 50%;" type="input" filter="'varchar'" class="k-textbox" ng-model="item.kdProduk" disabled="true"/>
+				</div>
+				
+			</div>
+			<div class="grid_6">
+
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_6">
+				<kendo-grid options="mainGridOptions" k-data-source="dataSource"></kendo-grid>
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_8"></div>
+				<div class="grid_2">
+					
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="tutup()">Tutup</button>
+				</div>
+			</div>
+		</div>
+	</c-panel>
+</div>

@@ -1,0 +1,48 @@
+ <div ng-controller="PembatalanPerjanjianCtrl">
+
+        <div ng-show="dataVOloaded">
+
+        	<c-panel item = "item" header="'PembatalanPerjanjian'">
+        		<div class="grid_12" style="margin-bottom:5px">
+                        <div ng-include='"../app/module/Shared/headerPasien" '></div>
+                        <div class="clear"></div>
+
+                        <!-- Tanggal Pembatalan Registrasi -->
+	                    <div class="grid_12">
+	                    	<div class="grid_3" style="margin-bottom:5px">
+	                            <label c-label item="item" c-label-text="tanggalPembatalan"></label>
+	                        </div>
+	                        <div class="grid_2" style="margin-bottom:5px">
+	                            <input style="width: 100%" k-max="now" k-value='now' kendo-date-picker k-ng-model="item.tanggalPembatalan" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+	                        </div>
+	                       	
+	                    </div>
+
+	                    <div class="clear"></div>
+
+	                    <!-- Alasan Pembatalan -->
+                        <div class="grid_12" style="margin-bottom:5px">
+                            <div class="grid_12">
+                            	<div class="grid_3">
+                                	<label c-label item="item" c-label-text="alasanPembatalan"></label>
+                            	</div>
+                            	<div class="grid_9">
+                                	<textarea class="k-textbox" style="height: 60px; width: 100%; resize: none;" ng-model="item.alasanPembatalan"></textarea>
+
+                            	</div>
+                            </div>
+                        </div>
+
+                        <div class="clear"></div>
+                        <br/>
+
+                        <div class="grid_12" style="margin-bottom:5px">                        	
+                        	<div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+                        </div>
+                   
+                </div>
+                
+        	</c-panel>
+        </div>
+ </div>
+                            

@@ -1,0 +1,56 @@
+<div ng-controller="DaftarKeluhanPelangganBaru">
+	<div class="panel panel-default container_12"> 
+		<div class="panel-heading" c-translate>Daftar Keluhan Pelanggan</div>
+			<div class="panel-body">
+				 <div class="grid_12" >
+				 <div class="grid_0" >
+					</div>
+					<div class="grid_1" style="margin: 11px 0 30px 0;" >
+						<label c-label item="item" c-label-text="Dokter"></label>
+					</div>
+					<div class="grid_2">
+						 <input style="width: 100%;" kendo-combo-box k-ng-model="item.dokter" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListDataDokter" />
+					</div>
+					 <div class="grid_0" >
+						
+					</div>
+					<div class="grid_1" style="margin: 11px 0 30px 0;" >
+						<label c-label item="item" c-label-text="Ruangan"></label>
+					</div>
+					<div class="grid_3">
+						 <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListDataRuangan" />
+					</div>
+                     
+                     <div class="grid_0">
+					<div class="grid_1" style="margin: 10px 0 30px 0;" >
+						<label c-label c-label-text="TanggalDaftar" real></label>
+					</div>
+					<div class="grid_2">
+						<input style="width: 100%;"  k-ng-model="item.tanggalawal" kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+					</div>
+					<div class="grid_2">
+						  <input style="width: 100%;" kendo-date-picker k-ng-model="item.tanggalakhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+					</div>
+				     
+				     
+				 
+			
+				 
+				
+				<div class="grid_2" style="margin: 6px 0 0 20px;">
+            	    <button class="c-button" ng-click="cari()">
+                 Cari
+                    </button>
+                </div>
+				
+			 <div class="grid_12" style="margin: 30px 0 30px 0;">
+                <div class="grid_1"></div>
+                <div class="grid_12">
+        			<div kendo-grid  k-data-source="sourceOrde" k-selectable="'row'" k-columns="columndataMasterDataJadwal" k-ng-model="current" ng-click="kl">
+                    </div>
+					
+                </div>
+            </div>
+			</div>
+		</div>
+	</div>

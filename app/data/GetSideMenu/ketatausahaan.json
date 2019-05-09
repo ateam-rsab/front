@@ -1,0 +1,230 @@
+[{
+        "name": "Tata Usaha",
+        "children": [
+
+            {
+                "name": "Daftar Surat Eksternal",
+                "link": "#/DaftarSuratEksternal"
+            },
+            {
+                "name": "Surat Masuk Dari Ekseternal",
+                "link": "#/SuratMasukEksternal"
+            },
+            {
+                "name": "Daftar Distribusi Surat Internal dan Eksternal",
+                "link": "#/DaftarDistribusiSuratInternaldanEksternal"
+            },
+            {
+                "name": "Daftar Surat Masuk Dari Internal dan Eksternal",
+                "link": "#/DaftarSuratMasukDariInternaldanEksternal"
+            },
+            {
+                "name": "Daftar Surat Masuk",
+                "link": "#/ListDaftarSuratMasuk"
+            },
+            {
+                "name": "Daftar Surat Eksternal",
+                "link": "#/DaftarSuratEksternal"
+            },
+
+            {
+                "name": "Upload Template Surat",
+                "link": "#/UploadTemplateSurat"
+            },
+            {
+                "name": "Daftar Distribusi Surat",
+                "link": "#/ListDistribusiSurat"
+            },
+            {
+                "name": "Daftar Jangka Waktu Surat",
+                "link": "#/DaftarJangkaWaktuSurat"
+            },
+            {
+                "name": "Membuat Draft Surat",
+                "link": "#/BuatDraftSurat"
+            },
+            {
+                "name": "Daftar Draft",
+                "link": "#/DaftarDraft"
+            },
+            {
+                "name": "Daftar Draft Surat Masuk",
+                "link": "#/DaftarDraftSuratMasuk"
+            },
+            {
+                "name": "Dokumen Verbal Konsep",
+                "link": "#/DokumenVerbalKonsep/"
+            },
+            {
+                "name": "Verbal Konsep",
+                "link": "#/VerbalKonsep/"
+            },
+            {
+                "name": "Surat Masuk Internal dan Eksternal",
+                "link": "#/SuratMasukInternaldanEksternal"
+            },
+            {
+                "name": "Daftar Surat Masuk Internal Eksternal",
+                "link": "#/DaftarSuratMasukInternalEksternal"
+            },
+            {
+                "name": "Nota Dinas",
+                "link": "#/NotaDanDisposisi"
+            },
+            {
+                "name": "Daftar Nota Dinas",
+                "link": "#/ListNotaDinas"
+            }
+        ]
+    },
+    {
+        "name": "Laporan",
+        "children": [ {
+                "name": "Laporan Pendapatan",
+                "link": "#/LaporanPendapatan"
+            }]
+    },
+    {
+    "name": "Inventori",
+    "children": [
+        {
+            "name": "Stok Barang",
+            "children": [
+                {
+                    "name": "Data Stok Ruangan",
+                    "link": "#/Logistik/StokRuangan"
+                },
+                {
+                    "name": "Stok Opname",
+                    "link": "#/Logistik/StokOpname"
+                },
+                {
+                    "name": "Kartu Stok",
+                    "link": "#/KartuStok"
+                },
+                {
+                  "name": "Daftar Barang Kadaluarsa",
+                  "link": "#/DaftarBarangKadaluarsa"
+                }
+            ]
+        },
+        {
+            "name": "Daftar Transfer Barang",
+            "children": [
+                {
+                    "name": "Order Barang",
+                    "link": "#/OrderBarangLogistik"
+                },
+                {
+                    "name": "Daftar Order Barang",
+                    "link": "#/DaftarOrderBarang"
+                },
+                {
+                    "name": "Kirim Barang",
+                    "link": "#/KirimBarangLogistik"
+                },
+                {
+                    "name": "Daftar Distribusi Barang",
+                    "link": "#/DaftarDistribusiBarang"
+                },
+                {
+                    "name": "Daftar Pengeluaran Barang",
+                    "link": "#/DaftarDistribusiBarangPerUnit"
+                }
+            ]
+           },
+           {
+              "name": "Daftar Pemakaian Stok Ruangan",
+              "link": "#/DaftarPemakaianStokRuangan"
+            }
+        ]
+    },
+    {
+        "name": "Barang Investasi",
+        "children": [
+            {
+                "name": "Registrasi Barang Aset",
+                "link": "#/MasterBarangInvestasiRev"
+            },
+            {
+                "name": "Daftar Barang Investasi",
+                "link": "#/Logistik/DaftarBarangInvestasi"
+            },
+            {
+                "name": "Kirim Barang Aset",
+                "link": "#/KirimBarangAset"
+            }
+           
+        ]
+    },
+    {
+        "name": "IP3RS",
+        "children": [
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/PermintaanPerbaikandariRuangan"
+            },
+            {
+                "name": "Respond Perbaikan",
+                "link": "#/RespondPerbaikan"
+            } 
+        ]
+    }, 
+    {
+        "name": "SDM",
+        "children": [{
+            "name": "Input Logbook",
+            "link": "#/InputLogbook"
+        }, {
+            "name": "Indeks Kinerja Individu",
+            "link": "#/IndeksKinerjaIndividuSDM"
+        }, {
+            "name": "Permohonan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
+            "link": "#/PermohonanPerubahanStatusPegawai"
+        }, {
+            "name": "Pengajuan Mutasi Pegawai",
+            "link": "#/PengajuanMutasiPegawai"
+        }, {
+            "name": "Pengajuan Resign Pegawai",
+            "link": "#/PengajuanResignPegawai"
+        }, {
+            "name": "Pengajuan Sanksi Pegawai",
+            "link": "#/PengajuanSanksiPegawai"
+        }, {
+            "name": "Daftar Pengajuan Mutasi Resign Sanksi Pegawai",
+            "link": "#/DaftarPengajuanMutasiSanksiResign"
+        }, {
+			"name": "Monitoring Absensi",
+			"link": "#/MonitoringAbsensiPegawai"
+		}, {
+			"name": "InputLemburPegawaiUnitKerja",
+			"link": "#/InputLemburPegawaiUnitKerja"
+		}, {
+			"name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
+			"link": "#/DaftarPenangguhanCuti"
+		},{
+            "name": "Verifikasi Uraian Tugas Bawahan",
+            "link": "#/VerifikasiUraianTugasPegawaiLogin"
+        }]
+    },
+    {
+        "name":"Aplikasi IT",
+        "children":[
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/RevPermintaanPerbaikandariRuanganITNew"
+            }
+        ]
+    },
+    {
+        "name": "Aplikasi Laundry",
+        "children": [
+            {
+                "name": "Permintaan Linen Bersih",
+                "link": "#/PermintaanLinenByRuangan"
+            },{
+                "name": "Verifikasi",
+                "link": "#/VerifikasiTerima"
+            }
+    ]}
+]

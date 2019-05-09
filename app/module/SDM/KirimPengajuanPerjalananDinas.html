@@ -1,0 +1,40 @@
+<div ng-controller="KirimPengajuanPerjalananDinasCtrl">
+	<c-panel item="item" header="'Daftar Penerimaan Sterilisasi Alat'">
+		<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">No Pengajuan</label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noPengajuan" disabled />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Unit Kerja Tujuan</label>
+				</div>
+				<div class="grid_8">
+					<select kendo-multi-select k-data-source="listJabatan" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-ng-model="item.unitKerjaTujuan"\></select>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Tanggal Pengajuan</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalPengajuan" k-format="'dd-MM-yyyy'"/>
+				</div>
+			</div>
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Nama Kegiatan</label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaKegiatan" />
+				</div>
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_10"></div>
+			<div class="grid_2">
+				<button class="c-button" ng-click="()">Kirim</button>
+			</div>
+		</div>
+	</c-panel>
+</div>

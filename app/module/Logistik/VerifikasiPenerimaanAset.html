@@ -1,0 +1,51 @@
+<div ng-controller="VerifikasiPenerimaanAsetCtrl">
+    <div class="panel panel-default panel-white">
+        <div class="panel-heading-white"><span class="title" c-translate>Data Penerimaan (ASET)</span></div>
+        <div class="panel-body">
+            <div class="grid_12">
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="NoOrder"></label>
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noOrder" disabled/>
+                </div>
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="TanggalOrder"></label>
+                    <input style="width: 100%" k-ng-model="item.tglOrder" k-value='now' kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" disabled/>
+                </div>
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="NoKirim"></label>
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noKirim" disabled/>
+                </div>
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="ruanganAsal"></label>
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.ruanganTujuan" disabled/>
+                </div>
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="ruanganTujuan"></label>
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.namaRuangan" disabled/>
+                    <!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganTujuan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuanganTujuan" disabled/> -->
+                </div>
+                <!-- <div class="grid_2">
+                    <label c-label item="item" c-label-text="NoKonfirmasi"></label>
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noKonfirmasi" disabled/>
+                </div> -->
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="tanggalKonfirmasi"></label>
+                    <input style="width: 100%" k-ng-model="item.tglOrder" k-value='now' kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                </div>
+            </div>
+            <!-- <div class="grid_2">
+                <label c-label item="item" c-label-text="jenisPermintaan"></label>
+                <div class="grid_6" ng-repeat="stat in listJenisPemeriksaan" >
+                    <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" k-ng-model="item.jenisPermintaan" ng-checked="item.jenisPermintaan.id===stat.id" k-ng-value="stat" disabled>
+                    <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                </div>
+            </div> -->
+
+            <div class="grid_12" style="margin-top: 10px;">
+                <div kendo-grid k-data-source="dataOrder" k-selectable="'row'" k-columns="columnOrder" k-editable="true">
+                </div>
+            </div>
+            <div ng-include='"../app/module/Shared/TemplateButtonSimpanSRO" '></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="panel panel-default">
+    <div class="panel-heading" style="font-size: 18px;" c-translate>Plan Of Care</div>
+    <div kendo-grid id="gridPOC" k-data-source="sourcePOC" k-selectable="'row'" options="optPOC"
+        k-ng-model="selectedPOC"></div>
+</div>
+
+<div kendo-window="popUpPOC" k-title="'Tambah Plan Of Care'" k-width="550" k-height="460" k-visible="false" k-on-open="win2visible = true" k-on-close="win2visible = false">
+    <div class="panel panel-default container_12" style="padding: 0px 10px;">
+        <div class="grid_12">
+            <div class="grid_12">
+				<label c-label item="item" c-label-text="Tanggal"></label>
+				<input style="width: 100%" k-ng-model="item.tgl" kendo-datetimepicker placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd HH:mm'"/>
+            </div>
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="Pokok Masalah"></label>
+                <textarea ng-model="item.masalah" style="width: 99%; height: 50px;"></textarea>
+            </div>
+            <div class="grid_12">
+                <label c-label item="item">Plan Of Care / Rencana Perawatan</label>
+                <textarea ng-model="item.poc" style="width: 99%; height: 50px;"></textarea>
+            </div>
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="Target Terukur"></label>
+                <input c-text-box type="input" placeholder="Target Terukur" filter="'varchar'" class="k-textbox" ng-model="item.targetTerukur" />
+            </div>
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="Dalam Waktu"></label>
+                <input style="width: 100%" k-ng-model="item.tgl" kendo-timepicker k-format="'HH:mm'"/>
+            </div>
+            <div class="grid_12">
+				<label c-label item="item" c-label-text="Tanggal Teratasi"></label>
+				<input style="width: 100%" k-ng-model="item.tgl" kendo-datepicker placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd'"/>
+            </div>
+            <div class="grid_12">
+				<label c-label item="item" c-label-text="Discharge Planning"></label>
+				<input c-text-box type="input" placeholder="Discharge Planning" filter="'varchar'" class="k-textbox" ng-model="item.dischargePlanning"/>
+            </div>
+        </div>
+        <div class="grid_12">
+            <div class="k-edit-buttons  k-state-default pull-right" style="margin-top:10px">
+                <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="simpanJabatan()"><span class="k-icon k-update"></span>Simpan</button>
+                <button class="k-button  k-button-icontext" ng-click="batalInput()"><span class="k-icon k-cancel"></span>Batal</button>
+            </div>
+        </div>
+    </div>
+</div>

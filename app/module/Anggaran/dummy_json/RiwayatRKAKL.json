@@ -1,0 +1,16 @@
+{
+  "result": [
+    {
+      "no":"1",
+      "tahun": 2017,
+      "isVerifikasi": "DEFINITIF",
+      "volume": 0
+    },
+    {
+        "no":"2",
+      "tahun": 2017,
+      "isVerifikasi": "INDIKATIF",
+      "volume": 0
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+<div ng-controller="MenuSkriningKhususCtrl"></div>
+<c-panel item="item" header="'SkriningKekhususan'">
+    <div class="panel panel-default container_12">
+        <div class="breadcrum detail" style='margin-top: 0px;'>
+            <div class="grid_2" ng-show="isAnak && isRawatJalan || isNeonatal && isRawatJalan">
+                <a class="n1" ng-class="{'active': activeMenuSkriningKhusus == 'RekamMedis.MenuPengkajian.SkriningKhusus.SkriningKekhususanTambahanRev'}"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningKhusus.SkriningKekhususanTambahanRev')">Skrining
+                    Tambahan</a>
+            </div>
+            <div class="grid_2" ng-show="isAnak && isRawatInap">
+                <a class="n1" ng-class="{'active': activeMenuSkriningKhusus == 'RekamMedis.MenuPengkajian.SkriningKhusus.SkriningKekhususanRiwayatKelahiranRev'}"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningKhusus.SkriningKekhususanRiwayatKelahiranRev')">Riwayat
+                    Kelahiran</a>
+            </div>
+            <div class="grid_2" ng-show="isAnak && isRawatInap">
+                <a class="n1" ng-class="{'active': activeMenuSkriningKhusus == 'RekamMedis.MenuPengkajian.SkriningKhusus.SkriningKekhususanRiwayatImunisasiDasarRev'}"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningKhusus.SkriningKekhususanRiwayatImunisasiDasarRev')">Riwayat
+                    Imunisasi Dasar</a>
+            </div>
+            <div class="grid_2" ng-show="isAnak && isRawatInap">
+                <a class="n1" ng-class="{'active': activeMenuSkriningKhusus == 'RekamMedis.MenuPengkajian.SkriningKhusus.SkriningKekhususanRiwayatTumbuhKembangRev'}"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningKhusus.SkriningKekhususanRiwayatTumbuhKembangRev')">Riwayat
+                    Tumbuh Kembang</a>
+            </div>
+
+            <div class="grid_2" ng-show="isNeonatal" ng-hide="isNeonatal && isRawatJalan || isAnak && isRawatJalan || isDewasa && isRawatJalan">
+
+                <a class="n1" ng-class="{'active': activeMenuSkriningKhusus == 'RekamMedis.MenuPengkajian.SkriningKhusus.SkriningKekhususanInformasiIbuRev'}"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningKhusus.SkriningKekhususanInformasiIbuRev')">Informasi
+                    Ibu</a>
+            </div>
+            <div class="grid_2" ng-show="isNeonatal" ng-hide="isNeonatal && isRawatJalan || isAnak && isRawatJalan || isDewasa && isRawatJalan">
+                <a class="n1" ng-class="{'active': activeMenuSkriningKhusus == 'RekamMedis.MenuPengkajian.SkriningKhusus.SkriningKekhususanRiwayatLaluRev'}"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningKhusus.SkriningKekhususanRiwayatLaluRev')">Riwayat
+                    Lalu</a>
+            </div>
+            <div class="grid_2" ng-show="isNeonatal" ng-hide="isNeonatal && isRawatJalan || isAnak && isRawatJalan || isDewasa && isRawatJalan">
+                <a class="n1" ng-class="{'active': activeMenuSkriningKhusus == 'RekamMedis.MenuPengkajian.SkriningKhusus.SkriningKekhususanKehamilanSekarangRev'}"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningKhusus.SkriningKekhususanKehamilanSekarangRev')">Kehamilan
+                    Sekarang</a>
+            </div>
+
+            <div class="grid_2" ng-show="isNeonatal" ng-hide="isNeonatal && isRawatJalan || isAnak && isRawatJalan || isDewasa && isRawatJalan">
+
+                <a class="n1" ng-class="{'active': activeMenuSkriningKhusus == 'RekamMedis.MenuPengkajian.SkriningKhusus.CapKakiBayiRev'}"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningKhusus.CapKakiBayiRev')">Cap Kaki Bayi</a>
+            </div>
+
+            <div class="grid_2" ng-hide="isNeonatal || isRawatInap && isDewasa || isRawatInap && isAnak">
+                <a class="n1" ng-class="{'active': activeMenuSkriningKhusus == 'RekamMedis.MenuPengkajian.SkriningKhusus.SkriningKekhususanKlinikRev'}"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningKhusus.SkriningKekhususanKlinikRev')">Klinik</a>
+            </div>
+
+            <div class="grid_2" ng-hide="isNeonatal || isAnak">
+                <a class="n1" ng-class="{'active': activeMenuSkriningKhusus == 'RekamMedis.MenuPengkajian.SkriningKhusus.SkriningKekhususanGinekologiRev'}"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningKhusus.SkriningKekhususanGinekologiRev')">Obstetrik
+                    dan Ginekologi</a>
+            </div>
+            <div class="grid_2">
+                <a class="n1" ng-class="{'active': activeMenuSkriningKhusus == 'RekamMedis.MenuPengkajian.SkriningKhusus.RiwayatPersalinandanNipasRev'}"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningKhusus.RiwayatPersalinandanNipasRev')">Riwayat
+                    Persalinan dan Nifas</a>
+            </div>
+            <div class="grid_2" ng-hide="isNeonatal || isRawatInap && isDewasa || isRawatJalan && isDewasa || isRawatJalan && isAnak || isRawatInap && isAnak">
+                <a class="n1" ng-class="{'active': activeMenuSkriningKhusus == 'RekamMedis.MenuPengkajian.SkriningKhusus.KebutuhanEdukasiRev'}"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningKhusus.KebutuhanEdukasiRev')">Kebutuhan Edukasi</a>
+            </div>
+        </div>
+    </div>
+</c-panel>
+<div ui-view></div>
+</div>

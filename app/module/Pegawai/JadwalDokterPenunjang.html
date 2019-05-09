@@ -1,0 +1,88 @@
+<div ng-controller="JadwalDpjpRawatInapCtrl">
+    <!-- panel anamnsis -->
+    <div class="panel panel-default container_12">
+
+        <div class="panel-heading" c-translate>Mengelola Jadwal DPJP</div>
+        <div class="panel-body">
+            <div class="grid_4">
+                <!-- <div class="grid_12">
+                    <label c-label item="item" c-label-text="tanggalJadwal"></label>
+
+                    <input style="width: 100%" k-value='now' k-max="now" kendo-date-picker k-ng-model="item.tanggalJadwal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                </div> -->
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="dokter"></label>
+
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaDokter" k-data-text-field="'namaDokter'" k-filter="'contains'" k-data-value-field="'dokterId'" k-auto-bind="false" k-data-source="dokters" />
+                </div>
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="ruangan"></label>
+
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaRuangan" k-data-text-field="'namaRuangan'" k-filter="'contains'" k-data-value-field="'ruanganId'" k-auto-bind="false" k-data-source="ruangans" />
+                </div>
+                <!-- <div class="grid_12">
+                    <label c-label item="item" c-label-text="jamPraktek"></label>
+
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.jadwalPraktek" k-data-text-field="'jamPraktek'" k-filter="'contains'" k-data-value-field="'value'" k-auto-bind="false" k-data-source="jamPrakteks" />
+                </div> -->
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="tanggalAwal"></label>
+
+                    <input style="width: 100%" k-value='now' k-max="now" kendo-date-picker k-ng-model="item.tglAwal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                    
+                </div>
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="tanggalAkhir"></label>
+
+                    <input style="width: 100%" k-value='now' k-max="now" kendo-date-picker k-ng-model="item.tglAhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                </div>
+                <div class="grid_12">
+                    <div class="grid_6"></div>
+                    <div class="grid_3">
+                        <button class="c-button cancel" ng-click="Cancel()">Batal</button>
+                    </div>
+                    <div class="grid_3">
+                        <button class="c-button success" ng-click="Save()">Simpan</button>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_8">
+                <div class="panel panel-default panel-white">
+                    <div class="panel-heading-white"><span class="title" c-translate>Jadwal DPJP</span></div>
+                    <div class="panel-body">
+                        <!--<div class='grid_6' ng-repeat="data in listData">
+                            <div style="font-size: 9pt;font-weight: bold;">{{data.dokter.namaLengkap+'-'+data.ruangan.namaRuangan+"-"+data.jadwalPraktek.jamPraktek}}</div>
+
+                        </div>-->
+                        <div class="tiles">
+                            <div class="tile bg-yellow-saffron orange" ng-repeat="data in listData" style="height:100px" ng-click='detail(data)'>
+                                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                                <div class="check"></div>
+                                <div class="tile-body" style="overflow: initial">
+                                    <i style="font-style: normal;"></i>
+                                </div>
+                                <div class="tile-object" style="">
+                                    <div class="icon-panel">
+                                        <!--<span class="year" style="font-size: 11pt">{{descDay(data.tglAwal)}}</span>-->
+                                        <span class="month" style="font-size: 11pt">{{data.tglAwal | date:'MMM yyyy'}}</span> 
+                                        <span class="day" style="padding-top:.4em; font-size: 26pt">{{data.tglAwal | date:'dd'}}</span>
+
+                                    </div>
+                                    <div class="text_panel">
+                                        <span style="display:block">Ruangan : <b>{{data.namaRuangan}}</b> </span>
+                                        <span style="display:block">Dokter : <b>{{data.namaDokter}}</b> </span>
+                                        <span style="display:block">jadwal : <b>{{data.tglAwal | date:'dd MMM yyyy'}}</b> s/d <b>{{data.tglAhir | date:'dd MMM yyyy'}}</b></span>
+
+                                    </div>
+                                    <md-button style="right: 0;position: absolute;" class="md-warn" ng-click="hapus(data)">Hapus</md-button>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>

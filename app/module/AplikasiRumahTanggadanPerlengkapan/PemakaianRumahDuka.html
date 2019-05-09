@@ -1,0 +1,208 @@
+
+<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+<div ng-show="dataVOloaded">
+	<c-panel item="item" header="'Order Pemakaian Rumah Duka'">
+		<div class="grid_6">
+			<div class="grid_4" style="margin-top:10px" ng-show="isOut">
+				<label c-label item="item">No. Order</label>
+			</div>
+			<div class="grid_8" ng-show="isOut">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noOrder" ng-disabled="isOut" />
+			</div>
+			<div class="grid_3" style="margin-top:10px">
+				<label c-label item="item">Nama Penyewa</label>
+			</div>				
+			<div class="grid_1" style="margin-top:10px">
+				<label c-label item="item">:</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaPenyewa" ng-disabled="isOut" />
+			</div>
+			<div class="grid_3" style="margin-top:10px">
+				<label c-label item="item">No. KTP</label>
+			</div>				
+			<div class="grid_1" style="margin-top:10px">
+				<label c-label item="item">:</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noKtp" ng-disabled="isOut" />
+			</div>
+			<div class="grid_3" style="margin-top:10px">
+				<label c-label item="item">No. Telp</label>
+			</div>				
+			<div class="grid_1" style="margin-top:10px">
+				<label c-label item="item">:</label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noTelpMobile" ng-disabled="isOut" />
+			</div>
+			<div class="grid_3" style="margin-top:10px">
+				<label c-label item="item" c-label-text="alamat"></label>
+			</div>				
+			<div class="grid_1" style="margin-top:10px">
+				<label c-label item="item" c-label-text=":"></label>
+			</div>
+			<div class="grid_8">
+				<textarea style="height: 80px" c-text-box type="input" class="k-textbox" ng-model="item.alamat" ng-disabled="isOut" />
+			</div>
+		</div>
+		<div class="grid_6">
+			<div class="grid_3" style="margin-top:10px">
+				<!--<label c-label item="item">Tgl Awal Sewa Rumah Duka</label>-->
+				<label c-label item="item">Tgl Awal Sewa</label>
+			</div>				
+			<div class="grid_1" style="margin-top:10px">
+				<label c-label item="item">:</label>
+			</div>
+			<div class="grid_8">
+				<div class="grid_12">
+					<!-- <input style="width: 100%" kendo-date-time-picker k-on-change ="pelayananSelected()" k-ng-model="item.tglPelayananAwal" placeholer="dd-mm-yyyy HH:mm" k-format="'dd-MM-yyyy HH:mm'" ng-disabled="isOut" /> -->
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.tglPelayananAwal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" ng-disabled="isOut" />
+				</div>
+
+			</div>
+			<div class="grid_3" style="margin-top:10px">
+				<label c-label item="item">Tgl Akhir Sewa</label>
+			</div>				
+			<div class="grid_1" style="margin-top:10px">
+				<label c-label item="item">:</label>
+			</div>
+			<div class="grid_8">
+
+				<div class="grid_12">
+					<!-- <input style="width: 100%" kendo-date-time-picker k-on-change ="pelayananSelected()" k-ng-model="item.tglPelayananAkhir" placeholer="dd-mm-yyyy HH:mm" k-format="'dd-MM-yyyy HH:mm'" ng-disabled="isOut" /> -->
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.tglPelayananAkhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" ng-disabled="isOut" />
+				</div>
+			</div>
+			<div class="grid_3" style="margin-top:10px">
+				<label c-label item="item" c-label-text="pelayanan"></label>
+			</div>				
+			<div class="grid_1" style="margin-top:10px">
+				<label c-label item="item" c-label-text=":"></label>
+			</div>
+			<div class="grid_8">
+				<!-- <input style="width: 100%;" kendo-combo-box k-ng-model="pelayanan.layanan"  k-on-change ="pelayananSelected()" k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourcePelayanan" ng-disabled="isOut" /> -->
+				<input style="width: 100%;" kendo-combo-box k-filter="'contains'" k-ng-model="pelayanan.layanan" k-data-text-field="'namaProduk'" k-data-value-field="'idProduk'" k-auto-bind="true" k-data-source="sourcePelayanan" ng-disabled="isOut"/>
+			</div>
+			<div class="grid_3" style="margin-top:10px">
+				<label c-label item="item">No. Kamar</label>
+			</div>				
+			<div class="grid_1" style="margin-top:10px">
+				<label c-label item="item">:</label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%;" kendo-combo-box k-filter="'contains'" k-ng-model="pelayanan.kamar" k-data-text-field="'namaKamar'" k-data-value-field="'idKamar'" k-auto-bind="true" k-data-source="sourceKamar" k-on-change="getDaftarSarana(pelayanan.kamar)" ng-disabled="isOut" />
+			</div>
+			<div class="grid_3" style="margin-top:10px" ng-hide="isOut">
+				<label c-label item="item" c-label-text="harga"></label>
+			</div>
+			<div class="grid_1" style="margin-top: 10px" ng-hide="isOut">
+				<label c-label item="item" c-label-text=":"></label>
+			</div>
+			<div class="grid_8" ng-hide="isOut">
+				<input kendo-numeric-text-box k-options="formatHarga" k-ng-model="pelayanan.hargaSatuan" k-min="0" style="width: 100%;" disabled/>
+				<!-- <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="pelayanan.hargaSatuan" disabled /> -->
+			</div>
+			<div class="grid_4" style="margin-top:10px" ng-show="isOut">
+				<label c-label item="item">Waktu Keluar</label>
+			</div>
+			<div class="grid_8" ng-show="isOut">
+				<input style="width: 90%" kendo-date-time-picker k-ng-model="item.tglKeluar" placeholer="dd-mm-yyyy HH:mm" k-format="'dd-MM-yyyy HH:mm'"/>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</c-panel>
+	<!-- Daftar sarana sewa rumah duka -->
+	<div class="panel panel-default" style="margin-bottom:54px">
+		<div class="panel-heading"><span class="title" c-translate>Daftar Sarana</span></div>
+		<div class="panel-body">
+			<div class="grid_12">
+				<div id="gridData" kendo-grid k-options="gridOptions"></div>
+			</div>
+			<!--
+			<div class="grid_2 pull-right">
+				<label c-label item="item" c-label-text="SubTotalBiayaSarana"></label>
+				<input kendo-numeric-text-box k-options="formatHarga" k-ng-model="pelayanan.subTotal" k-min="0" style="width: 100%;" disabled/>
+			</div>
+			-->
+		</div>
+	</div>
+	<!-- <c-panel item="item" header="'Daftar Sarana Rumah Duka'">
+	</c-panel> -->
+	<div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
+</div>	
+
+<style>
+    .error{
+        background-color:white !important;
+    }
+    .yellow{
+        background-color:#ffff00
+    }
+     .green{
+        background-color:#00ff40
+    }
+      .red{
+        background-color:#FF0000
+    }
+    .k-grid  .k-grid-header  .k-header  .k-link {
+     height: auto;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     white-space: normal;
+    }
+
+    .style-four {
+        height: 5px;
+        border: 0;
+        box-shadow: inset 0 14px 12px -12px rgba(0, 0, 0, 0.5);
+        }
+    .md-button {
+          padding: 0 6px 0 6px;
+          margin: 6px 8px 6px 8px;
+          min-width: 88px;
+          border-radius: 3px;
+          font-size: 14px;
+          text-align: center;
+          text-transform: uppercase;
+          text-decoration:none;
+          border: none;
+          outline: none;
+          color: green;
+        }
+
+    .k-grid  .k-grid-header  .k-header {
+     text-align: center;
+    }
+
+    .md-tooltip {
+        height: 25px !important;
+        background-color: #363940 !important;
+        color: white !important;
+        border-radius: 5px;
+        font-size: 14px
+     }
+     .md-button.md-fab.md-fab-top-right {
+        top: 270px;
+        right: 41px;
+        bottom: auto;
+        left: auto;
+        position: absolute;
+     }
+     .h1 {
+        position:relative;
+        display:inline-block;
+            }
+      .h1::before, 
+      .h1::after {
+        content:' ';
+        display:block;
+        position:absolute; top:50%; left:-120px;
+        width:100px;
+        border-bottom:1px solid black;
+    }
+    .h1::after {
+        left:auto; right:-120px;
+    }
+</style>

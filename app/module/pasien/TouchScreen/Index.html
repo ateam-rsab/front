@@ -1,0 +1,62 @@
+<div ng-controller="TouchScreenCtrl">
+  <div class="panel panel-default container_12">
+<div class="panel-heading" c-translate style="text-align: center;font-size: 20px">Antrian Pasien</div>
+    <div class="grid_12">
+        <div class="grid_4">
+            <!-- <a ng-click="GetNoAntrianPendaftaran()"> -->
+             <a href="#/TouchScreen/JenisPasienBaru">
+                <div class="card">
+                    <div class="card-image">
+                        <span class="card-title"><b>Antrian Pendaftaran</b></span>
+                        <img width="100px" src="stylesheets/AddUser.png" />
+                    </div>
+                    <div class="card-content" style="height: 108px;">
+                        <p style="font-size: 20px">
+                            Pilih menu ini, jika anda <b>belum terdaftar sebagai pasien</b> di RSAB Harapan Kita dan akan melakukan pendaftaran di loket registrasi.
+                        </p>
+                    </div>
+                    <div class="card-action" data-ng-click="cetak">
+                        Pilih
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="grid_4">
+            <a href="#/TouchScreen/JenisPasien">
+                <div class="card">
+                    <div class="card-image">
+                        <span class="card-title"><b>Registrasi Mandiri</b></span>
+                        <img width="100px" src="stylesheets/pasienOld.jpg" />
+                    </div>
+                    <div class="card-content" style="height: 108px;">
+                        <p style="font-size: 20px">
+                            Pilih menu ini, jika anda <b>sudah terdaftar sebagai pasien</b> di RSAB Harapan Kita, dan akan melakukan registrasi mandiri.
+                        </p>
+                    </div>
+                    <div class="card-action">
+                        Pilih
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="grid_4">
+            <a href="#/TouchScreen/Reconfirm" ng-click="NavJenisPasien('NONUMUM')">
+                <div class="card">
+                    <div class="card-image">
+                        <span class="card-title"><b>Reconfirm</b></span>
+                        <img width="100px" src="stylesheets/confirm.png" />
+                    </div>
+                    <div class=" card-content" style="height: 108px;">
+                        <p style="font-size: 20px">
+                            Pilih menu ini, jika anda akan melakukan <b>Reconfirm</b> untuk pasien registrasi online dan mendapatkan nomor antrian ruangan
+                        </p>
+                    </div>
+                    <div class="card-action">
+                        Pilih
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    </div>
+</div> 

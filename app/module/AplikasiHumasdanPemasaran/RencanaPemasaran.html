@@ -1,0 +1,179 @@
+<style>
+	button:disabled {
+    background: #B5B2B1;
+}
+</style>
+<div ng-controller="RencanaPemasaranCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Rencana Pemasaran'">
+			<div class="grid_6">
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">No Planning</label>
+					    </div>
+						<div class="grid_9">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noPlanning" disabled="true"/>
+					</div>
+				</div>
+				<!-- <div class="grid_12">
+					<div class="grid_3">
+					<label c-label item="item" style="margin-top: 10px">No Planning Intern</label>
+					</div>
+					<div class="grid_9">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.NoPlanningIntern" />
+					</div>
+				</div> -->
+					<div class="grid_12">
+					<div class="grid_3">
+					<label c-label item="item" style="margin-top: 10px">Nama Planning</label>
+					</div>
+					<div class="grid_9">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.NamaPlanning" />
+					</div>
+					</div>
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Deskripsi Planning</label>
+					</div>
+					<div class="grid_9">
+						<textarea style="height: 90px" c-text-box type="input" class="k-textbox" ng-model="item.DeskripsiPlanning" />
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Tanggal Pengajuan</label>
+					</div>
+					<div class="grid_9">
+						<input style="width: 100%" kendo-date-picker k-ng-model="item.TglPengajuan" data-k-format="'yyyy-MM-dd'"/>
+					</div>
+				</div>
+
+			</div>
+			<div class="grid_6">
+             <div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Tanggal Planning</label>
+					</div>
+					<div class="grid_9">
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.TglPlanning" data-k-format="'yyyy-MM-dd'"/>
+					</div>
+				</div>
+			  <div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Tanggal Planning Akhir</label>
+					</div>
+					<div class="grid_9">
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.TglPlanningAkhir" data-k-format="'yyyy-MM-dd'"/>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Ruangan</label>
+					</div>
+					<div class="grid_9">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.Ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListDataRuangan"/>
+					</div>
+				</div>
+
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Ruangan Asal</label>
+					</div>
+					<div class="grid_9">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.Ruangan2" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListDataRuangan2"/>
+					</div>
+				</div>
+			 <div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Tanggal Dimulai</label>
+					</div>
+				<div class="grid_9">
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.TglDimulai" data-k-format="'yyyy-MM-dd'"/>
+					</div>
+				</div>
+
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Tanggal Berakhir</label>
+					</div>
+				<div class="grid_9">
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.TglBerakhir" data-k-format="'yyyy-MM-dd'"/>
+					</div>
+				</div>
+                <div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Tanggal Siklus Awal</label>
+					</div>
+				<div class="grid_9">
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.TglSiklusAwal" data-k-format="'yyyy-MM-dd'"/>
+					</div>
+				</div>
+
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Tanggal Siklus Akhir</label>
+					</div>
+				<div class="grid_9">
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.TglSiklusAkhir" data-k-format="'yyyy-MM-dd'"/>
+					</div>
+				</div>
+				<div class="grid_12">
+						<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Dokumen SK</label>
+						</div>
+						<div class="grid_9">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.DokumenSk" k-data-text-field="'namadokumen'" k-data-value-field="'idDokumen'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListDataDokumen"/>
+							</div>
+				</div>
+
+				<div class="grid_12">
+						<div class="grid_3">
+							<label c-label item="item" style="margin-top: 10px">Jenis Anggaran</label>
+						</div>
+						<div class="grid_9">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.JenisAnggaran" k-data-text-field="'jenisAnggaran'" k-data-value-field="'idjenisAnggaran'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListDataAnggaran"/>
+						</div>
+				</div>
+				</div>
+				</div>
+			
+
+				<div class="grid_12">
+					<div class="grid_12">
+						<div class="grid_12 headerBox">
+						<c-panel item="item" header="'Daftar Rencana Pemasaran'">
+						</c-panel>
+						</div>
+						<div class="clear"></div>
+						<div class="grid_12" borderBox">
+			                 <!--  <kendo-grid id="grid2" options="mainGridOptions"></kendo-grid> -->
+			                 <div id="grid2" kendo-grid k-data-source="sourceRencanaPemasaran" 
+					                    k-selectable="'row'" 
+					                    k-options="mainGridOptions" 
+					                    
+					                    k-on-data-bound="onBound()"
+					                    k-ng-model="dataSelectedRow">
+					                </div>
+			                </div>
+			            </div>
+						<div class="clear"></div>
+					</div>
+					<div class="clear"></div>
+
+				 <script id="popup-editor" type="text/x-kendo-template">
+			        
+			     </script>
+           
+			<div class="grid_12">
+				
+				<div class="grid_2"></div>
+				<div class="grid_2"></div>
+				<div class="grid_1"></div>
+				<div class="grid_2"><button class="c-button" ng-click="reset()">Tambah Baru</button></div>
+				<div class="grid_2"><button class="c-button" ng-click="Save()">Simpan</button></div>
+				<div class="grid_3"><button class="c-button" ng-click="AnggaranBiaya()">Anggaran Biaya Pemasaran</button></div>
+			</div>
+
+		
+	

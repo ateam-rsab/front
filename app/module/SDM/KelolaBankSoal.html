@@ -1,0 +1,202 @@
+<div ng-controller="KelolaBankSoalCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Kelola Bank Soal'"disabled>
+		<div class="grid_6">
+		<div class="panel panel-default container_12">
+	<!--		<div class="panel-heading" c-translate>Periode</div> -->
+	<!--		<div class="panel-body"> -->
+	
+           
+					
+	        
+			 
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Kategori Soal"></label>
+			</div>
+			<div class="grid_4">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.kategoriSoal" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="DaftarSoal" />
+			</div>
+			
+			</div>
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Nomor Soal"></label>
+			</div>
+			<div class="grid_4">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.kategoriSoal" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="DaftarSoal" />
+			</div>
+			
+			</div>
+			<div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Pertanyaan"></label>
+			</div>
+			<div class="grid_8">
+				 <textarea ng-disabled="isDisable" ng-model="item.alamat" style="width: 99%; height: 80px;"></textarea>
+			</div>
+			
+			</div>
+			<div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label>Pilihan A</label>
+			</div>
+			<div class="grid_4">
+				<input type="radio" name="jadikanKunci" id="1" class="k-radio" ng-model="item.jadikanKunci.id" value="1">
+						<label class="k-radio-label" for="1">Jadikan Kunci</label>
+			</div>
+			
+			
+			<div class="grid_1" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Poin"></label>
+			</div>
+			<div class="grid_1">
+			<input c-text-box type="input" class="k-textbox" ng-model="item.namaPeserta"/>
+			</div>
+			</div>
+			<div class="grid_12">
+			
+			<div class="grid_4">
+			<input c-text-box type="input" class="k-textbox" ng-model="item.namaPeserta"/>
+			</div>
+			</div>
+			
+				<div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label>Pilihan B</label>
+			</div>
+			<div class="grid_4">
+				<input type="radio" name="jadikanKunci" id="1" class="k-radio" ng-model="item.jadikanKunci.id" value="1">
+						<label class="k-radio-label" for="1">Jadikan Kunci</label>
+			</div>
+			
+			
+			<div class="grid_1" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Poin"></label>
+			</div>
+			<div class="grid_1">
+			<input c-text-box type="input" class="k-textbox" ng-model="item.namaPeserta"/>
+			</div>
+			</div>
+			<div class="grid_12">
+			
+			<div class="grid_4">
+			<input c-text-box type="input" class="k-textbox" ng-model="item.namaPeserta"/>
+			</div>
+			</div>
+			
+				<div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label>Pilihan C</label>
+			</div>
+			<div class="grid_4">
+				<input type="radio" name="jadikanKunci" id="1" class="k-radio" ng-model="item.jadikanKunci.id" value="1">
+						<label class="k-radio-label" for="1">Jadikan Kunci</label>
+			</div>
+			
+			
+			<div class="grid_1" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Poin"></label>
+			</div>
+			<div class="grid_1">
+			<input c-text-box type="input" class="k-textbox" ng-model="item.namaPeserta"/>
+			</div>
+			</div>
+			<div class="grid_12">
+			
+			<div class="grid_4">
+			<input c-text-box type="input" class="k-textbox" ng-model="item.namaPeserta"/>
+			</div>
+			</div>
+			
+				<div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label>Pilihan D</label>
+			</div>
+			<div class="grid_4">
+				<input type="radio" name="jadikanKunci" id="1" class="k-radio" ng-model="item.jadikanKunci.id" value="1">
+						<label class="k-radio-label" for="1">Jadikan Kunci</label>
+			</div>
+			
+			
+			<div class="grid_1" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Poin"></label>
+			</div>
+			<div class="grid_1">
+			<input c-text-box type="input" class="k-textbox" ng-model="item.namaPeserta"/>
+			</div>
+			</div>
+			<div class="grid_12">
+			
+			<div class="grid_4">
+			<input c-text-box type="input" class="k-textbox" ng-model="item.namaPeserta"/>
+			</div>
+			</div>
+			
+			</div>
+			
+			 
+			
+			</div>
+			 
+		
+	</div>		
+			
+			
+			
+			
+			
+			
+			
+				
+		  
+		
+<!--		   </div>  -->
+           <div class="grid_6">	
+		   
+		  
+		  
+			
+		   
+			
+			
+			
+
+		</div>
+		
+		
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		</c-panel>
+			<div class="grid_12">
+							<div class="grid_8" style="float:left">
+							
+							
+							<div class="grid_2" style="margin-top: 25px">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate click="Cancel">
+                					<span class="title">Batal</span></button>
+							</div>
+							<div class="grid_2 " style="margin-top: 25px ">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Simpan</span>
+									</button>
+							</div>
+							<div class="grid_2 " style="margin-top: 25px ">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Ubah</span>
+									</button>
+							</div>
+							</div>
+						</div>
+		</div>
+	</div>
+</div>
+

@@ -1,0 +1,108 @@
+<div ng-controller="DataKonsulCtrl"><br/>
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Data Konsul'">
+			<div class="grid_4">
+				<!-- no rekam medis -->
+				<div class="grid_12" style="margin-bottom:5px">
+					<label c-label item="item" c-label-text="NoRekamMedis"></label>
+				</div>
+				<div class="grid_12">
+					<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.NoRekamMedis" />
+				</div>
+				<div class="clear"></div>
+
+				<!-- no pendafaran -->
+				<div class="grid_12" style="margin-bottom:5px">
+					<label c-label item="item" c-label-text="NoRegistrasi"></label>
+				</div>
+				<div class="grid_12">
+					<input k-select='onSelect' k-min-length='1' data-width-actual='500' ng-model='noRegistrasi' k-ng-model='currentPasien' k-data-text-field="'noRegistrasi'" k-data-value-field="'value'" k-filter="'contains'" kendo-auto-complete k-data-source="pasiens" header-template='headerTemplate'
+                        template='template' style="width: 100%;" />
+				</div>
+				<div class="clear"></div>
+			</div>
+
+			<div class="grid_4">
+				<!-- nama pasien -->
+				<div class="grid_12" style="margin-bottom:5px">
+					<label c-label item="item" c-label-text="NamaPasien"></label>
+				</div>
+				<div class="grid_12">
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" />
+				</div>
+				<div class="clear"></div>
+
+				<!-- jenis kelamin -->
+				<div class="grid_12" style="margin-bottom:5px">
+					<label c-label item="item" c-label-text="JenisKelamin"></label>
+				</div>
+				<div class="grid_12">
+					 <input style="width: 100%;" kendo-combo-box k-ng-model="item.JenisKelamin" k-data-text-field="'jenisKelamin'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisKelamin" />
+				</div>
+				<div class="clear"></div>
+			</div>
+
+			<div class="grid_4">
+				<!-- tanggal pendaftaran -->
+				<div class="grid_12" style="margin-bottom:5px">
+					<label c-label item="item" c-label-text="TanggalPendaftaran"></label>
+				</div>
+				
+                <div class="grid_12" style="margin: 5px">
+                    <input style="width: 100%" k-ng-model="item.TanggalPendaftaran" kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                </div>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_4">
+				<!-- Instalasi Tujuan Konsul -->
+				<div class="grid_12" style="margin-bottom:5px">
+					<label c-label item="item" c-label-text="InstalasiTujuanKonsul"></label>
+				</div>
+				<div class="grid_12">
+					 <input style="width: 100%;" kendo-combo-box k-ng-model="item.InstalasiTujuanKonsul" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listInstalasiTujuanKonsul" />
+				</div>
+				<div class="clear"></div>
+			</div>
+
+			<div class="grid_4">
+				<!-- Dokter Perujuk -->
+				<div class="grid_12" style="margin-bottom:5px">
+					<label c-label item="item" c-label-text="DokterOperator"></label>
+				</div>
+				<div class="grid_12">
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.DokterPerujuk"  disabled/>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_12">
+              	<label c-label item="item" c-label-text="Keterangan"></label>
+            </div>
+
+            <div class="grid_12">
+                <textarea ng-model="item.Keterangan" style="width: 99%; height: 80px;"></textarea>
+            </div>
+            <div class="clear"></div>
+
+            
+            <div class="grid_12">
+                <div class="grid_3" style="float:right">
+                    <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="KirimData">
+                        <span class="title">Selanjutnya</span>
+                    </c-button>
+                </div>
+                <div class="grid_3" style="float:right">
+                    <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'">
+                        <span class="title">Sebelumnya</span>
+                    </c-button>
+                </div>
+            </div>
+            <div class="clear"></div>
+			
+		</c-panel>
+	</div>
+</div>

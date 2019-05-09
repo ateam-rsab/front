@@ -1,0 +1,221 @@
+<script type="text/javascript" src="js/kendo.culture.id-ID.js"></script>
+<div ng-controller="BayaranTagihanCtrl">
+	<div ng-show="dataVOloaded">
+		<div class="grid_12 headerBox">
+			<h1 style="color: white;"><b>Daftar Tagihan Rekanan</b></h1>
+		</div>
+		<div class="grid_6">
+			<div class="grid_3" style="margin-top: 10px">
+				<label c-label item="item" c-label-text="Tanggal Pembayaran"></label>
+			</div>
+			<div class="grid_4">
+				<input style="width: 100%" k-ng-model="item.periodeAwal"  kendo-date-picker k-max="now" placeholer="yyyy-MM-dd hh:mm" k-format="'yyyy-MM-dd hh:mm'"/>
+			</div>
+		</div> 
+
+		<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_12 headerBox">
+					<p>Rekening Kas Bank Pengeluaran</p>
+				</div>
+				<div class="grid_12">
+					<div class="grid_3" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="Nama Bank"></label>
+					</div>
+					<div class="grid_8">
+						<input style="width: 100%;"  kendo-combo-box k-data-source="listNamaBank" k-ng-model="item.namaBank" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="" />
+					</div>
+				</div> 
+				<div class="grid_12">
+					<div class="grid_3" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="No Rekening"></label>
+					</div>
+					<div class="grid_8">
+						<input  c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.noRekening" />
+					</div>
+				</div> 
+				<div class="grid_12">
+					<div class="grid_3" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="Nama Rekening"></label>
+					</div>
+					<div class="grid_8">
+						<input  c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaRekening" />
+					</div>
+				</div> 
+			</div>
+			<div class="grid_6">
+				<div class="grid_12 headerBox">
+					<p>Rekening Kas Bank Pengeluaran</p>
+				</div>
+				<div class="grid_12">
+					<div class="grid_3" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="Deskripsi Transaksi"></label>
+					</div>
+					<div class="grid_8">
+						<textarea c-text-box  filter="'string'" ng-model="item.keterangan"></textarea>
+					</div>
+				</div> 
+				<div class="grid_12">
+					<div class="grid_3" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="Uraian Transaksi"></label>
+					</div>
+					<div class="grid_8">
+						<input style="width: 100%;"  kendo-combo-box k-data-source="listUraianTransaksi" k-ng-model="item.uraianTransaksi" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="" />
+					</div>
+				</div> 
+				<div class="grid_12">
+					<div class="grid_3" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="Jumlah Tagihan"></label>
+					</div>
+					<div class="grid_8">
+						<input  c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jmlTagihan" />
+					</div>
+				</div> 
+				<div class="grid_12">
+					<div class="grid_3" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="Biaya Administrasi"></label>
+					</div>
+					<div class="grid_8">
+						<input  c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.biayaAdministrasi" />
+					</div>
+				</div> 
+			</div>
+		</div>
+
+		<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_12 headerBox">
+					<p>Biaya Lainnya</p>
+				</div>
+				<div class="grid_12 borderBox containerBorderBox">
+					<div class="grid_6">
+						<div class="grid_12">
+							<div class="grid_3" style="margin-top: 10px">
+								<label c-label item="item" c-label-text="Ppn 10%"></label>
+							</div>
+							<div class="grid_2">
+								<input  c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.ppn" />
+							</div>
+							<div class="grid_1" style="margin-top: 10px">
+								<label c-label item="item" c-label-text="%"></label>
+							</div>
+							<div class="grid_5 ">
+								<input  c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.ppn" />
+							</div>
+						</div> 
+						<div class="grid_12">
+							<div class="grid_3" style="margin-top: 10px">
+								<label c-label item="item" c-label-text="Pph 21"></label>
+							</div>
+							<div class="grid_2">
+								<input  c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.ppn" />
+							</div>
+							<div class="grid_1" style="margin-top: 10px">
+								<label c-label item="item" c-label-text="%"></label>
+							</div>
+							<div class="grid_5">
+								<input  c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.pph21" />
+							</div>
+						</div> 
+					</div>
+					<div class="grid_6">
+						<div class="grid_12">
+							<div class="grid_3" style="margin-top: 10px">
+								<label c-label item="item" c-label-text="Pph 22"></label>
+							</div>
+							<div class="grid_2">
+								<input  c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.ppn" />
+							</div>
+							<div class="grid_1" style="margin-top: 10px">
+								<label c-label item="item" c-label-text="%"></label>
+							</div>
+							<div class="grid_5">
+								<input  c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.pph22" />
+							</div>
+						</div> 
+						<div class="grid_12">
+							<div class="grid_3" style="margin-top: 10px">
+								<label c-label item="item" c-label-text="Pph 23"></label>
+							</div>
+							<div class="grid_2">
+								<input  c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.ppn" />
+							</div>
+							<div class="grid_1" style="margin-top: 10px">
+								<label c-label item="item" c-label-text="%"></label>
+							</div>
+							<div class="grid_5">
+								<input  c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.pp23" />
+							</div>
+						</div> 
+					</div>
+					<div class="grid_3">
+					</div>
+					<div class="grid_9">
+						<div class="grid_3" style="margin-top: 10px">
+							<label c-label item="item" c-label-text="Total Pajak"></label>
+						</div>
+						<div class="grid_9">
+							<input  c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.totalPajak" id="custom"/>
+							<div id="example">
+								<script>
+									$(document).ready(function() {
+										$("#custom").kendoNumericTextBox({
+											format: "Rp 0##,###.0  "
+
+										});
+									});
+								</script>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<div class="grid_6">
+				<div class="grid_12 headerBox">
+					<p>Total</p>
+				</div>
+				<div class="grid_12">
+					<div class="grid_12">
+						<div class="grid_3">
+							<label c-label item="item" c-label-text="Sub Total" style="margin-top:8px;"></label>
+						</div>
+						<div class="grid_8">
+							<input style="width: 100%;text-align: right" ng-model="item.subTotal" id="custom"/>
+							<div id="example">
+								<script>
+									$(document).ready(function() {
+										$("#custom").kendoNumericTextBox({
+											format: "Rp 0##,###.0  "
+
+										});
+									});
+								</script>
+							</div>
+						</div> 
+					</div>
+					<div class="grid_12">
+						<div class="grid_3">
+							<label c-label item="item" c-label-text="Deskripsi Transaksi" style="margin-top:8px;"></label>
+						</div>
+						<div class="grid_8">
+							<textarea placeholder="Terbilang" c-text-box  filter="'string'" ng-model="item.terbilang"></textarea>
+						</div>  
+					</div>
+				</div>
+			</div>
+			<div class="grid_12" style="margin-top:10px;">
+				<!-- <div class="grid_5"></div> -->
+				<div class="grid_2" style="float:right;">
+					<button class="c-button" ng-click="Bayar()">Bayar</button>
+				</div>
+				<div class="grid_2" style="float:right;">
+					<button class="c-button" ng-click="Kembali()">Kembali</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div>
+</div>

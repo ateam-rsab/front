@@ -1,0 +1,136 @@
+<div ng-controller="CssdKemasanLinenCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Cssd Kemasan Linen'" disabled>
+
+		<!-- cssdPenyerahanBarang -->
+		<div class="grid_6">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="cssdPenyerahanBarang"></label>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_12">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.cssdPenyerahanBarang" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listcssdpenyerahanbarang" />
+			</div>
+		</div>
+
+		<!-- cssdPenyerahanBarangId -->
+
+
+		<!-- linenBs -->
+		<div class="grid_6">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="linenBs"></label>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_12">
+				<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.linenBs" />
+			</div>
+		</div>
+
+		<!-- linenB -->
+		<div class="grid_6">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="linenB"></label>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_12">
+				<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.linenB" />
+			</div>
+		</div>
+
+		<!-- linenS -->
+		<div class="grid_6">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="linenS"></label>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_12">
+				<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.linenS" />
+			</div>
+		</div>
+
+		<!-- linenK -->
+		<div class="grid_6">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="linenK"></label>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_12">
+				<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.linenK" />
+			</div>
+		</div>
+
+		<!-- reportDisplay -->
+		<div class="grid_6">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="reportDisplay"></label>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_12">
+				<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+			</div>
+		</div>
+
+		<!-- kodeExternal -->
+		<div class="grid_6">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="kodeExternal"></label>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_12">
+				<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+			</div>
+		</div>
+
+		<!-- namaExternal -->
+		<div class="grid_6">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="namaExternal"></label>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_12">
+				<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+			</div>
+		</div>
+
+		<!-- CssdKemasanLinen -->
+		<div class="grid_12">
+			<div class="grid_12 headerBox">
+				<p>CssdKemasanLinen</p>
+			</div>
+			<div class="clear"></div>
+
+			<!-- grid table -->
+			<div class="grid_12 borderBox">
+				<kendo-grid options="mainGridOptions"  k-data-source="dataSource" k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+
+
+
+	</c-panel>
+
+	<div class="grid_12">
+		<div class="grid_8"></div>
+		<div class="grid_2" ng-show="showEdit">
+			<button class="c-button" ng-click="edit()">Edit</button>
+		</div>
+		<div class="grid_2" ng-hide="showEdit">
+			<button class="c-button" ng-click="tambah()">Tambah</button>
+		</div>
+		<div class="grid_2">
+			<button class="c-button" ng-click="batal()">Batal</button>
+		</div>
+	</div>
+</div>
+</div>

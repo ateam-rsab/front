@@ -1,0 +1,20 @@
+<div ng-controller="DaftarPencucianLinenUlangCtrl">
+	<div class="panel panel-default container_12">
+		<div class="panel-heading" c-translate>Daftar Pencucian Linen Ulang</div>
+			<div class="panel-body">
+				<div class="grid_12" style="margin-top: 10px">
+        			<div kendo-grid k-data-source="daftarPencucianLinenUlang" k-selectable="'row'" k-columns="columndaftarPencucianLinenUlang">
+        			</div>
+				</div>
+				<div class="grid_12" style="margin-top: 20px ">
+					<div class="grid_8"></div>
+					<div class="grid_2">
+						<button class="c-button" ng-click="">Cetak</button>
+                    </div>
+                    <div class="grid_2">
+						<button class="c-button" ng-click="">Tutup</button>
+                    </div>
+				</div>
+    		</div>   
+	</div>
+</div>

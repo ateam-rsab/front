@@ -1,0 +1,15 @@
+<div class="box wide hidden-on-narrow AreaPaper " class=" ">
+    <div ng-controller="LaboratoriumCetakBarcodeCtrl" id="content" class="a4">
+        <div class="grid_12 " ng-repeat="data in listOrders ">
+            <div class="grid_12 ">
+                <h2>{{data[0].jenisPeriksa}}</h2>
+            </div>
+            <div class="grid_6 " ng-repeat="subData in data ">
+                {{subData.noOrderIntern+' '+subData.noBarcode}}
+                <span kendo-barcode k-type=" 'code128' " k-text="{visible:false}" ng-model="subData.noBarcode " style="width: 250px; margin: 0 auto; "></span>
+                <span>{{subData.pasienDaftar.pasien.noCm+'/'+subData.pasienDaftar.pasien.namaPasien+'/'+subData.pasienDaftar.ruangan.namaRuangan+'/'+subData.kodeExternal+' '+subData.kdProdukIntern}}</span>
+            </div>
+        </div>
+
+    </div>
+</div>

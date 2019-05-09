@@ -1,0 +1,13 @@
+{
+	"model":{
+	    "TumorMarker" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "TumorMarker",
+			"messagesRequired" : "",
+			"caption" : "Tumor Marker"
+		}
+  ]
+}

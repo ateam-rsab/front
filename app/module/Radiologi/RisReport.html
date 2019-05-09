@@ -1,0 +1,63 @@
+<div>      
+    <div class="panel panel-default container_12">
+        <div class="panel-heading"><label class='title' c-label item="item" c-label-text="risReport"></label></div>
+        <div class="panel-body">
+            <div class="grid_12">
+                <div class="grid_4">
+                    <div class="grid_12" style="margin-left:10px">
+                        <label c-label c-label-text="tanggal"></label>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_6">
+                            <input style="width: 100%" k-ng-model='from' k-value='now' kendo-date-picker k-format="'dd-MM-yyyy'" />
+                        </div>
+                        <div class="grid_6">
+                            <input style="width: 100%" k-ng-model='until' k-value='now' kendo-date-picker k-format="'dd-MM-yyyy'" k-max='now' />
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="grid_3  " style="margin-top:5px">
+                    <label c-label c-label-text="masukanNamaPasien/ NoRekamMedis" real></label>
+                    <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="namaPasien" />
+                </div>
+                <div class="grid_3" style="margin-top:5px" ng-show="ruanganDokter">
+                    <label c-label c-label-text="namaRuangan" real></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ruanganRJ" />
+                </div>-->
+                <div class="grid_1" style="margin-top:5px">
+                    <label c-label c-label-text=""></label>
+                    <em style="margin-top:6px;" ng-click='findData()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+                    <em style="margin-top:6px;" ng-click='reset()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Reset</span></em>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid_12">
+        <div id="gridRisReport" kendo-grid options="mainGridOptions"></div>
+        <!--<div data-kendo-grid="grid" k-groupable="'true'" k-aggregate='aggregate' k-ng-model="item" k-data-source="patienGrids" k-selectable="'row'" k-sortable="'true'" k-columns="Column" k-scrollable="'true'">
+        </div>-->
+    </div>
+    <div ng-hide="isCalling" class="grid_12 place_button">
+        <div class="grid_3">
+            <c-button style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" is-validate click="monitoring">
+                <span class="title">Monitoring</span>
+            </c-button>
+        </div>
+        <div class="grid_3">
+            <c-button style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" is-validate click="detailOrder">
+                <span class="title">Rincian</span>
+            </c-button>
+        </div>
+    </div>
+    <!-- popup select doctors if doctor isn't define -->
+    <div kendo-window="winDialog" k-title="'Pilih Dokter'" k-width="400" k-height="120" k-visible="false" k-on-open="win2visible = true" k-on-close="win2visible = false">
+        <label c-label item="item " c-label-text="dokterPemeriksaan "></label>
+        <input style="width: 100%; " kendo-combo-box k-ng-model="items.pilihDokter" k-data-text-field="'dokter.namaLengkap'" k-filter=" 'contains' " k-data-value-field=" 'value' " k-auto-bind="false " k-data-source="dokters" />
+        <div class="clear">
+            <button class="k-button" ng-click="simpanDokter(item, items.pilihDokter)" style="float:right;margin-top:4%">Simpan</button>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+.btn {padding: 4px auto}
+</style>

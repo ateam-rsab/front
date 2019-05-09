@@ -1,0 +1,129 @@
+<div ng-controller="PerjanjianCtrl">
+    <div ng-class="{grid_12:isDisable===false,grid_6:isDisable===true}">
+        <c-panel item="item" header="'pasienPerjanjian'" disabled>
+            <div class="tiles" ng-hide="isDisable">
+                <div class="grid_12">
+                    <div class="tile bg-yellow-saffron orange" style="height:100px">
+                        <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                        <div class="check"></div>
+                        <div class="tile-body" style="overflow: initial">
+                            <i style="font-style: normal;"></i>
+                        </div>
+                        <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                            <div class="icon-panel">
+                                <img width='70px' src='stylesheets/sumberDana.png' />
+                            </div>
+                            <div class="text_panel">
+                                <span class="title"><label class="c-label"  >
+                                Jumlah Reservasi {{item.tglPerjanjian|date:'dd-MM-yyyy'}}</label>
+                                </span>
+                                <span class="sub-title">{{jumlahReservasi}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_4">
+                <!-- Tanggal Keluar -->
+                <label c-label item="item" c-label-text="tanggalPerjanjian"></label>
+            </div>
+            <div class="grid_8">
+                <input style="width: 100%" kendo-date-time-picker k-min="now" k-ng-model="item.tglPerjanjian" placeholer="Hari-Bln-Thn" k-format="'dd-MM-yyyy HH:mm'" k-on-change="pilihTanggal()"/>
+            </div>
+           <!--  <div class="grid_4">
+                <label c-label item="item" c-label-text="spesialis"></label>
+            </div>
+            <div class="grid_8">
+
+                <input ng-disabled="isDisable" style="width: 100%;" kendo-combo-box k-ng-model="item.kasusPenyakit" k-data-text-field="'kasusPenyakit'" k-filter="'contains'" k-data-value-field="'value'" k-auto-bind="false" k-data-source="kasusPenyakits" />
+            </div> -->
+
+
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="poliklinik"></label>
+            </div>
+            <div class="grid_8">
+                <input ng-disabled="isDisable" style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaRuangan'" k-filter="'contains'" k-data-value-field="'value'" k-auto-bind="false" k-data-source="ruangans" k-on-change="getPegawai(item.ruangan)"/>
+            </div>
+
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="dokter"></label>
+            </div>
+            <div class="grid_8">
+
+                <input ng-disabled="isDisable" style="width: 100%;" kendo-combo-box k-ng-model="item.dokter" k-data-text-field="'namaLengkap'" k-filter="'contains'" k-data-value-field="'value'" k-auto-bind="false" k-data-source="dokters" />
+            </div>
+            <div class="grid_4" ng-show="isRehabMedik===true">
+                <label c-label item="item" c-label-text="jumlahKunjungan"></label>
+
+            </div>
+            <div class="grid_8" ng-show="limit===0 &&isRehabMedik===true">
+                <div class="grid_12">
+                    <input ng-disabled="isDisable" c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahKunjungan" />
+                </div>
+
+                <div class="grid_8" ng-show="limit!==0&&isRehabMedik===true">
+                    <input ng-disabled="isDisable" c-text-box ng-disabled="'true'" type="input" filter="'numeric'" class="k-textbox" ng-model="item.informasi" />
+                </div>
+
+
+            </div>
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="keteranganLainnya"></label>
+            </div>
+            <div class="grid_8">
+                <textarea ng-disabled="isDisable" ng-model="item.keteranganLainnya" style="width: 99%; height: 80px;"></textarea>
+            </div>
+
+
+        </c-panel>
+    </div>
+    <div class="grid_6" ng-show="isDisable ===true">
+        <div class="tiles">
+            <div class="grid_12">
+                <div class="tile bg-yellow-saffron orange" style="height:100px">
+                    <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                    <div class="check"></div>
+                    <div class="tile-body" style="overflow: initial">
+                        <i style="font-style: normal;"></i>
+                    </div>
+                    <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                        <div class="icon-panel">
+                            <img width='70px' src='stylesheets/sumberDana.png' />
+                        </div>
+                        <div class="text_panel">
+                            <span class="title"><label class="c-label"  >
+                                Jumlah Reservasi {{item.tglPerjanjian|date:'dd-MM-yyyy'}}</label>
+                                </span>
+                            <span class="sub-title">{{jumlahReservasi}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_12" ng-show="isDisable">
+            <label c-label item="item" c-label-text="pilihJadwal"></label>
+            <md-input-container style="width: 100%;margin:0px">
+                <md-select md-on-close="clearSearchTerm()" ng-model="selectedHari" data-md-container-class="selectdemoSelectHeader" multiple>
+                    <md-optgroup label="Hari">
+                        <md-option ng-value="hari" ng-repeat="hari in listhari ">{{hari.name}}</md-option>
+                    </md-optgroup>
+                </md-select>
+            </md-input-container>
+        </div>
+        <div class="grid_12" ng-show="isDisable">
+            <md-list flex>
+                <div class="grid_4" ng-repeat="item in listJadwal">
+                    <md-list-item class="md-3-line" ng-click="null">
+                        <img src="stylesheets/retentionschedule.png" class="md-avatar" />
+                        <div class="md-list-item-text" layout="column">
+                            <h3>{{ item.tgl |date:'dd-MM-yyyy'}}</h3>
+                        </div>
+                    </md-list-item>
+                </div>
+            </md-list>
+
+        </div>
+    </div>
+    <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+</div>

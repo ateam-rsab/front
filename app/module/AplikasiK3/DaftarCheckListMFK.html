@@ -1,0 +1,112 @@
+<div >
+    <c-panel item="item" header="'Daftar Check List Manajemen Fasilitas dan Keamanan'" disabled ng-show="!detilCeklistFasilitas">
+        <div class="panel panel-default">
+            <div class="grid_12">
+                <div id="gridCeklisMFK" kendo-grid k-options="gridOption"></div>
+            </div>
+        </div>
+    </c-panel>
+    <!-- <div class="grid_12" style="margin-top:50px">
+        <div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+    </div> -->
+</div>
+<div >
+    <c-panel item="item" header="'Detil Check List Manajemen Fasilitas dan Keamanan'" disabled ng-show="detilCeklistFasilitas">
+        <div class="grid_12">
+            <div ng-repeat="item in detilTransaksi">
+                <span class="table-title-k3" ng-repeat="(key,val) in item">{{key}}</span>
+                <div ng-repeat="items in item" class="grid_12" style="padding:1em">
+                    <table class="blueTable">
+                        <tr>
+                            <th class="tr-title">Item Periksa</th>
+                            <th class="tr-title">Jumlah</th>
+                            <th class="tr-title">Keterangan</th>
+                        </tr>
+                        <tr ng-repeat="subItem in items">
+                            <td>{{subItem.itemPeriksa}}</td>
+                            <td>{{subItem.jumlah}}</td>
+                            <td>{{subItem.keterangan}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="grid_3" style="float:right;">
+                <button class="c-button" ng-click="back()">Kembali</button>
+        </div>
+    </c-panel>
+</div>
+<div ng-include='"../app/module/Shared/templateLoading"'></div>
+<style>
+table.blueTable {
+    border: 1px solid #1C6EA4;
+    background-color: #EEEEEE;
+    width: 98%;
+    text-align: left;
+    border-collapse: collapse;
+}
+table.blueTable td, table.blueTable th {
+    border: 1px solid #AAAAAA;
+    padding: 9px 2px;
+}
+table.blueTable tbody td {
+    font-size: 13px;
+}
+table.blueTable tr:nth-child(even) {
+    background: #D0E4F5;
+}
+table.blueTable thead {
+    background: #1C6EA4;
+    background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    border-bottom: 2px solid #444444;
+}
+table.blueTable thead th {
+    font-size: 15px;
+    font-weight: bold;
+    color: #FFFFFF;
+    border-left: 2px solid #D0E4F5;
+}
+table.blueTable thead th:first-child {
+    border-left: none;
+}
+
+table.blueTable tfoot {
+    font-size: 14px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background: #D0E4F5;
+    background: -moz-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+    background: -webkit-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+    background: linear-gradient(to bottom, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+    border-top: 2px solid #444444;
+}
+table.blueTable tfoot td {
+    font-size: 14px;
+}
+table.blueTable tfoot .links {
+    text-align: right;
+}
+table.blueTable tfoot .links a{
+    display: inline-block;
+    background: #1C6EA4;
+    color: #FFFFFF;
+    padding: 2px 8px;
+    border-radius: 5px;
+}
+th.tr-title {
+    padding: 12px !important;
+    font-size: 120%;
+}
+td.ng-binding {
+    padding-left: 12px!important;
+}
+span.table-title-k3 {
+    display: inline-block;
+    width: 98%;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 10px 20px!important;
+}
+</style>

@@ -1,0 +1,74 @@
+<div ng-controller="NeurologiCtrl"><br/>
+
+    <div ng-show="dataVOloaded">
+
+        <c-normal-tidak-normal is-show-form="isShowForm" selanjutnya="selanjutnya">
+        </c-normal-tidak-normal>
+
+        <div ng-show="isShowForm">
+            <div class="panel panel-default container_12">
+                <div class="panel-heading" c-translate>Neurologi</div>
+                <div class="panel-body">
+
+                    <div class="grid_12">
+                        <!-- Kesadaran -->
+                        <div class="grid_6" style="border: none">
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="Kesadaran"></label>
+                            </div>
+                            <div class="grid_12">
+                                <div class="grid_6" ng-repeat="kesadaran in listKesadaran">
+                                    <input type="radio" name="{{kesadaran.name}}" id="{{kesadaran.name}}" class="k-radio" ng-model="item.kesadaran" ng-value="kesadaran">
+                                    <label class="k-radio-label" for="{{kesadaran.name}}">{{kesadaran.name}}</label>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        <!-- Gangguan Neurologi -->
+                        <div class="grid_6" style="border: none">
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="GangguanNeurologis"></label>
+                            </div>
+                            <div class="grid_12">
+                                <div class="grid_6" ng-repeat="stat in listAdaTidakAda">
+                                    <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.gangguanNeorologis" ng-value="stat">
+                                    <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+                                </div>
+                                <div ng-show="isAdaGangguan" class="grid_12">
+                                    <textarea ng-model="item.KeteranganGangguan" style="width: 99%; height: 80px;"></textarea>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- status normal tidak normal -->
+                        <div class="grid_4" style="border: none;display:none">
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="Status Neurologi"></label>
+                            </div>
+                            <div class='grid_12'>
+                                <div>
+                                    <button class='btnShowNormalTidakNormal' ng-click='changeStat("Normal")' style='position:relative' ng-style="{'background-color': warna.normal}">
+                                <img class="normalTidakNormal" src="stylesheets/yes.png">
+                                <span class="normalTidakNormal">Normal</span>
+                            
+                                <button class='btnShowNormalTidakNormal' ng-click='changeStat("TidakNormal")' style='position:relative' ng-style="{'background-color': warna.tidakNormal}">
+                                <img class="normalTidakNormal" src="stylesheets/no.png">
+                                <span class="normalTidakNormal">Tidak Normal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+               
+            </div>
+
+             <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+        </div>
+
+
+    </div>
+</div>

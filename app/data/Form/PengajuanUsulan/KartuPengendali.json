@@ -1,0 +1,46 @@
+{
+	"model":{
+		"pengendali" : "",
+		"tanggal":"",
+		"jumlah":"",
+		"ppn":"",
+		"total": "",
+		"pembulatan":""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "pengendali",
+			"messagesRequired" : "",
+			"caption" : "Pengendali"
+		},{
+			"isNull" : "true",
+			"name" : "tanggal",
+			"messagesRequired" : "",
+			"caption" : "Tanggal"
+		},{
+			"isNull" : "true",
+			"name" : "jumlah",
+			"messagesRequired" : "",
+			"caption" : "Jumlah"
+		},{
+			"isNull" : "true",
+			"name" : "ppn",
+			"messagesRequired" : "",
+			"caption" : "PPN 10%"
+		},{
+			"isNull" : "true",
+			"name" : "total",
+			"messagesRequired" : "",
+			"caption" : "Total"
+		},{
+			"isNull" : "true",
+			"name" : "pembulatan",
+			"messagesRequired" : "",
+			"caption" : "Pembulatan"
+		}
+
+	]
+}

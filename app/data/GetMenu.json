@@ -1,0 +1,26 @@
+[
+   {
+      "name": "Pasien",
+      "children": [{
+          "name": "Registrasi Pasien Baru",
+          "link": "#/RegistrasiPasienBaru"
+      }, {
+          "name": "Pencarian Pasien",
+          "link": "#"
+      }]
+  },
+  {
+    "name": "Transaksi",
+    "children": [
+      {
+        "name": "Reservasi Pasien Baru",
+        "link": "#/Pasien/Baru"
+      },
+      {
+        "name": "Reservasi Pasien Lama",
+        "link": "#/Pasien/Lama"
+      }
+    ]
+  }
+]
+

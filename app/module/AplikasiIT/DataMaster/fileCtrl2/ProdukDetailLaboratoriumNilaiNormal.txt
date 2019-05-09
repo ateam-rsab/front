@@ -1,0 +1,221 @@
+////header nya
+define(['initialize'], function(initialize) {
+	'use strict';
+initialize.controller('ProdukDetailLaboratoriumNilaiNormalCtrl', ['$q', '$rootScope', '$scope', 'IPSRSService',
+ function($q, $rootScope, $scope,IPSRSService) {
+ $scope.item = {};
+ $scope.dataVOloaded = true;
+ $scope.now = new Date();
+ var init = function () {
+IPSRSService.getFieldsMasterTable("get-data-master?className=ProdukDetailLaboratoriumNilaiNormal", true).then(function(dat){
+$scope.listDataMaster = dat.data.data.ProdukDetailLaboratoriumNilaiNormal;
+                                    					
+$scope.dataSource = new kendo.data.DataSource({
+pageSize: 10,
+data: $scope.listDataMaster,
+autoSync: true
+
+});
+
+});
+}
+init();
+
+
+
+
+$scope.columnProdukDetailLaboratoriumNilaiNormal = [
+{
+"field": "No",
+"title": "No"
+},
+{
+"field": "ageMin",
+"title": "age Min"
+},
+{
+"field": "ageMax",
+"title": "age Max"
+},
+{
+"field": "ageUnit",
+"title": "age Unit"
+},
+{
+"field": "panicRange",
+"title": "panic Range"
+},
+{
+"field": "jenisKelamin",
+"title": "jenis Kelamin"
+},
+{
+"field": "jenisKelaminFk",
+"title": "jenis Kelamin Fk"
+},
+{
+"field": "produkDetailLaboratorium",
+"title": "produk Detail Laboratorium"
+},
+{
+"field": "produkFk",
+"title": "produk Fk"
+},
+{
+"field": "rangeMin",
+"title": "range Min"
+},
+{
+"field": "rangeMax",
+"title": "range Max"
+},
+{
+"field": "refRange",
+"title": "ref Range"
+},
+{
+"field": "tipeDataHasil",
+"title": "tipe Data Hasil"
+},
+{
+"field": "id",
+"title": "id"
+},
+{
+"field": "reportDisplay",
+"title": "report Display"
+},
+{
+"field": "kodeExternal",
+"title": "kode External"
+},
+{
+"field": "namaExternal",
+"title": "nama External"
+},
+{
+"field": "statusEnabled",
+"title": "status Enabled"
+},
+
+{
+	"title" : "Action",
+	"width" : "200px",
+	"template" : "<button class='btnEdit' ng-click='enableData()'>Enable</button>"+
+"<button class='btnHapus' ng-click='disableData()'>Disable</button>"
+}
+];
+$scope.mainGridOptions = { 
+ pageable: true,
+ columns: $scope.columnProdukDetailLaboratoriumNilaiNormal,
+ editable: "popup",
+ selectable: "row",
+ scrollable: false
+ };
+////fungsi klik untuk edit
+ $scope.klik = function(current){
+$scope.showEdit = true;
+$scope.current = current;
+$scope.item.ageMin = current.ageMin;
+$scope.item.ageMax = current.ageMax;
+$scope.item.ageUnit = current.ageUnit;
+$scope.item.panicRange = current.panicRange;
+$scope.item.jenisKelamin = current.jenisKelamin;
+$scope.item.jenisKelaminFk = current.jenisKelaminFk;
+$scope.item.produkDetailLaboratorium = current.produkDetailLaboratorium;
+$scope.item.produkFk = current.produkFk;
+$scope.item.rangeMin = current.rangeMin;
+$scope.item.rangeMax = current.rangeMax;
+$scope.item.refRange = current.refRange;
+$scope.item.tipeDataHasil = current.tipeDataHasil;
+$scope.item.id = current.id;
+$scope.item.noRec = current.noRec;
+$scope.item.reportDisplay = current.reportDisplay;
+$scope.item.kodeExternal = current.kodeExternal;
+$scope.item.namaExternal = current.namaExternal;
+$scope.item.statusEnabled = current.statusEnabled;
+};
+$scope.disableData=function(){
+ IPSRSService.getClassMaster("delete-master-table?className=ProdukDetailLaboratoriumNilaiNormal&&id="+$scope.item.id+"&&statusEnabled=false").then(function(dat){
+ init();
+ });
+ };
+$scope.enableData=function(){
+ IPSRSService.getClassMaster("delete-master-table?className=ProdukDetailLaboratoriumNilaiNormal&&id="+$scope.item.id+"&&statusEnabled=true").then(function(dat){
+ init();
+
+	});
+};
+
+$scope.tambah = function()
+ {
+var data = {
+	"class": "ProdukDetailLaboratoriumNilaiNormal",
+	"listField": {
+"ageMin": $scope.item.ageMin,
+"ageMax": $scope.item.ageMax,
+"ageUnit": $scope.item.ageUnit,
+"panicRange": $scope.item.panicRange,
+"jenisKelamin": $scope.item.jenisKelamin,
+"jenisKelaminFk": $scope.item.jenisKelaminFk,
+"produkDetailLaboratorium": $scope.item.produkDetailLaboratorium,
+"produkFk": $scope.item.produkFk,
+"rangeMin": $scope.item.rangeMin,
+"rangeMax": $scope.item.rangeMax,
+"refRange": $scope.item.refRange,
+"tipeDataHasil": $scope.item.tipeDataHasil,
+"id": $scope.item.id,
+"reportDisplay": $scope.item.reportDisplay,
+"kodeExternal": $scope.item.kodeExternal,
+"namaExternal": $scope.item.namaExternal,
+}
+	}
+ IPSRSService.saveDataMaster(data,"save-master-table").then(function(e) {
+console.log(JSON.stringify(e.data));
+init();
+$scope.item = {};
+ });
+  }
+
+ $scope.edit = function()
+  {	
+   var data = {
+ "class": "ProdukDetailLaboratoriumNilaiNormal",
+	"listField": {
+"ageMin": $scope.item.ageMin,
+"ageMax": $scope.item.ageMax,
+"ageUnit": $scope.item.ageUnit,
+"panicRange": $scope.item.panicRange,
+"jenisKelamin": $scope.item.jenisKelamin,
+"jenisKelaminFk": $scope.item.jenisKelaminFk,
+"produkDetailLaboratorium": $scope.item.produkDetailLaboratorium,
+"produkFk": $scope.item.produkFk,
+"rangeMin": $scope.item.rangeMin,
+"rangeMax": $scope.item.rangeMax,
+"refRange": $scope.item.refRange,
+"tipeDataHasil": $scope.item.tipeDataHasil,
+"id": $scope.item.id,
+"noRec": $scope.item.noRec,
+"reportDisplay": $scope.item.reportDisplay,
+"kodeExternal": $scope.item.kodeExternal,
+"namaExternal": $scope.item.namaExternal,
+"statusEnabled": $scope.item.statusEnabled
+ }
+ }
+IPSRSService.saveDataMaster(data,"update-master-table").then(function(e){console.log(JSON.stringify(e.data));
+init();
+});
+}
+$scope.batal = function () {
+$scope.showEdit = false;
+$scope.item = {};
+}
+IPSRSService.getFieldListData("JenisKelamin&select=id,namaExternal", true).then(function(dat){
+$scope.listjeniskelamin= dat.data;
+});
+IPSRSService.getFieldListData("ProdukDetailLaboratorium&select=id,namaExternal", true).then(function(dat){
+$scope.listprodukdetaillaboratorium= dat.data;
+});
+}
+]);
+});

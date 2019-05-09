@@ -1,0 +1,53 @@
+<div ng-controller="RespondMaintenanceCtrl">
+    <c-panel item="item" header="title" disabled>
+    <div ng-show="dataVOloaded">
+        <!-- panel Skrining Gizi -->
+
+            <div class="grid_12" style="margin-bottom: 15px;">
+                <div kendo-grid k-data-source="dataAllRow" k-selectable="row" k-columns="columnAllData" k-ng-model="modelKendoGrid">
+                </div>
+            </div>
+
+            <div class="grid_12" style="margin-bottom: 15px;">
+                <div kendo-grid k-data-source="dataRow" k-selectable="row" k-columns="columnData" k-ng-model="modelKendoGrid">
+                </div>
+            </div>
+            
+            <div class="clear" ></div>
+            
+            <div class="grid_2" style="margin-top:5px">
+                <label c-label item="item" c-label-text="pilihTeknisi"></label>
+            </div>
+            <div class="grid_2">
+                <div class="grid_12">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.pilihTeknisi" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPilihTeknisi" />
+                </div>
+            </div>
+            <div class="clear" ></div>
+            
+            <div class="grid_2" style="margin-top:5px">
+                <label c-label item="item" c-label-text="jamLapar"></label>
+            </div>
+            <div class="grid_2">
+                <div class="grid_12" style="margin-bottom:5px">
+                    <input style="width: 100%" kendo-time-picker k-max="now" k-ng-model="item.jamLapar" placeholer="hh:mm" k-format="'hh:mm'" />
+                </div>
+            </div>
+            <div class="clear" ></div>
+            
+            <div class="grid_2" style="margin-top:5px">
+                <label c-label item="item" c-label-text="jamRespon"></label>
+            </div>
+            <div class="grid_2">
+                <div class="grid_12" style="margin-bottom:5px">
+                    <input style="width: 100%" kendo-time-picker k-max="now" k-ng-model="item.jamRespon" placeholer="hh:mm" k-format="'hh:mm'" />
+                </div>
+            </div>
+
+            
+            <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" ' style="margin-bottom:50px"></div>
+
+     
+    </div>
+ </c-panel>
+</div>

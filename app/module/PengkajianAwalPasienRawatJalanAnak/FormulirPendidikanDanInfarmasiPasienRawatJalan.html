@@ -1,0 +1,39 @@
+<div ng-controller="FormulirPendidikanDanInfarmasiPasienRawatJalanCtrl">
+    <div class="panel panel-default container_12">
+        <div class="panel-heading" c-translate>Formulir Pendidikan dan Informasi Terintegrasi Rawat Jalan</div>
+        <div class="panel-body">
+            <div ng-include=' "../app/module/Shared/headerPasien "'></div>
+            <div ng-include=' "../app/module/PengkajianAwalPasienRawatJalanAnak/FormulirPendidikanDanInfarmasiPasienHeader "'></div>
+        </div>
+        <div class="grid_8">
+            <div class="grid_6">
+                <label c-label c-label-text="poliklinik"></label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'id '" k-filter="'contains '" k-auto-bind="false" k-data-source="listRuangan" />
+            </div>
+            <div class="grid_6">
+                <label c-label c-label-text="tanggal"></label>
+                <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tglLahir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+            </div>
+            <div class="grid_6">
+                <label c-label c-label-text="penjelasanPendidikan"></label>
+                <textarea style="width: 99%; height: 80px;">{{item.penjelasan}}</textarea>
+            </div>
+            <div class="grid_6">
+                <label c-label c-label-text="sasaranPendidikan"></label>
+                <textarea style="width: 99%; height: 80px;">{{item.penjelasan}}</textarea>
+            </div>
+
+        </div>
+        <div class="grid_4">
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="evaluasi" real></label>
+                <div class="grid_12" ng-repeat="subData in listEvaluasi">
+                    <input type="checkbox" class="k-checkbox" name="{{subData}}" id="{{subData}}" value="{{subData}}" ng-click="addMethod(subData)">
+                    <label class="k-checkbox-label" for="{{subData}}">{{subData}}</label>
+                </div>
+            </div>
+        </div>
+        <div ng-include=' "../app/module/Shared/TemplateButtonSimpan"'></div>
+    </div>
+
+</div>

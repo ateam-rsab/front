@@ -1,0 +1,45 @@
+<div class="panel panel-default container_12">
+    <div class="panel-heading">
+        <label class='title' c-label>Dashboard Data Pegawai</label>
+    </div>
+    <div class="grid_6">
+        <div class="panel panel-default panel-white">
+            <div class="panel-heading-white"><span class="title" c-translate>Unit Kerja</span>
+            </div>
+            <div class="panel-body">
+                <div kendo-chart k-theme="'metro'" k-options="chartUnitKerja" k-data-source="sourceUnitKerja"></div>
+            </div>
+        </div>
+    </div>
+    <div class="grid_6">
+        <div class="panel panel-default panel-white">
+            <div class="panel-heading-white"><span class="title" c-translate>Jenis Kelamin</span>
+            </div>
+            <div class="panel-body">
+                <div kendo-chart k-theme="'metro'" k-options="chartJK" k-data-source="sourceJK"></div>
+            </div>
+        </div>
+    </div>
+    <div class="grid_6">
+        <div class="panel panel-default panel-white">
+            <div class="panel-heading-white"><span class="title" c-translate>Status Pegawai</span>
+            </div>
+            <div class="panel-body">
+                <div kendo-chart k-theme="'metro'" k-options="chartStatusPg" k-data-source="sourceStatusPg"></div>
+            </div>
+        </div>
+    </div>
+    <div class="grid_6">
+        <div class="panel panel-default panel-white">
+            <div class="panel-heading-white"><span class="title" c-translate>Kelompok Jabatan</span>
+            </div>
+            <div class="panel-body">
+                <div kendo-chart k-theme="'metro'" k-options="chartKelompokJbtn" k-data-source="sourceKelompokJbtn"></div>            </div>
+        </div>
+    </div>
+    <div class="grid_10" />
+    <div class="grid_2" style="margin-top:15px">
+        <label c-label c-label-text=""></label>
+        <button class="c-button"  ng-click="cetakDashboardPegawai()">Cetak</button>
+    </div>
+</div>

@@ -1,0 +1,196 @@
+<style>
+	.style-center{
+		display: inline-block;
+		text-align: center;
+		width: 100%;
+	}
+
+	.style-right{
+		display: inline-block;
+		text-align: right;
+		width: 100%;
+	}
+
+	.style-left{
+		display: inline-block;
+		text-align: left;
+		width: 100%;
+	}
+</style>
+	<div ng-show="dataVOloaded">
+		<div class="panel-body">
+			<div class="grid_12 headerBox">
+				<h1 style="color: white;"><b>Detail Tagihan Rekanan</b></h1>
+			</div>
+			<div class="grid_12">
+				<div class="grid_2">
+					<div class="grid_12" style="margin: 6px 0 0 0;">
+						<label c-label item="item" c-label-text="No Terima"></label>
+					</div>
+					<div class="grid_12">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noTerima" disabled="disabled"/>
+					</div>
+
+				</div>				
+				<div class="grid_2">
+					<div class="grid_12" style="margin: 6px 0 0 0;">
+						<label c-label item="item" c-label-text="Tgl Terima"></label>
+					</div>
+					<div class="grid_12">
+						<input style="width: 100%" k-ng-model="item.tglTerima"  kendo-date-picker k-max="now" placeholer="yyyy" k-format="'dd-MM-yyyy'" disabled="disabled"/>
+					</div>
+				</div>
+				<div class="grid_2">
+					<div class="grid_12" style="margin: 6px 0 0 0;">
+						<label c-label item="item" c-label-text="Nama Rekanan"></label>
+					</div>
+					<div class="grid_12">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaRekanan" disabled="disabled"/>
+					</div>       
+				</div>	
+				<div class="grid_2">
+					<div class="grid_12" style="margin: 6px 0 0 0;">
+						<label c-label item="item" c-label-text="No Faktur"></label>
+					</div>
+					<div class="grid_12">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noFaktur" disabled="disabled"/>
+					</div>
+				</div>
+				<div class="grid_2">
+					<div class="grid_12" style="margin: 6px 0 0 0;">
+						<label c-label item="item" c-label-text="Tgl Faktur"></label>
+					</div>
+					<div class="grid_12">
+						<input style="width: 100%" k-ng-model="item.tglFaktur"  kendo-date-picker k-max="now" placeholer="yyyy" k-format="'dd-MM-yyyy'" disabled="disabled"/>
+					</div>
+				</div>
+				<div class="grid_2">
+					<div class="grid_12" style="margin: 6px 0 0 0;">
+						<label c-label item="item" c-label-text="Tgl Jatuh Tempo"></label>
+					</div>
+					<div class="grid_12">
+						<input style="width: 100%" k-ng-model="item.tglJatuhTempo"  kendo-date-picker k-max="now" placeholer="yyyy" k-format="'dd-MM-yyyy'" disabled="disabled"/>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<br/>
+
+		<div ng-cloak>
+			
+			<md-content>
+				<md-tabs md-dynamic-height md-border-bottom>
+					<md-tab label="Detail Penerimaan">
+						<md-content class="md-padding">
+							<div class="grid_12">
+								<div class="grid_12 headerBox">
+									<p>Daftar Barang</p>
+								</div>
+								<div class="clear"></div>
+
+
+								<div class="grid_12 borderBox">
+									<div id="kGrid" kendo-grid 
+									k-data-source="dataPenyusunanTRPNBP" 
+									k-selectable="'row'"
+									k-pageable="true"
+									k-sortable="'true'" 
+									k-columns="columnPenyusunanTRPNBP"
+									k-ng-model="dataPasienSelected">
+
+								</div>
+							</div>
+							<br/>
+
+						</div>
+						<div class="grid_4" style="margin-top:10px;">
+						</div>
+						<div class="grid_4" style="margin-top:10px;">
+							<div class="grid_12">
+								<div class="grid_12" >
+									<label c-label item="item" c-label-text="Total  PPN"></label>
+								</div>
+								<div class="grid_12">
+									<input  c-text-box type="input" style="text-align: right;"  class="k-textbox" ng-model="item.ppn" />
+								</div>		
+							</div>
+							<div class="grid_12" >
+								<div class="grid_12" >
+									<label c-label item="item" c-label-text="Total Diskon"></label>
+								</div>
+								<div class="grid_12">
+									<input   c-text-box type="input" style="text-align: right;"  class="k-textbox" ng-model="item.diskon" />
+								</div>		
+							</div>
+						</div>
+						<div class="grid_4" style="margin-top:10px;">
+
+							<div class="grid_12" >
+								<div class="grid_12" >
+									<label c-label item="item" c-label-text="Total Harga"></label>
+								</div>
+								<div class="grid_12">
+									<input  c-text-box type="input" style="text-align: right;"  class="k-textbox" ng-model="item.harga" />
+								</div>		
+							</div>
+
+							<div class="grid_12" >
+								<div class="grid_12" >
+									<label c-label item="item" c-label-text="Sub Total"></label>
+								</div>
+								<div class="grid_12">
+									<input   c-text-box type="input" style="text-align: right;"  class="k-textbox" ng-model="item.faktur" />
+								</div>		
+							</div>
+						</div>
+						<div class="grid_12" style="margin-top:10px;">
+							<!-- <div class="grid_5"></div> -->
+							<div class="grid_2" style="float:right;">
+								<button class="c-button" ng-click="Back()">Kembali</button>
+							</div>
+							<div class="grid_2" style="float:right;">
+								<button class="c-button" ng-click="Cetak()">Cetak</button>
+							</div>
+						</div>
+					</md-content>
+				</md-tab>
+				<md-tab label="Riwayat Pembayaran">
+					<md-content class="md-padding">
+
+						<div class="grid_12">
+							<div class="grid_12 headerBox">
+								<p>Riwayat Pembayaran</p>
+							</div>
+							<div class="clear"></div>
+
+
+							<div class="grid_12 borderBox">
+								<div id="kGrid" kendo-grid 
+								k-data-source="dataRiwayat" 
+								k-selectable="'row'"
+								k-pageable="true"
+								k-sortable="'true'" 
+								k-columns="columnRiwayat"
+								k-ng-model="dataRiwayatSelected">
+
+							</div>
+						</div>
+					</div>
+					<div class="grid_12" style="margin-top:10px;">
+						<!-- <div class="grid_5"></div> -->
+						<div class="grid_2" style="float:right;">
+							<button class="c-button" ng-click="Back()">Kembali</button>
+						</div>
+						<div class="grid_2" style="float:right;">
+							<button class="c-button" ng-click="CetakKwitansi()">Cetak Kwitansi</button>
+						</div>
+						
+					</div>
+				</md-content>
+			</md-tab>
+		</md-tabs>
+
+	</md-content>
+</div>
+</div>

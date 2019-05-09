@@ -1,0 +1,55 @@
+<div class="container">
+    <c-panel item="item" header="'Masa Berlaku SIP/STR'" disabled>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <md-content>
+                    <md-tabs md-dynamic-height md-border-bottom>
+                        <md-tab label="Sip" md-on-select="onTabChanges(1)">
+                            <md-content class="md-padding">
+                                <div class="grid_12">
+                                    <div class="grid_2">
+                                        <label c-label item="item">Tanggal Awal</label>
+                                        <input kendo-date-picker k-ng-model="item.tglAwalSip" k-options="yearSelected" style="width: 100%" />
+                                    </div>
+                                    <div class="grid_2">
+                                        <label c-label item="item">Tanggal Akhir</label>
+                                        <input kendo-date-picker k-ng-model="item.tglAkhirSip" k-options="yearSelected" style="width: 100%" />
+                                    </div>
+                                    <div class="grid_1">
+                                        <label c-label c-label-text=""></label>
+                                        <em style="margin-top:6px;" ng-click='resetFilter("#gridSip")' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+                                    </div>
+                                </div>
+                                <div class="grid_12">
+                                    <kendo-grid id="gridSip" k-data-source="datagridSip" options="opsiGridSip"></kendo-grid>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="Str" md-on-select="onTabChanges(2)">
+                            <md-content class="md-padding">
+                                <div class="grid_12">
+                                    <div class="grid_2">
+                                        <label c-label item="item">Tanggal Awal</label>
+                                        <input kendo-date-picker k-ng-model="item.tglAwalStr" k-options="yearSelected" style="width: 100%" />
+                                    </div>
+                                    <div class="grid_2">
+                                        <label c-label item="item">Tanggal Akhir</label>
+                                        <input kendo-date-picker k-ng-model="item.tglAkhirStr" k-options="yearSelected"style="width: 100%" />
+                                    </div>
+                                    <div class="grid_1">
+                                        <label c-label c-label-text=""></label>
+                                        <em style="margin-top:6px;" ng-click='resetFilter("#gridStr")' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+                                    </div>
+                                </div>
+                                <div class="grid_12">
+                                    <kendo-grid id="gridStr" k-data-source="datagridStr" options="opsiGridStr"></kendo-grid>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                    </md-tabs>
+                </md-content>
+            </div>
+        </div>
+    </c-panel>
+</div>
+<div ng-include=' "../app/module/Shared/TemplateLoading" '></div>

@@ -1,0 +1,79 @@
+<div ng-controller="KirimDarahKeRuanganCtrl">
+    <div ng-include='"../app/module/Shared/headerPasienPenunjang" '></div>
+    <div ng-show="!isPrint">
+        <div id="content" class="grid_12">
+            <div class="grid_12">
+                <div class="grid_3" style="border:1px solid black;padding:10px;">
+                    <span k-options="option" kendo-barcode k-type=" 'code128' " ng-model="item.pasien.noCm" style="width: 250px; margin: 0 auto; "></span>
+                    <label class="c-label" style="">{{item.pasien.noCm}}/{{item.pasien.namaPasien}}/{{item.pasienDaftar.dokterPenanggungJawab.namaLengkap}}</label>
+                </div>
+            </div>
+            <div class="grid_12">
+                &nbsp;
+            </div>
+            <div class="grid_3" ng-repeat="data in listPelayananPasien" style="border:1px solid black;padding:10px;">
+                <label class="c-label" style="">Stock:{{data.nobatch}} Vol:{{data.volumen}}</label>
+                <label class="c-label" style="">exp:&nbsp;{{data.tglkadaluarsa|date:'dd-MM-yyyy'}} &nbsp; prod:&nbsp;{{data.tglproduksi|date:'dd-MM-yyyy'}}</label>
+                <label class="c-label" style="">MR:&nbsp;{{item.pasien.noCm}} &nbsp; tgl Lahir:&nbsp;{{item.pasien.tglLahir|date:'dd-MM-yyyy'}}</label>
+                <label class="c-label" style="">Nama:&nbsp;{{item.pasien.namaPasien}} &nbsp; tgl Lahir:&nbsp;{{data.kdproduk.golonganDarah.golonganDarah+' '+data.kdproduk.rhesus.kodeExternal}}</label>
+            </div>
+        </div>
+    </div>
+    <div ng-show="isPrint">
+        <c-panel item="item" header="'pengirimanPesananKeRuangan'" disabled>
+            <div class="grid_4">
+                <table class="table ">
+                    <tr ng-repeat="data in listOrders" ng-click='checked(data)'>
+                        <td style="width:20px">
+                            <img ng-show="selected===data" width="14px" src='stylesheets/work-done24.png' />
+                            <input type="checkbox" ng-show="selected!==data" />
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;{{data.namaProduk}} : {{data.currentOrder}}
+                            <div kendo-progress-bar="progressBar" k-min="0" k-max="100" ng-model="data.progress" style="width: 100%;"></div>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="grid_8">
+                <div class="grid_12">
+                    <input style="width:100%" placeholder="Pencarian Data" c-text-box type="input" class="k-textbox" ng-model="data" />
+                </div>
+                <div class="tiles">
+                    <div ng-repeat="data in listStokProduk|filter:data">
+                        <div>
+                            <div class="tile bg-yellow-saffron red grid_6" ng-click="selectedData(data)" style="height:125px;margin:0px 3px 3px 0px;width:49%">
+                                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                                <div class="check"></div>
+                                <div class="tile-body" style="overflow: initial">
+                                    <i style="font-style: normal;"></i>
+                                </div>
+                                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                                    <div class="icon-panel">
+                                        <img ng-show="data.jumlah==0 || data.jumlah===undefined" width='70px' src='stylesheets/darah.png' />
+                                        <span ng-show="data.jumlah>0" class="day" style="font-size: 61pt">{{data.jumlah}}</span>
+                                    </div>
+                                    <div class="text_panel">
+                                        <div style="position:absolute;    right: 7px;">
+                                            <i class="fa fa-plus fa-2x" style="color:green" ng-click="add(data)" aria-hidden="true"></i>
+                                            <i class="fa fa-minus   fa-2x" style="color:red" aria-hidden="true" ng-click="minus(data)"></i>
+                                        </div>
+                                        <span class="title">{{data.nokantongkemasan}}</span>
+                                        <span class="c-label small-text">{{data.nobatch}}</span>
+                                        <span class="c-label small-text">Status:&nbsp;{{data.statusDarah.namaExternal}}</span>
+                                        <span class="c-label small-text">Supplier:&nbsp;{{data.supplierDarah.namaExternal}}</span>
+                                        <span class="c-label small-text">Lokasi:&nbsp;{{data.lokasiDarah.namaExternal}}</span>
+                                        <label class="c-label small-text">exp:&nbsp;{{data.tglkadaluarsa|date:'dd-MM-yyyy'}} &nbsp; prod:&nbsp;{{data.tglproduksi|date:'dd-MM-yyyy'}}</label>
+                                        <label class="c-label small-text">Sisa Stok:&nbsp;{{data.nostruk.qtyproduk -data.nostruk.qtyprodukoutint-(selected.currentQty /data.volumen)}};&nbsp;vol:&nbsp;{{data.volumen}}</label>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </c-panel>
+    </div>
+    <div ng-include='"../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+</div>

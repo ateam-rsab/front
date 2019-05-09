@@ -1,0 +1,216 @@
+<div ng-show="dataVOloaded">
+	<div class="panel panel-default container_12" style="background-color:transparant">
+        <div class="panel-heading"><label class='title' c-label item="item" c-label-text="Penanganan Keluhan Pelanggan" real></label></div>
+        <div class="panel-body">
+        	<div class="grid_12">
+        		<!-- DATA PELANGGAN -->
+        		<div class="grid_12">
+        			<div class="panel panel-default panel-white">
+        				<div class="panel-heading-white"><span class="title" c-translate>Data Pelanggan</span></div>
+						<div class="panel-body">
+							<div class="grid_12">
+								<div class="grid_3">
+									<div class="grid_12">
+										<label c-label item="item" style="margin-top: 5px">Penanggung Jawab</label>
+									</div>
+									<div class="grid_12">
+								 		<input style="width: 100%;" kendo-combo-box k-ng-model="item.Pegawai" k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataPegawai" />
+									</div>
+								</div>
+								<div class="grid_3">
+									<div class="grid_12">
+										 <label c-label item="item" style="margin-top: 5px">No Rekam Medis</label>
+									</div>
+									<div class="grid_12">
+										 <input c-text-box type="input" class="k-textbox" ng-model="item.noRm" ng-keypress="($event.which == 13)? CariPasien():item.noRm"/>
+									</div>
+								</div>
+								<div class="grid_3">
+									<div class="grid_12">
+										<label c-label item="item" style="margin-top: 5px">Nama</label>
+									</div>
+									<div class="grid_12">
+										<input c-text-box type="input" class="k-textbox" ng-model="item.namaPasien" />
+									</div>
+								</div>
+								<div class="grid_3">
+									<div class="grid_12">
+										 <label c-label item="item" style="margin-top: 5px">Jenis Kelamin</label>
+									</div>
+									<div class="grid_12">
+										<input required style="width: 100%;" kendo-combo-box k-ng-model="item.jenisKelamin" k-data-text-field="'jeniskelamin'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listDataJenisKelamin" />
+									</div>
+								</div>
+							</div>
+							<div class="grid_12">
+								<div class="grid_3">
+									<div class="grid_12">
+										<label c-label item="item" style="margin-top: 5px">Umur</label>
+									</div>
+									<div class="grid_12">
+										 <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.umur" />
+										 <label class="keteranganFieldTambahan numericPAP" style="margin-top: 5px;margin-right: 5px">Tahun</label>
+									</div>
+								</div>
+								<div class="grid_3">
+									<div class="grid_12">
+										<label c-label item="item" style="margin-top: 5px">Telepon/HP</label>
+									</div>
+									<div class="grid_12">
+								 		<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noTlp" />
+									</div>
+								</div>
+								<div class="grid_3">
+									<div class="grid_12">
+										<label c-label item="item" style="margin-top: 5px">Email</label>
+									</div>
+									<div class="grid_12">
+										<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.email"/>
+									</div>
+								</div>
+								<div class="grid_3">
+									<div class="grid_12">
+										<label c-label item="item" style="margin-top: 5px">Pekerjaan</label>
+									</div>
+									<div class="grid_12">
+								 		<input style="width: 100%;" kendo-combo-box k-ng-model="item.pekerjaan" k-data-text-field="'pekerjaan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataPekerjaan" />
+									</div>
+								</div>
+							</div>
+							<div class="grid_12">
+								<div class="grid_3">
+									<div class="grid_12">
+										<label c-label item="item" style="margin-top: 5px">No. Telp Kantor</label>
+									</div>
+									<div class="grid_12">
+								 		<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noTlpKtr" />
+									</div>
+								</div>
+								<div class="grid_3">
+									<div class="grid_12">
+										<label c-label item="item" style="margin-top: 5px">Tanggal Penanganan Keluhan</label>
+									</div>
+									<div class="grid_12">
+										<input style="width: 99.5%" k-ng-model="item.tglPenanganankeluhan"  kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm"/>
+									</div>
+								</div>
+								<div class="grid_6">
+									<div class="grid_12">
+										<label c-label item="item" style="margin-top: 5px">Komplain</label>
+									</div>
+									<div class="grid_12">
+								 		<input c-text-box type="input" filter="''" class="k-textbox" ng-model="item.keluhanUser" />
+									</div>
+								</div>
+							</div>
+						</div>
+        			</div>
+        		</div>
+				<div class="grid_12">
+					<div class="panel panel-default panel-white">
+						<div class="panel-heading-white"><span class="title" c-translate>Penyelesaian Keluhan</span></div>
+						<div class="panel-body">
+							<div class="grid_12" ng-repeat="list in listKesimpulanKronologis | orderBy:'id'" style="margin-top: 10px;">
+			                    <b>{{list.nama}}</b>
+			                    <div ng-repeat="opsi in list.detail | orderBy:'id'" style="margin-top: 5px;">
+			                        <div class="grid_3">
+			                            <input type="checkbox" ng-checked="opsi.isChecked" class="k-checkbox" name="{{opsi.nama}}" id="{{opsi.nama}}" ng-model="bool" value="{{opsi.id}}"  ng-click="addListKesimpulanKronologis(bool,opsi)" >
+			                            <label class="k-checkbox-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+			                        </div>
+			                    </div>
+			                </div>
+						    <div class="grid_6" ng-repeat="list in listTindakLanjut | orderBy:'id'" style="margin-top: 10px;">
+			                    <b>{{list.nama}}</b>
+			                    <div ng-repeat="opsi in list.detail | orderBy:'id'" style="margin-top: 5px;">
+			                        <div class="grid_12" style="margin-top: 5px;">
+			                            <input type="checkbox" ng-checked="opsi.isChecked" class="k-checkbox" name="{{opsi.nama}}" id="{{opsi.nama}}" ng-model="bool" value="{{opsi.id}}"  ng-click="addListTindakLanjut(bool,opsi)" >
+			                            <label class="k-checkbox-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+			                        </div>
+			                    </div>
+			                </div>
+			                <div class="grid_6" ng-repeat="list in listRespon | orderBy:'id'" style="margin-top: 10px;">
+			                    <b>{{list.nama}}</b>
+			                    <div ng-repeat="opsi in list.detail | orderBy:'id'" style="margin-top: 5px;">
+			                        <div class="grid_12" style="margin-top: 5px;">
+			                            <input type="checkbox" ng-checked="opsi.isChecked" class="k-checkbox" name="{{opsi.nama}}" id="{{opsi.nama}}" ng-model="bool" value="{{opsi.id}}"  ng-click="addListRespon(bool,opsi)" >
+			                            <label class="k-checkbox-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+			                        </div>
+			                    </div>
+			                </div>
+			                <div class="grid_6" ng-repeat="list in listSolusiKeluhan | orderBy:'id'" style="margin-top: 10px;">
+			                    <b>{{list.nama}}</b>
+			                    <div ng-repeat="opsi in list.detail | orderBy:'id'" style="margin-top: 5px;">
+			                        <div class="grid_12" style="margin-top: 5px;">
+			                            <input type="checkbox" ng-checked="opsi.isChecked" class="k-checkbox" name="{{opsi.nama}}" id="{{opsi.nama}}" ng-model="bool" value="{{opsi.id}}"  ng-click="addListSolusiKeluhan(bool,opsi)" >
+			                            <label class="k-checkbox-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+			                        </div>
+			                    </div>
+			                </div>
+			                <div class="grid_6" ng-repeat="list in listKategoriKomplain | orderBy:'id'" style="margin-top: 10px;">
+			                    <b>{{list.nama}}</b>
+			                    <div ng-repeat="opsi in list.detail | orderBy:'id'" style="margin-top: 5px;">
+									<div class="grid_12" style="margin-top: 5px;">
+										<span style='background-color: {{opsi.warna}}'> &nbsp;&nbsp;&nbsp;&nbsp;</span>
+			                            <input type="checkbox" ng-checked="opsi.isChecked" class="k-checkbox" name="{{opsi.nama}}" id="{{opsi.nama}}" ng-model="bool" value="{{opsi.id}}"  ng-click="addListKategoriKomplain(bool,opsi)" >
+										<label class="k-checkbox-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+									
+			                        </div>
+			                    </div>
+			                </div>
+			                <div class="grid_12" style="margin-top: 10px;">
+								<div class="grid_12">
+									<label c-label item="item" style="margin-top: 10px">Hasil Klarifikasi Petugas</label>
+								</div>
+								<div class="grid_12">
+									<textarea required class="k-textbox" style="height: 150px; width: 100%; resize: none; margin-top: 5px" ng-model="item.Keluhan"></textarea>
+								</div>
+							</div>		
+						</div>	
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_5">
+						<div class="grid_12">
+							<span style="font-family:'Tahoma','sans-serif';font-size:8pt;"><b>Keterangan Kategori Komplain</b></span>
+						</div>
+						<br/>
+						<div class="grid_12"></div>
+						<br/>
+						<div class="grid_12">						
+							<span style="font-family:'Tahoma','sans-serif';font-size:8pt;"><b>Merah : cenderung berhubungan dengan polisi,pengadilan,kematian,mengancam</b></span>	
+						</div> 
+						<div class="grid_1"></div>
+						<div class="grid_11">						
+							<span style="font-family:'Tahoma','sans-serif';font-size:8pt;"><b>sistem/kelangsungan organisasi, poptensi kerugian
+							material dll.</b></span>	
+						</div> 
+						<div class="grid_12">						
+							<span style="font-family:'Tahoma','sans-serif';font-size:8pt;"><b>Kuning : cenderung berhubungan dengan pemberitaan media,</b></span>	
+						</div> 
+						<div class="grid_1"></div>
+						<div class="grid_11">						
+							<span style="font-family:'Tahoma','sans-serif';font-size:8pt;"><b>potensi kerugian in material, dll.</b></span>	
+						</div>
+						<div class="grid_12">						
+							<span style="font-family:'Tahoma','sans-serif';font-size:8pt;"><b>Hijau : tidak menimbulkan kerugian berarti baik material maupun immaterial.</b></span>	
+						</div> 
+					</div>
+				    <div class="grid_3"></div>
+					<div class="grid_2">
+					    <c-button ng-show="!isLoading" class="success" style="width: 99.5%; font-size: 24px; padding:0px, margin:0px; text-align: center;" item="item" size="36" position=" 'right'" is-validate ng-click="Save()">
+				            <span class="title">Simpan</span>
+				        </c-button>
+					</div>
+					<div class="grid_2">
+					    <c-button ng-show="!isLoading" style="width: 99.5%; font-size: 24px; padding:0px, margin:0px; text-align: center;" item="item" size="36" position=" 'right'" class="cancel" ng-click="reset()">
+				            <span class="title">Batal</span>
+				        </c-button>
+					</div>
+				</div> 
+				<div class="grid_12" style="margin-top:60px">
+			        <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+			    </div>
+	        </div>
+        </div>
+    </div>
+</div>

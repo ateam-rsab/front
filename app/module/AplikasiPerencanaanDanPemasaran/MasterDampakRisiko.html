@@ -1,0 +1,52 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Master Dampak Risiko</div>
+	<div class="panel-body">
+		<!-- <div class="grid_12" style="margin-top: 5px">
+			<div class="grid_2"></div>
+			<div class="grid_3" style="margin-top: 10px">
+				<label c-label item="item" c-label-text="kode"></label>
+			</div>
+			<div class="grid_3">
+				<input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.kode" disabled="true"/>
+			</div>
+		</div> -->
+		<div class="grid_12">
+			<div class="grid_3"></div>
+			<div class="grid_6">
+				<div class="grid_12" style="margin-top: 5px">
+					<div class="grid_3" style="margin-top: 10px">
+						<label c-label item="item">Dampak Risiko</label>
+					</div>
+					<div class="grid_8">
+						<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.dampakResiko" ng-keypress="($event.which == 13)? Save():item.dampakResiko"/>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_5"></div>
+					<div class="grid_3">
+						<button class="c-button success" ng-click="Save()">Simpan</button>
+					</div>
+					<div class="grid_3">
+						<button class="c-button cancel" ng-click="Batal()">Batal</button>
+					</div>
+					<!-- <div class="grid_2">
+						<button class="c-button" ng-click="Delete()">Hapus</button>
+					</div>
+					<div class="grid_2">
+						<button class="c-button">Tutup</button>
+					</div> -->
+				</div>
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_3"></div>
+			<div class="grid_6" style="margin-top: 10px">
+				<div kendo-grid k-on-change="SelectDampak(data)" k-data-source="sourceDampakRisiko" k-selectable="'row'" options="mainGridOptions">
+				</div>
+			<!-- <div kendo-grid k-on-change="SelectDampak(data)" k-data-source="sourceDampakRisiko" k-selectable="'row'" k-columns="columnDampakRisiko" pageable="true" pagesize="2" scrollable="false">
+			</div> -->
+			</div>
+			</div>
+		</div>
+	</div>
+</div>

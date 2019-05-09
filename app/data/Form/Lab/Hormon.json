@@ -1,0 +1,27 @@
+{
+	"model":{
+	    "Reproduksi" : "",
+	    "LainLain" : "",
+	    "Tiroid" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "Reproduksi",
+			"messagesRequired" : "",
+			"caption" : "Reproduksi"
+		},
+		{
+			"isNull" : "true",
+			"name" : "LainLain",
+			"messagesRequired" : "",
+			"caption" : "LainLain"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Tiroid",
+			"messagesRequired" : "",
+			"caption" : "Tiroid"
+		}
+  ]
+}

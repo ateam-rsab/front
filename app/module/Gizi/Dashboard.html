@@ -1,0 +1,158 @@
+<div ng-controller="DashboardGiziCtrl">
+    <div class="grid_12">
+        <span class="title center">
+            Informasi Pelayanan Gizi
+            <br/>
+            
+        </span>
+        <table style="width: 281px;margin-left: auto;margin-right: auto;">
+            <tbody>
+                <tr>
+                    <td style="width: 37px;">Tanggal</td>
+                    <td style="width: 83px;" class="ng-binding">{{now |date:'dd-MM-yyyy' }} </td>
+                    <td style="width: 26px;">Jam</td>
+                    <td style="width: 83px;" class="ng-binding">{{now |date:'hh:mm:ss' }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+    <div class="grid_12">
+        <span class="title center">
+            &nbsp;
+            </span>
+    </div>
+    <div class="tiles">
+        <div class="grid_6" ng-show='state===1 || state===0'>
+            <div class="tile bg-yellow-saffron red" style="height:100px" ng-click="navigateQueue()">
+                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                <div class="check"></div>
+                <div class="tile-body" style="overflow: initial">
+                    <i style="font-style: normal;"></i>
+                </div>
+                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                    <div class="text_panel">
+                        <span class="title"><label c-label c-label-text="Daftar" statment></label></span>
+                    </div>
+                    <div class="grid_12">
+                        <table style="margin-top: 8px;">
+                            <tr>
+                                <td style="width: 100px;">
+                                    <div class="icon-panel">
+                                        <img width='70px' src='stylesheets/Shared/Queue.png' />
+                                    </div>
+                                </td>
+                                <td style="position:relative"><span class="information-label">010</span>
+                                    <span c-translate class="detail-information"> terdaftar</span></td>
+                                <td style="position:relative"> <span class="information-label">007</span>
+                                    <span c-translate class="detail-information"> dipanggil</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_6" ng-show='state===2 || state===0'>
+            <div class="tile bg-yellow-saffron yellow" style="height:100px" ng-click="navigatePersiapan()">
+                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                <div class="check"></div>
+                <div class="tile-body" style="overflow: initial">
+                    <i style="font-style: normal;"></i>
+                </div>
+                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+
+                    <div class="text_panel">
+                        <span class="title"><label c-label c-label-text="Persiapan" statment></label></span>
+                    </div>
+                    <div class="grid_12">
+                        <table style="margin-top: 8px;">
+                            <tr>
+                                <td style="width: 100px;">
+                                    <div class="icon-panel">
+                                        <img width='70px' src='stylesheets/Shared/gizi.png' />
+                                    </div>
+                                </td>
+                                <td style="position:relative"><span class="information-label">007</span>
+                                    <span c-translate class="detail-information"> menunggu</span></td>
+                                <td style="position:relative"> <span class="information-label">005</span>
+                                    <span c-translate class="detail-information"> dilayani</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_6" ng-show='state===3 || state===0'>
+            <div class="tile bg-yellow-saffron green" style="height:100px" ng-click="navigatePeriksa()">
+                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                <div class="check"></div>
+                <div class="tile-body" style="overflow: initial">
+                    <i style="font-style: normal;"></i>
+                </div>
+                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+
+                    <div class="text_panel">
+                        <span class="title"><label c-label c-label-text="Periksa" statment></label></span>
+                    </div>
+                    <div class="grid_12">
+                        <table style="margin-top: 8px;">
+                            <tr>
+                                <td style="width: 100px;">
+                                    <div class="icon-panel">
+                                        <img width='70px' src='stylesheets/Shared/result.png' />
+                                    </div>
+                                </td>
+                                <td style="position:relative"><span class="information-label">005</span>
+                                    <span c-translate class="detail-information"> menunggu</span></td>
+                                <td style="position:relative"> <span class="information-label">003</span>
+                                    <span c-translate class="detail-information"> dilayani</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="grid_6" ng-show='state===4 || state===0'>
+            <div class="tile bg-yellow-saffron blue" style="height:100px" ng-click="navigateHasil()">
+                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                <div class="check"></div>
+                <div class="tile-body" style="overflow: initial">
+                    <i style="font-style: normal;"></i>
+                </div>
+                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+
+                    <div class="text_panel">
+                        <span class="title"><label c-label c-label-text="Hasil" statment></label></span>
+                    </div>
+                    <div class="grid_12">
+                        <table style="margin-top: 8px;">
+                            <tr>
+                                <td style="width: 100px;">
+                                    <div class="icon-panel">
+                                        <img width='70px' src='stylesheets/Shared/take.png' />
+                                    </div>
+                                </td>
+                                <td style="position:relative"><span class="information-label">003</span>
+                                    <span c-translate class="detail-information"> tersedia</span></td>
+                                <td style="position:relative"> <span class="information-label">001</span>
+                                    <span c-translate class="detail-information"> sudah diambil</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_6" ng-show='state!==0' style='    position: relative;height: 109px;'>
+            <ul class="list-menu">
+                <li><img src="stylesheets/Shared/first.png" ng-click='first()' /></li>
+                <li><img src="stylesheets/Shared/back.png" ng-click='back()' /></li>
+                <li><img src="stylesheets/Shared/next.png" ng-click='next()' /></li>
+                <li><img src="stylesheets/Shared/last.png" ng-click='last()' /></li>
+            </ul>
+        </div>
+        <div class="grid_12" ui-view></div>
+
+    </div>
+</div>

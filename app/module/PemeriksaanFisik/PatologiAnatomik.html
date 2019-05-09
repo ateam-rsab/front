@@ -1,0 +1,106 @@
+<div ng-controller="PatologiAnatomikCtrl">
+    <c-panel item="item" header="'Laboratorium Patalogi Anatomik'">
+      
+		<div class="grid_6">
+		<div class="grid_12">
+	       <div class="grid_12" style="margin: 10px 5px 5px 10px;">
+		   <label c-label item="item" c-label-text="CaraPengambilan"></label>
+	    </div>
+		   <div class="grid_3" style="margin: 10px 5px 5px 10px;" ng-repeat="stat in listStatusPengambilan">
+           <input type="checkbox"  name="{{stat.name}}" id="{{stat.name}}" class="k-checkbox"  value="{{stat.name}}"  >
+           <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+	    </div>
+		</div>
+		
+				<div class="clear"> </div>
+					 <div class="grid_12" style="margin: 10px 5px 5px 10px;">
+				  <label c-label item="item" c-label-text="Bahan"></label>
+		</div>
+		
+       
+       		
+				  
+				  
+				   <div class="grid_12" style="margin: 10px 5px 5px 10px;">
+				   <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.Bahan" />
+				</div> 
+				</div>
+ <div class="grid_6">				
+				   
+					 <div class="grid_12">
+					  <div class="grid_12" style="margin: 10px 5px 5px 10px;">
+				  <label c-label item="item" c-label-text="DiagnosisKlinik"></label>
+				  </div>
+				  <div class="grid_12"  style="margin: 10px 5px 5px 10px;">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.DiagnosisKlinik"
+                               k-data-text-field="'namaDiagnosa'"
+                               k-filter="'contains'"
+                               k-data-value-field="'id'"
+                               k-data-source="listStatusDiagnosa" />
+                    </div>
+					
+					 <div class="grid_12" style="margin: 10px 5px -3px 10px;">
+					 <label c-label item="item" c-label-text="DiambilTanggal"></label>
+					 </div>
+
+					  <div class="grid_12" style="margin: 10px 5px 5px 10px;">
+					<input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.DiambilTanggal" k-data-text-field="'tanggallahir'" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+					 </div>
+					 
+					 
+			</div>	
+  </div>			
+					
+					<div class="clear"> </div>		
+	
+			
+            </div>
+			
+		</c-panel>
+			
+        <!--
+		
+
+		
+		--->
+			
+		<div class="clear"></div>
+		
+     
+		  
+		 
+		 
+		
+
+		 </br>
+		 </br>
+	 <div class="grid_12">
+			<div class="grid_12"><div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>	
+    </div>	  
+		  
+
+
+
+	 
+         
+		 
+		  
+		  
+         
+		 
+		 
+		
+		 
+	     
+	 
+	 
+
+
+		
+		
+		
+		  
+		
+		
+	
+		

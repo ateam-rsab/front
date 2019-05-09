@@ -1,0 +1,158 @@
+<div ng-controller="ReturPenjualanCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Retur Penjualan'">
+			<div class="grid_12">
+				<div class="grid_10">
+					<!-- tanggal jam -->
+					<div class="grid_3">
+						<div class="grid_12" style="margin-top:5px">
+		                <label c-label item="item" c-label-text="Tanggal"></label>
+			            </div>
+			            <div class="grid_12">
+			                  <input style="width: 100%" k-ng-model="item.periode"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+			            </div>
+					</div>
+
+					<!-- no resep -->
+					<div class="grid_3">
+						<div class="grid_12" style="margin-top:5px">
+		                <label c-label item="item" c-label-text="NoResep"></label>
+			            </div>
+			            <div class="grid_12">
+			                 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPasien" />
+			            </div>
+					</div>
+
+					<!-- no retur -->
+					<div class="grid_3">
+						<div class="grid_12" style="margin-top:5px">
+		                <label c-label item="item" c-label-text="NoRetur"></label>
+			            </div>
+			            <div class="grid_12">
+			                 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPasien" />
+			            </div>
+					</div>
+
+					<!-- diskon -->
+					<div class="grid_3">
+						<div class="grid_12" style="margin-top:5px">
+		                <label c-label item="item" c-label-text="Diskon"></label>
+			            </div>
+			            <div class="grid_12">
+			                 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPasien" />
+			            </div>
+					</div>
+					<div class="clear"></div>
+				</div>
+
+
+				<div class="grid_2">
+					<c-button ng-show="!isLoading" class="success" item="item" size="30" position="'right'" is-validate click="SimpanKeluhanUtama" icon="'fa fa-chevron-right'">
+                    <span class="title" c-translate>Hapus Retur ini</span>
+                    </c-button>
+				</div>
+				<div class="clear"></div>
+
+
+				<div class="grid_10">
+					<!-- no reg -->
+					<div class="grid_3">
+						<div class="grid_12" style="margin-top:5px">
+		                <label c-label item="item" c-label-text="NoReg"></label>
+			            </div>
+			            <div class="grid_12">
+			                 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPasien" />
+			            </div>
+					</div>
+
+					<!-- no hr -->
+					<div class="grid_3">
+						<div class="grid_12" style="margin-top:5px">
+		                <label c-label item="item" c-label-text="NoHr"></label>
+			            </div>
+			            <div class="grid_12">
+			                 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPasien" />
+			            </div>
+					</div>
+
+					<!-- nama pasien -->
+					<div class="grid_3">
+						<div class="grid_12" style="margin-top:5px">
+		                <label c-label item="item" c-label-text="NamaPasien"></label>
+			            </div>
+			            <div class="grid_12">
+			                 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPasien" />
+			            </div>
+					</div>
+
+					<!-- jenis kelamin -->
+					<div class="grid_3">
+						<div class="grid_12" style="margin-top:5px">
+		                <label c-label item="item" c-label-text="JenisKelamin"></label>
+			            </div>
+			            <div class="grid_12">
+			                 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPasien" />
+			            </div>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_10">
+					<!-- umur -->
+					<div class="grid_3">
+						<div class="grid_12" style="margin-top:5px">
+		                <label c-label item="item" c-label-text="Umur"></label>
+			            </div>
+			            <div class="grid_12">
+			                 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPasien" />
+			            </div>
+					</div>
+
+					<!-- dokter -->
+					<div class="grid_3">
+						<div class="grid_12" style="margin-top:5px">
+		                <label c-label item="item" c-label-text="Dokter"></label>
+			            </div>
+			            <div class="grid_12">
+			                 <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+			            </div>
+					</div>
+
+					<!-- asal resep -->
+					<div class="grid_3">
+						<div class="grid_12" style="margin-top:5px">
+		                <label c-label item="item" c-label-text="AsalResep"></label>
+			            </div>
+			            <div class="grid_12">
+			                 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaPasien" />
+			            </div>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+            </div>
+			<div class="clear"></div>
+           
+
+            <!-- grid table penjualan -->
+			<div class="grid_12" style="margin-top: 10px;">
+               <div kendo-grid k-data-source="dataResep" k-selectable="'row'" k-columns="columnResep" toolbar="headerTemplatePenjualan">
+                </div>
+            </div>
+            <div class="clear"></div>
+
+             <!-- grid table pengembalian -->
+			<div class="grid_12" style="margin-top: 10px;">
+               <div kendo-grid k-data-source="dataResep" k-selectable="'row'" k-columns="columnResep" toolbar="headerTemplatePengembalian" scrollable="'true'">
+                </div>
+            </div>
+            <div class="clear"></div>
+		</c-panel>
+
+		<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+
+	</div>
+
+</div>
+

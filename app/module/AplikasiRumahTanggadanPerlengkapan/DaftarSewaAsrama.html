@@ -1,0 +1,75 @@
+<div>
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Daftar Sewa Asrama'">
+			<div class="panel panel-default container_12">
+				<div class="grid_12">
+					<div class="grid_6">
+						<div class="panel panel-default container_12">
+							<div class="panel-body">
+								<div class="grid_12">
+									<div class="grid_1">
+
+									</div>
+									<div class="grid_4">
+										<label c-label item="item" c-label-text="periodeAwal"></label>
+									</div>
+									<div class="grid_4">
+										<label c-label item="item" c-label-text="periodeAkhir"></label>
+									</div>
+								</div>
+
+								<div class="clear"></div>
+								<div class="grid_12">
+									<div class="grid_1"></div>
+									<div class="grid_4">
+										<input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAwal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"
+										/>
+									</div>
+									<div class="grid_4">
+										<input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAkhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"
+										/>
+									</div>
+									<div class="grid_2" style="margin:7px">
+										<button class="c-button" ng-click="find()">
+											<span>Cari</span>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+					<div class="grid_12">
+						<div id="gridSewaAsrama" kendo-grid k-options="mainGridOptions" k-ng-model="current" ng-click="kl(current)"></div>
+					</div>
+
+				</div>
+
+				<div class="grid_8"></div>
+				<!-- <div class="grid_2" style="margin-top: 25px; font-size: 24px; ">
+					<button class="c-button " ng-show="!isLoading " item="item " ng-click="batal()">
+            		<span class="title ">Batal</span></button>
+				</div> -->
+				<div class="grid_2" style="margin-top: 25px; font-size: 24px; ">
+					<button class="c-button cancel" ng-show="!isLoading " item="item " ng-click="out(current.noOrder, current.status)">
+            		<span class="title ">Check Out</span></button>
+				</div>
+				<div class="grid_2 " style="margin-top: 25px; font-size: 24px; margin-bottom:30px">
+					<button class="c-button " ng-show="!isLoading " item="item " ng-click="daftarKamar(current) ">
+                   <span class="title ">Daftar Kamar</span></button>
+				</div>
+				<div class="clear"></div>
+				<c-panel item="item" header="'Daftar Kamar'" ng-show="detail" >
+					<div class="panel panel-default container_12">
+
+						<div class="panel-body">
+							<div kendo-grid ng-show="detail" k-data-source="detailDaftarSewaAsrama" k-ng-model="detailKamar" k-selectable="'row'" k-columns="columnDetailDaftarSewaAsrama"
+								style="margin-bottom: 10px"></div>
+						</div>
+					</div>
+				</c-panel>
+			</div>
+		</c-panel>
+	</div>
+</div>

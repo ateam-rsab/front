@@ -1,0 +1,234 @@
+<style>
+.menu-layanan{
+    position: absolute;
+    top: 50px;
+    width: 100%;
+}
+
+.box-menu-layanan{
+    padding: 13px !important;
+}
+
+.box-image-menu-layanan{
+    width:100%;
+    box-shadow: 5px 10px 18px 1px #abaaaa;
+}
+
+.menu-back{
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    background: white;
+    height: 50px;
+    box-shadow: 0px 2px 20px 1px #abaaaa;
+}
+
+.container-navigation-menu{
+    position: relative;
+}
+
+.btn-back-menu-layanan{
+    cursor: pointer;
+    color: #bbbcbd;
+    font-weight: 700;
+    padding-left: 30px;
+    position: absolute;
+    left: 0px;
+    top:0px;
+    text-align: left;
+    display: inline-block;
+}
+
+.title-menu-layanan{
+    cursor: pointer;
+    color: black;
+    font-weight: 700;
+    padding-right: 30px;
+    position: absolute;
+    right: 0px;
+    top:0px;
+    text-align: right;
+    display: inline-block;
+}
+
+.tooltip-rmpelayanan{
+    z-index: 10;
+    background-color: #2a2d33;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: -75px;
+    left: 67px;
+}
+
+.tooltip-keuangan{
+    z-index: 10;
+    background-color: #2a2d33;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: 85px;
+    right: -119px;
+}
+
+.tooltip-sdm{
+    bottom: 85px;
+    left: -190px;
+    z-index: 10;
+    background-color: #2a2d33;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+}
+
+.tooltip-sarpras{
+    bottom: 84px;
+    right: -190px;
+    z-index: 10;
+    background-color: #2a2d33;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+}
+
+.tooltip-manajemen{
+    top: 82px;
+    left: -125px;
+    z-index: 10;
+    background-color: #2a2d33;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+}
+
+.cont-hover {
+    z-index: 999;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(42, 45, 51, 0.5);
+}
+
+
+.form-ruangan{
+    width: 300px;
+    height: 100px;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -70px 0 0 -170px;
+    background-color: #2a2d33;
+    border: 1px solid #10c4b2;
+}
+
+.tooltip-menu-1{
+    z-index: 10;
+    background-color: #2a2d33;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: -90px;
+    left: 70px;
+}
+
+.tooltip-menu-2{
+    z-index: 10;
+    background-color: #2a2d33;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: 70px;
+    left: -195px;
+}
+
+.tooltip-menu-3{
+    z-index: 10;
+    background-color: #2a2d33;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: 215px;
+    left: -250px;
+}
+
+.tooltip-menu-4{
+    z-index: 10;
+    background-color: #2a2d33;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    right: -160px;
+    top: 70px;
+}
+
+.tooltip-menu-5{
+    z-index: 10;
+    background-color: #2a2d33;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: 215px;
+    right: -190px;
+}
+
+.tooltip-menu-6{
+    z-index: 10;
+    background-color: #2a2d33;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: 385px;
+    left: 75px;
+}
+
+
+
+</style>
+
+<div ng-controller="HomeCtrl">
+    <br/>
+    <br/>
+
+    <!-- navigasi back -->
+    <div class="menu-back">
+        <div class="container-navigation-menu" ng-click="goToHome()">
+            <h3 class="btn-back-menu-layanan"><i class="fa fa-arrow-left" style="color:#bbbcbd;margin-right: 15px;"></i>back</h3>
+            <h3 class="title-menu-layanan"></h3>
+        </div>
+    </div> 
+
+    <div  class="menu-layanan" style="align:center;  width: ">
+        <h2 class="grid_3">{{dataWelcome.namaModul}}</h2>
+        <div class="grid_12"></div>
+        <div class="grid_12"></div>
+        <div class="grid_9  box-menu-layanan">
+        * note : Gunakan menu <i class="fa fa-bars" style="color: black; font-weight: bold;" /> untuk bernavigasi.
+        </div>
+        <div class="grid_12"></div>
+        <div class="grid_3 box-menu-layanan" style="cursor: pointer;">
+            <img ng-src="images/menu/{{dataWelcome.urlIconModul}}" class="box-image-menu-layanan">
+         </div>
+         <div class="grid_12"></div>
+         <div class="grid_3 box-menu-layanan">
+              <div class="grid_3" style="align : right; font-weight: bold;">Unit Kerja :</div>
+              <div class="grid_9" style="align : left; font-weight: bold;">{{dataWelcome.unitKerja}} </div>
+        </div>         
+
+    </div>
+
+    </div>
+</div>

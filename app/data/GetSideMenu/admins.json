@@ -1,0 +1,79 @@
+[{
+    "name": "Adre",
+    "children": []
+}, {
+    "name": "Dicky",
+    "children": []
+}, {
+    "name": "Hanafi",
+    "children": []
+}, {
+    "name": "Roni",
+    "children": []
+}, {
+    "name": "Miftah",
+    "children": []
+}, {
+    "name": "Rahman",
+    "children": []
+}, {
+    "name": "Isti",
+    "children": []
+}, {
+    "name": "A",
+    "children": [{
+        "name": "Agama",
+        "link": "#/Master/Agama"
+    }, {
+        "name": "Asuransi",
+        "link": "#/DetailAsuransi"
+    }]
+}, {
+    "name": "Rekam Medik",
+    "children": [{
+        "name": "Biopsi",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/Biopsi"
+    }]
+}, {
+    "name": "C",
+    "children": [{
+        "name": "CairanTubuh",
+        "link": "#/CairanTubuh"
+    }, {
+        "name": "Catatan",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/Catatan"
+    }, {
+        "name": "CheckBox",
+        "link": "#/SampleCreateForm/CheckBox"
+    }, {
+        "name": "CheckIn",
+        "link": "#/Bedah/CheckIn"
+    }, {
+        "name": "CheckListKeselamatanPasien",
+        "link": "#/PengkajianAwalPasienRawatJalanAnak/CheckListKeselamatanPasien"
+    }, {
+        "name": "ComboBox",
+        "link": "#/SampleCreateForm/ComboBox"
+    }]
+}, {
+    "name": "D",
+    "children": [{
+        "name": "Daftar Antrian",
+        "link": "#/Daftar/Antrian"
+    }, {
+        "name": "Daftar Minuman",
+        "link": "#/DaftarMinuman"
+    }, {
+        "name": "Daftar Pasien BPJS",
+        "link": "#/Daftar/BPJS"
+    }, {
+        "name": "Daftar Pasien Perjanjian",
+        "link": "#/Daftar/Perjanjian"
+    }, {
+        "name": "Daftar Pasien Ruangan",
+        "link": "#/Daftar/Ruangan"
+    }, {
+        "name": "Dashboard Pasien",
+        "link": "#/Dashboard/Pasien/Main"
+    }]
+}]

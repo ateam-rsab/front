@@ -1,0 +1,41 @@
+<div ng-controller="InformasiMutasiSanksiResignCtrl">
+<div ng-show="dataVOloaded">
+<c-panel item="item" header="'Informasi Mutasi Sanksi Resign'" disabled>
+
+<!-- pencarianNamaPegawai -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="pencarianNamaPegawai"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.pencarianNamaPegawai" />
+</div>
+</div>
+
+<!-- InformasiMutasiSanksiResign -->
+<div class="grid_12">
+<div class="grid_12 headerBox">
+<p>InformasiMutasiSanksiResign</p>
+</div>
+<div class="clear"></div>
+
+<!-- grid table -->
+<div class="grid_12 borderBox">
+<div kendo-grid options="mainGridOptions" k-data-source="dataInformasiMutasiSanksiResign" k-selectable="'row'" k-columns="columnInformasiMutasiSanksiResign">
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+
+
+</c-panel>
+
+<div class="grid_12" style="margin-top:30px">
+<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
+</div>
+</div>
+</div>

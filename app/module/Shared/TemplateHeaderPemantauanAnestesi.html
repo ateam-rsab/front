@@ -1,0 +1,174 @@
+<div class="grid_12">
+    <div class="grid_6">
+    	<!-- diagnosis pra bedah -->
+		<div class="grid_12" style="margin-top:5px">
+        <label c-label item="item" c-label-text="diagnosisiPraBedah"></label>
+        </div>
+        <div class="grid_12">
+           <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.diagnosisiPraBedah" />
+        </div>
+        <div class="clear"></div>
+
+        <!-- teknik Anestesia -->
+		<div class="grid_12" style="margin-top:5px">
+        <label c-label item="item" c-label-text="teknikAnestesia"></label>
+        </div>
+        <div class="grid_12">
+           <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.teknikAnestesia" />
+        </div>
+        <div class="clear"></div>
+
+        <!-- diagnosis pasca bedah -->
+		<div class="grid_12" style="margin-top:5px">
+        <label c-label item="item" c-label-text="diagnosisPascaBedah"></label>
+        </div>
+        <div class="grid_12">
+           <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.diagnosisPascaBedah" />
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="grid_6">
+		<!-- tgl jam -->
+		<div class="grid_12" style="margin-top:5px">
+        <label c-label item="item" c-label-text="tgl"></label>
+        </div>
+        <div class="grid_12">
+           <input style="width: 100%" k-ng-model="item.tgl"  kendo-date-time-picker k-max="now" placeholer="dd-mm-yyyy HH:mm:ss" k-format="'dd-MM-yyyy HH:mm:ss'" />
+        </div>
+        <div class="clear"></div>
+
+
+    	<!-- prosedur operasi -->
+		<div class="grid_12" style="margin-top:5px">
+        <label c-label item="item" c-label-text="prosedurOperasi"></label>
+        </div>
+        <div class="grid_12">
+           <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.prosedurOperasi" />
+        </div>
+        <div class="clear"></div>
+
+        <!-- tgl tindakan -->
+		<div class="grid_12" style="margin-top:5px">
+        <label c-label item="item" c-label-text="tglTindakan"></label>
+        </div>
+        <div class="grid_12">
+            <input style="width: 100%" k-ng-model="tempItem.tglTindakan"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<div class="grid_12">
+<hr style="background-color:#10C4B2;height: 1px;border: 0;" />
+</div>
+
+<div class="grid_12">
+	<div class="grid_2">
+		<!-- keadaaan prabedah -->
+		<div class="grid_12" style="margin-top:5px">
+        	<label c-label item="item" c-label-text="keadaanPrabedah"></label>
+        </div>
+	</div>
+
+	<div class="grid_2">
+		<!-- bb -->
+		<div class="grid_12" style="margin-top:5px">
+        <label c-label item="item" c-label-text="bb"></label>
+        </div>
+        <div class="grid_12">
+           <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.bb" />
+        </div>
+        <div class="clear"></div>
+
+        <!-- td -->
+		<div class="grid_12" style="margin-top:5px">
+        <label c-label item="item" c-label-text="td"></label>
+        </div>
+        <div class="grid_12">
+           <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.td" />
+        </div>
+        <div class="clear"></div>
+	</div>
+
+	<div class="grid_2">
+		<!-- tb -->
+		<div class="grid_12" style="margin-top:5px">
+        <label c-label item="item" c-label-text="tb"></label>
+        </div>
+        <div class="grid_12">
+           <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.tb" />
+        </div>
+        <div class="clear"></div>
+
+        <!-- nadi -->
+		<div class="grid_12" style="margin-top:5px">
+        <label c-label item="item" c-label-text="nadi"></label>
+        </div>
+        <div class="grid_12">
+           <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.nadi" />
+        </div>
+        <div class="clear"></div>
+	</div>
+
+	<div class="grid_2">
+		<!-- gol darah -->
+		<div class="grid_12" style="margin-top:5px">
+        <label c-label item="item" c-label-text="golDarah"></label>
+        </div>
+        <div class="grid_12">
+           <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.golDarah" />
+        </div>
+        <div class="clear"></div>
+
+        <!-- suhu -->
+		<div class="grid_12" style="margin-top:5px">
+        <label c-label item="item" c-label-text="suhu"></label>
+        </div>
+        <div class="grid_12">
+           <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.suhu" />
+        </div>
+        <div class="clear"></div>
+	</div>
+
+	<div class="grid_2">
+		<!-- rh -->
+		<div class="grid_12" style="margin-top:5px">
+        <label c-label item="item" c-label-text="rh"></label>
+        </div>
+        <div class="grid_12">
+           <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.rh" />
+        </div>
+        <div class="clear"></div>
+
+        <!-- hb -->
+		<div class="grid_12" style="margin-top:5px">
+        <label c-label item="item" c-label-text="hb"></label>
+        </div>
+        <div class="grid_12">
+           <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.hb" />
+        </div>
+        <div class="clear"></div>
+
+        <!-- ht -->
+		<div class="grid_12" style="margin-top:5px">
+        <label c-label item="item" c-label-text="ht"></label>
+        </div>
+        <div class="grid_12">
+           <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.ht" />
+        </div>
+        <div class="clear"></div>
+	</div>
+
+	<div class="grid_2">
+		<!-- alergi -->
+		<div class="grid_12" style="margin-top:5px">
+        <label c-label item="item" c-label-text="alergi"></label>
+        </div>
+        <div class="grid_12">
+           <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.alergi" />
+        </div>
+        <div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+</div>

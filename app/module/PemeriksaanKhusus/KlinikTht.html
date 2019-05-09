@@ -1,0 +1,24 @@
+<div ng-controller="KlinikThtCtrl">
+    <br/>
+    <div>
+        <!-- panel utama -->
+        <c-panel item="item" header="'klinikTHT'" disabled>
+            <div class="grid_12">
+                <div class="grid_12" ng-repeat="data in listData">
+                    <div class="grid_6">
+                        <label c-label c-label-text="{{data.title}}" statment></label>
+
+                        <img ng-show="data.image!==undefined" ng-src="{{data.image}}" />
+                    </div>
+                    <div class="grid_6">
+                        <div class="grid_6" ng-repeat="subData in data.children">
+                            <label c-label c-label-text="{{subData.item+'-'+subData.title}}" statment></label>
+                            <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model='subData.value' />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </c-panel>
+    </div>
+    <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+</div>

@@ -1,0 +1,66 @@
+<div ng-controller="DaftarRABctrl"> 
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Daftar RAB'" disabled>
+
+			<!-- -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<div class="grid_2" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="Unit Kerja"></label>
+					</div>
+					<div class="grid_4">
+						<input style="width: 200px" kendo-combo-box k-ng-model="item.now" />
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="Periode"></label>
+					</div>
+					<div class="grid_4">
+						<input style="width: 100px" kendo-combo-box k-ng-model="item.now" />
+					</div>
+					<div class="grid_2" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="Sampai"></label>
+					</div>
+					<div class="grid_4">
+						<input style="width: 100px" kendo-combo-box k-ng-model="item.now" />
+					</div>
+				</div>
+			</div>
+			<div class="clear"></div>
+
+			<br/>
+
+			
+
+			<!-- PenyusunanTRPNBP -->
+			<div class="grid_12">
+				<div class="grid_12 headerBox">
+					<p>Daftar RAB</p>
+				</div>
+				<div class="clear"></div>
+
+				<!-- grid table -->
+				<!-- <div class="grid_12 borderBox">
+					<div kendo-grid k-data-source="dataPenyusunanTRPNBP" k-selectable="'row'" k-columns="columnPenyusunanTRPNBP">
+					</div>
+				</div> -->
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+
+			<br/>
+
+		</c-panel>
+	
+		<div class="grid_12">
+			<div class="grid_4">
+				<button class="c-button"  style="width: 150px" ng-click="Batal()">Refresh</button>
+			</div>
+		</div>
+
+		<!-- <div class="grid_12" style="margin-top:30px">
+			<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
+		</div> -->
+	</div>
+</div>

@@ -1,0 +1,121 @@
+<div ng-controller="MasterGajiPokokPegawaiCtrl">
+   <div ng-show="dataVOloaded">
+      <c-panel item="item" header="'Master Gaji Pokok Pegawai'" disabled>
+         <div class="grid_6">
+            <div class="panel panel-default container_12">
+               <!--		<div class="panel-heading" c-translate>Periode</div> -->
+               <!--		<div class="panel-body"> -->
+<!--                <div class="grid_12">
+                  <div class="grid_5" style="margin: 6px 0 0 0;">
+                     <label><b>Kode Profile</b></label>
+                  </div>
+                  <div class="grid_7">
+                     <input style="width: 100%;" kendo-combo-box k-ng-model="item.fakultas" k-data-text-field="'keterangan'" k-data-value-field="'id'" k-filter="'contains'"
+                        k-auto-bind="false" k-data-source="Listpublikasi" />
+                  </div>
+               </div> -->
+               <div class="grid_12"> 
+                   <div class="grid_5" style="margin: 10px 0 0 0;">
+                     <label c-label item="item" c-label-text="Detail Kategori Pegawai"></label>
+                  </div>
+                  <div class="grid_7">
+                     <input style="width: 100%;" kendo-combo-box k-ng-model="item.detailKategoriPegawai" 
+                     k-data-text-field="'detailKategoryPegawai'" k-data-value-field="'id'" k-filter="'contains'"
+                        k-auto-bind="false" k-data-source="listDetailKategoriPegawai" />
+                  </div>
+               </div>
+               <div class="grid_12">
+                  <div class="grid_5" style="margin: 10px 0 0 0;">
+                     <label c-label item="item" c-label-text="Range Masa Kerja"></label>
+                  </div>
+                  <div class="grid_7">
+                     <input style="width: 100%;" kendo-combo-box k-ng-model="item.rangeMasaKerja" 
+                     k-data-text-field="'range'" k-data-value-field="'id'" k-filter="'contains'"
+                        k-auto-bind="false" k-data-source="listRangeMasaKerja" />
+                  </div>
+               </div>
+               <div class="grid_12">
+                  <div class="grid_5" style="margin: 10px 0 0 0;">
+                     <label c-label item="item" c-label-text="Pendidikan"></label>
+                  </div>
+                  <div class="grid_7">
+                     <input style="width: 100%;" kendo-combo-box k-ng-model="item.pendidikan" k-data-text-field="'namaPendidikan'" k-data-value-field="'id'" k-filter="'contains'"
+                        k-auto-bind="false" k-data-source="listPendidikan" />
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!--		   </div>  -->
+         <div class="grid_6">
+            <div class="grid_12">
+               <div class="grid_5" style="margin: 6px 0 0 0;">
+                  <label c-label item="item" c-label-text="Komponen Harga"></label>
+               </div>
+               <div class="grid_7">
+                  <input style="width: 100%;" kendo-combo-box k-ng-model="item.komponenHarga" 
+                  k-data-text-field="'komponenHarga'" k-data-value-field="'id'" k-filter="'contains'"
+                     k-auto-bind="false" k-data-source="listKomponenHarga" />
+               </div>
+            </div>
+            <div class="grid_12">
+               <div class="grid_5" style="margin: 6px 0 0 0;">
+                  <label c-label item="item" c-label-text="Harga Satuan"></label>
+               </div>
+               <div class="grid_7">
+                  <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.hargaSatuan" />
+               </div>
+            </div>
+            <div class="grid_12"> 
+               <div class="grid_5" style="margin: 6px 0 0 0;">
+                  <label c-label item="item" c-label-text="Factor Rate"></label>
+               </div>
+               <div class="grid_7">
+                  <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.faktorRate" />
+               </div>
+            </div>
+            <div class="grid_12"> 
+               <div class="grid_5" style="margin: 6px 0 0 0;">
+                  <label c-label item="item" c-label-text="Operator Factor Rate"></label>
+               </div>
+               <div class="grid_7">
+                  <input style="width: 100%;" kendo-combo-box k-ng-model="item.operatorFactorRate" k-data-text-field="'op'" k-data-value-field="'op'" k-filter="'contains'"
+                     k-auto-bind="false" k-data-source="listOperatorFactorRate" />
+               </div>
+            </div> 
+
+            <div class="grid_12">
+                    <div class="grid_5" style="margin: 6px 0 0 0;">
+                        <label c-label item="item" c-label-text="Status Aktif"></label>
+                    </div>
+                    <div class="grid_7" style="margin-top: 10px">
+
+                        <input type="checkbox" class="k-checkbox" name="dataAktif" id="dataAktif" value="true" ng-model="item.dataAktif" ng-true-value="'true'" ng-false-value="'false'" ng-checked="vals">
+                        <label class="k-checkbox-label" for="dataAktif">Aktif</label>
+
+                    </div>
+            </div>
+         </div>
+         
+         <div class="grid_12">
+             <div kendo-grid k-data-source="gridGajiPokok" k-selectable="'row'" k-pageable="true" options="columnGridGajiPokok" k-ng-model="current" ng-click="klik(current)">
+                </div>
+         </div>
+      </c-panel>
+        <div class="grid_12">
+            <div class="grid_6">
+            </div>
+            <div class="grid_6">
+                <div class="grid_6" style="margin-top: 10px">
+                    <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Cancel()">
+               <span class="title">Batal</span></button>
+                </div>
+                <div class="grid_6" style="margin-top: 10px ">
+                    <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+               <span class="title">Tambah</span>
+               </button>
+                </div>
+            </div>
+        </div>
+   </div>
+</div>
+</div>

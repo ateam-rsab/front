@@ -1,0 +1,209 @@
+<div ng-controller="AdvokasiHukumMedicolegalCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Advokasi Hukum Medicolegal'" disabled>
+
+			<!-- noKasus -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="noKasus"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noKasus" />
+				</div>
+			</div>
+
+			<!-- tglKasus -->
+			<div class="grid_12">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="tglKasus"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%" k-ng-model="item.tglKasus"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+				</div>
+			</div>
+
+			<!-- user -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="user"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.user" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listuser" />
+				</div>
+			</div>
+
+			<!-- userId -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="userId"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.userId" />
+				</div>
+			</div>
+
+			<!-- jenisKasus -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="jenisKasus"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisKasus" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listjenisKasus" />
+				</div>
+			</div>
+
+			<!-- jenisKasusId -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="jenisKasusId"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jenisKasusId" />
+				</div>
+			</div>
+
+			<!-- deskripsiKasus -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="deskripsiKasus"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.deskripsiKasus" />
+				</div>
+			</div>
+
+			<!-- penanggungJawab -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="penanggungJawab"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.penanggungJawab" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listpenanggungJawab" />
+				</div>
+			</div>
+
+			<!-- penanggungJawabId -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="penanggungJawabId"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.penanggungJawabId" />
+				</div>
+			</div>
+
+			<!-- analisaKajian -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="analisaKajian"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.analisaKajian" />
+				</div>
+			</div>
+
+			<!-- hasilKeputusan -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="hasilKeputusan"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.hasilKeputusan" />
+				</div>
+			</div>
+
+			<!-- statusKasus -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="statusKasus"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.statusKasus" />
+				</div>
+			</div>
+
+			<!-- reportDisplay -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="reportDisplay"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+				</div>
+			</div>
+
+			<!-- kodeExternal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kodeExternal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+				</div>
+			</div>
+
+			<!-- namaExternal -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="namaExternal"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+				</div>
+			</div>
+
+			<!-- AdvokasiHukumMedicolegal -->
+			<div class="grid_12">
+				<div class="grid_12 headerBox">
+					<p>AdvokasiHukumMedicolegal</p>
+				</div>
+				<div class="clear"></div>
+
+				<!-- grid table -->
+				<div class="grid_12 borderBox">
+					<div kendo-grid k-data-source="dataAdvokasiHukumMedicolegal" k-selectable="'row'" k-columns="columnAdvokasiHukumMedicolegal">
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+
+
+
+		</c-panel>
+
+		<div class="grid_12" style="margin-top:30px">
+			<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
+		</div>
+	</div>
+</div>

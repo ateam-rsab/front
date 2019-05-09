@@ -1,0 +1,205 @@
+<div ng-controller="PengkajianKeperawatanCtrl">
+    <div class="grid_12">
+                <div class="grid_3">
+                    <div class="panel container_3">
+                        <div class="panel-heading" style="background-color:#10c4b2;">Tanggal Masuk RS</div>
+                        <div class="panel-body">
+                            <label c-label="" item="item" c-label-text="29/05/2016" class="ng-isolate-scope c-label"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_3">
+                    <div class="panel container_3">
+                        <div class="panel-heading" style="background-color:#10c4b2;">Waktu Pemeriksaan</div>
+                        <div class="panel-body">
+                            <label c-label="" item="item" c-label-text="" class="ng-isolate-scope c-label">09.00</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_6">
+                    <div class="panel container_6">
+                        <div class="panel-heading" style="background-color:#10c4b2;">Ruangan</div>
+                        <div class="panel-body">
+                            <label c-label="" item="item" c-label-text="" class="ng-isolate-scope c-label">POLIKLINIK AMANDA</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <div class="grid_12">
+        <!-- PENGKAJIAN KEPERAWATAN -->
+        <div class="panel panel-default container_12">
+            <div class="panel-heading">PENGKAJIAN KEPERAWATAN</div>
+            <div class="panel-body" >
+                <!-- Keluhan Utama-->
+                <div class="panel panel-default container_12">
+                    <div class="panel-heading panel-body" >Keluhan Utama</div>
+                    <div class="panel">
+                        <div class="panel-body">
+                            <div class="k-widget k-grid">
+                                <div class="k-grid-header">
+                                </div>
+                                <div class="k-grid-content">
+                                    <div class="k-virtual-scrollable-wrap">
+                                        <div style="margin: 50px 50px 50px 10px;">Keterangan Keluhan utama</div>
+                                    </div>
+                                    <div class="k-scrollbar k-scrollbar-vertical"></div>
+                                </div>
+                            </div></div></div>
+                    <div class="container_12" style="margin-left: 20px; margin-bottom: 20px;">
+                        <div class="grid_12">
+                            <div class="grid_2">
+                                <input type="radio" class="k-radio" >
+                                <label class="k-radio-label">Tidak ada Alergi</label>
+                            </div>
+                            <div class="grid_2">
+                                <input type="radio" class="k-radio" >
+                                <label class="k-radio-label">Tidak Diketahui</label>
+                            </div>
+                            <div class="grid_2">
+                                <input type="radio" class="k-radio" >
+                                <label class="k-radio-label">Alergi Obat</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel" style="border-color:#0d9a8b; margin-left: 10px;margin-right: 10px">
+                        <div class="panel-body">
+                            <div class="container_12">
+                                <div class="grid_2"><label>Tempat Tinggal</label><span class="titikDua">:</span></div>
+                                <div class="grid_2">
+                                    <input type="checkbox" class="k-checkbox" >
+                                    <label class="k-checkbox-label">Obat</label>
+                                </div>
+                                <div class="grid_2">
+                                    <input type="checkbox" class="k-checkbox" >
+                                    <label class="k-checkbox-label">Makanan</label>
+                                </div>
+                                <div class="grid_2">
+                                    <input type="checkbox" class="k-checkbox" >
+                                    <label class="k-checkbox-label">Lainnya</label>
+                                </div>
+                                <div class="grid_4">
+                                    <input placeholder="Keterangan Lainnya" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" />
+                                </div>
+                            </div>
+                            <div class="container_12">
+                                <div class="grid_2"><label>Reaksi</label><span class="titikDua">:</span></div>
+                                <div class="grid_4">
+                                    <input placeholder="Keterangan Reaksi" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" />
+                                    </div>
+                                <div class="grid_6" style="text-align: right">
+                                    <div class="grid_4"></div>
+                                    <div class="grid_4">
+                                        <c-button ng-show="!isLoading" style="width: 100%" item="item" is-validate click="KirimData">
+                                            <span>Tambah</span>
+                                        </c-button></div>
+                                    <div class="grid_4">
+                                        <c-button ng-show="!isLoading" style="width: 100%" item="item" is-validate click="KirimData">
+                                            <span>Hapus</span>
+                                        </c-button></div>
+                                </div>
+                            </div>
+                            <div class="grid_12">
+                                <div class="grid_3">
+                                    <div class="panel container_3">
+                                        <div class="panel-heading" style="background-color:#10c4b2;">No</div>
+                                        <div class="panel-body"></div>
+                                    </div>
+                                </div>
+                                <div class="grid_3">
+                                    <div class="panel container_3">
+                                        <div class="panel-heading" style="background-color:#10c4b2;">Jenis Alergi</div>
+                                        <div class="panel-body"></div>
+                                    </div>
+                                </div>
+                                <div class="grid_6">
+                                    <div class="panel container_6">
+                                        <div class="panel-heading" style="background-color:#10c4b2;">Reaksi</div>
+                                        <div class="panel-body"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="panel panel-default" style="margin-left: 15px; margin-bottom: 20px; margin-right: 15px;">
+                <div class="panel-heading" style="background-color:#10c4b2;">Riwayat Kelahiran</div>
+                <div class="panel-body">
+                    <div class="grid_4">
+                        <div class="grid_12">
+                            <div class="grid_4">
+                                <label c-label="" item="item" c-label-text="Usia Kehamilan" class="ng-isolate-scope c-label"></label>
+                            </div>
+                            <div class="grid_6">
+                                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" />
+                            </div>
+                            <div class="grid_2">
+                                <label c-label="" item="item" c-label-text="Minggu" class="ng-isolate-scope c-label"></label></div>
+                            <div class="grid_4">
+                                <label c-label="" item="item" c-label-text="Persalinan" class="ng-isolate-scope c-label"></label>
+                            </div>
+                            <div class="grid_8">
+                                <input style="width: 100%;" kendo-combo-box k-data-source="listPersalinan" k-ng-model="item.persalinan" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_4">
+                        <div class="grid_12">
+                            <div class="grid_5">
+                                <label c-label="" item="item" c-label-text="Berat Badan Lahir" class="ng-isolate-scope c-label"></label>
+                            </div>
+                            <div class="grid_6">
+                                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" />
+                            </div>
+                            <div class="grid_1">
+                                <label c-label="" item="item" c-label-text="gr" class="ng-isolate-scope c-label"></label>
+                            </div>
+                            <div class="grid_5">
+                                <label c-label="" item="item" c-label-text="Menangis" class="ng-isolate-scope c-label"></label>
+                            </div>
+                            <div class="grid_7">
+                                <input style="width: 100%;" kendo-combo-box k-data-source="listMenangis" k-ng-model="item.menangis" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="" />
+                            </div></div>
+                    </div>
+
+                    <div class="grid_4">
+                        <div class="grid_12">
+                            <div class="grid_6">
+                                <label c-label="" item="item" c-label-text="Panjang Badan Lahir" class="ng-isolate-scope c-label"></label>
+                            </div>
+                            <div class="grid_5">
+                                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" />
+                            </div>
+                            <div class="grid_1">
+                                <label c-label="" item="item" c-label-text="cm" class="ng-isolate-scope c-label"></label>
+                            </div>
+                            <div class="grid_5">
+                                <label c-label="" item="item" c-label-text="Riwayat Kuning" class="ng-isolate-scope c-label"></label>
+                            </div>
+                            <div class="grid_7">
+                                <input style="width: 100%;" kendo-combo-box k-data-source="listRiwayatKuning" k-ng-model="item.riwayatkuning" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container_12">
+        <div class="grid_6"></div>
+        <div class="grid_6" style="text-align: right">
+            <div class="grid_4"></div>
+            <div class="grid_4">
+                <c-button ng-show="!isLoading" style="width: 100%" item="item" is-validate click="KirimData">
+                    <span>Summary List</span>
+                </c-button></div>
+            <div class="grid_4">
+                <c-button ng-show="!isLoading" style="width: 100%" item="item" is-validate click="KirimData">
+                    <span>Selanjutnya >></span>
+                </c-button></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,162 @@
+<div ng-controller="ReturLinenLaundryCtrl">
+	<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Retur Linen Laundry</div>
+		<div class="panel-body">
+			
+			<div class="grid_12">
+			<div class="grid_4">
+			<div class="grid_12">
+			<div class="grid_4" style="margin-top: 10px" >
+			<label c-label item="item" c-label-text="No Struk"></label>
+			</div>
+			<div class="grid_8" >
+				<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="noStruk" />
+			</div>
+			</div>
+			<div class="grid_12">
+			<div class="grid_4" style="margin-top: 10px" >
+			<label c-label item="item" c-label-text="Tanggal"></label>
+			</div>
+			<div class="grid_8">
+                            <input kendo-date-picker k-ng-model="item.tanggalProses" k-max="now" k-format="'dd-MM-yyyy hh:mm:ss'" k-value="now" style="width: 100%" disabled/>
+            </div>
+			</div>
+			</div>
+			<div class="grid_4">
+			<div class="grid_12">
+			<div class="grid_4" style="margin-top: 10px" >
+			<label c-label item="item" c-label-text="No Pelanggan"></label>
+			</div>
+			<div class="grid_8" >
+				<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="idPelanggan" />
+			</div>
+			</div>
+			<div class="grid_12">
+			<div class="grid_4" style="margin-top: 10px" >
+			<label c-label item="item" c-label-text="Nama Pelanggan"></label>
+			</div>
+			<div class="grid_8" >
+				<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="namaPelanggan"  />
+			</div>
+			</div>
+			</div>
+			<div class="grid_4">
+			<div class="grid_12">
+			<div class="grid_4" style="margin-top: 10px" >
+			<label c-label item="item" c-label-text="Alamat"></label>
+			</div>
+			<div class="grid_8" >
+				<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="alamat"  />
+			</div>
+			</div>
+			<div class="grid_12">
+			<div class="grid_4" style="margin-top: 10px" >
+			<label c-label item="item" c-label-text="Nomor Telepon"></label>
+			</div>
+			<div class="grid_8" >
+				<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.telepon" />
+			</div>
+			</div>
+			<div ng-show="false">
+				<div class="grid_12">
+			<div class="grid_4" style="margin-top: 10px" >
+			<label c-label item="item" c-label-text="Nomor Rekening Struk Pelayanan"></label>
+			</div>
+			<div class="grid_8" >
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="noRecStrukPelayanan" />
+			</div>
+			</div>
+			</div>
+			</div>
+			
+			</div>
+			
+			<div class="grid_12">
+			
+			  <kendo-grid id="grid" options="mainGridOptions" k-data-source="sourceOrder" k-ng-model="ff" k-editable="true">
+			
+			  </kendo-grid>
+			</div>
+			<div class="grid_6">
+			<div class="grid_12">
+			<div class="grid_4" style="margin-top: 10px" >
+			<label c-label item="item" c-label-text="Tanggal Retur"></label>
+			</div>
+			<div class="grid_8">
+                            <input kendo-date-picker k-ng-model="item.tanggalProses" k-max="now" k-format="'dd-MM-yyyy hh:mm:ss'" k-value="now" style="width: 100%" disabled/>
+            </div>
+			</div>
+			<div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+	        <label c-label item="item" c-label-text="Keterangan"></label>
+	        </div>
+	        <div class="grid_8" style="margin: 0 0 0 0;">
+	         <textarea ng-model="item.keterangan" style="width: 99%; height: 80px;"></textarea>
+	        </div>
+		    </div>
+			
+			</div>
+			<div class="grid_6">
+			<div class="grid_12">
+			<div class="grid_4" style="margin-top: 10px" >
+			<label c-label item="item" c-label-text="Total Biaya"></label>
+			</div>
+			<div class="grid_8" >
+				<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.totalBiaya" />
+			</div>
+			</div>
+			<div class="grid_12">
+			<div class="grid_4" style="margin-top: 10px" >
+			<label c-label item="item" c-label-text="Jumlah Bayar"></label>
+			</div>
+			<div class="grid_8" >
+				<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahBayar" />
+			</div>
+			</div>
+			<div class="grid_12">
+			<div class="grid_4" style="margin-top: 10px" >
+			<label c-label item="item" c-label-text="Total Biaya Retur"></label>
+			</div>
+			<div class="grid_8" >
+				<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.totalRetur" />
+			</div>
+			</div>
+			<div ng-show="false">
+			<div class="grid_12">
+			<div class="grid_4" style="margin-top: 10px" >
+			<label c-label item="item" c-label-text="Jumlah Bayar Retur"></label>
+			</div>
+			<div class="grid_8" >
+				<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahRetur" />
+			</div>
+			</div>
+			</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</div>
+			
+			
+			<div class="grid_12" style="margin-top: 10px">
+				<div class="grid_1"></div>
+				
+			</div>
+			<div class="grid_12" style="margin-top: 20px">
+				<div class="grid_10"></div>
+				<div class="grid_2">
+					<button class="c-button success" ng-click="Save()">Simpan</button>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>

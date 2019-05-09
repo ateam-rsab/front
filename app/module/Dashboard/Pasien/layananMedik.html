@@ -1,0 +1,44 @@
+<div class="grid_12" ng-controller="DashboarPasienLayananMedikCtrl">
+    <div class="tiles">
+        <div class="grid_6">
+            <div class="tile bg-yellow-saffron orange" ng-class="{selected :selected==='rj'}" style="height:100px" ng-click='rawatJalan()'>
+                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                <div class="check"></div>
+                <div class="tile-body" style="overflow: initial">
+                    <i style="font-style: normal;"></i>
+                </div>
+                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                    <div class="icon-panel">
+                        <img width='70px' src='stylesheets/disease.png' />
+                    </div>
+                    <div class="text_panel">
+                        <span class="title"><label c-label c-label-text="instalasiRawatJalan"></label></span>
+                        <label c-label item="item" c-label-text="summaryList" class="sub-detail" no-bold></label><span> </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_6">
+            <div class="tile bg-yellow-saffron blue" ng-class="{selected :selected==='ri'}" style="height:100px" ng-click='rawatInap()'>
+                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                <div class="check"></div>
+                <div class="tile-body" style="overflow: initial">
+                    <i style="font-style: normal;"></i>
+                </div>
+                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                    <div class="icon-panel">
+                        <img width='70px' src='stylesheets/disease.png' />
+                    </div>
+                    <div class="text_panel">
+                        <span class="title"><label c-label c-label-text="instalasiRawatInap"></label></span>
+                        <label c-label item="item" c-label-text="summaryList" class="sub-detail" no-bold></label><span> </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_12">
+            <div class="animate" ui-view></div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,99 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" c-translate>Monitoring Pengajuan Pelatihan</div>
+	<div class="panel-body">
+		<fieldset style="min-height:50px !important" align="left">
+            <legend><h2>Pencarian</h2></legend>
+            <div class="grid_4">
+            	<div class="grid_6">
+	                <label c-label item="item" c-label-text="Tanggal awal"></label>
+	                <input style="width: 100%" k-ng-model="item.tglawal" kendo-datetimepicker placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd HH:mm'" />
+	            </div>
+	            <div class="grid_6">
+	                <label c-label item="item" c-label-text="Tanggal Akhir"></label>
+	                <input style="width: 100%" k-ng-model="item.tglakhir" kendo-datetimepicker placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd HH:mm'" />
+	            </div>
+            </div>
+            <div class="grid_2">
+                <!-- <div class="grid_2" style="margin-top: 28px;">
+                    <input type="checkbox" class="k-checkbox" ng-model="item.Generate" id="CekTersedia" ng-click="Generate(item.Generate)">
+                    <label class="c-label k-checkbox-label" for="CekDisetujui">Pelatihan Tersedia</label>
+                </div>
+                <div class="grid_4"></div>
+                <div class="grid_4" style="margin-top: 28px;">
+                    <input type="checkbox" class="k-checkbox" ng-model="item.Generate1" id="CekBaru" ng-click="Generate1(item.Generate1)">
+                    <label class="c-label k-checkbox-label" for="CekBaru">Pelatihan Baru</label>
+                </div> -->
+            </div>
+            <div class="grid_2"></div>
+            <div class="grid_2">
+				<div class="grid_12">
+					<label c-label item="item" style="margin-top: 10px">Jenis Pelatihan</label>
+				</div>
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPelatihan" k-data-text-field="'jenispelatihan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisPelatihan" />
+				</div>
+			</div>
+			<!-- <div class="grid_2">
+				<div class="grid_12">
+					<label c-label item="item" style="margin-top: 10px">Jabatan</label>
+				</div>
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.jabatan" k-data-text-field="'namajabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJabatan" />
+				</div>
+			</div> -->
+            <div class="grid_2 k-edit-buttons  k-state-default " style="margin-top:32px">       
+                <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="SearchData()"  style="width:100px"  ><span class="k-sprite k-icon k-i-search"></span>Cari </button>
+                <button class="k-button  k-button-icontext" ng-click="ClearData()"   style="width:100px" ><span class="k-sprite k-icon k-delete"></span>Clear</button>
+            </div>         
+			<!-- <div class="grid_2">
+				<label c-label item="item" style="margin-top: 10px">*Klik dan pilih salah satu pelatihan</label>
+			</div> -->
+            <!-- <div class="grid_8"></div>  -->
+        </fieldset>
+	</div>
+	<div class="grid_12">
+         <div class="grid_12 borderBox">
+            <div id="kGrid" 
+            kendo-grid k-data-source="dataGrid" 
+            k-selectable="'row'" 
+            k-columns="columnGrid" 
+            k-pageable="'true'" 
+            k-sortable="'true'" 
+            k-ng-model="dataSelected">
+                <div k-detail-template>
+                    <kendo-tabstrip>
+                        <div>
+                            <div id="kGridDetail" kendo-grid k-options="data2(dataItem)" 
+                                k-sortable="'true'" 
+                                k-selectable="'row'" 
+                                k-ng-model="dataSelected2"
+                                ng-click="klikDetail(dataSelected2)">
+                            </div>
+                        </div>
+                    </kendo-tabstrip>
+                </div>
+            </div>
+        </div>
+    </div>
+	<div class="grid_12" style="margin-top: 25px;">
+		<!-- <div class="grid_2"></div>
+		<div class="grid_2">
+			<button class="c-button" ng-click="tambahPengajuanPelatihan()">Pengajuan Pelatihan</button>
+		</div>
+		<div class="grid_2">
+			<button class="c-button" ng-click="editPengajuanPelatihan()">Ubah Pengajuan Pelatihan</button>
+		</div>
+        <div class="grid_2">
+            <button class="c-button" ng-click="hapusPengajuan()">Batal Pengajuan</button>
+        </div>
+		<div class="grid_2">
+			<button class="c-button" ng-click="VerifikasiPengajuan()">Verifikasi Pengajuan</button>
+		</div>
+        <div class="grid_2">
+            <button class="c-button" ng-click="UnverifikasiPengajuan()">Unverif Pengajuan</button>
+        </div> -->
+	</div>
+	<div class="grid_12" style="margin-top:60px">
+        <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+    </div>
+</div>

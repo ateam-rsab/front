@@ -1,0 +1,41 @@
+<div ng-controller="PeralatanCtrl">
+
+
+
+
+
+    <div class="panel-body">
+
+        <div class="panel panel-default container_12" style="margin-bottom:0;">
+
+            <div class="panel-heading" c-translate>
+                Peralatan Yang Menyertai Pasien Saat Pindah
+            </div>
+            <div class="panel-body">
+
+                <c-form item="item">
+
+                   <div class="grid_12">
+                         <div class="grid_3" ng-repeat="data in listPeralatan">
+                        <input type="checkbox" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" value="{{data.id}}"  ng-click="cekArrPeralatan(data)">
+                        <label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+                    </div>
+                        <div class="clear"></div>
+                  </div>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+   
+</div>
+
+
+
+
+

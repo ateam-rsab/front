@@ -1,0 +1,61 @@
+{
+  "result": [
+    {
+      "tahun": 2017,
+      "kodeMataAnggaran": "533121",
+      "namaMataAnggaran": "Belanja Penambahan Nilai Gedung dan Bangunan",
+      "totalMata": 250000000,
+      "realisasiBelanja": 50000000,
+      "listPaket":[
+        {
+          "no":"1",
+          "namaPaket": "Renovasi Gedung A",
+          "total": 100000000,
+          "realisasiBelanja": 20000000,
+          "listRiwayat": [
+            {
+              "no":"1",
+              "noSPK":"SPK01237981",
+              "tglSPK":"2017-01-20",
+              "namaRiwayat":"Renovasi ruangan Meeting gedung A lt.2",
+              "Suplier":"Oleh PT. Makmur Djaya",
+              "totalRiwayat":12000000
+            },
+            {
+              "no":"2",
+              "noSPK":"SPK01237982",
+              "tglSPK":"2017-01-25",
+              "namaRiwayat":"Renovasi Lift",
+              "Suplier":"Oleh PT. Makmur Djaya",
+              "totalRiwayat":8000000
+            }
+          ]
+        },
+        {
+          "no":"2",
+          "namaPaket": "Renovasi Gedung B",
+          "total": 100000000,
+          "realisasiBelanja": 20000000,
+          "listRiwayat": [
+            {
+              "no":"1",
+              "noSPK":"SPK01237983",
+              "tglSPK":"2017-01-26",
+              "namaRiwayat":"Renovasi ruangan Meeting gedung B lt.1",
+              "Suplier":"Oleh PT. ADI KARYA",
+              "totalRiwayat":12000000
+            },
+            {
+              "no":"2",
+              "noSPK":"SPK01237984",
+              "tglSPK":"2017-01-28",
+              "namaRiwayat":"Renovasi Gedung",
+              "Suplier":"Oleh PT. ADI KARYA",
+              "totalRiwayat":8000000
+            }
+          ]
+        }
+      ] 
+    }
+  ]
+}

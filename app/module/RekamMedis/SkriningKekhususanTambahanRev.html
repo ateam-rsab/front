@@ -1,0 +1,141 @@
+
+
+<div ng-show="dataVOloaded">
+
+    <div class="container_12">
+        <div class="grid_12" style="margin-bottom:30px">
+            <div class="grid_12 headerBox">
+                <h1 style="color: white;"><b>{{title}}</b></h1>
+            </div>
+            <div class="clear"></div>
+            <br/>
+            <div class="container_12">
+                <div ng-repeat="tanya in listBatuk | orderBy:'id'" ng-init="listIndex = $index + 1">
+                    <div class="grid_6 " style="margin:6px auto">
+                        <div class="grid_1" style="text-align:right">{{tanya.no}}</div>
+                        <div class="grid_3">
+                            <label><b>{{tanya.nama}} : </b></label>
+                        </div>
+                        <div class="grid_3" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                            <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.batuk" value="{{jawab.id}}" ng-click="cekSkorHumpy(tanya, jawab)">
+                            <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+                        </div>
+                    </div>
+                </div>
+
+                 <div ng-repeat="tanya in listKejang | orderBy:'id'" ng-init="listIndex = $index + 1">
+                    <div class="grid_6" style="margin:6px auto">
+                     <div class="grid_1" style="text-align:right">{{tanya.no}}</div>
+                        <div class="grid_3">
+                            <label><b>{{tanya.nama}} : </b></label>
+                        </div>
+                        <div class="grid_3" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                            <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.kejang" value="{{jawab.id}}" ng-click="cekSkorHumpy(tanya, jawab)">
+                            <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div ng-repeat="tanya in listLendir | orderBy:'id'" ng-init="listIndex = $index + 1">
+                    <div class="grid_6" style="margin:6px auto">
+                      <div class="grid_1" style="text-align:right">{{tanya.no}}</div>
+                        <div class="grid_3">
+                            <label><b>{{tanya.nama}} : </b></label>
+                        </div>
+                        <div class="grid_3" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                            <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.lendir" value="{{jawab.id}}" ng-click="cekSkorHumpy(tanya, jawab)">
+                            <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+                        </div>
+                    </div>
+                </div>
+                 <div ng-repeat="tanya in listIkterik | orderBy:'id'" ng-init="listIndex = $index + 1">
+                    <div class="grid_6" style="margin:6px auto">
+                      <div class="grid_1" style="text-align:right">{{tanya.no}}</div>
+                        <div class="grid_3">
+                            <label><b>{{tanya.nama}} : </b></label>
+                        </div>
+                        <div class="grid_3" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                            <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.ikterik" value="{{jawab.id}}" ng-click="cekSkorHumpy(tanya, jawab)">
+                            <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+                        </div>
+                    </div>
+                </div>
+                 <div ng-repeat="tanya in listSesak | orderBy:'id'" ng-init="listIndex = $index + 1">
+                    <div class="grid_6" style="margin:6px auto">
+                      <div class="grid_1" style="text-align:right">{{tanya.no}}</div>
+                        <div class="grid_3">
+                            <label><b>{{tanya.nama}} : </b></label>
+                        </div>
+                        <div class="grid_3" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                            <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.sesak" value="{{jawab.id}}" ng-click="cekSkorHumpy(tanya, jawab)">
+                            <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+                        </div>
+                    </div>
+                </div>
+                 <div ng-repeat="tanya in listPucat | orderBy:'id'" ng-init="listIndex = $index + 1">
+                    <div class="grid_6" style="margin:6px auto">
+                      <div class="grid_1" style="text-align:right">{{tanya.no}}</div>
+                        <div class="grid_3">
+                            <label><b>{{tanya.nama}} : </b></label>
+                        </div>
+                        <div class="grid_3" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                            <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.pucat" value="{{jawab.id}}" ng-click="cekSkorHumpy(tanya, jawab)">
+                            <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+                        </div>
+                    </div>
+                </div>
+                 <div ng-repeat="tanya in listMuntah | orderBy:'id'" ng-init="listIndex = $index + 1">
+                    <div class="grid_6" style="margin:6px auto">
+                      <div class="grid_1" style="text-align:right">{{tanya.no}}</div>
+                        <div class="grid_3">
+                            <label><b>{{tanya.nama}} : </b></label>
+                        </div>
+                        <div class="grid_3" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                            <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.muntah" value="{{jawab.id}}" ng-click="cekSkorHumpy(tanya, jawab)">
+                            <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+                        </div>
+                    </div>
+                </div>
+                 <div ng-repeat="tanya in listPerdarahan | orderBy:'id'" ng-init="listIndex = $index + 1">
+                    <div class="grid_6" style="margin:6px auto">
+                      <div class="grid_1" style="text-align:right">{{tanya.no}}</div>
+                        <div class="grid_3">
+                            <label><b>{{tanya.nama}} : </b></label>
+                        </div>
+                        <div class="grid_3" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                            <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.pendarahan" value="{{jawab.id}}" ng-click="cekSkorHumpy(tanya, jawab)">
+                            <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+                        </div>
+                    </div>
+                </div>
+                 <div ng-repeat="tanya in listDiare | orderBy:'id'" ng-init="listIndex = $index + 1">
+                    <div class="grid_6" style="margin:6px auto">
+                      <div class="grid_1" style="text-align:right">{{tanya.no}}</div>
+                        <div class="grid_3">
+                            <label><b>{{tanya.nama}} : </b></label>
+                        </div>
+                        <div class="grid_3" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                            <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.diare" value="{{jawab.id}}" ng-click="cekSkorHumpy(tanya, jawab)">
+                            <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+                        </div>
+                    </div>
+                </div>
+                 <div ng-repeat="tanya in listMemar | orderBy:'id'" ng-init="listIndex = $index + 1">
+                    <div class="grid_6" style="margin:6px auto">
+                      <div class="grid_1" style="text-align:right">{{tanya.no}}</div>
+                        <div class="grid_3">
+                            <label><b>{{tanya.nama}} : </b></label>
+                        </div>
+                        <div class="grid_3" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                            <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.memar" value="{{jawab.id}}" ng-click="cekSkorHumpy(tanya, jawab)">
+                            <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div> 
+    </div>
+
+
+</div>

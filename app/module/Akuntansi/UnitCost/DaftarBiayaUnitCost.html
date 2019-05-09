@@ -1,0 +1,93 @@
+<div ng-show="dataVOloaded">
+	 <!-- <c-panel item="item" header="'Setoran Kasir'" disabled> -->
+        <div class="grid_12 headerBox">
+            <h1 style="color: white;"><b>Daftar Biaya</b></h1>
+        </div>
+		<!-- Kriteria -->
+		<div class="grid_12">
+			
+			<div class="grid_12 borderBox containerBorderBox">
+				<!-- JenisBiaya -->
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="JenisBiaya"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisBiaya" k-data-text-field="'jenisproduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisBiaya" />
+					</div>
+				</div>
+
+				<!-- NamaBiaya -->
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="NamaBiaya"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaBiaya" ng-keypress="($event.which == 13)? cariNamaBiaya():item.namaBiaya"/>
+					</div>
+				</div>
+
+				<!-- Button Search -->
+				<div class="grid_1">
+					<div class="grid_12">
+						<label>&nbsp;</label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<button class="btnTemplate1" ng-click="SearchData()">Cari</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="clear"></div>
+
+		<br/>
+
+		<!-- DaftarBiaya -->
+		<div class="grid_12">
+			<div class="grid_12 headerBox">
+				<p>DaftarBiaya</p>
+			</div>
+			<div class="clear"></div>
+
+			<!-- grid table -->
+			<div class="grid_12 borderBox">
+				<div kendo-grid k-data-source="dataDaftarBiaya" 
+				k-selectable="'row'" 
+				k-columns="columnDaftarBiaya" 
+				k-ng-model="dataSelected">
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+
+		<div class="grid_11">
+		</div>
+		<div class="grid_1">
+					<div class="grid_12">
+						<label>&nbsp;</label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<button class="btnTemplate1" ng-click="simpan()">Update</button>
+					</div>
+				</div>
+
+
+
+
+<!-- 
+	<div class="grid_12" style="margin-top:30px">
+		<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
+	</div> -->
+</div>
+

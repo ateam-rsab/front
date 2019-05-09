@@ -1,0 +1,216 @@
+////header nya
+define(['initialize'], function(initialize) {
+	'use strict';
+initialize.controller('ProdukDetailLaboratoriumCtrl', ['$q', '$rootScope', '$scope', 'IPSRSService',
+ function($q, $rootScope, $scope,IPSRSService) {
+ $scope.item = {};
+ $scope.dataVOloaded = true;
+ $scope.now = new Date();
+ var init = function () {
+IPSRSService.getFieldsMasterTable("get-data-master?className=ProdukDetailLaboratorium", true).then(function(dat){
+$scope.listDataMaster = dat.data.data.ProdukDetailLaboratorium;
+                                    					
+$scope.dataSource = new kendo.data.DataSource({
+pageSize: 10,
+data: $scope.listDataMaster,
+autoSync: true
+
+});
+
+});
+}
+init();
+
+
+
+
+$scope.columnProdukDetailLaboratorium = [
+{
+"field": "No",
+"title": "No"
+},
+{
+"field": "satuanStandar",
+"title": "satuan Standar"
+},
+{
+"field": "satuanStandarFk",
+"title": "satuan Standar Fk"
+},
+{
+"field": "produkNilaiNormal",
+"title": "produk Nilai Normal"
+},
+{
+"field": "produk",
+"title": "produk"
+},
+{
+"field": "produkFk",
+"title": "produk Fk"
+},
+{
+"field": "detailPemeriksaan",
+"title": "detail Pemeriksaan"
+},
+{
+"field": "metodePemeriksaanPenunjang",
+"title": "metode Pemeriksaan Penunjang"
+},
+{
+"field": "metodePemeriksaanPenunjangId",
+"title": "metode Pemeriksaan Penunjang Id"
+},
+{
+"field": "produkDetailHasilSet",
+"title": "produk Detail Hasil Set"
+},
+{
+"field": "qCharDetailPemeriksaan",
+"title": "q Char Detail Pemeriksaan"
+},
+{
+"field": "id",
+"title": "id"
+},
+{
+"field": "reportDisplay",
+"title": "report Display"
+},
+{
+"field": "kodeExternal",
+"title": "kode External"
+},
+{
+"field": "namaExternal",
+"title": "nama External"
+},
+{
+"field": "statusEnabled",
+"title": "status Enabled"
+},
+
+{
+	"title" : "Action",
+	"width" : "200px",
+	"template" : "<button class='btnEdit' ng-click='enableData()'>Enable</button>"+
+"<button class='btnHapus' ng-click='disableData()'>Disable</button>"
+}
+];
+$scope.mainGridOptions = { 
+ pageable: true,
+ columns: $scope.columnProdukDetailLaboratorium,
+ editable: "popup",
+ selectable: "row",
+ scrollable: false
+ };
+////fungsi klik untuk edit
+ $scope.klik = function(current){
+$scope.showEdit = true;
+$scope.current = current;
+$scope.item.satuanStandar = current.satuanStandar;
+$scope.item.satuanStandarFk = current.satuanStandarFk;
+$scope.item.produkNilaiNormal = current.produkNilaiNormal;
+$scope.item.produk = current.produk;
+$scope.item.produkFk = current.produkFk;
+$scope.item.detailPemeriksaan = current.detailPemeriksaan;
+$scope.item.metodePemeriksaanPenunjang = current.metodePemeriksaanPenunjang;
+$scope.item.metodePemeriksaanPenunjangId = current.metodePemeriksaanPenunjangId;
+$scope.item.produkDetailHasilSet = current.produkDetailHasilSet;
+$scope.item.qCharDetailPemeriksaan = current.qCharDetailPemeriksaan;
+$scope.item.id = current.id;
+$scope.item.noRec = current.noRec;
+$scope.item.reportDisplay = current.reportDisplay;
+$scope.item.kodeExternal = current.kodeExternal;
+$scope.item.namaExternal = current.namaExternal;
+$scope.item.statusEnabled = current.statusEnabled;
+};
+$scope.disableData=function(){
+ IPSRSService.getClassMaster("delete-master-table?className=ProdukDetailLaboratorium&&id="+$scope.item.id+"&&statusEnabled=false").then(function(dat){
+ init();
+ });
+ };
+$scope.enableData=function(){
+ IPSRSService.getClassMaster("delete-master-table?className=ProdukDetailLaboratorium&&id="+$scope.item.id+"&&statusEnabled=true").then(function(dat){
+ init();
+
+	});
+};
+
+$scope.tambah = function()
+ {
+var data = {
+	"class": "ProdukDetailLaboratorium",
+	"listField": {
+"satuanStandar": $scope.item.satuanStandar,
+"satuanStandarFk": $scope.item.satuanStandarFk,
+"produkNilaiNormal": $scope.item.produkNilaiNormal,
+"produk": $scope.item.produk,
+"produkFk": $scope.item.produkFk,
+"detailPemeriksaan": $scope.item.detailPemeriksaan,
+"metodePemeriksaanPenunjang": $scope.item.metodePemeriksaanPenunjang,
+"metodePemeriksaanPenunjangId": $scope.item.metodePemeriksaanPenunjangId,
+"produkDetailHasilSet": $scope.item.produkDetailHasilSet,
+"qCharDetailPemeriksaan": $scope.item.qCharDetailPemeriksaan,
+"id": $scope.item.id,
+"reportDisplay": $scope.item.reportDisplay,
+"kodeExternal": $scope.item.kodeExternal,
+"namaExternal": $scope.item.namaExternal,
+}
+	}
+ IPSRSService.saveDataMaster(data,"save-master-table").then(function(e) {
+console.log(JSON.stringify(e.data));
+init();
+$scope.item = {};
+ });
+  }
+
+ $scope.edit = function()
+  {	
+   var data = {
+ "class": "ProdukDetailLaboratorium",
+	"listField": {
+"satuanStandar": $scope.item.satuanStandar,
+"satuanStandarFk": $scope.item.satuanStandarFk,
+"produkNilaiNormal": $scope.item.produkNilaiNormal,
+"produk": $scope.item.produk,
+"produkFk": $scope.item.produkFk,
+"detailPemeriksaan": $scope.item.detailPemeriksaan,
+"metodePemeriksaanPenunjang": $scope.item.metodePemeriksaanPenunjang,
+"metodePemeriksaanPenunjangId": $scope.item.metodePemeriksaanPenunjangId,
+"produkDetailHasilSet": $scope.item.produkDetailHasilSet,
+"qCharDetailPemeriksaan": $scope.item.qCharDetailPemeriksaan,
+"id": $scope.item.id,
+"noRec": $scope.item.noRec,
+"reportDisplay": $scope.item.reportDisplay,
+"kodeExternal": $scope.item.kodeExternal,
+"namaExternal": $scope.item.namaExternal,
+"statusEnabled": $scope.item.statusEnabled
+ }
+ }
+IPSRSService.saveDataMaster(data,"update-master-table").then(function(e){console.log(JSON.stringify(e.data));
+init();
+});
+}
+$scope.batal = function () {
+$scope.showEdit = false;
+$scope.item = {};
+}
+IPSRSService.getFieldListData("SatuanStandar&select=id,namaExternal", true).then(function(dat){
+$scope.listsatuanstandar= dat.data;
+});
+IPSRSService.getFieldListData("Set&select=id,namaExternal", true).then(function(dat){
+$scope.listproduknilainormal= dat.data;
+});
+IPSRSService.getFieldListData("Produk&select=id,namaExternal", true).then(function(dat){
+$scope.listproduk= dat.data;
+});
+IPSRSService.getFieldListData("MetodePemeriksaanPenunjang&select=id,namaExternal", true).then(function(dat){
+$scope.listmetodepemeriksaanpenunjang= dat.data;
+});
+IPSRSService.getFieldListData("Set&select=id,namaExternal", true).then(function(dat){
+$scope.listprodukdetailhasilset= dat.data;
+});
+}
+]);
+});

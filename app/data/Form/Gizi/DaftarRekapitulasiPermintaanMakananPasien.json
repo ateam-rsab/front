@@ -1,0 +1,28 @@
+{
+	"model":{
+		"tglPesan" : "",
+		"sd" : "",
+	   	"tglKirim" : ""
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "tglPesan",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Pesan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "sd",
+			"messagesRequired" : "",
+			"caption" : "s/d"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tglKirim",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Kirim"
+		}
+
+	]
+}

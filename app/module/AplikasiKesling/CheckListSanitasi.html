@@ -1,0 +1,67 @@
+<div ng-controller="CheckListSanitasiCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Checklist Sanitasi / Kesehatan Lingkungan'">
+			<div class="grid_12">
+
+				<div class="grid_12">
+					<div class="grid_2" style="margin-top:10px;">
+						<label c-label item="item">Ruangan</label>
+					</div>
+					<div class="grid_3">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'ruanganId'"
+							k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2" style="margin-top:10px;">
+						<label c-label item="item">Penanggung Jawab Ruangan</label>
+					</div>
+					<div class="grid_3">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.pjRuangan" k-data-text-field="'namaPetugas'" k-data-value-field="'id'"
+							k-filter="'contains'" k-auto-bind="false" k-data-source="listPjRuangan" />
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2" style="margin-top:10px">
+						<label c-label item="item">Tanggal</label>
+					</div>
+					<div class="grid_3">
+						<input style="width: 100%" kendo-date-picker k-ng-model="item.tglInput" k-value="now" placeholer="dd-mm-yyyy" k-format="'dd-MMM-yyyy'"
+						/>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2" style="margin-top:10px">
+						<label c-label item="item">Petugas</label>
+					</div>
+					<div class="grid_3">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.petugas.name" />
+					</div>
+				</div>
+				<div class="grid_12">
+					<div kendo-grid="grid" k-ng-model="selectedData" k-options="kondisiRuangOptions" k-data-source="kondisiRuangData"
+						k-editable=true k-scrollable=false k-selectable="'row'"></div>
+				</div>
+				<div class="grid_12">
+					<div kendo-grid="grid" k-ng-model="selectedData" k-options="kondisiToiletOptions" k-data-source="kondisiToiletData" k-editable=true
+						k-scrollable=false k-selectable="'row'"></div>
+				</div>
+				<div class="grid_12">
+					<div kendo-grid="grid" k-ng-model="selectedData" k-options="limbahMedisOptions" k-data-source="limbahMedisData" k-editable=true
+						k-scrollable=false k-selectable="'row'"></div>
+				</div>
+				<div class="grid_12" style="margin-top:30px">
+					<div kendo-grid="grid" k-ng-model="selectedData" k-options="kualitasUdaraOptions" k-data-source="kualitasUdaraData" k-editable=true
+						k-scrollable=false k-selectable="'row'"></div>
+				</div>
+				
+				<div class="grid_12" style="margin-top:50px">
+					<div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+				</div>
+
+
+			</div>
+		</c-panel>
+	</div>
+</div>

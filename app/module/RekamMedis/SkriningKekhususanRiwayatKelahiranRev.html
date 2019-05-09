@@ -1,0 +1,34 @@
+<div ng-controller="SkriningKekhususanRiwayatKelahiranRevCtrl">
+     <c-panel header="'Riwayat Kelahiran'" disabled>
+    <div>
+        <div class="container_12">
+            <div class="grid_12" style="margin-bottom:30px">
+    
+                <div class="clear"></div>
+                <br/>
+                <div class="container_12"> 
+                     <div class="grid_2">
+                     </div>
+                     <div class="grid_6"> 
+                          
+                             <div class="grid_3" ng-repeat="list in listKelahiran" >
+                                <input type="radio" name="{{list.name}}" id="{{listDirawat.id}}" ng-model="item.riwayatKelahiran" ng-value="list">
+                                <label  for="{{list.id}}" >{{list.name}}</label>
+                            </div>
+
+                    </div>
+                      <div class="grid_4 " style="margin-left: -230px" ng-show="item.riwayatKelahiran.id === 1">
+                            <textarea c-text-area type="input" filter="'string'" class="k-textbox" ng-model="item.ketRiwayatKelahiran" placeholder="Keterangan"/>
+                       </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        
+        
+      
+ 
+    </div>
+</c-panel>
+<div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+</div>

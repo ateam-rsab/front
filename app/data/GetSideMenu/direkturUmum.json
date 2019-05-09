@@ -1,0 +1,1282 @@
+[
+    {
+        "name": "Alur Pengadaan",
+        "children": [
+            { "name": "Daftar Monitoring Usulan","link": "#/DaftarMonitoringUsulan" },
+            {
+                "name": "Daftar Usulan Permintaan Barang",
+                "link": "#/DaftarPengajuanPengadaanBarangDirektur"
+            },
+            {
+                "name": "Verifikasi Kartu Pengendali",
+                "link": "#/daftarKartuPengendaliDirektur"
+            }            
+
+        ]
+    },
+    {
+        "name": "Menu Laundry",
+        "children": [{
+                "name": "Master",
+                "children": [{
+                        "name": "Master Jenis Linen",
+                        "link": "#/MasterJenisLinen"
+                    },
+                    {
+                        "name": "Master Mesin",
+                        "link": "#/MasterMesin"
+                    },
+                    {
+                        "name": "Master Jenis Bahan",
+                        "link": "#/MasterJenisBahan"
+                    },
+                    {
+                        "name": "Master Proses Cuci",
+                        "link": "#/MasterProsesCuci"
+                    },
+                    {
+                        "name": "Mapping Cycle",
+                        "link": "#/MappingCycle"
+                    }
+                ]
+            },
+            {
+                "name": "Transaksi",
+                "children": [{
+                        "name": "Order Laundry",
+                        "link": "#/OrderLaundry"
+                    },
+                    {
+                        "name": "Daftar Pemesanan Laundry",
+                        "link": "#/DaftarPemesananLaundry"
+                    },
+                    {
+                        "name": "Detail Order Internal",
+                        "link": "#/DetailOrderInt"
+                    },
+                    {
+                        "name": "Order Laundry Eksternal",
+                        "link": "#/OrderLaundryEks"
+                    },
+                    {
+                        "name": "Daftar Pemesanan Laundry Eks",
+                        "link": "#/DaftarPemesananLaundryEks"
+                    },
+                    {
+                        "name": "Detail Order Eksternal",
+                        "link": "#/DetailOrderEks"
+                    },
+                    {
+                        "name": "Penerimaan Linen",
+                        "link": "#/PenerimaanLinen"
+                    },
+                    {
+                        "name": "Daftar Penerimaan Linen",
+                        "link": "#/DaftarPenerimaanLinen"
+                    },
+                    {
+                        "name": "Pencucian Linen",
+                        "link": "#/PencucianLinen"
+                    },
+                    {
+                        "name": "Daftar Pencucian Linen",
+                        "link": "#/DaftarPencucianLinen"
+                    },
+                    {
+                        "name": "Pengeringan",
+                        "link": "#/Pengeringan"
+                    },
+                    {
+                        "name": "Pelipatan",
+                        "link": "#/Pelipatan"
+                    },
+                    {
+                        "name": "Pengirimanan Barang",
+                        "link": "#/PengirimananBarang"
+                    },
+                    {
+                        "name": "Daftar Distribusi",
+                        "link": "#/DaftarDistribusi"
+                    },
+                    {
+                        "name": "Verifikasi Terima",
+                        "link": "#/VerifikasiTerima"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Menu CSSD",
+        "children": [{
+                "name": "Master",
+                "children": [{
+                        "name": "Master Alat",
+                        "link": "#/MasterAlat"
+                    },
+                    {
+                        "name": "Master Produksi BMHP",
+                        "link": "#/MasterProduksiBMHP"
+                    },
+                    {
+                        "name": "Master Set Alat",
+                        "link": "#/MasterSetAlat"
+                    },
+                    {
+                        "name": "Daftar Master Produksi",
+                        "link": "#/DaftarMasterProduksi"
+                    }
+                ]
+            },
+            {
+                "name": "Transaksi",
+                "children": [{
+                        "name": "Mapping Alat To Bundel",
+                        "link": "#/MappingAlatToBundel"
+                    },
+                    {
+                        "name": "Mapping BMHP To Set Alat",
+                        "link": "#/MappingBMHPToSetAlat"
+                    },
+                    {
+                        "name": "Pencatatan Suhu Mesin",
+                        "link": "#/PencatatanSuhuMesin"
+                    },
+                    {
+                        "name": "Permintaan Barang dari Ruangan",
+                        "link": "#/PermintaanBarangdariRuangan"
+                    },
+                    {
+                        "name": "Daftar Set Alat",
+                        "link": "#/DaftarSetAlat"
+                    },
+                    {
+                        "name": "Cetak Struk Sterelisasi",
+                        "link": "#/CetakStrukSterelisasi"
+                    },
+                    {
+                        "name": "Proses Sterilisasi Alat",
+                        "link": "#/ProsesSterilisasiAlat"
+                    },
+                    {
+                        "name": "Daftar Sterilisasi Alat",
+                        "link": "#/DaftarSterilisasiAlat"
+                    },
+                    {
+                        "name": "Pengiriman Barang",
+                        "link": "#/PengirimanBarang"
+                    },
+                    {
+                        "name": "Daftar Pengiriman",
+                        "link": "#/DaftarPengiriman"
+                    },
+                    {
+                        "name": "Produksi BMHP",
+                        "link": "#/ProduksiBMHP"
+                    },
+                    {
+                        "name": "Permintaan Sterilisasi Alat",
+                        "link": "#/PermintaanSterilisasiAlat"
+                    },
+                    {
+                        "name": "Daftar Penerimaan Sterilisasi Alat",
+                        "link": "#/DaftarPenerimaanSterilisasiAlat"
+                    },
+                    {
+                        "name": "Decontaminasi",
+                        "link": "#/Decontaminasi"
+                    },
+                    {
+                        "name": "Monitoring Decontaminasi EO",
+                        "link": "#/MonitoringDecontaminasiEO"
+                    },
+                    {
+                        "name": "Monitoring Dekontaminasi Steam",
+                        "link": "#/MonitoringDekontaminasiSteam"
+                    },
+                    {
+                        "name": "Grafik Dan Pencatatan Suhu Mesin",
+                        "link": "#/GrafikDanPencatatanSuhuMesin"
+                    },
+                    {
+                        "name": "Bowidick, Attest, Grafik Pencatatan Suhu Mesin",
+                        "link": "#/BowidickAttestGrafikPencatatanSuhuMesin"
+                    },
+                    {
+                        "name": "Daftar Pencatatan Suhu Mesin",
+                        "link": "#/DaftarPencatatanSuhuMesin"
+                    },
+                    {
+                        "name": "Uji SWAB",
+                        "link": "#/UjiSWAB"
+                    },
+                    {
+                        "name": "Sterilisasi Alat",
+                        "link": "#/SterilisasiAlat"
+                    },
+                    {
+                        "name": "Penyimpanan",
+                        "link": "#/Penyimpanan"
+                    },
+                    {
+                        "name": "Distribusi",
+                        "link": "#/Distribusi"
+                    },
+                    {
+                        "name": "Monitoring Alat Steril",
+                        "link": "#/MonitoringAlatSteril"
+                    },
+                    {
+                        "name": "Monitoring Test Mesin Autoclave",
+                        "link": "#/MonitoringTestMesinAutoclave"
+                    },
+                    {
+                        "name": "Monitoring Test Mesin Ethylen Oxide",
+                        "link": "#/MonitoringTestMesinEthylenOxide"
+                    },
+                    {
+                        "name": "Monitoring Mesin Autoclave",
+                        "link": "#/MonitoringMesinAutoclave"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Menu IT",
+        "children": [{
+                "name": "Aplikasi IT",
+                "children": [{
+                        "name": "Permintaan Perbaikan dari Ruangan",
+                        "link": "#/PermintaanPerbaikandariRuanganIT"
+                    },
+                    {
+                        "name": "Respond Perbaikan",
+                        "link": "#/RespondPerbaikanIT"
+                    },
+                    {
+                        "name": "Form Permintaan Perbaikan",
+                        "link": "#/FormPermintaanPerbaikanIT"
+                    },
+                    {
+                        "name": "Form Pemeliharaan",
+                        "link": "#/FormPemeliharaan"
+                    },
+                    {
+                        "name": "Penjadwalan Pemeliharaan",
+                        "link": "#/PenjadwalanPemeliharaan"
+                    },
+                    {
+                        "name": "Daftar Jadwal Pemeliharaan",
+                        "link": "#/DaftarJadwalPemeliharaan"
+                    },
+                    {
+                        "name": "Preventive Maintenance Pihak Luar",
+                        "link": "#/PemeliharaanPihakLuar"
+                    },
+                    {
+                        "name": "Data Alat",
+                        "link": "#/AlatSOP"
+                    },
+                    {
+                        "name": "Monitoring Dan Evaluasi Hasil Pekerjaan",
+                        "link": "#/MonitoringDanEvaluasiHasilPekerjaan"
+                    }
+                ]
+            },
+            {
+                "name": "Form Master",
+                "children": [{
+                        "name": "Activity Pegawai ",
+                        "link": "#/ActivityPegawai"
+                    },
+                    {
+                        "name": "Advokasi Hukum Medicolegal ",
+                        "link": "#/AdvokasiHukumMedicolegal"
+                    },
+                    {
+                        "name": "Agama",
+                        "link": "#/Agama"
+                    },
+                    {
+                        "name": "Akun",
+                        "link": "#/Akun"
+                    },
+                    {
+                        "name": "Alamat",
+                        "link": "#/Alamat"
+                    },
+                    {
+                        "name": "Alasan Pemindahan Pasien ",
+                        "link": "#/AlasanPemindahanPasien"
+                    },
+                    {
+                        "name": "Alat Cssd ",
+                        "link": "#/AlatCssd"
+                    },
+                    {
+                        "name": "Alat Kesehatan ",
+                        "link": "#/AlatKesehatan"
+                    },
+                    {
+                        "name": "Alat",
+                        "link": "#/Alat"
+                    },
+                    {
+                        "name": "Alergi",
+                        "link": "#/Alergi"
+                    },
+                    {
+                        "name": "Asal Anggaran ",
+                        "link": "#/AsalAnggaran"
+                    },
+                    {
+                        "name": "Asal Peserta ",
+                        "link": "#/AsalPeserta"
+                    },
+                    {
+                        "name": "Asal Produk ",
+                        "link": "#/AsalProduk"
+                    },
+                    {
+                        "name": "Asal Rujukan ",
+                        "link": "#/AsalRujukan"
+                    },
+                    {
+                        "name": "As Kep Intervensi ",
+                        "link": "#/AsKepIntervensi"
+                    },
+                    {
+                        "name": "As Kep Jenis Kajian ",
+                        "link": "#/AsKepJenisKajian"
+                    },
+                    {
+                        "name": "As Kep Kajian ",
+                        "link": "#/AsKepKajian"
+                    },
+                    {
+                        "name": "As Kep Kategory Kajian ",
+                        "link": "#/AsKepKategoryKajian"
+                    },
+                    {
+                        "name": "As Kep Rasional I",
+                        "link": "#/AsKepRasionalI"
+                    },
+                    {
+                        "name": "As Kep Tujuan ",
+                        "link": "#/AsKepTujuan"
+                    },
+                    {
+                        "name": "Asuransi Pasien Berlaku ",
+                        "link": "#/AsuransiPasienBerlaku"
+                    },
+                    {
+                        "name": "Asuransi Pasien ",
+                        "link": "#/AsuransiPasien"
+                    },
+                    {
+                        "name": "Audit Data ",
+                        "link": "#/AuditData"
+                    }
+                ]
+            }
+
+        ]
+    },
+    {
+        "name": "Menu Humas dan Pemasaran",
+        "children": [{
+                "name": "Apresiasi Layanan",
+                "link": "#/ApresiasiLayanan"
+            },
+            {
+                "name": "Jumlah Apresiasi Layanan",
+                "link": "#/JumlahApresiasiLayanan"
+            },
+            {
+                "name": "Prosedur Layanan",
+                "link": "#/ProsedurLayanan"
+            },
+            {
+                "name": "Keluhan Pelanggan",
+                "link": "#/KeluhanPelanggan"
+            },
+            {
+                "name": "Perusahaan Bekerjasama",
+                "link": "#/PerusahaanBekerjasama"
+            },
+            {
+                "name": "Asuransi Bekerjasama",
+                "link": "#/AsuransiBekerjasama"
+            },
+            {
+                "name": "Rumah Sakit",
+                "link": "#/RumahSakit"
+            },
+            {
+                "name": "Data Peserta Rumah Sakit",
+                "link": "#/DataPesertaRumahSakit"
+            },
+
+            {
+                "name": "Data Peserta Yayasan",
+                "link": "#/DataPesertaYayasan"
+            },
+            {
+                "name": "Yayasan",
+                "link": "#/Yayasan"
+            },
+            {
+                "name": "Data Peserta Perusahaan Bekerjasama",
+                "link": "#/DataPerusahaanBekerjasama"
+            },
+            {
+                "name": "Data Peserta Asuransi Bekerjasama",
+                "link": "#/DataAsuransiBekerjasama"
+            },
+            {
+                "name": "Master Keterangan Survei Pelanggan",
+                "link": "#/MasterKeteranganSurveiPelanggan"
+            },
+            {
+                "name": "Ketersediaan Tempat Tidur",
+                "link": "#/KetersediaanTempatTidur"
+            },
+            {
+                "name": "Survei Kepuasan Pelanggan",
+                "link": "#/SurveiKepuasanPelanggan"
+            },
+
+            {
+                "name": "Manajemen Promosi",
+                "link": "#/ManajemenPromosi"
+            },
+            {
+                "name": "Monitoring Status PKS",
+                "link": "#/MonitoringStatusPks"
+            },
+            {
+                "name": "Daftar Keluhan Pelanggan",
+                "link": "#/DaftarKeluhanPelanggan"
+            },
+            {
+                "name": "Informasi Jadwal Dokter",
+                "link": "#/InformasiJadwalDokter"
+            },
+            {
+                "name": "Tarif Layanan",
+                "link": "#/TarifLayanan"
+            },
+            {
+                "name": "Form Ekstension",
+                "link": "#/FormEkstension"
+            },
+            {
+                "name": "Master Extension",
+                "link": "#/MasterExtension"
+            },
+            {
+                "name": "Master Pertanyaan SurveiPelanggan",
+                "link": "#/MasterPertanyaanSurveiPelanggan"
+            },
+            {
+                "name": "Penanganan Keluhan Pelanggan",
+                "link": "#/PenangananKeluhanPelanggan/fitribudiastuti@gmail.com"
+            },
+            {
+                "name": "Mapping Pertanyaan to keterangan survei kepuasan pelanggan",
+                "link": "#/mappingpertanyaansurvei"
+            }
+        ]
+    },
+
+    {
+        "name": "Menu K3KL",
+        "children": [{
+                "name": "Aplikasi K3",
+                "children": [{
+                        "name": "Risiko Ruangan Kerja",
+                        "link": "#/RisikoRuanganKerja"
+                    },
+                    {
+                        "name": "Daftar Pegawai",
+                        "link": "#/DaftarPegawai"
+                    },
+                    {
+                        "name": "Jadwal Rencana Pemeriksaan",
+                        "link": "#/JadwalRencanaPemeriksaan"
+                    },
+                    {
+                        "name": "Hazard And Vulnerability Assessment",
+                        "link": "#/HazardAndVulnerabilityAssessment"
+                    },
+                    {
+                        "name": "Summary Hazard And Vulnerability Assessment",
+                        "link": "#/SummaryHazardAndVulnerabilityAssessment"
+                    },
+                    {
+                        "name": "Laporan Kecelakaan Kerja",
+                        "link": "#/LaporanKecelakaanKerja"
+                    },
+                    {
+                        "name": "Daftar Laporan Kecelakaan Kerja",
+                        "link": "#/DaftarLaporanKecelakaanKerja"
+                    },
+                    {
+                        "name": "Daftar Bahan B3 di Ruangan",
+                        "link": "#/DaftarBahanB3DiRuangan"
+                    },
+                    {
+                        "name": "CHECK LIST FACILLITY MANAGEMENT & SAFETY (FMS)/ MANAJEMEN FASILITAS DAN KEAMANAN (MFK)",
+                        "link": "#/CheckListMFK"
+                    }
+                ]
+            },
+
+            {
+                "name": "Aplikasi Kesling",
+                "children": [{
+                        "name": "Limbah B3 Masuk",
+                        "link": "#/LimbahB3Masuk"
+                    },
+                    {
+                        "name": "Data Limbah B3 Masuk",
+                        "link": "#/DataLimbahB3Masuk"
+                    },
+                    {
+                        "name": "Limbah B3 Keluar",
+                        "link": "#/LimbahB3Keluar"
+                    },
+                    {
+                        "name": "Data Limbah B3 Keluar",
+                        "link": "#/DataLimbahB3Keluar"
+                    },
+                    {
+                        "name": "Neraca Limbah B3",
+                        "link": "#/NeracaLimbahB3"
+                    },
+                    {
+                        "name": "Data Neraca Limbah B3",
+                        "link": "#/NeracaLimbah"
+                    },
+                    {
+                        "name": "Pemakaian dan Pemanasan Mesin Genset",
+                        "link": "#/PemakaiandanPemanasanMesinGenset"
+                    },
+                    {
+                        "name": "Pemakaian dan Pemanasan Mesin Boiler",
+                        "link": "#/PemakaiandanPemanasanMesinBoiler"
+                    },
+                    {
+                        "name": "Pemeriksaan Swa Pantau Limbah Cair",
+                        "link": "#/HasilPemeriksaanSwaPantauLimbahCair"
+                    },
+                    {
+                        "name": "Data Pemeriksaan Swa Pantau Limbah Cair",
+                        "link": "#/DataHasilPemeriksaanSwaPantauLimbahCair"
+                    },
+                    {
+                        "name": "Laporan Pemakaian Air Bersih",
+                        "link": "#/LaporanPemakaianAirBersih"
+                    },
+                    {
+                        "name": "Laporan Uji Hasil",
+                        "link": "#/LaporanUjiHasil"
+                    },
+                    {
+                        "name": "Laporan Uji Hasil Revisi",
+                        "link": "#/FormLaporanUjiHasil"
+                    },
+                    {
+                        "name": "Data Laporan Uji Hasil",
+                        "link": "#/DataLaporanUjiHasil"
+                    },
+                    {
+                        "name": "Pemantauan Kinerja Pihak Ketiga",
+                        "link": "#/PemantauanPihakKetiga"
+                    },
+                    {
+                        "name": "Pengukuran Kebisingan",
+                        "link": "#/PengukuranKebisingan"
+                    },
+                    {
+                        "name": "Pemeriksaan Angka Kuman Udara",
+                        "link": "#/PemeriksaanAngkaKumanUdara"
+                    },
+                    {
+                        "name": "Swab Alat / Permukaan",
+                        "link": "#/SwabAlatPermukaan"
+                    },
+                    {
+                        "name": "Checklist Sanitasi / Kesehatan Lingkungan",
+                        "link": "#/CheckListSanitasi"
+                    },
+                    {
+                        "name": "Proper Lingkungan",
+                        "link": "#/ProperLingkungan"
+                    },
+                    {
+                        "name": "Daftar Proper Lingkungan",
+                        "link": "#/DaftarProperLingkungan"
+                    }
+
+                ]
+            },
+            {
+                "name": "Master Aplikasi Kesling",
+                "children": [{
+                        "name": "Master Parameter",
+                        "link": "#/MasterParameter"
+                    },
+                    {
+                        "name": "Master Satuan",
+                        "link": "#/MasterSatuan"
+                    },
+                    {
+                        "name": "Master Baku Mutu",
+                        "link": "#/MasterBakuMutu"
+                    },
+                    {
+                        "name": "Master Jenis Limbah B3 Masuk",
+                        "link": "#/MasterJenisLimbahB3Masuk"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Menu Hukor",
+        "children": [{
+                "name": "Usulan Evaluasi dan Kajian Organisasi",
+                "link": "#/UsulanEvaluasiDanKajianOrganisasi"
+            },
+            {
+                "name": "Daftar Usulan Evaluasi dan Kajian Organisasi",
+                "link": "#/DaftarUsulanEvaluasiDanKajianOrganisasi"
+            },
+            {
+                "name": "Daftar Usulan Evaluasi dan Kajian Organisasi - Tujuan",
+                "link": "#/DaftarUsulanEvaluasiDanKajianOrganisasiTujuan"
+            },
+            {
+                "name": "Advokasi Hukum Medicolegal",
+                "link": "#/AdvokasiHukumMedicolegal"
+            },
+            {
+                "name": "Daftar Advokasi Hukum Medicolegal",
+                "link": "#/DaftarAdvokasiHukumMedicolegal"
+            },
+            {
+                "name": "Legal Draft Perancangan Perundang - Undangan",
+                "link": "#/LegalDraftPerancanganPerundangan"
+            },
+            {
+                "name": "Daftar Legal Draft Perancangan Perundang - Undangan",
+                "link": "#/DaftarLegalDraftPerancanganPerundangan"
+            },
+            {
+                "name": "Daftar Legal Draft Perancangan Perundang - Undangan - Tujuan",
+                "link": "#/DaftarLegalDraftPerancanganPerundanganTujuan"
+            },
+            {
+                "name": "Legal Draft Monitoring Dan Evaluasi Perundang - Undangan",
+                "link": "#/LegalDraftMonitoringDanEvaluasiPerundangan"
+            },
+            {
+                "name": "Daftar Legal Draft Monitoring Dan Evaluasi Perundang - Undangan",
+                "link": "#/DaftarLegalDraftMonitoringDanEvaluasiPerundangan"
+            },
+            {
+                "name": "Daftar Legal Draft Monitoring Dan Evaluasi Perundang - Undangan - Tujuan",
+                "link": "#/DaftarLegalDraftMonitoringDanEvaluasiPerundanganTujuan"
+            }
+        ]
+    },
+    {
+        "name": "Menu Tata Usaha",
+        "children": [{
+                "name": "Surat Masuk",
+                "link": "#/SuratMasuk"
+            },
+            {
+                "name": "Daftar Surat Masuk",
+                "link": "#/DaftarSuratMasuk"
+            },
+            {
+                "name": "Membuat Draft Surat",
+                "link": "#/MembuatDraftSurat"
+            },
+            {
+                "name": "Files",
+                "link": "#/Files"
+            },
+            {
+                "name": "Disposisi",
+                "link": "#/Disposisi"
+            },
+            {
+                "name": "Daftar Disposisi",
+                "link": "#/DaftarDisposisi"
+            },
+            {
+                "name": "Distribusi Kirim Surat Masuk",
+                "link": "#/DistribusiKirimSuratMasukdariExternalKirimSurat"
+            },
+            {
+                "name": "Informasi Distribusi Surat",
+                "link": "#/InformasiDistribusiSurat"
+            },
+            {
+                "name": "Lembar Verbal Konsep",
+                "link": "#/LembarVerbalKonsep"
+            },
+            {
+                "name": "Jadwal Retensi Arsip",
+                "link": "#/JadwalRetensiArsip"
+            },
+            {
+                "name": "Pengiriman Surat Keluar",
+                "link": "#/PengirimanSuratKeluar"
+            },
+            {
+                "name": "Cetak Pengantar Surat",
+                "link": "#/CetakPengantarSurat"
+            }
+        ]
+    },
+    {
+        "name": "Menu Bagian Umum",
+        "children": [{
+            "name": "Master Data",
+            "children": [
+                { "name": "Master Barang Non Medis", "link": "#/MasterBarangNonMedis" },
+                { "name": "Master Barang Medis", "link": "#/MasterBarangMedis" },
+                { "name": "Master Bahan Makanan/Minuman", "link": "#/MasterBahanMakananUmum" },
+                { "name": "Master Barang Investasi", "link": "#/MasterBarangInvestasi" }
+            ]
+        }, {
+            "name": "Inventori",
+            "children": [
+                { "name": "Daftar Stok Ruangan", "link": "#/Logistik/DaftarStok/" },
+                { "name": "Order Barang", "link": "#/Logistik/Order/" },
+                { "name": "Daftar Order Barang", "link": "#/Logistik/Order/Informasi" },
+                { "name": "Form Penerimaan Barang", "link": "#/Logistik/DaftarRekapKontrak" },
+                { "name": "Daftar Penerimaan Barang", "link": "#/Logistik/DaftarPenerimaanLogistik" },
+                { "name": "Daftar Barang Investasi", "link": "#/Logistik/DaftarBarangInvestasi" },
+                { "name": "Informasi Penerimaan Barang", "link": "#/Logistik/Terima/Informasi" },
+                { "name": "Kartu Stok", "link": "#/KartuStok" },
+                { "name": "Stok Opname", "link": "#/Logistik/StokOpname" }
+            ]
+        }]
+    },
+    {
+        "name":"Aplikasi IT",
+        "children":[
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/RevPermintaanPerbaikandariRuanganITNew"
+            }
+        ]
+    },
+    {
+        "name": "Menu IP3RS",
+        "children": [{
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/PermintaanPerbaikandariRuangan"
+            },
+            {
+                "name": "Penjadwalan Preventive",
+                "link": "#/PenjadwalanPreventive"
+            },
+            {
+                "name": "Respond Perbaikan",
+                "link": "#/RespondPerbaikan"
+            },
+            {
+                "name": "Informasi Permintaan Barang",
+                "link": "#/Logistik/Order/Informasi"
+            },
+            {
+                "name": "Permintaan Barang",
+                "link": "#/Logistik/Order/"
+            },
+            {
+                "name": "Data Alat",
+                "link": "#/AlatSOP"
+            },
+            {
+                "name": "Tagihan Business Center",
+                "link": "#/TagihanBusinessCenter"
+            },
+            {
+                "name": "Daftar Tagihan Business Center",
+                "link": "#/DaftarTagihanBusinessCenter"
+            },
+            {
+                "name": "Pemakaian Ruangan",
+                "link": "#/PemakaianRuangan"
+            },
+            {
+                "name": "Daftar Pemakaian Ruangan",
+                "link": "#/DaftarPemakaianRuangan"
+            },
+            {
+                "name": "Form Peminjaman Alat",
+                "link": "#/FormPeminjamanAlat"
+            },
+            {
+                "name": "Daftar Peminjaman Alat",
+                "link": "#/DaftarPeminjamanAlat"
+            },
+            {
+                "name": "Pemakaian dan Pemanasan Mesin (Genset atau Boiler)",
+                "link": "#/PemakaiandanPemanasanMesinGensetatauBoiler"
+            },
+            {
+                "name": "Daftar Barang Monitoring Dan Evaluasi",
+                "link": "#/DaftarBarangMonitoringDanEvaluasi"
+            },
+            {
+                "name": "Monitoring Dan Evaluasi Hasil Pekerjaan",
+                "link": "#/MonitoringDanEvaluasiHasilPekerjaan"
+            },
+            {
+                "name": "Monitoring Dan Evaluasi Pihak Luar",
+                "link": "#/MonitoringPihakLuar"
+            },
+            {
+                "name": "Pemakaian Gas Medis",
+                "link": "#/PemakaianGasMedis"
+            },
+            {
+                "name": "Monitoring Dan Evaluasi Kapitalisasi Bangunan",
+                "link": "#/MonitoringDanEvaluasiKapitalisasiBangunan"
+            },
+            {
+                "name": "Jenis Pekerjaan",
+                "link": "#/JenisPekerjaan"
+            },
+            {
+                "name": "TanggalJadwal",
+                "link": "#/TanggalJadwal"
+            }
+        ]
+    },
+    {
+        "name": "Menu Rumah Tangga",
+        "children": [{
+                "name": "Jadwal Supir Ambulance",
+                "link": "#/JadwalSupirAmbulance"
+            },
+            {
+                "name": "Daftar Order Ambulance",
+                "link": "#/DaftarOrderAmbulance"
+            },
+            {
+                "name": "Order Pemakaian Rumah Duka",
+                "link": "#/PemakaianRumahDuka"
+            },
+            {
+                "name": "Daftar Pemakaian Rumah Duka",
+                "link": "#/DaftarPemakaianRumahDuka"
+            },
+            {
+                "name": "Sewa Asrama",
+                "link": "#/SewaAsrama"
+            },
+            {
+                "name": "Daftar Sewa Asrama",
+                "link": "#/DaftarSewaAsrama"
+            },
+            {
+                "name": "Sewa Lahan",
+                "link": "#/SewaLahan"
+            },
+            {
+                "name": "Daftar Sewa Lahan",
+                "link": "#/DaftarSewaLahanRsab"
+            },
+            {
+                "name": "Order Pemakaian Kendaraan Dinas dan Pejabat",
+                "link": "#/OrderPemakaianKendaraanDinasDanPejabat"
+            },
+            {
+                "name": "Daftar Order Pemakaian Kendaraan Dinas dan Pejabat",
+                "link": "#/DaftarOrderPemakaianKendaraanDinasDanPejabat"
+            },
+            {
+                "name": "Order Pemakaian Ruang Rapat",
+                "link": "#/OrderPemakaianRuangRapat"
+            },
+            {
+                "name": "Daftar Order Pemakaian Ruang Rapat",
+                "link": "#/DaftarOrderPemakaianRuangRapat"
+            },
+            {
+                "name": "Penilaian Kinerja Satpam",
+                "link": "#/PenilaianKinerjaSatpam"
+            },
+            {
+                "name": "Daftar Penilaian Kinerja Satpam",
+                "link": "#/DaftarPenilaianKinerjaSatpam"
+            },
+            {
+                "name": "Pemulasaraan Jenazah",
+                "link": "#/PemusaraanJenazah"
+            }
+        ]
+    },
+    {
+        "name": "Menu Rensar",
+        "children": [{
+                "name": "Master",
+                "children": [{
+                        "name": "Master Dampak Risiko",
+                        "link": "#/MasterDampakRisiko"
+                    },
+                    {
+                        "name": "Master Peran",
+                        "link": "#/MasterPeran"
+                    },
+                    {
+                        "name": "Master Satuan Indikator",
+                        "link": "#/MasterSatuanIndikator"
+                    },
+                    {
+                        "name": "Master Program Kerja Strategis",
+                        "link": "#/MasterProgramKerjaStrategis"
+                    },
+                    {
+                        "name": "Master Bobot Indikator",
+                        "link": "#/MasterBobotIKU"
+                    },
+                    {
+                        "name": "Master Risiko",
+                        "link": "#/MasterRisiko"
+                    },
+                    {
+                        "name": "Master Kemungkinan Risiko Terjadi",
+                        "link": "#/MasterKemungkinanRisikoTerjadi"
+                    },
+                    {
+                        "name": "Master Tingkat Risiko",
+                        "link": "#/MasterTingkatRisiko"
+                    },
+                    {
+                        "name": "Master Periode Pelaporan",
+                        "link": "#/MasterPeriodePelaporan"
+                    },
+                    {
+                        "name": "Master Perpektif",
+                        "link": "#/Perpektif"
+                    },
+                    {
+                        "name": "Master Indikator",
+                        "link": "#/MasterIndikator"
+                    }
+                ]
+            },
+            {
+                "name": "Transaksi",
+                "children": [{
+                        "name": "Analisa SWOT",
+                        "link": "#/AnalisaSWOT"
+                    },
+                    {
+                        "name": "Daftar Analisa SWOT",
+                        "link": "#/DaftarAnalisaSWOT"
+                    },
+                    {
+                        "name": "Diagram Kartesius",
+                        "link": "#/DiagramKartesius"
+                    },
+                    {
+                        "name": "Diagram Tows",
+                        "link": "#/DiagramTows"
+                    },
+                    {
+                        "name": "Sasaran Strategis",
+                        "link": "#/SasaranStrategis"
+                    },
+                    {
+                        "name": "Kamus Indikator",
+                        "link": "#/KamusIKU"
+                    },
+                    {
+                        "name": "Kontrak Kinerja",
+                        "link": "#/KontrakKinerja"
+                    },
+                    {
+                        "name": "Program Kerja Strategis",
+                        "link": "#/ProgramKerjaStrategis"
+                    },
+                    {
+                        "name": "Jenis Risiko Berdasarkan Sasaran Strategis",
+                        "link": "#/JenisRisikoBerdasarkanSasaranStrategis"
+                    },
+                    {
+                        "name": "Penentuan Rencana Mitigasi Risiko",
+                        "link": "#/PenentuanRencanaMitigasiRisiko"
+                    },
+                    {
+                        "name": "RKT DAN RKO",
+                        "link": "#/RKTRKO"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Menu Pengadaan",
+        "children": [{
+                "name": "Unit Kerja",
+                "children": [{
+                        "name": "Pengajuan Usulan Anggaran",
+                        "link": "#/PengajuanUsulanAnggaran"
+                    },
+                    {
+                        "name": "Daftar Pengajuan Usulan Anggaran",
+                        "link": "#/DaftarUsulanPengajuanAnggaran"
+                    }
+                ]
+            },
+            {
+                "name": "Pengendali",
+                "children": [{
+                    "name": "Verifikasi Pengajuan Usulan Anggaran",
+                    "link": "#/DaftarUsulanPengajuanAnggaranPengendali"
+                }, {
+                    "name": "Proses RUP",
+                    "link": "#/dataRup"
+                }, {
+                    "name": "Daftar Rencana Usulan Pengadaan",
+                    "link": "#/DaftarUsulanPermintaan"
+                }, {
+                    "name": "Informasi Usulan Permintaan Barang/Jasa",
+                    "link": "#/daftarKartuPengendali"
+                }]
+            },
+            {
+                "name": "Direktur",
+                "children": [{
+                    "name": "Verifikasi Kartu Pengendali",
+                    "link": "#/daftarKartuPengendaliDirektur"
+                }]
+            },
+            {
+                "name": "PPK",
+                "children": [{
+                    "name": "Verifikasi Kartu Pengendali",
+                    "link": "#/daftarKartuPengendaliPPK"
+                }, {
+                    "name": "Rekap Kontrak Pengadaan Barang",
+                    "link": "#/RekapKontrakPengadaan"
+                }, {
+                    "name": "Form Buat SPPB",
+                    "link": "#/FormBuatSppb"
+                }, {
+                    "name": "Form Daftar SPPB",
+                    "link": "#/DaftarSppb"
+                }]
+            },
+            {
+                "name": "ULP",
+                "children": [{
+                    "name": "Daftar Usulan Belanja",
+                    "link": "#/daftarKartuPengendaliULP"
+                }, {
+                    "name": "Upload Penawaran Supplier",
+                    "link": "#/UploadPenawaranSupplier"
+                }, {
+                    "name": "Rekap Kontrak Pengadaan Barang",
+                    "link": "#/RekapKontrakPengadaan"
+                }, {
+                    "name": "Form Penerimaan Barang PPHP",
+                    "link": "#/FormPenerimaanPphp"
+                }, {
+                    "name": "Daftar Penerimaan PPHP",
+                    "link": "#/DaftarPenerimaanPphp"
+                }, {
+                    "name": "TOR",
+                    "link": "#/TOR"
+                }]
+            },
+            {
+                "name": "Pejabat Pengadaan",
+                "children": [{
+                    "name": "Daftar Usulan Belanja",
+                    "link": "#/daftarKartuPengendaliPP"
+                }]
+            },
+            {
+                "name": "PPHP",
+                "children": [{
+                    "name": "Form Penerimaan Barang PPHP",
+                    "link": "#/FormPenerimaanPphp"
+                }, {
+                    "name": "Daftar Penerimaan PPHP",
+                    "link": "#/DaftarPenerimaanPphp"
+                }]
+            }
+        ]
+    },
+    {
+        "name": "Menu Logistik",
+        "children": [{
+            "name": "Form SPPB",
+            "link": "#/FormBuatSppb"
+        }, {
+            "name": "Form Daftar SPPB",
+            "link": "#/DaftarSppb"
+        }, {
+            "name": "Inventori",
+            "children": [{
+                "name": "Daftar Stok Ruangan",
+                "link": "#/Logistik/DaftarStok/"
+            }, {
+                "name": "Permintaan Barang",
+                "link": "#/Logistik/Orders/"
+            }, {
+                "name": "Informasi Penerimaan (Eksternal)",
+                "children": [{
+                    "name": "Form Penerimaan Barang",
+                    "link": "#/Logistik/DaftarRekapKontrak"
+                }, {
+                    "name": "Daftar Penerimaan Barang",
+                    "link": "#/Logistik/DaftarPenerimaanLogistik"
+                }]
+            }, {
+                "name": "Informasi Permintaan Barang",
+                "children": [{
+                    "name": "Daftar Permintaan Barang",
+                    "link": "#/Logistik/Terima/Verifikasi"
+                }, {
+                    "name": "Daftar Pengiriman Barang",
+                    "link": "#/Logistik/OrderKirim/Informasi"
+                }]
+            }, {
+                "name": "Informasi Penerimaan Barang",
+                "link": "#/Logistik/Terima/Informasi"
+            }, {
+                "name": "Kartu Stok",
+                "link": "#/KartuStok"
+            }, {
+                "name": "Stok Opname",
+                "link": "#/Logistik/StokOpname"
+            }]
+        }]
+    },
+    {
+        "name": "Menu SDM",
+        "children": [{
+            "name": "Input Logbook",
+            "link": "#/InputLogbook"
+        }, {
+            "name": "Indeks Kinerja Individu",
+            "link": "#/IndeksKinerjaIndividuSDM"
+        }, {
+            "name": "Permohonan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
+            "link": "#/PermohonanPerubahanStatusPegawai"
+        }, {
+			"name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
+			"link": "#/DaftarPenangguhanCuti"
+		}, {
+            "name": "Pengajuan Mutasi Pegawai",
+            "link": "#/PengajuanMutasiPegawai"
+        }, {
+            "name": "Pengajuan Resign Pegawai",
+            "link": "#/PengajuanResignPegawai"
+        }, {
+            "name": "Pengajuan Sanksi Pegawai",
+            "link": "#/PengajuanSanksiPegawai"
+        }, {
+            "name": "Daftar Pengajuan Mutasi Resign Sanksi",
+            "link": "#/DaftarPengajuanMutasiSanksiResign"
+        }, {
+			"name": "Monitoring Absensi",
+			"link": "#/MonitoringAbsensiPegawai"
+		}, {
+			"name": "InputLemburPegawaiUnitKerja",
+			"link": "#/InputLemburPegawaiUnitKerja"
+		},{
+            "name": "Verifikasi Uraian Tugas Bawahan",
+            "link": "#/VerifikasiUraianTugasPegawaiLogin"
+        },{
+                "name": "Pengajuan Pelatihan",
+                "children": [
+                    {
+                        "name": "Monitoring Pengajuan Pelatihan",
+                        "link": "#/MonitoringPengajuanPelatihan"
+                    },
+                    {
+                        "name": "Pengajuan Pelatihan",
+                        "link": "#/PermintaaanPelatihanDirek"
+                    },
+                    {
+                        "name": "Daftar Undangan Pelatihan",
+                        "link": "#/DaftarUndanganPelatihan"
+                    },
+                    {
+                        "name": "Daftar Kehadiran Peserta Pelatihan",
+                        "link": "#/DaftarKehadiranPesertaPelatihan"
+                    },
+                    {
+                        "name": "Daftar Rekapitulasi Kehadiran Peserta Pelatihan",
+                        "link": "#/DaftarRekapitulasiKehadiran"
+                    }
+                ]
+            }]
+    },
+    {
+        "name": "Tata Usaha",
+        "children": [{
+                "name": "Membuat Draft Surat",
+                "link": "#/BuatDraftSurat"
+            },
+            {
+                "name": "Daftar Draft",
+                "link": "#/DaftarDraft"
+            },
+            {
+                "name": "Daftar Draft Surat Masuk",
+                "link": "#/DaftarDraftSuratMasuk"
+            },
+            {
+                "name": "Dokumen Verbal Konsep",
+                "link": "#/DokumenVerbalKonsep/"
+            },
+            {
+                "name": "Verbal Konsep",
+                "link": "#/VerbalKonsep/"
+            },
+            {
+                "name": "Surat Masuk Internal dan Eksternal",
+                "link": "#/SuratMasukInternaldanEksternal"
+            },
+            {
+                "name": "Daftar Surat Masuk Internal Eksternal",
+                "link": "#/DaftarSuratMasukInternalEksternal"
+            },
+            {
+                "name": "Nota Dinas",
+                "link": "#/NotaDanDisposisi"
+            },
+            {
+                "name": "Daftar Nota Dinas",
+                "link": "#/ListNotaDinas"
+            }
+        ]
+    },
+    {
+        "name": "Aplikasi Laundry",
+        "children": [
+            {
+                "name": "Permintaan Linen Bersih",
+                "link": "#/PermintaanLinenByRuangan"
+            },{
+                "name": "Verifikasi",
+                "link": "#/VerifikasiTerima"
+            }
+    ]
+    }
+]

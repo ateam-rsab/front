@@ -1,0 +1,125 @@
+<div ng-controller="StatusAccountCtrl">
+<div ng-show="dataVOloaded">
+<c-panel item="item" header="'Status Account'" disabled>
+
+<!-- jenisAccount -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="jenisAccount"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisAccount" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listjenisAccount" />
+</div>
+</div>
+
+<!-- jenisAccountId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="jenisAccountId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jenisAccountId" />
+</div>
+</div>
+
+<!-- kdStatusAccount -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kdStatusAccount"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kdStatusAccount" />
+</div>
+</div>
+
+<!-- qStatusAccount -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="qStatusAccount"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.qStatusAccount" />
+</div>
+</div>
+
+<!-- statusAccount -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="statusAccount"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.statusAccount" />
+</div>
+</div>
+
+<!-- reportDisplay -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="reportDisplay"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+</div>
+</div>
+
+<!-- kodeExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kodeExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+</div>
+</div>
+
+<!-- namaExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="namaExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+</div>
+</div>
+
+<!-- StatusAccount -->
+<div class="grid_12">
+<div class="grid_12 headerBox">
+<p>StatusAccount</p>
+</div>
+<div class="clear"></div>
+
+<!-- grid table -->
+<div class="grid_12 borderBox">
+<div kendo-grid k-data-source="dataStatusAccount" k-selectable="'row'" k-columns="columnStatusAccount">
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+
+
+</c-panel>
+
+<div class="grid_12" style="margin-top:30px">
+<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
+</div>
+</div>
+</div>

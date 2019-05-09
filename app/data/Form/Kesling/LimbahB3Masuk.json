@@ -1,0 +1,58 @@
+
+{
+	"model":{
+		"jenisLimbahB3Masuk":"",
+		"tanggal":"",
+		"beratSampahMedis":"",
+		"waktu":"",
+		"ruangan":"",
+		"petugas":"",
+		"jam":"",
+		"kg":""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "jenisLimbahB3Masuk",
+			"messagesRequired" : "",
+			"caption" : "Jenis Limbah B3 Masuk"
+		},{
+			"isNull" : "true",
+			"name" : "tanggal",
+			"messagesRequired" : "",
+			"caption" : "Tanggal"
+		},{
+			"isNull" : "true",
+			"name" : "beratSampahMedis",
+			"messagesRequired" : "",
+			"caption" : "Berat Sampah Medis"
+		},{
+			"isNull" : "true",
+			"name" : "waktu",
+			"messagesRequired" : "",
+			"caption" : "Waktu"
+		},{
+			"isNull" : "true",
+			"name" : "ruangan",
+			"messagesRequired" : "",
+			"caption" : "Ruangan"
+		},{
+			"isNull" : "true",
+			"name" : "petugas",
+			"messagesRequired" : "",
+			"caption" : "Petugas"
+		},{
+			"isNull" : "true",
+			"name" : "jam",
+			"messagesRequired" : "",
+			"caption" : "Jam"
+		},{
+			"isNull" : "true",
+			"name" : "Kg",
+			"messagesRequired" : "",
+			"caption" : "kg"
+		}
+
+	]
+}

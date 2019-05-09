@@ -1,0 +1,54 @@
+<div>
+    <div class="panel panel-default container_12" ng-hide="klikDiagnosa">
+        <div class="panel-heading"><label class='title' c-label item="item">Daftar Pasien Pernah Dirawat</label></div>
+        <div class="panel-body">
+            <div class="grid_12">
+               <div class="grid_4">
+                    <div class="grid_6">
+                        <label c-label item="item" c-label-text="Tanggal awal"></label>
+                        <input style="width: 100%" k-ng-model="item.tglawal" kendo-datetimepicker placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd HH:mm'" />
+                    </div>
+                    <div class="grid_6">
+                        <label c-label item="item" c-label-text="Tanggal Akhir"></label>
+                         <input style="width: 100%" k-ng-model="item.tglakhir" kendo-datetimepicker placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd HH:mm'" />
+                    </div>
+                </div>               
+                <div class="grid_1" style="margin-top:5px">
+                    <label c-label real>No RM</label>
+                    <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="itema.noCm" ng-keypress="($event.which == 13)? SearchEnter():itema.noCm" />
+                </div>
+                <div class="grid_2" style="margin-top:5px">
+                    <label c-label real>No Registrasi</label>
+                    <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="itema.noRegistrasi"
+                        ng-keypress="($event.which == 13)? SearchEnter():itema.noRegistrasi" />
+                </div>
+                <div class="grid_2" style="margin-top:5px">
+                    <label c-label real>Nama Pasien</label>
+                    <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="itema.namaPasien"
+                        ng-keypress="($event.which == 13)? SearchEnter():itema.namaPasien" />
+                </div>               
+                <div class="grid_2" style="margin-top:5px">
+                    <label c-label c-label-text="namaRuangan" real></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="itema.ruangan" k-data-text-field="'namaruangan'"
+                        k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />                 
+                </div>
+                <div class="grid_1" style="margin-top:5px">
+                    <label c-label c-label-text=""></label>
+                    <em style="margin-top:6px;" ng-click='findData()' id="iconButton" data-role="button" class="k-button k-button-icon"
+                        role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_12 borderBox">
+                    <div kendo-grid id="grid" k-groupable="'true'" k-aggregate='aggregate' k-ng-model="item"
+                        k-data-source="GridPasien" k-selectable="'row'" k-sortable="'true'" k-pageable="'true'"
+                        options="ColumnPasien" ng-click="klikGrid(item)">
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12" style="margin-top:60px">
+                <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+            </div>
+        </div>
+    </div>
+</div>

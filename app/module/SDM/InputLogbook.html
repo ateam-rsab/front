@@ -1,0 +1,26 @@
+<div>
+    <div class="panel panel-default container_12">
+        <div class="panel-heading">
+            <label class='title' c-label> Log Book</label>
+        </div>
+        <div class="panel-body">
+            <div class="grid_12">
+                <div class="grid_2">
+                    <input style="width: 100%" kendo-date-picker k-ng-model="tanggal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" 
+                    k-value="now" k-max="now" />
+                </div>
+                <div class="grid_1">
+                    <em style="margin-top:6px;" ng-click='mencari()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+                </div>
+                <!--<div class="grid_2" style="margin: 7px 0 0 0">
+                    <button class="c-button" ng-click="mencari()">CARI</button>
+                </div>-->
+            </div>
+            <div class="grid_12">
+                <div kendo-grid k-data-source="daftarBahanLinen2" k-pageable="false" k-editable="true" k-selectable="'row'" k-columns="columnLaporanUjiHasil">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+</div>

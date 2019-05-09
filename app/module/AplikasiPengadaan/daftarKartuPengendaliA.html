@@ -1,0 +1,85 @@
+<div ng-controller="daftarKartuPengendaliACtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'DaftarUsulanPermintaanBarang/Jasa(Anggaran)'">
+		<!-- <div class="grid_6">
+			<div class="grid_4">
+				<label c-label class="label-aja" item="item" c-label-text="pengendali"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.pengendali" k-data-text-field="'namaPengendali'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPengendali" />
+			</div>
+		</div>
+		<div class="clear"></div> -->
+		<div class="grid_6">
+			<div class="grid_4">
+				<label c-label class="label-aja" item="item" c-label-text="periode"></label>
+			</div>
+			<div class="grid_2">
+				<label c-label class="label-aja" item="item" c-label-text="dari"></label>
+			</div>
+			<div class="grid_6">
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.dari" placeholer="now" k-format="'dd-MM-yyyy'"/>
+			</div>
+		</div>
+		<div class="grid_6">
+			<div class="grid_2">
+				<label c-label class="label-aja" item="item" c-label-text="sampai"></label>
+			</div>
+			<div class="grid_6">
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.sampai" placeholer="now" k-format="'dd-MM-yyyy'"/>
+			</div>
+			<div class="grid_4" style="margin-top:6px">
+				<button class="c-button" ng-click="cariRup()">Cari</button>
+			</div>
+		</div>
+		<!--
+		<div class="grid_6">
+			<div class="grid_12" style="margin-bottom: 10px">
+				<button class="c-button" ng-click="tambah()">Buat RUP Berdasarkan No Rec</button>
+			</div>
+			<div class="grid_12" style="margin-bottom: 10px">
+				<button class="c-button" ng-click="tambah()">Buat RUP Berdasarkan Spek</button>
+			</div>	
+		</div>
+		<div class="grid_6">
+			<div class="grid_12" style="margin-bottom: 10px">
+				<button class="c-button" ng-click="tambah()">Buat RUP Berdasarkan Detail</button>
+			</div>
+			<div class="grid_12" style="margin-bottom: 10px">
+				<button class="c-button" ng-click="tambah()">Buat RUP Berdasarkan Kegiatan</button>
+			</div>
+		</div>
+		-->
+		</c-panel>
+		<div class="clear"></div>
+
+		<div class="grid_12">
+			<!-- <kendo-grid options="mainGridOptions" k-data-source="dataRupLengkap" k-selectable="'row'" k-ng-model="current" ng-click="kl(current)"></kendo-grid> -->
+			<kendo-grid options="mainGridOptions" k-data-source="dataRupLengkap" k-pageable="true" k-selectable="'row'" k-sortable="true" k-ng-model="current" ng-click="kl(current)" k-on-change="handleChange(data, dataItem, columns)"></kendo-grid>
+					<!--
+        			<kendo-grid  k-options="ok" k-pageable="Page" k-data-source="sourceOrder" k-selectable="'row'" k-columns="kolomDataPengajuan" k-ng-model="current" ng-click="kl(current)">
+                    </kendo-grid>
+                -->
+		</div>
+
+	    <div class="grid_8"></div>
+	    <!-- <div class="grid_2">
+	      	<button kendo-button ng-click="editKartuPengendali()" class="k-button k-primary" style="margin-top:6px;width:100%;">Edit</button>
+	    </div> -->
+	    <div class="grid_2">
+	      	<button kendo-button ng-click="verifikasiKartuPengendali()" class="k-button k-primary" style="margin-top:6px;width:100%;">Verifikasi</button>
+		</div>
+	    <div class="grid_2">
+	      	<button kendo-button ng-click="doTheBack()" class="k-button k-primary" style="margin-top:6px;width:100%;">Kembali</button>
+	    </div>
+	</div>
+</div>
+
+<style>
+.label-aja {
+	padding-top:12px;font-size:13px;font-weight:bold;
+	/*text-align:right;*/
+	height:22px;
+}
+</style>

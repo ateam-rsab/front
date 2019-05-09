@@ -1,0 +1,93 @@
+<div ng-controller="ReservasiOnlineNewCtrl">
+    <div class="grid_12">
+        <div class="grid_4">
+            <a href="#/ReservasiOnline/Main" ng-click="NavJenisPasien('UMUM')">
+                <div class="card">
+                    <div class="card-image">
+                        <span class="card-title">UMUM</span>
+                        <img width="100px" src="stylesheets/Flat/umum.png" />
+                    </div>
+                    <div class="card-content" style="height: 60px;">
+                        <p>
+                            Pilih Menu ini, jika anda adalah pasien <b>Mandiri</b> di rumah sakit
+                        </p>
+                    </div>
+                    <div class="card-action">
+                        Pilih
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="grid_4">
+            <a href="#/ReservasiOnline/Verifikasi/Bpjs" ng-click="NavJenisPasien('BPJS')">
+                <div class="card">
+                    <div class="card-image">
+                        <span class="card-title">BPJS</span>
+                        <img width="100px" src="stylesheets/Flat/bpjs.png" />
+                    </div>
+                    <div class="card-content" style="height: 60px;">
+                        <p>
+                            Pilih Menu ini, jika anda adalah pasien <b>BPJS</b> di rumah sakit
+                        </p>
+                    </div>
+                    <div class="card-action">
+                        Pilih
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="grid_4">
+            <a href="#/ReservasiOnline/Main" ng-click="NavJenisPasien('NONUMUM')">
+                <div class="card">
+                    <div class="card-image">
+                        <span class="card-title">ASURANSI</span>
+                        <img width="100px" src="stylesheets/Flat/non-bpjs.png" />
+                    </div>
+                    <div class=" card-content" style="height: 60px;">
+                        <p>
+                            Pilih Menu ini, jika anda adalah pasien <b>ASURANSI</b> di rumah sakit
+                        </p>
+                    </div>
+                    <div class="card-action">
+                        Pilih
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!--<div class="grid_12">
+        <div class="grid_6">
+            <label c-label item="item" c-label-text="JenisPasien"></label>
+            <input required style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPasienMasuk" k-data-text-field="'name'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="liststat" />
+        </div>
+        <div class="grid_6">
+            {{item.jenisPasienMasuk.name}}
+            {{item.jenisPasienKelas.name}}
+            {{item.jenisPasienKelas.name}}
+        </div>
+        <div class="clear"></div>
+        </div>
+
+        <div class="grid_12">
+        <div class="grid_6">
+            <label c-label item="item" c-label-text="JenisPasien"></label>
+            <input required style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPasienKelas" k-data-text-field="'name'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listkelas" />
+        </div>
+        <div class="grid_6">
+        </div>
+        <div class="clear"></div>
+        </div>
+
+        <div class="grid_12">
+            <div class="grid_6">
+                <label c-label item="item" c-label-text="JenisPasien"></label>
+                <input required style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPasienBaruLama" k-data-text-field="'name'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listbarulama" />
+            </div>
+            <div class="grid_6">
+            </div>
+            <div class="clear"></div>
+        </div>-->
+
+
+    </div>
+</div>

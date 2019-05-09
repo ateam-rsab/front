@@ -1,0 +1,60 @@
+<div ng-controller="mappingpertanyaansurveiCtrl">
+	<div class="panel panel-default container_12"> 
+		<div class="panel-heading" c-translate>Form Mapping Pertanyaan to Keterangan Survei Kepuasan Pelanggan</div>
+			<div class="panel-body">
+				
+				<div class="grid_6" style="margin-top: 20px">
+					<div class="grid_12">
+					<div class="grid_6" style="margin-top: 5px">
+						<label c-label item="item" c-label-text="Pertanyaan"></label>
+					</div>
+					<div class="grid_6">
+						 <input style="width: 100%;" kendo-combo-box k-ng-model="item.question" k-data-text-field="'pertanyaan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="Listpertanyaan" />
+					</div>
+					
+					<div class="grid_12">
+					<div class="grid_6" style="margin-top: 5px">
+						<label c-label item="item" c-label-text="Keterangan"></label>
+					</div>
+				         <div class="grid_6" style="margin: 5px 0 0 0;">
+                         <div class="grid_6" style="margin: 0 0 0 0;" ng-repeat="data in Listketerangan">
+                        <input type="checkbox" class="k-checkbox" name="{{data.keterangan}}" id="{{data.keterangan}}" value="{{data.id}}"  ng-click="cekArrPeralatan(data)">
+                        <label class="k-checkbox-label" for="{{data.keterangan}}">{{data.keterangan}}</label>
+                    </div>
+					</div>
+					
+                       
+                  </div>
+					
+					
+					
+					
+					
+					
+					
+					</div>
+				</div>
+			<div class="grid_12">
+				     <div class="grid_3">
+					 </div>
+					  <div class="grid_6">
+					<div class="grid_3">
+					 <c-button class="success" ng-click="Save()">
+                    <span class="title" c-translate>Simpan</span>
+                    </c-button>
+					</div>
+					<div class="grid_3">
+					 <c-button class="success" >
+                    <span class="title" c-translate>Batal</span>
+                    </c-button>
+					</div>
+					</div>
+					</div> 
+				
+				
+				
+				<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+				
+			</div>
+		</div>
+	</div>

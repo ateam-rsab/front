@@ -1,0 +1,145 @@
+<div ng-controller="DashboarPasienIdentitasCtrl">
+    <div class="panel panel-default container_12">
+        <div class="panel-heading">Data Pasien</div>
+        <div class="panel-body">
+
+            <div class="grid_12"><b  style='font-size:14pt;'>
+                <!-- form kiri -->
+                <div class="grid_7">
+                    <!-- nama lengkap -->
+                    <div class="grid_12">
+                        <div class="grid_3">
+                            Nama Pasien
+                        </div>
+                        <div class="grid_8">
+                            :&nbsp;{{item.pasien.namaPasien}}
+                        </div>
+                    </div>
+                    <!-- tempat lahir -->
+                    <div class="grid_12">
+                        <div class="grid_3">
+                            Tempat Lahir
+                        </div>
+                        <div class="grid_8">
+                            :&nbsp;{{item.pasien.tempatLahir}}
+                        </div>
+                    </div>
+                    <!-- tanggal lahir -->
+                    <div class="grid_12">
+                        <div class="grid_3">
+                            Tanggal Lahir</label>
+                        </div>
+                        <div class="grid_8">
+
+                            :&nbsp;{{tglLahir}}
+
+                        </div>
+                    </div>
+                    <!-- jenis kelamin -->
+                    <div class="grid_12">
+                        <div class="grid_3">
+                            Jenis Kelamin</label>
+                        </div>
+                        <div class="grid_8">
+                            :&nbsp;{{item.pasien.jenisKelamin.jenisKelamin}}
+                        </div>
+                    </div>
+                    <!-- Agama -->
+                    <div class="grid_12">
+                        <div class="grid_3">
+                            Agama
+                        </div>
+                        <div class="grid_8">
+
+                            :&nbsp;{{item.pasien.agama.agama}}
+
+                        </div>
+                    </div>
+                    <!-- pendidikan -->
+                    <div class="grid_12">
+                        <div class="grid_3">
+                            Pendidikan
+                        </div>
+                        <div class="grid_8">
+                            :&nbsp;{{item.pasien.pendidikan.namaExternal}}
+                        </div>
+                    </div>
+                    <!-- pekerjaan -->
+                    <div class="grid_12">
+                        <div class="grid_3">
+                            Pekerjaan
+                        </div>
+                        <div class="grid_8">
+                            :&nbsp;{{item.pasien.pekerjaan.pekerjaan}}
+                        </div>
+                    </div>
+                    <!-- alamat -->
+                    <div class="grid_12">
+                        <div class="grid_3">
+                            Alamat
+                        </div>
+                        <div class="grid_8">
+                            :&nbsp;{{item.alamat.alamatLengkap}}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- form kanan -->
+                <div class="grid_5">
+                    <!-- nama lengkap ayah -->
+                    <div class="grid_12">
+                        <div class="grid_5">
+                            Nama Ayah
+                        </div>
+                        <div class="grid_7">
+                            :&nbsp;{{item.pasienDaftar.hubunganKeluarga.namaExternal}}
+                        </div>
+                    </div>
+                    <!-- nama lengkap ibu  -->
+                    <div class="grid_12">
+                        <div class="grid_5">
+                            Nama Ibu
+                        </div>
+                        <div class="grid_7">
+                            :&nbsp;{{item.pasien.namaIbu}}
+                        </div>
+                    </div>
+                    <!-- nama lengkap suami  -->
+                    <div class="grid_12">
+                        <div class="grid_5">
+                            Nama Suami/Istri
+                        </div>
+                        <div class="grid_7">
+                            :&nbsp;{{item.pasien.namaSuamiIstri}}
+                        </div>
+                    </div>
+                    <!-- status perkawinan -->
+                    <div class="grid_12">
+                        <div class="grid_5">
+                            Status Perkawinan
+                        </div>
+                        <div class="grid_7">
+                            :&nbsp;{{item.pasien.statusPerkawinan.statusPerkawinan}}
+                        </div>
+                    </div>
+                </div>
+            </b>
+            </div>
+        </div>
+    </div>
+
+   <!--  <div class="grid_12">
+        <div class="grid_3" style="float:right">
+            <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="KirimData">
+                <span class="title">Simpan</span>
+            </c-button>
+        </div>
+        <div class="grid_3" style="float:right">
+            <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="Lanjutkan">
+                <span class="title">Batal</span>
+            </c-button>
+        </div>
+    </div> -->
+
+</div>
+</div>p

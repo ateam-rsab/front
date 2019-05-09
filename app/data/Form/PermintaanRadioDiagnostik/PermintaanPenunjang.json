@@ -1,0 +1,13 @@
+{
+	"model":{
+	    "PermintaanPenunjang" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "PermintaanPenunjang",
+			"messagesRequired" : "",
+			"caption" : "Permintaan Penunjang"
+		}
+  ]
+}

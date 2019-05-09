@@ -1,0 +1,83 @@
+<div ng-controller="DaftarPenerimaanAsetCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'DaftarPenerimaanBarangAset'" style="margin-top:50px" disabled>
+			
+        <div class="panel-body">
+            <div class="grid_4">
+                <div class="panel panel-default container_12">
+                    <div class="panel-heading" c-translate>Periode</div>
+                    <div class="grid_5">
+                        <input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAwal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                    </div>
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="s/d" style="margin-top:10px;text-align:center"></label>
+                    </div>
+                    <div class="grid_5">
+                        <input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                    </div>
+                </div>
+            </div>
+            <div class="grid_8">
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="noPenerimaan"></label>
+                    <input c-text-box type="input" class="k-textbox" ng-model="item.noTerima"/>
+                </div>
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="kelompokProduk"></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.kelompokBarang" k-data-text-field="'kelompokProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKelompokBarang"/>
+                </div>
+                <!-- <div class="grid_4">
+                    <label c-label item="item" c-label-text="jenisProduk"></label>
+                     <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisProduk" k-data-text-field="'jenisProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisBarang" ng-disabled="isKelompok"/>
+                </div> -->
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="namaProduk"></label>
+                     <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaBarang" k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listNamaBarang" />
+                </div>
+                <div class="grid_4 pull-right" style="margin-top:10px">
+                    <div class="grid_6" style="margin-top:6px">
+                        <button class="c-button" ng-click="cariKontrak()">Cari</button>
+                    </div>
+                    <div class="grid_6" style="margin-top:6px">
+                        <button class="c-button error" ng-click="batal()">Batal</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+		</c-panel>
+
+			<div class="grid_12" style="margin-top: 10px;">
+				<div kendo-grid k-data-source="sourcePenerimaan" options="mainGridOptions">
+				</div>
+			</div>
+		<!-- button untuk distribusi logistik -->
+		<!-- <div class="grid_12">
+			<div class="grid_2 pull-right">
+				<label c-label item="item" c-label-text=""> </label>
+				<button class="c-button" ng-click="NavToDistribusi()" style="width:100% !important">
+					<span style="font-size:10!important">Distribusi Logistik</span>
+				</button>
+			</div>
+		</div> -->
+		<!-- <div class="grid_12">&nbsp;</div>
+        <div class="grid_12" ng-hide="bukanLogistik">
+        	<div class="grid_3">
+	            <input type="checkbox" class="k-checkbox" ng-model='enableNamaRuangan' id="monitoringStokRuangan" >
+	            <label class="k-checkbox-label" c-label item="item" c-label-text="monitoringStokRuangan" for="monitoringStokRuangan"></label>
+	            <div class="grid_12">
+	                <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganAsal" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceRuangan" ng-disabled="!enableNamaRuangan" />
+	            </div>
+	        </div>
+        </div> -->
+        <div class="grid_12" style="margin-top:35px">
+            <div ng-include='"../app/module/Shared/TemplateButtonDetilSRO"'/>
+        </div>
+	</div>
+</div>
+
+<style>
+.label-aja {
+	margin-top:10px;
+}
+</style>

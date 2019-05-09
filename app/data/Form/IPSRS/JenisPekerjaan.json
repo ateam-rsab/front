@@ -1,0 +1,28 @@
+{
+	"model":{
+		"kodeHeader" : "",
+		"jenisPekerjaan":"",
+		"pekerjaan":""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "kodeHeader",
+			"messagesRequired" : "",
+			"caption" : "Kode Header"
+		},{
+			"isNull" : "true",
+			"name" : "jenisPekerjaan",
+			"messagesRequired" : "",
+			"caption" : "Jenis Pekerjaan"
+		},{
+			"isNull" : "true",
+			"name" : "pekerjaan",
+			"messagesRequired" : "",
+			"caption" : "Pekerjaan"
+		}
+
+	]
+}

@@ -1,0 +1,116 @@
+<div ng-controller="DomisiliCtrl">
+
+	<div ng-show="dataVOloaded">
+		<!-- DOMISILI -->
+		<c-panel item="item" header="'Pengkajian Awal Psikologi'">
+		<div class="panel panel-default container_12">
+			<div class="panel-heading" c-translate>{{title}}</div>
+			<div class="panel-body">
+
+				<div class="grid_12">
+					<div class="grid_9  ">
+						<!-- Level -->
+						<div class="grid_12" >
+							<div class= "grid_3"ng-repeat="stat in listTempatTinggal">
+								<input type="radio" name="{{'Data5' + stat.name}}" id="{{'Data5' + stat.name}}" class="k-radio" ng-model="item.TempatTinggal" value="{{stat.name}}">
+								<label class="k-radio-label" for="{{'Data5' + stat.name}}">{{stat.name}}</label>
+							</div>
+						</div>
+					</div>
+					<div class="grid_3">
+
+						<input c-text-box type="input" filter="'string'"  class="k-textbox" ng-model="item.TxtTempatTinggal" />
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<!-- ORANG LAIN YANG TINGGAL BERSAMA -->
+		<div class="panel panel-default container_12">
+			<div class="panel-heading" c-translate>{{title1}}</div>
+			<div class="panel-body">
+
+				<div class="grid_12">
+					<div class="grid_4">
+						<div class="grid_12">
+							<label c-label item="item" c-label-text="Nama"></label>         
+							<input c-text-box type="input" filter="'string'"  class="k-textbox" ng-model="item.Nama" />
+						</div>
+				<!-- Keterangan -->
+						<div class="grid_12">
+							<label c-label item="item" c-label-text="Keterangan"></label>
+							<textarea ng-model="item.Keterangan" style="width: 99%; height: 80px;"></textarea>
+						</div>
+						<div class="clear"></div>
+					</div>
+
+				<!-- Jenis Kelamin -->
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="JenisKelamin"></label>
+						<div class="grid_6">
+						<div class="grid_6" ng-repeat="stat in listJenisKelamin">
+							<input type="radio" name="{{'Data' + stat.name}}" id="{{'Data' + stat.name}}" class="k-radio" ng-model="item.JenisKelamin" value="{{stat.name}}">
+							<label class="k-radio-label" for="{{'Data' + stat.name}}">{{stat.name}}</label>
+						</div>
+						<div class="grid_12">
+						</div>
+						</div>
+					</div>
+
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="Usia"></label> 
+						<div class="grid_12 parentKeteranganFieldTambahan">
+							<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.Usia" />
+							<span class="keteranganFieldTambahan" c-translate>Thn</span>
+						</div>
+					</div>
+				</div>
+				<div class="container_12">
+					<div class="grid_6"></div>
+					<div class="grid_6" style="text-align: right">
+						<div class="grid_4"></div>
+						<div class="grid_4">
+							<c-button>
+							<span>Batal</span>
+						</c-button></div>
+						<div class="grid_4">
+							<c-button  ng-click="addDaftarDomisili()" style="width:10% !important">
+							<span>Tambah</span>
+						</c-button></div>
+					</div>
+
+					<!-- Grid Tabel -->
+					<div class="grid_12" style="margin-top: 10px;">
+						<div kendo-grid k-data-source="DaftarDomisili" k-selectable="'row'" k-columns="columnDomisili">
+						</div>
+					</div>
+
+					<div class="container_12">
+						<div class="grid_6"></div>
+						<div class="grid_6" style="text-align: right">
+							<div class="grid_4"></div>
+							<!--<div class="grid_4">
+								<c-button ng-show="!isLoading"  style="width: 100%" item="item" is-validate click="Selanjutnya">
+								<span>Sebelumnya</span>
+							</c-button></div>-->
+							<div class="grid_4">
+								<c-button ng-show="!isLoading" style="width: 100%" item="item" is-validate click="Back">
+								<span>Selanjutnya >></span>
+							</c-button></div>
+
+
+
+
+						</div>
+					</div>
+
+
+
+
+				</div>
+			</div>
+
+		</c-panel>
+	</div>
+</div>

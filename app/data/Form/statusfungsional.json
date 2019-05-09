@@ -1,0 +1,13 @@
+{
+	"model":{
+	    "statusFungsional" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "statusFungsional",
+			"messagesRequired" : "Umur Harus Diisi",
+			"caption" : "Status Fungsional"
+		}
+  ]
+}

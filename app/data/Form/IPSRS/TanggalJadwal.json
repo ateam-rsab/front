@@ -1,0 +1,51 @@
+{
+	"model":{
+		"kodeHeader" : "",
+		"tanggalAwal":"",
+		"tanggalAkhir":"",
+		"jenisPekerjaan":"",
+		"pekerjaan":"",
+		"bobot":"",
+		"pilihTanggal":""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "kodeHeader",
+			"messagesRequired" : "",
+			"caption" : "Kode Header"
+		},{
+			"isNull" : "true",
+			"name" : "tanggalAwal",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Awal"
+		},{
+			"isNull" : "true",
+			"name" : "tanggalAkhir",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Akhir"
+		},{
+			"isNull" : "true",
+			"name" : "jenisPekerjaan",
+			"messagesRequired" : "",
+			"caption" : "Jenis Pekerjaan"
+		},{
+			"isNull" : "true",
+			"name" : "pekerjaan",
+			"messagesRequired" : "",
+			"caption" : "Pekerjaan"
+		},{
+			"isNull" : "true",
+			"name" : "bobot",
+			"messagesRequired" : "",
+			"caption" : "Bobot"
+		},{
+			"isNull" : "true",
+			"name" : "pilihTanggal",
+			"messagesRequired" : "",
+			"caption" : "Pilih Tanggal"
+		}
+
+	]
+}

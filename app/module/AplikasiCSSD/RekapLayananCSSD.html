@@ -1,0 +1,28 @@
+<div ng-controller="RekapLayananCSSDCtrl">
+    <div class="panel panel-default container_12">
+        <div class="panel-heading" align="center" c-translate>Rekap Layanan CSSD</div>
+        <div class="panel-body">
+            <div class="grid_12" style="margin-top: 10px">
+                <div class="grid_2" style="margin-top: 10px">
+                    <label c-label item="item" c-label-text="Pilih Periode Tanggal"></label>
+                </div>
+                <div class="grid_3">
+                    <input kendo-date-picker k-ng-model="item.tglAwal" k-format="'dd-MM-yyyy'" style="width: 100%" />
+                </div>
+                <div class="grid_3">
+                    <input kendo-date-picker k-ng-model="item.tglAkhir" k-format="'dd-MM-yyyy'" style="width: 100%" />
+                </div>
+                <div class="grid_12" style="margin-top: 5px">
+                    <div class="grid_3">
+                        <button class="c-button success" ng-click="cetakRekapLayanan(1)">Rekap Pengiriman Sterilisasi</button>
+                    </div>
+                    <div class="grid_3">
+                        <button class="c-button success" ng-click="cetakRekapLayanan(2)">Rekap Layanan Sterilisasi</button>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

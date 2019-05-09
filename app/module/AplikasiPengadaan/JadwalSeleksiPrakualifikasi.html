@@ -1,0 +1,134 @@
+<div ng-controller="JadwalSeleksiPrakualifikasiCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Evaluasi Penawaran Harga'">
+
+		<div class="grid_8">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="namaPengendali"></label>
+			</div>
+			<div class="grid_8 garisBawah">
+				<label class="tebal">: {{items.namaPengendali}}</label>
+			</div>
+		</div>
+		<div class="grid_4">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="noUsulan"></label>
+			</div>
+			<div class="grid_8 garisBawah">
+				<label class="tebal">: {{items.noUsulan}}</label>
+			</div>
+		</div>
+
+		<div class="grid_8">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="asalProduk"></label>
+			</div>
+			<div class="grid_8 garisBawah">
+				<label class="tebal">: {{items.asalProduk}}</label>
+			</div>
+		</div>
+		<div class="grid_4">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="tanggalUsulan"></label>
+			</div>
+			<div class="grid_8 garisBawah">
+				<label class="tebal">: {{items.tanggal}}</label>
+			</div>
+		</div>
+		<div class="grid_8"></div>
+		<div class="grid_4">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="kdAccount"></label>
+			</div>
+			<div class="grid_8 garisBawah">
+				<label class="tebal">: {{items.kdAccount}}</label>
+			</div>
+		</div>
+		<div class="grid_8"></div>
+		<div class="grid_4">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="namaAccount"></label>
+			</div>
+			<div class="grid_8 garisBawah">
+				<label class="tebal">: {{items.namaAccount}}</label>
+			</div>
+		</div>
+		<div class="grid_8"></div>
+		<div class="grid_4">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="Jumlah"></label>
+			</div>
+			<div class="grid_8 garisBawah">
+				<label class="tebal">: {{items.total}}</label>
+			</div>
+		</div>
+<!-- 		<div class="grid_4">
+			<div class="grid_12" style="margin-top:10px">
+				<label c-label item="item" c-label-text="noUsulan"></label>
+				<input style="width: 100%" c-text-box type="numeric" filter="'varchar'" class="k-textbox" ng-model="item.noUsulan" disabled="true"/>
+			</div>
+		</div>
+		<div class="grid_4">
+			<div class="grid_12" style="margin-top:10px">
+				<label c-label item="item" c-label-text="caraPengadaan"></label>
+				<input style="width: 100%" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.pengadaan" disabled="true"/>
+			</div>
+		</div>
+		<div class="grid_4">
+			<div class="grid_12" style="margin-top:10px">
+				<label c-label item="item" c-label-text="tanggal"></label>
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" disabled="true"/>
+			</div>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_8"></div>
+		<div class="grid_2">
+			<div class="grid_12" style="margin-top:10px">
+				<label c-label item="item" c-label-text="jumlahItem"></label>
+				<input style="width: 100%" c-text-box type="number" filter="'varchar'" placeholder="{{item.jumlah}}" class="k-textbox" ng-model="item.jumlah" style="text-align:right" disabled="true"/>
+			</div>
+		</div>
+		<div class="grid_2">
+			<div class="grid_12" style="margin-top:10px;">
+				<label c-label item="item" c-label-text="totalPengajuan" style="text-align:left"></label>
+				<input style="width: 100%" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.total" style="text-align:right" disabled="true"/>
+			</div>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_6">
+		</div>
+		<div class="grid_6"></div> -->
+		<div class="clear"></div>
+		<!-- <div kendo-grid k-data-source="daftarPengajuanUsulan" k-selectable="'row'" editable="true" pageable="true" k-columns="columnPengajuanUsulan" style="margin-bottom: 10px"></div> -->
+		</c-panel>
+		<div class="clear"></div>
+		<div class="grid_12" style="margin-bottom: 10px">
+			<kendo-grid options="mainGridOptions" k-editable="true" k-scrollable="false"></kendo-grid>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_6"></div>
+		<div class="grid_6">
+			<div class="grid_4">
+				<!-- <button class="c-button" ng-click="" disabled>Rekap Pemenang</button> -->
+			</div>
+			<div class="grid_4">
+				<!-- <button class="c-button" ng-click="" disabled>Upload File</button> -->
+			</div>
+			<div class="grid_4">
+				<button class="c-button" ng-click="simpan()">Simpan</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+.k-window > div.k-popup-edit-form {
+    padding: 1em;
+}
+.garisBawah {
+	border-bottom: dashed 1px black;
+	font-style: italic;
+	font-weight: 600;
+}
+</style>

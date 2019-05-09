@@ -1,0 +1,70 @@
+{
+	"model":{
+		"noPeminjaman" : "",
+		"tglPeminjaman":"",
+		"namaPeminjam":"",
+		"ruanganPeminjam":"",
+		"namaPetugas":"",
+		"jumlahPemakaian":"",
+		"namaBarang":"",
+		"kodeBarang":"",
+		"jumlahBarang":"",
+		"tglPengembalian":""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "noPeminjaman",
+			"messagesRequired" : "",
+			"caption" : "No Peminjaman"
+		},{
+			"isNull" : "true",
+			"name" : "tglPeminjaman",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Peminjaman"
+		},{
+			"isNull" : "true",
+			"name" : "namaPeminjam",
+			"messagesRequired" : "",
+			"caption" : "Nama Peminjam"
+		},{
+			"isNull" : "true",
+			"name" : "ruanganPeminjam",
+			"messagesRequired" : "",
+			"caption" : "Ruangan Peminjam"
+		},{
+			"isNull" : "true",
+			"name" : "namaPetugas",
+			"messagesRequired" : "",
+			"caption" : "Nama Petugas"
+		},{
+			"isNull" : "true",
+			"name" : "jumlahPemakaian",
+			"messagesRequired" : "",
+			"caption" : "Jumlah Pemakaian"
+		},{
+			"isNull" : "true",
+			"name" : "namaBarang",
+			"messagesRequired" : "",
+			"caption" : "Nama Barang"
+		},{
+			"isNull" : "true",
+			"name" : "kodeBarang",
+			"messagesRequired" : "",
+			"caption" : "Kode Barang"
+		},{
+			"isNull" : "true",
+			"name" : "jumlahBarang",
+			"messagesRequired" : "",
+			"caption" : "Jumlah Barang"
+		},{
+			"isNull" : "true",
+			"name" : "tglPengembalian",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Pengembalian"
+		}
+
+	]
+}

@@ -1,0 +1,115 @@
+
+<style>
+.autocomplete-custom-template li {
+  border-bottom: 1px solid #ccc;
+  height: auto;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  white-space: normal;
+}
+.autocomplete-custom-template li:last-child {
+  border-bottom-width: 0;
+}
+.autocomplete-custom-template .item-title,
+.autocomplete-custom-template .item-metadata {
+  display: block;
+  line-height: 2;
+}
+.autocomplete-custom-template .item-title md-icon {
+  height: 18px;
+  width: 18px;
+}
+</style>
+<div class="grid_12">
+
+    <c-form item='item'>
+
+        <div ng-include='"../app/module/pasien/RegistrasiPelayananNew/HeaderDataPasien"'></div>
+       
+
+              <div item="item">
+                <div class="grid_12 pdf-page">
+                      <div class="panel panel-default">
+                       <div class="panel-heading" c-translate>Detail Biaya</div>
+                    <!-- <h1 class="center">Detail Biaya</h1> -->
+                    <kendo-grid options="gridOptions" k-data-source="listData"></kendo-grid>
+                    <div style="text-align: right;">
+                        <h1 style="text-align: right;">Total Biaya : {{total| currency:"Rp. ":2}}</h1>
+                    </div>
+                </div>
+                </div>
+                </div>
+                <div class="grid_12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" c-translate>Masukan Tindakan</div>
+                        <div class="panel-body">
+                            <div class="grid_12">
+                                <div class="grid_2">
+                                    <label c-label item="model" c-label-text="tglPelayanan"></label>
+                                    <input style="width: 100% " k-max="now " k-value='now' kendo-date-time-picker k-ng-model="model.tglPelayanan " k-options="formatJam24"/>
+                                </div>
+                                <div class="grid_5">
+                                    <label c-label item="item" c-label-text="Tindakan"></label>
+                                   <!--  <input kendo-auto-complete="country"
+                                         k-data-source="data"
+                                         k-options="girds"
+                                         k-on-select="show(kendoEvent)"
+                                         k-filter="'startswith'"
+                                         k-placeholder="'Select country...'"
+                                         k-separator="', '" /> -->
+                                     <!-- id="comboBox"   -->
+                                    <input style="width: 100%;" kendo-combo-box k-ng-model="model.
+                                        namaProduk" k-data-text-field="'namaproduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-on-change="getHargaTindakan()" k-data-source="listProduk" />
+                                </div>
+                                <div class="grid_2">
+                                    <label c-label item="item" c-label-text="harga"></label>
+                                    <input c-text-box type="input" class="k-textbox" ng-model="model.hargaTindakan" readonly="true" />
+                                </div>
+                                <div class="grid_1">
+                                    <label c-label item="item" c-label-text="Jumlah"></label>
+                                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="model.jumlah" autofocus />
+                                </div>
+                                <div class="grid_2">
+                                    <label c-label item="item" c-label-text="Status cito"></label>
+                                    <div class="grid_4" ng-repeat="stat in listYaTidak">
+                                        <input type="radio" name="{{'statusCito' + stat.name}}" id="{{'statusCito' + stat.name}}" class="k-radio" k-ng-model="model.statusCito" ng-checked="stat.id===0" k-ng-value="stat" disabled> 
+                                        <label class="k-radio-label" for="{{'statusCito' + stat.name}}">{{stat.name}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid_12" style="margin-top:10px">
+                                <div class="grid_8"></div>
+                                <div class="grid_2">
+                                    <button class="c-button success" ng-click="tambahTindakan()">Tambah Tindakan</button>
+                                </div>
+                                <div class="grid_2">
+                                    <button class="c-button cancel" ng-click="Cancel()">Kembali</button>
+                                    <!--<button class="c-button cancel" ng-click="hapusAll()">Hapus Tindakan</button>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_12" hidden>
+                    <div id="grid" kendo-grid k-data-source="dataTindakan" k-ng-model="dataSelectedRow" options="opsiGridTindakan">
+                    </div>
+                </div>
+                <div class="grid_12" style="margin-top:15px" hidden>
+                    <div class="grid_6"></div>
+                    <div class="grid_3">
+                        <button class="c-button cancel" style="font-size:20px" ng-click="Cancel()">Batal</button>
+                    </div>
+                    <div class="grid_3">
+                        <button class="c-button success" style="font-size:20px" ng-click="SaveTindakan()">Simpan</button>
+                    </div>
+                </div>
+            </div>
+</c-panel>
+</c-form>
+
+</div> 
+<!-- <div ng-include='"../app/module/Shared/TemplateButtonRegistrasiNew " ' style="margin-top:30px" ng-hide="hideSimpan"></div> -->
+<div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
+
+
+

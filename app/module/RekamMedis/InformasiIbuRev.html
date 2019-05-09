@@ -1,0 +1,153 @@
+
+<style>
+.k-grid .k-grid-header .k-header .k-link {
+    height: auto;
+}
+
+.k-grid .k-grid-header .k-header  {
+    white-space: normal;
+}
+.k-grid .k-grid-header .k-header  {
+    text-align: center;
+}
+</style>
+<div ng-controller="InformasiIbuRevCtrl">
+           <c-panel header="'informasi Ibu'" disabled>
+
+    <div class="container_12">
+        <!--New informasi ibu's form goes here-->
+        <div class="grid_12" style="margin-bottom:30px">
+         <!--    <div class="grid_12 headerBox">
+                <h1 style="color: white;"><b>{{formMaster.nama}}</b></h1>
+            </div> -->
+            <div class="clear"></div>
+            <br/>
+            <div class="container_12"> <!-- html form goes here -->
+                <div class="grid_12">
+                    <div style="position:relative" ui-view>
+                    </div>
+                </div>
+
+                <div class="grid_12">
+                  <div class="grid_4">
+                    <label><b>Nama Ibu</b></label>
+                    <span class="k-textbox k-space-right" style="width: 100%;background-color:white;">
+                        <input type="text" id="icon-right" ng-model="item.namaIbu" />
+                        <em style="position: absolute;right: 0;top: 0;height: 27px;width: 27px;" ng-click='findData()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="true" tabindex="0"><span class="k-sprite k-icon k-i-search">Refresh</span></em>
+                    </span>
+                </div>
+                <div class="grid_4"> 
+                 <label c-label>Ibu Dirawat</label>
+                 <div class="grid_3" ng-repeat="listDirawat in listIbuDirawat" >
+                    <input type="radio" name="{{listDirawat.name}}" id="{{listDirawat.id}}" ng-model="item.ibuDirawat" ng-value="listDirawat">
+                    <label  for="{{listDirawat.id}}" >{{listDirawat.name}}</label>
+                </div>
+
+            </div>
+            <div class="grid_4"> 
+              <label><b>No MR Ibu</b></label>
+              <input type="input" filter="'varchar'" class="k-textbox" ng-model="item.noCmIbu"  style="width:100%"/>    
+          </div>
+            <div class="grid_4"> 
+             <label><b>Ruangan</b></label>
+                  <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaruangan'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listRuangan" />
+          </div>
+           <div class="grid_4"> 
+               <label><b>Tgl Lahir</b></label>
+               <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tglLahir" placeholder="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+          </div>
+           <div class="grid_4"> 
+              <label><b>Kebangsaan</b></label>
+              <input style="width: 100%;" kendo-combo-box k-ng-model="item.kebangsaan" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listKebangsaan" />
+          </div>
+           <div class="grid_4"> 
+              <label><b>Agama</b></label>
+              <input style="width: 100%;" kendo-combo-box k-ng-model="item.agama" k-data-text-field="'agama'" k-filter="'contains'" k-data-value-field="'id'" k-data-source="listAgama" />
+          </div>
+           <div class="grid_4"> 
+              <label c-label>Status Perkawinan</label>
+                 <div class="grid_4" ng-repeat="list in statusPerkawinan" >
+                    <input type="radio" name="{{list.name}}" id="{{list.id}}" ng-model="item.statusPerkawinan" ng-value="list">
+                    <label  for="{{list.id}}" >{{list.name}}</label>
+                </div>
+          </div>
+            <div class="grid_4"> 
+              <label  c-label>Ditolong Oleh</label>
+                   <div class="grid_4" ng-repeat="list in diTolongOleh" >
+                    <input type="radio" name="{{list.name}}" id="{{list.id}}" ng-model="item.ditolongOleh" ng-value="list">
+                    <label  for="{{list.id}}" >{{list.name}}</label>
+                </div>
+          </div>
+
+
+      </div>
+
+
+</div>
+</div>
+</div>
+</c-panel>
+<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+
+<div kendo-window="popUpMenu" k-title="'Pencarian Ibu Pasien'" k-width="1000" k-height="500" k-visible="false">
+    <div class="panel panel-default container_12" style="padding: 0px 10px;"> 
+       <div class="grid_12">
+
+        <div class="grid_2" style="margin-top:5px">
+            <label c-label real>No RM </label>
+            <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="popUp.noRM"   ng-keypress="($event.which == 13)? SearchEnter():popUp.noRM" />
+        </div>
+        <div class="grid_2" style="margin-top:5px">
+            <label c-label real>Nama Pasien</label>
+            <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="popUp.namaPasien"  ng-keypress="($event.which == 13)? SearchEnter():popUp.namaPasien"/>
+        </div>
+        <div class="grid_2" style="margin-top:5px">
+            <label c-label real>Tanggal Lahir</label>
+            <input style="width: 100%" kendo-date-picker placeholer="dd-mm-yyyy" k-ng-model="popUp.tglLahir" k-format="'dd-MM-yyyy'" ng-keypress="($event.which == 13)? SearchEnter():popUp.tglLahir" />
+        </div>
+
+        <div class="grid_2" style="margin-top:5px">
+            <label c-label c-label-text="Nama ayah kandung" real></label>
+            <input style="width: 100%"  c-text-box type="input" filter="'string'" class="k-textbox" ng-model="popUp.namaAyah" ng-keypress="($event.which == 13)? SearchEnter():popUp.namaAyah"/>
+        </div>
+        <div class="grid_3" style="margin-top:5px">
+            <label c-label c-label-text="Alamat" real></label>
+            <input style="width: 100%"  c-text-box type="input" filter="'string'" class="k-textbox" ng-model="popUp.alamat" ng-keypress="($event.which == 13)? SearchEnter():popUp.alamat"  />
+        </div>
+
+        <div class="grid_1" style="margin-top:5px">
+            <label c-label c-label-text=""></label>
+            <em style="margin-top:6px;" ng-click='searchIbu()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-search">Refresh</span></em>
+
+        </div>
+    </div>
+    <div class="grid_12">
+        <div class="clear"></div>
+        <div class="grid_12 borderBox">
+            <div id="kGrid" kendo-grid 
+            k-data-source="dataSourceGrid" 
+            k-selectable="'row'" 
+            k-columns="columnGrid"
+            k-sortable="true"
+            k-reorderable="true"
+            k-pageable="true"
+            k-groupable="true"
+            k-resizable="true"           
+            k-scrollable="'true'"
+            k-ng-model="dataPasienSelected"
+            ng-click="klikGrid(dataPasienSelected)">
+        </div>
+    </div>
+</div>
+
+
+<div class="k-edit-buttons  k-state-default pull-right" style="margin-top:10px" >       
+    <button class="k-button btnTambahk-button-icontext k-primary k-grid-update" ng-click="PilihIbu()" ><span class="k-icon k-update"></span>Pilih</button>
+
+    <button class="k-button  btnHapus k-button-icontext" ng-click="tutupPopUp()" ><span class="k-icon k-cancel"></span>Tutup</button>
+</div>
+</div>
+<div class="grid_12" style="margin-top:60px" >
+    <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+</div> 
+</div>

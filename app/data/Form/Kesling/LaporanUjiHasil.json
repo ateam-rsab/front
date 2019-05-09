@@ -1,0 +1,63 @@
+
+{
+	"model":{
+	    "nomorContoh" : "",
+	    "contohDari" : "",
+	    "alamat" : "",
+	    "tglPenerimaanContoh" : "",
+	    "tglPengujianContoh" : "",
+	    "jenisContoh" : "",
+	    "tipeLokasi" : "",
+		"Residu" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "uraiancontoh",
+			"messagesRequired" : "",
+			"caption" : "Uraian Contoh"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tanggalditerimalab",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Diterima Lab"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tanggalpengujiandari",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Pengujian Dari"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Pt",
+			"messagesRequired" : "",
+			"caption" : "PT"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tglPengujianContoh",
+			"messagesRequired" : "",
+			"caption" : "Tgl Pengujian Contoh"
+		},
+		{
+			"isNull" : "true",
+			"name" : "HasilUji",
+			"messagesRequired" : "",
+			"caption" : "Hasil Uji"
+		},
+		{
+			"isNull" : "true",
+			"name" : "BakuMutu",
+			"messagesRequired" : "",
+			"caption" : "Baku Mutu"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Residu",
+			"messagesRequired" : "",
+			"caption" : "Baku Mutu"
+		}
+  ]
+}

@@ -1,0 +1,83 @@
+<div ng-controller="MasterProsesCuciCtrl">
+	<div class="panel panel-default container_12">
+		<div class="panel-heading" c-translate>Master Proses Cuci</div>
+			<div class="panel-body">
+				<div class="grid_12" ng-hide="SembunyikanKode" style="margin-top: 5px">
+					<div class="grid_3"></div>
+					<div class="grid_2" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="kodeProsesCuci"></label>
+					</div>
+					<div class="grid_3">
+						<input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.kodeProsesCuci" disabled="enableKodeMesin"/>
+					</div>
+				</div>
+				<div class="grid_12"style="margin-top: 5px">
+					<div class="grid_3"></div>
+					<div class="grid_2" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="prosesCuci"></label>
+					</div>
+					<div class="grid_3">
+						<input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.prosesCuci" />
+					</div>
+				</div>
+<!-- 				filter="'char'" -->
+				<div class="grid_12" style="margin-top: 10px">
+					<div class="grid_3"></div>
+					<div class="grid_2" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="kodeEksternal"></label>
+					</div>
+					<div class="grid_3">
+						<input c-text-box type="input"  class="k-textbox" ng-model="item.KodeExternal" />
+					</div>
+				</div>
+				<!-- filter="'string'" -->
+				<div class="grid_12" style="margin-top: 10px">
+					<div class="grid_3"></div>
+					<div class="grid_2" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="namaEksternal"></label>
+					</div>
+					<div class="grid_3">
+						<input c-text-box type="input" class="k-textbox" ng-model="item.NamaEksternal" />
+					</div>
+				</div>
+<!-- 				<div class="grid_12" style="margin-top: 10px">
+					<div class="grid_3"></div>
+					<div class="grid_2" style="margin-top: 5px">
+						<label c-label item="item" c-label-text="statusEnabled"></label>
+					</div>
+					<div class="grid_3" style="margin-top: 5px">
+						<input type="checkbox" class="k-checkbox" name="dataAktif" id="dataAktif" ng-click="checkbox()">
+						<label class="k-checkbox-label" c-label item="item" c-label-text="dataAktif" for="dataAktif"></label>
+					</div>
+				</div> -->
+				<div class="grid_12" style="margin-top: 30px">
+					<div class="grid_3"></div>
+					<div class="grid_2">
+						<button class="c-button success" ng-click="Save()">Simpan</button>
+					</div>
+<!-- 					<div class="grid_2">
+						<button class="c-button cancel" ng-click="Batal()">Batal</button>
+					</div> -->
+	<!-- 				<div class="grid_2">
+						<button class="c-button cancel" ng-click="Hapus()">Hapus</button>
+					</div> -->
+					<div class="grid_2">
+						<button class="c-button success" ng-click="baru()">Baru</button>
+					</div>
+					<div class="grid_2">
+						<button class="c-button cancel" ng-click="tutup()">Tutup</button>
+					</div>
+					<div class="grid_3"></div>
+				</div>
+				<div class="grid_12" style="margin-top: 30px">
+					<div class="grid_1"></div>
+						<div class="grid_10">
+							<div kendo-grid options="mainGridOptions" k-on-change="SelectProsesCuci(data)" k-data-source="dataSourceMasterProsesCuci" k-selectable="'row'" k-columns="columndataMasterProsesCuci">
+							</div>
+						</div>
+						<div class="grid_1"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

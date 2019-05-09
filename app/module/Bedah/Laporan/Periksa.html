@@ -1,0 +1,54 @@
+<div ng-controller="PeriksaCtrl">
+
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Instruksi Pasca Bedah'">
+            <div class="panel panel-default container_12">
+                <div class="panel-heading" c-translate>Periksa</div>
+                <div class="panel-body">
+                    <div class="grid_12">
+                        <div class="grid_2">
+                            <label c-label item="item" c-label-text="tekananDarah"></label>
+                        </div>
+                        <div class="grid_2">
+                            <input style="width: 90%" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.tekananDarah" />
+                        </div>
+                        <div class="grid_2">
+                            <label c-label item="item" c-label-text="menit"></label>
+                        </div>
+                        <div class="grid_2">
+                            <label c-label item="item" c-label-text="nadi"></label>
+                        </div>
+                        <div class="grid_2" style="margin-left: -20px">
+                            <input style="width: 90%" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nadi" />
+                        </div>
+                        <div class="grid_2">
+                            <label c-label item="item" c-label-text="menit"></label>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="grid_2">
+                            <label c-label item="item" c-label-text="suhu"></label>
+                        </div>
+                        <div class="grid_2">
+                            <input style="width: 90%" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.suhu" />
+                        </div>
+                        <div class="grid_2">
+                            <label c-label item="item" c-label-text="menit"></label>
+                        </div>
+                        <div class="grid_2">
+                            <label c-label item="item" c-label-text="pernafasan"></label>
+                        </div>
+                        <div class="grid_2" style="margin-left: -20px">
+                            <input style="width: 90%" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.pernafasan" />
+                        </div>
+                        <div class="grid_2">
+                            <label c-label item="item" c-label-text="menit"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12" style="margin-top: 10px">
+                <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+            </div>
+        </c-panel>
+    </div>
+</div>

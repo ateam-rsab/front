@@ -1,0 +1,42 @@
+{
+	"model":{
+	    "Rutin" : "",
+	    "Khusus" : "",
+	    "Koagulasi" : "",
+	    "Anemia" : "",
+	    "BankDarah" : ""
+
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "Rutin",
+			"messagesRequired" : "",
+			"caption" : "Rutin"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Khusus",
+			"messagesRequired" : "",
+			"caption" : "Khusus"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Koagulasi",
+			"messagesRequired" : "",
+			"caption" : "Koagulasi"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Anemia",
+			"messagesRequired" : "",
+			"caption" : "Anemia"
+		},
+		{
+			"isNull" : "true",
+			"name" : "BankDarah",
+			"messagesRequired" : "",
+			"caption" : "BankDarah"
+		}
+  ]
+}

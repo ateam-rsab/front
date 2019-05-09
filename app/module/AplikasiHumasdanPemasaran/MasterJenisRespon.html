@@ -1,0 +1,101 @@
+<div ng-controller="MasterJenisResponCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Master Jenis Respon'"disabled>
+		<div class="grid_6">
+		<div class="panel panel-default container_12">
+	<!--		<div class="panel-heading" c-translate>Periode</div> -->
+	<!--		<div class="panel-body"> -->
+	
+           
+					
+	        <div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Q Jenis Respon"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="number" filter="'numeric'" class="k-textbox" ng-model="item.qJenisRespon" />
+			</div>
+			
+			</div>
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Nama External"></label>
+			</div>
+			<div class="grid_8" style="margin: 0 0 0 0;">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaExternal" />
+			</div>
+			</div>
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="No Rec"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noRec" />
+			</div>
+			
+			</div>
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Status Enable"></label>
+			</div>
+			<div class="grid_8">
+						<input type="checkbox" class="k-checkbox" name="dataAktif" id="dataAktif" ng-click="check()">
+							<label class="k-checkbox-label" c-label item="item" c-label-text="Status Aktif" for="dataAktif"></label>
+					</div>
+			
+			</div>
+			 
+			<div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Jenis Respon"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.jeniRespon" />
+			</div>
+			
+			</div>
+
+			<div class="grid_12">
+			<div class="grid_4" style="margin: 10px 0 0 0;">
+				<label c-label item="item" c-label-text="Kode Jenis Respon"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="number" filter="'numeric'" class="k-textbox" ng-model="item.kdJenisRespon" />
+			</div>
+			
+			</div>
+		
+
+				
+		   </div>
+		   </div>
+<!--		   </div>  -->
+           <div class="grid_6">	
+		</div>
+	
+
+		<div class="grid_12">
+				<kendo-grid  k-data-source="daftarJabatan" k-pageable="true" k-selectable="'row'" k-columns="columnLaporanUjiHasil"  style="font-size: small;">
+            	</kendo-grid>
+					
+			</div>
+		
+		</c-panel>
+			<div class="grid_12">
+							<div class="grid_8" style="float:left">
+							
+							
+						  <div class="grid_2 " style="margin-top: 25px ">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Simpan</span>
+									</button>
+							</div>
+							
+							
+							</div>
+						</div>
+		</div>
+	</div>
+</div>
+

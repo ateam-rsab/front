@@ -1,0 +1,124 @@
+<div ng-controller="DaftarSoalCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Daftar Soal'"disabled>
+		<div class="grid_6">
+		<div class="panel panel-default container_12">
+	<!--		<div class="panel-heading" c-translate>Periode</div> -->
+	<!--		<div class="panel-body"> -->
+	
+           
+					
+	        
+			 
+			 <div class="grid_12">
+			<div class="grid_4" style="margin: 6px 0 0 0;">
+				<label c-label item="item" c-label-text="Kategori Soal"></label>
+			</div>
+			<div class="grid_4">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.kategoriSoal" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="DaftarSoal" />
+			</div>
+			<div class="grid_2"  style="margin: 7px 0 0 2px;">
+								<button class="c-button"  ng-click="cari()">
+								
+                            	Cari</button>
+							</div>
+			</div>
+			 
+			
+			</div>
+			 
+			<table>
+		
+  <tr>
+   <b><th bgcolor="#10c4b2" height="35px"><center>Nomor Soal<center></th></b>
+      <th bgcolor="#10c4b2">Pertanyaan   </th>
+   <b><th bgcolor="#10c4b2" height="35px"><center><center></th></b>
+  <th bgcolor="#10c4b2" height="35px"><center>Pilihan Jawaban<center></th></b>
+ 
+	 
+  </tr>
+  </br>
+  </br>
+  <tr ng-repeat="stat in ListKeterangan" >
+    <td><center> {{stat.id}} </center></td>
+	 <td> {{stat.pertanyaan}} </td>
+	<td>{{stat.kode}}</td>
+	<td><input type="radio" name="{{stat.id}}" id="{{stat.id}}" class="k-radio" ng-model="item.ok" ng-value="stat">
+    	<label class="k-radio-label" for="{{stat.id}}">{{stat.name}}</label></td>
+	
+  
+	
+	  
+   
+		
+		
+		
+
+		
+		
+		
+  </tr>
+  
+ 
+  
+</table>
+	</div>		
+			
+			
+			
+			
+			
+			
+			
+				
+		  
+		
+<!--		   </div>  -->
+           <div class="grid_6">	
+		   
+		  
+		  
+			
+		   
+			
+			
+			
+
+		</div>
+		
+		
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		</c-panel>
+			<div class="grid_12">
+							<div class="grid_8" style="float:left">
+							
+							
+							<div class="grid_2" style="margin-top: 25px">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate click="Cancel">
+                					<span class="title">Batal</span></button>
+							</div>
+							<div class="grid_2 " style="margin-top: 25px ">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Publish</span>
+									</button>
+							</div>
+							<div class="grid_2 " style="margin-top: 25px ">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Cetak</span>
+									</button>
+							</div>
+							</div>
+						</div>
+		</div>
+	</div>
+</div>
+

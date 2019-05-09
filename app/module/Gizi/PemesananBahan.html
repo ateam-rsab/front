@@ -1,0 +1,16 @@
+<div ng-show="dataVOloaded">
+	<c-panel item="item" header="title" disabled>
+		<div class="grid_12" style="margin-top: 10px;">
+			<div kendo-grid k-data-source="sourceDaftarPemesananLogistik" k-selectable="'row'" options="mainGridOptions"></div>
+		</div>
+		<div class="grid_12" style="padding-top:30px">
+			<div class="grid_8"></div>
+			<div class="grid_2">
+				<button class="c-button" ng-click="Save()">Pesan</button>
+			</div>
+			<div class="grid_2">
+				<button class="c-button" ng-click="Batal()">Batal</button>
+			</div>
+		</div>
+	</c-panel>
+</div>

@@ -1,0 +1,34 @@
+<div ng-controller="LaboratoriumPemeriksaanCtrl">
+    <div ng-include='"../app/module/Shared/headerPasienPenunjang" '></div>
+    <div class="grid_12">
+        <table class="table " ng-repeat="data in listOrders">
+            <tr class='success' ng-show="$index===0">
+                <th style="width:100px"><span c-translate>Nama Pemeriksan</span></th>
+                <th><span c-translate>Hasil</span></th>
+                <th ng-show="cito===false || cito ===undefined" style="width:100px"><span c-translate>Nilai Normal</span></th>
+                <th ng-show="cito===true" style="width:200px"><span c-translate></span></th>
+                <th style="width:20px"><input type="checkbox" class="k-checkbox" name="Verifikasi" id="Verifikasi" ng-click="SelectAll()" />
+                    <label class="k-checkbox-label" for="Verifikasi">Verifikasi</label></th>
+            </tr>
+            <tr>
+                <th colspan="5" style="text-align:left">{{data[0].jenisPeriksa}}</th>
+            </tr>
+            <tr ng-repeat="subData in data">
+                <td>&nbsp;&nbsp;&nbsp;{{subData.namaProduk}}</td>
+                <td>{{subData.detail.hasil}}
+                    <br/>
+                    <span class="information-table">{{subData.detail.comment}}</span>
+                </td>
+                <td ng-show="cito===false || cito ===undefined">{{subData.nilaiNormal}}</td>
+                <td> <input type="checkbox" class="k-checkbox" name="{{subData.uuid}}" id="{{subData.uuid}}" value="2" ng-model="subData.statusVerifikasi">
+                    <label class="k-checkbox-label" for="{{subData.uuid}}"></label></td>
+            </tr>
+        </table>
+
+    </div>
+    <div class="grid_11">
+        <label c-label item="item" c-label-text="Keterangan"></label>
+        <textarea ng-disabled="'true'" ng-model="item.keteranganLainnya" style="width: 100%; height: 80px;"></textarea>
+    </div>
+    <div ng-include='"../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+</div>

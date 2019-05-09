@@ -1,0 +1,155 @@
+<style type="text/css">
+    .custom-button {
+        margin: 0 0 10px;
+        background: none;
+        color: black;
+        border-radius: 0.8em;
+        border: 1px solid;
+        background-color: white;
+    }
+
+    .k-edit,
+    .k-i-download {
+        background-position: -313px -221px;
+    }
+
+    a.k-button.k-button-icontext {
+        min-width: 84px;
+        background-color: #e0360b;
+        border: none;
+        margin: .1em;
+    }
+
+    k-button.k-button-icontext.k-grid-Cetak {
+        min-width: 84px;
+        background-color: #e0360b;
+        border: none;
+        margin: .1em;
+    }
+
+    .duplicateDate {
+        background-color: red;
+        border: 2px solid red !important;
+    }
+
+    .k-window-content .k-content {
+        overflow: none
+    }
+
+    legend {
+        cursor: pointer;
+        padding: 10px;
+    }
+
+    .effect-shadow {
+        -webkit-box-shadow: 2px 2px 5px #b6b6b6;
+        -moz-box-shadow: 2px 2px 5px #b6b6b6;
+        box-shadow: 2px 2px 5px #b6b6b6;
+    }
+    .green{
+        background-color:#98FB98;
+        color: #000000;
+        /*font-weight: bold;*/
+    }
+    .red{
+        background-color: #ff3860;
+        color: #FFFFFF;
+        /*font-weight: bold;*/
+    }
+    .yellow{
+        background-color:  #FFFC38;
+        color: #FFFFFF;
+        /*font-weight: bold;*/
+    }
+   
+</style>
+<div class="panel panel-default container_12">
+    <div class="panel-heading" c-translate>Riwayat Rujukan Masuk</div>
+    <div class="panel-body">
+        <div class="grid_12">
+            <div class="grid_2">
+                <div class="grid_12" padDatePicker>
+                    <label c-label c-label-text="Tgl Rujukan" real></label>
+                    <input style="width: 100%" k-ng-model="item.tglRujukan" kendo-date-picker placeholer="yyyy-MM-dd"
+                        k-format="'yyyy-MM-dd'" parsedate="yyyy-MM-dd HH:mm" />
+                </div>
+            </div>
+
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item">No Rujukan</label>
+                    <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.noRujukan" />
+                </div>
+            </div>
+            <!-- <div class="grid_1" style="margin-top:20px">
+                <input type="checkbox" class="k-checkbox" id="isCreate" ng-model="item.create" value="true" ng-click="cekIsCreate(item.create)">
+                <label class="k-checkbox-label" for="isCreate"><b>Rujukan Keluar</b></label>
+            </div> -->
+            <div class="grid_1">
+                <label c-label c-label-text=""></label>
+                <em style="margin-top:6px;" ng-click='SearchData()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary"
+                    role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-search">Refresh</span></em>
+                <em style="margin-top:6px;" ng-click='reset()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary"
+                    role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+
+            </div>
+        </div>
+
+             <div class="grid_12" >
+               <div class="grid_6">
+                    <span id="square" class="green">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>Sudah direspon {{totalRespon}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span id="square" class="red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>Belum direspon {{totalUnRespon}}</span>
+                   
+                </div>
+                <div class="grid_12 borderBox">
+             <kendo-grid  id="kGrid"  
+                   data-source="sourceGrid" options="mainGridOptions"
+                    k-pageable="'true'"
+                    k-sortable="'true'"
+                    k-groupable="'true'" 
+                    k-resizable="'true'"
+                    k-selectable="'row'" 
+                    k-ng-model="dataSelected"
+                    ng-click="kl()"></kendo-grid>
+
+        </div>
+    </div>
+        <div class="grid_12" style="margin-top:60px">
+            <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+        </div>
+    </div>
+</div>
+<div kendo-window="winJawabRujukan" k-title="''" k-width="500" k-height="245"
+    k-visible="false" k-on-open="win2visible = true" k-on-close="win2visible = false">
+    <div class="panel panel-default container_12">
+        <fieldset class="effect-shadow" style=" border-radius: 4px">
+            <legend id="filterData">
+                <a ng-click="showAndHide()">Jawab / Respon Rujukan yang di terima</a>
+            </legend>
+            <div class="grid_12" style="margin-top: -15px">
+                <label c-label item="item " c-label-text="Status"></label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.status" k-data-text-field="'name'"
+                k-filter="'contains'" k-data-value-field="'id'" k-data-source="listStatus" k-auto-bind="'false'" />
+            </div>
+            <div class="grid_12">
+                <label c-label item="item " c-label-text="Petugas"></label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.petugas" k-data-text-field="'namalengkap'"
+                    k-filter="'contains'" k-data-value-field="'id'" k-data-source="listPetugas" k-auto-bind="'false'" />
+            </div>
+            <div class="grid_12">
+                <label c-label item="item " c-label-text="Keterangan"></label>
+                <input c-text-box type="input" filter="''" class="k-textbox" ng-model="item.keterangan" />
+            </div>
+
+        </fieldset>
+        <div class="k-edit-buttons  k-state-default pull-right" style="margin-top:10px">
+            <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="saveJawabRujukan()"><span class="k-icon k-update"></span>Simpan</button>
+            <button class="k-button  k-button-icontext" ng-click="batalJawabRujukan()"><span class="k-icon k-cancel"></span>Batal</button>
+        </div>
+       
+        <!-- <button class="k-button" ng-click="saveJawabRujukan()" style="float:right;margin-top:10px">Simpan</button>    
+        <button class="k-button" ng-click="batalJawabRujukan()" style="float:right;margin-top:10px">Batal</button>     -->
+    </div>
+</div>

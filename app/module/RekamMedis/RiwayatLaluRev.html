@@ -1,0 +1,234 @@
+<style>
+.keteranganFieldTambahan {left: 5px !important}
+hr {margin-bottom: 0px !important}
+.k-grid .k-grid-header .k-header .k-link {
+  height: auto;
+}
+
+.k-grid .k-grid-header .k-header  {
+  white-space: normal;
+}
+.k-grid .k-grid-header .k-header  {
+  text-align: center;
+}
+</style>
+<div ng-controller="RiwayatLaluRevCtrl">
+  <c-panel header="'Riwayat Kelahiran Yang Lalu'" disabled>
+    <div class="container_12">
+      <!-- GRID Riwayat kelahiran yang lalu -->
+      <div class="grid_12">
+        <!-- <div class="grid_12">  -->
+          <!-- <div kendo-grid k-selectable="'row'" k-options="optionsKelahiranLalu" k-scrollabe="true"></div> -->
+          <!-- </div> -->
+          <div class="grid_12 "> 
+            <div class="grid_1" ng-show="no">
+              <div class="grid_12">
+                <label c-label item="item" c-label-text="No"></label>
+                <input c-text-box type="input" class="k-textbox"  ng-model="item.no" disabled="" />
+              </div>
+            </div>
+            <div class="grid_3">
+              <div class="grid_12">
+                <label c-label item="item" c-label-text="Tanggal Tahun Kelahiran"></label>
+                <input style="width:100%" kendo-date-picker k-ng-model="item.tglKelahiran" k-format="'dd-MM-yyyy'"  />      
+              </div>
+            </div>
+            <div class="grid_3">
+              <div class="grid_12">
+                <label c-label item="item" c-label-text="Sex"></label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.sex" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisKelamin" />   
+              </div>
+            </div>
+            <div class="grid_3">
+              <div class="grid_12">
+                <label c-label item="item" c-label-text="Berat Badan Lahir"></label>
+                <input kendo-numeric-text-box k-ng-model="item.berat" style="width:100%" k-options="numberPicker"/>
+              </div>
+            </div>
+            <div class="grid_3">
+              <div class="grid_12">
+                <label c-label item="item" c-label-text="Keadaan Bayi"></label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.bayi" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKeadaanBayi"  />   
+              </div>
+            </div>
+          </div>
+          <div class="grid_12">
+            <div class="grid_3">
+              <div class="grid_12">
+                <label c-label item="item" c-label-text="Komplikasi Kehamilan"></label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.komplikasiKehamilan" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKomplikasi"  />   
+              </div>
+            </div> 
+            <div class="grid_3">
+              <div class="grid_12">
+                <label c-label item="item" c-label-text="Penyakit Waktu Hamil"></label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.penyakitKehamilan" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPenyakit"  />   
+              </div>
+            </div>
+            <div class="grid_3">
+              <div class="grid_12">
+                <label c-label item="item" c-label-text="Jenis Persalinan"></label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPersalinan" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisPersalinan"  />   
+              </div>
+            </div>
+            <div class="grid_3">
+              <div class="grid_12">
+                <label c-label item="item" c-label-text="Lain-lain"></label>
+                <input c-text-box type="text" class="k-textbox"  ng-model="item.lain" />
+              </div>
+            </div>
+          </div>
+          <div class="grid_8">
+          </div>
+          <div class="grid_4">
+            <div class="grid_12" style="margin-top: -10px">
+              <div class="grid_4">
+                <button class="btnTemplate1" ng-click="tambah()">Tambah</button>
+              </div>
+              <div class="grid_4">
+                <button class="btnTemplate1" ng-click="hapus()">Hapus</button>
+              </div>
+              <div class="grid_4">
+                <button class="btnTemplate1" ng-click="batal()">Batal</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="grid_12 "> 
+
+          <div kendo-grid id="kGridDetails"
+          k-data-source="souceGridNa" 
+          k-selectable="'row'" 
+          k-columns="columnGridNa" 
+          k-pageable="'true'"
+          k-sortable="'true'" 
+          k-ng-model="dataSelectedGrid"
+          ng-click="klikMenu(dataSelectedGrid)">
+        </div>
+      </div>
+
+
+      <!-- panel Riwayat Penyakit Terdahulu dan selama hamil -->
+      <div class="grid_12">
+        <div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+          <span style="font-size: 18px; color: white; padding: 5px;">Riwayat Penyakit Terdahulu Dan Selama Hamil</span>
+        </div>
+        <div class="grid_12 formDinamis">
+         <div class="grid_4" > 
+          <div class="grid_3" ng-repeat="list in listRiwayatPenyakit" >
+            <input type="radio" name="{{list.name}}" id="{{list.id}}" ng-model="item.riwayatPenyakit" ng-value="list">
+            <label  for="{{list.id}}" >{{list.name}}</label>
+          </div>
+        </div>
+        <div class="grid_4 " style="margin-left: -80px" ng-show="item.riwayatPenyakit.id === 1">
+          <textarea c-text-area type="input" filter="'string'" class="k-textbox" ng-model="item.ketRiwayatPenyakit" placeholder="Keterangan"/>
+        </div>
+      </div>
+    </div>
+    <hr>
+
+    <!-- panel Golongan Darah -->
+    <div class="grid_12">
+      <div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+        <span style="font-size: 18px; color: white; padding: 5px;">Golongan Darah</span>
+      </div>
+      <div class="container_12"> <!-- html form goes here -->
+        <div class="grid_1"  style="margin-top: 10px">
+         <label  c-label-text ><b>Ibu</b></label>
+       </div>
+       <div class="grid_4" > 
+        <div class="grid_3" ng-repeat="list in listGolonganDarah" >
+          <input type="radio" name="{{list.name}}" id="{{list.id}}" ng-model="item.golonganDarahIbu" ng-value="list">
+          <label  for="{{list.id}}" >{{list.name}}</label>
+        </div>
+      </div>
+      <div class="grid_1"  style="margin-top: 10px">
+        <label  c-label-text ><u><b>Rhesus</b></u></label>
+      </div>
+      <div class="grid_4"  >
+        <textarea c-text-area type="input" filter="'string'" class="k-textbox" ng-model="item.ketGolonganDarahIbu" placeholder="Keterangan"/>
+      </div>
+
+      <hr>
+      <div class="grid_1"  style="margin-top: 10px">
+        <label  c-label-text ><b>Ayah</b></label>
+      </div>
+      <div class="grid_4" > 
+        <div class="grid_3" ng-repeat="list2 in listGolonganDarah" >
+          <input type="radio" name="{{list2.name}}" id="{{list2.id}}" ng-model="item.golonganDarahAyah" ng-value="list2">
+          <label  for="{{list2.id}}" >{{list2.name}}</label>
+        </div>
+      </div>
+      <div class="grid_1"  style="margin-top: 10px">
+       <label  c-label-text ><u><b>Rhesus</b></u></label>
+     </div>
+     <div class="grid_4 "  >
+      <textarea c-text-area type="input" filter="'string'" class="k-textbox" ng-model="item.ketGolonganDarahAyah" placeholder="Keterangan"/>
+    </div>
+    <hr>
+
+
+  </div>
+</div>
+
+<!-- panel Lamanya Persalinan -->
+<div class="grid_12">
+  <div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+    <span style="font-size: 18px; color: white; padding: 5px;">Lamanya Persalinan</span>
+  </div>
+  <div class="container_12"> <!-- html form goes here -->
+
+    <div class="grid_12">
+      <div class="grid_2"  style="margin-top: 10px">
+        <label  c-label-text ><b>Kala I</b></label>
+      </div>
+      <div class="grid_1">
+        <input kendo-numeric-text-box k-ng-model="item.Kala1" style="width:100%" k-options="numberPicker"/>
+      </div>
+      <div class="grid_1"  style="margin-top: 10px">
+        <label  c-label-text ><b>Jam</b></label>
+      </div>
+    </div>
+    <div class="grid_12">
+      <div class="grid_2"  style="margin-top: 10px">
+        <label  c-label-text ><b>Kala II</b></label>
+      </div>
+      <div class="grid_1">
+        <input kendo-numeric-text-box k-ng-model="item.Kala2" style="width:100%" k-options="numberPicker"/>
+      </div>
+      <div class="grid_1"  style="margin-top: 10px">
+        <label  c-label-text ><b>Menit</b></label>
+      </div>
+    </div>
+    <div class="grid_12">
+      <div class="grid_2"  style="margin-top: 10px">
+        <label  c-label-text ><b>Pecah Ketuban</b></label>
+      </div>
+      <div class="grid_1">
+        <input kendo-numeric-text-box k-ng-model="item.pecahKetuban" style="width:100%" k-options="numberPicker"/>
+      </div>
+      <div class="grid_1"  style="margin-top: 10px">
+        <label  c-label-text ><b>Jam Sebelum Persalinan</b></label>
+      </div>
+    </div>
+    <div class="grid_12">
+      <div class="grid_2"  style="margin-top: 10px">
+        <label  c-label-text ><b>Suhu Ibu Dalam Persalinan</b></label>
+      </div>
+      <div class="grid_1">
+        <input kendo-numeric-text-box k-ng-model="item.suhuIbuDalamPersalinan" style="width:100%" k-options="numberPicker"/>
+      </div>
+      <div class="grid_1"  style="margin-top: 10px">
+        <label  c-label-text ><b>°C</b></label>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
+</div>
+</c-panel>
+<div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+</div>

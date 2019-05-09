@@ -1,0 +1,81 @@
+<style>
+.keteranganFieldTambahan {
+    right: 7px !important;
+    top: 12px !important;
+}
+</style>
+<div ng-controller="SkriningKekhususanRiwayatTumbuhKembangRevCtrl">
+
+    <div ng-show="dataVOloaded">
+        <c-panel header="'Riwayat Tumbuh Kembang'" disabled>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Tengkurap pada Usia"></label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.tengkurap" maxlength="3" />
+                    <label class="keteranganFieldTambahan" c-translate>Bulan</label>
+                </div>
+                <div class="clear"></div>
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="TumbuhGigi pada Usia"></label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.tumbuhGigi" maxlength="3" />
+                    <label class="keteranganFieldTambahan" c-translate>Bulan</label>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Bicara Bermakna pada Usia"></label>
+                </div>
+                <div class="grid_12">
+                     <!-- <input kendo-numeric-text-box k-ng-model="item.Kala2" style="width:100%"   maxlength="3" k-options="numberPicker"/> -->
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.bicara" maxlength="3" />
+                    <label class="keteranganFieldTambahan" c-translate>Bulan</label>
+                </div>
+                <div class="clear"></div>
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Duduk pada Usia"></label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.duduk" maxlength="3" />
+                    <label class="keteranganFieldTambahan" c-translate>Bulan</label>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Berdiri pada Usia"></label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.berdiri" maxlength="3" />
+                    <label class="keteranganFieldTambahan" c-translate>Bulan</label>
+                </div>
+                <div class="clear"></div>
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Berjalan pada Usia"></label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.berjalan" maxlength="3" />
+                    <label class="keteranganFieldTambahan" c-translate>Bulan</label>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Merangkak pada Usia"></label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.merangkak" maxlength="3" />
+                    <label class="keteranganFieldTambahan" c-translate>Bulan</label>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div> 
+        </c-panel>
+    </div>
+
+</div>

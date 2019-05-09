@@ -1,0 +1,532 @@
+<div ng-controller="RollPressInternalCtrl">
+	<style type="text/css">
+		.alert {
+			background-color: #f76565
+		}
+
+		.warning {
+			background-color: #ffff66
+		}
+
+		.danger {
+			background-color: #f76565
+		}
+
+		.error {
+			background-color: white !important;
+		}
+
+		.yellow {
+			background-color: #ffff00
+		}
+
+		.green {
+			background-color: #00ff40
+		}
+
+		.red {
+			background-color: #FF0000
+		}
+
+		.k-grid .k-grid-header .k-header .k-link {
+			height: auto;
+			white-space: normal;
+			text-align: center;
+		}
+
+		.crot-style {
+			border: 1;
+			height: 0;
+			border-top: 1px solid rgba(0, 0, 0, 0.3);
+			border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+		}
+
+		.md-tooltip {
+			height: 35px !important;
+			background-color: #363940 !important;
+			color: #FFF !important;
+			border-radius: 5px;
+			font-size: 18px;
+			font-weight: bold;
+			flood-color: yellow;
+			text-align: auto
+		}
+
+		.fieldset2 {
+			background-color: #363940;
+		}
+
+		.h1 {
+			position: relative;
+			display: inline-block;
+		}
+
+		.h1::before,
+
+		.h1::after {
+			content: ' ';
+			display: block;
+			position: absolute;
+			top: 50%;
+			left: -120px;
+			width: 100px;
+			border-bottom: 1px solid black;
+		}
+
+		.h1::after {
+			left: auto;
+			right: -120px;
+		}
+
+		.btTambah {
+			background-color: : #363940;
+		}
+
+		.btnHapus2 {
+			margin-right: 10px;
+			padding: 7px 20px;
+			border: none;
+			color: white;
+			font-size: 12px;
+			background-color: #363940;
+		}
+
+		.style-four {
+			height: 5px;
+			border: 0;
+			box-shadow: inset 0 14px 12px -12px rgba(0, 0, 0, 0.5);
+		}
+	</style>
+
+
+	<div class="panel panel-default container_12">
+		<div class="panel-body">
+			<div class="grid_12">
+				<span class="title center">
+					<h5 style="color: black" class="h1"> Roll Press Internal</h5>
+					<br />
+					&#128338;
+				</span>
+				<table style="width: 281px;margin-left: auto;margin-right: auto;">
+					<tbody>
+						<tr>
+							<td style="width: 37px;">Tanggal</td>
+							<td style="width: 83px;" class="ng-binding">{{now |date:'dd-MM-yyyy' }} </td>
+							<td style="width: 26px;">Jam</td>
+							<td style="width: 83px;" class="ng-binding">{{now |date:'HH:mm:ss' }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<hr class="crot-style">
+
+			<!--// Pop Up Pegawai -->
+			<div class="grid_12">
+				<div class="popUp" ng-show="isShowPopUp">
+					<div kendo-window="win1" id="winPopUp" k-title="''" k-width="'65%'" k-draggable="false" k-position="{ 'top': '90%', 'left':'15%' }"
+					 k-on-close="closeWindow()" k-visible="isShowPopUp">
+						<div class="grid_12">
+							<fieldset style="min-height:40px !important">
+								<div class="grid_12">
+									<div class="grid_2" style="margin-top: 10px">
+										<label c-label item="item" c-label-text="Petugas"></label>
+									</div>
+									<div class="clear"></div>
+									<div class="grid_10">
+										<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.petugasdet" ng-disabled="true" />
+									</div>
+								</div>
+								<div class="grid_12">
+									<div class="grid_3" style="margin-top: 10px">
+										<label c-label item="item" c-label-text="Tanggal"></label>
+									</div>
+									<div class="clear"></div>
+									<div class="grid_9">
+										<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.tglplanningdet" ng-disabled="true" />
+									</div>
+								</div>
+								<div class="grid_12">
+									<div class="grid_3" style="margin-top: 10px">
+										<label c-label item="item" c-label-text="Tanggal Akhir"></label>
+									</div>
+									<div class="clear"></div>
+									<div class="grid_9">
+										<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.tglPlanningAkhirdet" ng-disabled="true" />
+									</div>
+								</div>
+							</fieldset>
+						</div>
+						<div class="grid_12">
+							<kendo-grid id="grid" options="mainGridOptionsPegawaiDetail" k-data-source="SourceDataDetail" k-ng-model="current"
+							 ng-click="kl(current)">
+							</kendo-grid>
+						</div>
+						<div class="grid_12">
+							<fieldset style="min-height:40px !important">
+								<div class="grid_12">
+									<div class="grid_3" style="margin-top: 10px">
+										<label c-label item="item" c-label-text="Total Berat"></label>
+									</div>
+									<div class="clear"></div>
+									<div class="grid_9">
+										<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.totalBerat" ng-disabled="true" />
+									</div>
+								</div>
+								<div class="grid_12">
+									<div class="grid_3" style="margin-top: 10px">
+										<label c-label item="item" c-label-text="Total Roll Press"></label>
+									</div>
+									<div class="clear"></div>
+									<div class="grid_9">
+										<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.totalRoll" ng-disabled="true" />
+									</div>
+								</div>
+							</fieldset>
+						</div>
+						<div class="grid_6">
+							<button class='btnHapus' ng-click='cancelData()'>Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- Pencarian By Tanggal -->
+			<div class="grid_12" style="margin-top: 10px">
+				<div class="grid_1"></div>
+				<div class="grid_1" style="margin-top: 10px">
+					<label c-label item="item" c-label-text="periode"></label>
+				</div>
+				<div class="grid_1" align="center" style="margin-top: 10px">
+					<label c-label item="item" c-label-text=":"></label>
+				</div>
+				<div class="grid_2">
+					<input style="width: 100%" align="left" kendo-date-picker k-ng-model="item.awal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"
+					 k-on-change="ChangeDate()" />
+				</div>
+				<div class="grid_1" align="center" style="margin-top: 10px">
+					<label c-label item="item">s/d</label>
+				</div>
+				<div class="grid_2">
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.akhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"
+					 k-on-change="ChangeDate()" />
+				</div>
+				<div class="grid_1" align="center" style="margin-top:5px ">
+					<button class="c-button cancel" ng-click="clearDat()">Clear</button>
+				</div>
+			</div>
+			<hr class="style-four">
+
+
+			<!-- Grid Pelipatan -->
+			<div class="grid_12">
+				<md-tooltip md-direction='top' ng-show="StatusKlik">Pilih 1 Data Transaksi Yang akan di Roll Press</md-tooltip>
+				<kendo-grid id="gridLipat" options="mainGridOptionsLipat" k-data-source="dataLipat" k-ng-model="current">
+				</kendo-grid>
+			</div>
+
+			<div class="grid_12" style="margin-top:15px">
+				<!-- Line Grid Zero -->
+				<div class="grid_12">
+					<div class="grid_5">
+						<md-card>
+							<md-card-header style="background-color: #363940 !important">
+								<p style="font-size: 16px; font-weight: bold; color: white">Waktu Pelipatan</p>
+							</md-card-header>
+							<md-card-content>
+								<div class="grid_12" style="margin-top:15px">
+									<div class="grid_6">
+										<div class="grid_5" style="margin-left:10px">
+											<label c-label>Tanggal Awal</label>
+										</div>
+										<div class="grid_7">
+											<input style="width: 100%" kendo-date-picker k-ng-model="item.tglAwalRoll" placeholer="DD-MM-YYYY" k-format="'dd-MM-yyyy'"
+											 k-on-change="SetTotalJam()" />
+										</div>
+									</div>
+									<div class="grid_6">
+										<div class="grid_5" style="margin-left:10px">
+											<label c-label>Tanggal Akhir</label>
+										</div>
+										<div class="grid_7">
+											<input style="width: 100%" kendo-date-picker k-ng-model="item.tglAkhirRoll" placeholer="DD-MM-YYYY" k-format="'dd-MM-yyyy'"
+											 k-on-change="SetTotalJam()" />
+										</div>
+									</div>
+								</div>
+
+								<div class="grid_12" style="margin-top:15px">
+									<div class="grid_6">
+										<div class="grid_5" style="margin-left:10px">
+											<label c-label>Jam Mulai</label>
+										</div>
+										<div class="grid_7">
+											<input style="width: 100%" kendo-time-picker k-ng-model="item.jamAwal" placeholer="HH:mm" k-format="'HH:mm'"
+											 k-on-change="SetTotalJam()" />
+										</div>
+									</div>
+									<div class="grid_6">
+										<div class="grid_5" style="margin-left:10px">
+											<label c-label>Jam Selesai</label>
+										</div>
+										<div class="grid_7">
+											<input style="width: 100%" kendo-time-picker k-ng-model="item.jamAkhir" placeholer="HH:mm" k-format="'HH:mm'"
+											 k-on-change="SetTotalJam()" />
+										</div>
+									</div>
+								</div>
+								<div class="grid_12" style="margin-top: 15px">
+									<div class="grid_6">
+										<label c-label>Hasil Total Waktu</label>
+										<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.totalwaktu" disabled="" />
+									</div>
+								</div>
+							</md-card-content>
+						</md-card>
+					</div>
+					<div class="grid_7">
+						<md-card>
+							<md-card-header style="background-color: #363940 !important">
+								<p style="font-size: 16px; font-weight: bold; color: white">Detail Total Roll Press</p>
+							</md-card-header>
+							<md-card-content>
+								<div class="grid_12" style="margin-top:15px">
+									<div class="grid_6">
+										<div class="grid_5" style="margin-left:10px">
+											<label c-label>Petugas</label>
+										</div>
+										<div class="grid_7">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.petugas" ng-disabled="true" />
+										</div>
+									</div>
+									<div class="grid_3">
+										<div class="grid_5" style="margin-left:10px">
+											<label c-label>Total Lipat</label>
+										</div>
+										<div class="grid_7">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.TotalLipat" ng-disabled="true" />
+										</div>
+									</div>
+									<div class="grid_3">
+										<div class="grid_5" style="margin-left:10px">
+											<label c-label>Total Berat</label>
+										</div>
+										<div class="grid_7">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.TotalberatLinen"
+											 ng-disabled="true" />
+										</div>
+									</div>
+								</div>
+							</md-card-content>
+						</md-card>
+					</div>
+					<div class="grid_5"></div>
+					<div class="grid_7">
+						<md-card>
+							<md-card-header style="background-color: #363940 !important">
+								<p style="font-size: 16px; font-weight: bold; color: white">Input Penambahan Roll Press</p>
+							</md-card-header>
+						</md-card>
+						<md-card-content>
+							<div class="grid_12">
+								<div class="grid_4">
+									<div class="grid_3" style="margin-top : 10px">
+										<label c-label item="item">Jenis Linen</label>
+									</div>
+									<div class="grid_9">
+										<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisLinen" k-data-text-field="'namaLinen'"
+										 k-data-value-field="'idLinen'" k-filter="'contains'" k-auto-bind="true" k-data-source="sourceMasterJenisLinen"
+										 k-on-change="JenisLinenChange()" />
+									</div>
+								</div>
+								<div class="grid_4">
+									<div class="grid_3" style="margin-top : 10px">
+										<label c-label item="item">Jumlah Lipat</label>
+									</div>
+									<div class="grid_9">
+										<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahLinen" ng-disabled="true" />
+									</div>
+								</div>
+								<div class="grid_4">
+									<div class="grid_3" style="margin-top : 10px">
+										<label c-label item="item">gram</label>
+									</div>
+									<div class="grid_7">
+										<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.beratLinen" ng-disabled="true" />
+										<label class="keteranganFieldTambahan" c-label item="item" c-label-text="Per-Potong"></label>
+									</div>
+									<div class="grid_2"></div>
+								</div>
+							</div>
+
+
+							<div class="grid_12">
+								<div class="grid_4">
+									<div class="grid_3" style="margin-top : 10px">
+										<label c-label item="item">Qty Roll</label>
+									</div>
+									<div class="grid_9">
+										<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahRoll" />
+									</div>
+								</div>
+								<div class="grid_4">
+									<div class="grid_3" style="margin-top : 10px">
+										<label c-label item="item">Total Gram</label>
+									</div>
+									<div class="grid_9">
+										<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.totgram" ng-disabled="true" />
+									</div>
+								</div>
+								<div class="grid_4" style="margin-top: 10px">
+									<div class="grid_3"></div>
+									<div class="grid_9">
+										<button class="c-button" style="background-color: #363940" ng-click="addDataPenerimaanLinen()" k-selectable="'row'"
+										 k-columns="columndataPenerimaanLinen">Tambah</button>
+									</div>
+								</div>
+							</div>
+						</md-card-content>
+					</div>
+				</div>
+
+
+				<div class="grid_12">
+					<md-content>
+						<md-tabs md-dynamic-height md-border-bottom>
+							<md-tab label="Add Roll Press">
+								<md-content class="md-padding">
+
+									<div class="grid_12">
+										<kendo-grid id="grid" options="AddmainGridOptions" k-data-source="dataPenerimaanLinen" k-ng-model="current">
+										</kendo-grid>
+									</div>
+									<div class="grid_12">
+										<div class="grid_4">
+											<div class="grid_4" style="margin-top : 10px; font-weight: bold;">
+												<label c-label item="item" style="font-weight: bold; font-size: 12px">Total Roll Akhir</label>
+											</div>
+											<div class="grid_8">
+												<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.totroll" ng-disabled="true" />
+											</div>
+										</div>
+										<div class="grid_4"></div>
+									</div>
+									<div class="grid_12">
+										<div class="grid_4">
+											<div class="grid_4" style="margin-top : 10px; font-weight: bold;">
+												<label c-label item="item">Total Berat Akhir</label>
+											</div>
+											<div class="grid_8">
+												<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.totakhirberat"
+												 ng-disabled="true" />
+											</div>
+										</div>
+										<div class="grid_4"></div>
+									</div>
+									<div class="grid_12" style="margin-top:20px">
+										<div class="grid_6"></div>
+										<div class="grid_2">
+										</div>
+										<div class="grid_2">
+											<button class="c-button success" ng-click="Save()">Simpan</button>
+										</div>
+										<div class="grid_2">
+											<button class="c-button cancel" ng-click="DaftarPenyimpanan()">Daftar Penyimpanan</button>
+										</div>
+
+									</div>
+								</md-content>
+							</md-tab>
+							<md-tab label="Data Pegawai">
+								<md-content class="md-padding">
+									<div class="grid_12"></div>
+									<div class="grid_12">
+										<div class="grid_4">
+											<div class="grid_3" style="margin-top : 5px">
+												<label c-label item="item">Cari Pegawai</label>
+											</div>
+											<div class="grid_9">
+												<input style="width: 100%;" kendo-combo-box k-ng-model="item.caripetugas" k-data-text-field="'namaLengkap'"
+												 k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="dataMasterPetugas" />
+											</div>
+										</div>
+										<div class="grid_4">
+											<div class="grid_1" style="margin-top : 5px"></div>
+											<div class="grid_4" style="margin-top : 5px">
+												<button class="c-button success" ng-click="Cari(item.caripetugas)">Cari</button>
+											</div>
+											<div class="grid_4" style="margin-top : 5px">
+												<button class="c-button success" ng-click="ClearCari()">Clear</button>
+											</div>
+										</div>
+										<div class="grid_4"></div>
+									</div>
+									<div class="grid_12">
+										<kendo-grid id="gridpegawai" options="mainGridOptionsPegawai" k-data-source="dataPegawai" k-ng-model="current">
+										</kendo-grid>
+									</div>
+									<div class="grid_12" style="margin-top:20px">
+										<div class="grid_6"></div>
+										<div class="grid_2">
+										</div>
+										<div class="grid_2">
+											<button class="c-button success" ng-click="Save()">Simpan</button>
+										</div>
+										<div class="grid_2">
+											<button class="c-button cancel" ng-click="DaftarPenyimpanan()">Daftar Penyimpanan</button>
+										</div>
+
+									</div>
+								</md-content>
+							</md-tab>
+						</md-tabs>
+					</md-content>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+<div ng-include='"../app/module/Shared/TemplateLoading" '></div>
+<script type="text/x-kendo-template" id="template">
+    <div class="toolbar">
+        <label class="category-label" for="category">Waktu Order Makanan</label>
+        <!-- <input type="search" id="category" style="width: 150px"/> -->
+        <input style="width: 150px;" id="category" kendo-combo-box k-ng-model="item.cariJenisWaktu" k-data-text-field="'jenisWaktu'" options="mainGridOptions_3" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisWaktu" k-on-change = "gantiJenisWaktu()" />
+    </div>
+ </script>
+
+<!-- 
+              <div class="grid_12" style="margin-top:15px">
+                <div class="grid_3">
+    			   <div class="grid_12">
+                        <div class="grid_4" style="margin-left:10px">
+                            <label c-label>Nama Mesin</label>
+                        </div>
+    					<div class="grid_8">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.mesin" k-data-text-field="'namaMesin'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceMasterMesin" k-on-change="satuan()" />
+                        </div>
+    				</div>
+                </div>
+                <div class="grid_3">
+    			   <div class="grid_12">
+                    <div class="grid_4" style="margin-left:10px">
+                        <label c-label>Kapasitas</label>
+                    </div>
+    					<div class="grid_8">
+                           <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.kapasitas" ng-disabled ="true"/>
+                        </div>
+    				</div>
+                </div>
+                <div class="grid_3">
+                   <div class="grid_12">
+                    <div class="grid_4" style="margin-left:10px">
+                        <label c-label>Satuan</label>
+                    </div>
+                        <div class="grid_8">
+                             <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.satuan" ng-disabled ="true"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_3"></div>
+             </div>	 -->

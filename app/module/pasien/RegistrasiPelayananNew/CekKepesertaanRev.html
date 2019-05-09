@@ -1,0 +1,52 @@
+<div class="panel panel-default">
+    <div class="panel-heading " style="font-size: 18px; "><span c-translate>Peserta</span>
+        <span class="icon fa fa-chevron-circle-down " ng-show="!isShowPotensi " style="right:10px
+                                                                                " ng-click="showPotensi() "></span>
+        <span class="icon fa fa-chevron-circle-up " ng-show="isShowPotensi " style="right:10px
+                                                                                " ng-click="showPotensi() "></span>
+    </div>
+    <div class="panel-body " ng-show="isShowPotensi ">
+        <div class="panel panel-default container_12">
+            <div class="panel-body">
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <div class="grid_12">
+                            <label c-label>Masukkan Nomor Kartu/NIK :</label>
+                            <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.data" />
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_8">
+                                <div class="grid_6" ng-repeat="tipe in dataCheckbox">
+                                    <input type="radio" name="{{tipe.name}}" id="{{tipe.id}}" class="k-radio" ng-model="item.identitas" ng-value="tipe">
+                                    <label class="k-radio-label" for="{{tipe.id}}" style="margin:5px">{{tipe.name}}</label>
+                                </div>
+                            </div>
+                            <div class="grid_2">
+                                <button class="k-button k-primary k-button-icon" ng-click="findData(item.data)"><span class="k-sprite k-icon k-i-search">Find</span></button>
+                                <!--<em style="margin-top:6px;" ng-click="findDataBySep(item.namaPasien)" id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-search">Find</span></em>-->
+                            </div>
+                            <div class="grid_2">
+                                <button class="k-button k-primary k-button-icon" ng-click="clear()"><span class="k-sprite k-icon k-i-cancel">Clear</span></button>
+                                <!--<em style="margin-top:6px;" ng-click='clear()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Clear</span></em>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_8">
+                        <div class="grid_12">
+                            <label c-label>Results :</label>
+                        </div>
+                        <pre id="json" class="json-viewer"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
+<style type="text/css">
+    .json-viewer {
+        margin-top: 26px;
+        padding: 2em 0 2em 5em;
+        background: lightgrey;
+    }
+</style>

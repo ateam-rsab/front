@@ -1,0 +1,97 @@
+	<div ng-show="dataVOloaded">
+		<center><c-panel item="item"  header="'Daftar Permintaan Perbaikan'" disabled></center>
+			<div class="grdi_12">
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" style="margin-top: 10px">No Order</label>
+					</div>
+					<div class="grid_12">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noOrder"/>
+					</div>
+				</div>
+				<!-- <div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" style="margin-top: 10px">Jenis Order</label>
+					</div>
+					<div class="grid_12">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisOrder" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="dataJenisOrder" />
+					</div>
+				</div> -->
+				
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" style="margin-top: 10px">Tanggal Awal</label>
+					</div>
+					<div class="grid_12">
+						<input style="width: 100%" kendo-datetimepicker k-ng-model="item.tanggalAwal" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm"/>
+					</div>
+				</div>
+
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" style="margin-top: 10px">Tanggal Akhir</label>
+					</div>
+					<div class="grid_12">
+						<input style="width: 100%" kendo-datetimepicker k-ng-model="item.tanggalAkhir" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm"/>
+					</div>
+				</div>
+
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item" style="margin-top: 10px">&nbsp;</label>
+					</div>
+					<div class="grid_6">
+						<button class="c-button" ng-click="cari()">Cari</button>
+					</div>
+				</div>
+				<div class="grid_2" >
+					<div class="grid_12">
+						
+					</div>
+					<div class="grid_12">
+						
+					</div>
+				</div>
+			</div>
+			<!-- GRID -->
+					<div class="grid_12">
+				         <div class="grid_12 borderBox">
+				            <div id="kGrid" 
+				            kendo-grid k-data-source="dataGrid" 
+				            k-selectable="'row'" 
+				            k-columns="columnGrid" 
+				            k-pageable="'true'" 
+				            k-sortable="'true'" 
+				            k-ng-model="dataSelected"
+				            ng-click="klikGrid(dataSelected)">
+					            <div k-detail-template>
+	                                <kendo-tabstrip>
+	                                    <div>
+	                                        <div id="kGridDetail" kendo-grid k-options="data2(dataItem)" 
+	                                            k-sortable="'true'" 
+	                                            k-selectable="'row'" 
+	                                            k-ng-model="dataSelected2"
+	                                            ng-click="klikDetail(dataSelected2)">
+	                                        </div>
+	                                    </div>
+	                                </kendo-tabstrip>
+	                            </div>
+				            </div>
+			       	 	</div>
+		    		</div>
+			<!-- END GRID -->
+			<div class="grid_12" style="margin-top: 20px">
+				<div class="grid_6" >
+				</div>
+				<div class="grid_2" >
+					<button class="c-button" ng-click="permintaanSukuCadang()" disabled="btnPscDisabled">Permintaan Suku Cadang</button>
+				</div>
+				<div class="grid_2" >
+					<button class="c-button" ng-click="perbaikan()">Perbaikan</button>
+				</div>
+				<div class="grid_2" >
+					<button class="c-button" ng-click="respon()">Respon</button>
+				</div>
+			</div>
+		</c-panel>
+	</div>

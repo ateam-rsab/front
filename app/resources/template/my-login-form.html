@@ -1,0 +1,45 @@
+<div class="c-login-form">
+    <div class="panel">
+        <busy busy="isLoading"></busy>
+        <div style="width :100%;">
+            <div>
+                <span class="title">SMART<span class="c-color">RSAB</span></span>
+                <span class="c-color sub-title">We Care Your Performace</span>
+            </div>
+            <table cellpadding="10px">
+                <tr>
+                    <td colspan="2">
+                        <label for="simple-input">User ID</label>
+                        <input id="userName_form" ng-model="userName" type="text" class="k-textbox" style="width: 100%" />
+                    </td>
+                    <td rowspan="3">
+                        <span kendo-qrcode k-error-correction="'M'" ng-model="qrcode" style="height: 250px;"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label for="simple-input">Kata Kunci</label>
+                        <input id="password_form" ng-model="password" type="password" class="k-textbox" style="display: block; width: 100%;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button kendo-button style="width: 100%" ng-click="validate()">Masuk</button>
+
+                    </td>
+                    <td>
+                        <button kendo-button style="width: 100%" ng-click="reset()">Batal</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <span kendo-notification="notification_form" k-append-to="'#container_notification_form'"></span>
+                        <div id="container_notification_form" class="demo-section k-content"></div>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,73 @@
+
+<div ng-controller="CatatanPerkembanganCtrl">
+    <div ng-show="dataVOloaded">
+        <!-- panel Skrining Gizi -->
+
+        <c-panel item="item" header="title" disabled>
+
+            <div class="grid_2" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="pengobatan"></label>
+            </div>
+                <div class="grid_4">
+              <textarea style="height: 40px" id="text_area" c-text-box type="input" class="k-textbox" ng-model="item.pengobatan" />
+            </div>
+            <div class="grid_2" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="pemeriksaanHormonal"></label>
+            </div>
+                <div class="grid_4">
+              <textarea style="height: 40px" id="text_area" c-text-box type="input" class="k-textbox" ng-model="item.pemeriksaanHormonal" />
+            </div>
+            <div class="clear"></div>
+
+            
+            <div class="grid_2" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="pemeriksaanUrin"></label>
+            </div>
+                <div class="grid_4">
+              <textarea style="height: 40px" id="text_area" c-text-box type="input" class="k-textbox" ng-model="item.pemeriksaanUrin" />
+            </div>
+            <div class="grid_2" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="pemeriksaanUltra"></label>
+            </div>
+                <div class="grid_4">
+              <textarea style="height: 40px" id="text_area" c-text-box type="input" class="k-textbox" ng-model="item.pemeriksaanUltra" />
+            </div>
+            <div class="clear"></div>
+
+            <div class="grid_2" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="catatan"></label>
+            </div>
+            <div class="grid_4">
+                <div class="grid_3" style="margin: 5px 0 5px 0;" ng-repeat="stat in listJenisCatatan">
+                            <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.catatan" value="{{stat.id}}">
+                            <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+              </div>
+              </div>
+              
+            <div class="grid_2" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="haidKembali"></label>
+            </div>
+                <div class="grid_4">
+              <input kendo-date-picker k-value='now' placeholer="dd-mm-yyyy" k-format="'dd-mm-yyyy'" k-ng-model="item.haidKembali" style="width: 100%" />
+            </div>
+            <div class="clear"></div>
+            <div class="grid_2" style="margin-bottom:5px">
+                <label c-label item="item" c-label-text="rencana"></label>
+            </div>
+                <div class="grid_4">
+              <textarea style="height: 40px" id="text_area" c-text-box type="input" class="k-textbox" ng-model="item.rencana" />
+            </div>
+            <div class="clear"></div>
+
+<div class="grid_3" style="float:right">
+                    <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="add" >
+                        <span class="title">Simpan</span>
+                    </c-button>
+                </div>
+  <div class="clear"></div>
+            <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" ' style="margin-bottom:50px"></div>
+
+        </c-panel>
+    </div>
+
+</div>

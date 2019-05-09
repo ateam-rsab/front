@@ -1,0 +1,132 @@
+<div ng-controller="PengukuranKinerjaKegiatan(PKK)Ctrl">
+    <div class="panel panel-default container_12">
+        <div class="panel-heading" c-translate>Pengukuran Kinerja Kegiatan(PKK)</div>
+        <div class="panel-body">
+        	<div class="grid_12">
+        		<div class="grid_2">
+                 	<div class="grid_12" style="margin-top: 10px">
+                    	<label c-label item="item" c-label-text="sasaranStrategis"></label>
+                	</div>
+                    <div class="grid_12" style="margin-top: 15px">
+                        <label c-label item="item" c-label-text="program"></label>
+                    </div>
+                    <div class="grid_12" style="margin-top: 15px">
+                        <label c-label item="item" c-label-text="uraian"></label>
+                    </div>
+               	</div>
+            	<div class="grid_8">
+                	<div class="grid_12">
+                		<div class="grid_6">
+                    		<input style="width: 100%;" kendo-combo-box k-ng-model="item.sasaranStrategis" k-data-text-field="'name'" k-data-value-field="'id'" 
+                            k-filter="'contains'" k-auto-bind="false" k-data-source="ListSasaranStrategis" />
+                    	</div>
+                	</div>
+                	<div class="grid_12" style="margin-top: 5px">
+                		<div class="grid_6">
+                    		<input style="width: 100%;" kendo-combo-box k-ng-model="item.program" k-data-text-field="'name'" k-data-value-field="'id'" 
+                            k-filter="'contains'" k-auto-bind="false" k-data-source="ListProgram" />
+                    	</div>
+                	</div>
+                    <div class="grid_12" style="margin-top: 5px">
+                        <div class="grid_6">
+                            <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.uraian" />
+                        </div>
+                    </div>
+            	</div>
+            </div>
+            <div class="grid_12" style="margin-top: 10px">
+                <div class="grid_5">
+                    <div class="panel panel-default container_12">
+                        <div class="panel-heading" c-translate>Indikator Kinerja</div>
+                        <div class="panel-body">
+                            <div class="grid_12">
+                                <div class="grid_3">
+                                    <div class="grid_12" style="margin-top: 5px">
+                                        <label c-label item="item" c-label-text="input"></label>
+                                    </div>
+                                    <div class="grid_12" style="margin-top: 80px">
+                                        <label c-label item="item" c-label-text="output"></label>
+                                    </div>
+                                </div>
+                                <div class="grid_9">
+                                    <div class="grid_12">
+                                        <textarea ng-model="item.input" style="width: 99%; height: 80px;"></textarea>
+                                    </div>
+                                    <div class="grid_12">
+                                        <textarea ng-model="item.output" style="width: 99%; height: 80px;"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_7">
+                    <div class="grid_12">
+                        <div class="grid_8">
+                            <div class="grid_12">
+                                <div class="grid_6">
+                                    <div class="grid_12" style="margin-top: 75px" >
+                                        <label c-label item="item" c-label-text="pic"></label>
+                                    </div>
+                                    <div class="grid_12" style="margin-top: 20px">
+                                        <label c-label item="item" c-label-text="rkotwi"></label>
+                                    </div>
+                                    <div class="grid_12" style="margin-top: 20px">
+                                        <label c-label item="item" c-label-text="realisasitwi"></label>
+                                    </div>
+                                    <div class="grid_12" style="margin-top: 15px">
+                                        <label c-label item="item" c-label-text="tingkatPencapaianKinerja"></label>
+                                    </div>
+                                </div>
+                                <div class="grid_6">
+                                    <div class="grid_12" style="margin-top: 70px">
+                                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.statusBarang" k-data-text-field="'name'" k-data-value-field="'id'" 
+                                        k-filter="'contains'" k-auto-bind="false" k-data-source="ListstatusBarang" />
+                                    </div>
+                                    <div class="grid_12" style="margin-top: 5px">
+                                        <c-button ng-click="" style="width:100% !important">
+                                        <span style="font-size:10!important">Load Data</span>
+                                        </c-button>
+                                    </div>
+                                    <div class="grid_12" style="margin-top: 5px">
+                                        <c-button ng-click="" style="width:100% !important">
+                                        <span style="font-size:10!important">Load Data</span>
+                                        </c-button>
+                                    </div>
+                                    <div class="grid_12" style="margin-top: 5px">
+                                        <c-button ng-click="" style="width:100% !important">
+                                        <span style="font-size:10!important">Load Data</span>
+                                        </c-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_4">
+                            <div class="grid_12" style="margin-top: 50px" align="center">
+                                <label c-label item="item" c-label-text="satuan"></label>
+                            </div>
+                            <div class="grid_12" style="margin-top: 5px">
+                                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.pic" />
+                            </div>
+                            <div class="grid_12" style="margin-top: 5px">
+                                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.rkotwi" />
+                            </div>
+                            <div class="grid_12" style="margin-top: 5px">
+                                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.realisasitwi" />
+                            </div>
+                            <div class="grid_12" style="margin-top: 5px">
+                                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.tingkatPencapaianKinerja" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12" style="margin: 10px 0 30px 0;">
+        		<kendo-grid  k-data-source="PengukuranKinerjaKegiatan" k-selectable="'row'" k-columns="columnPengukuranKinerjaKegiatan">
+                </kendo-grid>
+            </div>
+            	<div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+        	</div>
+        </div>
+    </div>
+</div>

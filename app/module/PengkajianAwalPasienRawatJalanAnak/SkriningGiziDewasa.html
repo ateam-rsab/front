@@ -1,0 +1,342 @@
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#aabcfe;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aabcfe;color:#669;background-color:#e8edff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aabcfe;color:#039;background-color:#b9c9fe;}
+.tg .tg-yw4l{vertical-align:top;}
+.tg .nilai{vertical-align:middle;text-align: center;font-weight: bold;}
+.tg .jawaban{vertical-align:middle;text-align: center;}
+</style>
+
+<div class="grid_12" ng-controller="SkriningGiziDewasaCtrl" style="margin-bottom:60px">
+    <div>
+        <!-- panel Skrining Gizi -->
+        <!-- <c-panel item="item" header="'DemoSkriningGizi[Master]'" disabled style="margin-bottom:60px"> -->
+        <!-- <div class="grid_12 headerBox">
+            <h1 style="color: white;">DemoSkriningGizi[Master]</h1>
+        </div>
+        <div class="clear"></div> -->
+        <div class="grid_12 headerBox">
+            <h1 style="color: white;"><b>STATUS SKRINING GIZI</b></h1>
+        </div>
+        <div class="clear"></div>
+        <br/>
+        <div class="grid_12" style="margin-bottom:20px">
+            <div class="grid_12">
+                <div class="grid_3" ng-repeat="data in arrSkriningGiziDewasa">
+                    <div ng-switch on="data.type">
+                        <div ng-switch-when="numeric">
+                            <div class="grid_12" style="margin-bottom:5px">
+                                <label c-label item="item">{{data.name}}</label>
+                            </div>
+
+                            <div class="grid_12 parentKeteranganFieldTambahan">
+                                <input kendo-numeric-text-box ng-model="data.nilai" style="width: 100%;" />
+                                <!--<input c-text-box type="input" filter="data.type" class="k-textbox" ng-model="data.nilai" />-->
+                                <label class="keteranganFieldTambahan numericPAP">{{data.ket}}</label>
+                            </div>
+                        </div>
+                        <div ng-switch-default>
+                            <div class="grid_12" style="margin-bottom:5px">
+                                <label c-label item="item">{{data.name}}</label>
+                            </div>
+
+                            <div class="grid_12 parentKeteranganFieldTambahan">
+                                <input c-text-box type="input" class="k-textbox" ng-model="data.nilai" />
+                                <label class="keteranganFieldTambahan">{{data.ket}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Form PASIEN DEWASA -->
+        <div class="grid_12 headerBox">
+			<h1 style="color: white;"><b>SCREENING GIZI DEWASA</b></h1>
+		</div>
+		<div class="clear"></div>
+        <br/>
+        <div class="grid_12" style="margin-bottom:20px">
+            <div style="background-color: #10C4B2; height: 25px; padding-left: 5px; margin-top: 5px; text-align: left; border: 1px solid; border-color: #10C4B2;" class="grid_12">
+                <span style="font-size: 18px; color: white; padding: 5px;">{{pasienDewasa.turunBeratBadan.nama}}</span>
+            </div>
+            <div class="grid_12" ng-repeat="opsi in pasienDewasa.turunBeratBadan.detail | orderBy:'id'">
+                <div ng-if="opsi.detail === undefined">
+                    <input type="radio" ng-model="pasienDewasa.turunBeratBadan.value" ng-value="opsi.id" ng-click="cekTotalSkor(pasienDewasa.turunBeratBadan, opsi)" >
+                    <label for="{{opsi.nama}}">{{opsi.nama}}</label>
+                </div>
+                <div ng-if="opsi.detail !== undefined">
+                    <input type="radio" value="subOpsi.id" disabled >
+                    <label for="{{subOpsi.nama}}">{{opsi.nama}}</label>
+                    <div class="grid_12" ng-repeat="subOpsi in opsi.detail | orderBy:'id'" style="margin-left:15px">
+                        <input type="radio" ng-model="pasienDewasa.turunBeratBadan.value" ng-value="subOpsi.id" ng-click="cekTotalSkor(pasienDewasa.turunBeratBadan, subOpsi)" >
+                        <label for="{{subOpsi.nama}}">{{subOpsi.nama}}</label>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background-color: #10C4B2; height: 25px; padding-left: 5px; margin-top: 5px; text-align: left; border: 1px solid; border-color: #10C4B2;" class="grid_12">
+                <span style="font-size: 18px; color: white; padding: 5px;">{{pasienDewasa.tidakNafsuMakan.nama}}</span>
+            </div>
+            <div class="grid_12" ng-repeat="opsi in pasienDewasa.tidakNafsuMakan.detail | orderBy:'id'">
+                <div ng-if="opsi.detail === undefined">
+                    <input type="radio" ng-model="pasienDewasa.tidakNafsuMakan.value" ng-value="opsi.id" ng-click="cekTotalSkor(pasienDewasa.tidakNafsuMakan, opsi)" >
+                    <label for="{{opsi.nama}}">{{opsi.nama}}</label>
+                </div>
+                <div ng-if="opsi.detail !== undefined">
+                    <input type="radio" value="subOpsi.id" disabled >
+                    <label for="{{subOpsi.nama}}">{{opsi.nama}}</label>
+                    <div class="grid_12" ng-repeat="subOpsi in opsi.detail | orderBy:'id'" style="margin-left:15px">
+                        <input type="radio" ng-model="pasienDewasa.tidakNafsuMakan.value" ng-value="subOpsi.id" ng-click="cekTotalSkor(pasienDewasa.tidakNafsuMakan, subOpsi)" >
+                        <label for="{{subOpsi.nama}}">{{subOpsi.nama}}</label>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background-color: #10C4B2; height: 25px; padding-left: 5px; margin-top: 5px; text-align: left; border: 1px solid; border-color: #10C4B2;" class="grid_12">
+                <span style="font-size: 18px; color: white; padding: 5px;">{{pasienDewasa.perluKonsultasi.nama}}</span>
+            </div>
+            <div class="grid_12" ng-repeat="opsi in pasienDewasa.perluKonsultasi.detail | orderBy:'id'">
+                <div ng-if="opsi.detail === undefined">
+                    <input type="radio" ng-model="pasienDewasa.perluKonsultasi.value" ng-value="opsi.id" ng-click="klikChange(pasienDewasa.perluKonsultasi, opsi)" >
+                    <label for="{{opsi.nama}}">{{opsi.nama}}</label>
+                </div>
+                <div ng-if="opsi.detail !== undefined">
+                    <input type="radio" value="subOpsi.id" disabled >
+                    <label for="{{subOpsi.nama}}">{{opsi.nama}}</label>
+                    <div class="grid_12" ng-repeat="subOpsi in opsi.detail | orderBy:'id'" style="margin-left:15px">
+                        <input type="radio" ng-model="pasienDewasa.perluKonsultasi.value" ng-value="subOpsi.id" ng-click="klikChange(pasienDewasa.perluKonsultasi, subOpsi)" >
+                        <label for="{{subOpsi.nama}}">{{subOpsi.nama}}</label>
+                    </div>
+                </div>
+            </div>
+
+            <table class="tg">
+            <tr>
+                <td class="tg-yw4l nilai">Total Skor</td>
+                <td class="tg-yw4l nilai">{{dataForm.totalSkorDewasa}}</td>
+            </tr>
+            <!--<tr>
+                <td class="tg-yw4l nilai">Selected button</td>
+                <td class="tg-yw4l nilai">{{pasienDewasa}}</td>
+            </tr>-->
+            </table>
+        </div>
+       
+       <!-- Form Pasien Obstetri -->
+        <div class="grid_12 headerBox">
+			<h1 style="color: white;"><b>MALNUTRITION SCREENING TOOLS (MST)</b></h1>
+		</div>
+		<div class="clear"></div>
+        <br/>
+        <div class="grid_12">
+            <table class="tg">
+            <tr>
+                <th class="tg-yw4l">No</th>
+                <th class="tg-yw4l">Parameter</th>
+                <th class="tg-yw4l jawaban" colspan="2">Jawaban</th>
+            </tr>
+            <tr>
+                <td class="tg-yw4l">1</td>
+                <td class="tg-yw4l">{{pasienObstetri.asupanMakanan.nama}}</td>
+                <td ng-repeat="opsi in pasienObstetri.asupanMakanan.detail | orderBy:'id'" class="tg-yw4l">
+                    <input type="radio" ng-model="pasienObstetri.asupanMakanan.value" ng-value="opsi.id" ng-click="cekSkorObstetri(pasienObstetri.asupanMakanan, opsi)" >
+                    <label for="{{opsi.nama}}">{{opsi.nama}}({{opsi.descNilai}})</label>
+                </td>
+            </tr>
+            <tr>
+                <td class="tg-yw4l">2</td>
+                <td class="tg-yw4l">{{pasienObstetri.metabolisme.nama}}</td>
+                <td ng-repeat="opsi in pasienObstetri.metabolisme.detail | orderBy:'id'" class="tg-yw4l">
+                    <input type="radio" ng-model="pasienObstetri.metabolisme.value" ng-value="opsi.id" ng-click="cekSkorObstetri(pasienObstetri.metabolisme, opsi)" >
+                    <label for="{{opsi.nama}}">{{opsi.nama}}({{opsi.descNilai}})</label>
+                </td>
+            </tr>
+            <tr>
+                <td class="tg-yw4l">3</td>
+                <td class="tg-yw4l">{{pasienObstetri.tambahBeratBadan.nama}}</td>
+                <td ng-repeat="opsi in pasienObstetri.tambahBeratBadan.detail | orderBy:'id'" class="tg-yw4l">
+                    <input type="radio" ng-model="pasienObstetri.tambahBeratBadan.value" ng-value="opsi.id" ng-click="cekSkorObstetri(pasienObstetri.tambahBeratBadan, opsi)" >
+                    <label for="{{opsi.nama}}">{{opsi.nama}}({{opsi.descNilai}})</label>
+                </td>
+            </tr>
+            <tr>
+                <td class="tg-yw4l">4</td>
+                <td class="tg-yw4l">{{pasienObstetri.nilaiHB.nama}}</td>
+                <td ng-repeat="opsi in pasienObstetri.nilaiHB.detail | orderBy:'id'" class="tg-yw4l">
+                    <input type="radio" ng-model="pasienObstetri.nilaiHB.value" ng-value="opsi.id" ng-click="cekSkorObstetri(pasienObstetri.nilaiHB, opsi)" >
+                    <label for="{{opsi.nama}}">{{opsi.nama}}({{opsi.descNilai}})</label>
+                </td>
+            </tr>
+            <tr>
+                <td class="tg-yw4l nilai" colspan="2">Total Skor</td>
+                <td class="tg-yw4l nilai" colspan="2">{{dataForm.totalSkorObstetri}}</td>
+            </tr>
+            </table>
+       </div>
+        <!-- </c-panel> -->
+        <c-panel item="item" header="'SkriningGiziDewasa'" ng-hide="true">
+            <!-- tinggi badan - berat badan - lingkar kepala -->
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="TanggalInput"></label>
+                </div>
+                <div class="grid_12">
+                    <input style="width: 100%" k-value="now" kendo-date-picker k-max="now" k-ng-model="item.tglInputData" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" disabled/>
+                </div>p
+                <div class="clear"></div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="TinggiBadan"></label>
+                </div>
+                <div class="grid_12 parentKeteranganFieldTambahan">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.tinggiBadan" />
+                    <label class="keteranganFieldTambahan">cm</label>
+
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="BeratBadan"></label>
+                </div>
+                <div class="grid_12 parentKeteranganFieldTambahan">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.beratBadan" />
+                    <label class="keteranganFieldTambahan">kg</label>
+
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item">IMT</label>
+                </div>
+                <div class="grid_12 parentKeteranganFieldTambahan">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.imt" />
+                    <label class="keteranganFieldTambahan">kg/m2</label>
+
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="grid_6">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="statusGizi"></label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.statusGizi" />
+                </div>
+                <div class="clear"></div>
+            </div>
+            <!--<div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="LingkarKepala"></label>
+                </div>
+                <div class="grid_12 parentKeteranganFieldTambahan">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.lingkarKepala" />
+                    <label class="keteranganFieldTambahan">cm</label>
+
+                </div>
+                <div class="clear"></div>
+            </div>-->
+            <div class="clear"></div>
+            <div class="grid_12" ng-show="isRawatInap">
+                <div style="background-color: #10C4B2; height: 25px; margin-top: 5px; text-align: left; border: 1px solid; border-color: #10C4B2;" class="grid_12">
+                    <span style="font-size: 18px; color: white; padding: 5px;">Skrining Gizi Dewasa</span>
+                </div>
+                <div class="clear"></div>
+                <div class="grid_12" ng-repeat="skriningGizi in listPertanyaanDewasa" style="border: 1px solid; border-color: #10C4B2">
+                    <div class="grid_8" style="padding: 10px;">
+                        <p style="margin: 0px; text-align: justify;">{{skriningGizi.name}}</p>
+                    </div>
+
+                    <div class="grid_2" ng-repeat="stat in listStatusYaTidak">
+                        <input type="radio" ng-model="skriningGizi.stat" id="{{skriningGizi.id + stat.name}}" class="k-radio" ng-value="stat" ng-click="cekTotalSkor(skriningGizi, stat)">
+                        <label class="k-radio-label" for="{{skriningGizi.id + stat.name}}" ng-if="stat.name != 'Ya'">{{stat.name}}(0)</label>
+                        <label class="k-radio-label" for="{{skriningGizi.id + stat.name}}" ng-if="stat.name == 'Ya'">{{stat.name}}({{skriningGizi.nilai}})</label>
+                    </div>
+
+
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+                <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+                    <div class="grid_8" style="padding: 10px;">
+                        <p style="margin: 0px; text-align: justify;">Total Score</p>
+                    </div>
+
+                    <div class="grid_2" style="text-align: center; padding-top: 10px;">
+                        <p style="margin: 0px; text-align: center;">{{item.TotalSkor}}</p>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="clear"></div>
+
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+            <div style="background-color: #10C4B2; height: 25px; margin-top: 5px; text-align: left; border: 1px solid; border-color: #10C4B2;" class="grid_12">
+                <span style="font-size: 18px; color: white; padding: 5px;">Skrining Gizi Dewasa</span>
+            </div>
+            <div class="clear"></div>
+            
+            <div class="grid_12" ng-repeat="skriningGiziBunda in listPertanyaanBunda" style="border: 1px solid; border-color: #10C4B2">
+                <div class="grid_8" style="padding: 10px;">
+                    <p style="margin: 0px; text-align: justify;">{{skriningGiziBunda.name}}</p>
+                </div>
+
+                <!-- <div ng-show="$parent.$index!==0" class="grid_2" ng-repeat="stat in listPertanyaanBunda">
+                    <input type="radio" k-ng-model="skriningGiziBunda.stat" id="{{skriningGiziBunda.id + stat.name}}" class="k-radio" ng-value="stat" ng-click="cekTotalSkorBunda(skriningGiziBunda, stat)" ng-hide="stat.nilai===null">
+                    <label class="k-radio-label" for="{{skriningGiziBunda.id + stat.name}}" ng-if="stat.name == 'Ya'">{{stat.nilai}}({{skriningGiziBunda.nilai}})</label>
+                </div> -->
+
+                <div class="grid_2" ng-hide="skriningGiziBunda.nilai===null" >
+                    <input type="radio" name="{{'menyusuiEkslusif' + skriningGiziBunda.name}}" id="{{'menyusuiEkslusif' + skriningGiziBunda.name}}" class="k-radio" ng-model="item.MenyusuiEkslusif" value="{{skriningGiziBunda}}" ng-click="cekTotalSkorBunda(skriningGiziBunda)">
+                    <label class="k-radio-label" for="{{'menyusuiEkslusif' + skriningGiziBunda.name}}">Ya({{skriningGiziBunda.nilai}})</label>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+
+            <div class="grid_12" ng-repeat="skriningGiziBunda in listPertanyaanBundaDua" style="border: 1px solid; border-color: #10C4B2">
+                <div class="grid_8" style="padding: 10px;">
+                    <p style="margin: 0px; text-align: justify;">{{skriningGiziBunda.name}}</p>
+                </div>
+                <div class="grid_2" ng-hide="skriningGiziBunda.nilai===null" >
+                    <input type="radio" name="{{'menyusuiEkslusif' + skriningGiziBunda.name}}" id="{{'menyusuiEkslusif' + skriningGiziBunda.name}}" class="k-radio" ng-model="item.MenyusuiEkslssusif" value="{{skriningGiziBunda}}" ng-click="cekTotalSkorBundaDua(skriningGiziBunda)">
+                    <label class="k-radio-label" for="{{'menyusuiEkslusif' + skriningGiziBunda.name}}">Ya({{skriningGiziBunda.nilai}})</label>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+
+
+            <div class="clear"></div>
+            <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+                <div class="grid_8" style="padding: 10px;">
+                    <p style="margin: 0px; text-align: justify;">Total Score</p>
+                </div>
+
+                <div class="grid_2" style="text-align: center; padding-top: 10px;">
+                    <p style="margin: 0px; text-align: center;">{{item.TotalSkorBunda}}</p>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+
+            <div style="background-color: #10C4B2; height: 25px; margin-top: 15px; text-align: left; border: 1px solid; border-color: #10C4B2;" class="grid_12">
+                <span style="font-size: 18px; color: white; padding: 5px;">Daftar Penyakit atau keadaan yang berisiko mengakibatkan malnutrisi</span>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_12" style="border: 1px solid; border-color: #10C4B2" style="padding:5px">
+                <div class="grid_3" ng-repeat="stat in listDaftarPenyakit">
+                    <label style="margin-left:10px; text-align:left">{{stat.name}}</label>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+           
+            <div class="grid_12">&nbsp;</div>
+        </c-panel>
+        <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+    </div>
+</div>

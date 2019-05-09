@@ -1,0 +1,32 @@
+<div class="grid_12" ng-controller="DashboarPasienAlergiCtrl">
+
+    <div item="item" header="'DataAlergi'" disabled >
+        <div class="panel panel-default">
+            <div class="panel-heading" c-translate>Masukan Alergi</div>
+            <div class="panel-body">
+
+                <div class="grid_12" style="padding-top:20px">
+                    <div class="grid_4">
+                        <div class="grid_12">
+                            <div class="grid_3" style="padding-top:10px">
+                                <!-- <label c-label item="item" c-label-text="Alergi"></label> -->
+                                <label c-label>Alergi</label>
+                            </div>
+                            <div class="grid_1" style="padding-top:10px" align="right">
+                                <!-- <label c-label item="item" c-label-text="Alergi"></label> -->
+                                <label c-label>:</label>
+                            </div>
+                            <div class="grid_3" ng-repeat="stat in listDataAlergi | orderBy:'id'">
+                                <label for="{{stat.name}}" class="radio-inline">
+                                    <input type="radio" ng-model="data.alergi" ng-value="stat.value" ng-change="klikOption(item.alergi, stat)">
+                                    {{stat.name}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
+            </div>
+        </div>
+    </div>
+</div>

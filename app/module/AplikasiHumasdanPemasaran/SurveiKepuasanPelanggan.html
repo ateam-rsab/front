@@ -1,0 +1,90 @@
+<div ng-controller="SurveiKepuasanPelangganCtrl">
+
+	<div ng-show="dataVOloaded">
+
+		<c-panel item="item" header="'Survei Kepuasan Pelanggan'">
+			
+			
+		
+    </colgroup>		
+		<table  >
+		
+  <tr>
+   <b><th>Nomor</th></b>
+  <b><th>Pertanyaan</th></b>
+  <b><th>Keterangan</th></b>
+	 
+  </tr>
+  </br>
+  </br>
+  <tr  ng-repeat="stat in Listpertanyaan">
+  
+      <td>{{stat.counterNomer}}</td>
+    <td>{{stat.pertanyaan}}</td>
+    <td ng-repeat="stat2 in stat.mappingSet"><input type="radio" name="{{stat.id}}" id="{{stat2.id}}" class="k-radio" ng-model="item.ok" ng-value="stat2">
+    	<label class="k-radio-label" for="{{stat2.id}}">{{stat2.keterangan}}</label>                   </td>
+		
+		
+		
+  </tr>
+</table>	
+          			
+
+
+	
+					
+			
+			
+			
+	
+           
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 
+			
+			
+			
+			
+			
+          
+      
+
+            <!-- grid table -->
+			
+            <div class="clear"></div>
+			
+           
+			
+			
+			
+		</c-panel>
+
+		
+
+<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>			
+
+			
+</div>
+
+</div>
+

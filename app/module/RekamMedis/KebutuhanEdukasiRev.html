@@ -1,0 +1,40 @@
+<div ng-controller="KebutuhanEdukasiRevCtrl">
+    <div class="container_12">
+        <div class="grid_12">
+            <div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+                <span style="font-size: 18px; color: white; padding: 5px;">{{title}}</span>
+            </div>
+            <div class="container_12"> <!-- html form goes here -->
+                <div class="grid_12" ng-repeat="list in listHambatan | orderBy:'id'" style="padding: 5pt 10pt">
+                    <b>{{list.nama}}</b>
+                    <div class="grid_12" style="padding: 5pt">
+                        <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                            <div class="grid_2">
+                                <input type="checkbox" ng-checked="opsi.isChecked" class="k-checkbox" name="{{opsi.nama}}" id="{{opsi.nama}}" ng-model="bool" value="{{opsi.id}}"  ng-click="addListHambatan(bool,opsi)" >
+                                <label class="k-checkbox-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_12" ng-repeat="list in listEdukasi | orderBy:'id'" style="padding: 5pt 10pt">
+                    <b>{{list.nama}}</b>
+                    <div class="grid_12" style="padding: 5pt">
+                        <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                            <div class="grid_2">
+                                <input type="checkbox" ng-checked="opsi.isChecked" class="k-checkbox" name="{{opsi.nama}}" id="{{opsi.nama}}" ng-model="bool" value="{{opsi.id}}"  ng-click="addListEdukasi(bool,opsi)" >
+                                <label class="k-checkbox-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_6" style="padding: 5pt 10pt">
+                        <textarea c-text-area type="input" filter="'string'" class="k-textbox" ng-model="item.lain2" placeholder="Lain-lain"/>
+                    </div>
+            </div>
+            <div class="grid_12">
+                <div ng-include='"../app/module/Shared/TemplateButtonSimpanNotFixed"' style="margin:25px;"></div>
+            </div>
+        </div>
+    </div>
+    
+</div>

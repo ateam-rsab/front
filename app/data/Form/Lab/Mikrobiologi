@@ -1,0 +1,27 @@
+{
+	"model":{
+	    "Mikroskopik" : "",
+	    "BiakanResistensiBahan" : "",
+	    "PCR" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "Mikroskopik",
+			"messagesRequired" : "",
+			"caption" : "Mikroskopik"
+		},
+		{
+			"isNull" : "true",
+			"name" : "BiakanResistensiBahan",
+			"messagesRequired" : "",
+			"caption" : "Biakan & Resistensi Bahan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "PCR",
+			"messagesRequired" : "",
+			"caption" : "PCR"
+		}
+  ]
+}

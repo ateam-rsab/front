@@ -1,0 +1,27 @@
+{
+	"model":{
+	    "TinggiBadan" : "",
+	    "BeratBadan" : "",
+		"LingkarKepala" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "TinggiBadan",
+			"messagesRequired" : "Tinggi Badan Harus Diisi",
+			"caption" : "Tinggi Badan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "BeratBadan",
+			"messagesRequired" : "Berat Badan Harus Diisi",
+			"caption" : "Berat Badan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "LingkarKepala",
+			"messagesRequired" : "Lingkar Kepala Harus Diisi",
+			"caption" : "Lingkar Kepala"
+		}
+  ]
+}

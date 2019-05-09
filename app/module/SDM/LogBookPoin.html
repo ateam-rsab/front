@@ -1,0 +1,24 @@
+<div ng-controller="LogBookPoinCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'LogBook (Poin)'">
+			<div class="panel panel-default container_12">
+				<div class="panel-body">
+					<div class="grid_12">
+
+						
+
+						<div class="grid_12" style="margin-top: 10px;">
+							<div kendo-grid k-data-source="jadwalSupir" k-selectable="'row'" k-ng-model="selectedData" k-columns="columnJadwal">
+							</div>
+						</div>
+					</div>
+
+					<div class="grid_3" style="margin-top: 25px; font-size: 24px;">
+						<button class="c-button" ng-show="!isLoading" item="item" ng-click="navToRencanaPemeriksaan(selectedData)">
+                                <span class="title">Cetak</span></button>
+					</div>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

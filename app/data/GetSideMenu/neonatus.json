@@ -1,0 +1,42 @@
+[{
+    "name": "Pencarian Pasien Lama",
+    "link": "#/PencarianPasien"
+}, {
+    "name": "Pendaftaran Pasien Baru",
+    "link": "#/RegistrasiPasienBaru"
+}, {
+    "name": "Dashboard Pasien",
+    "link": "#/Daftar/Antrian"
+}, {
+    "name": "Detail Pasien",
+    "link": "#/Dashboard/Pasien/Main"
+}, {
+    "name": "Pasien Pulang",
+    "link": "#/Pasien/Pulang"
+}, {
+	"name": "Monitoring Absensi",
+	"link": "#/MonitoringAbsensiPegawai"
+},{
+    "name": "Verifikasi Uraian Tugas Bawahan",
+    "link": "#/VerifikasiUraianTugasPegawaiLogin"
+},
+{
+    "name":"Aplikasi IT",
+    "children":[
+        {
+            "name": "Permintaan Perbaikan dari Ruangan",
+            "link": "#/RevPermintaanPerbaikandariRuanganITNew"
+        }
+    ]
+},
+{
+    "name": "Aplikasi Laundry",
+    "children": [
+        {
+            "name": "Permintaan Linen Bersih",
+            "link": "#/PermintaanLinenByRuangan"
+        },{
+			"name": "Verifikasi",
+			"link": "#/VerifikasiTerima"
+		}
+]}]

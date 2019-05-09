@@ -1,0 +1,64 @@
+<div ng-show="dataVOloaded">
+
+	<div class="grid_12 headerBox">
+    	<h1 style="color: white;"><b>Laporan Obat Antibiotik</b></h1>
+    </div>
+    <div class="clear"></div>
+
+    <br/>
+
+	<!-- Kriteria -->
+	<div class="grid_12">
+		<div class="grid_12 borderBox containerBorderBox">
+			<!-- Periode Pulang -->
+			<div class="grid_4">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Periode"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<!-- AwalPeriode -->
+					<div class="grid_6 padDatePicker">
+						<div class="grid_12">
+							<input style="width: 100%" k-ng-model="item.periodeAwal"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+						</div>
+					</div>
+
+					<!-- AkhirPeriode -->
+					<div class="grid_6 padDatePicker">
+						<div class="grid_12">
+							<input style="width: 100%" k-ng-model="item.periodeAkhir"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+
+			<!-- Button Search -->
+			<div class="grid_1">
+				<div class="grid_12">
+					<label>&nbsp;</label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<button class="btnTemplate1" ng-click="ShowLaporan()">Cari</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div class="clear"></div>
+
+
+	<div class="grid_12" style="margin-top:0px">
+		<div class="loading" style="position: relative; margin-top:100px" class="animated" ng-show="isLoadingData">
+			<img height="50" src="../app/stylesheets/Flat/loading-image.gif" />
+			<br/> <span>{{keteranganLoading}}</span>
+		</div>
+	
+		<object id="laporan" type="application/pdf" data="{{urlLaporan}}" style="width:100%; min-height: 700px;height: 100%"/>
+	</div>
+
+</div>

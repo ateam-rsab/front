@@ -1,0 +1,110 @@
+<div ng-controller="UnverifikasiMutasiPegawai">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Unverifikasi Mutasi Pegawai'" disabled>
+
+			<!-- noUsulan -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item">No Usulan</label>
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noUsulan" disabled="true" />
+				</div>
+
+				<div class="grid_12">
+					<label c-label item="item">Deskripsi Usulan</label>
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.deskripsiUsulan" disabled="true" />
+				</div>
+
+			<!-- namaPegawai -->
+				<div class="grid_12">
+					<label c-label item="item">Nama Pegawai</label>
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaPegawai" disabled="true" />
+				</div>
+
+			<!-- jabatanFungsional -->
+				<div class="grid_12">
+					<label c-label item="item">Jabatan Fungsional</label>
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jabatanFungsional" disabled="true" />
+				</div>
+
+			<!-- jabatanInternal -->
+				<div class="grid_12">
+					<label c-label item="item">Jabatan Internal</label>
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jabatan Internal" disabled="true" />
+				</div>
+
+			<!-- runganBekerja -->
+				<div class="grid_12">
+					<label c-label item="item">Ruangan Bekerja</label>
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.ruanganBekerja" disabled="true" />
+				</div>
+
+			<!-- eselon -->
+				<div class="grid_12">
+					<label c-label item="item">Eselon</label>
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.eselon" disabled="true" />
+				</div>
+
+			<!-- pangkat -->
+				<div class="grid_12">
+					<label c-label item="item">Pangkat</label>
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.pangkat" disabled="true" />
+				</div>
+			</div>
+
+			<!-- tanggalUsulan -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<label c-label item="item">Tanggal Usulan</label>
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.tanggalUsulan" disabled="true" />
+				</div>
+
+			<!-- jabatanFungsionalPlan -->
+				<div class="grid_12">
+					<label c-label item="item">Jabatan Fungsional Plan</label>
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jabatanFungsionalPlan" disabled="true" />
+				</div>
+
+			<!-- jabatanInternalPlan -->
+				<div class="grid_12">
+					<label c-label item="item">Jabatan Internal Plan</label>
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jabatanINternalPlan" disabled="true" />
+				</div>
+
+			<!-- ruanganMutasi -->
+					<div class="grid_12">
+					<label c-label item="item">Ruangan Mutasi</label>
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.ruanganMutasi" disabled="true" />
+				</div>
+
+			<!-- eselonPlan -->
+				<div class="grid_12">
+					<label c-label item="item">Eselon Plan</label>
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.eselonPlan" disabled="true" />
+				</div>
+
+			<!-- pangkatPlan -->
+				<div class="grid_12">
+					<label c-label item="item">Pangkat Plan</label>
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.pangkatPlan" disabled="true" />
+				</div>
+
+			<!-- namaPengusul -->
+				<div class="grid_12">
+					<label c-label item="item">Nama Pengusul</label>
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaPengusul" disabled="true" />
+				</div>
+			</div>
+			
+			<div class="clear"></div>
+			<div class="grid_2"></div>
+			<div class="grid_2"></div>
+			<div class="grid_2"></div>
+			<div class="grid_2"></div>
+			<div class="grid_2"><button class="c-button cancel" ng-click="batal()">Batal</button></div>
+			<div class="grid_2"><button class="c-button success" ng-click="unverif()">Unverifikasi</button></div>
+
+
+
+		</c-panel>
+	</div>
+</div>

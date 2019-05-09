@@ -1,0 +1,169 @@
+<style>
+	.style-center{
+		display: inline-block;
+		text-align: center;
+		width: 100%;
+	}
+
+	.style-right{
+		display: inline-block;
+		text-align: right;
+		width: 100%;
+	}
+
+	.style-left{
+		display: inline-block;
+		text-align: left;
+		width: 100%;
+	}
+</style>
+
+<div ng-show="dataVOloaded">
+	<div class="grid_12 headerBox">
+		<h1 style="color: white;"><b>Daftar Tagihan Non Layanan</b></h1>
+	</div>
+	<div class="clear"></div>
+
+	<br/>
+
+	<!-- Kriteria -->
+	<div class="grid_12">
+
+		<div class="grid_12 borderBox containerBorderBox">
+			<!-- NamaPelanggan -->
+			<div class="grid_2">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="NamaPelanggan"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaPelanggan" />
+				</div>
+			</div>
+
+			<!-- Status -->
+			<div class="grid_2">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Status"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.status" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listStatus" />
+				</div>
+			</div>
+			<!-- Status -->
+			<div class="grid_3">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Kelompok Transaksi"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.kelompokTransaksi" k-data-text-field="'kelompoktransaksi'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKelompokTransaksi" />
+				</div>
+			</div>
+
+			<!-- Periode Pulang -->
+			<div class="grid_3">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Periode"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<!-- AwalPeriode -->
+					<div class="grid_6 padDatePicker">
+						<div class="grid_12">
+							<input style="width: 100%" k-ng-model="item.periodeAwal"  kendo-datetimepicker  placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" />
+						</div>
+					</div>
+
+					<!-- AkhirPeriode -->
+					<div class="grid_6 padDatePicker">
+						<div class="grid_12">
+							<input style="width: 100%" k-ng-model="item.periodeAkhir"  kendo-datetimepicker  placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" />
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+
+			<!-- Button Search -->
+			<div class="grid_1">
+				<div class="grid_12">
+					<label>&nbsp;</label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<button class="btnTemplate1" ng-click="SearchData()">Cari</button>
+				</div>
+			</div>
+
+			<!-- Button Clear -->
+			<div class="grid_1">
+				<div class="grid_12">
+					<label>&nbsp;</label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<button class="btnTemplate1" ng-click="ClearSearch()">Clear</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div class="clear"></div>
+
+	<br/>
+
+	<!-- DaftarNonLayanan -->
+	<div class="grid_12">
+		<div class="grid_12 headerBox">
+			<p>List Tagihan</p>
+		</div>
+		<div class="clear"></div>
+
+		<!-- grid table -->
+		<div class="grid_12 borderBox">
+			<div id="kGrid" 
+			kendo-grid 
+			k-data-source="dataDaftarNonLayanan" 
+			k-selectable="'row'" 
+			k-columns="columnDaftarNonLayanan"
+			k-pageable="'true'"
+			k-sortable="'true'"
+			k-ng-model="dataPasienSelected">
+		</div>
+	</div>
+	
+		
+	<div class="clear"></div>
+</div>
+</div>
+
+<div class="grid_12" >
+	<!-- <div class="grid_5"></div> -->
+	
+	<div class="grid_2" style="float:right;">
+		<button class="c-button" ng-click="Bayar()">Bayar</button>
+	</div>
+	<div class="grid_2" style="float:right;">
+		<button class="c-button" ng-click="Detail()">Detail</button>
+	</div>
+	<div class="grid_2" style="float:right;">
+		<button class="c-button" ng-click="InputTagihan()">Input</button>
+	</div>
+</div>
+<div class="grid_12" style="margin-top:60px">
+			<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+		</div>
+
+<div class="grid_12" style="margin-top:30px">
+	<div ng-include='"../app/module/Shared/Keuangan/TemplateButtonKasir"'></div>
+</div>
+</div>
+

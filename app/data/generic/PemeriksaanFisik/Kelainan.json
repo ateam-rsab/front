@@ -1,0 +1,12 @@
+[
+	{ "id": "1", "name":"stomatitis"},
+	{ "id": "2", "name":"muntah"},
+	{ "id": "3", "name":"labio/gnato/palatoskizis"},
+	{ "id": "4", "name":"panas"},
+	{ "id": "5", "name":"sindrom down/kelainan kongenital lain"},
+	{ "id": "6", "name":"diare"},
+	{ "id": "7", "name":"ikterus"},
+	{ "id": "8", "name":"tongue tie"},
+	{ "id": "9", "name":"BBLR"},
+	{ "id": "10", "name":"lain-lain"}
+]

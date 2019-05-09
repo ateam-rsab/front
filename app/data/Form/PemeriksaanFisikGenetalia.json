@@ -1,0 +1,51 @@
+{
+	"model":{
+	    "Genetalia" : "",
+	    "Frekuensi" : "",
+		
+	    "Konsistensi" : "",
+		 "Kelainan" : "",
+		  "Diuresis" : "",
+		 "KarakteristikFeses" : ""
+		 
+		
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "Genetalia",
+			"messagesRequired" : "Genetalia Harus Diisi",
+			"caption" : "Genetalia"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Frekuensi",
+			"messagesRequired" : "Frekuensi Harus Diisi",
+			"caption" : "Frekuensi"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Konsistensi",
+			"messagesRequired" : "Konsistensi Harus Diisi",
+			"caption" : "Konsistensi"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Kelainan",
+			"messagesRequired" : "Kelainan Harus Diisi",
+			"caption" : "Kelainan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Diuresis",
+			"messagesRequired" : "Diuresis Harus Diisi",
+			"caption" : "Diuresis"
+		},
+		{
+			"isNull" : "true",
+			"name" : "KarakteristikFeses",
+			"messagesRequired" : "KarakteristikFeses Harus Diisi",
+			"caption" : "Karakteristik Feses"
+		}
+  ]
+}

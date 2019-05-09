@@ -1,0 +1,68 @@
+<div ng-controller="RiwayatKehamilanCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Riwayat Kehamilan, Persalinan, Dan Laktasi Sebelumnya'">
+		<div class="grid_12">
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="jenisKelamin"></label>
+			</div>
+			<div class="grid_3">
+				<div class="grid_6" ng-repeat="data in listJenisKelamin">
+					<input type="radio" name="{{'JK' + data.jenisKelamin}}" id="{{'JK' + data.jenisKelamin}}" class="k-radio" ng-model="item.JenisKelamin" value="{{data.jenisKelamin}}">
+					<label class="k-radio-label" for="{{'JK' + data.jenisKelamin}}">{{data.jenisKelamin}}</label>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="tglLahir"></label>
+			</div>
+			<div class="grid_3">
+				<input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.TglLahir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+			</div>
+			<div class="clear"></div>
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="menyusuiEkslusif"></label>
+			</div>
+			<div class="grid_3">
+				<div class="grid_6" ng-repeat="data in listYaTidak">
+					<input type="radio" name="{{'menyusuiEkslusif' + data.name}}" id="{{'menyusuiEkslusif' + data.name}}" class="k-radio" ng-model="item.MenyusuiEkslusif" value="{{data.name}}">
+					<label class="k-radio-label" for="{{'menyusuiEkslusif' + data.name}}">{{data.name}}</label>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="umurDisapih"></label>
+			</div>
+			<div class="grid_3">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.UmurDisapih" />
+			</div>
+			<div class="clear"></div>
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="masalahDalamMenyusui"></label>
+			</div>
+			<div class="grid_3">
+				<textarea style="height: 90px; width: 100%" id="text_area_masalahDalamMenyusui" c-text-box type="input" class="k-textbox" ng-model="item.MasalahDalamMenyusui" />
+			</div>
+			<div class="clear"></div>
+			<div class="grid_2"></div>
+					<div class="grid_3"></div>
+					<div class="grid_2"></div>
+					<div class="grid_5">
+						<div class="grid_6">
+							<c-button ng-click="batal()" style="width: 100% !important" >
+							<span style="font-size: 10!important">Batal</span>
+						</div>
+						<div class="grid_6">
+							<c-button ng-click="addDataRiwayatKehamilan()" style="width: 100% !important" >
+							<span style="font-size: 10!important">Tambah</span>
+						</div>
+					</div>
+			<div class="grid_12" style="margin-top: 10px;">
+			<div kendo-grid k-data-source="dataRiwayatKehamilan" k-selectable="'row'" k-columns="columnRiwayatKehamilan">
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</c-panel>
+</div>
+</div>

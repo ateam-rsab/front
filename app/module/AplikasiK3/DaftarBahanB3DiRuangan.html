@@ -1,0 +1,31 @@
+<div ng-show="dataVOloaded">
+	<c-panel item="item" header="'Daftar Bahan B3 di Ruangan'">
+		<div class="panel panel-default container_12">
+			<div class="panel-body">
+				<div class="grid_6">
+					<div class="grid_8">
+						<label c-label item="item" c-label-text="ruangan"></label>
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'ruanganId'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+					</div>
+					<div class="grid_1">
+						<label c-label c-label-text=""></label>
+						<em style="margin-top: 6px;" ng-click='cari()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+				<!-- <div class="grid_12">
+					<div class="grid_9"></div>
+					<div class="grid_3" style="margin-top: 25px; font-size: 24px;">
+						<button class="c-button" ng-show="!isLoading" item="item" ng-click="hapus(selectedData)">
+						<span class="title">Hapus</span></button>
+					</div>
+				</div> -->
+			</div>
+			<div class="panel panel-body">
+				<div class="grid_12" style="margin-top: 25px;">
+					<div id="gridB3ruangan" kendo-grid k-options="gridOptions"></div>
+				</div>
+			</div>
+		</div>
+	</c-panel>
+</div>

@@ -1,0 +1,48 @@
+{
+	"model":{
+	    "Tengkurap" : "",
+	    "TumbuhGigi" : "",
+		"Bicara" : "",
+		"Duduk": "",
+		"Berdiri": "",
+		"Berjalan": ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "Tengkurap",
+			"messagesRequired" : "Tengkurap Dirawat Harus Diisi",
+			"caption" : "Tengkurap, usia"
+		},
+		{
+			"isNull" : "true",
+			"name" : "TumbuhGigi",
+			"messagesRequired" : "TumbuhGigi Harus Diisi",
+			"caption" : "Tumbuh Gigi, usia"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Bicara",
+			"messagesRequired" : "Bicara Harus Diisi",
+			"caption" : "Bicara, usia"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Duduk",
+			"messagesRequired" : "Duduk Harus Diisi",
+			"caption" : "Duduk, usia"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Berdiri",
+			"messagesRequired" : "Berdiri Harus Diisi",
+			"caption" : "Berdiri, usia"
+		},
+		{
+			"isNull" : "true",
+			"name" : "Berjalan",
+			"messagesRequired" : "Berjalan Harus Diisi",
+			"caption" : "Berjalan, usia"
+		}
+  ]
+}

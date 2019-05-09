@@ -1,0 +1,61 @@
+{
+
+    "id": "",
+    "tengkurap": "",
+    "balikTerlentang": "",
+    "dudukMandiri": "",
+    "berjalan": "",
+    "tersenyum": "",
+    "tertawaBersuara": "",
+    "mapada": "",
+    "meniruKata":"",
+    "bicaraBermakna": "",
+    "attributes" : [
+    {
+            "isNull" : "true",
+            "name" : "tengkurap",
+            "messagesRequired" : "Tengkurap Medis Harus Diisi",
+            "caption" : "Tengkurap"
+	},{
+			"isNull" : "true",
+			"name" : "balikTerlentang",
+			"messagesRequired" : "Balik Terlentang Harus Diisi",
+			"caption" : "Balik Terlentang"
+		},{
+			"isNull" : "true",
+			"name" : "dudukMandiri",
+			"messagesRequired" : "Duduk Mandiri Harus Diisi",
+			"caption" : "Duduk Mandiri"
+		},{
+			"isNull" : "true",
+			"name" : "berjalan",
+			"messagesRequired" : " Berjalan Ke Harus Diisi",
+			"caption" : " Berjalan"
+		},{
+			"isNull" : "true",
+			"name" : "tersenyum",
+			"messagesRequired" : "Tersenyum  Harus Diisi",
+			"caption" : "Tersenyum -___-"
+		},{
+			"isNull" : "true",
+			"name" : "tertawaBersuara",
+			"messagesRequired" : "Tertawa Bersuara Harus Diisi",
+			"caption" : "Bertawa Bersuara"
+		},{
+			"isNull" : "true",
+			"name" : "mapada",
+			"messagesRequired" : " Mamama/Papapa/Dadada Harus Diisi",
+			"caption" : " Mamama/Papapa/Dadada"
+		},{
+			"isNull" : "true",
+			"name" : "meniruKata",
+			"messagesRequired" : "Meniru Kata  Harus Diisi",
+			"caption" : "Meniru Kata"
+		},{
+			"isNull" : "true",
+			"name" : "bicaraBermakna",
+			"messagesRequired" : "Bicara Bermakna Harus Diisi",
+			"caption" : "Bicara Bermakna"
+		}
+	]
+}

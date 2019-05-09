@@ -1,0 +1,14 @@
+{
+	"id": "",
+    "pdUsia":"",
+	"tahun":"",
+	"bulan":"",
+
+    "attributes" : [{
+		"isNull" : "true",
+		"name" : "pdUsia",
+		"messagesRequired" : "Pada Usia Harus Diisi",
+		"caption" : "Pada Usia"
+	}
+	]
+}

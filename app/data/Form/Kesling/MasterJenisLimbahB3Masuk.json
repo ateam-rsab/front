@@ -1,0 +1,22 @@
+
+{
+	"model":{
+		"kodeJenisLimbah":"",
+		"jenisLimbahB3Masuk":""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "kodeJenisLimbah",
+			"messagesRequired" : "",
+			"caption" : "Kode Jenis Limbah"
+		},{
+			"isNull" : "true",
+			"name" : "jenisLimbahB3Masuk",
+			"messagesRequired" : "",
+			"caption" : "Jenis Limbah B3 Masuk"
+		}
+
+	]
+}

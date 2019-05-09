@@ -1,0 +1,95 @@
+<style>
+    .k-grid .k-grid-header .k-header .k-link {
+        height: auto;
+    }
+    
+    .k-grid .k-grid-header .k-header {
+        white-space: normal;
+    }
+</style>
+<div ng-controller="UangLemburCtrl">
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Perhitungan Uang Lembur Pegawai'" disabled>
+            <div class="grid_6">
+                <div class="panel panel-default container_12">
+                    <!--		<div class="panel-heading" c-translate>Periode</div> -->
+                    <!--		<div class="panel-body"> -->
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin: 6px 0 0 0;">
+                            <label c-label item="item">No Uang Lembur</label>
+                        </div>
+                        <div class="grid_8">
+                            <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nomorUang" readonly />
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin: 6px 0 0 0;">
+                            <label c-label item="item">Tanggal Proses</label>
+                        </div>
+                        <div class="grid_8">
+                            <input kendo-date-picker k-ng-model="item.tanggalProses" k-format="'dd-MM-yyyy'" style="width: 100%" readonly />
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin: 6px 0 0 0;">
+                            <label c-label item="item">Periode</label>
+                        </div>
+                        <div class="grid_8">
+                            <input kendo-date-picker k-ng-model="item.periode" k-format="'MMM-yyyy'" k-options="monthSelectorOptions" style="width: 100%;">
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin: 6px 0 0 0;">
+                            <label c-label item="item">Jenis Pembayaran</label>
+                        </div>
+                        <div class="grid_8">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPembayaran" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisPembayaran" />
+                        </div>
+                    </div>
+
+
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin: 6px 0 0 0;">
+                            <label c-label item="item" c-label-text="Keterangan"></label>
+                        </div>
+                        <div class="grid_8">
+                            <textarea ng-disabled="isDisable" ng-model="item.alamat" style="width: 99%; height: 80px;"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--		   </div>  -->
+            <div class="grid_6">
+
+            </div>
+        </c-panel>
+        <!--<div class="grid_12">
+            <kendo-grid k-data-source="daftarBahanLinen" k-pageable="true" k-selectable="'row'" k-columns="columnLaporanUjiHasil" style="font-size: small;">
+            </kendo-grid>
+        </div>-->
+
+        <div class="grid_12">
+            <!--k-data-source="sourceData"-->
+            <!-- <kendo-grid options="gridOptions" k-ng-delay="gridOptions" k-scrollable="false" k-data></kendo-grid>-->
+            <div kendo-grid="customerGrid2" k-options="gridOptions" k-ng-delay="gridOptions" k-data-source="sourceData" k-ng-model="dataUangLembur"></div>
+        </div>
+
+        <div class="grid_12" style="float:right">
+
+            <div class="grid_2">
+                <button class="c-button" ng-click="cetak()">Cetak</button>
+            </div>
+            <div class="grid_2">
+                <button class="c-button" ng-click="proses()">Proses</button>
+            </div>
+
+            <div class="grid_2">
+                <button class="c-button" ng-click="Save()">Simpan</button>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+</div>

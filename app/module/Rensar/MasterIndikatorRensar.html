@@ -1,0 +1,165 @@
+<div class="panel panel-default container_12">
+    <div class="panel-heading"><label class='title' c-label item="item">Master Indikator Rensar</label></div>
+    <div class="panel-body">
+        <div class="grid_12">
+            <div class="grid_3">
+                <label c-label c-label-text="Indikator"></label>
+                <input c-text-box type="input" filter="" class="k-textbox" ng-model="cari.indikator" />
+            </div>
+
+            <div class="grid_3">
+                <label c-label> PIC</label>
+                <input c-text-box type="input" filter="" class="k-textbox" ng-model="cari.pic" />
+            </div>
+            <div class="grid_3">
+                <label c-label c-label-text="Jenis Indikator"></label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="cari.jenisIndikator" k-data-text-field="'jenisindikator'"
+                    k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenis" />
+            </div>
+            <div class="grid_1">
+                <label c-label c-label-text=""></label>
+                <em style="margin-top:6px;" ng-click='cariFilter()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary"
+                    role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-search">Refresh</span></em>
+                <em style="margin-top:6px;" ng-click='resetFilter()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary"
+                    role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+
+            </div>
+        </div>
+        <div class="grid_12">
+            <div class="panel-body grid_12">
+                <kendo-grid id="gridMaster" k-selectable="'row'" k-data-source="dataSource" ng-click="klikGrid(dataSelect)"
+                    k-ng-model="dataSelect" options="optionGridMaster" class="max-height"></kendo-grid>
+            </div>
+        </div>
+        <div class="grid_12 " style="float:left;" ng-hide="isHide">
+            <div class="grid_2" style="float:right">
+                <c-button style="width: 100%; font-size: 24px; padding:0px, margin:0px;" size="36" position=" 'right'"
+                    ng-click="edit(true)">
+                    <span class="title">Lihat Detail</span>
+                </c-button>
+            </div>
+            <div class="grid_2" style="float:right;">
+                <c-button class="error" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36"
+                    position=" 'right'" ng-click="hapus()">
+                    <span class="title">Hapus</span>
+                </c-button>
+            </div>
+            <div class="grid_2" style="float:right">
+                <c-button style="width: 100%; font-size: 24px; padding:0px, margin:0px;" size="36" position=" 'right'"
+                    ng-click="edit(false)">
+                    <span class="title">Edit</span>
+                </c-button>
+            </div>
+            <div class="grid_2" style="float:right">
+                <c-button style="width: 100%; font-size: 24px; padding:0px, margin:0px;" size="36" position=" 'right'"
+                    ng-click="Tambah()">
+                    <span class="title">Tambah</span>
+                </c-button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- popup konfirmasi -->
+<div kendo-window="dialogPopup" k-title="'Tambah'" k-width="1100" k-height="600" k-visible="false" k-on-close="customClicked()">
+    <div class="panel panel-default panel-white container_12">
+        <div class="grid_12">
+            <div class="grid_6">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Indikator"></label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" class="k-textbox" ng-model="item.indikator" ng-disabled='disabledText' />
+                </div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item">PIC</label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" data-bind="value: pic" class="k-textbox" ng-model="item.pic"
+                        ng-disabled='disabledText' />
+                </div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Jenis Indikator"></label>
+                </div>
+                <div class="grid_12">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisIndikator" k-data-text-field="'jenisindikator'"
+                        k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenis"
+                        ng-disabled='disabledText' />
+                </div>
+            </div>
+
+        </div>
+        <div class="grid_12">
+            <div class="grid_6">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Definisi Operasional"></label>
+                </div>
+                <div class="grid_12">
+                    <textarea class="k-textbox" style="height: 200px; width: 100%; " ng-model="item.do" ng-disabled='disabledText'></textarea>
+                </div>
+            </div>
+            <div class="grid_6">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Numerator"></label>
+                </div>
+                <div class="grid_12">
+                    <textarea class="k-textbox" style="height: 200px; width: 100%; " ng-model="item.numerator"
+                        ng-disabled='disabledText'></textarea>
+                </div>
+            </div>
+            <div class="grid_6">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Denominator"></label>
+                </div>
+                <div class="grid_12">
+                    <textarea class="k-textbox" style="height: 200px; width: 100%; " ng-model="item.denominator"
+                        ng-disabled='disabledText'></textarea>
+                </div>
+            </div>
+            <div class="grid_6">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Formula"></label>
+                </div>
+                <div class="grid_12">
+                    <textarea class="k-textbox" style="height: 200px; width: 100%; " ng-model="item.formula"
+                        ng-disabled='disabledText'> </textarea>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    <div class="k-edit-buttons k-state-default pull-right" style="margin-top:10px" ng-hide='isEdit'>
+        <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="Save()">
+            <span class="k-icon k-update"></span>Simpan
+        </button>
+        <button class="k-button k-button-icontext k-grid-cancel" ng-click="Batal()">
+            <span class="k-icon k-cancel"></span>Tutup
+        </button>
+    </div>
+</div>
+<div class="grid_12" style="margin-top:60px">
+    <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+</div>
+<style>
+    p {
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .k-window-titlebar {
+        background-color: #10c4b2;
+        font-weight: 800;
+    }
+
+    .k-i-close {
+        display: none;
+    }
+</style>

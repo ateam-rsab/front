@@ -1,0 +1,71 @@
+<div class="grid_12">
+    <div class="panel panel-default panel-white">
+        <div class="panel-heading-white"><span class="title" c-translate>Uraian Tugas</span></div>
+        <div class="panel-body">
+            <div class="grid_6">
+                <input style="width: 100%" kendo-date-picker k-ng-model="item.waktu" k-format="'dd-MM-yyyy'" k-value="now" k-max="now" />
+            </div>
+            <div class="grid_2" style="margin: 7px 0 0 0">
+                <button class="c-button" ng-click="getUraianTugas()">CARI</button>
+            </div>
+            <div class="grid_2" style="margin: 7px 0 0 0">
+                <button class="c-button" ng-click="winCetakLogbook.center().open()">CETAK LOGBOOK</button>
+            </div>
+            <div class="grid_2" style="margin: 7px 0 0 0">
+                <button class="c-button" ng-click="winCetakCapaian.center().open()">CETAK CAPAIAN</button>
+            </div>
+            <div class="grid_12">
+                <!--<kendo-grid k-data-source="daftarBahanLinen2" k-pageable="false" k-editable="true" k-selectable="'row'" k-columns="columnLaporanUjiHasil" style="font-size: small;">-->
+                <kendo-grid k-data-source="gridUraianTugas" options="opsiGridUraianTugas">
+                </kendo-grid>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-include="'../app/module/Shared/TemplateButtonSimpan'"></div>
+<div kendo-window="winCetakLogbook" id="winPopUp" k-title="'Cetak LogBook'" k-width="400" k-visible="false">
+    <div class="grid_12">
+        <div class="grid_12">
+            <label c-label item="item" c-label-text="Bulan"></label>
+            <input kendo-date-picker k-ng-model="item.until" k-options="monthSelectorOptions" style="width: 100%; ">
+        </div>
+    </div>
+    <div class="grid_12" style="margin-top:10px">
+        <label c-label item="item" c-label-text="Atasan / Penandatangan"></label>
+        <input style="width: 100%;" kendo-combo-box k-ng-model="item.atasanLangsung" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAtasan"/>
+        <div class="grid_12">
+        </div>
+    </div>
+    <div class="grid_12" style="margin-top:10px">
+        <label c-label item="item" c-label-text="Jabatan"></label>
+        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jabatan" disabled="true"/>
+    </div>
+    <div class="grid_12" style="margin-top:10px">
+        <div class="grid_6 pull-right">
+            <button class='btnEdit' ng-click='cetakLapBook()'>Cetak </button>
+        </div>
+    </div>
+</div>
+
+<div kendo-window="winCetakCapaian" id="winPopUp2" k-title="'Cetak Capaian'"  k-width="400" k-visible="false">
+    <div class="grid_12">
+        <label c-label item="item" c-label-text="Tanggal"></label>
+        <input style="width: 100%" kendo-date-picker k-ng-model="item.until" data-k-format="'yyyy-MM-dd'"/>
+    </div>
+
+    <div class="grid_12">
+        <label c-label item="item" c-label-text="Atasan / Penandatangan"></label>
+        <input style="width: 100%;" kendo-combo-box k-ng-model="item.atasanLangsung" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAtasan"/>
+    </div>
+
+    <div class="grid_12">
+        <label c-label item="item" c-label-text="Jabatan"></label>
+        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jabatan" disabled="true"/>
+    </div>
+
+    <div class="grid_12">
+        <div class="grid_6 pull-right">
+            <button class='btnEdit' ng-click='cetakLapCapaian()'>Cetak </button>
+        </div>
+    </div>
+</div>

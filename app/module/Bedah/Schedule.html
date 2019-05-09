@@ -1,0 +1,47 @@
+<div ng-controller="ScheduleCtrl">
+    <div class="panel panel-default">
+        <div class="panel-heading" c-translate>Rencana Operasi Pasien</div>
+        <div class="panel-body">
+            <div class="grid_6">
+                <div class="grid_6">
+                    <!-- tanggal order -->
+                    <label c-label item="item" c-label-text="tanggalOperasi"></label>
+
+                    <input style="width: 100%" k-ng-model="model.tglRencana" k-value='now' kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+
+                    <!-- no resep -->
+
+                </div>
+                <div class="grid_6">
+                    <label c-label c-label-text="Jenis Pelaksana" statment></label>
+                    <input kendo-combo-box style="width:100%" k-ng-model="temp.jenisPelaksana" k-data-text-field="'jenisPetugasPe'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceJenisDiagnosisPrimer" />
+                </div>
+                <div class="grid_6">
+                    <label c-label c-label-text="namaPegawai" statment></label>
+                    <input kendo-combo-box tyle="width:100%" k-ng-model="temp.pegawai" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" />
+                </div>
+                <div class="grid_12">
+                    <div class="grid_6">
+                        <c-button ng-click="addPegawai()">
+                            <span style="font-size:10!important" c-translate>Tambah Pelaksana</span>
+                        </c-button>
+                    </div>
+                </div>
+                <div ng-include='"../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+
+            </div>
+            <div class="grid_6">
+                <div class="grid_12"><b c-translate>Tanggal </b> : {{model.tglRencana |date:'dd-MM-yyyy'}}</div>
+                <div class="grid_12" ng-show="model.detailPelaksana.length !==0"><b c-translate>Pelaksana : </b></div>
+                <div class="grid_12" ng-repeat="data in model.detailPelaksana">
+                    <div class="grid_4">
+                        {{data.jenisPelaksana.jenisPetugasPe}}
+                    </div>
+                    <div class="grid_8">
+                        {{data.pegawai.namaLengkap}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

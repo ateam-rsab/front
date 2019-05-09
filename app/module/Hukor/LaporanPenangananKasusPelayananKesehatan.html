@@ -1,0 +1,99 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Laporan Penanganan Kasus Pelayanan Kesehatan</div>
+	<div class="panel-body">
+		<div class="grid_12">
+			<div class="panel panel-default panel-white">
+		       	<div class="panel-heading-white"><span class="title" c-translate>Identitas Pasien</span>
+		       		<div class="grid_12">
+		       			<div class="grid_6">
+		       				<div class="grid_12">
+		       					<div class="grid_2" style="margin-top:15px">
+									<label c-label item="item">Nama</label>
+								</div>
+								<div class="grid_9">
+									<input c-text-box type="input" filter="'String'" class="k-textbox" ng-model="item.nama"/>
+								</div>
+		       				</div>
+		       				<div class="grid_12">
+		       					<div class="grid_2" style="margin-top:15px">
+									<label c-label item="item">Umur</label>
+								</div>
+								<div class="grid_9">
+									<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.umur"/>
+								</div>
+		       				</div>
+		       				<div class="grid_12">
+		       					<div class="grid_2" style="margin-top:15px">
+									<label c-label item="item">Pekerjaan</label>
+								</div>
+								<div class="grid_9">
+									<input c-text-box type="input" filter="'String'" class="k-textbox" ng-model="item.pekerjaan"/>
+								</div>
+		       				</div>
+		       				<div class="grid_12">
+		       					<div class="grid_2" style="margin-top:15px">
+									<label c-label item="item">Tanggal Masuk</label>
+								</div>
+								<div class="grid_9">
+									<input style="width:100%" kendo-date-picker k-ng-model="item.tanggalMasuk" k-format="'dd-mm-yyyy'"/>
+								</div>
+		       				</div>
+		       				<div class="grid_12">
+		       					<div class="grid_2" style="margin-top:15px">
+									<label c-label item="item">Tanggal Keluar</label>
+								</div>
+								<div class="grid_9">
+									<input style="width:100%" kendo-date-picker k-ng-model="item.tanggalKeluar" k-format="'dd-mm-yyyy'"/>
+								</div>
+		       				</div>
+		       			</div>
+		       			<div class="grid_6">
+		       				<div class="grid_12">
+		       					<div class="grid_2" style="margin-top:15px">
+									<label c-label item="item">Diagnosa Masuk</label>
+								</div>
+								<div class="grid_9">
+									<input c-text-box type="input" filter="'String'" class="k-textbox" ng-model="item.diagnosaMasuk"/>
+								</div>
+		       				</div>
+		       				<div class="grid_12">
+		       					<div class="grid_2" style="margin-top:15px">
+									<label c-label item="item">Diagnosa Keluar</label>
+								</div>
+								<div class="grid_9">
+									<input c-text-box type="input" filter="'String'" class="k-textbox" ng-model="item.diagnosaKeluar"/>
+								</div>
+		       				</div>
+		       			</div>
+		       		</div>
+		       	</div>
+		    </div>
+		</div>
+		<div class="grid_12">
+			<label c-label item="item">Kegiatan yang dilaksanakan</label>
+		</div>
+		<div class="grid_12">
+			<textarea ng-model="item.kegitanYangDilaksanakan" style="width: 99%; height: 80px;"></textarea>
+		</div>
+		<div class="grid_12">
+			<label c-label item="item">Hasil yang dicapai</label>
+		</div>
+		<div class="grid_12">
+			<textarea ng-model="item.hasilYangDicapai" style="width: 99%; height: 80px;"></textarea>
+		</div>
+		<div class="grid_12">
+			<label c-label item="item">Kesimpulan</label>
+		</div>
+		<div class="grid_12">
+			<textarea ng-model="item.kesimpulan" style="width: 99%; height: 80px;"></textarea>
+		</div>
+		<div class="grid_12">
+			<label c-label item="item">Saran</label>
+		</div>
+		<div class="grid_12">
+			<textarea ng-model="item.saran" style="width: 99%; height: 80px;"></textarea>
+		</div>
+	</div>
+</div>
+
+		       		

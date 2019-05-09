@@ -1,0 +1,100 @@
+<style>
+	.k-button.k-button-icontext.k-grid-Edit {
+		background: transparent;
+		color: #5acef5;
+		border: 1px solid #5acef5;
+		border-radius: 4px;	
+	}
+	.k-button.k-button-icontext.k-grid-Edit:hover { 
+		background-color: #5acef5!important;
+      	color: white;
+		border-radius: 6px;
+		border-color: #5acef5;
+	}
+	.k-button.k-button-icontext.k-grid-Hapus {
+		background: transparent;
+		color: #cc0000;
+		border: 1px solid #cc0000;
+		border-radius: 4px;
+	}
+	.k-button.k-button-icontext.k-grid-Hapus:hover { 
+		background-color: #cc0000!important;
+		color: white;
+		border-radius: 6px;
+		border-color: #cc0000;
+	}
+	.k-button.k-button-icontext.k-grid-Detail {
+		background: transparent;
+		color: #686868;
+		border: 1px solid #686868;
+		border-radius: 4px;
+	}
+	.k-button.k-button-icontext.k-grid-Detail:hover {
+		background-color: #686868!important;
+		color: white;
+		border-radius: 6px;
+		border-color: #686868;
+	}
+</style>
+<div ng-controller="NeracaLimbahCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Data Neraca Limbah B3'" disabled>
+			<div class="panel-body">
+				<div kendo-grid k-data-source="sourceOrder" id="idDataNeracaLimbah" k-ng-model="current" ng-click="kl(current)"
+				 k-selectable="'row'" k-options="optionGrid" style="margin-bottom: 10px"></div>
+
+				<div class="grid_12">
+					<div class="grid_8"></div>
+					<div class="grid_2">
+						<button c-button class="k-button k-primary" ng-click="cetakLaporan(current)" style="width:100%">Cetak</button>
+					</div>
+					<div class="grid_2">
+						<button c-button class="k-button k-primary" ng-click="navToDetail()" style="width:100%">Lihat Detail</button>
+					</div>
+				</div>
+			</div>
+		</c-panel>
+		<div class="grid_12">
+			<div class="popUp" ng-show="isShowPopUp">
+				<div kendo-window="win1" id="popUpEdit" k-title="'Edit Data Neraca Limbah'" k-draggable="true" k-position="{ 'top': '20%'}"
+				 k-min-width="500" k-max-width="500" k-width="500" k-on-close="closeWindowLinen()" k-visible="isShowPopUp">
+					<div class="modal-content">
+						<div class="grid_12">
+							<div class="grid_12" style="margin: 10px 0 0 0;">
+								<label c-label item="item" c-label-text="Kinerja Pengelolaan (%)"></label>
+							</div>
+							<div class="grid_12">
+								<!-- <input c-text-box type="input" filter="'percentage'" class="k-textbox" k-options="formatPercentage" ng-model="selectedData.neracaLimbah.kinerjaPengelolaan" disabled> -->
+								<input style="width:100%" kendo-numeric-text-box k-ng-model="selectedData.neracaLimbah.kinerjaPengelolaan" k-options="formatPercentage" disabled />
+							</div>
+							<div class="grid_12" style="margin: 10px 0 0 0;">
+								<label c-label item="item" c-label-text="residu"></label>
+							</div>
+							<div class="grid_12">
+								<input c-text-box type="input" filter="'numerik'" class="k-textbox" ng-model="selectedData.neracaLimbah.residu" ng-change="countTotal()">
+							</div>
+							<div class="grid_12" style="margin: 10px 0 0 0;">
+								<label c-label item="item" c-label-text="Catatan"></label>
+							</div>
+							<div class="grid_12">
+								<!-- <input c-text-box type="input" filter="'numerik'" class="k-textbox" ng-model="selectedData.neracaLimbah.catatan" style="left: 35%;"> -->
+								<textarea c-text-box type="input" class="k-textbox" ng-model="selectedData.neracaLimbah.catatan" style="width: 100%; height: 80px;"></textarea>
+							</div>
+							<div class="grid_12" style="margin: 10px 0 0 0;">
+								<label c-label item="item" c-label-text="jumlahYangBelumTerkelola"></label>
+							</div>
+							<div class="grid_12">
+								<input c-text-box type="input" filter="'numerik'" class="k-textbox" ng-model="selectedData.neracaLimbah.jumlahYangBelumTerkelola" ng-change="countTotal()" disabled>
+							</div>
+						</div>
+						
+						<div class="grid_4">
+							<button class="c-button" ng-click="editDataNeracaLimbah()">Update</button>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

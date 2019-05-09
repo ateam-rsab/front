@@ -1,0 +1,177 @@
+<div ng-controller="AsuhanKeperawatanPeriOperatifCtrl">
+    <div class="grid_12" style="margin-bottom:60px">
+        <div ng-include='"../app/module/Dashboard/Pasien/Index" '></div>
+        <div class="grid_12 headerBox">
+            <h1 style="color: white;"><b>ASUHAN KEPERAWATAN PERI OPERATIF DI KAMAR OPERASI</b></h1>
+        </div>
+         <div class="loading" style="position: relative; margin:25px 0px 20px;" class="animated" ng-show="isLoadingData">
+         <img height="250" src="../app/stylesheets/Flat/loading-image.gif"/>
+         <br/> <span style="font-weight: bold;">Mengambil data Pre Operasi (Perawat Bedah), Mohon tunggu...</span>
+         </div>
+        <div class="grid_12" style="margin-top:20px" ng-show="AllData">
+            <div class="grid_12">
+                <c-panel item="item" header="'History Pre Operasi (Perawat Bedah & Anestesi)'">
+                <div class="grid_12">
+                    <div class="grid_12"></div>
+                    <div class="clear"></div>
+                    <!-- grid table -->
+                    <div class="grid_12 borderBox">
+                        <div id="kGrid" kendo-grid 
+                        k-data-source="dataMaster" 
+                        k-selectable="'row'" 
+                        k-columns="columnAskep"
+                        k-sortable="'true'"
+                        k-pageable="true"
+                        k-ng-model="dataSelected"
+                        ng-click="klik(dataSelected)">
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                </c-panel>
+            </div>
+            <fieldset style="min-height:80px !important">
+                <legend><h2><b>Diagnosa dan Tindakan</b></h2></legend>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label item="item">Diagnosa Pre Operasi</label>
+                 <!--        <input style="width: 100%;" kendo-combo-box k-ng-model="item.diagnosaPreOperasi" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceDiagnosisPrimer"/> -->
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.diagnosaPreOperasi" k-auto-bind="true"  filter="'contains'" />
+                    </div>
+                    <div class="grid_4">
+                        <label c-label item="item">Diagnosa Post Operasi</label>
+                       <!--  <input style="width: 100%;" kendo-combo-box k-ng-model="item.diagnosaPostOperasi" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceDiagnosisPrimer"/> -->
+                       <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.diagnosaPostOperasi" k-auto-bind="true"  filter="'contains'" />
+                    </div>
+                    <div class="grid_4">
+                        <label c-label item="item">Tindakan</label>
+                       <!--  <input style="width: 100%;" kendo-combo-box k-ng-model="item.tindakan" k-data-text-field="'namaDiagnosaTindakan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="DiagnosaTindakan"/> -->
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.tindakan" k-auto-bind="true"  filter="'contains'" />
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        
+        <div class="grid_12" style="margin-top:20px" ng-show="AllData">
+            <fieldset style="min-height:150px !important">
+                <legend><h2><b>Pegawai Pelaksana</b></h2></legend>
+                <div class="grid_12">
+                    <div class="grid_3">
+                        <label c-label item="item">Dokter Bedah</label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.dokterBedah" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataDokter"/>
+                    </div>
+                    <div class="grid_3">
+                        <label c-label item="item">Asisten Bedah</label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.asistenBedah" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataDokter"/>
+                    </div>
+                    <div class="grid_3">
+                        <label c-label item="item">Perawat Instrumen I</label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.perawatInstrumen1" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataPegawai"/>
+                    </div>
+                    <div class="grid_3">
+                        <label c-label item="item">Perawat Instrumen II</label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.perawatInstrumen2" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataPegawai"/>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_3">
+                        <label c-label item="item">Perawat Sirkuler</label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.perawatSirkuler" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataPegawai"/>
+                    </div>
+                    <div class="grid_3">
+                        <label c-label item="item">Operator Alat Canggih</label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.operatorAlatCanggih" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataPegawai"/>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="grid_12" style="margin-top:20px" ng-show="AllData">
+            <fieldset style="min-height:80px !important">
+                <legend><h2><b>Waktu Operasi</b></h2></legend>
+                <div class="grid_12">
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="Tanggal"></label>
+                        <input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalOperasi" placeholer="DD-MM-YYYY" k-format="'dd-MM-yyyy'" />
+                    </div>
+                    <div class="grid_2">
+                        <label c-label item="item">Jam Masuk Kamar Operasi</label>
+                        <input style="width: 100%" kendo-time-picker k-ng-model="item.jamMasukOperasi" placeholer="HH:mm" k-format="'HH:mm'" />
+                    </div>
+                    <div class="grid_2">
+                        <label c-label item="item">Operasi Mulai Jam</label>
+                        <input style="width: 100%" kendo-time-picker k-ng-model="item.operasiMulai" placeholer="HH:mm" k-format="'HH:mm'" />
+                    </div>
+                    <div class="grid_2">
+                        <label c-label item="item">Operasi Selesai Jam</label>
+                        <input style="width: 100%" kendo-time-picker k-ng-model="item.operasiSelesai" placeholer="HH:mm" k-format="'HH:mm'" />
+                    </div>
+                </div>
+            </fieldset>
+        </div> 
+        <div class="grid_12 headerBox" style="margin-top:10px" ng-show="AllData">
+            <h1 style="color: white;"><b>PRE OPERASI (PERAWAT BEDAH DAN ANASTESI)</b></h1>
+        </div>
+        <div class="grid_12" style="margin-top:20px" ng-show="AllData">
+            <div class="grid_4" style="border: 1px solid; border-color: #10C4B2; height:1400px">
+                <div class="grid_12 headerBox">
+                    <h1 style="color: white;"><b>Data dan Masalah Keperawatan</b></h1>
+                </div>
+                <div class="grid_12" ng-repeat="data in arrData">
+                    <div class="grid_12" style="margin:20px 0 0 5px">
+                        <input type="checkbox" ng-checked="isChecked(data.id)" class="k-checkbox" name="{{data.header}}" id="{{data.header}}" ng-value="data.id" ng-model="bool" ng-click="checkedData(bool, data)">
+                        <label class="k-checkbox-label" for="{{data.header}}"><b>{{data.header}}</b></label>
+                        <div class="grid_12">
+                            <div class="grid_11" ng-repeat="subData in data.detail" style="margin-left:15px">
+                                <input type="checkbox" ng-checked="isChecked(subData.id)" class="k-checkbox" name="{{subData.name}}" id="{{subData.id}}" ng-value="subData.id" ng-model="bool" ng-click="checkedData(bool, subData)">
+                                <label class="k-checkbox-label" for="{{subData.id}}">{{subData.name}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_12" ng-show="inputNadi" style="margin-left:30px">
+                    <div class="grid_4" style="margin-top:10px">
+                        <label c-label>Nadi</label>
+                    </div>
+                    <div class="grid_6" parentKeteranganFieldTambahan>
+                        <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.nadi" />
+                        <label class="keteranganFieldTambahan" style="margin-top:5px">x/menit</label>
+                    </div>
+                </div>
+                <div class="grid_12" ng-show="inputPernafasan" style="margin-left:30px">
+                    <div class="grid_4" style="margin-top:10px">
+                        <label c-label>Pernafasan</label>
+                    </div>
+                    <div class="grid_6" parentKeteranganFieldTambahan>
+                        <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.pernafasan" />
+                        <label class="keteranganFieldTambahan" style="margin-top:5px">x/menit</label>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="grid_4" style="border: 1px solid; border-color: #10C4B2; height:1400px">
+                <div class="grid_12 headerBox">
+                    <h1 style="color: white;"><b>Intervensi</b></h1>
+                </div>
+                <div class="grid_12" ng-repeat="stat in arrDataIntervensi">
+                    <div class="grid_11" style="margin:10px 0 0 5px">
+                        <input type="checkbox" ng-checked="isChecked(stat.id)" class="k-checkbox" name="{{stat.namaExternal}}" id="{{stat.id}}" value="{{stat.id}}" ng-model="bool" ng-click="checkedData(bool, stat)">
+                        <label class="k-checkbox-label" for="{{stat.id}}">{{stat.namaExternal}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_4" style="border: 1px solid; border-color: #10C4B2;height:1400px">
+                <div class="grid_12 headerBox">
+                    <h1 style="color: white;"><b>Kriteria Evaluasi</b></h1>
+                </div>
+                <div class="grid_12" ng-repeat="stat in arrDataEvaluasi">
+                    <div class="grid_11" style="margin:10px 0 0 5px">
+                        <input type="checkbox" ng-checked="isChecked(stat.id)" class="k-checkbox" name="{{stat.namaExternal}}" id="{{stat.id}}" value="{{stat.id}}" ng-model="bool" ng-click="checkedData(bool, stat)">
+                        <label class="k-checkbox-label" for="{{stat.id}}">{{stat.namaExternal}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+    <!--<div ui-view></div>-->
+</div>

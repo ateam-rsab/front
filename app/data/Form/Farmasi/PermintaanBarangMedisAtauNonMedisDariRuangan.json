@@ -1,0 +1,62 @@
+{
+	"model":{
+	    "noOrder" : "",
+	    "tglOrder" : "",
+	    "statusBarang" : "",
+	    "ruanganTujuanPesanan" : "",
+	    "namaBarang" : "",
+	    "stok" : "",
+	    "qty" : "",
+	    "satuan" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "noOrder",
+			"messagesRequired" : "",
+			"caption" : "No Order"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tglOrder",
+			"messagesRequired" : "",
+			"caption" : "Tgl Order"
+		},
+		{
+			"isNull" : "true",
+			"name" : "statusBarang",
+			"messagesRequired" : "",
+			"caption" : "Status Barang(Medis/Non Medis)"
+		},
+		{
+			"isNull" : "true",
+			"name" : "ruanganTujuanPesanan",
+			"messagesRequired" : "",
+			"caption" : "Ruangan Tujuan Pesanan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "namaBarang",
+			"messagesRequired" : "",
+			"caption" : "Nama Barang"
+		},
+		{
+			"isNull" : "true",
+			"name" : "stok",
+			"messagesRequired" : "",
+			"caption" : "Stok"
+		},
+		{
+			"isNull" : "true",
+			"name" : "qty",
+			"messagesRequired" : "",
+			"caption" : "Qty"
+		},
+		{
+			"isNull" : "true",
+			"name" : "satuan",
+			"messagesRequired" : "",
+			"caption" : "Satuan"
+		}
+  ]
+}

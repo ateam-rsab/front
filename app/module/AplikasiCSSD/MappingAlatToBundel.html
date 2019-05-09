@@ -1,0 +1,32 @@
+<div ng-controller="MappingAlatToBundelCtrl">
+	<div class="panel panel-default container_12">
+		<div class="panel-heading" c-translate>Mapping Alat To Bundel</div>
+			<div class="panel-body">
+				<div class="grid_12" style="margin-top: 20px">
+					<div class="grid_2"></div>
+					<div class="grid_3" style="margin-top: 5px">
+						<label c-label item="item" c-label-text="namaBundel"></label>
+					</div>
+					<div class="grid_3">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaBundle" k-data-text-field="'namaBundle'" k-data-value-field="'id'" 
+						k-filter="'contains'" k-auto-bind="false" k-data-source="ListnamaBundle" />
+					</div>
+				</div>
+				<div class="panel panel-default container_12" style="margin-top: 20px">
+				<div class="panel-heading" c-translate>Alat</div>
+					<div class="panel-body">
+						<div class="grid_12" style="margin-top: 10px">
+							<div class="grid_1"></div>
+							<div class="grid_10">
+								<div kendo-grid k-data-source="daftarMasterAlat" k-selectable="'row'" k-columns="columnMasterAlat">
+							</div>
+							<div class="grid_1"></div>
+						</div>
+					</div>
+				<div class="grid_12">
+					<div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

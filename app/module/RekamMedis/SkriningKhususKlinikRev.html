@@ -1,0 +1,438 @@
+<style>
+.keteranganFieldTambahan {
+    left: 5px !important;
+}
+hr {
+    margin-bottom: 0px !important; 
+}
+</style>
+
+<div class="container_12">
+    <!-- panel Golongan Darah -->
+   <!--  <div class="grid_12" ng-repeat="klinik in klinik | orderBy:'id'">
+        <div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+            <span style="font-size: 18px; color: white; padding: 5px;">{{klinik.nama}}</span>
+        </div>
+        <div class="container_12"> 
+
+            <div class="grid_12" ng-repeat="list in klinik.detail | orderBy:'id'" ng-init="listIndex = $index">
+                <div class="grid_1"><label for="{{'klinik' + list.nama}}"><b>{{list.nama}}</b> : </label></div>
+                <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                    <div class="grid_1">
+                        <input type="radio" ng-model="list.value" ng-value="opsi.id" ng-click="radioKlik(list, opsi)">
+                        <label for="{{'formMaster' + opsi.nama}}">{{opsi.nama}}</label>
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div> -->
+    <div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+        <span style="font-size: 18px; color: white; padding: 5px;">{{titleKulit}}</span>
+    </div>
+    <div class="container_12"> <!-- html form goes here -->
+     <div ng-repeat="tanya in listJerawat | orderBy:'id'" ng-init="listIndex = $index + 1">
+        <div class="grid_12 " style="margin:6px auto">
+            <div class="grid_2">
+                <label><b>{{tanya.nama}} : </b></label>
+            </div>
+            <div class="grid_1" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.jerawat" value="{{jawab.id}}" >
+                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div ng-repeat="tanya in listGatal | orderBy:'id'" ng-init="listIndex = $index + 1">
+        <div class="grid_12 " style="margin:6px auto">
+            <div class="grid_2">
+                <label><b>{{tanya.nama}} : </b></label>
+            </div>
+            <div class="grid_1" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.gatal" value="{{jawab.id}}" >
+                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div ng-repeat="tanya in listKelainanKulit | orderBy:'id'" ng-init="listIndex = $index + 1">
+        <div class="grid_12 " style="margin:6px auto">
+            <div class="grid_2">
+                <label><b>{{tanya.nama}} : </b></label>
+            </div>
+            <div class="grid_1" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.kelainanKulit" value="{{jawab.id}}" >
+                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+            </div>
+            <hr>
+        </div>
+    </div>
+
+        <div class="grid_12 " style="margin:6px auto">
+            <div class="grid_2">
+                <label><b>Keterangan :</b></label>
+            </div>
+            <div class="grid_9"  style="margin-top: -5px">
+                <textarea required class="k-textbox" style="height: 50px; width: 100%; resize: none;" ng-model="item.ketKulit"></textarea>
+            </div>
+            <hr>
+        </div>
+
+</div>
+<div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+    <span style="font-size: 18px; color: white; padding: 5px;">{{titleGigi}}</span>
+</div>
+<div class="container_12">
+    <div ng-repeat="tanya in listGizi | orderBy:'id'" ng-init="listIndex = $index + 1">
+        <div class="grid_12 " style="margin:6px auto">
+            <div class="grid_3">
+                <label><b>{{tanya.nama}} : </b></label>
+            </div>
+            <div class="grid_1" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.gizi" value="{{jawab.id}}" >
+                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>
+<div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+    <span style="font-size: 18px; color: white; padding: 5px;">{{titleMata}}</span>
+</div>
+<div class="container_12">
+    <div ng-repeat="tanya in listMataMerah | orderBy:'id'" ng-init="listIndex = $index + 1">
+        <div class="grid_12 " style="margin:6px auto">
+            <div class="grid_2">
+                <label><b>{{tanya.nama}} : </b></label>
+            </div>
+            <div class="grid_1" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.mataMerah" value="{{jawab.id}}" >
+                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div ng-repeat="tanya in listKotoranMata | orderBy:'id'" ng-init="listIndex = $index + 1">
+        <div class="grid_12 " style="margin:6px auto">
+            <div class="grid_2">
+                <label><b>{{tanya.nama}} : </b></label>
+            </div>
+            <div class="grid_1" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.kotoranMata" value="{{jawab.id}}" >
+                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div ng-repeat="tanya in listPenglihatanMata | orderBy:'id'" ng-init="listIndex = $index + 1">
+        <div class="grid_12 " style="margin:6px auto">
+            <div class="grid_2">
+                <label><b>{{tanya.nama}} : </b></label>
+            </div>
+            <div class="grid_1" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.penglihatanMata" value="{{jawab.id}}" >
+                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div ng-repeat="tanya in listKelainanBentuk | orderBy:'id'" ng-init="listIndex = $index + 1">
+        <div class="grid_12 " style="margin:6px auto">
+            <div class="grid_2">
+                <label><b>{{tanya.nama}} : </b></label>
+            </div>
+            <div class="grid_1" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.kelaianBentuk" value="{{jawab.id}}" >
+                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div class="grid_12 " style="margin:6px auto">
+        <div class="grid_2">
+            <label><b>Keterangan :</b></label>
+        </div>
+        <div class="grid_9"  style="margin-top: -5px">
+            <textarea required class="k-textbox" style="height: 50px; width: 100%; resize: none;" ng-model="item.ketMata"></textarea>
+        </div>
+        <hr>
+    </div>
+</div>
+<div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+    <span style="font-size: 18px; color: white; padding: 5px;">{{titleNeurologi}}</span>
+</div>
+<div class="container_12">
+    <div ng-repeat="tanya in listKejang | orderBy:'id'" ng-init="listIndex = $index + 1">
+        <div class="grid_12 " style="margin:6px auto">
+            <div class="grid_2">
+                <label><b>{{tanya.nama}} : </b></label>
+            </div>
+            <div class="grid_1" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.kejang" value="{{jawab.id}}" >
+                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div ng-repeat="tanya in listLumpuh | orderBy:'id'" ng-init="listIndex = $index + 1">
+        <div class="grid_12 " style="margin:6px auto">
+            <div class="grid_2">
+                <label><b>{{tanya.nama}} : </b></label>
+            </div>
+            <div class="grid_1" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.lumpuh" value="{{jawab.id}}" >
+                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div ng-repeat="tanya in listVertigo | orderBy:'id'" ng-init="listIndex = $index + 1">
+        <div class="grid_12 " style="margin:6px auto">
+            <div class="grid_2">
+                <label><b>{{tanya.nama}} : </b></label>
+            </div>
+            <div class="grid_1" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.vertigo" value="{{jawab.id}}" >
+                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div class="grid_12 " style="margin:6px auto">
+        <div class="grid_2">
+            <label><b>Keterangan :</b></label>
+        </div>
+        <div class="grid_9"  style="margin-top: -5px">
+            <textarea required class="k-textbox" style="height: 50px; width: 100%; resize: none;" ng-model="item.ketNeurologi"></textarea>
+        </div>
+        <hr>
+    </div>
+</div>
+<div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+    <span style="font-size: 18px; color: white; padding: 5px;">{{titleLaktasi}}</span>
+</div>
+<div class="container_12">
+    <div ng-repeat="tanya in listPuttingLecet | orderBy:'id'" ng-init="listIndex = $index + 1">
+        <div class="grid_12 " style="margin:6px auto">
+            <div class="grid_2">
+                <label><b>{{tanya.nama}} : </b></label>
+            </div>
+            <div class="grid_1" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.putingLecet" value="{{jawab.id}}" >
+                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div ng-repeat="tanya in listPuttingDatar | orderBy:'id'" ng-init="listIndex = $index + 1">
+        <div class="grid_12 " style="margin:6px auto">
+            <div class="grid_2">
+                <label><b>{{tanya.nama}} : </b></label>
+            </div>
+            <div class="grid_1" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.putingDatar" value="{{jawab.id}}" >
+                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div ng-repeat="tanya in listPayudaraBengkak | orderBy:'id'" ng-init="listIndex = $index + 1">
+        <div class="grid_12 " style="margin:6px auto">
+            <div class="grid_2">
+                <label><b>{{tanya.nama}} : </b></label>
+            </div>
+            <div class="grid_1" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.payudaraBengkak" value="{{jawab.id}}" >
+                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div ng-repeat="tanya in listPosisiBayi | orderBy:'id'" ng-init="listIndex = $index + 1">
+        <div class="grid_12 " style="margin:6px auto">
+            <div class="grid_2">
+                <label><b>{{tanya.nama}} : </b></label>
+            </div>
+            <div class="grid_1" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.posisiBayi" value="{{jawab.id}}" >
+                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div ng-repeat="tanya in listPerletakan | orderBy:'id'" ng-init="listIndex = $index + 1">
+        <div class="grid_12 " style="margin:6px auto">
+            <div class="grid_2">
+                <label><b>{{tanya.nama}} : </b></label>
+            </div>
+            <div class="grid_1" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.perletakan" value="{{jawab.id}}" >
+                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div ng-repeat="tanya in listMengisapEfektif | orderBy:'id'" ng-init="listIndex = $index + 1">
+        <div class="grid_12 " style="margin:6px auto">
+            <div class="grid_2">
+                <label><b>{{tanya.nama}} : </b></label>
+            </div>
+            <div class="grid_1" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.mengisi" value="{{jawab.id}}" >
+                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div ng-repeat="tanya in listProduksiAsi | orderBy:'id'" ng-init="listIndex = $index + 1">
+        <div class="grid_12 " style="margin:6px auto">
+            <div class="grid_2">
+                <label><b>{{tanya.nama}} : </b></label>
+            </div>
+            <div class="grid_1" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.produksiAsi" value="{{jawab.id}}" >
+                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div ng-repeat="tanya in listKelainanDimulut | orderBy:'id'" ng-init="listIndex = $index + 1">
+        <div class="grid_12 " style="margin:6px auto">
+            <div class="grid_2">
+                <label><b>{{tanya.nama}} : </b></label>
+            </div>
+            <div class="grid_1" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.KelainanMulut" value="{{jawab.id}}" >
+                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div class="grid_12 " style="margin:6px auto">
+        <div class="grid_2">
+            <label><b>Keterangan :</b></label>
+        </div>
+        <div class="grid_9"  style="margin-top: -5px">
+            <textarea required class="k-textbox" style="height: 50px; width: 100%; resize: none;" ng-model="item.ketLaktasi"></textarea>
+        </div>
+        <hr>
+    </div>
+</div>
+<div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+    <span style="font-size: 18px; color: white; padding: 5px;">{{titleTht}}</span>
+</div>
+<div class="container_12">
+    <div ng-repeat="tanya in listMimisan | orderBy:'id'" ng-init="listIndex = $index + 1">
+        <div class="grid_12 " style="margin:6px auto">
+            <div class="grid_2">
+                <label><b>{{tanya.nama}} : </b></label>
+            </div>
+            <div class="grid_1" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.mimisan" value="{{jawab.id}}" >
+                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div ng-repeat="tanya in listGangguanMenelan | orderBy:'id'" ng-init="listIndex = $index + 1">
+        <div class="grid_12 " style="margin:6px auto">
+            <div class="grid_2">
+                <label><b>{{tanya.nama}} : </b></label>
+            </div>
+            <div class="grid_1" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.gangguanMenelan" value="{{jawab.id}}" >
+                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div ng-repeat="tanya in listNyeriPadaTelinga | orderBy:'id'" ng-init="listIndex = $index + 1">
+        <div class="grid_12 " style="margin:6px auto">
+            <div class="grid_2">
+                <label><b>{{tanya.nama}} : </b></label>
+            </div>
+            <div class="grid_1" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.nyeriTelinga" value="{{jawab.id}}" >
+                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div ng-repeat="tanya in listMasalahPendengaran | orderBy:'id'" ng-init="listIndex = $index + 1">
+        <div class="grid_12 " style="margin:6px auto">
+            <div class="grid_2">
+                <label><b>{{tanya.nama}} : </b></label>
+            </div>
+            <div class="grid_1" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.masalahPendengaran" value="{{jawab.id}}" >
+                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div ng-repeat="tanya in listTelingaCairan | orderBy:'id'" ng-init="listIndex = $index + 1">
+        <div class="grid_12 " style="margin:6px auto">
+            <div class="grid_2">
+                <label><b>{{tanya.nama}} : </b></label>
+            </div>
+            <div class="grid_1" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.telingaCairan" value="{{jawab.id}}" >
+                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+            </div>
+            <hr>
+        </div>
+    </div>
+
+    <div ng-repeat="tanya in listBenda | orderBy:'id'" ng-init="listIndex = $index + 1">
+        <div class="grid_12 " style="margin:6px auto">
+            <div class="grid_2">
+                <label><b>{{tanya.nama}} : </b></label>
+            </div>
+            <div class="grid_1" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.benda" value="{{jawab.id}}" >
+                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div class="grid_12 " style="margin:6px auto">
+        <div class="grid_2">
+            <label><b>Keterangan :</b></label>
+        </div>
+        <div class="grid_9"  style="margin-top: -5px">
+            <textarea required class="k-textbox" style="height: 50px; width: 100%; resize: none;" ng-model="item.ketTHT"></textarea>
+        </div>
+        <hr>
+    </div>
+    <div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+        <span style="font-size: 18px; color: white; padding: 5px;">{{titleClp}}</span>
+    </div>
+    <div class="container_12">
+        <div ng-repeat="tanya in listCLP | orderBy:'id'" ng-init="listIndex = $index + 1">
+            <div class="grid_12 " style="margin:6px auto">
+                <div class="grid_2">
+                    <label><b>{{tanya.nama}} : </b></label>
+                </div>
+                <div class="grid_1" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index"  style="margin-top: -5px">
+                    <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.clp" value="{{jawab.id}}" >
+                    <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+                </div>
+                <hr>
+            </div>
+        </div>
+        <!-- <div class="grid_12 " style="margin:6px auto">
+            <div class="grid_2">
+                <label><b>Keterangan :</b></label>
+            </div>
+            <div class="grid_9"  style="margin-top: -5px">
+                <textarea required class="k-textbox" style="height: 50px; width: 100%; resize: none;" ng-model="item.ketCLP"></textarea>
+            </div>
+            <hr>
+        </div> -->
+    </div>
+</div>
+
+</div>
+</div>
+<div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+

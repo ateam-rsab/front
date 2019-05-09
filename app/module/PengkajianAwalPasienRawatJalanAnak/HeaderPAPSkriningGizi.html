@@ -1,0 +1,43 @@
+<div ng-controller="HeaderPAPSkriningGiziCtrl"><br/>
+    <div class="panel panel-default container_12">
+        <div class="panel-heading" c-translate>Status Skrining Gizi</div>
+        <div class="panel-body">
+            <div class="grid_12" ng-show="isNeonatal">
+                <div class="grid_3" ng-repeat="data in arrSkriningGiziNeo">
+                    <div class="grid_12" style="margin-bottom:5px">
+                        <label c-label item="item">{{data.name}}</label>
+                    </div>
+
+                    <div class="grid_12 parentKeteranganFieldTambahan">
+                        <input c-text-box type="input" filter="data.type" class="k-textbox" ng-model="data.nilai" />
+                        <label class="keteranganFieldTambahan">{{data.ket}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12" ng-show="isAnak">
+                <div class="grid_3" ng-repeat="data in arrSkriningGiziAnak">
+                    <div class="grid_12" style="margin-bottom:5px">
+                        <label c-label item="item">{{data.name}}</label>
+                    </div>
+
+                    <div class="grid_12 parentKeteranganFieldTambahan">
+                        <input c-text-box type="input" filter="data.type" class="k-textbox" ng-model="data.nilai" />
+                        <label class="keteranganFieldTambahan">{{data.ket}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12" ng-show="isDewasa">
+                <div class="grid_3" ng-repeat="data in arrSkriningGiziDewasa">
+                    <div class="grid_12" style="margin-bottom:5px">
+                        <label c-label item="item">{{data.name}}</label>
+                    </div>
+
+                    <div class="grid_12 parentKeteranganFieldTambahan">
+                        <input c-text-box type="input" filter="data.type" class="k-textbox" ng-model="data.nilai" />
+                        <label class="keteranganFieldTambahan">{{data.ket}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

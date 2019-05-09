@@ -1,0 +1,36 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Master Program Strategis</div>
+	<div class="panel-body">
+		<div class="grid_12">
+			<div class="grid_12" style="margin-top:5px">
+				<div class="grid_1"></div>
+				<div class="grid_10">
+					<div class="grid_12">
+						<div class="grid_3" style="margin-top:15px">
+							<label c-label item="item">Program Kerja Strategis</label>
+						</div>
+						<div class="grid_8">
+							<textarea ng-model="item.programKerjaStrategis" style="width: 99%; height: 100px;"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_6"></div>
+				<div class="grid_2">
+					<button class="c-button success" ng-click="Save()">Simpan</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button cancel" ng-click="Batal()">Batal</button>
+				</div>
+			</div>
+			<div class="grid_12" style="padding-top:10px">
+				<div class="grid_1"></div>
+				<div class="grid_10">
+					<div kendo-grid k-on-change="Select(data)" k-data-source="sourceMasterProgramKerjaStrategis" k-selectable="'row'" options="mainGridOptions"></div>
+					<!-- <div kendo-grid k-on-change="SelectGrid(data)" k-data-source="sourceMasterProgramKerjaStrategis" k-selectable="'row'" k-columns="columnMasterProgramKerjaStrategis" pageable="true" scrollable="true"></div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

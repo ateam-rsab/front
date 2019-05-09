@@ -1,0 +1,50 @@
+{
+	"id" : "",
+	"pengobatan":"",
+	"pemeriksaanHormonal": "",
+	"pemeriksaanUrin": "",
+	"pemeriksaanUltra": "",
+	"catatan":"",
+	"haidKembali" : "",
+	"rencana" : "",
+	
+
+    "attributes" : [{
+		"isNull" : "true",
+		"name" : "pemeriksaanHormonal",
+		"messagesRequired" : "Pemeriksaan Hormonal Harus Diisi",
+		"caption" : "Pemeriksaan Hormonal"
+	},{
+			"isNull" : "true",
+			"name" : "pengobatan",
+			"messagesRequired" : "Pengobatan  Harus Diisi",
+			"caption" : "Pengobatan"
+		},{
+			"isNull" : "true",
+			"name" : "pemeriksaanUltra",
+			"messagesRequired" : "Pemeriksaan Ultra Sonografi Harus Diisi",
+			"caption" : "Pemeriksaan Ultra Sonografi"
+		},{
+			"isNull" : "true",
+			"name" : "pemeriksaanUrin",
+			"messagesRequired" : " Pemeriksaan Urin (Beta hCG) Harus Diisi",
+			"caption" : " Pemeriksaan Urin (Beta hCG)"
+		},{
+			"isNull" : "true",
+			"name" : "catatan",
+			"messagesRequired" : "Catatan Harus Diisi",
+			"caption" : "Catatan"
+		},{
+			"isNull" : "true",
+			"name" : "haidKembali",
+			"messagesRequired" : "Tanggal Haid kembali Harus Diisi",
+			"caption" : "Haid kembali tanggal"
+		},{
+			"isNull" : "true",
+			"name" : "rencana",
+			"messagesRequired" : "Rencana Harus Diisi",
+			"caption" : " Rencana"
+		}
+		
+	]
+}

@@ -1,0 +1,295 @@
+[
+  {
+    "name": "Setup Account",
+    "children": [
+      {
+        "name": "Chart Of Account",
+        "link": "#/ChartOfAccount"
+      },
+      {
+        "name": "Periode Akuntansi",
+        "link": "#/PeriodeAkuntansi"
+      },
+      {
+        "name": "Mapping Coa",
+        "link": "#/MappingCoa"
+      }
+    ]
+  },
+  {
+    "name": "Jurnal",
+    "children": [
+      {
+        "name": "Jurnal Umum Manual",
+        "link": "#/JurnalUmumManual"
+      },
+      {
+        "name": "Jurnal Entri",
+        "link": "#/ListJurnal"
+      }
+    ]
+  },
+  {
+    "name": "Tata Rekening",
+    "children": [
+      {
+        "name": "Daftar Pasien Pulang",
+        "link": "#/DaftarPasienPulang"
+      },
+      {
+        "name": "Daftar Piutang Pasien",
+        "link": "#/DaftarPiutangPasien"
+      }
+    ]
+  },
+  {
+    "name": "Kasir",
+    "children": [
+      {
+        "name": "Daftar Pasien Aktif",
+        "link": "#/DaftarPasienAktif"
+      },
+      {
+        "name": "Daftar Non Layanan",
+        "link": "#/DaftarNonLayananKasir"
+      },
+      {
+        "name": "Daftar Tagihan Pasien",
+        "link": "#/DaftarPasienPulangKasir"
+      },
+      {
+        "name": "Daftar Penerimaan",
+        "link": "#/DaftarPenerimaanKasir"
+      },
+      {
+        "name": "Daftar Penjualan Apotek",
+        "link": "#/DaftarPenjualanApotekKasir"
+      },
+      {
+        "name": "Daftar Piutang",
+        "link": "#/DaftarPiutangKasir"
+      }
+    ]
+  },
+  {
+    "name": "Piutang",
+    "children": [
+      {
+        "name": "Pencatatan Piutang Non Layanan",
+        "link": "#/PencatatanPiutangDaftarNonLayanan"
+      },
+      {
+        "name": "Pencatatan Piutang Layanan",
+        "link": "#/PencatatanPiutangDaftarLayanan"
+      },
+      {
+        "name": "Detail Pelayanan Piutang",
+        "link": "#/DetailPelayananPiutang"
+      },
+      {
+        "name": "Hitung Piutang",
+        "link": "#/HitungPiutang"
+      },
+      {
+        "name": "Pembayaran Piutang",
+        "link": "#/PembayaranPiutang"
+      },
+      {
+        "name": "Daftar Penerimaan Harian",
+        "link": "#/DaftarPenerimaanHarianPiutang"
+      }
+    ]
+  },
+  {
+    "name": "BendaharaPenerimaan",
+    "children": [
+      {
+        "name": "Setoran Kasir Bendahara Penerimaan ",
+        "link": "#/SetoranKasirBendaharaPenerimaan"
+      },
+      {
+        "name": "Daftar Setoran Kasir Bendahara Penerimaan ",
+        "link": "#/DaftarSetoranKasirBendaharaPenerimaan"
+      },
+      {
+        "name": "Monitoring Rekening Koran Bendahara Penerimaan ",
+        "link": "#/MonitoringRekeningKoranBendaharaPenerimaan"
+      },
+      {
+        "name": "Detail Penerimaan Bank Bendahara Penerimaan ",
+        "link": "#/DetailPenerimaanBankBendaharaPenerimaan"
+      }
+    ]
+  },
+  {
+    "name": "UnitCost",
+    "children": [
+      {
+        "name": "Daftar Biaya Unit Cost ",
+        "link": "#/DaftarBiayaUnitCost"
+      },
+      {
+        "name": "Detail Kegiatan Unit Cost ",
+        "link": "#/DetailKegiatanUnitCost"
+      },
+      {
+        "name": "Daftar Kegiatan Unit Cost ",
+        "link": "#/DaftarKegiatanUnitCost"
+      }
+    ]
+  },
+  {
+    "name": "Pajak",
+    "children": [
+      {
+        "name": "Daftar Penerimaan Pajak ",
+        "link": "#/DaftarPenerimaanPajak"
+      },
+      {
+        "name": "Pengajuan Pajak ",
+        "link": "#/PengajuanPajak"
+      },
+      {
+        "name": "Pelunasan Pajak ",
+        "link": "#/PelunasanPajak"
+      }
+    ]
+  },
+  {
+    "name": "Laporan",
+    "children": [
+      {
+        "name": "Buku Besar ",
+        "link": "#/LaporanBukuBesar"
+      },
+      {
+        "name": "Jurnal Utang ",
+        "link": "#/LaporanJurnalUtang"
+      },
+      {
+        "name": "Laporan Keuangan",
+        "link": "#/LaporanKeuangan"
+      },
+      {
+        "name": "Neraca Percobaan",
+        "link": "#/LaporanNeracaPercobaan"
+      }
+    ]
+  },
+  {
+    "name": "BendaharaPengeluaran",
+    "children": [
+      {
+        "name": "Pengajuan UYHDUnit Kerja BP",
+        "link": "#/PengajuanUYHDUnitKerjaBP"
+      },
+      {
+        "name": "Daftar Pengajuan UYHDUnit Kerja BP",
+        "link": "#/DaftarPengajuanUYHDUnitKerjaBP"
+      },
+      {
+        "name": "Daftar Pengajuan UYHDBPKAngsuran Direktur BP",
+        "link": "#/DaftarPengajuanUYHDBPKAngsuranDirekturBP"
+      },
+      {
+        "name": "Detail Pengajuan UYHDBP",
+        "link": "#/DetailPengajuanUYHDBP"
+      },
+      {
+        "name": "Daftar Pengajuan UYHDBendahara Pengeluaran BP",
+        "link": "#/DaftarPengajuanUYHDBendaharaPengeluaranBP"
+      },
+      {
+        "name": "Pembayaran UYHDBP",
+        "link": "#/PembayaranUYHDBP"
+      },
+      {
+        "name": "Pertanggung Jawaban UYHDUnit Kerja BP",
+        "link": "#/PertanggungJawabanUYHDUnitKerjaBP"
+      },
+      {
+        "name": "Daftar Pertanggung Jawaban UYHDBP",
+        "link": "#/DaftarPertanggungJawabanUYHDBP"
+      },
+      {
+        "name": "Verifikasi Spj UYHDAkuntansi BP",
+        "link": "#/VerifikasiSpjUYHDAkuntansiBP"
+      },
+      {
+        "name": "Daftar Spj UYHDAkuntansi BP",
+        "link": "#/DaftarSpjUYHDAkuntansiBP"
+      },
+      {
+        "name": "Daftar Spj UYHDBendahara Pengeluaran BP",
+        "link": "#/DaftarSpjUYHDBendaharaPengeluaranBP"
+      },
+      {
+        "name": "Pembayaran Spj Bendahara Pengeluaran BP",
+        "link": "#/PembayaranSpjBendaharaPengeluaranBP"
+      }
+    ]
+  },
+  {
+    "name": "MasterData -- Old",
+    "children": [
+      {
+        "name": "Master Data Mission Centre ",
+        "link": "#/MasterDataMissionCentre"
+      },
+      {
+        "name": "Master Data Service Centre ",
+        "link": "#/MasterDataServiceCentre"
+      },
+      {
+        "name": "Master Data Sumber Dana ",
+        "link": "#/MasterDataSumberDana"
+      }
+    ]
+  },
+  {
+    "name": "Anggaran -- Old",
+    "children": [
+      {
+        "name": "Penyusunan TRPNBP",
+        "link": "#/PenyusunanTRPNBP"
+      },
+      {
+        "name": "Verifikasi Usulan Kebutuhan EPlanning ",
+        "link": "#/VerifikasiUsulanKebutuhanEPlanning"
+      },
+      {
+        "name": "Penyusunan EPlanning ",
+        "link": "#/PenyusunanEPlanning"
+      },
+      {
+        "name": "Penyusunan RBANon Pelayanan Service Centre ",
+        "link": "#/PenyusunanRBANonPelayananServiceCentre"
+      },
+      {
+        "name": "Penyusunan RBANon Pelayanan Mission Centre ",
+        "link": "#/PenyusunanRBANonPelayananMissionCentre"
+      },
+      {
+        "name": "Penyusunan RBAPelayanan Service Centre ",
+        "link": "#/PenyusunanRBAPelayananServiceCentre"
+      },
+      {
+        "name": "Penyusunan RBAPelayanan Mission Centre ",
+        "link": "#/PenyusunanRBAPelayananMissionCentre"
+      }
+    ]
+  },
+  {
+    "name": "Sample Code",
+    "children": [
+      {
+        "name": "Sample PDF Export",
+        "link": "#/SamplePDFExport"
+      },
+      {
+        "name": "Sample Upload File",
+        "link": "#/UploadFile"
+      }
+    ]
+  }
+]

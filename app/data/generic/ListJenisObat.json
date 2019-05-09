@@ -1,0 +1,15 @@
+[
+	{  
+        "id":1,
+        "name":"Jenis Obat 1"
+    },{
+        "id": 2,
+        "name": "Jenis Obat 21"
+    },{
+        "id": 3,
+        "name": "Jenis Obat 3"},
+    {
+        "id": 4,
+        "name": "Jenis Obat 4"
+    }
+]

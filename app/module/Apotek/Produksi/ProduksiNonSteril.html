@@ -1,0 +1,339 @@
+<div ng-controller="ProduksiNonSterilCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Produksi Non Steril'">
+			<div class="grid_12">
+				
+	<div class="grid_6">
+					<!-- no produksi -->
+					<div class="grid_12">
+					<div class="grid_4 " style="margin-top:5px;">
+	                <label c-label item="item" c-label-text="noProduksi"></label>
+	                </div>
+		            <div class="grid_8">
+		               <input required c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noProduksi" />
+		            </div>
+		            <div class="clear"></div>
+		            </div>
+					<!-- nama barang -->
+		            <div class="grid_12">
+		            <div class="grid_4">
+	                <label c-label item="item" c-label-text="namaBarang"></label>
+		            </div>
+		            <div class="grid_8">
+		               <input required style="width: 100%;" kendo-combo-box k-ng-model="item.namabarang" k-data-text-field="'namaproduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataNamaBarang" />
+		            </div>
+		            <div class="clear"></div>
+		            </div>
+
+		            <!-- jumlah produksi -->
+		            <div class="grid_12">
+		            <div class="grid_4" style="margin-top:5px">
+	                <label c-label item="item" c-label-text="jmlProduksi"></label>
+		            </div>
+		            <div class="grid_8">
+		               <input required c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jmlProduksi" />
+		            </div>
+		           
+		            <div class="clear"></div>
+		            </div>
+
+		            <div class="grid_12">
+		            	
+		            	<!-- yang meminta -->
+		            <div class="grid_4" style="margin-top:5px">
+	                <label c-label item="item" c-label-text="yangMeminta"></label>
+		            </div>
+		            <div class="grid_8">
+		               <input required style="width: 100%;" kendo-combo-box k-ng-model="item.yangMeminta" k-data-text-field="'Name'" k-data-value-field="'pegawaiId'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataNamaPegawai" />
+		            </div>
+		            <div class="clear"></div>
+
+
+		            </div>
+
+		            <div class="grid_12">
+		            	
+		            	<!-- yang memberikan -->
+		            <div class="grid_4" style="margin-top:5px">
+	                <label c-label item="item" c-label-text="yangMemberikan"></label>
+		            </div>
+		            <div class="grid_8">
+		               <input required style="width: 100%;" kendo-combo-box k-ng-model="item.yangMemberikan" k-data-text-field="'Name'" k-data-value-field="'pegawaiId'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataNamaPegawai" />
+		            </div>
+		            <div class="clear"></div>
+
+		            </div>
+
+
+		            <div class="grid_12">
+
+		            	 <!-- mengetahui -->
+		            <div class="grid_4" style="margin-top:5px">
+	                <label c-label item="item" c-label-text="mengetahui"></label>
+		            </div>
+		            <div class="grid_8">
+		               <input required style="width: 100%;" kendo-combo-box k-ng-model="item.mengetahui" k-data-text-field="'Name'" k-data-value-field="'pegawaiId'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataNamaPegawai" />
+		            </div>
+		            <div class="clear"></div>
+
+
+		            </div>
+
+	<!--   <div class="grid_12" style="float:left;margin-top:10px; margin-bottom:10px">
+			    
+			    <div class="grid_3" ng-show="isInputMode">
+			        <button  class="c-button success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" ng-click="AddDataProduksiNonSteril()">
+			            <span class="title">Input Bahan Baku</span>
+			        </button>
+			    </div>
+			    <div class="grid_3">
+			        <button  class="c-button success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" ng-click="EditDataProduksiNonSteril()">
+			            <span class="title">Edit Bahan Baku</span>
+			        </button>
+			    </div>
+		</div> -->
+				          <!-- spesifikasi -->
+	            
+
+		            
+</div>
+
+				<div class="grid_6">
+					<div class="grid_12">
+							<!-- tanggal produksi -->
+		            <div class="grid_4">
+	                <label c-label item="item" c-label-text="tglProduksi"></label>
+		            </div>
+		            <div class="grid_8">
+		               <input required style="width: 100%" k-ng-model="item.tglProduksi"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+		            </div>
+		            <div class="clear"></div>
+
+					</div>
+					<div class="grid_12">
+							<div class="grid_4" style="margin-top:5px">
+	                <label c-label item="item" c-label-text="spesifikasi"></label>
+		            </div>
+		            <div class="grid_8">
+		               <input required c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.spesifikasi" />
+		            </div>
+		            <div class="clear"></div>
+					</div>
+					<div class="grid_12">
+							<!-- harga satuan -->
+		            <div class="grid_4" style="margin-top:5px">
+	                <label c-label item="item" c-label-text="hargaSatuan"></label>
+		            </div>
+		            <div class="grid_8">
+		               <input required c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.hargaSatuan" />
+		            </div>
+		            <div class="clear"></div>
+
+					</div>
+					<div class="grid_12">
+						<!-- expired  -->
+		            <div class="grid_4" style="margin-top:5px">
+	                <label c-label item="item" c-label-text="expired"></label>
+		            </div>
+		            <div class="grid_8">
+		               <input required style="width: 100%" k-ng-model="item.expired"  kendo-date-picker k-max="now" placeholer="yyyy-mm-dd" k-format="'yyyy-mm-dd'" />
+		            </div>
+		            <div class="clear"></div>
+					</div>	            
+
+					<div class="grid_12">
+
+ <!-- unit cost -->
+		            <div class="grid_4" style="margin-top:5px">
+	                <label c-label item="item" c-label-text="unitCost"></label>
+		            </div>
+		            <div class="grid_8">
+		               <input required c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.unitCost" />
+		            </div>
+		            <div class="clear"></div>
+				
+					
+
+					 </div>
+
+					 <div class="grid_12">
+
+ <!-- status enable -->
+		            <div class="grid_4" style="margin-top:5px">
+	                <label c-label item="item" c-label-text="StatusEnable"></label>
+		            </div>
+		            <div class="grid_8">
+		               <input required c-text-box type="input" class="k-textbox" ng-model="item.statusenable" />
+		            </div>
+		            <div class="clear"></div>
+				
+					
+					 </div>
+		            
+
+		           
+
+		            
+
+		           
+				</div>
+				
+			</div>
+				<div class="grid_2"><button class="c-button" ng-click="AddDataProduksiNonSteril()">Simpan</button></div>
+			
+
+			<!-- data informasi -->
+			<div class="grid_6" ng-repeat="data in DataProduksiNonSteril">
+              	<div class="grid_12 borderBox" style="margin-top:5px">
+					<div class="grid_12" style="background-color:#10c4b2">
+	                	<span style="font-size: 18px; color: white; padding: 5px;"></span>
+		            </div>
+		            <div class="grid_12" style="padding:5px">
+	                	<!-- kode barang -->
+                		<div class="grid_4">
+                			<label>Kode Barang</label>
+                		</div>
+                		<div class="grid_8">
+                			<label>: {{data.kodeBarang}}</label>
+                		</div>
+                		<div class="clear"></div>
+        				
+        				<!-- nama barang -->
+                		<div class="grid_4">
+                			<label>Nama Barang</label>
+                		</div>
+                		<div class="grid_8">
+                			<label>: {{data.namaBarang}}</label>
+                		</div>
+                		<div class="clear"></div>
+
+                		<!-- satuan -->
+                		<div class="grid_4">
+                			<label>Satuan</label>
+                		</div>
+                		<div class="grid_8">
+                			<label>: {{data.satuan}}</label>
+                		</div>
+                		<div class="clear"></div>
+
+                		<!-- qty dipakai -->
+                		<div class="grid_4">
+                			<label>Qty dipakai</label>
+                		</div>
+                		<div class="grid_8">
+                			<label>: {{data.jmlProduksi}}</label>
+                		</div>
+                		<div class="clear"></div>
+        				
+        				<!-- harga -->
+                		<div class="grid_4">
+                			<label>harga</label>
+                		</div>
+                		<div class="grid_8">
+                			<label>: {{data.hargaSatuan}}</label>
+                		</div>
+                		<div class="clear"></div>
+
+                		<!-- sub total -->
+                		<div class="grid_4">
+                			<label>Sub Total</label>
+                		</div>
+                		<div class="grid_8">
+                			<label>: {{data.hargaSatuan * data.jmlProduksi}}</label>
+                		</div>
+                		<div class="clear"></div>
+	                </div>
+		            <div class="clear"></div>
+
+		            <div class="grid_2" style="padding:5px">
+		            	<button  class="c-button success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" ng-click="showDetailData(data.id)">
+				            <span class="title">Detail</span>
+				        </button>
+		            </div>
+		            <div class="grid_2" style="padding:5px">
+		            	<button  class="c-button success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" ng-click="getEditData(data.id)">
+				            <span class="title">Edit</span>
+				        </button>
+		            </div>
+		            <div class="grid_2" style="padding:5px">
+		            	<button  class="c-button cancel" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" ng-click="removeDataProduksiNonSteril(data)">
+				            <span class="title">Hapus</span>
+				        </button>
+		            </div>
+		            <div class="clear"></div>
+
+		            <div class="grid_12" style="padding:5px" ng-show="data.statVisible">
+		            	<!-- no produksi -->
+                		<div class="grid_4">
+                			<label>No. Produksi</label>
+                		</div>
+                		<div class="grid_8">
+                			<label>: {{data.noProduksi}}</label>
+                		</div>
+                		<div class="clear"></div>
+        				
+        				<!-- yang meminta -->
+                		<div class="grid_4">
+                			<label>yang meminta</label>
+                		</div>
+                		<div class="grid_8">
+                			<label>: {{data.yangMeminta.name}}</label>
+                		</div>
+                		<div class="clear"></div>
+
+                		<!-- yang memberikan -->
+                		<div class="grid_4">
+                			<label>yang memberikan</label>
+                		</div>
+                		<div class="grid_8">
+                			<label>: {{data.yangMemberikan.name}}</label>
+                		</div>
+                		<div class="clear"></div>
+
+                		<!-- mengetahui -->
+                		<div class="grid_4">
+                			<label>Mengetahui</label>
+                		</div>
+                		<div class="grid_8">
+                			<label>: {{data.mengetahui.name}}</label>
+                		</div>
+                		<div class="clear"></div>
+
+                		<!-- tanggal produksi -->
+                		<div class="grid_4">
+                			<label>Tanggal Produksi</label>
+                		</div>
+                		<div class="grid_8">
+                			<label>: {{data.tglProduksi}}</label>
+                		</div>
+                		<div class="clear"></div>
+
+                		<!-- Expired -->
+                		<div class="grid_4">
+                			<label>Expired</label>
+                		</div>
+                		<div class="grid_8">
+                			<label>: {{data.expired}}</label>
+                		</div>
+                		<div class="clear"></div>
+
+                		<!-- Unit cost -->
+                		<div class="grid_4">
+                			<label>unit Cost</label>
+                		</div>
+                		<div class="grid_8">
+                			<label>: {{data.unitCost}}</label>
+                		</div>
+                		<div class="clear"></div>
+	                </div>
+
+				</div>
+            </div>
+            <div class="clear"></div>
+
+	       
+
+		</c-panel>
+	</div>
+</div>

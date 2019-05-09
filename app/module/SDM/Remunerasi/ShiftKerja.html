@@ -1,0 +1,113 @@
+<div class="panel panel-default container_12" style="background-color:transparant">
+    <div class="panel-heading"><label class='title' c-label item="item" c-label-text="Master Shift Kerja" real></label></div>
+    <div class="panel-body">
+        <!--
+        <div class="grid_6">
+            <div class="grid_6">
+                <label c-label item="item" c-label-text="pasien.namaShift">Nama Shift</label>
+                <input required c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaShift" />
+            </div>
+            <div class="grid_4">
+                <span c-label c-label-text="Kelompok Shift" />
+                <input required style="width: 100%;" kendo-combo-box k-ng-model="item.kelompokShift" k-data-text-field="'name'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listKelompokShift" />
+            </div>
+            <div class="grid_2">
+                <label c-label item="item" c-label-text="pasien.kodeExternal"></label>
+                <input required c-text-box type="input" maxlength="3" class="k-textbox" ng-model="item.kodeExternal" />
+            </div>
+        </div>
+        <div class="grid_6" style="min-height: 72px;">
+            
+        </div>
+        <div class="grid_6">
+            <div class="panel panel-default container_12" style="background-color:transparant">
+                <div class="panel-heading"><label class='title' c-label item="item" c-label-text="Jadwal" real></label></div>
+                <div class="panel-body">
+
+                    <div class="grid_12">
+                        <span c-label c-label-text="Jadwal Praktek" />
+                        <input required style="width: 100%;" kendo-combo-box k-ng-model="item.jadwalPraktek" k-data-text-field="'jamPraktek'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="jamPrakteks" />
+                        -->
+                        <!--<div class="grid_6">
+                            <label c-label item="item" c-label-text="pasien.jamMasuk"></label>
+                            <input required c-text-box type="input" class="k-textbox" ng-model="item.jamMasuk" />
+                        </div>
+
+                        <div class="grid_6">
+                            <label c-label item="item" c-label-text="pasien.jamPulang"></label>
+                            <input required c-text-box type="input" class="k-textbox" ng-model="item.jamPulang" />
+                        </div>-->
+                    <!--
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_6">
+                            <label c-label item="item" c-label-text="pasien.jamAwalIstirahat"></label>
+                            <input kendo-time-picker k-ng-model="item.jamBreakAwal" k-format="'HH.mm'"/>
+                        </div>
+
+                        <div class="grid_6">
+                            <label c-label item="item" c-label-text="pasien.jamAkhirIstirahat"></label>
+                            <input kendo-time-picker k-ng-model="item.jamBreakAkhir" k-format="'HH.mm'"/>
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_6">
+                            <label c-label item="item">Operator Factor Rate</label>
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.operatorFactorRate" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'eq'" k-auto-bind="true" k-data-source="listOperator" />
+                        </div>
+                        <div class="grid_6">
+                            <label c-label item="item">Factor Rate</label>
+                            <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.factoreRate"/>
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_6">
+                            <label c-label item="item">Komponen Index</label>
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.komponenIndex" k-data-text-field="'namaKomponen'" k-data-value-field="'idKomponenIndex'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKomponenIndex" />
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div ng-hide='isNext' class="grid_3" style="float:right">
+                        -->
+                            <!-- <c-button ng-show="!isLoading" class="success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" is-validate click="Save">
+                                <span class="title">Simpan</span>
+                            </c-button> -->
+                            <!--
+                            <button class="c-button" ng-click="Save()" class="c-button success">Simpan</button>
+                        </div>
+                        <div class="grid_3" style="float:right;">
+                        -->
+                            <!-- <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" click="Batal">
+                                <span class="title">Batal</span>
+                            </c-button> -->
+                            <!--
+                            <button class="c-button" ng-click="batal()">Batal</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        -->
+        <div class="grid_12">
+            <div id="gridDaftarShift" kendo-grid options="mainGridOptions"></div>
+        </div>
+        <div class="panel-body">
+            <div class="grid_12 headerBox"><p>Filter Data</p></div>
+            <div class="grid_12">
+                <!-- Nama -->
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="Nama Shift"></label>
+                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="items.namaShift" />
+                </div>
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="Kelompok Shift"></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="items.kelompokShift" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="true" k-data-source="listKelompokShift"/>
+                </div>
+                <div class="grid_1">
+                    <label c-label c-label-text=""></label>
+                    <em style="margin-top:6px;" ng-click='resetFilters()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

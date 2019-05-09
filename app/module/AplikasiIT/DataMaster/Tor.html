@@ -1,0 +1,225 @@
+<div ng-controller="TorCtrl">
+<div ng-show="dataVOloaded">
+<c-panel item="item" header="'Tor'" disabled>
+
+<!-- noRab -->
+<div class="grid_12">
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="noRab"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noRab" />
+</div>
+</div>
+
+<!-- title1 -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="title1"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.title1" />
+</div>
+</div>
+</div>
+
+<!-- title2 -->
+<div class="grid_12">
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="title2"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.title2" />
+</div>
+</div>
+
+<!-- title3 -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="title3"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.title3" />
+</div>
+</div>
+</div>
+
+<!-- latarBelakang -->
+<div class="grid_12">
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="latarBelakang"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.latarBelakang" />
+</div>
+</div>
+
+<!-- penerimaManfaat -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="penerimaManfaat"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.penerimaManfaat" />
+</div>
+</div>
+</div>
+
+<!-- strategiPencapaiKeluaran -->
+<div class="grid_12">
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="strategiPencapaiKeluaran"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.strategiPencapaiKeluaran" />
+</div>
+</div>
+
+<!-- kurunWaktuPencapaiKeluaran -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kurunWaktuPencapaiKeluaran"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kurunWaktuPencapaiKeluaran" />
+</div>
+</div>
+</div>
+
+<!-- biayaYangDikeluarkan -->
+<div class="grid_12">
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="biayaYangDikeluarkan"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.biayaYangDikeluarkan" />
+</div>
+</div>
+
+<!-- tanggal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="tanggal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%" k-ng-model="item.tanggal"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+</div>
+</div>
+</div>
+
+<!-- jabatan -->
+<div class="grid_12">
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="jabatan"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.jabatan" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listjabatan" />
+</div>
+</div>
+
+<!-- jabatanId -->
+
+
+
+<!-- reportDisplay -->
+
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="reportDisplay"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+</div>
+</div>
+</div>
+
+<!-- kodeExternal -->
+<div class="grid_12">
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kodeExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+</div>
+</div>
+
+
+<!-- namaExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="namaExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+</div>
+</div>
+</div>
+
+<!-- Tor -->
+<div class="grid_12">
+<div class="grid_12 headerBox">
+<p>Tor</p>
+</div>
+<div class="clear"></div>
+
+<!-- grid table -->
+<div class="grid_12 borderBox">
+					<kendo-grid options="mainGridOptions"  k-data-source="dataSource" k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+				</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+
+
+</c-panel>
+
+<div class="grid_12">
+				<div class="grid_8"></div>
+				<div class="grid_2" ng-show="showEdit">
+					<button class="c-button" ng-click="edit()">Edit</button>
+				</div>
+				<div class="grid_2" ng-hide="showEdit">
+					<button class="c-button" ng-click="tambah()">Tambah</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="batal()">Batal</button>
+				</div>
+			</div>
+</div>
+</div>

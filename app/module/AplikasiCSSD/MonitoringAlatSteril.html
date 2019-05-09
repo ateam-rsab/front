@@ -1,0 +1,160 @@
+<style>
+    .error{
+        background-color:white !important;
+    }
+    .yellow{
+        background-color:#ffff00
+    }
+     .green{
+        background-color:#00ff40
+    }
+      .red{
+        background-color:#FF0000
+    }
+    .k-grid  .k-grid-header  .k-header  .k-link {
+     height: auto;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     white-space: normal;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     text-align: center;
+    }
+/*     .k-header .k-link{
+    text-align: center;
+     }*/
+</style>
+<div ng-controller="MonitoringAlatSterilCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Monitoring Alat Steril'">
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Tanggal Pengecekan</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.tglPengecekan" data-k-format="'yyyy-MM-dd'"/>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Ruangan</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Nama Alat</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaAlat" k-data-text-field="'namaAlat'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listBundel" />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Tanggal Steril</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.tglSterilisasi" data-k-format="'yyyy-MM-dd'"/>
+				</div>
+			</div>
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Tanggal Kadaluarsa</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.tglKadaluarsa" data-k-format="'yyyy-MM-dd'"/>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Satuan</label>
+				</div>
+				<div class="grid_8">
+					<!-- <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.satuan"/> -->
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.satuan" k-data-text-field="'satuanStandar'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listSatuan" />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Jumlah</label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlah"/>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Petugas</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.petugas" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="true" k-data-source="dataMasterPetugas"  />
+				</div>
+			<div class="grid_12">
+				<div class="grid_6"></div>
+				<div class="grid_6">
+					<div class="grid_2"></div>
+					<div class="grid_5">
+						<button class="c-button success" ng-click="Save()">Simpan</button>
+					</div>
+					<div class="grid_5">
+						<button class="c-button cancel" ng-click="batal()">Batal</button>
+					</div>
+				</div>
+			</div>
+			</div>
+			
+		<c-panel item="item" header="'Daftar Monitoring Alat Steril'">
+		    <div class="grid_12" style="margin-top: 10px">
+		    <div class="grid_10">
+				<div class="grid_1" style="margin-top: 10px">
+					<label c-label item="item" c-label-text="periode"></label>
+				</div>
+				<div class="grid_1" align="right"  style="margin-top: 10px">
+					<label c-label item="item" c-label-text=":"></label>
+				</div>
+				<div class="grid_2">
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.awal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" k-on-change="ChangeDat()"  />
+				</div>
+				<div class="grid_1" align="center" style="margin-top: 10px">
+						<label c-label item="item">s/d</label>
+				</div>
+				<div class="grid_2">
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.akhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" k-on-change="ChangeDat()"/>
+				</div>
+			  </div>
+	        </div>
+			<div class="grid_12">
+				<div class="grid_10" style="margin-top: 10px">
+					  <div class="grid_1" style="margin-top: 10px">
+						 <label c-label item="item" c-label-text="Pencarian"></label>
+					  </div>
+					<div class="grid_1" align="right"  style="margin-top: 10px">
+						<label c-label item="item" c-label-text=":"></label>
+					</div>
+					<div class="grid_5">
+					 	<input class=k-textbox type=text ng-model="item.pencarian" placeholder="Ruangan /Petugas / Nama Alat" />
+					</div>
+					<div class="grid_1" style="margin-top: 5px">
+						<button class="c-button success" ng-click="init(item.pencarian)">Cari</button>
+					</div>
+					<div class="grid_1" style="margin-top: 5px">
+						<button class="c-button cancel" ng-click="ClearCari()">Clear</button>
+					</div>
+					<div class="grid_1" style="margin-top: 5px">
+						<button class="c-button success" ng-click="Refresh()">Refresh</button>
+					</div>
+				</div>
+			</div>
+			<div class="grid_12 borderBox">
+				<div id="grid" kendo-grid 
+				k-data-source="dataSource" 
+				k-options="mainGridOptions"
+				k-selectable="'row'" 
+				k-columns="columnMonitoringAlat"
+				k-sortable="'true'"
+			    k-pageable="true"
+				k-ng-model="dataSelected"
+				ng-dblclick="klik(dataSelected)">
+				</div>
+			</div>
+		 </c-panel>
+	   </c-panel>
+   </div>
+</div>
+
+<!--<div class="grid_4"></div>
+<div class="grid_8">
+			<button class="c-button success" ng-click="tambah()" k-columns="columnMonitoringAlat">Tambah</button>
+</div> -->

@@ -1,0 +1,35 @@
+<div ng-controller="DashboarPasienAlergiCtrl">
+
+    <c-panel item="item" header="'DataAlergi'" disabled>
+        <c-loading ng-show="isLoadingAlergi"></c-loading>
+        <div class="panel-place">
+            <a class="n1" href="#/Dashboard/Pasien/Alergi/Input/{{noCM}}">
+                <div class="cd-timeline-img cd-picture add animated">
+                    <img src="stylesheets/Add.png" alt="Picture">
+                </div>
+            </a>
+        </div>
+        <section id="cd-timeline" class="cd-container" ng-hide="isLoadingAlergi">
+            <div class="cd-timeline-block" ng-repeat="alergi in listAlergi">
+
+                <div class="cd-timeline-img cd-movie">
+                    <img src="stylesheets/alergi.png" alt="Movie">
+                </div>
+
+                <!-- cd-timeline-img -->
+
+                <div class="cd-timeline-content">
+                    <h2>{{alergi.alergi}}</h2>
+                    <p>{{alergi.reaksi}}</p>
+                    <span class="cd-date">{{alergi.tanggal}}</span>
+                </div>
+                <!-- cd-timeline-content -->
+            </div>
+
+        </section>
+
+    </c-panel>
+    <div class="grid_12" style="margin-top:15px">
+            <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+    </div>
+</div>

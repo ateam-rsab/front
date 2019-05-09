@@ -1,0 +1,40 @@
+
+<div ng-controller="DadaCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="title">
+			
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="bentukDada"> </label>
+			</div>
+			<div class="grid_10">
+				<div class="grid_3" style="margin: 5px 0 5px 0;" ng-repeat="stat in statusBentukDada">
+	                    <input type="radio" name="{{statusBentukDada+stat.name}}" id="{{statusBentukDada+stat.name}}" class="k-radio" ng-model="item.bentukDada" value="{{stat.id}}">
+	                    <label class="k-radio-label" for="{{statusBentukDada+stat.name}}">{{stat.name}}</label>
+	               </div>
+			</div>
+            <div class="clear"></div>
+
+            <div class="grid_2">
+				<label c-label item="item" c-label-text="jantung"> </label>
+			</div>
+			<div class="grid_10">
+				<div class="grid_3" style="margin: 5px 0 5px 0;" ng-repeat="stat in statusJantung">
+	                    <input type="radio" name="{{statusJantungstat.name}}" id="{{statusJantung+stat.name}}" class="k-radio" ng-model="item.jantung" value="{{stat.id}}">
+	                    <label class="k-radio-label" for="{{statusJantung+stat.name}}">{{stat.name}}</label>
+	               </div>
+			</div>
+            <div class="clear"></div>
+
+            <div class="grid_2">
+				<label c-label item="item" c-label-text="paru"> </label>
+			</div>
+			<div class="grid_10">
+				<div class="grid_3" style="margin: 5px 0 5px 0;" ng-repeat="stat in statusParu">
+	                    <input type="radio" name="{{statusParu+stat.name}}" id="{{statusParu+stat.name}}" class="k-radio" ng-model="item.paru" value="{{stat.id}}">
+	                    <label class="k-radio-label" for="{{statusParu+stat.name}}">{{stat.name}}</label>
+	               </div>
+			</div>
+            <div class="clear"></div>
+		</c-panel>
+	</div>
+</div>

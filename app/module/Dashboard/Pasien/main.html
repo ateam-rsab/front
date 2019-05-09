@@ -1,0 +1,118 @@
+<div class="grid_12" ng-controller="DashboarPasienCtrl">
+    <div class="tiles">
+        <div class="grid_3">
+            <div class="tile bg-yellow-saffron orange" style="height:100px">
+                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                <div class="check"></div>
+                <div class="tile-body" style="overflow: initial">
+                    <i style="font-style: normal;"></i>
+                </div>
+                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                    <div class="icon-panel">
+                        <img width='70px' src='stylesheets/sumberDana.png' />
+                    </div>
+                    <div class="text_panel">
+                        <span class="title"><label c-label c-label-text="sumberPembayaran" statment></label></span>
+                        <span class="sub-title">{{item.jenisPembayaran}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_3">
+            <div class="tile bg-yellow-saffron blue" style="height:100px" ng-click="NavToIdentitas()">
+                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                <div class="check"></div>
+                <div class="tile-body" style="overflow: initial">
+                    <i style="font-style: normal;"></i>
+                </div>
+                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                    <div class="icon-panel">
+                        <img width='70px' src='stylesheets/identity.png' />
+                    </div>
+                    <div class="text_panel">
+                        <span class="title"><label c-label c-label-text="identitasPasien" statment></label></span>
+                        <label c-label item="item" c-label-text="berisiDetailIdentitasPasien" no-bold class="sub-detail"></label><span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_3">
+            <div class="tile bg-yellow-saffron green" style="height:100px" ng-click="NavToDiagnosis()">
+                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                <div class="check"></div>
+                <div class="tile-body" style="overflow: initial">
+                    <i style="font-style: normal;"></i>
+                </div>
+                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                    <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                        <div class="icon-panel">
+                            <img width='70px' src='stylesheets/diagnosis.png' />
+                        </div>
+                        <div class="text_panel">
+                            <span class="title"><label c-label c-label-text="Diagnosis" ></label></span>
+                            <label c-label item="item" c-label-text="berisikanDiagnosisYangHarusDiperhatikan" no-bold class="sub-detail"></label><span></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="grid_3">
+            <div class="tile bg-yellow-saffron green" style="height:100px" ng-click="NavToAlergi()">
+                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                <div class="check"></div>
+                <div class="tile-body" style="overflow: initial">
+                    <i style="font-style: normal;"></i>
+                </div>
+                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                    <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                        <div class="icon-panel">
+                            <img width='70px' src='stylesheets/history.png' />
+                        </div>
+                        <div class="text_panel">
+                            <span class="title"><label c-label c-label-text="Alergi" ></label></span>
+                            <label c-label item="item" c-label-text="berisikanAlergiYangHarusDiperhatikan" no-bold class="sub-detail"></label><span></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="grid_3">
+            <div class="tile bg-yellow-saffron red" style="height:100px" ng-click="NavToLayananMedik()">
+                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                <div class="check"></div>
+                <div class="tile-body" style="overflow: initial">
+                    <i style="font-style: normal;"></i>
+                </div>
+                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                    <div class="icon-panel">
+                        <img width='70px' src='stylesheets/disease.png' />
+                    </div>
+                    <div class="text_panel">
+                        <span class="title"><label c-label c-label-text="LayananMedis"></label></span>
+                        <label c-label item="item" c-label-text="berisiRiwayatLayananMedikYangDiTerimaPasien" class="sub-detail" no-bold></label><span> </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid_3">
+            <div class="tile bg-yellow-saffron red" style="height:100px" ng-click="NavToLembarPengobatan()">
+                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                <div class="check"></div>
+                <div class="tile-body" style="overflow: initial">
+                    <i style="font-style: normal;"></i>
+                </div>
+                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                    <div class="icon-panel">
+                        <img width='70px' src='stylesheets/Pha.png' />
+                    </div>
+                    <div class="text_panel">
+                        <span class="title"><label c-label c-label-text="LembarPengobatan"></label></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

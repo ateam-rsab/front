@@ -1,0 +1,90 @@
+{
+	"model":{
+	    "noOrder" : "",
+	    "unitPemesan" : "",
+	    "temaRapat" : "",
+	    "tglRapat" : "",
+	    "hari" : "",
+	    "waktu" : "",
+	    "lamaPenggunaan" : "",
+	    "jumlahPeserta" : "",
+	    "pilihJadwal" : "",
+	    "namaRuanganRapat" : "",
+	    "jenisKonsumsi" : "",
+	    "penambahanKebutuhanSarana" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "noOrder",
+			"messagesRequired" : "",
+			"caption" : "No Order"
+		},
+		{
+			"isNull" : "true",
+			"name" : "unitPemesan",
+			"messagesRequired" : "",
+			"caption" : "Unit Pemesan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "temaRapat",
+			"messagesRequired" : "",
+			"caption" : "Tema Rapat"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tglRapat",
+			"messagesRequired" : "",
+			"caption" : "Tgl Rapat"
+		},
+		{
+			"isNull" : "true",
+			"name" : "hari",
+			"messagesRequired" : "",
+			"caption" : "Hari"
+		},
+		{
+			"isNull" : "true",
+			"name" : "waktu",
+			"messagesRequired" : "",
+			"caption" : "Waktu"
+		},
+		{
+			"isNull" : "true",
+			"name" : "lamaPenggunaan",
+			"messagesRequired" : "",
+			"caption" : "Lama Penggunaan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "jumlahPeserta",
+			"messagesRequired" : "",
+			"caption" : "Jumlah Peserta"
+		},
+		{
+			"isNull" : "true",
+			"name" : "pilihJadwal",
+			"messagesRequired" : "",
+			"caption" : "Pilih Jadwal"
+		},
+		{
+			"isNull" : "true",
+			"name" : "namaRuanganRapat",
+			"messagesRequired" : "",
+			"caption" : "Nama Ruangan Rapat"
+		},
+		{
+			"isNull" : "true",
+			"name" : "jenisKonsumsi",
+			"messagesRequired" : "",
+			"caption" : "Jenis Konsumsi"
+		},
+		{
+			"isNull" : "true",
+			"name" : "penambahanKebutuhanSarana",
+			"messagesRequired" : "",
+			"caption" : "Penambahan Kebutuhan Sarana"
+		}
+  ]
+}

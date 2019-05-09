@@ -1,0 +1,65 @@
+<style>
+    .error{
+        background-color:white !important;
+    }
+
+</style>
+
+<c-panel item="item" header="'Suku Cadang Dari Logistik'">
+    <div ng-show="dataVOloaded">
+    <div class="grid_6">
+        <div class="grid_4">
+            <label c-label item="item" style="margin-top: 10px">Nama Barang</label>
+        </div>
+<!--         <div class="grid_8">
+            <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaBarang" k-data-text-field="'namaProduk'" k-data-value-field="'idProduk'" k-filter="'contains'" k-auto-bind="false" k-data-source="dataBarang" />
+        </div> -->
+         <div class="grid_8">
+            <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaBarang" k-data-text-field="'namaProduk'" k-data-value-field="'idProduk'" k-filter="'contains'" k-auto-bind="false" k-data-source="dataSourceBarang" />
+        </div>
+        <div class="grid_4">
+            <label c-label item="item" style="margin-top: 10px">Saldo</label>
+        </div>
+        <div class="grid_2">
+            <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.namaBarang.qtyProduk" disabled="true" />
+        </div>
+        <div class="grid_4">
+            <label c-label item="item" style="margin-top: 10px">Quantity</label>
+        </div>
+        <div class="grid_2">
+            <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.quantity"/>
+        </div>
+         <div class="grid_4">
+            <label c-label item="item" style="margin-top: 10px">Satuan</label>
+        </div>
+        <div class="grid_8">
+            <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaBarang.satuanStandar" disabled="true" />
+        </div>
+        <div class="grid_4">
+            
+        </div>
+        <div class="grid_4">
+            <button class="c-button cancel" ng-click="batal()">Batal</button>
+        </div>
+        <div class="grid_4">
+            <button class="c-button success" ng-click="tambah_data()">Tambah</button>
+        </div>
+    </div>
+        <div class="grid_12">
+            <kendo-grid options="mainGridOptions" k-scrollable="false" k-data-source="dataSource"></kendo-grid>
+        </div>
+        <div class="grid_12">
+            <div class="grid_2"></div>
+            <div class="grid_2"></div>
+            <div class="grid_2"></div>
+            <div class="grid_2"></div>
+            <div class="grid_2">
+                <button class="c-button cancel" ng-click="kembali()">Kembali</button>
+            </div>
+            <div class="grid_2">
+                <button class="c-button success" ng-click="simpan()">Simpan</button>
+            </div>
+        </div>
+
+    </div>
+</c-panel>

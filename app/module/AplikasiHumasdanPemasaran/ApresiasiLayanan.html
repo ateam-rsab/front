@@ -1,0 +1,54 @@
+<style type="text/css">
+	.font1{
+			text-align: center;
+			font-weight: bold;
+	}
+</style>
+<div ng-controller="ApresiasiLayananCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Apresiasi Atas Layanan'"disabled>
+			<div class="grid_12">
+			<h3 align="center">Bagaimana Apresiasi Anda ?</h3>
+							<div class="grid_4" align="center">
+							    <img src="stylesheets/Survei/Happy2.gif" style="width: 140px; height: 140px" /></br>
+								  </br>
+								<input type="radio" name="Puas" id="1" class="k-radio" ng-model="item.gambarMukaKepuasan.id" value="1">
+							   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="k-radio-label" for="1" style="font-weight: bold">Sangat Puas</label>
+							</div>
+							<div class="grid_4" align="center">
+							     
+							     <img src="stylesheets/Survei/sad2.gif" style="width: 140px; height: 140px" /></br>
+								 </br>
+								<input type="radio" name="Tidak Puas" id="2" class="k-radio" ng-model="item.gambarMukaKepuasan.id" value="2">
+								<label class="k-radio-label" for="2" style="font-weight: bold">Puas</label>
+							</div>
+							<div class="grid_4" align="center">
+							
+							 <img src="stylesheets/Survei/angry2.gif" style="width: 140px; height: 140px" /></br>
+								 </br>
+								<input type="radio" name="Kurang Puas" id="3" class="k-radio" ng-model="item.gambarMukaKepuasan.id" value="3">
+								<label class="k-radio-label" for="3" style="font-weight: bold;">Tidak Puas</label>
+							</div>
+					</div>
+				</c-panel>	
+		 <div class="grid_12">
+		    <div class="grid_6"></div>
+			<div class="grid_2">
+				  <button class="c-button success" ng-click="Save()">Apresiasi</button>	
+			</div>
+			<div class="grid_2">
+			       <button class="c-button cancel" ng-click="Cancel()">Cancel</button>	
+			</div>			
+			<div class="grid_2">
+			       <button class="c-button" ng-click="JmlApresiasi()">Jumlah Apresiasi</button>	
+			</div>
+		</div>
+		</c-panel>
+    </div>
+</div>
+
+	<!-- 	<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div> -->
+	<!-- <img src="stylesheets/Survei/Sad.png" > -->
+	 <!-- <img src="stylesheets/Survei/Happy.png" > -->
+	  <!-- <img src="stylesheets/Survei/Angry.png" > -->
+

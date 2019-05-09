@@ -1,0 +1,43 @@
+<div ng-controller="RegistrasiPasien">
+    <div class="container" style="padding:0; margin:0">
+        <div id="logo-bar">
+            <div>
+                <span class="title" style="color: white">Medifirst<span class="c-color">2000</span></span>
+                <span class="c-color sub-title">We Care Your Performace</span>
+
+            </div>
+        </div>
+        <div class="nav-buttons" k-content style="position:absolute;right: 43px;top: 0;">
+            <ul id="NavigationMenu" kendo-menu k-orientation="menuOrientation" k-rebind="menuOrientation">
+                <li ng-repeat="menu in listMenuHeader">
+                    <a href="{{menu.link}}">{{menu.caption}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <span class="badge">
+        <i class=" fa fa-bell" aria-hidden="true" ng-click='isOpen=!isOpen'></i>
+    </span>
+    <!--<div class="badge-panel">
+        <div class="header">
+            Hello
+        </div>
+    </div>-->
+    <c-side-nav header="'Notification Center'" position="'right'" top="37" hide-toggle='true' is-open="isOpen" is-tablet="isTablet">
+
+    </c-side-nav>
+</div>
+
+</div>
+
+<script>
+    $(document).ready(function() {
+        $("#NavigationMenu").kendoMenu();
+    });
+
+    $(document.body).keydown(function(e) {
+        if (e.altKey && e.keyCode == 87) {
+            $("#NavigationMenu").focus();
+        }
+    });
+</script>

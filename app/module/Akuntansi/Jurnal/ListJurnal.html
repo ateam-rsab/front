@@ -1,0 +1,145 @@
+
+<style>
+.style-center{
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+}
+
+.style-right{
+  display: inline-block;
+  text-align: right;
+  width: 100%;
+}
+
+.style-left{
+  display: inline-block;
+  text-align: left;
+  width: 100%;
+}
+
+
+.k-panelbar .k-tabstrip > .k-content, .k-tabstrip > .k-content {
+  display: table-row !important;
+}
+
+.k-tabstrip > .k-content {
+  display: table-row !important;
+}
+
+</style>
+
+  <div ng-show="dataVOloaded">
+    <div class="grid_12 headerBox">
+      <h1 style="color: white;"><b>Jurnal Entri</b></h1>
+    </div>
+    <div class="clear"></div>
+
+    <br/>
+
+    <div class="grid_12">
+
+      <div class="grid_12">
+        <div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+          <p></p>
+        </div>
+        <div class="grid_12 borderBox containerBorderBox">
+
+          <!-- No referensi -->
+          <div class="grid_3">
+            <div class="grid_12">
+              <label c-label item="item" c-label-text="No Referensi"></label>
+            </div>
+            <div class="clear"></div>
+
+            <div class="grid_12">
+              <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noReferensi" />
+            </div>
+          </div>
+
+          <!-- Periode Pulang -->
+          <div class="grid_4">
+            <div class="grid_12">
+              <label c-label item="item" c-label-text="Tanggal Transaksi Jurnal"></label>
+            </div>
+            <div class="clear"></div>
+
+            <div class="grid_12">
+              <!-- AwalPeriode -->
+              <div class="grid_6 padDatePicker">
+                <div class="grid_12">
+                  <input style="width: 100%" k-ng-model="item.tanggalAwal"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                </div>
+              </div>
+
+              <!-- AkhirPeriode -->
+              <div class="grid_6 padDatePicker">
+                <div class="grid_12">
+                  <input style="width: 100%" k-ng-model="item.tanggalAkhir"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                </div>
+              </div>
+              <div class="clear"></div>
+            </div>
+          </div>
+
+          
+          <!-- Status -->
+          <div class="grid_2">
+            <div class="grid_12">
+              <label>Status</label>
+            </div>
+            <div class="clear"></div>
+
+            <div class="grid_12">
+              <input style="width: 100%;" kendo-combo-box k-ng-model="item.status" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listStatus" />
+            </div>
+
+          </div>
+
+
+          <!-- Button Search -->
+          <div class="grid_1">
+            <div class="grid_12">
+              <label>&nbsp;</label>
+            </div>
+            <div class="clear"></div>
+
+            <div class="grid_12">
+              <button class="btnTemplate1" ng-click="SearchData()">Cari</button>
+            </div>
+          </div>
+
+          <div class="clear"></div>
+
+
+          <!-- grid table -->
+          <div class="grid_12 borderBox">
+            <div id="kGrid" kendo-grid 
+            k-data-source="mainGridOptions" 
+            k-selectable="'row'" 
+            k-columns="columnData">
+            <div k-detail-template>
+                <kendo-tabstrip>
+                <div>
+                    <div kendo-grid k-options="detailGridOptions(dataItem)"></div>
+                </div>
+                </kendo-tabstrip>
+            </div>
+
+            </div>
+          </div>
+          <div class="clear"></div>
+
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+    <div class="grid_12" style="margin-top:30px">
+       <div ng-include='"../app/module/Shared/keuangan/TemplateButtoJurnal.html"'></div>
+    </div>
+
+  </div>

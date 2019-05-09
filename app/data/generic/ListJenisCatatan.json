@@ -1,0 +1,16 @@
+[
+	{  
+            "id":1,
+            "name":"Hamil"
+         },
+
+	{
+    "id": 2,
+    "name": "Tunggal"
+    },
+
+	{"id": 3,
+    "name": "Ganda"},
+    {"id": 4,
+    "name": "Tidak Hamil"}
+]

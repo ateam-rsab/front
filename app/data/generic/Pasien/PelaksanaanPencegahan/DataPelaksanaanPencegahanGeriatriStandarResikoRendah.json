@@ -1,0 +1,36 @@
+[
+    {
+        "id": 1,
+        "name": "Menilai kembali risiko jatuh setiap pergantian shift",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    },
+    {
+        "id": 2,
+        "name": "Memberikan pasien / keluarga edukasi penegahan pasien jatuh disertai brosur",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    }
+]

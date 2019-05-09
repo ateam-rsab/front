@@ -1,0 +1,68 @@
+{
+	"model":{
+		"pengendali":"",
+		"kodeAnggaran":"",
+		"jumlah":"",
+		"ppn":"",
+		"total":"",
+		"pembulatan":"",
+		"terbilang":"",
+        "ttd": "",
+		"jabatan1":"",
+	   	"jabatan2":"",
+        "sisaPagu":""
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "pengendali",
+			"messagesRequired" : "",
+			"caption" : "Pengendali"
+		},{
+			"isNull" : "true",
+			"name" : "kodeAnggaran",
+			"messagesRequired" : "",
+			"caption" : "Kode Anggaran"
+		},{
+			"isNull" : "true",
+			"name" : "jumlah",
+			"messagesRequired" : "",
+			"caption" : "Jumlah"
+		},{
+			"isNull" : "true",
+			"name" : "ppn",
+			"messagesRequired" : "",
+			"caption" : "PPN 10%"
+		},{
+			"isNull" : "true",
+			"name" : "pembulatan",
+			"messagesRequired" : "",
+			"caption" : "Pembulatan"
+		},{
+			"isNull" : "true",
+			"name" : "terbilang",
+			"messagesRequired" : "",
+			"caption" : "Terbilang"
+		},{
+			"isNull" : "true",
+			"name" : "ttd",
+			"messagesRequired" : "",
+			"caption" : "Tanda Tangan."
+		},{
+			"isNull" : "true",
+			"name" : "jabatan1",
+			"messagesRequired" : "",
+			"caption" : "Jabatan 1"
+		},{
+			"isNull" : "true",
+			"name" : "jabatan2",
+			"messagesRequired" : "",
+			"caption" : "Jabatan 2"
+		},{
+			"isNull" : "true",
+			"name" : "sisaPagu",
+			"messagesRequired" : "",
+			"caption" : "Sisa Pagu"
+		}
+	]
+}

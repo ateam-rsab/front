@@ -1,0 +1,77 @@
+<style type='text/css'>
+    .button_sliding {
+       -webkit-transition: all ease 0.5s;
+       -moz-transition: all ease 0.5s;
+       transition: all ease 0.5s;
+       border:none;
+       color : #000;
+       margin:3px;
+    }
+
+    .button_sliding:hover {
+        box-shadow: inset 0 50px 0 0 #31302B;
+        color: #fff;
+    }
+</style> 
+<div ng-controller="HeaderCtrl">
+    <div class="container" style="padding:0; margin:0">
+        <div id="logo-bar">
+            <i class="fa fa-bars fa-2x" style="    position: absolute;top: 15px;" aria-hidden="true" ng-click="showMenu()"></i>
+            <div>
+                <span class="title" style="color: white;margin-left:27px">SMART<span class="c-color">&nbsp; RSAB </span></span>
+                <span class="c-color sub-title">Terdepan Dalam Layanan Kesehatan Perempuan, Perinatal dan Anak </span>
+            </div>
+        </div>
+        <div class="nav-buttons" k-content style="position:absolute;right: 43px;top: 0;">
+            <ul id="NavigationMenu" kendo-menu k-orientation="menuOrientation" k-rebind="menuOrientation">
+                <li ng-repeat="menu in listMenuHeader" class="button_sliding"  ng-click="goToLink(menu.link)"  style="border: 1px solid #31302B; background:#ccc !important;">
+                    <!-- <a href="{{menu.link}}">{{menu.caption}}</a> -->
+                    <button class="button_sliding"style="margin:0px; padding: 0px; background:none; border:none; ">
+                    {{menu.caption}}
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <span class="badge">
+        <i class=" fa fa-bell" aria-hidden="true" ng-click='open()'></i>
+    </span>
+        <!--<div class="badge-panel">
+        <div class="header">
+            Hello
+        </div>
+    </div>-->
+        <!--<c-side-nav header="'Notification Center'" position="'right'" top="37" hide-toggle='true' is-open="isOpen" is-tablet="isTablet">
+            <ul>
+                <li ng-repeat="msg in messages">
+                    {{msg.content}}
+                </li>
+            </ul>
+        </c-side-nav>-->
+
+    </div>
+    <div ng-show='hide' class="grid_6" style='position: fixed;
+    height: 109px;
+    right: 0;
+    top: 0;'>
+        <ul class="list-menu" style="    position: absolute;
+    top: 40px;
+    right: 29px;">
+            <li><img src="stylesheets/Radiologi/first.png" ng-click='first()' /></li>
+            <li><img src="stylesheets/Radiologi/back.png" ng-click='back()' /></li>
+            <li><img src="stylesheets/Radiologi/next.png" ng-click='next()' /></li>
+            <li><img src="stylesheets/Radiologi/last.png" ng-click='last()' /></li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $("#NavigationMenu").kendoMenu();
+    });
+
+    $(document.body).keydown(function(e) {
+        if (e.altKey && e.keyCode == 87) {
+            $("#NavigationMenu").focus();
+        }
+    });
+</script>

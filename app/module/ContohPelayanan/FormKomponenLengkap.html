@@ -1,0 +1,237 @@
+<div ng-controller="FormKomponenLengkapCtrl">
+	<div ng-show="dataVOloaded">
+	 
+		<c-panel item="item" header="'Komponen Lengkap'">
+		<div class="grid_12" style="margin-bottom:10px">
+		{{title}} 
+		</div>
+		
+		<!--Form Kiri-->
+
+		<!-- namaPasien --> 
+		<div class="grid_12">
+			<div class="grid_6">
+			<div class="grid_3">
+				<label c-label item="item" c-label-text="nama Pasien"></label>
+			</div>
+			<div class="grid_9">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.InputField" />
+			</div>
+
+			<!-- Tempat Lahir -->
+			<div class="grid_3">
+				<label c-label item="item" c-label-text="Tempat Lahir"></label>
+			</div>
+			<div class="grid_9">
+				<input c-text-box type ="input" filter="'string'" class="k-textbox" ng-model="item.TempatLahir" />
+			</div>
+
+			<!-- Tanggal Lahir -->
+			<div class="grid_3">
+				<label c-label item="item" c-label-text="Tanggal Lahir"></label>
+			</div>
+			<div class="grid_9">
+				<input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.DatePicker" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+			</div>
+
+			<!-- Jenis Kelamin -->
+			<div class="grid_3">
+				<label c-label item="item" c-label-text="Jenis Kelamin"></label>
+			</div>
+			<div class="grid_9">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.JenisKelamin" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataCombobox" />
+			</div>
+
+			<!-- Agama -->
+			<div class="grid_3">
+				<label c-label item="item" c-label-text="Agama"></label>
+			</div>
+			<div class="grid_9">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.Agama" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataAgama" />
+			</div>
+			</div>
+
+
+			<!-- Form Kanan -->
+			<!-- Nama Ayah -->
+			<div class="grid_6">
+			<div class="grid_3">
+				<label c-label item="item" c-label-text="Nama Ayah"></label>
+			</div>
+			<div class="grid_9">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.Ayah" />
+			</div>
+
+			<!-- Nama Ibu -->
+			<div class="grid_3">
+				<label c-label item="item" c-label-text="Nama Ibu"></label>
+			</div>
+			<div class="grid_9">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.Ibu" />
+			</div>
+
+			<!-- Alamat -->
+			<div class="grid_3">
+				 <label c-label item="item" c-label-text="Alamat"></label>
+			</div>
+			<div class="grid_9">
+				 <textarea ng-model="item.Alamat" style="width: 99%; height: 80px;"></textarea>
+			</div>
+			 <div class="clear"></div>
+				
+			</div>
+			</div>
+		
+		<!-- Bikin garis -->
+		<div class="grid_12" style="margin-bottom:10px">
+			<hr style="background-color:#10C4B2;height: 1px;border: 0;" />
+		</div>	
+
+		<!-- Nampilih Judul -->
+		<div class="grid_12" style="margin-top:5px" style="margin-bottom:5px">
+		{{jadwal}} 
+		</div>
+
+
+		<!--Pilih Jadwal-->
+		<div class="grid_12" style="margin-top:10px" style="margin-bottom:10px">
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="Pilih Jadwal"></label>
+			</div>
+			<div class="grid_10">
+				<div class="grid_1" ng-repeat="stat in listDataJadwal">
+	                    <input type="radio" name="{{'Data' + stat.name}}" id="{{'Data' + stat.name}}" class="k-radio" ng-model="tempItem.radiogrid" value="{{stat.name}}">
+	                    <label class="k-radio-label" for="{{'Data' + stat.name}}">{{stat.name}}</label>
+	            </div>
+	         	<div class="clear"></div>
+	         </div>
+		</div>
+			
+
+		<!-- Jam Praktek> -->
+		<div class="grid_12">
+			<div class="grid_2" style ="margin-top:10px">
+				<label c-label item="item" c-label-text="Jam Praktek"></label>
+			</div>
+			<div class ="grid_4">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.Praktek" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="true" k-data-source="listDataPraktek" />
+			</div>
+		</div>
+		<div class="grid_12" style="margin-bottom:10px">
+			<hr style="background-color:#10C4B2;height: 1px;border: 0;" />
+		</div>
+
+
+
+		<!--Riwayat Penyakit -->
+		<div class="grid_12" style="margin-bottom:10px">
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="Riwayat Penyakit"></label>
+			</div>
+			<div class="grid_10">
+				<div class="grid_1" ng-repeat="stat in listRiwayatPenyakit">
+					<input type="radio" name="{{'Penyakit' + stat.name}}" id="{{'Penyakit' + stat.name}}" class="k-radio" ng-model="item.Penyakit" value="{{stat.name}}">
+					<label class="k-radio-label" for="{{'Penyakit' + stat.name}}">{{stat.name}}</label>
+				</div>
+
+			</div>
+			
+		</div>
+			
+		<!-- Penyakit -->	
+
+		<div ng-show="isPenyakit">
+			<div class="grid_6">
+				<div class="grid_4" ng-repeat="Data in listDataPenyakit">
+					<input type="checkbox" class="k-checkbox" name="{{Data.name}}" 
+					id="{{Data.name}}" value="{{Data.id}}" ng-click="cekRiwayatPenyakit(Data)">
+					<label class="k-checkbox-label" for="{{Data.name}}"> {{Data.name}}</label>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+
+
+		<div class="grid_12" style="margin-bottom:10px">
+			<hr style="background-color:#10C4B2;height: 1px;border: 0;" />
+		</div>
+
+
+		<!-- Pilih Penyakit-->
+		<div class="grid_12">    
+			<div class="grid_4" style="margin: 5px">
+				<div class="grid_12">
+					<div class ="gird_12">
+						<label c-label item="item" c-label-text="Pilih Penyakit"></label>     
+					</div>  
+					<div class="grid_12">	
+						<input style="width: 100%;" kendo-combo-box k-ng-model="tempItem.combogrid" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPenyakit" />
+					</div>
+
+					<!-- Input Penyakit-->
+
+					<div class="grid_12">
+						<div class ="gird_12" style="margin: 5px">
+							<label c-label item="item" c-label-text="Input Penyakit"></label>     
+						</div>  
+						<div class="grid_12">	
+							<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="tempItem.TxtGrid" />
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+
+
+
+			<!-- Tanggal Penyakit -->
+			<div class="grid_4" style="margin: 5px">
+				<div class="grid_12">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Pilih Tanggal"></label>
+					</div>
+					<div class="grid_12">
+						<input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="tempItem.TglGrid" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+					</div>
+				</div>
+			</div>
+
+
+
+			<!-- Button Tambah -->
+			<div class="grid_4" style="margin: 5px">
+				<div clas="grid_12">
+
+					<div class="grid_12"></div>
+					<div class="grid_12" style="margin-top: 15px">
+						<c-button ng-click="addDaftarPenyakit()" style="width:10% !important">
+							<span style="font-size:10!important">Tambah</span>
+						</c-button>
+					</div>
+				</div>
+
+				<div class="clear"></div>
+                </div>
+            </div>
+
+        <!-- Grid Tabel -->
+        <div class="grid_12" style="margin-top: 10px;">
+        	<div kendo-grid k-data-source="DaftarPenyakit" k-selectable="'row'" k-columns="columncombogrid">
+        	</div>
+        </div>
+
+
+
+        <!-- Button Simpan -->
+		<div class="grid_12" style="margin-top:10px">
+			<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '>
+			</div>
+    	</div>          
+
+
+		</div>
+	               
+		</c-panel>
+	
+</div>

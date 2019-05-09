@@ -1,0 +1,34 @@
+{
+	"model":{
+		"bundel" : "",
+		"jumlah":"",
+		"satuan":"",
+		"ruangAsal" : ""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "bundel",
+			"messagesRequired" : "",
+			"caption" : "Nama Bundel / Set Alat"
+		},{
+			"isNull" : "true",
+			"name" : "jumlah",
+			"messagesRequired" : "",
+			"caption" : "Jumlah"
+		},{
+			"isNull" : "true",
+			"name" : "satuan",
+			"messagesRequired" : "",
+			"caption" : "Satuan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "ruangAsal",
+			"messagesRequired" : "",
+			"caption" : "Ruang Asal Barang"
+		}
+
+	]
+}

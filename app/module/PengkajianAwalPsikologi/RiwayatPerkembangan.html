@@ -1,0 +1,59 @@
+<div ng-controller="RiwayatPerkembanganCtrl">
+    <c-panel item="item" header="title">
+
+        <div class="grid_12">
+            <div class="grid_2">
+                <label c-label item="item" c-label-text="RiwayatPerkembangan"></label>
+            </div>
+            <div class="grid_3">
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.riwayatPerkembangan" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRiwayatPerkembangan" />
+            </div>
+            <div class="grid_1">
+                <label c-label item="item" c-label-text="Keterangan"></label>
+            </div>
+            <div class="grid_5">
+                <textarea c-text-area type="input" style="height: 40px" filter="'string'" class="k-textbox" ng-model="item.keterangan" placeholder="Keterangan" />
+            </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="grid_6"></div>
+        <div class="grid_6" style="text-align: right">
+            <div class="grid_4"></div>
+            <div class="grid_4">
+                <c-button ng-click="reset()">
+                    <span>Batal</span>
+                </c-button>
+            </div>
+            <div class="grid_4">
+                <c-button ng-click="addDataRiwayatPerkembangan()" style="width:10% !important">
+                    <span>Tambah</span>
+                </c-button>
+            </div>
+        </div>
+<div class="clear"></div>
+        <div class="grid_12" style="margin-top: 10px;" style="margin-bottom: 10px">
+            <div kendo-grid k-data-source="dataRiwayatPerkembangan" k-selectable="'row'" k-columns="columnRiwayatPerkembangan">
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="container_12">
+            <div class="grid_6"></div>
+            <div class="grid_6" style="text-align: right">
+                <div class="grid_4"></div>
+                <div class="grid_4">
+                    <c-button ng-show="!isLoading" style="width: 100%" item="item" is-validate click="Back">
+                        <span>Sebelumnya</span>
+                    </c-button>
+                </div>
+                <div class="grid_4">
+                    <c-button ng-show="!isLoading" style="width: 100%" item="item" is-validate click="Selanjutnya">
+                        <span>Selanjutnya >></span>
+                    </c-button>
+                </div>
+            </div>
+        </div>
+
+    </c-panel>
+    <div ui-view></div>
+</div>

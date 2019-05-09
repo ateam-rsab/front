@@ -1,0 +1,113 @@
+<div ng-controller="RegistrasiPasienCtrl">
+
+    <c-form item="item">
+        <div class="header-panel">
+            <span class="title">Reservasi Pasien</span>
+        </div>
+        <div class="grid_12">
+            <core-busy busy="isLoading"></core-busy>
+            <div class="grid_6">
+                <div class="grid_6">
+                    <label c-label c-label-text="KdTitle"></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.KdTitle" k-data-text-field="'NamaTitle'" k-filter="'contains'" k-data-value-field="'KdTitle'" k-data-source="titles" />
+                </div>
+                <div class="grid_6">
+                    <label c-label c-label-text="KdJenisKelamin"></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.JenisKelamin" k-data-text-field="'JenisKelamin'" k-filter="'contains'" k-auto-bind="false" k-data-value-field="'KdJenisKelamin'" k-data-source="jenisKelamins" />
+                </div>
+                <div class="grid_6">
+                    <label c-label c-label-text="NamaPasien"></label>
+                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NamaPasien" />
+                </div>
+                <div class="grid_6">
+                    <label c-label c-label-text="NoTelepon"></label>
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.NoTelpon" />
+                </div>
+                <div class="grid_12">
+                    <div class="grid_12">
+                        <label c-label c-label-text="NoIdentitas"></label>
+                    </div>
+
+                    <div class="grid_12">
+                        <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.NoIdentitasDetail" />
+                    </div>
+                </div>
+                <div class="grid_5">
+                    <label c-label c-label-text="TempatLahir"></label>
+                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.TempatLahir" />
+                </div>
+                <div class="grid_5">
+                    <label c-label c-label-text="TglLahir"></label>
+                    <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.TglLahir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                </div>
+                <div class="grid_2">
+                    <div class="grid_12">
+                        <label c-label c-label-text="Umur"></label>
+                        <input c-text-box type="input" ng-blur="CalculateAge($event)" mask="99" class="k-textbox" ng-model="item.UmurTahun" />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <label c-label c-label-text="AlamatPasien"></label>
+                    <textarea style="height: 40px" id="alamat" c-text-box type="input" class="k-textbox" ng-model="item.AlamatPasien" />
+                </div>
+                <div class="grid_6">
+                    <label c-label c-label-text="RtRw"></label>
+                    <input id="RtRw" c-text-box type="input" mask="99/99" class="k-textbox" ng-model="item.RtRw" />
+                </div>
+                <div class="grid_6">
+                    <label c-label c-label-text="KodePos"></label>
+                    <input c-text-box type="input" mask="99999" class="k-textbox" ng-model="item.KodePos" />
+                </div>
+                <div class="grid_6">
+                    <label c-label c-label-text="Desa/Kelurahan"></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.Kelurahan" k-data-text-field="'NamaKelurahan'" k-filter="'contains'" k-auto-bind="false" k-data-value-field="'value'" k-data-source="desaKelurahans" />
+                </div>
+                <div class="grid_6">
+                    <label c-label c-label-text="Kecamatan"></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.Kecamatan" k-data-text-field="'NamaKecamatan'" k-filter="'contains'" k-auto-bind="false" k-data-value-field="'value'" k-data-source="kecamatans" />
+
+                </div>
+                <div class="grid_6">
+                    <label c-label c-label-text="Kota/Kabupaten"></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.KotaKabupaten" k-data-text-field="'NamaKotaKabupaten'" k-filter="'contains'" k-data-value-field="'value'" k-auto-bind="false" k-data-source="kotaKabupatens" />
+                </div>
+                <div class="grid_6">
+                    <label c-label c-label-text="Propinsi"></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.Propinsi" k-data-text-field="'NamaPropinsi'" k-filter="'contains'" k-auto-bind="false" k-data-value-field="'value'" k-data-source="propinsis" />
+                </div>
+            </div>
+            <div class="grid_6">
+                <div class="grid_12 b-color-primary c-color-primary" style="padding-left: 10px; margin-top: 10px" ng-Show="isShowQueue">
+                    <span class="title c-color" style="margin-top: 7px;"><label c-label c-label-text="DaftarPasienReservasi"></label></span>
+                    <hr />
+                    <div style="position: relative">
+                        <c-loading ng-Show="isLoadingQueue"></c-loading>
+                        &nbsp;
+
+                    </div>
+                    <div id="panel" class="c-color title">{{jumlahReservasi}}</div>
+                </div>
+                <div class="grid_12">&nbsp;</div>
+                <div class="grid_6">
+                    <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px" item="item" size="36" position="'left'" is-back icon="'icon-prev'">
+                        <span class="title">Kembali</span>
+                    </c-button>
+                </div>
+                <div class="grid_6">
+                    <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px" item="item" size="36" position="'right'" is-validate click="Lanjutkan" icon="'icon-next'">
+                        <span class="title">Proses</span>
+                    </c-button>
+                </div>
+
+            </div>
+        </div>
+
+    </c-form>
+
+</div>
+<script>
+    $(document).ready(function() {
+        // create DatePicker from input HTML element
+        $("#datepicker").kendoDatePicker();
+    });
+</script>

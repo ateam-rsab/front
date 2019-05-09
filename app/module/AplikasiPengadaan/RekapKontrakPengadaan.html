@@ -1,0 +1,79 @@
+<div ng-controller="RekapKontrakPengadaanCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Rekap Kontrak Pengadaan Barang'" disabled>
+		<div class="grid_12">
+			<div class="grid_1"></div>
+			<div class="grid_2" style="margin-top:10px">
+				<label c-label item="item" c-label-text="periode"></label>
+			</div>
+			<div class="grid_3">
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.dari" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"/>
+			</div>
+			<div class="grid_1" style="margin-top:10px;text-align:center">
+				<label c-label item="item">s/d</label>
+			</div>
+			<div class="grid_3">
+				<input style="width: 100%" kendo-date-picker k-ng-model="item.sampai" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"/>
+			</div>
+			<div class="grid_2"></div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_1"></div>
+			<div class="grid_2" style="margin-top:10px">
+				<label c-label item="item" c-label-text="cariSupplier"></label>
+			</div>
+			<div class="grid_3">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaRekanan" k-data-text-field="'namaRekanan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="true" k-data-source="listSuplier"/>
+			</div>
+			<div class="grid_6"></div>
+		</div>
+		<div class="grid_8"></div>
+		<div class="grid_4">
+			<div class="grid_6">
+				<button class="c-button" ng-click="Search()">Cari</button>
+			</div>
+			<div class="grid_6">
+				<button class="c-button" ng-click="Cancel()">Batal</button>
+			</div>
+		</div>
+		<!-- <div kendo-grid k-data-source="daftarPengajuanUsulan" k-selectable="'row'" editable="true" pageable="true" k-columns="columnPengajuanUsulan" style="margin-bottom: 10px"></div> -->
+		</c-panel>
+		<div class="clear"></div>
+		<div class="grid_12" style="margin-bottom: 10px">
+			<kendo-grid k-data-source="dataSource" options="mainGridOptions" k-ng-model="current" ng-click="kl(current.noRec)"></kendo-grid>
+		</div>
+		<div class="clear"></div>
+		<!-- <div class="grid_6"></div>
+		<div class="grid_6">
+			<div class="grid_4">
+				<button class="c-button" ng-click="" disabled>Buat SPPB</button>
+			</div>
+			<div class="grid_4">
+				<button class="c-button" ng-click="" disabled>Daftar SPPB</button>
+			</div>
+			<div class="grid_4">
+				<button class="c-button" ng-click="" disabled>Cetak</button>
+			</div>
+		</div> -->
+	</div>
+</div>
+
+<style>
+  .contact-info-form {
+    list-style-type: none;
+    margin: 30px 0;
+    padding: 0;
+  }
+
+  .contact-info-form li {
+    margin: 10px 0;
+  }
+
+  .contact-info-form label {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    font-weight: bold;
+  }
+</style>

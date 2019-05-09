@@ -1,0 +1,26 @@
+<div ng-controller="ApotekAmbilPemeriksaanCtrl">
+    <div ng-include='"../app/module/Shared/headerPasien" '></div>
+    <div class="grid_12">
+        <c-panel item="item" header="'penyerahanHasil'" disabled>
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="tanggalAmbilHasil"></label>
+            </div>
+            <div class="grid_8">
+                <input style="width: 100%" kendo-date-picker k-min="now" k-value='now' k-ng-model="item.tglAmbilHasil" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+            </div>
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="namaPengambilHasil"></label>
+            </div>
+            <div class="grid_8">
+                <input c-text-box type="input" class="k-textbox" ng-model="item.namaPengambilHasil" />
+            </div>
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="nomorTelpon"></label>
+            </div>
+            <div class="grid_8">
+                <input c-text-box type="input" class="k-textbox" ng-model="item.noTelpon" />
+            </div>
+        </c-panel>
+    </div>
+    <div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+</div>

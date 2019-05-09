@@ -1,0 +1,27 @@
+<style>
+	button:disabled {
+    background: #B5B2B1;
+}
+</style>
+<div>
+    <c-panel item="item" header="'Verifikasi Uraian Tugas Pegawai'" disabled>
+        <div class="grid_12">
+            <div class="grid_2">
+                <label c-label item="item" c-label-text="tanggalInput"></label>
+                <input kendo-date-picker k-ng-model="item.tanggal" k-format="'dd-MM-yyyy'" style="width:100%"/>
+            </div>
+            <div class="grid_3">
+                <label c-label item="item" c-label-text="Pegawai"></label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawaiBawahan" />
+            </div>
+            <div class="grid_1">
+                <label c-label c-label-text=""></label>
+                <em style="margin-top:6px;" ng-click='loadGrid()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+            </div>
+        </div>
+        <div class="grid_12">
+            <kendo-grid id="gridUraianTugas" k-data-source="dataSource" k-options="dataGridUraiantugas"></kendo-grid>
+        </div>
+    </c-panel>
+    <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+</div>

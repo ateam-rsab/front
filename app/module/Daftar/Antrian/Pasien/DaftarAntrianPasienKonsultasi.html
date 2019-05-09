@@ -1,0 +1,71 @@
+<div ng-controller="DaftarAntrianPasienKonsultasiCtrl">
+    <div>
+
+        
+
+        <div class="panel panel-default container_12">
+            <div class="panel-heading"><label class='title' c-label item="item" c-label-text="daftarPasienTerdaftarRawatJalan"></label></div>
+            <div class="panel-body">
+                <div class="grid_12">
+                    <div class="grid_5">
+                        <div class="grid_12">
+                            <label c-label c-label-text="tanggalMasukan"></label>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_6">
+                                <input style="width: 100%" k-ng-model='from' k-value='now' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                            </div>
+                            <div class="grid_6">
+                                <input style="width: 100%" k-ng-model='until' k-max='now' k-value='now' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_4">
+                        <label c-label c-label-text="masukanNamaPasien" real></label>
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="namaPasien" />
+                    </div>
+                    <div class="grid_1">
+                        <label c-label c-label-text=""></label>
+                        <em style="margin-top:6px;" ng-click='findData()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_12">
+
+            <div data-kendo-grid="grid" k-groupable="'true'" k-aggregate='aggregate' k-ng-model="item" k-data-source="patienGrids" k-selectable="'row'" k-sortable="'true'" k-columns="Column">
+            </div>
+        </div>
+
+
+
+        <div ng-hide="isCalling" class="grid_12 place_button">
+            <div class="grid_3">
+                <c-button style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" is-validate click="monitoring">
+                    <span class="title">Monitoring</span>
+                </c-button>
+            </div>
+            <div class="grid_3">
+                <c-button click='pemeriksaanPasien' style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" is-validate click="Lanjutkan">
+                    <span class="title">Pemeriksaan Pasien</span>
+                </c-button>
+            </div>
+            <div class="grid_3" ng-hide="validasiruangan == 14">
+                <c-button style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" is-validate click="masukPasien">
+                    <span class="title">Panggil</span>
+                </c-button>
+            </div>
+            <div class="grid_3">
+                <c-button style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" is-validate click="detailOrder">
+                    <span class="title">Rincian</span>
+                </c-button>
+            </div>
+            <div class="grid_3">
+                <c-button click='detailPasien' style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" is-validate click="Lanjutkan">
+                    <span class="title">Detail Pasien</span>
+                </c-button>
+            </div>
+        </div>
+
+    </div>
+</div>

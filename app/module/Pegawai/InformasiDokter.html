@@ -1,0 +1,40 @@
+<div ng-controller="InformasiDokterCtrl" style="background-color:white;position: absolute;">
+    <!-- panel anamnsis -->
+
+
+    <div class="grid_12">
+        <div class="grid_2">
+            <span class="title center">Waktu</span>
+        </div>
+        <div class="grid_2 center">
+            <span class="title center">Senin</span>
+
+        </div>
+        <div class="grid_2 center">
+            <span class="title center">Selasa</span>
+        </div>
+        <div class="grid_2 center">
+            <span class="title center">Rabu</span>
+        </div>
+        <div class="grid_2 center">
+            <span class="title center">Kamis</span>
+        </div>
+        <div class="grid_2 center">
+            <span class="title center">Jumat</span>
+        </div>
+    </div>
+    <div class="grid_12">
+        <div style="position:relative" ng-class="{'gray':$index%2===0}" class="grid_12 " ng-repeat="item in listDokterSenen">
+            <div class="grid_2  panel-information-day" style="position:relative"><span>{{item.waktu}}</span></div>
+            <div style="position:relative" class="grid_2" ng-repeat="subItem in item.children">
+                <div style="position:relative" class="grid_12" ng-repeat="data in subItem.children">
+                    <span style="font-weight: bolder;
+    font-size: 12px;
+    text-align: left;
+    left: 0px;
+    float:left"> {{data.namaDokter}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

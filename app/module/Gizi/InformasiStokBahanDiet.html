@@ -1,0 +1,22 @@
+<div ng-controller="InformasiStokBahanDietCtrl">
+    <div class="panel panel-default container_12">
+        <div class="panel-heading" c-translate>Informasi Stok Bahan Diet</div>
+        <div class="panel-body">
+        	<div class="grid_12" style="margin-top: 20px">
+        		<kendo-grid options="mainGridOptions" id="dataGrid">
+                </kendo-grid>
+            </div>
+            <div class="grid_12" style="margin-top: 30px">
+                <div class="grid_2" style="margin: 10px 5px 5px 0;" align="center">
+                    <label c-label item="item" c-label-text="cariBahanDiet"></label>
+                </div>
+                <div class="grid_4">
+                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.cariBahanDiet" />
+                </div>
+                <div class="grid_6"></div>
+            </div>
+            <div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+        </div>
+        </div>
+    </div>
+</div>

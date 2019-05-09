@@ -1,0 +1,106 @@
+<div class="grid_12" ng-controller="InputTindakanCtrl">
+    <div ng-include='"../app/module/Shared/headerPasienPenunjang" '></div>
+    <div item="item" header="'DataAlergi'" disabled>
+
+        <div class="grid_6">
+            <div class="panel panel-default">
+
+                <div class="panel-heading" c-translate>Masukan Tindakan</div>
+                <div class="panel-body">
+                    <div class="grid_6">
+                        <label c-label item="item" c-label-text="RuanganTujuan"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="model.ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuanganTujuan" />
+                    </div>
+                    <div class="grid_6">
+                        <!-- tanggal order -->
+                        <label c-label item="item" c-label-text="tanggalPelayanan"></label>
+
+                        <input style="width: 100%" k-ng-model="model.tglPelayanan" k-value='now' kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+
+                        <!-- no resep -->
+
+                    </div>
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="Tindakan"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="model.namaProduk" k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listNamaBarang" />
+                    </div>
+                    <div class="grid_6">
+                        <label c-label c-label-text="Jenis Pelaksana" statment></label>
+                        <input kendo-combo-box style="width:100%" k-ng-model="temp.jenisPelaksana" k-data-text-field="'jenisPetugasPe'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceJenisDiagnosisPrimer" />
+                    </div>
+                    <div class="grid_6">
+                        <label c-label c-label-text="namaPegawai" statment></label>
+                        <input kendo-combo-box tyle="width:100%" k-ng-model="temp.pegawai" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" />
+                    </div>
+                    <div class="grid_12">&nbsp;</div>
+                    <div class="grid_12">
+                        <div class="grid_6">
+                            <c-button ng-click="addPegawai()">
+                                <span style="font-size:10!important" c-translate>Tambah Pelaksana</span>
+                            </c-button>
+                        </div>
+                        <div class="grid_6">
+                            <c-button ng-click="simpan()">
+                                <span style="font-size:10!important" c-translate>Tambah Tindakan </span>
+                            </c-button>
+                        </div>
+                    </div>
+                    <!--<div class="grid_4">
+                        <div class="grid_12" style="float:right">
+                            <c-button is-validate click="Next" class='success'>
+                                <span style="font-size:10!important" c-translate>Simpan</span>
+                            </c-button>
+                        </div>
+                    </div>
+                    <div class="clear"></div>-->
+
+                    <!-- grid diagnosis -->
+
+                </div>
+            </div>
+
+        </div>
+        <div class="grid_6">
+            <div class="panel panel-default">
+                <div class="panel-heading"><label c-label c-label-text="daftarTindakan" class="title" /> </div>
+                <div class="panel-body">
+                    <div class="grid_12">
+                        <br/>
+                        <div class="grid_12"><b c-translate>Ruangan</b> : {{model.ruangan.namaRuangan}}</div>
+                        <div class="grid_12"><b c-translate>Tanggal </b> : {{model.tglPelayanan |date:'dd-MM-yyyy'}}</div>
+                        <div class="grid_12"><b c-translate>Nama Tindakan</b> : {{model.namaProduk.namaProduk}}</div>
+                        <div class="grid_12" ng-show="model.detailPelaksana.length !==0"><b c-translate>Pelaksana : </b></div>
+                        <div class="grid_12" ng-repeat="data in model.detailPelaksana">
+                            <div class="grid_4">
+                                {{data.jenisPelaksana.jenisPegawai}}
+                            </div>
+                            <div class="grid_8">
+                                {{data.pegawai.namaLengkap}}
+                            </div>
+                        </div>
+                        <hr/>
+                    </div>
+                    <div class="grid_12" ng-repeat="model in items">
+                        <div class="grid_12"><b c-translate>Ruangan</b> : {{model.ruangan.namaRuangan}}</div>
+                        <div class="grid_12"><b c-translate>Tanggal </b> : {{model.tglPelayanan |date:'dd-MM-yyyy'}}</div>
+                        <div class="grid_12"><b c-translate>Nama Tindakan</b> : {{model.namaProduk.namaProduk}}</div>
+                        <div class="grid_12" ng-show="model.detailPelaksana.length !==0"><b c-translate>Pelaksana : </b></div>
+                        <div class="grid_12" ng-repeat="data in model.detailPelaksana">
+                            <div class="grid_4">
+                                {{data.jenisPelaksana.jenisPegawai}}
+                            </div>
+                            <div class="grid_8">
+                                {{data.pegawai.namaLengkap}}
+                            </div>
+                        </div>
+                        <hr/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid_12" style="margin-top:15px">
+        <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+    </div>
+</div>

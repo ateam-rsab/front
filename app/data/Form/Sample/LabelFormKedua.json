@@ -1,0 +1,90 @@
+{
+	"Agama" : "",
+	"AlamatLengkap" : "",
+	"JenisKelamin" : "",
+	"NamaLengkapAyah" : "",
+	"NamaLengkapIbu" : "",
+	"NamaLengkapPasien" : "",
+	"NamaLengkapSuami" : "",
+	"Pekerjaan" : "",
+	"Pendidikan" : "",
+	"StatusPerkawinan" : "",
+	"TempatTanggalLahir" : "",
+
+    "attributes" : [{
+		"isNull" : "true",
+		"name" : "Agama",
+		"messagesRequired" : "Agama Harus Diisi",
+		"caption" : "Agama / Religion"
+	}, 
+		{
+			"isNull" : "true",
+			"name" : "AlamatLengkap",
+			"messagesRequired" : "Alamat Lengkap Harus Diisi",
+			"caption" : "Alamat Lengkap / Full Address"
+		},
+	 
+		{
+			"isNull" : "true",
+			"name" : "JenisKelamin",
+			"messagesRequired" : "Jenis Kelamin Harus Diisi",
+			"caption" : "Jenis Kelamin / Sex"
+		},
+	
+		{
+			"isNull" : "true",
+			"name" : "NamaLengkapAyah",
+			"messagesRequired" : "Nama Lengkap Ayah Harus Diisi",
+			"caption" : "Nama Lengkap Ayah"
+		},
+	
+		{
+			"isNull" : "true",
+			"name" : "NamaLengkapIbu",
+			"messagesRequired" : "Nama Lengkap Ibu Harus Diisi",
+			"caption" : "Nama Lengkap Ibu"
+		},
+	
+		{
+			"isNull" : "true",
+			"name" : "NamaLengkapPasien",
+			"messagesRequired" : "Nama Lengkap Pasien Harus Diisi",
+			"caption" : "Nama Lengkap Pasien"
+		},
+	
+		{
+			"isNull" : "true",
+			"name" : "NamaLengkapSuami",
+			"messagesRequired" : "Nama Lengkap Suami Harus Diisi",
+			"caption" : "Nama Lengkap Suami"
+		},
+	
+		{
+			"isNull" : "true",
+			"name" : "Pekerjaan",
+			"messagesRequired" : "Pekerjaan Harus Diisi",
+			"caption" : "Pekerjaan (Suami/Ayah/Sendiri)"
+		},
+	
+		{
+			"isNull" : "true",
+			"name" : "Pendidikan",
+			"messagesRequired" : "Pendidikan Harus Diisi",
+			"caption" : "Pendidikan / Education"
+		},
+
+		{
+			"isNull" : "true",
+			"name" : "StatusPerkawinan",
+			"messagesRequired" : "Status Perkawinan Harus Diisi",
+			"caption" : "Status Perkawinan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "TempatTanggalLahir",
+			"messagesRequired" : "Tempan dan Tanggal Lahir Harus Diisi",
+			"caption" : "Tempat & Tanggal Lahir"
+		}
+
+	]
+}

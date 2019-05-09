@@ -1,0 +1,75 @@
+<div ng-controller="HargaNettoProdukByKelasRevCtrl">
+	<div ng-show="dataVOloaded">
+		<!-- <c-panel item="item" header="'Harga Netto Produk By Kelas'" disabled> -->
+		<div class="grid_12 headerBox">
+			<h1 style="color: white;"><b>Harga Netto Produk By Kelas</b></h1>
+		</div>
+
+		
+
+		<div class="grid_12">
+			<div class="grid_1">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Kode Produk"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeProduk" ng-keypress="($event.which == 13)? CariKodeProduk():item.kodeProduk" />
+				</div>
+			</div>
+			<div class="grid_4">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Nama Produk"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.cariProduk" ng-keypress="($event.which == 13)? CariProduk():item.cariProduk" />
+				</div>
+			</div>
+			<div class="grid_2">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="kelas"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.kelas" k-data-text-field="'namaKelas'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listkelas" />
+				</div>
+			</div>
+			<div class="grid_4">
+				<div class="grid_2" style="margin-top: 15px">
+					<button class="c-button" ng-click="Cari()">Cari</button>
+				</div>
+				
+			</div>
+			<div class="grid_12 borderBox">
+				<kendo-grid options="mainGridOptions" k-on-change="Select(data)" k-data-source="dataSource" k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+			</div>
+			<div class="grid_9">
+			</div>
+			<div class="grid_3">
+				<div class="grid_4">
+					<label>&nbsp;</label>
+				</div>
+				<div class="grid_4" >
+					<button class="c-button" ng-click="tambah()">Tambah</button>
+				</div>
+				<div class="grid_4" >
+					<button class="c-button" ng-click="edit()">Edit</button>
+				</div>
+				
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+
+
+<!-- 
+</c-panel> -->
+  <div class="grid_12" style="margin-top:60px">
+        <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+    </div>
+</div>
+</div>

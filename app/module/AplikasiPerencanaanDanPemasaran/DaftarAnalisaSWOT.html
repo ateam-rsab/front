@@ -1,0 +1,71 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Daftar Analisa SWOT</div>
+	<div class="panel-body">
+		<div class="grid_12">
+			<div class="grid_12">
+				<div class="grid_8">
+					<div class="grid_12">
+						<div class="grid_3" style="margin-top:15px">
+							<label c-label item="item">Periode</label>
+						</div>
+						<div class="grid_2">
+							<input style="width:100%" kendo-date-picker k-options="yearSelected" value="now" k-ng-model="item.awal" k-format="'yyyy'" k-on-change="tahun()"/>
+						</div>
+						<div class="grid_1" align="center" style="margin-top:10px">
+							<label c-label item="item">s/d</label>
+						</div>
+						<div class="grid_2">
+							<input style="width:100%" kendo-date-picker value="now" k-ng-model="item.akhir" k-format="'yyyy'" readonly="true" />
+						</div>
+					</div>
+				</div>
+				<div class="grid_8">
+					<div class="grid_12">
+						<div class="grid_3" style="margin-top:15px">
+							<label c-label item="item">Jenis Analisa SWOT</label>
+						</div>
+						<div class="grid_6">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisAnalisaSwot" k-data-text-field="'namaFaktor'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceDaftarSwot" k-on-change="titleTable()"/>
+						</div>
+						<div class="grid_2" style="margin:5px">
+							<button class="c-button success" ng-click="search()">Cari</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div kendo-grid k-data-source="sourceDaftarAnalisaSwot" k-selectable="'row'" options="mainGridOptions"></div>
+				<!-- <div kendo-grid k-ng-model = "item.grid" k-data-source="sourceDaftarAnalisaSwot" k-selectable="'row'" k-columns="columnDaftarAnalisaSwot" pageable="true"></div> -->
+			</div>
+			<div class="grid_12" style="padding-top:20px">
+				<div class="grid_8"></div>
+				<div class="grid_2" style="padding-top:10px">
+					<div class="grid_10" align="center">
+						<label c-label item="item" c-label-text="total"></label>
+					</div>
+					<div class="grid_2" align="right">
+						<label c-label item="item" c-label-text=":"></label>
+					</div>
+				</div>
+				<div class="grid_2">
+					<input c-text-box type="input" readOnly="true" filter="'numeric'" class="k-textbox" ng-model="item.total"/>
+				</div>
+			</div>
+			<div class="grid_12" style="padding:20px 0 20px 0">
+				<div class="grid_4"></div>
+				<div class="grid_2">
+					<button class="c-button success" ng-click="diagramKartesius()">Diagram Kartesius</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button success" ng-click="Search()">Cetak</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button cancel" ng-click="Search()">Hapus</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button cancel" ng-click="Search()">Tutup</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

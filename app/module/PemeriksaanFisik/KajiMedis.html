@@ -1,0 +1,326 @@
+  <div ng-controller="KajiMedisCtrl">
+<div ng-show="dataVOloaded">
+    <c-panel item="item" header="'PengkajianAwalMedis'">
+          <div class="grid_12">
+          <div class="grid_6">
+            <div class="grid_12">
+                <div class="grid_2">
+                  <label c-label item="item" c-label-text="Bayi"></label>
+                </div>
+                <div class="grid_3" ng-repeat="stat in listStatusBayi">
+                 <input type="radio"  name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.Bayi" value="{{stat.name}}"  >
+                 <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+               </div>
+            </div>
+               <div class="grid_12">
+               <div class="grid_2">
+                  <label c-label item="item" c-label-text="Lahirdi"></label>
+               </div>
+               <div class="grid_3" ng-repeat="stat in listStatusLahir">
+                 <input type="radio"  name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.Lahirdi" value="{{stat.name}}"  >
+                 <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+               </div>
+               </div>
+          </div>
+          <div class="grid_6">
+              
+                   
+                 <div class="grid_12" style="margin: 5px 0 5px 0">
+                 <label c-label item="item" c-label-text="pasien.TanggalDanJamLahir"></label>
+                            </div>
+                <div class="grid_12">
+
+                    <input style="width: 100%" kendo-date-time-picker k-max="now" k-ng-model="item.tanggallahir" k-data-text-field="'tanggallahir'" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy hh:mm'" />
+
+                            </div>
+          </div>
+        </div> 
+		
+		</br>
+		<hr style="background-color:#10C4B2;height: 1px;border: 0;" /></hr>	
+		</br>
+		<div class="grid_12">
+				<!-- 			<div class="grid_6" style="margin: 5px 0 5px 0">
+                 <label c-label item="item" c-label-text="pasien.Jam"></label>
+                            </div>
+							<div class="grid_6">
+	            	 <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.Tengkurap" />
+	            </div>
+							
+                        </div>
+						</br> -->
+						</br>
+		<hr style="background-color:#10C4B2;height: 1px;border: 0;" /></hr>	
+		</br>				
+		<div class="grid_12">
+                   
+                 <div class="grid_6" style="margin: 5px 0 5px 0">
+                 <label c-label item="item" c-label-text="pasien.TanggalDanJamMasukRumahSakit"></label>
+                            </div>
+                <div class="grid_6">
+
+					<input style="width: 100%" kendo-date-time-picker k-max="now" k-ng-model="item.tglMasukRS" k-data-text-field="'tanggallahir'" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy hh:mm'" />
+
+                            </div>
+				<!-- 			<div class="grid_6" style="margin: 5px 0 5px 0">
+                 <label c-label item="item" c-label-text="pasien.Jam"></label>
+                            </div>
+							<div class="grid_6">
+	            	 <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.Tengkurap" />
+	            </div> -->
+							
+                        </div>		
+<div class="grid_12">
+                   
+                <div class="grid_6" style="margin: 5px 0 5px 0">
+                 <label c-label item="item" c-label-text="pasien.DirujukDari"></label>
+                            </div>
+							<div class="grid_6">
+	            	 <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.diRujukDr" />
+	            </div>
+							<div class="grid_6" style="margin: 5px 0 5px 0">
+                 <label c-label item="item" c-label-text="pasien.SewaktuUmur"></label>
+                            </div>
+							<div class="grid_6">
+	            	 <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.SwaktuUmur" />
+	            </div>
+							
+                        </div>
+
+ <div class="grid_12">
+                                <div class="grid_12" style="margin: 10px 5px 5px 0;">
+                                    <label c-label item="item" c-label-text="SebabDirujuk"></label>
+                                    
+                                </div>
+                                <div class="grid_12" style="margin: 10px 5px 5px 0;">
+                                    <textarea style="width: 99%; height: 80px;"></textarea>
+                                </div>
+                                
+                            </div>						
+				<hr style="background-color:#10C4B2;height: 1px;border: 0;" /></hr>	
+
+						
+ <div class="grid_12">
+          <div class="grid_12">
+                <div class="grid_6">
+                  <label c-label item="item" c-label-text="Kehamilan"></label>
+                </div>
+                <div class="grid_12" ng-repeat="stat in listStatusKehamilan">
+                 <input type="radio"  name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.Kehamilan" value="{{stat.name}}"  >
+                 <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+                 
+               </div>
+            </div>
+            
+			
+			<div class="grid_12">
+               <div class="grid_6">
+                  <label c-label item="item" c-label-text="Minggu"></label>
+               </div>
+			    <div class="grid_6">
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.mingguKe" />
+            </div>
+			</div>
+            
+            <div class="grid_12">
+                <div class="grid_6" >
+                 <label c-label item="item" c-label-text="Beratbadanlahir"></label>
+                            </div>
+							<div class="grid_6">
+	            	 <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.beratBadan" />
+	            </div>
+							<div class="grid_6">
+                 <label c-label item="item" c-label-text="gram"></label>
+                            </div>
+							
+            </div>
+            </div> 	
+				
+						</br>
+					
+						</br>
+							<hr style="background-color:#10C4B2;height: 1px;border: 0;" /></hr>
+							<div class="grid_12" style="margin: 10px 5px 10px 0;">
+                <label c-label item="item" c-label-text="Cara Resusitasi"></label>
+                
+            </div>
+			
+							 <div class="grid_12">
+
+				 <div class="grid_5" ng-repeat="stat in listStatusResusitasi">
+                       <input type="checkbox"  name="{{stat.name}}" id="{{stat.name}}" class="k-checkbox"  value="{{stat.name}}"  >
+                        <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+						
+                </div>
+				
+				<div class="grid_12">
+                                <div class="grid_12" style="margin: 10px 5px 5px 0;">
+                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                    
+                                </div>
+                                <div class="grid_12" style="margin: 10px 5px 5px 0;">
+                                    <textarea style="width: 99%; height: 80px;"></textarea>
+                                </div>
+                                
+                            </div>				
+
+                
+            </div>
+			
+			<div class="grid_12">
+                   
+                <div class="grid_6" style="margin: 5px 0 5px 0">
+                 <label c-label item="item" c-label-text="pasien.Golongan Darah"></label>
+                            </div>
+							<div class="grid_6">
+	            	  <input style="width: 100%;" kendo-combo-box k-ng-model="item.umur"
+                               k-data-text-field="'name'"
+                               k-filter="'contains'"
+                               k-data-value-field="'KdTitle'"
+                               k-data-source="listumur" />
+							   </div>
+							<div class="grid_6" style="margin: 5px 0 5px 0">
+                 <label c-label item="item" c-label-text="pasien.RH"></label>
+                            </div>
+							<div class="grid_6">
+	            	 <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.pasienRh" />
+	            </div>
+							
+                        </div>
+						 
+			<hr style="background-color:#10C4B2;height: 1px;border: 0;" /></hr>	
+			<div class="grid_12">
+                                <div class="grid_12" style="margin: 10px 5px 5px 0;">
+                                    <label c-label item="item" c-label-text="Pemeriksaan"></label>
+                                    
+                                </div>
+                               
+                                
+                            </div>	
+
+<div class="grid_12">
+                   
+                 <div class="grid_12" style="margin: 5px 0 5px 0">
+                 <label c-label item="item" c-label-text="pasien.TanggalDanJam"></label>
+                            </div>
+                <div class="grid_12">
+
+					<input style="width: 100%" kendo-date-time-picker k-max="now" k-ng-model="item.tanggallahir" k-data-text-field="'tanggallahir'" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy hh:mm'" />
+
+                            </div>
+							<!-- <div class="grid_12" style="margin: 5px 0 5px 0">
+                 <label c-label item="item" c-label-text="pasien.Jam"></label>
+                            </div> -->
+							<div class="grid_12">
+	            	 <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.Tengkurap" />
+	            </div>
+				<div class="grid_12" style="margin: 5px 0 5px 0">
+                 <label c-label item="item" c-label-text="pasien.Umur"></label>
+                            </div>
+							<div class="grid_12">
+	            	 <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.Tengkurap" />
+	            </div>
+							
+                        </div>	
+
+          <div class="grid_12" >
+            <div class="grid_12" style="margin: 40px 0 5px 0" >
+                <div class="grid_6" >
+                  <label c-label item="item" c-label-text="Warna"></label>
+                </div>
+                <div class="grid_12" ng-repeat="stat in listStatusNormalAbnormal">
+                 <input type="radio"  name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.WarnaKulit" value="{{stat.name}}"  >
+                 <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+                 
+               </div>
+            </div>
+            
+        
+            <div class="grid_12">
+               <div class="grid_6">
+                  <label c-label item="item" c-label-text="Gizi"></label>
+               </div>
+               <div class="grid_12" ng-repeat="stat in listStatusNormalAbnormal">
+                 <input type="radio"  name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.Kelainan" value="{{stat.name}}"  >
+                 <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+                 
+               </div>
+            </div>
+             
+
+            <div class="grid_12">
+                <div class="grid_6">
+                  <label c-label item="item" c-label-text="Pernapasan"></label>
+                </div>
+                <div class="grid_12" ng-repeat="stat in listStatusNormalAbnormal">
+                 <input type="radio"  name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.ResikoDekubitus" value="{{stat.name}}"  >
+                 <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+                 
+                </div>
+            </div>
+             
+
+           
+               
+          </div>
+
+
+<div class="grid_12">
+                   
+                 <div class="grid_6" style="margin: 5px 0 5px 0">
+                 <label c-label item="item" c-label-text="pasien.UkuranPanjang"></label>
+                            </div>
+                <div class="grid_6">
+<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.ukuranPanjang" />
+					
+
+                            </div>
+							<div class="grid_6" style="margin: 5px 0 5px 0">
+                 <label c-label item="item" c-label-text="pasien.Cm"></label>
+                            </div>
+							
+							
+                        </div>	
+<div class="clear"> </div>
+
+<div class="grid_12">
+                   
+                 <div class="grid_6" style="margin: 5px 0 5px 0">
+                 <label c-label item="item" c-label-text="pasien.LingkarKepala"></label>
+                            </div>
+                <div class="grid_6">
+<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.lingkarKepala" />
+					
+
+                            </div>
+							<div class="grid_6" style="margin: 5px 80px 5px 0">
+                 <label c-label item="item" c-label-text="pasien.Cm"></label>
+                            </div>
+							
+							
+                        </div>							
+			
+			
+			
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+	
+		
+		</div>
+		
+		    <div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+		
+		</c-panel>
+		
+		
+		</div>
+	
+		

@@ -1,0 +1,148 @@
+<div ng-show="dataVOloaded">
+
+		<div class="grid_12 headerBox">
+	    	<h1 style="color: white;"><b>Verifikasi Piutang Pasien</b></h1>
+	    </div>
+	    <div class="clear"></div>
+
+	    <br/>
+
+		<!-- -->
+		<div class="grid_12">
+			<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+				<p></p>
+			</div>
+			<div class="grid_12 borderBox containerBorderBox">
+				<!-- NoRekamMedik -->
+				<div class="grid_6">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="NoRekamMedik"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noRekamMedik" ng-disabled="true"/>
+					</div>
+				</div>
+
+				<!-- NoRegistrasi -->
+				<div class="grid_6">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="NoRegistrasi"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noRegistrasi" ng-disabled="true"/>
+					</div>
+				</div>
+				<div class="clear"></div>
+
+				<!-- NamaPasien -->
+				<div class="grid_6">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="NamaPasien"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nama" ng-disabled="true"/>
+					</div>
+				</div>
+
+				<!-- JenisPasien -->
+				<div class="grid_6">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="JenisPasien"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jenisPasien.namaExternal" ng-disabled="true"/>
+					</div>
+				</div>
+				<div class="clear"></div>
+
+
+				<!-- TanggalMasuk -->
+				<div class="grid_6">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="TanggalMasuk"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.tanggalMasuk" ng-disabled="true"/>
+					</div>
+				</div>
+
+				<!-- TanggalPulang -->
+				<div class="grid_6">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="TanggalPulang"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.tanggalPulang" ng-disabled="true"/>
+					</div>
+				</div>
+				<div class="clear"></div>
+
+				<!-- KelasRawat -->
+				<div class="grid_6">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="KelasRawat"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kelasRawat.namaExternal" ng-disabled="true"/>
+					</div>
+				</div>
+
+				<!-- KelasPenjamin -->
+				<div class="grid_6">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="KelasPenjamin"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kelasPenjamin.namaExternal" ng-disabled="true"/>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="clear"></div>
+
+		<br/>
+
+		<!-- -->
+		<div class="grid_12">
+			<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+				<p></p>
+			</div>
+			<div class="grid_12 borderBox containerBorderBox">
+				<!-- JumlahPiutang -->
+				<div class="grid_12">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="JumlahPiutang"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.totalPiutang" ng-disabled="true"/>
+					</div>
+				</div>
+
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="clear"></div>
+
+	<div class="grid_12" style="margin-top:30px">
+		<div ng-include='"../app/module/Shared/Keuangan/TemplateButtonTataRekening"'></div>
+	</div>
+</div>

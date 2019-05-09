@@ -1,0 +1,147 @@
+[
+    {
+        "id": 1,
+        "name": "Orientasikan ruangan pada pasien dan keluarga",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    }, {
+        "id": 2,
+        "name": "Buat posisi tempat tidur rendah dan ada remnya",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    }, {
+        "id": 3,
+        "name": "Ada pengaman samping tempat tidur dengan 2 atau 4 sisi pengaman. Mempunyai luas tempat tidur yang cukup untuk mencegah tangan dan kaki atau bagian tubuh lain kejepit",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    }, {
+        "id": 4,
+        "name": "Menggunakan alas kaki yang tidak licin untuk pasien yang dapat berjalan",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    }, {
+        "id": 5,
+        "name": "Menilai kemampuan untuk ke kamar mandi & membrikan bantuan bila dibutuhkan",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    }, {
+        "id": 6,
+        "name": "Menempatkan pasien dekat nurse station dengan penerangan cukup",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    }, {
+        "id": 7,
+        "name": "Lingkungan harus bebas dari peralatan yang mengandung risiko",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    }, {
+        "id": 8,
+        "name": "Memberikan penjelasan pada pasien dan keluarga",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    }, {
+        "id": 9,
+        "name": "Brosur edukasi jatuh harus berada pada tempatnya",
+        "children":[
+            {
+                "id": 1,
+                "name": "Tidak",
+                "score": 0
+            },
+            {
+                "id": 2,
+                "name": "Ya",
+                "score": 0
+            }
+        ],
+        "score":0
+    }
+]

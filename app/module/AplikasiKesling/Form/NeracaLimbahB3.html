@@ -1,0 +1,133 @@
+<div ng-controller="NeracaLimbahB3Ctrl">
+	<div class="panel panel-default container_12">
+		<div class="panel-heading" c-translate>Neraca Limbah B3</div>
+		<div class="panel-body">
+			<div class="grid_12">
+				<div class="panel panel-default container_12">
+					<div class="panel-heading" c-translate>Pencarian</div>
+					<div class="panel-body">
+						<div class="grid_12" >
+							<div class="grid_2" style="margin-top: 25px">
+								<c-button ng-click="" style="width:100% !important">
+								<span style="font-size:10!important">cari</span>
+								</c-button>
+							</div>
+							<div class="grid_1"></div>
+							<div class="grid_3" style="margin-top: 10px">
+								<div class="grid_12" style="margin-left:5px">
+									<label c-label item="item" c-label-text="periodeAwal"></label>
+								</div>
+								<div class="grid_12" style="margin-top:5px">
+									<input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAwal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+								</div>
+							</div>
+							<div class="grid_1" style="margin-top: 35px" align="center">
+								 <label c-label item="item" c-label-text="sd"></label>
+							</div>
+							<div class="grid_3" style="margin-top: 10px">
+								<div class="grid_12" style="margin-left:5px">
+									<label c-label item="item" c-label-text="periodeAkhir"></label>
+								</div>
+								<div class="grid_12" style="margin-top:5px">
+									<input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAkhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="grid_12" style="margin-top: 10px">
+				<div class="grid_5">
+					<kendo-grid  k-data-source="dataJenisAwalLimbah" k-selectable="'row'" k-columns="columndataJenisAwalLimbah">
+                	</kendo-grid>
+				</div>
+				<div class="grid_2">
+					<div class="grid_12">
+						<div class="grid_10" align="right" style="margin-top: 5px">
+							<label c-label item="item" c-label-text="catatan"></label>
+						</div>
+						<div class="grid_2" style="margin-top: 5px" align="center">
+						:
+						</div>
+					</div>
+				</div>
+				<div class="grid_5">
+					<textarea ng-model="item.catatan" style="width: 99%; height: 80px;"></textarea>
+				</div>
+			</div>
+			<div class="grid_12" style="margin-top: 20px">
+				<div class="grid_3" style="margin-top: 5px" align="center">
+					<label c-label item="item" c-label-text="totalJenisAwalLimbah"></label>
+				</div>
+				<div class="grid_1">
+					 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.beratSampahMedis" />
+				</div>
+				<div class="grid_1" style="margin-top: 5px">
+					<label c-label item="item" c-label-text="kg"></label>
+				</div>
+			</div>
+			<div class="grid_12" style="margin-top: 20px">
+				<kendo-grid  k-data-source="dataPerlakuanLimbah" k-selectable="'row'" k-columns="columndataPerlakuanLimbah">
+                </kendo-grid>
+			</div>
+			<div class="grid_12" style="margin: 10px 0 20px 0;">
+				<div class="grid_3" style="margin-top: 5px">
+					<label c-label item="item" c-label-text="total"></label>
+				</div>
+				<div class="grid_1">
+					 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.total" />
+				</div>
+				<div class="grid_1" style="margin-top: 5px">
+					<label c-label item="item" c-label-text="kg"></label>
+				</div>
+			</div>
+			<div class="grid_12" style="margin: 10px 0 20px 0;">
+				<div class="grid_5" style="margin-top: 5px">
+					<label c-label item="item" c-label-text="residu"></label>
+				</div>
+				<div class="grid_2">
+					 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.residu" />
+				</div>
+			</div>
+			<div class="grid_12" style="margin: 10px 0 20px 0;">
+				<div class="grid_5" style="margin-top: 5px">
+					<label c-label item="item" c-label-text="jumlahLimbahBelumTerkelola"></label>
+				</div>
+				<div class="grid_2">
+					 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jumlahLimbahBelumTerkelola" />
+				</div>
+			</div>
+			<div class="grid_12" style="margin: 10px 0 20px 0;">
+				<div class="grid_5" style="margin-top: 5px">
+					<label c-label item="item" c-label-text="jumlahLimbahTersisa"></label>
+				</div>
+				<div class="grid_2">
+					 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.jumlahLimbahTersisa" />
+				</div>
+			</div>
+			<div class="grid_12" style="margin: 10px 0 20px 0;">
+				<div class="grid_5" style="margin-top: 5px">
+					<label c-label item="item" c-label-text="kinerjaPengelola"></label>
+				</div>
+				<div class="grid_2">
+					 <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.residu" />
+				</div>
+			</div>
+			<div class="grid_12" style="margin: 10px 0 20px 0;">
+			<label c-label item="item" c-label-text="penjumlahan"></label>
+			</div>
+			<div class="grid_12" >
+				<div class="grid_4" style="margin-top: 10px">
+					<c-button ng-click="" style="width:100% !important">
+					<span style="font-size:10!important">Cetak Logbook Limbah Bahan B3</span>
+					</c-button>
+				</div>
+			</div>
+			<div class="grid_12" style="margin-top: 20px">
+				<div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>

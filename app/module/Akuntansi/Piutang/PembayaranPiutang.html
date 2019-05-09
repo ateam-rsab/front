@@ -1,0 +1,187 @@
+<style>
+	.style-center{
+		display: inline-block;
+		text-align: center;
+		width: 100%;
+	}
+
+	.style-right{
+		display: inline-block;
+		text-align: right;
+		width: 100%;
+	}
+
+	.style-left{
+		display: inline-block;
+		text-align: left;
+		width: 100%;
+	}
+</style>
+<div ng-show="dataVOloaded">
+	<div class="grid_12 headerBox">
+		<h1 style="color: white;"><b>Pembayaran Piutang</b></h1>
+	</div>
+	<!-- <c-panel item="item"  disabled> -->
+
+	<!-- Kriteria -->
+	<div class="grid_12">
+		<div class="grid_12 borderBox containerBorderBox">
+
+			<div class="grid_12">
+				<div class="grid_2">
+					<label c-label item="item" c-label-text="TanggalTerima"></label>
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.tanggalTerima" ng-disabled="true"/>
+				</div>
+				<div class="grid_2">
+					<label c-label item="item" c-label-text="Jenis Transaksi"></label>
+					<!-- <b>NO FPK</b> -->
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jenisTransaksi" ng-disabled="true"/>
+				</div>
+				<!-- <div class="grid_2">
+					<label c-label item="item" c-label-text="TotalSaldo"></label>
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.totalSaldo" ng-disabled="true"/>
+				</div> -->
+				<div class="grid_6">
+					<label c-label item="item" c-label-text="Keterangan"></label>
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.Keterangan" ng-disabled="true"/>
+				</div>
+			</div>
+			<!-- <div class="grid_12">
+				<div class="grid_1">
+					<label c-label item="item" c-label-text="Terbilang :"></label>
+				</div>
+				<div class="grid_11">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.Terbilang" ng-disabled="true"/>
+				</div>
+
+			</div> -->
+		</div>
+		<!-- <c-panel item="item"  disabled> -->
+
+		<!-- <div class="grid_12">
+			<div class="grid_2">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="No Collecting"></label>
+				</div>
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.noCollecting" k-data-text-field="'noPosting'" k-data-value-field="'noPosting'" k-filter="'contains'" k-auto-bind="false" k-data-source="listCollecting" />
+				</div>
+			</div>
+			<div class="grid_2" style="margin-top: 5px" >
+				<button class="btnTemplate1" ng-click="LoadDataCollect()">Load Data</button>
+			</div>
+		</div> -->
+		<div class="grid_12">
+				<div class="grid_12 borderBox">
+					<!-- <div kendo-grid k-data-source="dataDaftarPenerimaanHarian" k-selectable="'row'" k-columns="columnDaftarPenerimaanHarian">
+				</div> -->
+					<div class="grid_12 headerBox">
+						<p>Daftar Collecting</p>
+					</div>
+					<div class="grid_12 borderBox">
+						<div id="kGrid" kendo-grid 
+							k-data-source="dataCollecting" 
+							k-selectable="'row'" 
+							k-columns="columnCollecting"
+							k-pageable="'true'"
+							k-sortable="'true'"
+							k-ng-model="dataSelectedCollecting">
+						</div>
+					</div>
+				</div>
+				<div class="grid_2" style="margin-top: 5px" >
+				<button class="btnTemplate1" ng-click="LoadDataCollect()">Load Data</button>
+			</div>
+			</div>
+	</div>
+	<div class="clear"></div>
+
+	<br/>
+
+	<!-- PembayaranPiutang -->
+			<!-- <div class="grid_12">
+				<div class="grid_12 borderBox">
+					<div kendo-grid k-data-source="dataPembayaranPiutang" k-selectable="'row'" k-columns="columnPembayaranPiutang">
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div> -->
+
+			<div class="grid_12">
+				<div class="grid_12 borderBox">
+					<!-- <div kendo-grid k-data-source="dataDaftarPenerimaanHarian" k-selectable="'row'" k-columns="columnDaftarPenerimaanHarian">
+				</div> -->
+					<div class="grid_12 headerBox">
+						<p>Daftar Piutang</p>
+					</div>
+					<div class="grid_12 borderBox">
+						<div id="kGrid" kendo-grid 
+							k-data-source="dataPembayaranPiutang" 
+							k-selectable="'row'" 
+							k-columns="columnPembayaranPiutang"
+							k-pageable="'true'"
+							k-sortable="'true'"
+							k-ng-model="dataSelected">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="grid_6">
+			</div>
+			<div class="grid_6">
+				<div class="grid_4"></div>
+				<div class="grid_8">
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="Total Klaim"></label>
+					</div>
+					<div class="grid_8">
+						<input c-text-box type="input" style="text-align: right;" filter="" class="k-textbox" ng-model="item.totalKlaim" ng-disabled="true"/>
+					</div>
+				</div>
+				<div class="grid_4"></div>
+				<div class="grid_8">
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="Total Bayar"></label>
+					</div>
+					<div class="grid_8">
+						<input c-text-box type="input" style="text-align: right;" filter="" class="k-textbox" ng-model="item.totalBayar" ng-disabled="true"/>
+					</div>
+				</div>
+				<div class="grid_4"></div>
+				<div class="grid_8">
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="Jumlah Penerimaan"></label>
+					</div>
+					<div class="grid_8">
+						<input c-text-box type="input" style="text-align: right;" filter="" class="k-textbox" ng-model="item.totalSaldo" ng-disabled="true"/>
+					</div>
+				</div>
+				<div class="grid_4"></div>
+				<div class="grid_8">
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="Selisih Pembayaran"></label>
+					</div>
+					<div class="grid_8">
+						<input c-text-box type="input" style="text-align: right;" filter="" class="k-textbox" ng-model="item.selisihPembayaran" ng-disabled="true"/>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- 	</c-panel> -->
+			<div class="grid_12">
+				<div class="grid_8">
+				</div>
+				<div class="grid_2" style="margin-top: 5px" >
+					<button class="btnTemplate1" ng-click="Bayar()">Bayar</button>
+				</div>
+				<div class="grid_2" style="margin-top: 5px" >
+					<button class="btnTemplate1" ng-click="Back()">Kembali</button>
+				</div>
+			</div>
+			<!-- <div class="grid_12" style="margin-top:30px">
+				<div ng-include='"../app/module/Shared/Keuangan/TemplateButtonPiutang"'></div>
+			</div> -->
+		</div>
+

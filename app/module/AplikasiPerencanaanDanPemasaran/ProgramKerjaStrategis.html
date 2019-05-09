@@ -1,0 +1,64 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Program Kerja Strategis</div>
+	<div class="panel-body">
+		<div class="grid_12">
+			<div class="grid_12">
+				<div class="grid_2" style="margin-top:15px">
+					<label c-label item="item">Periode Tahun</label>
+				</div>
+				<div class="grid_1" style="margin-top:15px" align="right">:</div>
+				<div class="grid_2">
+					<input style="width: 100%" kendo-date-picker k-options="yearSelected" value="now" k-max="now" k-ng-model="item.periode" k-format="'yyyy'" k-on-change="tahun()"/>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_12">
+					<div class="grid_2" style="margin-top:15px">
+						<label c-label item="item">Sasaran Strategis</label>
+					</div>
+					<div class="grid_1" style="margin-top:15px" align="right">:</div>
+					<div class="grid_8">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.sasaranStrategis" k-data-text-field="'sasaranStrategis'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourcedaftarSasaranStrategiss" />
+					</div>
+				</div>
+			</div>
+			<div class="grid_12" style="margin-top:5px">
+				<div class="grid_12">
+					<div class="grid_2" style="margin-top:15px">
+						<label c-label item="item">Program Kerja Strategis</label>
+					</div>
+					<div class="grid_1" style="margin-top:15px" align="right">:</div>
+					<div class="grid_8">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.programKerjaStrategis" k-data-text-field="'programKerjaStrategis'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceMasterProgramKerjaStrategis" />
+					</div>
+				</div>
+			</div>
+			<div class="grid_12" style="padding-top:10px">
+				<div class="grid_8"></div>
+				<div class="grid_2">
+					<button class="c-button success" ng-click="Save()">Simpan</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button cancel" ng-click="Batal()">Batal</button>
+				</div>
+			</div>
+			<div class="grid_12">
+				<c-panel item="item" header="titled" disabled>
+					<div class="grid_12" style="margin-top: 10px;">
+						<div kendo-grid k-on-change="Select(data)" k-data-source="sourceDaftarProgramKerjaStrategis" k-selectable="'row'" options="mainGridOptions"></div>
+						<!-- <div kendo-grid k-data-source="sourceDaftarProgramKerjaStrategis" k-selectable="'row'" k-columns="columnDaftarProgramKerjaStrategis"></div> -->
+					</div>
+					<div class="grid_12" style="padding-top:30px">
+						<div class="grid_8"></div>
+						<div class="grid_2">
+							<button class="c-button success" ng-click="Search()">Cetak</button>
+						</div>
+						<div class="grid_2">
+							<button class="c-button cancel" ng-click="Search()">Tutup</button>
+						</div>
+					</div>
+				</c-panel>
+			</div>
+		</div>
+	</div>
+</div>

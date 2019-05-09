@@ -1,0 +1,123 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Kontrak Kinerja</div>
+	<div class="panel-body">
+		<div class="grid_12">
+			<div class="grid_8">
+				<div class="grid_12">
+					<div class="grid_4">
+						<label c-label item="item">Unit Kerja</label>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_6" style="margin-bottom:5px">
+						<!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.RuanganUser" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceRuanganUser" disabled /> -->
+						<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.departemen.namaDepartemen" readonly="true" />
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_4">
+						<label c-label item="item">Sasaran Strategis</label>
+					</div>
+				</div>
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.sasaranStrategis" k-data-text-field="'sasaranStrategis'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceMasterSasaranStrategis" k-on-change="getSarpras()"/>
+				</div>
+				<div class="grid_12">
+					<div class="grid_4" style="margin-top:10px">
+						<label c-label item="item">Indikator</label>
+					</div>
+				</div>
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.indikator" k-data-text-field="'indikator.indikator'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceMasterIndikator" k-on-change="getSatuan()" />
+				</div>
+				<div class="grid_12" style="margin-top:10px">
+					<div class="grid_4">
+						<label c-label item="item">Peran</label>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_6">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.peran" k-data-text-field="'peran'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceMasterPeran" />
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_4">
+						<label c-label item="item">Tahun</label>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_4">
+						<input style="width: 100%" kendo-date-picker k-options="yearSelected" value="now" k-max="now" k-ng-model="item.tahun" k-format="'yyyy'" />
+					</div>
+				</div>
+			</div>
+			<div class="grid_4">
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item">Target</label>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_8">
+						<input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.pencapaian" />
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_8">
+						<label c-label item="item">Satuan Indikator</label>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_8">
+						<!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.satuanIndikator" k-data-text-field="'satuanIndikator'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceMasterSatuanIndikator" /> -->
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.satuanIndikator" readonly="true" />
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_7">
+						<label c-label item="item">Bobot</label>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_8" style="margin-bottom:5px">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.bobot" k-data-text-field="'bobotIndikator'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceMasterBobot" />
+						<!-- <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.bobot" /> -->
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item">Program</label>
+					</div>
+				</div>
+				<div class="grid_12" style="margin-top:5px">
+					<!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.programKerjaStrategis" k-data-text-field="'programKerjaStrategis'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceMasterProgramKerjaStrategis" /> -->
+					<textarea ng-model="item.programKerjaStrategis" ng-readOnly="cheked" style="width: 99%; height: 100px;"></textarea>
+				</div>
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_8"></div>
+			<div class="grid_2">
+				<button class="c-button success" ng-click="addData()">Tambah</button>
+			</div>
+			<div class="grid_2">
+				<button class="c-button cancel" ng-click="Search()">Hapus</button>
+			</div>
+		</div>
+		<div class="grid_12" style="margin-top: 10px;">
+	        <div kendo-grid k-data-source="dataKontrakKinerja" k-selectable="'row'" k-columns="columnDataKontrakKinerja"></div>
+        </div>
+        <div class="grid_12" style="margin-top:20px">
+            <div class="grid_5"></div>
+            <div class="grid_2">
+                <button class="c-button success" ng-click="Save()">Simpan</button>
+            </div>
+             <div class="grid_3">
+                <button class="c-button success" ng-click="Daftar()">Daftar Kontrak Kinerja</button>
+            </div>
+            <div class="grid_2">
+                <button class="c-button cancel" ng-click="()">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>

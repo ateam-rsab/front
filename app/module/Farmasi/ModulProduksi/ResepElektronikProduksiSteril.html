@@ -1,0 +1,84 @@
+<!-- <div ng-controller="ResepElektronikCtrl"> -->
+
+    <div ng-show="dataVOloaded">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="grid_12">
+                    <div class="grid_3">
+                        <div class="grid_12">
+                            <label c-label c-label-text="TanggalOrder" real></label>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_6">
+                                <input style="width: 100%" k-value='now' k-ng-model='startDate' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                            </div>
+                            <div class="grid_6">
+                                <input style="width: 100%" k-value='now' k-ng-model='untilDate' kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_3">
+                        <div class="grid_12">
+                            <label c-label c-label-text="NoRM" real></label>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_8">
+                                <input c-text-box type="input"  class="k-textbox" ng-model="noCm" />
+                            </div>
+                            <div class="grid_4">
+                                <c-button class="c-button" style="padding:0px" click='refresh'>
+                                    <span c-translate>CARI</span>
+                                </c-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <!--<div class="panel-heading">{{title}}</div>-->
+            <div class="panel-body" style="padding:0px">
+                <div class="grid_12">
+                    <kendo-grid k-groupable="'true'" k-ng-model="item" k-data-source="patienGrids" k-selectable="'row'" k-sortable="'true'" k-columns="arrColumnGridResepElektronik"></kendo-grid>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid_12 place_button">
+            <div class="grid_2">
+                <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" click="verifikasi">
+                    <span class="title"><label  c-label c-label-text='verifikasi' font-size="13"></label></span>
+                </c-button>
+            </div>
+
+
+            <div class="grid_2">
+                <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" click="detailOrder">
+                    <span class="title"><label  c-label c-label-text='detailOrder' font-size="13"></label></span>
+                </c-button>
+            </div>
+            <div class="grid_2">
+                <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" click="updateProduksi">
+                    <span class="title"><label  c-label c-label-text='Produksi' font-size="13"></label></span>
+                </c-button>
+            </div>
+            <div class="grid_2">
+                <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" click="updatePackaging">
+                    <span class="title"><label  c-label c-label-text='Packaging' font-size="13"></label></span>
+                </c-button>
+            </div>
+            <div class="grid_2">
+                <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" click="updateDone">
+                    <span class="title"><label  c-label c-label-text='Selesai' font-size="13"></label></span>
+                </c-button>
+            </div>
+            <div class="grid_2">
+                <c-button ng-show="!isLoading" style="width: 100%; padding:0px, margin:0px;" item="item" position="'right'" click="ambilObat">
+                    <span class="title"><label  c-label c-label-text='PenyerahanObat' font-size="13"></label></span>
+                </c-button>
+            </div>
+
+        </div>
+    </div>
+
+<!-- </div> -->

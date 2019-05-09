@@ -1,0 +1,33 @@
+[    
+    {
+        "noRegistrasi":"1606000001",
+        "tanggal":"13/06/2016T00:00:00",
+        "noCm": "0000002",
+        "namaPasien": "Junaedi",
+        "ruanganTujuan": "Alamanda",
+        "status": "Sudah diperiksa dokter",
+        "statusPeriksa": "3",
+        "isKajianAwal":true
+    },
+    {
+        "noRegistrasi":"1606000002",
+        "tanggal":"13/06/2016T00:00:00",
+        "noCm": "0000001",
+        "namaPasien": "Dimas",
+        "ruanganTujuan": "Alamanda",
+        "status": "Sudah diperiksa suster",
+        "statusPeriksa": "2",
+        "isKajianAwal":false
+    }
+    ,
+    {
+        "noRegistrasi":"1606000003",
+        "tanggal":"13/06/2016T00:00:00",
+        "noCm": "0000003",
+        "namaPasien": "Juminten",
+        "ruanganTujuan": "Alamanda",
+        "status": "Menunggu",
+        "statusPeriksa": "1",
+        "isKajianAwal":true
+    }
+]

@@ -1,0 +1,123 @@
+<div ng-controller="RiwayatKesehatanCtrl"><br/>
+
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Riwayat Kesehatan'">
+            <!-- Pernah dirawat -->
+            <div class="grid_12" style="border: none">
+                <label c-label item="item" c-label-text="Pernah Dirawat "></label>
+            </div>
+            <div class="grid_12">
+                <div class="grid_3" ng-repeat="stat in listYaTidak">
+                    <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                    <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <!-- keterangan Pernah d rawat -->
+            <div ng-show="isPernahDirawat">
+
+                <div class="grid_12 borderBox">
+                    <div class="grid_12">
+                        <div class="grid_5" style="margin: 5px;">
+                            <label c-label item="item" c-label-text="Diagnosis"></label>
+                        </div>
+                        <div class="grid_5 suffix_2" style="margin: 5px">
+                            <label c-label item="item" c-label-text="Tanggal"></label>
+                        </div>
+
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_5" style="margin: 5px">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="tempItem.riwayatPenyakitOrObat" k-data-text-field="'namaDiagnosa'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDiagnosis" />
+                        </div>
+
+                        <div class="grid_5" style="margin: 5px">
+                            <input style="width: 100%" k-ng-model="tempItem.tanggalRiwayat" kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                        </div>
+
+                        <div class="grid_2" style="margin: 5px">
+                            <c-button ng-click="addDataRiwayatPenyakitOrObat()" style="width:100% !important">
+                                <span style="font-size:10!important">Tambah</span>
+                            </c-button>
+                        </div>
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <!-- grid diagnosis -->
+                    <div ng-show="isAdaDiagnosis">
+                        <div class="grid_12" style="margin-top: 10px;">
+                            <div kendo-grid k-data-source="dataRiwayatPenyakitOrObat" k-selectable="'row'" k-columns="columnRiwayatPenyakitOrObat">
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="clear"></div>
+
+
+            <!-- AlatImplant -->
+            <div class="grid_12" style="border: none">
+                <label c-label item="item" c-label-text="AlatImplant"></label>
+            </div>
+            <div class="grid_12">
+                <div class="grid_3" ng-repeat="stat in listYaTidak">
+                    <input type="radio" name="{{'AlatImplant' + stat.name}}" id="{{'AlatImplant' + stat.name}}" class="k-radio" ng-model="item.alatImplant" ng-value="stat">
+                    <label class="k-radio-label" for="{{'AlatImplant' + stat.name}}">{{stat.name}}</label>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <!-- keterangan alat implant -->
+            <div ng-show="isAdaAlatImplant">
+                <div class="grid_12">
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="Keterangan"></label>
+                    </div>
+                    <div class="grid_10">
+                        <textarea ng-model="item.keteranganAlatImplant" style="width: 99%; height: 80px;"></textarea>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="clear"></div>
+
+            <!-- RiwayatDalamKeluarga -->
+            <div class="grid_12" style="border: none">
+                <label c-label item="item" c-label-text="RiwayatDalamKeluarga"></label>
+            </div>
+
+            <div class="grid_12">
+                <div class="grid_3" ng-repeat="stat in listYaTidak">
+                    <input type="radio" name="{{'RiwayatDalamKeluarga' + stat.name}}" id="{{'RiwayatDalamKeluarga' + stat.name}}" class="k-radio" ng-model="item.riwayatDalamKeluarga" ng-value="stat">
+                    <label class="k-radio-label" for="{{'RiwayatDalamKeluarga' + stat.name}}">{{stat.name}}</label>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <!-- detail penyakit mayor -->
+            <div ng-show="isAdaPenyakitMayor">
+                <div class="grid_6">
+                    <div class="grid_4">
+                        <label c-label="" item="item" c-label-text="Penyakit Mayor" class="ng-isolate-scope c-label"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input style="width: 100%;" kendo-combo-box k-data-source="listDataPenyakitMayor" k-ng-model="item.penyakitMayor" k-data-text-field="'name'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="" />
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div><hr>
+
+        </c-panel>
+
+
+
+        <div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
+    </div>
+
+
+
+</div>

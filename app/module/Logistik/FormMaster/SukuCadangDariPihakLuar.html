@@ -1,0 +1,78 @@
+<style>
+    .error{
+        background-color:white !important;
+    }
+
+</style>
+
+<div ng-controller="SukuCadangDariPihakLuarCtrl">
+    <c-panel item="item" header="'Suku Cdang Dari Pihak Ke 3'">
+        <div ng-show="dataVOloaded">
+            <div class="panel panel-default container_12">
+                <div ng-cloak>
+                    <md-content>
+                        <md-tabs md-dynamic-height md-border-bottom>
+                            <md-tab label="Barang Lama">
+                                <md-content class="md-padding">
+                                <div class="grid_12">
+                                    <div class="grid_6">
+                                        <div class="grid_4">
+                                            <label c-label item="item" style="margin-top: 10px">Kelompok Produk</label>
+                                        </div>
+                                        <div class="grid_8">
+                                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.kelompokProduk" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="dataComboBox" />
+                                        </div>
+                                        <div class="grid_4">
+                                            <label c-label item="item" style="margin-top: 10px">Jenis Produk</label>
+                                        </div>
+                                        <div class="grid_8">
+                                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisProduk" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="dataComboBox" />
+                                        </div>
+                                        <div class="grid_4">
+                                            <label c-label item="item" style="margin-top: 10px">Nama Produk</label>
+                                        </div>
+                                        <div class="grid_8">
+                                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaProduk" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="dataComboBox" />
+                                        </div>
+                                        <div class="grid_4">
+                                            <label c-label item="item" style="margin-top: 10px">Satuan Produk</label>
+                                        </div>
+                                        <div class="grid_8">
+                                            <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.satuanProduk" disabled="true" />
+                                        </div>
+                                        <div class="grid_4">
+                                            <label c-label item="item" style="margin-top: 10px">Jumlah</label>
+                                        </div>
+                                        <div class="grid_8">
+                                            <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahBarangLama" />
+                                        </div>
+                                        <div class="grid_4">
+                                            
+                                        </div>
+                                        <div class="grid_6">
+                                            <button class="c-button" ng-click="()">Simpan</button>
+                                        </div>
+                                        <div class="grid_6">
+                                            <button class="c-button" ng-click="()">Batal</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                </md-content>
+                            </md-tab>
+                            <md-tab label="Barang Baru">
+                                <md-content class="md-padding">
+                                    
+                                </md-content>
+                            </md-tab>
+                        </md-tabs>
+                    </md-content>
+                </div>
+            </div>
+            <div class="grid_12">
+                <kendo-grid options="mainGridOptions_2" k-scrollable="false" k-data-source="dataSource_2" k-selectable="'row'" k-ng-model="grid_2" ng-click="click(grid_2)"></kendo-grid>
+            </div>
+            <div class="grid_6">
+
+            </div>
+        </c-panel>
+    </div>

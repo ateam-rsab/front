@@ -1,0 +1,106 @@
+<style type="text/css">
+	.ui-datepicker-calendar {
+    display: none;
+    }​
+</style>
+<div ng-controller="RiwayatRKAKLctrl"> 
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Riwayat Penyusunan'" disabled>
+
+			<!-- -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<div class="grid_12" style="margin-top: 10px; margin-left:5px;">
+						<label c-label item="item" c-label-text="Tahun Anggaran"></label>
+					</div>
+					<!-- <div class="clear"></div> -->
+
+					<div class="grid_4">
+						<input style="width: 100%" k-ng-model="item.periodeTahun"  kendo-date-picker k-max="now" placeholer="yyyy" k-format="'yyyy'" k-options="monthSelectorOptions()"/>
+					</div>
+					<div class="grid_3" style="margin-top:7px;">
+                        <button class="c-button" style="width: 150px" ng-click="findData()">Cari</button>
+                    </div>
+				</div>
+
+			</div>
+			<div class="clear"></div>
+
+			<br/>
+
+			<!-- PenyusunanTRPNBP -->
+			<!-- <div class="grid_12">
+				<div class="grid_12 headerBox">
+					<p>Detail RKA-KL</p>
+				</div>
+				<div class="clear"></div>
+
+				 <div class="grid_12 borderBox">
+					<div k
+				</div> 
+				<div class="clear"></div>
+			</div> -->
+			<div class="grid_12">
+				<div class="grid_12 headerBox">
+					<p>Detail RKA-KL Tahunan</p>
+				</div>
+				<div class="clear"></div>
+
+				
+				<div class="grid_12 borderBox">
+            <div id="kGrid" kendo-grid 
+            k-data-source="dataPenyusunanTRPNBP" 
+            k-pageable="true"
+            k-sortable="'true'" 
+            k-columns="columnPenyusunanTRPNBP"
+            k-ng-model="dataPasienSelected">
+            
+
+            </div>
+
+            
+          </div>
+
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+
+			<br/>
+
+		</c-panel>
+		<div class="grid_12" style="margin-top:10px;">
+			<!-- <div class="grid_5"></div> -->
+			<div class="grid_2" style="float:right;">
+				<button class="c-button" ng-click="Save()">Revisi</button>
+			</div>
+			<div class="grid_2" style="float:right;">
+				<button class="c-button" ng-click="Batal()">Distribusi</button>
+			</div>
+			<div class="grid_2" style="float:right;">
+				<button class="c-button" ng-click="refresh()">Refresh</button>
+			</div>
+		</div>
+		<!-- <div class="grid_12">
+			<div class="grid_2" style="margin-top: 10px">
+				<label c-label item="item" c-label-text="Status Pengajuan"></label>
+			</div>
+
+			<div class="grid_4">
+				<input style="width: 200px" kendo-combo-box k-ng-model="item.now" />
+			</div>
+		</div>
+
+		<div class="grid_12">
+			<div class="grid_2">
+				<button class="c-button" style="width: 150px" ng-click="Batal()">Simpan</button>
+			</div>
+			<div class="grid_2">
+				<button class="c-button" style="width: 150px" ng-click="Batal()">Kembali</button>
+			</div>
+		</div> -->
+
+		<!-- <div class="grid_12" style="margin-top:30px">
+			<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
+		</div> -->
+	</div>
+</div>

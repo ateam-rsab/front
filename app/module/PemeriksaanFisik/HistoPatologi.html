@@ -1,0 +1,134 @@
+<div ng-controller="HistoPatologiCtrl">
+    <c-panel item="item" header="'Laboratorium Patologi Anatomik Histopatologi'">
+
+      
+      
+		<div class="grid_12">
+			
+                 <div class="grid_12">
+				 <div class="grid_12" style="margin: 10px 5px 5px 10px;">
+				  <label c-label item="item" c-label-text="Jaringan Tubuh Yang Didapatkan Dengan"></label>
+				  </div>
+				  <div class="grid_12" style="margin: 10px 5px 5px 10px;" >
+				   <div class="grid_3"  ng-repeat="stat in listStatusJaringanTubuh">
+                       <input type="checkbox"  name="{{stat.name}}" id="{{stat.name}}" class="k-checkbox"  value="{{stat.name}}"  >
+                        <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+					</div>
+                </div>
+				</div>
+				<div class="clear"> </div>
+				<div class="grid_12">
+					 <div class="grid_12" style="margin: 10px 5px 5px 10px;">
+				  <label c-label item="item" c-label-text="LokalisasiJaringanYangSakit"></label>
+				  </div>
+                                <div class="grid_12" style="margin: 10px 5px 5px 10px;">
+                                    <textarea style="width: 99%; height: 80px;"></textarea>
+                                </div>
+                              
+				   
+				     </div>
+					 <div class="clear"> </div>
+					  <div class="grid_12">
+				 <div class="grid_2" style="margin: 10px 5px 5px 10px;">
+				  <label c-label item="item" c-label-text="Cairan Fikasasi"></label>
+				  </div>
+				   <div class="grid_2" style="margin: 10px 5px 5px 10px;" ng-repeat="stat in listStatusFikasasi">
+                       <input type="checkbox"  name="{{stat.name}}" id="{{stat.name}}" class="k-checkbox"  value="{{stat.name}}"  >
+                        <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+						
+                </div>
+				</div>
+					
+					
+					 
+					 
+					 
+					
+							
+			 
+					
+			
+
+			
+			</div>
+			
+  
+		
+		   
+        
+		
+		
+			
+		
+		
+
+
+
+	   
+	                 
+          
+			  
+					<div class="grid_4">
+					 <div class="grid_12">
+			            <div class="grid_6" style="margin: 10px 0 5px 11px;">
+						 
+		                    <input type="radio" name="filterDiagnosis" id="kodeDiagnosis" class="k-radio" checked="checked" ng-model="item.typeDiagnosisKlinik" value="kode">
+              				<label class="k-radio-label" for="kodeDiagnosis">Kode Diagnosis</label>
+		                </div>
+		                <div class="grid_6" style="margin: 10px 0 5px -5px;">
+		                    <input type="radio" name="filterDiagnosis" id="nameDiagnosis" class="k-radio" ng-model="item.typeDiagnosisKlinik" value="name">
+              				<label class="k-radio-label" for="nameDiagnosis">Nama Diagnosis</label>
+		                </div>
+						</div>
+					</div>
+					 <div class="grid_4">
+			      <div class="grid_12">
+			       
+				<div class="grid_6" style="margin: 10px 0 5px 10px;"  ng-hide="isCodeDiagnosisKlinik">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.diagnosisKlinik" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceDiagnosisKlinik" />
+                    </div>
+                    <div class="grid_6"style="margin: 10px 0 5px 10px;"  ng-show="isCodeDiagnosisKlinik">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.diagnosisKlinik" k-data-text-field="'kode'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceDiagnosisKlinik" />
+                    </div>
+					</div>
+					</div>
+                    
+		         
+                   
+                    
+                    <div class="grid_4">
+					<div class="grid_12">
+                       <div class="grid_4" style="float:right">
+			                <c-button ng-click="removeDataDiagnosisKlinik()">
+			                    <span style="font-size:10!important">Hapus</span>
+			                </c-button>
+			            </div>
+			            <div class="grid_4" style="float:right">
+			                <c-button ng-click="addDataDiagnosisKlinik()">
+			                    <span style="font-size:10!important">Tambah</span>
+			                </c-button>
+			            </div>
+                    </div>
+		 
+		
+		   </div>
+		   
+		 
+        <div class="grid_12" style="margin-top: 10px;">
+			           <div kendo-grid k-data-source="dataDiagnosisKlinik" k-selectable="'row'" k-columns="columnDiagnosisKlinik">
+    					</div>
+			        </div>
+		
+	      </div>
+	 
+	 
+
+
+		
+		
+		</c-panel>
+		  
+		
+		
+	
+		

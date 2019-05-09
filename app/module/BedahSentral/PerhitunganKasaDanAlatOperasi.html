@@ -1,0 +1,51 @@
+ <div ng-include='"../app/module/Dashboard/Pasien/Index" '></div>
+<div ng-controller="PerhitunganKasaDanAlatOperasiCtrl">
+
+    <div>
+        <c-panel item="item" header="'Laporan PerhitunganKasaDanAlatOperasi'">
+
+            <div class="grid_12" style="margin-bottom:35px">
+
+                <div class="grid_4">
+                    <div class="grid_12" style="margin-bottom:5px">
+                        <label c-label item="item" c-label-text="jenisKasa"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="current.barang" k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listNamaBarang" />
+                    </div>
+
+                </div>
+                <div class="grid_8">
+                    <label c-label item="item" c-label-text="keterangan"></label>
+                    <input c-text-box type="input" class="k-textbox" ng-model="current.keterangan" />
+                </div>
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="jmlSebelumOperasi"></label>
+                    <input c-text-box type="input" class="k-textbox" ng-model="current.jumlahSebelumOperasi" />
+                </div>
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="jmlPenambahan"></label>
+                    <input c-text-box type="input" class="k-textbox" ng-model="current.penambahan" />
+                </div>
+
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="pasien.tglSteril"></label>
+                    <input required style="width: 100%" kendo-date-picker k-max="now" k-ng-model="current.tglSteril" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                </div>
+                <div>
+                </div>
+                <div class="grid_12">
+                    <div kendo-grid k-data-source="dataJenisKasa" k-selectable="'row'" k-columns="column">
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <div class="grid_4">
+                    <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" click="Add">
+                        <span class="title">Tambah</span>
+                    </c-button>
+                </div>
+        </c-panel>
+        <div class="grid_12" style="margin-bottom:50px">
+            <div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+        </div>
+        </div>
+    </div>

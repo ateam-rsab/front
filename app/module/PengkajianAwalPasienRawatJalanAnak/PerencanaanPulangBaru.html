@@ -1,0 +1,62 @@
+<div ng-controller="PerencanaanPulangBaruCtrl"><br/>
+    <div class="container_12"> <!-- form Perencanaan Pulang -->
+        <div class="grid_12" style="margin-bottom:30px">
+            <div class="grid_12 headerBox">
+                <h1 style="color: white;"><b>{{formMaster.nama}}</b></h1>
+            </div>
+            <div class="clear"></div>
+            <br/>
+            <div class="container_12"> <!-- html form goes here -->
+                <div ng-repeat="list in formMaster.detail | orderBy:'id'">
+                    <div ng-switch on="list.id">
+                        <div ng-switch-when="760">
+                            <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                                <div class="grid_12" style="margin:6px auto">
+                                    <div class="grid_3"><label><b>{{opsi.nama}} : </b></label></div>
+                                    <div ng-repeat="jawab in opsi.detail | orderBy:'id'" ng-init="listIndex = $index">
+                                        <div ng-switch on="listIndex">
+                                            <div ng-switch-when="0">
+                                                <div class="grid_2">
+                                                    <label for="{{jawab.nama}}" class="radio-inline">
+                                                        <input type="radio" ng-model="opsi.value" ng-value="jawab.id" ng-click="klikOption(opsi, jawab)">{{jawab.nama}}
+                                                    </label>
+                                                </div>
+                                                <div class="grid_4 pull-right">
+                                                    <textarea c-text-area type="input" class="k-textbox" ng-model="jawab.value" ng-blur="setKeterangan(opsi, jawab)"/>
+                                                </div>
+                                            </div>
+                                            <div ng-switch-default>
+                                                <div class="grid_2">
+                                                    <label for="{{jawab.nama}}" class="radio-inline">
+                                                        <input type="radio" ng-model="opsi.value" ng-value="jawab.id" ng-click="klikOption(opsi, jawab)">{{jawab.nama}}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-switch-when="782">
+                            <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                                <div class="grid_6" style="margin:6px auto">
+                                    <div class="grid_12" style="padding-left:5px"><label><b>{{opsi.nama}} : </b></label></div>
+                                    <div class="grid_8">
+                                        <textarea c-text-area type="input" class="k-textbox" ng-model="opsi.value" disabled/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr style="margin: 0px"/>
+                    </div>
+            </div>
+        </div>
+        <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div> 
+    </div>
+    <div kendo-window="winDialog" k-title="'Konfirmasi'" k-width="400" k-height="120" k-visible="false" k-on-open="win2visible = true" k-on-close="win2visible = false">
+        <label c-label item="item " c-label-text="Apakah anda yakin untuk menyimpan perubahan ini?"></label>
+        <input c-text-box type="input" class="k-textbox" style="width: 100%;" ng-model="item.pegawai" k-auto-bind="false" disabled/>
+        <div class="clear">
+        <button class="k-button" ng-click="Simpan(item.pegawai)" style="float:right;margin-top:4%">Simpan</button>
+    </div>
+</div>

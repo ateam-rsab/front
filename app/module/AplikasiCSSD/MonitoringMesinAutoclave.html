@@ -1,0 +1,131 @@
+<div ng-controller="MonitoringMesinAutoclaveCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Monitoring Mesin Autoclave Dengan Bowidick'">
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Tanggal</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%" kendo-date-picker k-ng-model="item.tgl" data-k-format="'yyyy-MM-dd'" />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Program</label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.program" />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">No Mesin</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.noMesin" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listMonitoringMesin" />
+				</div>
+			</div>
+			<div class="grid_6">
+				<div class="grid_12">
+					<div class="grid_4">
+						<label c-label item="item" style="margin-top: 10px">Hasil</label>
+					</div>
+					<div class="grid_8">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.hasil" />
+					</div>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Operator</label>
+				</div>
+				<div class="grid_8">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.operator" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="dataMasterPetugas" />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Keterangan</label>
+				</div>
+				<div class="grid_8">
+					<textarea style="height: 90px" c-text-box type="input" class="k-textbox" ng-model="item.keterangan" />
+				</div>
+
+				<div class="grid_12">
+					<div class="grid_6"></div>
+					<div class="grid_6">
+						<div class="grid_2"></div>
+						<div class="grid_5">
+							<button class="c-button success" ng-click="Save()">Simpan</button>
+						</div>
+						<div class="grid_5">
+							<button class="c-button cancel" ng-click="batal()">Batal</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<c-panel item="item" header="'Monitoring Mesin Autoclave dengan Bowidick'">
+				<div class="grid_12" style="margin-top: 10px">
+					<div class="grid_10">
+						<div class="grid_1" style="margin-top: 10px">
+							<label c-label item="item" c-label-text="periode"></label>
+						</div>
+						<div class="grid_1" align="right" style="margin-top: 10px">
+							<label c-label item="item" c-label-text=":"></label>
+						</div>
+						<div class="grid_2">
+							<input style="width: 100%" kendo-date-picker k-ng-model="item.awal" placeholder="dd-mm-yyyy" k-format="'dd-MM-yyyy'" k-on-change="ChangeData()" />
+						</div>
+						<div class="grid_1" align="center" style="margin-top: 10px">
+							<label c-label item="item">s/d</label>
+						</div>
+						<div class="grid_2">
+							<input style="width: 100%" kendo-date-picker k-ng-model="item.akhir" placeholder="dd-mm-yyyy" k-format="'dd-MM-yyyy'" k-on-change="ChangeData()" />
+						</div>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_10" style="margin-top: 10px">
+						<div class="grid_1" style="margin-top: 10px">
+							<label c-label item="item" c-label-text="Pencarian"></label>
+						</div>
+						<div class="grid_1" align="right" style="margin-top: 10px">
+							<label c-label item="item" c-label-text=":"></label>
+						</div>
+						<div class="grid_5">
+							<input class=k-textbox type=text ng-model="item.pencarian" placeholder="Petugas / Nama Alat" />
+						</div>
+						<div class="grid_1" style="margin-top: 5px">
+							<button class="c-button success" ng-click="init(item.pencarian)">Cari</button>
+						</div>
+						<div class="grid_1" style="margin-top: 5px">
+							<button class="c-button cancel" ng-click="ClearCari()">Clear</button>
+						</div>
+						<div class="grid_1" style="margin-top: 5px">
+							<button class="c-button success" ng-click="Refresh()">Refresh</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="grid_12 borderBox">
+          <div id="grid" kendo-grid k-data-source="dataSource" k-options="mainGridOptions" k-selectable="'row'" k-columns="columnMonitoringMesin" k-sortable="'true'" k-pageable="true" k-ng-model="dataSelected" ng-dblclick="klick(dataSelected)">
+          </div>
+        </div>
+			</c-panel>
+		</c-panel>
+	</div>
+
+</div>
+
+
+
+<!-- source old
+	<div class="grid_12">
+	<div class="grid_2"></div>
+	<div class="grid_2"></div>
+	<div class="grid_2"></div>
+	<div class="grid_2"></div>
+</div>
+<div class="grid_12">
+	<kendo-grid options="gridMonitoringMesin" k-scrollable = "false" k-data-source="dataSource"></kendo-grid>
+</div>
+<div class="grid_12">
+	<div class="grid_2"></div>
+	<div class="grid_2"></div>
+	<div class="grid_2"></div>
+	<div class="grid_2"></div>
+</div> -->

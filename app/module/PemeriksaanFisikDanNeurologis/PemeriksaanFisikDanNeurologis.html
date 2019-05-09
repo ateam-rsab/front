@@ -1,0 +1,20 @@
+
+<div ng-controller="PemeriksaanFisikDanNeurologisCtrl">
+    <div ng-show="dataVOloaded">
+        <!-- panel Skrining Gizi -->
+
+        <c-panel item="item" header="title" disabled>
+
+            <div ng-include='"../app/module/PemeriksaanFisikDanNeurologis/Dada" '></div>
+            <div ng-include='"../app/module/PemeriksaanFisikDanNeurologis/Perut" '></div>
+            <div ng-include='"../app/module/PemeriksaanFisikDanNeurologis/Kelamin" '></div>
+            <div ng-include='"../app/module/PemeriksaanFisikDanNeurologis/Punggung" '></div>
+            <div ng-include='"../app/module/PemeriksaanFisikDanNeurologis/AnggotaGerak" '></div>
+            <div ng-include='"../app/module/PemeriksaanFisikDanNeurologis/RefleksFisiologis" '></div>
+            <div ng-include='"../app/module/PemeriksaanFisikDanNeurologis/ReactionOfMotorBehaviour" '></div>
+            <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" ' style="margin-bottom:50px"></div>
+
+        </c-panel>
+    </div>
+
+</div>

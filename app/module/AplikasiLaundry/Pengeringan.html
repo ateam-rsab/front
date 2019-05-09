@@ -1,0 +1,199 @@
+<style type="text/css">
+.alert {
+    background-color: #f76565
+}
+.warning {
+    background-color: #ffff66
+}
+.danger {
+    background-color: #f76565
+}
+</style>
+<div class="panel panel-default container_12">
+    <div class="panel-body">
+        <div class="grid_12">
+        <span class="title center">
+            Pengeringan
+            <br/>
+            
+        </span>
+        <table style="width: 281px;margin-left: auto;margin-right: auto;">
+            <tbody>
+                <tr>
+                    <td style="width: 37px;">Tanggal</td>
+                    <td style="width: 83px;" class="ng-binding">{{now |date:'dd-MM-yyyy' }} </td>
+                    <td style="width: 26px;">Jam</td>
+                    <td style="width: 83px;" class="ng-binding">{{now |date:'HH:mm:ss' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        <div class="grid_12" style="margin-top:15px">
+            <div class="grid_6">
+			   <div class="grid_12">
+                <div class="grid_4" style="margin-left:10px">
+                    <label c-label>Tanggal</label>
+                </div>
+				   
+					<div class="grid_8">
+                        <input style="width: 100%" k-value="now" k-ng-model="item.tanggalPengeringan" kendo-date-time-picker  k-format="'dd-MM-yyyy HH:mm'" />
+                    </div>
+                
+				</div>
+            </div>
+			<div class="grid_6">
+			   <div class="grid_12">
+                <div class="grid_4" style="margin-left:10px">
+                    <label c-label>Tanggal Kerja</label>
+                </div>
+					<div class="grid_8">
+                        <input style="width: 100%" k-value="now" k-ng-model="item.tanggalKerja" kendo-date-time-picker  k-format="'dd-MM-yyyy HH:mm'" />
+                    </div>
+                
+				</div>
+            </div>
+		   <div class="grid_6">
+			   <div class="grid_12">
+                <div class="grid_4" style="margin-left:10px">
+                    <label c-label>Petugas</label>
+                </div>
+					<div class="grid_8">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.petugas" disabled="" />
+                    </div>
+                
+				</div>
+            </div>
+            <div class="grid_6">
+               <div class="grid_12">
+                <div class="grid_4" style="margin-left:10px">
+                    <label c-label>Berat Linen</label>
+                </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.beratLinen" disabled="" />
+                    </div>
+                
+                </div>
+            </div>
+			        <div ng-show="false">
+					<div class="grid_6">
+						<div class="grid_12" style="margin-top: 10px">
+							<div class="grid_4">
+								<label c-label item="item" c-label-text="noRecStrukPelayanan"></label>
+							</div>
+							
+						</div>
+						<div class="grid_8">
+							<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="noRecStrukPelayanan"  maxlength="4" />
+						</div>
+					</div>
+					</div>
+					
+					<div ng-show="false">
+					<div class="grid_6">
+						<div class="grid_12" style="margin-top: 10px">
+							<div class="grid_4">
+								<label c-label item="item" c-label-text="ruanganAsalId"></label>
+							</div>
+							
+						</div>
+						<div class="grid_8">
+							<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="ruanganAsalId"  maxlength="4" />
+						</div>
+					</div>
+					</div>
+					
+   
+            <div class="grid_12">
+                <md-content>
+                    <md-tabs md-dynamic-height md-border-bottom>
+	                      <md-tab label="Eksternal">
+                            <md-content class="md-padding">
+							     <div class="grid_12">
+                                   <div class="grid_6">
+								   <div class="grid_12">
+								   <div class="grid_4" style="margin-top:10px">
+								    <label c-label>Nama Pelanggan</label>
+								   </div>
+								   <div class="grid_8">
+								   <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="namaPelanggan" disabled="" />
+								   </div>
+								   </div>
+								   </div>
+						       </div>
+                                <div class="grid_12">
+                                    <kendo-grid options="mainGridOptions_2_1" k-data-source="sourceOrder">
+                                    
+                                    </kendo-grid>
+                                </div>
+								 <div class="grid_12">
+                                   <div class="grid_6">
+								   <div class="grid_12">
+								   <div class="grid_4" style="margin-top:10px">
+								    <label c-label>Jumlah Cycle</label>
+								   </div>
+								   <div class="grid_8">
+								   <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahCycle"  />
+								   </div>
+								   </div>
+								   </div>
+						       </div>
+                                
+                               
+                                <div class="grid_12" style="margin-top:20px">
+                                    <div class="grid_2">
+                                        <button class="c-button success" ng-click="Save()">Simpan</button>
+                                    </div>
+                                    <div class="grid_2">
+                                        <button class="c-button success" ng-click="batal()">Batal</button>
+                                    </div>
+                                     <div class="grid_2">
+                                        <button class="c-button success" ng-click="Pengeringan()">Daftar Pengeringan</button>
+                                    </div>
+                                </div>
+                            </md-content>
+                        </md-tab>				
+					
+					
+                        <md-tab label="Internal">
+                            <md-content class="md-padding">
+                                <div class="grid_12">
+                                   <div class="grid_6">
+								   <div class="grid_12">
+								   <div class="grid_4" style="margin-top:10px">
+								    <label c-label>Jumlah Cycle</label>
+								   </div>
+								   <div class="grid_8">
+								   <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahCycle"  />
+								   </div>
+								   </div>
+								   </div>
+						       </div>
+                                
+                               
+                                <div class="grid_12" style="margin-top:20px">
+                                    <div class="grid_2">
+                                        <button class="c-button success" ng-click="Save()">Simpan</button>
+                                    </div>
+                                    <div class="grid_2">
+                                        <button class="c-button success" ng-click="kembali()">Kembali</button>
+                                    </div>
+                                   
+                                </div>
+                            </md-content>
+                        </md-tab>
+                     
+                     
+                       
+                    </md-tabs>
+                </md-content>
+            </div>
+        </div>
+       
+    </div>
+</div>
+<script type="text/x-kendo-template" id="template">
+                <div class="toolbar">
+                    <label class="category-label" for="category">Waktu Order Makanan</label>
+                    <input style="width: 150px;" id="category" kendo-combo-box k-ng-model="item.cariJenisWaktu" k-data-text-field="'jenisWaktu'" options="mainGridOptions_3" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisWaktu" k-on-change = "gantiJenisWaktu()" />
+                </div>
+            </script>

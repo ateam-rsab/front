@@ -1,0 +1,15 @@
+[
+    {
+        "name": "Daftar Registrasi Pasien",
+        "link": "#/DaftarRegistrasiPasienVedika"
+    },
+    {
+        "name": "Setting",
+        "children": [
+            {
+                "name": "Ubah Password",
+                "link": "#/UbahPassword"
+            }
+        ]
+    }
+]

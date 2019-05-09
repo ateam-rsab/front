@@ -1,0 +1,87 @@
+<div ng-controller="KirimBarang2Ctrl">
+    <div class="panel panel-default container_12">
+        <div class="panel-heading" c-translate>Kirim Barang</div>
+        <div class="panel-body">
+        	<div class="panel panel-default container_12">
+            	<div class="panel-heading" c-translate>Data Order</div>
+            	<div class="panel-body">
+           			<div class="grid_12" style="margin: 10px 0 0 5px;">
+           				<div class="grid_3">
+           					<div class="grid_12" ng-repeat="Data in ListNoFaktur">
+								      <input type="checkbox" class="k-checkbox" name="{{Data.name}}" 
+								      id="{{Data.name}}" value="{{Data.id}}" ng-click="cekRiwayatPenyakit(Data)">
+								      <label class="k-checkbox-label" for="{{Data.name}}"> {{Data.name}}</label>
+           					</div>
+           				</div>
+           				<div class="grid_3">
+           					<label c-label item="item" c-label-text="tglOrder"></label>
+           				</div>
+           				<div class="grid_3">
+           					<label c-label item="item" c-label-text="ruanganPemesan"></label>
+           				</div>
+           				<div class="grid_3">
+           					<label c-label item="item" c-label-text="namaPemesan"></label>
+           				</div>	
+           			</div>
+                <div class="grid_12" style="margin-top: 5px">
+                  <div class="grid_3">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noOrder" ng-disabled="enableNoOrder" />
+                  </div>
+                  <div class="grid_3">
+                    <input style="width: 100%" kendo-date-picker k-ng-model="item.tglTerima" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                  </div>
+                  <div class="grid_3">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noFaktur" />
+                  </div>
+                  <div class="grid_3">
+                        <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noFaktur" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default container_12">
+              <div class="panel-heading" c-translate>Data Kirim</div>
+              <div class="panel-body">
+                <div class="grid_12" style="margin: 10px 0 0 5px;">
+                  <div class="grid_3">
+                     <label c-label item="item" c-label-text="noKirim"></label>
+                  </div>
+                  <div class="grid_3">
+                    <label c-label item="item" c-label-text="tglKirim"></label>
+                  </div>
+                  <div class="grid_3">
+                    <label c-label item="item" c-label-text="ruanganPenerima"></label>
+                  </div>  
+                </div>
+                <div class="grid_12" style="margin-top: 5px">
+                  <div class="grid_3">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noKirim" />
+                  </div>
+                  <div class="grid_3">
+                    <input style="width: 100%" kendo-date-picker k-ng-model="item.tglKirim" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                  </div>
+                  <div class="grid_3">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganPenerima" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" 
+                        k-filter="'contains'" k-auto-bind="false" k-data-source="ListRuangan" />
+                  </div>
+                </div>
+              </div>
+            </div>
+             <div class="panel panel-default container_12">
+              <div class="panel-heading" c-translate>Data Barang</div>
+              <div class="panel-body">
+                <div class="grid_12" style="margin: 10px 0 0 5px;">
+                  <div class="grid_10">
+                    <kendo-grid  k-data-source="dataKirimBarang2" k-selectable="'row'" k-columns="columndataKirimBarang2">
+                    </kendo-grid>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="grid_12" style="margin-top:10px">
+              <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

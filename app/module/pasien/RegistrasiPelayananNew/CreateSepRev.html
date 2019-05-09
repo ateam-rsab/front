@@ -1,0 +1,163 @@
+
+<div class="panel panel-default container_12">
+    <div class="panel-body">
+        <div class="grid_12">
+            <div class="grid_6">
+              <div class="grid_12"> 
+                <div class="grid_4" style="padding-left:6px">
+                    <label c-label>No RM</label>
+                    <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.noCm" style="width:98%"/>
+                </div>
+                <div class="grid_4">
+                    <div class="grid_12" style="margin-top:5px">
+                        <input type="checkbox" class="k-checkbox" ng-model="model.cekNomorPeserta" id="cekPesertaNoKartu">
+                        <label class="c-label k-checkbox-label" for="cekPesertaNoKartu">No. Kartu Peserta</label>
+                    </div>
+                    <div class="grid_12" style="position:relative" >
+                        <input ng-blur="checkKepesertaanByNoBpjs()" class="k-textbox" ng-model="item.noKepesertaan">
+                        <img ng-show="isLoadingNoKartu" style="position:absolute;right:0;top:7px;" height="24" src="stylesheets\Flat\loading-image.gif" />
+                    </div>
+                <!--     <label c-label>No Kartu</label>
+                    <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.noKartu" /> -->
+                </div>
+                <div class="grid_4">
+                    <label c-label>Tanggal SEP</label>
+                    <input style="width: 100% " k-max="now" kendo-date-time-picker k-ng-model="item.tglSep " k-format="'dd-MM-yyyy HH:mm:ss'" />
+                </div>
+            </div>
+            <div class="grid_12">                           
+               <div class="grid_4">
+                   <label c-label>Asal Rujukan :</label>
+                   <div class="grid_6" ng-repeat="listasalrujukan in asalRujukan" style="margin-top:-5px">
+                    <input type="radio" name="{{listasalrujukan.asalrujukan}}" id="{{listasalrujukan.idasalrujukan}}" class="k-radio" ng-model="item.asalRujukan" ng-value="listasalrujukan">
+                    <label class="k-radio-label" for="{{listasalrujukan.idasalrujukan}}" style="margin:5px">{{listasalrujukan.asalrujukan}}</label>
+                </div>
+            </div>
+            <div class="grid_4">
+                <label c-label>No Rujukan</label>
+                <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.noRujukan" />
+            </div>
+            <div class="grid_4">
+                <label c-label>Tanggal Rujukan</label>
+                <input style="width: 100% " k-max="now " kendo-date-time-picker k-ng-model="item.tglRujukan" k-format="'dd-MM-yyyy HH:mm:ss'" />
+            </div>
+
+        </div>
+        <div class="grid_12" style="margin-top:-10px">
+             <div class="grid_8"  ng-hide="model.faskesRujukan===true">
+                                    <input type="checkbox" class="k-checkbox" name="faskesRujukan" id="faskesRujukan" ng-model="model.faskesRujukan">
+                                    <label class="k-checkbox-label" for="faskesRujukan">Nama Asal Rujukan</label>
+                                    <input type="string" class="k-textbox" ng-model="model.namaAsalRujukan">
+                                </div>
+                                 <div class="grid_8" ng-show="model.faskesRujukan===true">
+                                           <input type="checkbox" class="k-checkbox" name="faskesRujukan" id="faskesRujukan" ng-model="model.faskesRujukan">
+                                        <label class="k-checkbox-label" for="faskesRujukan">Nama Asal Rujukan (Nama Tempat Rujukan)</label>
+                                            <input style="width: 100%;margin-top: 4px" kendo-auto-complete ng-model="model.namaAsalRujukanBrid"  k-data-source="listPpkRujukan"  k-data-text-field="'nama'" k-filter="'contains'" k-data-value-field="'kode'" k-auto-bind="false" k-on-change="getPpkRujukan()"  />
+                                  
+            </div>
+          <div class="grid_4">
+            
+            <label c-label>No Telp</label>
+            <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.noTelpon" />
+        </div>
+
+    </div>
+
+    <div class="grid_12" >
+       <div class="grid_4" >
+        <label c-label>Jenis Pelayanan :</label>
+        <!-- </div> -->
+        <!-- <div class="grid_7"> -->
+            <div class="grid_6" ng-repeat="listjenispelayanan in jenisPelayanan">
+                <input type="radio" name="{{listjenispelayanan.jenispelayanan}}" id="{{listjenispelayanan.idjenispelayanan}}" class="k-radio" ng-model="item.jenisPelayanan" ng-value="listjenispelayanan">
+                <label class="k-radio-label" for="{{listjenispelayanan.idjenispelayanan}}" style="margin:5px">{{listjenispelayanan.jenispelayanan}}</label>
+            </div>
+        </div>
+        <!-- </div> -->
+        <!-- <div class="grid_12"> -->
+            <div class="grid_4">
+                <label c-label>Poli Tujuan</label>
+                <input style="width: 100%; " kendo-combo-box k-ng-model="item.poliTujuan" k-data-text-field="'namaruangan'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="ruangans"/>
+            </div>
+            <div class="grid_4" >
+                <label c-label>Jenis Poli :</label>
+                <!-- </div> -->
+                <!-- <div class="grid_7"> -->
+                    <div class="grid_6" ng-repeat="list in poliEksekutif">
+                        <input type="radio" name="{{list.eks}}" id="{{list.id}}" class="k-radio" ng-model="item.poliEksekutif" ng-value="list">
+                        <label class="k-radio-label" for="{{list.id}}" style="margin:5px">{{list.eks}}</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="grid_12" style="padding-top:6px">
+                <div class="grid_2" style="margin-top:8px">
+                    <label c-label>Kelas Rawat :</label>
+                </div>
+                <div class="grid_6" >
+                    <div class="grid_4" ng-repeat="listkls in kelasRawat">
+                        <input type="radio" name="{{listkls.namakelas}}" id="{{listkls.idkelas}}" class="k-radio" ng-model="item.kelasRawat" ng-value="listkls">
+                        <label class="k-radio-label" for="{{listkls.idkelas}}" style="margin:5px"><b>{{listkls.namakelas}}</b></label>
+                    </div>
+                </div>
+                <div class="grid_4">
+                     <label c-label>Diagnosa Awal</label>
+                        <input style="width: 100%" kendo-auto-complete ng-model="item.diagnosa"  k-data-source="listDiagnosa"  k-data-text-field="'nama'" k-filter="'contains'" k-data-value-field="'kode'" k-auto-bind="false" k-on-change="getDiagnosa()"  />
+                    <!-- <label c-label>Diagnosa Awal</label>
+                    <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.diagnosa" /> -->
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_2">
+                    <label c-label>Laka Lantas</label>
+                    <div class="grid_6" ng-repeat="listlaka in lakaLantas">
+                        <input type="radio" name="{{listlaka.lakalantas}}" id="{{listlaka.idlakalantas}}" class="k-radio" ng-model="item.lakaLantas" ng-value="listlaka">
+                        <label class="k-radio-label" for="{{listlaka.idlakalantas}}" style="margin:5px"><b>{{listlaka.lakalantas}}</b></label>
+                    </div>
+                </div>
+                <div class="grid_4" >
+                    <label c-label>Lokasi Laka Lantas</label>
+                    <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.lokasiLaka" ng-disabled="disableLokasi"/>
+                </div>
+                <div class="grid_6">
+                    <label c-label>Penjamin</label>
+                    <div class="grid_6" ng-repeat="data in penjamin" >
+                        <input type="checkbox" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" value="{{data.id}}" ng-click="addListPenjamin(data)" ng-disabled="disableLokasi">
+                        <label class="k-checkbox-label" for="{{data.name}}">{{data.name}}</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid_12" style="padding-left:6px;padding-right:6px;margin-top: 10px">
+                <label c-label>Catatan</label>
+                <textarea type="input" class="k-textbox" rows="2" ng-model="item.catatan"></textarea>
+            </div>
+            <div class="grid_12">
+                <div class="grid_8">
+                </div>
+                <div class="grid_2">
+                    <button style="margin-top:6px;" class="k-button k-primary k-button-icon" ng-click="generateSep(item)"><span class="k-sprite k-icon k-i-search">Find</span></button>
+                    <!--<em style="margin-top:6px;" ng-click="findDataBySep(item.namaPasien)" id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-search">Find</span></em>-->
+                </div>
+                <div class="grid_2">
+                    <em style="margin-top:6px;" ng-click='clear()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Clear</span></em>
+                </div>
+            </div>
+        </div>
+        <div class="grid_6">
+            <div class="grid_12">
+                <label c-label>Results :</label>
+            </div>
+            <pre id="json" class="json-viewer"></pre>
+        </div>
+    </div>
+</div>
+</div>
+<div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
+<style type="text/css">
+.json-viewer {
+    margin-top:26px;
+    padding: 2em 0 2em 5em;
+    background: lightgrey;
+}
+</style>

@@ -1,0 +1,213 @@
+<style>
+	label{
+		margin-top: 10px;
+	}
+</style>
+<div ng-controller="KeputusanSanksiPegawaiCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Keputusan Sanksi Pegawai'" disabled>
+
+			<!-- noUsulan -->
+			<div class="grid_6">
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item">No Usulan</label>
+					</div>
+					<div class="grid_9">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noUsulan" ng-disabled="true"/>
+					</div>
+				</div>
+
+				<!-- deskripsiUsulan -->
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item">Deskripsi Usulan</label>
+					</div>
+					<div class="grid_9">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.deskripsiUsulan" ng-disabled="true"/>
+					</div>
+				</div>
+
+				<!-- namaPegawai -->
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item">Nama Pegawai</label>
+					</div>
+					<div class="grid_9">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaPegawai" ng-disabled="true"/>
+					</div>
+				</div>
+
+				<!-- jabatanFungsional -->
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item">Jabatan Fungsional</label>
+					</div>
+					<div class="grid_9">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jabatanFungsional" ng-disabled="true"/>
+					</div>
+				</div>
+
+				<!-- jabatanInternal -->
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item">Jabatan Internal</label>
+					</div>
+					<div class="grid_9">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jabatanInternal" ng-disabled="true"/>
+					</div>
+				</div>
+
+				<!-- ruanganBekerja -->
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item">Ruangan Bekerja</label>
+					</div>
+					<div class="grid_9">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.ruanganBekerja" ng-disabled="true"/>
+					</div>
+				</div>
+
+				<!-- eselon -->
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item">Eselon</label>
+					</div>
+					<div class="grid_9">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.eselon" ng-disabled="true"/>
+					</div>
+				</div>
+
+				<!-- pangkat -->
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item">Pangkat</label>
+					</div>
+					<div class="grid_9">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.pangkat" ng-disabled="true"/>
+					</div>
+				</div>
+
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item">Tanggal usulan</label>
+					</div>
+					<div class="grid_9">
+						<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalUsulan" data-k-format="'yyyy-MM-dd'" disabled="true" />
+					</div>
+				</div>
+
+				<!-- jenisHukuman -->
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item">Jenis Hukuman</label>
+					</div>
+					<div class="grid_9">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisHukuman" k-data-text-field="'jenisHukuman'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listjenisHukuman" />
+					</div>
+				</div>
+			</div>
+			<div class="grid_6">
+				<!-- tanggalUsulan -->
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item">Tanggal Rekam</label>
+					</div>
+					<div class="grid_9">
+						<input style="width: 100%" k-ng-model="item.tanggalRekam"  kendo-date-picker k-value="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+					</div>
+				</div>
+
+				<!-- keterangan -->
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item">Keterangan</label>
+					</div>
+					<div class="grid_9">
+						<textarea style="height: 80px" c-text-box type="input" class="k-textbox" ng-model="item.keterangan" disabled="true" />
+					</div>
+				</div>
+
+				<!-- namaPengusul -->
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item">Nama Pengusul</label>
+					</div>
+					<div class="grid_9">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaPengusul" disabled="true" />
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Jenis SK</label>
+					</div>
+					<div class="grid_9">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisSk" k-data-text-field="'jenisKeputusan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisSk" />
+					</div>
+				</div>
+
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Tanggal SK/SPMT</label>
+					</div>
+					<div class="grid_9">
+						<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalSk" data-k-format="'yyyy-MM-dd'"/>
+					</div>
+				</div>
+
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">No SK</label>
+					</div>
+					<div class="grid_9">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noSk" required="true" />
+					</div>
+				</div>
+
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Uraian</label>
+					</div>
+					<div class="grid_9">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.uraian"/>
+					</div>
+				</div>
+
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">SK Dari</label>
+					</div>
+					<div class="grid_9">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.skDari"/>
+					</div>
+				</div>
+
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Tanggal TMT/SPMT</label>
+					</div>
+					<div class="grid_9">
+						<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalTmt" data-k-format="'yyyy-MM-dd'"/>
+					</div>
+				</div>
+
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Tanggal Berlaku Akhir</label>
+					</div>
+					<div class="grid_9">
+						<input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalBerlakuAkhir" data-k-format="'yyyy-MM-dd'"/>
+					</div>
+				</div>
+
+
+				<!--<div class="grid_4"></div>
+				<div class="grid_4"><button class="c-button cancel" ng-click="tambah()">Batal</button></div>
+				<div class="grid_4"><button class="c-button success" ng-click="Save()">Simpan</button></div>-->
+			</div>
+
+
+		</c-panel>
+		<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+	</div>
+</div>

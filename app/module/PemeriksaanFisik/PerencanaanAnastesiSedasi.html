@@ -1,0 +1,160 @@
+<div ng-controller="PerencanaanAnastesiSedasiCtrl">
+    <c-panel item="item" header="'Perencanaan Anestesi dan Sedasi'">
+      
+        <c-panel item="item" header="'Teknik Anestesi dan Sedasi'" disabled>
+		<div class="grid_12">
+		<div class="grid_12">
+	    <div class="grid_4" style="margin: 5px 0 0 0;">
+		 <label c-label item="item" c-label-text="Sedasi">
+		</div>
+		 <div class="grid_6" style="margin: 5px 0 0 0;">
+		 <input c-text-box type="input" filter="'numeric'" class="k-textbox" id="txtTotalFx"  ng-model="item.id"  /> 
+		</div>
+		</div>
+		<div class="grid_12">
+	    <div class="grid_4" style="margin: 5px 0 0 0;">
+		<label c-label item="item" c-label-text="GA">
+		</div>
+		 <div class="grid_6" style="margin: 5px 0 0 0;">
+		<input c-text-box type="input" filter="'numeric'" class="k-textbox" id="txtTotalFx"  ng-model="item.id"  /> 
+		</div>
+		</div>
+		<div class="grid_12">
+	    <div class="grid_4" style="margin: 5px 0 0 0;">
+		<label c-label item="item" c-label-text="Regional">
+		</div>
+	    <div class="grid_2"  ng-repeat="stat in listRegional">
+                       <input type="checkbox"  name="{{stat.name}}" id="{{stat.name}}" class="k-checkbox"  value="{{stat.name}}"  >
+                        <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+						
+        </div>	
+		</div>
+		
+	    </div>		
+        	</c-panel>
+			
+			<c-panel item="item" header="'Teknik Khusus'" disabled>
+			<div class="grid_12" style="margin: 10px 5px 5px 10px;">
+				 <div class="grid_3"   ng-repeat="stat in listTekhnikKhusus">
+                       <input type="checkbox"  name="{{stat.name}}" id="{{stat.name}}" class="k-checkbox"  value="{{stat.name}}"  >
+                        <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+						
+        </div>
+		</div>		
+        	</c-panel>
+			
+			<c-panel item="item" header="'Monitoring'" disabled>
+				 <div class="grid_2"  ng-repeat="stat in listMonitoring">
+                       <input type="checkbox"  name="{{stat.name}}" id="{{stat.name}}" class="k-checkbox"  value="{{stat.name}}"  >
+                        <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+						
+        </div>	
+        	</c-panel>
+			
+			<c-panel item="item" header="'Alat Khusus'" disabled>
+				 <div class="grid_2"  ng-repeat="stat in listAlatKhusus">
+                       <input type="checkbox"  name="{{stat.name}}" id="{{stat.name}}" class="k-checkbox"  value="{{stat.name}}"  >
+                        <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+						
+        </div>	
+        	</c-panel>
+			<c-panel item="item" header="'Perawatan Pasca Anestesi'" disabled>
+				 <div class="grid_2"  ng-repeat="stat in listPascaAnestesi">
+                       <input type="checkbox"  name="{{stat.name}}" id="{{stat.name}}" class="k-checkbox"  value="{{stat.name}}"  >
+                        <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+						
+        </div>	
+        	</c-panel>
+			<c-panel item="item" header="'Persiapan Pra Anestesi'" disabled>
+			
+			<div class="grid_6">
+		<div class="grid_12">
+	    <div class="grid_6" style="margin: 5px 0 0 0;">
+		 <label c-label item="item" c-label-text="Puasa Mulai">
+		</div>
+		  <div class="grid_6" style="margin: 5px 0 0 0;">
+		<input style="width: 100%" kendo-date-time-picker k-max="now" k-ng-model="item.TanggalKejadian" k-data-text-field="'tanggallahir'" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy hh:mm:ss'" />
+		 
+		</div>
+		<div class="grid_12">
+	    <div class="grid_6" style="margin: 5px 0 0 0;">
+		<label c-label item="item" c-label-text="Premedikasi">
+		</div>
+		  <div class="grid_6" style="margin: 5px 0 0 0;">
+		<input style="width: 100%" kendo-date-time-picker k-max="now" k-ng-model="item.TanggalKejadian" k-data-text-field="'tanggallahir'" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy hh:mm:ss'" />
+		 
+		</div>
+		</div>
+		<div class="grid_12">
+	    <div class="grid_6" style="margin: 5px 0 0 0;">
+		<label c-label item="item" c-label-text="Rencana Operasi">
+		</div>
+	   <div class="grid_6" style="margin: 5px 0 0 0;">
+		<input style="width: 100%" kendo-date-time-picker k-max="now" k-ng-model="item.TanggalKejadian" k-data-text-field="'tanggallahir'" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy hh:mm:ss'" />
+		 
+		</div>	
+		</div>
+		
+	    </div>		
+		</div>		
+				
+        	</c-panel>
+		
+	
+				<c-panel item="item" header="'Catatan Persiapan Pra Anestesi'" disabled>
+				  <div class="grid_12" style="margin: 13px 0 0 0;">
+                                    <textarea style="width: 99%; height: 80px;"></textarea>
+                                </div>
+						
+        </div>	
+        	</c-panel>	
+			
+		</c-panel>
+	
+        <!--
+		
+
+		
+		--->
+			
+		
+		
+     
+		  
+		 
+		 
+		
+
+		 </br>
+		 </br>
+	 <div class="grid_12">
+			<div class="grid_12"><div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>	
+    </div>	  
+	</div>
+</div>	
+
+
+
+	 
+         
+		 
+		  
+		  
+         
+		 
+		 
+		
+		 
+	     
+	 
+	 
+
+
+		
+		
+		
+		  
+		
+		
+	
+		

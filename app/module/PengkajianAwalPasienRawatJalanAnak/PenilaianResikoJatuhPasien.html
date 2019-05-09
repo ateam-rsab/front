@@ -1,0 +1,702 @@
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#aabcfe;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aabcfe;color:#669;background-color:#e8edff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aabcfe;color:#039;background-color:#b9c9fe;}
+.tg .tg-yw4l{vertical-align:top}
+.header {font-size:120%; font-weight:700;}
+.footer {text-align:center; font-size:120%; font-weight:700; margin-bottom:20px}
+</style>
+
+<div class="grid_12" ng-controller="PenilaianResikoJatuhPasienCtrl">
+    <div ng-show="dataVOloaded">
+        <div>
+            <!-- panel Resiko Jatuh -->
+            <div class="grid_12" style="margin-bottom:60px">
+                <div class="grid_12 headerBox">
+                    <h1 style="color: white;"><b>{{formMaster.nama}}</b></h1>
+                </div>
+                <div class="clear"></div>
+                <br/>
+                <div class="grid_12" ng-repeat="list in formMaster.detail | orderBy:'id'">
+                    <div ng-switch on="list.id" >
+                        <div class="grid_12" ng-switch-when="148" style="margin-bottom: 10px" >
+                            <label for="{{list.nama}}"><b>{{list.nama}}</b></label>
+                            <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                                <input type="radio" ng-model="list.value" ng-value="opsi.id" ng-click="cekSkor(list, opsi)">
+                                <label for="{{opsi.nama}}">{{opsi.nama}}</label>
+                            </div>
+                        </div>
+                        <div class="grid_12" ng-switch-when="151" style="margin-bottom:20px" ng-show="isRawatJalan"> <!--ng-show="isRawatJalan"-->
+                            <div class="grid_12" style="border-bottom:1px solid lightblue">
+                                <label for="{{list.nama}}"><b>{{list.nama}}</b></label>
+                            </div>
+                            <div class="grid_12" ng-repeat="parameter in list.detail | orderBy:'id'">
+                                <div ng-switch on="parameter.id">
+                                    <div ng-switch-when="158">
+                                        <div class="grid_12" style="padding-left:6px">{{parameter.nama}}</div>
+                                        <div class="grid_12" ng-repeat="opsi in parameter.detail | orderBy:'id'" ng-init="opsiIndex = $index + 1">
+                                            <label style="padding-left:23px"><i>{{opsiIndex}}) {{opsi.nama}}</i></label>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-default>
+                                        <div class="grid_8">{{parameter.nama}}</div>
+                                        <div class="grid_2" ng-repeat="opsi in parameter.detail | orderBy:'id'">
+                                            <input type="radio" ng-model="parameter.value" ng-value="opsi.id" ng-click="cekSkor(parameter, opsi)">
+                                            <label for="{{opsi.nama}}">{{opsi.nama}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid_12" ng-switch-when="161"> <!--ng-show="isRawatInap"-->
+                            <div ng-repeat="frm in list.detail | orderBy:'id'">
+                                <div ng-switch on="frm.id">
+                                    <div ng-switch-when="162" style="margin-bottom:20px" ng-show="isRawatInap && isAnak" ng-hide="isDewasa || isRawatJalan"> <!--ng-show="isAnak"-->
+                                        <div class="grid_12 headerBox">
+                                            <h1 style="color: white;"><b>{{frm.nama}}</b></h1>
+                                        </div>
+                                        <div class="clear"></div>
+                                        <br/>
+                                        <div class="grid_12 header">
+                                            <div class="grid_2" style="border-bottom:1px solid blue"><b>Parameter</b></div>
+                                            <div class="grid_8" style="border-bottom:1px solid blue"><b>Kriteria</b></div>
+                                            <div class="grid_1" style="border-bottom:1px solid blue; text-align:center"><b>Skor</b></div>
+                                            <div class="grid_1" style="border-bottom:1px solid blue; text-align:center"><b>Nilai Skor</b></div>
+                                        </div>
+                                        <div ng-repeat="parameter in frm.detail | orderBy:'id'">
+                                            <div ng-repeat="tanya in parameter.detail | orderBy:'id'" >
+                                                <div class="grid_12" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index">
+                                                    <div ng-if="jawabIndex === 0">
+                                                        <div class="grid_2">
+                                                            <label><b>{{tanya.nama}}</b></label>
+                                                        </div>
+                                                        <div class="grid_8">
+                                                            <input type="radio" ng-model="tanya.value" ng-value="jawab.id" ng-click="cekSkors(tanya, jawab)">
+                                                            <label for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                                        </div>
+                                                        <div class="grid_1" style="text-align:center">
+                                                            <label>{{jawab.descNilai}}</label>
+                                                        </div>
+                                                        <div class="grid_1" style="text-align:center">
+                                                            <label>{{tanya.descNilai}}</label>
+                                                        </div>
+                                                    </div>
+                                                    <div ng-if="jawabIndex !== 0">
+                                                        <div class="grid_2">&nbsp;</div>
+                                                        <div class="grid_8">
+                                                            <input type="radio" ng-model="tanya.value" ng-value="jawab.id" ng-click="cekSkors(tanya, jawab)">
+                                                            <label for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                                        </div>
+                                                        <div class="grid_1" style="text-align:center">
+                                                            <label>{{jawab.descNilai}}</label>
+                                                        </div>
+                                                        <div class="grid_1" style="text-align:center">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                                <hr style="margin: 0px"/>
+                                            </div>
+                                        </div>
+                                        <div class="grid_12 footer">
+                                            <div class="grid_11">Total Skor</div>
+                                            <div class="grid_1">{{totalSkorResikoAnak}}</div>
+                                        </div>
+                                        <!--<table class="tg">
+                                        <tr>
+                                            <td class="tg-yw4l nilai">Total Skor</td>
+                                            <td class="tg-yw4l nilai">{{totalSkorResikoAnak}}</td>
+                                        </tr>
+                                        </table>-->
+                                    </div>
+                                    <div ng-switch-when="198" style="margin-bottom:20px" ng-show="isDewasa&&isRawatInap" ng-hide="isRawatJalan && isDewasa || isRawatJalan && isAnak || isRawatInap && isAnak"> <!--ng-show="isDewasa"-->
+                                        <div class="grid_12 headerBox">
+                                            <h1 style="color: white;"><b>{{frm.nama}}</b></h1>
+                                        </div>
+                                        <div class="clear"></div>
+                                        <br/>
+                                        <div class="grid_12 header">
+                                            <div class="grid_2" style="border-bottom:1px solid blue"><b>Tingkat Risiko</b></div>
+                                            <div class="grid_8" style="border-bottom:1px solid blue"><b>Kriteria</b></div>
+                                            <div class="grid_1" style="border-bottom:1px solid blue; text-align:center"><b>Skor</b></div>
+                                            <div class="grid_1" style="border-bottom:1px solid blue; text-align:center"><b>Nilai Skor</b></div>
+                                        </div>
+                                        <div ng-repeat="parameter in frm.detail | orderBy:'id'">
+                                            <div ng-repeat="subParameter in parameter.detail | orderBy:'id'" >
+                                                <div ng-repeat="tanya in subParameter.detail | orderBy:'id'">
+                                                    <div class="grid_12" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index">
+                                                        <div ng-if="jawabIndex === 0">
+                                                            <div class="grid_2">
+                                                                <label><b>{{tanya.nama}}</b></label>
+                                                            </div>
+                                                            <div class="grid_8">
+                                                                <input type="radio" ng-model="tanya.value" ng-value="jawab.id" ng-click="cekSkorDewasa(tanya, jawab)">
+                                                                <label for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                                            </div>
+                                                            <div class="grid_1" style="text-align:center">
+                                                                <label>{{jawab.descNilai}}</label>
+                                                            </div>
+                                                            <div class="grid_1" style="text-align:center">
+                                                                <label>{{tanya.descNilai}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <div ng-if="jawabIndex !== 0">
+                                                            <div class="grid_2">&nbsp;</div>
+                                                            <div class="grid_8">
+                                                                <input type="radio" ng-model="tanya.value" ng-value="jawab.id" ng-click="cekSkorDewasa(tanya, jawab)">
+                                                                <label for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                                            </div>
+                                                            <div class="grid_1" style="text-align:center">
+                                                                <label>{{jawab.descNilai}}</label>
+                                                            </div>
+                                                            <div class="grid_1" style="text-align:center">&nbsp;</div>
+                                                        </div>
+                                                    </div>
+                                                    <hr style="margin: 0px"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="grid_12 footer">
+                                            <div class="grid_11">Total Skor</div>
+                                            <div class="grid_1">{{totalSkorResikoDewasa}}</div>
+                                        </div>
+                                        <div class="grid_12" align="center" style="margin-bottom:10px">
+                                            <label><b>Catatan : Total nilai 0 - 24 : Tidak Tidak Berisiko;  >51: Risiko Tinggi</b></label>
+                                        </div>
+                                        <!--<table class="tg">
+                                        <tr>
+                                            <td class="tg-yw4l nilai">Total Skor</td>
+                                            <td class="tg-yw4l nilai">{{totalSkorResikoAnak}}</td>
+                                        </tr>
+                                        </table>-->
+                                    </div>
+                                    <div ng-switch-when="226" ng-show="isDewasa&&isRawatInap"> <!--ng-show="isGeriatri"-->
+                                        <div class="grid_12 headerBox">
+                                            <h1 style="color: white;"><b>{{frm.nama}}</b></h1>
+                                        </div>
+                                        <div class="clear"></div>
+                                        <br/>
+                                        <div class="grid_12 header">
+                                            <div class="grid_1" style="border-bottom:1px solid blue; text-align:center"><b>No</b></div>
+                                            <div class="grid_9" style="border-bottom:1px solid blue"><b>Kriteria</b></div>
+                                            <div class="grid_2" style="border-bottom:1px solid blue; text-align:center"><b>Skor</b></div>
+                                            <!--<div class="grid_1" style="border-bottom:1px solid blue"><b>Nilai Skor</b></div>-->
+                                        </div>
+                                        <div ng-repeat="parameter in frm.detail | orderBy:'id'">   
+                                            <div ng-repeat="kondisi in parameter.detail | orderBy:'id'" ng-init="kondisiIndex = $index + 1">
+                                                <div class="grid_12" style="margin-bottom:solid 1px lightblue">
+                                                    <div class="grid_1" style="text-align: center">
+                                                        <label><b>{{kondisiIndex}}</b></label>
+                                                    </div>
+                                                    <div class="grid_9">
+                                                        <input type="checkbox" ng-change="cekArrGeriatri(bool, kondisi)" ng-model="bool" ng-checked="isChecked(kondisi.id)">
+                                                        <label for="{{kondisi.nama}}">{{kondisi.nama}}</label>
+                                                    </div>
+                                                    <div class="grid_2" style="text-align:center">
+                                                        <label>{{kondisi.descNilai}}</label>
+                                                    </div>
+                                                    <!--<div class="grid_1">
+                                                        <label>{{parameter.id}}</label>
+                                                    </div>-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="grid_12 footer" style="border-top:1px solid lightblue">
+                                            <div class="grid_10">Total Skor</div>
+                                            <div class="grid_2">{{totalSkorResikoGeriatri}}</div>
+                                        </div>
+                                        <!--<table class="tg">
+                                        <tr>
+                                            <td class="tg-yw4l nilai">Total Skor</td>
+                                            <td class="tg-yw4l nilai">{{dataForm.totalSkorAnak}}</td>
+                                        </tr>
+                                        </table>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- form resiko jatuh yang lama -->
+            <c-panel item="item" header="'ResikoJatuh'" disabled ng-hide="true">
+                <!-- tinggi badan - berat badan - lingkar kepala -->
+                <div class="grid_12" ng-repeat="stat in listStatusResikoJatuh">
+                    <div class="grid_12" style="padding-left:10px !important">
+                        <input type="radio" ng-model="item.resikoJatuh" id="{{stat.id}}" class="k-radio" ng-value="stat" ng-click="cekTotalSkor(resikoJatuh, stat)">
+                        <label class="k-radio-label" for="{{stat.id}}">{{stat.desc}}</label>
+                    </div>
+                </div>
+                <div class="grid_12" ng-show="isRawatInap">
+                    <div class="grid_12" ng-show="isAnak">
+                        <table class="tg">
+                        <tr>
+                            <th class="tg-yw4l">Parameter</th>
+                            <th class="tg-yw4l">Kriteria</th>
+                            <th class="tg-yw4l">Skor</th>
+                            <th class="tg-yw4l">Nilai Skor</th>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l" rowspan="4">Umur</td>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.umur" value="4">
+                                <label>Dibawah 3 tahun</label>
+                            </td>
+                            <td class="tg-yw4l">4</td>
+                            <td class="tg-yw4l" rowspan="4">{{item.umur}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.umur" value="3">
+                                <label>3-7 tahun</label>
+                            </td>
+                            <td class="tg-yw4l">3</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.umur" value="2">
+                                <label>7-13 tahun</label>
+                            </td>
+                            <td class="tg-yw4l">2</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.umur" value="1">
+                                <label>>13 tahun</label>
+                            </td>
+                            <td class="tg-yw4l">1</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l" rowspan="2">Jenis kelamin</td>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.jKelamin" value="2">
+                                <label>Laki-laki</label>
+                            </td>
+                            <td class="tg-yw4l">2</td>
+                            <td class="tg-yw4l" rowspan="2">{{item.jKelamin}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.jKelamin" value="1">
+                                <label>Perempuan</label>
+                            </td>
+                            <td class="tg-yw4l">1</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l" rowspan="4">Diagnosis</td>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.Diagnosis" value="4">
+                                <label>Gangguan Neurologis</label>
+                            </td>
+                            <td class="tg-yw4l">4</td>
+                            <td class="tg-yw4l" rowspan="4">{{item.Diagnosis}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.Diagnosis" value="3">
+                                <label>Perubahan dalam oksigenisasi (masalah saluran nafas, dehidrasi, anemia,anorexia, sinkop, Sakit kepala dll)</label>
+                            </td>
+                            <td class="tg-yw4l">3</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.Diagnosis" value="2">
+                                <label>Kelainan psikis/perilaku</label>
+                            </td>
+                            <td class="tg-yw4l">2</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.Diagnosis" value="1">
+                                <label>Diagnosis lain</label>
+                            </td>
+                            <td class="tg-yw4l">1</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l" rowspan="3">Gangguan kognitif</td>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.gangguanKognitif" value="3">
+                                <label>Tidak sadar terhadap keterbatasan</label>
+                            </td>
+                            <td class="tg-yw4l">3</td>
+                            <td class="tg-yw4l" rowspan="3">{{item.gangguanKognitif}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.gangguanKognitif" value="2">
+                                <label>Lupa keterbatasan</label>
+                            </td>
+                            <td class="tg-yw4l">2</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.gangguanKognitif" value="1">
+                                <label>Mengetahui kemampuan diri</label>
+                            </td>
+                            <td class="tg-yw4l">1</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l" rowspan="4">Faktor lingkungan</td>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.faktorLingkungan" value="4">
+                                <label>Riwayat jatuh dari tempat tidur saat bayi/ anak</label>
+                            </td>
+                            <td class="tg-yw4l">4</td>
+                            <td class="tg-yw4l" rowspan="4">{{item.faktorLingkungan}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.faktorLingkungan" value="3">
+                                <label>Pasien menggunakan alat bantu atau box/ mebel</label>
+                            </td>
+                            <td class="tg-yw4l">3</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.faktorLingkungan" value="2">
+                                <label>Pasien berada di tempat tidur</label>
+                            </td>
+                            <td class="tg-yw4l">2</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.faktorLingkungan" value="1">
+                                <label>Pasien diluar ruang rawat</label>
+                            </td>
+                            <td class="tg-yw4l">1</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l" rowspan="3">Respon terhadap operasi/obat penenang/efek anasthesi</td>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.responTerhadap" value="3">
+                                <label>Dalam 24 jam</label>
+                            </td>
+                            <td class="tg-yw4l">3</td>
+                            <td class="tg-yw4l" rowspan="3">{{item.responTerhadap}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.responTerhadap" value="2">
+                                <label>Dalam 48 jam</label>
+                            </td>
+                            <td class="tg-yw4l">2</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.responTerhadap" value="1">
+                                <label>>48 jam</label>
+                            </td>
+                            <td class="tg-yw4l">1</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l" rowspan="3">Penggunaan obat</td>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.penggunaanObat" value="3">
+                                <label>Penggunaan obat: sedative (kecuali pasien ICU, yang menggunakan sedasi dan paralisis) hipnotik, barbiturat, fenotialin, antidepresan, laksatif/ diuretika, narkotik</label>
+                            </td>
+                            <td class="tg-yw4l">3</td>
+                            <td class="tg-yw4l" rowspan="3">{{item.penggunaanObat}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.penggunaanObat" value="2">
+                                <label>Salah satu dari pengobatan diatas</label>
+                            </td>
+                            <td class="tg-yw4l">2</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.penggunaanObat" value="1">
+                                <label>Pengobatan lain</label>
+                            </td>
+                            <td class="tg-yw4l">1</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l" colspan="2">Total</td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l">{{item.totalSkorAnak}}</td>
+                        </table>
+                        <div class="grid_12">
+                            <p>Skor: 7-11 Risiko jatuh rendah; ≥ 12 Risiko jatuh tinggi</p>
+                        </div>
+                    </div>
+                    <div class="grid_12" ng-show="isDewasa" style="margin-bottom:40px !important">
+                        <table class="tg">
+                        <tr>
+                            <th class="tg-yw4l">No.</th>
+                            <th class="tg-yw4l">Tingkat Risiko</th>
+                            <th class="tg-yw4l">Skor</th>
+                            <th class="tg-yw4l">Nilai Skor</th>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l" rowspan="3">1</td>
+                            <td class="tg-yw4l" colspan="2">Riwayat  jatuh dalam 3 bulan terakhir:</td>
+                            <td class="tg-yw4l" rowspan="3">{{item.riwayatJatuh}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.riwayatJatuh" value="0">
+                                <label>Tidak ada</label>
+                            </td>
+                            <td class="tg-yw4l">0</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.riwayatJatuh" value="25">
+                                <label>Ada</label>
+                            </td>
+                            <td class="tg-yw4l">25</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l" rowspan="3">2</td>
+                            <td class="tg-yw4l" colspan="2">Diagnosis sekunder > 1:</td>
+                            <td class="tg-yw4l" rowspan="3">{{item.diagnosisSekunder}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.diagnosisSekunder" value="0">
+                                <label>Tidak ada</label>
+                            </td>
+                            <td class="tg-yw4l">0</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.diagnosisSekunder" value="25">
+                                <label>Ada</label>
+                            </td>
+                            <td class="tg-yw4l">25</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l" rowspan="4">3</td>
+                            <td class="tg-yw4l" colspan="2">Alat bantu jalan:</td>
+                            <td class="tg-yw4l" rowspan="4">{{item.alatBantuJalan}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.alatBantuJalan" value="0">
+                                <label>Bed Rest/Kursi Roda/Tidak Ada</label>
+                            </td>
+                            <td class="tg-yw4l">0</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.alatBantuJalan" value="15">
+                                <label>Penopang tongkat/walker</label>
+                            </td>
+                            <td class="tg-yw4l">15</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.alatBantuJalan" value="30">
+                                <label>Furnitur</label>
+                            </td>
+                            <td class="tg-yw4l">30</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l" rowspan="3">4</td>
+                            <td class="tg-yw4l" colspan="2">Akses IV:</td>
+                            <td class="tg-yw4l" rowspan="3">{{item.aksesIV}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.aksesIV" value="0">
+                                <label>Tidak ada</label>
+                            </td>
+                            <td class="tg-yw4l">0</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.aksesIV" value="25">
+                                <label>Ada</label>
+                            </td>
+                            <td class="tg-yw4l">25</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l" rowspan="4">5</td>
+                            <td class="tg-yw4l" colspan="2">Cara berjalan/berpindah:</td>
+                            <td class="tg-yw4l" rowspan="4">{{item.caraBerjalan}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.caraBerjalan" value="0">
+                                <label>Normal/bed rest/imobilisasi</label>
+                            </td>
+                            <td class="tg-yw4l">0</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.caraBerjalan" value="15">
+                                <label>Lemah</label>
+                            </td>
+                            <td class="tg-yw4l">15</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.caraBerjalan" value="30">
+                                <label>Terganggu</label>
+                            </td>
+                            <td class="tg-yw4l">30</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l" rowspan="3">6</td>
+                            <td class="tg-yw4l" colspan="2">Status mental:</td>
+                            <td class="tg-yw4l" rowspan="3">{{item.statusMental}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.statusMental" value="0">
+                                <label>Orientasi sesuai kemampuan</label>
+                            </td>
+                            <td class="tg-yw4l">0</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.statusMental" value="15">
+                                <label>Lupa keterbatasan diri</label>
+                            </td>
+                            <td class="tg-yw4l">15</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l" colspan="3">Total</td>
+                            <td class="tg-yw4l">{{item.totalSkorDewasa}}</td>
+                        </table>
+
+                        <!-- Form Geriatri  -->
+                        <div class="grid_12" style="min-height:30px">&nbsp;</div>
+                        <table class="tg">
+                        <tr>
+                            <th class="tg-yw4l">No.</th>
+                            <th class="tg-yw4l">Tingkat Risiko</th>
+                            <th class="tg-yw4l">Skor</th>
+                            <th class="tg-yw4l">Nilai Skor</th>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">1</td>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.gangguanJalan" value="4">
+                                <label>Gangguan gaya berjalan (diseret, menghentak, diayun)</label>
+                            </td>
+                            <td class="tg-yw4l">4</td>
+                            <td class="tg-yw4l">{{item.gangguanJalan}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">2</td>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.pusingTegak" value="3">
+                                <label>Pusing/pingsan pada posisi tegak</label>
+                            </td>
+                            <td class="tg-yw4l">3</td>
+                            <td class="tg-yw4l">{{item.pusingTegak}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">3</td>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.bingungSelalu" value="3">
+                                <label>Kebingungan setiap saat</label>
+                            </td>
+                            <td class="tg-yw4l">3</td>
+                            <td class="tg-yw4l">{{item.bingungSelalu}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">4</td>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.nokturia" value="3">
+                                <label>Nokturia/inkontinensia</label>
+                            </td>
+                            <td class="tg-yw4l">3</td>
+                            <td class="tg-yw4l">{{item.nokturia}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">5</td>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.bingungIntermiten" value="2">
+                                <label>Kebingungan intermiten</label>
+                            </td>
+                            <td class="tg-yw4l">3</td>
+                            <td class="tg-yw4l">{{item.bingungIntermiten}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">6</td>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.kelemahanUmum" value="2">
+                                <label>Kelemahan umum</label>
+                            </td>
+                            <td class="tg-yw4l">3</td>
+                            <td class="tg-yw4l">{{item.kelemahanUmum}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">7</td>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.riskObat" value="2">
+                                <label>Obat-obatan beresiko tinggi (diuretika, narkcba, sedative, laksantif, vasodilator, antiaritmia, antihypertensi, obat hypoglikemik, antidepresan, neoroleptik, NSAID)</label>
+                            </td>
+                            <td class="tg-yw4l">3</td>
+                            <td class="tg-yw4l">{{item.riskObat}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">8</td>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.riwayatJatuh12" value="2">
+                                <label>Riwayat jatuh dalam 12 bulan sebelumnya</label>
+                            </td>
+                            <td class="tg-yw4l">3</td>
+                            <td class="tg-yw4l">{{item.riwayatJatuh12}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">9</td>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.osteoporosis" value="1">
+                                <label>Osteoporosis</label>
+                            </td>
+                            <td class="tg-yw4l">3</td>
+                            <td class="tg-yw4l">{{item.osteoporosis}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">10</td>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.gangguanDengarlihat" value="1">
+                                <label>Gangguan pendengaran dan atau penglihatan</label>
+                            </td>
+                            <td class="tg-yw4l">3</td>
+                            <td class="tg-yw4l">{{item.gangguanDengarlihat}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">11</td>
+                            <td class="tg-yw4l">
+                                <input type="radio" ng-model="item.usia70" value="1">
+                                <label>Usia 70 tahun ke atas</label>
+                            </td>
+                            <td class="tg-yw4l">3</td>
+                            <td class="tg-yw4l">{{item.usia70}}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l" colspan="3">Total</td>
+                            <td class="tg-yw4l">{{item.totalSkorgeriatri}}</td>
+                        </table>
+                    </div>
+                </div>
+
+                <c-panel item="item" header="'RawatJalan'" disabled ng-hide="isRawatInap">
+                    <div class="grid_12" ng-repeat="resikoJatuh in listPertanyaanResikoJatuh" style="border: 2pt solid; border-color: #10C4B2">
+                        <div class="grid_8" style="padding: 10px;">
+                            <p style="margin: 0px; text-align: justify;">{{resikoJatuh.id}}. {{resikoJatuh.desc}}</p>
+                        </div>
+
+                        <div class="grid_2" ng-repeat="stat in listStatusYaTidak">
+                            <input type="radio" ng-model="resikoJatuh.stat" id="{{resikoJatuh.id + stat.name}}" class="k-radio" ng-value="stat" ng-click="cekTotalSkor(resikoJatuh, stat)">
+                            <label class="k-radio-label" for="{{resikoJatuh.id + stat.name}}">{{stat.name}}</label>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <p style="margin:0 15px !important; font-style:italic; font-size: 90%">Apakah salah satu jawaban “Ya” , maka lakukan intervensi pencegahan pasien jatuh di bawah ini:
+                        <ol style="font-style:italic; font-size: 90%">
+                            <li>1. Bila pasien menggunakan kursi roda, pastikan kursi roda terkunci pada saat berhenti</li>
+                            <li>2. Beritahu pendamping untuk tidak meninggalkan pasien.</li>
+                        </ol>
+                    </p>
+                </c-panel>
+            </c-panel>
+        </div>
+        <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+    </div>
+</div>

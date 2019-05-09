@@ -1,0 +1,377 @@
+<div ng-controller="PelayananRepackingCtrl">
+
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Pelayanan Repacking'">
+            <div class="grid_12">
+
+                <div class="grid_3">
+                    <!-- no produksi -->
+                    <div class="grid_12" style="margin-top:5px">
+                        <label c-label item="item" c-label-text="noProduksi"></label>
+                    </div>
+                    <div class="grid_12">
+                        <input ng-disabled="'<true></true>'" c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.produksi.noProduksi" />
+                    </div>
+                    <div class="clear"></div>
+
+                    <!-- tanggal produksi -->
+                    <div class="grid_12" style="margin-top:5px">
+                        <label c-label item="item" c-label-text="tglProduksi"></label>
+                    </div>
+                    <div class="grid_12">
+                        <input style="width: 100%" k-ng-model="item.produksi.tglProduksi" kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="grid_3">
+                    <!-- nama barang -->
+                    <div class="grid_12" style="margin-top:5px">
+                        <label c-label item="item" c-label-text="namaBarang"></label>
+                    </div>
+                    <div class="grid_12">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.produksi.namaBarang" />
+                    </div>
+                    <div class="clear"></div>
+
+                    <!-- spesifikasi -->
+                    <div class="grid_12" style="margin-top:5px">
+                        <label c-label item="item" c-label-text="spesifikasi"></label>
+                    </div>
+                    <div class="grid_12">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.produksi.spesifikasi" />
+                    </div>
+                    <div class="clear"></div>
+
+                    <!-- jumlah produksi -->
+                    <div class="grid_12" style="margin-top:5px">
+                        <label c-label item="item" c-label-text="jmlProduksi"></label>
+                    </div>
+                    <div class="grid_12">
+                        <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.produksi.jmlProduksi" />
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="grid_3">
+
+                    <!-- harga satuan -->
+                    <div class="grid_12" style="margin-top:5px">
+                        <label c-label item="item" c-label-text="hargaSatuan"></label>
+                    </div>
+                    <div class="grid_12">
+                        <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.produksi.hargaSatuan" />
+                    </div>
+                    <div class="clear"></div>
+
+                    <!-- expired  -->
+                    <div class="grid_12" style="margin-top:5px">
+                        <label c-label item="item" c-label-text="expired"></label>
+                    </div>
+                    <div class="grid_12">
+                        <input style="width: 100%" k-ng-model="item.produksi.expired" kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                    </div>
+                    <div class="clear"></div>
+
+                    <!-- unit cost -->
+                    <div class="grid_12" style="margin-top:5px">
+                        <label c-label item="item" c-label-text="unitCost"></label>
+                    </div>
+                    <div class="grid_12">
+                        <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.produksi.unitCost" />
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="grid_3">
+                    <!-- yang meminta -->
+                    <div class="grid_12" style="margin-top:5px">
+                        <label c-label item="item" c-label-text="yangMeminta"></label>
+                    </div>
+                    <div class="grid_12">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.produksi.yangMeminta" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataYangmeminta" />
+                    </div>
+                    <div class="clear"></div>
+
+                    <!-- yang memberikan -->
+                    <div class="grid_12" style="margin-top:5px">
+                        <label c-label item="item" c-label-text="yangMemberikan"></label>
+                    </div>
+                    <div class="grid_12">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.produksi.yangMemberikan" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataYangMemberikan" />
+                    </div>
+                    <div class="clear"></div>
+
+                    <!-- mengetahui -->
+                    <div class="grid_12" style="margin-top:5px">
+                        <label c-label item="item" c-label-text="mengetahui"></label>
+                    </div>
+                    <div class="grid_12">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.produksi.mengetahui" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDataMengetahui" />
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_12">
+                <div class="grid_2">
+                    <!-- kodeBarang -->
+                    <div class="grid_12" style="margin-top:5px">
+                        <label c-label item="item" c-label-text="kodeBarang"></label>
+
+                        <input ng-disabled="'true'" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="temp.barang.kdProduk" />
+                    </div>
+
+                    <!-- namaBarang -->
+
+                </div>
+                <div class="grid_4">
+                    <!-- satuan -->
+                    <div class="grid_12" style="margin-top:5px">
+                        <label c-label item="item" c-label-text="namaBarang"></label>
+
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="temp.barang" k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listNamaBarang" />
+                    </div>
+
+                </div>
+                <div class="grid_4">
+                    <!-- Qty dipakai -->
+                    <div class="grid_6" style="margin-top:5px">
+                        <label c-label item="item" c-label-text="Jumlah Pakai"></label>
+
+                        <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="temp.qty" />
+                    </div>
+                    <div class="grid_6" style="margin-top:5px">
+                        <label c-label item="item" c-label-text="satuan"></label>
+
+                        <input ng-disabled="'true'" c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="temp.barang.satuanStandar.satuanStandar" />
+                    </div>
+                    <!-- harga -->
+
+                </div>
+                <div class="grid_2" style="margin-top:5px">
+                    <label c-label item="item" c-label-text="harga"></label>
+
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="temp.harga" />
+                </div>
+            </div>
+
+            <div class="grid_12" style="float:left;margin-top:10px; margin-bottom:10px">
+                <div class="grid_6">
+                    &nbsp;
+                </div>
+                <div class="grid_3" style="float:right" ng-show="isInputMode">
+                    <button class="c-button success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" ng-click="AddDataPelayananRepacking()">
+			            <span class="title">Input Bahan Baku</span>
+			        </button>
+                </div>
+                <div class="grid_3" style="float:right" ng-hide="isInputMode">
+                    <button class="c-button success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" ng-click="EditDataPelayananRepacking()">
+			            <span class="title">Edit Bahan Baku</span>
+			        </button>
+                </div>
+            </div>
+
+            <!-- data informasi -->
+            <div class="grid_6" ng-repeat="data in DataPelayananRepacking">
+                <div class="grid_12 borderBox" style="margin-top:5px">
+                    <div class="grid_12" style="background-color:#10c4b2">
+                        <span style="font-size: 18px; color: white; padding: 5px;"></span>
+                    </div>
+                    <div class="grid_12" style="padding:5px">
+                        <!-- order -->
+                        <div class="grid_4">
+                            <label>Kode Barang</label>
+                        </div>
+                        <div class="grid_8">
+                            <label>: {{data.kodeBarang}}</label>
+                        </div>
+                        <div class="clear"></div>
+
+                        <!-- per 24 jam -->
+                        <div class="grid_4">
+                            <label>Nama Barang</label>
+                        </div>
+                        <div class="grid_8">
+                            <label>: {{data.namaBarang}}</label>
+                        </div>
+                        <div class="clear"></div>
+
+                        <!-- satuan -->
+                        <div class="grid_4">
+                            <label>satuan</label>
+                        </div>
+                        <div class="grid_8">
+                            <label>: {{data.satuan}}</label>
+                        </div>
+                        <div class="clear"></div>
+
+                        <!-- Qty dipakai -->
+                        <div class="grid_4">
+                            <label>Jumlah dipakai</label>
+                        </div>
+                        <div class="grid_8">
+                            <label>: {{data.qty}}</label>
+                        </div>
+                        <div class="clear"></div>
+
+                        <!-- harga -->
+                        <div class="grid_4">
+                            <label>hargal</label>
+                        </div>
+                        <div class="grid_8">
+                            <label>: {{data.harga}}</label>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+
+                    <div class="grid_2" style="padding:5px">
+                        <button class="c-button success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" ng-click="getEditData(data.id)">
+				            <span class="title">Edit</span>
+				        </button>
+                    </div>
+                    <div class="grid_2" style="padding:5px">
+                        <button class="c-button cancel" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" ng-click="removeDataHandlingCytotoxic(data)">
+				            <span class="title">Hapus</span>
+				        </button>
+                    </div>
+                    <div class="clear"></div>
+
+                </div>
+
+                <!--<div class="grid_12" style="padding:5px">
+                        <div class="grid_4">
+                            <label>Kode Barang</label>
+                        </div>
+                        <div class="grid_8">
+                            <label>: {{data.kodeBarang}}</label>
+                        </div>
+                        <div class="clear"></div>
+
+                        <div class="grid_4">
+                            <label>Nama Barang</label>
+                        </div>
+                        <div class="grid_8">
+                            <label>: {{data.namaBarang}}</label>
+                        </div>
+                        <div class="clear"></div>
+
+                        <div class="grid_4">
+                            <label>Satuan</label>
+                        </div>
+                        <div class="grid_8">
+                            <label>: {{data.satuan}}</label>
+                        </div>
+                        <div class="clear"></div>
+
+                        <div class="grid_4">
+                            <label>Qty dipakai</label>
+                        </div>
+                        <div class="grid_8">
+                            <label>: {{data.jmlProduksi}}</label>
+                        </div>
+                        <div class="clear"></div>
+
+                        <div class="grid_4">
+                            <label>harga</label>
+                        </div>
+                        <div class="grid_8">
+                            <label>: {{data.hargaSatuan}}</label>
+                        </div>
+                        <div class="clear"></div>
+
+                        <div class="grid_4">
+                            <label>Sub Total</label>
+                        </div>
+                        <div class="grid_8">
+                            <label>: {{data.hargaSatuan * data.jmlProduksi}}</label>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clear"></div>
+
+                    <div class="grid_2" style="padding:5px">
+                        <button class="c-button success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" ng-click="showDetailData(data.id)">
+				            <span class="title">Detail</span>
+				        </button>
+                    </div>
+                    <div class="grid_2" style="padding:5px">
+                        <button class="c-button success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" ng-click="getEditData(data.id)">
+				            <span class="title">Edit</span>
+				        </button>
+                    </div>
+                    <div class="grid_2" style="padding:5px">
+                        <button class="c-button cancel" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" ng-click="removeDataPelayananRepacking(data)">
+				            <span class="title">Hapus</span>
+				        </button>
+                    </div>
+                    <div class="clear"></div>
+
+                    <div class="grid_12" style="padding:5px" ng-show="data.statVisible">
+                        <div class="grid_4">
+                            <label>No. Produksi</label>
+                        </div>
+                        <div class="grid_8">
+                            <label>: {{data.noProduksi}}</label>
+                        </div>
+                        <div class="clear"></div>
+
+                        <div class="grid_4">
+                            <label>yang meminta</label>
+                        </div>
+                        <div class="grid_8">
+                            <label>: {{data.yangMeminta.name}}</label>
+                        </div>
+                        <div class="clear"></div>
+
+                        <div class="grid_4">
+                            <label>yang memberikan</label>
+                        </div>
+                        <div class="grid_8">
+                            <label>: {{data.yangMemberikan.name}}</label>
+                        </div>
+                        <div class="clear"></div>
+
+                        <div class="grid_4">
+                            <label>Mengetahui</label>
+                        </div>
+                        <div class="grid_8">
+                            <label>: {{data.mengetahui.name}}</label>
+                        </div>
+                        <div class="clear"></div>
+
+                        <div class="grid_4">
+                            <label>Tanggal Produksi</label>
+                        </div>
+                        <div class="grid_8">
+                            <label>: {{data.tglProduksi}}</label>
+                        </div>
+                        <div class="clear"></div>
+
+                        <div class="grid_4">
+                            <label>Expired</label>
+                        </div>
+                        <div class="grid_8">
+                            <label>: {{data.expired}}</label>
+                        </div>
+                        <div class="clear"></div>
+
+                        <div class="grid_4">
+                            <label>unit Cost</label>
+                        </div>
+                        <div class="grid_8">
+                            <label>: {{data.unitCost}}</label>
+                        </div>
+                        <div class="clear"></div>
+                    </div>-->
+
+            </div>
+    </div>
+    <div class="clear"></div>
+
+    <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" ' style="margin-top:15px"></div>
+
+    </c-panel>
+</div>
+</div>

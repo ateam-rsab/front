@@ -1,0 +1,81 @@
+  <div ng-show="dataVOloaded">
+    <div class="grid_12 headerBox">
+      <h1 style="color: white;"><b>Jurnal Sudah Verifikasi</b></h1>
+    </div>
+    <div class="clear"></div>
+
+    <br/>
+
+    <div class="grid_12">
+
+      <div class="grid_12">
+        <div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+          <p></p>
+        </div>
+        <div class="grid_12 borderBox containerBorderBox">
+
+
+          <!-- Periode Pulang -->
+          <div class="grid_4">
+            <div class="grid_12">
+              <label c-label item="item" c-label-text="Tanggal Transaksi Jurnal"></label>
+            </div>
+            <div class="clear"></div>
+
+            <div class="grid_12">
+              <!-- AwalPeriode -->
+              <div class="grid_6">
+                <div class="grid_12">
+                  <input style="width: 100%" k-ng-model="item.tanggalAwal"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                </div>
+              </div>
+
+              <!-- AkhirPeriode -->
+              <div class="grid_6">
+                <div class="grid_12">
+                  <input style="width: 100%" k-ng-model="item.tanggalAkhir"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                </div>
+              </div>
+              <div class="clear"></div>
+            </div>
+          </div>
+
+          <!-- Button Search -->
+          <div class="grid_1">
+            <div class="grid_12">
+              <label>&nbsp;</label>
+            </div>
+            <div class="clear"></div>
+
+            <div class="grid_12">
+              <button class="btnTemplate1" ng-click="SearchData()">Cari</button>
+            </div>
+          </div>
+
+          <div class="clear"></div>
+
+
+          <div class="grid_12">
+          <kendo-grid options="listJurnal">
+            <div k-detail-template>
+              <kendo-tabstrip>
+                <div>
+                  <div kendo-grid k-options="detailGridOptions(dataItem)"></div>
+                </div>
+              </kendo-tabstrip>
+            </div>
+          </kendo-grid>
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+    <div class="grid_12" style="margin-top:30px">
+       <div ng-include='"../app/module/Shared/templateButtonSimpanJurnal"'></div>
+    </div>
+
+  </div>

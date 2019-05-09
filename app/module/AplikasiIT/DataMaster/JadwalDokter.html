@@ -1,0 +1,185 @@
+<div ng-controller="JadwalDokterCtrl">
+<div ng-show="dataVOloaded">
+<c-panel item="item" header="'Jadwal Dokter'" disabled>
+
+<!-- statusKehadiran -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="statusKehadiran"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.statusKehadiran" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="liststatusKehadiran" />
+</div>
+</div>
+
+<!-- statusKehadiranId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="statusKehadiranId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.statusKehadiranId" />
+</div>
+</div>
+
+<!-- jadwalPraktek -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="jadwalPraktek"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.jadwalPraktek" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listjadwalPraktek" />
+</div>
+</div>
+
+<!-- jadwalPraktekId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="jadwalPraktekId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jadwalPraktekId" />
+</div>
+</div>
+
+<!-- ruangan -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="ruangan"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listruangan" />
+</div>
+</div>
+
+<!-- ruanganId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="ruanganId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.ruanganId" />
+</div>
+</div>
+
+<!-- dokter -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="dokter"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.dokter" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listdokter" />
+</div>
+</div>
+
+<!-- dokterId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="dokterId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.dokterId" />
+</div>
+</div>
+
+<!-- quota -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="quota"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.quota" />
+</div>
+</div>
+
+<!-- tanggalJadwal -->
+<div class="grid_12">
+<div class="grid_12">
+<label c-label item="item" c-label-text="tanggalJadwal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%" k-ng-model="item.tanggalJadwal"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+</div>
+</div>
+
+<!-- reportDisplay -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="reportDisplay"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+</div>
+</div>
+
+<!-- kodeExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kodeExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+</div>
+</div>
+
+<!-- namaExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="namaExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+</div>
+</div>
+
+<!-- JadwalDokter -->
+<div class="grid_12">
+<div class="grid_12 headerBox">
+<p>JadwalDokter</p>
+</div>
+<div class="clear"></div>
+
+<!-- grid table -->
+<div class="grid_12 borderBox">
+<div kendo-grid k-data-source="dataJadwalDokter" k-selectable="'row'" k-columns="columnJadwalDokter">
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+
+
+</c-panel>
+
+<div class="grid_12" style="margin-top:30px">
+<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
+</div>
+</div>
+</div>

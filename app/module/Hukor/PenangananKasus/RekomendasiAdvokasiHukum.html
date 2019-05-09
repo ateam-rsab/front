@@ -1,0 +1,97 @@
+<div ng-controller="RekomendasiAdvokasiHukumCtrl">
+    <c-panel item="item" header="'Rekomendasi Advokasi Hukum & Medicolegal'" disabled>
+        <div class="panel panel-default container_12">
+            <div class="grid_6">
+                <div class="grid_12">
+                    <div class="grid_4" style="margin-top: 10px">
+                        <div class="grid_10">
+                            <label c-label item="item" c-label-text="noKasus"></label>
+                        </div>
+                        <div class="grid_2" align="right">:</div>
+                    </div>
+                    <div class="grid_6" style="margin: 5px 0 0 10px;">
+                        <input c-text-box type="input" filter="''" class="k-textbox"
+                               ng-model="item.noKasus" ng-disabled="true"/>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4" style="margin-top: 10px">
+                        <div class="grid_10">
+                            <label c-label item="item" c-label-text="jenisKasusHukum"></label>
+                        </div>
+                        <div class="grid_2" align="right">:</div>
+                    </div>
+                    <div class="grid_6" style="margin: 5px 0 0 10px;">
+                        <input c-text-box type="input" filter="''" class="k-textbox"
+                               ng-model="item.jenisKasusHukum" ng-disabled="true"/>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4" style="margin-top: 10px">
+                        <div class="grid_10">
+                            <label c-label item="item" c-label-text="Download"></label>
+                        </div>
+                        <div class="grid_2" align="right">:</div>
+                    </div>
+                    <div class="grid_6" style="margin: 10px 0 0 10px">
+                        <button class="c-button" ng-click="download()">Download</button></div>
+                </div>
+            </div>  <div class="grid_6"></div>
+            <div class="grid_12">
+                <div class="grid_12">
+                    <div class="grid_2" style="margin-top: 10px">
+                        <div class="grid_10">
+                            <label c-label item="item" c-label-text="saran"></label>
+                        </div>
+                        <div class="grid_2" align="right">:</div>
+                    </div>
+                    <div class="grid_4" style="margin: 5px 0 0 10px;">
+                        <input c-text-box type="input" filter="''" class="k-textbox"
+                               ng-model="item.saran" ng-disabled="true"/>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_2" style="margin-top: 10px">
+                        <div class="grid_10">
+                            <label c-label item="item" c-label-text="isiKajian"></label>
+                        </div>
+                        <div class="grid_2" align="right">:</div>
+                    </div>
+                    <div class="grid_4" style="margin: 5px 0 0 10px;">
+                        <input c-text-box type="input" filter="''" class="k-textbox"
+                               ng-model="item.isiKajian" ng-disabled="true"/>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_2" style="margin-top: 10px">
+                        <div class="grid_10">
+                            <label c-label item="item" c-label-text="rekomendasi"></label>
+                        </div>
+                        <div class="grid_2" align="right">:</div>
+                    </div>
+                    <div class="grid_4" style="margin: 5px 0 0 10px;">
+                            <textarea c-text-box type="input" filter="''" class="k-textbox"
+                                      ng-model="item.rekomendasi" ng-disabled="false"/>
+                    </div>
+                </div>
+            </div>
+
+                    <div class="grid_12">
+                        <div class="grid_6"></div>
+                        <div class="grid_3" style="margin-top: 25px">
+                            <button class="c-button" ng-show="!isLoading" item="item" is-validate
+                                    ng-click="save()">
+                                <span class="title">Simpan</span></button>
+                        </div>
+                        <div class="grid_3" style="margin-top: 25px">
+                            <button class="c-button" ng-show="!isLoading" item="item" is-validate
+                                    ng-click="tutup()">
+                                <span class="title">Tutup</span></button>
+                        </div>
+                    </div>
+        </div>
+
+
+    </c-panel>
+
+</div>

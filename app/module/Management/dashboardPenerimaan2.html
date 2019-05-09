@@ -1,0 +1,285 @@
+<style>
+    .style-center{
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+    }
+
+    .style-right{
+        display: inline-block;
+        text-align: right;
+        width: 100%;
+    }
+
+    .style-left{
+        display: inline-block;
+        text-align: left;
+        width: 100%;
+    }
+</style>
+<!-- <div class="DashboardPenerimaanCtrl"> -->
+    <div class="grid_12">
+        <div class="grid_4">
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="Periode Penerimaan"></label>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_12">
+                <!-- AwalPeriode -->
+                <div class="grid_6 padDatePicker">
+                    <input style="width: 100%" k-ng-model='from' k-value='now' kendo-date-picker placeholer="dd-mmm-yyyy" k-format="'dd-MMM-yyyy'"/>
+                </div>
+
+                <!-- AkhirPeriode -->
+                <div class="grid_6 padDatePicker">
+                    <input style="width: 100%"  k-ng-model='until' k-value='now' kendo-date-picker placeholer="dd-mmm-yyyy" k-format="'dd-MMM-yyyy'" />
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="grid_2" style="margin-top: 15px;">
+            <button class="btnTemplate1" ng-click="SearchData()">Cari</button>
+        </div>
+    </div>
+    <div class="grid_12 headerBox">
+        <h1 style="color: white;"><b>Detail Penerimaan Rumah Sakit</b></h1>
+    </div>    
+    <!-- <div class="demo-section k-content wide">
+            <div id="chart" 
+                 k-series-hover="onSeriesHover" ng-click="klikChart(chart)" style="background: center no-repeat url('../content/shared/styles/world-map.png');"></div>
+        </div>
+    </div> -->
+    <div class="grid_12" style="margin-bottom: 5px;">
+        <div class="grid_12">
+            <div kendo-chart k-options="chart" k-data-source="sourcechart"></div>
+        </div>
+         <div class="grid_4">
+            <div kendo-chart k-options="chart1" k-data-source="sourcechart"></div>
+        </div>
+    </div>
+
+    <div class="grid_12" style="margin-bottom: 5px;">
+        <div class="grid_12" style="margin-top: 10px;">
+                <table id="grid" class="table table-bordered tabelJurnal">
+                    <thead>
+                        <tr>
+                            <th rowspan="2" style="font-weight: bold;">Pelayanan</th>
+                            <th colspan="2" style="font-weight: bold;">Target</th>
+                            <th colspan="2" style="font-weight: bold;">Capaian</th>
+                            <!-- <th colspan="2">Prognosa</th>
+                            <th colspan="2"><b>Target</b></th> -->
+                        </tr>
+                        <tr>
+                            <th style="font-weight: bold;">Volume</th>
+                            <th style="font-weight: bold;">Rp</th>
+                            <th style="font-weight: bold;">Volume</th>
+                            <th style="font-weight: bold;">Rp</th>
+                           <!--  <th>Volume</th>
+                            <th>Rp</th>
+                            <th>Volume</th>
+                            <th>Rp</th> -->
+                        </tr>
+                       <!--  <tr>
+                            <th style="font-weight: bold;">1</th>
+                            <th style="font-weight: bold;">2</th>
+                            <th style="font-weight: bold;">3</th>
+                            <th style="font-weight: bold;">4</th>
+                            <th style="font-weight: bold;">5</th>                          
+                        </tr> -->
+                        <tr>
+                            <th style="font-weight: bold;"><a href="#/detailDashboardPenerimaan/Rawatjalan" ng-value="rajal" ng-click="DataRajal(rajal)">RAWAT JALAN dan IGD (Pengunjung)</a></th>
+                            <th>&nbsp;</th>
+                            <th>&nbsp;</th>
+                            <th>&nbsp;</th>
+                            <th>&nbsp;</th>                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="data in Datakinerja" item="item">
+                            <td style="font-weight: bold;">Total</td>
+                            <!-- target this year -->
+                            <td style="text-align: right;">{{data.volumetarget}}</td>
+                            <td style="text-align: right">{{data.totaltarget}}</td>
+                            <!-- capaian -->
+                            <td style="text-align: right">{{data.volume}}</td>
+                            <td style="text-align: right">{{data.total}}</td>                            
+                        </tr>
+                        <tr ng-repeat="data in Datakinerja" item="item">
+                            <td style="font-weight: bold;">Pasien BPJS</td>
+                            <!-- target this year -->
+                            <td style="text-align: right">{{data.volumetargetdetailbpjs}}</td>
+                            <td style="text-align: right">{{data.totaltargetdetailbpjs}}</td>
+                            <!-- capaian -->
+                            <td style="text-align: right">{{data.volumedetailbpjs}}</td>
+                            <td style="text-align: right">{{data.totaldetailbpjs}}</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerja" item="item">
+                            <td style="font-weight: bold;">Pasien Umum</td>
+                            <!-- target this year -->
+                            <td style="text-align: right">{{data.volumedetailumum}}</td>
+                            <td style="text-align: right">{{data.totaldetailumum}}</td>
+                            <!-- capaian -->
+                            <td style="text-align: right">{{data.volumetrgetumum}}</td>
+                            <td style="text-align: right">{{data.totaltrgetumum}}</td>
+                        </tr>
+                        <tr>
+                            <th style="font-weight: bold;"><a href="#/detailDashboardPenerimaan/RawatInap" ng-value="ranap" ng-click="DataRajal(ranap)">RAWAT INAP (Hari Perawatan)</a></th>
+                            <th>&nbsp;</th>
+                            <th>&nbsp;</th>
+                            <th>&nbsp;</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerja1" item="item">
+                            <td style="font-weight: bold;">Total</td>
+                            <!-- target this year -->
+                            <td style="text-align: right">{{data.volumetargetInap}}</td>
+                            <td style="text-align: right">{{data.totaltargetInap}}</td>
+                            <!-- capaian -->
+                            <td style="text-align: right">{{data.volumeInap}}</td>
+                            <td style="text-align: right">{{data.totalInap}}</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerja1" item="item">
+                            <td style="font-weight: bold;">Pasien BPJS</td>
+                            <!-- target this year -->
+                            <td style="text-align: right">{{data.volumetargetdetailbpjsInap}}</td>
+                            <td style="text-align: right">{{data.totaltargetdetailbpjsInap}}</td>
+                            <!-- capaian -->
+                            <td style="text-align: right">{{data.volumedetailbpjsInap}}</td>
+                            <td style="text-align: right">{{data.totaldetailbpjsInap}}</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerja1" item="item">
+                            <td style="font-weight: bold;">Pasien Umum</td>
+                            <!-- target this year -->
+                            <td style="text-align: right">{{data.volumetrgetumumInap}}</td>
+                            <td style="text-align: right">{{data.totaltrgetumumInap}}</td>
+                            <!-- capaian -->
+                            <td style="text-align: right">{{data.volumedetailumumInap}}</td>
+                            <td style="text-align: right">{{data.totaldetailumumInap}}</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerja2" item="item">
+                            <td style="font-weight: bold;">KINERJA LAYANAN RUMAH SAKIT</td>
+                            <!-- target this year -->
+                            <td>&nbsp;</td>
+                            <td style="text-align: right">{{data.totaltargetall}}</td>
+                            <!-- capaian -->
+                            <td>&nbsp;</td>
+                            <td style="text-align: right">{{data.totalall}}</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold;">KINERJA USAHA LAINNYA</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr ng-repeat="data in Datakinerja2" item="item">
+                            <td style="font-weight: bold;">TOTAL KINERJA BLU</td>
+                             <!-- target this year -->
+                            <td>&nbsp;</td>
+                            <td style="text-align: right">{{data.totaltargetall}}</td>
+                            <!-- capaian -->
+                            <td>&nbsp;</td>
+                            <td style="text-align: right">{{data.totalall}}</td>                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        <!-- </div>
+    </div> -->
+        <!-- <div class="grid_6" style="margin-top: 10px;"> -->
+            <!-- <div>
+                <kendo-grid 
+                    k-data-source="dataSource"
+                    k-selectable="'row'" 
+                    k-columns="columnNew" 
+                    k-pageable="'true'" 
+                    k-sortable="'true'" 
+                    k-ng-model="dataSelected2">
+                    <div k-detail-template>
+                        <kendo-tabstrip >
+
+                        <ul>
+                            <li class="k-state-active">Detail</li> -->
+                            <!-- <li>Contact information</li> -->
+                        <!-- </ul>
+                        <div>
+                            <div kendo-grid k-options="detailGridOptions(dataItem)"></div>
+                        </div> -->
+                        <!-- <div>
+                            <ul class="contact-info-form">
+                                <li><label>Country:</label> <input class="k-textbox" ng-model="dataItem.Country" /></li>
+                                <li><label>City:</label> <input class="k-textbox" ng-model="dataItem.City" /></li>
+                                <li><label>Address:</label> {{dataItem.Address}}</li>
+                                <li><label>Home phone:</label> {{dataItem.HomePhone}}</li>
+                            </ul>
+                        </div> -->
+                        <!-- </kendo-tabstrip>
+                    </div>
+                </kendo-grid>
+            </div>
+        </div> -->
+    </div>
+    <div class="grid_12" style="margin-top:30px">
+        <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+    </div>
+    <div class="grid_12">
+        <div class="grid_3">
+            <c-button style="width: 100%; padding:0px, margin:0px;background-color: #C7C700;" ng-click="farmasi()" position="'right'">
+                <span class="title">Detail Farmasi</span>
+            </c-button>
+        </div>
+        <div class="grid_3">
+            <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="UshaLainnya()" position="'right'">
+                <span class="title">Detail Usaha Lainnya</span>
+            </c-button>
+        </div>
+        <!-- <div class="grid_3">
+            <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="inputTindakanDokter()" position="'right'">
+                <span class="title">Input Tindakan</span>
+            </c-button>
+        </div> -->
+        <!-- <div class="grid_3">
+            <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="resep()" position="'right'">
+                <span class="title">Resep Elektronik</span>
+            </c-button>
+        </div> -->
+       <!--  <div class="grid_3">
+            <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="laboratorium()" position="'right'">
+                <span class="title">Penunjang Laboratorium</span>
+            </c-button>
+        </div> -->
+        <!-- <div class="grid_3">
+            <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="radiologi()" position="'right'">
+                <span class="title">Penunjang Radiologi</span>
+            </c-button>
+        </div>  -->
+    </div>
+    <style>
+        table {
+            font-size: 16px;
+            font-weight: bold;
+            border-collapse: collapse;
+            width: 100%;
+            }
+
+            th, td {
+            font-size: 16px;
+            font-weight: bold;
+            text-align: left;
+            padding: 16px;
+            }
+
+            tr:nth-child(even){
+                background-color: #f2f2f2;
+                text-align: left;
+                font-weight: bold;
+                font-size: 16px;
+            }
+
+            th {
+            font-size: 17px;
+            font-weight: bold;
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>

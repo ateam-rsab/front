@@ -1,0 +1,49 @@
+{
+	"model":{
+		"sasaranStrategis":"",
+		"indikatorKinerjaUtama":"",
+		"tahun" : "",
+		"bobot" : "",
+		"satuan":"",
+		"targetIku":""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "sasaranStrategis",
+			"messagesRequired" : "",
+			"caption" : "Sasaran Strategis"
+		},{
+			"isNull" : "true",
+			"name" : "indikatorKinerjaUtama",
+			"messagesRequired" : "",
+			"caption" : "Indikator Kinerja Utama"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tahun",
+			"messagesRequired" : "",
+			"caption" : "Tahun"
+		},
+		{
+			"isNull" : "true",
+			"name" : "bobot",
+			"messagesRequired" : "",
+			"caption" : "Bobot"
+		},
+		{
+			"isNull" : "true",
+			"name" : "satuan",
+			"messagesRequired" : "",
+			"caption" : "Satuan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "targetIku",
+			"messagesRequired" : "",
+			"caption" : "Target IKU"
+		}
+
+	]
+}

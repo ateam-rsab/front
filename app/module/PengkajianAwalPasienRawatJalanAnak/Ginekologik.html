@@ -1,0 +1,95 @@
+<div ng-controller="GinekologikCtrl">
+    <c-panel item="item" header="'Ginekologi'" disabled>
+        <div class="container_12">
+            <div class="grid_4">
+                <div class="grid_5"><label c-label="" item="item" c-label-text="Paritas" class="ng-isolate-scope c-label"></label></div>
+                <div class="grid_7"><input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.Paritas" /></div>
+            </div>
+            <div class="grid_4">
+                <div class="grid_4"><label c-label="" item="item" c-label-text="TerapiHormon" class="ng-isolate-scope c-label"></label></div>
+                <div class="grid_8"><input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.TerapiHormon" /></div>
+            </div>
+
+            <div class="grid_4">
+                <div class="grid_3"><label c-label="" item="item" c-label-text="TglHormon" class="ng-isolate-scope c-label"></label></div>
+                <div class="grid_9"><input style="width: 100%" k-ng-model="item.TglHormon" kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                </div>
+            </div>
+        </div>
+        <div class="container_12">
+            <div class="grid_4">
+                <div class="grid_5"><label c-label="" item="item" c-label-text="TglHaidTerakhir" class="ng-isolate-scope c-label"></label></div>
+                <div class="grid_7"><input style="width: 100%" k-ng-model="item.TglHaidTerakhir" kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" /></div>
+            </div>
+            <div class="grid_8">
+                <div class="grid_2"><label c-label="" item="item" c-label-text="Kontrasepsi" class="ng-isolate-scope c-label"></label></div>
+                <div class="grid_1" style="margin: 0px 28px 0px 0px;" ng-repeat="stat in listStatusKontrasepsi">
+                    <input type="checkbox" name="{{stat.name}}" id="{{stat.name}}" class="k-checkbox" value="{{stat.name}}">
+                    <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="container_12">
+            <div class="grid_4">
+                <div class="grid_5"><label c-label="" item="item" c-label-text="SiklusHaid" class="ng-isolate-scope c-label"></label></div>
+                <div class="grid_6"><input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.SiklusHaid" /></div>
+                <div class="grid_1"><label c-label="" item="item" c-label-text="Hari" class="ng-isolate-scope c-label"></label></div>
+            </div>
+
+            <div class="grid_4">
+                <div class="grid_4"><label c-label="" item="item" c-label-text="OperasiRadiasi" class="ng-isolate-scope c-label"></label></div>
+                <div class="grid_8"><input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.OperasiRadiasi" />
+                </div>
+            </div>
+        </div>
+        <div class="container_12">
+            <div class="grid_4">
+                <div class="grid_5"><label c-label="" item="item" c-label-text="PraPascamenopause" class="ng-isolate-scope c-label"></label></div>
+                <div class="grid_6"><input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.PraPascamenopause" /></div>
+                <div class="grid_1"><label c-label="" item="item" c-label-text="Hari" class="ng-isolate-scope c-label"></label></div>
+            </div>
+            <div class="grid_4">
+                <div class="grid_4"><label c-label="" item="item" c-label-text="Menopause" class="ng-isolate-scope c-label"></label></div>
+                <div class="grid_8"><input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.Menopause" />
+                </div>
+            </div>
+            <div class="grid_4">
+                <div class="grid_3"><label c-label="" item="item" c-label-text="TglMenopause" class="ng-isolate-scope c-label"></label></div>
+                <div class="grid_9"><input style="width: 100%" k-ng-model="item.TglMenopause" kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                </div>
+            </div>
+        </div>
+        <div class="container_12">
+            <div class="grid_2"><label c-label="" item="item" c-label-text="StatusGinekologik" class="ng-isolate-scope c-label"></label></div>
+            <div class="grid_10">
+                <div class="grid_3" style="margin: 5px 0 5px 0;" ng-repeat="stat in listStatusGinekologi">
+                    <input type="checkbox" class="k-checkbox" name="{{stat.name}}" id="{{stat.name}}" value="{{stat.id}}" ng-click="clickStatusGinekologik(stat.name)">
+                    <label class="k-checkbox-label" for="{{stat.name}}">{{stat.name}}</label>
+                </div>
+                <div class="grid_9" ng-show="isTextLain">
+                    <div class="grid_8"><input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.StatusGinekologik" /></div>
+                </div>
+            </div>
+
+        </div>
+        <hr style="background-color:#10C4B2;height: 1px;border: 0;" />
+        <div class="grid_12">
+            <div class="grid_3" style="float:right">
+                <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="Next">
+                    <span class="title">Selanjutnya</span>
+                </c-button>
+            </div>
+            <div class="grid_3" style="float:right">
+                <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'">
+                    <span class="title">Sebelumnya</span>
+                </c-button>
+            </div>
+        </div>
+    </c-panel>
+    <!--<div>
+        <div class="grid_3" style="margin: 5px 0 5px 0;"  ng-repeat="pengaruhNyeri in listStatusTest">
+            <input type="checkbox" class="k-checkbox" name="{{pengaruhNyeri.name}}" id="{{pengaruhNyeri.name}}" value="{{pengaruhNyeri.id}}" ng-click="cekArrKarateristikNyeri(pengaruhNyeri.id)">
+            <label class="k-checkbox-label" for="{{pengaruhNyeri.name}}">{{pengaruhNyeri.name}}</label>
+        </div>
+    </div>-->
+</div>

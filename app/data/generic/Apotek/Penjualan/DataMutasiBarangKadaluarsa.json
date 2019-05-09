@@ -1,0 +1,13 @@
+[
+	{ 
+		"id": "1",
+		"kodeBarang": "00001",
+		"namaBarang": "pria",
+		"satuan": "1",
+		"jumlah": "harga 1",
+		"tanggalExpiredData": "embalace 1",
+		"dokter": "diskon 1",
+		"tipePasien": "jasa 1",
+		"keluarkan": "subtotal 1"
+	}
+]

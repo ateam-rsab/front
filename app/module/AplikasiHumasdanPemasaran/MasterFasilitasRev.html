@@ -1,0 +1,224 @@
+<div ng-controller="MasterFasilitasRevCtrl">
+	<div ng-show="dataVOloaded">
+		<!-- form login superuser -->
+		<!-- <div ng-include='"../app/module/Shared/TemplateLoginSupervisor"'></div> -->
+
+		<c-panel item="item" header="'Master Fasilitas'" disabled>
+
+			
+			<div class="grid_6">
+			<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Nama Fasilitas</label>
+					</div>
+					<div class="grid_10">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaFasilitas"/>
+					</div>
+				</div>
+
+			<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Kode Fasilitas</label>
+					</div>
+					<div class="grid_4">
+						<input c-text-box type="input" filter="'integer'" class="k-textbox" ng-model="item.kodeFasilitas"/>
+					</div>
+				</div>
+
+
+
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Deskripsi Fasilitas</label>
+					</div>
+					<div class="grid_10">
+						<textarea style="height: 90px" c-text-box type="input" class="k-textbox" ng-model="item.deskripsi" />
+					</div>
+				</div>
+
+
+				<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Jumlah Fasilitas</label>
+					</div>
+					<div class="grid_2">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.JmlFasilitas"/>
+					</div>
+				</div>
+
+				<div class="grid_6">
+				</div>
+
+		    <div class="grid_12">
+				<div class="grid_2">
+					<label c-label item="item" style="margin-top: 10px">Departemen</label>
+				</div>
+				<div class="grid_10">
+					<!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.departemen" k-data-text-field="'namaDept'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"   k-data-source="ListDataDept"/> -->
+					 <input style="width: 100%;" kendo-combo-box k-ng-model="item.dept" k-data-text-field="'namadepartemen'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListDept" />
+				</div>
+			</div>
+
+			<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Ruangan</label>
+					</div>
+					<div class="grid_10">
+						 <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaruangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListRuangan" />
+					</div>
+				</div>
+
+			<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Kelas</label>
+					</div>
+					<div class="grid_10">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.kelas" k-data-text-field="'namakelas'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListKelas"/>
+					</div>
+				</div>
+
+				<div class="grid_6">
+				</div>
+
+		   <div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Informasi</label>
+					</div>
+					<div class="grid_10">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.informasi" k-data-text-field="'kelompokproduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="Listkelompokproduk"/>
+						<!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.informasi" k-data-text-field="'kelompokProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListDataInformasi"/> -->
+					</div>
+				</div>
+
+				<div class="grid_6">
+		    </div>
+
+			<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Keterangan</label>
+					</div>
+					<div class="grid_10">
+						<textarea style="height: 90px" c-text-box type="input" class="k-textbox" ng-model="item.keterangan" />
+					</div>
+				</div>
+				<div class="grid_6">
+				</div>
+			<div class="grid_12">
+					<div class="grid_2">
+						<label c-label item="item" style="margin-top: 10px">Pegawai Penanggung Jawab</label>
+					</div>
+					<div class="grid_10">
+						<input kendo-combo-box k-ng-model="item.pegawai" k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" />
+					</div>
+				</div>
+
+				</div>
+
+				 <fieldset style="min-height:250px !important">
+				 <legend><h2>Upload Gambar Fasilitas</h2></legend>
+
+				<c-panel item="item" header="'Fasilitas 1'">
+               <div class="grid_12">
+                <div class="grid_4" id="preview">
+                    <img class="gambarAset img-responsive" src="/app/resources/images/no_image.png" />
+                </div>
+                <div class="grid_8">
+                    <!-- <label c-label item="item">Upload Gambar</label> -->
+                    <input id="files"
+                           type="file"
+                           kendo-upload
+                           k-async="{ saveUrl: 'save', removeUrl: 'remove', autoUpload: true }"
+                           k-multiple="false"
+                           k-select="onSelect"/>
+                </div>
+                </div>
+               </c-panel>
+               <c-panel item="item" header="'Fasilitas 2'">
+               <div class="grid_12">
+                <div class="grid_4" id="preview2">
+                    <img class="gambarAset img-responsive" src="/app/resources/images/no_image.png" />
+                </div>
+                <div class="grid_8">
+                    <!-- <label c-label item="item">Upload Gambar</label> -->
+                    <input id="files"
+                           type="file"
+                           kendo-upload
+                           k-async="{ saveUrl: 'save', removeUrl: 'remove', autoUpload: true }"
+                           k-multiple="false"
+                           k-select="tes"/>
+                </div>
+                </div>
+               </c-panel>
+                <c-panel item="item" header="'Fasilitas 3'">
+               <div class="grid_12">
+                <div class="grid_4" id="preview3">
+                    <img class="gambarAset img-responsive" src="/app/resources/images/no_image.png" />
+                </div>
+                <div class="grid_8">
+                    <!-- <label c-label item="item">Upload Gambar</label> -->
+                    <input id="files"
+                           type="file"
+                           kendo-upload
+                           k-async="{ saveUrl: 'save', removeUrl: 'remove', autoUpload: true }"
+                           k-multiple="false"
+                           k-select="tes2"/>
+                </div>
+                </div>
+               </c-panel>
+                <c-panel item="item" header="'Fasilitas 4'">
+               <div class="grid_12">
+                <div class="grid_4" id="preview4">
+                    <img class="gambarAset img-responsive" src="/app/resources/images/no_image.png" />
+                </div>
+                <div class="grid_8">
+                    <!-- <label c-label item="item">Upload Gambar</label> -->
+                    <input id="files"
+                           type="file"
+                           kendo-upload
+                           k-async="{ saveUrl: 'save', removeUrl: 'remove', autoUpload: true }"
+                           k-multiple="false"
+                           k-select="tes3"/>
+                </div>
+                </div>
+               </c-panel>
+
+
+        
+		
+	               </div>
+	
+				
+			</fieldset>
+			<div class="clear"></div>
+
+
+			<div class="grid_12">
+			<div class="grid_12">
+			  </div>
+			  <div class="grid_12">
+			  </div>
+			  <div class="grid_12">
+			  </div>
+			  <div class="grid_12">
+			  </div>
+			  <div class="grid_12">
+			  </div>
+				<div class="grid_8"></div>
+				<div class="grid_2" ng-hide="showEdit">
+					<button class="c-button" ng-click="Save()">Simpan</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="batal()">Batal</button>
+				</div>
+			</div>
+
+		</c-panel>
+	</div>
+</div>
+<style type="text/css">
+.gambarAset {
+    width: 60%;
+    height: 100%;
+    border: 1px solid grey;
+}
+</style>

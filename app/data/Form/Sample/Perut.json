@@ -1,0 +1,29 @@
+{
+    "id": "",
+	"perut": "",
+    "bisingUsus": "",
+    "hati": "",
+    "limpa": "",
+    "attributes" : [{
+		"isNull" : "true",
+		"name" : "perut",
+		"messagesRequired" : "Perut Harus Diisi",
+		"caption" : "Perut"
+	},{
+			"isNull" : "true",
+			"name" : "bisingUsus",
+			"messagesRequired" : "Bising Usus Harus Diisi",
+			"caption" : "Bising Usus"
+	},{
+			"isNull" : "true",
+			"name" : "hati",
+			"messagesRequired" : "Hati Harus Diisi",
+			"caption" : "Hati"
+	},{
+			"isNull" : "true",
+			"name" : "limpa",
+			"messagesRequired" : "Limpa Harus Diisi",
+			"caption" : "Limpa"
+	}
+	]
+}

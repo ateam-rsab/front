@@ -1,0 +1,63 @@
+<!-- <div ng-controller="DistribusiRKAKLctrl"> -->
+<div ng-show="dataVOloaded">
+	<c-panel item="item" header="'Distribusi RKA-KL'" disabled>
+		<div class="grid_12">
+			<div class="grid_4 borderBox">
+				<div class="grid_12">
+					<div class="grid_4" style="margin-top: 10px">
+						<label c-label item="item" c-label-text="Tahun :"></label>
+					</div>
+
+					<div class="grid_4">
+						<input style="width: 110px" kendo-combo-box k-ng-model="item.now" k-data-source="dataListTahun" k-data-value-field="'id'" k-data-text-field="'FieldTahun'"/>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_4" style="margin-top: 10px">
+						<label c-label item="item" style="width: 300px" c-label-text="Status Anggaran :"></label>
+					</div>
+					<!-- <div class="clear"></div> -->
+
+					<div class="grid_4">
+						<input style="width: 200px" kendo-combo-box k-ng-model="item.now"  k-data-source="dataListStatusAnggaran" k-data-value-field="'id'" k-data-text-field="'NamaStatusAnggaran'"/>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_4" style="margin-top: 10px">
+						<label c-label item="item" style="width: 300px" c-label-text="Status Distribusi :"></label>
+					</div>
+					<!-- <div class="clear"></div> -->
+
+					<div class="grid_4">
+						<input style="width: 200px" kendo-combo-box k-ng-model="item.now"   k-data-source="dataListStatusDistribusi" k-data-value-field="'id'" k-data-text-field="'Nama'"/>
+					</div>
+				</div>
+				<div class="grid_12">
+
+				</div>
+				<div class="grid_12" style="margin-top: 30px">
+					<div class="grid_2"></div>
+						<button class="c-button" style="width: 150px" ng-click="Batal()">Simpan</button>
+						<div class="grid_1"></div>
+						<button class="c-button" style="width: 150px" ng-click="Batal()">Kembali</button>
+				</div>
+			</div>
+			<div class="grid_8 borderBox">
+				<div id="kGrid" kendo-grid 
+				k-data-source="dataGrid" 
+				k-selectable="'row'"
+				k-pageable="true"
+				k-sortable="'true'" 	
+				k-columns="columnGrid"
+				k-ng-model="dataGridSelected">
+
+			</div>
+		</div>
+	</c-panel>
+
+
+		<!-- <div class="grid_12" style="margin-top:30px">
+			<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
+		</div> -->
+</div>
+	<!-- </div> -->

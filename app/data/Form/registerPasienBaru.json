@@ -1,0 +1,573 @@
+{
+  "model": {
+    "qtyImunisasi": "",
+    "namaKepalaKK": "",
+    "tglTemporary": "",
+    "namaAyah": "",
+    "agama": {
+      "id": "",
+      "kdProfile": "",
+      "namaExternal": "",
+      "kdAgama": "",
+      "kodeExsternal": "",
+      "noRec": "",
+      "statusEnabled": "",
+      "agama": "",
+      "qAgama": "",
+      "reportDisplay": ""
+    },
+    "nipPenjabatTandaTgnKK": "",
+    "pejabatTandaTgnKK": "",
+    "alamats": "",
+    "noKK": "",
+    "noRec": "",
+    "bankRekeningAtasNama": "",
+    "photoDiri": "",
+    "kelompokUmur": {
+      "id": "",
+      "kdKelompokUmur": "",
+      "umurMax": "",
+      "kdProfile": "",
+      "umurMin": "",
+      "namaExternal": "",
+      "kodeExsternal": "",
+      "noRec": "",
+      "statusEnabled": "",
+      "statusUmur": "",
+      "qKelompokUmur": "",
+      "kelompokUmur": "",
+      "reportDisplay": ""
+    },
+    "golonganDarahId": "",
+    "pekerjaanId": "",
+    "statusRhesus": "",
+    "tempatLahir": "",
+    "namaPanggilan": "",
+    "namaIbu": "",
+    "bankRekeningNomor": "",
+    "namaSuamiIstri": "",
+    "jenisKelaminId": "",
+    "jenisKelamin": {
+      "id": "",
+      "kdProfile": "",
+      "namaExternal": "",
+      "qJenisKelamin": "",
+      "kodeExsternal": "",
+      "noRec": "",
+      "statusEnabled": "",
+      "jenisKelamin": "",
+      "kdJenisKelamin": "",
+      "reportDisplay": ""
+    },
+    "sukuId": "",
+    "suku": {
+      "id": "",
+      "kdSuku": "",
+      "kdProfile": "",
+      "namaExternal": "",
+      "kodeExsternal": "",
+      "noRec": "",
+      "statusEnabled": "",
+      "qSuku": "",
+      "suku": "",
+      "reportDisplay": ""
+    },
+    "titleId": "",
+    "reportDisplay": "",
+    "tglKK": "",
+    "npwp": "",
+    "negara": {
+      "id": "",
+      "namaNegara": "",
+      "kdNegara": "",
+      "kdProfile": "",
+      "namaExternal": "",
+      "kodeExsternal": "",
+      "noRec": "",
+      "statusEnabled": "",
+      "reportDisplay": "",
+      "qNegara": ""
+    },
+    "negaraId": "",
+    "agamaId": "",
+    "pendidikan": {
+      "id": "",
+      "jenisPendidikanId": "",
+      "jenisPendidikan": "",
+      "kdProfile": "",
+      "pendidikan": "",
+      "noUrut": "",
+      "kdPendidikan": "",
+      "namaExternal": "",
+      "kodeExsternal": "",
+      "noRec": "",
+      "statusEnabled": "",
+      "qPendidikan": "",
+      "reportDisplay": ""
+    },
+    "lokasiDokumenRM": {
+      "kdLokasi": "",
+      "departemenId": "",
+      "kodeExsternal": "",
+      "departemen": "",
+      "qLokasi": "",
+      "namaLokasi": "",
+      "lokasiHead": "",
+      "id": "",
+      "kdProfile": "",
+      "namaExternal": "",
+      "statusEnabled": "",
+      "noRec": "",
+      "lokasiHeadId": "",
+      "reportDisplay": ""
+    },
+    "kodeExsternal": "",
+    "kelompokUmurId": "",
+    "namaPasien": "",
+    "pendidikanId": "",
+    "noCmSuamiIstri": "",
+    "kdGolonganDarah": {
+      "id": "",
+      "kdProfile": "",
+      "namaExternal": "",
+      "kodeExsternal": "",
+      "noRec": "",
+      "statusEnabled": "",
+      "qGolonganDarah": "",
+      "kdGolonganDarah": "",
+      "reportDisplay": "",
+      "golonganDarah": ""
+    },
+    "jabatan": {
+      "jenisJabatanId": "",
+      "qJabatan": "",
+      "kodeExsternal": "",
+      "levelJabatan": "",
+      "id": "",
+      "namaJabatan": "",
+      "kdProfile": "",
+      "noUrut": "",
+      "namaExternal": "",
+      "statusEnabled": "",
+      "noRec": "",
+      "kdJabatan": "",
+      "jenisJabatan": "",
+      "reportDisplay": ""
+    },
+    "id": "",
+    "title": {
+      "kodeExsternal": "",
+      "minAge": "",
+      "namaTitle": "",
+      "id": "",
+      "maxAge": "",
+      "title": "",
+      "kdProfile": "",
+      "namaExternal": "",
+      "statusEnabled": "",
+      "noRec": "",
+      "jenisKelaminId": "",
+      "jenisKelamin": "",
+      "statusPerkawinanId": "",
+      "qTitle": "",
+      "statusPerkawinan": "",
+      "titleId": "",
+      "reportDisplay": ""
+    },
+    "namaExternal": "",
+    "tglDaftar": "",
+    "statusPerkawinanId": "",
+    "namaKeluarga": "",
+    "qPasien": "",
+    "tglLahir": "",
+    "isTemporary": "",
+    "noIdentitas": "",
+    "pegawaiId": "",
+    "bankRekeningNama": "",
+    "jabatanId": "",
+    "noCmAyah": "",
+    "noCmIbu": "",
+    "pegawai": {
+      "historyLoginSId": "",
+      "statusLogin": "",
+      "kelompokUserId": "",
+      "historyLoginS": "",
+      "kodeExsternal": "",
+      "historyLoginUId": "",
+      "historyLoginI": "",
+      "kelompokUser": "",
+      "id": "",
+      "kdProfile": "",
+      "namaExternal": "",
+      "kataSandi": "",
+      "namaUser": "",
+      "statusEnabled": "",
+      "noRec": "",
+      "historyLoginIId": "",
+      "historyLoginU": "",
+      "reportDisplay": ""
+    },
+    "kdProfile": "",
+    "noCm": "",
+    "lokasiDokumenRMId": "",
+    "statusEnabled": "",
+    "statusPerkawinan": {
+      "id": "",
+      "kdProfile": "",
+      "kdStatusPerkawinan": "",
+      "namaExternal": "",
+      "kodeExsternal": "",
+      "noRec": "",
+      "statusEnabled": "",
+      "statusPerkawinan": "",
+      "qStatusPerkawinan": "",
+      "reportDisplay": ""
+    },
+    "pekerjaan": {
+      "id": "",
+      "kdProfile": "",
+      "namaExternal": "",
+      "kodeExsternal": "",
+      "noRec": "",
+      "statusEnabled": "",
+      "kdPekerjaan": "",
+      "qPekerjaan": "",
+      "pekerjaan": "",
+      "reportDisplay": ""
+    }
+  },
+  "attributes": [
+    {
+      "name": "kdProfile",
+      "type": "short"
+    },
+    {
+      "name": "statusEnabled",
+      "type": "Boolean"
+    },
+    {
+      "name": "id",
+      "type": "Integer"
+    },
+    {
+      "name": "noRec",
+      "type": "String"
+    },
+    {
+      "name": "reportDisplay",
+      "type": "String"
+    },
+    {
+      "name": "kodeExsternal",
+      "type": "String"
+    },
+    {
+      "name": "namaExternal",
+      "type": "String"
+    },
+    {
+      "name": "bankRekeningAtasNama",
+      "caption": "Bank Rekening Atas Nama",
+      "type": "String"
+    },
+    {
+      "name": "bankRekeningNama",
+      "caption": "Bank Rekening Nama",
+      "type": "String"
+    },
+    {
+      "name": "bankRekeningNomor",
+      "caption": "Bank Rekening Nomor",
+      "type": "String"
+    },
+    {
+      "name": "isTemporary",
+      "caption": "Is Temporary",
+      "type": "Byte"
+    },
+    {
+      "name": "agama",
+      "caption": "Object Agama",
+      "type": "AgamaVO"
+    },
+    {
+      "isNull": true,
+      "name": "agamaId",
+      "length": 255,
+      "type": "Integer"
+    },
+    {
+      "name": "kdGolonganDarah",
+      "caption": "Object Golongan Darah",
+      "type": "GolonganDarahVO"
+    },
+    {
+      "isNull": true,
+      "name": "golonganDarahId",
+      "length": 255,
+      "type": "Integer"
+    },
+    {
+      "name": "jabatan",
+      "caption": "Object Jabatan",
+      "type": "JabatanVO"
+    },
+    {
+      "isNull": true,
+      "name": "jabatanId",
+      "length": 255,
+      "type": "Integer"
+    },
+    {
+      "isNull": false,
+      "name": "jenisKelamin",
+      "messagesRequired": "Object Jenis Kelamin Harus Diisi",
+      "caption": "Object Jenis Kelamin",
+      "type": "JenisKelaminVO"
+    },
+    {
+      "isNull": true,
+      "name": "jenisKelaminId",
+      "length": 255,
+      "type": "Integer"
+    },
+    {
+      "isNull": false,
+      "name": "kelompokUmur",
+      "messagesRequired": "Object Kelompok Umur Harus Diisi",
+      "caption": "Object Kelompok Umur",
+      "type": "KelompokUmurVO"
+    },
+    {
+      "isNull": true,
+      "name": "kelompokUmurId",
+      "length": 255,
+      "type": "Integer"
+    },
+    {
+      "name": "lokasiDokumenRM",
+      "caption": "Object LokasiVO DokumenVO R M",
+      "type": "LokasiVO"
+    },
+    {
+      "isNull": true,
+      "name": "lokasiDokumenRMId",
+      "length": 255,
+      "type": "Integer"
+    },
+    {
+      "isNull": false,
+      "name": "negara",
+      "messagesRequired": "Object NegaraVO Harus Diisi",
+      "caption": "Object Negara",
+      "type": "NegaraVO"
+    },
+    {
+      "isNull": true,
+      "name": "negaraId",
+      "length": 255,
+      "type": "Integer"
+    },
+    {
+      "name": "pegawai",
+      "caption": "Object Pegawai",
+      "type": "LoginUserVO"
+    },
+    {
+      "isNull": true,
+      "name": "pegawaiId",
+      "length": 255,
+      "type": "Integer"
+    },
+    {
+      "isNull": false,
+      "name": "pekerjaan",
+      "messagesRequired": "Object PekerjaanVO Harus Diisi",
+      "caption": "Object Pekerjaan",
+      "type": "PekerjaanVO"
+    },
+    {
+      "isNull": true,
+      "name": "pekerjaanId",
+      "length": 255,
+      "type": "Integer"
+    },
+    {
+      "isNull": false,
+      "name": "pendidikan",
+      "messagesRequired": "Object PendidikanVO Harus Diisi",
+      "caption": "Object Pendidikan",
+      "type": "PendidikanVO"
+    },
+    {
+      "isNull": true,
+      "name": "pendidikanId",
+      "length": 255,
+      "type": "Integer"
+    },
+    {
+      "name": "statusPerkawinan",
+      "caption": "Object Status Perkawinan",
+      "type": "StatusPerkawinanVO"
+    },
+    {
+      "isNull": true,
+      "name": "statusPerkawinanId",
+      "length": 255,
+      "type": "Integer"
+    },
+    {
+      "name": "suku",
+      "caption": "Object Suku",
+      "type": "SukuVO"
+    },
+    {
+      "isNull": true,
+      "name": "sukuId",
+      "length": 255,
+      "type": "Integer"
+    },
+    {
+      "isNull": false,
+      "name": "title",
+      "messagesRequired": "Object Title Harus Diisi",
+      "caption": "Object Title",
+      "type": "TitlePasienVO"
+    },
+    {
+      "isNull": true,
+      "name": "titleId",
+      "length": 255,
+      "type": "Integer"
+    },
+    {
+      "name": "namaAyah",
+      "caption": "Nama Ayah",
+      "type": "String"
+    },
+    {
+      "name": "namaIbu",
+      "caption": "Nama Ibu",
+      "type": "String"
+    },
+    {
+      "name": "namaKeluarga",
+      "caption": "Nama Keluarga",
+      "type": "String"
+    },
+    {
+      "name": "namaKepalaKK",
+      "caption": "Nama Kepala K K",
+      "type": "String"
+    },
+    {
+      "name": "namaPanggilan",
+      "caption": "Nama Panggilan",
+      "type": "String"
+    },
+    {
+      "name": "namaPasien",
+      "caption": "Nama Pasien",
+      "type": "String"
+    },
+    {
+      "name": "namaSuamiIstri",
+      "caption": "Nama Suami Istri",
+      "type": "String"
+    },
+    {
+      "name": "nipPenjabatTandaTgnKK",
+      "caption": "NI P_ Penjabat Tanda Tgn K K",
+      "type": "String"
+    },
+    {
+      "name": "noCm",
+      "caption": "No C M",
+      "type": "String"
+    },
+    {
+      "name": "noCmAyah",
+      "caption": "No C M Ayah",
+      "type": "String"
+    },
+    {
+      "name": "noCmIbu",
+      "caption": "No C M Ibu",
+      "type": "String"
+    },
+    {
+      "name": "noCmSuamiIstri",
+      "caption": "No C M Suami Istri",
+      "type": "String"
+    },
+    {
+      "name": "noIdentitas",
+      "caption": "No Identitas",
+      "type": "String"
+    },
+    {
+      "name": "noKK",
+      "caption": "No K K",
+      "type": "String"
+    },
+    {
+      "name": "npwp",
+      "caption": "NP W P",
+      "type": "String"
+    },
+    {
+      "name": "pejabatTandaTgnKK",
+      "caption": "Pejabat Tanda Tgn K K",
+      "type": "String"
+    },
+    {
+      "name": "photoDiri",
+      "caption": "Photo Diri",
+      "type": "String"
+    },
+    {
+      "name": "qPasien",
+      "caption": "QPasien",
+      "type": "Integer"
+    },
+    {
+      "name": "qtyImunisasi",
+      "caption": "Qty Imunisasi",
+      "type": "Byte"
+    },
+    {
+      "name": "statusRhesus",
+      "caption": "Status Rhesus",
+      "type": "String"
+    },
+    {
+      "name": "tempatLahir",
+      "caption": "Tempat Lahir",
+      "type": "String"
+    },
+    {
+      "name": "tglDaftar",
+      "caption": "Tanggal Daftar",
+      "type": "DateTime"
+    },
+    {
+      "name": "tglKK",
+      "caption": "Tanggal K K",
+      "type": "DateTime"
+    },
+    {
+      "name": "tglLahir",
+      "caption": "Tanggal Lahir",
+      "type": "DateTime"
+    },
+    {
+      "name": "tglTemporary",
+      "caption": "Tanggal Temporary",
+      "type": "DateTime"
+    },
+    {
+      "name": "alamats",
+      "type": "Set"
+    }
+  ]
+},

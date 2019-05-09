@@ -1,0 +1,107 @@
+<div ng-show="dataVOloaded">
+	<div class="grid_12">			
+		<div class="grid_12 headerBox">
+			<h1 style="color: white;"><b>Daftar Produk</b></h1>
+		</div>
+		<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_4">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="kd"></label>
+					</div>
+
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kdProdukScr" />
+					</div>
+				</div>
+				<div class="grid_4">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Nama Produk"></label>
+					</div>
+
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaProdukScr" />
+					</div>
+				</div>
+				<div class="grid_4">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="kdIntern"></label>
+					</div>
+
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kdProdukInternScr" />
+					</div>
+				</div>
+			</div>
+			
+			<div class="grid_5">
+				<div class="grid_4">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="kdBarcode"></label>
+					</div>
+
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kdBarcodeScr" />
+					</div>
+				</div>
+				<div class="grid_4">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="kodeBmn"></label>
+					</div>
+
+
+					<div class="grid_12">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeBmnScr" />
+					</div>
+				</div>
+				<div class="grid_4">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Status"></label>
+					</div>
+
+
+					<div class="grid_12">
+						 <input required style="width: 100%;" kendo-combo-box k-ng-model="item.StatusEnb"
+                            k-data-text-field="'status'" k-filter="'contains'" 
+                            k-data-value-field="'id'" k-data-source="listDataStatus" />
+					</div>
+				</div>
+			</div>
+			
+			<div class="grid_1" style="margin-top: 5px;">
+				<button class="c-button" style="margin-top: 22px" ng-click="cariFilter()">Cari</button>
+			</div>
+		</div>
+		<div class="grid_12">
+			<!-- <div class="grid_12 headerBox">
+				<p>Produk</p>
+			</div> -->
+			<!-- grid table -->
+			<div class="grid_12 borderBox">
+				<kendo-grid options="mainGridOptions"  k-data-source="dataSource" k-ng-model="current" ng-click="klik(current)">
+				</kendo-grid>
+			</div>
+			
+		</div>
+					
+		<div class="grid_12">
+			<div class="grid_2">
+				<button class="c-button" ng-click="KelBPJS()">Kelompok Produk BPJS</button>
+			</div>
+			<div class="grid_4"></div>
+			<div class="grid_2">
+				<button class="c-button" ng-click="cetak()">Cetak</button>
+			</div>
+			<div class="grid_2">
+				<button class="c-button" ng-click="edit()">Ubah</button>
+			</div>
+			<div class="grid_2" >
+				<button class="c-button" ng-click="tambah()">Tambah</button>
+			</div>
+		</div>
+	</div>
+</div>

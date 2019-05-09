@@ -1,0 +1,670 @@
+
+
+<div ng-controller="PengkajianMedisDokterCtrl">
+    <div ng-show="dataVOloaded">
+    <div class="grid_12" style="margin-top:10px;" >
+            <div class="panel-body">
+                {{itempolaNafas}}
+                <script type="text/ng-template" id="dialog1.tmpl.html">
+                    <md-dialog aria-label="Mango (Fruit)">
+                        <form ng-cloak>
+                            <md-toolbar>
+                                <div class="md-toolbar-tools">
+                                    <h2>Kebutuhan Dasar Perawat</h2>
+                                    <span flex></span>
+                                    <md-button class="md-icon-button" ng-click="cancel()">
+                                        <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                                    </md-button>
+                                </div>
+                            </md-toolbar>
+                            <md-dialog-content>
+                                <div class="md-dialog-content" style="margin-bottom:0px; margin-top:0;">
+
+                                    <!-- Oksigenasi -->
+
+                                    <div class="grid_12" ng-hide = "{{itemOksigenasi}} == true">
+                                        <c-panel  header="'Oksigenasi'" text="'asasa'">
+
+                                            <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+                                                <div class="grid_12">
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listOksigenasiPolaNafas " >
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itempolaNafas" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div><hr style="margin:0px 0px 0px 0px;">
+                                                </div>
+
+                                                <div class="grid_12">
+                                                    <div class="grid_2" style="margin: 5px 0px 5px 0px;" ng-repeat="data in listOksigenasiBatuk">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itembatuk"  ng-value="data"  disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+
+                                                <div class="grid_12">
+                                                    <div class="grid_2" style="margin: 5px 0px 5px 0px;" ng-repeat="data in listOksigenasiSianosis">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemsianosis" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+
+                                            </div>
+                                        </c-panel>
+                                    </div>
+                                    <!-- KebutuhanCairan -->
+                                    <div class="grid_12" ng-hide = "{{itemKebutuhanCairan}} == true" style="margin-top:70px;">
+                                        <c-panel  item = "item" header="'KebutuhanCairan'">
+                                            <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+                                                <div class="grid_12">
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listCairanNadi">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemnadi" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+                                                <div class="grid_12">
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listCairanUbunUbun">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemubunUbun" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+                                                <div class="grid_12">
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listCairanTurgorKulit">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemturgorKulit" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+                                                <div class="grid_12">
+                                                    
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listCairanCrt">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemcrt" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+                                                <div class="grid_12">
+                                                    
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listCairanEdema">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemedema" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+                                                <div class="grid_12">
+                                                    
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listCairanAkral">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemakral" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+                                            </div>
+                                        </c-panel>
+                                    </div>
+                                    <!-- Neurologi -->
+                                    <div class="grid_12" ng-hide = "{{itemNeurologi}} == true"  style="margin-top:130px;">
+                                        <c-panel  item = "item" header="'Neurologi'">
+                                            <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+
+                                                <div class="grid_12">
+                                                    
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listNeurologiKomponen">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemkomponen" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+
+                                                <div class="grid_12">
+                                                    
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listNeurologiKejang">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemkejang" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+                                            </div>
+                                        </c-panel>
+                                    </div>
+                                    <!-- Kebutuhan Nutrisi -->
+                                    <div class="grid_12" ng-hide = "{{itemKebutuhanNutrisi}} == true"   style="margin-top:190px;">
+                                        <c-panel  item = "item" header="'KebutuhanNutrisi'">
+                                            <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+
+                                                <div class="grid_12">
+                                                    
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listNutrisiMukosa">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemmukosa" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+                                                <div class="grid_12">
+                                                    
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listNutrisiStomatitis">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemstomatitis" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+                                                <div class="grid_12">
+                                                    
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listNutrisiMuntah">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemmuntah" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+                                                <div class="grid_12">
+                                                    
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listNutrisiMual">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemmual" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+                                            </div>
+                                        </c-panel>
+                                    </div>
+                                    <!-- Eliminasi -->
+                                    <div class="grid_12" ng-hide = "({{itemDefeaksi}} == true) && ({{itemUrin}} == true)" style="margin-top:250px;">
+                                        <c-panel  item = "item" header="'Eliminasi'">
+
+                                            <!-- Defekisasi -->
+                                            <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+                                                <div class="grid_12" ng-hide = "{{itemDefeaksi}} == true">
+                                                    <div class="grid_12" style="background-color: #10C4B2; height: 25px; margin: 5px 15px 0px 5px; text-align: left; border: 1px solid; border-color: #10C4B2;">
+                                                        <span style="font-size: 18px; color: white; padding: 5px;">Defekisasi</span>
+                                                    </div>
+                                                    <div class="grid_12" style="border: 1px solid; border-color: #10C4B2; margin: 5px 15px 5px 5px;">
+
+                                                        <div class="grid_12">
+                                                            
+                                                            <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listDefeaksiAnus">
+                                                                <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemanus" ng-value="data" disabled>
+                                                                <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                            </div>
+                                                        </div><hr style="margin:0px 0px 0px 0px;">
+
+                                                        <div class="grid_12">
+                                                            
+                                                            <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listDefeaksiBab">
+                                                                <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itembab" ng-value="data" disabled>
+                                                                <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <hr style="margin:0px 0px 0px 0px;">
+
+                                                        <div class="grid_12">
+                                                            
+                                                            <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listDefeaksiFeses">
+                                                                <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemfeses" ng-value="data" disabled>
+                                                                <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                            </div>
+                                                        </div><hr style="margin:0px 0px 0px 0px;">
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <!-- Urin -->
+                                            <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+                                                <div class="grid_12" ng-hide = "{{itemUrin}} == true" >
+                                                    <div class="grid_12" style="background-color: #10C4B2; height: 25px; margin: 5px 15px 0px 5px; text-align: left; border: 1px solid; border-color: #10C4B2;">
+                                                        <span style="font-size: 18px; color: white; padding: 5px;">Urin</span>
+                                                    </div>
+                                                    <div class="grid_12" style="border: 1px solid; border-color: #10C4B2; margin: 5px 15px 5px 5px;">
+                                                        <div class="grid_12">
+                                                            
+                                                            <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listUrinBak">
+                                                                <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itembak" ng-value="data" disabled>
+                                                                <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                            </div>
+                                                        </div><hr style="margin:0px 0px 0px 0px;">
+
+                                                        <div class="grid_12">
+                                                            
+                                                            <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listUrinAlatGenitalia">
+                                                                <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemalatGenitalia" ng-value="data" disabled>
+                                                                <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                            </div>
+                                                        </div><hr style="margin:0px 0px 0px 0px;">
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </c-panel>
+                                    </div>
+                                    <!-- Intagumen -->
+                                    <div class="grid_12" ng-hide = "{{itemIntagumen}} == true" style="margin-top:310px;">
+                                        <c-panel  item = "item" header="'Intagumen'">
+                                            <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+                                                <div class="grid_12">
+                                                    
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listIntegumenWarna">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemwarna" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+                                                <div class="grid_12">
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listIntegumenKelainanKulit">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemkelainanKulit" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+                                                <div class="grid_12">
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listIntegumenKulit">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemkulit" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+                                            </div>
+                                        </c-panel>
+                                    </div>
+                                    <!-- AktifitasAnak -->
+                                    <div class="grid_12" ng-hide = "{{itemAktifitasAnak}} == true"  style="margin-top:370px;">
+                                        <c-panel  item = "item" header="'AktifitasAnak'">
+                                            <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+
+                                                <div class="grid_12">
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listAnakAktif">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemaktif" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+                                                <div class="grid_12">
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listAnakLelah">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemlelah" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+                                            </div>
+                                        </c-panel>
+                                    </div>
+                                    <!-- PersepsiKognisi -->
+                                    <div class="grid_12" ng-hide = "{{itemPersepsiKognisi}} == true" style="margin-top:430px;">
+                                        <c-panel  item = "item" header="'PersepsiKognisi'">
+                                            <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+                                                <div class="grid_12">
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listKognisiPenglihatan">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itempenglihatan" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+                                                <div class="grid_12">
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listKognisiPendengaran">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itempendengaran" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+                                                <div class="grid_12">
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listKognisiDayaIngat">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemdayaIngat" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+                                            </div>
+                                        </c-panel>
+                                    </div>
+                                    <!-- TidurIstirahat -->
+                                    <div class="grid_12" ng-hide = "{{itemTidurIstirahat}} == true" style="margin-top:490px;">
+                                        <c-panel  item = "item" header="'TidurIstirahat'">
+                                            <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+
+                                                <div class="grid_12">
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listStatusLamaTidur">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemlamaTidur" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+                                            </div>
+                                        </c-panel>
+                                    </div>
+                                    <!-- KonsepDiri -->
+                                    <div class="grid_12"  ng-hide = "{{itemKonsepDiri}} == true" style="margin-top:550px;">
+                                        <c-panel  item = "item" header="'KonsepDiri'">
+                                            <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+                                                <div class="grid_12">
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listKonsepDiriGambaran">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemgambaran" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+                                            </div>
+                                        </c-panel>
+                                    </div>
+                                    <!-- PeranHubungan -->
+                                    <div class="grid_12"  ng-hide = "{{itemPeranHubungan}} == true" style="margin-top:610px;">
+                                        <c-panel  item = "item" header="'PeranHubungan'">
+                                            <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+                                                <div>
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listPeranMasalah">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemmasalah" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+                                                <div class="grid_12">
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listPeranPengaruhPenyakit">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itempengaruhPenyakit" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+                                            </div>
+                                        </c-panel>
+                                    </div>
+                                    <!-- Koping -->
+                                    <div class="grid_12"  ng-hide = "{{itemKoping}} == true" style="margin-top:670px;">
+                                        <c-panel  item = "item" header="'Koping'">
+                                            <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+                                                <div class="grid_12">
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listKopingEfektif">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemkoping" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+                                            </div>
+                                        </c-panel>
+                                    </div>
+                                    <!-- NilaiNilai -->
+                                    <div class="grid_12"  ng-hide = "{{itemNilaiNilai}} == true" style="margin-top:730px;">
+                                        <c-panel  item = "item" header="'NilaiNilai'">
+                                            <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+                                                <div class="grid_12">
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listNilaiPertolongan">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itempertolongan" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+                                                <div class="grid_12">
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listNilaiHarapan">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemharapan" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+                                            </div>
+                                        </c-panel>
+                                    </div>
+                                    <!-- PersepsiPasien -->
+                                    <div class="grid_12"  ng-hide = "{{itemPersepsiPasien}} == true" style="margin-top:790px;">
+                                        <c-panel header="'PersepsiPasien'">
+
+                                            <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+                                                <div class="grid_12">
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listPersepsiSehat">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemsehat" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+
+                                                <div class="grid_12">
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listPersepsiPenyakit">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itempenyakit" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+                                                <div class="grid_12">
+                                                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listPersepsiKegiatan">
+                                                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="itemkegiatan" ng-value="data" disabled>
+                                                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                                    </div>
+                                                </div><hr style="margin:0px 0px 0px 0px;">
+                                            </div>
+                                        </c-panel>
+                                    </div>
+
+                                </div>
+                            </md-dialog-content>
+                            <md-dialog-actions layout="row">
+                                <span flex></span>
+                                <md-button ng-click="answer('useful')" style="background-color:#358EFF;font-weightpx; font-size:18px; color:white;">
+                                    Tutup
+                                </md-button>
+                            </md-dialog-actions>
+                        </form>
+                    </md-dialog>
+                </script>
+            </div>
+    </div>
+
+    <!-- Tombol Perview -->
+    <div ng-show="statusnormal.isNormalOksigenasi == 'false' || statusnormal.isNormalKebutuhanCairan == 'false' || statusnormal.isNormalNeurologi == 'false' || statusnormal.isNormalKebutuhanNutrisi == 'false' || statusnormal.isNormalDefeaksi == 'false' || statusnormal.isNormalUrin == 'false' || statusnormal.isNormalIntegumen == 'false' || statusnormal.isNormalAktifitasAnak == 'false' || statusnormal.isNormalPersepsiKognisi == 'false' || statusnormal.isNormalTidurIstirahat == 'false' || statusnormal.isNormalKonsepDiri == 'false' || statusnormal.isNormalPeranHubungan == 'false' || statusnormal.isNormalKoping == 'false' || statusnormal.isNormalNilaiNilai == 'false' || statusnormal.isNormalPersepsiPasien == 'false'" class="grid_12" style="float:right; margin-right:10px ">
+        <div class="grid_10"></div>
+            <div class="grid_2">
+                <md-button style="background-color:#FA2121;font-weight:2px;width: 180px; font-size:18px; color:white;" class="md-primary" ng-click="showAdvanced($event)" >Tanda Bahaya</md-button></div>      
+    </div>
+    <!-- Neurologi -->
+    <div class="grid_12" style="margin-top:10px;">
+                <c-panel  header="'Neurologi '">
+                    <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+                        <div class="grid_12">
+                            <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listFisisNeurologi " >
+                                <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="item.neurologi" ng-value="data" >
+                                <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                            </div>
+                            <div class="grid_12" style="margin: 5px 5px 5px 5px;">
+                                <textarea placeholder="Sebutkan" ng-model="item.KeteranganNeurologi" style="width: 99%; height: 80px;"></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                </c-panel>
+    </div>
+    <!-- Kulit -->
+    <div class="grid_12" style="margin-top:10px;">
+                <div class="grid_12" style={{warnanavbar}}>
+                    <div class="grid_6"></div>
+                    <div class="grid_6"><font></font></div>
+                </div>
+                <c-panel  header="'Kulit'">
+                    <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+                        <div class="grid_12">
+
+
+
+                            <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listFisisKulit " >
+                                <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="item.kulit" ng-value="data" >
+                                <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                            </div>
+
+
+                        </div>
+
+                        <div class="grid_12" style="margin: 5px 5px 5px 5px;">
+                            <textarea placeholder="Sebutkan" ng-model="item.KeteranganFisisKulit" style="width: 99%; height: 80px;"></textarea>
+
+                        </div>
+
+                    </div>
+                </c-panel>
+    </div>
+    <!-- Kepala -->
+    <div class="grid_12" style="margin-top:10px;">
+                <c-panel  item = "item" header="'Kepala'">
+                    <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+
+
+
+                        <div class="grid_2" ng-repeat="data in listFisisKepala">
+                            <input type="radio" name="{{'kepala' + data.name}}" id="{{'kepala' + data.name}}" class="k-radio" ng-model="item.kepala" ng-value="data">
+                            <label class="k-radio-label" for="{{'kepala' + data.name}}">{{data.name}}</label>
+                        </div>
+                        <!-- <div class="clear"></div> -->
+
+                        <div class="grid_12" style="margin: 5px 5px 5px 5px;">
+                            <textarea placeholder="Sebutkan" ng-model="item.KeteranganFisisKepala" style="width: 99%; height: 80px;"></textarea>
+                        </div>
+                    </div>
+                </c-panel>
+    </div>
+    <!-- Mata -->
+    <div class="grid_12" style="margin-top:10px;">
+        <c-panel  item = "item" header="'Mata'">
+            <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+                <div class="grid_12">
+                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listFisisMata">
+                        <input type="radio" name="{{'mata' + data.name}}" id="{{'mata' + data.name}}" class="k-radio" ng-model="item.mata" ng-value="data">
+                        <label class="k-radio-label" for="{{'mata' + data.name}}">{{data.namaExternal}}</label>
+                    </div>
+                    <div class="grid_12" style="margin: 5px 5px 5px 5px;">
+                        <textarea placeholder="Sebutkan" ng-model="item.KeteranganMata" style="width: 99%; height: 80px;"></textarea>
+
+                    </div>
+                </div>
+            </div>
+        </c-panel>
+    </div>
+    <!-- THT -->
+    <div class="grid_12" style="margin-top:10px;">
+        <c-panel  item = "item" header="'THT'">
+            <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+
+                <div class="grid_12">
+                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listStatusNormalTidakNormal">
+                        <input type="radio" name="{{'tht' + data.name}}" id="{{'tht' + data.name}}" class="k-radio" ng-model="item.tht" ng-value="data">
+                        <label class="k-radio-label" for="{{'tht' + data.name}}">{{data.name}}</label>
+                    </div>
+                    <div class="grid_12" style="margin: 5px 5px 5px 5px;">
+                        <textarea placeholder="Sebutkan" ng-model="item.KeteranganTht" style="width: 99%; height: 80px;"></textarea>
+                    </div>
+                </div>
+            </div>
+        </c-panel>
+    </div>
+    <!-- Leher -->
+    <div class="grid_12" style="margin-top:10px;">
+        <c-panel  item = "item" header="'Leher'">
+            <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+                <div class="grid_12">
+                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listFisisLeher">
+                        <input type="radio" name="{{'leher' + data.name}}" id="{{'leher' + data.name}}" class="k-radio" ng-model="item.leher" ng-value="data">
+                        <label class="k-radio-label" for="{{'leher' + data.name}}">{{data.namaExternal}}</label>
+                    </div>
+                    <div class="grid_12" style="margin: 5px 5px 5px 5px;">
+                        <textarea placeholder="Sebutkan" ng-model="item.KeteranganLeher" style="width: 99%; height: 80px;"></textarea>
+
+                    </div>
+                </div>
+            </div>
+        </c-panel>
+    </div>
+    <!-- Thorax -->
+    <div class="grid_12" style="margin-top:10px;">
+        <c-panel  item = "item" header="'Thorax'">
+            <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+                <!-- Thorax -->
+                <div class="grid_12">
+                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listFisisThorax">
+                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="item.thorax" ng-value="data">
+                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                    </div>
+                    <div class="grid_12" style="margin: 5px 5px 5px 5px;">
+                        <textarea placeholder="Sebutkan" ng-model="item.KeteranganThorax" style="width: 99%; height: 80px;"></textarea>
+                    </div>
+                </div>
+                <!-- Jantung -->
+                <div class="grid_12">
+                    <div class="grid_12" style="background-color: #10C4B2; height: 25px; margin: 5px 15px 0px 5px; text-align: left; border: 1px solid; border-color: #10C4B2;">
+                        <span style="font-size: 18px; color: white; padding: 5px;">Jantung</span>
+                    </div>
+                    <div class="grid_12" style="border: 1px solid; border-color: #10C4B2; margin: 5px 15px 5px 5px;">
+                        <div class="grid_12">
+                            <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listStatusNormalTidakNormal">
+                                <input type="radio" name="{{'jantung' + data.name}}" id="{{'jantung' + data.name}}" class="k-radio" ng-model="item.jantung" ng-value="data">
+                                <label class="k-radio-label" for="{{'jantung' + data.name}}">{{data.name}}</label>
+                            </div>
+                            <div class="grid_12" style="margin: 5px 5px 5px 5px;">
+                                <textarea placeholder="Sebutkan" ng-model="item.KeteranganJantung" style="width: 99%; height: 80px;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paru-Paru -->
+                <div class="grid_12">
+                    <div class="grid_12" style="background-color: #10C4B2; height: 25px; margin: 5px 15px 0px 5px; text-align: left; border: 1px solid; border-color: #10C4B2;">
+                        <span style="font-size: 18px; color: white; padding: 5px;">Paru-Paru</span>
+                    </div>
+                    <div class="grid_12" style="border: 1px solid; border-color: #10C4B2; margin: 5px 15px 5px 5px;">
+                        <div class="grid_12">
+                            <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listFisisParu">
+                                <input type="radio" name="{{'paru' + data.name}}" id="{{'paru' + data.name}}" class="k-radio" ng-model="item.paru" ng-value="data">
+                                <label class="k-radio-label" for="{{'paru' + data.name}}">{{data.namaExternal}}</label>
+                            </div>
+                        </div>
+                        <div class="grid_12" style="margin: 5px 5px 5px 5px;">
+                            <textarea placeholder="Sebutkan" ng-model="item.KeteranganParu" style="width: 99%; height: 80px;"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </c-panel>
+    </div>
+    <!-- Abdomen -->
+    <div class="grid_12" style="margin-top:10px;">
+        <c-panel  item = "item" header="'Abdomen'">
+            <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+                <div class="grid_12">
+                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listFisisAbdomen">
+                        <input type="radio" name="{{'abdomen' + data.name}}" id="{{'abdomen' + data.name}}" class="k-radio" ng-model="item.abdomen" ng-value="data">
+                        <label class="k-radio-label" for="{{'abdomen' + data.name}}">{{data.namaExternal}}</label>
+                    </div>
+                    <div class="grid_12" style="margin: 5px 5px 5px 5px;">
+                        <textarea placeholder="Sebutkan" ng-model="item.KeteranganAbdomen" style="width: 99%; height: 80px;"></textarea>
+                    </div>
+                </div>
+            </div>
+        </c-panel>
+    </div>
+    <!-- Ekstremitas -->
+    <div class="grid_12" style="margin-top:10px;">
+        <c-panel  item = "item" header="'Ekstremitas'">
+            <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+
+                <div class="grid_12">
+                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listFisisEkstremitas">
+                        <input type="radio" name="{{'ekstremitas' + data.name}}" id="{{'ekstremitas' + data.name}}" class="k-radio" ng-model="item.ektremitas" ng-value="data">
+                        <label class="k-radio-label" for="{{'ekstremitas' + data.name}}">{{data.name}}</label>
+                    </div>
+                    <div class="grid_12" style="margin: 5px 5px 5px 5px;">
+                        <textarea placeholder="Sebutkan" ng-model="item.KeteranganEkstremitas" style="width: 99%; height: 80px;"></textarea>
+                    </div>
+                </div>
+            </div>
+        </c-panel>
+    </div>
+    <!-- Genitalia -->
+    <div class="grid_12" style="margin-top:10px;">
+        <c-panel  item = "item" header="'Genitalia'">
+            <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+                <div class="grid_12">
+                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listStatusNormalTidakNormal">
+                        <input type="radio" name="{{'genitalia' + data.name}}" id="{{'genitalia' + data.name}}" class="k-radio" ng-model="item.genitalia" ng-value="data">
+                        <label class="k-radio-label" for="{{'genitalia' + data.name}}">{{data.name}}</label>
+                    </div>
+                    <div class="grid_12" style="margin: 5px 5px 5px 5px;">
+                        <textarea placeholder="Sebutkan" ng-model="item.KeteranganGenitalia" style="width: 99%; height: 80px;"></textarea>
+                    </div>
+                </div>
+            </div>
+        </c-panel>
+    </div>
+    <!-- Lain-LainStatusLokalis -->
+    <div class="grid_12" style="margin-top:10px;">
+        <c-panel  item = "item" header="'Lain-LainStatusLokalis'">
+            <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+                <div class="grid_12">
+                    <div class="grid_2" style="margin: 5px 0 5px 0;" ng-repeat="data in listPeranMasalah">
+                        <textarea ></textarea>
+                    </div>
+                </div>
+            </div>
+        </c-panel>
+    </div>
+
+    <div header="as" class="grid_12" style="margin-top:10px;" >
+    <div style="position:fixed; z-index: 1;" ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
+    </div>
+
+    </div>
+    </div>
+
+    
+
+
+
+
+
+
+
+
+  
+        

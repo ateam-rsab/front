@@ -1,0 +1,67 @@
+[{
+    "id": 1,
+    "kdProfile": "0",
+    "kdJenisDiet": "1",
+    "jenisDiet": "Makanan saring",
+    "reportDisplay": "Makanan saring",
+    "kdKelompokProduk": "3",
+    "qJenisDiet": "3",
+    "kodeExternal": null,
+    "namaExternal": null,
+    "statusEnabled": "1"
+}, {
+    "id": 2,
+    "kdProfile": "0",
+    "kdJenisDiet": "2",
+    "jenisDiet": "Makanan cair penuh",
+    "reportDisplay": "Makanan cair penuh",
+    "kdKelompokProduk": "3",
+    "qJenisDiet": "4",
+    "kodeExternal": null,
+    "namaExternal": null,
+    "statusEnabled": "1"
+}, {
+    "id": 3,
+    "kdProfile": "0",
+    "kdJenisDiet": "3",
+    "jenisDiet": "Makanan cair kental",
+    "reportDisplay": "Makanan cair kental",
+    "kdKelompokProduk": "3",
+    "qJenisDiet": "5",
+    "kodeExternal": null,
+    "namaExternal": null,
+    "statusEnabled": "1"
+}, {
+    "id": 4,
+    "kdProfile": "0",
+    "kdJenisDiet": "4",
+    "jenisDiet": "Makanan lunak",
+    "reportDisplay": "Makanan lunak",
+    "kdKelompokProduk": "3",
+    "qJenisDiet": "6",
+    "kodeExternal": null,
+    "namaExternal": null,
+    "statusEnabled": "1"
+}, {
+    "id": 5,
+    "kdProfile": "0",
+    "kdJenisDiet": "5",
+    "jenisDiet": "Makanan biasa",
+    "reportDisplay": "Makanan biasa",
+    "kdKelompokProduk": "3",
+    "qJenisDiet": "7",
+    "kodeExternal": null,
+    "namaExternal": null,
+    "statusEnabled": "1"
+}, {
+    "id": 6,
+    "kdProfile": "0",
+    "kdJenisDiet": "6",
+    "jenisDiet": "Makanan cair jernih",
+    "reportDisplay": "Makanan cair jernih",
+    "kdKelompokProduk": "3",
+    "qJenisDiet": "8",
+    "kodeExternal": null,
+    "namaExternal": null,
+    "statusEnabled": "1"
+}]

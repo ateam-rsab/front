@@ -1,0 +1,12 @@
+[
+	{  
+        "id":1,
+        "name":"Tipe Makanan 1"
+    },{
+        "id": 2,
+        "name": "Tipe Makanan 2"
+    },{
+        "id": 3,
+        "name": "Tipe Makanan 3"
+    }
+]

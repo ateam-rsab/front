@@ -1,0 +1,110 @@
+define([], function() {
+    'use strict';
+    if (window.location.hostname.indexOf('rsabhk')>-1){
+             return {
+                BaseUrl: 'https://smart.rsabhk.co.id:2222/app/data/GetRouting',
+                RouteUrl: 'https://smart.rsabhk.co.id:2222/app/data/GetRouting',
+                UrlDataConfig: 'https://smart.rsabhk.co.id:2222/app/data/GetRequireConfig',
+                baseUrlSerelize: "https://smart.rsabhk.co.id:2222/app/data/Form/",
+
+                // URL BARU
+                /* SDM */
+                baseUrlActionSDM: 'https://smart.rsabhk.co.id:2222/jasamedika-sdm/',
+                baseApiPostDataSDM: "https://smart.rsabhk.co.id:2222/jasamedika-sdm/",
+                /* Reporting */
+                urlReporting: 'https://smart.rsabhk.co.id:2222/jasamedika-reporting/',
+                /* LAUNDRY */
+                baseApiPostDataLaundry: "https://smart.rsabhk.co.id:2222/jasamedika-laundry/",
+                baseUrlActionLaundry: "https://smart.rsabhk.co.id:2222/jasamedika-laundry/",
+                /* IP3RS */
+                baseUrlActionIPSRS: "https://smart.rsabhk.co.id:2222/jasamedika-ipsrs/",
+                baseApiPostDataIPSRS: "https://smart.rsabhk.co.id:2222/jasamedika-ipsrs/",
+
+		/*K3KL */
+		baseUrlActionK3KL: "https://smart.rsabhk.co.id:2222/jasamedika-k3kl/",
+		baseApiPostDataK3KL: "https://smart.rsabhk.co.id:2222/jasamedika-k3kl/",
+		
+                urlSocket: 'https://smart.rsabhk.co.id:2222',
+
+                urlPrinting: 'https://smart.rsabhk.co.id:2222/jasamedika-web/',
+                baseUrlListData: "https://smart.rsabhk.co.id:2222/jasamedika-web/service/list-generic/?view=",
+                baseApiUrlData: "https://smart.rsabhk.co.id:2222/jasamedika-web/",
+                baseApiPostData: "https://smart.rsabhk.co.id:2222/jasamedika-web/",
+                baseUrlData: "https://smart.rsabhk.co.id:2222/app/data/",
+                baseUrlAction: "https://smart.rsabhk.co.id:2222/jasamedika-web/",
+               
+	       
+ baseUrlLogin: "https://smart.rsabhk.co.id:2222/jasamedika-web/auth/sign-in",
+                baseUrlLogout: "https://smart.rsabhk.co.id:2222/jasamedika-web/auth/sign-out",
+                baseBridiging: "http://smart.rsabhk.co.id/Bridging/",
+                urlRoute: 'https://smart.rsabhk.co.id:2222/app/data/GetRouting',
+
+                urlRoute_SDM: 'https://smart.rsabhk.co.id:2222/app/data/GetRoutingSDM',
+
+		urlRoute_Akuntansi: 'https://smart.rsabhk.co.id:2222/app/data/GetRoutingAkuntansi',
+                urlDataGeneric_Akuntansi: 'https://smart.rsabhk.co.id:2222/simrs_harkit/service/list-generic?view=',
+                urlDataTableMaster_Akuntansi: 'https://smart.rsabhk.co.id:2222/simrs_harkit/service/master/',
+                urlDataTableTransaksi_Akuntansi: 'https://smart.rsabhk.co.id:2222/simrs_harkit/service/transaksi/',
+                baseApiPostData_Akuntansi: 'https://smart.rsabhk.co.id:2222/simrs_harkit/service/',
+
+                urlDataMaster: 'https://smart.rsabhk.co.id:2222/jasamedika-web/generated_master/',
+
+                rabbitMQHost : 'amqp://rsab:rsab@smart.rsabhk.co.id'
+
+            };            
+    } else {
+            return {
+                BaseUrl: 'https://192.168.12.2:2222/app/data/GetRouting',
+                RouteUrl: 'https://192.168.12.2:2222/app/data/GetRouting',
+                UrlDataConfig: 'https://192.168.12.2:2222/app/data/GetRequireConfig',
+                baseUrlSerelize: "https://192.168.12.2:2222/app/data/Form/",
+
+		// URL BARU
+		/* SDM */
+		baseUrlActionSDM: 'https://192.168.12.2:2222/jasamedika-sdm/',
+		baseApiPostDataSDM: "https://192.168.12.2:2222/jasamedika-sdm/",
+		/* Reporting */
+		urlReporting: 'https://192.168.12.2:2222/jasamedika-reporting/',
+		/* LAUNDRY */
+		baseApiPostDataLaundry: "https://192.168.12.2:2222/jasamedika-laundry/",
+		baseUrlActionLaundry: "https://192.168.12.2:2222/jasamedika-laundry/",
+		/* IP3RS */
+		baseUrlActionIPSRS: "https://192.168.12.2:2222/jasamedika-ipsrs/",
+		baseApiPostDataIPSRS: "https://192.168.12.2:2222/jasamedika-ipsrs/",		
+		//URL API UNTUK CSSD
+		baseUrlActionCSSD: "https://192.168.12.2:2222/jasamedika-cssd/",
+		baseApiPostDataCSSD: "https://192.168.12.2:2222/jasamedika-cssd/",
+		/*K3KL*/
+		baseUrlActionK3KL: "https://192.168.12.2:2222/jasamedika-k3kl/",
+                baseApiPostDataK3KL: "https://192.168.12.2:2222/jasamedika-k3kl/",
+		baseUrlIT: "https://192.168.12.2:2222/jasamedika-it/",
+				
+		urlSocket: 'https://192.168.12.2:2222',
+
+                urlPrinting: 'https://192.168.12.2:2222/jasamedika-web/',
+                baseUrlListData: "https://192.168.12.2:2222/jasamedika-web/service/list-generic/?view=",
+                baseApiUrlData: "https://192.168.12.2:2222/jasamedika-web/",
+                baseApiPostData: "https://192.168.12.2:2222/jasamedika-web/",
+                baseUrlData: "https://192.168.12.2:2222/app/data/",
+                baseUrlAction: "https://192.168.12.2:2222/jasamedika-web/",
+                baseUrlLogin: "https://192.168.12.2:2222/jasamedika-web/auth/sign-in",
+                baseUrlLogout: "https://192.168.12.2:2222/jasamedika-web/auth/sign-out",
+                baseBridiging: "http://172.16.16.75/Bridging/",
+                urlRoute: 'https://192.168.12.2:2222/app/data/GetRouting',
+
+                urlRoute_SDM: 'https://192.168.12.2:2222/app/data/GetRoutingSDM',
+
+		urlRoute_Akuntansi: 'https://192.168.12.2:2222/app/data/GetRoutingAkuntansi',
+                urlDataGeneric_Akuntansi: 'https://192.168.12.2:2222/simrs_harkit/service/list-generic?view=',
+                urlDataTableMaster_Akuntansi: 'https://192.168.12.2:2222/simrs_harkit/service/master/',
+                urlDataTableTransaksi_Akuntansi: 'https://192.168.12.2:2222/simrs_harkit/service/transaksi/',
+                baseApiPostData_Akuntansi: 'https://192.168.12.2:2222/simrs_harkit/service/',
+
+                urlDataMaster: 'https://192.168.12.2:2222/jasamedika-web/generated_master/',
+
+                rabbitMQHost : 'amqp://rsab:rsab@192.168.12.2'
+
+				
+            };
+    }
+});

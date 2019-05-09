@@ -1,0 +1,55 @@
+
+<div ng-controller="MonitoringPoinDokterCtrl">
+    <c-panel item="item" header="'Monitoring Poin Dokter'" disabled>
+        <div class="panel panel-default container_12">
+            <div class="panel-body">
+                <div class="grid_10">
+                    <div class="grid_1" style="margin: 12px 0 0 0;">
+                        <label for="item.unitKerja"><b>Unit kerja</b></label>
+                    </div>
+                    <div class="grid_3">
+                        <input ng-disabled="isDisable" style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja"/>
+                    </div>
+                    <div class="grid_1" style="margin: 12px 0 0 0;">
+                        <label><b>Bulan</b></label>
+                    </div>
+                    <div class="grid_3">
+                        <input kendo-date-picker k-options="yearSelected" k-ng-model="item.akhir"
+                               k-on-change="findSatuanKerja()" k-max="now" k-format="'MMMM yyyy'" style="width: 100%"/>
+                    </div>
+
+                    <div class="grid_1" style="margin: 7px 0 0 0;">
+                        <button class="c-button" ng-click="cari()">Cari</button>
+                    </div>
+                </div>
+                <div class="grid_12" style="padding: 5px 5px 0 5px;">
+                 
+                        <div class="grid_12" style="width:100%;">
+                            <div kendo-grid id="gridOrder"
+                                 k-data-source="sourceOrder"
+                                 k-columns="mainGridOption" ,
+                                 k-scrollable="'true'" ,
+                                 k-selectable="'row'" style="font-size: small">
+                            </div>
+                        </div>
+
+
+                        <div class="loading" style="position: relative; margin:25px 0px 20px;" class="animated"
+                             ng-show="isLoadingData">
+                            <img height="50" src="../app/stylesheets/Flat/loading-image.gif"/>
+                            <br/> <span>Harap tunggu, sedang memproses data</span>
+                        </div>
+                </div>
+                <div class="grid_12">
+                <div class="grid_2"></div>
+                <div class="grid_2"></div>
+                <div class="grid_2"></div>
+                <div class="grid_2"></div>
+                <div class="grid_2"></div>
+                <div class="grid_2"><button class="c-button" ng-click="Cetak()" ng-disabled="cutiHabis">Cetak</button></div>
+                </div>
+            </div>
+        </div>
+    </c-panel>
+</div>
+

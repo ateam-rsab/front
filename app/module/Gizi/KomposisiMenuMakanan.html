@@ -1,0 +1,83 @@
+<div ng-controller="KomposisiMenuMakananCtrl">
+    <div class="panel panel-default container_12">
+        <div class="panel-heading" c-translate>Komposisi Menu Makanan</div>
+        <div class="panel-body">
+            <div class="grid_12" style="margin-top: 30px">
+                <div class="grid_3">
+                    <label c-label item="item" c-label-text="jenisDiet"></label>
+                </div>
+                 <div class="grid_3">
+                    <label c-label item="item" c-label-text="kodeMenuDiet"></label>
+                </div>
+                 <div class="grid_3">
+                    <label c-label item="item" c-label-text="namaMenu"></label>
+                </div>
+                 <div class="grid_3">
+                    <label c-label item="item" c-label-text="satuanPorsi"></label>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_3">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisDiet" k-data-text-field="'jenisDiet'" k-data-value-field="'id'" 
+                    k-filter="'contains'" k-auto-bind="false" k-data-source="ListjenisDiet" />
+                </div>
+                 <div class="grid_3">
+                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.kodeMenuDiet" />
+                </div>
+                 <div class="grid_3">
+                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaMenu" />
+                </div>
+                 <div class="grid_3">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.satuanPorsi" k-data-text-field="'name'" k-data-value-field="'id'" 
+                    k-filter="'contains'" k-auto-bind="false" k-data-source="ListsatuanPorsi" />
+                </div>
+            </div>
+            <div class="grid_12" style="margin-top:5px">
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="jmlPorsi"></label>
+                </div>
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="jumlahKH"></label>
+                </div>
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="jumlahKalori"></label>
+                </div>
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="jumlahProtein"></label>
+                </div>
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="jumlahLemak"></label>
+                </div>
+                <div class="grid_2">
+                    
+                </div>
+            </div>
+             <div class="grid_12">
+                <div class="grid_2">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jmlPorsi" />
+                </div>
+                <div class="grid_2">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahKH" />
+                </div>
+                <div class="grid_2">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahKalori" />
+                </div>
+                <div class="grid_2">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahProtein" />
+                </div>
+                <div class="grid_2">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlahLemak" />
+                </div>
+                <div class="grid_2">
+                </div>
+            </div>
+        	<div class="grid_12" style="margin-top: 30px">
+        		<kendo-grid options="mainGridOptions" id="dataGrid">
+                </kendo-grid>
+                </div>
+            </div>
+            <div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+        </div>
+        </div>
+    </div>
+</div>

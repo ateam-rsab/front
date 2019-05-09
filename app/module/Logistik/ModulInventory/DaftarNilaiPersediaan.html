@@ -1,0 +1,54 @@
+<div ng-show="dataVOloaded">
+    <div class="grid_12">
+        <div class="grid_12 headerBox">
+            <h1 style="color: white;"><b>Daftar Nilai Persediaan</b></h1>
+        </div>
+        <div class="grid_12">
+            <div class="grid_2" style="margin-left: 50px">
+                <div class="grid_12">
+                    <label c-label item="item">ID Produk</label>
+                </div>
+
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="numeric" class="k-textbox" ng-model="item.idProduk" ng-keypress="enter($event)"/>
+                </div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item">Nama Produk</label>
+                </div>
+
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaProduk" ng-keypress="enter($event)"/>
+                </div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Ruangan"></label>
+                </div>
+                <div class="grid_12">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaruangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="true" k-data-source="listRuangan" k-on-change="cari()"/>
+                </div>
+            </div>
+            <div class="grid_1" style="margin-top:20px">
+                <button class="c-button"  ng-click="cari()">Cari</button>
+            </div>
+            <div class="grid_11" style="margin-left: 50px">
+                <!-- grid table -->
+                <div class="grid_12 borderBox">
+                    <div id="kGrid" 
+                    kendo-grid k-data-source="dataGrid" 
+                    k-selectable="'row'"
+                    options="mainGridOptions" 
+                    k-pageable="'true'" 
+                    k-sortable="'true'" 
+                    k-ng-model="dataSelected">
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12" style="margin-top:60px">
+                <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+            </div>
+        </div>
+    </div>
+</div>

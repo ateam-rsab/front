@@ -1,0 +1,42 @@
+<div>
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Laporan Hasil Pemeriksaan LAB kesehatan Lingkungan'"disabled>
+		<div class="panel-body">
+			<div class="grid_12" style="margin-bottom:15px">
+				<div class="grid_3" style="margin-top: 10px">
+					<div class="grid_12" style="margin-left:5px">
+						<label c-label item="item" c-label-text="periodeAwal"></label>
+						<input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAwal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+					</div>
+				</div>
+				<div class="grid_1" style="margin-top: 40px" align="center">
+					<label c-label item="item" c-label-text="s/d"></label>
+				</div>
+				<div class="grid_3" style="margin-top: 10px">
+					<div class="grid_12" style="margin-left:5px">
+						<label c-label item="item" c-label-text="periodeAkhir"></label>
+						<input style="width: 100%" kendo-date-picker k-ng-model="item.periodeAkhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+					</div>
+				</div>	
+				<div class="grid_1"></div>
+				<div class="grid_2" style="margin-top: 32px">
+					<button class="c-button"  ng-click="cari()">CARI</button>
+				</div>
+				<div class="grid_2" style="margin-top: 32px">
+					<button class="c-button"  ng-click="reset()">RESET</button>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div class="grid_12">
+				<div kendo-grid k-data-source="sourceOrder" k-selectable="'row'" k-columns="columnMonitoringStatusPKS" k-ng-model="current" ng-click="kl(current)" style="margin-bottom: 10px"></div>
+			</div>
+			<div class="clear"></div>
+			<div class="grid_12">
+				<div class="grid_10"></div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="navToDetail()">Detail</button>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

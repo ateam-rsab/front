@@ -1,0 +1,471 @@
+////header nya
+define(['initialize'], function(initialize) {
+	'use strict';
+initialize.controller('PasienCtrl', ['$q', '$rootScope', '$scope', 'IPSRSService',
+ function($q, $rootScope, $scope,IPSRSService) {
+ $scope.item = {};
+ $scope.dataVOloaded = true;
+ $scope.now = new Date();
+ var init = function () {
+IPSRSService.getFieldsMasterTable("get-data-master?className=Pasien", true).then(function(dat){
+$scope.listDataMaster = dat.data.data.Pasien;
+                                    					
+$scope.dataSource = new kendo.data.DataSource({
+pageSize: 10,
+data: $scope.listDataMaster,
+autoSync: true
+
+});
+
+});
+}
+init();
+
+
+
+
+$scope.columnPasien = [
+{
+"field": "No",
+"title": "No"
+},
+{
+"field": "umur",
+"title": "umur"
+},
+{
+"field": "tanggalMeninggal",
+"title": "tanggal Meninggal"
+},
+{
+"field": "dokumenRekamMedis",
+"title": "dokumen Rekam Medis"
+},
+{
+"field": "dokumenRekamMedisId",
+"title": "dokumen Rekam Medis Id"
+},
+{
+"field": "agama",
+"title": "agama"
+},
+{
+"field": "agamaId",
+"title": "agama Id"
+},
+{
+"field": "golonganDarah",
+"title": "golongan Darah"
+},
+{
+"field": "golonganDarahId",
+"title": "golongan Darah Id"
+},
+{
+"field": "jenisKelamin",
+"title": "jenis Kelamin"
+},
+{
+"field": "jenisKelaminId",
+"title": "jenis Kelamin Id"
+},
+{
+"field": "pekerjaan",
+"title": "pekerjaan"
+},
+{
+"field": "pekerjaanId",
+"title": "pekerjaan Id"
+},
+{
+"field": "negara",
+"title": "negara"
+},
+{
+"field": "negaraId",
+"title": "negara Id"
+},
+{
+"field": "kebangsaan",
+"title": "kebangsaan"
+},
+{
+"field": "kebangsaanId",
+"title": "kebangsaan Id"
+},
+{
+"field": "pendidikan",
+"title": "pendidikan"
+},
+{
+"field": "pendidikanId",
+"title": "pendidikan Id"
+},
+{
+"field": "statusPerkawinan",
+"title": "status Perkawinan"
+},
+{
+"field": "statusPerkawinanId",
+"title": "status Perkawinan Id"
+},
+{
+"field": "titlePasien",
+"title": "title Pasien"
+},
+{
+"field": "titlePasienId",
+"title": "title Pasien Id"
+},
+{
+"field": "namaPasien",
+"title": "nama Pasien"
+},
+{
+"field": "namaIbu",
+"title": "nama Ibu"
+},
+{
+"field": "namaAyah",
+"title": "nama Ayah"
+},
+{
+"field": "namaSuamiIstri",
+"title": "nama Suami Istri"
+},
+{
+"field": "noTelepon",
+"title": "no Telepon"
+},
+{
+"field": "noCm",
+"title": "no Cm"
+},
+{
+"field": "qPasien",
+"title": "q Pasien"
+},
+{
+"field": "tglDaftar",
+"title": "tgl Daftar"
+},
+{
+"field": "tglLahir",
+"title": "tgl Lahir"
+},
+{
+"field": "alamats",
+"title": "alamats"
+},
+{
+"field": "catatanPasien",
+"title": "catatan Pasien"
+},
+{
+"field": "antrianPasienRegistrasis",
+"title": "antrian Pasien Registrasis"
+},
+{
+"field": "noIdentitas",
+"title": "no Identitas"
+},
+{
+"field": "paspor",
+"title": "paspor"
+},
+{
+"field": "noAditional",
+"title": "no Aditional"
+},
+{
+"field": "namaDepan",
+"title": "nama Depan"
+},
+{
+"field": "namaBelakang",
+"title": "nama Belakang"
+},
+{
+"field": "tempatLahir",
+"title": "tempat Lahir"
+},
+{
+"field": "noBpjs",
+"title": "no Bpjs"
+},
+{
+"field": "noAsuransiLain",
+"title": "no Asuransi Lain"
+},
+{
+"field": "noHp",
+"title": "no Hp"
+},
+{
+"field": "id",
+"title": "id"
+},
+{
+"field": "reportDisplay",
+"title": "report Display"
+},
+{
+"field": "kodeExternal",
+"title": "kode External"
+},
+{
+"field": "namaExternal",
+"title": "nama External"
+},
+{
+"field": "statusEnabled",
+"title": "status Enabled"
+},
+
+{
+	"title" : "Action",
+	"width" : "200px",
+	"template" : "<button class='btnEdit' ng-click='enableData()'>Enable</button>"+
+"<button class='btnHapus' ng-click='disableData()'>Disable</button>"
+}
+];
+$scope.mainGridOptions = { 
+ pageable: true,
+ columns: $scope.columnPasien,
+ editable: "popup",
+ selectable: "row",
+ scrollable: false
+ };
+////fungsi klik untuk edit
+ $scope.klik = function(current){
+$scope.showEdit = true;
+$scope.current = current;
+$scope.item.umur = current.umur;
+$scope.item.tanggalMeninggal = current.tanggalMeninggal;
+$scope.item.dokumenRekamMedis = current.dokumenRekamMedis;
+$scope.item.dokumenRekamMedisId = current.dokumenRekamMedisId;
+$scope.item.agama = current.agama;
+$scope.item.agamaId = current.agamaId;
+$scope.item.golonganDarah = current.golonganDarah;
+$scope.item.golonganDarahId = current.golonganDarahId;
+$scope.item.jenisKelamin = current.jenisKelamin;
+$scope.item.jenisKelaminId = current.jenisKelaminId;
+$scope.item.pekerjaan = current.pekerjaan;
+$scope.item.pekerjaanId = current.pekerjaanId;
+$scope.item.negara = current.negara;
+$scope.item.negaraId = current.negaraId;
+$scope.item.kebangsaan = current.kebangsaan;
+$scope.item.kebangsaanId = current.kebangsaanId;
+$scope.item.pendidikan = current.pendidikan;
+$scope.item.pendidikanId = current.pendidikanId;
+$scope.item.statusPerkawinan = current.statusPerkawinan;
+$scope.item.statusPerkawinanId = current.statusPerkawinanId;
+$scope.item.titlePasien = current.titlePasien;
+$scope.item.titlePasienId = current.titlePasienId;
+$scope.item.namaPasien = current.namaPasien;
+$scope.item.namaIbu = current.namaIbu;
+$scope.item.namaAyah = current.namaAyah;
+$scope.item.namaSuamiIstri = current.namaSuamiIstri;
+$scope.item.noTelepon = current.noTelepon;
+$scope.item.noCm = current.noCm;
+$scope.item.qPasien = current.qPasien;
+$scope.item.tglDaftar = current.tglDaftar;
+$scope.item.tglLahir = current.tglLahir;
+$scope.item.alamats = current.alamats;
+$scope.item.catatanPasien = current.catatanPasien;
+$scope.item.antrianPasienRegistrasis = current.antrianPasienRegistrasis;
+$scope.item.noIdentitas = current.noIdentitas;
+$scope.item.paspor = current.paspor;
+$scope.item.noAditional = current.noAditional;
+$scope.item.namaDepan = current.namaDepan;
+$scope.item.namaBelakang = current.namaBelakang;
+$scope.item.tempatLahir = current.tempatLahir;
+$scope.item.noBpjs = current.noBpjs;
+$scope.item.noAsuransiLain = current.noAsuransiLain;
+$scope.item.noHp = current.noHp;
+$scope.item.id = current.id;
+$scope.item.noRec = current.noRec;
+$scope.item.reportDisplay = current.reportDisplay;
+$scope.item.kodeExternal = current.kodeExternal;
+$scope.item.namaExternal = current.namaExternal;
+$scope.item.statusEnabled = current.statusEnabled;
+};
+$scope.disableData=function(){
+ IPSRSService.getClassMaster("delete-master-table?className=Pasien&&id="+$scope.item.id+"&&statusEnabled=false").then(function(dat){
+ init();
+ });
+ };
+$scope.enableData=function(){
+ IPSRSService.getClassMaster("delete-master-table?className=Pasien&&id="+$scope.item.id+"&&statusEnabled=true").then(function(dat){
+ init();
+
+	});
+};
+
+$scope.tambah = function()
+ {
+var data = {
+	"class": "Pasien",
+	"listField": {
+"umur": $scope.item.umur,
+"tanggalMeninggal": $scope.item.tanggalMeninggal,
+"dokumenRekamMedis": $scope.item.dokumenRekamMedis,
+"dokumenRekamMedisId": $scope.item.dokumenRekamMedisId,
+"agama": $scope.item.agama,
+"agamaId": $scope.item.agamaId,
+"golonganDarah": $scope.item.golonganDarah,
+"golonganDarahId": $scope.item.golonganDarahId,
+"jenisKelamin": $scope.item.jenisKelamin,
+"jenisKelaminId": $scope.item.jenisKelaminId,
+"pekerjaan": $scope.item.pekerjaan,
+"pekerjaanId": $scope.item.pekerjaanId,
+"negara": $scope.item.negara,
+"negaraId": $scope.item.negaraId,
+"kebangsaan": $scope.item.kebangsaan,
+"kebangsaanId": $scope.item.kebangsaanId,
+"pendidikan": $scope.item.pendidikan,
+"pendidikanId": $scope.item.pendidikanId,
+"statusPerkawinan": $scope.item.statusPerkawinan,
+"statusPerkawinanId": $scope.item.statusPerkawinanId,
+"titlePasien": $scope.item.titlePasien,
+"titlePasienId": $scope.item.titlePasienId,
+"namaPasien": $scope.item.namaPasien,
+"namaIbu": $scope.item.namaIbu,
+"namaAyah": $scope.item.namaAyah,
+"namaSuamiIstri": $scope.item.namaSuamiIstri,
+"noTelepon": $scope.item.noTelepon,
+"noCm": $scope.item.noCm,
+"qPasien": $scope.item.qPasien,
+"tglDaftar": $scope.item.tglDaftar,
+"tglLahir": $scope.item.tglLahir,
+"alamats": $scope.item.alamats,
+"catatanPasien": $scope.item.catatanPasien,
+"antrianPasienRegistrasis": $scope.item.antrianPasienRegistrasis,
+"noIdentitas": $scope.item.noIdentitas,
+"paspor": $scope.item.paspor,
+"noAditional": $scope.item.noAditional,
+"namaDepan": $scope.item.namaDepan,
+"namaBelakang": $scope.item.namaBelakang,
+"tempatLahir": $scope.item.tempatLahir,
+"noBpjs": $scope.item.noBpjs,
+"noAsuransiLain": $scope.item.noAsuransiLain,
+"noHp": $scope.item.noHp,
+"id": $scope.item.id,
+"reportDisplay": $scope.item.reportDisplay,
+"kodeExternal": $scope.item.kodeExternal,
+"namaExternal": $scope.item.namaExternal,
+}
+	}
+ IPSRSService.saveDataMaster(data,"save-master-table").then(function(e) {
+console.log(JSON.stringify(e.data));
+init();
+$scope.item = {};
+ });
+  }
+
+ $scope.edit = function()
+  {	
+   var data = {
+ "class": "Pasien",
+	"listField": {
+"umur": $scope.item.umur,
+"tanggalMeninggal": $scope.item.tanggalMeninggal,
+"dokumenRekamMedis": $scope.item.dokumenRekamMedis,
+"dokumenRekamMedisId": $scope.item.dokumenRekamMedisId,
+"agama": $scope.item.agama,
+"agamaId": $scope.item.agamaId,
+"golonganDarah": $scope.item.golonganDarah,
+"golonganDarahId": $scope.item.golonganDarahId,
+"jenisKelamin": $scope.item.jenisKelamin,
+"jenisKelaminId": $scope.item.jenisKelaminId,
+"pekerjaan": $scope.item.pekerjaan,
+"pekerjaanId": $scope.item.pekerjaanId,
+"negara": $scope.item.negara,
+"negaraId": $scope.item.negaraId,
+"kebangsaan": $scope.item.kebangsaan,
+"kebangsaanId": $scope.item.kebangsaanId,
+"pendidikan": $scope.item.pendidikan,
+"pendidikanId": $scope.item.pendidikanId,
+"statusPerkawinan": $scope.item.statusPerkawinan,
+"statusPerkawinanId": $scope.item.statusPerkawinanId,
+"titlePasien": $scope.item.titlePasien,
+"titlePasienId": $scope.item.titlePasienId,
+"namaPasien": $scope.item.namaPasien,
+"namaIbu": $scope.item.namaIbu,
+"namaAyah": $scope.item.namaAyah,
+"namaSuamiIstri": $scope.item.namaSuamiIstri,
+"noTelepon": $scope.item.noTelepon,
+"noCm": $scope.item.noCm,
+"qPasien": $scope.item.qPasien,
+"tglDaftar": $scope.item.tglDaftar,
+"tglLahir": $scope.item.tglLahir,
+"alamats": $scope.item.alamats,
+"catatanPasien": $scope.item.catatanPasien,
+"antrianPasienRegistrasis": $scope.item.antrianPasienRegistrasis,
+"noIdentitas": $scope.item.noIdentitas,
+"paspor": $scope.item.paspor,
+"noAditional": $scope.item.noAditional,
+"namaDepan": $scope.item.namaDepan,
+"namaBelakang": $scope.item.namaBelakang,
+"tempatLahir": $scope.item.tempatLahir,
+"noBpjs": $scope.item.noBpjs,
+"noAsuransiLain": $scope.item.noAsuransiLain,
+"noHp": $scope.item.noHp,
+"id": $scope.item.id,
+"noRec": $scope.item.noRec,
+"reportDisplay": $scope.item.reportDisplay,
+"kodeExternal": $scope.item.kodeExternal,
+"namaExternal": $scope.item.namaExternal,
+"statusEnabled": $scope.item.statusEnabled
+ }
+ }
+IPSRSService.saveDataMaster(data,"update-master-table").then(function(e){console.log(JSON.stringify(e.data));
+init();
+});
+}
+$scope.batal = function () {
+$scope.showEdit = false;
+$scope.item = {};
+}
+IPSRSService.getFieldListData("Dokumen&select=id,namaExternal", true).then(function(dat){
+$scope.listdokumenrekammedis= dat.data;
+});
+IPSRSService.getFieldListData("Agama&select=id,namaExternal", true).then(function(dat){
+$scope.listagama= dat.data;
+});
+IPSRSService.getFieldListData("GolonganDarah&select=id,namaExternal", true).then(function(dat){
+$scope.listgolongandarah= dat.data;
+});
+IPSRSService.getFieldListData("JenisKelamin&select=id,namaExternal", true).then(function(dat){
+$scope.listjeniskelamin= dat.data;
+});
+IPSRSService.getFieldListData("Pekerjaan&select=id,namaExternal", true).then(function(dat){
+$scope.listpekerjaan= dat.data;
+});
+IPSRSService.getFieldListData("Negara&select=id,namaExternal", true).then(function(dat){
+$scope.listnegara= dat.data;
+});
+IPSRSService.getFieldListData("Kebangsaan&select=id,namaExternal", true).then(function(dat){
+$scope.listkebangsaan= dat.data;
+});
+IPSRSService.getFieldListData("Pendidikan&select=id,namaExternal", true).then(function(dat){
+$scope.listpendidikan= dat.data;
+});
+IPSRSService.getFieldListData("StatusPerkawinan&select=id,namaExternal", true).then(function(dat){
+$scope.liststatusperkawinan= dat.data;
+});
+IPSRSService.getFieldListData("TitlePasien&select=id,namaExternal", true).then(function(dat){
+$scope.listtitlepasien= dat.data;
+});
+IPSRSService.getFieldListData("Set&select=id,namaExternal", true).then(function(dat){
+$scope.listalamats= dat.data;
+});
+IPSRSService.getFieldListData("Set&select=id,namaExternal", true).then(function(dat){
+$scope.listcatatanpasien= dat.data;
+});
+IPSRSService.getFieldListData("Set&select=id,namaExternal", true).then(function(dat){
+$scope.listantrianpasienregistrasis= dat.data;
+});
+}
+]);
+});

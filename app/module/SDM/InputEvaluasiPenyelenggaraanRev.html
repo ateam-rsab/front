@@ -1,0 +1,183 @@
+<style>
+	button:disabled {
+    background: #B5B2B1;
+}
+</style>
+<div ng-show="dataVOloaded">
+<div class="panel panel-default container_12" style="background-color:transparant">
+  	<div class="panel-heading"><label class='title' c-label item="item" c-label-text="Evaluasi Penyelenggaraan" real></label></div>
+        <div class="panel-body">
+        		<div class="grid_12">
+					<div class="panel panel-default panel-white">
+						<div class="panel-heading-white"><span class="title" c-translate>Data Evaluasi</span></div>
+						<div class="panel-body">
+							<div class="grid_12">
+								<div class="grid_4">
+									<div class="grid_12">
+										<label style="margin-top: 10px">Tanggal Evaluasi</label>
+									</div>
+									<div class="grid_12">
+										<input style="width: 99.5%" k-ng-model="item.TglEvaluasi"  kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm"/>
+									</div>
+								</div>
+								<div class="grid_4">
+									<div class="grid_12">
+										<label style="margin-top: 10px">Narasumber</label>
+									</div>
+									<div class="grid_12">
+										<input style="width: 100%;" kendo-combo-box k-ng-model="item.Narasumber" k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listNarasumber" />
+									</div>
+								</div>
+								<div class="grid_4">
+									<div class="grid_12">
+										<label style="margin-top: 10px">Fasilitator</label>
+									</div>
+									<div class="grid_12">
+										<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.NamaFasilitator" />
+									</div>
+								</div>							   
+							</div>
+							<div class="grid_12">
+								<div class="grid_4">
+									<div class="grid_12" style="margin-top: 10px">
+										<label>Nama Kegiatan</label>
+									</div>
+									<div class="grid_12">
+										<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.Materi" />
+									</div>
+								</div>
+								<div class="grid_4">
+									<div class="grid_12" style="margin-top: 10px">
+										<label>Penyelenggara Pelatihan</label>
+									</div>
+									<div class="grid_12">
+										<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.NamaPenyelenggara" />
+									</div>
+								</div>
+								<div class="grid_4">
+									<div class="grid_12" style="margin-top: 10px">
+										<label>Saran</label>
+									</div>
+									<div class="grid_12">
+										<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.Saran" />
+									</div>
+								</div>
+							</div>							
+						</div>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="panel panel-default panel-white">
+						<div class="panel-heading-white"><span class="title" c-translate></span></div>
+						<div class="panel-body">
+							<div class="grid_12 headerBox">
+				                <h1 style="color: white;"><b>Detail Evaluasi Penyelenggaraan</b></h1>
+				            </div>
+				            <div class="clear"></div>
+				            <br/>
+				            <div class="grid_12">
+				            	<div class="grid_12">
+				            		<div class="grid_3">
+										<div class="grid_12" style="margin-top: 10px">
+											<label>Efektifitas Penyelenggaraan</label>
+										</div>
+										<div class="grid_12">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.EfektifitasPenyelenggaraan" />
+										</div>
+									</div>
+									<div class="grid_3">
+										<div class="grid_12" style="margin-top: 10px">
+											<label>Dapat Diterapkan Diklinik/ Tempat Tugas</label>
+										</div>
+										<div class="grid_12">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.Diterapkan" />
+										</div>
+									</div>
+									<div class="grid_3">
+										<div class="grid_12" style="margin-top: 10px">
+											<label>Persiapan dan Ketersediaan Sarana Kegiatan</label>
+										</div>
+										<div class="grid_12">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.Persiapan" />
+										</div>
+									</div>
+									<div class="grid_3">
+										<div class="grid_12" style="margin-top: 10px">
+											<label>Hubungan Peserta dengan Penyelenggara Kegiatan</label>
+										</div>
+										<div class="grid_12">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.HubunganPeserta" />
+										</div>
+									</div>
+				            	</div>
+
+				            	<div class="grid_12">
+				            		<div class="grid_3">
+										<div class="grid_12" style="margin-top: 10px">
+											<label>Hubungan Antar Peserta</label>
+										</div>
+										<div class="grid_12">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.HubunganAntarPeserta" />
+										</div>
+									</div>
+									<div class="grid_3">
+										<div class="grid_12" style="margin-top: 10px">
+											<label>Kebersihan dan Kenyamanan Ruang Kelas</label>
+										</div>
+										<div class="grid_12">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.Kebersihan" />
+										</div>
+									</div>
+									<div class="grid_3">
+										<div class="grid_12" style="margin-top: 10px">
+											<label>Kebersihan Toilet</label>
+										</div>
+										<div class="grid_12">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.KebersihanToilet" />
+										</div>
+									</div>
+									<div class="grid_1">
+										<div class="grid_12" style="margin-top: 10px">
+											<label>Skor</label>
+										</div>
+										<div class="grid_12">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.Rekapitulasi" />
+										</div>
+									</div>
+									<div class="grid_2">
+										<div class="grid_12" style="margin-top: 25px">
+											<label></label>
+										</div>
+										<div class="grid_12">
+											<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.KeteranganRekapitulasi" />
+										</div>
+									</div>
+				            	</div>
+				            </div>
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4">
+							<div class="grid_12">
+								<label><b>Keterangan :</b></label>
+							</div>
+							<div class="grid_12">
+								<label><b>45-55: Kurang, 56-75: Sedang, 76-85: Baik, >86: Sangat Baik</b></label>
+							</div>
+						</div>
+						<div class="grid_4"></div>
+						<div class="grid_2">
+						    <c-button ng-show="!isLoading" class="success" style="width: 99.5%; font-size: 24px; padding:0px, margin:0px; text-align: center;" item="item" size="36" position=" 'right'" is-validate ng-click="Save()">
+					            <span class="title">Simpan</span>
+					        </c-button>
+						</div>
+						<div class="grid_2">
+						    <c-button ng-show="!isLoading" style="width: 99.5%; font-size: 24px; padding:0px, margin:0px; text-align: center;" item="item" size="36" position=" 'right'" class="cancel" ng-click="reset()">
+					            <span class="title">Batal</span>
+					        </c-button>
+						</div>
+					</div> 
+        	</div>
+        </div>
+    </div>
+</div>

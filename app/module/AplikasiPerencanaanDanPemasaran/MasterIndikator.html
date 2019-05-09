@@ -1,0 +1,77 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Master Indikator</div>
+	<div class="panel-body">
+		<div class="grid_12">
+			<div class="grid_1"></div>
+			<div class="grid_10">
+				<div class="grid_12" style="margin-top:5px">
+					<div class="grid_2">
+						<label c-label item="item">JenisIndikator</label>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisIndikator" k-data-text-field="'jenisIndikator'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceJenisIndikator" k-on-change="IDPerspektif()"/>
+					</div>
+				</div>
+				<div class="grid_12" style="margin-top:10px">
+					<div class="grid_2">
+						<label c-label item="item">Perspektif</label>
+					</div>
+				</div>
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.perspektif" k-data-text-field="'perspektif'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourcePerspektif" k-on-change="IDSasaran()"/>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2" style="margin-top:10px">
+						<label c-label item="item">Sasaran Strategis</label>
+					</div>
+				</div>
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.sasaranStrategis" k-data-text-field="'sasaranStrategis'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourcedaftarSasaranStrategis" />
+				</div>
+				<div class="grid_12">
+					<div class="grid_2" style="margin-top:10px">
+						<label c-label item="item">Indikator</label>
+					</div>
+				</div>
+				<div class="grid_12" style="margin-top:5px">
+					<textarea ng-model="item.indikator" style="width: 99%; height: 100px;" ></textarea>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2" style="margin-top:10px">
+						<label c-label item="item">Definisi</label>
+					</div>
+				</div>
+				<div class="grid_12" style="margin-top:5px">
+						<textarea ng-model="item.definisiOperasional" style="width: 99%; height: 200px;" ></textarea>
+				</div>
+				<div class="grid_12">
+					<div class="grid_2" style="margin-top:10px">
+						<label c-label item="item">Formula</label>
+					</div>
+				</div>
+				<div class="grid_12" style="margin-top:5px">
+					<textarea ng-model="item.formula" style="width: 99%; height: 200px;"></textarea>
+				</div>
+			</div>
+			<div class="grid_12" style="margin-top:10px">
+				<div class="grid_7"></div>
+				<div class="grid_2">
+					<button class="c-button success" ng-click="Save()">Simpan</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button cancel" ng-click="Batal()">Batal</button>
+				</div>
+			</div>
+			<div class="grid_12" style="padding-top:10px">
+				<c-panel item="item" header="title2" disabled>
+					<div class="grid_12" style="margin-top:10px">
+						<div kendo-grid k-on-change="Select(data)" k-data-source="sourceMasterIndikator" k-selectable="'row'" options="mainGridOptions"></div>
+						<!-- <div kendo-grid k-on-change="SelectGrid(data)" k-data-source="sourceMasterIndikator" k-selectable="'row'" k-columns="columnMasterIndikator" pageable="true" scrollable="true"></div> -->
+					</div>
+				</c-panel>
+			</div>
+		</div>
+	</div>
+</div>

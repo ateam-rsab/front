@@ -1,0 +1,58 @@
+<div ng-controller="TouchScreenCtrl">
+    <div class="grid_12">
+        <div class="grid_4">
+            <a ng-click="GetNoAntrianPendaftaran()">
+                <div class="card">
+                    <div class="card-image">
+                        <span class="card-title">Baru</span>
+                        <img width="100px" src="stylesheets/AddUser.png" />
+                    </div>
+                    <div class="card-content" style="height: 108px;">
+                        <p>
+                            Pilih menu ini, jika anda adalah pasien <b>BARU</b> di rumah sakit, dan akan melakukan pendaftaran di loket registrasi
+                        </p>
+                    </div>
+                    <div class="card-action">
+                        Pilih
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="grid_4">
+            <a href="#/TouchScreen/JenisPasien">
+                <div class="card">
+                    <div class="card-image">
+                        <span class="card-title">Lama</span>
+                        <img width="100px" src="stylesheets/pasienOld.jpg" />
+                    </div>
+                    <div class="card-content" style="height: 108px;">
+                        <p>
+                            Pilih menu ini, jika anda adalah pasien <b>Lama</b> di rumah sakit, dan akan melakukan registrasi mandiri
+                        </p>
+                    </div>
+                    <div class="card-action">
+                        Pilih
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="grid_4">
+            <a href="#/TouchScreen/Reconfirm" ng-click="NavJenisPasien('NONUMUM')">
+                <div class="card">
+                    <div class="card-image">
+                        <span class="card-title">Reconfirm</span>
+                        <img width="100px" src="stylesheets/confirm.png" />
+                    </div>
+                    <div class=" card-content" style="height: 108px;">
+                        <p>
+                            Pilih menu ini, jika anda akan melakukan <b>Reconfirm</b> untuk pasien registrasi online dan mendapatkan nomor antrian ruangan
+                        </p>
+                    </div>
+                    <div class="card-action">
+                        Pilih
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div> 

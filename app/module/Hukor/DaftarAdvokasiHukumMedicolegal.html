@@ -1,0 +1,69 @@
+<div ng-controller="DaftarAdvokasiHukumMedicolegalCtrl">
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Daftar Advokasi Hukum Medicolegal'">
+            <div class="panel panel-default container_12">
+                <div class="grid_12" style="margin-top: 30px">
+                    <div class="grid_6">
+                        <div class="grid_2" style="margin-top: 10px; " align="right">
+                            <label c-label item="item" c-label-text="periodeTanggal"></label>
+                        </div>
+                        <div class="grid_3">
+                            <input style="width: 100%" kendo-date-picker k-value="now" k-ng-model="item.periodeAwal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                        </div>
+                        <div class="grid_1" style="margin-top: 10px; " align="center">
+                            <label c-label item="item" c-label-text="sd"></label>
+                        </div>
+                        <div class="grid_3">
+                            <input style="width: 100%" kendo-date-picker k-value="now" k-ng-model="item.periodeAkhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                        </div>
+                        <div class="grid_2 " style="margin-top: 7px; font-size: 24px;">
+                            <button class="c-button" ng-show="!isLoading" item="item" ng-click="cariTanggal()">
+                                Cari
+                            </button>
+                        </div>
+                    </div>
+                    <div class="grid_6">
+                        <div class="grid_2"></div>
+                        <div class="grid_3" style="margin-top: 15px; " align="right">
+                            <label c-label item="item" c-label-text="noKasus"></label>
+                        </div>
+                        <div class="grid_5" style="margin-top: 10px">
+                            <!--<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noKasus" />-->
+                            <!--<input kendo-auto-complete k-ng-model="item.noKasus" k-options="pegOptions" k-data-source="dataNoKasus" style="width:100%" />-->
+                            <input kendo-auto-complete k-ng-model="item.cariNoKasus" k-options="pegOptions" k-data-source="dataNoKasus" style="width:100%" />        
+                        </div>
+                        <div class="grid_2" style="margin-top: 10px; font-size: 24px;">
+                            <button class="c-button" ng-show="!isLoading" item="item" ng-click="cariNoKasus()">
+                                Cari
+                        </button>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <div class="clear "></div>
+                <div class="grid_12">
+                    <div kendo-grid k-data-source="daftarAdvokasi " k-selectable=" 'row' " k-columns="columnAdvokasi " style="margin-bottom: 10px "></div>
+                </div>
+                <div class="grid_12">
+
+
+                </div>
+                <div class="grid_6 "></div>
+                <div>
+                    <div class="grid_2"></div>
+                    <div class="grid_2" style="margin-top: 25px; font-size: 24px;">
+                        <button class="c-button" ng-show="!isLoading" item="item" ng-click="hapus()">
+                    <span class="title">Hapus</span></button>
+                    </div>
+                    <div class="grid_2" style="margin-top: 25px; font-size: 24px;">
+                        <button class="c-button" ng-show="!isLoading" item="item" ng-click="tutup()">
+                    <span class="title">Tutup</span></button>
+                    </div>
+                </div>
+            </div>
+        </c-panel>
+    </div>
+</div>

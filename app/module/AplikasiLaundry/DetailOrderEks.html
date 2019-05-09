@@ -1,0 +1,36 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Detail Order Eksternal</div>
+	<div class="panel-body">
+		<div class="grid_12" style="margin-top:20px">
+			<div class="grid_2"></div>
+			<div class="grid_10">
+				<div class="grid_1" style="margin-top:15px">
+					<label c-label item="item">Nomor Kirim</label>
+				</div>
+				<div class="grid_3">
+					<input c-text-box type="input" filter="'text'" class="k-textbox" ng-model="item.noOrder" readonly="true" />
+				</div>
+				<div class="grid_1"></div>
+				<div class="grid_1" style="margin-top:15px">
+					<label c-label item="item">Petugas</label>
+				</div>
+				<div class="grid_3">
+					<input c-text-box type="input" filter="'text'" class="k-textbox" ng-model="item.petugas" readonly="true"/>
+				</div>
+			</div>
+		</div>
+		<div class="grid_12" style="margin-top: 20px">
+			<div kendo-grid k-data-source="daftarDetailOrder" k-ng-model="current" k-options="mainGridOptions" k-selectable="'row'" k-columns="columndaftarDetailOrder"  ng-click="kl(current)">
+			</div>
+		</div>
+		<div class="grid_12" style="margin: 20px 0 10px 0; ">
+			<div class="grid_8"></div>
+	        <div class="grid_2">
+				<button class="c-button success" ng-click="">Kirim</button>
+	        </div>
+	        <div class="grid_2">
+				<button class="c-button cancel" ng-click="OpenHome()">Tutup</button>
+	        </div>
+		</div>
+	</div>
+</div>

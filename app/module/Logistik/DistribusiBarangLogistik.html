@@ -1,0 +1,80 @@
+<div ng-controller="DistribusiBarangLogistikCtrl">
+    <div ng-show="dataVOloaded">
+    	<div class="panel panel-default">
+		<div class="panel-heading">Pendistribusian Barang Inventaris</div>
+		<div class="panel-body">
+			<div class="grid_12">
+				<div class="grid_2">
+					<label c-label style:"width=100%">Nama Barang</label>
+				</div>
+				<div class="grid_6">
+					<input c-text-box type="text" class="k-textbox" ng-model="detilRecord.produk.namaProduk" width="100%" disabled/>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_2">
+					<label c-label style:"width=100%">Sumber Dana</label>
+				</div>
+				<div class="grid_6">
+					<input c-text-box type="text" class="k-textbox" ng-model="detilRecord.asalProduk.asalProduk" disabled width="100%"/>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_2">
+					<label c-label style:"width=100%">Jumlah Terima</label>
+				</div>
+				<div class="grid_6">
+					<input c-text-box type="number" class="k-textbox" ng-model="detilRecord.jumlahTerima" width="100%" disabled/>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_2">
+					<label c-label style:"width=100%">Satuan</label>
+				</div>
+				<div class="grid_6">
+					<input c-text-box type="text" class="k-textbox" ng-model="detilRecord.produk.satuanStandar.satuanStandar" width="100%" disabled/>
+				</div>
+			</div>
+		</div>
+		</div>
+
+		<div class="container_12">
+		<div class="panel panel-default">
+			<div class="panel-heading" style="font-size:16px;font-weight:600">Daftar Inventaris</div>
+
+			<div class="grid_12">
+				<kendo-grid  k-data-source="daftarAset" k-selectable="'row'" k-columns="colomnInventaris" k-selectable="true" style="font-size: small;">
+            	</kendo-grid>
+			</div>
+
+			<div class="clear"/>
+			<div class="grid_12" style="margin-top:50px">
+            	<div class="grid_4"></div>
+            	<div class="grid_4" style="margin-top: 5px" text-align="right">
+             		<label c-label item="item" c-label-text=""> </label>
+             		<c-button ng-click="selesai()" style="width:100% !important">
+                		<span style="font-size:10!important">Simpan</span>
+                	</c-button>
+            	</div>
+            	<div class="grid_4" style="margin-top: 5px" text-align="right">
+                	<label c-label item="item" c-label-text=""> </label>
+                	<c-button ng-click="back()" style="width:100% !important">
+                    	<span style="font-size:10!important">Tutup</span>
+                	</c-button>
+            	</div>
+       		</div>
+    	</div>
+    	
+    	
+
+		</div>
+	</div>
+
+</div>
+
+<style>
+.panel-body .grid_2 {
+   	border-top-width: 10px;
+    margin-top: 10px;
+}
+</style>

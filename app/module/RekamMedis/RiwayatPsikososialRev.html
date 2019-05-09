@@ -1,0 +1,74 @@
+<style type="text/css">
+.subtits{font-weight: 800; font-size:12pt; padding-left:8px}
+hr {
+    border: 1px dashed #cccccc;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+    width: 100%;
+}
+</style>
+<div ng-controller="RiwayatPsikososialRevCtrl">
+    <div class="grid_12 headerBox">
+        <h1 style="color: white;"><b>{{title}}</b></h1>
+    </div>
+    <div class="clear"></div>
+    <br/>
+    <div class="grid_12" style="margin-bottom:40px">
+        <!-- form untuk Psikososial -->
+        <div class="grid_12" ng-repeat="list in listStatus | orderBy:'id'" style="padding: 5pt 10pt">
+            <b>{{list.nama}}</b>
+            <div class="grid_12" style="padding: 5pt">
+                <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                    <div class="grid_2">
+                        <input type="checkbox" ng-checked="opsi.isChecked" class="k-checkbox" name="{{opsi.nama}}" id="{{opsi.nama}}" ng-model="bool" value="{{opsi.id}}"  ng-click="addListStatus(bool,opsi)" >
+                        <label class="k-checkbox-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_12" style="padding-left:10px ">
+            <b>Status Sosial</b>
+        </div>
+        <div class="grid_12" ng-repeat="list in listTempatTinggal | orderBy:'id'" style="padding-left: 15px">
+            <div class="grid_3"  style="margin-top: 10px">
+                <label>{{list.nama}} :</label>
+            </div>
+            <div class="grid_9">
+                <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                    <div class="grid_3">
+                        <input type="radio" name="{{opsi.nama}}" id="{{opsi.nama}}" class="k-radio" ng-model="item.tempatTinggal" value="{{opsi.id}}" ng-click="statusSosial(list, opsi)">
+                        <label class="k-radio-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_12" ng-repeat="list in listRawat | orderBy:'id'" style="padding-left: 15px">
+            <div class="grid_3" style="margin-top: 10px">
+                <label>{{list.nama}} :</label>
+            </div>
+            <div class="grid_9">
+                <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                    <div class="grid_3">
+                        <input type="radio" name="{{opsi.nama}}" id="{{opsi.nama}}" class="k-radio" ng-model="item.rawat" value="{{opsi.id}}" ng-click="statusSosial(list, opsi)">
+                        <label class="k-radio-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_12" ng-repeat="list in listHubungan | orderBy:'id'" style="padding-left: 15px">
+            <div class="grid_3"  style="margin-top: 10px">
+                <label>{{list.nama}} :</label>
+            </div>
+            <div class="grid_9">
+                <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                    <div class="grid_3">
+                        <input type="radio" name="{{opsi.nama}}" id="{{opsi.nama}}" class="k-radio" ng-model="item.hubungan" value="{{opsi.id}}" ng-click="statusSosial(list, opsi)">
+                        <label class="k-radio-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+</div>

@@ -1,0 +1,20 @@
+{
+	"model":{
+	    "PemintaanKontras" : "",
+	    "PemintaanNonKontras" : ""
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "PemintaanKontras",
+			"messagesRequired" : "",
+			"caption" : "Pemintaan Kontras"
+		},
+		{
+			"isNull" : "true",
+			"name" : "PemintaanNonKontras",
+			"messagesRequired" : "",
+			"caption" : "Pemintaan Non Kontras"
+		}
+  ]
+}

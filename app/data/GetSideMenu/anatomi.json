@@ -1,0 +1,74 @@
+[{
+    "name": "Dashboard",
+    "link": "#/Laboratorium/Daftar"
+}, {
+    "name": "Daftar Pasien",
+    "link": "#/Laboratorium/Pasien"
+}, {
+    "name": "Laporan Hasil By Pemeriksaan",
+    "link": "#/Laboratorium/Laporan/Pemeriksaan"
+}, {
+	"name": "SDM",
+	"children": [{
+		"name": "Input Uraian Tugas",
+		"link": "#/InputUraianTugasPegawaiLogin"
+	}, {
+		"name": "Indeks Kinerja Individu",
+		"link": "#/IndeksKinerjaIndividuSDM"
+	}, {
+		"name": "Permohonan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
+		"link": "#/PermohonanPerubahanStatusPegawai"
+	}, {
+		"name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
+		"link": "#/DaftarPenangguhanCuti"
+	}, {
+		"name": "Pengajuan Mutasi Pegawai",
+		"link": "#/PengajuanMutasiPegawai"
+	}, {
+		"name": "Pengajuan Resign Pegawai",
+		"link": "#/PengajuanResignPegawai"
+	},{
+		"name": "Pengajuan Sanksi Pegawai",
+		"link": "#/PengajuanSanksiPegawai"
+	}, {
+		"name": "Daftar Pengajuan Mutasi Resign Sanksi",
+		"link": "#/DaftarPengajuanMutasiSanksiResign"
+	}, {
+		"name": "InputLemburPegawaiUnitKerja",
+		"link": "#/InputLemburPegawaiUnitKerja"
+	},{
+		"name": "Verifikasi Uraian Tugas Bawahan",
+		"link": "#/VerifikasiUraianTugasPegawaiLogin"
+	}]
+},
+{
+	"name":"Aplikasi IT",
+	"children":[
+		{
+			"name": "Permintaan Perbaikan dari Ruangan",
+			"link": "#/RevPermintaanPerbaikandariRuanganITNew"
+		}
+	]
+},
+{
+	"name": "Aplikasi Laundry",
+	"children": [
+		{
+			"name": "Permintaan Linen Bersih",
+			"link": "#/PermintaanLinenByRuangan"
+		},{
+			"name": "Verifikasi",
+			"link": "#/VerifikasiTerima"
+		}
+]
+},
+ {
+    "name": "Setting",
+    "children": [
+        {
+            "name": "Ubah Password",
+            "link": "#/UbahPassword"  
+        }
+    ]
+}
+]

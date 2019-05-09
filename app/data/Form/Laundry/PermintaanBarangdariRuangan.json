@@ -1,0 +1,51 @@
+{
+	"model":{
+		"noOrder" : "",
+		"tglOrder":"",
+		"statusBarang":"",
+		"ruangTujuanPemesanan": "",
+		"stok":"",
+		"qty" : "",
+		"satuan":""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "noOrder",
+			"messagesRequired" : "",
+			"caption" : "No Order"
+		},{
+			"isNull" : "true",
+			"name" : "tglOrder",
+			"messagesRequired" : "",
+			"caption" : "Tgl Order"
+		},{
+			"isNull" : "true",
+			"name" : "statusBarang",
+			"messagesRequired" : "",
+			"caption" : "Status Barang (Linen)"
+		},{
+			"isNull" : "true",
+			"name" : "ruangTujuanPemesanan",
+			"messagesRequired" : "",
+			"caption" : "Ruangan Tujuan Pemesanan"
+		},{
+			"isNull" : "true",
+			"name" : "stok",
+			"messagesRequired" : "",
+			"caption" : "stok"
+		},{
+			"isNull" : "true",
+			"name" : "qty",
+			"messagesRequired" : "",
+			"caption" : "qty"
+		},{
+			"isNull" : "true",
+			"name" : "satuan",
+			"messagesRequired" : "",
+			"caption" : "Satuan"
+		}
+
+	]
+}

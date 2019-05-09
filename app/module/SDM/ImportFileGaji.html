@@ -1,0 +1,123 @@
+<div ng-controller="ImportFileGajiCtrl">
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Proses Import File Gaji PNS'" disabled>
+            <div class="panel-body">
+                <div class="grid_6">
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin: 10px 0 0 0;">
+                            <label c-label item="item">Tanggal Proses</label>
+                        </div>
+                        <div class="grid_8">
+                            <input kendo-date-picker k-ng-model="item.tglAwal" k-max="now" k-format="'dd-MM-yyyy'" style="width: 100%" k-value="now"   disabled/>
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin: 10px 0 0 0;">
+                            <label c-label item="item">Keterangan</label>
+                        </div>
+                        <div class="grid_8" style="margin: 0 0 0 0;">
+                            <textarea ng-model="item.keterangan" style="width: 99%; height: 80px;"></textarea>
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin: 10px 0 0 0;">
+                            <label c-label item="item">Jenis Gaji</label>
+                        </div>
+                        <div class="grid_8">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisGaji" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisGaji" />
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_4" style="margin: 10px 0 0 0;">
+                            <label c-label item="item">Periode</label>
+                        </div>
+                        <div class="grid_8">
+                            <input kendo-date-picker k-options="monthSelectorOptions" k-ng-model="item.tglHistori" k-format="'MMMM yyyy'" style="width:100%;">
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_8 borderBox containerBorderBox">
+                            <input id="fileExcel" type="file" name="files" kendo-upload k-multipe="false" k-select="onSelectFile">
+                        </div>
+                        <div class="grid_4">
+                            <div class="grid_12">
+                                <button class="c-button" ng-click="Upload()">Upload File GPP</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="grid_6">
+                    <!-- <div class="grid_8">
+                		<input type="file" name="file" kendo-upload k-async="{saveUrl: 'save', removeUrl: 'remove', autoUpload: true}" k-select="onSelect">
+                	</div>
+                    <div class="grid_8" style="float:left">
+                        <div class="grid_3" style="margin-top: 25px">
+                            <button class="c-button" ng-show="!isLoading" item="item" is-validate click="Cancel">
+                                <span class="title">Upload File GPP</span></button>
+                        </div>
+                    </div> -->
+                    <!-- <form>
+                    	<div class="grid_6">
+                    		<input id="fileUpload" type="file" name="files" kendo-upload k-async="{autoUpload:true}" k-select="onSelectFile">
+						</div>
+						<div class="grid_2">
+							<div class="grid_12">
+							    <button class="c-button" ng-click="Upload()">Upload File</button>
+							</div>
+						</div>	
+                    </form> -->
+                </div>
+                <!-- <div class="grid_9">
+                    <div class="grid_3" style="margin-top: 0">
+                        <div class="grid_12" style="margin-left:5px">
+                        </div>
+                        <div class="grid_12" style="margin-top:12px">
+                            <label c-label item="item" c-label-text="Nama Pegawai"></label>
+                        </div>
+                    </div>
+                    <div class="grid_3" style="margin-top: 0">
+                        <div class="grid_12" style="margin: 0 0 0 -26px;">
+                            <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaPegawai"  id="namaPegawai" />
+                        </div>
+                    </div>
+                    <div class="grid_2" style="margin: 6px 0 0 -25px;">
+                        <button class="c-button" ng-click="cari(data)">
+                            Cari</button>
+                    </div>
+                </div> -->
+            </div>
+            <div class="grid_8">
+                <kendo-grid options="mainGridOptions" k-data-source="dataSource" k-ng-model="current" id="grid"></kendo-grid>
+                <!-- <div class="k-pager-wrap k-grid-paper k-widget k-floatwrap">
+                	<span class="k-pager-info k-label">
+                		<div class="count"></div>	
+                	</span>
+                </div>	 -->
+            </div>
+            <div class="grid_8">
+	            <div class="grid_8"></div>
+	            <div class="grid_2">
+	                <button class="c-button" ng-click="batal()" id="batal">Batal</button>
+	            </div>
+	            <div class="grid_2">
+	                <button class="c-button" ng-click="Simpan()" id="simpan" ng-disabled="disSimpan">Simpan</button>
+	            </div>
+	        </div>
+        </c-panel>
+        <div class="clear"></div>
+        
+        <!-- <div class="grid_8">
+        	<div kendo-progress-bar="progressBar" k-min="0" k-max="100" ng-model="progress" style="width:100%" ng-show="dataProgress"></div>
+        </div> -->
+        <!--         <div class="grid_12">
+            <div class="grid_8" style="float:left">
+                <div class="grid_2" style="margin-top: 25px">
+                    <button class="c-button" ng-show="!isLoading" item="item" is-validate click="Cancel">
+                        <span class="title">Simpan</span></button>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</div>
+</div>

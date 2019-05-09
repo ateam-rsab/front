@@ -1,0 +1,111 @@
+{
+	"model":{
+		"noPendaftaran" : "",
+		"noCM":"",
+		"namaPasien":"",
+		"jenisKelamin": "",
+		"kelasPelayanan":"",
+		"jenisPasien" : "",
+		"Umur":"",
+		"tglPendaftaran":"",
+		"tglPesan":"",
+		"jenisDiet": "",
+		"kategoriDiet":"",
+		"jenisWaktu" : "",
+		"jumlahOrder":"",
+		"keterangan": "",
+		"thn":"",
+		"bln" : "",
+		"hr":""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "noPendaftaran",
+			"messagesRequired" : "",
+			"caption" : "No Pendaftaran"
+		},{
+			"isNull" : "true",
+			"name" : "noCM",
+			"messagesRequired" : "",
+			"caption" : "No CM"
+		},{
+			"isNull" : "true",
+			"name" : "namaPasien",
+			"messagesRequired" : "",
+			"caption" : "Nama Pasien"
+		},{
+			"isNull" : "true",
+			"name" : "jenisKelamin",
+			"messagesRequired" : "",
+			"caption" : "Jenis Kelamin"
+		},{
+			"isNull" : "true",
+			"name" : "kelasPelayanan",
+			"messagesRequired" : "",
+			"caption" : "Kelas Pelayanan"
+		},{
+			"isNull" : "true",
+			"name" : "jenisPasien",
+			"messagesRequired" : "",
+			"caption" : "Jenis Pasien"
+		},{
+			"isNull" : "true",
+			"name" : "umur",
+			"messagesRequired" : "",
+			"caption" : "Umur"
+		},{
+			"isNull" : "true",
+			"name" : "tglPendaftaran",
+			"messagesRequired" : "",
+			"caption" : "Tgl Pendaftaran"
+		},{
+			"isNull" : "true",
+			"name" : "tglPesan",
+			"messagesRequired" : "",
+			"caption" : "Tgl Pesan"
+		},{
+			"isNull" : "true",
+			"name" : "jenisDiet",
+			"messagesRequired" : "",
+			"caption" : "Jenis Diet"
+		},{
+			"isNull" : "true",
+			"name" : "kategoriDiet",
+			"messagesRequired" : "",
+			"caption" : "Kategori Diet"
+		},{
+			"isNull" : "true",
+			"name" : "jenisWaktu",
+			"messagesRequired" : "",
+			"caption" : "Jenis Waktu"
+		},{
+			"isNull" : "true",
+			"name" : "jumlahOrder",
+			"messagesRequired" : "",
+			"caption" : "Jumlah Order"
+		},{
+			"isNull" : "true",
+			"name" : "keterangan",
+			"messagesRequired" : "",
+			"caption" : "Keterangan"
+		},{
+			"isNull" : "true",
+			"name" : "thn",
+			"messagesRequired" : "",
+			"caption" : "Thn"
+		},{
+			"isNull" : "true",
+			"name" : "bln",
+			"messagesRequired" : "",
+			"caption" : "Bln"
+		},{
+			"isNull" : "true",
+			"name" : "hr",
+			"messagesRequired" : "",
+			"caption" : "Hr"
+		}
+
+	]
+}

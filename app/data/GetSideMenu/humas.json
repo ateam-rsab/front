@@ -1,0 +1,420 @@
+[
+    {
+        "name": "Information",
+        "children": [
+            {
+                "name": "Daftar Registrasi Pasien",
+                "link": "#/DaftarRegistrasiPasien"
+            },
+            {
+                "name": "Daftar Pasien Pulang",
+                "link": "#/Daftar/Antrian/Pulang"
+            },
+            {
+                "name": "Daftar Pasien Dalam Perawatan",
+                "link": "#/DaftarPasienDalamPerawatan"
+            },   
+            {
+                "name": "Cek No Rekam Medis",
+                "link": "#/RegistrasiPasienLamaHumas"
+            },
+            {
+                "name": "Informasi Tarif Layanan",
+                "link": "#/TarifLayanan"
+            },
+            {
+                "name": "Informasi Jadwal Dokter",
+                "link": "#/InformasiJadwalDokter"
+            },
+            {
+                "name": "Informasi Jadwal Pelayanan Dokter",
+                "link": "#/InformasiJadwalPelayananDokter" 
+            },
+            {   
+                "name":  "Registrasi Online",
+                "link":   "#/DaftarPasienReservasiOnline"
+            },
+            {
+                "name": "Ketersediaan Tempat Tidur",
+                "link": "#/KetersediaanTempatTidur"
+            }            
+        ]
+    },
+    {
+        "name": "Keluhan Pelanggan",
+        "children": [
+            {
+                "name": "Keluhan Pelanggan",
+                "link": "#/KeluhanPelangganRev"
+            },
+            {
+                "name": "Daftar Keluhan Pelanggan",
+                "link": "#/DaftarKeluhanPelangganRev"
+            },
+            {
+                "name": "Daftar Penanganan Keluhan Pelanggan",
+                "link": "#/DaftarPenangananKeluhanPelangganRev"
+            }
+        ]
+    },
+    {
+        "name": "Aplikasi Humas dan Pemasaran",
+        "children": [
+            {
+                "name": "Apresiasi Layanan",
+                "link": "#/ApresiasiLayanan"
+            },
+            {
+                "name": "Jumlah Apresiasi Layanan",
+                "link": "#/JumlahApresiasiLayanan"
+            },
+            {
+                "name": "Prosedur Layanan",
+                "link": "#/ProsedurLayanan"
+            },
+            
+            {
+                "name": "Keluhan Pelanggan",
+                "link": "#/KeluhanPelangganBaru"
+            },
+            {
+                "name": "Perusahaan Bekerjasama",
+                "link": "#/Rekanan2"
+            },
+            {
+                "name": "Asuransi Bekerjasama",
+                "link": "#/AsuransiBekerjasama"
+            },
+            {
+                "name": "Rumah Sakit",
+                "link": "#/RumahSakit"
+            },
+            {
+                "name": "Data Peserta Rumah Sakit",
+                "link": "#/DataPesertaRumahSakit"
+            },
+            
+            {
+                "name": "Data Peserta Yayasan",
+                "link": "#/DataPesertaYayasan"
+            },
+            {
+                "name": "Yayasan",
+                "link": "#/Yayasan"
+            },
+            {
+                "name": "Data Peserta Perusahaan Bekerjasama",
+                "link": "#/DataPerusahaanBekerjasama"
+            },
+            {
+                "name": "Data Peserta Asuransi Bekerjasama",
+                "link": "#/DataAsuransiBekerjasama"
+            },
+            {
+                "name": "Master Keterangan Survei Pelanggan",
+                "link": "#/MasterKeteranganSurveiPelanggan"
+            },
+            {
+                "name": "Survei Kepuasan Pelanggan",
+                "link": "#/SurveiKepuasanPelanggan"
+            },
+            
+            {
+                "name": "Manajemen Promosi",
+                "link": "#/ManajemenPromosi"
+            },
+            {
+                "name": "Monitoring Status PKS",
+                "link": "#/MonitoringStatusPks"
+            },
+            {
+                "name": "Daftar Keluhan Pelanggan",
+                "link": "#/DaftarKeluhanPelanggan"
+            },
+            {
+                "name": "Form Ekstension",
+                "link": "#/FormEkstension"
+            },  
+            {
+                "name": "Master Extension",
+                "link": "#/MasterExtension"
+            },
+            {
+                "name": "Master Pertanyaan SurveiPelanggan",
+                "link": "#/MasterPertanyaanSurveiPelanggan"
+            },
+            {
+                "name": "Penanganan Keluhan Pelanggan",
+                "link": "#/PenangananKeluhanPelanggan/fitribudiastuti@gmail.com"
+            },
+            {
+                "name": "Mapping Pertanyaan to keterangan survei kepuasan pelanggan",
+                "link": "#/mappingpertanyaansurvei"
+            },
+            {   
+                "name":  "Daftar Antrian Pasien Registrasi",
+                "link":   "#/DaftarAntrianPasienRegistrasi"         
+            },
+
+            {   
+                "name":  "Daftar Pasien Rumah Sakit",
+                "link":   "#/DaftarPasienRumahSakit"         
+            },
+            {   
+                "name":  "Informasi Tarif Pelayanan",
+                "link":   "#/InformasiTarifLayanan"         
+            },
+            {   
+                "name":  "Informasi Kamar Rawat Inap",
+                "link":   "#/KamarInap"         
+            },
+            {   
+                "name":  "Informasi Prosedur Pelayanan",
+                "link":   "#"         
+            },
+            {   
+                "name":  "Daftar Pelaksanaan Pemasaran",
+                "link":   "#/"         
+            },
+            {   
+                "name":  "Pelayanan CS",
+                "link":   "#/HistoryPelayananCustomer"         
+            },
+            {   
+                "name":  "Rencana Pemasaran",
+                "link":   "#/RencanaPemasaran"         
+            },
+            {   
+                "name":  "Master",
+                "children": [
+                    {
+                        "name": "Master Komunikasi",
+                        "link": "#/MasterKomunikasi"
+                    },
+                    {
+                        "name": "Master Jenis Respon",
+                        "link": "#/MasterJenisRespon"
+                    },
+                    {
+                        "name": "Master Fasilitas",
+                        "link": "#/MasterFasilitas"
+                    },
+                    {
+                        "name": "Master Fasilitas Rev",
+                        "link": "#/MasterFasilitasRev"
+                    },
+                    {
+                        "name": "Master Rekanan",
+                        "link": "#/Rekanan2"
+                    }
+                ]       
+            }
+        ]
+    },  
+    {
+        "name": "Laporan",
+        "children":[
+            {
+                "name": "Laporan Pasien Daftar",
+                "link": "#/LaporanPasienDaftar"
+            },
+            {
+                "name": "Laporan Sensus",
+                "link": "#/LaporanSensus"
+            },
+            {
+                "name": "Laporan Pasien Pulang",
+                "link": "#/LaporanPasienPulang"
+            },
+            {
+                "name": "Laporan Sensus BPJS",
+                "link": "#/LaporanSensusBPJS"
+            },
+            {
+                "name": "Laporan Pendapatan Poli",
+                "link": "#/LaporanPendapatanPoli"
+            }
+        ]
+     },
+     {
+        "name": "Inventori",
+        "children": [
+            {
+                    "name": "Stok Barang",
+                    "children": [
+                        {
+                            "name": "Data Stok Ruangan",
+                            "link": "#/Logistik/StokRuangan"
+                        },
+                        {
+                            "name": "Stok Opname",
+                            "link": "#/Logistik/StokOpname"
+                        },
+                        {
+                            "name": "Kartu Stok",
+                            "link": "#/KartuStok"
+                        },
+                        {
+                            "name": "Daftar Nilai Persediaan",
+                            "link": "#/DaftarNilaiPersediaan"
+                        },
+                        {
+                            "name": "Daftar Barang Kadaluarsa",
+                            "link": "#/DaftarBarangKadaluarsa"
+                        },
+                        {
+                            "name": "Daftar Barang Stok Minimum",
+                            "link": "#/DaftarBarangStokMinimum"
+                        }
+                    ]
+                },
+                {
+                    "name": "Daftar Transfer Barang",
+                    "children": [
+                        {
+                            "name": "Order Barang",
+                            "link": "#/OrderBarangLogistik"
+                        },
+                        {
+                            "name": "Daftar Order Barang",
+                            "link": "#/DaftarOrderBarang"
+                        },
+                        {
+                            "name": "Kirim Barang",
+                            "link": "#/KirimBarangLogistik"
+                        },
+                        {
+                            "name": "Daftar Distribusi Barang",
+                            "link": "#/DaftarDistribusiBarang"
+                        }
+                    ]
+                }
+        ]
+    },
+    {
+        "name": "Barang Investasi",
+        "children": [
+            {
+                "name": "Registrasi Barang Aset",
+                "link": "#/MasterBarangInvestasiRev"
+            },
+            {
+                "name": "Daftar Barang Investasi",
+                "link": "#/Logistik/DaftarBarangInvestasi"
+            },
+            {
+                "name": "Kirim Barang Aset",
+                "link": "#/KirimBarangAset"
+            }
+           
+        ]
+     },
+     {
+        "name":"Aplikasi IT",
+        "children":[
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/RevPermintaanPerbaikandariRuanganITNew"
+            }
+        ]
+    },
+     {
+        "name": "IP3RS",
+        "children": [
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/PermintaanPerbaikandariRuangan"
+            },
+            {
+                "name": "Respond Perbaikan",
+                "link": "#/RespondPerbaikan"
+            } 
+        ]
+    }, 
+    {
+        "name": "SDM",
+        "children": [{
+                "name": "Target Bobot Uraian Tugas",
+                "link": "#/TargetBobot"
+            },{
+                "name": "Input Logbook",
+                "link": "#/InputLogbook"
+            }, {
+                "name": "Indeks Kinerja Individu",
+                "link": "#/IndeksKinerjaIndividuSDM"
+            },{
+                "name": "Permohonan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
+                "link": "#/PermohonanPerubahanStatusPegawai"
+            },{
+        		"name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
+        		"link": "#/DaftarPenangguhanCuti"
+        	},{
+                "name": "Pengajuan Mutasi Pegawai",
+                "link": "#/PengajuanMutasiPegawai"
+            },{
+                "name": "Pengajuan Resign Pegawai",
+                "link": "#/PengajuanResignPegawai"
+            },{
+                "name": "Pengajuan Sanksi Pegawai",
+                "link": "#/PengajuanSanksiPegawai"
+            },{
+                "name": "Daftar Pengajuna Mutasi Sanksi Resign",
+                "link": "#/DaftarPengajuanMutasiSanksiResign"
+            },{
+        		"name": "Monitoring Absensi",
+        		"link": "#/MonitoringAbsensiPegawai"
+        	},{
+        		"name": "InputLemburPegawaiUnitKerja",
+        		"link": "#/InputLemburPegawaiUnitKerja"
+        	},{
+                "name": "Verifikasi Uraian Tugas Bawahan",
+                "link": "#/VerifikasiUraianTugasPegawaiLogin"
+            },{
+                "name": "Pengajuan Pelatihan",
+                "children": [
+                    {
+                        "name": "Monitoring Pengajuan Pelatihan",
+                        "link": "#/MonitoringPengajuanPelatihan"
+                    },
+                    {
+                        "name": "Pengajuan Pelatihan",
+                        "link": "#/PermintaaanPelatihanRev"
+                    },
+                    {
+                        "name": "Daftar Undangan Pelatihan",
+                        "link": "#/DaftarUndanganPelatihan"
+                    },
+                    {
+                        "name": "Daftar Kehadiran Peserta Pelatihan",
+                        "link": "#/DaftarKehadiranPesertaPelatihan"
+                    },
+                    {
+                        "name": "Daftar Rekapitulasi Kehadiran Peserta Pelatihan",
+                        "link": "#/DaftarRekapitulasiKehadiran"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Aplikasi Laundry",
+        "children": [
+            {
+                "name": "Permintaan Linen Bersih",
+                "link": "#/PermintaanLinenByRuangan"
+            },{
+                "name": "Verifikasi",
+                "link": "#/VerifikasiTerima"
+            }
+    ]
+    },
+    {
+        "name": "Setting",
+        "children": [
+            {
+                "name": "Ubah Password",
+                "link": "#/UbahPassword"  
+            }
+        ]
+    }
+]

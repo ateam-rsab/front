@@ -1,0 +1,108 @@
+<style>
+.k-grid  .k-grid-header  .k-header  .k-link {
+    height: auto;
+}
+  
+.k-grid  .k-grid-header  .k-header {
+    white-space: normal;
+}
+
+#panelbar {
+    max-width: 800px;
+    margin: 0 auto;
+}
+.details {
+    display: inline-flex;
+    vertical-align: middle;
+}
+.label-aja {
+    margin-top: 10px;
+}
+</style>
+<div>
+    <div ng-show="dataVOloaded">
+        <!-- header absen pegawai -->
+        <c-panel item="item" header="'Absensi Pegawai'" disabled>
+            <div class="panel-body">
+                <div class="grid_4">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="grid_10">
+                                <label c-label c-label-text="NamaPegawai"></label>
+                                <input style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai"/>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="periodeMonitoring" style="padding:5px 0 0 5px;"></label>
+                                <div class="clearfix"></div>
+                                <div class="grid_4">
+                                    <input kendo-date-picker k-ng-model="item.monitoringAwal" k-max="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+                                </div>
+                                <div class="grid_1">
+                                    <label c-label item="item" class="label-aja">s/d</label>
+                                </div>
+                                <div class="grid_4">
+                                    <input kendo-date-picker k-ng-model="item.monitoringAkhir" k-max="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+                                </div>
+                                <div class="grid_1">
+                                    <em style="margin-top:6px;" ng-click='Cari()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_8">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="grid_6">
+                                <label c-label c-label-text="Nama"></label>
+                                <input c-text-box type="input" filter="'varchar'" readonly="true" class="k-textbox" ng-model="current.nama" />
+                            </div>
+                            <div class="grid_6">
+                                <label c-label c-label-text="Jabatan"></label>
+                                <input c-text-box type="input" filter="'varchar'" readonly="true" class="k-textbox" ng-model="current.jabatanInternal" />
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="grid_2">
+                                <label c-label>ID Finger Print</label>
+                                <input c-text-box type="input" filter="'varchar'" readonly="true" class="k-textbox" ng-model="current.idFinger" />
+                            </div>
+                            <div class="grid_4">
+                                <label c-label>NIP</label>
+                                <input c-text-box type="input" filter="'varchar'" readonly="true" class="k-textbox" ng-model="current.nip" />
+                            </div>
+                            <div class="grid_6">
+                                <label c-label>Unit Kerja</label>
+                                <input c-text-box type="input" filter="'varchar'" readonly="true" class="k-textbox" ng-model="current.unitKerja" />
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="panel panel-white" ng-show="isEditable">
+                                <div class="panel-header panel-white"><label c-label item="item">Input Absen Manual</label></div>
+                                <div class="panel-body">
+                                    <div class="grid_2">
+                                        <label c-label item="item" c-label-text="absenManual" class="label-aja"></label>
+                                    </div>
+                                    <div class="grid_2">
+                                        <input kendo-date-picker k-ng-model="current.tanggal" k-max="now" k-format="'dd-MM-yyyy'" style="width: 100%" readonly="true"/>
+                                    </div>
+                                    <div class="grid_2">
+                                        <input kendo-time-picker k-ng-model="current.jam" k-options="formatJam24" style="width: 100%" />
+                                    </div>
+                                    <div class="grid_1">
+                                        <button class="k-button k-button-icon" ng-click='Save()' style="margin-top:6px;"><span class="k-sprite k-icon k-i-plus">Simpan</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </c-panel>
+        <!-- grid absen pegawai -->
+        <div class="grid_12" style="margin: 10px 0 50px;">
+            <div kendo-grid k-data-source="dataAbsen" options="mainGridOption" k-ng-model="current" ng-click="klik(current)"></div>
+        </div>
+    </div>
+    <!-- <div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div> -->
+</div>
+<div ng-include='"../app/module/Shared/TemplateLoading"'></div>

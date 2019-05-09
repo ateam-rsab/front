@@ -1,0 +1,26 @@
+<div ng-controller="DaftarKamusIKUCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="title" align="center" disabled>
+			<div class="grid_12" style="margin-top: 10px;">
+				<div kendo-grid k-data-source="sourceDaftarKamusIKU" style="height:500px;" k-selectable="'row'" k-columns="columndaftarKamusIKU" k-ng-model="current"  ng-click="klik(current)"></div>
+			</div>
+			<div class="grid_12" style="padding-top:30px">
+				<div class="grid_2">
+					<button class="c-button" ng-click="Cetak()">Cetak</button>
+				</div>
+				<div class="grid_3">
+					<button class="c-button" ng-click="navToMatriksIKU()">Matriks IKU</button>
+				</div>
+				<div class="grid_3">
+					<button class="c-button" ng-click="navToDetailKamusIKU()">Detail Kamus IKU</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="Ubah()">Ubah</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="Tutup()">Tutup</button>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

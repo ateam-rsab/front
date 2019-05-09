@@ -1,0 +1,69 @@
+<div ng-controller="GenetaliaCtrl"><br/>
+    <div ng-show="dataVOloaded">
+
+        <!-- panel utama -->
+
+
+        <c-normal-tidak-normal is-show-form="isShowForm" selanjutnya="selanjutnya">
+        </c-normal-tidak-normal>
+
+        <div ng-show="isShowForm">
+
+            <c-panel item="item" header="'Seksualitas/Reproduksi'" disabled>
+                <div class="panel-body">
+
+                    <c-form item="item">
+
+                        <div class="grid_12">
+                            <div class="grid_6" ng-repeat="stat in listStatusGenetalia">
+                                <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="item.status" value="{{stat.name}}">
+                                <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
+
+                            </div>
+                        </div>
+
+
+                        <div class="grid_12">
+                            <div ng-show="isAdaGangguan">
+                                <div class="grid_12">
+                                    <div class="grid_12">
+                                        <label c-label item="item" c-label-text="Keterangan"></label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <textarea style="width: 99%; height: 80px;" ng-model="item.keterangan"></textarea>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </c-form>
+
+                </div>
+
+                <!-- status normal tidak normal -->
+                <div class="grid_4" style="border: none;display:none">
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="Status Pernafasan"></label>
+                    </div>
+                    <div class='grid_12'>
+                        <div>
+                            <button class='btnShowNormalTidakNormal' ng-click='changeStat("Normal")' style='position:relative' ng-style="{'background-color': warna.normal}">
+                            <img class="normalTidakNormal" src="stylesheets/yes.png">
+                            <span class="normalTidakNormal">Normal</span>
+                        
+                            <button class='btnShowNormalTidakNormal' ng-click='changeStat("TidakNormal")' style='position:relative' ng-style="{'background-color': warna.tidakNormal}">
+                            <img class="normalTidakNormal" src="stylesheets/no.png">
+                            <span class="normalTidakNormal">Tidak Normal</span>
+                        </div>
+                    </div>
+                </div>
+
+            </c-panel>
+
+        <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+
+        </div>
+
+    </div>
+</div>

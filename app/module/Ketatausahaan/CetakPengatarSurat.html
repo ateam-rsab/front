@@ -1,0 +1,80 @@
+<div ng-controller="CetakPengatarSuratCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Cetak Pengatar Surat'">
+		<div class="grid_6">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="tipeSurat"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.tipeSurat" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listTipeSurat" />
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="statusBerkas"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.statusBerkas" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listStatusBerkas" />
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="tanggalSuratDiserahkan"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tanggalSuratDiserahkan" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="sampaiTanggal"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.sampaiTanggal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+			</div>
+			<div class="grid_4"></div>
+			<div class="grid_8"></div>
+			<div class="grid_4"></div>
+			<div class="grid_8"></div>
+		</div>
+		<div class="grid_6">
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="perihalSurat"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.perihalSurat"/>
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="statusSurat"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.statusSurat" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listStatusSurat" />
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="namaPengantar"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaPengantar" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPengirim" />
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="diserahkanJam"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%" kendo-time-picker k-max="now" k-ng-model="item.diserahkanJam" placeholer="hh:mm:ss" k-format="'hh:mm:ss tt'" />
+			</div>
+			<div class="grid_4">
+
+				<label c-label item="item" c-label-text="namaPenerima"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaPenerima" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPengirim" />
+			</div>
+			<div class="grid_4">
+				<label c-label item="item" c-label-text="diterimaJam"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width: 100%" kendo-time-picker k-max="now" k-ng-model="item.diterimaJam" placeholer="hh:mm:ss" k-format="'hh:mm:ss tt'" />
+			</div>
+
+		</div>
+		<div class="grid_12" style="margin-top: 10px">
+			<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+		</div>
+		</c-panel>
+	</div>
+</div>

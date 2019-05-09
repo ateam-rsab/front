@@ -1,0 +1,195 @@
+<div ng-controller="IsianPelamarCtrl">
+
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Formulir Pendaftaran'" disabled>
+            <div class="grid_6" ng-disabled="isDisable">
+                <div class="panel panel-default container_12">
+                    <!--		<div class="panel-heading" c-translate>Periode</div> -->
+                    <!--		<div class="panel-body"> -->
+                    <div class="grid_5" style="margin: 6px 0 0 0;">
+                        <label c-label item="item" c-label-text="NamaLengkap"></label>
+                    </div>
+                    <div class="grid_7">
+                        <input ng-disabled="isDisable" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaLengkap" />
+                    </div>
+                    <div class="clear"></div>
+                    <div class="grid_5" style="margin: 6px 0 0 0;">
+                        <label c-label item="item" c-label-text="JenisKelamin"></label>
+                    </div>
+                    <div class="grid_7">
+                        <input ng-disabled="isDisable" style="width: 100%;" kendo-combo-box k-ng-model="item.jenisKelamin" k-data-text-field="'jenisKelamin'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListJenisKelamin" />
+                    </div>
+                    <div class="clear"></div>
+
+                    <div class="clear"></div>
+                    <div class="grid_5" style="margin: 10px 0 0 0;">
+
+                        <label><b>No KTP Yang Berlaku</b></label>
+                    </div>
+                    <div class="grid_7">
+                        <input ng-disabled="isDisable" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noKTP" />
+                    </div>
+                    <div class="grid_5" style="margin: 10px 0 0 0;">
+                        <label c-label item="item" c-label-text="Tempat/TanggalLahir"></label>
+                    </div>
+                    <div class="grid_3">
+                        <input ng-disabled="isDisable" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.tempatLahir" />
+                    </div>
+                    <div class="grid_1" style="margin: 10px 0 0 0;">
+                        <label>/</label>
+                    </div>
+                    <div class="grid_3" style="margin: 0 0 0 0;">
+                        <input ng-disabled="isDisable" kendo-date-picker k-ng-model="item.tanggalLahir" k-max="now" k-format="'dd-MM-yyyy'" style="width: 100%" />
+                    </div>
+                    <div class="grid_5" style="margin: 10px 0 0 0;">
+                        <label c-label item="item" c-label-text="Agama"></label>
+                    </div>
+                    <div class="grid_7">
+                        <input ng-disabled="isDisable" style="width: 100%;" kendo-combo-box k-ng-model="item.agama" k-data-text-field="'agama'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListAgama" />
+                    </div>
+
+
+
+
+
+
+                </div>
+            </div>
+            <!--		   </div>  -->
+            <div class="grid_4">
+                <div class="grid_5" style="margin: 6px 0 0 0;">
+                    <label c-label item="item" c-label-text="Status"></label>
+                </div>
+                <div class="grid_7">
+                    <input ng-disabled="isDisable" style="width: 100%;" kendo-combo-box k-ng-model="item.status" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListStatusPerkawinan" />
+                </div>
+                <div class="grid_5" style="margin: 6px 0 0 0;">
+                    <label c-label item="item" c-label-text="Alamat"></label>
+                </div>
+                <div class="grid_7" style="margin: 0 0 0 0;">
+                    <textarea ng-disabled="isDisable" ng-model="item.alamat" style="width: 99%; height: 80px;"></textarea>
+                </div>
+            </div>
+            <div class="grid_2">
+                <webcam on-streaming="onSuccess()" ng-show="isSnap" id="webcam" channel="myChannel">
+                </webcam>
+                <canvas ng-show="!isSnap" id="snapshot" class="well pull-right"></canvas>
+                <div class="grid_6">
+                    <button ng-show="isSnap" class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="makeSnapshot()">
+                					<span style="font-size: 10pt">Ambil Gambar</span></button>
+                </div>
+                <div class="grid_12" ng-show="!isSnap">
+                    <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="retake()">
+                					<span style="font-size: 10pt">Ambiil ulang Gambar</span></button>
+                </div>
+                <div class="grid_6">
+                    <button ng-show="isSnap" class="c-button" ng-show="!isLoading" item="item" is-validate click="Cancel">
+                					<span >Upload</span></button>
+                </div>
+            </div>
+            <div class="grid_6">
+                <div class="grid_5" style="margin: 6px 0 0 0;">
+                    <label><b>No HP</b></label>
+                </div>
+                <div class="grid_7">
+                    <input ng-disabled="isDisable" c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.nomorHP" />
+                </div>
+                <div class="grid_5" style="margin: 6px 0 0 0;">
+                    <label c-label item="item" c-label-text="Posisi Yang Dilamar"></label>
+                </div>
+                <div class="grid_7">
+                    <input ng-disabled="isDisable" style="width: 100%;" kendo-combo-box k-ng-model="item.posisiLamaran" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListPosisiLamaran" />
+                </div>
+
+
+            </div>
+            <c-panel item="item" header="'Riwayat Pendidikan'" disabled>
+
+                <div class="grid_6">
+                    <div class="grid_5" style="margin: 6px 0 0 0;">
+                        <label c-label item="item" c-label-text="Degree"></label>
+                    </div>
+                    <div class="grid_7">
+                        <input ng-disabled="isDisable" style="width: 100%;" kendo-combo-box k-ng-model="item.degree" k-data-text-field="'namaPendidikan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListPendidikan" />
+                    </div>
+
+                    <div class="grid_5" style="margin: 10px 0 0 0;">
+                        <label><b>Sekolah/Universitas</b></label>
+                    </div>
+                    <div class="grid_7">
+                        <input ng-disabled="isDisable" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.sekolah" />
+                    </div>
+                    <div class="grid_5" style="margin: 6px 0 0 0;">
+                        <label c-label item="item" c-label-text="Jurusan"></label>
+                    </div>
+                    <div class="grid_7">
+                        <input ng-disabled="isDisable" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.jurusan" />
+                    </div>
+
+
+                </div>
+
+                <div class="grid_6">
+                    <div class="grid_5" style="margin: 6px 0 0 0;">
+                        <label c-label item="item" c-label-text="TahunMasuk"></label>
+                    </div>
+                    <div class="grid_7">
+                        <input ng-disabled="isDisable" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.tahunMasuk" />
+                    </div>
+                    <div class="grid_5" style="margin: 6px 0 0 0;">
+                        <label c-label item="item" c-label-text="TahunLulus"></label>
+                    </div>
+                    <div class="grid_7">
+                        <input ng-disabled="isDisable" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.tahunLulus" />
+                    </div>
+                    <div class="grid_5" style="margin: 6px 0 0 0;">
+                        <label c-label item="item" c-label-text="Nilai"></label>
+                    </div>
+                    <div class="grid_7">
+                        <input ng-disabled="isDisable" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nilai" />
+                    </div>
+
+                </div>
+
+
+
+            </c-panel>
+
+    </div>
+
+
+    <div class="clear"></div>
+    <!--<div class="grid_1" style="margin: 0 38px 25px 0;float : right;">
+            	    <button class="c-button" ng-click="addDataBahanLinen()">
+                 Tambah
+                    </button>
+                </div>	
+		<div class="grid_12">
+				<kendo-grid  k-data-source="daftarBahanLinen"  k-pageable="true" k-selectable="'row'" k-columns="columnLaporanUjiHasil"  style="font-size: small;">
+            	</kendo-grid>
+					
+			</div>-->
+
+
+
+
+
+
+
+
+    </c-panel>
+    <div class="grid_12" ng-hide="isDisable">
+        <div class="grid_8"></div>
+        <div class="grid_2" style="margin-top: 25px">
+            <button class="c-button" ng-show="!isLoading" item="item" is-validate click="Cancel">
+                					<span class="title">Batal</span></button>
+        </div>
+        <div class="grid_2 " style="margin-top: 25px ">
+            <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Simpan</span>
+									</button>
+        </div>
+    </div>
+</div>
+</div>
+</div>

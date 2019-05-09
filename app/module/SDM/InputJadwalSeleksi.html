@@ -1,0 +1,123 @@
+
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Input Jadwal Seleksi'"disabled>
+		<div class="grid_12">
+		<div class="grid_6">
+		<div class="panel panel-default container_12">
+
+	        <div class="grid_12">
+			<div class="grid_4" style="margin-top: 10px;">
+				<label c-label item="item" c-label-text="No Planning"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noPlanning" /disabled>
+			</div>
+			</div>
+
+			<div class="grid_12">
+			<div class="grid_4" style="margin-top: 10px;">
+				<label c-label item="item" c-label-text="Tanggal Rencana Seleksi"></label>
+			</div>
+			<div class="grid_8">
+				<input ng-disabled="isDisable" kendo-date-picker k-ng-model="item.tanggalRencanaSeleksi" k-value="now" k-max="now" k-format="'dd-MM-yyyy hh:mm:ss'" style="width: 100%" />
+			</div>
+			</div>
+			
+			<div class="grid_12">
+			<div class="grid_4" style="margin-top: 10px;">
+				<label c-label item="item" c-label-text="Jenis Test"></label>
+			</div>
+			<div class="grid_8">
+				<input style="width:100%" kendo-combo-box k-ng-model="item.jenisTest" k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listtest" ng-selected="satuanBahan()" k-on-change="viewgrid()" />
+			</div>
+			</div>
+			<div ng-show="true">
+			<div class="grid_12">
+			<div class="grid_4" style="margin-top: 10px;">
+				<label c-label item="item" c-label-text="Id Test"></label>
+			</div>
+			<div class="grid_8">
+				<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="idtest" /disabled>
+			</div>
+			</div>
+			</div>
+		</div>
+		</div>
+
+		<div class="grid_6">
+			<div class="panel panel-default container_12">
+
+				<div class="grid_12">
+					<div class="grid_4" style="margin-top: 10px;">
+						<label c-label item="item" c-label-text="Ruangan"></label>
+					</div>
+					<div class="grid_8">
+						<input style="width:100%" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'ruanganId'" k-filter="'contains'" k-auto-bind="false" k-data-source="listruangan" />
+					</div>
+				</div>
+				
+				<div class="grid_12">
+					<div class="grid_4" style="margin-top: 10px;">
+						<label c-label item="item" c-label-text="Petugas Penanggung Jawab"></label>
+					</div>
+					<div class="grid_8">
+						<input style="width:100%" kendo-combo-box k-ng-model="item.petugasPenanggungJawab" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listpetugas" />
+					</div>
+				</div>
+
+				<div class="grid_12">
+                    <div class="grid_4" style="margin-top: 10px;">
+                        <label c-label item="item" c-label-text="Periode Lowongan"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input kendo-date-picker k-options="monthSelectorOptions" k-ng-model="item.Waktu" k-value="now" k-format="'MMMM yyyy'"  style="width: 100%;" k-on-change="viewgrid()">
+                    </div>
+
+                </div>
+
+			</div>
+		</div>
+        </div>
+		<!-- bagian grid -->
+		<div class="grid_12">
+			<div class="grid_12 headerBox">
+				<p>Input Jadwal Seleksi</p>
+			</div>
+			<div class="clear"></div>
+			<div class="grid_12 borderBox">
+				<kendo-grid  k-data-source="ListTampilGrid" k-pageable="true" k-selectable="'row'" options="mainGridOptions"  style="font-size: small;">
+            	</kendo-grid>	
+			</div>	
+			<div class="clear"></div>
+		</div>
+		<div class="grid_6">
+			<div class="grid_3" style="margin-top: 10px;">
+                <label c-label item="item" c-label-text="Jumlah Peserta"></label>
+            </div>
+            <div class="grid_3">
+                <input c-text-box type="input" class="k-textbox" ng-model="item.jumlahPeserta" /disabled>
+            </div>
+        </div>
+		</c-panel>
+
+		<!-- bagian button -->
+		<div class="grid_12">
+	
+						
+				<div class="grid_2" style="margin-top: 25px;float:right">
+					<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Batal()">
+                		<span class="title">Batal</span>
+                	</button>
+				</div>
+				<div class="grid_2" style="margin-top: 25px;float:right">
+					<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+						<span class="title">Simpan</span>
+					</button>
+				</div>				
+			
+		</div>
+	</div>
+
+
+

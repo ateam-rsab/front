@@ -1,0 +1,20 @@
+<div ng-controller="KirimMenuCtrl">
+    <div class="grid_12" id="content">
+        <div ng-repeat="data in listOrders">
+            <div ng-repeat="subData in data.value">
+                <div ng-repeat="item in subData.value" class="grid_3">
+                    <span kendo-barcode k-type="'code128'" ng-model="item.produk.namaProduk " style="width: 250px; margin: 0 auto; "></span>
+                    <span style="display:block">
+                                      <span style="float:left;">  {{item.pasien}} 
+                                          </span> <span style="float:right;">{{item.jenisWaktu.jenisWaktu}}
+                    </span>
+                    <span style="display:block; text-align:center">
+                        <br/>
+                       {{data.key}} 
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

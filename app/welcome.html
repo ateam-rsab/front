@@ -1,0 +1,165 @@
+<div ng-controller="WelcomeCtrl">
+    <br/>
+    <br/>
+    <button ng-show="listMenu.length!==1" ng-click='Back()'>Back</button>
+
+    <div class="home-animation">
+        <div class="mainmenu">
+            <a href="/app/#/RekamMedik"><img class="menu01 anime01" src="images/logo/cover01.png"></a>
+            <a href="/app/#/LayananMedik"><img class="menu02 anime02" src="images/logo/cover02.png"></a>
+            <a href="/app/#/Dashboard/SDM"><img class="menu03 anime03" src="images/logo/cover03.png"></a>
+            <img class="logotitle" src="images/logo/logotitle.png">
+            <a href="/app/#/Keuangan"><img class="menu04 anime04" src="images/logo/cover04.png"></a>
+            <a href="/app/#/Sarpras"><img class="menu05 anime05" src="images/logo/cover05.png"></a>
+            <a href="/app/#/Menejemen"><img class="menu06 anime06" src="images/logo/cover06.png"></a>
+        </div>
+    </div>
+
+    <!-- <div loginService access="suster">
+      <h1>
+        Hello admin
+      </h1>
+      <p>
+        ini adalah admin
+      </p>
+    </div> -->
+
+    <!-- <img style="position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    background-size: cover;
+    height: 100%;" src="images/logo.svg" alt="Kiwi standing on oval"> -->
+
+    <div class="tiles" style="display:none">
+        <div class="grid_6">
+            <h1>FRONT OFFICE</h1>
+            <div class="grid_12" ng-repeat="menu in menus">
+                <div class="tile bg-yellow-saffron primary" style="height:200px;" ng-click="changeMenu(menu)">
+                    <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                    <div class="check"></div>
+                    <div class="tile-body" style="overflow: initial">
+                        <i style="font-style: normal;"></i>
+                    </div>
+                    <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                        <div class="icon-panel main">
+                            <img height='150px' src='' />
+                        </div>
+                        <div class="text_panel main">
+                            <span class="title"><label c-label c-label-text="{{menu.title}}" class="title"></label></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_6">
+            <h1>BACK OFFICE</h1>
+            <div class="grid_12" ng-repeat="menu in menuBackOffices">
+                <div class="tile bg-yellow-saffron primary" style="height:200px;" ng-click="changeMenu(menu)">
+                    <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                    <div class="check"></div>
+                    <div class="tile-body" style="overflow: initial">
+                        <i style="font-style: normal;"></i>
+                    </div>
+                    <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                        <div class="icon-panel main">
+                           
+                        </div>
+                        <div class="text_panel main">
+                            <span class="title"><label c-label c-label-text="{{menu.title}}" class="title"></label></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="grid_4">
+            <div class="tile bg-yellow-saffron primary" style="height:200px;">
+                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                <div class="check"></div>
+                <div class="tile-body" style="overflow: initial">
+                    <i style="font-style: normal;"></i>
+                </div>
+                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                    <div class="icon-panel main">
+                        <img height='150px' src='stylesheets/pelayananMedik.png' />
+                    </div>
+                    <div class="text_panel main">
+                        <span class="title"><label c-label c-label-text="layananMedik" class="title"></label></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid_4">
+            <div class="tile bg-yellow-saffron primary" style="height:200px;">
+                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                <div class="check"></div>
+                <div class="tile-body" style="overflow: initial">
+                    <i style="font-style: normal;"></i>
+                </div>
+                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                    <div class="icon-panel main">
+                        <img height='150px' src='stylesheets/keuangan.png' />
+                    </div>
+                    <div class="text_panel main">
+                        <span class="title"><label c-label c-label-text="keuangan" class="title"></label></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid_4">
+            <div class="tile bg-yellow-saffron primary" style="height:200px;">
+                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                <div class="check"></div>
+                <div class="tile-body" style="overflow: initial">
+                    <i style="font-style: normal;"></i>
+                </div>
+                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                    <div class="icon-panel main">
+                        <img height='150px' src='stylesheets/sarpras.png' />
+                    </div>
+                    <div class="text_panel main">
+                        <span class="title"><label c-label c-label-text="sarana&Prasarana" class="title"></label></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_4">
+            <div class="tile bg-yellow-saffron primary" style="height:200px;">
+                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                <div class="check"></div>
+                <div class="tile-body" style="overflow: initial">
+                    <i style="font-style: normal;"></i>
+                </div>
+                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                    <div class="icon-panel main">
+                        <img height='150px' src='stylesheets/hrd.png' />
+                    </div>
+                    <div class="text_panel main">
+                        <span class="title"><label c-label c-label-text="SDM" class="title"></label></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid_4">
+            <div class="tile bg-yellow-saffron primary" style="height:200px;">
+                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                <div class="check"></div>
+                <div class="tile-body" style="overflow: initial">
+                    <i style="font-style: normal;"></i>
+                </div>
+                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                    <div class="icon-panel main">
+                        <img height='150px' src='stylesheets/management.png' />
+                    </div>
+                    <div class="text_panel main">
+                        <span class="title"><label c-label c-label-text="manajemen" class="title"></label></span>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+
+    </div>
+</div>

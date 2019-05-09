@@ -1,0 +1,147 @@
+<style>
+	.style-center{
+		display: inline-block;
+		text-align: center;
+		width: 100%;
+	}
+
+	.style-right{
+		display: inline-block;
+		text-align: right;
+		width: 100%;
+	}
+
+	.style-left{
+		display: inline-block;
+		text-align: left;
+		width: 100%;
+	}
+
+
+</style>
+
+<div>
+	<div class="grid_12 headerBox">
+		<h1 style="color: white;"><b>{{title}}</b></h1>
+	</div>
+	<div class="clear"></div>
+
+	<br/>
+
+	<div ng-hide="showFieldForm">
+		<div class="grid_12" style="margin-top: 20px;">
+			<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+				<p>List Form Master</p>
+			</div>
+			<div class="grid_12 borderBox containerBorderBox">
+				<!-- Form -->
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Form"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="selectedForm" k-data-text-field="'namaEntity'" k-data-value-field="'namaExternal'" k-filter="'contains'" k-auto-bind="false" k-data-source="listForm" />
+					</div>
+				</div>
+
+				<div class="grid_3">
+					<div class="grid_12" style="margin-top: 23px;">
+						<button class="btnTemplate1" 
+					        ng-click="showForm()" 
+					        style="float:left;
+					               width:100%;
+					               margin:0px">OK
+					    </button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+
+	<div ng-show="showFieldForm">
+		<!-- list data -->
+		<div ng-show="showListData">
+			<div class="grid_12" style="margin-top: 20px;">
+				<div class="grid_12 headerBox">
+					<button class='btnTambah' ng-click='addData()'>Tambah Data</button>
+				</div>
+
+				<!-- grid table -->
+
+				<!-- <div class="grid_12 borderBox">
+					<div kendo-grid 
+					k-data-source="sourceData" 
+					k-selectable="'row'" 
+					k-columns="columnData"
+					k-sortable="'true'">
+					</div>
+				</div> -->
+				<!-- main grid table -->
+				<div class="grid_12" style="margin-bottom: 10px">
+				<kendo-grid options="mainGridOptions" k-scrollable = "false" k-data-source="dataSource"></kendo-grid>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+
+		<!-- add data -->
+		<div ng-show="showAddEditData">
+			<div class="grid_12" style="margin-top: 20px;">
+				<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+					<p>{{SubTitle}}</p>
+				</div>
+				<div class="grid_12 borderBox containerBorderBox" style="margin-bottom: 100px">
+					<div class="grid_6" ng-repeat="field in listField">
+						<div ng-if="field.type == 'byte' || field.type == 'string' || field.type == 'short' ">
+							<div class="grid_12">
+								<label c-label item="item" c-label-text="{{field.caption}}"></label>
+							</div>
+							<div class="clear"></div>
+
+							<div class="grid_12">
+								<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.data.data[field.property]"
+								/>
+							</div>
+					    </div>
+
+					    <div ng-if="field.type == 'date'">
+							<div class="grid_12">
+								<label c-label item="item" c-label-text="{{field.caption}}"></label>
+							</div>
+							<div class="clear"></div>
+
+							<div class="grid_12">
+								<input style="width: 100%" k-ng-model="item.data.data[field.property]"  kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'"  />
+							</div>
+					    </div>
+
+					    <div ng-if="field.type == 'object'">
+							<div class="grid_12">
+								<label c-label item="item" c-label-text="{{field.caption}}"></label>
+							</div>
+							<div class="clear"></div>
+
+							<div class="grid_12">
+						    	<input style="width: 100%;" kendo-combo-box k-ng-model="item.data.data[field.property]" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+							</div>
+					    </div>
+					</div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+
+
+
+	<br/>
+
+	<div class="grid_12" style="margin-top:30px">
+		<div ng-include='"../app/module/Shared/TemplateButtonDataMaster"'></div>
+	</div>
+</div>
+

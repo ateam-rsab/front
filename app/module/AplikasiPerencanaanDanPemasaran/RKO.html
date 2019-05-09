@@ -1,0 +1,134 @@
+<div class="panel panel-default container_12">
+    <div class="panel-heading" align="center" c-translate>Rencana Kerja Operasional</div>
+    <div class="panel-body">
+        <div class="grid_12">
+			<div class="grid_12">
+				<div class="grid_8">
+					<div class="grid_12">
+						<div class="grid_4">
+							<label c-label item="item">Periode Tahun</label>
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_2" style="margin-bottom:5px">
+							<input style="width: 100%" kendo-date-picker k-options="yearSelected" value="now" k-max="now" k-ng-model="item.periode" k-format="'yyyy'""/>
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4">
+							<label c-label item="item">Unit Kerja</label>
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_6" style="margin-bottom:5px">
+							<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.unitKerja" readonly="true" />
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4">
+							<label c-label item="item">Sasaran Strategis</label>
+						</div>
+					</div>
+					<div class="grid_12">
+						<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.sasaranStrategis" readonly="true" />
+					</div>
+					<div class="grid_12">
+						<div class="grid_4">
+							<label c-label item="item">Program</label>
+						</div>
+					</div>
+					<div class="grid_12">
+						<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.program" readonly="true" />
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top:10px">
+							<label c-label item="item">Uraian</label>
+						</div>
+					</div>
+					<div class="grid_12">
+						<textarea ng-model="item.uraian" ng-readOnly="cheked" style="width: 99%; height: 100px;"></textarea>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4" style="margin-top:10px">
+							<label c-label item="item">Indikator</label>
+						</div>
+					</div>
+					<div class="grid_12">
+						<textarea ng-model="item.indikator" ng-readOnly="cheked" style="width: 99%; height: 100px;"></textarea>
+					</div>
+				</div>
+				<div class="grid_4" style="margin-top:10px">
+					<div class="grid_12">
+						<label c-label item="item">Satuan Indikator</label>
+					</div>
+					<div class="grid_12"  style="margin-bottom:5px">
+						<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.satuanIndikator" readonly="true" />
+					</div>
+					<div class="grid_12" style="margin-bottom:5px">
+						<label c-label item="item">RKT</label>
+					</div>
+					<div class="grid_12" style="margin-bottom:5px">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.rkt"  readonly="true"/>
+					</div>
+					<div class="grid_12" style="margin-bottom:5px">
+						<label c-label item="item">Target RKO TW I</label>
+					</div>
+					<div class="grid_12" style="margin-bottom:5px">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.target1.target" readonly="true" />
+					</div>
+					<div class="grid_12" style="margin-bottom:5px">
+						<label c-label item="item">Realisasi RKO TW I</label>
+					</div>
+					<div class="grid_12" style="margin-bottom:5px">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.realisasi1.realisasi" />
+					</div>
+					<div class="grid_12" style="margin-bottom:5px">
+						<label c-label item="item">Target RKO TW II</label>
+					</div>
+					<div class="grid_12" style="margin-bottom:5px">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.target2.target" readonly="true"/>
+					</div>
+					<div class="grid_12" style="margin-bottom:5px">
+						<label c-label item="item">Realisasi RKO TW II</label>
+					</div>
+					<div class="grid_12" style="margin-bottom:5px">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.realisasi2.realisasi" />
+					</div>
+					<div class="grid_12" style="margin-bottom:5px">
+						<label c-label item="item">Target RKO TW III</label>
+					</div>
+					<div class="grid_12" style="margin-bottom:5px">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.target3.target" readonly="true"/>
+					</div>
+					<div class="grid_12" style="margin-bottom:5px">
+						<label c-label item="item">Realisasi RKO TW III</label>
+					</div>
+					<div class="grid_12" style="margin-bottom:5px">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.realisasi3.realisasi" />
+					</div>
+					<div class="grid_12" style="margin-bottom:5px">
+						<label c-label item="item">Target RKO TW IV</label>
+					</div>
+					<div class="grid_12" style="margin-bottom:5px">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.target4.target" readonly="true"/>
+					</div>
+					<div class="grid_12" style="margin-bottom:5px">
+						<label c-label item="item">Realisasi RKO TW IV</label>
+					</div>
+					<div class="grid_12" style="margin-bottom:5px">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.realisasi4.realisasi" />
+					</div>
+				</div>
+			</div>
+	        <div class="grid_12" style="margin-top:5px">
+	            <div class="grid_8"></div>
+	            <div class="grid_2">
+	                <button class="c-button success" ng-click="Save()">Simpan</button>
+	            </div>
+	            <div class="grid_2">
+	                <button class="c-button cancel" ng-click="Batal()">Batal</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>

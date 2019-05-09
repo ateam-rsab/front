@@ -1,0 +1,83 @@
+<div ng-controller="SoapCtrl">
+    <c-panel item="item" header="'hasilSOAP'" disabled>
+        <div class="grid_12">
+            
+                <div class="grid_12">
+                    <div class="grid_2" ng-repeat="data in arrTandaVital">
+                        <div class="grid_12" style="margin-bottom:5px">
+                            <label c-label item="item" c-label-text="{{data.name}}"></label>
+                        </div>
+
+                        <div class="grid_12 parentKeteranganFieldTambahan">
+                            <input c-text-box type="input" filter="data.type" class="k-textbox" ng-model="data.nilai" disabled/>
+                            <label class="keteranganFieldTambahan">{{data.ket}}</label>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <hr>
+        <div class="grid_12">
+            <div class="grid_1">
+                <span class="big-title">S</span>
+            </div>
+            <div class="grid_11">
+                <textarea style="width: 99%; height: 80px;" ng-model="item.s">{{item.Subject}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <div class="grid_12">
+            <div class="grid_1">
+                <span class="big-title">O</span>
+            </div>
+
+            <div class="grid_11">
+                <!-- <div ng-include='"../app/module/PemeriksaanFisik/pemeriksaanFisikResult"'></div>
+                <div ui-view></div> -->
+                <textarea style="width: 99%; height: 80px;" ng-model="item.o"></textarea>
+            </div>
+
+        </div>
+        <hr>
+        <div class="grid_12">
+            <div class="grid_1">
+                <span class="big-title">A</span>
+
+            </div>
+            <div class="grid_11">
+                <!-- --------------------- -->
+                <!-- <div ng-include='"../app/module/PemeriksaanFisik/pemeriksaanFisikResult"'></div>
+                <div ui-view></div> -->
+                <textarea style="width: 99%; height: 80px;" ng-model="item.a"></textarea>
+            </div>
+            </div><hr>
+        <div class="grid_12">
+            <div class="grid_1">
+                <span class="big-title">P</span>
+            </div>
+            <div class="grid_11"> <textarea style="width: 99%; height: 80px;" ng-model="item.p"></textarea></div>
+        </div>
+
+        <div ng-include='"../app/module/Shared/TemplateButtonSimpanNotFixed"'></div>
+        
+            <!-- <div class="grid_12">
+                <div class="grid_3" style="float:right">
+                    <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="Next">
+                        <span class="title">K</span>
+                    </c-button>
+                </div>
+                <div class="grid_3" style="float:right">
+                    <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="Next">
+                        <span class="title">Selanjutnya</span>
+                    </c-button>
+                </div>
+                <div class="grid_3" style="float:right">
+                    <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'">
+                        <span class="title">Sebelumnya</span>
+                    </c-button>
+                </div>
+            </div>
+            <div class="clear"></div> -->
+
+
+    </c-panel>
+</div>

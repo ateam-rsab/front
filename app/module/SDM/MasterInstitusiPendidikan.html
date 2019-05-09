@@ -1,0 +1,44 @@
+<!-- <div ng-controller="MasterKategoriPendidikanCtrl"> -->
+	<c-panel item="item" header="'Master Fakultas'">
+		<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Id</label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.idKategori" disabled/>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px">Fakultas</label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kategoriPendidikan"/>
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" style="margin-top: 10px"></label>
+				</div>
+				<div class="grid_8">
+			         <input ng-model = "item.statusAktif" type="checkbox">
+			         	Status Aktif
+			         </input>
+				</div>
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_6">
+				<kendo-grid options="mainGridOptions" k-data-source="dataGridMaster" k-ng-model="gridMaster" ng-click="klik(gridMaster)"></kendo-grid>
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_6">
+				<div class="grid_8"></div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="batal()">Batal</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="simpan()">Simpan</button>
+				</div>
+			</div>
+		</div>
+	</c-panel>
+<!-- </div> -->

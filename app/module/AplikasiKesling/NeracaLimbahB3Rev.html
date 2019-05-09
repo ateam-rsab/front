@@ -1,0 +1,198 @@
+<div class="panel panel-default">
+    <div class="panel-heading" c-translate>Neraca Limbah B3
+    </div>
+    <div class="panel-body" ng-show="!dataFound">
+        <div class="grid_12">
+            <div class="grid_2">
+                <label c-label item="item" c-label-text="pilihPeriode"></label>
+                <input kendo-date-picker k-ng-model="item.periode" k-options="monthSelectorOptions" k-format="'MMM yyyy'"
+                    style="width:100%" />
+            </div>
+            <div class="grid_1" style="margin-top:25px">
+                <label c-label item="item" align="center" c-label-text="s/d"></label>
+            </div>
+            <div class="grid_2" style="margin-top:16px">
+                <input kendo-date-picker k-ng-model="item.periodeAhir" k-options="monthSelectorOptions" k-format="'MMM yyyy'"
+                    style="width:100%" />
+            </div>
+            <div class="grid_1">
+                <label c-label c-label-text=""></label>
+                <em style="margin-top:6px;" ng-click='findData()' id="iconFind" data-role="button" class="k-button k-button-icon"
+                    role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="panel-body" ng-show="dataFound">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td class="td-title" colspan="6">NERACA LIMBAH BAHAN BERBAHAYA DAN BERACUN</td>
+                    <td>
+                        <div class="pull-right">
+                            <em ng-click='dataFound=!dataFound' id="iconClose" data-role="button" class="k-button k-button-icon"
+                                role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-close">Close</span></em>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-title">Periode</td>
+                    <td class="td-title" colspan="5">{{item.periode | date:'MMMM yyyy'}} s/d {{item.periodeAhir | date:'MMMM yyyy'}}</td>
+                </tr>
+                <tr>&nbsp;</tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th bgcolor="#10c4b2" width="5%">No</th>
+                    <th bgcolor="#10c4b2" width="30%">Jenis Limbah</th>
+                    <th bgcolor="#10c4b2" width="10%">Total(Kg)</th>
+                </tr>
+                <tr ng-repeat="limbahMasuk in dataLimbah.dataJenisLimbahMasuk">
+                    <td align="center">{{ $index + 1}}</td>
+                    <td>{{limbahMasuk.jenisLimbahB3masuk}}</td>
+                    <td class="number-right">{{limbahMasuk.ttlqtymasuk | number : 2}}</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><b>TOTAL</b></td>
+                    <td class="number-right"><b>{{dataLimbah.totalLimbahMasuk | number : 2}}</b></td>
+                </tr>
+                <tr>
+                    &nbsp;
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <th bgcolor="#10c4b2" width="5%" rowspan="2">No</th>
+                    <th bgcolor="#10c4b2" width="30%" rowspan="2">Perlakuan</th>
+                    <th bgcolor="#10c4b2" width="10%" rowspan="2">Total(Kg)</th>
+                    <th bgcolor="#10c4b2" width="20%" rowspan="2">Keterangan</th>
+                    <th bgcolor="#10c4b2" colspan="3">
+                        <center><b>Perizinan Limbah</b></center>
+                    </th>
+                </tr>
+                <tr>
+                    <td bgcolor="#10c4b2">
+                        <center><b>Ada</center></b>
+                    </td>
+                    <td bgcolor="#10c4b2">
+                        <center><b>Tidak Ada</center></b>
+                    </td>
+                    <td bgcolor="#10c4b2">
+                        <center><b>Kadaluarsa</b></center>
+                    </td>
+                </tr>
+                <tr ng-repeat="limbahKeluar in dataLimbah.totalLimbahKeluarPerlakuan">
+                    <td align="center">{{ $index + 1}}</td>
+                    <td>{{limbahKeluar.Perlakuan}}</td>
+                    <td class="number-right">{{limbahKeluar.ttlqtyKeluar | number : 2}}</td>
+                    <td><input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="limbahKeluar.jenisLimbahYangDikelola" /></td>
+                    <td ng-repeat="izin in listPerizinan">
+                        <input type="radio" name="{{limbahKeluar.Perlakuan + izin.name}}" id="{{limbahKeluar.Perlakuan + izin.id}}"
+                            class="k-radio" ng-model="limbahKeluar.perizinan" ng-value="izin">
+                        <label class="k-radio-label" for="{{limbahKeluar.Perlakuan + izin.id}}">{{izin.name}}</label></center>
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><b>SUB TOTAL</b></td>
+                    <td class="number-right"><b>{{dataLimbah.totalLimbahKeluar | number : 2}}</b></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><b>LIMBAH DISIMPAN</b></td>
+                    <td class="number-right"><b>{{dataLimbah.limbahDiSimpan | number : 2}}</b></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><b>TOTAL</b></td>
+                    <td class="number-right"><b>{{dataLimbah.limbahDiSimpan + dataLimbah.totalLimbahKeluar | number:
+                            2}}</b></td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    &nbsp;
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td class="lineheight3"><b>Residu</b></td>
+                    <td>
+                        <input style="width:100%" kendo-numeric-text-box k-ng-model="item.residu" k-on-change="countTotal()" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td class="lineheight3"><b>Jumlah Limbah Yang Belum Terkelola</b></td>
+                    <td>
+                        <input disabled style="width:100%" kendo-numeric-text-box k-ng-model="item.jumlahbelumkelola"
+                            onchange="countTotal()" />
+                        <!-- <td class="number-left"> -->
+                        <!-- <b>{{dataLimbah.limbahDiSimpan | number : 2}}</b> -->
+                        <!-- </td> -->
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td class="lineheight3"><b>Total Jumlah Limbah Yang Tersisa</b></td>
+                    <td>
+                        <input style="width:100%" kendo-numeric-text-box k-ng-model="item.plus" disabled />
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td class="lineheight3"><b>Kinerja Pengelolaan Limbah B3 Selama Periode Skala</b></td>
+                    <td>
+                        <input style="width:100%" kendo-numeric-text-box k-ng-model="item.kinerjapengelolaan" k-options="formatPercentage"
+                            disabled />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="grid_12" style="float:left;" ng-hide="isHide">
+            <div ng-hide='isNext' class="grid_3" style="float:right">
+                <c-button ng-show="!isLoading" class="success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;"
+                    item="item" size="36" position=" 'right'" is-validate click="Save">
+                    <span class="title">Simpan</span>
+                </c-button>
+            </div>
+            <!-- <div ng-hide='isNext' class="grid_3" style="float:right">
+                <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" class="cancel" click="Back">
+                    <span class="title">Batal</span>
+                </c-button>
+            </div> -->
+        </div>
+    </div>
+</div>
+<style>
+    td.number-right {
+        text-align: right;
+        padding-right: 3% !important;
+    }
+
+    td.number-left {
+        text-align: left;
+        padding-left: 3% !important;
+    }
+
+    td.td-title {
+        text-align: left;
+        font-size: larger;
+        font-weight: bold;
+    }
+
+    .table {
+        width: 98%;
+        max-width: 100%;
+        margin: 10px 20px;
+    }
+
+    em#iconClose {
+        background-color: indianred;
+    }
+
+    td.lineheight3 {
+        text-transform: capitalize;
+        line-height: 3em !important;
+    }
+</style>

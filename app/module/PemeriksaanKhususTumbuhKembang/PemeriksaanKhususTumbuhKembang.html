@@ -1,0 +1,16 @@
+
+<div ng-controller="PemeriksaanKhususTumbuhKembangCtrl">
+    <div ng-show="dataVOloaded">
+        <!-- panel Skrining Gizi -->
+
+        <c-panel item="item" header="title" disabled>
+
+            <div ng-include=' "../app/module/PemeriksaanKhususTumbuhKembang/Ibu" ' style="margin-bottom:50px"></div>
+            <div ng-include=' "../app/module/PemeriksaanKhususTumbuhKembang/Ayah" ' style="margin-bottom:50px"></div>
+
+            <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" ' style="margin-bottom:50px"></div>
+
+        </c-panel>
+    </div>
+
+</div>

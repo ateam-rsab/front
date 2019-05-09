@@ -1,0 +1,78 @@
+{
+
+    "id": "",
+    "noRekamMedis": "",
+    "nama": "",
+    "agama": "",
+    "perkawinanKe": "",
+    "alamatRumah": "",
+    "umur": "",
+    "anakKe": "",
+    "dari":"",
+    "sukuBangsa": "",
+    "pekerjaan": "",
+    "pendidikan" : "",
+    "keterangan" : "",
+    "attributes" : [{
+		"isNull" : "true",
+		"name" : "noRekamMedis",
+		"messagesRequired" : "Nomor Rekam Medis Harus Diisi",
+		"caption" : "Nomor Rekam Medis"
+	},{
+			"isNull" : "true",
+			"name" : "nama",
+			"messagesRequired" : "Nama Harus Diisi",
+			"caption" : "Nama"
+		},{
+			"isNull" : "true",
+			"name" : "agama",
+			"messagesRequired" : "Agama Harus Diisi",
+			"caption" : "Agama"
+		},{
+			"isNull" : "true",
+			"name" : "perkawinanKe",
+			"messagesRequired" : " Perkawinan Ke Harus Diisi",
+			"caption" : " Perkawinan ke"
+		},{
+			"isNull" : "true",
+			"name" : "alamatRumah",
+			"messagesRequired" : "Alamat Rumah  Harus Diisi",
+			"caption" : "Alamat Rumah"
+		},{
+			"isNull" : "true",
+			"name" : "umur",
+			"messagesRequired" : "Umur Diisi",
+			"caption" : "Umur"
+		},{
+			"isNull" : "true",
+			"name" : "anakKe",
+			"messagesRequired" : " Anak ke Harus Diisi",
+			"caption" : " Anak ke"
+		},{
+			"isNull" : "true",
+			"name" : "dari",
+			"messagesRequired" : "Dari  Harus Diisi",
+			"caption" : "dari"
+		},{
+			"isNull" : "true",
+			"name" : "sukuBangsa",
+			"messagesRequired" : "Suku Bangsa Harus Diisi",
+			"caption" : "Suku Bangsa"
+		},{
+			"isNull" : "true",
+			"name" : "pendidikan",
+			"messagesRequired" : "Pendididkan Harus Diisi",
+			"caption" : "Pendidikan"
+		},{
+			"isNull" : "true",
+			"name" : "pekerjaan",
+			"messagesRequired" : "Pekerjaan Harus Diisi",
+			"caption" : "Pekerjaan"
+		},{
+			"isNull" : "true",
+			"name" : "keterangan",
+			"messagesRequired" : "Keterangan Harus Diisi",
+			"caption" : "Keterangan"
+		}
+	]
+}

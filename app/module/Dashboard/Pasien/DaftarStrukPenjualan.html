@@ -1,0 +1,117 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Daftar Struk Penjualan Pasien Baru</div>
+	<div class="panel-body">
+		<div class="grid_12">
+			<div class="grid_12">
+				<div class="popUp" ng-show="isShowPopUp">
+					<div kendo-window="win1" id="winPopUp"
+					 	k-title="'Ambil Obat'" 
+					 	k-width="'25%'"
+					 	k-draggable="false"
+			  			k-position="{ 'top': '25%', 'left':'40%' }"
+					 	k-on-close="closeWindow()"
+					 	k-visible="isShowPopUp">
+
+					 	<div class="grid_12">
+							<div class="grid_12" style="margin-top:10px">
+								<label c-label item="item">Tgl Pengambil Obat</label>
+							</div>
+							<div class="grid_12">
+								<input style="width:100%" kendo-date-picker value="now" k-ng-model="item.tglPengambilObat" k-format="'dd-MM-yyyy HH:mm'"/>
+							</div>
+			            <!-- Nama -->
+							<div class="grid_12" style="margin-top:10px">
+								<label c-label item="item">Nama Pengambil</label>
+							</div>
+							<div class="clear"></div>
+
+							<div class="grid_12">
+								<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namPengambila" />
+							</div>
+
+						<!-- Alamat -->
+							<div class="grid_12">
+								<label c-label item="item" style="margin-top:10px">Nama Pemberi</label>
+							</div>
+							<div class="grid_12">
+								<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaPemberi" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="Pemberi"/>
+							</div>
+							 <!-- Button -->
+							<div class="grid_12" style="margin-top:10px">
+								<div class="grid_6"></div>
+								<div class="grid_3">
+									<button class='k-button success' ng-click='editData()'>Simpan</button>
+								</div>
+								<div class="grid_3">
+									<button class='k-button cancel' ng-click='cancelData()'>Tutup</button>
+								</div>
+							</div>
+
+						</div>
+			        </div>
+		        </div>
+			</div>
+			<div class="grid_12" style="margin-top:20px">
+				<div class="grid_5"></div>
+                <div class="grid_7">
+                	<div class="grid_12">
+						<div class="grid_2" style="margin-top:15px">
+							<label c-label item="item">Periode</label>
+						</div>
+						<div class="grid_3">
+							<input style="width:100%" kendo-date-picker value="now" k-ng-model="item.awal" k-format="'dd-MM-yyyy'"/>
+						</div>
+						<div class="grid_1" align="center" style="margin-top:10px">
+							<label c-label item="item">s/d</label>
+						</div>
+						<div class="grid_3">
+							<input style="width:100%" kendo-date-picker value="now" k-ng-model="item.awal" k-format="'dd-MM-yyyy'"/>
+						</div>
+						<div class="grid_2" style="margin:5px">
+							<button class="c-button success" ng-click="search()">Cari</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="grid_12" style="margin-top:20px">
+				<div kendo-grid k-data-source="sourceDaftarPasien" k-selectable="'row'" options="mainGridOptions" k-ng-model="dataSelectedRow"></div>
+			</div>
+			<div class="grid_12" style="padding-top:20px">
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item">Nama Apotik</label>
+					</div>
+					<div class="grid_12">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.Ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="dataRuangan"/>
+					</div>
+				</div>
+				<div class="grid_1">
+					<div class="grid_12">
+						<label c-label item="item">No Resep</label>
+					</div>
+					<div class="grid_12">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noResep"/>
+					</div>
+				</div>
+				<div class="grid_2">
+					<div class="grid_12">
+						<label c-label item="item">Nama Pasien / No RM</label>
+					</div>
+					<div class="grid_12">
+						<input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.namaPasien"/>
+					</div>
+				</div>
+				<div class="grid_1"></div>
+				<div class="grid_2" style="margin-top:20px">
+					<button class="c-button success" ng-click="ObatAmbil()">Obat Ambil</button>
+				</div>
+				<div class="grid_2" style="margin-top:20px">
+					<button class="c-button success" ng-click="ReturPenjualan()">Retur Penjualan</button>
+				</div>
+				<div class="grid_2" style="margin-top:20px">
+					<button class="c-button cancel" ng-click="Tutup()">Tutup</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

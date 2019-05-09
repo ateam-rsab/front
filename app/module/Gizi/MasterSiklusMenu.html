@@ -1,0 +1,137 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Master Menu</div>
+	<div class="panel-body">
+		<div class="grid_12">
+			<div class="grid_12">
+				<div class="grid_6">
+					<div class="grid_12">
+						<div class="grid_4">
+							<label c-label item="item">Waktu Makan</label>
+						</div>
+						<div class="grid_8">
+							 <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisWaktu" k-data-text-field="'jenisWaktu'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceJenisWaktu" />
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4">
+							<label c-label item="item">Menu</label>
+						</div>
+						<div class="grid_8">
+							 <input style="width: 100%;" kendo-combo-box k-ng-model="item.menu" k-data-text-field="'menu'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceMenu" />
+						</div>
+					</div>
+				</div>
+				<div class="grid_6">
+					<div class="grid_12">
+						<div class="grid_4">
+							<label c-label item="item">Hari ke</label>
+						</div>
+						<div class="grid_8">
+							 <input style="width: 100%;" kendo-combo-box k-ng-model="item.hari" k-data-text-field="'hari'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceHari" />
+						</div>
+					</div>
+					<div class="grid_12">
+						<div class="grid_4">
+							<label c-label item="item">Kelas</label>
+						</div>
+						<div class="grid_8">
+							<div class="grid_3" ng-repeat="Data in listDataKelas">
+								<input type="checkbox" class="k-checkbox" name="kelas" id="id"  ng-click="()">
+								<label class="k-checkbox-label" c-label item="item" c-label-text="kelas" for="kelas"></label>
+							</div>
+						</div>
+						<!-- <div class="grid_4" ng-repeat="Data in listDataPenyakit">
+							<input type="checkbox" class="k-checkbox" name="{{Data.name}}" 
+							id="{{Data.name}}" value="{{Data.id}}" ng-click="cekRiwayatPenyakit(Data)">
+							<label class="k-checkbox-label" for="{{Data.name}}"> {{Data.name}}</label>
+						</div> -->
+					</div>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_6"></div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="add()">Tambah</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="remove()">Hapus</button>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div kendo-grid k-on-change="Select(data)" k-data-source="sourceJenisGizi" k-selectable="'row'" options="mainGridOptions">
+			</div>
+			<div class="grid_12">
+				<div class="grid_8"></div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="Save()">Simpan</button>
+				</div>
+				<div class="grid_2">
+					<button class="c-button" ng-click="print()">Cetak</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- <div ng-controller="MasterSiklusMenuCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Master Siklus Menu'">
+		<div class="grid_2">
+			<label c-label item="item" c-label-text="kodeSiklus"></label>
+		</div>
+		<div class="grid_4">
+			<label c-label item="item" c-label-text="namaSiklus"></label>
+		</div>
+		<div class="grid_2">
+			<label c-label item="item" c-label-text="jmlHariSiklus"></label>
+		</div>
+		<div class="grid_2">
+			
+		</div>
+		<div class="clear"></div>
+		<div class="grid_2">
+			<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kodeSiklus" />
+		</div>
+		<div class="grid_4">
+			<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaSiklus" />
+		</div>
+		<div class="grid_2">
+			<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jmlHariSiklus" />
+		</div>
+		<div class="grid_2">
+			<input type="checkbox" class="k-checkbox" name="statusAktif" id="statusAktif"  ng-click="()">
+				<label class="k-checkbox-label" c-label item="item" c-label-text="statusAktif" for="statusAktif"></label>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_4">
+			<label c-label item="item" c-label-text="deskripsi"></label>
+		</div>
+		<div class="clear"></div>
+		<div class="grid_4">
+			<textarea style="height: 50px" id="text_area_deskripsi" c-text-box type="input" class="k-textbox" ng-model="item.deskripsi" />
+		</div>
+		<div class="clear"></div>
+		<div kendo-grid k-data-source="daftarSiklus" k-selectable="'row'" k-columns="columnSiklus" style="margin-bottom: 10px">
+				</div>
+
+		<div class="grid_6"></div>
+		<div class="grid_6">
+			
+		<div class="grid_4">
+			<c-button ng-click="addSiklus()">
+			<span>Tambah</span>
+		</div>
+		<div class="grid_4">
+			<c-button ng-click="simpan()">
+			<span>Simpan</span>
+		</div>
+		<div class="grid_4">
+			<c-button ng-click="batal()">
+			<span>Batal</span>
+		</div>
+		</div>
+		</c-panel>
+	</div>
+</div> -->

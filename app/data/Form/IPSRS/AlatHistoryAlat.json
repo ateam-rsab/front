@@ -1,0 +1,155 @@
+{
+	"model":{
+		"gambarAlat" : "",
+		"qrCode":"",
+		"pencarianNamaBarang":"",
+		"noRegistrasiAsset": "",
+		"kodeAspak":"",
+		"kodeBmn" :"",
+		"kodeRsabhk" : "",
+	    "namaBarang" : "",
+	    "merk" : "",
+		"type":"",
+		"qty":"",
+		"satuan": "",
+		"tglPenerimaanAsset":"",
+		"kelompokAsset" :"",
+		"lokasiAsset" : "",
+	    "kondisiAsset" : "",
+	    "sumberDana" : "",
+	    "noSeri" : "",
+	    "dayaListrik" : "",
+	    "klarifikasiTeknologi" : "",
+	    "usiaTeknis" : "",
+	    "tahunPerolehan" : "",
+	    "umurUsia" : "",
+	    "sisaUsia" : ""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "gambarAlat",
+			"messagesRequired" : "",
+			"caption" : "Gambar Alat"
+		},{
+			"isNull" : "true",
+			"name" : "qrCode",
+			"messagesRequired" : "",
+			"caption" : "QR Code"
+		},{
+			"isNull" : "true",
+			"name" : "pencarianNamaBarang",
+			"messagesRequired" : "",
+			"caption" : "Pencarian Nama Barang"
+		},{
+			"isNull" : "true",
+			"name" : "noRegistrasiAsset",
+			"messagesRequired" : "",
+			"caption" : "No Registrasi Asset"
+		},{
+			"isNull" : "true",
+			"name" : "kodeAspak",
+			"messagesRequired" : "",
+			"caption" : "Kode ASPAK"
+		},{
+			"isNull" : "true",
+			"name" : "kodeBmn",
+			"messagesRequired" : "",
+			"caption" : "Kode BMN"
+		},{
+			"isNull" : "true",
+			"name" : "kodeRsabhk",
+			"messagesRequired" : "",
+			"caption" : "Kode RSABHK"
+		},{
+			"isNull" : "true",
+			"name" : "namaBarang",
+			"messagesRequired" : "",
+			"caption" : "Nama Barang"
+		},{
+			"isNull" : "true",
+			"name" : "merk",
+			"messagesRequired" : "",
+			"caption" : "Merk"
+		},{
+			"isNull" : "true",
+			"name" : "type",
+			"messagesRequired" : "",
+			"caption" : "Type"
+		},{
+			"isNull" : "true",
+			"name" : "qty",
+			"messagesRequired" : "",
+			"caption" : "Qty"
+		},{
+			"isNull" : "true",
+			"name" : "satuan",
+			"messagesRequired" : "",
+			"caption" : "Satuan"
+		},{
+			"isNull" : "true",
+			"name" : "tglPenerimaanAsset",
+			"messagesRequired" : "",
+			"caption" : "Tgl Penerimaan Asset"
+		},{
+			"isNull" : "true",
+			"name" : "kelompokAsset",
+			"messagesRequired" : "",
+			"caption" : "Kelompok Asset"
+		},{
+			"isNull" : "true",
+			"name" : "lokasiAsset",
+			"messagesRequired" : "",
+			"caption" : "Lokasi Asset"
+		},{
+			"isNull" : "true",
+			"name" : "kondisiAsset",
+			"messagesRequired" : "",
+			"caption" : "Kondisi Asset"
+		},{
+			"isNull" : "true",
+			"name" : "sumberDana",
+			"messagesRequired" : "",
+			"caption" : "Sumber Dana"
+		},{
+			"isNull" : "true",
+			"name" : "noSeri",
+			"messagesRequired" : "",
+			"caption" : "No Seri"
+		},{
+			"isNull" : "true",
+			"name" : "dayaListrik",
+			"messagesRequired" : "",
+			"caption" : "Daya Listrik"
+		},{
+			"isNull" : "true",
+			"name" : "klarifikasiTeknologi",
+			"messagesRequired" : "",
+			"caption" : "Klarifikasi Teknologi"
+		},{
+			"isNull" : "true",
+			"name" : "usiaTeknis",
+			"messagesRequired" : "",
+			"caption" : "Usia Teknik"
+		},{
+			"isNull" : "true",
+			"name" : "tahunPerolehan",
+			"messagesRequired" : "",
+			"caption" : "Tahun Perolehan"
+		},{
+			"isNull" : "true",
+			"name" : "umurUsia",
+			"messagesRequired" : "",
+			"caption" : "Umur Usia"
+		},{
+			"isNull" : "true",
+			"name" : "sisaUsia",
+			"messagesRequired" : "",
+			"caption" : "Sisa Usia"
+		}
+
+
+	]
+}

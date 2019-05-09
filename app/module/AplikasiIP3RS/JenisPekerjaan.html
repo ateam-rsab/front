@@ -1,0 +1,97 @@
+<div ng-controller="JenisPekerjaanCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Jenis Pekerjaan'">
+			<div class="grid_6">
+				<div class="grid_12">
+					<div class="grid_4" style="margin-top: 10px">
+						<div class="grid_10">
+							<label c-label item="item" c-label-text="kodeHeader"></label>
+						</div>
+						<div class="grid_2" style="text-align: center;">
+							<label c-label item="item" c-label-text=":"></label>
+						</div>
+					</div>
+					<div class="grid_8">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kodeHeader" disabled="" />
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_4" style="margin-top: 10px">
+						<div class="grid_10">
+							<label c-label item="item" c-label-text="jenisPekerjaan"></label>
+						</div>
+						<div class="grid_2" style="text-align: center;">
+							<label c-label item="item" c-label-text=":"></label>
+						</div>
+					</div>
+					<div class="grid_8">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.jenisPekerjaan" disabled=""/>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_4" style="margin-top: 10px">
+						<div class="grid_10">
+							<label c-label item="item" c-label-text="pekerjaan"></label>
+						</div>
+						<div class="grid_2" style="text-align: center;">
+							<label c-label item="item" c-label-text=":"></label>
+						</div>
+					</div>
+					<div class="grid_8">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.pekerjaan" />
+					</div>
+				</div>
+				<div class="grid_4"></div>
+				<div class="grid_4"></div>
+				<div class="grid_4">
+					<button class="c-button" ng-click="tambah()">Tambah</button>
+				</div>
+				<div class="grid_12">
+					<div class="grid_4" style="margin-top: 10px">
+						<div class="grid_10">
+							<label c-label item="item" c-label-text="kodeHeader"></label>
+						</div>
+						<div class="grid_2" style="text-align: center;">
+							<label c-label item="item" c-label-text=":"></label>
+						</div>
+					</div>
+					<div class="grid_8">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.kodeHeader" disabled="" />
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_4" style="margin-top: 10px">
+						<div class="grid_10">
+							<label c-label item="item" c-label-text="jenisPekerjaan"></label>
+						</div>
+						<div class="grid_2" style="text-align: center;">
+							<label c-label item="item" c-label-text=":"></label>
+						</div>
+					</div>
+					<div class="grid_8">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.jenisPekerjaan" disabled=""/>
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_4" style="margin-top: 10px">
+						<div class="grid_10">
+							<label c-label item="item" c-label-text="pekerjaan"></label>
+						</div>
+						<div class="grid_2" style="text-align: center;">
+							<label c-label item="item" c-label-text=":"></label>
+						</div>
+					</div>
+					<div class="grid_8">
+						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.pekerjaan" />
+					</div>
+				</div>
+				<div class="grid_4"></div>
+				<div class="grid_4"></div>
+				<div class="grid_4">
+					<button class="c-button" ng-click="tambah()">Tambah</button>
+				</div>
+			</div>
+		</c-panel>
+	</div>
+</div>

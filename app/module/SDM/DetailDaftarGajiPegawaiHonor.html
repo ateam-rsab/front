@@ -1,0 +1,34 @@
+<div ng-controller="DetailDaftarGajiPegawaiHonorCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Detail Daftar Gaji Pegawai Honor BLU atau PKWT'" disabled>
+			<div class="panel panel-default">
+				<div class="grid_4">
+					<div class="grid_6">
+						<label c-label item="item" c-label-text="Periode" style="margin: 10px 0px 0px;"></label>
+					</div>
+					<div class="grid_6">
+						<input c-textbox type="input" class="k-textbox" ng-model="item.Periode">
+					</div>
+				</div>
+				<div class="grid_4">
+					<div class="grid_6">
+						<label c-label item="item" c-label-text="Status Kepegawaian" style="margin: 10px 0px 0px;"></label>
+					</div>
+					<div class="grid_6">
+						<input c-textbox type="input" class="k-textbox" ng-model="item.Kepegawaian">
+					</div>
+				</div>
+				<div class="clear"></div>
+				<div class="grid_8">
+					<kendo-grid options="mainGridOptions" k-data-source="dataSource" k-ng-model="current"></kendo-grid>
+				</div>
+			</div>
+		</c-panel>
+		<div class="grid_8">
+			<div class="grid_8"></div>
+			<div class="grid_4">
+				<button class="c-button" ng-click="cetak()">Cetak</button>
+			</div>
+		</div>	
+	</div>
+</div>

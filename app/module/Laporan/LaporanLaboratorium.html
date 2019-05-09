@@ -1,0 +1,56 @@
+
+<div ng-controller="LaporanLaboratoriumCtrl">
+	<div ng-show="dataVOloaded">
+		<!-- <c-panel item="item" header="'Daftar Tagihan Rekanan'" disabled> -->
+		<div class="grid_12 headerBox">
+			<h1 style="color: white;"><b>Laporan Laboratorium</b></h1>
+		</div>
+
+		<div class="grid_12">
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="Tanggal awal"></label>
+				<input style="width: 100%" k-ng-model="item.tglawal" kendo-datetimepicker placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd HH:mm'" />
+			</div>
+
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="Tanggal Akhir"></label>
+				<input style="width: 100%" k-ng-model="item.tglakhir" kendo-datetimepicker placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd HH:mm'" />
+			</div>
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="Instalasi Lab"></label>
+				<input c-text-box type="string" filter="'char'" class="k-textbox" ng-model="item.departemen" readonly="true" />
+			</div>
+			<div class="grid_3">
+				<label c-label item="item" c-label-text="Ruangan"></label>
+				<input ng-disabled="isDisable" style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'ruangan'"
+				 k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+			</div>
+			<div class="grid_3">
+				<label c-label item="item" c-label-text="Departemen"></label>
+				<input ng-disabled="isDisable" style="width: 100%;" kendo-combo-box k-ng-model="item.departemen2" k-data-text-field="'namadepartemen'"
+				 k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listdepartemen2" />
+			</div>
+		</div>
+		<div class="grid_2">
+			<label c-label item="item" c-label-text="KelompokPasien"></label>
+			<input ng-disabled="isDisable" style="width: 100%;" kendo-combo-box k-ng-model="item.kelompokPasien" k-data-text-field="'kelompokpasien'"
+			 k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKelompok" />
+		</div>
+		<div class="clear"></div>
+            <div class="grid_12">
+                <div class="grid_12" style="float:right">
+					<div class="grid_3 " style="margin-top: 25px ">
+                        <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Cetak()">
+                            <span class="title">Cetak</span>
+                        </button>
+                    </div>
+                    <!-- <div class="grid_4 " style="margin-top: 25px ">
+                        <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakTagihan()">
+                            <span class="title">Cetak Tagihan Penjamin</span>
+                        </button>
+                    </div> -->
+                </div>
+            </div>
+		<br/>
+	</div>
+</div>

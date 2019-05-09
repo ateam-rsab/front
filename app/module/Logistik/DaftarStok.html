@@ -1,0 +1,69 @@
+<div ng-controller="DaftarStokCtrl">
+
+    <div>
+        <c-panel item="item" header="'Data Stok Barang Ruangan'">
+            <!-- <div class="grid_3">
+                <input type="checkbox" class="k-checkbox" ng-model='enableNamaRuangan' id="monitoringStokRuangan" >
+                <label class="k-checkbox-label" c-label item="item" c-label-text="monitoringStokRuangan" for="monitoringStokRuangan"></label>
+                <div class="grid_3">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganAsal" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceRuangan" ng-disabled="!enableNamaRuangan" />
+                </div>
+            </div> -->
+            <!-- <div class="grid_2">
+                <label c-label item="item" c-label-text="asalBarang"></label>
+            </div>
+            <div class="grid_3">
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.asalBarang" k-data-text-field="'asalProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAsalBarang" />
+            </div> -->
+            <div class="grid_3">
+                <!-- <label c-label class="label-aja" item="item" c-label-text="kelompokProduk"></label> -->
+                <label c-label item="item" c-label-text="jenisProduk"></label>
+                <!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.kelompokBarang" k-data-text-field="'kelompokProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKelompokBarang" ng-disabled="isProduk"/> -->
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.kelompokBarang" k-data-text-field="'kelompokProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKelompokBarang" />
+            </div>
+            <div class="grid_3">
+                <!-- <label c-label class="label-aja" item="item" c-label-text="jenisProduk"></label> -->
+                <label c-label class="label-aja" item="item" c-label-text="namaBarang"></label>
+                <!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisProduk" k-data-text-field="'jenisProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisBarang" ng-disabled="isKelompok"/> -->
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaBarang" k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listNamaBarang" />
+            </div>
+            <div class="grid_3">
+                <!-- <label c-label class="label-aja" item="item" c-label-text="namaProduk"></label> -->
+                <label c-label class="label-aja" item="item" c-label-text="asalProduk"></label>
+                <!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaProdukLengkap" k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listNamaBarang" ng-disabled="isJenis"/> -->
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.asalProduk" k-data-text-field="'asalProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listSumberDana" />
+            </div>
+
+            <div class="grid_3">
+                <div class="grid_6">
+                 <label c-label class="label-aja" item="item" c-label-text="asalProduk" style="visibility:hidden"></label>
+                    <c-button ng-click="Proses()">
+                        <span>Proses</span>
+                    </c-button>
+                </div>
+                <div class="grid_6">
+                 <label c-label class="label-aja" item="item" c-label-text="asalProduk" style="visibility:hidden"></label>
+                    <c-button ng-click="Batal()">
+                        <span>Batal</span>
+                    </c-button>
+                </div>
+            </div>
+
+
+            <div class="clear"></div>
+            <div class="grid_12" style="margin-top: 20px;">
+                <div kendo-grid k-data-source="daftarKartuStok" k-selectable="'row'" k-columns="columnKartuStok">
+                </div>
+            </div>
+        </c-panel>
+            <div class="clear"></div>
+            <div class="grid_12" style="min-height:20px">&nbsp;</div>
+            <div class="grid_12" ng-hide="bukanLogistik">
+                <input type="checkbox" class="k-checkbox" ng-model='enableNamaRuangan' id="monitoringStokRuangan" >
+                <label class="k-checkbox-label" c-label item="item" c-label-text="monitoringStokRuangan" for="monitoringStokRuangan"></label>
+                <div class="grid_3">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganAsal" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceRuangan" ng-disabled="!enableNamaRuangan" />
+                </div>
+            </div>
+    </div>
+</div>

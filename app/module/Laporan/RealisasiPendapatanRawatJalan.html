@@ -1,0 +1,84 @@
+<!-- <div ng-controller="LaporanKematianRsCtrl"> -->
+
+<style>
+    .k-grid .k-grid-header .k-header .k-link {
+        height: auto;
+    }
+
+    .k-grid .k-grid-header .k-header {
+        white-space: normal;
+    }
+
+    .k-grid .k-grid-header .k-header {
+        text-align: center;
+    }
+</style>
+<div ng-show="dataVOloaded">
+    <div class="grid_12 headerBox">
+        <h2 style="color: white;">
+            <p>REALISASI PENDAPATAN INSTALASI RAWAT JALAN</p>
+        </h2>
+    </div>
+      <fieldset class="effect-shadow" style=" border-radius: 4px">
+                <legend id="filterData">
+                    <a ng-click="showAndHide()">Pencarian</a>
+                </legend>
+    <div class="grid_12" style="margin-top: -10px">
+       <div class="grid_2">
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="Bulan"></label>
+            </div>              
+            <div class="grid_12">
+                <div class="grid_12">
+                    <input style="width: 100%" k-options="monthOnly" k-ng-model="item.bulan"  kendo-date-picker  placeholer="MMMM YYYY" />
+                </div>
+            </div>
+        </div>
+        <!-- <div class="grid_2">
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="Tahun"></label>
+            </div>
+            <div class="grid_12">
+                <div class="grid_12">
+                    <input style="width: 100%" k-options="yearOnly" k-ng-model="item.tahun"  kendo-date-picker  placeholer="YYYY" k-format="'yyyy'" />
+                </div>
+            </div>
+        </div> -->
+        <div class="grid_1">
+            <label c-label c-label-text=""></label>
+            <em style="margin-top:6px;" ng-click='search()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary"
+                role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-search">Refresh</span></em>
+            <em style="margin-top:6px;" ng-click='clears()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary"
+                role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+
+        </div>
+        <!-- <div class="grid_2 k-edit-buttons  k-state-default " style="margin-top:22px">
+            <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="search()" style="width:100px"><span
+                    class="k-sprite k-icon k-i-search"></span>Cari </button>
+            <button class="k-button  k-button-icontext" ng-click="clears()" style="width:100px"><span class="k-sprite k-icon k-delete"></span>Clear</button>
+        </div> -->
+    </div>
+</fieldset>
+    <div class="grid_12" style="margin-top:10px">
+        <div class="clear"></div>
+        <div class="grid_12 borderBox">
+            <kendo-grid id="kGrid" data-source="sourceLaporan" options="optionsGrid" k-selectable="'row'" k-ng-model="dataSelect"
+                ng-click="klikGrid(dataSelect)"></kendo-grid>
+        </div>
+    </div>
+  
+    <div class="grid_12" style="margin-top:60px">
+        <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+    </div>
+    <style>
+        legend {
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .effect-shadow {
+            -webkit-box-shadow: 2px 2px 5px #b6b6b6;
+            -moz-box-shadow: 2px 2px 5px #b6b6b6;
+            box-shadow: 2px 2px 5px #b6b6b6;
+        }
+    </style>

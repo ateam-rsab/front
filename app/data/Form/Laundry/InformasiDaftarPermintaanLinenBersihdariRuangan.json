@@ -1,0 +1,21 @@
+{
+	"model":{
+		"noOrder" : "",
+		"ruangPemesan" : ""
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "noOrder",
+			"messagesRequired" : "",
+			"caption" : "No Order"
+		},
+		{
+			"isNull" : "true",
+			"name" : "ruangPemesan",
+			"messagesRequired" : "",
+			"caption" : "Ruang Pemesan"
+		}
+	]
+}

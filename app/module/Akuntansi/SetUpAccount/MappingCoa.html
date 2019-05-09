@@ -1,0 +1,278 @@
+<style>
+.k-state-selected{
+	/*background-color:#f9f9f9;*/
+	/*border:none;*/
+}
+
+.k-in.k-state-hover{
+	background-color:#f9f9f9;
+}
+
+.k-state-focused{
+	border:none;
+}
+
+.container_12 .grid_3 {
+	margin-top: 6px;
+}
+
+.container_12 .grid_1 {
+	margin-top: 6px;
+	width: 3%;
+}
+
+.boxListInstalasiPengikut{
+	margin-top: 5px;
+	overflow-y: scroll;
+    height: 150px;
+}
+
+.labelCheckBox{
+	margin: 2px 0px;
+}
+
+.listFixInstalasiPengikut{
+	padding: 5px;
+    margin-top: 7px;
+    background-color: #e4e3e3;
+}
+
+</style>
+
+<div ng-show="dataVOloaded">
+
+	<div class="grid_12 headerBox">
+    	<h1 style="color: white;"><b>Mapping COA</b></h1>
+    </div>
+    <div class="clear"></div>
+
+    <br/>
+
+
+	<!-- Kriteria -->
+	<div class="grid_6">
+		<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+			<p>Informasi Chart Of Account</p>
+		</div>
+		<div class="grid_12 borderBox containerBorderBox">
+
+			<div class="loading" style="position: relative" class="animated" ng-show="isLoadingData">
+				<img height="50" src="../app/stylesheets/Flat/loading-image.gif" />
+				<br/> <span>{{keteranganLoading}}</span>
+			</div>
+
+			<div class="grid_12">
+				<div style="margin-left:5px" kendo-tree-view="tree"
+	             k-data-source="treeDataCoa"
+	             k-template="templateTreeView">
+	            </div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- Kriteria -->
+	<div class="grid_6">
+		<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+			<p>Daftar Pelayanan / Produk</p>
+		</div>
+		<div class="grid_12 borderBox containerBorderBox">
+
+			<div class="loading" style="position: relative" class="animated" ng-show="isLoadingData">
+				<img height="50" src="../app/stylesheets/Flat/loading-image.gif" />
+				<br/> <span>{{keteranganLoading}}</span>
+			</div>
+
+			<div ng-hide="isLoadingData">
+			<!-- COA -->
+			<div class="grid_12">
+				<div class="grid_12">
+					<label c-label item="item">COA</label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.accountCOA" k-data-text-field="'reportDisplay'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAccountOponen" k-on-change="onChangeCOA(item.accountCOA, kendoEvent)" k-template="templateEffect" />
+				</div>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_12">
+				<div class="grid_12">
+					<label c-label item="item">Akun Oponen</label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.accountOponen" k-data-text-field="'reportDisplay'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAccountOponen" k-on-change="onChangeCoaOponen(item.accountOponen, kendoEvent)" k-template="templateEffect" ng-disabled="showEffectAdd" />
+				</div>
+			</div>
+			<div class="clear"></div>
+
+			<!-- instlasi -->
+			<div class="grid_12">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Instalasi"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.instalasi" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listInstalasi"
+					k-on-change="onSelectInstalasi(item.instalasi)" />
+				</div>
+			</div>
+			<div class="clear"></div>
+
+			<!-- -->
+			<div class="grid_12">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="InstalasiPengikut"></label>
+				</div>
+
+		 		<div class="grid_12 borderBox containerBorderBox boxListInstalasiPengikut">
+					<div ng-repeat="instalasi in listInstalasiPengikut">
+					<div class="grid_12 labelCheckBox">
+                        <input type="checkbox"  name="{{instalasi.namaExternal}}{{instalasi.id}}" id="{{instalasi.namaExternal}}{{instalasi.id}}" class="k-checkbox"  value="{{instalasi.id}}"  >
+                        <label class="k-checkbox-label" for="{{instalasi.namaExternal}}{{instalasi.id}}"  ng-click="cekArrInstalasiPengikut(instalasi)">{{instalasi.namaExternal}}</label>
+                    </div>
+                    <div class="clear"></div>
+                    </div>
+				</div>
+			</div>
+
+			<!-- jenis pelayanan -->
+			<div class="grid_12">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="JenisPelayanan"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPelayanan" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisPelayanan" 
+					k-on-change="onSelectJenisPelayanan(item.jenisPelayanan)"/>
+				</div>
+			</div>
+			<div class="clear"></div>
+
+			<!-- penjamin -->
+			<div class="grid_12">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Penjamin"></label>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.penjamin" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPenjamin" 
+					k-on-change="onSelectPenjamin(item.penjamin)"/>
+				</div>
+			</div>
+			<div class="clear"></div>
+			</div>
+
+		</div>
+		<div class="clear"></div>
+
+		<br/>
+
+		<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+			<p>Informasi</p>
+		</div>
+		<div class="grid_12 borderBox containerBorderBox" style="padding-right: 0px;">
+
+			<!-- COA -->
+			<div class="grid_12">
+				<div class="grid_3">
+					<label c-label item="item">Akun</label>
+				</div>
+				<div class="grid_1">
+					:
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="dataPost.coa.reportDisplay" ng-disabled="true"/>
+				</div>
+			</div>
+
+			<!-- COA -->
+			<div class="grid_12">
+				<div class="grid_3">
+					<label c-label item="item">Akun Oponen</label>
+				</div>
+				<div class="grid_1">
+					:
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="dataPost.accountOponen.reportDisplay" ng-disabled="true"/>
+				</div>
+			</div>
+
+			<!-- Instalasi -->
+			<div class="grid_12">
+				<div class="grid_3">
+					<label c-label item="item">Instalasi</label>
+				</div>
+				<div class="grid_1">
+					:
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="dataPost.instalasi.reportDisplay" ng-disabled="true"/>
+				</div>
+			</div>
+			<div class="clear"></div>
+
+			<!-- Instalasi pengikut -->
+			<div class="grid_12">
+				<div class="grid_3">
+					<label c-label item="item">Instalasi</label>
+				</div>
+				<div class="grid_1">
+					:
+				</div>
+				<div class="grid_8">
+					<div class="grid_12 borderBox containerBorderBox listFixInstalasiPengikut">
+						<div ng-repeat="instalasi in arrInstalasiPengikut track by $index">
+								<label style="color:#4c5356">{{$index + 1}}. {{instalasi.namaExternal}}</label>
+	                    <div class="clear"></div>
+	                    </div>
+					</div>
+				</div>
+			</div>
+			<div class="clear"></div>
+
+			<!-- Jenis Pelayanan -->
+			<div class="grid_12">
+				<div class="grid_3">
+					<label c-label item="item">Jenis Pelayanan</label>
+				</div>
+				<div class="grid_1">
+					:
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="dataPost.jenisPelayanan.reportDisplay" ng-disabled="true"/>
+				</div>
+			</div>
+			<div class="clear"></div>
+
+			<!-- Penjamin -->
+			<div class="grid_12">
+				<div class="grid_3">
+					<label c-label item="item">Penjamin</label>
+				</div>
+				<div class="grid_1">
+					:
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="dataPost.penjamin.reportDisplay" ng-disabled="true"/>
+				</div>
+			</div>
+			<div class="clear"></div>
+
+		</div>
+
+	</div>
+	<div class="clear"></div>
+
+	<div class="grid_12" style="margin-top:30px">
+		<div ng-include='"../app/module/Shared/TemplateButtonMapping"'></div>
+	</div>
+
+</div>

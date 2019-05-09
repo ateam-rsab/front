@@ -1,0 +1,72 @@
+<div ng-controller="AmbilSpesimenCtrl">
+    <div ng-include='"../app/module/Shared/headerPasienPenunjang" '></div>
+    <c-panel item="item" header="'pengambilanSpesimen'" disabled>
+        <div class="grid_4">
+            <table class="table " ng-repeat="data in listOrders">
+                <tr class='success'>
+                </tr>
+                <tr>
+                    <th colspan="5" style="text-align:left">
+                        {{data[0].jenisPeriksa}}</th>
+                </tr>
+                <tr ng-repeat="subData in data" ng-click='checked(subData)'>
+                    <td style="width:20px">
+                        <img width="14px" src='stylesheets/work-done24.png' />
+                        <td>&nbsp;&nbsp;&nbsp;{{subData.namaProduk}} </td>
+                </tr>
+            </table>
+        </div>
+        <div class="grid_8">
+            <div class="grid_4">
+                <!-- Tanggal Keluar -->
+                <label c-label item="item" c-label-text="tanggalAmbilSpesimen"></label>
+            </div>
+            <div class="grid_8">
+                <input style="width: 100%" kendo-date-picker k-min="now" k-ng-model="item.tglAmbilSpesimen" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+            </div>
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="bahanSpesimen"></label>
+            </div>
+            <div class="grid_8">
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.bahanSample" k-data-text-field="'namaBahanSample'" k-filter="'contains'" k-data-value-field="'value'" k-auto-bind="false" k-data-source="bahanSamples" />
+            </div>
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="jumlah"></label>
+            </div>
+            <div class="grid_8">
+                <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.jumlah" />
+            </div>
+            <div class="grid_12">
+                &nbsp;
+            </div>
+            <div class="grid_12" style="float:left">
+                <div class="grid_9">
+                    &nbsp;
+                </div>
+                <div class="grid_3">
+                    <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" is-validate click="Add">
+                        <span class="title" c-translate>Tambah</span>
+                    </c-button>
+                </div>
+
+            </div>
+            <div class="grid_12">
+                <table class="table table-striped">
+                    <tr>
+                        <th><span c-translate>Bahan Spesimen</span></th>
+                        <th><span c-translate>Jumlah</span></th>
+                        <th><span c-translate></span></th>
+                    </tr>
+                    <tr ng-repeat="data in listSpesimens">
+                        <td>{{data.bahanSample.namaBahanSample+" - "+data.bahanSample.kodeExternal}}</td>
+                        <td>{{data.jumlah}}</td>
+                        <td>
+                            <button class="k-button" ng-click="remove(data)"> Hapus</button></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </c-panel>
+    <div ng-include='"../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+</div>

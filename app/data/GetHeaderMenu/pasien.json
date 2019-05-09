@@ -1,0 +1,14 @@
+[{
+    "caption": "Dashboard EIS",
+    "link": "/bi-rsab",
+    "shortcut": "ctrl+1"
+},
+{
+    "caption": "Dashboard Rensar",
+    "link": "/bi-rensar",
+    "shortcut": "ctrl+1"
+},{
+    "caption": "Dashboard Bed",
+    "link": "/bi-bedmonitor",
+    "shortcut": "ctrl+1"
+}]

@@ -1,0 +1,211 @@
+[{
+    "id": 1,
+
+    "kdTriage": "1",
+    "namaTriage": "Sumbatan",
+    "jenisPemeriksaan": "Jalan nafas"
+}, {
+    "id": 2,
+
+    "kdTriage": "2",
+    "namaTriage": "Bebas",
+    "jenisPemeriksaan": "Jalan nafas"
+}, {
+    "id": 3,
+
+    "kdTriage": "3",
+    "namaTriage": "Ancaman",
+    "jenisPemeriksaan": "Jalan nafas"
+}, {
+    "id": 4,
+
+    "kdTriage": "5",
+    "namaTriage": "Bradipnoe",
+    "jenisPemeriksaan": "Pernafasan"
+}, {
+    "id": 5,
+
+    "kdTriage": "6",
+    "namaTriage": "Mengi",
+    "jenisPemeriksaan": "Pernafasan"
+}, {
+    "id": 6,
+
+    "kdTriage": "7",
+    "namaTriage": "Takipnoe",
+    "jenisPemeriksaan": "Pernafasan"
+}, {
+    "id": 7,
+
+    "kdTriage": "8",
+    "namaTriage": "Normal",
+    "jenisPemeriksaan": "Pernafasan"
+}, {
+    "id": 8,
+
+    "kdTriage": "9",
+    "namaTriage": "Frek nafas normal",
+    "jenisPemeriksaan": "Pernafasan"
+}, {
+    "id": 9,
+
+    "kdTriage": "9",
+    "namaTriage": "Sianosis",
+    "jenisPemeriksaan": "Sirkulasi"
+}, {
+    "id": 10,
+
+    "kdTriage": "9",
+    "namaTriage": "Henti jantun",
+    "jenisPemeriksaan": "Sirkulasi"
+}, {
+    "id": 11,
+
+    "kdTriage": "9",
+    "namaTriage": "Nadi tidak teraba",
+    "jenisPemeriksaan": "Sirkulasi"
+}, {
+    "id": 12,
+
+    "kdTriage": "9",
+    "namaTriage": "Akral dingin",
+    "jenisPemeriksaan": "Sirkulasi"
+}, {
+    "id": 13,
+
+    "kdTriage": "9",
+    "namaTriage": "Nadi teraba lemah",
+    "jenisPemeriksaan": "Sirkulasi"
+}, {
+    "id": 14,
+
+    "kdTriage": "9",
+    "namaTriage": "Bradikardia",
+    "jenisPemeriksaan": "Sirkulasi"
+}, {
+    "id": 15,
+
+    "kdTriage": "9",
+    "namaTriage": "Takikardia",
+    "jenisPemeriksaan": "Sirkulasi"
+}, {
+    "id": 16,
+
+    "kdTriage": "9",
+    "namaTriage": "Pucat",
+    "jenisPemeriksaan": "Sirkulasi"
+}, {
+    "id": 17,
+
+    "kdTriage": "9",
+    "namaTriage": "Akral dingin",
+    "jenisPemeriksaan": "Sirkulasi"
+}, {
+    "id": 18,
+
+    "kdTriage": "9",
+    "namaTriage": "Crt >2detik",
+    "jenisPemeriksaan": "Sirkulasi"
+}, {
+    "id": 19,
+
+    "kdTriage": "9",
+    "namaTriage": "Nadi kuat",
+    "jenisPemeriksaan": "Sirkulasi"
+}, {
+    "id": 20,
+
+    "kdTriage": "9",
+    "namaTriage": "Tds >160",
+    "jenisPemeriksaan": "Sirkulasi"
+}, {
+    "id": 21,
+
+    "kdTriage": "9",
+    "namaTriage": "Tdd >100",
+    "jenisPemeriksaan": "Sirkulasi"
+}, {
+    "id": 22,
+
+    "kdTriage": "9",
+    "namaTriage": "Frek nadi normal",
+    "jenisPemeriksaan": "Sirkulasi"
+}, {
+    "id": 23,
+
+    "kdTriage": "9",
+    "namaTriage": "Tds 100-120",
+    "jenisPemeriksaan": "Sirkulasi"
+}, {
+    "id": 24,
+
+    "kdTriage": "9",
+    "namaTriage": "Tdd 70-90",
+    "jenisPemeriksaan": "Sirkulasi"
+}, {
+    "id": 25,
+
+    "kdTriage": "9",
+    "namaTriage": "Gcs <9",
+    "jenisPemeriksaan": "Kesadaran"
+}, {
+    "id": 26,
+
+    "kdTriage": "9",
+    "namaTriage": "Kejang",
+    "jenisPemeriksaan": "Kesadaran"
+}, {
+    "id": 27,
+
+    "kdTriage": "9",
+    "namaTriage": "Tak ada respons",
+    "jenisPemeriksaan": "Kesadaran"
+}, {
+    "id": 28,
+
+    "kdTriage": "9",
+    "namaTriage": "Gcs 9-12",
+    "jenisPemeriksaan": "Kesadaran"
+}, {
+    "id": 29,
+
+    "kdTriage": "9",
+    "namaTriage": "Gelisah",
+    "jenisPemeriksaan": "Kesadaran"
+}, {
+    "id": 30,
+
+    "kdTriage": "9",
+    "namaTriage": "Hemiparesis",
+    "jenisPemeriksaan": "Kesadaran"
+}, {
+    "id": 31,
+
+    "kdTriage": "9",
+    "namaTriage": "Nyeri dada",
+    "jenisPemeriksaan": "Kesadaran"
+}, {
+    "id": 32,
+
+    "kdTriage": "9",
+    "namaTriage": "Gcs >12",
+    "jenisPemeriksaan": "Kesadaran"
+}, {
+    "id": 33,
+
+    "kdTriage": "9",
+    "namaTriage": "Apatis",
+    "jenisPemeriksaan": "Kesadaran"
+}, {
+    "id": 34,
+
+    "kdTriage": "9",
+    "namaTriage": "Somnolen",
+    "jenisPemeriksaan": "Kesadaran"
+}, {
+    "id": 35,
+
+    "kdTriage": "9",
+    "namaTriage": "Gcs 15",
+    "jenisPemeriksaan": "Kesadaran"
+}]

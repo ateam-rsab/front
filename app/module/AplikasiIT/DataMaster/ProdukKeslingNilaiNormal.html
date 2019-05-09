@@ -1,0 +1,221 @@
+<div ng-controller="ProdukKeslingNilaiNormalCtrl">
+<div ng-show="dataVOloaded">
+<c-panel item="item" header="'Produk Kesling Nilai Normal'" disabled>
+
+<!-- rangeMin -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="rangeMin"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.rangeMin" />
+</div>
+</div>
+
+<!-- rangeMax -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="rangeMax"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.rangeMax" />
+</div>
+</div>
+
+<!-- refrange -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="refrange"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.refrange" />
+</div>
+</div>
+
+<!-- nilaiNormalTeks -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="nilaiNormalTeks"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nilaiNormalTeks" />
+</div>
+</div>
+
+<!-- kdKeslingNilaiNormal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kdKeslingNilaiNormal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kdKeslingNilaiNormal" />
+</div>
+</div>
+
+<!-- produk -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="produk"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.produk" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listproduk" />
+</div>
+</div>
+
+<!-- produkId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="produkId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.produkId" />
+</div>
+</div>
+
+<!-- QkeslingNilaiNormal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="QkeslingNilaiNormal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.qkeslingNilaiNormal" />
+</div>
+</div>
+
+<!-- nilaiTeks -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="nilaiTeks"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nilaiTeks" />
+</div>
+</div>
+
+<!-- jenisPemeriksaan -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="jenisPemeriksaan"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPemeriksaan" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listjenisPemeriksaan" />
+</div>
+</div>
+
+<!-- jenisPemeriksaanId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="jenisPemeriksaanId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jenisPemeriksaanId" />
+</div>
+</div>
+
+<!-- satuanStandar -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="satuanStandar"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input style="width: 100%;" kendo-combo-box k-ng-model="item.satuanStandar" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listsatuanStandar" />
+</div>
+</div>
+
+<!-- satuanStandarId -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="satuanStandarId"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.satuanStandarId" />
+</div>
+</div>
+
+<!-- reportDisplay -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="reportDisplay"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.reportDisplay" />
+</div>
+</div>
+
+<!-- kodeExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="kodeExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kodeExternal" />
+</div>
+</div>
+
+<!-- namaExternal -->
+<div class="grid_6">
+<div class="grid_12">
+<label c-label item="item" c-label-text="namaExternal"></label>
+</div>
+<div class="clear"></div>
+
+<div class="grid_12">
+<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
+</div>
+</div>
+
+<!-- ProdukKeslingNilaiNormal -->
+<div class="grid_12">
+<div class="grid_12 headerBox">
+<p>ProdukKeslingNilaiNormal</p>
+</div>
+<div class="clear"></div>
+
+<!-- grid table -->
+<div class="grid_12 borderBox">
+<div kendo-grid k-data-source="dataProdukKeslingNilaiNormal" k-selectable="'row'" k-columns="columnProdukKeslingNilaiNormal">
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+
+
+</c-panel>
+
+<div class="grid_12" style="margin-top:30px">
+<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
+</div>
+</div>
+</div>

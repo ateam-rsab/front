@@ -1,0 +1,56 @@
+<div ng-controller="PenolakanTindakanKedokteranCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Penolakan Tindakan Kedokteran'">
+		<div class="grid_12">
+			<div class="grid_1">
+				<label c-label item="item" c-label-text="nama"></label>
+			</div>
+			<div class="grid_3">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.Pasien" k-data-text-field="'namaPasien'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listNamaPasien" />	
+			</div>
+			<div class="grid_1">
+				<label c-label item="item" c-label-text="umur"></label>
+			</div>
+			<div class="grid_1">
+				<input c-text-box type="input" filter="'varchar'" k-data-text-field="'umur'" class="k-textbox" ng-model="item.umur" />
+			</div>
+			<div class="grid_1">
+				<label c-label item="item" c-label-text="Tahun"></label>
+			</div>
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="jenisKelamin"></label>
+			</div>
+			<div class="grid_3" style="margin-left: -60px">
+				<div class="grid_6" ng-repeat="stat in listJenisKelamin">
+					<input type="radio" name="{{'Jenis Kelamin' + stat.jenisKelamin}}" id="{{'Jenis Kelamin' + stat.jenisKelamin}}" class="k-radio" ng-model="item.JenisKelamin" value="{{stat.jenisKelamin}}">
+					<label class="k-radio-label" for="{{'Jenis Kelamin' + stat.jenisKelamin}}">{{stat.jenisKelamin}}</label>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_1">
+				<label c-label item="item" c-label-text="alamat"></label>
+			</div>
+			<div class="grid_3">
+				<textarea style="height: 90px" id="text_area_alamat" c-text-box type="input" class="k-textbox" ng-model="item.Alamat" />
+			</div>
+			<div class="grid_1">
+				<label c-label item="item" c-label-text="tindakan"></label>
+			</div>
+			<div class="grid_2">
+				<input style="width: 100%" kendo-combo-box k-ng-model="item.TindakanMedis" k-data-text-field="'tindakanMedis'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listTindakanMedis" />
+			</div>
+			<div class="grid_2">
+				<label c-label item="item" c-label-text="tanggalJam"></label>
+			</div>
+			<div class="grid_3" style="margin-left: -60px">
+				<input kendo-date-time-picker k-max="now" k-ng-model="item.tanggalJam" placeholer="dd-mm-yyyy hh:mm:ss" k-format="'dd-MM-yyyy HH:mm:ss'" />
+			</div>
+		</div>
+		</c-panel>
+		<div class="grid_12" style="margin-top: 10px">
+			<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+	</div>
+</div>

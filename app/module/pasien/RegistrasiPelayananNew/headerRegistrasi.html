@@ -1,0 +1,69 @@
+<div class="grid_12">
+    <c-panel item="item" header="'Rekam Medis Pasien'" disabled>
+        <core-busy busy="isLoading"></core-busy>
+        <div ui-view></div>
+
+        <div class="panel-place" style="top: -1px;"><i style="cursor:pointer;" ng-click='find()' class="fa  fa-search-plus fa-2x" aria-hidden="true"></i></div>
+        <div class='grid_12'>
+            <div class="grid_12 animated" ng-show="item.pasien.namapasien!==undefined">
+                <div class="grid_12">
+                    <div class="grid_3" ng-show="hideNoregistrasi">
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="NoRegistrasi"></label>
+                                <input c-text-box type="input" class="k-textbox" ng-disabled="'false'" ng-model="model.noRegistrasi" />
+                            </div>
+                        </div>
+                        <div class="grid_3">
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="NoRekamMedis"></label>
+                                <input c-text-box type="input" class="k-textbox" ng-disabled="'false'" ng-model="item.pasien.nocm" />
+                            </div>
+                        </div>
+                        <div class="grid_3">
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="namaPasien"></label>
+                                <input c-text-box type="input" class="k-textbox" ng-disabled="'false'" ng-model="item.pasien.namapasien" />
+                            </div>
+                        </div>
+                        <div class="grid_3">
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="jenisKelamin"></label>
+                                <input c-text-box type="input" class="k-textbox" ng-disabled="'false'" ng-model="item.pasien.jeniskelamin" />
+
+                            </div>
+                        </div>
+                        <div class="grid_3">
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="tanggalLahir"></label>
+                                <input style="width: 100%" k-ng-model="item.pasien.tgllahir" kendo-date-picker placeholder="dd-MM-yyyy" k-format="'dd-MM-yyyy'" ng-disabled="'true'"/>
+
+                            </div>
+                        </div>
+                        <div class="grid_6">
+                    
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="alamat"></label>
+                                <input c-text-box type="input" class="k-textbox" ng-disabled="'false'" ng-model="item.pasien.alamatlengkap" />
+                            </div>
+                        </div>
+                        <div class="grid_3">
+                    
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="pendidikan"></label>
+                                <input c-text-box type="input" class="k-textbox" ng-disabled="'false'" ng-model="item.pasien.pendidikan" />
+
+                            </div>
+                        </div>
+                        <div class="grid_3">
+                          
+                            <div class="grid_12">
+                                <label c-label item="item" c-label-text="pekerjaan"></label>
+                                <input c-text-box type="input" class="k-textbox" ng-disabled="'false'" ng-model="item.pasien.pekerjaan" />
+
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </c-panel>
+</div>

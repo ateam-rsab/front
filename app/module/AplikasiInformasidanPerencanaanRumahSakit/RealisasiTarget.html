@@ -1,0 +1,88 @@
+<div ng-controller="RealisasiTargetCtrl">
+    <div class="panel panel-default container_12">
+        <div class="panel-heading" c-translate>Realisasi Target</div>
+        <div class="panel-body">
+        	<div class="grid_12">
+        		<div class="grid_1"></div>
+        		<div class="grid_2">
+                 	<div class="grid_12" style="margin-top: 10px">
+                    	<label c-label item="item" c-label-text="sasaranStrategis"></label>
+                	</div>
+                    <div class="grid_12" style="margin-top: 15px">
+                        <label c-label item="item" c-label-text="indikatorKinerjaUtama"></label>
+                    </div>
+                    <div class="grid_12" style="margin-top: 15px">
+                        <label c-label item="item" c-label-text="tahun"></label>
+                    </div>
+                    <div class="grid_12" style="margin-top: 25px">
+                        <label c-label item="item" c-label-text="bobot"></label>
+                    </div>
+                     <div class="grid_12" style="margin-top: 20px">
+                        <label c-label item="item" c-label-text="satuan"></label>
+                    </div>
+                    <div class="grid_12" style="margin-top: 20px">
+                        <label c-label item="item" c-label-text="targetIku"></label>
+                    </div>
+                    <div class="grid_12" style="margin-top: 20px">
+                        <label c-label item="item" c-label-text="periodePelaporan"></label>
+                    </div>
+                    <div class="grid_12" style="margin-top: 20px">
+                        <label c-label item="item" c-label-text="Realisasi"></label>
+                    </div>
+               	</div>
+            	<div class="grid_8">
+                	<div class="grid_12">
+                		<div class="grid_6">
+                    		<input style="width: 100%;" kendo-combo-box k-ng-model="item.sasaranStrategis" k-data-text-field="'name'" k-data-value-field="'id'" 
+                            k-filter="'contains'" k-auto-bind="false" k-data-source="ListSasaranStrategis" />
+                    	</div>
+                	</div>
+                	<div class="grid_12" style="margin-top: 5px">
+                		<div class="grid_6">
+                    		<input style="width: 100%;" kendo-combo-box k-ng-model="item.indikatorKinerjaUtama" k-data-text-field="'name'" k-data-value-field="'id'" 
+                            k-filter="'contains'" k-auto-bind="false" k-data-source="ListIndikatorKinerjaUtama" />
+                    	</div>
+                	</div>
+                    <div class="grid_12" style="margin-top: 5px">
+                        <div class="grid_3">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.tahun" k-data-text-field="'name'" k-data-value-field="'id'" 
+                            k-filter="'contains'" k-auto-bind="false" k-data-source="ListTahun" ng-disabled="enableTahun" />
+                        </div>
+                    </div> 
+                    <div class="grid_12" style="margin-top: 5px">
+                        <div class="grid_3">
+                            <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.bobot" ng-disabled="enableBobot" />
+                        </div>
+                    </div>
+                    <div class="grid_12" style="margin-top: 5px">
+                        <div class="grid_3">
+                            <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.satuan" ng-disabled="enableSatuan"/>
+                        </div>
+                    </div>
+                    <div class="grid_12" style="margin-top: 5px">
+                        <div class="grid_3">
+                            <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.targetIku" ng-disabled="enableTargetIku" />
+                        </div>
+                    </div>
+                    <div class="grid_12" style="margin-top: 5px">
+                        <div class="grid_4">
+                            <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.periodePelaporan" ng-disabled="enablePeriodePelaporan" />
+                        </div>
+                    </div>
+                    <div class="grid_12" style="margin-top: 5px">
+                        <div class="grid_3">
+                            <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.Realisasi"  />
+                        </div>
+                    </div>
+            	</div>
+            </div>
+            <div class="grid_12" style="margin: 30px 0 30px 0;">
+                <kendo-grid  k-data-source="RealisasiTarget" k-selectable="'row'" k-columns="columnRealisasiTarget">
+                </kendo-grid>
+            </div>
+            <div class="grid_12" style="margin: 30px 0 30px 0;">
+            	<div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+        	</div>
+        </div>
+    </div>
+</div>

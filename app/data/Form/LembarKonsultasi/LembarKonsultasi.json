@@ -1,0 +1,35 @@
+{
+	"model":{
+	    "tanggalKonsul" : "",
+	    "namaDokter" : "",
+	    "hasilPeriksa" : "",
+	    "saran" : ""
+	    
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "tanggalKonsul",
+			"messagesRequired" : "",
+			"caption" : "Tanggal"
+		},
+		{
+			"isNull" : "true",
+			"name" : "namaDokter",
+			"messagesRequired" : "",
+			"caption" : "Nama Dokter"
+		},
+		{
+			"isNull" : "true",
+			"name" : "hasilPeriksa",
+			"messagesRequired" : "",
+			"caption" : "Pada pemeriksaan didapatkan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "saran",
+			"messagesRequired" : "",
+			"caption" : "Saran"
+		}
+  ]
+}

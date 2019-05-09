@@ -1,0 +1,147 @@
+<div class="grid_12" ng-controller="SkriningGiziCtrl">
+    <div ng-show="dataVOloaded">
+        <!-- panel Skrining Gizi -->
+
+        <c-panel item="item" header="'SkriningGizi'" disabled ng-show="isAnak">
+            <!-- tinggi badan - berat badan - lingkar kepala -->
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="TanggalInput"></label>
+                </div>
+                <div class="grid_12">
+                    <input style="width: 100%" k-value="now" kendo-date-picker k-max="now" k-ng-model="item.tglInputData" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" disabled/>
+                    <!--<input style="width: 100%" k-value="now" kendo-date-picker k-max="now"  k-ng-model="item.tglInputData" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />-->
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="TinggiBadan"></label>
+                </div>
+                <div class="grid_12 parentKeteranganFieldTambahan">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.tinggiBadan" />
+                    <label class="keteranganFieldTambahan">cm</label>
+
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="BeratBadan"></label>
+                </div>
+                <div class="grid_12 parentKeteranganFieldTambahan">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.beratBadan" />
+                    <label class="keteranganFieldTambahan">kg</label>
+
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="LingkarKepala"></label>
+                </div>
+                <div class="grid_12 parentKeteranganFieldTambahan">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.lingkarKepala" />
+                    <label class="keteranganFieldTambahan">cm</label>
+
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+
+            <div clas="grid_12" ng-show="isRawatInap">
+                <div style="background-color: #10C4B2; height: 25px; margin-top: 5px; text-align: left; border: 1px solid; border-color: #10C4B2;" class="grid_12">
+                    <span style="font-size: 18px; color: white; padding: 5px;">Skrining Gizi Anak 1 Bulan - 18 Tahun (Modifikasi Strong - Kids)</span>
+                </div>
+                <div class="clear"></div>
+                <div class="grid_12" ng-repeat="skriningGizi in listPertanyaanSkriningGizi" style="border: 1px solid; border-color: #10C4B2">
+                    <div class="grid_8" style="padding: 10px;">
+                        <p style="margin: 0px; text-align: justify;">{{skriningGizi.id}} {{skriningGizi.name}}</p>
+                    </div>
+
+                    <div class="grid_2" ng-repeat="stat in listStatusYaTidak">
+                        <input type="radio" ng-model="skriningGizi.stat" id="{{skriningGizi.id + stat.name}}" class="k-radio" ng-value="stat" ng-click="cekTotalSkor(skriningGizi, stat)">
+                        <label class="k-radio-label" for="{{skriningGizi.id + stat.name}}" ng-if="stat.name != 'Ya'">{{stat.name}}(0)</label>
+                        <label class="k-radio-label" for="{{skriningGizi.id + stat.name}}" ng-if="stat.name == 'Ya'">{{stat.name}}({{skriningGizi.nilai}})</label>
+                    </div>
+
+
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+                <div class="grid_12" style="border: 1px solid; border-color: #10C4B2">
+                    <div class="grid_8" style="padding: 10px;">
+                        <p style="margin: 0px; text-align: justify;">Total Score</p>
+                    </div>
+
+                    <div class="grid_2" style="text-align: center; padding-top: 10px;">
+                        <p style="margin: 0px; text-align: center;">{{item.TotalSkor}}</p>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div style="background-color: #10C4B2; height: 25px; margin-top: 15px; text-align: left; border: 1px solid; border-color: #10C4B2;" class="grid_12">
+                <span style="font-size: 18px; color: white; padding: 5px;">Daftar Penyakit atau keadaan yang berisiko mengakibatkan malnutrisi</span>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_12" style="border: 1px solid; border-color: #10C4B2" style="padding:5px">
+                <div class="grid_3" ng-repeat="stat in listDaftarPenyakit">
+                    <label style="margin-left:10px; text-align:left">{{stat.name}}</label>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+            <div class="grid_12">&nbsp;</div>
+        </c-panel>
+
+        <c-panel item="item" header="'SkriningGizi'" disabled ng-show="isNeonatal">
+            <!-- tinggi badan - berat badan - lingkar kepala -->
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="TanggalInput"></label>
+                </div>
+                <div class="grid_12">
+                    <input style="width: 100%" k-value="now" kendo-date-picker k-max="now" k-ng-model="item.tglInputData" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" disabled/>
+                    <!--<input style="width: 100%" k-value="now" kendo-date-picker k-max="now"  k-ng-model="item.tglInputData" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />-->
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="TinggiBadan"></label>
+                </div>
+                <div class="grid_12 parentKeteranganFieldTambahan">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.tinggiBadan" />
+                    <label class="keteranganFieldTambahan">cm</label>
+
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="BeratBadan"></label>
+                </div>
+                <div class="grid_12 parentKeteranganFieldTambahan">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.beratBadan" />
+                    <label class="keteranganFieldTambahan">kg</label>
+
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="LingkarKepala"></label>
+                </div>
+                <div class="grid_12 parentKeteranganFieldTambahan">
+                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.lingkarKepala" />
+                    <label class="keteranganFieldTambahan">cm</label>
+
+                </div>
+                <div class="clear"></div>
+            </div>
+        </c-panel>
+        
+        <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+    </div>

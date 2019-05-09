@@ -1,0 +1,245 @@
+<style>
+	.style-center{
+		display: inline-block;
+		text-align: center;
+		width: 100%;
+	}
+
+	.style-right{
+		display: inline-block;
+		text-align: right;
+		width: 100%;
+	}
+
+	.style-left{
+		display: inline-block;
+		text-align: left;
+		width: 100%;
+	}
+</style>
+
+
+<div ng-controller="PenerimaanUmumCtrl">
+	<div ng-show="dataVOloaded">
+
+		<div class="panel-body">
+			<div class="grid_12 headerBox">
+				<h1 style="color: white;"><b>Penerimaan Umum</b></h1>
+			</div>
+			<!-- Tanggal Pembayaran -->
+			<div class="grid_2">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Tgl Pembayaran"></label>
+				</div>
+				<div class="grid_12">
+					<input style="width: 100%" k-ng-model="item.tglPembayaran"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+				</div>
+
+			</div>
+			<div class="grid_4">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Keterangan"></label>
+				</div>
+				<div class="grid_12" >
+					<input placeholder="Keterangan" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="items.keterangan" />
+				</div>
+				
+			</div>
+		</div>
+		<div ng-cloak>
+
+			<md-content>
+				<md-tabs md-dynamic-height md-border-bottom>
+					<md-tab label="Pasien">
+						<md-content class="md-padding">
+							<div class="grid_12">
+								<div class="grid_12 borderBox containerBorderBox">
+									<!-- <div class="grid_2">
+										<div class="grid_12">
+											<b>NoCM</b>
+										</div>
+										<div class="grid_12">
+											<input placeholder="no Registrasi" id="noReg" c-text-box type="input"   class="k-textbox" ng-model="items.noReg" />
+										</div>
+									</div>
+								-->
+								<!-- Nama Pasien -->
+								<div class="grid_4">
+									<div class="grid_12">
+										<label c-label item="item" c-label-text="Nama Pasien / Pelanggan"></label>
+									</div>
+									<div class="clear"></div>
+									<div class="grid_12" >
+										<input placeholder="Nama Pasien" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="items.namaPasien" />
+									</div>
+								</div>
+
+								<!-- Tanggal Lahir -->
+								<div class="grid_2">
+									<div class="grid_12">
+										<label c-label item="item" c-label-text="Tgl Lahir"></label>
+									</div>
+									<div class="clear"></div>
+
+									<div class="grid_12">
+										<input style="width: 100%" k-ng-model="items.tglLahir"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+									</div>
+								</div>
+
+								<!--Jenis Kelamin-->
+								<div class="grid_1">
+									<div class="grid_12">
+										<label c-label item="item" c-label-text="Jenis Kelamin"></label>
+									</div>
+									<div class="clear"></div>
+
+									<div class="grid_12">
+										<input style="width: 100%;" kendo-combo-box k-ng-model="items.jenisKelamin" k-data-text-field="'jenisKelamin'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisKelamin" />
+									</div>
+								</div>
+								<div class="grid_2">
+									<div class="grid_12">
+										<label c-label item="item" c-label-text="No Telp"></label>
+									</div>
+									<div class="clear"></div>
+									<div class="grid_12" >
+										<input placeholder="No telp" c-text-box type="input"   class="k-textbox" ng-model="items.noTelp" />
+									</div>
+								</div>
+								<div class="grid_6">
+									<div class="grid_12">
+										<label c-label item="item" c-label-text="Alamat Lengkap"></label>
+									</div>
+									<div class="grid_12">
+										<input placeholder="Alamat" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="items.alamat" />
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</md-content>
+				</md-tab>
+				<md-tab label="Rekanan">
+					<md-content class="md-padding">
+						<div class="grid_12">
+							<div class="grid_12 borderBox containerBorderBox">
+								<!--Jenis Rekanan-->
+								<div class="grid_2">
+									<div class="grid_12">
+										<label c-label item="item" c-label-text="Jenis Rekanan"></label>
+									</div>
+									<div class="clear"></div>
+
+									<div class="grid_12">
+										<input style="width: 100%;" kendo-combo-box k-ng-model="items.jenisRekanan" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisRekanan"  />
+									</div>
+								</div>
+								<!--Nama Rekanan-->
+								<div class="grid_3">
+									<div class="grid_12">
+										<label c-label item="item" c-label-text="Nama Rekanan"></label>
+									</div>
+									<div class="clear"></div>
+
+									<div class="grid_12">
+										<input style="width: 100%;" kendo-combo-box k-ng-model="items.namaRekanan" k-data-text-field="'namaRekanan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRekanan" />
+									</div>
+								</div>
+								<div class="grid_5">
+									<div class="grid_12">
+										<label c-label item="item" c-label-text="Alamat Lengkap"></label>
+									</div>
+									<div class="grid_12">
+										<input placeholder="Alamat" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="items.alamat" />
+									</div>
+								</div>
+								<div class="grid_2">
+									<div class="grid_12">
+										<label c-label item="item" c-label-text="No Telp"></label>
+									</div>
+									<div class="grid_12">
+										<input placeholder="Alamat" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="items.noTelp" />
+									</div>
+								</div>
+								<div class="grid_3">
+									<div class="grid_12">
+										<label c-label item="item" c-label-text="Nama Sales"></label>
+									</div>
+									<div class="grid_12">
+										<input placeholder="Alamat" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="items.namaSales" />
+									</div>
+								</div>
+								<div class="grid_2">
+									<div class="grid_12">
+										<label c-label item="item" c-label-text="Telp Sales"></label>
+									</div>
+									<div class="grid_12">
+										<input placeholder="Alamat" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="items.telpSales" />
+									</div>
+								</div>
+								<div class="grid_2">
+									<div class="grid_12">
+										<label c-label item="item" c-label-text="Email"></label>
+									</div>
+									<div class="grid_12">
+										<input placeholder="Alamat" c-text-box type="input" filter="'string'" class="k-textbox" ng-model="items.email" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</md-content>
+				</md-tab>
+			</md-tabs>
+		</md-content>
+	</div>
+
+		<div class="grid_12">
+			<div class="grid_12 borderBox">
+				<div id="kGrid" kendo-grid 
+				k-data-source="dataSource" 
+				k-selectable="'row'" 
+				k-columns="columnGrid"
+
+				k-ng-model="dataSelected">
+			</div>
+		</div>
+
+		
+		<div class="grid_8">
+		</div>
+		<div class="grid_4">
+			<div class="grid_12">
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="Total"></label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" class="k-textbox" ng-model="items.total" />
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="Total Diskon"></label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" class="k-textbox" ng-model="items.totalDiskon" />
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="Total Penerimaan"></label>
+				</div>
+				<div class="grid_8">
+					<input c-text-box type="input" class="k-textbox" ng-model="items.totalPenerimaan" />
+				</div>
+			</div>
+		</div>
+		<div class="grid_12" style="margin-top:30px">
+			<!-- <div class="grid_12 place_button" style="float:left; margin:15px -20px 15px -20px"> -->
+				<button class="btnTemplate1" ng-click="Terima()" style="float:right;width:150px">Kas Masuk</button>
+				<button class="btnTemplate1" ng-show="showBtnBack" ng-click="Back()" style="float:right;width:150px">Kembali</button>
+			<!-- </div> -->
+		</div>
+	</div>
+
+</div>
+</div>

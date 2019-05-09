@@ -1,0 +1,2071 @@
+<div class="panel panel-default container_12">
+    <div class="panel-heading" align="center" c-translate>THT</div>
+    <div class="panel-body">
+        <div class="grid_12">
+            <div ng-cloak>
+                <md-content>
+                    <md-tabs md-dynamic-height md-border-bottom>
+                        <md-tab label="Telinga/Keseimbangan">
+                            <md-content class="md-padding">
+                                <div class="grid_12">
+                                    <div class="grid_4">
+                                        <!-- Gangguan Pendengaran-->
+                                        <div class="grid_12" style="padding-top:10px">
+                                            <label c-label item="item"> 1. Gangguan Pendengaran</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'gangguanPendengaran' + stat.name}}" id="{{'gangguanPendengaran' + stat.name}}" class="k-radio" ng-model="item.gangguanPendengaran" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'gangguanPendengaran' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isGangguanPendengaran">
+                                            <div class="grid_12">
+                                                <label c-label item="item" c-label-text="Keterangan"></label>
+                                            </div>
+                                            <div class="grid_12" style="padding-top:5px">
+                                                <textarea ng-model="item.keteranganGangguanPendengaran" style="width: 99%; height: 100px;"></textarea>
+                                            </div>
+                                        </div>
+                                        <!-- Tinitus-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 2. Tinitus</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'tinitus' + stat.name}}" id="{{'tinitus' + stat.name}}" class="k-radio" ng-model="item.tinitus" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'tinitus' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isTinitus">
+                                            <div class="grid_12">
+                                                <label c-label item="item" c-label-text="Keterangan"></label>
+                                            </div>
+                                            <div class="grid_12" style="padding-top:5px">
+                                                <textarea ng-model="item.keteranganTinitus" style="width: 99%; height: 100px;"></textarea>
+                                            </div>
+                                        </div>
+                                        <!-- Telinga Tersumbat-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 3. Telinga tersumbat</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'telingaTersumbat' + stat.name}}" id="{{'telingaTersumbat' + stat.name}}" class="k-radio" ng-model="item.telingaTersumbat" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'telingaTersumbat' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isTelingaTersumbat">
+                                            <div class="grid_12">
+                                                <label c-label item="item" c-label-text="Keterangan"></label>
+                                            </div>
+                                            <div class="grid_12">
+                                                <textarea ng-model="item.keteranganTelingaTersumbat" style="width: 99%; height: 100px;"></textarea>
+                                            </div>
+                                        </div>
+                                        <!-- Telinga Gatal-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 4. Telinga gatal</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'telingaGatal' + stat.name}}" id="{{'telingaGatal' + stat.name}}" class="k-radio" ng-model="item.telingaGatal" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'telingaGatal' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isTelingaGatal">
+                                            <div class="grid_12">
+                                                <label c-label item="item" c-label-text="Keterangan"></label>
+                                            </div>
+                                            <div class="grid_12">
+                                                <textarea ng-model="item.keteranganTelingaGatal" style="width: 99%; height: 100px;"></textarea>
+                                            </div>
+                                        </div>
+                                        <!-- Nyeri Telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 5. Nyeri telinga</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'nyeriTelinga' + stat.name}}" id="{{'nyeriTelinga' + stat.name}}" class="k-radio" ng-model="item.nyeriTelinga" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'nyeriTelinga' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isNyeriTelinga">
+                                            <div class="grid_12">
+                                                <label c-label item="item" c-label-text="Keterangan"></label>
+                                            </div>
+                                            <div class="grid_12">
+                                                <textarea ng-model="item.keteranganNyeriTelinga" style="width: 99%; height: 100px;"></textarea>
+                                            </div>
+                                        </div>
+                                        <!-- Telinga mengeluarkan lendir-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 6. Telinga mengeluarkan lendir</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'telingaMengeluarkanLendir' + stat.name}}" id="{{'telingaMengeluarkanLendir' + stat.name}}" class="k-radio" ng-model="item.telingaMengeluarkanLendir" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'telingaMengeluarkanLendir' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isTelingaMengeluarkanLendir">
+                                            <div class="grid_12">
+                                                <label c-label item="item" c-label-text="Keterangan"></label>
+                                            </div>
+                                            <div class="grid_12">
+                                                <textarea ng-model="item.keteranganTelingaMengeluarkanLendir" style="width: 99%; height: 100px;"></textarea>
+                                            </div>
+                                        </div>
+                                        <!-- Telinga berdarah-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 7. Telinga berdarah</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'telingaBerdarah' + stat.name}}" id="{{'telingaBerdarah' + stat.name}}" class="k-radio" ng-model="item.telingaBerdarah" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'telingaBerdarah' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isTelingaBerdarah">
+                                            <div class="grid_12">
+                                                <label c-label item="item" c-label-text="Keterangan"></label>
+                                            </div>
+                                            <div class="grid_12">
+                                                <textarea ng-model="item.keteranganTelingaBerdarah" style="width: 99%; height: 100px;"></textarea>
+                                            </div>
+                                        </div>
+                                        <!-- Benda asing di dalam telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 8. Benda asing di dalam telinga</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'bendaAsing' + stat.name}}" id="{{'bendaAsing' + stat.name}}" class="k-radio" ng-model="item.bendaAsing" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'bendaAsing' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBendaAsingdidalamTelinga">
+                                            <div class="grid_12">
+                                                <label c-label item="item" c-label-text="Keterangan"></label>
+                                            </div>
+                                            <div class="grid_12">
+                                                <textarea ng-model="item.keteranganBendaAsing" style="width: 99%; height: 100px;"></textarea>
+                                            </div>
+                                        </div>
+                                        <!-- Bisul di daun telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 9. Bisul di daun telinga</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'bisulDiDaunTelinga' + stat.name}}" id="{{'bisulDiDaunTelinga' + stat.name}}" class="k-radio" ng-model="item.bisulDiDaunTelinga" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'bisulDiDaunTelinga' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBisulDiDaunTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBisuldidaunTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Bisul di depan telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 10. Bisul di depan telinga</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'bisulDiDepanTelinga' + stat.name}}" id="{{'bisulDiDepanTelinga' + stat.name}}" class="k-radio" ng-model="item.bisulDiDepanTelinga" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'bisulDiDepanTelinga' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBisuldiDepanTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBisuldiDepanTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="grid_4">
+                                        <!-- Bisul di belakang telinga-->
+                                        <div class="grid_12" style="padding-top:10px">
+                                            <label c-label item="item"> 11. Bisul di belakang telinga</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'bisulDiBelakangTelinga' + stat.name}}" id="{{'bisulDiBelakangTelinga' + stat.name}}" class="k-radio" ng-model="item.bisulDiBelakangTelinga" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'bisulDiBelakangTelinga' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBisuldiBelakangTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBisuldiBelakangTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di daun telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 12. Benjolan di daun telinga</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'benjolanDiDaunTelinga' + stat.name}}" id="{{'benjolanDiDaunTelinga' + stat.name}}" class="k-radio" ng-model="item.benjolanDiDaunTelinga" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'benjolanDiDaunTelinga' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBenjolandiDaunTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiDaunTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 13. Benjolan di sekitar telinga</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'benjolanDiSekitarTelinga' + stat.name}}" id="{{'benjolanDiSekitarTelinga' + stat.name}}" class="k-radio" ng-model="item.benjolanDiSekitarTelinga" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'benjolanDiSekitarTelinga' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBenjolandiSekitarTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 14. Bintul di daun telinga</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'bintulDiDaunTelinga' + stat.name}}" id="{{'bintulDiDaunTelinga' + stat.name}}" class="k-radio" ng-model="item.bintulDiDaunTelinga" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'bintulDiDaunTelinga' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBintulDiDaunTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 15. Bintul di sekitar telinga</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'bintulDiSekitarTelinga' + stat.name}}" id="{{'bintulDiSekitarTelinga' + stat.name}}" class="k-radio" ng-model="item.bintulDiSekitarTelinga" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'bintulDiSekitarTelinga' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBintulDiSekitarTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 16. Kulit daun telinga tidak normal</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'kulitDaunTelinga' + stat.name}}" id="{{'kulitDaunTelinga' + stat.name}}" class="k-radio" ng-model="item.kulitDaunTelinga" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'kulitDaunTelinga' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isKulitDaunTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div><!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 17. Kulit di sekitar telinga tidak normal</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'kulitSekitarTelinga' + stat.name}}" id="{{'kulitSekitarTelinga' + stat.name}}" class="k-radio" ng-model="item.kulitSekitarTelinga" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'kulitSekitarTelinga' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isKulitSekitarTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 18. Lubang abnormal di depan telinga</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'lubangAbnormalDepan' + stat.name}}" id="{{'lubangAbnormalDepan' + stat.name}}" class="k-radio" ng-model="item.lubangAbnormalDepan" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'lubangAbnormalDepan' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isLubangAbnormalDepan">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 19. Bentuk daun telinga tidak normal</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'bentukDaunTelingaAbnormal' + stat.name}}" id="{{'bentukDaunTelingaAbnormal' + stat.name}}" class="k-radio" ng-model="item.bentukDaunTelingaAbnormal" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'bentukDaunTelingaAbnormal' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBentukDaunTelingaAbnormal">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 20. Lubang telinga tidak ada</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'lubangTelingaTidakAda' + stat.name}}" id="{{'lubangTelingaTidakAda' + stat.name}}" class="k-radio" ng-model="item.lubangTelingaTidakAda" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'lubangTelingaTidakAda' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isLubangTelingaTidakAda">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="grid_4">
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="padding-top:10px">
+                                            <label c-label item="item"> 21. Pusing berputar</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'pusingBerputar' + stat.name}}" id="{{'pusingBerputar' + stat.name}}" class="k-radio" ng-model="item.pusingBerputar" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'pusingBerputar' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isPusingBerputar">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 22. Gangguan keseimbangan</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'gangguanKeseimbangan' + stat.name}}" id="{{'gangguanKeseimbangan' + stat.name}}" class="k-radio" ng-model="item.gangguanKeseimbangan" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'gangguanKeseimbangan' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isGangguanKeseimbangan">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 23. Nyeri kepala</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'nyeriKepala' + stat.name}}" id="{{'nyeriKepala' + stat.name}}" class="k-radio" ng-model="item.nyeriKepala" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'nyeriKepala' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isNyeriKepala">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 24. Demam</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'demam' + stat.name}}" id="{{'demam' + stat.name}}" class="k-radio" ng-model="item.demam" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'demam' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isDemam">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 25. Muka mencong</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'mukaMencong' + stat.name}}" id="{{'mukaMencong' + stat.name}}" class="k-radio" ng-model="item.mukaMencong" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'mukaMencong' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isMukaMencong">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 26. Riwayat operasi telinga sebelumnya</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'riwayatOperasiTelinga' + stat.name}}" id="{{'riwayatOperasiTelinga' + stat.name}}" class="k-radio" ng-model="item.riwayatOperasiTelinga" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'riwayatOperasiTelinga' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isRiwayatOperasiTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 27. Trauma pada telinga</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'traumaTelinga' + stat.name}}" id="{{'traumaTelinga' + stat.name}}" class="k-radio" ng-model="item.traumaTelinga" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'traumaTelinga' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isTraumaTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </md-content>
+                    </md-tab>
+                    <md-tab label="Hidung">
+                        <md-content class="md-padding">
+                            <div class="grid_12">
+                                <div class="grid_4">
+                                    <!-- Ingus bening-->
+                                    <div class="grid_12" style="padding-top:10px">
+                                        <label c-label item="item"> 1. Ingus bening</label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                            <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                            <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!-- keterangan -->
+                                     <div ng-show="isIngusBening">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganIngusBening" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                    <!-- Ingus mukopurulen-->
+                                    <div class="grid_12" style="border: none">
+                                        <label c-label item="item"> 2. Ingus mukopurulen</label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                            <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                            <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!-- keterangan -->
+                                    <div ng-show="isIngusMukopurulen">
+                                         <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                            <div class="grid_6">
+                                                <textarea ng-model="item.keteranganIngusMukopurulen" style="width: 99%; height: 80px;"></textarea>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Ingus bercampur darah-->
+                                    <div class="grid_12" style="border: none">
+                                        <label c-label item="item"> 3. Ingus bercampur darah</label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                            <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                            <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!-- keterangan -->
+                                    <div ng-show="isIngusBercampurDarah">
+                                         <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                            <div class="grid_6">
+                                                <textarea ng-model="item.keteranganIngusBercampurDarah" style="width: 99%; height: 80px;"></textarea>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Mimisan-->
+                                    <div class="grid_12" style="border: none">
+                                        <label c-label item="item"> 4. Mimisan</label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                            <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                            <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!-- keterangan -->
+                                    <div ng-show="isMimisan">
+                                        <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                            <div class="grid_6">
+                                                <textarea ng-model="item.keteranganMimisan" style="width: 99%; height: 80px;"></textarea>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Ingus belakang hidung-->
+                                    <div class="grid_12" style="border: none">
+                                        <label c-label item="item"> 5. Ingus belakang hidung</label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                            <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                            <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!-- keterangan -->
+                                    <div ng-show="isIngusBelakangHidung">
+                                       <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                            <div class="grid_6">
+                                                <textarea ng-model="item.keteranganIngusBelakangHidung" style="width: 99%; height: 80px;"></textarea>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Ingus belakang hidung-->
+                                    <div class="grid_12" style="border: none">
+                                        <label c-label item="item"> 6. Hidung tersumbat</label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                            <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                            <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!-- keterangan -->
+                                    <div ng-show="isIngusBelakangHidung">
+                                       <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                            <div class="grid_6">
+                                                <textarea ng-model="item.keteranganIngusBelakangHidung" style="width: 99%; height: 80px;"></textarea>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Ingus belakang hidung-->
+                                    <div class="grid_12" style="border: none">
+                                        <label c-label item="item"> 7. Hidung gatal</label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                            <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                            <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!-- keterangan -->
+                                    <div ng-show="isIngusBelakangHidung">
+                                       <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                            <div class="grid_6">
+                                                <textarea ng-model="item.keteranganIngusBelakangHidung" style="width: 99%; height: 80px;"></textarea>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Ingus belakang hidung-->
+                                    <div class="grid_12" style="border: none">
+                                        <label c-label item="item"> 8. Bersin</label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                            <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                            <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!-- keterangan -->
+                                    <div ng-show="isIngusBelakangHidung">
+                                       <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                            <div class="grid_6">
+                                                <textarea ng-model="item.keteranganIngusBelakangHidung" style="width: 99%; height: 80px;"></textarea>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid_4">
+                                    <!-- Ingus belakang hidung-->
+                                    <div class="grid_12" style="border: none">
+                                        <label c-label item="item"> 9. Penciuman terganggu</label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                            <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                            <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!-- keterangan -->
+                                    <div ng-show="isIngusBelakangHidung">
+                                       <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                            <div class="grid_6">
+                                                <textarea ng-model="item.keteranganIngusBelakangHidung" style="width: 99%; height: 80px;"></textarea>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Ingus belakang hidung-->
+                                    <div class="grid_12" style="border: none">
+                                        <label c-label item="item"> 10. Nyeri sekitar wajah</label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                            <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                            <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!-- keterangan -->
+                                    <div ng-show="isIngusBelakangHidung">
+                                       <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                            <div class="grid_6">
+                                                <textarea ng-model="item.keteranganIngusBelakangHidung" style="width: 99%; height: 80px;"></textarea>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Ingus belakang hidung-->
+                                    <div class="grid_12" style="border: none">
+                                        <label c-label item="item"> 11. Nyeri kepala</label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                            <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                            <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!-- keterangan -->
+                                    <div ng-show="isIngusBelakangHidung">
+                                       <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                            <div class="grid_6">
+                                                <textarea ng-model="item.keteranganIngusBelakangHidung" style="width: 99%; height: 80px;"></textarea>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Ingus belakang hidung-->
+                                    <div class="grid_12" style="border: none">
+                                        <label c-label item="item"> 12. Nyeri daerah gusi</label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                            <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                            <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!-- keterangan -->
+                                    <div ng-show="isIngusBelakangHidung">
+                                       <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                            <div class="grid_6">
+                                                <textarea ng-model="item.keteranganIngusBelakangHidung" style="width: 99%; height: 80px;"></textarea>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Ingus belakang hidung-->
+                                    <div class="grid_12" style="border: none">
+                                        <label c-label item="item"> 13. Nyeri rahang atas</label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                            <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                            <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!-- keterangan -->
+                                    <div ng-show="isIngusBelakangHidung">
+                                       <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                            <div class="grid_6">
+                                                <textarea ng-model="item.keteranganIngusBelakangHidung" style="width: 99%; height: 80px;"></textarea>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Ingus belakang hidung-->
+                                    <div class="grid_12" style="border: none">
+                                        <label c-label item="item"> 14. Bau mulut</label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                            <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                            <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!-- keterangan -->
+                                    <div ng-show="isIngusBelakangHidung">
+                                       <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                            <div class="grid_6">
+                                                <textarea ng-model="item.keteranganIngusBelakangHidung" style="width: 99%; height: 80px;"></textarea>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Ingus belakang hidung-->
+                                    <div class="grid_12" style="border: none">
+                                        <label c-label item="item"> 15. Hidung berbau abnormal</label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                            <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                            <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!-- keterangan -->
+                                    <div ng-show="isIngusBelakangHidung">
+                                       <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                            <div class="grid_6">
+                                                <textarea ng-model="item.keteranganIngusBelakangHidung" style="width: 99%; height: 80px;"></textarea>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Ingus belakang hidung-->
+                                    <div class="grid_12" style="padding-top:10px">
+                                        <label c-label item="item"> 16. Benda asing di hidung</label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                            <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                            <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!-- keterangan -->
+                                    <div ng-show="isIngusBelakangHidung">
+                                       <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                            <div class="grid_6">
+                                                <textarea ng-model="item.keteranganIngusBelakangHidung" style="width: 99%; height: 80px;"></textarea>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid_4">
+                                    <!-- Ingus belakang hidung-->
+                                    <div class="grid_12" style="border: none">
+                                        <label c-label item="item"> 17. Benjolan di hidung</label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                            <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                            <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!-- keterangan -->
+                                    <div ng-show="isIngusBelakangHidung">
+                                       <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                            <div class="grid_6">
+                                                <textarea ng-model="item.keteranganIngusBelakangHidung" style="width: 99%; height: 80px;"></textarea>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Ingus belakang hidung-->
+                                    <div class="grid_12" style="border: none">
+                                        <label c-label item="item"> 18. Benjolan sekitar hidung</label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                            <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                            <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!-- keterangan -->
+                                    <div ng-show="isIngusBelakangHidung">
+                                       <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                            <div class="grid_6">
+                                                <textarea ng-model="item.keteranganIngusBelakangHidung" style="width: 99%; height: 80px;"></textarea>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Ingus belakang hidung-->
+                                    <div class="grid_12" style="border: none">
+                                        <label c-label item="item"> 19. Kulit hidung abnormal</label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                            <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                            <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!-- keterangan -->
+                                    <div ng-show="isIngusBelakangHidung">
+                                       <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                            <div class="grid_6">
+                                                <textarea ng-model="item.keteranganIngusBelakangHidung" style="width: 99%; height: 80px;"></textarea>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Ingus belakang hidung-->
+                                    <div class="grid_12" style="border: none">
+                                        <label c-label item="item"> 20. Kulit di sekitar hidung abnormal</label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                            <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                            <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!-- keterangan -->
+                                    <div ng-show="isIngusBelakangHidung">
+                                       <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                            <div class="grid_6">
+                                                <textarea ng-model="item.keteranganIngusBelakangHidung" style="width: 99%; height: 80px;"></textarea>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Ingus belakang hidung-->
+                                    <div class="grid_12" style="border: none">
+                                        <label c-label item="item"> 21. Bentuk hidung abnormal</label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                            <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                            <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!-- keterangan -->
+                                    <div ng-show="isIngusBelakangHidung">
+                                       <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                            <div class="grid_6">
+                                                <textarea ng-model="item.keteranganIngusBelakangHidung" style="width: 99%; height: 80px;"></textarea>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Ingus belakang hidung-->
+                                    <div class="grid_12" style="border: none">
+                                        <label c-label item="item"> 22. Riwayat operasi hidung sebelumnya</label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                            <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                            <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!-- keterangan -->
+                                    <div ng-show="isIngusBelakangHidung">
+                                       <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                            <div class="grid_6">
+                                                <textarea ng-model="item.keteranganIngusBelakangHidung" style="width: 99%; height: 80px;"></textarea>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Ingus belakang hidung-->
+                                    <div class="grid_12" style="padding-top:10px">
+                                        <label c-label item="item"> 23. Trauma pada hidung</label>
+                                    </div>
+                                    <div class="grid_12">
+                                        <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                            <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                            <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!-- keterangan -->
+                                    <div ng-show="isIngusBelakangHidung">
+                                       <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                            <div class="grid_6">
+                                                <textarea ng-model="item.keteranganIngusBelakangHidung" style="width: 99%; height: 80px;"></textarea>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Tenggorokan/Leher">
+                            <md-content class="md-padding">
+                                <div class="grid_12">
+                                    <div class="grid_4">
+                                        <!-- Gangguan Pendengaran-->
+                                        <div class="grid_12" style="padding-top:10px">
+                                            <label c-label item="item"> 1. Gangguan Pendengaran</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'gangguanPendengaran' + stat.name}}" id="{{'gangguanPendengaran' + stat.name}}" class="k-radio" ng-model="item.gangguanPendengaran" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'gangguanPendengaran' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isGangguanPendengaran">
+                                            <div class="grid_12">
+                                                <label c-label item="item" c-label-text="Keterangan"></label>
+                                            </div>
+                                            <div class="grid_12" style="padding-top:5px">
+                                                <textarea ng-model="item.keteranganGangguanPendengaran" style="width: 99%; height: 100px;"></textarea>
+                                            </div>
+                                        </div>
+                                        <!-- Tinitus-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 2. Tinitus</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'tinitus' + stat.name}}" id="{{'tinitus' + stat.name}}" class="k-radio" ng-model="item.tinitus" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'tinitus' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isTinitus">
+                                            <div class="grid_12">
+                                                <label c-label item="item" c-label-text="Keterangan"></label>
+                                            </div>
+                                            <div class="grid_12" style="padding-top:5px">
+                                                <textarea ng-model="item.keteranganTinitus" style="width: 99%; height: 100px;"></textarea>
+                                            </div>
+                                        </div>
+                                        <!-- Telinga Tersumbat-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 3. Telinga tersumbat</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'telingaTersumbat' + stat.name}}" id="{{'telingaTersumbat' + stat.name}}" class="k-radio" ng-model="item.telingaTersumbat" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'telingaTersumbat' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isTelingaTersumbat">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganTelingaTersumbat" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Telinga Gatal-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 4. Telinga gatal</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'telingaGatal' + stat.name}}" id="{{'telingaGatal' + stat.name}}" class="k-radio" ng-model="item.telingaGatal" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'telingaGatal' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isTelingaGatal">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganTelingaGatal" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Nyeri Telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 5. Nyeri telinga</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'nyeriTelinga' + stat.name}}" id="{{'nyeriTelinga' + stat.name}}" class="k-radio" ng-model="item.nyeriTelinga" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'nyeriTelinga' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isNyeriTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganNyeriTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Telinga mengeluarkan lendir-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 6. Telinga mengeluarkan lendir</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'telingaMengeluarkanLendir' + stat.name}}" id="{{'telingaMengeluarkanLendir' + stat.name}}" class="k-radio" ng-model="item.telingaMengeluarkanLendir" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'telingaMengeluarkanLendir' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isTelingaMengeluarkanLendir">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganTelingaMengeluarkanLendir" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Telinga berdarah-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 7. Telinga berdarah</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'telingaBerdarah' + stat.name}}" id="{{'telingaBerdarah' + stat.name}}" class="k-radio" ng-model="item.telingaBerdarah" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'telingaBerdarah' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isTelingaberdarah">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganTelingaBerdarah" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benda asing di dalam telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 8. Benda asing di dalam telinga</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'bendaAsing' + stat.name}}" id="{{'bendaAsing' + stat.name}}" class="k-radio" ng-model="item.bendaAsing" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'bendaAsing' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBendaAsingdidalamTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBendaAsing" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Bisul di daun telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 9. Bisul di daun telinga</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'bisulDiDaunTelinga' + stat.name}}" id="{{'bisulDiDaunTelinga' + stat.name}}" class="k-radio" ng-model="item.bisulDiDaunTelinga" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'bisulDiDaunTelinga' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBisulDiDaunTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBisuldidaunTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Bisul di depan telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 10. Bisul di depan telinga</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'bisulDiDepanTelinga' + stat.name}}" id="{{'bisulDiDepanTelinga' + stat.name}}" class="k-radio" ng-model="item.bisulDiDepanTelinga" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'bisulDiDepanTelinga' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBisuldiDepanTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBisuldiDepanTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Bisul di belakang telinga-->
+                                        <div class="grid_12" style="padding-top:10px">
+                                            <label c-label item="item"> 11. Bisul di belakang telinga</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'bisulDiBelakangTelinga' + stat.name}}" id="{{'bisulDiBelakangTelinga' + stat.name}}" class="k-radio" ng-model="item.bisulDiBelakangTelinga" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'bisulDiBelakangTelinga' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBisuldiBelakangTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBisuldiBelakangTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di daun telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 12. Benjolan di daun telinga</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'benjolanDiDaunTelinga' + stat.name}}" id="{{'benjolanDiDaunTelinga' + stat.name}}" class="k-radio" ng-model="item.benjolanDiDaunTelinga" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'benjolanDiDaunTelinga' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBenjolandiDaunTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiDaunTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="grid_4">
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 13. Benjolan di sekitar telinga</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'benjolanDiSekitarTelinga' + stat.name}}" id="{{'benjolanDiSekitarTelinga' + stat.name}}" class="k-radio" ng-model="item.benjolanDiSekitarTelinga" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'benjolanDiSekitarTelinga' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBenjolandiSekitarTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 14. Bintul di daun telinga</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'bintulDiDaunTelinga' + stat.name}}" id="{{'bintulDiDaunTelinga' + stat.name}}" class="k-radio" ng-model="item.bintulDiDaunTelinga" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'bintulDiDaunTelinga' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBenjolandiSekitarTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 15. Bintul di sekitar telinga</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'bintulDiSekitarTelinga' + stat.name}}" id="{{'bintulDiSekitarTelinga' + stat.name}}" class="k-radio" ng-model="item.bintulDiSekitarTelinga" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'bintulDiSekitarTelinga' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBenjolandiSekitarTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 16. Kulit daun telinga tidak normal</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'kulitDaunTelinga' + stat.name}}" id="{{'kulitDaunTelinga' + stat.name}}" class="k-radio" ng-model="item.kulitDaunTelinga" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'kulitDaunTelinga' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBenjolandiSekitarTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div><!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 17. Kulit di sekitar telinga tidak normal</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'kulitSekitarTelinga' + stat.name}}" id="{{'kulitSekitarTelinga' + stat.name}}" class="k-radio" ng-model="item.kulitSekitarTelinga" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'kulitSekitarTelinga' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBenjolandiSekitarTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 18. Lubang abnormal di depan telinga</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBenjolandiSekitarTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 19. Bentuk daun telinga tidak normal</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBenjolandiSekitarTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 20. Lubang telinga tidak ada</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBenjolandiSekitarTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="padding-top:10px">
+                                            <label c-label item="item"> 21. Pusing berputar</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBenjolandiSekitarTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 22. Gangguan keseimbangan</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBenjolandiSekitarTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 23. Nyeri kepala</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBenjolandiSekitarTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 24. Demam</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBenjolandiSekitarTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="grid_4">
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 25. Muka mencong</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBenjolandiSekitarTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 26. Riwayat operasi telinga sebelumnya</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBenjolandiSekitarTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 27. Trauma pada telinga</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBenjolandiSekitarTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 28. Muka mencong</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBenjolandiSekitarTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 29. Riwayat operasi telinga sebelumnya</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBenjolandiSekitarTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 30. Trauma pada telinga</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBenjolandiSekitarTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 31. Muka mencong</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBenjolandiSekitarTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 32. Riwayat operasi telinga sebelumnya</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBenjolandiSekitarTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 33. Trauma pada telinga</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBenjolandiSekitarTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 34. Muka mencong</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBenjolandiSekitarTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 35. Riwayat operasi telinga sebelumnya</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBenjolandiSekitarTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Benjolan di sekitar telinga-->
+                                        <div class="grid_12" style="border: none">
+                                            <label c-label item="item"> 36. Trauma pada telinga</label>
+                                        </div>
+                                        <div class="grid_12">
+                                            <div class="grid_3" ng-repeat="stat in listYaTidak">
+                                                <input type="radio" name="{{'pernahDirawat' + stat.name}}" id="{{'pernahDirawat' + stat.name}}" class="k-radio" ng-model="item.pernahDirawat" ng-value="stat">
+                                                <label class="k-radio-label" for="{{'pernahDirawat' + stat.name}}">{{stat.name}}</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <!-- keterangan -->
+                                        <div ng-show="isBenjolandiSekitarTelinga">
+                                            <div class="grid_12">
+                                                <div class="grid_1"></div>
+                                                <div class="grid_1">
+                                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                                </div>
+                                                <div class="grid_6">
+                                                    <textarea ng-model="item.keteranganBenjolandiSekitarTelinga" style="width: 99%; height: 100px;"></textarea>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </md-content>
+                    </md-tab>
+                </md-tabs>
+            </md-content>
+        </div>
+    </div>
+    <div style="margin-bottom:55px" ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div>
+</div>

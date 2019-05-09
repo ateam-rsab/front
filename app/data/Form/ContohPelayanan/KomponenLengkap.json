@@ -1,0 +1,122 @@
+{
+	"model":{
+		"InputField" : "",
+		"TempatLahir":"",
+		"Ayah":"",
+		"Ibu": "",
+		"DatePicker":"",
+		"Combobox" :"",
+		"Checkbox" : "",
+	    "Jadwal" : "",
+	    "Praktek" : "",
+	    "RiwayatPenyakit" : "",
+	    "Penyakit" :"",
+	    "Alamat" :"",
+	    "ComboGrid" : "",
+	    "TglGrid" :"",
+	    "TextGrid": "",
+	    "RadioGrid": "",
+	    "CheckGrid":""
+
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "InputField",
+			"messagesRequired" : "",
+			"caption" : "Nama Pasien"
+		},{
+			"isNull" : "true",
+			"name" : "TempatLahir",
+			"messagesRequired" : "",
+			"caption" : "Tempat Lahir"
+		},{
+			"isNull" : "true",
+			"name" : "Ayah",
+			"messagesRequired" : "",
+			"caption" : "Nama Ayah"
+			},{
+			"isNull" : "true",
+			"name" : "Ibu",
+			"messagesRequired" : "",
+			"caption" : "Nama Ibu"
+		},{
+			"isNull" : "true",
+			"name" : "DatePicker",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Lahir"
+		},{
+			"isNull" : "true",
+			"name" : "Combobox",
+			"messagesRequired" : "",
+			"caption" : "Jenis Kelamin"
+		},{
+			"isNull" : "false",
+			"name" : "Jadwal",
+			"messagesRequired" : "",
+			"caption" : "Pilih Jadwal"
+
+		},{
+			"isNull" : "true",
+			"name" : "Praktek",
+			"messagesRequired" : "",
+			"caption" : "Jam Praktek"
+
+		},{
+			"isNull" : "false",
+			"name" : "RiwayatPenyakit",
+			"messagesRequired" : "",
+			"caption" : "Riwayat Penyakit"
+
+		},{
+			"isNull" : "false",
+			"name" : "Penyakit",
+			"messagesRequired" : "",
+			"caption" : " "
+
+
+		},{
+			"isNull" : "false",
+			"name" : "Alamat",
+			"messagesRequired" : "",
+			"caption" : "Alamat "
+
+		},{
+			"isNull" : "false",
+			"name" : "ComboGrid",
+			"messagesRequired" : "",
+			"caption" : "Data Combo "
+
+
+		},{
+			"isNull" : "true",
+			"name" : "TglGrid",
+			"messagesRequired" : "",
+			"caption" : "Data Tanggal Grid "
+
+
+		},{
+			"isNull" : "true",
+			"name" : "TextGrid",
+			"messagesRequired" : "",
+			"caption" : "Data TextGrid "
+
+		},{
+			"isNull" : "true",
+			"name" : "RadioGrid",
+			"messagesRequired" : "",
+			"caption" : "Data RadioGrid "
+
+
+		},{
+			"isNull" : "true",
+			"name" : "CheckGrid",
+			"messagesRequired" : "",
+			"caption" : "Data CheckGrid "	
+
+
+}
+
+	]
+}

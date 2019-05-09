@@ -1,0 +1,116 @@
+{
+  "result": [
+    {
+      "tahun": 2017,
+      "listKegiatanDetail": [
+        {
+          "kodeKegiatanDetail": "2051.010",
+          "namaKegiatanDetail": "Gedung dan Bangunan",
+          "totalKegiatan": 450000000,
+          "realisasiBelanja": 100000000,
+          "listMataAnggaran": [
+            {
+              "namaMataAnggaran": "Belanja Penambahan Nilai Gedung dan Bangunan" ,
+              "tahun": 2017,
+              "kegiatanId": 1,
+              "kodeMataAnggaran": "533121",
+              "akunId": 130,
+              "totalMata": 250000000,
+              "realisasiBelanja": 50000000,
+              "listNamaPaket": [
+                {
+                  "namaPaket": "Renovasi Gedung A",
+                  "qty": 1,
+                  "harga": 100000000,
+                  "realisasiBelanja": 0,
+                  "total": 100000000
+                },
+                {
+                  "namaPaket": "Renovasi Gedung B",
+                  "qty": 1,
+                  "harga": 150000000,
+                  "realisasiBelanja": 0,
+                  "total": 150000000
+                }]
+            },
+            {
+              "namaMataAnggaran": "Belanja Biaya Pemeliharaan Gedung dan Bangunan",
+              "tahun": 2017,
+              "kegiatanId": 1,
+              "kodeMataAnggaran": "523111",
+              "akunId": 130,
+              "totalMata": 200000000,
+              "realisasiBelanja": 50000000,
+              "listNamaPaket": [
+                {
+                  "namaPaket": "Pemeliharaan Gedung Rawap Inap",
+                  "qty": 1,
+                  "harga": 200000000,
+                  "realisasiBelanja": 50000000,
+                  "total": 200000000
+                }]
+            }
+          ],
+          "kegiatanId": 26,
+          "tahunHeadAnggaran": 2017
+        },
+        {
+          "kodeKegiatanDetail": "2051.994",
+          "namaKegiatanDetail": "Layanan Perkantoran",
+          "totalKegiatan": 24500000,
+          "realisasiBelanja": 5000000,
+          "listMataAnggaran": [
+            {
+              "namaMataAnggaran": "Belanja Keperluan Perkantoran",
+              "tahun": 2017,
+              "kegiatanId": 1,
+              "kodeMataAnggaran": 521111,
+              "akunId": 130,
+              "totalMata": 22500000,
+              "realisasiBelanja": 4000000,
+              "listNamaPaket": [
+                {
+                  "namaPaket": "Pengadaan ATK",
+                  "qty": 200,
+                  "harga": 100000,
+                  "realisasiBelanja": 1500000,
+                  "total": 20000000
+                },
+                {
+                  "namaPaket": "Pengadaan Kertas",
+                  "qty": 100,
+                  "harga": 25000,
+                  "realisasiBelanja": 2500000,
+                  "total": 2500000
+                }]
+            },
+            {
+              "namaMataAnggaran": "Belanja Bahan",
+              "tahun": 2017,
+              "kegiatanId": 1,
+              "kodeMataAnggaran": "521211",
+              "akunId": 130,
+              "totalMata": 2000000,
+              "realisasiBelanja": 1000000,
+              "listNamaPaket": [
+                {
+                  "namaPaket": "Belanja Bahan Makanan",
+                  "qty": 200,
+                  "harga": 10000,
+                  "realisasiBelanja": 1000000,
+                  "total": 2000000
+                }]
+            }
+          ],
+          "kegiatanId": 26,
+          "tahunHeadAnggaran": 2017
+        }
+      ],
+      "volume": 0,
+      "listMataAnggaran": []
+    }
+  ],
+  "grandTotal": 4801072952,
+  "totalRow": 169,
+  "totalPages": 2
+}

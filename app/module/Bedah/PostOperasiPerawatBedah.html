@@ -1,0 +1,124 @@
+<div ng-controller="PostOperasiPerawatBedahCtrl">
+    <div class="grid_12" style="margin-bottom:60px">
+    <div ng-include='"../app/module/Dashboard/Pasien/Index" '></div>
+        <div class="grid_12 headerBox">
+            <h1 style="color: white;"><b>ASUHAN KEPERAWATAN PERI OPERATIF DI KAMAR OPERASI</b></h1>
+        </div>
+          <div class="loading" style="position: relative; margin:25px 0px 20px;" class="animated" ng-show="isLoadingData">
+           <img height="250" src="../app/stylesheets/Flat/loading-image.gif"/>
+             <br/> <span style="font-weight: bold;">Mengambil data Post Operasi Perawat Bedah, Mohon tunggu...</span>
+         </div>
+        <div class="grid_12" ng-show="AllData">
+            <c-panel item="item" header="'History Post Operasi Perawat Bedah'">
+                <div class="grid_12">
+                <div class="grid_12"></div>
+                <div class="clear"></div>
+                <!-- grid table -->
+                <div class="grid_12 borderBox">
+                <div id="kGrid" kendo-grid 
+                k-data-source="dataMaster" 
+                k-selectable="'row'" 
+                k-columns="columnPostOperasiPerawatBedah"
+                k-sortable="'true'"
+                k-pageable="true"
+                k-ng-model="dataSelected"
+                ng-click="klik(dataSelected)">
+                </div>
+                </div>
+                </div>
+            <div class="clear"></div>
+            </c-panel>
+        </div>
+        <div class="grid_12" style="margin-top:20px" ng-show="AllData"> 
+            <fieldset style="min-height:80px !important">
+                <legend><h2><b>Waktu Operasi</b></h2></legend>
+                <div class="grid_12">
+                    <div class="grid_2">
+                        <label c-label item="item">Jam</label>
+                        <input style="width: 100%" kendo-time-picker k-ng-model="item.jamMasukOperasi" placeholer="HH:mm" k-format="'HH:mm'" />
+                    </div>
+                </div>
+            </fieldset>
+        </div> 
+        <div class="grid_12 headerBox" style="margin-top:10px" ng-show="AllData">
+            <h1 style="color: white;"><b>POST OPERASI (PERAWAT BEDAH)</b></h1>
+        </div>
+        <div class="grid_12" style="margin-top:20px" ng-show="AllData">
+            <div class="grid_4" style="border: 1px solid; border-color: #10C4B2; height:2500px">
+                <div class="grid_12 headerBox">
+                    <h1 style="color: white;"><b>Masalah Keperawatan</b></h1>
+                </div>
+                 <div class="grid_12" ng-repeat="list in Masalah | orderBy : 'id'">
+                   <div ng-switch on="list.id">
+                    <div class="grid_11" style="margin:10px 0 0 5px">
+                      <input type="checkbox" ng-checked="isChecked(list.id)" class="k-checkbox" name="{{list.header}}" id="{{list.header}}" value="{{list.id}}" ng-model="bool" ng-click="checkedData(bool, list)">
+                      <label class="k-checkbox-label" for="{{list.header}}">{{list.header}}</label>
+                          <div class="grid_12" ng-repeat="DetIntern in list.detail">
+                          <div class="grid_11" style="margin:10px 0 0 5px">
+                          <input type="checkbox" ng-checked="isChecked(DetIntern.id)" class="k-checkbox" name="{{DetIntern.namaExternal}}" id="{{DetIntern.id}}" value="{{DetIntern.id}}" ng-model="bool" ng-click="checkedData(bool, DetIntern)">
+                          <label class="k-checkbox-label" for="{{DetIntern.id}}">{{DetIntern.namaExternal}}</label>
+                          </div>
+                        <div ng-switch on="DetIntern.id">
+                        <div class="grid_12" ng-switch-when="136" style="margin-bottom: 10px" >
+                        <div class="grid_11">  
+                              <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.names1" style="border:0;
+                              border-bottom: 1px dotted;" />
+                           </div>
+                        </div>
+                         <div class="grid_12" ng-switch-when="138" style="margin-bottom: 10px" >
+                        <div class="grid_11">  
+                              <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.names2" style="border:0;
+                              border-bottom: 1px dotted;" />
+                           </div>
+                        </div>
+                         <div class="grid_12" ng-switch-when="139" style="margin-bottom: 10px" >
+                        <div class="grid_11">  
+                              <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.names3" style="border:0;
+                              border-bottom: 1px dotted;" />
+                           </div>
+                        </div>
+                          </div>
+                          </div>
+                  </div>  
+                </div>
+              </div>
+            </div>
+             <div class="grid_4" style="border: 1px solid; border-color: #10C4B2; height:2500px">
+                <div class="grid_12 headerBox">
+                    <h1 style="color: white;"><b>Intervensi</b></h1>
+                </div>
+                   <div class="grid_12" ng-repeat="Interen in Intervensi | orderBy :'id'">
+                  <div class="grid_11" style="margin:10px 0 0 5px">
+                      <input type="checkbox" ng-checked="isChecked(Interen.id)" class="k-checkbox" name="{{Interen.namaExternal}}" id="{{Interen.id}}" value="{{Interen.id}}" ng-model="bool" ng-click="checkedData(bool, Interen)">
+                      <label class="k-checkbox-label" for="{{Interen.id}}">{{Interen.namaExternal}}</label>
+                  </div>
+              </div>
+            </div>
+
+          <div class="grid_4" style="border: 1px solid; border-color: #10C4B2; height:2500px">
+              <div class="grid_12 headerBox">
+                  <h1 style="color: white;"><b>Kriteria Evaluasi</b></h1>
+              </div>
+               <div class="grid_12" ng-repeat="Kriteriax in Kriteria | orderBy :'id'">
+                 <div ng-switch on="Kriteriax.id">
+                
+                  <div class="grid_11" style="margin:10px 0 0 5px">
+                      <input type="checkbox" ng-checked="isChecked(Kriteriax.id)" class="k-checkbox" name="{{Kriteriax.namaExternal}}" id="{{Kriteriax.namaExternal}}" value="{{Kriteriax.id}}" ng-model="bool" ng-click="checkedData(bool, Kriteriax)">
+                      <label class="k-checkbox-label" for="{{Kriteriax.namaExternal}}">{{Kriteriax.namaExternal}}</label>
+                      <div ng-switch on="Kriteriax.id">
+                    </div>
+                  </div>
+                   <div class="grid_12" ng-switch-when="160" style="margin-bottom: 10px" >
+                       <div class="grid_11">   
+                              <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.Evaluasi1" style="border:0;
+                              border-bottom: 1px dotted;" />
+                             </div>
+                          </div>
+                   </div>
+                </div>
+              </div>
+          </div>   
+        </div>
+         <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+    </div>
+

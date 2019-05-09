@@ -1,0 +1,114 @@
+
+{
+	"model":{
+		"periodeAwal":"",
+		"sd":"",
+		"periodeAkhir":"",
+		"totalBeratSampahMedis":"",
+		"tanggal":"",
+		"jumlahLimbahB3Keluar":"",
+		"tujuanPenyerahan":"",
+		"kg":"",
+		"buktiNomorDokumen":"",
+		"maksimalPenyimpanan":"",
+		"jam":"",
+		"tglLimbahKeluar":"",
+		"hari":"",
+		"sisaLimbahB3":"",
+		"maksimalPenyimpanan":"",
+		"jenisLimbah":""
+	
+	   
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "periodeAwal",
+			"messagesRequired" : "",
+			"caption" : "Periode Awal"
+		},{
+			"isNull" : "true",
+			"name" : "sd",
+			"messagesRequired" : "",
+			"caption" : "s/d"
+		},{
+			"isNull" : "true",
+			"name" : "periodeAkhir",
+			"messagesRequired" : "",
+			"caption" : "Periode Akhir"
+		},{
+			"isNull" : "true",
+			"name" : "totalBeratSampahMedis",
+			"messagesRequired" : "",
+			"caption" : "Total Berat Sampah Medis"
+		},{
+			"isNull" : "true",
+			"name" : "JenisLimbah",
+			"messagesRequired" : "",
+			"caption" : "Jenis Limbah"	
+			
+		},{
+			"isNull" : "true",
+			"name" : "tanggal",
+			"messagesRequired" : "",
+			"caption" : "Tanggal"
+		},{
+			"isNull" : "true",
+			"name" : "jumlahLimbahB3Keluar",
+			"messagesRequired" : "",
+			"caption" : "Jumlah Limbah B3 Keluar"
+		},{
+			"isNull" : "true",
+			"name" : "tujuanPenyerahan",
+			"messagesRequired" : "",
+			"caption" : "Tujuan Penyerahan"
+		},{
+			"isNull" : "true",
+			"name" : "kg",
+			"messagesRequired" : "",
+			"caption" : "kg"
+		},{
+			"isNull" : "true",
+			"name" : "buktiNomorDokumen",
+			"messagesRequired" : "",
+			"caption" : "Bukti Nomor Dokumen"
+		},{
+			"isNull" : "true",
+			"name" : "maksimalPenyimpanan",
+			"messagesRequired" : "",
+			"caption" : "Maksimal Penyimpanan"
+		},{
+			"isNull" : "true",
+			"name" : "jam",
+			"messagesRequired" : "",
+			"caption" : "Jam"
+		},{
+			"isNull" : "true",
+			"name" : "PT",
+			"messagesRequired" : "",
+			"caption" : "PT"
+		},{
+			"isNull" : "true",
+			"name" : "maksimalPenyimpanan",
+			"messagesRequired" : "",
+			"caption" : "Maksimal Penyimpanan"	
+		},{
+			"isNull" : "true",
+			"name" : "Sisa Limbah B3 yang ada di TPS",
+			"messagesRequired" : "",
+			"caption" : "Sisa Limbah B3 yang ada di TPS"	
+			
+		},{
+			"isNull" : "true",
+			"name" : "hari",
+			"messagesRequired" : "",
+			"caption" : "Hari"
+		},{
+			"isNull" : "true",
+			"name" : "sisaLimbahB3",
+			"messagesRequired" : "",
+			"caption" : "Sisa Limbah B3"
+		}
+
+	]
+}

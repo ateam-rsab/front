@@ -1,0 +1,98 @@
+<div ng-controller="LegalDraftMonitoringDanEvaluasiPerundanganCtrl">
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Legal Draft Monitoring dan Evaluasi Perundang - Undangan'">
+            <div class="panel panel-default container_12">
+                <div class="panel-body">
+                    <div class="panel panel-default container_12">
+                        <div class="grid_12">
+                            <div class="grid_2">
+                                <div class="grid_12" style="margin-top: 20px">
+                                    <div class="grid_10">
+                                        <label c-label item="item" c-label-text="userId"></label>
+                                    </div>
+                                    <div class="grid_2" align="right">:</div>
+                                </div>
+                                <div class="grid_12" style="margin-top: 25px">
+                                    <div class="grid_10">
+                                        <label c-label item="item" c-label-text="namaPeraturan"></label>
+                                    </div>
+                                    <div class="grid_2" align="right">:</div>
+                                </div>
+                                <div class="grid_12" style="margin-top: 25px">
+                                    <div class="grid_10">
+                                        <label c-label item="item" c-label-text="evaluasiPeraturan"></label>
+                                    </div>
+                                    <div class="grid_2" align="right">:</div>
+                                </div>
+                                <div class="grid_12" style="margin-top: 95px">
+                                    <div class="grid_10">
+                                        <label c-label item="item" c-label-text="Tujuan"></label>
+                                    </div>
+                                    <div class="grid_2" align="right">:</div>
+                                </div>
+
+                            </div>
+                            <div class="grid_4">
+                                <div class="grid_12" style="margin: 10px 0 0 0;">
+                                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.userId" ng-disabled="disableUserId" />
+                                </div>
+                                <div class="grid_12" style="margin: 10px 0 0 0;">
+                                    <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.namaPeraturan" ng-disabled="disableNamaPeraturan" />
+                                </div>
+                                <div class="grid_12" style="margin: 10px 0 0 0;">
+                                    <textarea c-text-box type="input" class="k-textbox" ng-model="item.evaluasiPeraturan" style="width: 100%; height: 90px;"></textarea>
+                                </div>
+                                <div class="grid_12" ng-repeat="pegawai in arrPegawai" style="margin: 10px 0 0 0;">
+                                    <!--<div class="grid_2" style="margin-top: 10px">
+                                        <label c-label item="item" c-label-text="pegawai" ng-show="$index === 0"></label>
+                                    </div>-->
+
+                                    <div class="grid_12">
+                                        <div class="grid_10">
+                                            <input style="width: 100%;" kendo-combo-box k-ng-model="arrPegawai[$index].pegawai" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" />
+                                        </div>
+                                        <div class="grid_1" style="margin-top: 12px; margin-left: 10px">
+                                            <label c-label item="item" c-label-text="x" ng-click="removePegawai($index)" ng-show="$index > 0"></label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="grid_6" style="margin-top:10px">
+                                    <button class="c-button" ng-click="addPegawai()">+ Tambah Tujuan</button>
+                                </div>
+                            </div>
+                            <div class="grid_1"></div>
+                            <div class="grid_5">
+                                <div class="grid_12" style="margin-top: 22px">
+                                    <div class="grid_10">
+                                        <label c-label item="item" c-label-text="noPeraturan"></label>
+                                    </div>
+                                    <div class="grid_2" align="right">:</div>
+                                </div>
+                                <div class="grid_6" style="margin: 15px 0 0 0;">
+                                    <input c-text-box type="input" filter="''" class="k-textbox" ng-model="item.noPeraturan" ng-disabled="disableNoPeraturan" />
+                                </div>
+                                <div class="grid_1"></div>
+                                <div class="grid_3" style="margin-top: 21px">
+                                    <button class="c-button" ng-show="!isLoading" item="item" ng-click="cari()">
+                                Cari</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="grid_12">
+                            <div class="grid_6"></div>
+                            <div class="grid_3"></div>
+                            <div class="grid_3" style="margin-top: 25px ">
+                                <button class="c-button " ng-show="!isLoading " item="item " is-validate click="Kirim ">
+                                <span class="title ">Kirim</span></button>
+                            </div>                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </c-panel>
+    </div>
+</div>

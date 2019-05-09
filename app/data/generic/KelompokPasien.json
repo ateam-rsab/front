@@ -1,0 +1,23 @@
+[{
+    "id": 1,
+    "kdProfile": "0",
+    "kdKelompokPasien": "1",
+    "kelompokPasien": "Umum/Pribadi",
+    "reportDisplay": "Umum",
+    "kdJenisTarif": "1"
+}, {
+    "id": 2,
+    "kdProfile": "0",
+    "kdKelompokPasien": "2",
+    "kelompokPasien": "BPJS",
+    "reportDisplay": "Non umum",
+    "kdJenisTarif": "1"
+}, {
+    "id": 3,
+    "kdProfile": "0",
+    "kdKelompokPasien": "3",
+    "kelompokPasien": "Asuransi Lain",
+    "reportDisplay": "Karyawan",
+    "kdJenisTarif": "1",
+    "statusIsiSJP": "0"
+}]

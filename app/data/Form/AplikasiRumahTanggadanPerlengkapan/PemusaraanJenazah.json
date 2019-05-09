@@ -1,0 +1,31 @@
+{
+	"model":{
+		"periodeTanggal" : "",
+		"sd":"",
+		"cariNamaPasien":""		
+	},
+    "attributes" :[ 
+    	{
+			"isNull" : "true",
+			"name" : "periodeTanggal",
+			"messagesRequired" : "",
+			"caption" : "Periode"
+		},{
+			"isNull" : "true",
+			"name" : "sd",
+			"messagesRequired" : "",
+			"caption" : "s/d"
+		},{
+			"isNull" : "true",
+			"name" : "cariNoUsulan",
+			"messagesRequired" : "",
+			"caption" : "No. Usulan"
+		},{
+			"isNull" : "true",
+			"name" : "cariNamaPasien",
+			"messagesRequired" : "",
+			"caption" : "Cari Nama Pasien"
+		}
+
+	]
+}

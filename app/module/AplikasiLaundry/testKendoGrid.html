@@ -1,0 +1,46 @@
+<div class="panel panel-default container_12">
+<div class="panel-heading" c-translate>TES</div>
+	<div class="panel-body">
+		<div class="grid_12" style="margin-top: 10px">
+			<kendo-grid options="mainGridOptions">
+	            <div k-detail-template>
+	                <kendo-tabstrip>
+	                <ul>
+	                    <li class="k-state-active">Orders</li>
+	                    <li>Contact information</li>
+	                </ul>
+	                <div>
+	                    <div kendo-grid k-options="detailGridOptions(dataItem)"></div>
+	                </div>
+	                <div>
+	                    <ul class="contact-info-form">
+	                        <li><label>Country:</label> <input class="k-textbox" ng-model="dataItem.Country" /></li>
+	                        <li><label>City:</label> <input class="k-textbox" ng-model="dataItem.City" /></li>
+	                        <li><label>Address:</label> {{dataItem.Address}}</li>
+	                        <li><label>Home phone:</label> {{dataItem.HomePhone}}</li>
+	                    </ul>
+	                </div>
+	                </kendo-tabstrip>
+	            </div>
+        	</kendo-grid>
+		</div>
+	</div>   
+</div>
+<style>
+  .contact-info-form {
+    list-style-type: none;
+    margin: 30px 0;
+    padding: 0;
+  }
+
+  .contact-info-form li {
+    margin: 10px 0;
+  }
+
+  .contact-info-form label {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    font-weight: bold;
+  }
+</style>

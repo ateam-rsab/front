@@ -1,0 +1,29 @@
+<div ng-controller="DaftarBuktiPemungutanPPhPasal22Ctrl">
+<div ng-show="dataVOloaded">
+<c-panel item="item" header="'Daftar Bukti Pemungutan PPh Pasal 22'" disabled>
+
+<!-- DaftarBuktiPemungutan -->
+<div class="grid_12">
+<div class="grid_12 headerBox">
+<p>DaftarBuktiPemungutan</p>
+</div>
+<div class="clear"></div>
+
+<!-- grid table -->
+<div class="grid_12 borderBox">
+<div kendo-grid k-data-source="dataDaftarBuktiPemungutan" k-selectable="'row'" k-columns="columnDaftarBuktiPemungutan">
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+
+
+
+</c-panel>
+
+<div class="grid_12" style="margin-top:30px">
+<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
+</div>
+</div>
+</div>

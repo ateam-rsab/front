@@ -1,0 +1,48 @@
+<div class="grid_12">
+    <div class=' grid_12 panel panel-default'>
+        <div class='panel-heading'  style="font-size: 18px;" c-translate>Pengkajian Pasien</div>
+            <div class="breadcrum" >
+
+                <div class="grid_2" ng-hide="israwatinap">
+                    <a class="n1 green" ng-class="{'active': activeMenuDashboardPAP == 'RekamMedis.MenuPengkajian.SkriningUmum'}"
+                        data-ng-click="navigasiPap('RekamMedis.MenuPengkajian.SkriningUmum')">Skrining Umum</a>
+                </div>
+
+                <div class="grid_2">
+                    <a class="n1 green" ng-class="{'active': activeMenuDashboardPAP == 'RekamMedis.MenuPengkajian.SkriningKhusus'}"
+                        data-ng-click="navigasiPap('RekamMedis.MenuPengkajian.SkriningKhusus')">Skrining Kekhususan</a>
+                </div>
+
+                <div class="grid_2" ng-hide="israwatinap">
+                    <a class="n1 green" ng-class="{'active': activeMenuDashboardPAP == 'RekamMedis.MenuPengkajian.SkriningKeperawatan'}"
+                        data-ng-click="navigasiPap('RekamMedis.MenuPengkajian.SkriningKeperawatan')">Masalah
+                        Keperawatan</a>
+                </div>
+
+                <!-- <div class="grid_2" ng-hide="israwatinap || isRawatJalan && isNeonatal || isAnak || isRawatJalan && isDewasa ">
+                    <a class="n1" ng-class="{'active': activeMenuDashboardPAP == 'RekamMedis.MenuPengkajian.DiagnosisKebidanan'}"
+                        data-ng-click="navigasiPap('RekamMedis.MenuPengkajian.DiagnosisKebidanan')">Diagnosis Kebidanan</a>
+                </div> -->
+                <!-- <div class="grid_2" ng-hide="israwatinap || isRawatJalan && isNeonatal || isAnak || isRawatJalan && isDewasa ">
+                    <a class="n1"  ng-class="{'active': activeMenuDashboardPAP == 'dashboardpasien.MasalahKeperawatan'}"data-ng-click="navigasiPap('dashboardpasien.MasalahKeperawatan')">Diagnosis Kebidanan</a>
+                </div> -->
+
+                <div class="grid_2" ng-hide="israwatinap || isRawatJalan && isNeonatal || isRawatJalan && isAnak || isRawatJalan && isDewasa">
+                    <a class="n1 green" ng-class="{'active': activeMenuDashboardPAP == 'RekamMedis.MenuPengkajian.PerencanaanPulang'}"
+                        data-ng-click="navigasiPap('RekamMedis.MenuPengkajian.PerencanaanPulang')">Perencanaan Pulang</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ui-view></div>
+
+<style type="text/css">
+    .active {
+        background-color: white !important;
+        color: #00AABB !important;
+        display: block;
+        padding: 10px 0 20px;
+        font-weight: 600;
+    }
+</style>

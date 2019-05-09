@@ -1,0 +1,17 @@
+[
+	{ "id": "1", "stat":"Ya", "name": "Hilangnya Gizi"},
+	{ "id": "2", "stat":"Ya", "name": "Masalah mobilisasi leher"},
+	{ "id": "3", "stat":"Tidak", "name": "Leher Pendek"},
+	{ "id": "4", "stat":"Ya", "name": "Batuk"},
+	{ "id": "5", "stat":"Ya", "name": "Sesak Nafas"},
+	{ "id": "6", "stat":"Ya", "name": "Baru saja menderita Infeksi"},
+	{ "id": "7", "stat":"Ya", "name": "Sakit dada"},
+	{ "id": "8", "stat":"Ya", "name": "Denyut jantung tidak normal"},
+	{ "id": "9", "stat":"Ya", "name": "Muntah"},
+	{ "id": "10", "stat":"Ya", "name": "Pingsan"},
+	{ "id": "11", "stat":"Ya", "name": "Kejang"},
+	{ "id": "12", "stat":"Ya", "name": "Sedang hamil"},
+	{ "id": "13", "stat":"Ya", "name": "Kelainan Tulang Belakang"},
+	{ "id": "14", "stat":"Ya", "name": "Stroke"},
+	{ "id": "15", "stat":"Ya", "name": "Obesitas"}
+]

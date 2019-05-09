@@ -1,0 +1,69 @@
+<div ng-controller="DashboarPasienCtrl">
+    <div class="grid_12">
+        <div class="grid_12">
+            <div class=' grid_12 panel panel-default'>
+                <div class='panel-heading'>
+                    <span c-translate>Rekam Medis</span>
+                    <i class="fa fa-search" ng-click="findData()" aria-hidden="true" style="cursor:pointer;text-align: right;position: absolute;right: 10px;"></i>
+                </div>
+                <div class='panel-body animated'>
+                    &nbsp;
+                    <div ng-show="item.noCm.length === 0 || item.noCm===undefined">
+                        <label c-label c-label-text="pencarianNomorRekamMedik"></label>
+                        <input k-select='onSelect' k-min-length='1' data-width-actual='500' ng-model='noCm' data='currentPasien' k-data-text-field="'noCm'" k-data-value-field="'value'" k-filter="'contains'" kendo-auto-complete k-data-source="pasiens" header-template='headerTemplate'
+                            template='template' style="width: 100%;" />
+                    </div>
+                    <div class="grid_12" ng-show="item.noCm.length > 0">
+                        <div class="grid_2">
+                            <!-- <label c-label c-label-text="noRekamMedis"></label> -->
+                            <label c-label>No. Rekam Medis</label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.noCm" />
+
+                        </div>
+                        <div class="grid_2">
+                            <!-- <label c-label c-label-text="namaLengkapPasien"></label> -->
+                            <label c-label>Nama Lengkap Pasien</label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.namaPasien" />
+
+                        </div>
+                        <div class="grid_2">
+                            <!-- <label c-label c-label-text="umurPasien"></label> -->
+                            <label c-label>Umur Pasien</label>
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.umur" />
+
+                        </div>
+                        <div class="grid_2">
+                            <!-- <label c-label c-label-text="alamatPasien"></label> -->
+                            <label c-label>Alamat Pasien</label>
+
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.alamat.alamatLengkap" />
+                        </div>
+                        <div class="grid_2">
+                            <!-- <label c-label c-label-text="jenisKelamin"></label> -->
+                            <label c-label>Jenis Kelamin</label>
+                            <!--<c-info text='item.jenisKelamin.jenisKelamin' />-->
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.jenisKelamin.jenisKelamin" />
+                        </div>
+                        <div class="grid_2">
+                            <!-- <label c-label c-label-text="statusPerkawinan"></label> -->
+                            <label c-label>Status Perkawinan</label>
+                            <!--<c-info text='item.statusPerkawinan.statusPerkawinan' /> </div><-->
+                            </-->
+                            <input c-text-box type="input" class="k-textbox" ng-disabled="'true'" ng-model="item.statusPerkawinan.statusPerkawinan" />
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--<div class="grid_12">
+                <span ng-show='dpjp!==undefined' class="title">Dokter Penanggung Jawab  : {{dpjp}}</span>
+                <hr/>
+            </div>-->
+        <div ng-show="showMenu" ng-include='"../app/module/Dashboard/Pasien/menu" '></div>
+        <div ng-show="showMenuDetail" ng-include='"../app/module/PemeriksaanFisik/menu" '></div>
+        <div ng-show="showMenuPengkajianMedis" ng-include='"../app/module/PengkajianAwalPasienRawatJalanAnak/menu" '></div>
+        <div ui-view></div>
+
+    </div>

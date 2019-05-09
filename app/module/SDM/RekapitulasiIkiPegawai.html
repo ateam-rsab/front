@@ -1,0 +1,45 @@
+<div ng-show="dataVOloaded">
+	<c-panel item="item" header="'Rekapitulasi IKI Pegawai'" disabled>
+		<div class="panel panel-default container_12">
+			<div class="panel-body">
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" c-label-text="Unit Kerja"></label>
+						<input ng-disabled="isDisable" style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'reportDisplay'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja"/>
+					</div>
+					<div class="grid_2">
+						<label c-label item="item" c-label-text="Bulan"></label>
+						<input kendo-date-picker k-options="yearSelected" k-ng-model="item.DatePickerBulan"  k-format="'MMMM yyyy'" style="width: 100%" kendo-date-picker k-max="now" ng-init="now"  />
+					</div>
+					<div class="grid_1">
+						<label c-label item="item" c-label-text=""></label>
+						<button class="c-button" ng-click="cari()" style="margin-top:22px">Cari</button>
+					</div>
+				</div>
+				
+				<div class="grid_12">
+					<div kendo-grid k-data-source="sourceOrder" options="mainGridOption"></div>
+				</div>
+			</div>
+		</div>
+	</c-panel>
+	<div class="grid_12 place_button">
+		<div class="grid_6 pull-right">
+			<div class="grid_4" style="margin-top: 25px ">
+				<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="cetakLapIndeksKehadiran()">
+					<span class="title">Cetak Indeks Kinerja</span>
+				</button>
+			</div>
+			<div class="grid_4" style="margin-top: 25px ">
+				<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Cetak()">
+					<span class="title">Cetak</span>
+				</button>
+			</div>
+			<div class="grid_4" style="margin-top: 25px ">
+				<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="cetakRekapIKI()">
+					<span class="title">Cetak All Ruangan</span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

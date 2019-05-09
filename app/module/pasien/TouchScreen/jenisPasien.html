@@ -1,0 +1,72 @@
+<div ng-controller="VerifikasiCtrl">
+  <div class="panel panel-default container_12">
+<div class="panel-heading" c-translate style="text-align: center;font-size: 20px">Pasien Lama</div>
+    <div class="grid_12">
+        <div class="grid_4">
+            <a href="#/TouchScreen/Main" ng-click="NavJenisPasien('UMUM')">
+                <div class="card">
+                    <div class="card-image">
+                        <span class="card-title">UMUM</span>
+                        <img width="100px" src="stylesheets/Flat/umum.png" />
+                    </div>
+                    <div class="card-content">
+                        <p style="font-size: 20px">
+                            Pilih Menu ini, jika anda adalah pasien <b>UMUM</b> di rumah sakit
+                        </p>
+                    </div>
+                    <div class="card-action">
+                        Pilih
+                    </div>
+                </div>
+            </a>
+        </div> 
+        <div class="grid_4">
+            <a href="#/TouchScreen/Main" ng-click="NavJenisPasien('NONUMUM')">
+                <div class="card">
+                    <div class="card-image">
+                        <span class="card-title">ASURANSI</span>
+                        <img width="100px" src="stylesheets/Flat/non-bpjs.png" />
+                    </div>
+                    <div class=" card-content">
+                        <p style="font-size: 20px">
+                            Pilih Menu ini, jika anda adalah pasien <b>ASURANSI</b> di rumah sakit
+                        </p>
+                    </div>
+                    <div class="card-action">
+                        Pilih
+                    </div>
+                </div>
+            </a>
+        </div>
+         <div class="grid_4">
+            <a href="#/TouchScreen/Bpjs" ng-click="NavJenisPasien('BPJS')">
+                <div class="card">
+                    <div class="card-image">
+                        <span class="card-title">BPJS</span>
+                        <img width="100px" src="stylesheets/Flat/bpjs.png" />
+                    </div>
+                    <div class="card-content">
+                        <p style="font-size: 20px">
+                            Pilih Menu ini, jika anda adalah pasien <b>BPJS</b> di rumah sakit
+                        </p>
+                    </div>
+                    <div class="card-action">
+                        Pilih
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="grid_4"> 
+        <div  ng-click="back()">
+                <div class="card">
+                    <div class="card-action">
+                        Kembali
+                    </div>
+                </div>
+        </div> 
+        </div>
+            <div class="grid_8">
+         </div>
+    </div>
+</div>
+</div>

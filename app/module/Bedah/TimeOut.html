@@ -1,0 +1,132 @@
+<div ng-include='"../app/module/Dashboard/Pasien/Index" '></div>
+<div class="grid_12">  
+<!--      <div class="loading" style="position: relative; margin:25px 0px 20px;" class="animated"
+                    ng-show="isLoadingData">
+     <img height="250" src="../app/stylesheets/Flat/loading-image.gif"/>
+     <br/> <span style="font-weight: bold;">Mengambil data Time Out, Mohon tunggu...</span>
+     </div> -->
+</div>
+ <!-- ng-show="AllData" -->
+<div ng-controller="TimeOutCtrl">
+    <div class="panel panel-default">
+        <div class="panel-heading" c-translate>Time Out</div>
+        <div class="panel-body">
+            <div class="grid_12">
+               <div class="grid_6">
+                <c-panel item="item" header="'History Time Out'">
+                <div class="grid_12">
+                    <div class="grid_12"></div>
+                    <div class="clear"></div>
+                    <div class="grid_12 borderBox">
+                        <div id="kGrid" kendo-grid 
+                        k-data-source="dataMaster" 
+                        k-selectable="'row'" 
+                        k-columns="columnTimeOut"
+                        k-sortable="'true'"
+                        k-pageable="true"
+                        k-ng-model="dataSelected"
+                        ng-click="klik(dataSelected)">
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                </c-panel>
+            </div>
+            </div>
+                <div class="grid_6">
+                    <label c-label c-label-text="TimBedah" statment></label>
+                    <input kendo-combo-box style="width:100%" k-ng-model="item.jenisPerawat" k-data-text-field="'jenisPegawai'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourceJenisDiagnosisPrimer" />
+                </div>
+                <div class="grid_6">
+                    <label c-label c-label-text="namaPegawai" statment></label>
+                    <input kendo-combo-box tyle="width:100%" k-ng-model="item.dokter" k-data-text-field="'namaLengkap'" k-data-value-field="'idpegawai'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" />
+                </div>
+
+                <div class="grid_4">
+                    <div class="grid_12">
+                        <label c-label c-label-text="" statment>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_6" style="float:right">
+                            <c-button ng-click="removePegawai()">
+                                <span style="font-size:10!important">Hapus</span>
+                            </c-button>
+                        </div>
+                        <div class="grid_6" style="float:right">
+                            <c-button ng-click="addPegawai()">
+                                <span style="font-size:10!important">Tambah</span>
+                            </c-button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- grid diagnosis -->
+                <div class="grid_12" style="margin-top: 10px;">
+                    <div kendo-grid k-data-source="dataPegawai" k-selectable="'row'" k-columns="column">
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="grid_12">
+                      <div class="grid_12" ng-repeat="data in listradiologi">
+                        <div class="grid_4">
+                            <label c-label item="item">{{data.name}}</label>
+                        </div>
+                        <div class="grid_5">
+                            <div class="grid_3" ng-repeat="stat in listStatusYaTidak" style="margin-left:20px">
+                                <input type="radio" ng-model="data.value"  id="{{data.id + stat.name}}" class="k-radio" ng-value="stat">
+                                <label class="k-radio-label" for="{{data.id + stat.name}}" ng-if="stat.name != 'Ya'">{{stat.name}}</label>
+                                <label class="k-radio-label" for="{{data.id + stat.name}}" ng-if="stat.name == 'Ya'">{{stat.name}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_6" ng-repeat="data in listTimeOut">
+                        <div class="grid_12">
+                            <label c-label item="item" c-label-text="{{data.name}}"></label>
+                        </div>
+                        <div ng-class="{grid_10:stat.name == 'Ya',grid_2:stat.name != 'Ya'}" ng-repeat="stat in listStatusYaTidak">
+                            <div class="grid_2">
+                                <input type="radio" ng-model="data.value" name="{{'timeout'+data.id + stat.name}}" id="{{'timeout'+data.id + stat.name}}" class="k-radio" value="{{stat.name}}"> </div>
+                            <div class="grid_2" ng-if="stat.name != 'Ya'">
+                                <label class="k-radio-label" for="{{'timeout'+data.id + stat.name}}">{{stat.name}}</label>
+                            </div>
+                            <div class="grid_2" ng-if="stat.name == 'Ya'">
+                                <label class="k-radio-label" for="{{'timeout'+data.id + stat.name}}">{{stat.name}}</label>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="HalKhusus"></label>
+                        <textarea style="width: 99%; height: 80px;" ng-model="item.halKhusus"></textarea>
+                    </div>
+                    <div class="grid_12" ng-repeat="data2 in listAntibio">
+                        <div class="grid_4">
+                            <label c-label item="item">{{data2.name}}</label>
+                        </div>
+                        <div class="grid_5">
+                            <div class="grid_3" ng-repeat="stat2 in listStatusYaTidak2" style="margin-left:20px">
+                                <input type="radio" ng-model="data2.value"  id="{{data2.id + stat2.name}}" class="k-radio" ng-value="stat2">
+                                <label class="k-radio-label" for="{{data2.id + stat2.name}}" ng-if="stat2.name != 'Ya'">{{stat2.name}}</label>
+                                <label class="k-radio-label" for="{{data2.id + stat2.name}}" ng-if="stat2.name == 'Ya'">{{stat2.name}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_6">
+                            <label c-label item="item " c-label-text="namaAntibiotik " real></label>
+                            <input c-text-box type="input " class="k-textbox " ng-model="item.namaAntibiotik " />
+                        </div>
+                        <div class="grid_6">
+                            <label c-label item="item " c-label-text="dosisAntibiotik " real></label>
+                            <input c-text-box type="input "  class="k-textbox " ng-model="item.dosisAntibiotik " />
+                            <!-- filter=" 'string' " -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-include='"../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+
+        </div>
+    </div>

@@ -1,0 +1,223 @@
+<div ng-controller="TransferPemeriksaanFisikCtrl">
+
+    <!-- panel pemeriksaan fisik --> 
+    <div class="panel panel-default container_12">
+
+        <div class="panel-heading">PEMERIKSAAN FISIK</div>
+        <div class="panel-body">
+
+        
+
+        <div class="panel panel-default container_12">
+
+            <div class="panel-body">
+
+                <div class="grid_6">
+                <!-- Tekanan darah -->
+                <div class="grid_3">
+                    <label c-label item="item" c-label-text="Tekanan darah"></label>
+                    <span class="titikDua">:</span>
+                </div>
+                <div class="grid_7">
+                    <div class="grid_5" style="text-align:left">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item" />
+                    </div>
+                    <div class="grid_2" style="text-align:center">
+                        <label>/</label>
+                    </div>
+                    <div class="grid_5" style="text-align:right">
+                        <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item" />
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="2">
+                     <label class="keteranganFieldTambahan">mmHg</label>
+                </div>
+                <div class="clear"></div>
+
+                <!-- Nadi -->
+                <div class="grid_3">
+                    <label c-label item="item" c-label-text="Nadi"></label>
+                    <span class="titikDua">:</span>
+                </div>
+                <div class="grid_7">
+                     <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item" />
+                </div>
+                <div class="2">
+                     <label class="keteranganFieldTambahan">x/Menit</label>
+                </div>
+                <div class="clear"></div>
+            </div>
+            
+            <div class="grid_6">
+                <!-- Pernafasan -->
+                <div class="grid_3">
+                    <label c-label item="item" c-label-text="Pernafasan"></label>
+                    <span class="titikDua">:</span>
+                </div>
+                <div class="grid_7">
+                    <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item" />
+                </div>
+                <div class="2">
+                     <label class="keteranganFieldTambahan">x/mnt</label>
+                </div>
+                <div class="clear"></div>
+            
+                 <!-- suhu -->
+                <div class="grid_3">
+                    <label c-label item="item" c-label-text="Suhu"></label>
+                    <span class="titikDua">:</span>
+                </div>
+                <div class="grid_7">
+                     <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item" />
+                </div>
+                <div class="2">
+                     <label class="keteranganFieldTambahan">'C</label>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>     
+
+            </div>
+        </div>
+        <div class="clear"></div>
+
+
+        <div class="panel panel-default container_12">
+
+            <div class="panel-body" style="padding:0;">
+
+                  <div class="grid_12">
+                    <ul kendo-panel-bar>
+                          <li>
+                            <span style="margin-left: -6px;">Neurologi</span>
+                            <!-- Kesadaran -->
+                            <div class="grid_12" style="border: none">
+                                <div class="grid_2">
+                                    <label c-label item="item" c-label-text="Kesadaran"></label>
+                                    <span class="titikDua">:</span>
+                                </div>
+                                <div class="grid_10">
+                                    <div class="grid_3" ng-repeat="kesadaran in listKesadaran">
+                                        <input type="checkbox" class="k-checkbox" >
+                                        <label class="k-checkbox-label">{{kesadaran.name}}</label>
+                                    </div>
+                                    
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <!-- Gangguan Neurologi -->
+                            <div class="grid_12" style="border: none">
+                                <div class="grid_2">
+                                    <label c-label item="item" c-label-text="Kesadaran"></label>
+                                    <span class="titikDua">:</span>
+                                </div>
+                                <div class="grid_10">
+                                    <div class="grid_3" ng-repeat="statGanguanNeurologi in listStatGanguanNeurologi">
+                                        <input type="checkbox" class="k-checkbox" >
+                                        <label class="k-checkbox-label">{{statGanguanNeurologi.name}}</label>
+                                    </div>
+                                    
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <!-- keterangan -->
+                            <div class="grid_12">
+                                <div class="grid_2">
+                                    <label c-label item="item" c-label-text="Keterangan"></label>
+                                    <span class="titikDua">:</span>
+                                </div>
+                                <div class="grid_10">
+                                    <textarea style="width: 99%; height: 80px;"></textarea>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                           </li>
+                           <li>
+                            <span style="margin-left: -6px;">Pernafasan</span>
+                            <!-- Karateristik Nyeri -->
+                                <div class="grid_12">
+                                <div class="grid_9">
+                                    Data belum ada
+                                </div>
+                                </div>
+                                <div class="clear"></div>
+                          </li>
+                          <li>
+                            <span style="margin-left: -6px;">Sirkulasi</span>
+                            <!-- Karateristik Nyeri -->
+                                <div class="grid_12">
+                                <div class="grid_9">
+                                    Data belum ada
+                                </div>
+                                </div>
+                                <div class="clear"></div>
+                          </li>
+                          <li>
+                            <span style="margin-left: -6px;">Gastrointestinal</span>
+                            <!-- Karateristik Nyeri -->
+                                <div class="grid_12">
+                                <div class="grid_9">
+                                    Data belum ada
+                                </div>
+                                </div>
+                                <div class="clear"></div>
+                          </li>
+                          <li>
+                            <span style="margin-left: -6px;">Eliminasi</span>
+                            <!-- Karateristik Nyeri -->
+                                <div class="grid_12">
+                                <div class="grid_9">
+                                    Data belum ada
+                                </div>
+                                </div>
+                                <div class="clear"></div>
+                          </li>
+                          <li>
+                            <span style="margin-left: -6px;">Integumen</span>
+                            <!-- Karateristik Nyeri -->
+                                <div class="grid_12">
+                                <div class="grid_9">
+                                    Data belum ada
+                                </div>
+                                </div>
+                                <div class="clear"></div>
+                          </li>
+                          <li>
+                            <span style="margin-left: -6px;">Muskuloskeletal</span>
+                            <!-- Karateristik Nyeri -->
+                                <div class="grid_12">
+                                <div class="grid_9">
+                                    Data belum ada
+                                </div>
+                                </div>
+                                <div class="clear"></div>
+                          </li>
+                          <li>
+                            <span style="margin-left: -6px;">Genetalia</span>
+                            <!-- Karateristik Nyeri -->
+                                <div class="grid_12">
+                                <div class="grid_9">
+                                    Data belum ada
+                                </div>
+                                </div>
+                                <div class="clear"></div>
+                          </li>
+                        </ul>
+                </div>
+           
+            <div class="clear"></div>     
+
+            </div>
+        </div>
+        <div class="clear"></div>
+
+      
+        
+        
+    </div>
+
+</div>
+

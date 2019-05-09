@@ -1,0 +1,22 @@
+
+<div ng-controller="ReactionOfMotorBehaviourCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="title">
+           	<div ng-repeat="datainduk in item">
+			   <div ng-repeat="data in datainduk.reactionOfMotorBehaviour">
+			
+				<div class="grid_5">
+					<label c-label item="item" c-label-text="{{data.name}}"> </label>
+				</div>
+				<div class="grid_1">
+					<div class="grid_6" style="margin: 5px 0 5px 0;" ng-repeat="stat in status">
+						<input type="radio" name="{{data.name+stat.name}}" id="{{data.name+stat.name}}" class="k-radio" ng-model="data.value" value="{{stat.id}}">
+						<label class="k-radio-label" for="{{data.name+stat.name}}">{{stat.name}}</label>
+					</div>
+				</div>
+            	
+              </div>
+			</div>
+		</c-panel>
+	</div>
+</div>

@@ -1,0 +1,138 @@
+<div>
+    <div class="panel panel-default container_12">
+        <div class="panel-heading"><label class='title' c-label item="item" >Master Narasumber</label></div>
+        <div class="panel-body">
+            <div class="grid_12">
+                <div class="grid_3">
+                    <label c-label c-label-text="Nama Narasumber"></label>
+                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="cari.komponen" />
+                </div>
+               <!--  <div class="grid_3">
+                    <label c-label c-label-text="Jenis Tarif"></label>
+                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="cari.jenisTarif" />
+                </div>
+                <div class="grid_3">
+                    <label c-label c-label-text="Asal"></label>
+                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="cari.asalProduk" />
+                </div> -->
+                <div class="grid_1">
+                    <label c-label c-label-text=""></label>
+                    <em style="margin-top:6px;" ng-click='resetFilter()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary"
+                        role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="panel-body grid_12">
+                    <div kendo-grid id="gridMaster" k-data-source="dataSource" options="optionGridMaster"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- popup isian data narasumber -->
+<div kendo-window="dialogPopup" k-title="'Tambah'" k-width="900" k-height="200" k-visible="false" k-on-close="customClicked()">
+    <div class="panel panel-default panel-white container_12">
+        <div class="grid_12">
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item">Nama Narasumber</label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.NamaNarasumber"/>
+                </div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item">Nama Panggilan</label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.NamaPanggilan"/>
+                </div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item">Jenis Kelamin</label>
+                </div>
+                <div class="grid_12">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.JenisKelamin" k-data-text-field="'jeniskelamin'"
+                        k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisKelamin"
+                       />
+                </div>
+            </div>            
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item">Pendidikan Terakhir</label>
+                </div>
+                <div class="grid_12">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.PendidikanTerakhir" k-data-text-field="'pendidikan'"
+                        k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPendidikanTerakhir"
+                     />
+                </div>
+            </div>
+        </div>
+        <div class="grid_12">
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item">Tempat Lahir</label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.TempatLahir"/>
+                </div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item">Tgl Lahir</label>
+                </div>
+                <div class="clear"></div>
+
+                <div class="grid_12">
+                    <input style="width: 100%" k-ng-model="item.tglLahir" kendo-date-picker placeholer="dd-mm-yyyy"
+                        k-format="'dd-MM-yyyy'" />
+                </div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item">No Handphone</label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.Handphone"/>
+                </div>
+            </div>
+            <div class="grid_3">
+                <div class="grid_12">
+                    <label c-label item="item">Email</label>
+                </div>
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.Email"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="k-edit-buttons k-state-default pull-right" style="margin-top:10px">
+        <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="Save()" ng-disabled='disabledSave'>
+            <span class="k-icon k-update"></span>Simpan
+        </button>
+        <button class="k-button k-button-icontext k-grid-cancel" ng-click="Batal()">
+            <span class="k-icon k-cancel"></span>Batal
+        </button>
+    </div>
+</div>
+<div class="grid_12" style="margin-top:60px">
+		<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+	</div>
+<style>
+    p {
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .k-window-titlebar {
+        background-color: #10c4b2;
+        font-weight: 800;
+    }
+
+    .k-i-close {
+        display: none;
+    }
+</style>

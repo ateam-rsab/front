@@ -1,0 +1,168 @@
+[{
+    "name": "Pajak",
+    "children": [
+        {
+            "name": "Perhitungan Pajak PPH 21",
+            "link": "#/PajakPPH21"
+        },
+        {
+            "name": "Daftar Penerimaan Pajak ",
+            "link": "#/DaftarPenerimaanPajak"
+        },
+        {
+            "name": "Pengajuan Pajak ",
+            "link": "#/PengajuanPajak"
+        },
+        {
+            "name": "Pelunasan Pajak ",
+            "link": "#/PelunasanPajak"
+        }
+    ]
+},
+{
+    "name": "Master Pajak",
+    "children": [
+        {
+         "name": "Pangkat",
+         "link": "#/PangkatBaru"
+        },
+        {
+         "name": "Golongan Pegawai",
+         "link": "#/PegawaiBaru"
+        },
+        {
+         "name": "Jenis Pajak",
+         "link": "#/JenisPajakBaru"
+        },
+        {
+         "name": "Pajak",
+         "link": "#/PajakBaru"
+        },
+        {
+         "name": "Objek Pajak",
+         "link": "#/ObjekPajakBaru"
+        },
+        {
+         "name": "Surat Keputusan Rate Pajak",
+         "link": "#/SKPajakRate"
+        },
+        {
+         "name": "Pegawai SK Pajak",
+         "link": "#/PegawaiSKPajak"
+        },
+        {
+         "name": "Penghasilan Tidak Kena Pajak",
+         "link": "#/PTKP"
+        }
+    ]
+}, 
+{
+    "name": "SDM",
+    "children": [{
+        "name": "Input Logbook",
+        "link": "#/InputLogbook"
+    }, {
+        "name": "Indeks Kinerja Individu",
+        "link": "#/IndeksKinerjaIndividuSDM"
+    }, {
+        "name": "Permohonan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
+        "link": "#/PermohonanPerubahanStatusPegawai"
+    }, {
+		"name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
+		"link": "#/DaftarPenangguhanCuti"
+	}, {
+        "name": "Pengajuan Mutasi Pegawai",
+        "link": "#/PengajuanMutasiPegawai"
+    }, {
+        "name": "Pengajuan Resign Pegawai",
+        "link": "#/PengajuanResignPegawai"
+    }, {
+        "name": "Pengajuan Sanksi Pegawai",
+        "link": "#/PengajuanSanksiPegawai"
+    }, {
+        "name": "Daftar Pengajuan Mutasi Resign Sanksi Pegawai",
+        "link": "#/DaftarPengajuanMutasiSanksiResign"
+    }, {
+		"name": "Monitoring Absensi",
+		"link": "#/MonitoringAbsensiPegawai"
+	}, {
+		"name": "InputLemburPegawaiUnitKerja",
+		"link": "#/InputLemburPegawaiUnitKerja"
+	},{
+        "name": "Verifikasi Uraian Tugas Bawahan",
+        "link": "#/VerifikasiUraianTugasPegawaiLogin"
+    }]
+},
+{
+    "name":"Aplikasi IT",
+    "children":[
+        {
+            "name": "Permintaan Perbaikan dari Ruangan",
+            "link": "#/RevPermintaanPerbaikandariRuanganITNew"
+        }
+    ]
+},
+    {
+        "name": "IP3RS",
+        "children": [
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/PermintaanPerbaikandariRuangan"
+            },
+            {
+                "name": "Respond Perbaikan",
+                "link": "#/RespondPerbaikan"
+            } 
+        ]
+    }, 
+{
+    "name": "Tata Usaha",
+    "children": [{
+            "name": "Membuat Draft Surat",
+            "link": "#/BuatDraftSurat"
+        },
+        {
+            "name": "Daftar Draft",
+            "link": "#/DaftarDraft"
+        },
+        {
+            "name": "Daftar Draft Surat Masuk",
+            "link": "#/DaftarDraftSuratMasuk"
+        },
+        {
+            "name": "Dokumen Verbal Konsep",
+            "link": "#/DokumenVerbalKonsep/"
+        },
+        {
+            "name": "Verbal Konsep",
+            "link": "#/VerbalKonsep/"
+        },
+        {
+            "name": "Surat Masuk Internal dan Eksternal",
+            "link": "#/SuratMasukInternaldanEksternal"
+        },
+        {
+            "name": "Daftar Surat Masuk Internal Eksternal",
+            "link": "#/DaftarSuratMasukInternalEksternal"
+        },
+        {
+            "name": "Nota Dinas",
+            "link": "#/NotaDanDisposisi"
+        },
+        {
+            "name": "Daftar Nota Dinas",
+            "link": "#/ListNotaDinas"
+        }
+    ]
+},
+{
+    "name": "Aplikasi Laundry",
+    "children": [
+        {
+            "name": "Permintaan Linen Bersih",
+            "link": "#/PermintaanLinenByRuangan"
+        },{
+			"name": "Verifikasi",
+			"link": "#/VerifikasiTerima"
+		}
+]}]

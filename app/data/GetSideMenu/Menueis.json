@@ -1,0 +1,64 @@
+[
+  {
+    "name": "Eis 1",
+    "children": [
+      {
+        "name": "Eis 1 : Sub Menu 1",
+        "link": "#"
+      },
+      {
+        "name": "Eis 1 : Sub Menu 2",
+        "link": "#"
+      }
+    ]
+  },
+  {
+    "name": "Eis 2",
+    "children": [
+      {
+        "name": "Eis 2: Sub Menu 1",
+        "link": "#"
+      },
+      {
+        "name": "Eis 2 : Sub Menu 2",
+        "link": "#"
+      }
+    ]
+  },
+  {
+    "name": "Eis 3",
+    "link": "#"
+  },
+  {
+    "name": "Eis 4",
+    "link": "#"
+  },
+  {
+    "name": "Eis 5",
+    "link": "#"
+  },
+  {
+    "name": "Eis 6",
+    "link": "#"
+  },
+  {
+    "name":"Aplikasi IT",
+    "children":[
+        {
+            "name": "Permintaan Perbaikan dari Ruangan",
+            "link": "#/RevPermintaanPerbaikandariRuanganITNew"
+        }
+    ]
+},
+  {
+    "name": "Aplikasi Laundry",
+    "children": [
+        {
+            "name": "Permintaan Linen Bersih",
+            "link": "#/PermintaanLinenByRuangan"
+        },{
+          "name": "Verifikasi",
+          "link": "#/VerifikasiTerima"
+        }
+]}
+]

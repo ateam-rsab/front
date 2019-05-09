@@ -1,0 +1,292 @@
+#!/usr/bin/env node
+
+require("amd-loader");
+
+var debug = require('debug')('my-application');
+//var amqp = require('amqplib');
+var HashMap = require('hashmap');
+var config = require('../app/javascripts/Setting2');
+
+var app = require('../app');
+//var https = require('https');
+//var fs = require('fs');
+
+var RabbitHole = require('../rabbitHole');
+var Storage = require('node-storage');
+
+console.log('RabbitMQ Server Host : %s', config.rabbitMQHost);
+
+// START Alter Syamsu, biar difix-kan portnya
+
+//var privateKey =  fs.readFileSync('/home/svradmin/rsabharkit.key');
+//var certificate = fs.readFileSync('/home/svradmin/rsabharkit.cert');
+
+//var credentials = {key: privateKey, cert: certificate, requestCert: false, rejectUnauthorized: false};
+
+//var server = https.createServer(credentials, app);
+
+var server = app.listen(5555, function() {
+    console.log('Express Server for HTTPS Server & Notification Server, listening on port ' + server.address().port);
+});
+
+//server.listen(2222, function() {
+//    console.log('Express Server for HTTPS Server & Notification Server, listening on port ' + server.address().port);
+//});
+
+var io = require('socket.io').listen(server);
+
+// Server ini hanya dari Node ke Browser, dari Browser ke BackEnd lewat RabbitMQ, biar notif tidak hilang di jalan kalau belum login..
+
+// END Alter Syamsu, biar difix-kan portnya
+
+/////////////////////////////////////////////
+
+// START Alter Syamsu.. normalisasi socket untuk notifikasi..
+
+///////////////////////////////////////////
+
+var storage = new Storage('./notif.dat');
+
+var kumpulanSocketByRuanganId = new HashMap();
+var rabbitConnByRuanganId = new HashMap();
+var notifJSONByRuanganId = new HashMap();
+
+var ruanganIdBySocketId = new HashMap();
+
+
+io.on('connection', function(socket) {
+
+    console.log(socket.conn.remoteAddress + " connected");
+
+    // Notifikasi Lama
+
+    socket.on('broadcast', function(data) {
+        console.log(data);
+    })
+    socket.on('subscribe', function(data) {
+        console.log("ini dia");
+        console.log(data);
+        try {
+            if (data.to === undefined) {
+                var arr = data.split('#');
+                if (arr.length == 3) {
+                    console.log('send to ' + arr[0] + " >> " + arr[1] + '#' + arr[2]);
+                    socket.broadcast.emit(arr[0], {
+                        message: arr[1] + '#' + arr[2]
+                    });
+
+                } else
+                if (arr.length == 2) {
+                    console.log('send to ' + arr[0] + " >> " + arr[1]);
+                    socket.broadcast.emit(arr[0], {
+                        message: arr[1]
+                    });
+
+                } else
+                    console.log('kemana yeeeh');
+            } else {
+                socket.broadcast.emit(data.to, {
+                    message: data.message
+                });
+            }
+        } catch (e) {
+
+        }
+
+    });
+
+
+
+    // Notifikasi Baru
+    // using localstorage
+
+    var clearRuangan = function(){
+
+        console.log('socket dan ruangan dibersihkan');
+
+        ruanganIdBySocketId.set(socket.id, cRuanganId);
+        var cRuanganId = ruanganIdBySocketId.get(socket.id);
+
+        var totalSocket = kumpulanSocketByRuanganId.get(cRuanganId);
+        var rabbit = {};
+
+        if (totalSocket == undefined || totalSocket == null){
+            rabbit = rabbitConnByRuanganId.get(cRuanganId);
+            if (rabbit == undefined || rabbit == null){
+                return;
+            }
+            rabbit.disconnect();
+            rabbitConnByRuanganId.set(cRuanganId, null);            
+            return;
+        } 
+
+        var idx = totalSocket.indexOf(socket.id);
+        totalSocket.splice(idx, 1);
+
+        if (totalSocket.length <= 0) {
+            kumpulanSocketByRuanganId.set(cRuanganId, null);            
+            rabbit = rabbitConnByRuanganId.get(cRuanganId);
+            if (rabbit == undefined || rabbit == null){
+                return;
+            }
+            rabbit.disconnect();
+            rabbitConnByRuanganId.set(cRuanganId, null); 
+        }    
+    }
+    
+    socket.on('disconnect', function(){
+        clearRuangan();
+    });
+
+
+    socket.on('login', function(data){
+        try{
+            console.log('User %s berhasil login', data.namaLengkap);
+            socket.broadcast.emit('login', data);   
+         }catch(err){
+        }      
+    });
+
+
+    socket.on('logout', function(data){
+        try{
+            console.log('User %s telah logout', data.namaLengkap);
+            socket.broadcast.emit('logout', data);  
+        }catch(err){
+        }    
+        socket.disconnect();
+    });
+
+    socket.on('deleteNotif', function(data){
+
+        
+        
+        var jsonNotif = JSON.parse(data);
+
+        var cRuanganId = jsonNotif.ruanganId;
+        var notif = jsonNotif.notif;
+
+        console.log("Notification yang akan dibuang %s ", notif);
+
+        var notifMsg = notifJSONByRuanganId.get(cRuanganId);
+
+        if (notifMsg == undefined || notifMsg == null || notifMsg.length <= 0){
+            notifMsg = storage.get('ruanganId.' + cRuanganId);
+        }    
+
+        if (notifMsg == undefined || notifMsg == null || notifMsg.length <= 0){
+            return;
+        }    
+
+        notifJSONByRuanganId.set(cRuanganId, notifMsg);
+
+        var idx = notifMsg.indexOf(notif);
+
+        notifMsg.splice(idx, 1);
+
+        console.log("Notification idx yang dihapus %s ", idx);
+
+        storage.put('ruanganId.' + cRuanganId, notifMsg);
+
+        io.emit('listNotif.' + cRuanganId, JSON.stringify(notifMsg));
+
+    });
+
+    socket.on('ruanganId', function(data){
+
+        var cRuanganId = data;
+
+        console.log(" [*] ada user dari  ruangan : %s ...", cRuanganId);
+
+        ruanganIdBySocketId.set(socket.id, cRuanganId);
+
+        var notifMsg = notifJSONByRuanganId.get(cRuanganId);
+
+        if (notifMsg == undefined || notifMsg == null || notifMsg.length <= 0){
+            notifMsg = storage.get('ruanganId.' + cRuanganId);
+        }
+
+        if (notifMsg == undefined || notifMsg == null || notifMsg.length <= 0){
+            notifMsg = [];
+            storage.put('ruanganId.' + cRuanganId, notifMsg);
+        }
+
+        notifJSONByRuanganId.set(cRuanganId, notifMsg);
+
+
+        var totalSocket = kumpulanSocketByRuanganId.get(cRuanganId);
+
+        if (totalSocket == undefined || totalSocket == null || totalSocket.length <= 0) {
+            totalSocket = [];
+            kumpulanSocketByRuanganId.set(cRuanganId, totalSocket);
+        }   
+
+        if (notifMsg.length > 0){
+            console.log("kirimkan notif yang sudah ada donk..");
+            socket.emit('listNotif.' + cRuanganId, JSON.stringify(notifMsg));
+        }
+
+        totalSocket.push(socket.id);
+        var rabbit = rabbitConnByRuanganId.get(cRuanganId);
+
+        if (rabbit == undefined || rabbit == null){
+            rabbit = new RabbitHole();
+            rabbitConnByRuanganId.set(cRuanganId, rabbit);
+
+            rabbit.connect(config.rabbitMQHost, function(conn){
+                conn.createChannel().then(function(ch){
+                    try{
+                        console.log(" [*] Menunggu pesan dari Queue : %s ...", cRuanganId);
+
+
+                        var callbackConsume = function(msg) {
+
+
+
+                            //console.log(" [x] Ruangan : %s Menerima pesan %s", cRuanganId, msg.content.toString());
+
+                            var totalSocket = kumpulanSocketByRuanganId.get(cRuanganId);
+
+                            if (totalSocket == undefined || totalSocket == null || totalSocket.length <= 0) {
+                                ch.nack(msg, false, true);
+                                rabbit.disconnect();
+                                rabbitConnByRuanganId.set(cRuanganId, null);
+                            } else {
+
+
+                                var notif = msg.content.toString();
+                                ch.ack(msg);
+
+                                var notifMsgLocal = notifJSONByRuanganId.get(cRuanganId);
+                           
+
+                                console.log('simpan notif ke penyimpanan %s', 'ruanganId.' + cRuanganId);
+
+                                notifMsgLocal.push(JSON.parse(notif));
+                                storage.put('ruanganId.' + cRuanganId, notifMsgLocal);
+
+//                                console.log('kirim pesan ke ruangan %d isinya %s', cRuanganId, JSON.stringify(notifMsg));
+
+                                io.emit('listNotif.' + cRuanganId, JSON.stringify(notifMsgLocal));
+                            }
+                        };
+
+
+
+                        var common_options = {durable: true, noAck: false};
+
+                        ch.assertQueue(cRuanganId, common_options).then();
+                        ch.consume(cRuanganId, callbackConsume, common_options);
+
+                        
+                    }catch(err){
+                        console.error('Ada error saat baca Channel, abaikan. Errornya : %s', err)
+                    }
+                }).then(null, function(err){
+                    console.error('Gagal bikin channel karena %s ', err);
+                });
+            });
+        }
+    });
+});
+

@@ -1,0 +1,50 @@
+<div ng-controller="PenyusunanEPlanningCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Penyusunan EPlanning'" disabled>
+
+			<!-- PeriodeAnggaran -->
+			<div class="grid_12">
+				<div class="grid_2">
+					<label c-label item="item" style="margin-top: 10px" c-label-text="Tahun Pengajuan :"></label>
+				</div>
+				<div class="grid_1">
+					<input style="width: 100%" kendo-combo-box k-ng-model="item.comboTahun" k-data-source="dataListTahun" k-data-value-field="'Tahun'" k-data-text-field="'Tahun'"/>
+				</div>
+
+			</div>
+			<div class="grid_12">
+				<div class="grid_2">
+					<label c-label item="item" style="margin-top: 10px" c-label-text="Status :"></label>
+				</div>
+				<div class="grid_3">
+					<input style="width: 100%" kendo-combo-box k-ng-model="item.comboStatus" k-data-source="dataStatus" k-data-value-field="'Status'" k-data-text-field="'Status'"/>
+				</div>
+				<div class="grid_1" style="margin-top:7px">
+					<button class="c-button"  style="width: 100%" ng-click="Cari()">Cari</button>
+				</div>
+
+			</div>
+
+
+
+			<!-- PenyusunanEPlanning -->
+			<div class="grid_12">
+				<div class="grid_12 headerBox">
+					<p>PenyusunanEPlanning</p>
+				</div>
+				<div class="clear"></div>
+
+				<!-- grid table -->
+				<div class="grid_12 borderBox">
+					<div kendo-grid k-data-source="dataPenyusunanEPlanning" k-selectable="'row'" k-columns="columnPenyusunanEPlanning">
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+
+
+
+		</c-panel>
+	</div>
+</div>

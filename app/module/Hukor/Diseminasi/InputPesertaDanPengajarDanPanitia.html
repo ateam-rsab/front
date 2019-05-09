@@ -1,0 +1,82 @@
+<style>
+    .label-aja {
+        padding-top: 12px;
+        font-size: 13px;
+        font-weight: bold;
+        text-align: right;
+        height: 22px;
+    }
+
+    .k-window > div.k-popup-edit-form {
+        padding: 1em;
+    }
+</style>
+<div ng-controller="InputPesertaDanPengajarDanPanitiaCtrl">
+    <c-panel item="item" header="'InputPesertaDanPengajarDanPanitia'">
+        <div class="panel panel-default container_12">
+            <div class="panel-body">
+                <div class="grid_12">
+                    <div class="grid_3" style="margin: 10px 0 0 10px;">
+                        <label c-label item="item">
+                            <font size="5"><b>{{item.judul}}</b></font>
+                        </label>
+                    </div>
+                    <br>
+                    <div class="grid_12">
+                        <div kendo-grid k-data-source="gridInputPeserta" k-selectable="'row'"
+                             k-options="colInputPeserta" k-ng-model="dataSource">
+                        </div>
+                    </div>
+
+                    <div class="grid_12">
+                        <div class="grid_9"></div>
+                        <div class="grid_3">
+                            <button class="c-button" ng-click="save()">Simpan</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </c-panel>
+
+    <script id="popup-editor" type="text/x-kendo-template">
+        <div class="panel panel-default container_12">
+            <div class="grid_12">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Pegawai"></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="dataItem.pegawais"
+                           k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'"
+                           k-auto-bind="false" k-data-source="listPegawai"
+                           k-on-change="getPegawai(data, dataItem, columns)" required/>
+                </div>
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Jabatan"></label>
+                    <input c-text-box type="varchar" class="k-textbox" ng-model="dataItem.jabatan" k-auto-bind="false"
+                           readonly="true"/>
+                </div>
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Alamat"></label>
+                    <input c-text-box type="varchar" class="k-textbox" ng-model="dataItem.alamat" k-auto-bind="false"
+                           readonly="true"/>
+                </div>
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="No. Telp"></label>
+                    <input c-text-box type="varchar" class="k-textbox" ng-model="dataItem.noTlp" k-auto-bind="false"
+                           readonly="true"/>
+                </div>
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Email"></label>
+                    <input c-text-box type="varchar" class="k-textbox" ng-model="dataItem.email" k-auto-bind="false"
+                           readonly="true"/>
+                </div>
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Jenis"></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="dataItem.jeniss" k-data-text-field="'jenis'"
+                           k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenis"
+                           k-on-change="getJenis(data, dataItem, columns)" required/>
+                </div>
+            </div>
+        </div>
+    </script>
+</div>

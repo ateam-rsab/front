@@ -1,0 +1,48 @@
+<div ng-controller="InformasiDaftarPermintaanLinenBersihdariRuanganCtrl">
+	<div class="panel panel-default container_12">
+		<div class="panel-heading" c-translate>Informasi Daftar Permintaan Linen Bersih dari Ruangan</div>
+			<div class="panel-body">
+				<div class="grid_12" style="margin-top: 10px">
+        			<div kendo-grid k-data-source="InformasiDaftarPermintaanLinenBersihdariRuangan" k-selectable="'row'" k-columns="columnInformasiDaftarPermintaanLinenBersihdariRuangan">
+        			</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_5">
+						<div class="panel panel-default container_12" style="margin-top: 30px">
+						<div class="panel-heading" c-translate>Pencarian</div>
+							<div class="panel-body">
+								<div class="grid_12" style="margin: 10px 0 0 10px;">
+									<div class="grid_4">
+										<label c-label item="item" c-label-text="noOrder"></label>
+									</div>
+									<div class="grid_8">
+										<label c-label item="item" c-label-text="ruangPemesan"></label>
+									</div>
+								</div>
+								<div class="grid_12" style="margin-top: 5px;">
+									<div class="grid_4">
+										<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noOrder" maxlength="10"/>
+									</div>
+									<div class="grid_8">
+										<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.ruangPemesan" maxlength="10"/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="grid_7"></div>
+				<div class="grid_12">
+					<div class="grid_5"></div>
+					<div class="grid_3">
+						<button class= "c-button" ng-click="">Cetak Struk Order</button>
+                   	</div>
+                   	<div class="grid_2">
+                   		<button class="c-button" ng-click="">Kirim Barang</button>
+					</div>
+					<div class="grid_2">
+                   		<button class="c-button" ng-click="">Tutup</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

@@ -1,0 +1,8 @@
+<div ng-controller="DaftarBarangMonitoringDanEvaluasiCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Daftar Barang Monitoring Dan Evaluasi'">
+			<div kendo-grid="grid" k-ng-model="selectedData" k-data-source="dataSource" k-options="mainGridBarangMonev" k-selectable="'row'" style="margin-bottom: 10px"></div>
+		</c-panel>
+	</div>
+</div>

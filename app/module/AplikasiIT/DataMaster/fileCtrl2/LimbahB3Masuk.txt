@@ -1,0 +1,182 @@
+////header nya
+define(['initialize'], function(initialize) {
+	'use strict';
+initialize.controller('LimbahB3MasukCtrl', ['$q', '$rootScope', '$scope', 'IPSRSService',
+ function($q, $rootScope, $scope,IPSRSService) {
+ $scope.item = {};
+ $scope.dataVOloaded = true;
+ $scope.now = new Date();
+ var init = function () {
+IPSRSService.getFieldsMasterTable("get-data-master?className=LimbahB3Masuk", true).then(function(dat){
+$scope.listDataMaster = dat.data.data.LimbahB3Masuk;
+                                    					
+$scope.dataSource = new kendo.data.DataSource({
+pageSize: 10,
+data: $scope.listDataMaster,
+autoSync: true
+
+});
+
+});
+}
+init();
+
+
+
+
+$scope.columnLimbahB3Masuk = [
+{
+"field": "No",
+"title": "No"
+},
+{
+"field": "jenisLimbahB3Masuk",
+"title": "jenis Limbah B3Masuk"
+},
+{
+"field": "jenisLimbahB3MasukId",
+"title": "jenis Limbah B3Masuk Id"
+},
+{
+"field": "tanggal",
+"title": "tanggal"
+},
+{
+"field": "beratSampahMedis",
+"title": "berat Sampah Medis"
+},
+{
+"field": "waktu",
+"title": "waktu"
+},
+{
+"field": "ruangan",
+"title": "ruangan"
+},
+{
+"field": "ruanganId",
+"title": "ruangan Id"
+},
+{
+"field": "mapPegawaiLimbah",
+"title": "map Pegawai Limbah"
+},
+{
+"field": "maksimalPenyimpanan",
+"title": "maksimal Penyimpanan"
+},
+{
+"field": "qtyKeluar",
+"title": "qty Keluar"
+},
+{
+"field": "statusEnabled",
+"title": "status Enabled"
+},
+
+{
+	"title" : "Action",
+	"width" : "200px",
+	"template" : "<button class='btnEdit' ng-click='enableData()'>Enable</button>"+
+"<button class='btnHapus' ng-click='disableData()'>Disable</button>"
+}
+];
+$scope.mainGridOptions = { 
+ pageable: true,
+ columns: $scope.columnLimbahB3Masuk,
+ editable: "popup",
+ selectable: "row",
+ scrollable: false
+ };
+////fungsi klik untuk edit
+ $scope.klik = function(current){
+$scope.showEdit = true;
+$scope.current = current;
+$scope.item.jenisLimbahB3Masuk = current.jenisLimbahB3Masuk;
+$scope.item.jenisLimbahB3MasukId = current.jenisLimbahB3MasukId;
+$scope.item.tanggal = current.tanggal;
+$scope.item.beratSampahMedis = current.beratSampahMedis;
+$scope.item.waktu = current.waktu;
+$scope.item.ruangan = current.ruangan;
+$scope.item.ruanganId = current.ruanganId;
+$scope.item.mapPegawaiLimbah = current.mapPegawaiLimbah;
+$scope.item.maksimalPenyimpanan = current.maksimalPenyimpanan;
+$scope.item.qtyKeluar = current.qtyKeluar;
+$scope.item.noRec = current.noRec;
+$scope.item.statusEnabled = current.statusEnabled;
+};
+$scope.disableData=function(){
+ IPSRSService.getClassMaster("delete-master-table?className=LimbahB3Masuk&&id="+$scope.item.id+"&&statusEnabled=false").then(function(dat){
+ init();
+ });
+ };
+$scope.enableData=function(){
+ IPSRSService.getClassMaster("delete-master-table?className=LimbahB3Masuk&&id="+$scope.item.id+"&&statusEnabled=true").then(function(dat){
+ init();
+
+	});
+};
+
+$scope.tambah = function()
+ {
+var data = {
+	"class": "LimbahB3Masuk",
+	"listField": {
+"jenisLimbahB3Masuk": $scope.item.jenisLimbahB3Masuk,
+"jenisLimbahB3MasukId": $scope.item.jenisLimbahB3MasukId,
+"tanggal": $scope.item.tanggal,
+"beratSampahMedis": $scope.item.beratSampahMedis,
+"waktu": $scope.item.waktu,
+"ruangan": $scope.item.ruangan,
+"ruanganId": $scope.item.ruanganId,
+"mapPegawaiLimbah": $scope.item.mapPegawaiLimbah,
+"maksimalPenyimpanan": $scope.item.maksimalPenyimpanan,
+"qtyKeluar": $scope.item.qtyKeluar,
+}
+	}
+ IPSRSService.saveDataMaster(data,"save-master-table").then(function(e) {
+console.log(JSON.stringify(e.data));
+init();
+$scope.item = {};
+ });
+  }
+
+ $scope.edit = function()
+  {	
+   var data = {
+ "class": "LimbahB3Masuk",
+	"listField": {
+"jenisLimbahB3Masuk": $scope.item.jenisLimbahB3Masuk,
+"jenisLimbahB3MasukId": $scope.item.jenisLimbahB3MasukId,
+"tanggal": $scope.item.tanggal,
+"beratSampahMedis": $scope.item.beratSampahMedis,
+"waktu": $scope.item.waktu,
+"ruangan": $scope.item.ruangan,
+"ruanganId": $scope.item.ruanganId,
+"mapPegawaiLimbah": $scope.item.mapPegawaiLimbah,
+"maksimalPenyimpanan": $scope.item.maksimalPenyimpanan,
+"qtyKeluar": $scope.item.qtyKeluar,
+"noRec": $scope.item.noRec,
+"statusEnabled": $scope.item.statusEnabled
+ }
+ }
+IPSRSService.saveDataMaster(data,"update-master-table").then(function(e){console.log(JSON.stringify(e.data));
+init();
+});
+}
+$scope.batal = function () {
+$scope.showEdit = false;
+$scope.item = {};
+}
+IPSRSService.getFieldListData("JenisLimbahB3Masuk&select=id,namaExternal", true).then(function(dat){
+$scope.listjenislimbahb3masuk= dat.data;
+});
+IPSRSService.getFieldListData("Ruangan&select=id,namaExternal", true).then(function(dat){
+$scope.listruangan= dat.data;
+});
+IPSRSService.getFieldListData("Set&select=id,namaExternal", true).then(function(dat){
+$scope.listmappegawailimbah= dat.data;
+});
+}
+]);
+});

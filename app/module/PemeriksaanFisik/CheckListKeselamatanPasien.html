@@ -1,0 +1,114 @@
+<div ng-controller="CheckListKeselamatanPasienCtrl">
+    <c-panel item="item" header="'CHECK LIST PROSEDUR KESELAMATAN PASIEN DI KAMAR OPERASI'">
+
+   
+      
+   
+		
+		
+ 
+        <div class="panel" style="border-color:#0d9a8b; padding: 10px 0 200px 10px;">
+		<div class="grid_4">
+		<div class="grid_12">
+         <div class="grid_6" style="margin:10px 5px 5px 10px;">
+		  <label c-label item="item" c-label-text="NamaDokter"></label>
+		 </div>
+		<div class="grid_6" style="margin:10px 5px 5px 10px;">
+         <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.Tengkurap" />
+		</div>
+        </div>
+		
+		
+		<div class="grid_12">
+         <div class="grid_6" style="margin:10px 5px 5px 10px;">
+		  <label c-label item="item" c-label-text="TanggalTindakan"></label>
+		 </div>
+         <div class="grid_6" style="margin:10px 5px 5px 10px;">
+			<input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tanggallahir" k-data-text-field="'tanggallahir'" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+		</div>
+		</div>
+     
+		
+		</div>
+		<div class="grid_4">
+		<div class="grid_12">
+		<div class="grid_6" style="margin:10px 5px 5px 10px;">
+		 <label c-label item="item" c-label-text="NamaTindakan"></label>
+		</div>
+		 <div class="grid_6" style="margin: 10px 5px 5px 10px;">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.Diagnosis"
+                               k-data-text-field="'name'"
+                               k-filter="'contains'"
+                               k-data-value-field="'id'"
+                               k-data-source="listDiagnosis" />
+                    </div>
+		
+		
+		</div>
+		<div class="grid_12">
+		<div class="grid_6" style="margin:10px 5px 5px 10px;">
+		 <label c-label item="item" c-label-text="Ruang/Klinik"></label>
+		</div>
+		 <div class="grid_6" style="margin:10px 5px 5px 10px;">
+         <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.Tengkurap" />
+		</div>
+		
+		
+		</div>
+        </div>
+		
+		<div class="grid_4">
+		<div class="grid_12">
+		<div class="grid_6" style="margin:10px 5px 5px 10px;">
+		 <label c-label item="item" c-label-text="DiagnosisMedis"></label>
+		</div>
+		 <div class="grid_6" style="margin: 10px 5px 5px 10px;">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.Diagnosis"
+                               k-data-text-field="'name'"
+                               k-filter="'contains'"
+                               k-data-value-field="'id'"
+                               k-data-source="listDiagnosis" />
+                    </div>
+		
+		
+		</div>
+		
+        </div>
+		
+		
+		 </div>  
+        
+		
+		
+			
+		
+		
+
+
+	  
+		  
+
+	      </div>
+	 
+	 
+
+
+		
+		
+		</c-panel>
+		  
+		    <div class="grid_12" style="position:absolute;bottom:0px;left:0px;">
+            <div class="grid_6">
+                <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px" item="item" size="36" position="'left'" is-back icon="'icon-prev'">
+                    <span class="title">Kembali</span>
+                </c-button>
+            </div>
+            <div class="grid_6">   
+                <c-button ng-show="!isLoading" link="'#/PengkajianAwalPasienRawatJalanAnak/CheckIn'" style="width: 100%; font-size: 24px" item="item" size="36" position="'right'" is-validate click="Lanjutkan" icon="'icon-next'">
+                    <span class="title">Proses</span>
+                </c-button>
+            </div>
+        </div>
+		
+	
+		

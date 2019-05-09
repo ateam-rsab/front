@@ -1,0 +1,104 @@
+<div ng-controller="PemakaianAirBersihCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Pemakaian Air Bersih'">
+			<div class="grid_12">
+				<div class="grid_6">
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="bulan"></label>
+					</div>
+					<div class="grid_6">
+						<input kendo-date-picker k-ng-model="item.bulan" k-options="monthSelectorOptions" k-format="'MM yyyy'" style="width: 100%" />
+					</div>
+					<div class="clear"></div>
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="namaRuangan"></label>
+					</div>
+					<div class="grid_8">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaRuangan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+					</div>
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="standMeterAkhir"></label>
+					</div>
+					<div class="grid_4">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.standMeterAkhir" k-on-spin="totalPemakaian()" ng-change="totalPemakaian()" />
+					</div>
+					<div class="clear"></div>
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="standMeterLalu"></label>
+					</div>
+					<div class="grid_4">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox"  ng-model="item.standMeterLalu" k-on-spin="totalPemakaian()" ng-change="totalPemakaian()" />
+					</div>
+					<div class="clear"></div>
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="pemakaian"></label>
+					</div>
+					<div class="grid_4">
+						<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.pemakaian" disabled="true" />
+					</div>
+					<div class="clear"></div>
+					<div class="grid_4">
+						<label c-label item="item" c-label-text="keterangan"></label>
+					</div>
+					<div class="grid_8">
+						<textarea style="height: 50px" c-text-box type="input" class="k-textbox" ng-model="item.keterangan" />
+					</div>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_6"></div>
+				<div class="grid_2" style="margin-top: 25px">
+					<button class="c-button" ng-show="!isLoading" item="item" is-validate click="Cancel">
+                <span>Batal</span></button>
+				</div>
+				<div class="grid_2 " style="margin-top: 25px ">
+					<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="save()">
+				<span>Simpan</span></button>
+				</div>
+			</div>
+
+
+			<div class="grid_12 " style="margin-top: 100px ">
+				<div class="grid_4 "></div>
+				<div class="grid_2 " style="margin-top: 10px; " align="right ">
+					<label c-label item="item " c-label-text="periodeTanggal "></label>
+				</div>
+
+				<div class="grid_2 ">
+					<input style="width: 100% " k-value="now" kendo-date-picker k-ng-model="item.periodeAwal" placeholer="dd-mm-yyyy " k-format=" 'dd-MM-yyyy' " />
+				</div>
+				<div class="grid_1 " style="margin-top: 10px; " align="center ">
+					<label c-label item="item " c-label-text="sd"></label>
+				</div>
+				<div class="grid_2 ">
+					<input style="width: 100% " k-value="now" kendo-date-picker k-ng-model="item.periodeAkhir" placeholer="dd-mm-yyyy " k-format=" 'dd-MM-yyyy' " />
+				</div>
+				<div class="grid_1 " style="margin-top: 7px; font-size: 24px; ">
+					<button class="c-button " ng-show="!isLoading " item="item " ng-click="cari() ">
+                                Cari
+                        </button>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div kendo-grid k-data-source="dataPemakaianAirBersih" k-ng-model="selectedData" k-selectable="'row'" k-columns="columnPemakaianAirBersih" style="margin-bottom: 10px">
+			</div>
+
+			<div class="grid_6 "></div>
+			<div class="grid_2" style="margin-top: 25px; font-size: 24px;">
+				<button class="c-button" ng-show="!isLoading" item="item" ng-click="cetak()">
+                                <span class="title">Cetak</span></button>
+			</div>
+			<div class="grid_2" style="margin-top: 25px; font-size: 24px;">
+				<button class="c-button" ng-show="!isLoading" item="item" ng-click="hapus(selectedData)">
+                                <span class="title">Hapus</span></button>
+			</div>
+			<div class="grid_2" style="margin-top: 25px; font-size: 24px;">
+				<button class="c-button" ng-show="!isLoading" item="item" ng-click="tutup()">
+                                <span class="title">Tutup</span></button>
+			</div>
+
+		</c-panel>
+
+	</div>
+</div>

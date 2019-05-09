@@ -1,0 +1,133 @@
+
+
+
+
+
+
+
+{
+	"model":{
+	    "tanggal" : "",
+	    "do" : "",
+	    "suhu" : "",
+	    "ph" : "",
+	    "tds" : "",
+	    "conductivity" : "",
+	    "parameter" : "",
+	    "hasil" : "",
+	    "meterAirSekarang1" : "",
+	    "meterAirSekarang2" : "",
+	    "debit1" : "",
+	    "debit2" : "",
+	    "inletMeterAir" : "",
+	    "outletMeterAir" : "",
+	    "inletDebit" : "",
+	    "outletDebit" : "",
+	    "keterangan" : ""
+
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "tanggal",
+			"messagesRequired" : "",
+			"caption" : "Tanggal"
+		},
+		{
+			"isNull" : "true",
+			"name" : "do",
+			"messagesRequired" : "",
+			"caption" : "DO"
+		},
+		{
+			"isNull" : "true",
+			"name" : "suhu",
+			"messagesRequired" : "",
+			"caption" : "Suhu"
+		},
+		{
+			"isNull" : "true",
+			"name" : "ph",
+			"messagesRequired" : "",
+			"caption" : "PH"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tds",
+			"messagesRequired" : "",
+			"caption" : "TDS"
+		},
+		{
+			"isNull" : "true",
+			"name" : "conductivity",
+			"messagesRequired" : "",
+			"caption" : "Conductivity"
+		},
+		{
+			"isNull" : "true",
+			"name" : "parameter",
+			"messagesRequired" : "",
+			"caption" : "Parameter"
+		},
+		{
+			"isNull" : "true",
+			"name" : "hasil",
+			"messagesRequired" : "",
+			"caption" : "Hasil"
+		},
+		{
+			"isNull" : "true",
+			"name" : "meterAirSekarang1",
+			"messagesRequired" : "",
+			"caption" : "Meter Air(Sekarang)"
+		},
+		{
+			"isNull" : "true",
+			"name" : "debit1",
+			"messagesRequired" : "",
+			"caption" : "Debit"
+		},
+		{
+			"isNull" : "true",
+			"name" : "meterAirSekarang2",
+			"messagesRequired" : "",
+			"caption" : "Meter Air(Sekarang)"
+		},
+		{
+			"isNull" : "true",
+			"name" : "debit2",
+			"messagesRequired" : "",
+			"caption" : "Debit"
+		},
+		{
+			"isNull" : "true",
+			"name" : "inletMeterAir",
+			"messagesRequired" : "",
+			"caption" : "Meter Air (Sekarang)"
+		},
+		{
+			"isNull" : "true",
+			"name" : "inletDebit",
+			"messagesRequired" : "",
+			"caption" : "Debit"
+		},
+		{
+			"isNull" : "true",
+			"name" : "outletMeterAir",
+			"messagesRequired" : "",
+			"caption" : "Meter Air (Sekarang)"
+		},
+		{
+			"isNull" : "true",
+			"name" : "outletDebit",
+			"messagesRequired" : "",
+			"caption" : "Debit"
+		},
+		{
+			"isNull" : "true",
+			"name" : "keterangan",
+			"messagesRequired" : "",
+			"caption" : "Keterangan"
+		}
+  ]
+}

@@ -1,0 +1,42 @@
+<div ng-controller="InputJadwalCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="''" disabled>
+			<div class="grid_12">
+				<div style="margin: 5px" class="grid_3">
+					<label c-label item="item">Nama Petugas</label>
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.petugas" disabled />
+				</div>
+				<div style="margin: 5px" class="grid_3">
+					<label c-label item="item" c-label-text="Tahun"></label>
+					<input style="width:100%" kendo-date-picker  k-ng-model="item.tahun" k-options="monthSelectorOptions" placeholder="'MMMM yyyy'" k-format="'MMMM yyyy'"/>
+				</div>
+				<div class="grid_1"></div>
+				<div class="grid_1" style="margin-top:10px">
+					<label c-label item="item">&nbsp</label>
+					<button class="c-button" ng-click="daily('daily')">
+					<span>Harian</span>
+				</div>
+				<div class="grid_2" style="margin-top:10px">
+					<label c-label item="item">&nbsp</label>
+					<button class="c-button" ng-click="daily('weekly')">
+					<span>Mingguan</span>
+				</div>
+			</div>
+			<div class="grid_12">
+				<div style="margin: 5px" class="grid_2" ng-repeat="daily in jadwal" ng-show="isDaily">
+					<label c-label item="item">{{'Tanggal ' + ($index+1)}}</label>
+					<input style="width: 100%;" kendo-combo-box k-ng-model="jadwal[$index].jadwalPraktek" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourcePraktek" />
+				</div>
+			</div>
+			<div class="grid_12">
+				<div style="margin: 5px" class="grid_2" ng-repeat="weekly in mingguan" ng-hide="isDaily">
+					<label c-label item="item">{{weekly.name}}</label>
+					<input style="width: 100%;" kendo-combo-box k-ng-model="mingguan[$index].jadwalPraktek" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="sourcePraktek" />
+				</div>
+			</div>
+		</c-panel>
+		<div class="grid_12">
+            	<div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+        	</div>
+	</div>
+</div>

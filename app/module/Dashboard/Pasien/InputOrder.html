@@ -1,0 +1,135 @@
+<div class="grid_12" ng-controller="InputOrderCtrl">
+
+    <div class="grid_12">
+
+        <div class="grid_12">
+            <div class="tiles">
+                <div class="grid_6" ng-show="isBankDarah">
+                    <div class="tile bg-yellow-saffron red" style="height:100px" ng-class="{selected :selected==='blood'}" ng-click="NavToDarah()">
+                        <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                        <div class="check"></div>
+                        <div class="tile-body" style="overflow: initial">
+                            <i style="font-style: normal;"></i>
+                        </div>
+                        <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                            <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                                <div class="icon-panel">
+                                    <img width='70px' src='stylesheets/blood.png' />
+                                </div>
+                                <div class="text_panel">
+                                    <span class="title"><label c-label c-label-text="BankDarah" ></label></span>
+                                    <label c-label item="item" c-label-text="pilihJikaAkanMelakukanOrderKeBankDarah" no-bold class="sub-detail"></label><span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_4">
+                    <div class="tile bg-yellow-saffron orange" ng-class="{selected :selected==='lab'}" style="height:100px" ng-click="NavToLaboratorium()">
+                        <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                        <div class="check"></div>
+                        <div class="tile-body" style="overflow: initial">
+                            <i style="font-style: normal;"></i>
+                        </div>
+                        <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                            <div class="icon-panel">
+                                <img width='70px' src='stylesheets/Lab.png' />
+                            </div>
+                            <div class="text_panel">
+                                <span class="title"><label c-label c-label-text="laboratorium" statment></label></span>
+                                <label c-label item="item" c-label-text="pilihJikaAkanMelakukanOrderKeLaboratorium" no-bold class="sub-detail"></label><span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="grid_4">
+                    <div class="tile bg-yellow-saffron green" style="height:100px" ng-class="{selected :selected==='bed'}" ng-click="NavToBedah()">
+                        <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                        <div class="check"></div>
+                        <div class="tile-body" style="overflow: initial">
+                            <i style="font-style: normal;"></i>
+                        </div>
+                        <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                            <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                                <div class="icon-panel">
+                                    <img width='70px' src='stylesheets/Scissors.png' />
+                                </div>
+                                <div class="text_panel">
+                                    <span class="title"><label c-label c-label-text="Bedah" ></label></span>
+                                    <label c-label item="item" c-label-text="pilihJikaAkanMelakukanOrderKeBedah" no-bold class="sub-detail"></label><span></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div> -->
+                <!-- <div class="grid_4">
+                    <div class="tile bg-yellow-saffron green" style="height:100px" ng-class="{selected :selected==='far'}" ng-click="NavToPharmacy()">
+                        <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                        <div class="check"></div>
+                        <div class="tile-body" style="overflow: initial">
+                            <i style="font-style: normal;"></i>
+                        </div>
+                        <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                            <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                                <div class="icon-panel">
+                                    <img width='70px' src='stylesheets/Pha.png' />
+                                </div>
+                                <div class="text_panel">
+                                    <span class="title"><label c-label c-label-text="farmasi" ></label></span>
+                                    <label c-label item="item" c-label-text="pilihJikaAkanMelakukanOrderKeFarmasi" no-bold class="sub-detail"></label><span></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+ -->
+
+                <div class="grid_4">
+                    <div class="tile bg-yellow-saffron blue" style="height:100px" ng-class="{selected :selected==='rad'}" ng-click="NavToRadiology()">
+                        <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                        <div class="check"></div>
+                        <div class="tile-body" style="overflow: initial">
+                            <i style="font-style: normal;"></i>
+                        </div>
+                        <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                            <div class="icon-panel">
+                                <img width='70px' src='stylesheets/Rad.png' />
+                            </div>
+                            <div class="text_panel">
+                                <span class="title"><label c-label c-label-text="radiologi" statment></label></span>
+                                <label c-label item="item" c-label-text="pilihJikaAkanMelakukanOrderKeRadiologi" no-bold class="sub-detail"></label><span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_4">
+                    <div class="tile bg-yellow-saffron green" style="height:100px" ng-class="{selected :selected==='gizi'}" ng-click="NavToGizi()">
+                        <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                        <div class="check"></div>
+                        <div class="tile-body" style="overflow: initial">
+                            <i style="font-style: normal;"></i>
+                        </div>
+                        <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                            <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                                <div class="icon-panel">
+                                    <img width='70px' src='stylesheets/Gizi.png' />
+                                </div>
+                                <div class="text_panel">
+                                    <span class="title"><label c-label c-label-text="Gizi" ></label></span>
+                                    <label c-label item="item" c-label-text="pilihJikaAkanMelakukanOrderKeGizi" no-bold class="sub-detail"></label><span></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="grid_12" ui-view>
+            </div>
+        </div>
+    </div>'
+</div>

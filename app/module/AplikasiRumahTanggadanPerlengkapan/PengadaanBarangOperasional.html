@@ -1,0 +1,108 @@
+<div ng-controller="PengadaanBarangOperasionalCtrl">
+
+	<div ng-show="dataVOloaded">
+
+		<c-panel item="item" header="'Perencanaan Pengadaan Barang Operasional (Rumah Tangga dan Perlengkapan)'">
+			<div class="grid_6">
+			<div class="grid_12">
+			
+					<!-- nama pasien -->
+					<div class="grid_4" style="margin-top:5px">
+	                    <label c-label item="item" c-label-text="No Perencanaan"></label>
+	                </div>
+					<div class="grid_4" style="margin-top:5px">
+	                    <label c-label item="item" c-label-text="Tanggal Perencanaan"></label>
+	                </div>
+					<div class="grid_4" style="margin-top:5px">
+	                    <label c-label item="item" c-label-text="Total Anggaran"></label>
+	                </div>
+					</div>
+				<div class="grid_12">	
+	                <div class="grid_4" style="margin: 10px 5px 5px 0;">
+	                     <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.noPerencanaan" />
+	                </div>
+	              
+	                 <div class="grid_4" style="margin: 10px 5px 5px 0;">
+					<input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.DiambilTanggal" k-data-text-field="'tanggallahir'" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+					 </div>
+					 <div class="grid_4" style="margin: 10px 5px 5px  3px;">
+	                     <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.wq" />
+	                </div> 
+                 </div>
+				 <div class="grid_12">	
+					<div class="grid_4" style="float: right;" >
+	                    <label c-label item="item" c-label-text="Ruangan" ></label>
+	                </div>
+                 </div>
+				  <div class="grid_12">	
+					<div class="grid_4" style="margin: 10px 5px 5px 0;float:right;">
+	                     <input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.ww" disabled />
+	                </div> 
+                 </div>
+				
+            </div>
+           <div class ="grid_6">
+		   <c-panel item="item" header="'Barang Keluar'" disabled>
+		     <div class="grid_12">
+		   <div class="grid_6" style="margin-top:5px">
+	                    <label c-label item="item" c-label-text="Periode Awal"></label>
+	                </div>
+					<div class="grid_6"  style="margin-top:5px">
+	                    <label c-label item="item" c-label-text="Periode Akhir"></label>
+	                </div>
+		   
+		     </div>
+			  <div class="grid_12">
+		   <div class="grid_5" style="margin-top:5px">
+	                  <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.DiambilTanggal" k-data-text-field="'tanggallahir'" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+	                </div>
+					<div class="grid_1" style="margin: 10px 5px 5px 0;">
+	                    <label c-label item="item" c-label-text="s/d"></label>
+	                </div>
+					<div class="grid_6" style="margin-top:5px">
+	                    <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.DiambilTanggal" k-data-text-field="'tanggallahir'" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+	                </div>
+		   
+		     </div>
+			 
+		   	</c-panel>
+
+		   </div>
+           
+
+            <!-- grid table -->
+			<div class="grid_12" style="margin-top: 10px;">
+              	<kendo-grid options="mainGridOptions" id="dataGrid">
+	            </kendo-grid>
+            </div>
+            <div class="clear"></div>
+			
+           
+			
+			 <div class="grid_6" style="margin-top:5px; float:right;">
+			 <div class="grid_12" style="margin-top:5px" >
+			<div class="grid_6" style="margin-right:4px">
+                <label c-label item="item" c-label-text="TotalPerencanaan"></label>
+	            </div>
+	            <div class="grid_6">
+	                  <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.totalPerencanaan" />  
+	            </div>
+				</div>
+				<div class="grid_12" style="margin-top:5px">
+			<div class="grid_6" style="margin-top:5px">
+                <label c-label item="item" c-label-text="SisaAnggaran"></label>
+	            </div>
+	            <div class="grid_6">
+	                  <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.SisaAnggaran" />  
+	            </div>
+				</div>
+            </div>
+			
+		</c-panel>
+
+		<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+
+	</div>
+
+</div>
+

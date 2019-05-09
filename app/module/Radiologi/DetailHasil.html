@@ -1,0 +1,144 @@
+<div ng-controller="RadiologiPemeriksaanCtrl">
+    <div class="grid_12" ng-show="current!==undefined">
+        <div id="tiles">
+            <div class="grid_8" style="position:relative;">
+                <img crossOrigin="anonymous" id="current-img" class="current-img" src="{{current.url}}" ng-click="scale($index,item)" />
+            </div>
+            <div class="grid_4">
+                <div class="panel panel-default container_12">
+                    <div class="panel-heading" c-translate>Gambar</div>
+                    <div class="panel-body">
+                        <label c-label item="item" c-label-text="brightness"></label>
+                        <input kendo-slider k-min="-100" k-max="100" ng-model="brightness" />
+                        <label c-label item="item" c-label-text="exposure"></label>
+                        <input kendo-slider k-min="-100" k-max="100" ng-model="exposure" />
+                        <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="reset">
+                            <span class="title">Reset</span>
+                        </c-button>
+                        <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" class="cancel" click="Kembali">
+                            <span class="title">Kembali</span>
+                        </c-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="parent" class="grid_12">
+        <div ng-repeat="item in listImages">
+            <div class="grid_2 tiles">
+                <!--<img id="img_{{$index}}" style="width:100%" class="large" src="{{item.url}}" ng-click="scale($index,item)" />-->
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="../bower_components/freewall/freewall.js"></script>
+<div>
+    <div>
+        <div class="layout">
+            <!--<div class="filter-items" id="navigation_layout">
+                <div class="filter-label" data-filter=".size11">Block 1-1</div>
+                <div class="filter-label" data-filter=".size22">Block 2-2</div>
+                <div class="filter-label" data-filter=".size44">Block 4-4</div>
+                <div class="filter-label" data-filter=".size88">Fit</div>
+            </div>-->
+        </div>
+        <div c-freewall navigation='navigation_layout'>
+            <div ng-repeat="item in listImages">
+                <div c-freewall-item>
+                    <div class="label-panel">
+                        <div class="right-top-label">
+                            <h2>{{item.Info['0008103E'].Value}}</h2>
+                            <h2>{{item.Info['00080050'].Value}}</h2>
+                            <h2>{{item.Info['00080020'].Value}}</h2>
+                            <h2>{{item.Info['00080032'].Value}}</h2>
+                            <h2>Se : 1 / {{item.Info['00181154'].Value}}</h2>
+                            <h2>Se : 1 / {{item.Info['00181154'].Value}}</h2>
+
+                        </div>
+                        <div class="right-bottom-label">
+                            <h2>{{item.Info['00081070'].Value}}</h2>
+                            <h2>{{item.Info['00081010'].Value}}</h2>
+                            <h2>{{item.Info['00081090'].Value}}</h2>
+                            <h2>{{item.Info['00080080'].Value}}</h2>
+
+                        </div>
+                        <div class="left-top-label">
+                            <h2>{{item.Info['00100020'].Value}}</h2>
+                            <h2>{{item.Info['00100010'].Value}}</h2>
+                            <h2>{{item.Info['00100030'].Value}}/{{item.Info['00100040'].Value}}</h2>
+                        </div>
+                        <img class="large" style="width: 100%;" ng-src="{{item.url}}" />
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div>
+        <!--<div style="display:none">
+            <div id="detailTemplate">
+                <div class="label-panel">
+                    <div class="right-top-label">
+                        <h2>{item.Info.0008103E}</h2>
+                        <h2>{item.Info.00080050}</h2>
+                        <h2>{item.Info.00080020}</h2>
+                        <h2>{item.Info.00080032}</h2>
+                        <h2>Se : 1 / {{item.Info['00181154'].Value}}</h2>
+                        <h2>Se : 1 / {{item.Info['00181154'].Value}}</h2>
+                    </div>
+                    <div class="right-bottom-label">
+                        <h2>{item.Info.00081070}</h2>
+                        <h2>{item.Info.00081010}</h2>
+                        <h2>{item.Info.00081090}</h2>
+                        <h2>{item.Info.00080080}</h2>
+                        <h2>DPOV : {item.Info.00181162} / {item.Info.00181149}</h2>
+
+                    </div>
+                    <div class="left-top-label">
+                        <h2>{item.Info.00100020}</h2>
+                        <h2>{item.Info.00100010}</h2>
+                        <h2>{item.Info.00100030}/{item.Info.00100040}</h2>
+                    </div>
+                    <img class="large" style="width: 100%;" src="{url}" />
+                </div>
+            </div>
+        </div>-->
+
+        <!--<div ng-hide="fit" c-freewall class="free-wall" template="" items='listImages' template-id="detailTemplate" show="fit">
+            <div c-freewall-item></div>
+        </div>-->
+        <!--<div ng-show="fit" ng-repeat="item in listImages">
+            <div class="label-panel">
+                <div class="right-top-label">
+                    <h2>{{item.Info['0008103E'].Value}}</h2>
+                    <h2>{{item.Info['00080050'].Value}}</h2>
+                    <h2>{{item.Info['00080020'].Value}}</h2>
+                    <h2>{{item.Info['00080032'].Value}}</h2>
+                    <h2>Se : 1 / {{item.Info['00181154'].Value}}</h2>
+                    <h2>Se : 1 / {{item.Info['00181154'].Value}}</h2>
+
+                </div>
+                <div class="right-bottom-label">
+                    <h2>{{item.Info['00081070'].Value}}</h2>
+                    <h2>{{item.Info['00081010'].Value}}</h2>
+                    <h2>{{item.Info['00081090'].Value}}</h2>
+                    <h2>{{item.Info['00080080'].Value}}</h2>
+
+                </div>
+                <div class="left-top-label">
+                    <h2>{{item.Info['00100020'].Value}}</h2>
+                    <h2>{{item.Info['00100010'].Value}}</h2>
+                    <h2>{{item.Info['00100030'].Value}}/{{item.Info['00100040'].Value}}</h2>
+                </div>
+                <img class="large" style="width: 100%;" ng-src="{{item.url}}" />
+            </div>
+        </div>-->
+        <script type="text/javascript">
+            var temp = "<div class='brick {size}' style='background-color: {color}'><div class='cover'>{size}</div></div>";
+            var sizes = ["size11", "size12", "size21", "size22", "size13", "size31", "size44"];
+        </script>

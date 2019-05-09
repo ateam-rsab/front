@@ -1,0 +1,129 @@
+<div ng-controller="MonitorSkorGiziCtrl">
+    <div ng-show="true">
+        <div ng-show="notDetail" class="panel panel-default">
+            <div class="panel-body">
+                <div class="grid_12">
+                    <div class="grid_5">
+                        <div class="grid_12">
+                            <label c-label c-label-text="TanggalMasuk" real></label>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_6">
+                                <input style="width: 100%" k-value='now' k-ng-model='tglAwal' kendo-date-time-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy hh:mm'" />
+                            </div>
+                            <div class="grid_6">
+                                <input style="width: 100%" k-value='now' k-ng-model='tglAkhir' kendo-date-time-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy hh:mm'" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_2">
+                        <div class="grid_12">
+                            <label c-label c-label-text="Skor" real></label>
+                            <ul class="list-inline">
+                                <li ng-repeat="data in ListStatusSkoring">
+                                    <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" value="{{data.name}}" ng-model="$parent.skoring">
+                                    <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="grid_5">
+                        <div class="grid_12">
+                            <label c-label c-label-text="NamaPasien" real></label>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_8">
+                                <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="namaPasen" />
+                            </div>
+                            <div class="grid_4">
+                                <c-button class="c-button" style="padding:0px" click='refresh'>
+                                    <span c-translate>CARI</span>
+                                </c-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="panel panel-default">
+
+            <div class="panel-heading">{{title}}</div>
+            <div class="panel-body" style="padding:0px">
+
+                <div class="grid_12">
+                    <div class="k-grid k-widget">
+                        <div class="k-grid-header">
+                            <div class="k-grid-header-wrap k-auto-scrollable">
+                                <table>
+                                    <tr>
+                                        <th class="k-header" style="width:25px">
+
+                                        </th>
+
+                                        <th style="width:150px" class="k-header">
+                                            Nama Pasien
+                                        </th>
+                                        <th style="width:150px" class="k-header">
+                                            No CM
+                                        </th>
+                                        <th style="width:125px" class="k-header">
+                                            Tanggal Input Skrining
+                                        </th>
+                                        <th style="width:200px" class="k-header">
+                                            Umur
+                                        </th>
+                                        <th style="width:100px" class="k-header">
+                                            Total Skor
+                                        </th>
+                                        <th style="width:100px" class="k-header">
+                                            Status
+                                        </th>
+                                        <th style="width:100px" class="k-header">
+                                        </th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!--<div class="k-grid-content k-auto-scrollable" style="max-height:256px">-->
+                        <div class="k-grid-content k-auto-scrollable" style="max-height:500px">
+                            <table role="grid" data-role="selectable" class="k-selectable" ng-repeat="data in listSkoring">
+                                <!--<tbody  ng-if="data.totalSkor == '1' || data.totalSkor == '2' || data.totalSkor == '3'" role="rowgroup">-->
+                                <tbody role="rowgroup">
+                                    <tr role="row" class="ng-scope" ng-class="{cancel:data.warna ==='merah'}" ng-dblclick='selected(data.noRec,data.antrianPasienDiPeriksa.noRec,data.tglRegistrasi,data.pasien.noCm,data.tglRegis)' ng-class="{'k-state-selected':item ===data}" k-select='select'
+                                        k-change='selectPasien' k-selectable="'row'">
+                                        <td role="gridcell" style="width:25px">
+                                            <input ng-checked="data.isChecked" ng-click="data.isChecked=!data.isCheckeld" type="checkbox" checked="checked">
+
+                                        </td>
+                                        <td style="width:150px" role="gridcell"><span ng-bind="data.pasien.namaPasien" class="ng-binding">ii</span></td>
+                                        <td style="width:150px" role="gridcell"><span ng-bind="data.pasien.noCm" class="ng-binding">{{data.pasien.noCm}}</span></td>
+                                        <td style="width:125px" role="gridcell" ng-model="data.tglInputData">{{data.tglInputData|date:'dd-MM-yyyy hh:mm:ss'}}</td>
+                                        <td style="width:200px" role="gridcell"><span ng-bind="data.pasien.umur" class="ng-binding"></span></td>
+                                        <td style="width:100px" role="gridcell">
+                                            <span class="ng-binding">{{data.totalSkor}}</span>
+                                        </td>
+                                        <td style="width:100px" role="gridcell">
+                                            <span class="ng-binding" ng-if="data.warna == 'merah'"><div style="color:white" ><font>belum di sessment</font></div></span>
+                                        </td>
+                                        <td style="width:100px" role="gridcell">
+                                            <kendo-button style="width:100%" ng-click='KlikSelesai(data.noRec,data.antrianPasienDiPeriksa.noRec,data.tglInputData,data.pasien.noCm,data)'>
+                                                Selesai
+                                            </kendo-button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>

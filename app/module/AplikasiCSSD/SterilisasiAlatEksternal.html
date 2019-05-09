@@ -1,0 +1,87 @@
+<div ng-controller="SterilisasiAlatEksternalCtrl">
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Data Sterilisasi Alat'">
+			<div  class="grid_12">
+				<div class="grid_1"></div>
+				<div style="margin: 15px" class="grid_3">
+					<label c-label item="item" c-label-text="No Bundle / Nama Alat"></label>
+				</div>
+				<div style="margin: 5px" class="grid_6">
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.alatEksternal"/>
+				</div>
+			</div>
+			<div  class="grid_12">
+				<div class="grid_1"></div>
+				<div style="margin: 15px" class="grid_3">
+					<label c-label item="item" c-label-text="Jumlah Cycle"></label>
+				</div>
+				<div style="margin: 5px" class="grid_6">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.jmlCycle" k-data-text-field="'jmlCycle'" k-data-value-field="'jmlCycle'" k-filter="'contains'" k-auto-bind="false" k-data-source="cycle" />
+				</div>
+			</div>
+			<div  class="grid_12">
+				<div class="grid_1"></div>
+				<div style="margin: 15px" class="grid_3">
+					<label c-label item="item" c-label-text="Satuan"></label>
+				</div>
+				<div style="margin: 5px" class="grid_6">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.satuan" k-data-text-field="'satuan'" k-data-value-field="'satuan'" k-filter="'contains'" k-auto-bind="false" k-data-source="satuan" />
+				</div>
+			</div>
+			<div  class="grid_12">
+				<div class="grid_1"></div>
+				<div style="margin: 15px" class="grid_3">
+					<label c-label item="item" c-label-text="MetodeSterilisasi"></label>
+				</div>
+				<div style="margin: 5px" class="grid_6">
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.metode" k-data-text-field="'satuan'" k-data-value-field="'satuan'" k-filter="'contains'" k-auto-bind="false" k-data-source="metode" />
+				</div>
+			</div>
+			<div  class="grid_12">
+				<div class="grid_1"></div>
+				<div style="margin: 15px" class="grid_3">
+					<label c-label item="item" c-label-text="HargaPerCycle"></label>
+				</div>
+				<div style="margin: 5px" class="grid_6">
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.hargaPerCycle" disabled />
+				</div>
+			</div>
+			<div  class="grid_12">
+				<div class="grid_1"></div>
+				<div style="margin: 15px" class="grid_3">
+					<label c-label item="item" c-label-text="HargaTotal"></label>
+				</div>
+				<div style="margin: 5px" class="grid_6">
+					<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.hargaTotal" disabled />
+				</div>
+			</div>
+		</c-panel>
+
+		<div class="grid_12">
+			<div class="grid_3" style="margin: 5px" text-align="right">
+				<label c-label item="item" c-label-text=""> </label>
+				<c-button ng-click="" style="width:100% !important">
+					<span style="font-size:10!important">Batal</span>
+				</c-button>
+			</div>
+			<div class="grid_3" style="margin: 5px" text-align="right">
+				<label c-label item="item" c-label-text=""> </label>
+				<c-button ng-click="Save()" style="width:100% !important">
+					<span style="font-size:10!important">Simpan</span>
+				</c-button>
+			</div>
+			<div class="grid_3" style="margin: 5px" text-align="right">
+				<label c-label item="item" c-label-text=""> </label>
+				<c-button ng-click="" style="width:100% !important">
+					<span style="font-size:10!important">Cetak Struk</span>
+				</c-button>
+			</div>
+			<div class="grid_3" style="margin: 5px" text-align="right">
+				<label c-label item="item" c-label-text=""> </label>
+				<c-button ng-click="" style="width:100% !important">
+					<span style="font-size:10!important">Tutup</span>
+				</c-button>
+			</div>
+		</div>
+	</div>
+</div>

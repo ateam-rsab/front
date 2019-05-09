@@ -1,0 +1,95 @@
+{  "model":{
+  "Paritas" : "",
+  "TglHaidTerakhir" : "",
+  "SiklusHaid" : "",
+  "PraPascamenopause" : "",
+  "StatusGinkologi" : "",
+  "TerapiHormon" : "",
+  "Kontrasepsi" : "",
+  "OperasiRadiasi" : "",
+  "Menopause" : "",
+  "TglHormon" : "",
+  "TglMenopause" : "",
+  "StatusGinekologik" : ""
+},
+  "attributes" : [
+    {
+      "isNull" : "true",
+      "name" : "Paritas",
+      "messagesRequired" : "UsiaKehamilan Harus Diisi",
+      "caption" : "Paritas"
+    },
+    {
+      "isNull" : "true",
+      "name" : "HaidTerakhir",
+      "messagesRequired" : "UsiaKehamilan Harus Diisi",
+      "caption" : "Haid Terakhir"
+    },
+    {
+      "isNull" : "true",
+      "name" : "SiklusHaid",
+      "messagesRequired" : "UsiaKehamilan Harus Diisi",
+      "caption" : "Siklus Haid"
+    },
+    {
+      "isNull" : "true",
+      "name" : "PraPascamenopause",
+      "messagesRequired" : "UsiaKehamilan Harus Diisi",
+      "caption" : "Pra/Pascamenopause"
+    },
+    {
+      "isNull" : "true",
+      "name" : "StatusGinkologi",
+      "messagesRequired" : "UsiaKehamilan Harus Diisi",
+      "caption" : "Status Ginkologi"
+    },
+    {
+      "isNull" : "true",
+      "name" : "TerapiHormon",
+      "messagesRequired" : "UsiaKehamilan Harus Diisi",
+      "caption" : "Terapi Hormon"
+    },
+    {
+      "isNull" : "true",
+      "name" : "Kontrasepsi",
+      "messagesRequired" : "UsiaKehamilan Harus Diisi",
+      "caption" : "Kontrasepsi"
+    },
+    {
+      "isNull" : "true",
+      "name" : "Menopause",
+      "messagesRequired" : "UsiaKehamilan Harus Diisi",
+      "caption" : "Menopause"
+    },
+    {
+      "isNull" : "true",
+      "name" : "OperasiRadiasi",
+      "messagesRequired" : "UsiaKehamilan Harus Diisi",
+      "caption" : "Operasi/Radiasi"
+    },
+    {
+      "isNull" : "true",
+      "name" : "TanggalTerakhir",
+      "messagesRequired" : "UsiaKehamilan Harus Diisi",
+      "caption" : "Tanggal"
+    },
+    {
+      "isNull" : "true",
+      "name" : "TanggalHormon",
+      "messagesRequired" : "UsiaKehamilan Harus Diisi",
+      "caption" : "Tanggal"
+    },
+    {
+      "isNull" : "true",
+      "name" : "TanggalMeno",
+      "messagesRequired" : "UsiaKehamilan Harus Diisi",
+      "caption" : "Tanggal"
+    },
+    {
+      "isNull" : "true",
+      "name" : "StatusGinekologik",
+      "messagesRequired" : "UsiaKehamilan Harus Diisi",
+      "caption" : "Status Ginekologik"
+    }
+  ]
+} 

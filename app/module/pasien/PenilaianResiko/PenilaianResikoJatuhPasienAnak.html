@@ -1,0 +1,76 @@
+<div ng-controller="PenilaianResikoJatuhPasienAnakCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Penilaian Resiko Jatuh Pasien'">
+
+		<div ng-hide="isLastPage">
+		adfa
+			<c-wizard list-data="listDataPenilaianResiko" choose-kriteria="chooseKriteria" page-prev="pagePrev" is-first-page="isFirstPage"></c-wizard>
+		</div>
+
+		<div ng-show="isLastPage">
+
+			<div ng-show="isInfo">
+				<div class="grid_12">
+
+				<table style="border: 1px solid;">
+					<tr>
+						<td style="border-bottom: 1px solid;">Parameter</td>
+						<td style="border-bottom: 1px solid;">Kriteria</td>
+						<td style="border-bottom: 1px solid;">Skor</td>
+					</tr>
+					<tr ng-repeat="data in item.penilaianRisikoAnak" style="cursor: pointer" ng-click="getEditData(data)">
+						<td>{{data.parameter.name}}</td>
+						<td>{{data.kriteria.name}}</td>
+						<td>{{data.kriteria.score}}</td>
+					</tr>
+				</table>
+				</div>
+
+				<div class="clear"></div>
+
+				<div class="grid_12" style="margin-top:15px">
+
+					<div class="grid_3" style="float:right">
+						<c-button  class="success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" ng-click="toTotalScore()">
+		                                <span class="title">Selanjutnya</span>
+		                            </c-button>
+					</div>
+
+					<div class="grid_3" style="float:right">
+						<c-button  class="cancel" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" ng-click="backToPenilaian()">
+		                                <span class="title">Sebelumnya</span>
+		                            </c-button>
+					</div>
+				</div>
+				
+			</div>
+
+			<div ng-hide="isInfo">
+				<div class="grid_12">
+					<div class="grid_12 borderBox" style="width:100%"">
+						<div class="grid_2" style="margin-right: 0px; width:15%">
+							  <div class="containerCenter">
+							  	<p>SKORING</p>
+							  </div>
+						</div>
+						<div class="grid_10" style="margin-right: 0px; width:85%">
+							  <div class="containerLeft">
+							  	<p>{{tanggalHariIni}}</p>
+							  	<p><h1>TOTAL {{totalScore}}</h1></p>
+							  	<p>{{keteranganScore}}</p>
+							  </div>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+
+				<div class="grid_12" style="margin-top:15px">
+					<div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
+				</div>
+			</div>
+		</div>
+
+		</c-panel>
+	</div>
+</div>

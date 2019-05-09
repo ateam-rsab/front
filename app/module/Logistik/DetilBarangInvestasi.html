@@ -1,0 +1,124 @@
+<div ng-controller="DetilBarangInvestasiCtrl">
+    <c-panel item="item" header="'Daftar Item'" style="margin-top:50px" disabled>
+        <div class="container">
+            <div class="grid_2">
+            </div>
+            <!--<div class="grid_2">
+                <label c-label class="label-aja">Pencarian Nama Barang:</label>
+            </div>
+            <div class="grid_3">
+                <input kendo-combo-box k-ng-model="item.namaProduk" k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-data-source="sourceRuangan" style="width: 100%"></input>
+            </div>-->
+            <div class="clear" />
+
+            <div class="grid_2">
+                <img class="gambarAset" src="/app/resources/images/no_image.png" />
+                <h5 style="text-align:center;margin-top:4px !important;font-color:#000">Gambar Alat</h5>
+                <div>
+                    <span kendo-qrcode k-error-correction="'M'" ng-model="qrcode" style="width:114px"></span>
+                    <h5 style="text-align:center;margin-top:4px !important;font-color:#000">QR code</h5>
+                </div>
+            </div>
+            <div class="grid_2">
+                <label c-label class="label-aja">No. Registrasi Aset :</label>
+                <label c-label class="label-aja">Kode ASPAK :</label>
+                <label c-label class="label-aja">Kode BMN :</label>
+                <label c-label class="label-aja">Kode RSABHK :</label>
+                <label c-label class="label-aja">Nama Barang :</label>
+                <label c-label class="label-aja">Merk :</label>
+                <label c-label class="label-aja">Type :</label>
+                <label c-label class="label-aja">QTY :</label>
+                <label c-label class="label-aja">Satuan :</label>
+                <label c-label class="label-aja">Tanggal Penerimaan :</label>
+                <label c-label class="label-aja">Kelompok Aset :</label>
+                <label c-label class="label-aja">Ruangan Aset :</label>
+            </div>
+            <div class="grid_3">
+                <input c-text-box type="input" class="k-textbox" ng-model="item.noRegisterAset" style="width: 100%" disabled/>
+                <input c-text-box type="input" class="k-textbox" ng-model="item.kdAspak" style="width: 100%" />
+                <input c-text-box type="input" class="k-textbox" ng-model="item.kodeBmn" style="width: 100%" />
+                <input c-text-box type="input" class="k-textbox" ng-model="item.kdRsabhk" style="width: 100%" />
+                <input c-text-box type="input" class="k-textbox" ng-model="item.produk.namaProduk" style="width: 100%" disabled/>
+                <input kendo-combo-box k-ng-model="item.merkProduk" k-data-text-field="'merkProduk'" k-data-value-field="'id'" k-data-source="listMerk" style="width: 100%"></input>
+                <input kendo-combo-box k-ng-model="item.typeProduk" k-data-text-field="'typeProduk'" k-data-value-field="'id'" k-data-source="listType" style="width: 100%"></input>
+                <input c-text-box type="input" class="k-textbox" ng-model="1" style="width: 100%" disabled/>
+                <input c-text-box type="input" class="k-textbox" ng-model="item.produk.satuanStandar" style="width: 100%" disabled/>
+                <input c-text-box type="input" class="k-textbox" ng-model="item.strukPelayanan.tglterimakiriman|date:'dd-MM-yyyy'" style="width: 100%" disabled/>
+                <input kendo-combo-box k-ng-model="item.kelompokAset" k-data-text-field="'kelompokAset'" k-data-value-field="'id'" k-data-source="listKelompokAset" style="width: 100%"></input>
+                <input kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-data-source="listRuangan" style="width: 100%"></input>
+            </div>
+            <div class="grid_2">
+                <label c-label class="label-aja">Lokasi Aset :</label>
+                <label c-label class="label-aja">Kondisi Asset :</label>
+                <label c-label class="label-aja">Sumber Dana :</label>
+                <label c-label class="label-aja">No Seri :</label>
+                <!--<label c-label class="label-aja">Daya Listrik :</label>-->
+                <!--<label c-label class="label-aja">Klarifikasi Teknologi :</label>-->
+                <label c-label class="label-aja">Usia Teknis :</label>
+                <label c-label class="label-aja" style="padding-top:30px;">Tahun Perolehan :</label>
+                <label c-label class="label-aja">Umur Usia :</label>
+                <label c-label class="label-aja">Sisa Usia :</label>
+            </div>
+            <div class="grid_3">
+                <input kendo-combo-box k-ng-model="item.lokasiAset" k-data-text-field="'namaLokasi'" k-data-value-field="'id'" k-data-source="listLokasi" style="width: 100%"></input>
+                <input kendo-combo-box k-ng-model="item.kondisiProdukAwal" k-data-text-field="'name'" k-data-value-field="'id'" k-data-source="listKondisi" style="width: 100%"></input>
+                <input kendo-combo-box k-ng-model="item.asalProduk" k-data-text-field="'asalProduk'" k-data-value-field="'id'" k-data-source="listAsalProduk" style="width: 100%"></input>
+                <input c-text-box type="input" class="k-textbox" ng-model="item.noSeri" style="width: 100%" />
+                <!--<input c-text-box type="input" class="k-textbox" ng-model="item.lokasiAset" style="width: 100%" disabled/>-->
+                <!--<input c-text-box type="input" class="k-textbox" ng-model="item.kondiAset" style="width: 100%" disabled/>-->
+                <input c-text-box type="input" class="k-textbox" ng-model="item.usiaTeknis" style="width: 100%" disabled/>
+                <span style: "font-size:10px!important;text-align:right">(*Tahun Saat ini - Tahun Perolehan)</span>
+                <input c-text-box type="input" class="k-textbox" ng-model="item.tahunPerolehan" style="width: 100%" disabled/>
+                <input c-text-box type="input" class="k-textbox" ng-model="item.umurEkonomisRevaluasiTahun" style="width: 100%" disabled/>
+                <input c-text-box type="input" class="k-textbox" ng-model="item.totalSisaUmurEkonomisTahun" style="width: 100%" disabled/>
+            </div>
+            <div class="clear" />
+    </c-panel>
+    <!--<div class="container" style="margin-top:40px;">
+        <div class="grid_12">
+            <div class="grid_4"></div>
+            <div class="grid_2">
+                <label c-label item="item" c-label-text=""> </label>
+                <button class="c-button" ng-click="" style="width:100% !important">
+					<span style="font-size:10!important">History Alat</span>
+				</button>
+            </div>
+            <div class="grid_2">
+                <label c-label item="item" c-label-text=""> </label>
+                <button class="c-button" ng-click="cetak()" style="width:100% !important">
+					<span style="font-size:10!important">Sertifikasi Kalibrasi</span>
+				</button>
+            </div>
+            <div class="grid_2">
+                <label c-label item="item" c-label-text=""> </label>
+                <button class="c-button" ng-click="" style="width:100% !important">
+					<span style="font-size:10!important">Servis Manual</span>
+				</button>
+            </div>
+            <div class="grid_2">
+                <label c-label item="item" c-label-text=""> </label>
+                <button class="c-button" ng-click="" style="width:100% !important">
+					<span style="font-size:10!important">SOP</span>
+				</button>
+            </div>
+        </div>
+    </div>-->
+    </div>
+    <div ng-include='"../app/module/Shared/TemplateButtonSimpanSRO" '>
+    </div>
+    <style>
+        .label-aja {
+            padding-top: 12px;
+            font-size: 13px;
+            font-weight: bold;
+            text-align: right;
+            height: 22px;
+        }
+        
+        .gambarAset {
+            margin-top: 15px;
+            width: 100%;
+            height: 100%;
+            border: 1px solid grey;
+        }
+    </style>

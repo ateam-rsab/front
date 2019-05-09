@@ -1,0 +1,77 @@
+<div ng-controller="DokumenVerbalKonsepCtrl">
+
+    <c-panel item="item" header="'Dokumen Verbal Konsep'" disabled>
+        <div class="panel panel-default container_12" disabled>
+            <div class="grid_12">
+                <div class="grid_6">
+                    <div class="grid_3" style="margin-top: 10px;">
+                        <label c-label item="item">Tanggal</label>
+                    </div>                
+                    <div class="grid_1" style="margin-top: 10px;">
+                        <label c-label item="item">:</label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" class="k-textbox" ng-model="item.tanggal" disabled="true"/>
+                    </div>
+                    <!-- <div class="grid_2" style="margin: 10px 0 0 10px;">
+                        <label c-label item="item">Dari Ruangan</label>
+                    </div>
+                    <div class="grid_3">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listruangan" />
+                    </div> -->
+                </div>
+                <div class="grid_6">
+                    <div class="grid_3" style="margin-top: 10px;">
+                        <label c-label item="item">No Draft Surat</label>
+                    </div>                
+                    <div class="grid_1" style="margin-top: 10px;">
+                        <label c-label item="item">:</label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" class="k-textbox" ng-model="item.noDraft" disabled="true" />
+                    </div>
+                </div>
+           </div>
+
+
+            <div class="grid_12">
+                <div class="grid_6">
+                    <div class="grid_3" style="margin-top: 10px;">
+                        <label c-label item="item">Nama Surat</label>
+                    </div>                
+                    <div class="grid_1" style="margin-top: 10px;">
+                        <label c-label item="item">:</label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" class="k-textbox" ng-model="item.namaSurat" disabled="true" />
+                    </div>
+                </div>
+                <div class="grid_6">
+                    <div class="grid_3" style="margin-top: 10px;">
+                        <label c-label item="item">Download File</label>
+                    </div>                
+                    <div class="grid_1" style="margin-top: 10px;">
+                        <label c-label item="item">:</label>
+                    </div>
+                    <div class="grid_8">
+                        <button class="c-button success" ng-click="downloadFormat()">Download Format</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid_12" style="margin: 0 0 0 10px;">
+                <div kendo-grid="grid" id="grid" k-data-source="gridVerbalKonsep" k-editable="false"  
+                         options="colGridVerbalKonsep" k-selectable="'row'"  style="font-size: small;">
+                </div>
+             </div> 
+
+            <div class="grid_12">
+                <div class="grid_9"></div>
+                <div class="grid_3">
+                    <button class="c-button cancel" ng-click="tutup()">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </c-panel>
+
+</div>

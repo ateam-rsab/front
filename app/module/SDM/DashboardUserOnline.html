@@ -1,0 +1,114 @@
+<div ng-controller="DashboardUserOnlineCtrl">
+
+	<div ng-show="dataVOloaded">
+		<c-panel item="item" header="'Dashboard User Online (pencarian buku dan jurnal)'"disabled>      
+		<div class="panel-body">
+				
+							<div class = "grid_12">
+								<div class="grid_12">
+								<div class="grid_2" style="margin: 10px 0 0 0;">
+										<label c-label item="item" c-label-text="Pencarian Semua Kategori"></label>
+								</div>
+								
+								
+								<div class="grid_2" style="margin: 10px 0 0 0;">
+										<label c-label item="item" c-label-text="Nama Penulis"></label>
+								</div>
+								<div class="grid_2" style="margin: 10px 0 0 0;">
+										<label c-label item="item" c-label-text="Judul Buku/Jurnal"></label>
+								</div>
+								<div class="grid_2" style="margin: 10px 0 0 0;">
+										<label c-label item="item" c-label-text="Volume"></label>
+								</div>
+								
+								</div>
+								</div>
+								
+								<div class = "grid_12">
+								<div class="grid_12">
+								<div class="grid_2" style="margin: 10px 0 0 0;">
+										<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nomorUang" />
+								</div>
+								
+								
+								<div class="grid_2" style="margin: 10px 0 0 0;">
+										<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nomorUang" />
+								</div>
+								<div class="grid_2" style="margin: 10px 0 0 0;">
+										<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nomorUang" />
+								</div>
+								<div class="grid_2" style="margin: 10px 0 0 0;">
+										<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.nomorUang" />
+								</div>
+								<div class="grid_1" style="margin: 15px 0 0 0;">
+								<button class="c-button"  ng-click="cari()">
+								
+                            	Cari</button>
+							</div>
+								</div>
+								</div>
+							
+							
+							<div class = "grid_12">
+								<div class="grid_12">
+								<div class="grid_2" style="margin: 10px 0 0 0;">
+										<label c-label item="item" c-label-text="Judul"></label>
+								</div>
+								
+								
+								<div class="grid_2" style="margin: 10px 0 0 0;">
+										<label c-label item="item" c-label-text="Publikasi"></label>
+								</div>
+								
+								
+								</div>
+								</div>
+							<div class = "grid_12">
+								<div class="grid_12">
+								<div class="grid_2" style="margin: 10px 0 0 0;">
+										<input style="width: 100%;" kendo-combo-box k-ng-model="item.rekanan" k-data-text-field="'namaRekanan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListAsuransiBekerjasama" />
+								</div>
+								
+								
+								<div class="grid_2" style="margin: 10px 0 0 0;">
+										<input style="width: 100%;" kendo-combo-box k-ng-model="item.rekanan" k-data-text-field="'namaRekanan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListAsuransiBekerjasama" />
+								</div>
+								
+								</div>
+								</div>
+							
+						
+							
+						
+		
+	
+		<div class="grid_12">
+				<kendo-grid  k-data-source="daftarBahanLinen" k-pageable="true" k-selectable="'row'" k-columns="columnLaporanUjiHasil"  style="font-size: small;">
+            	</kendo-grid>
+					
+			</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		</c-panel>
+			<div class="grid_12">
+							<div class="grid_8" style="float:left">
+							
+							
+							
+							<div class="grid_2 " style="margin-top: 25px ">
+								<button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Save()">
+									<span class="title">Detail</span>
+									</button>
+							</div>
+							</div>
+						</div>
+		</div>
+	</div>
+</div>
+

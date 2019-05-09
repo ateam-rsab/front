@@ -1,0 +1,45 @@
+<div class="panel panel-default container_12">
+	<div class="panel-heading" align="center" c-translate>Master Menu</div>
+	<div class="panel-body">
+		<div class="grid_12" style="margin-top: 5px">
+			<div class="grid_3"></div>
+			<div class="grid_2" style="margin-top: 10px">
+				<label c-label item="item">Kode</label>
+			</div>
+			<div class="grid_4">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.kode"/>
+			</div>
+		</div>
+		<div class="grid_12" style="margin-top: 5px">
+			<div class="grid_3"></div>
+			<div class="grid_2" style="margin-top: 10px">
+				<label c-label item="item">Nama Menu</label>
+			</div>
+			<div class="grid_4">
+				<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaMenu" ng-keypress="($event.which == 13)? Save():item.namaMenu"/>
+			</div>
+		</div>
+		<div class="grid_12">
+			<div class="grid_5"></div>
+			<div class="grid_2">
+				<button class="c-button" ng-click="Save()">Simpan</button>
+			</div>
+			<div class="grid_2">
+				<button class="c-button" ng-click="Batal()">Batal</button>
+			</div>
+			<!-- <div class="grid_2">
+				<button class="c-button" ng-click="Delete()">Hapus</button>
+			</div>
+			<div class="grid_2">
+				<button class="c-button">Tutup</button>
+			</div> -->
+		</div>
+		<div class="grid_12" style="margin-top: 10px">
+			<div class="grid_2"></div>
+			<div class="grid_8">
+				<div kendo-grid k-on-change="Select(data)" k-data-source="sourceMenuGizi" k-selectable="'row'" options="mainGridOptions">
+			</div>
+			<div class="grid_1"></div>
+		</div>
+	</div>
+</div>

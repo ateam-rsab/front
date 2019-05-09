@@ -1,0 +1,130 @@
+<style>
+    .error{
+        background-color:white !important;
+    }
+    .yellow{
+        background-color:#ffff00
+    }
+     .green{
+        background-color:#00ff40
+    }
+      .red{
+        background-color:#FF0000
+    }
+     .k-grid  .k-grid-header  .k-header  .k-link {
+     height: auto;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     white-space: normal;
+    }
+
+    .k-grid  .k-grid-header  .k-header {
+     text-align: center;
+    }
+</style>
+
+<c-panel item="item" header="'Dashboard Perbaikan, Pemeliharaan, Kontrak Service, Dan Kalibrasi'">
+    <div ng-show="dataVOloaded">
+          <div class="grid_12" style="margin-top: 10px">
+            <div class="grid_6">
+                <div class="grid_2" style="margin-top: 10px">
+                    <label c-label item="item" c-label-text="periode"></label>
+                </div>
+                <div class="grid_2" align="right"  style="margin-top: 10px">
+                    <label c-label item="item" c-label-text=":"></label>
+                </div>
+                <div class="grid_3">
+                    <input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalAwal" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" k-on-change="ChangeDat()"  />
+                </div>
+                <div class="grid_1" align="center" style="margin-top: 10px">
+                        <label c-label item="item">s/d</label>
+                </div>
+                <div class="grid_3">
+                    <input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalAkhir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" k-on-change="ChangeDat()"/>
+                </div>
+              </div>
+                <div class="grid_1">
+                    <label c-label item="item">&nbsp;</label>
+                    <button class="c-button" ng-click="cari()">Cari</button>
+                </div>
+                <div class="grid_1">
+                    <label c-label item="item">&nbsp;</label>
+                    <button class="c-button" ng-click="refresh()">Refresh</button>
+                </div>
+            </div>
+        <div class="grid_12">
+        <div class="grid_2"><label c-label item="item">Finalisasi Hasil Pekerjaan :</label></div>
+          <div class="grid_1">
+            <span id="square" style="background-color:#FFFF00">&nbsp;&nbsp;&nbsp;</span>
+                <span style="font-weight: bold">: Pending</span>
+          </div>
+          <div class="grid_1">
+            <span id="square" style="background-color: #00FF00">&nbsp;&nbsp;&nbsp;</span>
+                <span style="font-weight: bold">: Selesai</span>
+          </div>
+          <div class="grid_2">
+            <span id="square" style="background-color: #FF0000">&nbsp;&nbsp;&nbsp;</span>
+                 <span style="font-weight: bold">: Belum Dikerjakan</span>
+          </div>
+        </div>
+        <div class="grid_12">
+            <kendo-grid options="mainGridOptions" id="grid" k-data-source="dataGrid" k-selectable="'row'" k-ng-model="current" ng-click="click(current)"></kendo-grid>
+        </div>
+        <div class="grid_2"></div>
+        <div class="grid_2"></div>
+        <div class="grid_2"></div>
+        <div class="grid_2">
+            <button class="c-button" style="margin-top: 6px" ng-click="tutup()">Tutup</button>
+        </div>
+        <div class="grid_2">
+            <button class="c-button" style="margin-top: 6px" ng-click="detail()">Detail</button>
+        </div>
+        <div class="grid_2">
+            <button class="c-button" style="margin-top: 6px" ng-click="cetak()">Cetak</button>
+        </div>
+    </div>
+</c-panel>
+
+
+<!--source old             
+
+<div class="grid_2">
+                <label c-label item="item" style="margin-top: 10px">Ruangan</label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+            </div>
+            <div class="grid_2">
+                <label c-label item="item" style="margin-top: 10px">Nama Alat</label>
+                <input style="width: 100%;" kendo-combo-box k-ng-model="item.alat" k-data-text-field="'namaProduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAlat" />
+            </div>
+            <div class="grid_2">
+                <label c-label item="item" style="margin-top: 10px">No Asset</label>
+                <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noAsset"/>
+            </div> -->
+
+
+   <!--                  <div class="grid_12">
+             <div class="grid_1">
+                 <label c-label item="item" >Periode :</label>
+             </div>
+                <div class="grid_2">
+                    <label c-label item="item" >Periode Awal</label>
+                    <input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalAwal" k-format="'yyyy-MM-dd'"/>
+                </div>
+                <div class="grid_1">
+                    <label c-label item="item" style="margin-top: 10px">&nbsp;</label>
+                    <label c-label item="item" style="text-align: center">S/D</label>
+                </div>
+                <div class="grid_2" >
+                    <label c-label item="item">Periode Akhir</label>
+                    <input style="width: 100%" kendo-date-picker k-ng-model="item.tanggalAkhir" k-format="'yyyy-MM-dd'"/>
+                </div>
+                <div class="grid_2">
+                    <label c-label item="item">&nbsp;</label>
+                    <button class="c-button" ng-click="cari()">Cari</button>
+                </div>
+                <div class="grid_2">
+                    <label c-label item="item">&nbsp;</label>
+                    <button class="c-button" ng-click="refresh()">Refresh</button>
+                </div>
+        </div> -->

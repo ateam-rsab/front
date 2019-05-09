@@ -1,0 +1,265 @@
+<div class="panel panel-default container_12" style="margin-bottom:40px">
+	<div class="panel-heading" align="center" c-translate>{{title}}</div>
+	<div class="panel-body">
+		<div ng-include='"../app/module/Dashboard/Pasien/IndexHeaderBaru"'></div>
+	</div>
+	<div class="panel-body" ng-hide="lihatData">
+		<div class="grid_12" style="padding-top:20px">
+			<div class="grid_2" style="padding-top:20px; padding-left: 20px">
+				<label c-label item="item">Tanggal Observasi</label>
+			</div>
+			<div class="grid_2">
+				<input style="width:100%" kendo-date-time-picker value="now" k-ng-model="item.tanggal" k-format="'dd-MM-yyyy HH:mm'"/>
+			</div>
+		</div>
+		
+		<div class="panel panel-default container_12" style="margin-top:20px">
+			<div class="panel-heading" c-translate>{{item.ssp.jenis}}</div>
+			<div class="grid_12" ng-repeat="list in item.ssp.details">
+				<div class="grid_2" style="padding-top:10px; padding-left: 20px">
+					<label c-label item="item">{{list.observasi}}</label>
+				</div>
+				<div class="grid_8">
+					<ng-switch on="list.idObservasi">
+						<div ng-switch-when=1>
+							<div class="grid_2" ng-repeat="opsi in list.detail | orderBy:'observasiId'">
+								<label>
+									<input type="radio" ng-model="list.value" ng-value="opsi.observasi" ng-change="cekRadio(list, opsi)">
+									{{opsi.observasi}}
+								</label>
+							</div>
+						</div>
+						<div ng-switch-when=8>
+							<div class="grid_2">
+								<input kendo-combo-box k-ng-model="item.pupilKanan" k-data-text-field="'observasi'" k-data-value-field="'idObservasi'" k-filter="'contains'" k-auto-bind="false" k-data-source="list.detail" />
+							</div>
+							<div class="grid_2">
+								<input kendo-combo-box k-ng-model="item.pupilKiri" k-data-text-field="'observasi'" k-data-value-field="'idObservasi'" k-filter="'contains'" k-auto-bind="false" k-data-source="list.detail" />
+							</div>
+						</div>
+						<div ng-switch-when=17>
+							<div class="grid_2" ng-repeat="opsi in list.detail | orderBy:'observasiId'">
+								<label c-label item="item">
+									<input type="radio" ng-model="list.value" ng-value="opsi.observasi">
+									<b>{{opsi.observasi}}</b>
+								</label>
+							</div>
+						</div>
+						<div ng-switch-when=20>
+							<div class="grid_4" ng-repeat="opsi in list.detail | orderBy:'observasiId'">
+								<label c-label item="item">{{opsi.observasi}}</label>
+								<input kendo-combo-box k-ng-model="opsi.value" k-data-text-field="'observasi'" k-data-value-field="'idObservasi'" k-filter="'contains'" k-auto-bind="false" k-data-source="opsi.detail" />
+							</div>
+						</div>
+						<div ng-switch-when=24>
+							<div class="grid_2" ng-repeat="opsi in list.detail | orderBy:'observasiId'">
+								<label c-label item="item">
+									<input type="radio" ng-model="list.value" ng-value="opsi.observasi">
+									<b>{{opsi.observasi}}</b>
+								</label>
+							</div>
+						</div>
+					</ng-switch>
+				</div>
+				<div class="grid_12" style="border-top:1px solid lightblue"></div>
+			</div>
+			<div class="grid_12">
+				<div class="grid_2" style="padding-top:10px; padding-left: 20px">
+					<label c-label item="item">Variabel</label>
+				</div>
+				<div class="grid_8">
+					<div class="grid_4">
+						<!--<label c-label item="item">Hasil</label>-->
+						<input c-text-box type="input" class="k-textbox" ng-model="item.variabel.variabel" style="width:100%" placeholder="variabel"/>
+					</div>
+					<div class="grid_4">
+						<!--<label c-label item="item">Variabel</label>-->
+						<input c-text-box type="input" class="k-textbox" ng-model="item.variabel.hasil" style="width:100%" placeholder="hasil"/>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default container_12" style="margin-top:20px">
+			<div class="panel-heading" c-translate>{{item.pesp.jenis}}</div>
+			<div class="grid_12" ng-repeat="list in item.pesp.details | orderBy:'idObservasi'">
+				<div class="grid_2" style="padding-top:10px; padding-left: 20px">
+					<label c-label item="item">{{list.observasi}}</label>
+				</div>
+				<div class="grid_8">
+					<ng-switch on="list.detail">
+						<div ng-switch-when="undefined">
+							<div class="grid_3">
+								<input c-text-box type="input" class="k-textbox" ng-model="list.value" style="width:100%"/>
+							</div>
+						</div>
+						<div ng-switch-default>
+							<div ng-repeat="subList in list.detail | orderBy:'idObservasi'">
+								<div class="grid_3">
+									<!--<label c-label item="item">{{subList.observasi}}</label>-->
+									<input c-text-box type="input" class="k-textbox" ng-model="subList.value" style="width:100%" placeholder="{{subList.observasi}}" ng-blur="cekInput(subList)"/>
+								</div>
+							</div>
+						</div>
+					</ng-switch>
+				</div>
+				<div class="grid_12" style="border-top:1px solid lightblue"></div>
+			</div>
+		</div>
+		<div class="panel panel-default container_12" style="margin-top:20px">
+			<div class="panel-heading" c-translate>{{item.hemodinamik.jenis}}</div>
+			<div class="grid_12" ng-repeat="list in item.hemodinamik.details | orderBy:'idObservasi'">
+				<div class="grid_2" style="padding-top:10px; padding-left: 20px">
+					<label c-label item="item">{{list.observasi}}</label>
+				</div>
+				<div class="grid_8">
+					<ng-switch on="list.detail">
+						<div ng-switch-when="undefined">
+							<div class="grid_3">
+								<input c-text-box type="input" class="k-textbox" ng-model="list.value" style="width:100%"/>
+							</div>
+						</div>
+						<div ng-switch-default>
+							<div ng-repeat="subList in list.detail | orderBy:'idObservasi'">
+								<div class="grid_3">
+									<!--<label c-label item="item">{{subList.observasi}}</label>-->
+									<input c-text-box type="input" class="k-textbox" ng-model="subList.value" style="width:100%" placeholder="{{subList.observasi}}" ng-blur="cekInput(subList)"/>
+								</div>
+							</div>
+						</div>
+					</ng-switch>
+				</div>
+				<div class="grid_12" style="border-top:1px solid lightblue"></div>
+			</div>
+		</div>
+		<div class="panel panel-default container_12" style="margin-top:20px">
+			<div class="panel-heading" c-translate>{{item.intake.jenis}}</div>
+			<div class="grid_12" ng-repeat="list in item.intake.details | orderBy:'idObservasi'">
+				<div class="grid_2" style="padding-top:10px; padding-left: 20px">
+					<label c-label item="item">{{list.observasi}}</label>
+				</div>
+				<div class="grid_8">
+					<ng-switch on="list.detail">
+						<div ng-switch-when="undefined">
+							<div class="grid_3">
+								<input c-text-box type="input" class="k-textbox" ng-model="list.value" style="width:100%"/>
+							</div>
+						</div>
+						<div ng-switch-default>
+							<div ng-repeat="subList in list.detail | orderBy:'idObservasi'">
+								<div class="grid_3">
+									<!--<label c-label item="item">{{subList.observasi}}</label>-->
+									<input c-text-box type="input" class="k-textbox" ng-model="sublist.value" style="width:100%" placeholder="{{subList.observasi}}"/>
+								</div>
+							</div>
+						</div>
+					</ng-switch>
+				</div>
+				<div class="grid_12" style="border-top:1px solid lightblue"></div>
+			</div>
+		</div>
+		<div class="panel panel-default container_12" style="margin-top:20px">
+			<div class="panel-heading" c-translate>{{item.output.jenis}}</div>
+			<div class="grid_12" ng-repeat="list in item.output.details | orderBy:'idObservasi'">
+				<div class="grid_2" style="padding-top:10px; padding-left: 20px">
+					<label c-label item="item">{{list.observasi}}</label>
+				</div>
+				<div class="grid_8">
+					<ng-switch on="list.detail">
+						<div ng-switch-when="undefined">
+							<div class="grid_3">
+								<input c-text-box type="input" class="k-textbox" ng-model="list.value" style="width:100%"/>
+							</div>
+						</div>
+						<div ng-switch-default>
+							<div ng-repeat="subList in list.detail | orderBy:'idObservasi'">
+								<div class="grid_3">
+									<!--<label c-label item="item">{{subList.observasi}}</label>-->
+									<input c-text-box type="input" class="k-textbox" ng-model="sublist.value" style="width:100%" placeholder="{{subList.observasi}}"/>
+								</div>
+							</div>
+						</div>
+					</ng-switch>
+				</div>
+				<div class="grid_12" style="border-top:1px solid lightblue"></div>
+			</div>
+		</div>
+		<div class="panel panel-default container_12" style="margin-top:20px">
+			<div class="panel-heading" c-translate>{{item.dataLab.jenis}}</div>
+			<div class="grid_12" ng-repeat="list in item.dataLab.details | orderBy:'idObservasi'">
+				<div class="grid_2" style="padding-top:10px; padding-left: 20px">
+					<label c-label item="item">{{list.observasi}}</label>
+				</div>
+				<div class="grid_8">
+					<ng-switch on="list.detail">
+						<div ng-switch-when="undefined">
+							<div class="grid_3">
+								<input c-text-box type="input" class="k-textbox" ng-model="list.value" style="width:100%"/>
+							</div>
+						</div>
+						<div ng-switch-default>
+							<div ng-repeat="subList in list.detail | orderBy:'idObservasi'">
+								<div class="grid_3">
+									<!--<label c-label item="item">{{subList.observasi}}</label>-->
+									<input c-text-box type="input" class="k-textbox" ng-model="sublist.value" style="width:100%" placeholder="{{subList.observasi}}"/>
+								</div>
+							</div>
+						</div>
+					</ng-switch>
+				</div>
+				<div class="grid_12" style="border-top:1px solid lightblue"></div>
+			</div>
+		</div>
+	</div>
+	
+    <div class="panel-body" ng-show="lihatData">
+        <div class="grid_12">
+            <div class="grid_4">
+                <div class="grid_12" style="margin-left:10px">
+                    <label c-label c-label-text="periodeObservasi"></label>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_6">
+                        <input style="width: 100%" k-ng-model='items.from' k-value='now' kendo-date-time-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy HH:mm'" />
+                    </div>
+                    <div class="grid_6">
+                        <input style="width: 100%" k-ng-model='items.until' k-max='now' k-value='now' kendo-date-time-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy HH:mm'" />
+                    </div>
+                </div>
+            </div>
+            <div class="grid_1" style="margin-top:5px">
+                <label c-label c-label-text=""></label>
+                <em style="margin-top:6px;" ng-click='findDataObservasi()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+            </div>
+        </div>
+		<div class="grid_12">
+			<div data-kendo-grid="grid" k-groupable="'true'" k-ng-model="item" k-data-source="patienGrids" k-selectable="'row'" k-sortable="'true'" k-columns="Column">
+            </div>
+		</div>
+    </div>
+		
+	<div class="grid_12 place_button" style="float:left;" ng-hide="isHide">
+		<div class="grid_3">
+			&nbsp;
+		</div>
+		<div ng-hide='lihatData' class="grid_3" style="float:right">
+			<c-button ng-show="!isLoading" class="success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" is-validate click="Save">
+				<span class="title">Simpan</span>
+			</c-button>
+		</div>
+		<div ng-show='lihatData' class="grid_3" style="float:right;">
+			<c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" is-validate click="Kembali">
+				<span class="title">Kembali</span>
+			</c-button>
+		</div>
+		<div ng-hide='lihatData' class="grid_3" style="float:right">
+			<c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" class="cancel" click="Back">
+				<span class="title">Batal</span>
+			</c-button>
+		</div>
+		<div ng-hide='lihatData' class="grid_3" style="float:left;">
+			<c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="lihatDaftar">
+				<span class="title">Lihat Data</span>
+			</c-button>
+		</div>
+	</div>
+</div>

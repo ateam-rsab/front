@@ -1,0 +1,133 @@
+{
+	"model":{
+	    "keadaanUmumIbu" : "",
+	    "beratTinggiIbu" : "",
+	    "psikisKesan" : "",
+	    "keadaanPayudara" : "",
+	    "kelainanPayudara" : "",
+	    "kesulitanMenyusui" : "",
+	    "sebab" : "",
+	    "jenisKelamin" : "",
+	    "umur" : "",
+	    "keadaanUmumBayi" : "",
+	    "refkleksMengisap" : "",
+	    "refleksMenelan" : "",
+	    "kelainan" : "",
+	    "teknikMenyusui" : "",
+	    "catatanTeknikMenyusui" : "",
+	    "dirujukKe" : "",
+	    "pengobatan" : "",
+	    "tanggalKunjunganUlang" : ""
+
+	},
+    "attributes" : [ 
+		{
+			"isNull" : "true",
+			"name" : "keadaanUmumIbu",
+			"messagesRequired" : "",
+			"caption" : "Keadaan Umum"
+		},
+		{
+			"isNull" : "true",
+			"name" : "beratTinggiIbu",
+			"messagesRequired" : "",
+			"caption" : "Berat(kg)/Tinggi Badan(cm)"
+		},
+		{
+			"isNull" : "true",
+			"name" : "psikisKesan",
+			"messagesRequired" : "",
+			"caption" : "Psikis. Kesan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "keadaanPayudara",
+			"messagesRequired" : "",
+			"caption" : "Keadaan Payudara"
+		},
+		{
+			"isNull" : "true",
+			"name" : "kelainanPayudara",
+			"messagesRequired" : "",
+			"caption" : "Kelainan Payudara"
+		},
+		{
+			"isNull" : "true",
+			"name" : "kesulitanMenyusui",
+			"messagesRequired" : "",
+			"caption" : "Kesulitan Menyusui"
+		},
+		{
+			"isNull" : "true",
+			"name" : "sebab",
+			"messagesRequired" : "",
+			"caption" : "Sebab"
+		},
+		{
+			"isNull" : "true",
+			"name" : "jenisKelamin",
+			"messagesRequired" : "",
+			"caption" : "Jenis Kelamin"
+		},
+		{
+			"isNull" : "true",
+			"name" : "umur",
+			"messagesRequired" : "",
+			"caption" : "Umur"
+		},
+		{
+			"isNull" : "true",
+			"name" : "keadaanUmumBayi",
+			"messagesRequired" : "",
+			"caption" : "Keadaan Umum"
+		},
+		{
+			"isNull" : "true",
+			"name" : "refkleksMengisap",
+			"messagesRequired" : "",
+			"caption" : "Refkleks Mengisap"
+		},
+		{
+			"isNull" : "true",
+			"name" : "refleksMenelan",
+			"messagesRequired" : "",
+			"caption" : "Refleks Menelan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "kelainan",
+			"messagesRequired" : "",
+			"caption" : "Kelainan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "teknikMenyusui",
+			"messagesRequired" : "",
+			"caption" : "Teknik Menyusui"
+		},
+		{
+			"isNull" : "true",
+			"name" : "catatanTeknikMenyusui",
+			"messagesRequired" : "",
+			"caption" : "Catatan Teknik Menyusui"
+		},
+		{
+			"isNull" : "true",
+			"name" : "dirujukKe",
+			"messagesRequired" : "",
+			"caption" : "Dirujuk Ke"
+		},
+		{
+			"isNull" : "true",
+			"name" : "pengobatan",
+			"messagesRequired" : "",
+			"caption" : "Pengobatan"
+		},
+		{
+			"isNull" : "true",
+			"name" : "tanggalKunjunganUlang",
+			"messagesRequired" : "",
+			"caption" : "Tanggal Kunjungan Ulang"
+		}
+  ]
+}

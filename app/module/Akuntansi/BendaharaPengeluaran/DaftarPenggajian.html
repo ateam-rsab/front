@@ -1,0 +1,127 @@
+<style>
+	.style-center{
+		display: inline-block;
+		text-align: center;
+		width: 100%;
+	}
+
+	.style-right{
+		display: inline-block;
+		text-align: right;
+		width: 100%;
+	}
+
+	.style-left{
+		display: inline-block;
+		text-align: left;
+		width: 100%;
+	}
+</style>
+<div ng-controller="DaftarPenggajianCtrl">
+	<div ng-show="dataVOloaded">
+
+		<div class="grid_12 headerBox">
+			<h1 style="color: white;"><b>Daftar Gaji Pegawai</b></h1>
+		</div>
+		<div class="clear"></div>
+
+		<br/>
+
+		<!-- Kriteria -->
+		<div class="grid_12">
+			<div class="grid_12 headerBox containerBorderBox" style="padding:0px">
+				<p></p>
+			</div>
+			<div class="grid_12 borderBox containerBorderBox">
+				<!-- Ruangan -->
+				<div class="grid_3">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Jenis Pegawai"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12" style="margin-top: 6px">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPegawai" k-data-text-field="'jenisPegawai'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisPegawai" />
+					</div>
+				</div>
+
+				<!-- Periode Pulang -->
+				<div class="grid_4">
+					<div class="grid_12">
+						<label c-label item="item" c-label-text="Periode"></label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12">
+						<!-- AwalPeriode -->
+						<div class="grid_6">
+							<div class="grid_12">
+								<input style="width: 100%" k-ng-model="item.periodeAwal"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+							</div>
+						</div>
+
+						<!-- AkhirPeriode -->
+						<div class="grid_6">
+							<div class="grid_12">
+								<input style="width: 100%" k-ng-model="item.periodeAkhir"  kendo-date-picker k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+
+				<!-- Button Search -->
+				<div class="grid_1">
+					<div class="grid_12">
+						<label>&nbsp;</label>
+					</div>
+					<div class="clear"></div>
+
+					<div class="grid_12" style="margin-top: 5px">
+						<button class="btnTemplate1" ng-click="SearchData()">Cari</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="clear"></div>
+		<br/>
+
+		<div class="grid_12">
+			<div class="grid_12 headerBox">
+				<p>Daftar Gaji</p>
+			</div>
+			<div class="clear"></div>
+
+
+			<div class="grid_12 borderBox">
+				<div id="kGrid" kendo-grid 
+				k-data-source="dataDaftarPenggajian" 
+				k-selectable="'row'"
+				k-pageable="true"
+				k-sortable="'true'" 
+				k-columns="columnDaftarPenggajian"
+				k-ng-model="dataSelected">
+			</div>
+		</div>
+		<!-- <div class="grid_12">
+			<div class="grid_12 borderBox">
+				<div kendo-grid k-data-source="dataDaftarPenggajian" k-selectable="'row'" k-columns="columnDaftarPenggajian">
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div> -->
+		<div class="grid_12">
+					<div class="grid_8">
+						<label>&nbsp;</label>
+					</div>
+					<div class="grid_2">
+						<button class="btnTemplate1" ng-click="detail()">Detail</button>
+					</div>
+					<div class="grid_2">
+						<button class="btnTemplate1" ng-click="Cetak()">Cetak</button>
+					</div>
+				</div>
+	</div>
+</div>

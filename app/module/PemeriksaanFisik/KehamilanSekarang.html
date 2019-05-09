@@ -1,0 +1,571 @@
+<style>
+.keteranganFieldTambahan {
+    left: 5px !important;
+}
+</style>
+<div ng-controller="KehamilanSekarangCtrl">
+    <!-- panel Riwayat Penyakit Terdahulu dan selama hamil -->
+    <div class="container_12">
+        <div class="grid_12" style="margin-bottom:20px">
+            <div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+                <span style="font-size: 18px; color: white; padding: 5px;">{{formMaster.nama}}</span>
+            </div>
+
+            <div class="grid_12 formDinamis">
+                <!-- GPA -->
+                <div class="grid_12" ng-repeat="list in gpa | orderBy:'id'">
+                    <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                        <div class="grid_2">
+                            <div class="grid_2" style="padding-top:16px !important">
+                                <label for="{{'formMaster' + opsi.nama}}">{{opsi.nama}}</label>
+                            </div>
+                            <div class="grid_6">
+                                <input kendo-numeric-text-box k-min="0" k-ng-model="opsi.value" style="width:100%"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Antenatal -->
+                <div class="grid_12" ng-repeat="list in kehamilanSekarang | orderBy:'id'" style="padding-left:5px; display:inline">
+                    <div class="grid_2" >
+                        <label c-label item="item " c-label-text="{{list.nama}}"></label>
+                    </div>
+                    <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                        <div class="grid_2">
+                            <input type="radio" ng-model="list.value" ng-value="opsi.id" ng-click="cekRadioClick(list, opsi)">
+                            <label for="{{'formMaster' + opsi.nama}}">{{opsi.nama}}</label>
+                        </div>
+                        <div ng-repeat="childOpsi in opsi.detail | orderBy:'id'">
+                            <div class="grid_2">
+                                <input type="radio" ng-model="opsi.value" ng-value="childOpsi.id" ng-click="cekRadioClick(opsi, childOpsi)">
+                                <label for="{{'formMaster' + childOpsi.nama}}">{{childOpsi.nama}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div ng-switch on="listIndex">
+                        <div ng-switch-when="1">
+                            <div class="grid_1">
+                                <input type="radio" ng-model="formMaster.value" ng-value="list.id" ng-click="checkRadio(formMaster, list)">
+                                <label for="{{'formMaster' + list.nama}}">{{list.nama}}</label>
+                            </div>
+                        </div>
+                        <div ng-switch-default>
+                            <div class="grid_1">
+                                <input type="radio" ng-model="formMaster.value" ng-value="list.id" ng-click="checkRadio(formMaster, list)">
+                                <label for="{{'formMaster' + list.nama}}">{{list.nama}}</label>
+                            </div>
+                            <div class="grid_10 pull-right" ng-show="adaMasalah">
+                                <textarea c-text-area type="input" filter="'string'" class="k-textbox" ng-model="list.value" placeholder="Keterangan"/>
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+
+            <!-- Kelainan -->
+            <div class="grid_12 formDinamis">
+                <div class="grid_12" ng-repeat="list in kelainan | orderBy:'id'">
+                    <div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+                        <span style="font-size: 18px; color: white; padding: 5px;">{{list.nama}}</span>
+                    </div>
+                    <div class="grid_12" style="padding-left:16px">
+                        <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                            <div ng-switch on="opsi.id">
+                                <div ng-switch-when="452">
+                                    <div class="grid_2">
+                                        <input type="checkbox" ng-change="checkboxCLick(bool, opsi)" ng-model="bool" ng-checked="isChecked(opsi.id)">
+                                        <label for="{{opsi.nama}}">{{opsi.nama}}</label>
+                                        <!--<input type="radio" ng-model="list.value" ng-value="opsi.id" ng-click="cekRadioClick(list, opsi)">
+                                        <label for="{{'formMaster' + opsi.nama}}">{{opsi.nama}}</label>-->
+                                    </div>
+                                    <div class="grid_4" ng-show="kelainanLain">
+                                        <textarea c-text-area type="input" filter="'string'" class="k-textbox" ng-model="opsi.value" placeholder="Keterangan"/>
+                                    </div>
+                                </div>
+                                <div ng-switch-default>
+                                    <div class="grid_2">
+                                        <input type="checkbox" ng-change="checkboxCLick(bool, opsi)" ng-model="bool" ng-checked="isChecked(opsi.id)">
+                                        <label for="{{opsi.nama}}">{{opsi.nama}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fetal Distress -->
+            <div class="grid_12 formDinamis">
+                <div class="grid_12" ng-repeat="list in fetalDistress | orderBy:'id'">
+                    <div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+                        <span style="font-size: 18px; color: white; padding: 5px;">{{list.nama}}</span>
+                    </div>
+                    <div class="grid_12" style="padding-left:16px">
+                        <div class="grid_6" ng-repeat="opsi in list.detail | orderBy:'id'">
+                            <div class="grid_3">
+                                <label for="{{'formMaster' + opsi.nama}}">{{opsi.nama}}</label>
+                            </div>
+                            <div ng-repeat="subOpsi in opsi.detail | orderBy:'id'">
+                                <div class="grid_3">
+                                    <input type="radio" ng-model="opsi.value" ng-value="subOpsi.id" ng-click="cekRadioClick(opsi, subOpsi)">
+                                    <label for="{{'formMaster' + subOpsi.nama}}">{{subOpsi.nama}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partuss -->
+            <div class="grid_12 formDinamis">
+                <div class="grid_12" ng-repeat="list in partuss | orderBy:'id'">
+                    <div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+                        <span style="font-size: 18px; color: white; padding: 5px;">{{list.nama}}</span>
+                    </div>
+                    <div class="grid_12" style="padding-left:16px">
+                        <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                            <div ng-switch on="opsi.id">
+                                <div ng-switch-when="470">
+                                    <div class="grid_12">
+                                        <div class="grid_1">
+                                            <label for="{{'formMaster' + opsi.nama}}">{{opsi.nama}}</label>
+                                        </div>
+                                        <div class="grid_2">
+                                            <input style="width: 100%" k-ng-model="opsi.value" kendo-date-picker k-format="'dd-MM-yyyy'" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-switch-when="471">
+                                    <div class="grid_12">
+                                        <div class="grid_1">
+                                            <label for="{{'formMaster' + opsi.nama}}">{{opsi.nama}}</label>
+                                        </div>
+                                        <div class="grid_2">
+                                            <input style="width: 100%" k-ng-model="opsi.value" kendo-time-picker k-format="'HH:mm'" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-switch-when="472">
+                                    <div class="grid_12">
+                                        <div class="grid_1">
+                                            <label for="{{'formMaster' + opsi.nama}}">{{opsi.nama}}</label>
+                                        </div>
+                                        <div class="grid_4">
+                                            <textarea c-text-area type="input" filter="'string'" class="k-textbox" ng-model="opsi.value" placeholder="Isi jika ada"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-switch-default>
+                                    <div class="grid_2">
+                                        <input type="radio" ng-model="list.value" ng-value="opsi.id" ng-click="cekRadioClick(list, opsi)">
+                                        <label for="{{'formMaster' + opsi.nama}}">{{opsi.nama}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Placenta -->
+            <div class="grid_12 formDinamis">
+                <div class="grid_12" ng-repeat="list in placenta | orderBy:'id'">
+                    <div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+                        <span style="font-size: 18px; color: white; padding: 5px;">{{list.nama}}</span>
+                    </div>
+                    <div class="grid_12" style="padding-left:16px">
+                        <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                            <div ng-switch on="opsi.id">
+                                <div ng-switch-when="476">
+                                    <div class="grid_12">
+                                        <div class="grid_2 ">
+                                            <label c-label item="item " c-label-text="{{opsi.nama}}"></label>
+                                        </div>
+                                        <div class="grid_2">
+                                            <input kendo-numeric-text-box k-min="0" k-ng-model="opsi.value" style="width:100%"/>
+                                        </div>
+                                        <div class="grid_8 parentKeteranganFieldTambahan">
+                                            <label c-label item="item " class="keteranganFieldTambahan">{{opsi.descNilai}}</label>
+                                        </div>
+                                    </div>
+                                    <!--<label for="{{'formMaster' + opsi.nama}}">{{opsi.nama}}</label>
+                                    <input kendo-numeric-text-box k-min="0" k-ng-model="opsi.value" style="width:100%"/>
+                                    <label for="{{'formMaster' + opsi.descNilai}}">{{opsi.descNilai}}</label>-->
+                                </div>
+                                <div ng-switch-default>
+                                    <div class="grid_12">
+                                        <div class="grid_2">
+                                            <label c-label item="item " c-label-text="{{opsi.nama}}"></label>
+                                        </div>
+                                        <div class="grid_6">
+                                            <textarea c-text-area type="input" filter="'string'" class="k-textbox" ng-model="opsi.value"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tali Pusat -->
+            <div class="grid_12 formDinamis">
+                <div class="grid_12" ng-repeat="list in taliPusat | orderBy:'id'">
+                    <div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+                        <span style="font-size: 18px; color: white; padding: 5px;">{{list.nama}}</span>
+                    </div>
+                    <div class="grid_12" style="padding-left:16px">
+                        <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                            <div class="grid_12">
+                                <div class="grid_2 ">
+                                    <label c-label item="item " c-label-text="{{opsi.nama}}"></label>
+                                </div>
+                                <div ng-if="opsi.detail">
+                                    <div ng-repeat="subOpsi in opsi.detail | orderBy:'id'">
+                                        <div class="grid_2">
+                                            <input type="radio" ng-model="opsi.value" ng-value="subOpsi.id" ng-click="cekRadioClick(opsi, subOpsi)">
+                                            <label for="{{'opsi' + subOpsi.nama}}">{{subOpsi.nama}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-if="!opsi.detail">
+                                    <div class="grid_6">
+                                        <textarea c-text-area type="input" filter="'string'" class="k-textbox" ng-model="opsi.value"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jenis kelamin -->
+            <div class="grid_12 formDinamis">
+                <div class="grid_12" ng-repeat="list in jenisKelamin | orderBy:'id'">
+                    <div style="background-color: #10C4B2; height: 25px; margin-top: 5p; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+                        <span style="font-size: 18px; color: white; padding: 5px;">{{list.nama}}</span>
+                    </div>
+                    <div class="grid_12" style="padding-left:16px">
+                        <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                            <div class="grid_2">
+                                <input type="radio" ng-model="list.value" ng-value="opsi.id" ng-click="cekRadioClick(list, opsi)">
+                                <label for="{{'opsi' + opsi.nama}}">{{opsi.nama}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Laboratorium dan USG -->
+            <div class="grid_12 formDinamis">
+                <div class="grid_8" ng-repeat="list in dataLab | orderBy:'id'">
+                    <div style="background-color: #10C4B2; height: 25px; margin: 5p auto; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+                        <span style="font-size: 18px; color: white; padding: 5px;">{{list.nama}}</span>
+                    </div>
+                    <div class="grid_12" style="padding-left:16px">
+                        <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                            <div class="grid_12">
+                                <input type="radio" ng-model="list.value" ng-value="opsi.id" ng-click="cekRadioClick(list, opsi)">
+                                <label for="{{'opsi' + opsi.nama}}">{{opsi.nama}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_4" ng-repeat="list in dataUsg | orderBy:'id'">
+                    <div style="background-color: #10C4B2; height: 25px; margin: 5p auto; text-align: left; border: 1px solid; border-color: #10C4B2; padding: 10px 0 10px 10px;" class="grid_12">
+                        <span style="font-size: 18px; color: white; padding: 5px;">{{list.nama}}</span>
+                    </div>
+                    <div class="grid_12" style="padding-left:16px">
+                        <div ng-repeat="opsi in list.detail | orderBy:'id'">
+                            <div class="grid_12">
+                                <input type="radio" ng-model="list.value" ng-value="opsi.id" ng-click="cekRadioClick(list, opsi)">
+                                <label for="{{'opsi' + opsi.nama}}">{{opsi.nama}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <c-panel item="item" header="'Kehamilan Yang Sekarang'" disabled ng-hide="true">
+        <div class="grid_12">
+            <div class="grid_2">
+                <div class="grid_1">
+                    <label c-label item="item" c-label-text="G"></label>
+                </div>
+                <div class="grid_3">
+                    <input c-text-box ng-model="item.GpaG" />
+                </div>
+                <div class="grid_1">
+                    <label c-label item="item" c-label-text="P"></label>
+                </div>
+                <div class="grid_3">
+                    <input c-text-box ng-model="item.GpaP" />
+                </div>
+                <div class="grid_1">
+                    <label c-label item="item" c-label-text="A"></label>
+                </div>
+                <div class="grid_3">
+                    <input c-text-box ng-model="item.GpaA" />
+                </div>
+            </div>
+        </div>
+        <div class="grid_12">
+            <div class="grid_2">
+                <label c-label item="item" style="margin-top:10px">Pemeriksaan Atenatal :</label>
+            </div>
+            <div class="grid_8">
+                <div class="grid_12">
+                    <div class="grid_2" ng-repeat="data in ListYaTidak">
+                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="item.apaTeratur" ng-value="data" ng-checked="{{data.id===1}}"/>
+                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_2" ng-repeat="data in ListAntenatal">
+                        <input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="item.apaAntenatal" ng-value="data" ng-checked="{{data.id===1}}"/>
+                        <label class="k-radio-label" for="{{data.name}}">{{data.name}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </c-panel>
+    <c-panel item="item" header="'Kelainan'" disabled ng-hide="true">
+        <div class="grid_12">
+            <div class="grid_12">
+                <!--<label c-label item="item" c-label-text="Kelainan" style="padding-right:5pt;font-weight:bold;font-size:15pt"></label>-->
+                <div class="grid_2" ng-repeat="data in listKelainan">
+                    <input type="checkbox" id="{{data.id}}" name="data" ng-model="item.kelainan[data.id]">
+                    <!--<input type="radio" name="{{data.name}}" id="{{data.name}}" class="k-radio" ng-model="item.ke" ng-value="data" ng-checked="{{data.id===1}}">-->
+                    <label for="{{data.name}}">{{data.name}}</label>
+                </div>
+                <div class="grid_8">
+                    <textarea c-text-area type="input" filter="'string'" class="k-textbox" ng-model="item.rhesusAyah" placeholder="Isi jika ada"/>
+                </div>
+            </div>
+        </div>
+    </c-panel>
+    <c-panel item="item" header="'FetalDistress'" disabled ng-hide="true">
+        <!--FETAL DISTRESS-->
+        <div class="grid_12">
+            <!--<label c-label item="item" c-label-text="Fetal Distress" style="padding-right:5pt;font-weight:bold;font-size:15pt"></label>-->
+            <div class="grid_12">
+                <div class="grid_6">
+                    <div class="grid_2">
+                        <label c-label item="item">FHR</label>
+                    </div>
+                    <div class="grid_2">
+                        <input type="radio" ng-model="item.FHR1" value="1"/>
+                        <label>160</label>
+                    </div>
+                    <div class="grid_2">
+                        <input type="radio" ng-model="item.FHR1" value="2"/>
+                        <label>Tidak Ada</label>
+                    </div>
+                </div>
+                <div class="grid_6">
+                    <div class="grid_3">
+                        <label c-label item="item">Lilitan tali pusat</label>
+                    </div>
+                    <div class="grid_2">
+                        <input type="radio" ng-model="item.taliPusat" value="1"/>
+                        <label>Tidak</label>
+                    </div>
+                    <div class="grid_2">
+                        <input type="radio" ng-model="item.taliPusat" value="2"/>
+                        <label>Ya</label>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_6">
+                    <div class="grid_2">
+                        <label c-label item="item">FH</label>
+                    </div>
+                    <div class="grid_2">
+                        <input type="radio" ng-model="item.FH" value="1"/>
+                        <label>Irreguler</label>
+                    </div>
+                    <div class="grid_3">
+                        <input type="radio" ng-model="item.FH" value="2"/>
+                        <label>Tidak diketahui</label>
+                    </div>
+                </div>
+                <div class="grid_6">
+                    <div class="grid_3">
+                        <label c-label item="item">Prolaps tali pusat</label>
+                    </div>
+                    <div class="grid_2">
+                        <input type="radio" ng-model="item.prolapTaliPusat" value="1"/>
+                        <label>Tidak</label>
+                    </div>
+                    <div class="grid_2">
+                        <input type="radio" ng-model="item.prolapTaliPusat" value="2"/>
+                        <label>Ya</label>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_6">
+                    <div class="grid_2">
+                        <label c-label item="item">FHR</label>
+                    </div>
+                    <div class="grid_2">
+                        <input type="radio" ng-model="item.FHR2" value="1"/>
+                        <label>100</label>
+                    </div>
+                    <div class="grid_3">
+                        <input type="radio" ng-model="item.FHR2" value="2"/>
+                        <label>Aspirasi mekonium</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </c-panel>
+    <c-panel item="item" header="'Partus'" disabled ng-hide="true">
+        <!--Partus-->
+        <div class="grid_12">
+            <!--<label c-label item="item" c-label-text="Partus" style="padding-right:5pt;font-weight:bold;font-size:15pt"></label>-->
+            <div class="grid_12">
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="tanggal"></label>
+                    <input style="width: 100%" k-ng-model="item.tanggalPartus" kendo-date-picker placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                </div>
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="jam"></label>
+                    <input style="width: 100%" k-ng-model="item.jamPartus" kendo-time-picker placeholer="HH-mm" k-format="'HH-mm'" />
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_2">
+                    <label c-label item="item" c-label-text="letak"></label>
+                </div>
+                <div class="grid_4">
+                    <textarea c-text-area type="input" filter="'string'" class="k-textbox" ng-model="item.letakPartus" placeholder="Isi jika ada"/>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_2">
+                    <input type="radio" ng-model="item.kondisiPartus" value="1"/>
+                    <label>Spontan</label>
+                </div>
+                <div class="grid_3">
+                    <input type="radio" ng-model="item.kondisiPartus" value="2"/>
+                    <label>Operatif</label>
+                </div>
+            </div>
+        </div>
+    </c-panel>
+    <c-panel item="item" header="'plasenta'" disabled ng-hide="true">
+        <!--Plasenta-->
+        <div class="grid_12">
+            <!--<label c-label item="item" c-label-text="Partus" style="padding-right:5pt;font-weight:bold;font-size:15pt"></label>-->
+            <div class="grid_12">
+                <div class="grid_2 ">
+                    <label c-label item="item " c-label-text="berat"></label>
+                </div>
+                <div class="grid_2">
+                    <input kendo-numeric-text-box k-min="0" k-ng-model="item.beratPlasenta" style="width:100%"/>
+                    <!--<input c-text-box type="input " filter=" 'numeric' " class="k-textbox " ng-model="item.Tengkurap " />-->
+                </div>
+                <div class="grid_8 parentKeteranganFieldTambahan">
+                    <label c-label item="item " c-label-text="gram dengan/tanpa tali pusat dan selaput" class="keteranganFieldTambahan"></label>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_2">
+                    <label c-label item="item " c-label-text="keadaan"></label>
+                </div>
+                <div class="grid_6">
+                    <textarea c-text-area type="input" filter="'string'" class="k-textbox" ng-model="item.keadaanPlasenta"/>
+                </div>
+            </div>
+        </div>
+    </c-panel>
+    <c-panel item="item" header="'taliPusat'" disabled ng-hide="true">
+        <!--Tali pusat-->
+        <!--<label c-label item="item" c-label-text="TaliPusat" style="padding-right:5pt;font-weight:bold;font-size:15pt"></label>-->
+        <div class="grid_12">
+            <div class="grid_2">
+                <label c-label item="item " c-label-text="pembuluhDarah"></label>
+            </div>
+            <div class="grid_2">
+                <input type="radio" ng-model="item.pembuluhDarah" value="3"/>
+                <label>3</label>
+            </div>
+            <div class="grid_2">
+                <input type="radio" ng-model="item.pembuluhDarah" value="2"/>
+                <label>2</label>
+            </div>
+            <div class="grid_3">
+                <input type="radio" ng-model="item.pembuluhDarah" value="0"/>
+                <label>Tidak ada</label>
+            </div>
+        </div>
+        <div class="grid_12">
+            <div class="grid_2">
+                <label c-label item="item " c-label-text="kelainan"></label>
+            </div>
+            <div class="grid_6">
+                <textarea c-text-area type="input" filter="'string'" class="k-textbox" ng-model="item.kelainanTaliPusat"/>
+            </div>
+        </div>
+    </c-panel>
+    <c-panel item="item" header="'jenisKelamin'" disabled ng-hide="true">
+
+        <!--Jenis Kelamin-->
+        <div class="grid_12">
+            <!--<label c-label item="item" c-label-text="jenisKelamin" style="padding-right:5pt;font-weight:bold;font-size:15pt"></label>-->
+            <div class="grid_12">
+                <div class="grid_2">
+                    <input type="radio" ng-model="item.jenisKelamin" value="1"/>
+                    <label>Laki-laki</label>
+                </div>
+                <div class="grid_2">
+                    <input type="radio" ng-model="item.jenisKelamin" value="2"/>
+                    <label>Perempuan</label>
+                </div>
+                <div class="grid_2">
+                    <input type="radio" ng-model="item.jenisKelamin" value="3"/>
+                    <label>Ambigous</label>
+                </div>
+            </div>
+        </div>
+    </c-panel>
+        
+    <!--Data lain-->
+    <div class="grid_12" ng-hide="true">
+        <div class="grid_8">
+            <c-panel item="item" header="'dataLaboratotiumSaatKehamilan/Persalinan'" disabled>
+                <!--<label c-label item="item" c-label-text="dataLaboratotiumSaatKehamilan/Persalinan" style="padding-right:5pt;font-weight:bold;font-size:15pt"></label>-->
+                <div class="grid_12">
+                    <input type="radio" ng-model="item.dataLab" value="1"/>
+                    <label>Tidak ada</label>
+                </div>
+                <div class="grid_12">
+                    <input type="radio" ng-model="item.jenisKelamin" value="2"/>
+                    <label>Ada</label>
+                </div>
+            </c-panel>
+        </div>
+        <div class="grid_4">
+            <c-panel item="item" header="'USGAntenatal'" disabled>
+                <!--<label c-label item="item" c-label-text="USGAntenatal" style="padding-right:5pt;font-weight:bold;font-size:15pt"></label>-->
+                <div class="grid_12">
+                    <input type="radio" ng-model="item.usgAntenatal" value="1"/>
+                    <label>Tidak ada</label>
+                </div>
+                <div class="grid_12">
+                    <input type="radio" ng-model="item.usgAntenatal" value="2"/>
+                    <label>Ada</label>
+                </div>
+            </c-panel>
+        </div>
+    </div>
+    <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+</div>
+
+		

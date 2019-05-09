@@ -1,0 +1,104 @@
+<div ng-controller="PenerimaanBankDarahCtrl">
+    <div class="panel panel-default">
+        <div class="panel-heading" c-translate>Penerimaan Bank Darah</div>
+        <div class="panel-body">
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="NoStruk" real=true></label>
+                <input c-text-box type="input" class="k-textbox" ng-model="item.noStruk" ng-disabled="'true'" />
+            </div>
+            <div class="grid_4" style="margin-bottom: 2px;">
+                <label c-label item="item" c-label-text="tanggalPenerimaan"></label>
+                <!-- {{item.pasien.tglLahir}}-->
+                <input required style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.penerimaan" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+            </div>
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="Keterangan" real=true></label>
+                <input c-text-box type="input" class="k-textbox" ng-model="item.keterangan" />
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" c-translate> Darah</div>
+            <div class="panel-body">
+                <div class="grid_12">
+                    <div class="grid_4 pad-1">
+                        <div class="grid_12 join-input">
+                            <div class="grid_6 first-input">
+                                <label c-label item="item" c-label-text="NoKantung" real=true></label>
+                                <input c-text-box type="input" class="k-textbox" ng-model="item.noKantung"/>
+                            </div>
+                            <div class="grid_6 last-input">
+                                <label c-label item="item" c-label-text="NoSelang" real=true></label>
+                                <input c-text-box type="input" class="k-textbox" ng-model="item.noSelang" />
+                            </div>
+                        </div>
+                    </div>                   
+                    <!-- <div class="grid_4" style="margin-bottom:5px;">
+                        <label c-label item="item" c-label-text="Rhesus" real=true></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.rhesus" k-data-text-field="'Rhesus'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listRhesus" />
+                    </div> -->
+                    <div class="grid_4">
+                        <label c-label item="item" c-label-text="golonganDarahRhesus" real=true></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.nameGolDarahAndRhesus" k-data-text-field="'nameGolDarahAndRhesus'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listGolonganDarah" />
+                    </div>               
+                    <div class="grid_4">
+                        <label c-label item="item" c-label-text="JenisDarah" real=true></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.bentukDarah" k-data-text-field="'namaBentukProduk'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listBentukDarah" />
+                    </div>     
+                </div>
+                <div class="grid_12">                                       
+                    <div class="grid_3">
+                        <label c-label item="item" c-label-text="jumlah" real=true></label>
+                        <input c-text-box type="input" class="k-textbox" ng-model="item.jumlahDarah" />
+                    </div>
+                    <div class="grid_3">
+                        <label c-label item="item" c-label-text="volume" real=true></label>
+                        <div class="grid_12" style="position: relative;">
+                            <input c-text-box type="input" class="k-textbox" ng-model="item.volumen" />
+                            <label class="keteranganFieldTambahan">cc</label>               
+                        </div>
+                    </div>
+                    <div class="grid_3" style="margin-bottom: 2px;">
+                        <label c-label item="item" c-label-text="tanggalExpired"></label>
+                        <!-- {{item.pasien.tglLahir}}-->
+                        <input required style="width: 100%" kendo-date-picker k-ng-model="item.tglkadaluarsa" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                    </div>
+                    <div class="grid_3" style="margin-bottom: 2px;">
+                        <label c-label item="item" c-label-text="tanggalProduksi"></label>
+                        <!-- {{item.pasien.tglLahir}}-->
+                        <input required style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tglproduksi" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+                    </div>
+                </div>                
+                <div class="grid_12">
+                    <div class="grid_4" style="margin-bottom: 2px;">
+                        <label c-label item="item" c-label-text="Status"></label>
+                        <!-- {{item.pasien.tglLahir}}-->
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.statusDarah" k-data-text-field="'namaExternal'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listStatusDarah" />
+                    </div>
+
+                    <div class="grid_4" style="margin-bottom: 2px;">
+                        <label c-label item="item" c-label-text="SupplierDarah"></label>
+                        <!-- {{item.pasien.tglLahir}}-->
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.supplierDarah" k-data-text-field="'namaExternal'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listSupplierDarah" />
+                    </div>
+                    <div class="grid_4" style="margin-bottom: 2px;">
+                        <label c-label item="item" c-label-text="LokasiDarah"></label>
+                        <!-- {{item.pasien.tglLahir}}-->
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.lokasiDarah" k-data-text-field="'namaExternal'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listLokasiDarah" />
+                    </div>
+                </div>
+                
+                <div class="grid_12">
+                    <c-button style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" click="Add">
+                        <span class="title">Tambah</span>
+                    </c-button>
+                </div>
+            </div>
+        </div>
+        <div class="grid_12" style="margin-top: 10px;">
+            <div kendo-grid k-data-source="dataLabu" k-selectable="'row'" k-columns="columnPenerimaan">
+            </div>
+        </div>
+        <div ng-include='"../app/module/Shared/TemplateButtonSimpan" '></div>
+    </div>
+</div>

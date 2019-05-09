@@ -1,0 +1,42 @@
+<div ng-controller="DaftarFeeForServiceCtrl">
+	<div class="grid_12 headerBox">
+		<h1 style="color: white"><b>Daftar Fee For Service</b></h1>
+	</div>
+	<div class="clear"></div>
+	<br>
+	<div class="clear"></div>
+	<div class="grid_12" style="margin: 15px 0px 0px">
+		<div class="grid_3">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="NamaDokter" real></label>
+			</div>
+			<div class="grid_12">
+				<input kendo-combo-box k-ng-model="item.namaDokter" k-data-source="listPegawai" k-data-text-field="'namaExternal'" k-data-value-field="'id'" k-filter="'contains'">
+			</div>
+		</div>
+		<div class="grid_3">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="PeriodeAwal" real></label>
+			</div>
+			<div class="grid_12">
+				<input kendo-date-picker k-ng-model="item.periodeAwal" style="width: 100%;">
+			</div>
+		</div>
+		<div class="grid_3">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="PeriodeAkhir" real></label>
+			</div>
+			<div class="grid_12">
+				<input kendo-date-picker k-ng-model="item.periodeAkhir" style="width: 100%">
+			</div>
+		</div>
+		<div class="grid_3">
+			<div class="grid_6" style="margin: 18px 0px 0px">
+				<button class="c-button" ng-click="cariData()">Cari</button>	
+			</div>
+		</div>
+		<div class="grid_12">
+			<kendo-grid options="mainGridOptions" k-data-source="dataSource"></kendo-grid>
+		</div>
+	</div>
+</div>

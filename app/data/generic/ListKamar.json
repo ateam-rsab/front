@@ -1,0 +1,15 @@
+[
+	{  
+        "id":1,
+        "name":"Kamar 1"
+    },{
+        "id": 2,
+        "name": "Kamar 2"
+    },{
+        "id": 3,
+        "name": "Kamar 3"},
+    {
+        "id": 4,
+        "name": "Kamar 4"
+    }
+]
