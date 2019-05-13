@@ -186,7 +186,7 @@ define(['initialize'], function (initialize) {
 
 				ManagePhp.postData(item, 'rekam-medis/post-resume-medis/save').then(function (e) {
 					// delete $scope.item;
-					clear();
+					clear()
 					init();
 					 ManagePhp.postLogging('Summary List', 'Norec resumemedis_t',e.data.resume.norec, 'Resume RJ').then(function (res) {
                     })

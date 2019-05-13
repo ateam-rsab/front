@@ -31,9 +31,10 @@
     <div class="grid_12">
         <div class="container-bedah">
             <button class="btn-bedah k-button" ng-click="showInput(21, 1)">Laporan Pembedahan dan Instruksi Pasca Bedah</button>
-            <div ng-show="showData" style="padding-top: 10px;">
+            <div ng-show="showData" style="padding-top:10px;transition: all 0.5s;">
                 <div class="grid_12 borderBox">
-                    <kendo-grid  id="kGrid"  data-source="dataDaftar" options="columnDaftar"
+                    <kendo-grid id="kGrid" data-source="dataDaftar"
+                        options="columnDaftar"
                         k-selectable="'row'"
                         k-sortable="'true'"
                         k-resizable="'true'"
@@ -41,7 +42,415 @@
                         ng-click="klikGrid(dataSelected)">
                     </kendo-grid>
                 </div>
-                <div ui-view ng-show="showInputan" style="padding-top: 10px;"></div>
+                <div ng-show="showInputan" style="background-color: #10C4B2;
+                    height: 25px; margin-top: 5px; text-align: left; border: 1px
+                    solid; border-color: #10C4B2; padding: 10px 0"
+                    class="grid_12">
+                    <div class="grid_12">
+                        <span style="font-size: 18px; color: white; padding:
+                            5px;">Laporan Pembedahan dan Instruksi Pasca Bedah</span>
+                    </div>
+                </div>
+                <div ng-show="showInputan" class="grid_12 borderBox" style="margin-top:10px;margin-bottom: 15px">
+                    <div class="container-bedah">
+                        <div class="grid_12">
+                            <!-- Operator -->
+                            <div class="grid_4">
+                                <div class="grid_4" style="margin: 10px 0 0 0;">
+                                    <label><b>Operator</b></label>
+                                </div>
+                                <div class="grid_8">
+                                    <!-- <input c-text-box type="input" placeholder="Nama" filter="'varchar'" class="k-textbox" ng-model="item.nama" ng-disabled="isSimpan"/> -->
+                                    <input style="width: 100%;" kendo-combo-box
+                                        k-ng-model="item.selectedDataOperator"
+                                        k-data-text-field="'namaLengkap'"
+                                        k-data-value-field="'id'"
+                                        k-filter="'contains'"
+                                        k-auto-bind="false"
+                                        k-data-source="dataMasterPetugas" />
+                                </div>
+                            </div>
+                            <!-- Penata Anestesi  -->
+                            <div class="grid_4">
+                                <div class="grid_4" style="margin: 10px 0 0 0;">
+                                    <label><b>Penata Anestesi</b></label>
+                                </div>
+                                <div class="grid_8">
+                                    <input style="width: 100%;" kendo-combo-box
+                                        k-ng-model="item.selectedPenataAnest"
+                                        k-data-text-field="'namaLengkap'"
+                                        k-data-value-field="'id'"
+                                        k-filter="'contains'"
+                                        k-auto-bind="false"
+                                        k-data-source="dataMasterPetugas" />
+                                </div>
+                            </div>
+                            <!-- Selesai Jam -->
+                            <div class="grid_4">
+                                <div class="grid_4" style="margin: 10px 0 0 0;">
+                                    <label><b>Selesai Jam</b></label>
+                                </div>
+                                <div class="grid_8">
+                                    <input style="width: 100%" kendo-time-picker
+                                        k-min="now" k-ng-model="item.jamSelesai"
+                                        placeholer="Hari-Bln-Thn"
+                                        k-format="'HH:mm'" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_4">
+                                <div class="grid_4" style="margin: 10px 0 0 0;">
+                                    <label><b>Anestesiologis</b></label>
+                                </div>
+                                <div class="grid_8">
+                                    <input style="width: 100%;" kendo-combo-box
+                                        k-ng-model="item.selectedAnestesiologis"
+                                        k-data-text-field="'namaLengkap'"
+                                        k-data-value-field="'id'"
+                                        k-filter="'contains'"
+                                        k-auto-bind="false"
+                                        k-data-source="dataMasterPetugas" />
+                                </div>
+                            </div>
+                            <!-- Perawat Instrumen -->
+                            <div class="grid_4">
+                                <div class="grid_4" style="margin: 10px 0 0 0;">
+                                    <label><b>Perawat Instrumen</b></label>
+                                </div>
+                                <div class="grid_8">
+                                    <input style="width: 100%;" kendo-combo-box
+                                        k-ng-model="item.selectedPerawatInstrumen"
+                                        k-data-text-field="'namaLengkap'"
+                                        k-data-value-field="'id'"
+                                        k-filter="'contains'"
+                                        k-auto-bind="false"
+                                        k-data-source="dataMasterPetugas" />
+                                </div>
+                            </div>
+                            <!-- Lama Pembedahan -->
+                            <div class="grid_4">
+                                <div class="grid_4" style="margin: 10px 0 0 0;">
+                                    <label><b>Lama Pembedahan</b></label>
+                                </div>
+                                <div class="grid_7">
+                                    <input c-text-box type="input"
+                                        placeholder="Jam" filter="'varchar'"
+                                        class="k-textbox"
+                                        ng-model="item.lamaPembedahan" />
+                                </div>
+                                <div class="grid_1" style="margin-top: 13px;">
+                                    <label>Jam</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_4">
+                                <div class="grid_4" style="margin: 10px 0 0 0;">
+                                    <label><b>Asisten Operator</b></label>
+                                </div>
+                                <div class="grid_8">
+                                    <input style="width: 100%;" kendo-combo-box
+                                        k-ng-model="item.selectedAsistenOperator"
+                                        k-data-text-field="'namaLengkap'"
+                                        k-data-value-field="'id'"
+                                        k-filter="'contains'"
+                                        k-auto-bind="false"
+                                        k-data-source="dataMasterPetugas" />
+                                </div>
+                            </div>
+                            <!-- Tanggal Pembedahan -->
+                            <div class="grid_4">
+                                <div class="grid_4" style="margin: 10px 0 0 0;">
+                                    <label><b>Tanggal Pembedahan</b></label>
+                                </div>
+                                <div class="grid_8">
+                                    <input style="width: 100%" kendo-date-picker
+                                        k-min="now"
+                                        k-ng-model="item.tglPembedahan"
+                                        placeholer="Hari-Bln-Thn"
+                                        k-format="'dd-MM-yyyy'" />
+                                </div>
+                            </div>
+                            <div class="grid_4">
+                                <!-- kondisi Penanganan -->
+                                <div class="grid_4" style="margin: 10px 0 0 0;">
+                                    <label><b>Kondisi Penanganan</b></label>
+                                </div>
+                                <div class="grid_8">
+                                    <input style="width: 100%;" kendo-combo-box
+                                        k-ng-model="item.selectedPenangananKhusus"
+                                        k-data-text-field="'name'"
+                                        k-data-value-field="'id'"
+                                        k-filter="'contains'"
+                                        k-auto-bind="false"
+                                        k-data-source="listOfPenanganKhusus" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_4">
+                                <div class="grid_4" style="margin: 10px 0 0 0;">
+                                    <label><b>Jam Mulai</b></label>
+                                </div>
+                                <div class="grid_8">
+                                    <input style="width: 100%" kendo-time-picker
+                                        k-min="now" k-ng-model="item.jamMulai"
+                                        placeholer="Hari-Bln-Thn"
+                                        k-format="'HH:mm'" />
+                                </div>
+                            </div>
+                            <div class="grid_4">
+                                <div class="grid_4" style="margin: 10px 0 0 0;">
+                                    <label><b>Label Pasien</b></label>
+                                </div>
+                                <div class="grid_8">
+                                    <input style="width: 100%;" kendo-combo-box
+                                        k-ng-model="item.selectedLabelPasien"
+                                        k-data-text-field="'name'"
+                                        k-data-value-field="'id'"
+                                        k-filter="'contains'"
+                                        k-auto-bind="false"
+                                        k-data-source="listOfLabelPasien" />
+                                </div>
+                            </div>
+                            <div class="grid_4">
+                                <div class="grid_4" style="margin: 10px 0 0 0;">
+                                    <label><b>Status</b></label>
+                                </div>
+                                <div class="grid_8">
+                                    <input style="width: 100%;" kendo-combo-box
+                                        k-ng-model="item.selectedStatus"
+                                        k-data-text-field="'name'"
+                                        k-data-value-field="'id'"
+                                        k-filter="'contains'"
+                                        k-auto-bind="false"
+                                        k-data-source="listOfStatus" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_3">
+                                <fieldset class="borderBox">
+                                    <legend>
+                                        <strong>Tindakan Pembedahan</strong>
+                                    </legend>
+                                    <ul class="fieldlist">
+                                        <li>
+                                            <label>I</label>
+                                            <input c-text-box type="input"
+                                                filter="'varchar'"
+                                                class="k-textbox"
+                                                ng-model="item.tindakanPembedahan.I"
+                                                />
+                                        </li>
+                                        <li>
+                                            <label>II</label>
+                                            <input c-text-box type="input"
+                                                filter="'varchar'"
+                                                class="k-textbox"
+                                                ng-model="item.tindakanPembedahan.II"
+                                                />
+                                        </li>
+                                        <li>
+                                            <label>III</label>
+                                            <input c-text-box type="input"
+                                                filter="'varchar'"
+                                                class="k-textbox"
+                                                ng-model="item.tindakanPembedahan.III"
+                                                />
+                                        </li>
+                                        <li>
+                                            <label>IV</label>
+                                            <input c-text-box type="input"
+                                                filter="'varchar'"
+                                                class="k-textbox"
+                                                ng-model="item.tindakanPembedahan.IV"
+                                                />
+                                        </li>
+                                        <!-- <li>
+                                            <input type="radio" name="keadaan" id="khusus" class="k-radio" checked="checked">
+                                            <label class="k-radio-label" for="khusus">Khusus</label>
+                                        </li> -->
+                                    </ul>
+                                </fieldset>
+                            </div>
+                            <div class="grid_9">
+                                <div class="grid_4" style="margin-top: 80px;">
+                                    <label>
+                                        <strong>
+                                            Uraian Pembedahan-sesuai dengan
+                                            Instruksi kerja
+                                        </strong>
+                                    </label>
+                                </div>
+                                <div class="grid_8">
+                                    <textarea ng-model="item.uraianPembedahan"
+                                        style="height:180px"></textarea>
+                                </div>
+                                <div class="grid_4">
+                                    <label>
+                                        <strong>
+                                            Jaringan Patologi
+                                        </strong>
+                                    </label>
+                                </div>
+                                <div class="grid_8">
+                                    <ul class="fieldlist">
+                                        <li>
+                                            <input type="radio" name="patologi" id="ya" value="ya" class="k-radio" ng-model="item.jaringanPatologi">
+                                            <label class="k-radio-label"
+                                                for="ya">Ya</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" name="patologi"
+                                                id="tidak" class="k-radio" value="tidak"ng-model="item.jaringanPatologi">
+                                            <label class="k-radio-label"
+                                                for="tidak">Tidak</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <fieldset ng-show="showInputan" class="borderBox" style="margin-top:10px">
+                    <legend>
+                        <span style="font-size:18px">
+                            <strong> Instruksi Pasca Bedah </strong>
+                        </span>
+                    </legend>
+                    <div class="grid_12">
+                        <div class="grid_3">
+                            <fieldset class="borderBox">
+                                <legend>
+                                    <strong>1. Periksa</strong>
+                                </legend>
+                                <!-- <label>1. Periksa</label> -->
+                                <ul class="fieldlist">
+                                    <li>
+                                        <label>Tekanan Darah Setiap</label>
+                                        <input c-text-box type="input"
+                                            filter="'varchar'" class="k-textbox"
+                                            ng-model="item.tekananDarah" />
+                                    </li>
+                                    <li>
+                                        <label>Nadi Setiap</label>
+                                        <input c-text-box type="input"
+                                            filter="'varchar'" class="k-textbox"
+                                            ng-model="item.nadi" />
+                                    </li>
+                                    <li>
+                                        <label>Suhu Setiap</label>
+                                        <input c-text-box type="input"
+                                            filter="'varchar'" class="k-textbox"
+                                            ng-model="item.suhu" />
+                                    </li>
+                                    <li>
+                                        <label>Pernafasan Setiap</label>
+                                        <input c-text-box type="input"
+                                            filter="'varchar'" class="k-textbox"
+                                            ng-model="item.pernafasan" />
+                                    </li>
+                                </ul>
+                            </fieldset>
+                        </div>                        
+                        <div class="grid_3">
+                            <fieldset class="borderBox">
+                                <legend>
+                                    <strong>2. Makan / Minum</strong>
+                                </legend>
+                                <!-- <label>1. Periksa</label> -->
+                                <ul class="fieldlist">
+                                    <li>
+                                        <label>Makan</label>
+                                        <input style="width: 100%;"
+                                            kendo-combo-box
+                                            k-ng-model="item.selectedAvailMakan"
+                                            k-data-text-field="'name'"
+                                            k-data-value-field="'id'"
+                                            k-filter="'contains'"
+                                            k-auto-bind="false"
+                                            k-data-source="listYesOrNo" />
+                                    </li>
+                                    <li>
+                                        <label>Minum</label>
+                                        <input style="width: 100%;"
+                                            kendo-combo-box
+                                            k-ng-model="item.selectedAvailMinum"
+                                            k-data-text-field="'name'"
+                                            k-data-value-field="'id'"
+                                            k-filter="'contains'"
+                                            k-auto-bind="false"
+                                            k-data-source="listYesOrNo" />
+                                    </li>
+                                </ul>
+                            </fieldset>
+                        </div>
+                        <div class="grid_3">
+                            <fieldset class="borderBox">
+                                <legend>
+                                    <strong>3. Infus</strong>
+                                </legend>
+                                <ul class="fieldlist">
+                                    <li>
+                                        <label>Macam</label>
+                                        <input c-text-box type="input"
+                                            filter="'varchar'" class="k-textbox"
+                                            ng-model="item.macam" />
+                                    </li>
+                                    <li>
+                                        <label>Jumlah</label>
+                                        <input c-text-box type="input"
+                                            filter="'varchar'" class="k-textbox"
+                                            ng-model="item.jumlah" />
+                                    </li>
+                                    <li>
+                                        <label>Tetesan</label>
+                                        <input c-text-box type="input"
+                                            filter="'varchar'" class="k-textbox"
+                                            ng-model="item.tetesan" />
+                                    </li>
+                                </ul>
+                            </fieldset>
+                        </div>
+                        <div class="grid_3">
+                            <fieldset class="borderBox"
+                                style="margin-bottom:10px">
+                                <legend>
+                                    <strong>4. Obat - obat</strong>
+                                </legend>
+                                <textarea ng-model="item.obatObatan"
+                                    style="height:90px"></textarea>
+
+                            </fieldset>
+                            <fieldset class="borderBox">
+                                <legend>
+                                    <strong>5. Instruksi Khusus</strong>
+                                </legend>
+                                <textarea ng-model="item.instruksiKhusus"
+                                    style="height:90px"></textarea>
+
+                            </fieldset>
+                        </div>
+                    </div>
+
+                </fieldset>
+                <div class="grid_6"></div>
+                <div class="grid_6" ng-show="showInputan">
+                    <div class="grid_8">
+                    </div>
+                    <div class="grid_2" style="margin-top: 22px">
+                        <button class="c-button" ng-click="Simpan()">Simpan</button>
+                    </div>
+                    <div class="grid_2" style="margin-top: 22px">
+                        <button class="c-button" ng-click="Batal()">Batal</button>
+                    </div>
+                    <!-- <div class="grid_2" style="margin-top: 22px">
+                <button class="c-button" ng-click="kembali()">Kembali</button>
+            </div> -->
+                </div>
             </div>
             <!-- <md-content>
                 <md-tabs md-dynamic-height md-border-bottom md-selected="myVar">
@@ -50,9 +459,7 @@
                             <div class="grid_12" >
                                 <div class="grid_12" ng-show="inputOrder">
                                     <div class="grid_12">
-
                                         <div class="grid_4">
-
                                             <div class="grid_12">
 
                                                 <div class="grid_6">
@@ -253,5 +660,14 @@
     }
     .btn-bedah:hover {
         background-color: aquamarine;
+    }
+    .fieldlist {
+        margin: 0 0 -1em;
+        padding: 0;
+    }
+
+    .fieldlist li {
+        list-style: none;
+        padding-bottom: 1em;
     }
 </style>

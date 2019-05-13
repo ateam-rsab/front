@@ -13396,6 +13396,10 @@
             "define": "PhpService"
           },
           {
+            "module": "SdmService",
+            "define": "SdmService"
+          },
+          {
             "define": "InputOrderCtrl"
           },
           {

@@ -1,5 +1,10 @@
 define([], function () {
     'use strict';
+    var baseURLFrontend = 'http://172.16.99.60',
+        portFrontend = '5555',
+        baseURLBackend = 'http://192.168.12.3',
+        portBackend = '8080';
+    
     if (window.location.hostname.indexOf('rsabhk') > -1) {
         return {
             BaseUrl: 'http://smart.rsabhk.co.id:2222/app/data/GetRouting',
@@ -35,10 +40,11 @@ define([], function () {
         };
     } else {
         return {
-            BaseUrl: 'http://172.16.99.27:5555/app/data/GetRouting',
-            RouteUrl: 'http://172.16.99.27:5555/app/data/GetRouting',
-            UrlDataConfig: 'http://172.16.99.27:5555/app/data/GetRequireConfig',
-            baseUrlSerelize: "http://172.16.99.27:5555/app/data/Form/",
+            // BaseUrl: 'http://172.16.99.225:5555/app/data/GetRouting',
+            BaseUrl: `${baseURLFrontend}:${portFrontend}/app/data/GetRouting`,
+            RouteUrl: `${baseURLFrontend}:${portFrontend}/app/data/GetRouting`,
+            UrlDataConfig: `${baseURLFrontend}:${portFrontend}/app/data/GetRequireConfig`,
+            baseUrlSerelize: `${baseURLFrontend}:${portFrontend}/app/data/Form/`,
 
             // URL BARU
             // K3KL
@@ -55,9 +61,9 @@ define([], function () {
             /* IP3RS */
             baseUrlActionIPSRS: "http://192.168.12.3:8080/jasamedika-ipsrs/",
             baseApiPostDataIPSRS: "http://192.168.12.3:8080/jasamedika-ipsrs/",
-            urlSocket: 'http://172.16.99.27:5555',
+            urlSocket: `${baseURLFrontend}:${portFrontend}`,
 
-            urlRoute_SDM: 'http://172.16.99.27:5555/app/data/GetRoutingSDM',
+            urlRoute_SDM: `${baseURLFrontend}:${portFrontend}/app/data/GetRoutingSDM`,
 
             urlPrinting: 'http://192.168.12.3:8080/jasamedika-web/',
             baseUrlListData: "http://192.168.12.3:8080/jasamedika-web/service/list-generic/?view=",
@@ -69,21 +75,21 @@ define([], function () {
 			// baseApiUrlData: "http://smart.rsabhk.co.id:2222/jasamedika-web/",
             // baseApiPostData: "http://smart.rsabhk.co.id:2222/jasamedika-web/",
 
-            baseUrlData: "http://172.16.99.27:5555/app/data/",
+            baseUrlData: `${baseURLFrontend}:${portFrontend}/app/data/`,
 
             baseUrlAction: "http://192.168.12.3:8080/jasamedika-web/",
             baseUrlLogin: "http://192.168.12.3:8080/jasamedika-web/auth/sign-in",
             baseUrlLogout: "http://192.168.12.3:8080/jasamedika-web/auth/sign-out",
 
 			// baseUrlAction: "https://smart.rsabhk.co.id:2222/jasamedika-web/",
-			// baseUrlLogin: "http://172.16.99.27:8000/service/auth/sign-in",
-            // baseUrlLogout: "http://172.16.99.27:8000/service/auth/ssign-out",
+			// baseUrlLogin: "http://172.16.99.225:8000/service/auth/sign-in",
+            // baseUrlLogout: "http://172.16.99.225:8000/service/auth/ssign-out",
 
             baseBridiging: "http://smart.rsabhk.co.id/Bridging/",
-            urlRoute: 'http://172.16.99.27:5555/app/data/GetRouting',
+            urlRoute: `${baseURLFrontend}:${portFrontend}/app/data/GetRouting`,
 
-            urlRoute_Akuntansi: 'http://172.16.99.27:5555/app/data/GetRoutingAkuntansi',
-            //urlDataGeneric_Akuntansi: 'http://172.16.99.27:8000/service/list-generic?view=',
+            urlRoute_Akuntansi: `${baseURLFrontend}:${portFrontend}/app/data/GetRoutingAkuntansi`,
+            //urlDataGeneric_Akuntansi: 'http://172.16.99.225:8000/service/list-generic?view=',
 			urlDataGeneric_Akuntansi: 'http://smart.rsasbhk.co.id/simrs_harkit/service/list-generic?view=',
             urlDataTableMaster_Akuntansi: 'http://192.168.12.3:2222/simrs_harkit/service/master/',
             urlDataTableTransaksi_Akuntansi: 'http://192.168.12.3:2222/simrs_harkit/service/transaksi/',
@@ -92,7 +98,7 @@ define([], function () {
             urlDataMaster: 'http://192.168.12.3:8080/jasamedika-web/generated_master/',
 			// urlDataMaster: 'http://smart.rsabhk.co.id:2222/jasamedika-web/generated_master/',
 
-            // rabbitMQHost: 'amqp://rsab:rsab@172.16.99.27'
+            // rabbitMQHost: 'amqp://rsab:rsab@172.16.99.225'
 
 
         };

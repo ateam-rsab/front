@@ -30,10 +30,16 @@
                     role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
             </div>
         </div> -->
-        <div kendo-window="popUp" k-title="'Form SOAP'" k-width="800" k-height="520" k-visible="false"
+        <div kendo-window="popUp" k-title="'VIEW DATA'" k-width="800" k-height="520" k-visible="false"
             k-on-open="win2visible = true" k-on-close="win2visible = false">
                 <div class="panel panel-default container_12" style="padding: 0px 10px;">
-                    <fieldset ng-show="isSoap">
+                    <fieldset ng-show="isSoap">   
+                            <div class="grid_12">
+                                    <div class="grid_11">
+                                        <textarea style="width: 99%; height: 10px;" ng-model="cppt.pegawaifk" ng-show="false"></textarea>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div> 
                         <div class="grid_12">
                             <div class="grid_1">
                                 <span class="big-title">S</span>
@@ -74,58 +80,66 @@
                             <div class="clear"></div>
                         </div>
                     </fieldset>
-                    <fieldset ng-show="isAdime">
-                        <div class="grid_12">
-                            <div class="grid_1">
-                                <span class="big-title">A</span>
-                            </div>
-                            <div class="grid_11">
-                                <textarea style="width: 99%; height: 95px;" ng-model="adime.a"></textarea>
-                            </div>
-                            <div class="clear"></div>
+                    <fieldset ng-show="isAdime">   
+                        <!-- <div class="grid_12">
+                                <div class="grid_11">
+                                    <textarea style="width: 99%; height: 10px;" ng-model="cppt.pegawaifk" ng-show="false"></textarea>
+                                </div>
+                                <div class="clear"></div>
+                            </div>  -->
+                    <div class="grid_12">
+                        <div class="grid_1">
+                            <span class="big-title">A</span>
                         </div>
+                        <div class="grid_11">
+                            <textarea style="width: 99%; height: 75px;" ng-model="cppt.aa"></textarea>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+               
+                    <div class="grid_12">
+                        <div class="grid_1">
+                            <span class="big-title">D</span>
+                        </div>
+                        <div class="grid_11">
+                            <textarea style="width: 99%; height: 75px;" ng-model="cppt.d"></textarea>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
                     
-                        <div class="grid_12">
-                            <div class="grid_1">
-                                <span class="big-title">D</span>
-                            </div>
-                            <div class="grid_11">
-                                <textarea style="width: 99%; height: 95px;" ng-model="adime.d"></textarea>
-                            </div>
-                            <div class="clear"></div>
+                    <div class="grid_12">
+                        <div class="grid_1">
+                            <span class="big-title">I</span>
                         </div>
-                        
-                        <div class="grid_12">
-                            <div class="grid_1">
-                                <span class="big-title">I</span>
-                            </div>
-                            <div class="grid_11">
-                                <textarea style="width: 99%; height: 95px;" ng-model="adime.i"></textarea>
-                            </div>
-                            <div class="clear"></div>
+                        <div class="grid_11">
+                            <textarea style="width: 99%; height: 75px;" ng-model="cppt.i"></textarea>
                         </div>
-                        
-                        <div class="grid_12">
-                            <div class="grid_1">
-                                <span class="big-title">M</span>
-                            </div>
-                            <div class="grid_11">
-                                <textarea style="width: 99%; height: 95px;" ng-model="adime.e"></textarea>
-                            </div>
-                            <div class="clear"></div>
+                        <div class="clear"></div>
+                    </div>
+                   
+                    <div class="grid_12">
+                        <div class="grid_1">
+                            <span class="big-title">M</span>
                         </div>
-                        <div class="grid_12">
-                            <div class="grid_1">
-                                <span class="big-title">E</span>
-                            </div>
-                            <div class="grid_11">
-                                <textarea style="width: 99%; height: 95px;" ng-model="adime.m"></textarea>
-                            </div>
-                            <div class="clear"></div>
+                        <div class="grid_11">
+                            <textarea style="width: 99%; height: 75px;" ng-model="cppt.m"></textarea>
                         </div>
-                    </fieldset>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_1">
+                            <span class="big-title">E</span>
+                        </div>
+                        <div class="grid_11">
+                            <textarea style="width: 99%; height: 75px;" ng-model="cppt.e"></textarea>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </fieldset>
+
+
                         <div class="k-edit-buttons  k-state-default pull-right" style="margin-top:10px">
-                            <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="Save()"><span class="k-icon k-update"></span>Simpan</button>
+                            <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="Save()" ng-disabled="isDisable"><span class="k-icon k-update"></span>Simpan</button>
                             <button class="k-button  k-button-icontext" ng-click="close()"><span class="k-icon k-cancel"></span>Batal</button>
                         </div>
                 </div>

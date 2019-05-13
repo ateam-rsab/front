@@ -25,7 +25,7 @@
                 </div>
                 <div class="grid_1">
                     <label c-label item="item">Status Pegawai</label>
-                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.selectedStatusPegawai" k-data-text-field="'kategoryPegawai'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListStatusPegawai" />
+                    <input kendo-combo-box k-ng-model="item.selectedStatusPegawai" k-data-text-field="'kategoryPegawai'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListStatusPegawai" />
                     <!-- <select kendo-multi-select 
                         k-options="selectOptions"
                         k-data-source="ListStatusPegawai"
@@ -49,7 +49,7 @@
                             <button class="c-button" ng-click="cari()">CARI</button>
                     </div>
                 </div> -->
-                <div class="grid_1" style="margin-left: 66px;margin-top: 5px;">
+                <div class="grid_1" style="margin-left: 66px;margin-top: 6px;">
                     <label c-label c-label-text=""></label>
                     <em  ng-click='resetFilters()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
                 </div>
@@ -65,7 +65,7 @@
                 </div>
             </div>
         </div>
-        <div class="grid_12" ng-hide="klikRiwayat" style="float:left;margin-top: 25px">
+        <!-- <div class="grid_12" ng-hide="klikRiwayat" style="float:left;margin-top: 25px">
             <div class="grid_12" style="float:left">
                 <div class="grid_2">
                     <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="cetakReport()">
@@ -108,7 +108,7 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 <div ng-include=' "../app/module/Shared/TemplateLoading" '></div>

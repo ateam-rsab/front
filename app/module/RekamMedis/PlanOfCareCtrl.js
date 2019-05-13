@@ -3,7 +3,7 @@ define(['initialize'], function (initialize) {
     initialize.controller('PlanOfCareCtrl', ['$q', '$scope', '$state', 'ManagePhp', '$timeout', 'CacheHelper', '$rootScope', 'DateHelper',
         function ($q, $scope, $state, ManagePhp, $timeout, cacheHelper, $rootScope, DateHelper) {
             $scope.date = new Date();
-            var tanggals = DateHelper.getDateTimeFormatted3($scope.date);
+            //var tanggals = DateHelper.getDateTimeFormatted3($scope.date);
             // $scope.item.tgl = tanggals;
             $scope.optPOC = {
                 toolbar: [

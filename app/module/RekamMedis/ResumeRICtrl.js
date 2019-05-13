@@ -3,9 +3,10 @@ define(['initialize'], function (initialize) {
     initialize.controller('ResumeRICtrl', ['$q', '$scope', '$state', 'ManagePhp', '$timeout', 'CacheHelper', '$rootScope',
         function ($q, $scope, $state, ManagePhp, $timeout, cacheHelper, $rootScope) {
             $scope.isRouteLoading = false;
-            $scope.now = new Date()
+            $scope.now = new Date();
+            
             $scope.item = {
-                tglresume: $scope.now
+                tglresume: $scope.now,
             } // set defined object
             $scope.isGrid = true
             $scope.isNext = true
@@ -189,7 +190,7 @@ define(['initialize'], function (initialize) {
             $scope.editGrid = function () {
                 $scope.item.norec = $scope.modelGrid.norec;
                 $scope.item.riwayatPenyakit = $scope.modelGrid.ringkasanriwayatpenyakit;
-                $scope.item.pemeriksaanFisik = $scope.modelGrid.pemeriksaanfisik;
+                $scope.pemeriksaanFisik = $scope.modelGrid.pemeriksaanfisik;
                 $scope.item.pemeriksaanPenunjang = $scope.modelGrid.pemeriksaanpenunjang;
                 $scope.item.hasilKonsultasi = $scope.modelGrid.hasilkonsultasi;
                 $scope.item.terapi = $scope.modelGrid.terapi;
@@ -238,7 +239,7 @@ define(['initialize'], function (initialize) {
             //     var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
 
             //     if (!dataItem) {
-            //         toastr.error("Data Tidak Ditemukan");
+            //         toastr.error("Data Tidak Ditemukan");    
             //         return
             //     }
             //     $scope.item.norec = dataItem.norec
@@ -285,6 +286,13 @@ define(['initialize'], function (initialize) {
             }
             function init() {
                 $scope.isRouteLoading = true;
+
+                $scope.pemeriksaanFisik = "Keadaan umum : Sadar, tidak sesak tidak sianosis dan tidak ada nyeri."
+                    + "\n" + "Tanda-tanda Vital : Baik. Kepala : Mata tidak pucat,  tidak cekung dan tidak kuning."
+                    + "\n" + "Faring: tidak hiperemis. Jantung/Paru : dalam batas normal."
+                    + "\n" + "Perut: lemas,  Hepar/lien tidak teraba.  Tidak ada nyeri tekan dan turgor cukup."
+                    + "\n" + "Ekstremitas : akral hangat";
+
                 ManagePhp.getData("rekam-medis/get-combo").then(function (e) {
                     $scope.listDokter = e.data.dokter
                 })
@@ -318,7 +326,7 @@ define(['initialize'], function (initialize) {
                 var item = {
                     "norec": $scope.item.norec != undefined ? $scope.item.norec : "",
                     "ringkasanriwayatpenyakit": $scope.item.riwayatPenyakit != undefined ? $scope.item.riwayatPenyakit : "",
-                    "pemeriksaanfisik": $scope.item.pemeriksaanFisik != undefined ? $scope.item.pemeriksaanFisik : "",
+                    "pemeriksaanfisik": $scope.pemeriksaanFisik != undefined ? $scope.pemeriksaanFisik : "",
                     "pemeriksaanpenunjang": $scope.item.pemeriksaanPenunjang != undefined ? $scope.item.pemeriksaanPenunjang : "",
                     "hasilkonsultasi": $scope.item.hasilKonsultasi != undefined ? $scope.item.hasilKonsultasi : "",
                     "terapi": $scope.item.terapi != undefined ? $scope.item.terapi : null,
@@ -349,6 +357,7 @@ define(['initialize'], function (initialize) {
 
                 ManagePhp.postData(item, 'rekam-medis/post-resume-medis-inap/save').then(function (e) {
                     // delete $scope.item;
+                    $scope.popUp.close();
                     clear()
                     init();
                     $scope.isEdit = false;
@@ -441,6 +450,12 @@ define(['initialize'], function (initialize) {
                 delete $scope.item.filterRiwayat
                 delete $scope.item.filterPemeriksaanfisik
                 delete $scope.item.filterPemeriksaanPenunjang
+
+                $scope.pemeriksaanFisik = "Keadaan umum : Sadar, tidak sesak tidak sianosis dan tidak ada nyeri."
+                    + "\n" + "Tanda-tanda Vital : Baik. Kepala : Mata tidak pucat,  tidak cekung dan tidak kuning."
+                    + "\n" + "Faring: tidak hiperemis. Jantung/Paru : dalam batas normal."
+                    + "\n" + "Perut: lemas,  Hepar/lien tidak teraba.  Tidak ada nyeri tekan dan turgor cukup."
+                    + "\n" + "Ekstremitas : akral hangat";
             }
 
             $scope.cetak = function () {

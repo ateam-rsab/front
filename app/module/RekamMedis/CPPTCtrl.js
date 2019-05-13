@@ -6,6 +6,7 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             $scope.now = new Date();
             $scope.dataVOloaded = true
+            $scope.isDisable = false
             $scope.isRouteLoading = false
             $scope.dataLogin = JSON.parse(localStorage.getItem('pegawai'));
             var cookie = document.cookie.split(';')
@@ -82,16 +83,15 @@ define(['initialize'], function (initialize) {
             //date : 01.05.2019
             $scope.cppt = {}
             $scope.gridCPPT = {
-                toolbar: [
-                    {
-                        name: "create", text: "Input Baru",
-                        template: '<button ng-click="inputBaru(1)" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah SOAP</button>'
-                    }, 
-                    {
-                        name: "create", text: "Input Baru",
-                        template: '<button ng-click="inputBaru(2)" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah ADIME</button>'
-                    }
-                ,],
+                toolbar: [{
+                    name: "create", text: "Input Baru",
+                    template: '<button ng-click="inputBaru(1)" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah SOAP</button>'
+                    
+                },
+                {
+                    name: "create", text: "Input Baru",
+                    template: '<button ng-click="inputBaru(2)" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah ADIME</button>'
+                }],
                 pageable: true,
                 scrollable: true,
                 columns: [
@@ -101,26 +101,33 @@ define(['initialize'], function (initialize) {
                     {field: "namaruangan", title: "Ruangan", width: 120}, 
                     {field: "noregistrasi", title: "No Registrasi", width: 100},  
                     {command: [{text: "Edit", click: editData, imageClass: "k-icon k-i-pencil"}, 
+                                {text: "Detail", click: showDetail, imageClass: "k-icon k-i-pencil"},
                                {text: "Hapus", click: deleteData, imageClass: "k-icon k-i-cancel"}
-                              ], title: "", width: 90}
+                              ], title: "", width: 150}
                 ]
             };
 
             $scope.inputBaru = function (key) {
                 clear();
-                if(key === 1 ) {
+
+                if(key == 1) {
                     $scope.isSoap = true;
                     $scope.isAdime = false;
-                    $scope.cppt.o = "Keadaan umum : Sadar, tidak sesak tidak sianosis dan tidak ada nyeri." + 
-                    "\n" + "Tanda-tanda Vital : Baik. Kepala : Mata tidak pucat,  tidak cekung dan tidak kuning." + 
-                    "\n" + "Faring: tidak hiperemis. Jantung/Paru : dalam batas normal." + 
-                    "\n" + "Perut: lemas,  Hepar/lien tidak teraba.  Tidak ada nyeri tekan dan turgor cukup." + 
-                    "\n" + "Ekstremitas : akral hangat";
-                } else if (key === 2) {
+                    $scope.cppt.o = "Keadaan umum : Sadar, tidak sesak tidak sianosis dan tidak ada nyeri."
+                    + "\n" + "Tanda-tanda Vital : Baik. Kepala : Mata tidak pucat,  tidak cekung dan tidak kuning."
+                    + "\n" + "Faring: tidak hiperemis. Jantung/Paru : dalam batas normal."
+                    + "\n" + "Perut: lemas,  Hepar/lien tidak teraba.  Tidak ada nyeri tekan dan turgor cukup."
+                    + "\n" + "Ekstremitas : akral hangat";
+                } else if (key == 2) {
+                     if (kelompokUser[1] != 'dokter' && kelompokUser[1] !='pegawaigizi' ) {
+                         toastr.warning('Tidak dapat input ADIME')
+                         return
+                     }
+                     
                     $scope.isSoap = false;
                     $scope.isAdime = true;
                 }
-               
+                $scope.isDisable = false
                 $scope.popUp.center().open();
             }
 
@@ -134,6 +141,11 @@ define(['initialize'], function (initialize) {
                 delete $scope.cppt.o
                 delete $scope.cppt.a
                 delete $scope.cppt.p
+                delete $scope.cppt.aa
+                delete $scope.cppt.d
+                delete $scope.cppt.i
+                delete $scope.cppt.m
+                delete $scope.cppt.e
             }
 
 
@@ -143,12 +155,27 @@ define(['initialize'], function (initialize) {
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                 $scope.show = dataItem
 
-                $scope.cppt.norec = dataItem.norec
-                $scope.cppt.s = dataItem.s
-                $scope.cppt.o = dataItem.o
-                $scope.cppt.a = dataItem.a
-                $scope.cppt.p = dataItem.p
-    
+                if(dataItem.flag_ == 1) {
+                    $scope.isSoap = true;
+                    $scope.isAdime = false;
+                    $scope.cppt.norec = dataItem.norec
+                    $scope.cppt.s = dataItem.s
+                    $scope.cppt.o = dataItem.o
+                    $scope.cppt.a = dataItem.a
+                    $scope.cppt.p = dataItem.p
+                }else if(dataItem.flag_ == 2) {
+                    $scope.isSoap = false;
+                    $scope.isAdime = true;
+                    $scope.cppt.norec = dataItem.norec
+                    $scope.cppt.aa = dataItem.s
+                    $scope.cppt.d = dataItem.o
+                    $scope.cppt.i = dataItem.a
+                    $scope.cppt.m = dataItem.p
+                    $scope.cppt.e = dataItem.e
+                }
+            
+                
+                $scope.isDisable = true
                 $scope.popUp.center().open();
             }
 
@@ -167,11 +194,33 @@ define(['initialize'], function (initialize) {
                     return
                 }
 
-                $scope.cppt.norec = dataItem.norec
-                $scope.cppt.s = dataItem.s
-                $scope.cppt.o = dataItem.o
-                $scope.cppt.a = dataItem.a
-                $scope.cppt.p = dataItem.p
+                if(dataItem.flag_ == 1) {
+                    $scope.isSoap = true;
+                    $scope.isAdime = false;
+                    $scope.cppt.norec = dataItem.norec
+                    $scope.cppt.s = dataItem.s
+                    $scope.cppt.o = dataItem.o
+                    $scope.cppt.a = dataItem.a
+                    $scope.cppt.p = dataItem.p
+                } else if(dataItem.flag_ == 2) {
+
+                    if (kelompokUser[1] != 'dokter' && kelompokUser[1] !='pegawaigizi' ) {
+                        toastr.warning('Tidak dapat input ADIME')
+                        return
+                    }
+                    
+                    $scope.isSoap = false;
+                    $scope.isAdime = true;
+                    $scope.cppt.norec = dataItem.norec
+                    $scope.cppt.aa = dataItem.s
+                    $scope.cppt.d = dataItem.o
+                    $scope.cppt.i = dataItem.a
+                    $scope.cppt.m = dataItem.p
+                    $scope.cppt.e = dataItem.e
+                }
+              
+
+                $scope.isDisable = false
                 $scope.popUp.center().open();
             }
 
@@ -180,7 +229,6 @@ define(['initialize'], function (initialize) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                 //$scope.show = dataItem
-                
                 if(!dataItem) {
                     toastr.warning('Data tidak ditemukan')
                     return
@@ -190,11 +238,19 @@ define(['initialize'], function (initialize) {
                     return
                 }
 
-                $scope.cppt.norec = dataItem.norec
-                $scope.cppt.s = dataItem.s
-                $scope.cppt.o = dataItem.o
-                $scope.cppt.a = dataItem.a
-                $scope.cppt.p = dataItem.p
+                if(dataItem.flag == 1) {
+                    $scope.isSoap = true;
+                    $scope.isAdime = false;
+                    $scope.cppt.norec = dataItem.norec
+                    $scope.cppt.s = dataItem.s
+                    $scope.cppt.o = dataItem.o
+                    $scope.cppt.a = dataItem.a
+                    $scope.cppt.p = dataItem.p
+                }
+         
+                
+  
+                $scope.isDisable = false
                 $scope.popUp.center().open();
             }
 
@@ -222,6 +278,7 @@ define(['initialize'], function (initialize) {
                 });
             }
 
+       
             //create by iwankasan
             function verifikasiData(e) {
                 e.preventDefault();
@@ -231,20 +288,27 @@ define(['initialize'], function (initialize) {
                     toastr.warning('Data tidak ditemukan')
                     return
                 }
-                if($scope.dataLogin.id != dataItem.pegawaifk) {
-                    toastr.warning('Tidak bisa verifikasi')
-                    return
-                }
+                //if($scope.dataLogin.id != dataItem.pegawaifk) {
+                //    toastr.warning('Tidak bisa verifikasi')
+                //    return
+                //}
+
                 if (kelompokUser[1] != 'dokter' && kelompokUser[1] != 'bedah' ) {
                     toastr.warning('Verifikasi hanya untuk Dokter')
-                    $scope.isShowSoap = false
                     return
                 }
-                $scope.cppt.norec = dataItem.norec
-                $scope.cppt.s = dataItem.s
-                $scope.cppt.o = dataItem.o
-                $scope.cppt.a = dataItem.a
-                $scope.cppt.p = dataItem.p
+                if(dataItem.flag_ == 1) {
+                    $scope.isSoap = true;
+                    $scope.isAdime = false;
+                    $scope.cppt.norec = dataItem.norec
+                    $scope.cppt.pegawaifk = dataItem.pegawaifk
+                    $scope.cppt.s = dataItem.s
+                    $scope.cppt.o = dataItem.o
+                    $scope.cppt.a = dataItem.a
+                    $scope.cppt.p = dataItem.p
+                }
+    
+                $scope.isDisable = false
                 $scope.popUp.center().open();
 
             }
@@ -256,6 +320,7 @@ define(['initialize'], function (initialize) {
                     {field: "namalengkap", title: "Pegawai", width: 150}, 
                     {field: "namaruangan", title: "Ruangan", width: 150}, 
                     {field: "noregistrasi", title: "No Registrasi", width: 100},
+                    //{field: "pegawaiasalfk", title: "Pegawai", widht:100},
                     {command: [{text: "Edit", click: editDataPerawat, imageClass: "k-icon k-i-pencil"}, 
                        {text: "Verifikasi Dokter", click: verifikasiData, imageClass: "k-icon k-i-pencil"}],title: "&nbsp",width: 100}
                 ]
@@ -319,32 +384,80 @@ define(['initialize'], function (initialize) {
                 }
             }
 
-            $scope.Save = function () {
-                var s = ''
-                if ($scope.cppt.s != undefined)
-                    s = $scope.cppt.s
-                var o = ''
-                if ($scope.cppt.o != undefined)
-                    o = $scope.cppt.o
-                var a = ''
-                if ($scope.cppt.a != undefined)
-                    a = $scope.cppt.a
-                var p = ''
-                if ($scope.cppt.p != undefined)
-                    p = $scope.cppt.p
-                var jsonSave = {
-                    "norec": $scope.cppt.norec !== undefined ? $scope.cppt.norec : '',
-                    "noregistrasifk": norec_apd,
-                    "pegawaifk": $scope.dataLogin.id,
-                    "pegawaiasalfk": $scope.dataCPPT != undefined ? $scope.dataCPPT.pegawaifk : null,
-                    "ruanganfk": $scope.item.idRuangan,
-                    "pasienfk": $scope.item.noMr,
-                    "s": s,
-                    "o": o,
-                    "a": a,
-                    "p": p,
+            //function verifSample() {
+            //    $scope.isShowSoap = true
+                //$scope.cppt.norec = $scope.dataCPPT.norec
+            //    $scope.cppt.s = $scope.dataCPPT.s
+            //    $scope.cppt.o = $scope.dataCPPT.o
+            //    $scope.cppt.a = $scope.dataCPPT.a
+            //    $scope.cppt.p = $scope.dataCPPT.p
 
+            //    $scope.isDisable = false
+            //    $scope.popUp.center().open();
+            //}
+
+            $scope.Save = function () {
+                if($scope.isSoap) {
+                    var s = ''
+                    if ($scope.cppt.s != undefined)
+                        s = $scope.cppt.s
+                    var o = ''
+                    if ($scope.cppt.o != undefined)
+                        o = $scope.cppt.o
+                    var a = ''
+                    if ($scope.cppt.a != undefined)
+                        a = $scope.cppt.a
+                    var p = ''
+                    if ($scope.cppt.p != undefined)
+                        p = $scope.cppt.p
+                    var jsonSave = {
+                        "norec": $scope.cppt.norec !== undefined ? $scope.cppt.norec : '',
+                        "noregistrasifk": norec_apd,
+                        "pegawaifk": $scope.dataLogin.id,
+                        //"pegawaiasalfk": $scope.dataCPPT != undefined ? $scope.dataCPPT.pegawaifk : null,
+                        "pegawaiasalfk": $scope.cppt.pegawaifk,
+                        "ruanganfk": $scope.item.idRuangan,
+                        "pasienfk": $scope.item.noMr,
+                        "flag_" : 1,
+                        "s": s,
+                        "o": o,
+                        "a": a,
+                        "p": p,
+
+                    }
+                } else {
+                    var aa = ''
+                    if ($scope.cppt.aa != undefined)
+                        aa = $scope.cppt.aa
+                    var d = ''
+                    if ($scope.cppt.d != undefined)
+                        d = $scope.cppt.d
+                    var i = ''
+                    if ($scope.cppt.i != undefined)
+                        i = $scope.cppt.i
+                    var m = ''
+                    if ($scope.cppt.m != undefined)
+                        m = $scope.cppt.m
+                    var e = ''
+                    if ($scope.cppt.e != undefined)
+                        e = $scope.cppt.e
+                    var jsonSave = {
+                        "norec": $scope.cppt.norec !== undefined ? $scope.cppt.norec : '',
+                        "noregistrasifk": norec_apd,
+                        "pegawaifk": $scope.dataLogin.id,
+                        //"pegawaiasalfk": $scope.dataCPPT != undefined ? $scope.dataCPPT.pegawaifk : null,
+                        "pegawaiasalfk": $scope.cppt.pegawaifk,
+                        "ruanganfk": $scope.item.idRuangan,
+                        "pasienfk": $scope.item.noMr,
+                        "flag_" : 2,
+                        "s": aa,
+                        "o": d,
+                        "a": i,
+                        "p": m,
+                        "e": e,
+                    }
                 }
+                
                 ManagePhp.postData(jsonSave, 'rekam-medis/post-cppt/save').then(function (e) {
                     loadCPPT()
                     $scope.cppt = {}
