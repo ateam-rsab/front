@@ -300,7 +300,7 @@ define(['initialize'], function(initialize) {
                         return;
                     }
                 // debugger;
-                var arrStr ={ 0 : $scope.dataPasienSelected.nocm ,
+                var arrStr = { 0 : $scope.dataPasienSelected.nocm ,
                     1 : $scope.dataPasienSelected.namapasien,
                     2 : $scope.dataPasienSelected.jeniskelamin,
                     3 : $scope.dataPasienSelected.noregistrasi, 

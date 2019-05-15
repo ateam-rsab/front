@@ -78,6 +78,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                 cacheHelper.set('cachePengkajianPasien', arrStr);
                 cacheHelper.set('OdontoGramDokterCtrl', arrStr);
                 cacheHelper.set('cacheRekamMedis', arrStr);
+                cacheHelper.set('cachePlanOfCare', arrStr);
                 $state.go(state, $state.params);
                 // console.log($scope.currentState);
 

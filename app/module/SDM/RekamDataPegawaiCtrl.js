@@ -5,20 +5,46 @@ define(['initialize'], function(initialize) {
             $scope.isSimpan = true;
             $scope.isEdit = false;
             $scope.dataVOloaded = true;
+            $scope.init = function () {
+                
+                if($state.params.idPegawai === "") {
+                    $scope.isSimpan = false;
+                }
+            };
+
+            ManageSdmNew.getListData('sdm/get-pegawai-atasan/' + $state.params.idPegawai).then(function (res) {
+                $scope.atasanPejabatPenilai = {
+                    id:res.data.data[0].idAtasanPejabatPenilai,
+                    namaLengkap:res.data.data[0].namaAtasanPejabatPenilai,
+                };
+                
+                $scope.atasanLangsung = {
+                    id:res.data.data[0].idAtasanLangsung,
+                    namaLengkap:res.data.data[0].namaAtasanLangsung,
+                };
+                // $scope.item.atasanLangsung = res.data[0].namaAtasanLangsung;
+            });
+
+            $scope.init();
             $scope.onChangeTab = function (key) {
                 if(key == 1) {
                     console.log('tab 1');
                     initRekamDataPegawai();
+                    $scope.isRiwayat = true;
                 } else if(key == 2) {
                     console.log('tab 2');
                     initDataKeluarga();
                 } else if(key == 3 ) {
                     console.log('tab 3');
-                    initRiwayatJabatan();
+                    $scope.initRiwayatJabatan();
                 } else if(key == 4) {
                     console.log('tab 4');
-                    initRiwayatPendidikan();
-                }                
+                    $scope.initRiwayatPendidikan();
+                } else if(key == 5 ) {
+                    $scope.isRiwayat = false;
+                } else if(key == 6) {
+                    $scope.isRiwayat = true;
+                }
             };
 
             // #region Rekam Data Pegawai
@@ -42,13 +68,17 @@ define(['initialize'], function(initialize) {
                     ManageSdmNew.getListData("sdm/get-detail-kelompok-jabatan"),
                     ManageSdmNew.getListData("sdm/get-riwayat-jabatan?idPegawai="+$state.params.idPegawai+"&idJenisJabatan=1"),
                     ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true", true),
-                    ManageSdm.getOrderList("service/list-generic/?view=Ruangan&select=id,namaRuangan&criteria=statusEnabled&values=true", true)]).then(function(res) {
+                    ManageSdm.getOrderList("service/list-generic/?view=Ruangan&select=id,namaRuangan&criteria=statusEnabled&values=true", true),
+                    ManageSdm.getOrderList("service/list-generic/?view=Jabatan&select=id,namaJabatan&criteria=statusEnabled&values=true", true)]).then(function(res) {
                         if(res[0].data){
                             $scope.ListJabatanInternal = res[0].data.data.dataJabatanInternal;
                             $scope.ListJabatanInternalPop = res[0].data.data.dataJabatanInternal;
                         }
-                        if(res[14].data){
-                            $scope.ListJabatanFungsional = res[14].data.data.dataJabatanFungsional;
+                        if(res[14].data.data.dataJabatanFungsional != null) {
+                            $scope.jabatanFungsional = {
+                                namaJabatan: res[14].data.data.dataJabatanFungsional[0].namaJabatan,
+                                id: res[14].data.data.dataJabatanFungsional[0].id
+                            };
                         }
                         $scope.ListPendidikan = res[1].data;
                         $scope.ListAgama = res[2].data;
@@ -65,8 +95,11 @@ define(['initialize'], function(initialize) {
                         $scope.ListSubUnitKerjaPop = res[11].data.data;
                         $scope.ListKedudukanPegawai = res[12].data.data;
                         $scope.ListDetilKelompokJabatan = res[13].data.data;
+                        $scope.ListRuangan = res[16].data;
                         $scope.listPegawai = res[15].data;
+                        $scope.ListJabatanFungsional = res[17].data;
                         getDataPegawai($state.params.idPegawai);
+                        console.log(res);
                     });
 
                 $scope.gridJabatanInternal = {
@@ -139,8 +172,9 @@ define(['initialize'], function(initialize) {
                             $scope.item.id = $state.params.idPegawai;
                             $scope.item.qPegawai = $state.params.idPegawai;                            
                             $scope.item.namaPegawai = res[0].data.data.namaLengkap;
-                            if ($scope.item.golonganPegawaiId) $scope.item.golonganPegawai = {
-                                id: $scope.item.golonganPegawaiId
+                            $scope.golonganPegawai = {
+                                namaExternal: res[0].data.data.golonganPegawai.golonganPegawai ? res[0].data.data.golonganPegawai.golonganPegawai : '-',
+                                id:res[0].data.data.golonganPegawai.id
                             };
                             if ($scope.item.unitKerja) {
                                 $scope.ListUnitKerja.forEach(function(element) {
@@ -150,6 +184,17 @@ define(['initialize'], function(initialize) {
                                     }
                                 });
                             }
+                            if(res[0].data.data.ruangan.namaRuangan != undefined || res[0].data.data.ruangan.namaRuangan != '') {
+                                $scope.ruanganPegawai = {
+                                    id: res[0].data.data.ruangan.id,
+                                    namaRuangan: res[0].data.data.ruangan.namaRuangan
+                                };
+                            }
+                            console.log($scope.ruanganPegawai);
+                            // $scope.item.jenisKelamin = {
+                            //     name:res[0].data.jenisKelamin.jenisKelamin,
+                            //     id:res[0].data.jenisKelamin.id
+                            // };
                             if ($scope.item.noSip) {
                                 $scope.disableSip = false;
                             } else {
@@ -728,6 +773,7 @@ define(['initialize'], function(initialize) {
                     $scope.ListStatusKawin = res[1].data;
                     $scope.ListPekerjaan = res[2].data;
                     $scope.ListTanggungan = res[3].data;
+                    
                 }, (error) => {
                     throw(error);
                 }).then(function() {
@@ -865,19 +911,20 @@ define(['initialize'], function(initialize) {
             // #endregion Data Keluarga
 
             // #region Riwayat Jabatan
-                var initRiwayatJabatan = function () {
+                $scope.initRiwayatJabatan = function () {
                     // get ddl jenis jabatan
                     manageSarprasPhp.getDataTableTransaksi("historypegawai/get-drop-down-riwayat-jabatan").then(function(data){
                         $scope.listJenisJabatan = data.data.dataJenisJabatan;
                         $scope.listJabatanInternal = data.data.dataJabatanInternal;
                         $scope.listFungsional = data.data.dataJabatanFungsional;
-                        $scope.listPgw = data.data.pegawai
+                        $scope.listPgw = data.data.pegawai;
                         if($scope.listPgw != undefined){
                             $scope.listPgw.push($scope.pegawaiTambah)
                         }
                     });
+
                     $scope.columnGrid = {
-                        toolbar: [        
+                        toolbar: [
                         {
                             name: "create",text: "Buat Riwayat Jabatan",
                             template: '<button ng-click="createNewRiwayatJabatan()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Buat Riwayat</button>'	
@@ -947,11 +994,10 @@ define(['initialize'], function(initialize) {
                 function loadData(){
 					$scope.isRouteLoading=true;
 					manageSarprasPhp.getDataTableTransaksi("historypegawai/get-data-riwayat-jabatan?id=" +	$state.params.idPegawai ).then(function(data) {
-						$scope.isRouteLoading=false;	 
-
-						$scope.dataSourceRiwayatJabatan ={	
+						$scope.isRouteLoading = false;
+						$scope.dataSourceRiwayatJabatan = {	
 							data: data.data,
-							_data: data.data,
+							// _data: data.data,
 							pageSize: 30,
 							selectable: true,
 							refresh: true,
@@ -1047,7 +1093,7 @@ define(['initialize'], function(initialize) {
             // #endregion Riwayat Jabatan
             
             // #region Riwayat Pendidikan
-            var initRiwayatPendidikan = function () {
+            $scope.initRiwayatPendidikan = function () {
                 $scope.columnGridPendidikan = {
                     toolbar: [
                     {
@@ -1142,23 +1188,23 @@ define(['initialize'], function(initialize) {
 				var dataItem = this.dataItem(tr); 
 				$scope.norec = dataItem.norec;
 				$scope.item.noSK = dataItem.nosk;
-				$scope.item.tglSK =dataItem.tglsk;
-				$scope.item.ttdSK ={id:dataItem.idpgwttd,namalengkap:dataItem.namalengkapttd};
+				$scope.item.tglSK = dataItem.tglsk;
+				$scope.item.ttdSK = {id:dataItem.idpgwttd,namalengkap:dataItem.namalengkapttd};
 				$scope.item.keterangan = dataItem.keterangan; 
-				$scope.item.alamat=dataItem.alamattempatpendidikan;
-				$scope.item.jurusan=dataItem.jurusan;
-				$scope.item.namaTempat=dataItem.namatempatpendidikan;
-				$scope.item.ipk=dataItem.nilaiipk;
-				$scope.item.noIjasah=dataItem.noijazah;
-				$scope.item.pimpinanPendidikan=dataItem.pimpinanpendidikan;
-				$scope.item.tglIjasah=dataItem.tglijazah;
-				$scope.item.tglLulus=dataItem.tgllulus;
-				$scope.item.tglMasuk=dataItem.tglmasuk; 
-				$scope.item.ttdIjasah=dataItem.ttdijazah; 
-				$scope.item.pendidikan= {id:dataItem.objectpendidikanfk,namalengkap:dataItem.pendidikan};
-				$scope.item.tingkatKelulusan={id:dataItem.objecttingkatkelulusanfk,namalengkap:dataItem.tingkatkelulusan};
+				$scope.item.alamat = dataItem.alamattempatpendidikan;
+				$scope.item.jurusan = dataItem.jurusan;
+				$scope.item.namaTempat = dataItem.namatempatpendidikan;
+				$scope.item.ipk = dataItem.nilaiipk;
+				$scope.item.noIjasah = dataItem.noijazah;
+				$scope.item.pimpinanPendidikan = dataItem.pimpinanpendidikan;
+				$scope.item.tglIjasah = dataItem.tglijazah;
+				$scope.item.tglLulus = dataItem.tgllulus;
+				$scope.item.tglMasuk = dataItem.tglmasuk; 
+				$scope.item.ttdIjasah = dataItem.ttdijazah; 
+				$scope.item.pendidikan = {id:dataItem.objectpendidikanfk,namalengkap:dataItem.pendidikan};
+				$scope.item.tingkatKelulusan = {id:dataItem.objecttingkatkelulusanfk,namalengkap:dataItem.tingkatkelulusan};
 
-				$scope.popUpRiwayat.center().open();
+				$scope.popUpRiwayatPendidikan.center().open();
 			}
 
 			function removeRowPendidikan(e){
@@ -1292,6 +1338,153 @@ define(['initialize'], function(initialize) {
             $scope.ubahDataPegawai = function()  {
                 $scope.isSimpan = false;
                 $scope.isEdit = true;
+            };
+
+            $scope.kembali = function () {  
+                window.history.back();
+            };
+
+            $scope.batalUbahDataPegawai = function() {
+                $scope.isSimpan = true;
+                $scope.isEdit = false;
+            };
+
+            $scope.changedNamaLengkap = function() {
+                if($scope.item.gelarDepan === undefined) {
+                    $scope.item.gelarDepan = '';
+                }
+                if($scope.item.nama === undefined) {
+                    $scope.item.nama = '';
+                }
+                if($scope.item.gelarBelakang === undefined) {
+                    $scope.item.gelarBelakang = '';
+                }
+                $scope.item.namaPegawai = `${$scope.item.gelarDepan}. ${$scope.item.nama}, ${$scope.item.gelarBelakang}`;
+                if(($scope.item.gelarDepan === '' || $scope.item.gelarDepan === undefined) && 
+                    ($scope.item.nama === '' || $scope.item.nama === undefined) &&
+                    ($scope.item.gelarBelakang === '' || $scope.item.gelarBelakang === undefined)) {
+                        $scope.item.namaPegawai = ''
+                } else if(($scope.item.gelarDepan === '' || $scope.item.gelarDepan === undefined)) {
+                    $scope.item.namaPegawai = `${$scope.item.nama}, ${$scope.item.gelarBelakang}`;
+                } else if(($scope.item.gelarBelakang === '' || $scope.item.gelarBelakang === undefined)) {
+                    $scope.item.namaPegawai = `${$scope.item.gelarDepan}. ${$scope.item.nama}`;
+                }
+            };
+
+            $scope.saveDataIndetitasPegawai = function () {
+                var dataIdentitas = {
+                    agama: $scope.item.agama,
+                    alamat: $scope.item.alamat,
+                    bankRekeningAtasNama: $scope.item.bankRekeningAtasNama,
+                    bankRekeningNomor: $scope.item.bankRekeningNomor,
+                    bankRekeningNama: $scope.item.bankRekeningNama,
+
+                    // detailKategoryPegawai: $scope.item.kategoryPegawai,
+
+                    email: $scope.item.email,
+                    emailAlternatif: $scope.item.email,
+
+                    eselon: $scope.item.eselon,
+
+                    gelarBelakang: $scope.item.gelarBelakang,
+                    gelarDepan: $scope.item.gelarDepan,
+                    golonganDarah: $scope.item.golonganDarah,
+
+                    grade: $scope.item.grade,
+                    idFinger: $scope.item.idFinger,
+
+                    
+                    
+                    noIdentitas: $scope.item.noIdentitas,
+                    jabatanInternal: $scope.jabatanFungsional, // Jabatan Fungsional
+                    // jabatanLamar
+                    // jabatanStruktural
+
+                    jenisKelamin:$scope.item.jenisKelamin.jenisKelamin,
+                    // jenisPegawai: 
+                    
+                    // jenisPegawai
+                    // jenisPegawaiLamar
+                    kategoriPegawai: $scope.item.kategoryPegawai,
+                    kedudukan: $scope.item.kedudukan,
+                    // kelompokJabatan
+                    kodePos: $scope.item.kodePos,
+
+                    // kualifikasiJurusan
+                    // levelTingkat
+
+                    nama: $scope.item.nama,
+                    namaLengkap: $scope.item.namaPegawai,
+
+                    namaGolongan: $scope.golonganPegawai,
+                    
+                    namaNegara: $scope.item.negara.namaNegara,
+                    // namaPendidikan
+                    namaRuangan: $scope.ruanganPegawai,
+
+                    nikIntern: $scope.item.nipPn,
+                    nip: $scope.item.nipPn,
+                    nipPns: $scope.item.nipPn,
+
+                    nilaiJabatan: $scope.item.nilaiJabatan,
+                    noHandphone: $scope.item.Handphone,
+                    noTelp: $scope.item.noTlp,
+                    // noCm
+
+                    noSip: $scope.item.noSip,
+                    tglTerbitSip: $scope.item.tglTerbitSip,
+                    tglBerakhirSip: $scope.item.tglBerakhirSip,
+                    noStr: $scope.item.noStr,
+                    tglTerbitStr: $scope.item.tglTerbitStr,
+                    tglBerakhirStr: $scope.item.tglBerakhirStr,
+
+                    npwp: $scope.item.npwp,
+                    // penghasilanTidakKenaPajak
+
+                    // qtyAnak
+                    // qtyTanggungan
+                    // qtyTotalJiwa
+                    
+                    // rhesusGolonganDarah
+                    // satuanKerja
+                    shiftKerja: $scope.item.shiftKerja,
+                    // statusKawin
+
+                    tempatLahir: $scope.item.tempatLahir,
+                    tglLahir: $scope.item.tglLahir,
+                    
+                    tglMeninggal: $scope.item.tglMeninggal ? $scope.item.tglMeninggal : '',
+                    statusPerkawinanPegawai: $scope.item.statusPerkawinanPegawai.statusPerkawinanPegawai
+
+                };
+
+
+                var dataKepegawaian = {
+                    
+                    
+                    // ruangan: $scope.ruanganPegawai,
+                    
+                    
+                    golonganPegawai: $scope.golonganPegawai,
+                    
+                    
+                    
+                    tglMasuk: $scope.item.tglMasuk,
+                    tglkeluar: $scope.item.tglkeluar,
+                    // pensiun:
+                    // tglPensiun
+                    
+                    
+                    
+                    
+                };
+                console.log(dataSave);
+            };
+            $scope.getDetailKategoriPegawai = function(idK) {
+                ManageSdm.getOrderList("service/list-generic/?view=DetailKategoryPegawai&select=id,detailKategoryPegawai&criteria=statusEnabled&values=true&criteria=kategoryPegawaiId&value=" + idK.id, true).then(function(res) {
+                    // debugger;
+                    console.log(res);
+                });
             };
             // $scope.$watch()
         }

@@ -7,10 +7,11 @@ define(['initialize'], function(initialize) {
             $scope.title = "Data Pegawai" ;
             $scope.item = {};
             $scope.username = "Show";
-            $scope.dialogPopup;
-            $scope.popupHistory;
             $scope.isRouteLoading = true;
-
+            $scope.listOfJenisKategoriPegawai = [
+                { name:'Tetap', id:1, value:'1,2,10,12,14'},
+                { name:'Tidak Tetap', id:1, value:'13,16,19,11,17,15' },
+            ]
             $scope.monthSelectorOptions = {
                 start: "year",
                 depth: "year"
@@ -244,11 +245,17 @@ define(['initialize'], function(initialize) {
                     //save the file as Excel file with extension xlsx
                     kendo.saveAs({dataURI: workbook.toDataURL(), fileName: "RSAB HK Export Data Pegawai Detail-"+ dateHelper.formatDate(new Date(), 'DD-MMM-YYYY HH:mm:ss') +".xlsx"});
                 });
-}
+};
+
+    $scope.inputPegawaiBaru = function () {
+        $state.go("RekamDataPegawai");
+    };
 
 $scope.daftarpegawaiOpt = {
     toolbar: [
-        "excel", { name: "username", text:"Show username", template: '<button ng-click="toogleClick()" class="k-button k-button-icontext k-grid-upload pull-right"><span class="k-icon k-i-refresh"></span>{{username}} Username</button>' }
+        // "excel", 
+        { name: "username", text:"Show username", template: '<button ng-click="toogleClick()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-refresh"></span>{{username}} Username</button>' },
+        { name: "pegawaiBaru", text:"Rekam Pegawai Baru", template: '<button ng-click="inputPegawaiBaru()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-plus"></span>Rekam Pegawai Baru</button>' }
     ],
     excel: {
         allPages: true,
@@ -320,7 +327,7 @@ $scope.daftarpegawaiOpt = {
                 align: "center"
             },
             click: editDataPegawai,
-            imageClass: "k-icon k-i-eye"
+            imageClass: "k-i-arrow-60-right"
         }, 
         // {
         //     text: "Hapus",
@@ -356,54 +363,104 @@ $scope.daftarpegawaiOpt = {
         }
         $scope.dataItem = selectedRows;
     }};
-    function editDataPegawai(e) {
-        e.preventDefault();
-        var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-        $scope.dataItem = dataItem;
-        if ($scope.dataItem) {
-            $state.go("RekamDataPegawai", { idPegawai: $scope.dataItem.idPegawai });
-        } else {
-            messageContainer.error('Pegawai belum di pilih')
-        }
-    }
+            function editDataPegawai(e) {
+                e.preventDefault();
+                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                $scope.dataItem = dataItem;
+                if ($scope.dataItem) {
+                    $state.go("RekamDataPegawai", { idPegawai: $scope.dataItem.idPegawai });
+                } else {
+                    messageContainer.error('Pegawai belum di pilih')
+                }
+            }
             getPegawaiAlls();
             function getPegawaiAlls(){
-             ManageSdmNew.getListData("pegawai/get-all-pegawai-no-paging/").then(function(data) {
-                var arr = []; 
-                var usergemes='';
-                for (var x = 0; x < data.data.data.pegawai.length; x++) {
-                    var element = data.data.data.pegawai[x];
-                    // data.data.data.pegawai[x].usernames.usernames[0].namaUser
-                    for(var key in element){
-                        if(element.hasOwnProperty(key)){
-                            if(key.indexOf("tgl") >= 0 || key.indexOf("tanggal") >= 0){
-                                // console.log(element[key]);
-                                if(element[key]) element[key] = moment(element[key]).format('DD-MM-YYYY');
+                $scope.isRouteLoading = true;
+                ManageSdmNew.getListData("pegawai/get-all-pegawai-pns/").then(function(data) {
+                    var arr = [];
+                    console.log(data)
+                    var usergemes='';
+                    for (var x = 0; x < data.data.data.pegawai.length; x++) {
+                        var element = data.data.data.pegawai[x];
+                        // data.data.data.pegawai[x].usernames.usernames[0].namaUser
+                        for(var key in element){
+                            if(element.hasOwnProperty(key)){
+                                if(key.indexOf("tgl") >= 0 || key.indexOf("tanggal") >= 0){
+                                    // console.log(element[key]);
+                                    if(element[key]) element[key] = moment(element[key]).format('DD-MM-YYYY');
+                                }
                             }
+                            
                         }
-                        
+                        usergemes = ''
+                        for (var i = element.usernames.usernames.length - 1; i >= 0; i--) {                            
+                            usergemes = element.usernames.usernames[i].namaUser + ', ' + usergemes;
+                        }
+                        data.data.data.pegawai[x].NamaUser = usergemes;
+                        // element.tglLahir = moment(data.data.data.pegawai[x].tglLahir).format('DD-MM-YYYY');
+                        element.pencarian = "";
                     }
-                    usergemes = ''
-                    for (var i = element.usernames.usernames.length - 1; i >= 0; i--) {                            
-                        usergemes = element.usernames.usernames[i].namaUser + ', ' + usergemes
+                    $scope.listPegawai = data.data.data.pegawai;
+                    if (data.data.data.length === 0) {
+                        cacheHelper.set('listPegawai', $scope.listPegawai);
                     }
-                    data.data.data.pegawai[x].NamaUser = usergemes;
-                    // element.tglLahir = moment(data.data.data.pegawai[x].tglLahir).format('DD-MM-YYYY');
-                    element.pencarian = "";
-                }
-                $scope.listPegawai = data.data.data.pegawai;
-                if (data.data.data.length === 0) {
-                    cacheHelper.set('listPegawai', $scope.listPegawai);
-                }
-                $scope.daftarPegawai = new kendo.data.DataSource({
-                    data: $scope.listPegawai,
-                    pageSize: 10,
-                    total: data.length,
-                    serverPaging: false
+                    $scope.daftarPegawai = new kendo.data.DataSource({
+                        data: $scope.listPegawai,
+                        pageSize: 10,
+                        total: data.length,
+                        serverPaging: false
+                    });
+                    $scope.isRouteLoading = false;
                 });
-                $scope.isRouteLoading = false;
-            });
-         }
+            }
+            // item.namaPegawai
+            $scope.searchDataPegawai = function() {
+                var tgl = new Date($scope.item.tglMasuk);
+                var tahunMasuk = tgl.getFullYear();
+                var bulanMasuk = tgl.getMonth() + 1;
+                var tglMasuk = `${tahunMasuk}-${bulanMasuk > 9 ? bulanMasuk: '0' + bulanMasuk }`;
+                console.log(bulanMasuk);
+                $scope.isRouteLoading = true;
+                var usergemes='';
+                ManageSdmNew.getListData(`pegawai/search-pegawai?nama=${$scope.item.namaPegawai ? $scope.item.namaPegawai : ''}&idUnitKerja=${$scope.item.unitKerja ? $scope.item.unitKerja.id : ''}&idKedudukan=${$scope.item.kedudukanPegawai ? $scope.item.kedudukanPegawai.id : ''}&idStatusPegawai=${$scope.item.selectedStatusPegawai ? $scope.item.selectedStatusPegawai.id: '' }&listIdStatusPegawai=${$scope.item.selectedJenisKategoriPegawai ? $scope.item.selectedJenisKategoriPegawai.value:'' }&periode=${$scope.item.tglMasuk ? tglMasuk: '' }`, true).then(res => {
+                    if(res.data.data.dataFound) {
+                        for (var x = 0; x < res.data.data.pegawai.length; x++) {
+                            var element = res.data.data.pegawai[x];
+                            // data.data.data.pegawai[x].usernames.usernames[0].namaUser
+                            for(var key in element){
+                                if(element.hasOwnProperty(key)){
+                                    if(key.indexOf("tgl") >= 0 || key.indexOf("tanggal") >= 0){
+                                        // console.log(element[key]);
+                                        if(element[key]) element[key] = moment(element[key]).format('DD-MM-YYYY');
+                                    }
+                                }
+                                
+                            }
+                            usergemes = ''
+                            for (var i = element.usernames.usernames.length - 1; i >= 0; i--) {                            
+                                usergemes = element.usernames.usernames[i].namaUser + ', ' + usergemes;
+                            }
+                            res.data.data.pegawai[x].NamaUser = usergemes;
+                            // element.tglLahir = moment(data.data.data.pegawai[x].tglLahir).format('DD-MM-YYYY');
+                            element.pencarian = "";
+                        }
+                        $scope.listPegawai = res.data.data.pegawai;
+                        if (res.data.data.length === 0) {
+                            cacheHelper.set('listPegawai', $scope.listPegawai);
+                        }
+                        $scope.daftarPegawai = new kendo.data.DataSource({
+                            data: res.data.data.pegawai,
+                            pageSize: 10,
+                            total: data.length,
+                            // serverPaging: false
+                        });
+                        
+                    } else {
+                        toastr.info('Data tidak ditemukan')
+                    }
+                    $scope.isRouteLoading = false;
+                });
+            };
 
         $scope.ubah = function() { 
             if ($scope.dataItem) {
@@ -488,64 +545,61 @@ $scope.daftarpegawaiOpt = {
             return false;
         }
 
-        
-         
-
         var timeoutPromise;
-        $scope.$watch('item.qnamaPegawai', function(newVal, oldVal){
-            if(!newVal) return;
-            $timeout.cancel(timeoutPromise);
-            timeoutPromise = $timeout(function(){
-                if(newVal && newVal !== oldVal){
-                    applyFilter("namaLengkap", newVal);
-                }
-            }, 500)
-        });
-        $scope.$watch('item.qkedudukanPegawai', function(newVal, oldVal){
-            if(!newVal) return;
-            if(newVal && newVal !== oldVal){
-                applyFilter("kedudukan", newVal)
-            }
-        });
-        $scope.$watch('item.qjabatanInternal', function(newVal, oldVal){
-            if(!newVal) return;
-            if(newVal && newVal !== oldVal){
-                applyFilter("idJabatanInternal", newVal)
-            }
-        });
-        $scope.$watch('item.qunitKerja', function(newVal, oldVal){
-            if(!newVal) return;
-            if(newVal && newVal !== oldVal) {
-                var filteredSubUnit = $scope.listSubUnitKerja.filter(filterSubunit);
-                if($scope.item.qsubUnitKerja && $scope.item.qsubUnitKerja.unitKerja.id !== newVal.id) delete $scope.item.qsubUnitKerja;
-                if(filteredSubUnit.length>0) {
-                    $scope.listSubUnit = filteredSubUnit;
-                } else {
-                    $scope.listSubUnit = $scope.listSubUnitKerja;
-                }
-                applyFilter("idUnitKerja", newVal)
-            }
-        });
+        // $scope.$watch('item.qnamaPegawai', function(newVal, oldVal){
+        //     if(!newVal) return;
+        //     $timeout.cancel(timeoutPromise);
+        //     timeoutPromise = $timeout(function(){
+        //         if(newVal && newVal !== oldVal){
+        //             applyFilter("namaLengkap", newVal);
+        //         }
+        //     }, 500)
+        // });
+        // $scope.$watch('item.qkedudukanPegawai', function(newVal, oldVal){
+        //     if(!newVal) return;
+        //     if(newVal && newVal !== oldVal){
+        //         applyFilter("kedudukan", newVal)
+        //     }
+        // });
+        // $scope.$watch('item.qjabatanInternal', function(newVal, oldVal){
+        //     if(!newVal) return;
+        //     if(newVal && newVal !== oldVal){
+        //         applyFilter("idJabatanInternal", newVal)
+        //     }
+        // });
+        // $scope.$watch('item.qunitKerja', function(newVal, oldVal){
+        //     if(!newVal) return;
+        //     if(newVal && newVal !== oldVal) {
+        //         var filteredSubUnit = $scope.listSubUnitKerja.filter(filterSubunit);
+        //         if($scope.item.qsubUnitKerja && $scope.item.qsubUnitKerja.unitKerja.id !== newVal.id) delete $scope.item.qsubUnitKerja;
+        //         if(filteredSubUnit.length>0) {
+        //             $scope.listSubUnit = filteredSubUnit;
+        //         } else {
+        //             $scope.listSubUnit = $scope.listSubUnitKerja;
+        //         }
+        //         applyFilter("idUnitKerja", newVal)
+        //     }
+        // });
 
-        $scope.$watch('item.qsubUnitKerja', function(newVal, oldVal){
-            if(!newVal) return;
-            if(newVal && newVal !== oldVal){
-                applyFilter("idSubUnitKerja", newVal)
-            }
-        });
-        $scope.$watch('item.selectedStatusPegawai', function(newVal, oldVal){
-            if(!newVal) return;
-            if(newVal && newVal !== oldVal){
-                applyFilter("kategoriPegawai", newVal);
-            }
-        });
+        // $scope.$watch('item.qsubUnitKerja', function(newVal, oldVal){
+        //     if(!newVal) return;
+        //     if(newVal && newVal !== oldVal){
+        //         applyFilter("idSubUnitKerja", newVal)
+        //     }
+        // });
+        // $scope.$watch('item.selectedStatusPegawai', function(newVal, oldVal){
+        //     if(!newVal) return;
+        //     if(newVal && newVal !== oldVal){
+        //         applyFilter("kategoriPegawai", newVal);
+        //     }
+        // });
 
-        $scope.$watch('item.tglMasuk', function(newVal, oldVal){
-            if(!newVal) return;
-            if(newVal && newVal !== oldVal){
-                applyFilter("tglMasuk", newVal)
-            }
-        });
+        // $scope.$watch('item.tglMasuk', function(newVal, oldVal){
+        //     if(!newVal) return;
+        //     if(newVal && newVal !== oldVal){
+        //         applyFilter("tglMasuk", newVal)
+        //     }
+        // });
 
         function applyFilter(filterField, filterValue){
             var dataGrid = $("#gridDataPegawai").data("kendoGrid");
@@ -655,11 +709,18 @@ $scope.daftarpegawaiOpt = {
 
 
 
-        $scope.resetFilters = function(){
-            var gridData = $("#gridDataPegawai").data("kendoGrid");
-            gridData.dataSource.filter({});
-            $scope.item = {};
-            $scope.filteredData = [];
+        $scope.resetFilter = function(){
+            $scope.item.namaPegawai = '';
+            $scope.item.unitKerja = '';
+            $scope.item.kedudukanPegawai = '';
+            $scope.item.selectedStatusPegawai = '';
+            $scope.item.selectedJenisKategoriPegawai = '';
+            $scope.item.tglMasuk = '';
+            // var gridData = $("#gridDataPegawai").data("kendoGrid");
+            // gridData.dataSource.filter({});
+            // $scope.item = {};
+            // $scope.filteredData = [];
+            getPegawaiAlls();
         };
         $scope.riwayat = function(data){
             if(!data){
@@ -772,7 +833,8 @@ $scope.daftarpegawaiOpt = {
             })
             $scope.dialogReport.center();
             $scope.dialogReport.open();
-        }
+        };
+        
         $scope.toogleClick = function(){
             var grid = $("#gridDataPegawai").data("kendoGrid");
             if($scope.username == "Show") {
@@ -786,11 +848,11 @@ $scope.daftarpegawaiOpt = {
         }
 
         $scope.selectOptions = {
-                placeholder: "Pilih Status Pegawai...",
-                dataTextField: "kategoryPegawai",
-                dataValueField: "id",
-                filter: "contains"
-              };
+            placeholder: "Pilih Status Pegawai...",
+            dataTextField: "kategoryPegawai",
+            dataValueField: "id",
+            filter: "contains"
+        };
 
         // $scope.selectOptionsDetailJenis = {
         //         // placeholder: "Pilih Detail Jenis Produk...",
