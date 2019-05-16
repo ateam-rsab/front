@@ -350,8 +350,7 @@ define(['initialize'], function(initialize) {
                 $scope.item.tetesan = dataItem.infustetesan;
                 $scope.item.obatObatan = dataItem.obat;
                 $scope.item.instruksiKhusus = dataItem.instruksikhusus;
-                
-                
+
                 $timeout(function() {
                     $scope.showInputan = true;
                     window.scrollBy({
@@ -365,17 +364,17 @@ define(['initialize'], function(initialize) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
     
-                if (!dataItem) {
-                    toastr.error("Data Tidak Ditemukan");
-                    return;
-                }
-                if($scope.pegawaiLogin.id != dataItem.pegawaifk) {
-                    toastr.warning('Tidak bisa edit data')
-                    return
-                }
+                // if (!dataItem) {
+                //     toastr.error("Data Tidak Ditemukan");
+                //     return;
+                // }
+                // if($scope.pegawaiLogin.id != dataItem.pegawaifk) {
+                //     toastr.warning('Tidak bisa edit data')
+                //     return;
+                // }
                 var itemDelete = {
                     "norec": dataItem.norec
-                }
+                };
     
                 managePhp.postData(itemDelete, 'rekam-medis/post-lap-pasca-bedah/delete').then(function (e) {
                     if (e.status === 201) {
@@ -383,7 +382,7 @@ define(['initialize'], function(initialize) {
     
                         grid.removeRow(row);
                     }
-                })
+                });
     
             }
             $scope.detailGridOptions = function(dataItem) {
@@ -436,17 +435,45 @@ define(['initialize'], function(initialize) {
                     } else if($scope.item.jamMulai > $scope.item.jamSelesai) {
                         toastr.warning('Jam Mulai tidak boleh kurang dari Jam Selesai');
                     } else {
+                        
+
+                        var tglDimulai = '';
+                        var tglSelesai = '';
+                        if($scope.item.idRuangan === undefined) {
+                            LoadCache();
+                        }
+                        if($scope.item.jamMulai) {
+                            if(DateHelper.getJamFormatted(new Date($scope.item.jamMulai)) == 'NaN:NaN') {
+                                tglDimulai =  $scope.item.jamMulai;
+                            } else {
+                                tglDimulai = DateHelper.getJamFormatted(new Date($scope.item.jamMulai));
+                            }
+                            
+                        } else {
+                            tglDimulai = '';
+                        }
+                        if($scope.item.jamSelesai) {
+                            if(DateHelper.getJamFormatted(new Date($scope.item.jamSelesai)) === 'NaN:NaN') {
+                                tglSelesai = $scope.item.jamSelesai;
+                            } else {
+                                tglSelesai = DateHelper.getJamFormatted(new Date($scope.item.jamSelesai));
+                            }
+                        } else {
+                            tglSelesai = '';
+                        }
+                        // $scope.item.jamMulai ? DateHelper.getJamFormatted(new Date($scope.item.jamMulai)) === "NaN:NaN"? DateHelper.getJamFormatted(new Date($scope.item.jamMulai)): $scope.item.jamMulai: ''
                         var dataSave = {
+                            // tglbedah: $scope.item.tglPembedahan,
                             noregistrasifk:norec_apd,
                             pasienfk: $scope.item.noMr,
                             operatorfk: $scope.item.selectedDataOperator.id,
                             penataanestesifk: $scope.item.selectedPenataAnest.id,
                             asistenoperatorfk: $scope.item.selectedAsistenOperator.id,
                             perawatinstfk: $scope.item.selectedPerawatInstrumen.id,
-                            tglbedah: $scope.item.tglPembedahan ? DateHelper.getTanggalFormattedNew(new Date($scope.item.tglPembedahan)): '',
-                            // ? DateHelper.getJamFormatted($scope.item.jamMulai): ''
-                            jammulai: $scope.item.jamMulai ? DateHelper.getJamFormatted(new Date($scope.item.jamMulai)): '',
-                            jamselesai: $scope.item.jamSelesai ? DateHelper.getJamFormatted(new Date($scope.item.jamSelesai)): '',
+                            jammulai: tglDimulai,
+                            jamselesai: tglSelesai,
+                            // jammulai: $scope.item.jamMulai ? DateHelper.getJamFormatted(new Date($scope.item.jamMulai)): '',
+                            // jamselesai: $scope.item.jamSelesai ? DateHelper.getJamFormatted(new Date($scope.item.jamSelesai)): '',
                             lamabedah: $scope.item.lamaPembedahan,
                             labelpasien: $scope.item.selectedLabelPasien ? $scope.item.selectedLabelPasien.name : '',
                             kondisipenanganan: $scope.item.selectedPenangananKhusus ? $scope.item.selectedPenangananKhusus.name: '',
