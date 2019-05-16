@@ -1,7 +1,24 @@
 define(['initialize'], function(initialize) {
-    initialize.controller('WelcomeCtrl', ['$scope', 'R', '$rootScope', 'MenuService', 'LoginHelper',
-        function($scope, r, $rootScope, MenuService, LoginHelper) {
+    initialize.controller('WelcomeCtrl', ['$scope', 'R', '$rootScope', 'MenuService', 'LoginHelper', '$mdDialog',
+        function($scope, r, $rootScope, MenuService, LoginHelper, $mdDialog) {
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'Alert-Himbauan.html',
+                // parent: angular.element(document.body),
+                // targetEvent: ev,
+                clickOutsideToClose:false
+            });
 
+            function DialogController($scope, $mdDialog) {
+                $scope.hide = function() {
+                  $mdDialog.hide();
+                };
+            
+                $scope.cancel = function() {
+                  $mdDialog.cancel();
+                };
+            }
+            
             $scope.title = "hayolohhh muncul";
 
             $rootScope.isOpen = true;
@@ -233,6 +250,8 @@ define(['initialize'], function(initialize) {
                 });
                 $rootScope.isOpenMenu = !$rootScope.isOpenMenu;
             }
+
+            
         }
     ]);
 
