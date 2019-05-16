@@ -297,16 +297,7 @@ define(['initialize'], function(initialize) {
             function editData(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-                var tgl = new Date(dataItem.tglbedah);  
-
-
-                // console.log($scope.item.jamMulai);
-                if($scope.item.jamMulai) {
-                    console.log($scope.item.jamMulai.split(':'));
-                }
-
-                // $scope.item.jamMulai = new Date(tgl.setHours())
-                // console.log(dataItem);
+                console.log(dataItem);
                 $scope.item.selectedAsistenOperator = {
                     namaLengkap: dataItem.asistenoperator,
                     id: dataItem.asistenoperatorfk 
@@ -322,6 +313,9 @@ define(['initialize'], function(initialize) {
                 $scope.item.selectedPenataAnest = {
                     namaLengkap: dataItem.as,
                     id: dataItem.penataanestesifk
+                };
+                $scope.item.selectedAnestesiologis = {
+                    namaLengkap: dataItem.anestesiologis
                 };
                 $scope.item.tglPembedahan = dataItem.tglbedah;
                 $scope.item.jamMulai = dataItem.jammulai;
@@ -461,9 +455,10 @@ define(['initialize'], function(initialize) {
                         } else {
                             tglSelesai = '';
                         }
-                        // $scope.item.jamMulai ? DateHelper.getJamFormatted(new Date($scope.item.jamMulai)) === "NaN:NaN"? DateHelper.getJamFormatted(new Date($scope.item.jamMulai)): $scope.item.jamMulai: ''
                         var dataSave = {
-                            // tglbedah: $scope.item.tglPembedahan,
+                            anestesiologisfk:$scope.item.selectedAnestesiologis.id,
+                            ruanganfk:$scope.item.idRuangan,
+                            tglbedah: $scope.item.tglPembedahan,
                             noregistrasifk:norec_apd,
                             pasienfk: $scope.item.noMr,
                             operatorfk: $scope.item.selectedDataOperator.id,
@@ -494,9 +489,9 @@ define(['initialize'], function(initialize) {
                             infusjml: $scope.item.jumlah ? $scope.item.macam: '',
                             infustetesan: $scope.item.tetesan ? $scope.item.tetesan: '',
                             obat: $scope.item.obatObatan ? $scope.item.obatObatan: '',
-                            instruksikhusus: $scope.item.instruksiKhusus ? $scope.item.instruksiKhusus: '',
-                            namaruangan: $scope.item.namaRuangan,
-                            idruangan: $scope.item.idRuangan
+                            instruksikhusus: $scope.item.instruksiKhusus ? $scope.item.instruksiKhusus: ''
+                            // namaruangan: $scope.item.namaRuangan,
+                            // idruangan: 
                         };
                         console.log(dataSave);
                         managePhp.postData(dataSave, 'rekam-medis/post-lap-pasca-bedah/save').then(function (e) {

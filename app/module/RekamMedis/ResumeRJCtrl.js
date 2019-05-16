@@ -32,13 +32,25 @@ define(['initialize'], function (initialize) {
 					{ field: "namaruangan", title: "Unit/Klinik", width: 120 },
 					{ field: "diagnosis", title: "Diagnosis", width: 150 },
 					{ field: "icd", title: "ICD", width: 120 },
-					{ field: "jenispemeriksaan", title: "Obat-obatan/Jenis Pemeriksaan", width: 120 },
+					//{ field: "jenispemeriksaan", title: "Obat-obatan/Jenis Pemeriksaan", width: 120 },
+					{ 
+						field: "obat",
+						title: "Obat-obatan/Jenis Pemeriksaan",
+						width: 120,
+						template: function (dataItem){
+							debugger;
+							console.log(dataItem);
+							return dataItem.obat[dataItem.obat.length - 1].obat
+						}
+					},
+						// template:"# if(obat.length > 0) {# obat = '-' #} # else # {# obat = obat[obat.length] #}#" },
 					{ field: "riwayatlalu", title: "Riwayat Rawat Inap & Prosedur Bedah/Operasi yang lalu", width: 150 },
 					{ field: "namadokter", title: "Dokter", width: 120 },
 					// { field: "jenisJabatanId", title: "Jenis Jabatan ", editor: categoryDropDownEditor, "template": "# if (jenisJabatanId === 1) {# #= 'Fungsional/struktural' # #} else if (jenisJabatanId === 3){# #= 'Internal' # #} else {# #= '-' # #}#" },
 					// { field: "namaJabatan", title: "Nama Jabatan" },
 					// { field: "usiaPensiun", title: "Usia Pensiun", width: 120, attributes: { style: "text-align:right; padding-right: 15px;" } },
-					{ command: [{ name: "edit", text: "Edit", click: editData }, { imageClass: "k-icon k-delete", text: "Hapus", click: hapus }], title: "&nbsp;", width: 150 }
+					{ command: [{imageClass: "k-icon k-i-pencil", text: "Detail", click: detailData }], title: "&nbsp;", width: 90 }
+					// { command: [{ name: "edit", text: "Edit", click: editData }, { imageClass: "k-icon k-delete", text: "Hapus", click: hapus }], title: "&nbsp;", width: 150 }
 				],
 				// editable: "popup",
 				// save: function (e) {
@@ -81,6 +93,24 @@ define(['initialize'], function (initialize) {
 				$scope.popUp.close()
 			}
 			init();
+
+			//add by iwankasan
+			function detailData(e) {
+				e.preventDefault();
+				var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+
+				$scope.item.norec = dataItem.norec
+				$scope.item.tglresume = dataItem.tglresume
+				$scope.item.namaruangan = dataItem.namaruangan
+				$scope.item.diagnosis = dataItem.diagnosis
+				$scope.item.icd = dataItem.icd
+				$scope.item.jenispemeriksaan = dataItem.obat
+				$scope.item.riwayatlalu = dataItem.riwayatlalu
+				//$scope.item.namadokter = { id: dataItem.pegawaifk, namalengkap: dataItem.namadokter }
+				$scope.popUp.center().open()
+
+			}
+			
 
 			function hapus(e) {
 				e.preventDefault();
@@ -145,7 +175,8 @@ define(['initialize'], function (initialize) {
 				//})
 
 				$q.all([
-					ManagePhp.getData("rekam-medis/get-resume-medis/" + $scope.nocm)
+					//ManagePhp.getData("rekam-medis/get-resume-medis/" + $scope.nocm)
+					ManagePhp.getData("rekam-medis/get-resume-medis-rev1/" + $scope.nocm)
 				]).then(function (res) {
 					if (res[0].statResponse) {
 						var result = res[0].data.data
