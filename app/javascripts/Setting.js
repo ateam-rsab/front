@@ -1,6 +1,6 @@
 define([], function () {
     'use strict';
-    var baseURLFrontend = 'http://172.16.99.60',
+    var baseURLFrontend = 'http://172.16.99.80',
         portFrontend = '5555',
         baseURLBackend = 'http://192.168.12.3',
         portBackend = '8080';
@@ -54,7 +54,7 @@ define([], function () {
             baseUrlActionSDM: 'http://192.168.12.3:8080/jasamedika-sdm/',
             baseApiPostDataSDM: "http://192.168.12.3:8080/jasamedika-sdm/",
             /* Reporting */
-            urlReporting: 'http://192.168.12.2:8080/jasamedika-reporting/',
+            urlReporting: 'http://192.168.12.3:8080/jasamedika-reporting/',
             /* LAUNDRY */
             baseApiPostDataLaundry: "http://192.168.12.3:8080/jasamedika-laundry/",
             baseUrlActionLaundry: "http://192.168.12.3:8080/jasamedika-laundry/",

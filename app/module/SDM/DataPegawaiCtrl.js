@@ -1,8 +1,8 @@
 define(['initialize'], function(initialize) {
     'use strict';
     // initialize.controller('DataPegawaiCtrl', ['$q', '$rootScope', '$scope', '$state', 'ModelItem','JenisSk','RekamDataPegawai','StatusPerkawinan','ManageSdm','ManageSdmNew','FindSdm',
-    initialize.controller('DataPegawaiCtrl', ['$q', 'CacheHelper', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'DaftarPegawaiService', 'DataHelper', 'FindSdm', 'DateHelper', '$timeout', 'CetakHelper',
-        function($q, cacheHelper, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, DaftarPegawaiService, dataHelper, FindSdm, dateHelper, $timeout, cetakHelper) {
+    initialize.controller('DataPegawaiCtrl', ['$q', 'CacheHelper', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'DaftarPegawaiService', 'DataHelper', 'FindSdm', 'DateHelper', '$timeout', 'CetakHelper', "$mdDialog",
+        function($q, cacheHelper, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, DaftarPegawaiService, dataHelper, FindSdm, dateHelper, $timeout, cetakHelper, $mdDialog) {
             // $scope.dataVOloaded = true;
             $scope.title = "Data Pegawai" ;
             $scope.item = {};
@@ -267,9 +267,10 @@ $scope.daftarpegawaiOpt = {
     scrollable: true,
     columns: [
     { 
-        field: "nipPns", 
+        field: "nipPns",
         title: "<h3>N.I.P</h3>", 
-        width: "20%" 
+        width: "17%",
+        // template:"# if(nipPns !== '') {# #nipPns# #} else {##} #"
     },
     { 
         field: "namaLengkap", 
@@ -290,7 +291,7 @@ $scope.daftarpegawaiOpt = {
     { 
         field: "unitKerja", 
         title: "<h3>Unit Kerja</h3>",
-        width: "25%" 
+        width: "20%" 
     },
     { 
         field: "subUnitKerja", 
@@ -311,7 +312,10 @@ $scope.daftarpegawaiOpt = {
     { 
         field: "kategoriPegawai", 
         title: "<h3>Status</h3>", 
-        width: "10%" 
+        width: "15%",
+        attributes: {
+            style: "text-align:center;valign=middle"
+        }
     },
     { 
         field: "tglMasuk", 
@@ -319,29 +323,33 @@ $scope.daftarpegawaiOpt = {
         width: "10%" 
     },
     {
-        command: [{
-            text: "Lihat",
-            width: "40px",
-            align: "center",
-            attributes: {
-                align: "center"
+        command: [
+            {
+                text: "Lihat",
+                width: "40px",
+                align: "center",
+                attributes: {
+                    align: "center"
+                },
+                click: editDataPegawai,
+                imageClass: "k-i-arrow-60-right"
             },
-            click: editDataPegawai,
-            imageClass: "k-i-arrow-60-right"
-        }, 
-        // {
-        //     text: "Hapus",
-        //     width: "40px",
-        //     align: "center",
-        //     attributes: {
-        //         align: "center"
-        //     },
-        //     // click: customClick,
-        //     imageClass: "k-icon k-delete"
-        // }
+            {
+                text: "Hapus",
+                width: "40px",
+                align: "center",
+                attributes: {
+                    align: "center"
+                },
+                click: confirmHapusDataPegawai,
+                imageClass: "k-i-arrow-60-right"
+            }
     ],
         title: "",
-        width: "100px",
+        width: "20%",
+        attributes: {
+            style: "text-align:center;valign=middle"
+        },
     }
 ],
     excelExport: function(e) {
@@ -373,6 +381,36 @@ $scope.daftarpegawaiOpt = {
                     messageContainer.error('Pegawai belum di pilih')
                 }
             }
+
+            function confirmHapusDataPegawai(e) {
+                e.preventDefault();
+                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                console.log(dataItem);
+                var confirm = $mdDialog.confirm()
+                    .title('Apakah anda yakin akan menghapus data pegawai?')
+                    .textContent(`Anda akan menghapus data pegawai dengan nama ${dataItem.namaLengkap}`)
+                    .ariaLabel('Lucky day')
+                    .targetEvent(e)
+                    .ok('Ya')
+                    .cancel('Tidak');
+                $mdDialog.show(confirm).then(function() {
+                    hapusDataPegawai(dataItem.idPegawai);
+                    console.warn('Masuk sini pak eko');
+                }, function() {
+                    console.error('Tidak jadi hapus');
+                });
+            }
+
+            function hapusDataPegawai(id) {
+                var jsonDelete = {
+                    id: id,
+                    statusEnabled: false
+                }
+                ManageSdmNew.saveData(jsonDelete, "sdm/save-rekam-data-pegawai").then(function(dat) {
+                    getPegawaiAlls();
+                });
+            }
+
             getPegawaiAlls();
             function getPegawaiAlls(){
                 $scope.isRouteLoading = true;

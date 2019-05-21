@@ -12189,6 +12189,29 @@
         }      
       ]
    },
+   {
+    "name": "RekamMedis.PasienPerjanjian",
+    "url": "/PasienPerjanjian",
+    "templateurl": "module/RekamMedis/PasienPerjanjian.html",
+    "controller": "PasienPerjanjianCtrl",
+    "deps": [
+        {
+          "module": "Services",
+          "define": "Service"
+        },
+        {
+          "module": "LoginServices",
+          "define": "LoginService"
+        },
+        {
+          "module": "PhpService",
+          "define": "PhpService"
+        },
+        {
+          "define": "RekamMedisCtrl"
+        }      
+      ]
+    },
     {
             "name": "RekamMedis.OdontoGramDokter",
             "url": "/OdontoGramDokter",

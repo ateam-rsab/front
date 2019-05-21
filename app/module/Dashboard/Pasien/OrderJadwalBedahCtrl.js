@@ -89,8 +89,25 @@ define(['initialize'], function(initialize) {
                 init();
             }
 
+            function getLapPascaBedah() {
+                managePhp.getData("rekam-medis/get-lap-pasca-bedah?noregistrasifk=" + norec_apd, true).then(function(dat) {
+                    $scope.dataDaftar = new kendo.data.DataSource({
+                        data: dat.data.data,
+                        pageSize: 10,
+                        serverPaging: false,
+                        schema: {
+                            model: {
+                                fields: {
+                                }
+                            }
+                        }
+                    });
+                });
+            };
             
+
             function init() {
+                getLapPascaBedah();
                 $scope.listOfPenanganKhusus = [
                     {id:1, name: 'Minor'},
                     {id:2, name: 'Medium'},
@@ -108,42 +125,44 @@ define(['initialize'], function(initialize) {
                 $scope.listYesOrNo = [
                     {id:1, name: 'Ya'},
                     {id:2, name: 'Tidak'},
-                ]
+                ];
+                $scope.listSesuaiOrNot = [
+                    {id:1, name: 'Sesuai'},
+                    {id:2, name: 'Tidak Sesuai'},
+                ];
                 managePhp.getData("pelayanan/get-order-penunjang?departemenfk=25&nocm="+nocm_str+'&norec_apd='+norec_apd, true).then(function(dat){
-    
-                    $scope.item.ruanganAsal = dat.data.data[0].namaruangan
+                    $scope.item.ruanganAsal = dat.data.data[0].namaruangan;
                     $scope.listRuanganTujuan = dat.data.ruangantujuan;
                     $scope.item.ruangantujuan = {
                         id: dat.data.ruangantujuan[0].id,
                         namaruangan : dat.data.ruangantujuan[0].namaruangan
-                    }
+                    };
                     $scope.listLayanan = dat.data.produk;
-                    namaRuanganFk = dat.data.data[0].objectruanganfk
-                    norec_pd = dat.data.data[0].noregistrasifk
+                    namaRuanganFk = dat.data.data[0].objectruanganfk;
+                    norec_pd = dat.data.data[0].noregistrasifk;
                 });
                 //managePhp.getData("rekam-medis/get-emr-transaksi?norec_apd="+norec_apd, true).then(function(dat)
-                managePhp.getData("rekam-medis/get-lap-pasca-bedah?noregistrasifk=" + norec_apd, true).then(function(dat)
-                {
-                    $scope.dataDaftar = new kendo.data.DataSource({
-                        data: dat.data.data,
-                        pageSize: 10,
-                        serverPaging: false,
-                        schema: {
-                            model: {
-                                fields: {
-                                }
-                            }
-                        }
-                    });
-                });
+                // managePhp.getData("rekam-medis/get-lap-pasca-bedah?noregistrasifk=" + norec_apd, true).then(function(dat) {
+                //     $scope.dataDaftar = new kendo.data.DataSource({
+                //         data: dat.data.data,
+                //         pageSize: 10,
+                //         serverPaging: false,
+                //         schema: {
+                //             model: {
+                //                 fields: {
+                //                 }
+                //             }
+                //         }
+                //     });
+                // });
                 managePhp.getData("get-detail-login", true).then(function(dat){
-                $scope.PegawaiLogin2=dat.data
+                $scope.PegawaiLogin2 = dat.data;
                 });
 
                 if ($scope.header.DataNoregis == true) {
                     managePhp.getData('laporan/get-order-ok?noregistrasi='+$scope.item.noregistrasi).then(function(e) {
                         for (var i = e.data.daftar.length - 1; i >= 0; i--) {
-                            e.data.daftar[i].no=i+1
+                            e.data.daftar[i].no = i + 1;
                         }
                         $scope.dataGridRiwayat = new kendo.data.DataSource({
                             data: e.data.daftar,
@@ -294,6 +313,10 @@ define(['initialize'], function(initialize) {
             //     $scope.item.pemeriksaanKeluar = dataSelected.pemeriksaanluar == 1 ? true :false
             // };
 
+            $scope.countLamaPembedahan = function() {
+                // if($scope.item.jamMulai && )
+            };
+
             function editData(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
@@ -304,7 +327,7 @@ define(['initialize'], function(initialize) {
                 };
                 $scope.item.selectedPerawatInstrumen = {
                     namaLengkap:dataItem.perawatinst,
-                    id:dataItem.perawatinst
+                    id:dataItem.perawatinstfk
                 };
                 $scope.item.selectedDataOperator = {
                     namaLengkap:dataItem.namaoperator,
@@ -315,8 +338,10 @@ define(['initialize'], function(initialize) {
                     id: dataItem.penataanestesifk
                 };
                 $scope.item.selectedAnestesiologis = {
-                    namaLengkap: dataItem.anestesiologis
+                    namaLengkap: dataItem.anestesiologis,
+                    id:dataItem.anestesiologisfk
                 };
+                $scope.item.noRecBedah = dataItem.norec;
                 $scope.item.tglPembedahan = dataItem.tglbedah;
                 $scope.item.jamMulai = dataItem.jammulai;
                 $scope.item.jamSelesai = dataItem.jamselesai;
@@ -324,26 +349,34 @@ define(['initialize'], function(initialize) {
                 $scope.item.selectedLabelPasien = { name:dataItem.labelpasien, id: dataItem.labelpasien == 'Sudah dipasang' ? 1:2};
                 $scope.item.selectedPenangananKhusus = { name:dataItem.kondisipenanganan };
                 $scope.item.selectedStatus = { name: dataItem.status, id: dataItem.status == 'Emergency' ? 1:2};
-                $scope.item.tindakanPembedahan = {
-                    I:dataItem.tindakanbedah1,
-                    II:dataItem.tindakanbedah2,
-                    III:dataItem.tindakanbedah3,
-                    IV:dataItem.tindakanbedah4
-
-                };
+                $scope.item.tindakanPembedahanSatu = dataItem.tindakanbedah1;
+                $scope.item.tindakanPembedahanDua = dataItem.tindakanbedah2;
+                $scope.item.tindakanPembedahanTiga = dataItem.tindakanbedah3;
+                $scope.item.tindakanPembedahanEmpat = dataItem.tindakanbedah4;
                 $scope.item.jaringanPatologi = dataItem.jaringanpatologi;
                 $scope.item.uraianPembedahan = dataItem.uraianbedah;
                 $scope.item.tekananDarah = dataItem.tekanandarah;
                 $scope.item.nadi = dataItem.nadi;
                 $scope.item.suhu = dataItem.suhu;
                 $scope.item.pernafasan = dataItem.pernafasan;
-                $scope.item.selectedAvailMakan = { name:dataItem.makan, id: dataItem.makan === 'Ya' ? 1:2 };
-                $scope.item.selectedAvailMinum = { name:dataItem.minum, id: dataItem.minum === 'Ya' ? 1:2 };
+                // $scope.item.selectedAvailMakan = { name:dataItem.makan, id: dataItem.makan === 'Ya' ? 1:2 };
+                $scope.item.selectedAvailMakan = dataItem.makan;
+                // $scope.item.selectedAvailMinum = { name:dataItem.minum, id: dataItem.minum === 'Ya' ? 1:2 };
+                $scope.item.selectedAvailMinum = dataItem.makan;
+
                 $scope.item.macam = dataItem.infusmacam;
                 $scope.item.jumlah = dataItem.infusjml;
                 $scope.item.tetesan = dataItem.infustetesan;
                 $scope.item.obatObatan = dataItem.obat;
                 $scope.item.instruksiKhusus = dataItem.instruksikhusus;
+                $scope.item.jmlPendarahan = dataItem.jmlperdarahan;
+                $scope.item.komplikasi = dataItem.komplikasi;
+                $scope.item.macamJaringan = dataItem.macamjaringan;
+                $scope.item.diagnosaPraBedah = dataItem.diagnosaprabedah;
+                $scope.item.diagnosaPascaBedah = dataItem.diagnosapascabedah;
+                $scope.item.kesuaianDiagnosa = {
+                    name: dataItem.kesesuiandiagnosa
+                }
 
                 $timeout(function() {
                     $scope.showInputan = true;
@@ -372,7 +405,7 @@ define(['initialize'], function(initialize) {
     
                 managePhp.postData(itemDelete, 'rekam-medis/post-lap-pasca-bedah/delete').then(function (e) {
                     if (e.status === 201) {
-                        loadGrid()
+                        getLapPascaBedah();
     
                         grid.removeRow(row);
                     }
@@ -467,31 +500,34 @@ define(['initialize'], function(initialize) {
                             perawatinstfk: $scope.item.selectedPerawatInstrumen.id,
                             jammulai: tglDimulai,
                             jamselesai: tglSelesai,
-                            // jammulai: $scope.item.jamMulai ? DateHelper.getJamFormatted(new Date($scope.item.jamMulai)): '',
-                            // jamselesai: $scope.item.jamSelesai ? DateHelper.getJamFormatted(new Date($scope.item.jamSelesai)): '',
                             lamabedah: $scope.item.lamaPembedahan,
                             labelpasien: $scope.item.selectedLabelPasien ? $scope.item.selectedLabelPasien.name : '',
                             kondisipenanganan: $scope.item.selectedPenangananKhusus ? $scope.item.selectedPenangananKhusus.name: '',
                             status: $scope.item.selectedStatus ? $scope.item.selectedStatus.name : '',
-                            tindakanbedah1: $scope.item.tindakanPembedahan ? $scope.item.tindakanPembedahan.I: '',
-                            tindakanbedah2: $scope.item.tindakanPembedahan ? $scope.item.tindakanPembedahan.II: '',
-                            tindakanbedah3: $scope.item.tindakanPembedahan ? $scope.item.tindakanPembedahan.III: '',
-                            tindakanbedah4: $scope.item.tindakanPembedahan ? $scope.item.tindakanPembedahan.IV: '',
-                            jaringanpatologi: $scope.item.jaringanPatologi ? $scope.item.jaringanPatologi: null,
+                            tindakanbedah1: $scope.item.tindakanPembedahanSatu ? $scope.item.tindakanPembedahanSatu: '',
+                            tindakanbedah2: $scope.item.tindakanPembedahanDua ? $scope.item.tindakanPembedahanDua: '',
+                            tindakanbedah3: $scope.item.tindakanPembedahanTiga ? $scope.item.tindakanPembedahanTiga: '',
+                            tindakanbedah4: $scope.item.tindakanPembedahanEmpat ? $scope.item.tindakanPembedahanEmpat: '',
+                            jaringanpatologi: $scope.item.jaringanPatologi ? $scope.item.jaringanPatologi: '',
                             uraianbedah: $scope.item.uraianPembedahan ? $scope.item.uraianPembedahan: '',
-                            tekanandarah: $scope.item.tekananDarah ? $scope.item.tekananDara: '',
+                            tekanandarah: $scope.item.tekananDarah ? $scope.item.tekananDarah: '',
                             nadi: $scope.item.nadi ? $scope.item.nadi: '',
                             suhu: $scope.item.suhu ? $scope.item.suhu: '',
                             pernafasan: $scope.item.pernafasan ? $scope.item.pernafasan: '',
-                            makan: $scope.item.selectedAvailMakan ? $scope.item.selectedAvailMakan.name: '',
-                            minum: $scope.item.selectedAvailMinum ? $scope.item.selectedAvailMinum.name: '',
+                            makan: $scope.item.selectedAvailMakan ? $scope.item.selectedAvailMakan: '',
+                            minum: $scope.item.selectedAvailMinum ? $scope.item.selectedAvailMinum: '',
                             infusmacam:  $scope.item.macam ? $scope.item.macam : '',
                             infusjml: $scope.item.jumlah ? $scope.item.macam: '',
                             infustetesan: $scope.item.tetesan ? $scope.item.tetesan: '',
                             obat: $scope.item.obatObatan ? $scope.item.obatObatan: '',
-                            instruksikhusus: $scope.item.instruksiKhusus ? $scope.item.instruksiKhusus: ''
-                            // namaruangan: $scope.item.namaRuangan,
-                            // idruangan: 
+                            instruksikhusus: $scope.item.instruksiKhusus ? $scope.item.instruksiKhusus: '',
+                            norec:$scope.item.noRecBedah ? $scope.item.noRecBedah: '',
+                            jmlperdarahan: $scope.item.jmlPendarahan ? $scope.item.jmlPendarahan: 'Tidak ada',
+                            komplikasi: $scope.item.komplikasi ? $scope.item.komplikasi: 'Tidak ada',
+                            macamjaringan:$scope.item.macamJaringan ? $scope.item.macamJaringan: 'Tidak ada',
+                            diagnosaprabedah: $scope.item.diagnosaPraBedah ? $scope.item.diagnosaPraBedah: 'Tidak ada',
+                            diagnosapascabedah: $scope.item.diagnosaPascaBedah ? $scope.item.diagnosaPascaBedah: 'Tidak ada',
+                            kesesuiandiagnosa: $scope.item.kesuaianDiagnosa ? $scope.item.kesuaianDiagnosa.name: '',
                         };
                         console.log(dataSave);
                         managePhp.postData(dataSave, 'rekam-medis/post-lap-pasca-bedah/save').then(function (e) {

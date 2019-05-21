@@ -20,18 +20,19 @@ define(['initialize'], function (initialize) {
             function LoadCache() {
                 var chacePeriode = cacheHelper.get('cacheCPPT');
                 if (chacePeriode != undefined) {
-                    $scope.item.namaPasien = chacePeriode[1]
-                    $scope.item.jenisKelamin = chacePeriode[2]
-                    $scope.item.noregistrasi = chacePeriode[3]
-                    $scope.item.umur = chacePeriode[4]
-                    $scope.item.kelompokPasien = chacePeriode[5]
-                    $scope.item.tglRegistrasi = chacePeriode[6]
-                    norec_apd = chacePeriode[7]
-                    norec_pd = chacePeriode[8]
-                    $scope.item.idKelas = chacePeriode[9]
-                    $scope.item.kelas = chacePeriode[10]
-                    $scope.item.idRuangan = chacePeriode[11]
-                    $scope.item.namaRuangan = chacePeriode[12]
+                    $scope.item.noCm = chacePeriode[0];
+                    $scope.item.namaPasien = chacePeriode[1];
+                    $scope.item.jenisKelamin = chacePeriode[2];
+                    $scope.item.noregistrasi = chacePeriode[3];
+                    $scope.item.umur = chacePeriode[4];
+                    $scope.item.kelompokPasien = chacePeriode[5];
+                    $scope.item.tglRegistrasi = chacePeriode[6];
+                    norec_apd = chacePeriode[7];
+                    norec_pd = chacePeriode[8];
+                    $scope.item.idKelas = chacePeriode[9];
+                    $scope.item.kelas = chacePeriode[10];
+                    $scope.item.idRuangan = chacePeriode[11];
+                    $scope.item.namaRuangan = chacePeriode[12];
                 }
             }
 
@@ -160,7 +161,7 @@ define(['initialize'], function (initialize) {
 
             loadPOC()
             function loadPOC() {
-                ManagePhp.getData("rekam-medis/get-poc?noregistrasifk=" + norec_apd
+                ManagePhp.getData("rekam-medis/get-poc?nocm=" + $scope.item.noCm
                     , true).then(function (dat) {
                         let array =dat.data.data;
                         //for (let i in arrray) {

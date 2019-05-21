@@ -1808,7 +1808,11 @@
     },
     {
       "nameDep": "PlanOfCareCtrl",
-      "urlDep": "module/RekamMedis/PlanOfCareCtrl"    
+      "urlDep": "module/RekamMedis/PlanOfCareCtrl"
+    },
+    {
+      "nameDep": "PasienPerjanjianCtrl",
+      "urlDep": "module/RekamMedis/PasienPerjanjianCtrl"
     },
     {
       "nameDep": "RekamMedisCtrl",
