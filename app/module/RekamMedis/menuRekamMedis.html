@@ -63,7 +63,7 @@
                 data-ng-click="nav('RekamMedis.ResumeRI')">Resume Medis</a>
         </div>
         <!-- Konsultasi -->
-        <div class="grid_2" >
+        <div class="grid_2" ng-show="isPerawat">
             <a class=" n1 green" ng-class="{'active': currentState == 'RekamMedis.KonsultasiDokter'}"
                 data-ng-click="nav('RekamMedis.KonsultasiDokter')">Konsultasi</a>
         </div>

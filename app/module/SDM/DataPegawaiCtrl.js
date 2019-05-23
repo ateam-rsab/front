@@ -1,7 +1,7 @@
 define(['initialize'], function(initialize) {
     'use strict';
     // initialize.controller('DataPegawaiCtrl', ['$q', '$rootScope', '$scope', '$state', 'ModelItem','JenisSk','RekamDataPegawai','StatusPerkawinan','ManageSdm','ManageSdmNew','FindSdm',
-    initialize.controller('DataPegawaiCtrl', ['$q', 'CacheHelper', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'DaftarPegawaiService', 'DataHelper', 'FindSdm', 'DateHelper', '$timeout', 'CetakHelper', "$mdDialog",
+    initialize.controller('DataPegawaiCtrl', ['$q', 'CacheHelper', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'DaftarPegawaiService', 'DataHelper', 'FindSdm', 'DateHelper', '$timeout', 'CetakHelper', '$mdDialog',
         function($q, cacheHelper, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, DaftarPegawaiService, dataHelper, FindSdm, dateHelper, $timeout, cetakHelper, $mdDialog) {
             // $scope.dataVOloaded = true;
             $scope.title = "Data Pegawai" ;
@@ -758,7 +758,7 @@ $scope.daftarpegawaiOpt = {
             // gridData.dataSource.filter({});
             // $scope.item = {};
             // $scope.filteredData = [];
-            getPegawaiAlls();
+            // getPegawaiAlls();
         };
         $scope.riwayat = function(data){
             if(!data){

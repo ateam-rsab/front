@@ -94,7 +94,7 @@
                 <span class="title">Rincian</span>
             </c-button>
         </div>
-          <div class="grid_3">
+        <div class="grid_3">
             <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="konsul()" position="'right'">
                 <span class="title">Konsultasi <a style="font-color:white" ng-show="showNotif"><span  class="notif">{{lengthKonsul}}</span> </a></span>
             </c-button>
@@ -195,30 +195,39 @@
         <button class="k-button" ng-click="simpanDokter(item, items.pilihDokter)" style="float:right;margin-top:4%">Simpan</button>
     </div>
 
-     <div kendo-window="winKonsul" k-title="'Konsultasi Dokter'" k-width="1200" k-height="450" k-visible="false" k-on-open="win2visible = true" k-on-close="win2visible = false">
-    <div class="panel panel-default container_12"> 
-         <!-- <div class="panel panel-default container_12" style="padding: 0px 10px;"> -->
-           <fieldset class="effect-shadow" style=" border-radius: 4px">
-                <legend id="filterData">
-                    <a ng-click="showAndHide()">Daftar Konsultasi</a>
-                </legend>
-                    <div class="grid_12"  style="margin-top: -15px" >
-                          <div class="grid_1" style="margin-top: 10px"  >
-                            <label c-label item="item " c-label-text="Dokter"></label>
+    <div kendo-window="winKonsul" k-title="'Konsultasi Dokter'" k-width="1200" k-height="450" k-visible="false" k-on-open="win2visible = true" k-on-close="win2visible = false">
+        <div class="panel panel-default container_12">
+            <!-- <div class="panel panel-default container_12" style="padding: 0px 10px;"> -->
+            <fieldset class="effect-shadow" style=" border-radius: 4px">
+                    <legend id="filterData">
+                        <a ng-click="showAndHide()">Daftar Konsultasi</a>
+                    </legend>
+                        <div class="grid_12"  style="margin-top: -15px" >
+                            <div class="grid_1" style="margin-top: 10px"  >
+                                <label c-label item="item " c-label-text="Dokter"></label>
+                            </div>
+                            <div class="grid_5"  >
+                                <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.dokterTujuan"  disabled="" />
+                            </div>
                         </div>
-                          <div class="grid_5"  >
-                            <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.dokterTujuan"  disabled="" />
+                        <div class="grid_12" style="margin-top: 10px" >
+                            <div id="gridKonsul" kendo-grid k-data-source="sourceKonsul" options="konsulOpt"></div>
                         </div>
-                    </div>
-                    <div class="grid_12" style="margin-top: 10px" >
-                         <div id="gridKonsul" kendo-grid k-data-source="sourceKonsul" options="konsulOpt"></div>
-                    </div>
-                </fieldset>
-        <!-- </div> -->
-     <!--    <div class="clear">
-        <button class="k-button" ng-click="simpanDokter(item, items.pilihDokter)" style="float:right;margin-top:4%">Simpan</button> -->
+                    </fieldset>
+            <!-- </div> -->
+        <!--    <div class="clear">
+            <button class="k-button" ng-click="simpanDokter(item, items.pilihDokter)" style="float:right;margin-top:4%">Simpan</button> -->
+        </div>
     </div>
-</div>
+    <div kendo-window="winDescription" k-title="'Description'" k-width="1200" k-visible="false" k-on-open="win2visible = true" k-on-close="win2visible = false">
+        <label c-label item="item" c-label-text="Kesan"></label>
+        <textarea ng-disabled="isVerify" ng-model="item.kesan" style="width: 99%; height: 80px;"></textarea>
+        <div class="grid_12">
+            <div class="k-edit-buttons  k-state-default pull-right" style="margin-top:10px">
+                <button class="k-button k-button-icontext" ng-disabled="isVerify" ng-click="verifikasiKonsultasiDokter()"><span class="k-icon k-cancel"></span>Verifikasi</button>
+            </div>
+        </div>
+    </div>
 </div>
 <style>
     .k-window-content .k-content {

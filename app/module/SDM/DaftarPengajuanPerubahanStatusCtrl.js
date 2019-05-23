@@ -471,7 +471,7 @@ define(['initialize'], function(initialize) {
 				var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                 console.log(dataItem);
                 var confirm = $mdDialog.confirm()
-                    .title('Apakah anda yakin akan menghapus data pegawai?')
+                    .title('Apakah anda yakin akan menghapus data pengajuan a.n ' + dataItem.namaPegawai)
                     .textContent(`Anda akan menghapus data ini secara permanen`)
                     .ariaLabel('Lucky day')
                     .targetEvent(e)

@@ -1,3 +1,27 @@
+.k-grid-Hapus {
+  background-color: #fa3939;
+  border-color: #fa3939;
+}
+.k-grid-Hapus:hover {
+  background-color: #fd2d2d;
+  border-color: #fd2d2d;
+}
+
+.k-grid-Edit {
+  background-color: #5bc0de;
+  border-color: #46b8da;
+}
+
+.k-grid-Detail, .k-grid-Lihat {
+  background-color: #5a5a5a;
+  border-color: #5a5a5a;
+}
+
+.k-grid-VerifikasiDokter {
+  background-color: #286090;
+  border-color: #306fa7;
+}
+
 .primary-bc-color {
   background-color: #0d630b !important;
   border: 5px solid #0d630b !important;

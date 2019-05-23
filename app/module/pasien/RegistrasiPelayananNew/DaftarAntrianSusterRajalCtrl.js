@@ -1,14 +1,15 @@
 define(['initialize'], function(initialize) {
     'use strict';
-    initialize.controller('DaftarAntrianSusterRajalCtrl', ['SaveToWindow', '$rootScope', '$scope', 'ModelItem', '$state', 'FindPasien', 'DateHelper', 'socket', 'ManagePasien', '$mdDialog', '$window', 'ManageSarprasPhp','CacheHelper', '$q', 
-        function(saveToWindow, $rootScope, $scope, ModelItem, $state, findPasien, dateHelper, socket, managePasien, $mdDialog, window, manageSarprasPhp, cacheHelper, $q) {
+    initialize.controller('DaftarAntrianSusterRajalCtrl', ['SaveToWindow', '$rootScope', '$scope', 'ModelItem', '$state', 'FindPasien', 'DateHelper', 'socket', 'ManagePasien', '$mdDialog', '$window', 'ManageSarprasPhp','CacheHelper', '$q', 'ManagePhp',
+        function(saveToWindow, $rootScope, $scope, ModelItem, $state, findPasien, dateHelper, socket, managePasien, $mdDialog, window, manageSarprasPhp, cacheHelper, $q, ManagePhp) {
             $scope.dataVOloaded = true;
             $scope.now = new Date();
             $scope.item = {};
+            $scope.dataLogin = JSON.parse(localStorage.getItem('pegawai'))
             // $scope.dataPasienSelected = {};
             $scope.item.periodeAwal = new Date();
             // $scope.item.periodeAwal = dateHelper.setJamAwal(new Date());
-            $scope.item.periodeAkhir = new Date();            
+            $scope.item.periodeAkhir = new Date();
             $scope.dataPasienSelected = {};
             $scope.isRouteLoading=false;
             $rootScope.isOpen = true;
@@ -17,8 +18,9 @@ define(['initialize'], function(initialize) {
             // $scope.kodeRuangan = $state.params.kodeRuangan;
             // $scope.isCalling = false;
             $scope.pegawai = ModelItem.getPegawai();
-            loadCombo()
-            loadData()
+            loadCombo();
+            loadData();
+            loadKonsul();
             postRensarWTRJ();
             function postRensarWTRJ() {
                 manageSarprasPhp.saveDataTransaksi('rensar/post-waktu-tunggu-rj')
@@ -28,6 +30,107 @@ define(['initialize'], function(initialize) {
             // loadData()
             $scope.SearchEnter = function () {
                 loadData()
+            }
+
+            function loadKonsul(){
+                ManagePhp.getData("rekam-medis/get-order-konsul?dokterid=" +   $scope.dataLogin.id).then(function(e){
+                  var res = e.data.data
+                  for (var i = res.length - 1; i >= 0; i--) {
+                     if( res[i].norec_apd != null)
+                          res.splice([i],1)
+                  }
+                  if(res.length > 0){
+                      $scope.showNotif = true
+                      $scope.lengthKonsul =res.length  
+                  }else
+                       $scope.showNotif = false
+                               
+                })
+            }
+
+            $scope.konsul = function(){
+                loadGridKonsul();
+                $scope.winKonsul.center().open();
+            }
+
+            function loadGridKonsul(){
+                ManagePhp.getData("rekam-medis/get-order-konsul?dokterid=" + $scope.dataLogin.id).then(function(e){
+                    var result = e.data.data
+                    if(result.length > 0){
+                        $scope.item.dokterTujuan = result[0].namalengkap
+                        for (var i = 0; i < result.length; i++) {
+                            result[i].no = i + 1
+                            if(result[i].norec_apd != null)
+                                result[i].status = 'Selesai'
+                            else
+                                result[i].status = '-'
+                        }
+                    }
+                    $scope.sourceKonsul = new kendo.data.DataSource({
+                        data: result,
+                        pageSize: 20,
+                    });
+                }, (error) => {
+                    throw error;
+                })
+            }
+
+            $scope.konsulOpt = {
+                pageable: true,
+                scrollable: true,
+                columns: [
+                    // { field: "rowNumber", title: "#", width: 40, width: 40, attributes: { style: "text-align:right; padding-right: 15px;"}, hideMe: true},
+                    { field: "no", title: "No", width: 40 },
+                    { field: "noregistrasi", title: "No Registrasi", width: 100 },
+                    { field: "nocm", title: "No RM", width: 80 },
+                    { field: "tglorder", title: "Tanggal", width: 120 },
+                    { field: "ruanganasal", title: "Ruangan Asal", width: 120 },
+                    { field: "ruangantujuan", title: "Ruangan Tujuan", width: 150 },
+                    { field: "pengonsul", title: "Pengonsul", width: 120 },
+                    { field: "keteranganorder", title: "Keterangan", width: 120 },
+                    { field: "status", title: "Status", width: 120 },
+                    { command: [ { name: "edit", text: "Verifikasi", click: verif }], title: "&nbsp;", width: 120 }
+                ],
+            };
+
+            $scope.verifikasiKonsultasiDokter = function () {
+                var length = $scope.sourceKonsul._data.length + 1;
+                var dataKonsul = {
+                    "kelasfk":  6,
+                    "noantrian": length,
+                    "norec_so": $scope.noRecKonsultasi,
+                    "norec_pd": $scope.noRecPdKonsultasi,
+                    "dokterfk": $scope.pegawaiFkKonsultasi,
+                    "objectruangantujuanfk": $scope.objectRuanganFkTujuanKonsultasi,
+                    "objectruanganasalfk": $scope.objectRuanganFkKonsultasi,
+                    "kesan": $scope.item.kesan
+                }
+                console.log(dataKonsul)
+                // ManagePhp.postData2('rekam-medis/save-konsul-from-order',dataKonsul).then(function(e){
+                //     loadGridKonsul()
+                //     loadData();
+                //     loadKonsul()
+                //     $scope.saveLogKonsul();
+                
+                    
+                // })
+            }
+
+            function verif(e){
+                e.preventDefault();
+                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+
+                if(dataItem.status == 'Selesai'){
+                    $scope.isVerify = true;
+                }
+                $scope.statusKonsultasi = dataItem.status;
+                $scope.noRecKonsultasi = dataItem.norec;
+                $scope.noRecPdKonsultasi = dataItem.norec_pd;
+                $scope.pegawaiFkKonsultasi = dataItem.pegawaifk;
+                $scope.objectRuanganFkTujuanKonsultasi = dataItem.objectruangantujuanfk;
+                $scope.objectRuanganFkKonsultasi = dataItem.objectruanganfk;
+                $scope.winDescription.center().open();
+            
             }
 
             function loadCombo(){
