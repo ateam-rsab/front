@@ -181,6 +181,7 @@ define(['initialize'], function(initialize) {
                         {
                             field: "isCanCreateJadwal",
                             title: "<h3>Membuat Jadwal</h3>", width:"80px",
+                            template:"#if(isCanCreateJadwal) { #Ya# } else { #Tidak# } #",
                             attributes: {
                                 style: "text-align:center;valign=middle"
                             },
@@ -188,6 +189,7 @@ define(['initialize'], function(initialize) {
                         {
                             field: "isPrimary",
                             title: "<h3>Jabatan Utama</h3>", width:"50px",
+                            template:"#if(isPrimary) { #Ya# } else { #Tidak# } #",
                             attributes: {
                                 style: "text-align:center;valign=middle"
                             },
@@ -195,6 +197,7 @@ define(['initialize'], function(initialize) {
                         {
                             field: "isMonitoring",
                             title: "<h3>Monitoring</h3>", width:"80px",
+                            template:"#if(isMonitoring) { #Ya# } else { #Tidak# } #",
                             attributes: {
                                 style: "text-align:center;valign=middle"
                             },
@@ -327,6 +330,10 @@ define(['initialize'], function(initialize) {
 
             function hapusDataJabatanInternal(e) {
                 e.preventDefault();
+                if(!$scope.isEdit) {
+                    toastr.warning('Tidak bisa menghapus jabatan');
+                    return
+                }
                 var tr = $(e.target).closest("tr");
                 var dataItem = this.dataItem(tr);
                 var dataSave = [{
@@ -359,6 +366,7 @@ define(['initialize'], function(initialize) {
                     ManageSdmNew.saveData(dataSave, "map-pegawai-jabatan-unitkerja/save-map").then(function(res) {
                         $scope.isRouteLoading = true;
                         $scope.popUpJabatan.close();
+                        e.preventDefault();
                         $scope.loadDataGridUnitKerja();
                         toastr.success('Data Berhasil Dihapus');
                         console.warn('Data Berhasil Dihapus');
@@ -390,9 +398,9 @@ define(['initialize'], function(initialize) {
                     "isPrimary": $scope.item.isPrimary,
                     "isMonitoring": $scope.item.isMonitoring ? true : false
                 }]
-                console.log(dataSave);
                 ManageSdmNew.saveData(dataSave, "map-pegawai-jabatan-unitkerja/save-map").then(function(res) {
                     $scope.isRouteLoading = true;
+                    $scope.idGridInternalJabatan = null;
                     $scope.popUpJabatan.close();
                     $scope.loadDataGridUnitKerja();
                     toastr.success('Data Berhasil Disimpan');
@@ -408,9 +416,13 @@ define(['initialize'], function(initialize) {
             // }
 
             function changeRow(e) {
+                e.preventDefault();
+                if(!$scope.isEdit) {
+                    toastr.warning('Tidak bisa merubah jabatan');
+                    return
+                }
                 clearPop();
                 
-                e.preventDefault();
                 var tr = $(e.target).closest("tr");
                 var dataItem = this.dataItem(tr);
                 $scope.getDataSubUnitKerjaById(dataItem.unitKerjaPegawaiId)
@@ -647,6 +659,10 @@ define(['initialize'], function(initialize) {
 
             function removeRowJabatan(e){
                 e.preventDefault();
+                if(!$scope.isEdit) {
+                    toastr.warning('Tidak bisa merubah jabatan');
+                    return
+                }
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                 var dataDelete = {
                     jabatanTtd :{
