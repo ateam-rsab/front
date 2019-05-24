@@ -108,7 +108,7 @@ define(['initialize'], function (initialize) {
                     {field: "pegawaiasal", title: "Pegawai", template: '# if( pegawaiasal==null) {# - # } else {# #= pegawaiasal # #} #',"width": "120px"},
                     {field: "namaruangan", title: "Ruangan", width: 120}, 
                     {field: "noregistrasi", title: "No Registrasi", width: 100}, 
-                    {field: "flag_", title: "Ket", template:'# if( flag_==1) {# SOAP # } else if( flag_== 2) {#ADIME#} else if( flag_== 3) {#SOAPIE#} #',"width": "100px"}, 
+                    {field: "flag_", title: "Keterangan", template:'# if( flag_==1) {# SOAP # } else if( flag_== 2) {#ADIME#} else if( flag_== 3) {#SOAPIE#} #',"width": "100px"}, 
                     {command: [{text: "Edit", click: editData, imageClass: "k-icon k-i-pencil"}, 
                                 {text: "Detail", click: showDetail, imageClass: "k-icon k-i-pencil"},
                                {text: "Hapus", click: deleteData, imageClass: "k-icon k-i-cancel"}
@@ -118,7 +118,7 @@ define(['initialize'], function (initialize) {
 
             $scope.inputBaru = function (key) {
                 clear();
-
+                $scope.isDetail = false;
                 if(key == 1) {
                     $scope.isSoap = true;
                     $scope.isAdime = false;
@@ -139,6 +139,11 @@ define(['initialize'], function (initialize) {
                     $scope.isAdime = true;
                     $scope.isSoapie = false;
                 } else if(key == 3) {
+                    $scope.cppt.o = "Keadaan umum : Sadar, tidak sesak tidak sianosis dan tidak ada nyeri."
+                    + "\n" + "Tanda-tanda Vital : Baik. Kepala : Mata tidak pucat,  tidak cekung dan tidak kuning."
+                    + "\n" + "Faring: tidak hiperemis. Jantung/Paru : dalam batas normal."
+                    + "\n" + "Perut: lemas,  Hepar/lien tidak teraba.  Tidak ada nyeri tekan dan turgor cukup."
+                    + "\n" + "Ekstremitas : akral hangat";
                     $scope.isSoapie = true;
                     $scope.isSoap = true;
                     $scope.isAdime = false;
@@ -264,7 +269,7 @@ define(['initialize'], function (initialize) {
                     $scope.cppt.cppt_i = dataItem.cppt_i
                     $scope.cppt.cppt_e = dataItem.cppt_e
                 }
-              
+                $scope.cppt.pegawaifk = dataItem.pegawaifk;
 
                 $scope.isDisable = false
                 $scope.popUp.center().open();
@@ -274,6 +279,7 @@ define(['initialize'], function (initialize) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                 $scope.isDetail = true;
+                
                 // //$scope.show = dataItem
                 // if(!dataItem) {
                 //     toastr.warning('Data tidak ditemukan')
@@ -317,7 +323,7 @@ define(['initialize'], function (initialize) {
                     $scope.cppt.cppt_e = dataItem.cppt_e
                 }
          
-                $scope.isDisable = false
+                $scope.isDisable = true;
                 $scope.popUp.center().open();
             }
 
@@ -445,10 +451,9 @@ define(['initialize'], function (initialize) {
        
             //create by iwankasan
             function verifikasiData(e) {
-                
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-
+                $scope.isDetail = false;
                 if(!dataItem) {
                     toastr.warning('Data tidak ditemukan')
                     return
@@ -462,7 +467,7 @@ define(['initialize'], function (initialize) {
                     toastr.warning('Verifikasi hanya untuk Dokter');
                     return
                 } else {
-                    $scope.isDetail = true;
+                    $scope.isDetail = false;
                 }
                 $scope.cppt.norec = dataItem.norec
                 $scope.cppt.pegawaifk = dataItem.pegawaifk
@@ -509,6 +514,7 @@ define(['initialize'], function (initialize) {
                     {field: "namalengkap", title: "Pegawai", width: 150}, 
                     {field: "namaruangan", title: "Ruangan", width: 150}, 
                     {field: "noregistrasi", title: "No Registrasi", width: 100},
+                    {field: "flag_", title: "Keterangan", template:'# if( flag_==1) {# SOAP # } else if( flag_== 2) {#ADIME#} else if( flag_== 3) {#SOAPIE#} #',"width": "100px"},
                     //{field: "pegawaiasalfk", title: "Pegawai", widht:100},
                     {
                         command: [
@@ -517,7 +523,7 @@ define(['initialize'], function (initialize) {
                             {text: "Hapus", click: deleteDataPerawat, imageClass: "k-icon k-i-cancel"},
                             {text: "Verifikasi Dokter", click: verifikasiData, imageClass: "k-icon k-i-pencil"}
                         ],
-                        title: "&nbsp",width: 200
+                        title: "&nbsp",width: 250
                     }
                 ]
             };

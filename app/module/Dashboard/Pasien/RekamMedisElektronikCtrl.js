@@ -117,14 +117,14 @@ define(['initialize'], function (initialize) {
                 pageable: true,
                 scrollable: true,
                 columns: [
-                    {field: "tglinput", title: "Tgl/Jam", width: 100}, 
-                    {field: "namalengkap", title: "Dokter",width: 150}, 
-                    {field: "namaruangan", title: "Ruangan", width: 120}, 
-                    {field: "anamnesisdokter", title: "Anamnesis", width: 190},
-                    {field: "pemeriksaanumum", title: "Pemeriksaan Fisik Umum", widht: 190}, 
-                    {field: "analisis", title: "Analisis", widht: 190}, 
-                    {field: "rencana", title: "Rencana", widht: 190}, 
-                    {field: "edukasi", title: "Edukasi", widht: 190}, 
+                    {field: "tglinput", title: "<h3>Tanggal/Jam</h3>", width: 100}, 
+                    {field: "namalengkap", title: "<h3>Dokter</h3>",width: 150}, 
+                    {field: "namaruangan", title: "<h3>Ruangan</h3>", width: 120}, 
+                    {field: "anamnesisdokter", title: "<h3>Anamnesis</h3>", width: 190},
+                    {field: "pemeriksaanumum", title: "<h3>Pemeriksaan<br> Fisik Umum</h3>", widht: 190}, 
+                    {field: "analisis", title: "<h3>Analisis</h3>", widht: 190}, 
+                    {field: "rencana", title: "<h3>Rencana</h3>", widht: 190}, 
+                    {field: "edukasi", title: "<h3>Edukasi</h3>", widht: 190}, 
                     {command: [{text: "Edit", click: editData, imageClass: "k-icon k-i-pencil"}, 
                        {text: "Hapus", click: deleteData, imageClass: "k-icon k-i-cancel"}
                       ], title: "", width: 120}
@@ -231,7 +231,7 @@ define(['initialize'], function (initialize) {
             $scope.anamnesis = {};
             function loadAnamnesis() {
                 //ManagePhp.getData("rekam-medis/get-anamnesis?noregistrasifk=" + norec_apd
-                ManagePhp.getData("rekam-medis/get-pengkajian-awal?noregistrasifk=" + norec_apd
+                ManagePhp.getData("rekam-medis/get-pengkajian-awal?nocm=" + $scope.item.noMr
                     , true).then(function (dat) {
                         let array = dat.data.data;
                         for (let i in array) {
@@ -1143,99 +1143,99 @@ define(['initialize'], function (initialize) {
                 $scope.anamnesis = {}
             }
 
-            // PERJANJIAN
-            $scope.gridPerjanjian = {
-                pageable: true,
-                columns: [
-                    {
-                        "field": "noperjanjian",
-                        "title": "No Perjanjian",
-                        "width": "100px"
-                    },
-                    {
-                        "field": "tglperjanjian",
-                        "title": "Tgl Perjanjian",
-                        "width": "100px"
-                    },
-                    {
-                        "field": "namaruangan",
-                        "title": "Poliklinik",
-                        "width": "150px"
-                    }, {
-                        "field": "namalengkap",
-                        "title": "Dokter",
-                        "width": "150px"
-                    }, {
-                        "field": "keterangan",
-                        "title": "Keterangan",
-                        "width": "200px"
-                    }
+            // // PERJANJIAN
+            // $scope.gridPerjanjian = {
+            //     pageable: true,
+            //     columns: [
+            //         {
+            //             "field": "noperjanjian",
+            //             "title": "No Perjanjian",
+            //             "width": "100px"
+            //         },
+            //         {
+            //             "field": "tglperjanjian",
+            //             "title": "Tgl Perjanjian",
+            //             "width": "100px"
+            //         },
+            //         {
+            //             "field": "namaruangan",
+            //             "title": "Poliklinik",
+            //             "width": "150px"
+            //         }, {
+            //             "field": "namalengkap",
+            //             "title": "Dokter",
+            //             "width": "150px"
+            //         }, {
+            //             "field": "keterangan",
+            //             "title": "Keterangan",
+            //             "width": "200px"
+            //         }
 
-                ]
-            }
-            $scope.perjanjian = {};
-            function loadPerjanjian() {
-                $scope.perjanjian.tglPerjanjian = new Date();
-                ManagePhp.getData("rekam-medis/get-combo" ).then(function (dat) {
-                    $scope.listRuangan = dat.data.ruangan
-                    $scope.listDokter = dat.data.dokter
-                })
-                ManagePhp.getData("rekam-medis/get-perjanjian?nocm=" + $scope.item.noMr).then(function (dat) {
-                        let array = dat.data.data;
-                        $scope.sourcePerjanjian = new kendo.data.DataSource({
-                            data: array
-                        });
-                    })
-            }
-            loadPerjanjian()
-            $scope.tambahPerjanjian = function () {
-                if ($scope.perjanjian.ruangan == undefined) {
-                    toastr.error('Ruangan masih kosong')
-                    return
-                }
-                if ($scope.perjanjian.dokter == undefined) {
-                    toastr.error('Dokter masih kosong')
-                    return
-                }
+            //     ]
+            // }
+            // $scope.perjanjian = {};
+            // function loadPerjanjian() {
+            //     $scope.perjanjian.tglPerjanjian = new Date();
+            //     ManagePhp.getData("rekam-medis/get-combo" ).then(function (dat) {
+            //         $scope.listRuangan = dat.data.ruangan
+            //         $scope.listDokter = dat.data.dokter
+            //     })
+            //     ManagePhp.getData("rekam-medis/get-perjanjian?nocm=" + $scope.item.noMr).then(function (dat) {
+            //             let array = dat.data.data;
+            //             $scope.sourcePerjanjian = new kendo.data.DataSource({
+            //                 data: array
+            //             });
+            //         })
+            // }
+            // loadPerjanjian()
+            // $scope.tambahPerjanjian = function () {
+            //     if ($scope.perjanjian.ruangan == undefined) {
+            //         toastr.error('Ruangan masih kosong')
+            //         return
+            //     }
+            //     if ($scope.perjanjian.dokter == undefined) {
+            //         toastr.error('Dokter masih kosong')
+            //         return
+            //     }
 
-                var jsonSave = {
-                    norec: $scope.perjanjian.norec !== undefined ? $scope.perjanjian.norec : '',
-                    nocm: $scope.item.noMr,
-                    objectdokterfk: $scope.perjanjian.dokter.id,
-                    tglperjanjian: moment( $scope.perjanjian.tglPerjanjian).format('YYYY-MM-DD HH:mm'),
-                    jumlahkujungan: null,
-                    keterangan: $scope.perjanjian.keteranganLainnya !== undefined ? $scope.perjanjian.keteranganLainnya : '-',
-                    objectruanganfk: $scope.perjanjian.ruangan.id,
-                }
-                ManagePhp.postData(jsonSave, 'rekam-medis/post-perjanjian/save').then(function (e) {
-                    loadPerjanjian()
-                    $scope.perjanjian = {}
-                     ManagePhp.postLogging('Pengkajian Awal', 'Norec pasienperjanjian_t',e.data.norec, 'Perjanjian').then(function (res) {
-                    })
-                });
-            };
+            //     var jsonSave = {
+            //         norec: $scope.perjanjian.norec !== undefined ? $scope.perjanjian.norec : '',
+            //         nocm: $scope.item.noMr,
+            //         objectdokterfk: $scope.perjanjian.dokter.id,
+            //         tglperjanjian: moment( $scope.perjanjian.tglPerjanjian).format('YYYY-MM-DD HH:mm'),
+            //         jumlahkujungan: null,
+            //         keterangan: $scope.perjanjian.keteranganLainnya !== undefined ? $scope.perjanjian.keteranganLainnya : '-',
+            //         objectruanganfk: $scope.perjanjian.ruangan.id,
+            //     }
+            //     ManagePhp.postData(jsonSave, 'rekam-medis/post-perjanjian/save').then(function (e) {
+            //         loadPerjanjian()
+            //         $scope.perjanjian = {}
+            //          ManagePhp.postLogging('Pengkajian Awal', 'Norec pasienperjanjian_t',e.data.norec, 'Perjanjian').then(function (res) {
+            //         })
+            //     });
+            // };
 
-            $scope.klikPerjanjian = function (data) {
-                $scope.perjanjian.ruangan = { id:data.objectruanganfk, namaruangan:data.namaruangan}
-                $scope.perjanjian.dokter = { id:data.objectdokterfk, namalengkap:data.namalengkap}
-                $scope.perjanjian.tglPerjanjian = data.tglperjanjian
-                $scope.perjanjian.norec = data.norec
-                $scope.perjanjian.keteranganLainnya = data.keterangan
-            }
-            $scope.hapusPerjanjian = function () {
-                if ($scope.dataPerjanjian == undefined) {
-                    toastr.error('Pilih data yg mau di hapus')
-                    return
-                }
-                var jsonSave = {
-                    norec: $scope.dataPerjanjian.norec,
-                }
-                ManagePhp.postData(jsonSave, 'rekam-medis/post-perjanjian/delete').then(function (e) {
-                    loadPerjanjian()
-                    $scope.perjanjian = {}
-                });
-            }
-            // END PERJANJIAN
+            // $scope.klikPerjanjian = function (data) {
+            //     $scope.perjanjian.ruangan = { id:data.objectruanganfk, namaruangan:data.namaruangan}
+            //     $scope.perjanjian.dokter = { id:data.objectdokterfk, namalengkap:data.namalengkap}
+            //     $scope.perjanjian.tglPerjanjian = data.tglperjanjian
+            //     $scope.perjanjian.norec = data.norec
+            //     $scope.perjanjian.keteranganLainnya = data.keterangan
+            // }
+            // $scope.hapusPerjanjian = function () {
+            //     if ($scope.dataPerjanjian == undefined) {
+            //         toastr.error('Pilih data yg mau di hapus')
+            //         return
+            //     }
+            //     var jsonSave = {
+            //         norec: $scope.dataPerjanjian.norec,
+            //     }
+            //     ManagePhp.postData(jsonSave, 'rekam-medis/post-perjanjian/delete').then(function (e) {
+            //         loadPerjanjian()
+            //         $scope.perjanjian = {}
+            //     });
+            // }
+            // // END PERJANJIAN
 
         }
 

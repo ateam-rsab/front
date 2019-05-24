@@ -1,0 +1,50 @@
+<c-panel item="item" header="'Pasien Perjanjian'" disabled></c-panel>
+<!-- <div class="panel-body"> -->
+    <md-content class="md-padding">
+        <div class="grid_12" style="margin-bottom:15px">
+            <div kendo-grid k-data-source="sourcePerjanjian" k-ng-model="dataPerjanjian" k-selectable="'row'" options="gridPerjanjian"></div>
+        </div>
+    </md-content>
+    <div kendo-window="popUpPasienPerjanjian" k-title="'Tambah Pasien Perjanjian'" k-width="780" k-visible="false" k-on-open="win2visible = true" k-on-close="win2visible = false">
+        <div class="panel panel-default container_12" style="padding: 0px 10px;">
+          <fieldset class="borderBox">
+            <div class="grid_12">
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="Tanggal"></label>
+                    <div class="grid_12">
+                        <input style="width: 100%" k-ng-model="item.tglPerjanjian" k-min="now" kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'"/>
+                    </div>
+                </div>
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="Poliklinik"></label>
+                    <div class="grid_12">
+                        <input ng-disabled="isDisable" style="width: 100%;" kendo-combo-box k-ng-model="item.poliklinik"
+                            k-data-text-field="'namaruangan'" k-filter="'contains'" k-data-value-field="'id'"
+                            k-auto-bind="false" k-data-source="listRuangan" k-on-change="getPegawai(item.ruangan)" />
+                    </div>
+                </div>
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="Dokter"></label>
+                    <div class="grid_12">
+                        <input ng-disabled="isDisable" style="width: 100%;" kendo-combo-box k-ng-model="item.dokter"
+                            k-data-text-field="'namalengkap'" k-filter="'contains'" k-data-value-field="'value'"
+                            k-auto-bind="false" k-data-source="listDokter" />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Keterangan"></label>
+                    <div class="grid_12">
+                        <textarea ng-disabled="isDisable" ng-model="item.keteranganLainnya" style="width: 99%; height: 80px;"></textarea>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <div class="grid_12">
+            <div class="k-edit-buttons  k-state-default pull-right" style="margin-top:10px">
+                <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="tambahPerjanjian()" ng-disabled="isDisable"><span class="k-icon k-update"></span>Simpan</button>
+                <button class="k-button  k-button-icontext" ng-click="batalInput()"><span class="k-icon k-cancel"></span>Batal</button>
+            </div>
+        </div>
+        </div>
+    </div>
+<!-- </div> -->

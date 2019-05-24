@@ -7,7 +7,7 @@
         <div class="grid_12">
             <div class="grid_2">
                 <label c-label item="item" c-label-text="Nama"></label>
-                <input id="category" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaPegawai" ng-change="searchDataPegawai()"/>
+                <input id="category" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaPegawai" ng-blur="searchDataPegawai()"/>
             </div>
             <div class="grid_2">
                 <label c-label item="item" c-label-text="Unit Kerja"></label>

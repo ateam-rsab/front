@@ -462,26 +462,26 @@ $scope.daftarpegawaiOpt = {
                 var usergemes='';
                 ManageSdmNew.getListData(`pegawai/search-pegawai?nama=${$scope.item.namaPegawai ? $scope.item.namaPegawai : ''}&idUnitKerja=${$scope.item.unitKerja ? $scope.item.unitKerja.id : ''}&idKedudukan=${$scope.item.kedudukanPegawai ? $scope.item.kedudukanPegawai.id : ''}&idStatusPegawai=${$scope.item.selectedStatusPegawai ? $scope.item.selectedStatusPegawai.id: '' }&listIdStatusPegawai=${$scope.item.selectedJenisKategoriPegawai ? $scope.item.selectedJenisKategoriPegawai.value:'' }&periode=${$scope.item.tglMasuk ? tglMasuk: '' }`, true).then(res => {
                     if(res.data.data.dataFound) {
-                        for (var x = 0; x < res.data.data.pegawai.length; x++) {
-                            var element = res.data.data.pegawai[x];
-                            // data.data.data.pegawai[x].usernames.usernames[0].namaUser
-                            for(var key in element){
-                                if(element.hasOwnProperty(key)){
-                                    if(key.indexOf("tgl") >= 0 || key.indexOf("tanggal") >= 0){
-                                        // console.log(element[key]);
-                                        if(element[key]) element[key] = moment(element[key]).format('DD-MM-YYYY');
-                                    }
-                                }
+                        // for (var x = 0; x < res.data.data.pegawai.length; x++) {
+                        //     var element = res.data.data.pegawai[x];
+                        //     // data.data.data.pegawai[x].usernames.usernames[0].namaUser
+                        //     for(var key in element){
+                        //         if(element.hasOwnProperty(key)){
+                        //             if(key.indexOf("tgl") >= 0 || key.indexOf("tanggal") >= 0){
+                        //                 // console.log(element[key]);
+                        //                 if(element[key]) element[key] = moment(element[key]).format('DD-MM-YYYY');
+                        //             }
+                        //         }
                                 
-                            }
-                            usergemes = ''
-                            for (var i = element.usernames.usernames.length - 1; i >= 0; i--) {                            
-                                usergemes = element.usernames.usernames[i].namaUser + ', ' + usergemes;
-                            }
-                            res.data.data.pegawai[x].NamaUser = usergemes;
-                            // element.tglLahir = moment(data.data.data.pegawai[x].tglLahir).format('DD-MM-YYYY');
-                            element.pencarian = "";
-                        }
+                        //     }
+                        //     usergemes = ''
+                        //     for (var i = element.usernames.usernames.length - 1; i >= 0; i--) {                            
+                        //         usergemes = element.usernames.usernames[i].namaUser + ', ' + usergemes;
+                        //     }
+                        //     res.data.data.pegawai[x].NamaUser = usergemes;
+                        //     // element.tglLahir = moment(data.data.data.pegawai[x].tglLahir).format('DD-MM-YYYY');
+                        //     element.pencarian = "";
+                        // }
                         $scope.listPegawai = res.data.data.pegawai;
                         if (res.data.data.length === 0) {
                             cacheHelper.set('listPegawai', $scope.listPegawai);
