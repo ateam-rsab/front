@@ -1,7 +1,7 @@
 define(['initialize'], function(initialize) {
     'use strict';
-    initialize.controller('ShiftKerjaCtrl', ['$q', '$rootScope', '$scope', '$state', '$timeout', 'FindSdm', 'ModelItem', 'ManageSdm', 
-        function($q, $rootScope, $scope, $state, $timeout, FindSdm, modelItem, manageSdm) {
+    initialize.controller('ShiftKerjaCtrl', ['$q', '$rootScope', '$scope', '$state', '$timeout', 'FindSdm', 'ModelItem', 'ManageSdm', 'ManageSdmNew',
+        function($q, $rootScope, $scope, $state, $timeout, FindSdm, modelItem, manageSdm, manageSdmNew) {
             $scope.item = {};
             $scope.dataVOloaded = true;
             $scope.mainGridOptions = {
@@ -39,7 +39,7 @@ define(['initialize'], function(initialize) {
             $scope.refresh = function() {
                 $scope.items = {};
                 var grid = $("#gridDaftarShift").data("kendoGrid"), listData = [];
-                manageSdm.getItem("sdm/get-list-shift-kerja", true).then(function(dat){
+                manageSdmNew.getListData("sdm/get-list-shift-kerja", true).then(function(dat){
                     var filteredData = _.filter(dat.data.data, function(o) { 
                         return o.statusEnabled == true; 
                     });
@@ -113,7 +113,7 @@ define(['initialize'], function(initialize) {
                     "jamPulang":data.jamPulang,
                     "waktuIstirahat": data.waktuIstirahat
                 }
-                manageSdm.saveData(data,"sdm/save-shift-kerja").then(function(e) {
+                manageSdmNew.saveData(data,"sdm/save-shift-kerja").then(function(e) {
                     $scope.refresh();
                 });
             }
@@ -184,7 +184,7 @@ define(['initialize'], function(initialize) {
 					"rincianKegiatan":dataItem.rincianKegiatan,	
 					"id":dataItem.id
 				};
-				manageSdm.hapusShiftKerja(dataItem.id).then(function(res){
+				manageSdmNew.deleteMasterData("sdm/delete-shift-kerja/?id=",dataItem.id).then(function(res){
 					if(res.status === 201){
 						$scope.refresh();
 					}

@@ -1311,8 +1311,8 @@ define(['initialize'], function(initialize) {
                 $scope.isEdit = true;
             
                 $scope.isSimpan = false;
-                $scope.disableSip = false;
-                $scope.disableStr = false;
+                // $scope.disableSip = false;
+                // $scope.disableStr = false;
                 $scope.isEdit = true;
             };
 

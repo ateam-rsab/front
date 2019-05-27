@@ -2,7 +2,7 @@ define([], function () {
     'use strict';
     var baseURLFrontend = 'http://172.16.99.214',
         portFrontend = '5555',
-        baseURLBackend = 'http://192.168.12.3',
+        baseURLBackend = 'http://172.16.99.195',
         portBackend = '8080';
     
     if (window.location.hostname.indexOf('rsabhk') > -1) {
@@ -48,32 +48,27 @@ define([], function () {
 
             // URL BARU
             // K3KL
-            baseUrlActionK3KL: "http://192.168.12.3:8080/jasamedika-k3kl/",
-        	baseApiPostDataK3KL: "http://192.168.12.3:8080/jasamedika-k3kl/",
+            baseUrlActionK3KL: `${baseURLBackend}:${portBackend}/jasamedika-k3kl/`,
+        	baseApiPostDataK3KL: `${baseURLBackend}:${portBackend}/jasamedika-k3kl/`,
             /* SDM */
-            baseUrlActionSDM: 'http://192.168.12.3:8080/jasamedika-sdm/',
-            baseApiPostDataSDM: "http://192.168.12.3:8080/jasamedika-sdm/",
+            baseUrlActionSDM: `${baseURLBackend}:${portBackend}/jasamedika-sdm/`,
+            baseApiPostDataSDM: `${baseURLBackend}:${portBackend}/jasamedika-sdm/`,
             /* Reporting */
-            urlReporting: 'http://192.168.12.3:8080/jasamedika-reporting/',
+            urlReporting: `${baseURLBackend}:${portBackend}/jasamedika-reporting/`,
             /* LAUNDRY */
-            baseApiPostDataLaundry: "http://192.168.12.3:8080/jasamedika-laundry/",
-            baseUrlActionLaundry: "http://192.168.12.3:8080/jasamedika-laundry/",
+            baseApiPostDataLaundry: `${baseURLBackend}:${portBackend}/jasamedika-laundry/`,
+            baseUrlActionLaundry: `${baseURLBackend}:${portBackend}/jasamedika-laundry/`,
             /* IP3RS */
-            baseUrlActionIPSRS: "http://192.168.12.3:8080/jasamedika-ipsrs/",
-            baseApiPostDataIPSRS: "http://192.168.12.3:8080/jasamedika-ipsrs/",
+            baseUrlActionIPSRS: `${baseURLBackend}:${portBackend}/jasamedika-ipsrs/`,
+            baseApiPostDataIPSRS: `${baseURLBackend}:${portBackend}/jasamedika-ipsrs/`,
             urlSocket: `${baseURLFrontend}:${portFrontend}`,
 
             urlRoute_SDM: `${baseURLFrontend}:${portFrontend}/app/data/GetRoutingSDM`,
 
-            urlPrinting: 'http://192.168.12.3:8080/jasamedika-web/',
-            baseUrlListData: "http://192.168.12.3:8080/jasamedika-web/service/list-generic/?view=",
-            baseApiUrlData: "http://192.168.12.3:8080/jasamedika-web/",
-            baseApiPostData: "http://192.168.12.3:8080/jasamedika-web/",
-            
-			// urlPrinting: 'https://smart.rsabhk.co.id:2222/jasamedika-web/',
-			// baseUrlListData: "https://smart.rsabhk.co.id:2222/jasamedika-web/service/list-generic/?view=",
-			// baseApiUrlData: "http://smart.rsabhk.co.id:2222/jasamedika-web/",
-            // baseApiPostData: "http://smart.rsabhk.co.id:2222/jasamedika-web/",
+            urlPrinting: `${baseURLBackend}:${portBackend}/jasamedika-web/`,
+            baseUrlListData: `${baseURLBackend}:${portBackend}/jasamedika-web/service/list-generic/?view=`,
+            baseApiUrlData: `${baseURLBackend}:${portBackend}/jasamedika-web/`,
+            baseApiPostData: `${baseURLBackend}:${portBackend}/jasamedika-web/`,
 
             baseUrlData: `${baseURLFrontend}:${portFrontend}/app/data/`,
 
@@ -90,16 +85,12 @@ define([], function () {
             urlRoute: `${baseURLFrontend}:${portFrontend}/app/data/GetRouting`,
 
             urlRoute_Akuntansi: `${baseURLFrontend}:${portFrontend}/app/data/GetRoutingAkuntansi`,
-            //urlDataGeneric_Akuntansi: 'http://172.16.99.225:8000/service/list-generic?view=',
-			urlDataGeneric_Akuntansi: 'http://smart.rsasbhk.co.id/simrs_harkit/service/list-generic?view=',
+			urlDataGeneric_Akuntansi: 'http://192.168.12.3:2222/simrs_harkit/service/list-generic?view=',
             urlDataTableMaster_Akuntansi: 'http://192.168.12.3:2222/simrs_harkit/service/master/',
             urlDataTableTransaksi_Akuntansi: 'http://192.168.12.3:2222/simrs_harkit/service/transaksi/',
-            baseApiPostData_Akuntansi: 'http://192.168.12.3:8080/simrs_harkit/service/',
+            baseApiPostData_Akuntansi: 'http://192.168.12.3:2222/simrs_harkit/service/',
 
-            urlDataMaster: 'http://192.168.12.3:8080/jasamedika-web/generated_master/',
-			// urlDataMaster: 'http://smart.rsabhk.co.id:2222/jasamedika-web/generated_master/',
-
-            // rabbitMQHost: 'amqp://rsab:rsab@172.16.99.225'
+            urlDataMaster: `${baseURLBackend}:${portBackend}/jasamedika-web/generated_master/`
 
 
         };

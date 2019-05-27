@@ -32,7 +32,7 @@
 	"git": "^0.1.5",
     "grunt": "^1.0.1",
     "grunt-sass": "^1.2.0",
-    "gulp-sass": "^2.3.2",
+    "gulp-sass": "^3.1.0",
     "hashmap": "^2.1.0",
     "http-auth": "^2.3.3",
     "http-server": "^0.6.1",

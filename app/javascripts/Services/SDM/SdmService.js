@@ -20,6 +20,11 @@ define(['Configuration'], function(config) {
                     url: baseApiPostDataSDM + urlPost + noRec
                 }, {noRec: noRec})
             },
+            deleteMasterData: function(urlPost, idMaster){
+                return r.post({
+                    url: baseApiPostDataSDM + urlPost + idMaster
+                }, {id:idMaster})
+            },
             getListData: function(urlGet) {
                 return r.get({
                     url: baseUrlActionSDM + urlGet

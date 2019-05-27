@@ -426,6 +426,8 @@ define(['initialize'], function(initialize) {
                 $scope.isRouteLoading = true;
                 ManageSdmNew.getListData($scope.paramURl).then(function(dat) {
 
+                    $scope.isRouteLoading = false;
+
                     var belumDiInputJadwal=null;
                     var jmlBelumDiinputJadwal=0;
                    
