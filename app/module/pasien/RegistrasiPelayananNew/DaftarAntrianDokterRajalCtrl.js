@@ -132,7 +132,7 @@ define(['initialize'], function(initialize) {
                     }
                     if(res.length > 0){
                         $scope.showNotif = true
-                        $scope.lengthKonsul =res.length  
+                        $scope.lengthKonsul =res.length;
                     }else
                          $scope.showNotif = false
                                  
@@ -1460,7 +1460,7 @@ define(['initialize'], function(initialize) {
                                 else
                                     result[i].status = '-'
                             }
-                        }
+                    }
                         $scope.sourceKonsul = new kendo.data.DataSource({
                             data: result,
                             pageSize: 20,
@@ -1475,19 +1475,25 @@ define(['initialize'], function(initialize) {
                 scrollable: true,
                 columns: [
                     // { field: "rowNumber", title: "#", width: 40, width: 40, attributes: { style: "text-align:right; padding-right: 15px;"}, hideMe: true},
-                    { field: "no", title: "No", width: 40 },
-                    { field: "noregistrasi", title: "No Registrasi", width: 100 },
-                    { field: "nocm", title: "No RM", width: 80 },
-                    { field: "namapasien", title: "Nama Pasien", width: 150},
-                    { field: "tglorder", title: "Tanggal", width: 120 },
-                    { field: "ruanganasal", title: "Ruangan Asal", width: 120 },
-                    { field: "ruangantujuan", title: "Ruangan Tujuan", width: 150 },
-                    { field: "pengonsul", title: "Pengonsul", width: 120 },
-                    { field: "keteranganorder", title: "Keterangan", width: 120 },
-                    { field: "status", title: "Status", width: 120 },
+                    { field: "no", title: "No", width: 40, headerAttributes: { style: "text-align : center" }},
+                    { field: "noregistrasi", title: "No Registrasi", width: 100, headerAttributes: { style: "text-align : center" }},
+                    { field: "nocm", title: "No RM", width: 80, headerAttributes: { style: "text-align : center" }},
+                    { field: "namapasien", title: "Nama Pasien", width: 150, headerAttributes: { style: "text-align : center" }},
+                    { field: "tglorder", title: "Tanggal", width: 120, headerAttributes: { style: "text-align : center" }},
+                    { field: "ruanganasal", title: "Ruangan Asal", width: 120, headerAttributes: { style: "text-align : center" }},
+                    { field: "ruangantujuan", title: "Ruangan Tujuan", width: 150, headerAttributes: { style: "text-align : center" } },
+                    { field: "pengonsul", title: "Dokter<br> Pengonsul", width: 120, headerAttributes: { style: "text-align : center" }},
+                    // { field: "keteranganorder", title: "Keterangan", width: 120, headerAttributes: { style: "text-align : center" }},
+                    { field: "status", title: "Status", width: 120, headerAttributes: { style: "text-align : center" }},
                     { command: [ { name: "edit", text: "Verifikasi", click: verif }], title: "&nbsp;", width: 120 }
                 ],
             };
+
+            $scope.tutup = function (data) {
+                if(data == 1) {
+                    $scope.winDescription.close();
+                }
+            }
 
             $scope.verifikasiKonsultasiDokter = function () {
                 var length = $scope.sourceKonsul._data.length + 1;
@@ -1499,24 +1505,32 @@ define(['initialize'], function(initialize) {
                     "dokterfk": $scope.pegawaiFkKonsultasi,
                     "objectruangantujuanfk": $scope.objectRuanganFkTujuanKonsultasi,
                     "objectruanganasalfk": $scope.objectRuanganFkKonsultasi,
-                    "kesan": $scope.item.kesan
+                    "keterangankeperluan": $scope.item.kesan
                 }
-                console.log(dataKonsul)
+                console.log(dataKonsul);
+                // $scope.winDescription.close();
+                // $scope.winKonsul.close();
                 ManagePhp.postData2('rekam-medis/save-konsul-from-order',dataKonsul).then(function(e){
-                    loadGridKonsul()
+                    $scope.winDescription.close();
+                    $scope.winKonsul.close();
+                    loadGridKonsul();
                     loadData();
-                    loadKonsul()
+                    loadKonsul();
                     $scope.saveLogKonsul();
-                })
+                    
+                });
             }
 
             function verif(e){
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-
                 if(dataItem.status == 'Selesai'){
                     $scope.isVerify = true;
+                } else {
+                    $scope.isVerify = false;
                 }
+                $scope.item.dokterPengonsul = dataItem.pengonsul;
+                $scope.item.keteranganOrder = dataItem.keteranganorder;
                 $scope.statusKonsultasi = dataItem.status;
                 $scope.noRecKonsultasi = dataItem.norec;
                 $scope.noRecPdKonsultasi = dataItem.norec_pd;
@@ -1524,10 +1538,9 @@ define(['initialize'], function(initialize) {
                 $scope.objectRuanganFkTujuanKonsultasi = dataItem.objectruangantujuanfk;
                 $scope.objectRuanganFkKonsultasi = dataItem.objectruanganfk;
                 $scope.winDescription.center().open();
-            
             }
             //#save Log Konsul
-            $scope.saveLogKonsul=function(){
+            $scope.saveLogKonsul = function(){
                manageTataRekening.getDataTableTransaksi("logging/save-log-konsul?norec_pd="
                 + $scope.item.norec_pd
                 + "&dokterfk="

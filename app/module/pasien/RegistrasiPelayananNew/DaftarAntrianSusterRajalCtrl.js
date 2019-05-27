@@ -33,63 +33,68 @@ define(['initialize'], function(initialize) {
             }
 
             function loadKonsul(){
-                ManagePhp.getData("rekam-medis/get-order-konsul?dokterid=" +   $scope.dataLogin.id).then(function(e){
+                ManagePhp.getData("rekam-medis/get-order-konsul").then(function(e){
                   var res = e.data.data
-                  for (var i = res.length - 1; i >= 0; i--) {
-                     if( res[i].norec_apd != null)
-                          res.splice([i],1)
-                  }
-                  if(res.length > 0){
-                      $scope.showNotif = true
-                      $scope.lengthKonsul =res.length  
-                  }else
-                       $scope.showNotif = false
-                               
+                //   for (var i = res.length - 1; i >= 0; i--) {
+                //     if( res[i].norec_apd != null)
+                //           res.splice([i],1)
+                //     }
+                //     if(res.length > 0){
+                //       $scope.showNotif = true
+                //     //   $scope.lengthKonsul = res.length;
+                //     } else {
+                //        $scope.showNotif = false;
+                //     }
+                    $scope.sourceKonsul = new kendo.data.DataSource({
+                        data: res,
+                        pageSize: 20,
+                    });
                 })
             }
 
             $scope.konsul = function(){
-                loadGridKonsul();
+                loadKonsul();
                 $scope.winKonsul.center().open();
             }
 
-            function loadGridKonsul(){
-                ManagePhp.getData("rekam-medis/get-order-konsul?dokterid=" + $scope.dataLogin.id).then(function(e){
-                    var result = e.data.data
-                    if(result.length > 0){
-                        $scope.item.dokterTujuan = result[0].namalengkap
-                        for (var i = 0; i < result.length; i++) {
-                            result[i].no = i + 1
-                            if(result[i].norec_apd != null)
-                                result[i].status = 'Selesai'
-                            else
-                                result[i].status = '-'
-                        }
-                    }
-                    $scope.sourceKonsul = new kendo.data.DataSource({
-                        data: result,
-                        pageSize: 20,
-                    });
-                }, (error) => {
-                    throw error;
-                })
-            }
+            // function loadGridKonsul(){
+            //     ManagePhp.getData("rekam-medis/get-order-konsul").then(function(e){
+            //         var result = e.data.data
+            //         if(result.length > 0){
+            //             $scope.item.dokterTujuan = result[0].namalengkap
+            //             for (var i = 0; i < result.length; i++) {
+            //                 result[i].no = i + 1
+            //                 if(result[i].norec_apd != null)
+            //                     result[i].status = 'Selesai'
+            //                 else
+            //                     result[i].status = '-'
+            //             }
+            //         }
+            //         $scope.sourceKonsul = new kendo.data.DataSource({
+            //             data: result,
+            //             pageSize: 20,
+            //         });
+            //     }, (error) => {
+            //         throw error;
+            //     })
+            // }
 
             $scope.konsulOpt = {
                 pageable: true,
                 scrollable: true,
                 columns: [
                     // { field: "rowNumber", title: "#", width: 40, width: 40, attributes: { style: "text-align:right; padding-right: 15px;"}, hideMe: true},
-                    { field: "no", title: "No", width: 40 },
-                    { field: "noregistrasi", title: "No Registrasi", width: 100 },
-                    { field: "nocm", title: "No RM", width: 80 },
-                    { field: "tglorder", title: "Tanggal", width: 120 },
-                    { field: "ruanganasal", title: "Ruangan Asal", width: 120 },
-                    { field: "ruangantujuan", title: "Ruangan Tujuan", width: 150 },
-                    { field: "pengonsul", title: "Pengonsul", width: 120 },
-                    { field: "keteranganorder", title: "Keterangan", width: 120 },
-                    { field: "status", title: "Status", width: 120 },
-                    { command: [ { name: "edit", text: "Verifikasi", click: verif }], title: "&nbsp;", width: 120 }
+                    // { field: "no", title: "No", width: 40, headerAttributes: { style: "text-align : center" }},
+                    { field: "noregistrasi", title: "No Registrasi", width: 100, headerAttributes: { style: "text-align : center" }},
+                    { field: "nocm", title: "No RM", width: 80, headerAttributes: { style: "text-align : center" }},
+                    { field: "namapasien", title: "Nama Pasien", width: 150, headerAttributes: { style: "text-align : center" }},
+                    { field: "tglorder", title: "Tanggal", width: 120, headerAttributes: { style: "text-align : center" }},
+                    { field: "ruanganasal", title: "Ruangan Asal", width: 120, headerAttributes: { style: "text-align : center" }},
+                    { field: "ruangantujuan", title: "Ruangan Tujuan", width: 150, headerAttributes: { style: "text-align : center" } },
+                    { field: "pengonsul", title: "Dokter<br> Pengonsul", width: 120, headerAttributes: { style: "text-align : center" }},
+                    // { field: "keteranganorder", title: "Keterangan", width: 120, headerAttributes: { style: "text-align : center" }},
+                    // { field: "status", title: "Status", width: 120, headerAttributes: { style: "text-align : center" }},
+                    { command: [ { name: "Edit", text: "Detail", click: verif }], title: "&nbsp;", width: 120, attributes: { style: "text-align:center;valign=middle" }}
                 ],
             };
 
@@ -116,6 +121,12 @@ define(['initialize'], function(initialize) {
                 // })
             }
 
+            $scope.tutup = function (data) {
+                if(data == 1) {
+                    $scope.popUpHasilKonsul.close();
+                }
+            }
+
             function verif(e){
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
@@ -123,13 +134,17 @@ define(['initialize'], function(initialize) {
                 if(dataItem.status == 'Selesai'){
                     $scope.isVerify = true;
                 }
+                $scope.item.dokterPengonsul = dataItem.pengonsul;
+                $scope.item.dokterTarget = dataItem.namalengkap
+                $scope.item.keteranganOrder = dataItem.keteranganorder;
+                $scope.item.keteranganKeperluan = dataItem.keterangankeperluan
                 $scope.statusKonsultasi = dataItem.status;
                 $scope.noRecKonsultasi = dataItem.norec;
                 $scope.noRecPdKonsultasi = dataItem.norec_pd;
                 $scope.pegawaiFkKonsultasi = dataItem.pegawaifk;
                 $scope.objectRuanganFkTujuanKonsultasi = dataItem.objectruangantujuanfk;
                 $scope.objectRuanganFkKonsultasi = dataItem.objectruanganfk;
-                $scope.winDescription.center().open();
+                $scope.popUpHasilKonsul.center().open();
             
             }
 

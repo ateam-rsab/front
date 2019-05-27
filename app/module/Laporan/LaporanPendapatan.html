@@ -42,6 +42,11 @@
             <input style="width: 100%;" kendo-combo-box k-ng-model="item.TipeDokter" k-data-text-field="'tipedokter'" k-data-value-field="'id'"
                 k-filter="'contains'" k-auto-bind="false" k-data-source="listTipeDokter" />
         </div>
+        <div class="grid_2">
+            <label c-label item="item" c-label-text="Kelas"></label>
+            <input style="width: 100%;" kendo-combo-box k-ng-model="item.kelas" k-data-text-field="'tipedokter'" k-data-value-field="'id'"
+                k-filter="'contains'" k-auto-bind="false" k-data-source="listOfKelas" />
+        </div>
         <!-- Button Search -->
        <!--  <div class="grid_1">
             <div class="grid_12">

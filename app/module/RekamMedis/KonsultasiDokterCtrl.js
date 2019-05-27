@@ -8,6 +8,11 @@ define(['initialize'], function (initialize) {
                 tglresume: $scope.now
             } // set defined object
             $scope.filter = {}
+            $scope.listOfStatusKonsult = [
+                { name: 'Alih Rawat', id: 1},
+                { name: 'Rawat Bersama', id: 2},
+                { name: 'Konsultasi Sewaktu', id: 3}
+            ]
             $scope.pegawaiLogin = JSON.parse(localStorage.getItem('pegawai'))
             var cookie = document.cookie.split(';')
             var kelompokUser = cookie[0].split('=')
@@ -33,7 +38,15 @@ define(['initialize'], function (initialize) {
                     { field: "ruangantujuan", title: "Ruangan Tujuan", width: 150 },
                     { field: "namalengkap", title: "Dokter", width: 120 },
                     { field: "keteranganorder", title: "Keterangan", width: 120 },
-                    { command: [{ imageClass: "k-icon k-delete", text: "Hapus", click: hapus }, { name: "edit", text: "Edit", click: editData }], title: "&nbsp;", width: 120 }
+                    { command: [
+                        { imageClass: "k-icon k-delete", text: "Hapus", click: hapus },
+                        { text: "Edit", click: editData },
+                        { name:"Detail", text: "Hasil Konsul", click: hasilKonsult },
+                    ], title: "&nbsp;", width: 170, 
+                        attributes: {
+                            style: "text-align:center;valign=middle"
+                        }, 
+                    }
                 ],
             };
             $scope.inputBaru = function () {
@@ -47,6 +60,18 @@ define(['initialize'], function (initialize) {
                 $scope.popUp.close()
             }
             init();
+
+            function hasilKonsult(e) {  
+                e.preventDefault();
+                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                
+                $scope.item.hasilKonsultasi = dataItem.keterangankeperluan;
+                $scope.popUpHasilKonsul.center().open();
+            }
+
+            $scope.tutupDetail = function () {  
+                $scope.popUpHasilKonsul.close();
+            }
 
             function hapus(e) {
                 e.preventDefault();
@@ -124,7 +149,6 @@ define(['initialize'], function (initialize) {
 
             };
 
-
             $scope.Save = function (data) {
                 if ($scope.item.ruanganTujuan == undefined) {
                     toastr.error("Pilih Ruangan Tujuan terlebih dahulu!")
@@ -135,20 +159,26 @@ define(['initialize'], function (initialize) {
                     return
                 }
                 var objSave = {
+                    jeniskonsultasi: $scope.item.jenisKonsultasi,
                     norec_so: $scope.item.norec != undefined ? $scope.item.norec : '',
                     norec_pd: $scope.norecPd,
                     pegawaifk: $scope.item.dokter.id,
                     objectruanganasalfk: $scope.item.ruanganAsal.id,
                     objectruangantujuanfk: $scope.item.ruanganTujuan.id,
-                    keterangan: $scope.item.keterangan != undefined ? $scope.item.keterangan : '',
+                    keterangan: $scope.item.ikhtisarKlinik ? $scope.item.ikhtisarKlinik : '',
+                    keteranganlainnya: $scope.item.pasienDiagnosaKerja ? $scope.item.pasienDiagnosaKerja : '',
+                    keteranganlainnyaquo: $scope.item.terapiDanTindakan ? $scope.item.terapiDanTindakan : '',
                 }
+                // console.log(objSave);
                 ManagePhp.postData(objSave, 'rekam-medis/post-konsultasi').then(function (e) {
                     clear()
                     init();
+                    $scope.popUp.close();
                     ManagePhp.postLogging('Konsultasi', 'Norec strukorder_t',e.data.strukorder.norec, 'Menu Dokter').then(function (res) {
                     })
                 });
             };
+            
             function clear() {
                 delete $scope.item.norec
                 delete $scope.item.ruanganTujuan
