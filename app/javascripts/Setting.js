@@ -1,6 +1,6 @@
 define([], function () {
     'use strict';
-    var baseURLFrontend = 'http://172.16.99.80',
+    var baseURLFrontend = 'http://172.16.99.214',
         portFrontend = '5555',
         baseURLBackend = 'http://192.168.12.3',
         portBackend = '8080';
@@ -78,14 +78,15 @@ define([], function () {
             baseUrlData: `${baseURLFrontend}:${portFrontend}/app/data/`,
 
             baseUrlAction: "http://192.168.12.3:8080/jasamedika-web/",
+            /**Login Java */
             baseUrlLogin: "http://192.168.12.3:8080/jasamedika-web/auth/sign-in",
             baseUrlLogout: "http://192.168.12.3:8080/jasamedika-web/auth/sign-out",
 
-			// baseUrlAction: "https://smart.rsabhk.co.id:2222/jasamedika-web/",
-			// baseUrlLogin: "http://172.16.99.225:8000/service/auth/sign-in",
-            // baseUrlLogout: "http://172.16.99.225:8000/service/auth/ssign-out",
-
+            /**Login PHP */
+            // baseUrlLogin: "http://192.168.12.3:2222/simrs_harkit/service/auth/sign-in",
+            // baseUrlLogout: "http://192.168.12.3:2222/simrs_harkit/service/auth/sign-out",
             baseBridiging: "http://smart.rsabhk.co.id/Bridging/",
+            
             urlRoute: `${baseURLFrontend}:${portFrontend}/app/data/GetRouting`,
 
             urlRoute_Akuntansi: `${baseURLFrontend}:${portFrontend}/app/data/GetRoutingAkuntansi`,
