@@ -1,8 +1,8 @@
 define([], function () {
     'use strict';
-    var baseURLFrontend = 'http://172.16.99.214',
+    var baseURLFrontend = 'http://172.16.99.200',
         portFrontend = '5555',
-        baseURLBackend = 'http://172.16.99.195',
+        baseURLBackend = 'http://172.16.99.200',
         portBackend = '8080';
     
     if (window.location.hostname.indexOf('rsabhk') > -1) {
@@ -72,10 +72,10 @@ define([], function () {
 
             baseUrlData: `${baseURLFrontend}:${portFrontend}/app/data/`,
 
-            baseUrlAction: "http://192.168.12.3:8080/jasamedika-web/",
+            baseUrlAction: `${baseURLFrontend}:${portFrontend}/jasamedika-web/`,
             /**Login Java */
-            baseUrlLogin: "http://192.168.12.3:8080/jasamedika-web/auth/sign-in",
-            baseUrlLogout: "http://192.168.12.3:8080/jasamedika-web/auth/sign-out",
+            baseUrlLogin: `${baseURLFrontend}:${portFrontend}/jasamedika-web/auth/sign-in`,
+            baseUrlLogout: `${baseURLFrontend}:${portFrontend}/jasamedika-web/auth/sign-out`,
 
             /**Login PHP */
             // baseUrlLogin: "http://192.168.12.3:2222/simrs_harkit/service/auth/sign-in",
@@ -85,10 +85,10 @@ define([], function () {
             urlRoute: `${baseURLFrontend}:${portFrontend}/app/data/GetRouting`,
 
             urlRoute_Akuntansi: `${baseURLFrontend}:${portFrontend}/app/data/GetRoutingAkuntansi`,
-			urlDataGeneric_Akuntansi: 'http://192.168.12.3:2222/simrs_harkit/service/list-generic?view=',
-            urlDataTableMaster_Akuntansi: 'http://192.168.12.3:2222/simrs_harkit/service/master/',
-            urlDataTableTransaksi_Akuntansi: 'http://192.168.12.3:2222/simrs_harkit/service/transaksi/',
-            baseApiPostData_Akuntansi: 'http://192.168.12.3:2222/simrs_harkit/service/',
+			urlDataGeneric_Akuntansi: 'https://smart.rsabhk.co.id:2222/simrs_harkit/service/list-generic?view=',
+            urlDataTableMaster_Akuntansi: 'https://smart.rsabhk.co.id:2222/simrs_harkit/service/master/',
+            urlDataTableTransaksi_Akuntansi: 'https://smart.rsabhk.co.id:2222/simrs_harkit/service/transaksi/',
+            baseApiPostData_Akuntansi: 'https://smart.rsabhk.co.id:2222/simrs_harkit/service/',
 
             urlDataMaster: `${baseURLBackend}:${portBackend}/jasamedika-web/generated_master/`
 
