@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('KonsultasiDokterCtrl', ['$q', '$scope', '$state', 'ManagePhp', '$timeout', 'CacheHelper',
-        function ($q, $scope, $state, ManagePhp, $timeout, cacheHelper) {
+    initialize.controller('KonsultasiDokterCtrl', ['$q', '$scope', '$state', 'ManagePhp', '$timeout', 'CacheHelper', '$mdDialog',
+        function ($q, $scope, $state, ManagePhp, $timeout, cacheHelper, $mdDialog) {
             $scope.isRouteLoading = false;
             $scope.now = new Date()
             $scope.item = {
@@ -32,23 +32,37 @@ define(['initialize'], function (initialize) {
                 scrollable: true,
                 columns: [
                     // { field: "rowNumber", title: "#", width: 40, width: 40, attributes: { style: "text-align:right; padding-right: 15px;"}, hideMe: true},
-                    { field: "no", title: "No", width: 40 },
-                    { field: "tglorder", title: "Tanggal", width: 120 },
-                    { field: "ruanganasal", title: "Ruangan Asal", width: 120 },
-                    { field: "ruangantujuan", title: "Ruangan Tujuan", width: 150 },
-                    { field: "namalengkap", title: "Dokter", width: 120 },
-                    { field: "keteranganorder", title: "Keterangan", width: 120 },
+                    { field: "no", title: "<h3>No</h3>", width: 40 },
+                    { field: "tglorder", title: "<h3>Tanggal</h3>", width: 120 },
+                    { field: "ruanganasal", title: "<h3>Ruangan Asal</h3>", width: 120 },
+                    { field: "ruangantujuan", title: "<h3>Ruangan Tujuan</h3>", width: 150 },
+                    { field: "namalengkap", title: "<h3>Dokter Konsultasi</h3>", width: 120 },
+                    // { field: "keteranganorder", title: "Keterangan", width: 120 },
                     { command: [
                         { imageClass: "k-icon k-delete", text: "Hapus", click: hapus },
                         { text: "Edit", click: editData },
-                        { name:"Detail", text: "Hasil Konsul", click: hasilKonsult },
+                        // { name: "Verifikasi", text: "Hasil Konsul", click: hasilKonsult },
+                        { name: "Detail", text: "Detail", click: showDetail },
                     ], title: "&nbsp;", width: 170, 
                         attributes: {
                             style: "text-align:center;valign=middle"
-                        }, 
+                        }
                     }
                 ],
             };
+
+            function showDetail(e) {
+                e.preventDefault();
+                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                console.log(dataItem);
+                $scope.item = dataItem;
+                if($scope.item.keterangankeperluan === null || $scope.item.keterangankeperluan === '') {
+                    $scope.item.keterangankeperluan = 'Belum ada hasil Konsultasi';
+                }
+                console.log($scope.item.keterangankeperluan);
+                $scope.popUpDetail.center().open();
+            }
+
             $scope.inputBaru = function () {
                 if (kelompokUser[1] == 'dokter') {
                     $scope.item.namadokter = { id: $scope.pegawaiLogin.id, namalengkap: $scope.pegawaiLogin.namaLengkap }
@@ -56,9 +70,11 @@ define(['initialize'], function (initialize) {
                 clear()
                 $scope.popUp.center().open()
             }
+
             $scope.batal = function () {
                 $scope.popUp.close()
             }
+
             init();
 
             function hasilKonsult(e) {  
@@ -69,33 +85,42 @@ define(['initialize'], function (initialize) {
                 $scope.popUpHasilKonsul.center().open();
             }
 
-            $scope.tutupDetail = function () {  
-                $scope.popUpHasilKonsul.close();
+            $scope.tutupDetail = function (data) {
+                if(data === 1) {
+                    $scope.popUpHasilKonsul.close();
+                } else {
+                    $scope.popUpDetail.close();
+                }
+                
             }
 
             function hapus(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-
-                if (!dataItem) {
-                    toastr.error("Data Tidak Ditemukan");
-                    return
-                }
                 var itemDelete = {
                     "norec": dataItem.norec
                 }
-
-                ManagePhp.postData(itemDelete, 'rekam-medis/disabled-konsultasi').then(function (e) {
-                    if (e.status == 201) {
-                        init()
-                    }
-                })
-
+                var confirm = $mdDialog.confirm()
+                    .title('Apakah anda yakin akan menghapus data Konsultasi?')
+                    .textContent(`Anda akan menghapus data Konsultasi`)
+                    .ariaLabel('Lucky day')
+                    .targetEvent(e)
+                    .ok('Ya')
+                    .cancel('Tidak');
+                $mdDialog.show(confirm).then(function() {
+                    ManagePhp.postData(itemDelete, 'rekam-medis/disabled-konsultasi').then(function (e) {
+                        if (e.status == 201) {
+                            init()
+                        }
+                    });
+                    console.warn('Masuk sini pak eko');
+                }, function() {
+                    console.error('Tidak jadi hapus');
+                });
             }
             function editData(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-
                 if (!dataItem) {
                     toastr.error("Data Tidak Ditemukan");
                     return
@@ -108,12 +133,16 @@ define(['initialize'], function (initialize) {
                     toastr.warning('data tidak bisa di edit')
                     return
                 }
+                $scope.item.jenisKonsultasi = dataItem.jeniskonsultasi;
+                $scope.item.pasienDiagnosaKerja = dataItem.diagnosakerja;
+                $scope.item.ikhtisarKlinik = dataItem.keteranganorder;
+                $scope.item.terapiDanTindakan = dataItem.terapi;
                 $scope.item.norec = dataItem.norec
                 $scope.item.ruanganAsal = { id: dataItem.objectruanganfk, namaruangan: dataItem.ruanganasal }
                 $scope.item.ruanganTujuan = { id: dataItem.objectruangantujuanfk, namaruangan: dataItem.ruangantujuan }
                 $scope.item.dokter = { id: dataItem.pegawaifk, namalengkap: dataItem.namalengkap }
                 $scope.item.keterangan = dataItem.keteranganorder
-                $scope.popUp.center().open()
+                $scope.popUp.center().open();
 
             }
             function init() {
@@ -166,8 +195,8 @@ define(['initialize'], function (initialize) {
                     objectruanganasalfk: $scope.item.ruanganAsal.id,
                     objectruangantujuanfk: $scope.item.ruanganTujuan.id,
                     keterangan: $scope.item.ikhtisarKlinik ? $scope.item.ikhtisarKlinik : '',
-                    keteranganlainnya: $scope.item.pasienDiagnosaKerja ? $scope.item.pasienDiagnosaKerja : '',
-                    keteranganlainnyaquo: $scope.item.terapiDanTindakan ? $scope.item.terapiDanTindakan : '',
+                    diagnosakerja: $scope.item.pasienDiagnosaKerja ? $scope.item.pasienDiagnosaKerja : '',
+                    terapi: $scope.item.terapiDanTindakan ? $scope.item.terapiDanTindakan : '',
                 }
                 // console.log(objSave);
                 ManagePhp.postData(objSave, 'rekam-medis/post-konsultasi').then(function (e) {
@@ -178,7 +207,7 @@ define(['initialize'], function (initialize) {
                     })
                 });
             };
-            
+
             function clear() {
                 delete $scope.item.norec
                 delete $scope.item.ruanganTujuan

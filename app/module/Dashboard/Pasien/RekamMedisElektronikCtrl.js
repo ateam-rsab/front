@@ -113,7 +113,7 @@ define(['initialize'], function (initialize) {
                 toolbar: [{
                     name: "create", text: "Input Baru",
                     template: '<button ng-click="inputBaru()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah Pengkajian Awal</button>'
-                },],
+                }],
                 pageable: true,
                 scrollable: true,
                 columns: [
@@ -127,7 +127,7 @@ define(['initialize'], function (initialize) {
                     {field: "edukasi", title: "<h3>Edukasi</h3>", widht: 190}, 
                     {command: [{text: "Edit", click: editData, imageClass: "k-icon k-i-pencil"}, 
                        {text: "Hapus", click: deleteData, imageClass: "k-icon k-i-cancel"}
-                      ], title: "", width: 120}
+                    ], title: "", width: 160, attributes: { style: "text-align:center;valign=middle"}}
                 ]
             };
 
@@ -238,7 +238,14 @@ define(['initialize'], function (initialize) {
 
                         }
                         $scope.sourceAnamnesis = new kendo.data.DataSource({
-                            data: array
+                            data: array,
+                            pageSize: 10,
+                            schema: {
+                                model: {
+                                    fields: {
+                                    }
+                                }
+                            }
                         });
                     })
             }

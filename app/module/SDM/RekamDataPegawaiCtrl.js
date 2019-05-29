@@ -238,18 +238,27 @@ define(['initialize'], function(initialize) {
             }
 
             function getDataPegawai(id) {
+                var now = new Date();
                 if ($state.params.idPegawai) { // Check parameter noRec pegawai in the url
                     $scope.isMenuDataPegawai = true; // show tombol hapus
                     $scope.isRouteLoading = true; // show loading icon
                     $q.all([ManageSdmNew.getListData("pegawai/get-pegawai-by-customs/" + id)]).then(function(res) {
                         if (res[0].statResponse) {
                             // var dataLoad = res[0].data.data;
-                            
+                            // $scope.item.tglKeluar = res[0].data.data.tglPensiun
                             // console.log(dataLoad);
                             console.log(res[0].data.data);
                             $scope.item = res[0].data.data;
+                            $scope.item.tglKeluar = res[0].data.data.tglPensiun
                             $scope.disableSip = true;
                             $scope.disableStr = true;
+                            if(dateHelper.toTimeStamp(res[0].data.data.tglPensiun) === dateHelper.toTimeStamp(now) ) {
+                                toastr.warning('Pegawai ini akan pensiun')
+                            }
+                            if(dateHelper.toTimeStamp(res[0].data.data.tglPensiun) < dateHelper.toTimeStamp(now) ) {
+                                toastr.warning('Pegawai ini akan pensiun')
+                            }
+                            console.log($scope.item.tglLahir);
                             // if(res[0].data.data.noSip) {
                             //     $scope.isCheckedSip = true;
                             // }
@@ -548,6 +557,9 @@ define(['initialize'], function(initialize) {
                     ManageSdmNew.getListData("pegawai/get-tgl-pensiun/" + periode + "/" + newVal[0]).then(function(res) {
                         $scope.item.pensiun = res.data.data.usiaPensiun;
                         $scope.item.tglPensiun = dateHelper.formatDate(res.data.data.tglPensiun, 'DD-MM-YYYY');
+                        if($scope.item.tglKeluar == null || $scope.item.tglKeluar == undefined) {
+                            $scope.item.tglKeluar = $scope.item.tglPensiun
+                        }
                         // getModel($scope.item);
                     })
                 }

@@ -105,7 +105,25 @@
                             <div class="grid_4">
                                 <input style="width: 100%;" kendo-combo-box k-ng-model="item.statusRhesus" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-data-source="listOfGolonganRhesus" ng-disabled="isSimpan"/>
                             </div>
-                        </div>                                           
+                        </div>
+                        <!-- Email -->
+                        <div class="grid_12">
+                            <div class="grid_4" style="margin: 10px 0 0 0;">
+                                <label><b>Email</b></label>
+                            </div>
+                            <div class="grid_8">
+                                <input c-text-box type="input" placeholder="Email" filter="'varchar'" class="k-textbox" ng-model="item.email" ng-disabled="isSimpan"/>
+                            </div>
+                        </div>
+                        <!-- Email Lainnya -->
+                        <div class="grid_12">
+                            <div class="grid_4" style="margin: 10px 0 0 0;">
+                                <label><b>Email Lainnya</b></label>
+                            </div>
+                            <div class="grid_8">
+                                <input c-text-box type="input" placeholder="Email Lainnya" filter="'varchar'" class="k-textbox" ng-model="item.emailAlternatif" ng-disabled="isSimpan"/>
+                            </div>
+                        </div>
                         <!-- Kualifikasi Jurasan -->
                         <!-- <div class="grid_12">
                             <div class="grid_4" style="margin: 10px 0 0 0;">
@@ -125,25 +143,7 @@
                             </div>
                         </div> -->
                     </div>
-                    <div class="grid_6">
-                        <!-- Email -->
-                        <div class="grid_12">
-                            <div class="grid_4" style="margin: 10px 0 0 0;">
-                                <label><b>Email</b></label>
-                            </div>
-                            <div class="grid_8">
-                                <input c-text-box type="input" placeholder="Email" filter="'varchar'" class="k-textbox" ng-model="item.email" ng-disabled="isSimpan"/>
-                            </div>
-                        </div>
-                        <!-- Email Lainnya -->
-                        <div class="grid_12">
-                            <div class="grid_4" style="margin: 10px 0 0 0;">
-                                <label><b>Email Lainnya</b></label>
-                            </div>
-                            <div class="grid_8">
-                                <input c-text-box type="input" placeholder="Email Lainnya" filter="'varchar'" class="k-textbox" ng-model="item.emailAlternatif" ng-disabled="isSimpan"/>
-                            </div>
-                        </div>
+                    <div class="grid_6">                        
                         <!-- No Telp -->
                         <div class="grid_12">
                             <div class="grid_4" style="margin: 10px 0 0 0;">
@@ -216,7 +216,15 @@
                                 <input c-text-box type="input" placeholder="Nama Pemilik Rekening" filter="'varchar'" class="k-textbox" ng-model="item.bankRekeningAtasNama" ng-disabled="isSimpan"/>
                             </div>
                         </div>
-                        
+                        <!-- NPWP -->
+                        <div class="grid_12">
+                            <div class="grid_4" style="margin: 10px 0 0 0;">
+                                <label><b>NPWP</b></label>
+                            </div>
+                            <div class="grid_8">
+                                <input c-text-box type="input" placeholder="NPWP" filter="'varchar'" class="k-textbox" ng-model="item.npwp" ng-disabled="isSimpan"/>
+                            </div>
+                        </div>
                         <!-- No. BPJS -->
                         <div class="grid_12">
                             <div class="grid_4" style="margin: 10px 0 0 0;">
@@ -337,14 +345,14 @@
                             </div>
                         </div>
                         <!-- Ruangan -->
-                        <div class="grid_12">
+                        <!-- <div class="grid_12">
                             <div class="grid_4" style="margin: 10px 0 0 0;">
                                 <label><b>Satuan Kerja</b></label>
                             </div>
                             <div class="grid_8">
                                 <input style="width: 100%;" kendo-combo-box k-ng-model="item.satuanKerja" k-data-text-field="'satuanKerja'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listOfSatuanKerja" ng-disabled="isSimpan"/>
                             </div>
-                        </div>
+                        </div> -->
                          <!-- Satuan Kerja -->
                          <div class="grid_12">
                             <div class="grid_4" style="margin: 10px 0 0 0;">
@@ -427,12 +435,24 @@
                         <!-- Pangkat -->
                         <div class="grid_12">
                             <div class="grid_4" style="margin: 10px 0 0 0;">
-                                <label c-label item="item" c-label-text="Pangkat"></label>
+                                <label c-label item="item">Pangkat dan Golongan</label>
                             </div>
                             <div class="grid_8">
-                                <input style="width: 100%;" kendo-combo-box k-ng-model="item.pangkat" k-data-text-field="'namaPangkat'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListPangkat" ng-disabled="isSimpan"/>
+                                <div class="grid_8">
+                                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.pangkat" k-data-text-field="'namaPangkat'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListPangkat" ng-disabled="isSimpan"/>
+                                </div>
+                                <div class="grid_4">
+                                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.golonganPegawai" k-data-text-field="'name'" k-data-value-field="'id'" k-auto-bind="true" k-data-source="ListGolonganPegawai" ng-disabled="isSimpan"/>
+                                </div>
                             </div>
                         </div>
+                        <!-- Golongan -->
+                        <!-- <div class="grid_4" style="margin: 10px 0 0 0;">
+                            <label c-label item="item" c-label-text="GolonganPegawai"></label>
+                        </div>
+                        <div class="grid_8">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.golonganPegawai" k-data-text-field="'name'" k-data-value-field="'id'" k-auto-bind="true" k-data-source="ListGolonganPegawai" ng-disabled="isSimpan"/>
+                        </div> -->
                         <!-- Jabatan yg dilamar -->
                         <!-- <div class="grid_12">
                             <div class="grid_4" style="margin: 10px 0 0 0;">
@@ -442,13 +462,7 @@
                                 <input style="width: 100%;" kendo-combo-box k-ng-model="jabatanDiLamar" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListJabatanFungsional" ng-disabled="isSimpan"/>
                             </div>
                         </div> -->
-                        <!-- Golongan -->
-                        <div class="grid_4" style="margin: 10px 0 0 0;">
-                            <label c-label item="item" c-label-text="GolonganPegawai"></label>
-                        </div>
-                        <div class="grid_8">
-                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.golonganPegawai" k-data-text-field="'name'" k-data-value-field="'id'" k-auto-bind="true" k-data-source="ListGolonganPegawai" ng-disabled="isSimpan"/>
-                        </div>
+                        
                         <!-- Eselon -->
                         <div class="grid_12">
                             <div class="grid_4" style="margin: 10px 0 0 0;">
@@ -474,7 +488,7 @@
                             <label c-label item="item" c-label-text="Tanggal Keluar"></label>
                         </div>
                         <div class="grid_8" style="margin: 0 0 0 0;">
-                            <input kendo-date-picker k-ng-model="item.tglkeluar" k-format="'dd-MM-yyyy'" style="width: 100%" ng-disabled="isSimpan"/>
+                            <input kendo-date-picker k-ng-model="item.tglKeluar" k-format="'dd-MM-yyyy'" style="width: 100%" ng-disabled="isSimpan"/>
                         </div>
                         <!-- Pensiun / Tahun Pensiun-->
                         <div class="grid_12">
@@ -488,16 +502,6 @@
                                 <input kendo-date-picker k-ng-model="item.tglPensiun" k-format="'dd-MM-yyyy'" style="width: 100%" disabled />
                             </div>
                         </div>
-                        
-                        <!-- NPWP -->
-                        <div class="grid_12">
-                            <div class="grid_4" style="margin: 10px 0 0 0;">
-                                <label><b>NPWP</b></label>
-                            </div>
-                            <div class="grid_8">
-                                <input c-text-box type="input" placeholder="NPWP" filter="'varchar'" class="k-textbox" ng-model="item.npwp" ng-disabled="isSimpan"/>
-                            </div>
-                        </div>
                         <!-- PTKP -->
                         <!-- <div class="grid_12">
                             <div class="grid_4" style="margin: 10px 0 0 0;">
@@ -508,14 +512,14 @@
                             </div>
                         </div> -->
                         <!-- No CM -->
-                        <div class="grid_12">
+                        <!-- <div class="grid_12">
                             <div class="grid_4" style="margin: 10px 0 0 0;">
                                 <label><b>No. Rekam Medis RSAB</b></label>
                             </div>
                             <div class="grid_8">
                                 <input c-text-box type="input" placeholder="Nomor Rekam Medis" filter="'varchar'" class="k-textbox" ng-model="item.noCm" ng-disabled="isSimpan"/>
                             </div>
-                        </div>
+                        </div> -->
                         
                         <!-- ID Finger Print -->
                         <div class="grid_12">

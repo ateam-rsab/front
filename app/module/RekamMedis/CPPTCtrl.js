@@ -103,16 +103,19 @@ define(['initialize'], function (initialize) {
                 pageable: true,
                 scrollable: true,
                 columns: [
-                    {field: "tglinput", title: "Tanggal/Jam", width: 100},
-                    {field: "namalengkap", title: "Dokter", width: 150},
-                    {field: "pegawaiasal", title: "Pegawai", template: '# if( pegawaiasal==null) {# - # } else {# #= pegawaiasal # #} #',"width": "120px"},
-                    {field: "namaruangan", title: "Ruangan", width: 120}, 
-                    {field: "noregistrasi", title: "No Registrasi", width: 100}, 
-                    {field: "flag_", title: "Keterangan", template:'# if( flag_==1) {# SOAP # } else if( flag_== 2) {#ADIME#} else if( flag_== 3) {#SOAPIE#} #',"width": "100px"}, 
-                    {command: [{text: "Edit", click: editData, imageClass: "k-icon k-i-pencil"}, 
-                                {text: "Detail", click: showDetail, imageClass: "k-icon k-i-pencil"},
-                               {text: "Hapus", click: deleteData, imageClass: "k-icon k-i-cancel"}
-                              ], title: "", width: 160}
+                    {field: "tglinput", title: "<h3>Tanggal/Jam</h3>", width: 100},
+                    {field: "namalengkap", title: "<h3>Dokter</h3>", width: 150},
+                    {field: "pegawaiasal", title: "<h3>Pegawai</h3>", template: '# if( pegawaiasal==null) {# - # } else {# #= pegawaiasal # #} #',"width": "120px"},
+                    {field: "namaruangan", title: "<h3>Ruangan</h3>", width: 120}, 
+                    {field: "noregistrasi", title: "<h3>No Registrasi</h3>", width: 100}, 
+                    {field: "flag_", title: "<h3>Keterangan</h3>", template:'# if( flag_==1) {# SOAP # } else if( flag_== 2) {#ADIME#} else if( flag_== 3) {#SOAPIE#} #',"width": "100px"}, 
+                    {
+                        command: [
+                            // {text: "Edit", click: editData, imageClass: "k-icon k-i-pencil"}, 
+                            {text: "Detail", click: showDetail, imageClass: "k-icon k-i-pencil"},
+                            // {text: "Hapus", click: deleteData, imageClass: "k-icon k-i-cancel"}
+                        ], title: "", width: 90, attributes: { style: "text-align:center;valign=middle" }
+                    }
                 ]
             };
 
@@ -451,9 +454,9 @@ define(['initialize'], function (initialize) {
        
             //create by iwankasan
             function verifikasiData(e) {
+                $scope.isDetail = true;
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-                $scope.isDetail = false;
                 if(!dataItem) {
                     toastr.warning('Data tidak ditemukan')
                     return
@@ -466,8 +469,6 @@ define(['initialize'], function (initialize) {
                 if (kelompokUser[1] != 'dokter' && kelompokUser[1] != 'bedah' ) {
                     toastr.warning('Verifikasi hanya untuk Dokter');
                     return
-                } else {
-                    $scope.isDetail = false;
                 }
                 $scope.cppt.norec = dataItem.norec
                 $scope.cppt.pegawaifk = dataItem.pegawaifk
@@ -510,20 +511,20 @@ define(['initialize'], function (initialize) {
             $scope.gridCPPTnotVerif = {
                 pageable: true,
                 columns: [
-                    {field: "tglinput", title: "Tanggal/Jam", width: 100}, 
-                    {field: "namalengkap", title: "Pegawai", width: 150}, 
-                    {field: "namaruangan", title: "Ruangan", width: 150}, 
-                    {field: "noregistrasi", title: "No Registrasi", width: 100},
-                    {field: "flag_", title: "Keterangan", template:'# if( flag_==1) {# SOAP # } else if( flag_== 2) {#ADIME#} else if( flag_== 3) {#SOAPIE#} #',"width": "100px"},
+                    {field: "tglinput", title: "<h3>Tanggal/Jam</h3>", width: 100}, 
+                    {field: "namalengkap", title: "<h3>Pegawai</h3>", width: 150}, 
+                    {field: "namaruangan", title: "<h3>Ruangan</h3>", width: 150}, 
+                    {field: "noregistrasi", title: "<h3>No Registrasi</h3>", width: 100},
+                    {field: "flag_", title: "<h3>Keterangan</h3>", template:'# if( flag_==1) {# SOAP # } else if( flag_== 2) {#ADIME#} else if( flag_== 3) {#SOAPIE#} #',"width": "100px"},
                     //{field: "pegawaiasalfk", title: "Pegawai", widht:100},
                     {
                         command: [
-                            {text: "Edit", click: editDataPerawat, imageClass: "k-icon k-i-pencil"},
+                            // {text: "Edit", click: editDataPerawat, imageClass: "k-icon k-i-pencil"},
                             {text: "Detail", click: detailRiwayatPerawat, imageClass: "k-icon k-i-pencil"},
-                            {text: "Hapus", click: deleteDataPerawat, imageClass: "k-icon k-i-cancel"},
+                            // {text: "Hapus", click: deleteDataPerawat, imageClass: "k-icon k-i-cancel"},
                             {text: "Verifikasi Dokter", click: verifikasiData, imageClass: "k-icon k-i-pencil"}
                         ],
-                        title: "&nbsp",width: 250
+                        title: "&nbsp",width: 150, attributes: { style: "text-align:center;valign=middle" }
                     }
                 ]
             };

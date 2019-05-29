@@ -2,7 +2,7 @@ define([], function () {
     'use strict';
     var baseURLFrontend = 'http://172.16.99.214',
         portFrontend = '5555',
-        baseURLBackend = 'http://172.16.99.195',
+        baseURLBackend = 'http://192.168.12.3',
         portBackend = '8080';
     
     if (window.location.hostname.indexOf('rsabhk') > -1) {

@@ -1531,6 +1531,8 @@ define(['initialize'], function(initialize) {
                 }
                 $scope.item.dokterPengonsul = dataItem.pengonsul;
                 $scope.item.keteranganOrder = dataItem.keteranganorder;
+                $scope.item.diagnosaKerja = dataItem.diagnosakerja
+                $scope.item.terapi = dataItem.terapi
                 $scope.statusKonsultasi = dataItem.status;
                 $scope.noRecKonsultasi = dataItem.norec;
                 $scope.noRecPdKonsultasi = dataItem.norec_pd;

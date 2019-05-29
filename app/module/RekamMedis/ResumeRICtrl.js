@@ -195,6 +195,7 @@ define(['initialize'], function (initialize) {
                 $scope.item.hasilKonsultasi = $scope.modelGrid.hasilkonsultasi;
                 $scope.item.terapi = $scope.modelGrid.terapi;
                 $scope.item.diagnosaUtama = $scope.modelGrid.diagnosisawal;
+                $scope.item.pengobatan = $scope.modelGrid.pengobatandilanjutkan;
                 $scope.item.diagnosisSekunder = $scope.modelGrid.diagnosissekunder;
                 $scope.item.tindakanProsedur = $scope.modelGrid.tindakanprosedur;
                 $scope.item.alergi = $scope.modelGrid.alergi;
