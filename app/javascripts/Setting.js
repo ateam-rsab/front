@@ -72,10 +72,10 @@ define([], function () {
 
             baseUrlData: `${baseURLFrontend}:${portFrontend}/app/data/`,
 
-            baseUrlAction: `${baseURLFrontend}:${portFrontend}/jasamedika-web/`,
+            baseUrlAction: `${baseURLBackend}:${portBackend}/jasamedika-web/`,
             /**Login Java */
-            baseUrlLogin: `${baseURLFrontend}:${portFrontend}/jasamedika-web/auth/sign-in`,
-            baseUrlLogout: `${baseURLFrontend}:${portFrontend}/jasamedika-web/auth/sign-out`,
+            baseUrlLogin: `${baseURLBackend}:${portBackend}/jasamedika-web/auth/sign-in`,
+            baseUrlLogout: `${baseURLBackend}:${portBackend}/jasamedika-web/auth/sign-out`,
 
             /**Login PHP */
             // baseUrlLogin: "http://192.168.12.3:2222/simrs_harkit/service/auth/sign-in",
