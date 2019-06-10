@@ -465,7 +465,7 @@ define(['initialize'], function(initialize) {
                         })
                         $scope.dialogPopup.setOptions({
                             width: 500,
-                            title: 'Notifikasi Belum Koreksi Jadwal'
+                            title: 'Notifikasi Belum Koreksi Jadwal / Mengajukan Lembur'
                         })
                         var actions = $scope.dialogPopup.options.actions;
                         // Remove "Close" button
@@ -577,7 +577,7 @@ define(['initialize'], function(initialize) {
                                         editable: false
                                     },
                                     alasan: {
-                                        editable: false
+                                        editable: true
                                     }
                                 }
                             }
@@ -598,7 +598,8 @@ define(['initialize'], function(initialize) {
                         {
                             field: "jamEfektif",
                             aggregate: "sum"
-                        }
+                        },
+                        editable: "inline"
                         ]
                     });
 
