@@ -19,7 +19,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
             // norec Antrian Etateh
           
             $scope.dataLogin = JSON.parse(localStorage.getItem('pegawai'))
-            if ($scope.dataLogin.jenisPegawai.jenisPegawai.toLowerCase() !== 'dokter') {
+            if ($scope.dataLogin.jenisPegawai.jenispegawai.toLowerCase() !== 'dokter') {
                 $scope.isPerawat = false;
             } else {
                 $scope.isPerawat = true;

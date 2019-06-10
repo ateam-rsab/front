@@ -293,7 +293,7 @@
                                     </div>
                                         <div class="grid_6">
                                         <div class="clear"></div>
-                                        <div class="grid_12" ng-show="muncul">
+                                        <div class="grid_12">
                                             <input type="checkbox" class="k-checkbox" ng-model='item.isMonitoring' id="cb1" ng-checked="vals1" ng-click="isMonitoring(item.isMonitoring)">
                                             <label class="k-checkbox-label" for="cb1">Monitoring</label>
                                         </div>
@@ -359,7 +359,7 @@
                                 <label><b>Ruangan</b></label>
                             </div>
                             <div class="grid_8">
-                                <input style="width: 100%;" kendo-combo-box ng-model="item.ruanganPegawai.namaRuangan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListRuangan" ng-disabled="isSimpan"/>
+                                <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganPegawai" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListRuangan" ng-disabled="isSimpan"/>
                                 <!-- <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.ruangan.namaRuangan" ng-disabled="isSimpan"/> -->
                             </div>
                                 
@@ -379,11 +379,11 @@
                                 <label c-label item="item" c-label-text="KategoriPegawai"></label>
                             </div>
                             <div class="grid_8">
-                                <input style="width: 100%;" kendo-combo-box k-ng-model="item.detailKategoriPegawai" k-data-text-field="'detailKategoryPegawai'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" ng-disabled="isSimpan" k-data-source="listOfDetailJenisKategoriPegawai"/>
+                                <input style="width: 100%;" kendo-combo-box k-ng-model="item.detailKategoryPegawai" k-data-text-field="'detailKategoryPegawai'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" ng-disabled="isSimpan" k-data-source="listOfDetailJenisKategoriPegawai"/>
                             </div>
                         </div>
                         <!-- Rekanan -->
-                        <div class="grid_12" ng-show="isRekanan">
+                        <div class="grid_12">
                             <div class="grid_4" style="margin: 10px 0 0 0;">
                                 <label><b>Rekanan</b></label>
                             </div>

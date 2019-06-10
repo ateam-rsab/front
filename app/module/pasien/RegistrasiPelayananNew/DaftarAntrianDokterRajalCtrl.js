@@ -1505,6 +1505,7 @@ define(['initialize'], function(initialize) {
                     "dokterfk": $scope.pegawaiFkKonsultasi,
                     "objectruangantujuanfk": $scope.objectRuanganFkTujuanKonsultasi,
                     "objectruanganasalfk": $scope.objectRuanganFkKonsultasi,
+                    "periksaDidapatkan":$scope.item.periksaDidapatkan,
                     "keterangankeperluan": $scope.item.kesan
                 }
                 console.log(dataKonsul);

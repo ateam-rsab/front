@@ -101,24 +101,33 @@
                             k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
                     </div>
                 </div>
+                <!-- Dokter -->
                 <div class="grid_4">
                     <div class="grid_12">
                         <label c-label item="item">Dokter</label>
                     </div>
-
                     <div class="grid_12">
-                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.dokter" k-data-text-field="'namalengkap'"
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.dokter" k-data-text-field="'namalengkap'" 
                             k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDokter" />
+                        <!-- <div ng-show="isRawatBersama">
+                            <select kendo-multi-select
+                                k-options="selectOptions"
+                                k-data-source="listDokter"
+                                k-data-text-field="'namalengkap'"
+                                k-data-value-field="'id'"
+                                k-ng-model="item.dokter"></select>
+                        </div> -->
+                        
                     </div>
                 </div>
-            </div>
+            </div>            
             <div class="grid_12">
                 <div class="grid_12">
                     <label c-label item="item">Pasien dengan diagnosa kerja:</label>
                 </div>
                 <div class="clear"></div>
                 <div class="grid_12">
-                    <textarea class="k-textbox" style="height: 76px; width: 100%; resize: none;" ng-model="item.pasienDiagnosaKerja"></textarea>
+                    <textarea class="k-textbox" style="height: 76px; width: 100%; resize: none;" ng-model="item.pasienDiagnosaKerja" ng-disabled="isVerifikasi"></textarea>
                 </div>
             </div>
             <div class="grid_12">
@@ -127,7 +136,7 @@
                 </div>
                 <div class="clear"></div>
                 <div class="grid_12">
-                    <textarea class="k-textbox" style="height: 76px; width: 100%; resize: none;" ng-model="item.ikhtisarKlinik"></textarea>
+                    <textarea class="k-textbox" style="height: 76px; width: 100%; resize: none;" ng-model="item.ikhtisarKlinik" ng-disabled="isVerifikasi"></textarea>
                 </div>
             </div>
             <div class="grid_12">
@@ -136,7 +145,7 @@
                 </div>
                 <div class="clear"></div>
                 <div class="grid_12">
-                    <textarea class="k-textbox" style="height: 76px; width: 100%; resize: none;" ng-model="item.terapiDanTindakan"></textarea>
+                    <textarea class="k-textbox" style="height: 76px; width: 100%; resize: none;" ng-model="item.terapiDanTindakan" ng-disabled="isVerifikasi"></textarea>
                 </div>
             </div>
         </fieldset>
@@ -174,7 +183,13 @@
             <p>{{item.terapi}}</p>
         </fieldset>
         <fieldset style="margin-bottom: 10px">
+            <legend><strong>Pada pemeriksaan didapatkan</strong></legend>
+            <p>{{item.periksaDidapatkan}}</p>
+        </fieldset>
+        <fieldset style="margin-bottom: 10px">
             <legend><strong>Hasil Konsultasi</strong></legend>
+            {{item.keterangankeperluan}}
+            <p>{{item.keperlua}}</p>
             <p>{{item.keterangankeperluan}}</p>
         </fieldset>
     </div>

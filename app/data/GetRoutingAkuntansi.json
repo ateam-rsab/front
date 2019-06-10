@@ -12518,10 +12518,10 @@
         ]
     }  ,
         {
-            "name": "SaldoBarangDetailv2",
-            "url": "/SaldoBarangDetailv2",
-            "templateurl": "module/Logistik/ModulInventory/SaldoBarangDetailv2.html",
-            "controller": "SaldoBarangDetailv2Ctrl",
+            "name": "SaldoBarangDetail",
+            "url": "/SaldoBarangDetail",
+            "templateurl": "module/Logistik/ModulInventory/SaldoBarangDetail.html",
+            "controller": "SaldoBarangDetailCtrl",
             "deps": [{
                   "module": "Services",
                   "define": "Service"

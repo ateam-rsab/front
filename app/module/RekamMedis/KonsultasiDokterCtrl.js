@@ -16,7 +16,7 @@ define(['initialize'], function (initialize) {
             $scope.pegawaiLogin = JSON.parse(localStorage.getItem('pegawai'))
             var cookie = document.cookie.split(';')
             var kelompokUser = cookie[0].split('=')
-            var getCache = cacheHelper.get('cacheRekamMedis')
+            var getCache = cacheHelper.get('cacheRekamMedis');
             if (getCache != undefined) {
                 $scope.nocm = getCache[0]
                 $scope.norecPd = getCache[8]
@@ -33,6 +33,7 @@ define(['initialize'], function (initialize) {
                 columns: [
                     // { field: "rowNumber", title: "#", width: 40, width: 40, attributes: { style: "text-align:right; padding-right: 15px;"}, hideMe: true},
                     { field: "no", title: "<h3>No</h3>", width: 40 },
+                    { field: "noregistrasi", title: "<h3>No. Registrasi</h3>", width: 70 },
                     { field: "tglorder", title: "<h3>Tanggal</h3>", width: 120 },
                     { field: "ruanganasal", title: "<h3>Ruangan Asal</h3>", width: 120 },
                     { field: "ruangantujuan", title: "<h3>Ruangan Tujuan</h3>", width: 150 },
@@ -59,11 +60,18 @@ define(['initialize'], function (initialize) {
                 if($scope.item.keterangankeperluan === null || $scope.item.keterangankeperluan === '') {
                     $scope.item.keterangankeperluan = 'Belum ada hasil Konsultasi';
                 }
+                if($scope.item.periksaDidapatkan === null || $scope.item.periksaDidapatkan === '') {
+                    item.periksaDidapatkan = "tidak ada data"
+                }
                 console.log($scope.item.keterangankeperluan);
                 $scope.popUpDetail.center().open();
             }
 
             $scope.inputBaru = function () {
+                $scope.isVerifikasi = false;
+                $scope.item = {};
+                var getCache = cacheHelper.get('cacheRekamMedis');
+                $scope.item.ruanganAsal = { id: getCache[11], namaruangan: getCache[12] }
                 if (kelompokUser[1] == 'dokter') {
                     $scope.item.namadokter = { id: $scope.pegawaiLogin.id, namalengkap: $scope.pegawaiLogin.namaLengkap }
                 }
@@ -84,6 +92,27 @@ define(['initialize'], function (initialize) {
                 $scope.item.hasilKonsultasi = dataItem.keterangankeperluan;
                 $scope.popUpHasilKonsul.center().open();
             }
+            $scope.onChangeJenisKonsultasi = function(key) {
+                if(key === 2) {
+                    $scope.isNotRawatBersama = false;
+                    $scope.isRawatBersama = true;
+                    $scope.ukuranGrid = 'grid_12';
+                } else {
+                    $scope.isNotRawatBersama = true;
+                    $scope.isRawatBersama = false;
+                    $scope.ukuranGrid = 'grid_4';
+                }
+                
+                
+                
+            }
+
+            $scope.selectOptions = {
+                placeholder: "Pilih Dokter",
+                dataTextField: "kategoryPegawnamalengkapai",
+                dataValueField: "id",
+                filter: "contains"
+            };
 
             $scope.tutupDetail = function (data) {
                 if(data === 1) {
@@ -121,9 +150,10 @@ define(['initialize'], function (initialize) {
             function editData(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-                if (!dataItem) {
-                    toastr.error("Data Tidak Ditemukan");
-                    return
+                if(dataItem.keterangankeperluan !== null || dataItem.keterangankeperluan !== undefined) {
+                    $scope.isVerifikasi = true;
+                } else {
+                    $scope.isVerifikasi = false;
                 }
                 var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
                 var dateNow = new Date();
@@ -179,12 +209,16 @@ define(['initialize'], function (initialize) {
             };
 
             $scope.Save = function (data) {
+                if($scope.item.jenisKonsultasi === undefined) {
+                    toastr.warning("Jenis Konsultasi belum dipilih");
+                    return;
+                }
                 if ($scope.item.ruanganTujuan == undefined) {
-                    toastr.error("Pilih Ruangan Tujuan terlebih dahulu!")
+                    toastr.warning("Pilih Ruangan Tujuan terlebih dahulu!")
                     return
                 }
                 if ($scope.item.dokter == undefined) {
-                    toastr.error("Pilih Dokter terlebih dahulu!")
+                    toastr.warning("Pilih Dokter terlebih dahulu!")
                     return
                 }
                 var objSave = {
