@@ -1,3 +1,14 @@
+<style>
+    .notif{
+             background-color: #ff3860;
+              min-height: 25px;
+              min-width: 25px;
+              max-height: 100px;
+              max-width: 100px;
+              border-radius: 50%;
+              display: inline-block;
+    }
+</style>
 <div>
     <div class="panel panel-default container_12" ng-hide="klikDiagnosa">
         <div class="panel-heading"><label class='title' c-label item="item">Daftar Pasien Rawat Jalan</label></div>
@@ -241,14 +252,18 @@
                 <legend id="filterData">
                     <strong>Daftar Konsultasi Dokter</strong>
                 </legend>
-                    <!-- <div class="grid_12"  style="margin-top: -15px" >
+                    <div class="grid_12"  style="margin-top: -15px" >
                         <div class="grid_1" style="margin-top: 10px"  >
-                            <label c-label item="item " c-label-text="Dokter"></label>
+                            <label c-label item="item" c-label-text="Dokter"></label>
                         </div>
-                        <div class="grid_5"  >
-                            <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.dokterTujuan"  disabled="" />
+                        <div class="grid_4">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.paramDokter" k-data-text-field="'namalengkap'" 
+                                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDokter" />
                         </div>
-                    </div> -->
+                        <div class="grid_2" style="margin-top: 7px;">
+                            <i ng-click='searchDataPegawai()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0" ><span class="k-sprite k-icon k-i-search">Refresh</span></i>
+                        </div>
+                    </div>
                     <div class="grid_12" style="margin-top: 10px" >
                         <div id="gridKonsul" kendo-grid k-data-source="sourceKonsul" options="konsulOpt"></div>
                     </div>

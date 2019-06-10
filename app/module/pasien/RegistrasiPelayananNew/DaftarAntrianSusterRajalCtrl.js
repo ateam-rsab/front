@@ -35,16 +35,17 @@ define(['initialize'], function(initialize) {
             function loadKonsul(){
                 ManagePhp.getData("rekam-medis/get-order-konsul").then(function(e){
                   var res = e.data.data
-                //   for (var i = res.length - 1; i >= 0; i--) {
-                //     if( res[i].norec_apd != null)
-                //           res.splice([i],1)
-                //     }
-                //     if(res.length > 0){
-                //       $scope.showNotif = true
-                //     //   $scope.lengthKonsul = res.length;
-                //     } else {
-                //        $scope.showNotif = false;
-                //     }
+                  for (var i = res.length - 1; i >= 0; i--) {
+                    if( res[i].norec_apd != null) {
+                        res.splice([i],1)
+                    }
+                }
+                if(res.length > 0) {
+                    $scope.showNotif = true
+                    $scope.lengthKonsul = res.length;
+                } else {
+                    $scope.showNotif = false;
+                }
                     $scope.sourceKonsul = new kendo.data.DataSource({
                         data: res,
                         pageSize: 20,
@@ -91,7 +92,8 @@ define(['initialize'], function(initialize) {
                     { field: "tglorder", title: "Tanggal", width: 120, headerAttributes: { style: "text-align : center" }},
                     { field: "ruanganasal", title: "Ruangan Asal", width: 120, headerAttributes: { style: "text-align : center" }},
                     { field: "ruangantujuan", title: "Ruangan Tujuan", width: 150, headerAttributes: { style: "text-align : center" } },
-                    { field: "pengonsul", title: "Dokter<br> Pengonsul", width: 120, headerAttributes: { style: "text-align : center" }},
+                    { field: "namalengkap", title: "Dokter<br> Asal", width: 120, headerAttributes: { style: "text-align : center" }},
+                    { field: "pengonsul", title: "Dokter<br> Tujuan", width: 120, headerAttributes: { style: "text-align : center" }},
                     // { field: "keteranganorder", title: "Keterangan", width: 120, headerAttributes: { style: "text-align : center" }},
                     // { field: "status", title: "Status", width: 120, headerAttributes: { style: "text-align : center" }},
                     { command: [ { name: "Edit", text: "Detail", click: verif }], title: "&nbsp;", width: 120, attributes: { style: "text-align:center;valign=middle" }}
@@ -125,6 +127,17 @@ define(['initialize'], function(initialize) {
                 if(data == 1) {
                     $scope.popUpHasilKonsul.close();
                 }
+            }
+
+            $scope.searchDataPegawai = function() {
+                ManagePhp.getData("rekam-medis/get-order-konsul?" + $scope.item.paramDokter).then(function(res){
+                    var data = res;
+                    // load
+                    $scope.sourceKonsul = new kendo.data.DataSource({
+                        data: res,
+                        pageSize: 20,
+                    });
+                });
             }
 
             function verif(e){

@@ -4,7 +4,7 @@ define(['initialize'], function(initialize) {
         function($q, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, dateHelper, FindPegawai, FindSdm, $timeout, manageSarprasPhp, modelItemAkuntansi, $mdDialog) {
             $scope.isSimpan = true;
             $scope.isAtasan = false;
-            $scope.isRekanan = false;
+            // $scope.isRekanan = false;
             $scope.isEdit = false;
             $scope.dataVOloaded = true;
             // $scope.item.detailKategoryPegawai = '';
@@ -249,6 +249,10 @@ define(['initialize'], function(initialize) {
                             // console.log(dataLoad);
                             console.log(res[0].data.data);
                             $scope.item = res[0].data.data;
+                            $scope.item.detailKategoryPegawai = {
+                                id:res[0].data.data.detailKategoryPegawai.id,
+                                detailKategoryPegawai:res[0].data.data.detailKategoryPegawai.detailKategoryPegawai
+                            }
                             $scope.item.tglKeluar = res[0].data.data.tglPensiun
                             $scope.disableSip = true;
                             $scope.disableStr = true;
@@ -258,7 +262,6 @@ define(['initialize'], function(initialize) {
                             if(dateHelper.toTimeStamp(res[0].data.data.tglPensiun) < dateHelper.toTimeStamp(now) ) {
                                 toastr.warning('Pegawai ini akan pensiun')
                             }
-                            console.log($scope.item.tglLahir);
                             // if(res[0].data.data.noSip) {
                             //     $scope.isCheckedSip = true;
                             // }
@@ -1388,6 +1391,7 @@ define(['initialize'], function(initialize) {
                     "bankRekeningNomor":$scope.item.bankRekeningNomor ? $scope.item.bankRekeningNomor: null,
                     "bankRekeningAtasNama":$scope.item.bankRekeningAtasNama ? $scope.item.bankRekeningAtasNama : null,
                     "bankRekeningNama":$scope.item.bankRekeningNama ? $scope.item.bankRekeningNama : null,
+                    "negara": $scope.item.negara ? {"namaNegara":$scope.item.negara.namaNegara, "id":$scope.item.negara.id}: {},
                     "npwp":$scope.item.npwp ? $scope.item.npwp : null,
                     "alamat":$scope.item.alamat ? $scope.item.alamat : null,
                     "kodePos":$scope.item.kodePos ? $scope.item.kodePos : null,
@@ -1416,7 +1420,7 @@ define(['initialize'], function(initialize) {
                     "noBPJS":$scope.item.noBPJS ? $scope.item.noBPJS : null,
                     "noCm":$scope.item.noCm ? $scope.item.noCm : null,
                     "noHandphone":$scope.item.noHandphone ? $scope.item.noHandphone : null,
-                    "noIdentitas":$scope.item.nik ? $scope.item.nik: null,
+                    "noIdentitas":$scope.item.noIdentitas ? $scope.item.noIdentitas: null,
                     "noSip":$scope.item.noSip ? $scope.item.noSip : null,
                     "noStr":$scope.item.noStr ? $scope.item.noStr : null,
                     "noTlp":$scope.item.noTlp ? $scope.item.noTlp : null,
@@ -1447,12 +1451,12 @@ define(['initialize'], function(initialize) {
                     "tanggalMeninggal": $scope.item.tanggalMeninggal ? dateHelper.toTimeStamp($scope.item.tanggalMeninggal): null,
                     "tglTerbitSip": $scope.item.tglTerbitSip ? dateHelper.toTimeStamp($scope.item.tglTerbitSip) : null,
                     "tglBerakhirSip": $scope.item.tglBerakhirSip ? dateHelper.toTimeStamp($scope.item.tglBerakhirSip): null,
-                    "tglKeluar": $scope.item.tglKeluar ? dateHelper.toTimeStamp($scope.item.tglKeluar): null
+                    "tglKeluar": $scope.item.tglKeluar ? dateHelper.toTimeStamp($scope.item.tglKeluar): null,
                     
                     // "qtyAnak":0,
                     // "qtyTanggungan":1,
                     // "qtyTotalJiwa":4,
-                    // "statusRhesus":$scope.item.statusRhesus,
+                    "statusRhesus":$scope.item.statusRhesus.id,
                     // "totalNilaiScore":90.9,
                     // "tunjanganFungsional":"1.000.000",
                     // "tunjanganPapua":0,
@@ -1468,10 +1472,11 @@ define(['initialize'], function(initialize) {
                 if(!$scope.item.jenisPegawai) { delete dataSave.jenisPegawai };
                 if(!$scope.item.kategoryPegawai) { delete dataSave.kategoryPegawai };
                 if(!$scope.item.kedudukan) { delete dataSave.kedudukan };
+                if(!$scope.item.negara) { delete dataSave.kewarganegaraan };
                 if(!$scope.item.pendidikan) { delete dataSave.pendidikan };
                 if(!$scope.item.penghasilanTidakKenaPajak) { delete dataSave.penghasilanTidakKenaPajak };
                 if(!$scope.item.rekanan) { delete dataSave.rekanan };
-                if(!$scope.item.ruangan) { delete dataSave.ruangan };
+                if(!$scope.item.ruanganPegawai) { delete dataSave.ruangan };
                 if(!$scope.item.satuanKerja) { delete dataSave.satuanKerja };
                 if(!$scope.item.shiftKerja) { delete dataSave.shiftKerja };
                 if(!$scope.item.statusPerkawinanPegawai) { delete dataSave.statusPerkawinanPegawai };
@@ -1513,11 +1518,11 @@ define(['initialize'], function(initialize) {
             };
 
             $scope.getDetailKategoriPegawai = function(idK) {
-                if($scope.item.kategoryPegawai.kategoryPegawai.toLowerCase() === 'mitra' || $scope.item.kategoryPegawai.kategoryPegawai.toLowerCase() === 'outsourcing') {
-                    $scope.isRekanan = true;
-                } else {
-                    $scope.isRekanan = false;
-                }
+                // if($scope.item.kategoryPegawai.kategoryPegawai.toLowerCase() === 'mitra' || $scope.item.kategoryPegawai.kategoryPegawai.toLowerCase() === 'outsourcing') {
+                //     $scope.isRekanan = true;
+                // } else {
+                //     $scope.isRekanan = false;
+                // }
                 ManageSdm.getOrderList("service/list-generic/?view=DetailKategoryPegawai&select=id,detailKategoryPegawai&criteria=statusEnabled,kategoryPegawaiId&values=true," + idK.id, true).then(function(res) {
                     $scope.listOfDetailJenisKategoriPegawai = res.data;
                     if(res.data.length === 0) {
