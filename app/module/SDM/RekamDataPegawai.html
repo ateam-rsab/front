@@ -55,6 +55,7 @@
                                 <input c-text-box type="input" placeholder="Tempat Lahir" filter="'varchar'" class="k-textbox" ng-model="item.tempatLahir" ng-disabled="isSimpan"/>
                             </div>
                             <div class="grid_4">
+                                <!-- <input kendo-date-picker k-ng-model="item.tglLahir" k-format="'dd-MM-yyyy'" style="width: 100%" ng-disabled="isSimpan"/> -->
                                 <input kendo-date-picker k-ng-model="item.tglLahir" k-format="'dd-MM-yyyy'" style="width: 100%" ng-disabled="isSimpan"/>
                             </div>
                         </div>
@@ -254,7 +255,9 @@
                                         </div>
                                         <div class="clear"></div>
                                         <div class="grid_12">
-                                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.jabatanInternalPop" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="ListJabatan" />
+                                            <input kendo-combo-box k-ng-model="item.jabatanInternalPop" k-data-text-field="'namaJabatan'" 
+                                                k-data-value-field="'id'" k-data-source="ListJabatan" />
+                                            <!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.jabatanInternalPop" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="ListJabatan" /> -->
                                         </div>
                                     </div>
                                 </div>
@@ -420,7 +423,7 @@
                                 <label c-label item="item" c-label-text="Kelompok Jabatan"></label>
                             </div>
                             <div class="grid_8">
-                                <input style="width: 100%;" kendo-combo-box k-ng-model="item.detailKelompokJabatan" k-data-text-field="'detailKelompokJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListDetailKelompokJabatan" ng-disabled="isSimpan"/>
+                                <input style="width: 100%;" kendo-combo-box k-ng-model="item.detailKelompokJabatan" k-data-text-field="'detailKelompokJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListDetilKelompokJabatan" k-on-change="getGradeJabatan(item.detailKelompokJabatan)" ng-disabled="isSimpan"/>
                             </div>
                         </div>
                         <!-- Type Pegawai -->
@@ -499,7 +502,8 @@
                                 <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.pensiun" disabled />
                             </div>
                             <div class="grid_4">
-                                <input kendo-date-picker k-ng-model="item.tglPensiun" k-format="'dd-MM-yyyy'" style="width: 100%" disabled />
+                                <!-- <input kendo-date-picker k-ng-model="item.tglPensiun" k-format="'dd-MM-yyyy'" style="width: 100%" disabled /> -->
+                                <input kendo-date-picker k-ng-model="item.tglPensiun" k-format="'dd-MM-yyyy'" style="width: 100%" disabled/>
                             </div>
                         </div>
                         <!-- PTKP -->
@@ -889,7 +893,7 @@
             <!-- Lulus -->
             <div class="grid_3">
                 <div class="grid_12">
-                    <label c-label item="item" c-label-text="Lulus"></label>
+                    <label c-label item="item" c-label-text="Tanggal Lulus"></label>
                 </div>
                 <div class="clear"></div>
                 <div class="grid_12">
