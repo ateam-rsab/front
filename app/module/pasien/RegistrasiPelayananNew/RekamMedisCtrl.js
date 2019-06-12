@@ -19,11 +19,11 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
             // norec Antrian Etateh
           
             $scope.dataLogin = JSON.parse(localStorage.getItem('pegawai'))
-            if ($scope.dataLogin.jenisPegawai.jenispegawai.toLowerCase() !== 'dokter') {
-                $scope.isPerawat = false;
-            } else {
-                $scope.isPerawat = true;
-            }
+            // if ($scope.dataLogin.jenisPegawai.jenisPegawai.toLowerCase() !== 'dokter') {
+            //     $scope.isPerawat = false;
+            // } else {
+            $scope.isPerawat = true;
+            // }
             // $rootScope.cekGetData = $scope.cekGetData()
             var getDataApd = function () {
                 modelItemAkuntansi.getDataTableTransaksi('rekam-medis/get-apd/' + $state.params.noRec).then(function (e) {

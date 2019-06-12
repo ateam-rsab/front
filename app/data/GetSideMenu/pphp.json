@@ -207,5 +207,14 @@
                 "name": "Verifikasi",
                 "link": "#/VerifikasiTerima"
             }
-    ]}
+    ]},
+    {
+        "name": "Setting",
+        "children": [
+            {
+                "name": "Ubah Password",
+                "link": "#/UbahPassword"  
+            }
+        ]
+    }
 ]

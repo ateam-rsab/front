@@ -1785,6 +1785,10 @@
       "urlDep": "module/Dashboard/Pasien/DashboarMonitoringTandaVitalCtrl"
     },
     {
+      "nameDep": "SerahTerimaPasienCtrl",
+      "urlDep": "module/Dashboard/Pasien/SerahTerimaPasienCtrl"
+    },
+    {
       "nameDep": "SuratPermintaanMasukRumahSakitDuaCtrl",
       "urlDep": "module/pasien/SuratPermintaanMasukRumahSakit/SuratPermintaanMasukRumahSakitDuaCtrl"
     },

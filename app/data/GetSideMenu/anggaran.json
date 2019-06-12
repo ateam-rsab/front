@@ -321,15 +321,24 @@
         ]
     },
     {
-        "name": "Aplikasi Laundry",
-        "children": [
-            {
-                "name": "Permintaan Linen Bersih",
-                "link": "#/PermintaanLinenByRuangan"
-            },{
-                "name": "Verifikasi",
-                "link": "#/VerifikasiTerima"
-            }
-    ]
+      "name": "Aplikasi Laundry",
+      "children": [
+          {
+              "name": "Permintaan Linen Bersih",
+              "link": "#/PermintaanLinenByRuangan"
+          },{
+              "name": "Verifikasi",
+              "link": "#/VerifikasiTerima"
+          }
+      ]
+    },
+    {
+      "name": "Setting",
+      "children": [
+          {
+              "name": "Ubah Password",
+              "link": "#/UbahPassword"  
+          }
+      ]
     }
 ]

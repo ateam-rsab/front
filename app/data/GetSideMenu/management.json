@@ -143,11 +143,21 @@
                 "link": "#/VerifikasiTerima"
             }
     ]},
-    {"name": "Alur Pengadaan Barang",
+    {
+        "name": "Alur Pengadaan Barang",
         "children": [
             {"name": "Verifikasi Bagian Anggaran","link": "#/daftarKartuPengendaliAnggaran"},
             {"name": "Verifikasi Pembayaran Suplier","link": "#/VerifikasiTagihanSupplier"},
             {"name": "Verifikasi Pembayaran Gaji","link": "#/DaftarTagihanSupplier"}
+        ]
+    },
+    {
+        "name": "Setting",
+        "children": [
+            {
+                "name": "Ubah Password",
+                "link": "#/UbahPassword"  
+            }
         ]
     }
     

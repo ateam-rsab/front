@@ -71,4 +71,15 @@
             "name": "Verifikasi Uraian Tugas Bawahan",
             "link": "#/VerifikasiUraianTugasPegawaiLogin"
         }]
-    }]
+    },
+    {
+        "name": "Setting",
+        "children": [
+            {
+                "name": "Ubah Password",
+                "link": "#/UbahPassword"  
+            }
+        ]
+    }
+]
+    

@@ -296,26 +296,22 @@ define(['initialize'], function(initialize) {
                 ]
             };
 
-            // $scope.klikGrid = function(dataSelected){
-            //     var dataProduk =[];
-            //     //no:no,
-            //     $scope.item.no = dataSelected.no
-            //     for (var i = $scope.listLayanan.length - 1; i >= 0; i--) {
-            //         if ($scope.listLayanan[i].id == dataSelected.produkfk){
-            //             dataProduk = $scope.listLayanan[i]
-            //             break;
-            //         }
-            //     }
-            //     $scope.item.layanan = dataProduk;//{id:dataSelected.produkfk,namaproduk:dataSelected.namaproduk}
-            //     // $scope.item.stok = dataSelected.jmlstok //* $scope.item.nilaiKonversi 
-    
-            //     $scope.item.qty = dataSelected.qtyproduk
-            //     $scope.item.pemeriksaanKeluar = dataSelected.pemeriksaanluar == 1 ? true :false
-            // };
-
-            $scope.countLamaPembedahan = function() {
-                // if($scope.item.jamMulai && )
-            };
+            $scope.setLamaPembedahan = function () {
+                console.log($scope.item.jamMulai);
+                console.log($scope.item.jamSelesai);
+                var tglAwal = new moment($scope.item.jamMulai).format('YYYY-MM-DD');
+				var tglAkhir = new moment($scope.item.jamSelesai).format('YYYY-MM-DD');
+				var JamAwal = new moment($scope.item.jamMulai).format('HH:mm');
+                var JamAkhir= new moment($scope.item.jamSelesai).format('HH:mm');
+                if(JamAwal != 'Invalid date' && JamAkhir != 'Invalid date') {
+                    if(DateHelper.toTimeStamp($scope.item.jamMulai) > DateHelper.toTimeStamp($scope.item.jamSelesai)) {
+                        toastr.info('Jam Selesai tidak boleh lebih dari Jam Mulai');
+                        return;
+                    }
+                    var TotalWaktu = DateHelper.CountDifferenceHourMinute(tglAwal + " " + JamAwal, tglAkhir + " " + JamAkhir);
+                    return $scope.item.lamaPembedahan = TotalWaktu;
+                }
+            }
 
             function editData(e) {
                 e.preventDefault();
@@ -346,9 +342,9 @@ define(['initialize'], function(initialize) {
                 $scope.item.jamMulai = dataItem.jammulai;
                 $scope.item.jamSelesai = dataItem.jamselesai;
                 $scope.item.lamaPembedahan = dataItem.lamabedah;
-                $scope.item.selectedLabelPasien = { name:dataItem.labelpasien, id: dataItem.labelpasien == 'Sudah dipasang' ? 1:2};
+                $scope.item.selectedLabelPasien = { name:dataItem.labelpasien };
                 $scope.item.selectedPenangananKhusus = { name:dataItem.kondisipenanganan };
-                $scope.item.selectedStatus = { name: dataItem.status, id: dataItem.status == 'Emergency' ? 1:2};
+                $scope.item.selectedStatus = { name: dataItem.status };
                 $scope.item.tindakanPembedahanSatu = dataItem.tindakanbedah1;
                 $scope.item.tindakanPembedahanDua = dataItem.tindakanbedah2;
                 $scope.item.tindakanPembedahanTiga = dataItem.tindakanbedah3;
@@ -362,7 +358,7 @@ define(['initialize'], function(initialize) {
                 // $scope.item.selectedAvailMakan = { name:dataItem.makan, id: dataItem.makan === 'Ya' ? 1:2 };
                 $scope.item.selectedAvailMakan = dataItem.makan;
                 // $scope.item.selectedAvailMinum = { name:dataItem.minum, id: dataItem.minum === 'Ya' ? 1:2 };
-                $scope.item.selectedAvailMinum = dataItem.makan;
+                $scope.item.selectedAvailMinum = dataItem.minum;
 
                 $scope.item.macam = dataItem.infusmacam;
                 $scope.item.jumlah = dataItem.infusjml;
@@ -517,7 +513,7 @@ define(['initialize'], function(initialize) {
                             makan: $scope.item.selectedAvailMakan ? $scope.item.selectedAvailMakan: '',
                             minum: $scope.item.selectedAvailMinum ? $scope.item.selectedAvailMinum: '',
                             infusmacam:  $scope.item.macam ? $scope.item.macam : '',
-                            infusjml: $scope.item.jumlah ? $scope.item.macam: '',
+                            infusjml: $scope.item.jumlah ? $scope.item.jumlah: '',
                             infustetesan: $scope.item.tetesan ? $scope.item.tetesan: '',
                             obat: $scope.item.obatObatan ? $scope.item.obatObatan: '',
                             instruksikhusus: $scope.item.instruksiKhusus ? $scope.item.instruksiKhusus: '',

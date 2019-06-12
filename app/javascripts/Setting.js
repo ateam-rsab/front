@@ -74,12 +74,12 @@ define([], function () {
 
             baseUrlAction: "http://192.168.12.3:8080/jasamedika-web/",
             /**Login Java */
-            baseUrlLogin: "http://192.168.12.3:8080/jasamedika-web/auth/sign-in",
-            baseUrlLogout: "http://192.168.12.3:8080/jasamedika-web/auth/sign-out",
+            // baseUrlLogin: "http://192.168.12.3:8080/jasamedika-web/auth/sign-in",
+            // baseUrlLogout: "http://192.168.12.3:8080/jasamedika-web/auth/sign-out",
 
             /**Login PHP */
-            // baseUrlLogin: "http://192.168.12.3:2222/simrs_harkit/service/auth/sign-in",
-            // baseUrlLogout: "http://192.168.12.3:2222/simrs_harkit/service/auth/sign-out",
+            baseUrlLogin: "http://192.168.12.3:2222/simrs_harkit/service/auth/sign-in",
+            baseUrlLogout: "http://192.168.12.3:2222/simrs_harkit/service/auth/sign-out",
             baseBridiging: "http://smart.rsabhk.co.id/Bridging/",
             
             urlRoute: `${baseURLFrontend}:${portFrontend}/app/data/GetRouting`,

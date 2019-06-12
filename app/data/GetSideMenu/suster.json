@@ -288,9 +288,9 @@
         }
     ]
 },
-{
-    "name": "Information",
-    "children": [
+    {
+        "name": "Information",
+        "children": [
             {
                 "name": "Informasi Tarif Layanan",
                 "link": "#/TarifLayanan"
@@ -304,5 +304,14 @@
                 "link": "#/InformasiJadwalPelayananDokter" 
             }
         ]
-}
+    },
+    {
+        "name": "Setting",
+        "children": [
+            {
+                "name": "Ubah Password",
+                "link": "#/UbahPassword"  
+            }
+        ]
+    }
 ]

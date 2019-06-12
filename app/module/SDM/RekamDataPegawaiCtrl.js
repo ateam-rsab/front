@@ -254,6 +254,7 @@ define(['initialize'], function(initialize) {
                     $q.all([ManageSdmNew.getListData("pegawai/get-pegawai-by-customs/" + id)]).then(function(res) {
                         if (res[0].statResponse) {
                             $scope.item = res[0].data.data;
+                            console.log(res[0].data.data);
                             $scope.item.tglLahir = dateHelper.toDateFromTimestamp(res[0].data.data.tglLahir);
                             $scope.item.tglBerakhirSip = dateHelper.toDateFromTimestamp(res[0].data.data.tglBerakhirSip);
                             $scope.item.tglBerakhirStr = dateHelper.toDateFromTimestamp(res[0].data.data.tglBerakhirStr);
@@ -261,7 +262,7 @@ define(['initialize'], function(initialize) {
                             $scope.item.tglPensiun = dateHelper.toDateFromTimestamp(res[0].data.data.tglPensiun);
                             $scope.item.tglTerbitSip = dateHelper.toDateFromTimestamp(res[0].data.data.tglTerbitSip);
                             $scope.item.tglTerbitStr = dateHelper.toDateFromTimestamp(res[0].data.data.tglTerbitStr);
-                            
+                            $scope.item.tglkeluar = dateHelper.toDateFromTimestamp(res[0].data.data.tglkeluar);
                             $scope.item.statusRhesus = {
                                 id:$scope.item.statusRhesus
                             }
@@ -575,16 +576,17 @@ define(['initialize'], function(initialize) {
                             day = "0" + day;
                         }
                     } else {
-                        day = newVal[1].substring(0, 2);
-                        month = newVal[1].substring(3, 5);
-                        year = newVal[1].substring(6, 10);
+                        var date = newVal[1].split('-');
+                        day = date[0];
+                        month = date[1];
+                        year = date[2];
                     }
                     periode = year + "-" + month + "-" + day;
                     // FindPegawai.getPensiun(newVal[0], periode).then(function(res) {
                     ManageSdmNew.getListData("pegawai/get-tgl-pensiun/" + periode + "/" + newVal[0]).then(function(res) {
                         $scope.item.pensiun = res.data.data.usiaPensiun;
                         $scope.item.tglPensiun = dateHelper.formatDate(res.data.data.tglPensiun, "DD-MM-YYYY");
-                        $scope.item.tglKeluar = dateHelper.formatDate(res.data.data.tglPensiun, "DD-MM-YYYY");
+                        $scope.item.tglkeluar = dateHelper.formatDate(res.data.data.tglPensiun, "DD-MM-YYYY");
                         // if($scope.item.tglKeluar == null || $scope.item.tglKeluar == undefined) {
                         //     $scope.item.tglKeluar = dateHelper.toDateFromTimestamp($scope.item.tglPensiun);
                         //     $scope.item.tglPensiun = dateHelper.toDateFromTimestamp($scope.item.tglPensiun);
@@ -1455,7 +1457,7 @@ define(['initialize'], function(initialize) {
                     "tanggalMeninggal": $scope.item.tanggalMeninggal ? dateHelper.toTimeStamp(new Date(formatDate($scope.item.tanggalMeninggal))): null,
                     "tglTerbitSip": $scope.item.tglTerbitSip ? dateHelper.toTimeStamp(new Date(formatDate($scope.item.tglTerbitSip))) : null,
                     "tglBerakhirSip": $scope.item.tglBerakhirSip ? dateHelper.toTimeStamp(new Date(formatDate($scope.item.tglBerakhirSip))): null,
-                    "tglKeluar": $scope.item.tglKeluar ? dateHelper.toTimeStamp(new Date(formatDate($scope.item.tglKeluar))): null,
+                    "tglkeluar": $scope.item.tglkeluar ? dateHelper.toTimeStamp(new Date(formatDate($scope.item.tglkeluar))): null,
                     "statusRhesus":$scope.item.statusRhesus ? $scope.item.statusRhesus.id : null,
                 }
 
