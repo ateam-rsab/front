@@ -11,7 +11,7 @@
     - Bugs Fixing Laporan Pendapatan
         - Sekarang bisa pilih tipe dokter untuk Fee For Service Rawat Jalan
     - Bugs fixing SDM Kepegawaian
-        - Bugs saat semua tanggal kosong defaultnya terisi tanggal 1/1/1970 sekarang defaultnya dd/MM/yyyy        
+        - Bugs saat semua tanggal kosong defaultnya terisi tanggal 1/1/1970 sekarang defaultnya dd/MM/yyyy
     - Perubahan SDM Kepegawaian
         - Label Ijasah jadi Ijazah
         - Perubahan format tanggal input Tanggal Ijazah
