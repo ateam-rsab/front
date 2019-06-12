@@ -299,13 +299,20 @@ define(['initialize'], function(initialize) {
             $scope.setLamaPembedahan = function () {
                 console.log($scope.item.jamMulai);
                 console.log($scope.item.jamSelesai);
-                var tglAwal = new moment(new Date($scope.item.jamMulai)).format('YYYY-MM-DD');
-				var tglAkhir = new moment(new Date($scope.item.jamSelesai)).format('YYYY-MM-DD');
+                var tglAwal = new moment(new Date($scope.item.tglPembedahan)).format('YYYY-MM-DD');
+				var tglAkhir = new moment(new Date($scope.item.tglPembedahan)).format('YYYY-MM-DD');
 				var JamAwal = new moment(new Date($scope.item.jamMulai)).format('HH:mm');
                 var JamAkhir= new moment(new Date($scope.item.jamSelesai)).format('HH:mm');
-                // if(JamAwal != 'Invalid date') {
-                //     JamAwal = new Date($scope.item.jamSelesai).setTime()
-                // }
+                if(JamAwal == 'Invalid date') {
+                    var jam = $scope.item.jamMulai.split(":");
+                    var setJam = new Date($scope.item.jamSelesai).setHours(jam[0]);
+                    JamAwal = new moment(new Date(setJam).setMinutes(jam[1])).format('HH:mm');
+                }
+                if(JamAkhir == 'Invalid date') { 
+                    var jam = $scope.item.jamSelesai.split(":");
+                    var setJam = new Date($scope.item.jamMulai).setHours(jam[0]);
+                    JamAkhir = new moment(new Date(setJam).setMinutes(jam[1])).format('HH:mm');
+                }
                 // if(JamAwal != 'Invalid date' && JamAkhir != 'Invalid date') {
                     if(DateHelper.toTimeStamp($scope.item.jamMulai) > DateHelper.toTimeStamp($scope.item.jamSelesai)) {
                         toastr.info('Jam Selesai tidak boleh kurang dari Jam Mulai');
@@ -490,7 +497,7 @@ define(['initialize'], function(initialize) {
                         var dataSave = {
                             anestesiologisfk:$scope.item.selectedAnestesiologis.id,
                             ruanganfk:$scope.item.idRuangan,
-                            tglbedah: $scope.item.tglPembedahan,
+                            tglbedah: new moment(new Date($scope.item.tglPembedahan)).format('YYYY-MM-DD'),
                             noregistrasifk:norec_apd,
                             pasienfk: $scope.item.noMr,
                             operatorfk: $scope.item.selectedDataOperator.id,

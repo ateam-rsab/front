@@ -24943,7 +24943,7 @@
   },
   {
     "name": "SerahTerimaPasien",
-    "url": "/SerahTerimaPasien/:noCm",
+    "url": "/SerahTerimaPasien/:noRec",
     "templateurl": "module/Dashboard/Pasien/SerahTerimaPasien.html",
     "controller": "SerahTerimaPasienCtrl",
     "deps": [

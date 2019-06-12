@@ -969,9 +969,13 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.serahTerimaPasien = function() {
-                $state.go('SerahTerimaPasien', {
-                    noCm: $scope.item.nocm
-                });
+                if(!$scope.item.norec_apd) {
+                    toastr.warning('Anda belum memilih nama pasien');
+                } else {
+                    $state.go('SerahTerimaPasien', {
+                        noRec: $scope.item.norec_apd
+                    });
+                }
             }
             
         }
