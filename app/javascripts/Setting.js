@@ -1,7 +1,9 @@
 define([], function () {
     'use strict';
+    var baseURLFrontend = 'http://172.16.99.214',
     var baseURLFrontend = 'http://172.16.99.200',
         portFrontend = '5555',
+        baseURLBackend = 'http://192.168.12.3',
         baseURLBackend = 'http://172.16.99.200',
         portBackend = '8080';
     
@@ -51,6 +53,8 @@ define([], function () {
             baseUrlActionK3KL: `${baseURLBackend}:${portBackend}/jasamedika-k3kl/`,
         	baseApiPostDataK3KL: `${baseURLBackend}:${portBackend}/jasamedika-k3kl/`,
             /* SDM */
+            baseUrlActionSDM: `${baseURLBackend}:${portBackend}/jasamedika-sdm/`,
+            baseApiPostDataSDM: `${baseURLBackend}:${portBackend}/jasamedika-sdm/`,
             // baseUrlActionSDM: `${baseURLBackend}:${portBackend}/jasamedika-sdm/`,
             // baseApiPostDataSDM: `${baseURLBackend}:${portBackend}/jasamedika-sdm/`,
 
@@ -73,15 +77,21 @@ define([], function () {
             baseApiUrlData: `${baseURLBackend}:${portBackend}/jasamedika-web/`,
             baseApiPostData: `${baseURLBackend}:${portBackend}/jasamedika-web/`,
 
+            baseUrlData: `${baseURLFrontend}:${portFrontend}/app/data/`,
             // baseUrlData: `${baseURLFrontend}:${portFrontend}/app/data/`,
             baseUrlData: "http://smart.rsabhk.co.id:2222/app/data/",
 
+            baseUrlAction: "http://192.168.12.3:8080/jasamedika-web/",
             baseUrlAction: `${baseURLBackend}:${portBackend}/jasamedika-web/`,
             /**Login Java */
+            baseUrlLogin: "http://192.168.12.3:8080/jasamedika-web/auth/sign-in",
+            baseUrlLogout: "http://192.168.12.3:8080/jasamedika-web/auth/sign-out",
             baseUrlLogin: `${baseURLBackend}:${portBackend}/jasamedika-web/auth/sign-in`,
             baseUrlLogout: `${baseURLBackend}:${portBackend}/jasamedika-web/auth/sign-out`,
 
             /**Login PHP */
+            // baseUrlLogin: "http://192.168.12.3:2222/simrs_harkit/service/auth/sign-in",
+            // baseUrlLogout: "http://192.168.12.3:2222/simrs_harkit/service/auth/sign-out",
             // baseUrlLogin: 'http://192.168.12.3:2222/simrs_harkit/service/auth/sign-in',
             // baseUrlLogout: 'http://192.168.12.3:2222/simrs_harkit/service/auth/sign-out',
             baseBridiging: "http://smart.rsabhk.co.id/Bridging/",
