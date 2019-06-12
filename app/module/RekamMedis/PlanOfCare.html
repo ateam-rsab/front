@@ -4,41 +4,53 @@
         k-ng-model="selectedPOC"></div>
 </div>
 
-<div kendo-window="popUpPOC" k-title="'Tambah Plan Of Care'" k-width="550" k-height="460" k-visible="false" k-on-open="win2visible = true" k-on-close="win2visible = false">
+<div kendo-window="popUpPOC" k-title="'Tambah Plan of Care'" k-width="780" k-height="580" k-visible="false" k-on-open="win2visible = true" k-on-close="win2visible = false">
     <div class="panel panel-default container_12" style="padding: 0px 10px;">
+      <fieldset>
         <div class="grid_12">
             <div class="grid_12">
 				<label c-label item="item" c-label-text="Tanggal"></label>
-				<input style="width: 100%" k-ng-model="item.tgl" kendo-datetimepicker placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd HH:mm'"/>
+				<!-- <input style="width: 100%" k-ng-model="item.tglinput" kendo-datepicker placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd'" parsedate="yyyy-MM-dd"/> -->
+                <div class="grid_12">
+                    <input style="width: 100%" k-ng-model="item.tglinput" k-max="now" kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'"/>
+                    <!-- <input style="width: 100%" k-ng-model="item.tglinput"  kendo-datetimepicker k-max="maxDate" k-min="minDate" placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm"  k-options="startDateOptions"/> -->
+                </div>
             </div>
             <div class="grid_12">
                 <label c-label item="item" c-label-text="Pokok Masalah"></label>
-                <textarea ng-model="item.masalah" style="width: 99%; height: 50px;"></textarea>
+                <textarea ng-model="item.masalah" style="width: 99%; height: 80px;"></textarea>
             </div>
             <div class="grid_12">
-                <label c-label item="item">Plan Of Care / Rencana Perawatan</label>
-                <textarea ng-model="item.poc" style="width: 99%; height: 50px;"></textarea>
+                <label c-label item="item">Plan Of Care/Rencana Perawatan</label>
+                <textarea ng-model="item.rencana" style="width: 99%; height: 80px;"></textarea>
             </div>
             <div class="grid_12">
                 <label c-label item="item" c-label-text="Target Terukur"></label>
-                <input c-text-box type="input" placeholder="Target Terukur" filter="'varchar'" class="k-textbox" ng-model="item.targetTerukur" />
+                <textarea ng-model="item.target" style="width: 99%; height: 30px;"></textarea>
+                <!-- <input c-text-box type="input" placeholder="Target Terukur" filter="'varchar'" class="k-textbox" ng-model="item.target" /> -->
             </div>
             <div class="grid_12">
                 <label c-label item="item" c-label-text="Dalam Waktu"></label>
-                <input style="width: 100%" k-ng-model="item.tgl" kendo-timepicker k-format="'HH:mm'"/>
+                <input c-text-box type="input" placeholder="Dalam Waktu" filter="'varchar'" class="k-textbox" ng-model="item.waktu" />
+                <!-- <input style="width: 100%" k-ng-model="item.waktu" kendo-timepicker k-format="'HH:mm'"/> -->
             </div>
             <div class="grid_12">
-				<label c-label item="item" c-label-text="Tanggal Teratasi"></label>
-				<input style="width: 100%" k-ng-model="item.tgl" kendo-datepicker placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd'"/>
+				<label c-label item="item" c-label-text="Tanggal Teratasi/Tidak Teratasi"></label>
+				<!-- <input style="width: 100%" k-ng-model="item.tglteratasi" kendo-date-picker placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd'" parsedate="yyyy-MM-dd"/> -->
+                <div class="grid_12">
+                    <input style="width: 100%" k-ng-model="item.tglteratasi" kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm"
+                        k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm"/>
+                </div>
             </div>
             <div class="grid_12">
-				<label c-label item="item" c-label-text="Discharge Planning"></label>
-				<input c-text-box type="input" placeholder="Discharge Planning" filter="'varchar'" class="k-textbox" ng-model="item.dischargePlanning"/>
+                <label c-label item="item">Plan Of Care/Rencana Perawatan</label>
+                <textarea ng-model="item.perubahaan" style="width: 99%; height: 80px;"></textarea>
             </div>
         </div>
+    </fieldset>
         <div class="grid_12">
             <div class="k-edit-buttons  k-state-default pull-right" style="margin-top:10px">
-                <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="simpanJabatan()"><span class="k-icon k-update"></span>Simpan</button>
+                <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="save()" ng-disabled="isDisable"><span class="k-icon k-update"></span>Simpan</button>
                 <button class="k-button  k-button-icontext" ng-click="batalInput()"><span class="k-icon k-cancel"></span>Batal</button>
             </div>
         </div>

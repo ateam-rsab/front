@@ -1,3 +1,14 @@
+<style>
+    .notif{
+             background-color: #ff3860;
+              min-height: 25px;
+              min-width: 25px;
+              max-height: 100px;
+              max-width: 100px;
+              border-radius: 50%;
+              display: inline-block;
+    }
+</style>
 <div>
     <div class="panel panel-default container_12" ng-hide="klikDiagnosa">
         <div class="panel-heading"><label class='title' c-label item="item">Daftar Pasien Rawat Jalan</label></div>
@@ -97,16 +108,16 @@
                     <span class="title">Panggil</span>
                 </c-button>
             </div>
-      <!--   <div class="grid_3">
+        <!-- <div class="grid_3">
             <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="diagnosaICD10()" position="'right'">
                 <span class="title">Diagnosa ICD 10</span>
             </c-button>
-        </div>
-        <div class="grid_3">
-            <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="diagnosaICD9()" position="'right'">
-                <span class="title">Diagnosa ICD 9</span>
-            </c-button>
         </div> -->
+        <div class="grid_3">
+            <c-button style="width: 100%; padding:0px;margin:0px;" ng-click="konsul()" position="'right'">
+                <span class="title">Konsultasi <a style="font-color:white" ng-show="showNotif"><span class="notif">{{lengthKonsul}}</span> </a></span>
+            </c-button>
+        </div>
         <!-- sebelumnya dipakai -->
        
        <!--  <div class="grid_3">
@@ -232,4 +243,63 @@
     </div>
 
 </div>
+</div>
+
+<div kendo-window="winKonsul" k-title="'Daftar Konsultasi'" k-width="1200" k-height="450" k-visible="false" k-on-open="win2visible = true" k-on-close="win2visible = false">
+    <div class="panel panel-default container_12">
+        <!-- <div class="panel panel-default container_12" style="padding: 0px 10px;"> -->
+        <fieldset class="effect-shadow" style=" border-radius: 4px">
+                <legend id="filterData">
+                    <strong>Daftar Konsultasi Dokter</strong>
+                </legend>
+                    <div class="grid_12"  style="margin-top: -15px" >
+                        <div class="grid_1" style="margin-top: 10px"  >
+                            <label c-label item="item" c-label-text="Dokter"></label>
+                        </div>
+                        <div class="grid_4">
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.paramDokter" k-data-text-field="'namalengkap'" 
+                                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDokter" />
+                        </div>
+                        <div class="grid_2" style="margin-top: 7px;">
+                            <i ng-click='searchDataPegawai()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0" ><span class="k-sprite k-icon k-i-search">Refresh</span></i>
+                        </div>
+                    </div>
+                    <div class="grid_12" style="margin-top: 10px" >
+                        <div id="gridKonsul" kendo-grid k-data-source="sourceKonsul" options="konsulOpt"></div>
+                    </div>
+                </fieldset>
+        <!-- </div> -->
+    <!--    <div class="clear">
+        <button class="k-button" ng-click="simpanDokter(item, items.pilihDokter)" style="float:right;margin-top:4%">Simpan</button> -->
+    </div>
+</div>
+
+<div kendo-window="popUpHasilKonsul" k-title="'Hasil Konsultasi'" k-width="800" k-visible="false" k-on-open="win2visible = true"
+    k-on-close="win2visible = false">
+    <div class="panel panel-default container_12" style="padding: 0px 10px;">
+            <fieldset style="margin-bottom: 10px">
+                <legend>
+                    <strong>Keterangan dari {{item.dokterPengonsul}}</strong>
+                </legend>
+                <p>
+                    <i>"{{item.keteranganOrder}}"</i>
+                </p>
+            </fieldset>
+            <fieldset style="margin-bottom: 10px">
+                <legend>
+                    <strong>Keterangan dari {{item.dokterTarget}}</strong>
+                </legend>
+                <p>
+                    <i>"{{item.keteranganKeperluan}}"</i>
+                </p>
+            </fieldset>
+            <!-- <label c-label item="item" c-label-text="Kesan"></label>
+            <textarea ng-disabled="isVerify" ng-model="item.kesan" style="width: 99%; height: 80px;"></textarea> -->
+            <div class="grid_12">
+                <div class="k-edit-buttons  k-state-default pull-right" style="margin-top:10px">
+                    <button class="k-button k-button-icontext" ng-click="tutup(1)"><span class="k-icon k-cancel"></span>Tutup</button>
+                </div>
+            </div>
+
+    </div>
 </div>

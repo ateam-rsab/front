@@ -1,4 +1,7 @@
 <style>
+    .view {
+        display: flex;
+    }
     .k-grid-header .k-header .k-link {
         height: auto;
     }
@@ -15,25 +18,25 @@
     <c-panel item="item" header="'Konsultasi'" disabled>
         <div class="panel panel-default container_12">
             <div class="panel-body">
-                <div class="grid_2">
+                <!-- <div class="grid_2">
                     <label c-label c-label-text="Ruangan Asal" real></label>
                     <input style="width: 100%;" kendo-combo-box k-ng-model="filter.ruanganAsal" k-data-text-field="'namaruangan'"
                         k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
-                </div>
+                </div> -->
                 <div class="grid_2">
                     <label c-label c-label-text="Ruangan Tujuan" real></label>
                     <input style="width: 100%;" kendo-combo-box k-ng-model="filter.ruanganTujuan" k-data-text-field="'namaruangan'"
                         k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
                 </div>
                 <div class="grid_2">
-                    <label c-label item="item">Dokter</label>
+                    <label c-label item="item">Dokter Konsultasi</label>
                     <input style="width: 100%;" kendo-combo-box k-ng-model="filter.dokter" k-data-text-field="'namalengkap'"
                         k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDokter" />
                 </div>
-                <div class="grid_3">
+                <!-- <div class="grid_3">
                     <label c-label item="item">Keterangan</label>
                     <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="filter.keterangan" />
-                </div>
+                </div> -->
                 <div class="grid_1">
                     <label c-label c-label-text=""></label>
                     <em style="margin-top:6px;" ng-click='resetFilter()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary"
@@ -45,23 +48,38 @@
     <div class="grid_12" style="margin: 5px 5px 5px 5px;">
         <div id="gridResume" kendo-grid k-data-source="sourceResume" options="resumeOpt"></div>
     </div>
-
-    <!-- <div class="grid_12" style="float:right">
-        <div class="grid_2 " style="margin-top: 10px ">
-            <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="cetak()">
-                <span class="title">Cetak</span>
-            </button>
-        </div>
-    </div> -->
     <div class="grid_12" style="margin-top:100px">
         <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
     </div>
 </div>
-<div kendo-window="popUp" k-title="'Masukan Konsultasi'" k-width="800" k-height="241" k-visible="false" k-on-open="win2visible = true"
+<div kendo-window="popUp" k-title="'Masukan Konsultasi'" k-width="800" k-visible="false" k-on-open="win2visible = true"
     k-on-close="win2visible = false">
     <div class="panel panel-default container_12" style="padding: 0px 10px;">
         <fieldset>
-            <legend>Konsultasi</legend>
+            <div class="grid_12">
+                <div class="grid_12">
+                    <div class="grid_12">
+                        <label c-label item="item">Jenis Konsultasi</label>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="grid_12">
+                        <div class="grid_4">
+                            <input type="radio" name="jenisKonsul" id="alihRawat" class="k-radio" ng-model="item.jenisKonsultasi" value="Alih Rawat">
+                            <label class="k-radio-label" for="alihRawat">Alih Rawat</label>
+                        </div>
+                        <div class="grid_4">
+                            <input type="radio" name="jenisKonsul" id="rawatBersama" class="k-radio" ng-model="item.jenisKonsultasi" value="Rawat Bersama">
+                            <label class="k-radio-label" for="rawatBersama">Rawat Bersama</label>
+                        </div>
+                        <div class="grid_4">
+                            <input type="radio" name="jenisKonsul" id="konsultasiSewaktu" class="k-radio" ng-model="item.jenisKonsultasi" value="Konsultasi Sewaktu"  checked="checked">
+                            <label class="k-radio-label" for="konsultasiSewaktu">Konsultasi Sewaktu</label>
+                        </div>
+                        <!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.statusKonsul" k-data-text-field="'name'"
+                            k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listOfStatusKonsult" /> -->
+                    </div>
+                </div>
+            </div>
             <div class="grid_12">
                 <div class="grid_4">
                     <div class="grid_12">
@@ -70,7 +88,7 @@
                     <div class="clear"></div>
                     <div class="grid_12">
                         <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganAsal" k-data-text-field="'namaruangan'"
-                            k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+                            k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" disabled/>
                     </div>
                 </div>
                 <div class="grid_4">
@@ -83,42 +101,53 @@
                             k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
                     </div>
                 </div>
+                <!-- Dokter -->
                 <div class="grid_4">
                     <div class="grid_12">
                         <label c-label item="item">Dokter</label>
                     </div>
-
                     <div class="grid_12">
-                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.dokter" k-data-text-field="'namalengkap'"
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.dokter" k-data-text-field="'namalengkap'" 
                             k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDokter" />
-                        <!-- <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namadokter" /> -->
+                        <!-- <div ng-show="isRawatBersama">
+                            <select kendo-multi-select
+                                k-options="selectOptions"
+                                k-data-source="listDokter"
+                                k-data-text-field="'namalengkap'"
+                                k-data-value-field="'id'"
+                                k-ng-model="item.dokter"></select>
+                        </div> -->
+                        
                     </div>
-
                 </div>
-            </div>
+            </div>            
             <div class="grid_12">
                 <div class="grid_12">
-                    <label c-label item="item">Keterangan</label>
+                    <label c-label item="item">Pasien dengan diagnosa kerja:</label>
                 </div>
                 <div class="clear"></div>
                 <div class="grid_12">
-                    <textarea class="k-textbox" style="height: 76px; width: 100%; resize: none;" ng-model="item.keterangan"></textarea>
-                    <!-- <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.keterangan" /> -->
+                    <textarea class="k-textbox" style="height: 76px; width: 100%; resize: none;" ng-model="item.pasienDiagnosaKerja" ng-disabled="isVerifikasi"></textarea>
                 </div>
             </div>
-            <!-- <div class="grid_12">
             <div class="grid_12">
-                <label c-label item="item">Diagnosis</label>
+                <div class="grid_12">
+                    <label c-label item="item">Ikhtisar Klinik:</label>
+                </div>
+                <div class="clear"></div>
+                <div class="grid_12">
+                    <textarea class="k-textbox" style="height: 76px; width: 100%; resize: none;" ng-model="item.ikhtisarKlinik" ng-disabled="isVerifikasi"></textarea>
+                </div>
             </div>
-            <div class="clear"></div>
             <div class="grid_12">
-                <textarea class="k-textbox" style="height: 76px; width: 100%; resize: none;" ng-model="item.diagnosis"></textarea>
-
+                <div class="grid_12">
+                    <label c-label item="item">Terapi dan Tindakan yang sudah diberikan</label>
+                </div>
+                <div class="clear"></div>
+                <div class="grid_12">
+                    <textarea class="k-textbox" style="height: 76px; width: 100%; resize: none;" ng-model="item.terapiDanTindakan" ng-disabled="isVerifikasi"></textarea>
+                </div>
             </div>
-        </div> -->
-
-
-
         </fieldset>
 
         <div class="k-edit-buttons  k-state-default pull-right" style="margin-top:10px">
@@ -128,3 +157,45 @@
 
     </div>
 </div>
+<div kendo-window="popUpDetail" k-title="'Detail Konsultasi'" k-width="800" k-visible="false" k-on-open="win2visible = true" k-on-close="win2visible = false">
+    <div class="view">
+        <div style="width: 200px">
+            <label><strong>Dokter Konsultasi</strong></label>
+            <p style="text-decoration: underline">{{item.namalengkap}}</p>
+        </div>
+        <div>
+            <label><strong>Jenis Konsultasi</strong></label>
+            <p style="text-decoration: underline">{{item.jeniskonsultasi}}</p>
+        </div>
+    </div>
+    
+    <div>
+        <fieldset style="margin-bottom: 10px">
+            <legend><strong>Pasien dengan diagnosa kerja</strong></legend>
+            <p>{{item.diagnosakerja}}</p>
+        </fieldset>
+        <fieldset style="margin-bottom: 10px">
+            <legend><strong>Ikhtisar Klinik</strong></legend>
+            <p>{{item.keteranganorder}}</p>
+        </fieldset>
+        <fieldset style="margin-bottom: 10px">
+            <legend><strong>Terapi dan Tindakan yang sudah diberikan</strong></legend>
+            <p>{{item.terapi}}</p>
+        </fieldset>
+        <fieldset style="margin-bottom: 10px">
+            <legend><strong>Pada pemeriksaan didapatkan</strong></legend>
+            <p>{{item.periksaDidapatkan}}</p>
+        </fieldset>
+        <fieldset style="margin-bottom: 10px">
+            <legend><strong>Hasil Konsultasi</strong></legend>
+            {{item.keterangankeperluan}}
+            <p>{{item.keperlua}}</p>
+            <p>{{item.keterangankeperluan}}</p>
+        </fieldset>
+    </div>
+    <div class="k-edit-buttons  k-state-default pull-right" style="margin-top:10px">
+        <!-- <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="Save()"><span class="k-icon k-update"></span>Simpan</button> -->
+        <button class="k-button  k-button-icontext" ng-click="tutupDetail(2)"><span class="k-icon k-cancel"></span>Tutup</button>
+    </div>
+</div>
+

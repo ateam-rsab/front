@@ -54,15 +54,14 @@
                 <div ng-show="showInputan" class="grid_12 borderBox" style="margin-top:10px;margin-bottom: 15px">
                     <div class="container-bedah">
                         <div class="grid_12">
-                            <!-- Operator -->
+                            <!-- Anestesiologis -->
                             <div class="grid_4">
                                 <div class="grid_4" style="margin: 10px 0 0 0;">
-                                    <label><b>Operator</b></label>
+                                    <label><b>Anestesiologis</b></label>
                                 </div>
                                 <div class="grid_8">
-                                    <!-- <input c-text-box type="input" placeholder="Nama" filter="'varchar'" class="k-textbox" ng-model="item.nama" ng-disabled="isSimpan"/> -->
                                     <input style="width: 100%;" kendo-combo-box
-                                        k-ng-model="item.selectedDataOperator"
+                                        k-ng-model="item.selectedAnestesiologis"
                                         k-data-text-field="'namaLengkap'"
                                         k-data-value-field="'id'"
                                         k-filter="'contains'"
@@ -85,34 +84,6 @@
                                         k-data-source="dataMasterPetugas" />
                                 </div>
                             </div>
-                            <!-- Selesai Jam -->
-                            <div class="grid_4">
-                                <div class="grid_4" style="margin: 10px 0 0 0;">
-                                    <label><b>Selesai Jam</b></label>
-                                </div>
-                                <div class="grid_8">
-                                    <input style="width: 100%" kendo-time-picker
-                                        k-min="now" k-ng-model="item.jamSelesai"
-                                        placeholer="Hari-Bln-Thn"
-                                        k-format="'HH:mm'" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid_12">
-                            <div class="grid_4">
-                                <div class="grid_4" style="margin: 10px 0 0 0;">
-                                    <label><b>Anestesiologis</b></label>
-                                </div>
-                                <div class="grid_8">
-                                    <input style="width: 100%;" kendo-combo-box
-                                        k-ng-model="item.selectedAnestesiologis"
-                                        k-data-text-field="'namaLengkap'"
-                                        k-data-value-field="'id'"
-                                        k-filter="'contains'"
-                                        k-auto-bind="false"
-                                        k-data-source="dataMasterPetugas" />
-                                </div>
-                            </div>
                             <!-- Perawat Instrumen -->
                             <div class="grid_4">
                                 <div class="grid_4" style="margin: 10px 0 0 0;">
@@ -128,23 +99,25 @@
                                         k-data-source="dataMasterPetugas" />
                                 </div>
                             </div>
-                            <!-- Lama Pembedahan -->
-                            <div class="grid_4">
-                                <div class="grid_4" style="margin: 10px 0 0 0;">
-                                    <label><b>Lama Pembedahan</b></label>
-                                </div>
-                                <div class="grid_7">
-                                    <input c-text-box type="input"
-                                        placeholder="Jam" filter="'varchar'"
-                                        class="k-textbox"
-                                        ng-model="item.lamaPembedahan" />
-                                </div>
-                                <div class="grid_1" style="margin-top: 13px;">
-                                    <label>Jam</label>
-                                </div>
-                            </div>
                         </div>
                         <div class="grid_12">
+                            <!-- Operator -->
+                            <div class="grid_4">
+                                <div class="grid_4" style="margin: 10px 0 0 0;">
+                                    <label><b>Operator</b></label>
+                                </div>
+                                <div class="grid_8">
+                                    <!-- <input c-text-box type="input" placeholder="Nama" filter="'varchar'" class="k-textbox" ng-model="item.nama" ng-disabled="isSimpan"/> -->
+                                    <input style="width: 100%;" kendo-combo-box
+                                        k-ng-model="item.selectedDataOperator"
+                                        k-data-text-field="'namaLengkap'"
+                                        k-data-value-field="'id'"
+                                        k-filter="'contains'"
+                                        k-auto-bind="false"
+                                        k-data-source="dataMasterPetugas" />
+                                </div>
+                            </div>
+                            <!-- Asisten Operator -->
                             <div class="grid_4">
                                 <div class="grid_4" style="margin: 10px 0 0 0;">
                                     <label><b>Asisten Operator</b></label>
@@ -157,6 +130,53 @@
                                         k-filter="'contains'"
                                         k-auto-bind="false"
                                         k-data-source="dataMasterPetugas" />
+                                </div>
+                            </div>
+                            <!-- kondisi Penanganan -->
+                            <div class="grid_4">
+                                <div class="grid_4" style="margin: 10px 0 0 0;">
+                                    <label><b>Kondisi Penanganan</b></label>
+                                </div>
+                                <div class="grid_8">
+                                    <input style="width: 100%;" kendo-combo-box
+                                        k-ng-model="item.selectedPenangananKhusus"
+                                        k-data-text-field="'name'"
+                                        k-data-value-field="'id'"
+                                        k-filter="'contains'"
+                                        k-auto-bind="false"
+                                        k-data-source="listOfPenanganKhusus" />
+                                </div>
+                            </div>                            
+                        </div>
+                        <div class="grid_12">
+                            <!-- Label Pasien -->
+                            <div class="grid_4">
+                                <div class="grid_4" style="margin: 10px 0 0 0;">
+                                    <label><b>Label Pasien</b></label>
+                                </div>
+                                <div class="grid_8">
+                                    <input style="width: 100%;" kendo-combo-box
+                                        k-ng-model="item.selectedLabelPasien"
+                                        k-data-text-field="'name'"
+                                        k-data-value-field="'id'"
+                                        k-filter="'contains'"
+                                        k-auto-bind="false"
+                                        k-data-source="listOfLabelPasien" />
+                                </div>
+                            </div>
+                            <!-- Status -->
+                            <div class="grid_4">
+                                <div class="grid_4" style="margin: 10px 0 0 0;">
+                                    <label><b>Status</b></label>
+                                </div>
+                                <div class="grid_8">
+                                    <input style="width: 100%;" kendo-combo-box
+                                        k-ng-model="item.selectedStatus"
+                                        k-data-text-field="'name'"
+                                        k-data-value-field="'id'"
+                                        k-filter="'contains'"
+                                        k-auto-bind="false"
+                                        k-data-source="listOfStatus" />
                                 </div>
                             </div>
                             <!-- Tanggal Pembedahan -->
@@ -172,63 +192,108 @@
                                         k-format="'dd-MM-yyyy'" />
                                 </div>
                             </div>
-                            <div class="grid_4">
-                                <!-- kondisi Penanganan -->
-                                <div class="grid_4" style="margin: 10px 0 0 0;">
-                                    <label><b>Kondisi Penanganan</b></label>
-                                </div>
-                                <div class="grid_8">
-                                    <input style="width: 100%;" kendo-combo-box
-                                        k-ng-model="item.selectedPenangananKhusus"
-                                        k-data-text-field="'name'"
-                                        k-data-value-field="'id'"
-                                        k-filter="'contains'"
-                                        k-auto-bind="false"
-                                        k-data-source="listOfPenanganKhusus" />
-                                </div>
-                            </div>
                         </div>
                         <div class="grid_12">
+                            <!-- Jam Mulai -->
                             <div class="grid_4">
                                 <div class="grid_4" style="margin: 10px 0 0 0;">
                                     <label><b>Jam Mulai</b></label>
                                 </div>
                                 <div class="grid_8">
-                                    <input style="width: 100%" kendo-time-picker
-                                        k-min="now" k-ng-model="item.jamMulai"
-                                        placeholer="Hari-Bln-Thn"
-                                        k-format="'HH:mm'" />
+                                    <input style="width: 100%" kendo-time-picker k-ng-model="item.jamMulai" placeholer="HH:mm"
+                                        k-format="'HH:mm'" k-on-change="setLamaPembedahan()" />
+                                    <!-- <input style="width: 100%" kendo-time-picker
+                                        k-ng-model="item.jamMulai" 
+                                        ng-change="setLamaPembedahan()"
+                                        k-format="'HH:mm'" /> -->
+                                </div>
+                            </div>  
+                          
+                            <!-- Selesai Jam -->
+                            <div class="grid_4">
+                                <div class="grid_4" style="margin: 10px 0 0 0;">
+                                    <label><b>Jam Selesai</b></label>
+                                </div>
+                                <div class="grid_8">
+                                    <input style="width: 100%" kendo-time-picker k-ng-model="item.jamSelesai" placeholer="HH:mm"
+                                        k-format="'HH:mm'" k-on-change="setLamaPembedahan()" />
+                                    <!-- <input style="width: 100%" kendo-time-picker 
+                                        ng-change="setLamaPembedahan()"
+                                        k-ng-model="item.jamSelesai"
+                                        k-format="'HH:mm'" /> -->
+                                </div>
+                            </div>                     
+                            <!-- Lama Pembedahan -->
+                            <div class="grid_4">
+                                <div class="grid_4" style="margin: 10px 0 0 0;">
+                                    <label><b>Lama Pembedahan</b></label>
+                                </div>
+                                <div class="grid_8">
+                                    <input c-text-box type="input"
+                                        placeholder="Jam" filter="'varchar'"
+                                        class="k-textbox"
+                                        ng-model="item.lamaPembedahan" disabled/>
+                                </div>
+                                <!-- <div class="grid_1" style="margin-top: 13px;">
+                                    <label>Jam</label>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_4">
+                                <div class="grid_4" style="margin: 10px 0 0 0;">
+                                    <label>
+                                        <strong>
+                                            Jumlah Pendarahan
+                                        </strong>
+                                    </label>
+                                </div>
+                                <div class="grid_6">
+                                    <input c-text-box type="input"
+                                        placeholder="Jumlah Pendarahan *Kosongkan jika tidak ada" filter="'varchar'"
+                                        class="k-textbox"
+                                        ng-model="item.jmlPendarahan" />
+                                </div>
+                                <div class="grid_2" style="margin: 10px 0 0 0;">
+                                    <label>
+                                        <strong>
+                                            cc
+                                        </strong>
+                                    </label>
                                 </div>
                             </div>
                             <div class="grid_4">
                                 <div class="grid_4" style="margin: 10px 0 0 0;">
-                                    <label><b>Label Pasien</b></label>
+                                    <label>
+                                        <strong>
+                                            Komplikasi
+                                        </strong>
+                                    </label>
                                 </div>
                                 <div class="grid_8">
-                                    <input style="width: 100%;" kendo-combo-box
-                                        k-ng-model="item.selectedLabelPasien"
-                                        k-data-text-field="'name'"
-                                        k-data-value-field="'id'"
-                                        k-filter="'contains'"
-                                        k-auto-bind="false"
-                                        k-data-source="listOfLabelPasien" />
+                                    <input c-text-box type="input"
+                                        placeholder="Komplikasi *Kosongkan jika tidak ada" filter="'varchar'"
+                                        class="k-textbox"
+                                        ng-model="item.komplikasi" />
                                 </div>
                             </div>
                             <div class="grid_4">
                                 <div class="grid_4" style="margin: 10px 0 0 0;">
-                                    <label><b>Status</b></label>
+                                    <label>
+                                        <strong>
+                                            Macam Jaringan
+                                        </strong>
+                                    </label>
                                 </div>
                                 <div class="grid_8">
-                                    <input style="width: 100%;" kendo-combo-box
-                                        k-ng-model="item.selectedStatus"
-                                        k-data-text-field="'name'"
-                                        k-data-value-field="'id'"
-                                        k-filter="'contains'"
-                                        k-auto-bind="false"
-                                        k-data-source="listOfStatus" />
+                                    <input c-text-box type="input"
+                                        placeholder="Macam jaringan yang dikirim" filter="'varchar'"
+                                        class="k-textbox"
+                                        ng-model="item.macamJaringan" />
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="grid_12">
                             <div class="grid_3">
                                 <fieldset class="borderBox">
@@ -241,7 +306,7 @@
                                             <input c-text-box type="input"
                                                 filter="'varchar'"
                                                 class="k-textbox"
-                                                ng-model="item.tindakanPembedahan.I"
+                                                ng-model="item.tindakanPembedahanSatu"
                                                 />
                                         </li>
                                         <li>
@@ -249,7 +314,7 @@
                                             <input c-text-box type="input"
                                                 filter="'varchar'"
                                                 class="k-textbox"
-                                                ng-model="item.tindakanPembedahan.II"
+                                                ng-model="item.tindakanPembedahanDua"
                                                 />
                                         </li>
                                         <li>
@@ -257,7 +322,7 @@
                                             <input c-text-box type="input"
                                                 filter="'varchar'"
                                                 class="k-textbox"
-                                                ng-model="item.tindakanPembedahan.III"
+                                                ng-model="item.tindakanPembedahanTiga"
                                                 />
                                         </li>
                                         <li>
@@ -265,7 +330,7 @@
                                             <input c-text-box type="input"
                                                 filter="'varchar'"
                                                 class="k-textbox"
-                                                ng-model="item.tindakanPembedahan.IV"
+                                                ng-model="item.tindakanPembedahanEmpat"
                                                 />
                                         </li>
                                         <!-- <li>
@@ -296,7 +361,18 @@
                                     </label>
                                 </div>
                                 <div class="grid_8">
-                                    <ul class="fieldlist">
+                                    <input c-text-box type="input"
+                                        placeholder="Jaringan Patologi" filter="'varchar'"
+                                        class="k-textbox"
+                                        ng-model="item.jaringanPatologi" />
+                                    <!-- <input style="width: 100%;" kendo-combo-box
+                                        k-ng-model="item.jaringanPatologi"
+                                        k-data-text-field="'name'"
+                                        k-data-value-field="'id'"
+                                        k-filter="'contains'"
+                                        k-auto-bind="false"
+                                        k-data-source="listYesOrNo" /> -->
+                                    <!-- <ul class="fieldlist">
                                         <li>
                                             <input type="radio" name="patologi" id="ya" value="ya" class="k-radio" ng-model="item.jaringanPatologi">
                                             <label class="k-radio-label"
@@ -308,10 +384,51 @@
                                             <label class="k-radio-label"
                                                 for="tidak">Tidak</label>
                                         </li>
-                                    </ul>
+                                    </ul> -->
                                 </div>
                             </div>
-
+                        </div>
+                        <div class="grid_12">
+                            <div class="grid_4">
+                                <div class="grid_4" style="margin: 10px 0 0 0;">
+                                    <label><b>Diagnosa Pra Bedah</b></label>
+                                </div>
+                                <div class="grid_8">
+                                    <input c-text-box type="input"
+                                        placeholder="Diagnosa Pra Bedah" filter="'varchar'"
+                                        class="k-textbox"
+                                        ng-model="item.diagnosaPraBedah" />
+                                </div>
+                                <!-- <div class="grid_1" style="margin-top: 13px;">
+                                    <label>Jam</label>
+                                </div> -->
+                            </div>
+                            <div class="grid_4">
+                                <div class="grid_6" style="margin: 10px 0 0 0;">
+                                    <label><b>Diagnosa Pasca Bedah</b></label>
+                                </div>
+                                <div class="grid_6">
+                                    <input c-text-box type="input"
+                                        placeholder="Diagnosa Pasca Bedah" filter="'varchar'"
+                                        class="k-textbox"
+                                        ng-model="item.diagnosaPascaBedah" />
+                                </div>
+                            </div>
+                            <div class="grid_4">
+                                <div class="grid_8" style="margin: 10px 0 0 0;">
+                                    <label><b>Kesesuaian Diagnosa Pra dan Pasca Bedah</b></label>
+                                </div>
+                                <div class="grid_4">
+                                    <input style="width: 100%;" kendo-combo-box
+                                        k-ng-model="item.kesuaianDiagnosa"
+                                        k-data-text-field="'name'"
+                                        k-data-value-field="'id'"
+                                        k-filter="'contains'"
+                                        k-auto-bind="false"
+                                        k-data-source="listSesuaiOrNot" />
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -365,25 +482,35 @@
                                 <ul class="fieldlist">
                                     <li>
                                         <label>Makan</label>
-                                        <input style="width: 100%;"
+                                        <textarea ng-model="item.selectedAvailMakan"
+                                            style="height:90px"></textarea>
+                                        <!-- <input c-text-box type="input"
+                                            filter="'varchar'" class="k-textbox"
+                                            ng-model="item.selectedAvailMakan" /> -->
+                                        <!-- <input style="width: 100%;"
                                             kendo-combo-box
                                             k-ng-model="item.selectedAvailMakan"
                                             k-data-text-field="'name'"
                                             k-data-value-field="'id'"
                                             k-filter="'contains'"
                                             k-auto-bind="false"
-                                            k-data-source="listYesOrNo" />
+                                            k-data-source="listYesOrNo" /> -->
                                     </li>
                                     <li>
                                         <label>Minum</label>
-                                        <input style="width: 100%;"
+                                        <textarea ng-model="item.selectedAvailMinum"
+                                            style="height:90px"></textarea>
+                                        <!-- <input c-text-box type="input"
+                                            filter="'varchar'" class="k-textbox"
+                                            ng-model="item.selectedAvailMinum" /> -->
+                                        <!-- <input style="width: 100%;"
                                             kendo-combo-box
                                             k-ng-model="item.selectedAvailMinum"
                                             k-data-text-field="'name'"
                                             k-data-value-field="'id'"
                                             k-filter="'contains'"
                                             k-auto-bind="false"
-                                            k-data-source="listYesOrNo" />
+                                            k-data-source="listYesOrNo" /> -->
                                     </li>
                                 </ul>
                             </fieldset>

@@ -1,7 +1,7 @@
 define(['initialize'], function(initialize) {
 	'use strict';
-	initialize.controller('DaftarPengajuanPerubahanStatusCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', 'ManageSdm', 'ManageSdmNew', 'DateHelper', '$state', '$timeout',
-		function($q, $rootScope, $scope, ModelItem, ManageSdm, ManageSdmNew, DateHelper, $state, $timeout) {
+	initialize.controller('DaftarPengajuanPerubahanStatusCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', 'ManageSdm', 'ManageSdmNew', 'DateHelper', '$state', '$timeout', '$mdDialog',
+		function($q, $rootScope, $scope, ModelItem, ManageSdm, ManageSdmNew, DateHelper, $state, $timeout, $mdDialog) {
 			var cekDataCuti = JSON.parse(localStorage.getItem('permohonanCutiPegawai'));
 			if(cekDataCuti){
 				localStorage.removeItem('permohonanCutiPegawai');
@@ -28,12 +28,12 @@ define(['initialize'], function(initialize) {
 					// {"field": "unitKerja","title": "Ruangan Bekerja"},
 					{"field": "keteranganLainyaPlan","title": "Deskripsi Usulan"},
 					{"title": "Usulan","columns": [{"field": "tglPengajuan","title": "Tanggal","template": "#= kendo.toString(kendo.parseDate(new Date(tglPengajuan)),'dd-MM-yyyy') #",width: 100},{"field": "statusPegawai","title": "Status",width: 100}]},
-					{"field": "lisTanggal","title": "Tgl Permohonan","template": "# for(var i=0; i < lisTanggal.length;i++){# <button class=\"k-button custom-button\" style=\"margin:0 0 5px\">#= kendo.toString(new Date(lisTanggal[i].tgl), \"dd-MM-yyyy\") #</button> #}#"},
+					{"field": "lisTanggal","title": "Tanggal Permohonan","template": "# for(var i=0; i < lisTanggal.length;i++){# <button class=\"k-button custom-button\" style=\"margin:0 0 5px\">#= kendo.toString(new Date(lisTanggal[i].tgl), \"dd-MM-yyyy\") #</button> #}#"},
 					// {"field": "tglAwalPlan","title": "Tanggal Awal","template": "#= kendo.toString(kendo.parseDate(new Date(tglAwalPlan)),'dd-MM-yyyy') #"},
 					// {"field": "tglAkhirPlan","title": "Tanggal Akhir","template": "#= kendo.toString(kendo.parseDate(new Date(tglAkhirPlan)),'dd-MM-yyyy') #"},
 					{"title": "Keputusan","columns":[{"field": "tglKeputusan","title": "Tanggal","template": "# if(tglKeputusan===null){# - #} else {# #: kendo.toString(kendo.parseDate(new Date(tglKeputusan)),'dd-MM-yyyy') # #}#",width: 100},
 					{"field": "approvalStatus","title": "Status","template": "#if(approvalStatus===0){# Belum diputuskan #} else if(approvalStatus===1) {# Disetujui #} else if(approvalStatus===2) {# Ditolak #} else {# Ditangguhkan #}#",width: 100}]},
-					{command: [{text:"Keputusan",click: setKeputusan,imageClass: "k-icon k-i-pencil"},{text:"Unverif",click: setUnverifikasi,imageClass: "k-icon k-i-cancel"},{text:"Delete",click: deleteRecord,imageClass: "k-icon k-i-close"}],width: 180}
+					{command: [{text:"Keputusan",click: setKeputusan,imageClass: "k-icon k-i-pencil"},{text:"Unverif",click: setUnverifikasi,imageClass: "k-icon k-i-cancel"},{text:"Delete",click: confirmDelete,imageClass: "k-icon k-i-close"}],width: 180}
 				],
 				scrollable: true
 			};
@@ -465,11 +465,28 @@ define(['initialize'], function(initialize) {
 					$scope.loadGrid();
 				});
 			}
-			function deleteRecord(e){
+
+			function confirmDelete(e) {  
 				e.preventDefault();
 				var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-				// ManageSdm.hapusPermohonanUbahStsHadirPgw(dataItem.noRec).then(function(){
-				ManageSdmNew.deleteTransactionData("sdm/delete-pegawai-status/?noRec=", dataItem.noRec).then(function(){
+                console.log(dataItem);
+                var confirm = $mdDialog.confirm()
+                    .title('Apakah anda yakin akan menghapus data pengajuan a.n ' + dataItem.namaPegawai)
+                    .textContent(`Anda akan menghapus data ini secara permanen`)
+                    .ariaLabel('Lucky day')
+                    .targetEvent(e)
+                    .ok('Ya')
+                    .cancel('Tidak');
+                $mdDialog.show(confirm).then(function() {
+                    deleteRecord(dataItem.noRec);
+                    console.warn('Masuk sini pak eko');
+                }, function() {
+                    console.error('Tidak jadi hapus');
+                });
+			}
+
+			function deleteRecord(noRec){
+				ManageSdmNew.deleteTransactionData("sdm/delete-pegawai-status/?noRec=", noRec).then(function(){
 					// reload dataSource
 					$scope.filter = {};
 					$scope.loadGrid();

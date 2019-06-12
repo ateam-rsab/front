@@ -610,8 +610,17 @@ define(['initialize'], function (initialize) {
         // }
 
         var dokter = ''
+        if($scope.item.namaPegawai && $scope.item.TipeDokter) {
+          $scope.item.namaPegawai = {
+            namalengkap: '',
+            id:null
+          }
+          dokter = $scope.item.TipeDokter.id
+        }
         if ($scope.item.namaPegawai != undefined) {
           dokter = $scope.item.namaPegawai.id
+        } else if($scope.item.TipeDokter) {
+          dokter = $scope.item.TipeDokter.id
         }
         var ruanganId = ''
         if ($scope.item.ruangan != undefined) {

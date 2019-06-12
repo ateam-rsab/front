@@ -1808,7 +1808,11 @@
     },
     {
       "nameDep": "PlanOfCareCtrl",
-      "urlDep": "module/RekamMedis/PlanOfCareCtrl"    
+      "urlDep": "module/RekamMedis/PlanOfCareCtrl"
+    },
+    {
+      "nameDep": "PasienPerjanjianCtrl",
+      "urlDep": "module/RekamMedis/PasienPerjanjianCtrl"
     },
     {
       "nameDep": "RekamMedisCtrl",
@@ -1955,8 +1959,8 @@
       "urlDep": "module/Laporan/LaporanIndexPenyakitRIIcdIXCtrl"
     },
     {
-      "nameDep": "SaldoBarangDetailv2Ctrl",
-      "urlDep": "module/Logistik/ModulInventory/SaldoBarangDetailv2Ctrl"
+      "nameDep": "SaldoBarangDetailCtrl",
+      "urlDep": "module/Logistik/ModulInventory/SaldoBarangDetailCtrl"
     },
     {
       "nameDep": "SuratKeputusanRevCtrl",

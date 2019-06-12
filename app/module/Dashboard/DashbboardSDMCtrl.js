@@ -1,5 +1,3 @@
-
-
 define(['initialize'], function(initialize) {'use strict';
 	initialize.controller('DashbboardSDMCtrl', ['$q', '$parse', 'LoginService', 'socket', '$rootScope', '$scope', 'ModelItem', '$state', 'DateHelper','ManageSdm','ReportHelper','CetakHelper', 'FindSdm', 'CetakHelper',
 		function($q, $parse, loginService, socket, $rootScope, $scope, ModelItem, $state,  DateHelper, ManageSdm

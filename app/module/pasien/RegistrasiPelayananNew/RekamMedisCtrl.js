@@ -18,7 +18,12 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
             // $scope.Generate=true; 
             // norec Antrian Etateh
           
-         
+            $scope.dataLogin = JSON.parse(localStorage.getItem('pegawai'))
+            // if ($scope.dataLogin.jenisPegawai.jenisPegawai.toLowerCase() !== 'dokter') {
+            //     $scope.isPerawat = false;
+            // } else {
+            $scope.isPerawat = true;
+            // }
             // $rootScope.cekGetData = $scope.cekGetData()
             var getDataApd = function () {
                 modelItemAkuntansi.getDataTableTransaksi('rekam-medis/get-apd/' + $state.params.noRec).then(function (e) {
@@ -78,6 +83,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                 cacheHelper.set('cachePengkajianPasien', arrStr);
                 cacheHelper.set('OdontoGramDokterCtrl', arrStr);
                 cacheHelper.set('cacheRekamMedis', arrStr);
+                cacheHelper.set('cachePlanOfCare', arrStr);
                 $state.go(state, $state.params);
                 // console.log($scope.currentState);
 

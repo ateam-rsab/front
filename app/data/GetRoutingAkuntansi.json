@@ -12189,6 +12189,29 @@
         }      
       ]
    },
+   {
+    "name": "RekamMedis.PasienPerjanjian",
+    "url": "/PasienPerjanjian",
+    "templateurl": "module/RekamMedis/PasienPerjanjian.html",
+    "controller": "PasienPerjanjianCtrl",
+    "deps": [
+        {
+          "module": "Services",
+          "define": "Service"
+        },
+        {
+          "module": "LoginServices",
+          "define": "LoginService"
+        },
+        {
+          "module": "PhpService",
+          "define": "PhpService"
+        },
+        {
+          "define": "RekamMedisCtrl"
+        }      
+      ]
+    },
     {
             "name": "RekamMedis.OdontoGramDokter",
             "url": "/OdontoGramDokter",
@@ -12495,10 +12518,10 @@
         ]
     }  ,
         {
-            "name": "SaldoBarangDetailv2",
-            "url": "/SaldoBarangDetailv2",
-            "templateurl": "module/Logistik/ModulInventory/SaldoBarangDetailv2.html",
-            "controller": "SaldoBarangDetailv2Ctrl",
+            "name": "SaldoBarangDetail",
+            "url": "/SaldoBarangDetail",
+            "templateurl": "module/Logistik/ModulInventory/SaldoBarangDetail.html",
+            "controller": "SaldoBarangDetailCtrl",
             "deps": [{
                   "module": "Services",
                   "define": "Service"
