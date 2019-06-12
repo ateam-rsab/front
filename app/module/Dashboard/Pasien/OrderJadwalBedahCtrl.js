@@ -299,18 +299,21 @@ define(['initialize'], function(initialize) {
             $scope.setLamaPembedahan = function () {
                 console.log($scope.item.jamMulai);
                 console.log($scope.item.jamSelesai);
-                var tglAwal = new moment($scope.item.jamMulai).format('YYYY-MM-DD');
-				var tglAkhir = new moment($scope.item.jamSelesai).format('YYYY-MM-DD');
-				var JamAwal = new moment($scope.item.jamMulai).format('HH:mm');
-                var JamAkhir= new moment($scope.item.jamSelesai).format('HH:mm');
-                if(JamAwal != 'Invalid date' && JamAkhir != 'Invalid date') {
+                var tglAwal = new moment(new Date($scope.item.jamMulai)).format('YYYY-MM-DD');
+				var tglAkhir = new moment(new Date($scope.item.jamSelesai)).format('YYYY-MM-DD');
+				var JamAwal = new moment(new Date($scope.item.jamMulai)).format('HH:mm');
+                var JamAkhir= new moment(new Date($scope.item.jamSelesai)).format('HH:mm');
+                // if(JamAwal != 'Invalid date') {
+                //     JamAwal = new Date($scope.item.jamSelesai).setTime()
+                // }
+                // if(JamAwal != 'Invalid date' && JamAkhir != 'Invalid date') {
                     if(DateHelper.toTimeStamp($scope.item.jamMulai) > DateHelper.toTimeStamp($scope.item.jamSelesai)) {
-                        toastr.info('Jam Selesai tidak boleh lebih dari Jam Mulai');
+                        toastr.info('Jam Selesai tidak boleh kurang dari Jam Mulai');
                         return;
                     }
                     var TotalWaktu = DateHelper.CountDifferenceHourMinute(tglAwal + " " + JamAwal, tglAkhir + " " + JamAkhir);
                     return $scope.item.lamaPembedahan = TotalWaktu;
-                }
+                // }
             }
 
             function editData(e) {
