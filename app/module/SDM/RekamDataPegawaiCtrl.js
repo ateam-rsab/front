@@ -698,21 +698,19 @@ define(['initialize'], function(initialize) {
 
             function removeRowJabatan(e){
                 e.preventDefault();
-                if(!$scope.isEdit) {
-                    toastr.warning('Tidak bisa merubah jabatan');
-                    return
-                }
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                 var dataDelete = {
-                    jabatanTtd :{
-                        id:dataItem.idJabatanTtd
-                    },
+                    ttdPegawaiSk:$scope.item.atasanTtdSK,
+                    ttdJabatanSk:$scope.item.jabatanTtd,
+                    // jabatanTtd :{
+                    //     id:dataItem.idJabatanTtd
+                    // },
                     jabatan :{
                         id:dataItem.idJabatan
                     },
-                    pegawaiTtd : {
-                        id:dataItem.idPgwTtd
-                    },
+                    // pegawaiTtd : {
+                    //     id:dataItem.idPgwTtd
+                    // },
                     pegawai : {
                         id:dataItem.idPgw
                     },
@@ -776,16 +774,16 @@ define(['initialize'], function(initialize) {
                         "id":$scope.item.jenisJabatan.id
                     },
                     "noSK":$scope.item.noSK,
-                    "pegawaiTtd":{
-                        "id":143
-                    },
+                    // "pegawaiTtd":{
+                    //     "id":143
+                    // },
                     "tglSK":$scope.item.tglSK,
                     "jabatan":{
                         "id":$scope.item.riwayatJabatan.idJabatan
                     },
-                    "jabatanTtd":{
-                        "id":896
-                    },
+                    // "jabatanTtd":{
+                    //     "id":896
+                    // },
                     "ttdPegawaiSk":$scope.item.atasanTtdSK,
                     "ttdJabatanSk":$scope.item.jabatanTtd
                 }
@@ -1138,9 +1136,11 @@ define(['initialize'], function(initialize) {
                     $scope.item.jenisJabatan = { id:dataItem.idJenisJabatan, jenisJabatan:dataItem.jenisJabatan };                    
                     $scope.item.noSK = dataItem.noSk;
                     $scope.item.tglSK = dataItem.tglSk;
-                    $scope.item.atasanTtdSK = { id: dataItem.idPgwTtd, namaLengkap:dataItem.namaLengkapTtd };
+                    // $scope.item.atasanTtdSK = { id: dataItem.idPgwTtd, namaLengkap:dataItem.namaLengkapTtd };
+                    $scope.item.atasanTtdSK = dataItem.ttdPegawaiSk;
                     $scope.item.keterangan = dataItem.keterangan;
-                    $scope.item.jabatanTtd = { id:dataItem.idJabatanTtd, namaJabatan:dataItem.namaJabatanTtd };
+                    // $scope.item.jabatanTtd = { id:dataItem.idJabatanTtd, namaJabatan:dataItem.namaJabatanTtd };
+                    $scope.item.jabatanTtd = dataItem.ttdJabatanSk;
                     $scope.popUpRiwayat.center().open();
                 }
             // #endregion Riwayat Jabatan
@@ -1468,8 +1468,7 @@ define(['initialize'], function(initialize) {
                 if(!$scope.item.detailKategoryPegawai) { delete dataSave.detailKategoryPegawai };
                 if(!$scope.item.detailKelompokJabatan) { delete dataSave.detailKelompokJabatan };
                 if(!$scope.item.golonganDarah) { delete dataSave.golonganDarah };
-                if(!$scope.item.golonganPegawai) { delete dataSave.golonganPegawai };
-                if(!$scope.item.golonganPegawai.id) { delete dataSave.golonganPegawai };
+                if(!$scope.item.golonganPegawai || !$scope.item.golonganPegawai.id) { delete dataSave.golonganPegawai };
                 if(!$scope.item.jabatanFungsional) { delete dataSave.jabatanFungsional };
                 if(!$scope.item.jenisKelamin) { delete dataSave.jenisKelamin };
                 if(!$scope.item.jenisPegawai) { delete dataSave.jenisPegawai };
