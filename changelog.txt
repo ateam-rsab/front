@@ -1,3 +1,5 @@
+> Changelog tanggal 13 Juni 2019 :
+    - Sekarang di SDM Kepegawaian - Data Pegawai bisa Export All to Excel
 > Changelog tanggal 12 Juni 2019 :
     - Sekarang semua menu ditambahkan Setting untuk ubah password user
     - Penambahan form baru Serah Terima Pasien (Unstable)
