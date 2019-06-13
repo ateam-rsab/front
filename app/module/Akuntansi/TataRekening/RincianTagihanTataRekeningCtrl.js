@@ -1167,7 +1167,7 @@ define(['initialize'], function(initialize) {
 			   // $scope.isRouteLoading=true;
 				manageTataRekening.getDataTableTransaksi("pelayananpetugas/get-petugasbypelayananpasien?norec_pp="+$scope.dataSelected.norec).
 					  then(function(data){
-		                    $scope.sourceDokterPelaksana = data.data.data;
+						$scope.sourceDokterPelaksana = data.data.data;
 		                    // $scope.isRouteLoading=false;
 		                 
 		        });

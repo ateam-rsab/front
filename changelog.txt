@@ -1,12 +1,22 @@
+> Changelog tanggal 13 Juni 2019 :
+    - Sekarang di SDM Kepegawaian - Data Pegawai bisa Export All to Excel
 > Changelog tanggal 12 Juni 2019 :
-    - Sekarang semua menu ditambahkan Setting untuk ubah password user.
-    - Penambahan form baru Serah Terima Pasien
+    - Sekarang semua menu ditambahkan Setting untuk ubah password user
+    - Penambahan form baru Serah Terima Pasien (Unstable)
     - Bugs Fixing Order Jadwal Bedah
         - Input makan & minum, infus, status, label pasien
+        - Sekarang textarea di Order Jadwal Bedah font nya sudah seragam
     - Penambahan fitur baru Order Jadwal Bedah
         - Count otomatis lama pembedahan
     - Penambahan fitur di Daftar Konsultasi Dokter (Perawat)
         - Sekarang bisa filter per Kolom
     - Bugs Fixing Laporan Pendapatan
         - Sekarang bisa pilih tipe dokter untuk Fee For Service Rawat Jalan
-    
+    - Bugs fixing SDM Kepegawaian
+        - Bugs saat semua tanggal kosong defaultnya terisi tanggal 1/1/1970 sekarang defaultnya dd/MM/yyyy
+    - Perubahan SDM Kepegawaian
+        - Label Ijasah jadi Ijazah
+        - Perubahan format tanggal input Tanggal Ijazah
+        - Label Tanda tangan sk berubah menjadi Nama Tertanda SK
+        - Label Jabatan tanda tangan s k berubah menjadi Jabatan Tertanda SK
+        - Sekarang input Riwayat Jabatan (Nama Tertanda SK, Jabatan Tertanda SK) jadi textbox biasa

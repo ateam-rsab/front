@@ -23,6 +23,14 @@
     .k-checkbox-label:before {
         margin: 1px 0px 0px 6px;
     }
+
+    textarea {
+        color: #4c5356;
+        font-family: ProximaNovaLight!Important;
+        font-size: 13.3333px;
+        text-indent: 4.4px;
+        white-space: pre-wrap;
+    }
 </style>
 <div ng-show="dataVOloaded">
     <!-- <div class="grid_12 headerBox">
@@ -186,7 +194,6 @@
                                 </div>
                                 <div class="grid_8">
                                     <input style="width: 100%" kendo-date-picker
-                                        k-min="now"
                                         k-ng-model="item.tglPembedahan"
                                         placeholer="Hari-Bln-Thn"
                                         k-format="'dd-MM-yyyy'" />

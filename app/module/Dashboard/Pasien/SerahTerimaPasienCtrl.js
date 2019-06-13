@@ -4,11 +4,56 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
         function ($rootScope, $scope, $state, dateHelper, modelItemAkuntansi, cacheHelper, ManageSdm) {
             $scope.dateNow = new Date();
             $scope.dataGrid = [];
+            var usia = '',
+            departemen = '';
             $scope.listOfWaktuShift = [
                 { id:1, name:"Pagi"},
                 { id:2, name:"Sore"},
                 { id:3, name:"Malam"}
             ];
+            
+            var getDataApd = function () {
+                ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true", true).then(function(data) {
+                    $scope.dataMasterPetugas = data;
+                });
+                modelItemAkuntansi.getDataTableTransaksi('rekam-medis/get-apd/' + $state.params.noRec).then(function (e) {
+                    if(e.statResponse) {
+                        var result = e.result;
+                        result.umur = dateHelper.CountAge(new Date(result.tgllahir), new Date(result.tglregistrasi));
+                        var bln = result.umur.month,
+                            thn = result.umur.year,
+                            day = result.umur.day;
+                        usia = (result.umur.year * 12) + result.umur.month;
+                        departemen = result.objectdepartemenfk;
+                        result.umur = thn + 'thn ' + bln + 'bln ' + day + 'hr '
+                        var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+                        var firstDate = new Date(result.tgllahir);
+                        var secondDate = new Date(result.tglregistrasi);
+                        var countDay = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneDay)));
+        
+                        var setUsiaPengkajian = {
+                            'hari': countDay,
+                            'umur': thn
+                        }
+                        // $scope.header.generate = true;
+        
+                        $scope.header = result;
+                        localStorage.setItem('usiaPengkajian', JSON.stringify(setUsiaPengkajian));
+                        localStorage.setItem('departemenPengkajian', departemen);
+                        $scope.hideShowForm(setUsiaPengkajian, departemen);
+                    }
+                });
+            };
+            getDataApd();
+
+            $scope.batalInput = function() {
+                $scope.popUpAdd.close();
+            }
+
+            $scope.simpanDataSerahTerima = function () {
+                console.warn('belum ada fiturnya')
+            }
+
             $scope.init = function() {
                 var now = new Date();
                 var jam = now.getHours();
@@ -90,9 +135,6 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
             $scope.buatBaru = function() {
                 $scope.popUpAdd.open().center();
             }
-
-            
-        
         }
     ]);
 });
