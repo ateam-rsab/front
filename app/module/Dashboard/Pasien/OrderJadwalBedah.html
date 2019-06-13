@@ -200,21 +200,27 @@
                                     <label><b>Jam Mulai</b></label>
                                 </div>
                                 <div class="grid_8">
-                                    <input style="width: 100%" kendo-time-picker
-                                        k-ng-model="item.jamMulai"
-                                        k-format="'HH:mm'" />
+                                    <input style="width: 100%" kendo-time-picker k-ng-model="item.jamMulai" placeholer="HH:mm"
+                                        k-format="'HH:mm'" k-on-change="setLamaPembedahan()" />
+                                    <!-- <input style="width: 100%" kendo-time-picker
+                                        k-ng-model="item.jamMulai" 
+                                        ng-change="setLamaPembedahan()"
+                                        k-format="'HH:mm'" /> -->
                                 </div>
                             </div>  
                           
                             <!-- Selesai Jam -->
                             <div class="grid_4">
                                 <div class="grid_4" style="margin: 10px 0 0 0;">
-                                    <label><b>Selesai Jam</b></label>
+                                    <label><b>Jam Selesai</b></label>
                                 </div>
                                 <div class="grid_8">
-                                    <input style="width: 100%" kendo-time-picker
+                                    <input style="width: 100%" kendo-time-picker k-ng-model="item.jamSelesai" placeholer="HH:mm"
+                                        k-format="'HH:mm'" k-on-change="setLamaPembedahan()" />
+                                    <!-- <input style="width: 100%" kendo-time-picker 
+                                        ng-change="setLamaPembedahan()"
                                         k-ng-model="item.jamSelesai"
-                                        k-format="'HH:mm'" />
+                                        k-format="'HH:mm'" /> -->
                                 </div>
                             </div>                     
                             <!-- Lama Pembedahan -->
@@ -222,15 +228,15 @@
                                 <div class="grid_4" style="margin: 10px 0 0 0;">
                                     <label><b>Lama Pembedahan</b></label>
                                 </div>
-                                <div class="grid_7">
+                                <div class="grid_8">
                                     <input c-text-box type="input"
                                         placeholder="Jam" filter="'varchar'"
                                         class="k-textbox"
-                                        ng-model="item.lamaPembedahan" />
+                                        ng-model="item.lamaPembedahan" disabled/>
                                 </div>
-                                <div class="grid_1" style="margin-top: 13px;">
+                                <!-- <div class="grid_1" style="margin-top: 13px;">
                                     <label>Jam</label>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="grid_12">
@@ -476,9 +482,11 @@
                                 <ul class="fieldlist">
                                     <li>
                                         <label>Makan</label>
-                                        <input c-text-box type="input"
+                                        <textarea ng-model="item.selectedAvailMakan"
+                                            style="height:90px"></textarea>
+                                        <!-- <input c-text-box type="input"
                                             filter="'varchar'" class="k-textbox"
-                                            ng-model="item.selectedAvailMakan" />
+                                            ng-model="item.selectedAvailMakan" /> -->
                                         <!-- <input style="width: 100%;"
                                             kendo-combo-box
                                             k-ng-model="item.selectedAvailMakan"
@@ -490,9 +498,11 @@
                                     </li>
                                     <li>
                                         <label>Minum</label>
-                                        <input c-text-box type="input"
+                                        <textarea ng-model="item.selectedAvailMinum"
+                                            style="height:90px"></textarea>
+                                        <!-- <input c-text-box type="input"
                                             filter="'varchar'" class="k-textbox"
-                                            ng-model="item.selectedAvailMinum" />
+                                            ng-model="item.selectedAvailMinum" /> -->
                                         <!-- <input style="width: 100%;"
                                             kendo-combo-box
                                             k-ng-model="item.selectedAvailMinum"

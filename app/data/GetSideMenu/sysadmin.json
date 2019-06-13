@@ -95,7 +95,17 @@
             "link": "#/VerifikasiUraianTugasPegawaiLogin"
         }]
     },
-{
-    "name": "Form Baru",
-    "link": "#/NewForm"
-}]
+    {
+        "name": "Form Baru",
+        "link": "#/NewForm"
+    },
+    {
+        "name": "Setting",
+        "children": [
+            {
+                "name": "Ubah Password",
+                "link": "#/UbahPassword"  
+            }
+        ]
+    }
+]

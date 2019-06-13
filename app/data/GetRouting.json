@@ -24942,6 +24942,34 @@
     ]
   },
   {
+    "name": "SerahTerimaPasien",
+    "url": "/SerahTerimaPasien/:noCm",
+    "templateurl": "module/Dashboard/Pasien/SerahTerimaPasien.html",
+    "controller": "SerahTerimaPasienCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "PasienService",
+        "define": "PasienService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      }
+    ]
+  },
+  {
     "name": "PemeliharaanPihakLuar",
     "url": "/PemeliharaanPihakLuar",
     "templateurl": "module/AplikasiIT/PemeliharaanPihakLuar.html",

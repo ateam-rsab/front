@@ -967,6 +967,12 @@ define(['initialize'], function (initialize) {
                     $scope.dialog ={}
                 })
             }
+
+            $scope.serahTerimaPasien = function() {
+                $state.go('SerahTerimaPasien', {
+                    noCm: $scope.item.nocm
+                });
+            }
             
         }
 

@@ -1,0 +1,64 @@
+<div class="panel panel-default container_12" ng-hide="klikDiagnosa">
+    <div class="panel-heading"><label class='title' c-label item="item">Serah Terima Antar Shift Keperawatan</label></div>
+    <div class="panel-body">
+        <div style="margin:5px">
+            <kendo-grid id="grid"
+                data-source="dataGrid" options="mainGridOptions"
+                k-ng-model="dataPasienSelected"
+                ng-click="klikGrid(dataPasienSelected)"></kendo-grid>
+        </div>
+    </div>
+    <div kendo-window="popUpAdd" k-title="'Tambah Serah Terima Antar Shift Keperawatan'" k-width="700" k-visible="false" k-on-open="win2visible = true"
+        k-on-close="win2visible = false">
+        <div class="panel panel-default container_12" style="padding: 0px 10px;">
+            <fieldset>
+                <div class="grid_12">
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="Tanggal"></label>
+                        <div class="grid_12">
+                            <input kendo-date-time-picker k-ng-model="item.tglInput" k-format="'dd-MM-yyyy HH:mm'" style="width: 100%"/>
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="Waktu Shift"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.waktuShift" k-data-text-field="'name'" k-data-value-field="'id'" k-data-source="listOfWaktuShift"/>
+                    </div>
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="Keterangan"></label>
+                        <textarea ng-model="item.keterangan" style="width: 99%; height: 80px;"></textarea>
+                    </div>
+                    <div class="grid_12">
+                        <label c-label item="item">Pagi</label>
+                        <textarea ng-model="item.pagi" style="width: 99%; height: 80px;" ng-disabled="isPagi"></textarea>
+                    </div>
+                    <div class="grid_12">
+                        <label c-label item="item">Sore</label>
+                        <textarea ng-model="item.sore" style="width: 99%; height: 80px;" ng-disabled="isSore"></textarea>
+                    </div>
+                    <div class="grid_12">
+                        <label c-label item="item">Malam</label>
+                        <textarea ng-model="item.malam" style="width: 99%; height: 80px;" ng-disabled="isMalam"></textarea>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="grid_12">
+                <div class="k-edit-buttons  k-state-default pull-right" style="margin-top:10px">
+                    <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="save()" ng-disabled="isDisable"><span class="k-icon k-update"></span>Simpan</button>
+                    <button class="k-button  k-button-icontext" ng-click="batalInput()"><span class="k-icon k-cancel"></span>Batal</button>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="grid_6">
+            <label c-label item="item" c-label-text="Tanggal"></label>
+            <input kendo-date-picker k-ng-model="item.tglInput" k-format="'dd-MM-yyyy'" style="width: 100%"/>
+        </div>
+        <div class="grid_6">
+            <label c-label item="item" c-label-text="Waktu Shift"></label>
+            <input style="width: 100%;" kendo-combo-box k-ng-model="item.waktuShift" k-data-text-field="'name'" k-data-value-field="'id'" k-data-source="listOfWaktuShift"/>
+        </div>
+        <div class="grid_6">
+            <label c-label item="item" c-label-text="Keterangan"></label>
+            <textarea ng-model="item.alamatKeluarga" style="width: 100%;"></textarea>
+        </div> -->
+    </div>
+</div>

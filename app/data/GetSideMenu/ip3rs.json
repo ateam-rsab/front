@@ -350,17 +350,25 @@
             ]
         },
         {
-        "name": "Aplikasi Laundry",
-        "children": [
-            {
-                "name": "Permintaan Linen dari Ruangan",
-                "link": "#/PermintaanLinenByRuangan"
-            },            
-            {
-                "name": "Verifikasi Terima Linen",
-                "link": "#/VerifikasiTerima"
-            }
-
-        ]
-    }
-]
+            "name": "Aplikasi Laundry",
+            "children": [
+                {
+                    "name": "Permintaan Linen dari Ruangan",
+                    "link": "#/PermintaanLinenByRuangan"
+                },
+                {
+                    "name": "Verifikasi Terima Linen",
+                    "link": "#/VerifikasiTerima"
+                }
+            ]
+        },
+        {
+            "name": "Setting",
+            "children": [
+                {
+                    "name": "Ubah Password",
+                    "link": "#/UbahPassword"  
+                }
+            ]
+        }
+    ]

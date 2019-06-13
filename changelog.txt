@@ -1,0 +1,12 @@
+> Changelog tanggal 12 Juni 2019 :
+    - Sekarang semua menu ditambahkan Setting untuk ubah password user.
+    - Penambahan form baru Serah Terima Pasien
+    - Bugs Fixing Order Jadwal Bedah
+        - Input makan & minum, infus, status, label pasien
+    - Penambahan fitur baru Order Jadwal Bedah
+        - Count otomatis lama pembedahan
+    - Penambahan fitur di Daftar Konsultasi Dokter (Perawat)
+        - Sekarang bisa filter per Kolom
+    - Bugs Fixing Laporan Pendapatan
+        - Sekarang bisa pilih tipe dokter untuk Fee For Service Rawat Jalan
+    

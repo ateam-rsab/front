@@ -84,6 +84,7 @@ define([], function () {
             baseUrlAction: "http://192.168.12.3:8080/jasamedika-web/",
             baseUrlAction: `${baseURLBackend}:${portBackend}/jasamedika-web/`,
             /**Login Java */
+<<<<<<< HEAD
             baseUrlLogin: "http://192.168.12.3:8080/jasamedika-web/auth/sign-in",
             baseUrlLogout: "http://192.168.12.3:8080/jasamedika-web/auth/sign-out",
             baseUrlLogin: `${baseURLBackend}:${portBackend}/jasamedika-web/auth/sign-in`,
@@ -94,6 +95,14 @@ define([], function () {
             // baseUrlLogout: "http://192.168.12.3:2222/simrs_harkit/service/auth/sign-out",
             // baseUrlLogin: 'http://192.168.12.3:2222/simrs_harkit/service/auth/sign-in',
             // baseUrlLogout: 'http://192.168.12.3:2222/simrs_harkit/service/auth/sign-out',
+=======
+            // baseUrlLogin: "http://192.168.12.3:8080/jasamedika-web/auth/sign-in",
+            // baseUrlLogout: "http://192.168.12.3:8080/jasamedika-web/auth/sign-out",
+
+            /**Login PHP */
+            baseUrlLogin: "http://192.168.12.3:2222/simrs_harkit/service/auth/sign-in",
+            baseUrlLogout: "http://192.168.12.3:2222/simrs_harkit/service/auth/sign-out",
+>>>>>>> ed33999323b353f2c6d1feac287087efeea2ee3b
             baseBridiging: "http://smart.rsabhk.co.id/Bridging/",
             
             urlRoute: `${baseURLFrontend}:${portFrontend}/app/data/GetRouting`,

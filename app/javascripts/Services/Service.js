@@ -335,6 +335,24 @@ define(['Configuration'], function (config) {
                         return "";
                     return moment(date).format(format);
                 },
+                toDateFromTimestamp: function (date) {
+                    date = new Date(date)
+                    var year = date.getFullYear();
+                    var month = date.getMonth() + 1;
+                    var day = date.getDate();
+                    if(month < 10) {
+                        month = '0' + month;
+                    }
+                    var fullDate = `${day}-${month}-${year}`;
+                    return fullDate;
+                },
+                toTimestampFromDate: function (date) {
+                    date = date.split('-');
+                    var returnDate = date[1] + '/' + date[0] + '/' + date[2];
+                    // var dateFormated = Math.round(new Date(date).getTime()/1000)
+                    // console.log(dateFormated)
+                    return new Date(returnDate).getTime()/1000;
+                },
                 DescDay: function (date, flag) {
                     var day = date.getDay() - 1;
                     if (day === -1)

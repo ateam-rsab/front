@@ -83,20 +83,85 @@ define(['initialize'], function(initialize) {
             $scope.konsulOpt = {
                 pageable: true,
                 scrollable: true,
+                filterable: {
+					extra: false,
+					operators: {
+						string: {
+							startswith: "Dimulai dengan",
+							contains: "mengandung kata",
+							neq: "Tidak mengandung kata"
+						}
+					}
+				},
                 columns: [
                     // { field: "rowNumber", title: "#", width: 40, width: 40, attributes: { style: "text-align:right; padding-right: 15px;"}, hideMe: true},
                     // { field: "no", title: "No", width: 40, headerAttributes: { style: "text-align : center" }},
-                    { field: "noregistrasi", title: "No Registrasi", width: 100, headerAttributes: { style: "text-align : center" }},
-                    { field: "nocm", title: "No RM", width: 80, headerAttributes: { style: "text-align : center" }},
-                    { field: "namapasien", title: "Nama Pasien", width: 150, headerAttributes: { style: "text-align : center" }},
-                    { field: "tglorder", title: "Tanggal", width: 120, headerAttributes: { style: "text-align : center" }},
-                    { field: "ruanganasal", title: "Ruangan Asal", width: 120, headerAttributes: { style: "text-align : center" }},
-                    { field: "ruangantujuan", title: "Ruangan Tujuan", width: 150, headerAttributes: { style: "text-align : center" } },
-                    { field: "namalengkap", title: "Dokter<br> Asal", width: 120, headerAttributes: { style: "text-align : center" }},
-                    { field: "pengonsul", title: "Dokter<br> Tujuan", width: 120, headerAttributes: { style: "text-align : center" }},
+                    { 
+                        field: "noregistrasi", 
+                        title: "<h3>No Registrasi</h3>", 
+                        width: 100, 
+                        headerAttributes: { style: "text-align : center" },
+                        filterable : true
+                    },
+                    { 
+                        field: "nocm", 
+                        title: "<h3>No RM</h3>", 
+                        width: 80, 
+                        headerAttributes: { style: "text-align : center" },
+                        filterable : true
+                    },
+                    { 
+                        field: "namapasien", 
+                        title: "<h3>Nama Pasien</h3>", 
+                        width: 150, 
+                        headerAttributes: { style: "text-align : center" },
+                        filterable : true
+                    },
+                    { 
+                        field: "tglorder", 
+                        title: "<h3>Tanggal</h3>", 
+                        width: 120, 
+                        headerAttributes: { style: "text-align : center" },
+                        filterable : true
+                    },
+                    { 
+                        field: "ruanganasal", 
+                        title: "<h3>Ruangan Asal</h3>", 
+                        width: 120, 
+                        headerAttributes: { style: "text-align : center" },
+                        filterable : true
+                    },
+                    { 
+                        field: "ruangantujuan", 
+                        title: "<h3>Ruangan Tujuan</h3>", 
+                        width: 150, 
+                        headerAttributes: { style: "text-align : center" },
+                        filterable : true
+                    },
+                    { 
+                        field: "namalengkap", 
+                        title: "<h3>Dokter<br> Asal</h3>", 
+                        width: 120, 
+                        headerAttributes: { style: "text-align : center" },
+                        filterable : true
+                    },
+                    { 
+                        field: "pengonsul", 
+                        title: "<h3>Dokter<br> Tujuan</h3>", 
+                        width: 120, 
+                        headerAttributes: { style: "text-align : center" },
+                        filterable : true
+                    },
                     // { field: "keteranganorder", title: "Keterangan", width: 120, headerAttributes: { style: "text-align : center" }},
                     // { field: "status", title: "Status", width: 120, headerAttributes: { style: "text-align : center" }},
-                    { command: [ { name: "Edit", text: "Detail", click: verif }], title: "&nbsp;", width: 120, attributes: { style: "text-align:center;valign=middle" }}
+                    { 
+                        command: [{ 
+                            name: "Edit", 
+                            text: "Detail", 
+                            click: verif }], 
+                        title: "&nbsp;", 
+                        width: 120, 
+                        attributes: { style: "text-align:center;valign=middle" }}
                 ],
             };
 
