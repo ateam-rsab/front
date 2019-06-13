@@ -1025,21 +1025,26 @@ define(['initialize'], function(initialize) {
                             field: "tglSk",
                             title: "<h3>Tanggal SK</h3>",
                             width:"100px" 
-                        }, 
-                        {  
+                        },
+                        {
                             field: "jenisJabatan",
                             title: "<h3>Jenis Jabatan</h3>",
-                            width:"150px" 
+                            width:"200px" 
+                        },
+                        {  
+                            field: "namaJabatan",
+                            title: "<h3>Nama Jabatan</h3>",
+                            width:"200px" 
                         },
                         {  
                             field: "ttdJabatanSk",
                             title: "<h3>Jabatan Tertanda</h3>",
-                            width:"250px" 
+                            width:"200px" 
                         },
                         {  
                             field: "ttdPegawaiSk",
                             title: "<h3>Nama Tertanda SK</h3>",
-                            width:"150px"
+                            width:"200px"
                         },
                         {
                             command:[ 
