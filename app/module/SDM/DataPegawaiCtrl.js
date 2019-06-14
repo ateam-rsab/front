@@ -62,9 +62,7 @@ define(['initialize'], function(initialize) {
                     var toRemove = [3, 4, 5, 24, 25],
                     listKedudukan = result[5].data.data;
 
-                    $scope.ListKedudukanPegawai = listKedudukan.filter( function (el){
-                        return !toRemove.includes( el.id );
-                    })
+                    $scope.ListKedudukanPegawai = listKedudukan;
                 }
                 
                 $scope.ListStatusPegawai = result[6].data;
