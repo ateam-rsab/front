@@ -183,53 +183,53 @@ define(['initialize'], function(initialize) {
                 columns :[
                 {                
                     "field":"no",
-                    "title":"No",
+                    "title":"<h3>No</h3>",
                     "width":"40px",
                 },
                 {
                     "field":"tglregistrasi",
-                    "title":"Tgl Registrasi",
+                    "title":"<h3>Tanggal<br> Registrasi</h3>",
                     "template": "#= new moment(new Date(tglregistrasi)).format('DD-MM-YYYY HH:mm') #",
                     "width":"80px"
                 }, 
                 {
                     "field":"noregistrasi",
-                    "title":"No Registrasi",
+                    "title":"<h3>No. Registrasi</h3>",
                     "width":"80px"
                 },
                 {
                     "field":"nocm",
-                    "title":"No. Rekam Medis",
-                    "width":"80px"               
+                    "title":"<h3>No. Rekam<br>Medis</h3>",
+                    "width":"80px"
                 },
                 {
                     "field":"namapasien",
-                    "title":"Nama Pasien",
+                    "title":"<h3>Nama Pasien</h3>",
                     "width":"100px"
                 }, 
                 {
                     "field":"umurzz",
-                    "title":"Umur",
+                    "title":"<h3>Umur</h3>",
                     "width":"100px"      
                 }, 
                 {
                     "field":"namadokter",
-                    "title":"Dokter",
-                    "width":"100px"     
+                    "title":"<h3>Dokter</h3>",
+                    "width":"100px"
                 }, 
                 {
                     "field": "jeniskelamin",
-                    "title": "Jenis Kelamin",
+                    "title": "<h3>Jenis Kelamin</h3>",
                     "width":"100px"
                 },
                 {
                     "field": "kelompokpasien",
-                    "title": "Tipe Pembayaran",
+                    "title": "<h3>Tipe<br> Pembayaran</h3>",
                     "width":"80px"
                 }, 
                 {
                     "field": "statuspanggil",
-                    "title": "Status Panggil",
+                    "title": "<h3>Status Panggil</h3>",
                     "width":"80px"
                 }, 
                 // {
