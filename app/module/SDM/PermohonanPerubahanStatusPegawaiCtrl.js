@@ -1285,8 +1285,9 @@ define(['initialize'], function(initialize) {
                 // debugger
                 data.until = $scope.now;
                 $scope.currentData = data;
-                manageSarprasPhp.getDataTableTransaksi("historypegawai/get-drop-down-riwayat-jabatan-registered?id="+ data.pegwaiId).then(function (res) {
-                    $scope.listJabatan1 = res.data.dataJabatanInternal
+                // manageSarprasPhp.getDataTableTransaksi("historypegawai/get-drop-down-riwayat-jabatan-registered?id="+ data.pegwaiId).then(function (res) {
+                ManageSdmNew.getListData("pegawai/get-all-jabatan-by-pegawai?idPegawai="+ data.pegwaiId).then(function (res) {
+                    $scope.listJabatan1 = res.data.data
                     $scope.currentData.jabatanPelimpah =  $scope.listJabatan1[0] 
                 })
                 $scope.winCetakPelimpahan.center().open();
@@ -1294,18 +1295,19 @@ define(['initialize'], function(initialize) {
 
             $scope.$watch('currentData.atasanLangsung', function(e) {
                 if (!e) return;
-                manageSarprasPhp.getDataTableTransaksi("historypegawai/get-drop-down-riwayat-jabatan-registered?id=" 
-                    + e.id).then(function (res) {
-                        $scope.listJabatan1 = res.data.dataJabatanInternal
+                // manageSarprasPhp.getDataTableTransaksi("historypegawai/get-drop-down-riwayat-jabatan-registered?id=" 
+                ManageSdmNew.getListData("pegawai/get-all-jabatan-by-pegawai?idPegawai="+ e.id).then(function (res) {
+                        $scope.listJabatan1 = res.data.data
                          $scope.currentData.jabatanAtasanLangsung =  $scope.listJabatan1[0] 
                 })
             })
 
             $scope.$watch('currentData.pejabatPenilai', function(e) {
                 if (!e) return;
-                manageSarprasPhp.getDataTableTransaksi("historypegawai/get-drop-down-riwayat-jabatan-registered?id=" 
+                // manageSarprasPhp.getDataTableTransaksi("historypegawai/get-drop-down-riwayat-jabatan-registered?id=" 
+                ManageSdmNew.getListData("pegawai/get-all-jabatan-by-pegawai?idPegawai="
                     + e.id).then(function (res) {
-                        $scope.listJabatan2 = res.data.dataJabatanInternal
+                        $scope.listJabatan2 = res.data.data
                           $scope.currentData.jabatanPejabatPenilai =  $scope.listJabatan2[0]
                 })
             })
