@@ -1296,7 +1296,8 @@ define(['initialize'], function(initialize) {
             $scope.$watch('currentData.atasanLangsung', function(e) {
                 if (!e) return;
                 // manageSarprasPhp.getDataTableTransaksi("historypegawai/get-drop-down-riwayat-jabatan-registered?id=" 
-                ManageSdmNew.getListData("pegawai/get-all-jabatan-by-pegawai?idPegawai="+ e.id).then(function (res) {
+                ManageSdmNew.getListData("pegawai/get-all-jabatan-by-pegawai?idPegawai="
+                    + e.id).then(function (res) {
                         $scope.listJabatan1 = res.data.data
                          $scope.currentData.jabatanAtasanLangsung =  $scope.listJabatan1[0] 
                 })
