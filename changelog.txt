@@ -1,5 +1,8 @@
 > Changelog tanggal 13 Juni 2019 :
-    - Sekarang di SDM Kepegawaian - Data Pegawai bisa Export All to Excel
+    - Perubahan di SDM Kepegawaian - Data Pegawai 
+        - Sekarang bisa Export All to Excel
+        - Sekarang filter kedudukan semua bisa di munculkan (pensiun, dll)
+    
 > Changelog tanggal 12 Juni 2019 :
     - Sekarang semua menu ditambahkan Setting untuk ubah password user
     - Penambahan form baru Serah Terima Pasien (Unstable)
