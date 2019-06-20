@@ -468,7 +468,7 @@ define(['Configuration'], function(config) {
             saveMasterJabatan: function(data) {
 
                  return r.post({
-                     url: baseUrlApiAction + "jabatan/save-jabatan-internal/"
+                     url: baseApiPostDataSDM + "jabatan/save-jabatan-internal/"
                  }, data);
              },
 
