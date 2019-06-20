@@ -274,24 +274,45 @@
     </div>
 </div>
 
-<div kendo-window="popUpHasilKonsul" k-title="'Hasil Konsultasi'" k-width="800" k-visible="false" k-on-open="win2visible = true"
+<div kendo-window="popUpHasilKonsul" k-title="'Hasil Konsultasi'" k-width="1200" k-visible="false" k-on-open="win2visible = true"
     k-on-close="win2visible = false">
     <div class="panel panel-default container_12" style="padding: 0px 10px;">
-            <fieldset style="margin-bottom: 10px">
+            <fieldset class="borderBox" style="margin-bottom: 10px">
                 <legend>
                     <strong>Keterangan dari {{item.dokterPengonsul}}</strong>
                 </legend>
-                <p>
+                <fieldset style="margin: 10px;">
+                    <legend><strong>Masalah</strong></legend>
+                    <i>{{item.masalah}}</i>
+                </fieldset>
+                <fieldset style="margin: 10px;">
+                    <legend><strong>Pasien dengan diagnosa kerja</strong></legend>
+                    <i>{{item.diagnosaKerja}}</i>
+                </fieldset>
+                <fieldset style="margin: 10px;">
+                    <legend><strong>Ikhtisar Klinik</strong></legend>
+                    <i>{{item.ikhtisarKlinik}}</i>
+                </fieldset>
+                <fieldset style="margin: 10px;">
+                    <legend><strong>Terapi dan Tindakan yang sudah diberikan</strong></legend>
+                    <i>{{item.terapiDanTindakan}}</i>
+                </fieldset>
+                <!-- <p>
                     <i>"{{item.keteranganOrder}}"</i>
-                </p>
+                </!-->
             </fieldset>
-            <fieldset style="margin-bottom: 10px">
+            <fieldset class="borderBox" style="margin-bottom: 10px">
                 <legend>
                     <strong>Keterangan dari {{item.dokterTarget}}</strong>
                 </legend>
-                <p>
-                    <i>"{{item.keteranganKeperluan}}"</i>
-                </p>
+                <fieldset style="margin: 10px;">
+                    <legend><strong>Pada pemeriksaan didapatkan</strong></legend>
+                    <i>{{item.padaPemeriksaan}}</i>
+                </fieldset>
+                <fieldset style="margin: 10px;">
+                    <legend><strong>Keterangan</strong></legend>
+                    <i>{{item.keterangan}}</i>
+                </fieldset>
             </fieldset>
             <!-- <label c-label item="item" c-label-text="Kesan"></label>
             <textarea ng-disabled="isVerify" ng-model="item.kesan" style="width: 99%; height: 80px;"></textarea> -->

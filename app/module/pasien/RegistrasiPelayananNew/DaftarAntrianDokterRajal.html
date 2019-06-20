@@ -225,20 +225,21 @@
                 <strong>Keterangan dari {{item.dokterPengonsul}}</strong>
             </legend>
             <fieldset>
+                <legend><strong>Masalah</strong></legend>
+                {{item.masalah}}
+            </fieldset>
+            <fieldset>
                 <legend><strong>Pasien dengan diagnosa kerja</strong></legend>
-                {{item.keteranganOrder}}
+                {{item.diagnosaKerja}}
             </fieldset>
             <fieldset>
                 <legend><strong>Ikhtisar Klinik</strong></legend>
-                {{item.diagnosaKerja}}
+                {{item.keteranganOrder}}
             </fieldset>
             <fieldset>
                 <legend><strong>Terapi dan Tindakan yang sudah diberikan</strong></legend>
                 {{item.terapi}}
             </fieldset>
-            <!-- <p>
-               <i>"{{item.keteranganOrder}}"</i>
-            </p> -->
         </fieldset>
         <div class="grid_12">
             <div class="grid_12">

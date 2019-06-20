@@ -40,12 +40,12 @@ define(['initialize'], function(initialize) {
                 if(chacePeriode != undefined){
                     //debugger;
                     var arrPeriode = chacePeriode.split('~');
-                    $scope.item.periodeAwal = new Date(arrPeriode[0]);
+                    $scope.item.periodeAwal = new Date(new moment(arrPeriode[0]).format('YYYY-MM-DD 00:00'));
                     $scope.item.periodeAkhir = new Date(arrPeriode[1]); 
                     // $scope.item.tglpulang = new Date(arrPeriode[2]);                
                 }else{
                     $scope.item.periodeAwal = new Date();
-                    $scope.item.periodeAkhir = moment( $scope.now).format('YYYY-MM-DD 23:59');
+                    $scope.item.periodeAkhir = moment($scope.now).format('YYYY-MM-DD 23:59');
                     // $scope.item.tglpulang = $scope.now;                 
                 }
                 manageSarprasPhp.getDataTableTransaksi("dokter/get-data-combo-dokter", false).then(function(data) {
@@ -1505,10 +1505,10 @@ define(['initialize'], function(initialize) {
                     "dokterfk": $scope.pegawaiFkKonsultasi,
                     "objectruangantujuanfk": $scope.objectRuanganFkTujuanKonsultasi,
                     "objectruanganasalfk": $scope.objectRuanganFkKonsultasi,
-                    "periksaDidapatkan":$scope.item.periksaDidapatkan,
+                    "pemeriksaandidapat":$scope.item.periksaDidapatkan,
                     "keterangankeperluan": $scope.item.kesan
                 }
-                console.log(dataKonsul);
+                // console.log(dataKonsul);
                 // $scope.winDescription.close();
                 // $scope.winKonsul.close();
                 ManagePhp.postData2('rekam-medis/save-konsul-from-order',dataKonsul).then(function(e){
@@ -1532,7 +1532,8 @@ define(['initialize'], function(initialize) {
                 }
                 $scope.item.dokterPengonsul = dataItem.pengonsul;
                 $scope.item.keteranganOrder = dataItem.keteranganorder;
-                $scope.item.diagnosaKerja = dataItem.diagnosakerja
+                $scope.item.diagnosaKerja = dataItem.diagnosakerja;
+                $scope.item.masalah = dataItem.masalah;
                 $scope.item.terapi = dataItem.terapi
                 $scope.statusKonsultasi = dataItem.status;
                 $scope.noRecKonsultasi = dataItem.norec;
