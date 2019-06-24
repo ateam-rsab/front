@@ -1,44 +1,52 @@
 [
-    
     {
-        "name": "Jurnal",
-        "link": "#/JurnalRev2018"
-    },
-    {
-        "name": "Buku Besar ",
-        "link": "#/LaporanBukuBesar"
-    },
-    {
-        "name": "Buku Besar Pembantu",
-        "link": "#/BukuBesarPembantu"
-    },
-    {
-        "name": "Neraca Saldo",
-        "link": "#/TrialBalance"
-    },
-    {
-        "name": "Neraca",
-        "link": "#/AkuntansiNeracaRev1"
-    },
-    {
-        "name": "Arus Kas",
-        "link": "#/AkuntansiArusKasRev1"
-    },
-    {
-        "name": "Laporan Operasional",
-        "link": "#/AkuntansiLaporanAktivitasRev1"
-    },
-    {
-        "name": "Rincian Pendapatan",
-        "link": "#/AkuntansiPendapatanRev1"
-    },
-    {
-        "name": "Rincian Beban Operasional",
-        "link": "#/AkuntansiBebanRev1"
-    },
-    {
-        "name": "Laporan Akuntansi",
-        "link": "#/LaporanAkuntansi"
+        "name": "Transaksi Akuntansi",
+        "children": [
+            {
+                "name": "Jurnal",
+                "link": "#/JurnalRev2018"
+            },
+            {
+                "name": "Posting Harian",
+                "link": "#/Posting"
+            },
+            {
+                "name": "Buku Besar ",
+                "link": "#/LaporanBukuBesar"
+            },
+            {
+                "name": "Buku Besar Pembantu",
+                "link": "#/BukuBesarPembantu"
+            },
+            {
+                "name": "Neraca Saldo",
+                "link": "#/TrialBalance"
+            },
+            {
+                "name": "Neraca",
+                "link": "#/AkuntansiNeracaRev1"
+            },
+            {
+                "name": "Arus Kas",
+                "link": "#/AkuntansiArusKasRev1"
+            },
+            {
+                "name": "Laporan Operasional",
+                "link": "#/AkuntansiLaporanAktivitasRev1"
+            },
+            {
+                "name": "Rincian Pendapatan",
+                "link": "#/AkuntansiPendapatanRev1"
+            },
+            {
+                "name": "Rincian Beban Operasional",
+                "link": "#/AkuntansiBebanRev1"
+            },
+            {
+                "name": "Laporan Akuntansi",
+                "link": "#/LaporanAkuntansi"
+            }
+        ]
     },
     {
         "name": "Data Transaksi",

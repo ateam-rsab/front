@@ -1,6 +1,6 @@
 define([], function () {
     'use strict';
-    var baseURLFrontend = 'http://172.16.99.41',
+    var baseURLFrontend = 'http://172.16.99.188',
         portFrontend = '5555',
         baseURLBackend = 'http://192.168.12.3',
         portBackend = '8080';
@@ -80,7 +80,7 @@ define([], function () {
             /**Login PHP */
             baseUrlLogin: "http://192.168.12.3:2222/simrs_harkit/service/auth/sign-in",
             baseUrlLogout: "http://192.168.12.3:2222/simrs_harkit/service/auth/sign-out",
-            baseBridiging: "http://smart.rsabhk.co.id/Bridging/",
+            // baseBridiging: "http://smart.rsabhk.co.id/Bridging/",
             
             urlRoute: `${baseURLFrontend}:${portFrontend}/app/data/GetRouting`,
 

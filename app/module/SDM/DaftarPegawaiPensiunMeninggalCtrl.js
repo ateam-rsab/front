@@ -6,11 +6,13 @@ define(['initialize'], function(initialize) {
 			$scope.item = {};
 			$scope.isRouteLoading = true;
             $scope.daftarpegawaiOpt = {
-                // toolbar: ["excel",{
-                //     name: "upload",
-                //     text: "Upload Contacts",
-                //     template: '<button ng-click="exportDetail()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export All to Excel</button>'	
-                //   }],
+                toolbar: [
+                    {
+                        name: "upload",
+                        text: "Upload Contacts",
+                        template: '<button ng-click="exportDetail()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'	
+                    }
+                ],
                 // excel: {
                 //     allPages: true,
                 //     fileName: "RSAB HK Export Data Pegawai-" + dateHelper.formatDate(new Date(), 'DD-MMM-YYYY HH:mm:ss') +".xlsx"
@@ -30,13 +32,30 @@ define(['initialize'], function(initialize) {
                 //     }
                 // },
                 columns: [
-                    { field: "nipPns", title: "Nip", width: "10%" },
-                    { field: "namaLengkap", title: "Nama Lengkap", width: "25%" },
-                    { field: "agama", title: "Agama", width: "10%" },
-                    { field: "unitKerja", title: "Unit Kerja", width: "25%" },
-                    { field: "subUnitKerja", title: "SubUnit Kerja", width: "20%" },
-                    { field: "jabatanInternal", title: "Jabatan Internal", width: "20%" },
-                    { field: "kedudukan", title: "Kedudukan", width: "20%" }
+                    { field: "nipPns", title: "<h3>Nip</h3>", width: "20%", attributes: { style: "text-align:center;valign=middle" }},
+                    { field: "namaLengkap", title: "<h3>Nama Lengkap</h3>", width: "25%" },
+                    // { field: "agama", title: "<h3>Agama</h3>", width: "10%" },
+                    { field: "unitKerja", title: "<h3>Unit Kerja</h3>", width: "25%" },
+                    { field: "subUnitKerja", title: "<h3>SubUnit Kerja</h3>", width: "20%" },
+                    { field: "jabatanInternal", title: "<h3>Jabatan Internal</h3>", width: "20%" },
+                    { field: "kedudukan", title: "<h3>Kedudukan</h3>", width: "15%" },
+                    {
+                        command: [
+                            {
+                                text: "Lihat",
+                                width: "40px",
+                                align: "center",
+                                attributes: {
+                                    align: "center"
+                                },
+                                click: editDataPegawai,
+                                imageClass: "k-i-arrow-60-right"
+                            }
+                        ],
+                        title: "",
+                        width: "10%",
+                        attributes: { style: "text-align:center;valign=middle" },
+                    }
                 ],
                 // set column width to auto
                 // excelExport: function(e) {
@@ -47,6 +66,82 @@ define(['initialize'], function(initialize) {
                 //     });
                 // }
             };
+
+            function editDataPegawai(e) {
+                e.preventDefault();
+                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                $scope.dataItem = dataItem;
+                if ($scope.dataItem) {
+                    $state.go("RekamDataPegawai", { idPegawai: $scope.dataItem.idPegawai });
+                } else {
+                    messageContainer.error('Pegawai belum di pilih')
+                }
+            }
+
+            $scope.exportDetail = function(e){
+                var tempDataExport = [];
+                var rows = [{
+                    cells: [
+                        { value: "NIP" },
+                        { value: "Nama Lengkap" },
+                        { value: "Agama" },
+                        { value: "Unit Kerja" },
+                        { value: "Sub Unit Kerja" },
+                        { value: "Jabatan Internal" },
+                        { value: "Kedudukan"}
+                    ]
+                }];
+                // if($scope.filteredData.length > 0){
+                //     tempDataExport = new kendo.data.DataSource({
+                //         data: $scope.daftarPegawai
+                //     });
+                // } else {
+                //     tempDataExport = $scope.daftarPegawai;
+                // }
+                tempDataExport = $scope.daftarPegawai;
+                tempDataExport.fetch(function(){
+                    var data = this.data();
+                    for (var i = 0; i < data.length; i++){
+                        //push single row for every record
+                        rows.push({
+                            cells: [
+                                { value: data[i].nipPns },
+                                { value: data[i].namaLengkap },
+                                { value: data[i].agama },
+                                { value: data[i].unitKerja },
+                                { value: data[i].jabatanInternal },
+                                { value: data[i].kedudukan}
+                            ]
+                        })
+                    }
+                    var workbook = new kendo.ooxml.Workbook({
+                        sheets: [
+                            {
+                                freezePane: {
+                                    rowSplit: 1
+                                },
+                                filter: { from: 0, to: 1 },
+                                columns: [
+                                    // Column settings (width)
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true }                                    
+                                ],
+                                // Title of the sheet
+                                title: "Daftar",
+                                // Rows of the sheet
+                                rows: rows
+                            }
+                        ]
+                    });
+                    //save the file as Excel file with extension xlsx
+                    kendo.saveAs({dataURI: workbook.toDataURL(), fileName: "Daftar-Pegawai-Pensiun/Meninggal.xlsx"});
+                });
+            };
+
             $q.all([
                 ManageSdm.getOrderList("service/list-generic/?view=Jabatan&select=id,namaJabatan&criteria=jenisJabatan&values=3", true),
                 // FindSdm.getSubUnitKerja(),

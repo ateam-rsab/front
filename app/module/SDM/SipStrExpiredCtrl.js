@@ -13,14 +13,14 @@ define(['initialize'], function(initialize) {
                 ManageSdm.getOrderList("pegawai/get-pegawai-sip-expired").then(function(res){
                     $scope.datagridSip = new kendo.data.DataSource({
                         data: res.data.data,
-                      //  pageSize: 10,
-                        group: {
-                            field: "tglBerakhirSip2",
-                            aggregates: [{
-                                field: "tglBerakhirSip2",
-                                aggregate: "count"
-                            }]
-                        },
+                        pageSize: 15,
+                        // group: {
+                        //     field: "tglBerakhirSip2",
+                        //     aggregates: [{
+                        //         field: "tglBerakhirSip2",
+                        //         aggregate: "count"
+                        //     }]
+                        // },
                         aggregate: [ { field: "tglBerakhirSip2", aggregate: "count" }]
                     });
                     $scope.isRouteLoading = false;
@@ -34,14 +34,14 @@ define(['initialize'], function(initialize) {
                 ManageSdm.getOrderList("pegawai/get-pegawai-str-expired").then(function(res){
                     $scope.datagridStr = new kendo.data.DataSource({
                         data: res.data.data,
-                      //  pageSize: 10,
-                        group: {
-                            field: "tglBerakhirStr2",
-                            aggregates: [{
-                                field: "tglBerakhirStr2",
-                                aggregate: "count"
-                            }]
-                        },
+                        pageSize: 10,
+                        // group: {
+                        //     field: "tglBerakhirStr2",
+                        //     aggregates: [{
+                        //         field: "tglBerakhirStr2",
+                        //         aggregate: "count"
+                        //     }]
+                        // },
                         aggregate: [ { field: "tglBerakhirStr2", aggregate: "count" }]
                     });
                     $scope.isRouteLoading = false;
@@ -50,6 +50,7 @@ define(['initialize'], function(initialize) {
                 });
                 $scope.tabActive = 'masaBerlakuStr';
             };
+
             $scope.onTabChanges = function(value){
                 if (value === 1){
                     if(!$scope.datagridSip){
@@ -61,9 +62,11 @@ define(['initialize'], function(initialize) {
                     }
                 }
             };
+
             $scope.opsiGridSip = {
                 toolbar: [
-                "excel", 
+                // "excel", 
+                    { text: "export", name:"Export detail", template: '<button ng-click="exportDetailSIP()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'}
                 ],
                 excel: {
                     fileName: "Daftar SIP Pegawai.xlsx",
@@ -72,7 +75,7 @@ define(['initialize'], function(initialize) {
                 excelExport: function(e){
                     var sheet = e.workbook.sheets[0];
                     sheet.frozenRows = 2;
-                    sheet.mergedCells = ["A1:G1"];
+                    sheet.mergedCells = ["A1:F1"];
                     sheet.name = "Orders";
 
                     var myHeaders = [{
@@ -85,24 +88,85 @@ define(['initialize'], function(initialize) {
 
                      sheet.rows.splice(0, 0, { cells: myHeaders, type: "header", height: 70});
                  },
-               // pageable: true,
+                pageable: true,
                 selectable: "row",
                 scrollable: false,
                 columns: [
-                    { field: "nipPns", title: "NIP", "width": 180}, 
-                    { field: "namaLengkap", title: "Nama", "width": 280}, 
-                    { field: "unitKerja", title: "Unit Kerja" },
-                    { field: "subUnitKerja", title: "Sub-Unit Kerja" },
-                    { field: "noSip", title: "Nomor SIP" },
-                     { field: "tglBerakhirSip2", title: "Tanggal Berakhir"  
-                      , aggregates: ["count"]
-                      , groupHeaderTemplate: "Tanggal Berakhir SIP [#= kendo.toString(value) #] (Total: #= count#)" }
+                    { field: "nipPns", title: "<h3>NIP</h3>", "width": 180}, 
+                    { field: "namaLengkap", title: "<h3>Nama</h3>", "width": 280}, 
+                    { field: "unitKerja", title: "<h3>Unit Kerja</h3>" },
+                    { field: "subUnitKerja", title: "<h3>Sub-Unit Kerja</h3>" },
+                    { field: "noSip", title: "<h3>Nomor SIP</h3>" },
+                    { field: "tglBerakhirSip2", title: "<h3>Tanggal Berakhir</h3>"
+                        // aggregates: ["count"],
+                        // groupHeaderTemplate: "Tanggal Berakhir SIP [#= kendo.toString(value) #] (Total: #= count#)" 
+                    }
                  
                ]
             };
+
+            $scope.exportDetailSIP = function(){
+                var tempDataExport = [];
+                var rows = [
+                        {
+                            cells: [
+                                { value: "NIP" },
+                                { value: "Nama" },
+                                { value: "Unit Kerja" },
+                                { value: "Sub Unit Kerja" },
+                                { value: "No. SIP" },
+                                { value: "Tanggal Berakhir" }
+                                
+                            ]
+                        }
+                    ];
+                
+                tempDataExport = $scope.datagridSip;
+                tempDataExport.fetch(function(){
+                    var data = this.data();
+                    console.log(data);
+                    for (var i = 0; i < data.length; i++){
+                        //push single row for every record
+                        rows.push({
+                            cells: [
+                                { value: data[i].nipPns },
+                                { value: data[i].namaLengkap },
+                                { value: data[i].unitKerja },
+                                { value: data[i].subUnitKerja },
+                                { value: data[i].noSip },
+                                { value: data[i].tglBerakhirSip2 },
+                            ]
+                        })
+                    }
+                    var workbook = new kendo.ooxml.Workbook({
+                        sheets: [
+                            {
+                                freezePane: {
+                                    rowSplit: 1
+                                },
+                                columns: [
+                                    // Column settings (width)
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true }
+                                ],
+                                // Title of the sheet
+                                title: "SIP",
+                                // Rows of the sheet
+                                rows: rows
+                            }
+                        ]
+                    });
+                    //save the file as Excel file with extension xlsx
+                    kendo.saveAs({dataURI: workbook.toDataURL(), fileName: "Daftar Masa Berlaku SIP-"+ dateHelper.formatDate(new Date(), 'DD-MMM-YYYY') +".xlsx"});
+                });
+            };
+
             $scope.opsiGridStr = {
                 toolbar: [
-                "excel", 
+                    { text: "export", name:"Export detail", template: '<button ng-click="exportDetailSTR()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'},
                 ],
                 excel: {
                     fileName: "Daftar STR Pegawai.xlsx",
@@ -124,21 +188,80 @@ define(['initialize'], function(initialize) {
 
                      sheet.rows.splice(0, 0, { cells: myHeaders, type: "header", height: 70});
                  },
-              //  pageable: true,
+                pageable: true,
                 selectable: "row",
                 scrollable: false,
                 columns: [
-                    { field: "nipPns", title: "NIP", "width": 180}, 
-                    { field: "namaLengkap", title: "Nama", "width": 280}, 
-                    { field: "unitKerja", title: "Unit Kerja" },
-                    { field: "subUnitKerja", title: "Sub-Unit Kerja" },
-                    { field: "noStr", title: "Nomor STR" },
-                    { field: "tglBerakhirStr2", title: "Tanggal Berakhir" 
-                    , aggregates: ["count"]
-                    , groupHeaderTemplate: "Tanggal Berakhir STR [#= kendo.toString(value) #] (Total: #= count#)"
+                    { field: "nipPns", title: "<h3>NIP</h3>", "width": 180}, 
+                    { field: "namaLengkap", title: "<h3>Nama</h3>", "width": 280}, 
+                    { field: "unitKerja", title: "<h3>Unit Kerja</h3>" },
+                    { field: "subUnitKerja", title: "<h3>Sub-Unit Kerja</h3>" },
+                    { field: "noStr", title: "<h3>Nomor STR</h3>" },
+                    { field: "tglBerakhirStr2", title: "<h3>Tanggal Berakhir</h3>"
+                    // aggregates: ["count"], groupHeaderTemplate: "Tanggal Berakhir STR [#= kendo.toString(value) #] (Total: #= count#)"
                   }
                ]
             };
+
+            $scope.exportDetailSTR = function(){
+                var tempDataExport = [];
+                var rows = [
+                        {
+                            cells: [
+                                { value: "NIP" },
+                                { value: "Nama" },
+                                { value: "Unit Kerja" },
+                                { value: "Sub Unit Kerja" },
+                                { value: "No. STR" },
+                                { value: "Tanggal Berakhir" }
+                                
+                            ]
+                        }
+                    ];
+                
+                tempDataExport = $scope.datagridStr;
+                tempDataExport.fetch(function(){
+                    var data = this.data();
+                    console.log(data);
+                    for (var i = 0; i < data.length; i++){
+                        //push single row for every record
+                        rows.push({
+                            cells: [
+                                { value: data[i].nipPns },
+                                { value: data[i].namaLengkap },
+                                { value: data[i].unitKerja },
+                                { value: data[i].subUnitKerja },
+                                { value: data[i].noStr },
+                                { value: data[i].tglBerakhirStr2 },
+                            ]
+                        })
+                    }
+                    var workbook = new kendo.ooxml.Workbook({
+                        sheets: [
+                            {
+                                freezePane: {
+                                    rowSplit: 1
+                                },
+                                columns: [
+                                    // Column settings (width)
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true }
+                                ],
+                                // Title of the sheet
+                                title: "SIP",
+                                // Rows of the sheet
+                                rows: rows
+                            }
+                        ]
+                    });
+                    //save the file as Excel file with extension xlsx
+                    kendo.saveAs({dataURI: workbook.toDataURL(), fileName: "Daftar Masa Berlaku SIP-"+ dateHelper.formatDate(new Date(), 'DD-MMM-YYYY') +".xlsx"});
+                });
+            };
+
             var timeoutPromise;
             $scope.$watch('item.tglAwalSip', function(newVal, oldVal){
                 $timeout.cancel(timeoutPromise);

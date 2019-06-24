@@ -8,7 +8,7 @@ define(['initialize'], function(initialize) {
             $scope.item = {};
             // $scope.dataPasienSelected = {};
             // $scope.item.periodeAwal =  new Date();
-            $scope.item.periodeAwal = new Date();;
+            $scope.item.periodeAwal = dateHelper.setJamAwal(new Date());
             $scope.item.periodeAkhir = new Date();            
             $scope.dataPasienSelected = {};
             $scope.isRouteLoading=false;
@@ -40,7 +40,7 @@ define(['initialize'], function(initialize) {
                 if(chacePeriode != undefined){
                     //debugger;
                     var arrPeriode = chacePeriode.split('~');
-                    $scope.item.periodeAwal = new Date(new moment(arrPeriode[0]).format('YYYY-MM-DD 00:00'));
+                    $scope.item.periodeAwal = new Date(dateHelper.setJamAwal(new Date()));
                     $scope.item.periodeAkhir = new Date(arrPeriode[1]); 
                     // $scope.item.tglpulang = new Date(arrPeriode[2]);                
                 }else{

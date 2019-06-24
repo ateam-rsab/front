@@ -4,7 +4,7 @@
         <div class="panel-place panel-place-custom" ng-show="klikRiwayat"><i style="cursor:pointer;" ng-click='closeHistory()' class="fa fa-times-circle fa-2x" aria-hidden="true"></i></div>
     </div>
     <div class="panel-body" ng-hide="klikRiwayat">
-        <div class="grid_6">
+        <!-- <div class="grid_6">
             <div class="panel panel-default container_12">
                 <div class="grid_12">
                     <div class="grid_4" style="margin: 6px 0 0 0;">
@@ -89,9 +89,9 @@
                     <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dataItem.unitKerja" readonly="true" />
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="panel panel-default">
-            <div class="grid_12 headerBox"><p>Filter Data</p></div>
+            <!-- Filter Data -->
             <div class="panel-body">
                 <div class="grid_12">
                     <!-- Nama -->
@@ -128,25 +128,6 @@
     <div class="panel-body" ng-show="klikRiwayat">
         <div class="grid_12">
             <div kendo-grid id="gridHistoriPegawai" k-data-source="dataHistoriPegawai" options="optHistoriPegawai"></div>
-        </div>
-    </div>
-    <div class="grid_12" ng-hide="klikRiwayat">
-        <div class="grid_8" style="float:left">
-            <div class="grid_2" style="margin-top: 25px">
-                <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="lihatDetil()">
-                    <span class="title">Lihat Detil</span>
-                </button>
-            </div>
-            <div class="grid_2" style="margin-top: 25px">
-                <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="keluarga()">
-                    <span class="title">Keluarga</span>
-                </button>
-            </div>
-            <div class="grid_3 " style="margin-top: 25px ">
-                <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="riwayat(dataItem)">
-                    <span class="title">Riwayat Pegawai</span>
-                </button>
-            </div>
         </div>
     </div>
     <div kendo-window="popupHistory" k-visible="false">

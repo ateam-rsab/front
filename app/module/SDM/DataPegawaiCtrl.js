@@ -753,21 +753,20 @@ define(['initialize'], function(initialize) {
             return dataPegawai.kategoriPegawai in arrFilterKategoriPegawai;
         }
 
-
-
         $scope.resetFilter = function(){
-            $scope.item.namaPegawai = '';
-            $scope.item.unitKerja = '';
-            $scope.item.kedudukanPegawai = '';
-            $scope.item.selectedStatusPegawai = '';
-            $scope.item.selectedJenisKategoriPegawai = '';
-            $scope.item.tglMasuk = '';
+            $scope.item.namaPegawai = undefined;
+            $scope.item.unitKerja = undefined;
+            $scope.item.kedudukanPegawai = undefined;
+            $scope.item.selectedStatusPegawai = undefined;
+            $scope.item.selectedJenisKategoriPegawai = undefined;
+            $scope.item.tglMasuk = null;
             // var gridData = $("#gridDataPegawai").data("kendoGrid");
             // gridData.dataSource.filter({});
             // $scope.item = {};
             // $scope.filteredData = [];
-            // getPegawaiAlls();
+            getPegawaiAlls();
         };
+
         $scope.riwayat = function(data){
             if(!data){
                 messageContainer.error('Pegawai belum di pilih');

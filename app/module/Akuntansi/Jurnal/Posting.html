@@ -1,0 +1,160 @@
+<div ng-show="showPostingHarian">
+    <div class="grid_12 headerBox">
+        <h1 style="color: white;"><b>Posting Harian</b></h1>
+    </div>
+    <div class="grid_12">
+        <div class="grid_4">
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="Tanggal"></label>
+            </div>
+            <div class="grid_12">
+                <!-- AwalPeriode -->
+                <div class="grid_5 padDatePicker">
+                    <div class="grid_12">
+                        <input style="width: 100%" k-ng-model="item.tglAwal"  kendo-date-picker placeholer="yyyy-MM-dd" k-format="'yyyy-MM-dd HH:mm'" />
+                    </div>
+                </div>
+                <div class="grid_2">
+                    <button class="c-button"  ng-click="cariFilter()">Cari</button>
+                </div>
+            </div>
+
+            
+        </div>
+        <div class="grid_12">
+            <div class="grid_12 borderBox">
+                <kendo-grid
+                    k-data-source="dataGrid" 
+                    k-selectable="'row'" 
+                    options="columnGridExcel"                 
+                    k-pageable="'true'"
+                    k-sortable="'true'" 
+                    k-ng-model="dataSelected"
+                    ng-click="klikGrid(dataSelected)">
+                </kendo-grid>
+            </div>
+        </div>
+        <div class="grid_12">
+            <div class="grid_4">
+                <button class="k-button  k-button-icontext k-grid-Edit" ng-click="tambahPerkiraan()" ><span class="k-icon k-add"></span>Tambah Mapping Nomor Perkiraan</button>
+            </div>
+            <div class="grid_3">
+            </div>
+            <div class="grid_5">
+                <div class="grid_12">
+                    <div class="k-state-default pull-right">
+                        <span style="font-size: 15px">Total Pendapatan: <i>{{item.ttlDebet}}</i></span>
+                    </div>
+                </div>
+                <!-- <div class="grid_6">
+                    <div class="grid_12">
+                        Total Kredit :Rp. {{item.ttlDebet}}
+                    </div>
+                    
+                </div> -->
+            </div>
+        </div>
+        <!-- <div kendo-window="popUpBatalHosting" k-visible="false"> -->
+        <div kendo-window="popUpBatalHosting" k-title="'Batal Posting'" k-width="1000" k-visible="false">
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="Tanggal"></label>
+                <input class="k-textbox" ng-model="item.tgl" style="width: 100%;" disabled />
+            </div>
+            <div class="panel panel-default container_12">
+                <kendo-grid
+                    k-data-source="dataPostingRuangan"
+                    k-selectable="'row'"
+                    options="columnsPostingRuangan"
+                    k-pageable="'true'"
+                    k-sortable="'true'"
+                    k-ng-model="dataSelectedPosting">
+                </kendo-grid>
+                <div class="grid_12">
+                    <div class="grid_7">
+                    </div>
+                    <div class="grid_5">
+                        <div class="grid_12">
+                            <div class="grid_12">
+                                <span style="font-size: 15px">Total Pendapatan: <i>{{item.ttlDebetDetail}}</i></span>
+                            </div>
+                            
+                        </div>
+                        <!-- <div class="grid_6">
+                            <div class="grid_12">
+                                Total Kredit :Rp. {{item.ttlDebet}}
+                            </div>
+                            
+                        </div> -->
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="k-edit-buttons k-state-default pull-right" style="margin-top:10px"	>
+                        <button class="k-button k-button-icontext k-grid-Edit" ng-click="tutupPopUpDetailPosting()" ><span class="k-icon k-cancel"></span>Tutup</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_12" style="margin-top:60px">
+            <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+        </div>
+
+
+    </div>
+</div>
+<div ng-show="showTambahPerkiraan">
+    <div class="grid_12 headerBox">
+        <h1 style="color: white;"><b>Tambah Mapping Nomor Perkiraan</b></h1>
+    </div>
+    <div class="grid_12">
+        <div class="panel panel-default container_12">
+            <kendo-grid
+                k-data-source="dataGridMapping"
+                options="columnGridMappingPerkiraan"
+                k-ng-model="dataSelectedMapping">
+            </kendo-grid>
+        </div>
+    </div>
+</div>
+<div kendo-window="popUpTambahPerkiraan" k-title="'Tambah Mapping'" k-width="850" k-visible="false" 
+	k-on-open="win2visible = true" k-on-close="win2visible = false">
+    <div class="panel panel-default container_12" style="padding: 0px 10px;">
+        <div class="grid_12">
+            <!-- <div class="grid_6"> -->
+                <div class="grid_6">
+                    <label c-label item="item">No. Perkiraan</label>
+                </div>
+                <div class="clear"></div>
+                <div class="grid_6">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.noPerkiraan" k-data-text-field="'hubunganKeluarga'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" />
+                </div>
+                <div class="grid_6">
+                    <label c-label item="item">Nama Perkiraan</label>
+                </div>
+                <div class="clear"></div>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaPerkiraan" />
+                </div>
+                <div class="grid_6">
+                    <label c-label item="item">Ruangan</label>
+                </div>
+                <div class="clear"></div>
+                <div class="grid_6">
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'hubunganKeluarga'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"/>
+                </div>
+                <div class="grid_6">
+                    <label c-label item="item">Jenis Produk</label>
+                </div>
+                <div class="clear"></div>
+                <div class="grid_6">
+                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.riwayatJurusan" />
+                </div>
+            <!-- </div> -->
+        </div>
+        <div class="grid_12">
+            <div class="k-edit-buttons k-state-default pull-right" style="margin-top:10px">
+                <button class="k-button k-button-icontext k-grid-Edit" ng-click="tutupPopUpTambahMapping()" ><span class="k-icon k-save"></span>Simpan</button>
+                <button class="k-button k-button-icontext k-grid-Hapus" ng-click="tutupPopUpDetailPosting()" ><span class="k-icon k-cancel"></span>Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>

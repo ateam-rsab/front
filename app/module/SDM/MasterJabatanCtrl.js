@@ -14,6 +14,7 @@ define(['initialize'], function(initialize) {
 					{ field: "kdJabatan", title: "Kode", width: 120 },
 					{ field: "jenisJabatanId", title: "Jenis Jabatan ", editor: categoryDropDownEditor, "template": "# if (jenisJabatanId === 1) {# #= 'Fungsional/struktural' # #} else if (jenisJabatanId === 3){# #= 'Internal' # #} else {# #= '-' # #}#"},
 					{ field: "namaJabatan", title: "Nama Jabatan" },
+					{ field: "levelJabatan", title: "Level Jabatan" },
 					{ field: "usiaPensiun", title: "Usia Pensiun", width: 120, attributes: { style: "text-align:right; padding-right: 15px;"}},
 					{command: [{name: "destroy", text: "Hapus"},{name: "edit", text: "Edit"}], title: "&nbsp;", width: 160 }
 				],
@@ -44,7 +45,7 @@ define(['initialize'], function(initialize) {
 			function init(){
 				$scope.item = {}; // set defined object
 				$q.all([
-					ManageSdm.getOrderList("service/list-generic/?view=Jabatan&select=id,namaJabatan,kdJabatan,usiaPensiun,jenisJabatanId&criteria=statusEnabled&values=true", true),
+					ManageSdm.getOrderList("service/list-generic/?view=Jabatan&select=id,namaJabatan,kdJabatan,usiaPensiun,levelJabatan,jenisJabatanId&criteria=statusEnabled&values=true", true),
 					ManageSdm.getOrderList("service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled&values=true", true)
 				]).then(function(res){
 					if(res[0].statResponse){
@@ -157,6 +158,7 @@ define(['initialize'], function(initialize) {
 					namaExternal: data.namaJabatan,
 					usiaPensiun: parseInt(data.usiaPensiun),
 					kdJabatan: data.kdJabatan,
+					levelJabatan: data.levelJabatan,
 					kodeExternal: data.kdJabatan
 				}
 				if(data.action && data.action === "remove") item.statusEnabled = false;

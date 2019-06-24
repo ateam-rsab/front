@@ -26,7 +26,7 @@ define(['initialize'], function (initialize) {
             $scope.resumeOpt = {
                 toolbar: [{
                     name: "create", text: "Input Baru",
-                    template: '<button ng-click="inputBaru()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah Konsul</button>'
+                    template: '<button ng-click="inputBaru()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah Konsultasi</button>'
                 },],
                 pageable: true,
                 scrollable: true,
@@ -40,11 +40,11 @@ define(['initialize'], function (initialize) {
                     { field: "namalengkap", title: "<h3>Dokter Konsultasi</h3>", width: 120 },
                     // { field: "keteranganorder", title: "Keterangan", width: 120 },
                     { command: [
-                        { imageClass: "k-icon k-delete", text: "Hapus", click: hapus },
+                        // { imageClass: "k-icon k-delete", text: "Hapus", click: hapus },
                         { text: "Edit", click: editData },
                         // { name: "Verifikasi", text: "Hasil Konsul", click: hasilKonsult },
                         { name: "Detail", text: "Detail", click: showDetail },
-                    ], title: "&nbsp;", width: 170, 
+                    ], title: "&nbsp;", width: 120, 
                         attributes: {
                             style: "text-align:center;valign=middle"
                         }
@@ -58,10 +58,10 @@ define(['initialize'], function (initialize) {
                 console.log(dataItem);
                 $scope.item = dataItem;
                 if($scope.item.keterangankeperluan === null || $scope.item.keterangankeperluan === '') {
-                    $scope.item.keterangankeperluan = 'Belum ada hasil Konsultasi';
+                    $scope.item.keterangankeperluan = 'Belum ada Konsultasi';
                 }
-                if($scope.item.periksaDidapatkan === null || $scope.item.periksaDidapatkan === '') {
-                    item.periksaDidapatkan = "tidak ada data"
+                if($scope.item.pemeriksaandidapat === null || $scope.item.pemeriksaandidapat === '') {
+                    $scope.item.pemeriksaandidapat = "Belum ada Konsultasi"
                 }
                 console.log($scope.item.keterangankeperluan);
                 $scope.popUpDetail.center().open();
@@ -150,8 +150,9 @@ define(['initialize'], function (initialize) {
             function editData(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-                if(dataItem.keterangankeperluan !== null || dataItem.keterangankeperluan !== undefined) {
+                if(dataItem.keterangankeperluan !== null || dataItem.keterangankeperluan == "Belum ada Konsultasi") {
                     $scope.isVerifikasi = true;
+                    toastr.info('Konsultasi sudah di verifikasi');
                 } else {
                     $scope.isVerifikasi = false;
                 }
@@ -163,6 +164,7 @@ define(['initialize'], function (initialize) {
                     toastr.warning('data tidak bisa di edit')
                     return
                 }
+                $scope.item.masalah = dataItem.masalah;
                 $scope.item.jenisKonsultasi = dataItem.jeniskonsultasi;
                 $scope.item.pasienDiagnosaKerja = dataItem.diagnosakerja;
                 $scope.item.ikhtisarKlinik = dataItem.keteranganorder;
@@ -231,8 +233,9 @@ define(['initialize'], function (initialize) {
                     keterangan: $scope.item.ikhtisarKlinik ? $scope.item.ikhtisarKlinik : '',
                     diagnosakerja: $scope.item.pasienDiagnosaKerja ? $scope.item.pasienDiagnosaKerja : '',
                     terapi: $scope.item.terapiDanTindakan ? $scope.item.terapiDanTindakan : '',
+                    masalah:$scope.item.masalah ? $scope.item.masalah : ''
                 }
-                // console.log(objSave);
+                console.log(objSave);
                 ManagePhp.postData(objSave, 'rekam-medis/post-konsultasi').then(function (e) {
                     clear()
                     init();
