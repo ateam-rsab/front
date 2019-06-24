@@ -509,11 +509,11 @@ define(['initialize'], function(initialize) {
                     // "atasanLangsung":{
                     //     "id":$scope.atasanLangsung.id
                     // },
-                    "atasanLangsungDireksi": $scope.atasanLangsungDireksi ? $scope.atasanLangsungDireksi : '',
-                    "pejabatPenilaiDireksi": $scope.atasanPejabatPenilaiDireksi ? $scope.atasanPejabatPenilaiDireksi : '',
-                    "pejabatPenilai":{
-                        "id":$scope.atasanPejabatPenilai.id
-                    },
+                    // "atasanLangsungDireksi": $scope.atasanLangsungDireksi ? $scope.atasanLangsungDireksi : '',
+                    // "pejabatPenilaiDireksi": $scope.atasanPejabatPenilaiDireksi ? $scope.atasanPejabatPenilaiDireksi : '',
+                    // "pejabatPenilai":{
+                    //     "id":$scope.atasanPejabatPenilai.id
+                    // },
                     "isCanCreateJadwal": $scope.item.isCanCreateJadwal,
                     "isPrimary": $scope.item.isPrimary,
                     "isMonitoring": $scope.item.isMonitoring ? true : false
@@ -522,16 +522,32 @@ define(['initialize'], function(initialize) {
                 if(!$scope.item.subUnitKerjaPop) {
                     delete dataSave[0].subUnitKerjaPegawai;
                 }
-                if(!$scope.pejabatPenilai) {
-                    dataSave[0].pejabatPenilai = 0;
-                    delete dataSave[0].pejabatPenilai;
-                }
-                if($scope.atasanLangsung) {
+
+                if($scope.atasanLangsungDireksi) {
+                    dataSave[0].atasanLangsungDireksi = $scope.atasanLangsungDireksi;
+                } else {
                     dataSave[0].atasanLangsung = {
-                        id:$scope.atasanLangsung.id
-                    };
-                    // delete dataSave[0].atasanLangsung;
+                        "id":$scope.atasanLangsung.id
+                    }
                 }
+
+                if($scope.atasanPejabatPenilaiDireksi) {
+                    dataSave[0].pejabatPenilaiDireksi = $scope.atasanPejabatPenilaiDireksi;
+                } else {
+                    dataSave[0].pejabatPenilai = {
+                        "id":$scope.atasanPejabatPenilai.id
+                    }
+                }
+                // if(!$scope.pejabatPenilai) {
+                //     dataSave[0].pejabatPenilai = 0;
+                //     delete dataSave[0].pejabatPenilai;
+                // }
+                // if($scope.atasanLangsung) {
+                //     dataSave[0].atasanLangsung = {
+                //         id:$scope.atasanLangsung.id
+                //     };
+                //     // delete dataSave[0].atasanLangsung;
+                // }
                 dataSave.subUnitKerjaPegawai = {}
                 ManageSdmNew.saveData(dataSave, "map-pegawai-jabatan-unitkerja/save-map").then(function(res) {
                     $scope.isRouteLoading = true;
