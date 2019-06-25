@@ -1,7 +1,7 @@
 <div>
     <div ng-show="dataVOloaded">
-        <md-tabs class="md-primary" md-center-tabs md-dynamic-height>
-            <md-tab label="Identitas Pegawai" md-on-select="onChangeTab(1)">
+        <md-tabs class="md-primary" md-center-tabs md-dynamic-height md-selected="tabPegawai">
+            <md-tab label="Identitas Pegawai" md-on-select="onChangeTab(1)" >
                 <div class="grid_12 containerBorderBox">
                     <div class="grid_6">
                         <!-- Biodata Pegawai -->
@@ -237,7 +237,7 @@
                             <!-- Nama Rekening -->
                             <div class="grid_12">
                                 <div class="grid_4" style="margin: 10px 0 0 0;">
-                                    <label c-label item="item" c-label-text="NamaRekening"></label>
+                                    <label c-label item="item" c-label-text="NamaPemilikRekening"></label>
                                 </div>
                                 <div class="grid_8">
                                     <input c-text-box type="input" placeholder="Nama Pemilik Rekening" filter="'varchar'" class="k-textbox" ng-model="item.bankRekeningAtasNama" ng-disabled="isSimpan"/>
@@ -712,7 +712,7 @@
                             </div>
                         </div>
                     </div>
-                    <md-tabs class="md-primary" md-dynamic-height>
+                    <md-tabs class="md-primary" md-dynamic-height md-selected="tabHistoryPegawai">
                         <md-tab label="Suami/Istri" md-on-select="onChangeTab(2)">
                             <!-- <md-content class="md-padding"> -->
                             <div class="grid_12 borderBox containerBorderBox">
@@ -814,6 +814,17 @@
                         <span class="title">Batal</span>
                         </button>
                 </div>
+            </div>
+            <div class="grid_2" ng-show="isRiwayat"></div>
+            <div class="grid_2" ng-show="isRiwayat">
+                <fieldset class="borderBox">
+                    <legend>
+                        <strong>History</strong>
+                    </legend>
+                    Terakhir Edit: <a style="font-weight:700;cursor: pointer;" ng-click="goToLogHistory()">{{lastEditDate}}</a>
+                    <br>
+                    Oleh: <strong>{{lastEditBy}}</strong>
+                </fieldset>
             </div>
         </div>
     </div>

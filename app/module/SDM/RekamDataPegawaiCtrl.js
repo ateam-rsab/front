@@ -213,8 +213,14 @@ define(['initialize'], function(initialize) {
                 $scope.item.golongan = e.golonganPegawai;
             }
 
+            $scope.goToLogHistory = function() {
+                $scope.tabHistoryPegawai = 4;
+                $scope.tabPegawai = 2;
+            }
+
             $scope.onChangeTab = function (key) {
                 if(key == 1) {
+                    initRiwayatPerubahandData();
                     console.log('tab 1');
                     if($state.params.idPegawai) {
                         initRekamDataPegawai();
@@ -1666,7 +1672,9 @@ define(['initialize'], function(initialize) {
                     ]
                 }
                 ManageSdmNew.getListData("sdm/get-list-history-pegawai/" + $state.params.idPegawai).then(function(res){
-                    if(res.data.data.length > 0){                       
+                    if(res.data.data.length > 0){
+                        $scope.lastEditDate = res.data.data[0].tanggal ? dateHelper.formatDate(new Date(res.data.data[0].tanggal), 'DD-MM-YYYY HH:mm') : '-';
+                        $scope.lastEditBy = res.data.data[0].petugas ? res.data.data[0].petugas : '-';
                         $scope.dataHistoriPegawai = new kendo.data.DataSource({
                             data: res.data.data,
                             pageSize: 10
@@ -1852,123 +1860,140 @@ define(['initialize'], function(initialize) {
                     toastr.warning('Anda belum memasukan nama');
                     return;
                 }
-                var dataSave = {
-                    "nama":$scope.item.nama,
-                    "gelarBelakang":$scope.item.gelarBelakang ? $scope.item.gelarBelakang : null,
-                    "tempatLahir":$scope.item.tempatLahir ? $scope.item.tempatLahir : null,
-                    "jenisKelamin":$scope.item.jenisKelamin ? { "jenisKelamin":$scope.item.jenisKelamin.jenisKelamin, "id":$scope.item.jenisKelamin.id}: {},
-                    "kategoryPegawai":$scope.item.kategoryPegawai ? { "kategoryPegawai":$scope.item.kategoryPegawai.kategoryPegawai, "id":$scope.item.kategoryPegawai.id}: {},
-                    "kedudukan": $scope.item.kedudukan ? { "name":$scope.item.kedudukan.name,"id":$scope.item.kedudukan.id } : {},
-                    "statusEnabled":true,
-                    "statusPerkawinanPegawai":$scope.item.statusPerkawinanPegawai ? {"statusPerkawinan":$scope.item.statusPerkawinanPegawai.statusPerkawinan, "id":$scope.item.statusPerkawinanPegawai.id }: {},
-                    "bankRekeningNomor":$scope.item.bankRekeningNomor ? $scope.item.bankRekeningNomor: null,
-                    "bankRekeningAtasNama":$scope.item.bankRekeningAtasNama ? $scope.item.bankRekeningAtasNama : null,
-                    "bankRekeningNama":$scope.item.bankRekeningNama ? $scope.item.bankRekeningNama : null,
-                    "negara": $scope.item.negara ? {"namaNegara":$scope.item.negara.namaNegara, "id":$scope.item.negara.id}: {},
-                    "npwp":$scope.item.npwp ? $scope.item.npwp : null,
-                    "alamat":$scope.item.alamat ? $scope.item.alamat : null,
-                    "kodePos":$scope.item.kodePos ? $scope.item.kodePos : null,
-                    "agama": $scope.item.agama ? { "agama":$scope.item.agama.agama, "id":$scope.item.agama.id }: {},
-                    "idFinger":$scope.item.idFinger ? $scope.item.idFinger : null,
-                    "shiftKerja":$scope.item.shiftKerja ? { "name":$scope.item.shiftKerja.name, "id":$scope.item.shiftKerja.id}: {},
-                    "namaLengkap":$scope.item.namaLengkap ? $scope.item.namaLengkap: null,
-                    "email":$scope.item.email ? $scope.item.email : null,
-                    "emailAlternatif":$scope.item.emailAlternatif ? $scope.item.emailAlternatif : null,
-                    "gelarDepan":$scope.item.gelarDepan ? $scope.item.gelarDepan : null,
-                    "grade":$scope.item.grade ? $scope.item.grade : null,
-                    "kodeBank":$scope.item.kodeBank ? $scope.item.kodeBank : null,
-                    "nilaiJabatan":$scope.item.nilaiJabatan ? $scope.item.nilaiJabatan : null,                    
-                    "noBPJS":$scope.item.noBPJS ? $scope.item.noBPJS : null,
-                    "noCm":$scope.item.noCm ? $scope.item.noCm : null,
-                    "nikIntern":$scope.item.nipPns ? $scope.item.nipPns : null,
-                    "nip":$scope.item.nipPns ? $scope.item.nipPns : null,
-                    "nipPns":$scope.item.nipPns ? $scope.item.nipPns : null,
-                    "noHandphone":$scope.item.noHandphone ? $scope.item.noHandphone : null,
-                    "noIdentitas":$scope.item.noIdentitas ? $scope.item.noIdentitas: null,
-                    "noSip":$scope.item.noSip ? $scope.item.noSip : null,
-                    "noStr":$scope.item.noStr ? $scope.item.noStr : null,
-                    "noTlp":$scope.item.noTlp ? $scope.item.noTlp : null,
-                    "detailKategoryPegawai":$scope.item.detailKategoryPegawai  ? { "id":$scope.item.detailKategoryPegawai.id, "detailKategoryPegawai":$scope.item.detailKategoryPegawai.namaExternal}: {},
-                    "eselon": $scope.item.eselon ? { "id":$scope.item.eselon.id, "eselon":$scope.item.eselon.eselon }: {},
-                    "golonganDarah":$scope.item.golonganDarah ? { "id":$scope.item.golonganDarah.id, "golonganDarah":$scope.item.golonganDarah.golonganDarah} : {},
-                    "golonganPegawai":$scope.item.golonganPegawai ? { "id":$scope.item.golonganPegawai.id, "golonganPegawai":$scope.item.golonganPegawai.name}: {},
-                    "jabatanFungsional":$scope.item.jabatanFungsional ? { "id":$scope.item.jabatanFungsional.id, "namaJabatan":$scope.item.jabatanFungsional.namaJabatan } : {},
-                    "jenisPegawai":$scope.item.jenisPegawai ? { "id":$scope.item.jenisPegawai.id, "jenisPegawai":$scope.item.jenisPegawai.jenisPegawai } : {},
-                    "detailKelompokJabatan":$scope.item.detailKelompokJabatan ? { "id":$scope.item.detailKelompokJabatan.id, "detailKelompokJabatan":$scope.item.detailKelompokJabatan.detailKelompokJabatan }: {},
-                    "pangkat":$scope.item.pangkat ? { "id":$scope.item.pangkat.idPangkat, "namaPangkat":$scope.item.pangkat.namaPangkat }: {},
-                    "pendidikan":$scope.item.pendidikan ? { "id":$scope.item.pendidikan.id, "namaPendidikan":$scope.item.pendidikan.namaPendidikan}: {},
-                    "penghasilanTidakKenaPajak":$scope.item.penghasilanTidakKenaPajakId ? { "id":$scope.item.penghasilanTidakKenaPajakId, "deskripsi":$scope.item.penghasilanTidakKenaPajak }: {},
-                    "rekanan":$scope.item.rekanan ? { "id":$scope.item.rekanan.id, "namaRekanan":$scope.item.rekanan.namaRekanan }: {},
-                    "ruangan":$scope.item.ruanganPegawai ? { "id":$scope.item.ruanganPegawai.id, "namaRuangan":$scope.item.ruanganPegawai.namaRuangan } : {},
-                    "satuanKerja":$scope.item.satuanKerja ? { "id":$scope.item.satuanKerja.id, "satuanKerja":$scope.item.satuanKerja.satuanKerja }: {},
-                    "suku":$scope.item.suku ? { "id":$scope.item.suku.id, "suku":$scope.item.suku.suku } : {},
-                    "typePegawai":$scope.item.typePegawai ? { "id":$scope.item.typePegawai.id } : {},
-                    "pensiun":$scope.item.pensiun,
-                    "tglLahir":$scope.item.tglLahir ? dateHelper.toTimeStamp(new Date(formatDate($scope.item.tglLahir))) : null,
-                    "tglPensiun":$scope.item.tglPensiun ? dateHelper.toTimeStamp(new Date(formatDate($scope.item.tglPensiun))) : null,
-                    "tglMasuk":$scope.item.tglMasuk ? dateHelper.toTimeStamp(new Date(formatDate($scope.item.tglMasuk))): null,
-                    "tglTerbitStr": $scope.item.tglTerbitStr ? dateHelper.toTimeStamp(new Date(formatDate($scope.item.tglTerbitStr))): null,
-                    "tglBerakhirStr": $scope.item.tglBerakhirStr ? dateHelper.toTimeStamp(new Date(formatDate($scope.item.tglBerakhirStr))): null,
-                    "tanggalMeninggal": $scope.item.tanggalMeninggal ? dateHelper.toTimeStamp(new Date(formatDate($scope.item.tanggalMeninggal))): null,
-                    "tglTerbitSip": $scope.item.tglTerbitSip ? dateHelper.toTimeStamp(new Date(formatDate($scope.item.tglTerbitSip))) : null,
-                    "tglBerakhirSip": $scope.item.tglBerakhirSip ? dateHelper.toTimeStamp(new Date(formatDate($scope.item.tglBerakhirSip))): null,
-                    "tglkeluar": $scope.item.tglkeluar ? dateHelper.toTimeStamp(new Date(formatDate($scope.item.tglkeluar))): null,
-                    "statusRhesus":$scope.item.statusRhesus ? $scope.item.statusRhesus.id : null,
+                if (_.contains($scope.item.tglLahir, '-')) {
+                    $scope.item.tglLahir = new Date(formatDate($scope.item.tglLahir));
+                }
+                if (_.contains($scope.item.tglMasuk, '-')) {
+                    $scope.item.tglMasuk = new Date(formatDate($scope.item.tglMasuk));
+                }
+                if (_.contains($scope.item.tglkeluar, '-')) {
+                    $scope.item.tglkeluar = new Date(formatDate($scope.item.tglkeluar));
+                }
+                // if (_.contains($scope.item.tglPensiun, '-')) {
+                //     $scope.item.tglPensiun = new Date(formatDate($scope.item.tglPensiun));
+                // }
+
+                var newModel = getDataChanged($scope.item);
+                for (var key in newModel) {
+                    if (newModel.hasOwnProperty(key)) {
+                        if (key.indexOf("tgl") >= 0) {
+                            newModel[key] = new Date(formatDate(newModel[key])).getTime();
+                            // newModel[key] = new Date(newModel[key]).getTime();
+                            // alert(newModel[key]);
+                        }
+                        if(key.indexOf('pangkat') >= 0) {
+                            newModel[key] = {
+                                id:newModel[key].idPangkat,
+                                namaPangkat:newModel[key].namaPangkat
+                            }
+                        }
+                        var keys = key;
+                        if (key.indexOf("tglMeninggal") >= 0 || key.indexOf('tglPensiun') >= 0 || key.indexOf('tglkeluar') >= 0) {
+                            newModel[keys] = newModel[key];
+                            delete newModel[key];
+                        }
+                        // if(key.indexOf('tglPensiun') >=)
+                    }
+                }
+                if (!$scope.disableSip) {
+                    $scope.item.noSip = $scope.item.noSip;
+                    var tglTerbitSip = isDate($scope.item.tglTerbitSip),
+                    tglBerakhirSip = isDate($scope.item.tglBerakhirSip);
+                    if (tglBerakhirSip) {
+                        tglBerakhirSip = new Date($scope.item.tglBerakhirSip).getTime();
+                    } else {
+                        tglBerakhirSip = new Date(dateHelper.newStringToDateTime($scope.item.tglBerakhirSip)).getTime();
+                    }
+                    if (tglTerbitSip) {
+                        tglTerbitSip = new Date($scope.item.tglTerbitSip).getTime();
+                    } else {
+                        tglTerbitSip = new Date(dateHelper.newStringToDateTime($scope.item.tglTerbitSip)).getTime();
+                    }
+                    $scope.item.tglTerbitSip = tglTerbitSip;
+                    $scope.item.tglBerakhirSip = tglBerakhirSip;
+                } else {
+                    if ($scope.item.noSip) $scope.item.noSip = null;
+                    if ($scope.item.tglTerbitSip) $scope.item.tglTerbitSip = null;
+                    if ($scope.item.tglBerakhirSip) $scope.item.tglBerakhirSip = null;
+                }
+                if (!$scope.disableStr) {
+                    $scope.item.noStr = $scope.item.noStr;
+                    var tglTerbitStr = isDate($scope.item.tglTerbitStr),
+                    tglBerakhirStr = isDate($scope.item.tglBerakhirStr);
+                    if (tglBerakhirStr) {
+                        tglBerakhirStr = new Date($scope.item.tglBerakhirStr).getTime();
+                    } else {
+                        tglBerakhirStr = new Date(dateHelper.newStringToDateTime($scope.item.tglBerakhirStr)).getTime();
+                    }
+                    if (tglTerbitStr) {
+                        tglTerbitStr = new Date($scope.item.tglTerbitStr).getTime();
+                    } else {
+                        tglTerbitStr = new Date(dateHelper.newStringToDateTime($scope.item.tglTerbitStr)).getTime();
+                    }
+                    $scope.item.tglTerbitStr = tglTerbitStr;
+                    $scope.item.tglBerakhirStr = tglBerakhirStr;
+                } else {
+                    if ($scope.item.noStr) $scope.item.noStr = null;
+                    if ($scope.item.tglTerbitStr) $scope.item.tglTerbitStr = null;
+                    if ($scope.item.tglBerakhirStr) $scope.item.tglBerakhirStr = null;
                 }
 
-                if($state.params.idPegawai) { dataSave.id = $state.params.idPegawai; }
-                if(!$scope.item.detailKategoryPegawai) { delete dataSave.detailKategoryPegawai };
-                if(!$scope.item.detailKelompokJabatan) { delete dataSave.detailKelompokJabatan };
-                if(!$scope.item.golonganDarah) { delete dataSave.golonganDarah };
-                if(!$scope.item.golonganPegawai || !$scope.item.golonganPegawai.id) { delete dataSave.golonganPegawai };
-                if(!$scope.item.jabatanFungsional) { delete dataSave.jabatanFungsional };
-                if(!$scope.item.jenisKelamin) { delete dataSave.jenisKelamin };
-                if(!$scope.item.jenisPegawai) { delete dataSave.jenisPegawai };
-                if(!$scope.item.kategoryPegawai) { delete dataSave.kategoryPegawai };
-                if(!$scope.item.kedudukan) { delete dataSave.kedudukan };
-                if(!$scope.item.negara) { delete dataSave.negara };
-                if(!$scope.item.pendidikan) { delete dataSave.pendidikan };
-                if(!$scope.item.penghasilanTidakKenaPajak) { delete dataSave.penghasilanTidakKenaPajak };
-                if(!$scope.item.rekanan) { delete dataSave.rekanan };
-                if(!$scope.item.ruanganPegawai) { delete dataSave.ruangan };
-                if(!$scope.item.satuanKerja) { delete dataSave.satuanKerja };
-                if(!$scope.item.shiftKerja) { delete dataSave.shiftKerja };
-                if(!$scope.item.statusPerkawinanPegawai) { delete dataSave.statusPerkawinanPegawai };
-                if(!$scope.item.suku) { delete dataSave.suku };
-                if(!$scope.item.eselon) { delete dataSave.eselon };
-                if(!$scope.item.agama) { delete dataSave.agama };
-                if(!$scope.item.pangkat) { delete dataSave.pangkat };
-                if(!$scope.item.typePegawai) { delete dataSave.typePegawai };
-                ManageSdmNew.saveData(dataSave, "sdm/save-rekam-data-pegawai").then(function(dat) {
-                    if(!$state.params.idPegawai) {
-                        $state.go('DataPegawai');
-                    } else {
-                        $scope.ubahDataPegawai();
-                        getDataPegawai($state.params.idPegawai);
+                var isEmptyModel = _.isEmpty(newModel);
+                console.table(newModel)
+                if (!isEmptyModel) {
+                    newModel.id = $state.params.idPegawai;
+                    for (var key in newModel) {
+                        if (newModel.hasOwnProperty(key)) {
+                            // redirect ke halaman mapping atasan
+                            if (key.indexOf("jabatanInternal") >= 0 || key.indexOf("unitKerja") >= 0) $scope.ubahMappingAtasan = true;
+                        }
                     }
-                });
-                // if($scope.isSimpanAtasanLangsung || $scope.isSimpanPejabatPenilai) {
-                //     var dataSaveAtasan = [
-                //         {
-                //           "pegawai": {
-                //             "id": $state.params.idPegawai
-                //           },
-                //           "atasanLangsung": {
-                //             "id": $scope.atasanLangsung.id,
-                //             "namaLengkap": $scope.atasanLangsung.namaLengkap
-                //           },
-                //           "atasanPejabatPenilai": {
-                //             "id": $scope.atasanPejabatPenilai.id,
-                //             "namaLengkap": $scope.atasanPejabatPenilai.namaLengkap
-                //           },
-                //           "statusEnabled": true
-                //         }
-                //       ]
-                //       ManageSdmNew.saveData(dataSaveAtasan, "sdm/save-mapping-pegawai-to-atasan").then(function(dat) {
-                //         // toastr.info('Berhasil save atasan')
-                //     });
-                // }
-                
+                    ManageSdmNew.saveData(newModel, "sdm/save-rekam-data-pegawai").then(function(dat) {
+                        if (dat.data.data.noRec) {
+                            var idPegawai = dat.data.data.noRec;
+                            if(!$state.params.idPegawai) {
+                                $state.go('DataPegawai');
+                            } else {
+                                $scope.ubahDataPegawai();
+                                getDataPegawai($state.params.idPegawai);
+                                initRiwayatPerubahandData();
+                                var confirm = $mdDialog.confirm()
+                                    .title('Apakah anda akan melanjutkan edit data?')
+                                    // .textContent(`Anda akan menghapus data Jabatan Internal`)
+                                    .ariaLabel('Lucky day')
+                                    // .targetEvent(e)
+                                    .ok('Ya')
+                                    .cancel('Kembali ke Data Pegawai');
+                                $mdDialog.show(confirm).then(function() {
+                                    console.warn('Masuk sini pak eko');
+                                }, function() {
+                                    // console.error('Tidak jadi hapus');
+                                    $state.go('DataPegawai');
+                                });
+                            }
+                            if ($scope.item.noSip) {
+                                $scope.item.tglTerbitSip = _.contains($scope.item.tglTerbitSip, '-') ? $scope.item.tglTerbitSip : dateHelper.formatDate($scope.item.tglTerbitSip, "DD-MM-YYYY");
+                                $scope.item.tglBerakhirSip = _.contains($scope.item.tglBerakhirSip, '-') ? $scope.item.tglBerakhirSip : dateHelper.formatDate($scope.item.tglBerakhirSip, "DD-MM-YYYY");
+                            }
+
+                            if ($scope.item.noStr) {
+                                $scope.item.tglTerbitStr = _.contains($scope.item.tglTerbitStr, '-') ? $scope.item.tglTerbitStr : dateHelper.formatDate($scope.item.tglTerbitStr, "DD-MM-YYYY");
+                                $scope.item.tglBerakhirStr = _.contains($scope.item.tglBerakhirStr, '-') ? $scope.item.tglBerakhirStr : dateHelper.formatDate($scope.item.tglBerakhirStr, "DD-MM-YYYY");
+                            }
+                            getDataPegawai();
+                        } else {
+                            $scope.item = {
+                                "tglLahir": new Date(),
+                                "tglMasuk": new Date(),
+                                "tglkeluar": new Date()
+                            };
+                        }
+                    }, (error) => {
+
+                    });
+                } else {
+                    messageContainer.error('Tidak ada perubahan data');
+                }
             };
 
             $scope.ubahDataPegawai = function()  {
