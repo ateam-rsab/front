@@ -302,8 +302,8 @@
                                     </div>
                                     <div class="clear"></div>
                                     <div class="grid_8">
-                                        <input kendo-combo-box k-ng-model="item.jabatanInternalPop" k-data-text-field="'namaJabatan'" k-on-change="getJabatan(item.jabatanInternalPop)"
-                                            k-data-value-field="'id'" k-data-source="listJabatanByJenisJabatanInternal" />
+                                        
+                                        <input kendo-combo-box id="idComboDataJabatan" k-ng-model="item.jabatanInternalPop" k-data-text-field="'namaJabatan'"  k-filter="'contains'" k-data-value-field="'id'" k-data-source="listJabatanByJenisJabatanInternal" k-on-change="getJabatan(item.jabatanInternalPop)"/>
                                         <!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.jabatanInternalPop" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="ListJabatan" /> -->
                                     </div>
                                 
@@ -328,7 +328,7 @@
                                         </div>
                                         <div class="clear"></div>
                                         <div class="grid_8">
-                                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.subUnitKerjaPop" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-data-source="ListSubUnitKerjaById"/>
+                                            <input style="width: 100%;" id="idComboSubUnitKerja" kendo-combo-box k-ng-model="item.subUnitKerjaPop" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-data-source="ListSubUnitKerjaById"/>
                                             <!-- <input ng-disabled="isLoading" style="width: 100%;" kendo-combo-box ng-model="item.subUnitKerjaPop" k-data-text-field="'namaSubunitKerja'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListSubUnitKerjaById"  /> -->
                                         </div>
                                     <!-- </div> -->
@@ -674,7 +674,7 @@
                         </div>
                     </div>
                     
-                    <fieldset class="grid_12 borderBox containerBorderBox" ng-show="isAtasan">
+                    <fieldset class="borderBox containerBorderBox" ng-show="isAtasan">
                         <legend>
                             <strong>
                                 <span style="font-size: 20px;">Jabatan</span>
@@ -1190,5 +1190,8 @@ h3.small-font {
 }
 div#grid td > span.ng-binding {
     font-size: 12px;
+}
+#btnCreateNewJabatan {
+    font-size:
 }
 </style>

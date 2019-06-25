@@ -255,7 +255,7 @@ define(['initialize'], function(initialize) {
                     toolbar: [{
                         name: "create",
                         text: "Buat Jabatan Internal Baru",
-                        template: '<button ng-click="createNewJabatanInternal()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah Jabatan</button>'
+                        template: '<button ng-click="createNewJabatanInternal()" id="btnCreateNewJabatan" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah Jabatan</button>'
                     }],
                     pageable: true,
                     // scrollable: true,
@@ -301,14 +301,6 @@ define(['initialize'], function(initialize) {
                             hidden: true
                         },
                         {
-                            field: "isCanCreateJadwal",
-                            title: "<h3 class='small-font'>Membuat Jadwal</h3>", width:"100px",
-                            template:"#if(isCanCreateJadwal) { #Ya# } else { #Tidak# } #",
-                            attributes: {
-                                style: "text-align:center;valign=middle"
-                            },
-                        },
-                        {
                             field: "isPrimary",
                             title: "<h3 class='small-font'>Jabatan Utama</h3>", width:"70px",
                             template:"#if(isPrimary) { #Ya# } else { #Tidak# } #",
@@ -316,6 +308,15 @@ define(['initialize'], function(initialize) {
                                 style: "text-align:center;valign=middle"
                             },
                         },
+                        {
+                            field: "isCanCreateJadwal",
+                            title: "<h3 class='small-font'>Membuat Jadwal</h3>", width:"100px",
+                            template:"#if(isCanCreateJadwal) { #Ya# } else { #Tidak# } #",
+                            attributes: {
+                                style: "text-align:center;valign=middle"
+                            },
+                        },
+                        
                         {
                             field: "isMonitoring",
                             title: "<h3 class='small-font'>Monitoring</h3>", width:"80px",
@@ -345,7 +346,7 @@ define(['initialize'], function(initialize) {
                                 imageClass: "k-icon k-delete"
                             }],
                             title: "",
-                            width: "200px",
+                            width: "170px",
                             attributes: {
                                 style: "text-align:center;valign=middle"
                             },
@@ -555,12 +556,13 @@ define(['initialize'], function(initialize) {
                     $scope.popUpJabatan.close();
                     $scope.loadDataGridJabatanInternal();
                     // toastr.success('Data Berhasil Disimpan');
-                    $scope.batal();
+                    // $scope.batal();
                 });
             }
 
             $scope.getDataSubUnitKerjaById = function(id, data) {
-                console.log(data);
+                // console.log(data);
+                $('#idComboSubUnitKerja').data('kendoComboBox').value('');
                 if(data.name === 'Direksi') {
                     $scope.isDireksi = true;
                     $scope.isStaff = false;
@@ -970,6 +972,7 @@ define(['initialize'], function(initialize) {
 
             $scope.createNewJabatanInternal = function() {
                 clearPop();
+                $scope.idGridInternalJabatan = null;
                 if($scope.isEdit) {
                     $scope.popUpJabatan.center().open();
                     var actions = $scope.popUpJabatan.options.actions;
@@ -1339,7 +1342,7 @@ define(['initialize'], function(initialize) {
             }
 
             $scope.getDataJabatan = function(id) {
-                // $scope.listJabatanByJenisJabatan = "";
+                $("#idComboDataJabatan").data("kendoComboBox").value("");
                 ManageSdmNew.getListData("sdm/get-all-jabatan-by-jenis-jabatan?idJenisJabatan=" + id, true).then(function(res) {
                     $scope.listJabatanByJenisJabatan = res.data;
                     $scope.listJabatanByJenisJabatanInternal = [];
