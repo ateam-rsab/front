@@ -22,11 +22,11 @@
                         "name": "RencanaDiseminasi",
                         "link": "#/RencanaDiseminasi"
                     },
-                    { 
+                    {
                         "name": "InformasiRencanaDiseminasi",
                         "link": "#/InformasiRencanaDiseminasi"
                     },
-                    { 
+                    {
                         "name": "DaftarPelaksanaanDiseminasi",
                         "link": "#/DaftarPelaksanaanDiseminasi"
                     },
@@ -38,7 +38,7 @@
             },
             {
                 "name": "Usulan Evaluasi",
-                "children" : [
+                "children": [
                     {
                         "name": "Usulan Evaluasi Dan Kajian Organisasi",
                         "link": "#/UsulanEvaluasiDanKajianOrganisasi"
@@ -52,7 +52,7 @@
                         "link": "#/DaftarUsulanEvaluasiDanKajianOrganisasiTujuan"
                     }
                 ]
-            } ,
+            },
             {
                 "name": "Evaluasi Rekanan",
                 "children": [
@@ -88,7 +88,7 @@
                     {
                         "name": "Daftar Advokasi Hukum & Medicolegal (Tujuan)",
                         "link": "#/DaftarAdvokasiHukumTujuan"
-                    } 
+                    }
                 ]
             },
             {
@@ -107,13 +107,13 @@
                         "link": "#/DaftarMonitoringEvaluasiPerundanganTujuan"
                     }
                 ]
-            } 
+            }
         ]
-},
-{
-    "name": "Inventori",
-    "children": [
-        {
+    },
+    {
+        "name": "Inventori",
+        "children": [
+            {
                 "name": "Stok Barang",
                 "children": [
                     {
@@ -159,7 +159,7 @@
                     }
                 ]
             }
-    ]
+        ]
     },
     {
         "name": "Barang Investasi",
@@ -176,19 +176,18 @@
                 "name": "Kirim Barang Aset",
                 "link": "#/KirimBarangAset"
             }
-           
         ]
     },
     {
-        "name":"Aplikasi IT",
-        "children":[
+        "name": "Aplikasi IT",
+        "children": [
             {
                 "name": "Permintaan Perbaikan dari Ruangan",
                 "link": "#/RevPermintaanPerbaikandariRuanganITNew"
             }
         ]
     },
-   {
+    {
         "name": "IP3RS",
         "children": [
             {
@@ -198,69 +197,82 @@
             {
                 "name": "Respond Perbaikan",
                 "link": "#/RespondPerbaikan"
-            } 
+            }
         ]
-    }, 
-{
-    "name": "SDM",
-    "children": [{
-        "name": "Target Bobot Uraian Tugas",
-        "link": "#/TargetBobot"
-    }, {
-        "name": "Input Logbook",
-        "link": "#/InputLogbook"
-    }, {
-        "name": "Indeks Kinerja Individu",
-        "link": "#/IndeksKinerjaIndividuSDM"
-    }, {
-        "name": "Permohonan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
-        "link": "#/PermohonanPerubahanStatusPegawai"
-    }, {
-		"name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
-		"link": "#/DaftarPenangguhanCuti"
-	}, {
-        "name": "Pengajuan Mutasi Pegawai",
-        "link": "#/PengajuanMutasiPegawai"
-    }, {
-        "name": "Pengajuan Resign Pegawai",
-        "link": "#/PengajuanResignPegawai"
-    }, {
-        "name": "Pengajuan Sanksi Pegawai",
-        "link": "#/PengajuanSanksiPegawai"
-    }, {
-        "name": "Daftar Pengajuan Mutasi Resign Sanksi Pegawai",
-        "link": "#/DaftarPengajuanMutasiSanksiResign"
-    }, {
-		"name": "Monitoring Absensi",
-		"link": "#/MonitoringAbsensiPegawai"
-	}, {
-		"name": "InputLemburPegawaiUnitKerja",
-		"link": "#/InputLemburPegawaiUnitKerja"
-	},{
-        "name": "Verifikasi Uraian Tugas Bawahan",
-        "link": "#/VerifikasiUraianTugasPegawaiLogin"
-    }]
-},
-{
-    "name": "Aplikasi Laundry",
-    "children": [
-        {
-            "name": "Permintaan Linen Bersih",
-            "link": "#/PermintaanLinenByRuangan"
-        },
-        {
-			"name": "Verifikasi",
-			"link": "#/VerifikasiTerima"
-        }
-    ]
-},
-{
-    "name": "Setting",
-    "children": [
-        {
-            "name": "Ubah Password",
-            "link": "#/UbahPassword"  
-        }
-    ]
-}
+    },
+    {
+        "name": "SDM",
+        "children": [
+            {
+                "name": "Target Bobot Uraian Tugas",
+                "link": "#/TargetBobot"
+            },
+            {
+                "name": "Input Logbook",
+                "link": "#/InputLogbook"
+            },
+            {
+                "name": "Indeks Kinerja Individu",
+                "link": "#/IndeksKinerjaIndividuSDM"
+            },
+            {
+                "name": "Permohonan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
+                "link": "#/PermohonanPerubahanStatusPegawai"
+            },
+            {
+                "name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
+                "link": "#/DaftarPenangguhanCuti"
+            },
+            {
+                "name": "Pengajuan Mutasi Pegawai",
+                "link": "#/PengajuanMutasiPegawai"
+            },
+            {
+                "name": "Pengajuan Resign Pegawai",
+                "link": "#/PengajuanResignPegawai"
+            },
+            {
+                "name": "Pengajuan Sanksi Pegawai",
+                "link": "#/PengajuanSanksiPegawai"
+            },
+            {
+                "name": "Daftar Pengajuan Mutasi Resign Sanksi Pegawai",
+                "link": "#/DaftarPengajuanMutasiSanksiResign"
+            },
+            {
+                "name": "Monitoring Absensi",
+                "link": "#/MonitoringAbsensiPegawai"
+            },
+            {
+                "name": "InputLemburPegawaiUnitKerja",
+                "link": "#/InputLemburPegawaiUnitKerja"
+            },
+            {
+                "name": "Verifikasi Uraian Tugas Bawahan",
+                "link": "#/VerifikasiUraianTugasPegawaiLogin"
+            }
+        ]
+    },
+    {
+        "name": "Aplikasi Laundry",
+        "children": [
+            {
+                "name": "Permintaan Linen Bersih",
+                "link": "#/PermintaanLinenByRuangan"
+            },
+            {
+                "name": "Verifikasi",
+                "link": "#/VerifikasiTerima"
+            }
+        ]
+    },
+    {
+        "name": "Setting",
+        "children": [
+            {
+                "name": "Ubah Password",
+                "link": "#/UbahPassword"
+            }
+        ]
+    }
 ]

@@ -2,10 +2,10 @@
     {
         "name": "Information",
         "children": [
-                {
-                    "name": "Informasi Tarif Layanan",
-                    "link": "#/TarifLayanan"
-                }
+            {
+                "name": "Informasi Tarif Layanan",
+                "link": "#/TarifLayanan"
+            }
         ]
     },
     {
@@ -22,9 +22,8 @@
         ]
     },
     {
-        "name":"Daftar Antrian",
+        "name": "Daftar Antrian",
         "children": [
-
             {
                 "name": "Daftar Pasien Meninggal",
                 "link": "#/DaftarPasienMeninggal"
@@ -37,12 +36,13 @@
                 "name": "Daftar Jenazah Sudah Diambil",
                 "link": "#/"
             }
-
         ]
     },
     {
         "name": "Laporan",
-        "children": [{}]
+        "children": [
+            {}
+        ]
     },
     {
         "name": "Inventori",
@@ -106,7 +106,6 @@
                 "name": "Kirim Barang Aset",
                 "link": "#/KirimBarangAset"
             }
-           
         ]
     },
     {

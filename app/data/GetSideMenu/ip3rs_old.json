@@ -1,6 +1,8 @@
-[{
+[
+    {
         "name": "Aplikasi IP3RS",
-        "children": [{
+        "children": [
+            {
                 "name": "Form Master Rekanan",
                 "link": "#/FormMasterRekanan"
             },
@@ -16,7 +18,6 @@
                 "name": "Permintaan Perbaikan dari Ruangan",
                 "link": "#/PermintaanPerbaikandariRuangan"
             },
-
             {
                 "name": "Penjadwalan",
                 "link": "#/PenjadwalanPreventive"
@@ -63,7 +64,6 @@
             }
         ]
     },
-   
     {
         "name": "Form SPPB",
         "link": "#/FormBuatSppb"
@@ -74,13 +74,15 @@
     },
     {
         "name": "Inventori",
-        "children": [{
+        "children": [
+            {
                 "name": "Permintaan Barang",
                 "link": "#/Logistik/Orders/"
             },
             {
                 "name": "Stok Ruangan",
-                "children": [{
+                "children": [
+                    {
                         "name": "Data Stok Ruangan Rekap",
                         "link": "#/Logistik/RekapStokRuangan"
                     },
@@ -104,7 +106,8 @@
             },
             {
                 "name": "Informasi Penerimaan (Eksternal)",
-                "children": [{
+                "children": [
+                    {
                         "name": "Penerimaan Barang Langsung",
                         "link": "#/Logistik/demo/PenerimaanLogistik/"
                     },
@@ -124,7 +127,8 @@
             },
             {
                 "name": "Informasi Permintaan Barang",
-                "children": [{
+                "children": [
+                    {
                         "name": "Daftar Permintaan Barang",
                         "link": "#/Logistik/Terima/Verifikasi"
                     },
@@ -190,7 +194,8 @@
     },
     {
         "name": "SDM",
-        "children": [{
+        "children": [
+            {
                 "name": "Target Bobot Uraian Tugas",
                 "link": "#/TargetBobot"
             },
@@ -221,10 +226,12 @@
             {
                 "name": "Daftar Pengajuan Mutasi Resign Sanksi Pegawai",
                 "link": "#/DaftarPengajuanMutasiSanksiResign"
-            }, {
+            },
+            {
                 "name": "Monitoring Absensi",
                 "link": "#/MonitoringAbsensiPegawai"
-            }, {
+            },
+            {
                 "name": "InputLemburPegawaiUnitKerja",
                 "link": "#/InputLemburPegawaiUnitKerja"
             }
@@ -237,10 +244,11 @@
     {
         "name": "Respond Perbaikan",
         "link": "#/RespondPerbaikan"
-    }, 
+    },
     {
         "name": "Tata Usaha",
-        "children": [{
+        "children": [
+            {
                 "name": "Membuat Draft Surat",
                 "link": "#/BuatDraftSurat"
             },
@@ -277,28 +285,27 @@
                 "link": "#/ListNotaDinas"
             }
         ]
-        },
-        {
-            "name":"Aplikasi IT",
-            "children":[
-                {
-                    "name": "Permintaan Perbaikan dari Ruangan",
-                    "link": "#/RevPermintaanPerbaikandariRuanganITNew"
-                }
-            ]
-        },
-        {
+    },
+    {
+        "name": "Aplikasi IT",
+        "children": [
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/RevPermintaanPerbaikandariRuanganITNew"
+            }
+        ]
+    },
+    {
         "name": "Laundry",
         "children": [
             {
                 "name": "Permintaan Linen dari Ruangan",
                 "link": "#/PermintaanLinenByRuangan"
-            },            
+            },
             {
                 "name": "Verifikasi Terima Linen",
                 "link": "#/VerifikasiTerima"
             }
-
         ]
     }
 ]

@@ -1,5 +1,4 @@
 [
-
     {
         "name": "Pemesanan Barang",
         "children": [
@@ -17,13 +16,12 @@
             },
             {
                 "name": "Daftar Surat Perintah Kerja /SPK",
-                "link": "#/DaftarSPK"          
+                "link": "#/DaftarSPK"
             },
             {
                 "name": "Daftar Pemesanan Barang /SPPB",
                 "link": "#/DaftarPemesananBarang"
             }
-            
         ]
     },
     {
@@ -36,7 +34,7 @@
     },
     {
         "name": "Daftar Surat Perintah Kerja /SPK",
-        "link": "#/DaftarSuratPerintahKerja"          
+        "link": "#/DaftarSuratPerintahKerja"
     },
     {
         "name": "Daftar Pemesanan Barang /SPPB",
@@ -45,120 +43,134 @@
     {
         "name": "Daftar Pengajuan Usulan Barang dan Jasa1",
         "link": "#/daftarKartuPengendaliULP"
-    }, {
+    },
+    {
         "name": "Upload Penawaran Supplier",
         "link": "#/UploadPenawaranSupplier"
-    }, {
+    },
+    {
         "name": "Rekap Kontrak Pengadaan Barang",
         "link": "#/RekapKontrakPengadaan"
-    }, {
+    },
+    {
         "name": "Form Penerimaan Barang PPHP",
         "link": "#/FormPenerimaanPphp"
-    }, {
+    },
+    {
         "name": "Daftar Penerimaan PPHP",
         "link": "#/DaftarPenerimaanPphp"
-    }, {
+    },
+    {
         "name": "TOR",
         "link": "#/TOR"
     },
     {
-    "name": "Modul Inventori",
-    "children": [
-      {
-        "name": "Stok Barang",
+        "name": "Modul Inventori",
         "children": [
-          {
-            "name": "Data Stok Ruangan",
-            "link": "#/Logistik/StokRuangan"
-          }, 
-          {
-            "name": "Kartu Stok",
-            "link": "#/KartuStok"
-          }, 
-          {
-            "name": "Stok Opname",
-            "link": "#/Logistik/StokOpname"
-          },
-          {
-              "name": "Daftar Nilai Persediaan",
-              "link": "#/DaftarNilaiPersediaan"
-          },
-          {
-              "name": "Daftar Pemakaian Stok Ruangan",
-              "link": "#/DaftarPemakaianStokRuangan"
-          },
-          {
-              "name": "Saldo Penerimaan Dan Pengeluaran Barang",
-              "link": "#/SaldoBarangDetail"
-          }
+            {
+                "name": "Stok Barang",
+                "children": [
+                    {
+                        "name": "Data Stok Ruangan",
+                        "link": "#/Logistik/StokRuangan"
+                    },
+                    {
+                        "name": "Kartu Stok",
+                        "link": "#/KartuStok"
+                    },
+                    {
+                        "name": "Stok Opname",
+                        "link": "#/Logistik/StokOpname"
+                    },
+                    {
+                        "name": "Daftar Nilai Persediaan",
+                        "link": "#/DaftarNilaiPersediaan"
+                    },
+                    {
+                        "name": "Daftar Pemakaian Stok Ruangan",
+                        "link": "#/DaftarPemakaianStokRuangan"
+                    },
+                    {
+                        "name": "Saldo Penerimaan Dan Pengeluaran Barang",
+                        "link": "#/SaldoBarangDetail"
+                    }
+                ]
+            },
+            {
+                "name": "Daftar Transfer Barang",
+                "children": [
+                    {
+                        "name": "Order Barang",
+                        "link": "#/OrderBarangLogistik"
+                    },
+                    {
+                        "name": "Daftar Order Barang",
+                        "link": "#/DaftarOrderBarang"
+                    },
+                    {
+                        "name": "Kirim Barang",
+                        "link": "#/KirimBarangLogistik"
+                    },
+                    {
+                        "name": "Daftar Distribusi Barang",
+                        "link": "#/DaftarDistribusiBarang"
+                    }
+                ]
+            }
         ]
-      },
-      {
-        "name": "Daftar Transfer Barang",
-        "children": [
-          {
-            "name": "Order Barang",
-            "link": "#/OrderBarangLogistik"
-          }, 
-          {
-            "name": "Daftar Order Barang",
-              "link": "#/DaftarOrderBarang"
-              
-          }, 
-          {
-            "name": "Kirim Barang",
-            "link": "#/KirimBarangLogistik"
-          }, 
-          {
-            "name": "Daftar Distribusi Barang",
-            "link": "#/DaftarDistribusiBarang"
-          }
-        ]
-      }
-      
-      
-    
-    ]
-  },
+    },
     {
         "name": "SDM",
-        "children": [{
+        "children": [
+            {
                 "name": "Target Bobot Uraian Tugas",
                 "link": "#/TargetBobot"
-            }, {
+            },
+            {
                 "name": "Input Logbook",
                 "link": "#/InputLogbook"
-            }, {
+            },
+            {
                 "name": "Indeks Kinerja Individu",
                 "link": "#/IndeksKinerjaIndividuSDM"
-            }, {
+            },
+            {
                 "name": "Permohonan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
                 "link": "#/PermohonanPerubahanStatusPegawai"
-            }, {
-				"name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
-				"link": "#/DaftarPenangguhanCuti"
-			}, {
+            },
+            {
+                "name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
+                "link": "#/DaftarPenangguhanCuti"
+            },
+            {
                 "name": "Pengajuan Mutasi Pegawai",
                 "link": "#/PengajuanMutasiPegawai"
-            }, {
+            },
+            {
                 "name": "Pengajuan Resign Pegawai",
                 "link": "#/PengajuanResignPegawai"
-            }, {
+            },
+            {
                 "name": "Pengajuan Sanksi Pegawai",
                 "link": "#/PengajuanSanksiPegawai"
-            }, {
+            },
+            {
                 "name": "Daftar Pengajuan Mutasi Sanksi Resign",
                 "link": "#/DaftarPengajuanMutasiSanksiResign"
-            }, {
-				"name": "Monitoring Absensi",
-				"link": "#/MonitoringAbsensiPegawai"
-			}, {
-				"name": "InputLemburPegawaiUnitKerja",
-				"link": "#/InputLemburPegawaiUnitKerja"
-			},{
+            },
+            {
+                "name": "Monitoring Absensi",
+                "link": "#/MonitoringAbsensiPegawai"
+            },
+            {
+                "name": "InputLemburPegawaiUnitKerja",
+                "link": "#/InputLemburPegawaiUnitKerja"
+            },
+            {
                 "name": "Verifikasi Uraian Tugas Bawahan",
                 "link": "#/VerifikasiUraianTugasPegawaiLogin"
-            },{
+            },
+            {
                 "name": "Pengajuan Pelatihan",
                 "children": [
                     {
@@ -186,15 +198,15 @@
         ]
     },
     {
-        "name":"Aplikasi IT",
-        "children":[
+        "name": "Aplikasi IT",
+        "children": [
             {
                 "name": "Permintaan Perbaikan dari Ruangan",
                 "link": "#/RevPermintaanPerbaikandariRuanganITNew"
             }
         ]
     },
-     {
+    {
         "name": "IP3RS",
         "children": [
             {
@@ -204,12 +216,13 @@
             {
                 "name": "Respond Perbaikan",
                 "link": "#/RespondPerbaikan"
-            } 
+            }
         ]
-    }, 
+    },
     {
         "name": "Tata Usaha",
-        "children": [{
+        "children": [
+            {
                 "name": "Membuat Draft Surat",
                 "link": "#/BuatDraftSurat"
             },
@@ -258,13 +271,14 @@
                 "name": "Verifikasi",
                 "link": "#/VerifikasiTerima"
             }
-    ]},
+        ]
+    },
     {
         "name": "Setting",
         "children": [
             {
                 "name": "Ubah Password",
-                "link": "#/UbahPassword"  
+                "link": "#/UbahPassword"
             }
         ]
     }

@@ -1,4 +1,4 @@
-[  
+[
     {
         "name": "Aplikasi Laundry",
         "children": [
@@ -26,19 +26,19 @@
                 "name": "Informasi Daftar Permintaan Linen Bersih dari Ruangan",
                 "link": "#/InformasiDaftarPermintaanLinenBersihdariRuangan"
             },
-			{
+            {
                 "name": "Master Alat",
                 "link": "#/MasterAlatLaundry"
             },
-			{
+            {
                 "name": "Master Produk",
                 "link": "#/MasterProdukLaundry"
             }
         ]
     },
     {
-        "name":"Aplikasi IT",
-        "children":[
+        "name": "Aplikasi IT",
+        "children": [
             {
                 "name": "Permintaan Perbaikan dari Ruangan",
                 "link": "#/RevPermintaanPerbaikandariRuanganITNew"
@@ -47,40 +47,52 @@
     },
     {
         "name": "SDM",
-        "children": [{
-            "name": "Input Logbook",
-            "link": "#/InputLogbook"
-        }, {
-            "name": "Indeks Kinerja Individu",
-            "link": "#/IndeksKinerjaIndividuSDM"
-        }, {
-            "name": "Permohonan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
-            "link": "#/PermohonanPerubahanStatusPegawai"
-        }, {
-			"name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
-			"link": "#/DaftarPenangguhanCuti"
-		}, {
-            "name": "Pengajuan Mutasi Pegawai",
-            "link": "#/PengajuanMutasiPegawai"
-        }, {
-            "name": "Pengajuan Resign Pegawai",
-            "link": "#/PengajuanResignPegawai"
-        }, {
-            "name": "Pengajuan Sanksi Pegawai",
-            "link": "#/PengajuanSanksiPegawai"
-        }, {
-            "name": "Daftar Pengajuan Mutasi Resign Sanksi Pegawai",
-            "link": "#/DaftarPengajuanMutasiSanksiResign"
-        }, {
-			"name": "Monitoring Absensi",
-			"link": "#/MonitoringAbsensiPegawai"
-		}, {
-			"name": "InputLemburPegawaiUnitKerja",
-			"link": "#/InputLemburPegawaiUnitKerja"
-		},{
-            "name": "Verifikasi Uraian Tugas Bawahan",
-            "link": "#/VerifikasiUraianTugasPegawaiLogin"
-        },{
+        "children": [
+            {
+                "name": "Input Logbook",
+                "link": "#/InputLogbook"
+            },
+            {
+                "name": "Indeks Kinerja Individu",
+                "link": "#/IndeksKinerjaIndividuSDM"
+            },
+            {
+                "name": "Permohonan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
+                "link": "#/PermohonanPerubahanStatusPegawai"
+            },
+            {
+                "name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
+                "link": "#/DaftarPenangguhanCuti"
+            },
+            {
+                "name": "Pengajuan Mutasi Pegawai",
+                "link": "#/PengajuanMutasiPegawai"
+            },
+            {
+                "name": "Pengajuan Resign Pegawai",
+                "link": "#/PengajuanResignPegawai"
+            },
+            {
+                "name": "Pengajuan Sanksi Pegawai",
+                "link": "#/PengajuanSanksiPegawai"
+            },
+            {
+                "name": "Daftar Pengajuan Mutasi Resign Sanksi Pegawai",
+                "link": "#/DaftarPengajuanMutasiSanksiResign"
+            },
+            {
+                "name": "Monitoring Absensi",
+                "link": "#/MonitoringAbsensiPegawai"
+            },
+            {
+                "name": "InputLemburPegawaiUnitKerja",
+                "link": "#/InputLemburPegawaiUnitKerja"
+            },
+            {
+                "name": "Verifikasi Uraian Tugas Bawahan",
+                "link": "#/VerifikasiUraianTugasPegawaiLogin"
+            },
+            {
                 "name": "Pengajuan Pelatihan",
                 "children": [
                     {
@@ -104,14 +116,15 @@
                         "link": "#/DaftarRekapitulasiKehadiran"
                     }
                 ]
-            }]
+            }
+        ]
     },
     {
         "name": "Setting",
         "children": [
             {
                 "name": "Ubah Password",
-                "link": "#/UbahPassword"  
+                "link": "#/UbahPassword"
             }
         ]
     }

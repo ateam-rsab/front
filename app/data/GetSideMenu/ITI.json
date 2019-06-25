@@ -1,6 +1,8 @@
-[{
+[
+    {
         "name": "Aplikasi IT",
-        "children": [{
+        "children": [
+            {
                 "name": "Permintaan Perbaikan dari Ruangan",
                 "link": "#/RevPermintaanPerbaikandariRuanganITNew"
             },
@@ -12,7 +14,6 @@
                 "name": "Daftar Jadwal Pemeliharaan",
                 "link": "#/DaftarJadwalPemeliharaan"
             },
-            
             {
                 "name": "Data Alat",
                 "link": "#/AlatSOP"
@@ -34,36 +35,36 @@
                 "name": "Master Pajak",
                 "children": [
                     {
-                     "name": "Pangkat",
-                     "link": "#/PangkatBaru"
+                        "name": "Pangkat",
+                        "link": "#/PangkatBaru"
                     },
                     {
-                     "name": "Golongan Pegawai",
-                     "link": "#/PegawaiBaru"
+                        "name": "Golongan Pegawai",
+                        "link": "#/PegawaiBaru"
                     },
                     {
-                     "name": "Jenis Pajak",
-                     "link": "#/JenisPajakBaru"
+                        "name": "Jenis Pajak",
+                        "link": "#/JenisPajakBaru"
                     },
                     {
-                     "name": "Pajak",
-                     "link": "#/PajakBaru"
+                        "name": "Pajak",
+                        "link": "#/PajakBaru"
                     },
                     {
-                     "name": "Objek Pajak",
-                     "link": "#/ObjekPajakBaru"
+                        "name": "Objek Pajak",
+                        "link": "#/ObjekPajakBaru"
                     },
                     {
-                     "name": "Surat Keputusan Rate Pajak",
-                     "link": "#/SKPajakRate"
+                        "name": "Surat Keputusan Rate Pajak",
+                        "link": "#/SKPajakRate"
                     },
                     {
-                     "name": "Pegawai SK Pajak",
-                     "link": "#/PegawaiSKPajak"
+                        "name": "Pegawai SK Pajak",
+                        "link": "#/PegawaiSKPajak"
                     },
                     {
-                     "name": "Penghasilan Tidak Kena Pajak",
-                     "link": "#/PTKP"
+                        "name": "Penghasilan Tidak Kena Pajak",
+                        "link": "#/PTKP"
                     }
                 ]
             },
@@ -71,8 +72,8 @@
                 "name": "Login User",
                 "children": [
                     {
-                     "name": "Setting Login User",
-                     "link": "#/Aksespegawai"
+                        "name": "Setting Login User",
+                        "link": "#/Aksespegawai"
                     },
                     {
                         "name": "Modul Aplikasi",
@@ -103,10 +104,8 @@
                         "name": "Daftar Aktivitas User",
                         "link": "#/AktivitasUser"
                     }
-
                 ]
             },
-           
             {
                 "name": "Activity Pegawai ",
                 "link": "#/ActivityPegawai"
@@ -1552,8 +1551,8 @@
                 "link": "#/PegawaiSKGaji"
             },
             {
-                 "name": "Pegawai SK Pajak",
-                 "link": "#/PegawaiSKPajak"
+                "name": "Pegawai SK Pajak",
+                "link": "#/PegawaiSKPajak"
             },
             {
                 "name": "Pekerjaan",
@@ -1616,8 +1615,8 @@
                 "link": "#/Pengendali"
             },
             {
-                 "name": "Penghasilan Tidak Kena Pajak",
-                 "link": "#/PTKP"
+                "name": "Penghasilan Tidak Kena Pajak",
+                "link": "#/PTKP"
             },
             {
                 "name": "Pengukuran Kebisingan ",
@@ -2010,7 +2009,6 @@
             {
                 "name": "Surat Keputusan Rate Pajak",
                 "link": "#/SKPajakRate"
-
             },
             {
                 "name": "Survei Detail ",
@@ -2276,15 +2274,12 @@
                 "name": "Detail Jenis Produk",
                 "link": "#/DetailJenisProduk2"
             }
-
-
-
         ]
     },
     {
-    "name": "Inventori",
-    "children": [
-        {
+        "name": "Inventori",
+        "children": [
+            {
                 "name": "Stok Barang",
                 "children": [
                     {
@@ -2330,7 +2325,7 @@
                     }
                 ]
             }
-       ]
+        ]
     },
     {
         "name": "Barang Investasi",
@@ -2347,48 +2342,60 @@
                 "name": "Kirim Barang Aset",
                 "link": "#/KirimBarangAset"
             }
-           
         ]
     },
     {
         "name": "SDM",
-        "children": [{
+        "children": [
+            {
                 "name": "Target Bobot Uraian Tugas",
                 "link": "#/TargetBobot"
-            }, {
+            },
+            {
                 "name": "Input Logbook",
                 "link": "#/InputLogbook"
-            }, {
+            },
+            {
                 "name": "Indeks Kinerja Individu",
                 "link": "#/IndeksKinerjaIndividuSDM"
-            }, {
+            },
+            {
                 "name": "Permohonan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
                 "link": "#/PermohonanPerubahanStatusPegawai"
-            }, {
-				"name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
-				"link": "#/DaftarPenangguhanCuti"
-			}, {
+            },
+            {
+                "name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
+                "link": "#/DaftarPenangguhanCuti"
+            },
+            {
                 "name": "Pengajuan Mutasi Pegawai",
                 "link": "#/PengajuanMutasiPegawai"
-            }, {
+            },
+            {
                 "name": "Pengajuan Resign Pegawai",
                 "link": "#/PengajuanResignPegawai"
-            }, {
+            },
+            {
                 "name": "Pengajuan Sanksi Pegawai",
                 "link": "#/PengajuanSanksiPegawai"
-            }, {
+            },
+            {
                 "name": "Daftar Pengajuan Mutasi Resign Sanksi Pegawai",
                 "link": "#/DaftarPengajuanMutasiSanksiResign"
-            }, {
-				"name": "Monitoring Absensi",
-				"link": "#/MonitoringAbsensiPegawai"
-			}, {
-				"name": "InputLemburPegawaiUnitKerja",
-				"link": "#/InputLemburPegawaiUnitKerja"
-			},{
+            },
+            {
+                "name": "Monitoring Absensi",
+                "link": "#/MonitoringAbsensiPegawai"
+            },
+            {
+                "name": "InputLemburPegawaiUnitKerja",
+                "link": "#/InputLemburPegawaiUnitKerja"
+            },
+            {
                 "name": "Verifikasi Uraian Tugas Bawahan",
                 "link": "#/VerifikasiUraianTugasPegawaiLogin"
-            },{
+            },
+            {
                 "name": "Pengajuan Pelatihan",
                 "children": [
                     {
@@ -2414,7 +2421,7 @@
                 ]
             }
         ]
-    }, 
+    },
     {
         "name": "IP3RS",
         "children": [
@@ -2425,12 +2432,13 @@
             {
                 "name": "Respond Perbaikan",
                 "link": "#/RespondPerbaikan"
-            } 
+            }
         ]
-    },  
+    },
     {
         "name": "Tata Usaha",
-        "children": [{
+        "children": [
+            {
                 "name": "Membuat Draft Surat",
                 "link": "#/BuatDraftSurat"
             },
@@ -2479,7 +2487,7 @@
                 "name": "Permintaan Linen Bersih",
                 "link": "#/PermintaanLinenByRuangan"
             }
-    ]
+        ]
     },
     {
         "name": "Rensar",
@@ -2505,15 +2513,15 @@
                 "name": "IKI Dirut",
                 "link": "#/IkiDirutCapaian"
             }
-         ]
+        ]
     },
     {
-    "name": "Setting",
-    "children": [
-        {
-            "name": "Ubah Password",
-            "link": "#/UbahPassword"  
-        }
-    ]
-}
+        "name": "Setting",
+        "children": [
+            {
+                "name": "Ubah Password",
+                "link": "#/UbahPassword"
+            }
+        ]
+    }
 ]

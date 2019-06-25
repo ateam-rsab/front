@@ -2,7 +2,10 @@
     {
         "name": "Alur Pengadaan",
         "children": [
-            { "name": "Daftar Monitoring Usulan","link": "#/DaftarMonitoringUsulan" },
+            {
+                "name": "Daftar Monitoring Usulan",
+                "link": "#/DaftarMonitoringUsulan"
+            },
             {
                 "name": "Daftar Usulan Permintaan Barang",
                 "link": "#/DaftarPengajuanPengadaanBarangDirektur"
@@ -10,47 +13,107 @@
             {
                 "name": "Verifikasi Kartu Pengendali",
                 "link": "#/daftarKartuPengendaliDirektur"
-            }            
-
+            }
         ]
-    },{
+    },
+    {
         "name": "MODUL PERENCANAAN ANGGARAN",
-        "children": [{
+        "children": [
+            {
                 "name": "Penyusunan Anggaran",
                 "children": [
-                    { "name": "Penyusunan TR-PNBP", "link": "#/PenyusunanTRPNBP" },
-                    { "name": "Daftar TR-PNBP Tahunan", "link": "#/DaftarTRPNBPTahunan" },
-                    { "name": "Penyusunan E-Planning", "link": "#/PenyusunanEPlanning" },
-                    { "name": "Daftar E-Planning Tahunan", "link": "#/DaftarEPlanningTahunan" },
-                    { "name": "Daftar RBA", "link": "" },
-                    { "name": "Daftar RKA-KL", "link": "#/DaftarRKAKL" },
-                    { "name": "Penyusunan RKA-KL", "link": "#/PenyusunanRKAKL" },
-                    { "name": "Riwayat RKA-KL", "link": "#/RiwayatRKAKL" },
-                    { "name": "Detail RKA-KL", "link": "#/DetailRKAKL" },
-                    { "name": "Daftar RSB", "link": "#/DaftarRSB" },
-                    { "name": "Detail RSB", "link": "#/DetailRSB" },
-                    { "name": "Daftar RAB Per Unit Kerja", "link": "#/DaftarRABUnitKerja" },
-                    { "name": "Daftar RAB", "link": "#/DaftarRAB" }
+                    {
+                        "name": "Penyusunan TR-PNBP",
+                        "link": "#/PenyusunanTRPNBP"
+                    },
+                    {
+                        "name": "Daftar TR-PNBP Tahunan",
+                        "link": "#/DaftarTRPNBPTahunan"
+                    },
+                    {
+                        "name": "Penyusunan E-Planning",
+                        "link": "#/PenyusunanEPlanning"
+                    },
+                    {
+                        "name": "Daftar E-Planning Tahunan",
+                        "link": "#/DaftarEPlanningTahunan"
+                    },
+                    {
+                        "name": "Daftar RBA",
+                        "link": ""
+                    },
+                    {
+                        "name": "Daftar RKA-KL",
+                        "link": "#/DaftarRKAKL"
+                    },
+                    {
+                        "name": "Penyusunan RKA-KL",
+                        "link": "#/PenyusunanRKAKL"
+                    },
+                    {
+                        "name": "Riwayat RKA-KL",
+                        "link": "#/RiwayatRKAKL"
+                    },
+                    {
+                        "name": "Detail RKA-KL",
+                        "link": "#/DetailRKAKL"
+                    },
+                    {
+                        "name": "Daftar RSB",
+                        "link": "#/DaftarRSB"
+                    },
+                    {
+                        "name": "Detail RSB",
+                        "link": "#/DetailRSB"
+                    },
+                    {
+                        "name": "Daftar RAB Per Unit Kerja",
+                        "link": "#/DaftarRABUnitKerja"
+                    },
+                    {
+                        "name": "Daftar RAB",
+                        "link": "#/DaftarRAB"
+                    }
                 ]
             },
             {
                 "name": "Modul Pemantauan Dan Evaluasi Anggaran",
                 "children": [
-                    { "name": "Distribusi RKA-KL", "link": "#/DistribusiRKAKL" },
-                    { "name": "Monitoring Realisasi Belanja", "link": "#/MonitoringRealisasiBelanja" },
-                    { "name": "Riwayat Realisasi", "link": "#/RiwayatRealisasi" },
-                    { "name": "Monitoring Realisasi Pendapatan", "link": "#/MonitoringRealisasiPendapatan" },
-                    { "name": "Monitoring dan Evaluasi", "link": "#/MonitoringdanEvaluasi" },
-                    { "name": "Revisi RKA-KL", "link": "#/RevisiRKAKL" }
+                    {
+                        "name": "Distribusi RKA-KL",
+                        "link": "#/DistribusiRKAKL"
+                    },
+                    {
+                        "name": "Monitoring Realisasi Belanja",
+                        "link": "#/MonitoringRealisasiBelanja"
+                    },
+                    {
+                        "name": "Riwayat Realisasi",
+                        "link": "#/RiwayatRealisasi"
+                    },
+                    {
+                        "name": "Monitoring Realisasi Pendapatan",
+                        "link": "#/MonitoringRealisasiPendapatan"
+                    },
+                    {
+                        "name": "Monitoring dan Evaluasi",
+                        "link": "#/MonitoringdanEvaluasi"
+                    },
+                    {
+                        "name": "Revisi RKA-KL",
+                        "link": "#/RevisiRKAKL"
+                    }
                 ]
             }
         ]
     },
     {
         "name": "MODUL PERBENDAHARAAN DAN MOBILISASI DANA",
-        "children": [{
+        "children": [
+            {
                 "name": "Tata Rekening",
-                "children": [{
+                "children": [
+                    {
                         "name": "Daftar Pasien Pulang",
                         "link": "#/DaftarPasienPulang"
                     },
@@ -62,7 +125,8 @@
             },
             {
                 "name": "Kasir",
-                "children": [{
+                "children": [
+                    {
                         "name": "Daftar Pasien Aktif",
                         "link": "#/DaftarPasienAktif"
                     },
@@ -90,7 +154,8 @@
             },
             {
                 "name": "Penerimaan RS / Billing System",
-                "children": [{
+                "children": [
+                    {
                         "name": "Setoran Kasir",
                         "link": "#/SetoranKasirBendaharaPenerimaan"
                     },
@@ -110,10 +175,10 @@
             },
             {
                 "name": "Pengeluaran/Belanja RS",
-                "children": [{
+                "children": [
+                    {
                         "name": "Unit Kerja",
                         "children": [
-
                             {
                                 "name": "Pengajuan UYHD",
                                 "link": "#/PengajuanUYHDUnitKerjaBP"
@@ -135,7 +200,6 @@
                     {
                         "name": "Direktur",
                         "children": [
-
                             {
                                 "name": "Daftar Pengajuan UYHD",
                                 "link": "#/DaftarPengajuanUYHDBPKAngsuranDirekturBP"
@@ -149,7 +213,6 @@
                     {
                         "name": "Bendahara Pengeluaran",
                         "children": [
-
                             {
                                 "name": "Daftar Pengajuan UYHD",
                                 "link": "#/DaftarPengajuanUYHDBendaharaPengeluaranBP"
@@ -179,7 +242,8 @@
             },
             {
                 "name": "Pajak",
-                "children": [{
+                "children": [
+                    {
                         "name": "Daftar Penerimaan Pajak ",
                         "link": "#/DaftarPenerimaanPajak"
                     },
@@ -197,9 +261,11 @@
     },
     {
         "name": "MODUL AKUNTANSI",
-        "children": [{
+        "children": [
+            {
                 "name": "Tarif Rumah Sakit",
-                "children": [{
+                "children": [
+                    {
                         "name": "Daftar Biaya Unit Cost ",
                         "link": "#/DaftarBiayaUnitCost"
                     },
@@ -228,7 +294,6 @@
             {
                 "name": "Modul Verifikasi",
                 "children": [
-
                     {
                         "name": "Verifikasi Spj",
                         "link": "#/VerifikasiSpjUYHDAkuntansiBP"
@@ -241,7 +306,8 @@
             },
             {
                 "name": "Setup Account",
-                "children": [{
+                "children": [
+                    {
                         "name": "Chart Of Account",
                         "link": "#/ChartOfAccount"
                     },
@@ -257,7 +323,8 @@
             },
             {
                 "name": "Jurnal",
-                "children": [{
+                "children": [
+                    {
                         "name": "Jurnal Umum Manual",
                         "link": "#/JurnalUmumManual"
                     },
@@ -269,7 +336,8 @@
             },
             {
                 "name": "Laporan",
-                "children": [{
+                "children": [
+                    {
                         "name": "Buku Besar ",
                         "link": "#/LaporanBukuBesar"
                     },
@@ -292,7 +360,6 @@
     {
         "name": "MODUL PIUTANG",
         "children": [
-
             {
                 "name": "Pencatatan Piutang Non Layanan",
                 "link": "#/PencatatanPiutangDaftarNonLayanan"
@@ -322,15 +389,24 @@
     {
         "name": "Alur Pengadaan Barang",
         "children": [
-            { "name": "Verifikasi Bagian Anggaran", "link": "#/daftarKartuPengendaliAnggaran" },
-            { "name": "Verifikasi Pembayaran Suplier", "link": "#/VerifikasiTagihanSupplier" },
-            { "name": "Verifikasi Pembayaran Gaji", "link": "#/DaftarTagihanSupplier" }
+            {
+                "name": "Verifikasi Bagian Anggaran",
+                "link": "#/daftarKartuPengendaliAnggaran"
+            },
+            {
+                "name": "Verifikasi Pembayaran Suplier",
+                "link": "#/VerifikasiTagihanSupplier"
+            },
+            {
+                "name": "Verifikasi Pembayaran Gaji",
+                "link": "#/DaftarTagihanSupplier"
+            }
         ]
     },
     {
-    "name": "Inventori",
-    "children": [
-        {
+        "name": "Inventori",
+        "children": [
+            {
                 "name": "Stok Barang",
                 "children": [
                     {
@@ -372,11 +448,11 @@
                     }
                 ]
             },
-            { 
-              "name": "Daftar Pengajuan Usulan", 
-              "link": "#/DaftarUsulanPermintaanBarang" 
+            {
+                "name": "Daftar Pengajuan Usulan",
+                "link": "#/DaftarUsulanPermintaanBarang"
             }
-    ]
+        ]
     },
     {
         "name": "Barang Investasi",
@@ -393,45 +469,56 @@
                 "name": "Kirim Barang Aset",
                 "link": "#/KirimBarangAset"
             }
-           
         ]
     },
     {
         "name": "SDM",
-        "children": [{
-            "name": "Input Logbook",
-            "link": "#/InputLogbook"
-        }, {
-            "name": "Indeks Kinerja Individu",
-            "link": "#/IndeksKinerjaIndividuSDM"
-        }, {
-            "name": "Permohonan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
-            "link": "#/PermohonanPerubahanStatusPegawai"
-        }, {
-			"name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
-			"link": "#/DaftarPenangguhanCuti"
-		}, {
-            "name": "Pengajuan Mutasi Pegawai",
-            "link": "#/PengajuanMutasiPegawai"
-        }, {
-            "name": "Pengajuan Resign Pegawai",
-            "link": "#/PengajuanResignPegawai"
-        }, {
-            "name": "Pengajuan Sanksi Pegawai",
-            "link": "#/PengajuanSanksiPegawai"
-        }, {
-            "name": "Daftar Pengajuan Mutasi Sanksi Resign",
-            "link": "#/DaftarPengajuanMutasiSanksiResign"
-        }, {
-			"name": "Monitoring Absensi",
-			"link": "#/MonitoringAbsensiPegawai"
-		}, {
-			"name": "InputLemburPegawaiUnitKerja",
-			"link": "#/InputLemburPegawaiUnitKerja"
-		},{
-            "name": "Verifikasi Uraian Tugas Bawahan",
-            "link": "#/VerifikasiUraianTugasPegawaiLogin"
-        },{
+        "children": [
+            {
+                "name": "Input Logbook",
+                "link": "#/InputLogbook"
+            },
+            {
+                "name": "Indeks Kinerja Individu",
+                "link": "#/IndeksKinerjaIndividuSDM"
+            },
+            {
+                "name": "Permohonan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
+                "link": "#/PermohonanPerubahanStatusPegawai"
+            },
+            {
+                "name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
+                "link": "#/DaftarPenangguhanCuti"
+            },
+            {
+                "name": "Pengajuan Mutasi Pegawai",
+                "link": "#/PengajuanMutasiPegawai"
+            },
+            {
+                "name": "Pengajuan Resign Pegawai",
+                "link": "#/PengajuanResignPegawai"
+            },
+            {
+                "name": "Pengajuan Sanksi Pegawai",
+                "link": "#/PengajuanSanksiPegawai"
+            },
+            {
+                "name": "Daftar Pengajuan Mutasi Sanksi Resign",
+                "link": "#/DaftarPengajuanMutasiSanksiResign"
+            },
+            {
+                "name": "Monitoring Absensi",
+                "link": "#/MonitoringAbsensiPegawai"
+            },
+            {
+                "name": "InputLemburPegawaiUnitKerja",
+                "link": "#/InputLemburPegawaiUnitKerja"
+            },
+            {
+                "name": "Verifikasi Uraian Tugas Bawahan",
+                "link": "#/VerifikasiUraianTugasPegawaiLogin"
+            },
+            {
                 "name": "Pengajuan Pelatihan",
                 "children": [
                     {
@@ -455,11 +542,12 @@
                         "link": "#/DaftarRekapitulasiKehadiran"
                     }
                 ]
-            }]
+            }
+        ]
     },
     {
-        "name":"Aplikasi IT",
-        "children":[
+        "name": "Aplikasi IT",
+        "children": [
             {
                 "name": "Permintaan Perbaikan dari Ruangan",
                 "link": "#/RevPermintaanPerbaikandariRuanganITNew"
@@ -476,12 +564,13 @@
             {
                 "name": "Respond Perbaikan",
                 "link": "#/RespondPerbaikan"
-            } 
+            }
         ]
-    },   
+    },
     {
         "name": "Tata Usaha",
-        "children": [{
+        "children": [
+            {
                 "name": "Membuat Draft Surat",
                 "link": "#/BuatDraftSurat"
             },
@@ -525,7 +614,8 @@
             {
                 "name": "Permintaan Linen Bersih",
                 "link": "#/PermintaanLinenByRuangan"
-            },{
+            },
+            {
                 "name": "Verifikasi",
                 "link": "#/VerifikasiTerima"
             }
@@ -536,9 +626,8 @@
         "children": [
             {
                 "name": "Ubah Password",
-                "link": "#/UbahPassword"  
+                "link": "#/UbahPassword"
             }
         ]
     }
-
 ]

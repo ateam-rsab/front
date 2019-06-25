@@ -112,7 +112,8 @@
     },
     {
         "name": "Verifikasi Pembayaran",
-        "children": [{
+        "children": [
+            {
                 "name": "Tagihan Suplier",
                 "link": "#/VerifikasiTagihanSupplier"
             },
@@ -124,7 +125,8 @@
     },
     {
         "name": "Setup Account",
-        "children": [{
+        "children": [
+            {
                 "name": "Kode Perkiraan",
                 "link": "#/MasterCoa"
             },
@@ -139,9 +141,9 @@
         ]
     },
     {
-    "name": "Inventori",
-    "children": [
-        {
+        "name": "Inventori",
+        "children": [
+            {
                 "name": "Stok Barang",
                 "children": [
                     {
@@ -157,8 +159,8 @@
                         "link": "#/KartuStok"
                     },
                     {
-                      "name": "Daftar Barang Kadaluarsa",
-                      "link": "#/DaftarBarangKadaluarsa"
+                        "name": "Daftar Barang Kadaluarsa",
+                        "link": "#/DaftarBarangKadaluarsa"
                     }
                 ]
             },
@@ -187,45 +189,56 @@
                     }
                 ]
             }
-    ]
-  },
+        ]
+    },
     {
         "name": "SDM",
-        "children": [{
-            "name": "Input Logbook",
-            "link": "#/InputLogbook"
-        }, {
-            "name": "Indeks Kinerja Individu",
-            "link": "#/IndeksKinerjaIndividuSDM"
-        }, {
-            "name": "Permohonan Perubahan Status Pegawai (Cuti & Perjalanan Dinas)",
-            "link": "#/PermohonanPerubahanStatusPegawai"
-        }, {
-			"name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
-			"link": "#/DaftarPenangguhanCuti"
-		}, {
-            "name": "Pengajuan Mutasi Pegawai",
-            "link": "#/PengajuanMutasiPegawai"
-        }, {
-            "name": "Pengajuan Resign Pegawai",
-            "link": "#/PengajuanResignPegawai"
-        }, {
-            "name": "Pengajuan Sanksi Pegawai",
-            "link": "#/PengajuanSanksiPegawai"
-        }, {
-            "name": "Daftar Pengajuan Mutasi Sanksi Resign",
-            "link": "#/DaftarPengajuanMutasiSanksiResign"
-        }, {
-			"name": "Monitoring Absensi",
-			"link": "#/MonitoringAbsensiPegawai"
-		}, {
-			"name": "InputLemburPegawaiUnitKerja",
-			"link": "#/InputLemburPegawaiUnitKerja"
-		},{
-            "name": "Verifikasi Uraian Tugas Bawahan",
-            "link": "#/VerifikasiUraianTugasPegawaiLogin"
-        },
-        {
+        "children": [
+            {
+                "name": "Input Logbook",
+                "link": "#/InputLogbook"
+            },
+            {
+                "name": "Indeks Kinerja Individu",
+                "link": "#/IndeksKinerjaIndividuSDM"
+            },
+            {
+                "name": "Permohonan Perubahan Status Pegawai (Cuti & Perjalanan Dinas)",
+                "link": "#/PermohonanPerubahanStatusPegawai"
+            },
+            {
+                "name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
+                "link": "#/DaftarPenangguhanCuti"
+            },
+            {
+                "name": "Pengajuan Mutasi Pegawai",
+                "link": "#/PengajuanMutasiPegawai"
+            },
+            {
+                "name": "Pengajuan Resign Pegawai",
+                "link": "#/PengajuanResignPegawai"
+            },
+            {
+                "name": "Pengajuan Sanksi Pegawai",
+                "link": "#/PengajuanSanksiPegawai"
+            },
+            {
+                "name": "Daftar Pengajuan Mutasi Sanksi Resign",
+                "link": "#/DaftarPengajuanMutasiSanksiResign"
+            },
+            {
+                "name": "Monitoring Absensi",
+                "link": "#/MonitoringAbsensiPegawai"
+            },
+            {
+                "name": "InputLemburPegawaiUnitKerja",
+                "link": "#/InputLemburPegawaiUnitKerja"
+            },
+            {
+                "name": "Verifikasi Uraian Tugas Bawahan",
+                "link": "#/VerifikasiUraianTugasPegawaiLogin"
+            },
+            {
                 "name": "Pengajuan Pelatihan",
                 "children": [
                     {
@@ -249,11 +262,12 @@
                         "link": "#/DaftarRekapitulasiKehadiran"
                     }
                 ]
-            }]
+            }
+        ]
     },
     {
-        "name":"Aplikasi IT",
-        "children":[
+        "name": "Aplikasi IT",
+        "children": [
             {
                 "name": "Permintaan Perbaikan dari Ruangan",
                 "link": "#/RevPermintaanPerbaikandariRuanganITNew"
@@ -270,12 +284,13 @@
             {
                 "name": "Respond Perbaikan",
                 "link": "#/RespondPerbaikan"
-            } 
+            }
         ]
-    }, 
+    },
     {
         "name": "Tata Usaha",
-        "children": [{
+        "children": [
+            {
                 "name": "Membuat Draft Surat",
                 "link": "#/BuatDraftSurat"
             },
@@ -324,13 +339,14 @@
                 "name": "Verifikasi",
                 "link": "#/VerifikasiTerima"
             }
-    ]},
+        ]
+    },
     {
         "name": "Setting",
         "children": [
             {
                 "name": "Ubah Password",
-                "link": "#/UbahPassword"  
+                "link": "#/UbahPassword"
             }
         ]
     }

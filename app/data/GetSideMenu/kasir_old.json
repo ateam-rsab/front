@@ -1,6 +1,8 @@
-[{
+[
+    {
         "name": "Tata Rekening",
-        "children": [{
+        "children": [
+            {
                 "name": "Daftar Pasien Pulang",
                 "link": "#/DaftarPasienPulang"
             },
@@ -25,7 +27,6 @@
     {
         "name": "Kasir",
         "children": [
-
             {
                 "name": "Daftar Tagihan Non Layanan",
                 "link": "#/DaftarNonLayananKasir"
@@ -82,118 +83,148 @@
             {
                 "name": "Laporan Pasien Pulang",
                 "link": "#/LaporanPasienPulang"
-            },{
+            },
+            {
                 "name": "Laporan Pendapatan Ruangan",
                 "link": "#/LaporanPendapatanRuangan"
-            },{
+            },
+            {
                 "name": "Laporan Pendapatan Poli",
                 "link": "#/LaporanPendapatanPoli"
-            },{
+            },
+            {
                 "name": "Laporan Piutang Penjamin",
                 "link": "#/LaporanPiutangPenjamin"
             },
-              {
+            {
                 "name": "Laporan Penjualan Obat",
                 "link": "#/LaporanApotek"
-              }
-          ]
+            }
+        ]
     },
     {
-    "name": "Inventori",
-    "children": [
-        {
-            "name": "Data Stok Ruangan Rekap",
-            "link": "#/Logistik/RekapStokRuangan"
-        }, {
-            "name": "Data Stok Ruangan Detil",
-            "link": "#/Logistik/StokRuangan"
-        }, {
-            "name": "Order Barang",
-            "link": "#/Logistik/Orders/"
-        }, {
-            "name": "Informasi Permintaan Barang",
-            "children": [
-              {
-                "name": "Daftar Permintaan Barang",
-                "link": "#/Logistik/Terima/Verifikasi"
-              }, {
-                "name": "Daftar Pengiriman Barang",
-                "link": "#/Logistik/OrderKirim/Informasi"
-              }]
-        }, {
-            "name": "Daftar Barang Investasi",
-            "link": "#/Logistik/DaftarBarangInvestasi"
-        }, {
-            "name": "Order Pemusnahan Barang",
-            "link": "#/Logistik/PemusnahanBarang"
-        }, {
-            "name": "Kartu Stok",
-            "link": "#/KartuStok"
-        }, {
-            "name": "Stok Opname",
-            "link": "#/Logistik/StokOpname"
-        }, {
-            "name": "Retur Barang Antar Ruangan",
-            "link": "#/Logistik/ReturPengiriman"
-        }, {
-            "name": "Daftar Retur Barang Antar Ruangan",
-            "link": "#/Logistik/DaftarReturBarangRuangan"
-        }, {
-            "name": "Penerimaan Retur Barang Ruangan",
-            "link": "#/Logistik/PenerimaanReturnBarangRuangan"
-        }, {
-            "name": "Pemakaian Barang Habis Pakai",
-            "link": "#/Logistik/PemakaianBahandanAlat"
-        }, {
-            "name": "Daftar Pemakaian Barang Habis Pakai",
-            "link": "#/Logistik/PemakaianBahandanAlat/Informasi"
-        }, {
-            "name": "Monitoring Fast & Slow Barang",
-            "link": "#/Logistik/monitoringStokRuangan"
-        }
-    ]
-  },
+        "name": "Inventori",
+        "children": [
+            {
+                "name": "Data Stok Ruangan Rekap",
+                "link": "#/Logistik/RekapStokRuangan"
+            },
+            {
+                "name": "Data Stok Ruangan Detil",
+                "link": "#/Logistik/StokRuangan"
+            },
+            {
+                "name": "Order Barang",
+                "link": "#/Logistik/Orders/"
+            },
+            {
+                "name": "Informasi Permintaan Barang",
+                "children": [
+                    {
+                        "name": "Daftar Permintaan Barang",
+                        "link": "#/Logistik/Terima/Verifikasi"
+                    },
+                    {
+                        "name": "Daftar Pengiriman Barang",
+                        "link": "#/Logistik/OrderKirim/Informasi"
+                    }
+                ]
+            },
+            {
+                "name": "Daftar Barang Investasi",
+                "link": "#/Logistik/DaftarBarangInvestasi"
+            },
+            {
+                "name": "Order Pemusnahan Barang",
+                "link": "#/Logistik/PemusnahanBarang"
+            },
+            {
+                "name": "Kartu Stok",
+                "link": "#/KartuStok"
+            },
+            {
+                "name": "Stok Opname",
+                "link": "#/Logistik/StokOpname"
+            },
+            {
+                "name": "Retur Barang Antar Ruangan",
+                "link": "#/Logistik/ReturPengiriman"
+            },
+            {
+                "name": "Daftar Retur Barang Antar Ruangan",
+                "link": "#/Logistik/DaftarReturBarangRuangan"
+            },
+            {
+                "name": "Penerimaan Retur Barang Ruangan",
+                "link": "#/Logistik/PenerimaanReturnBarangRuangan"
+            },
+            {
+                "name": "Pemakaian Barang Habis Pakai",
+                "link": "#/Logistik/PemakaianBahandanAlat"
+            },
+            {
+                "name": "Daftar Pemakaian Barang Habis Pakai",
+                "link": "#/Logistik/PemakaianBahandanAlat/Informasi"
+            },
+            {
+                "name": "Monitoring Fast & Slow Barang",
+                "link": "#/Logistik/monitoringStokRuangan"
+            }
+        ]
+    },
     {
         "name": "SDM",
-        "children": [{
+        "children": [
+            {
                 "name": "Target Bobot Uraian Tugas",
                 "link": "#/TargetBobot"
             },
             {
                 "name": "LogBook",
                 "link": "#/InputLogbook"
-            }, {
+            },
+            {
                 "name": "Indeks Kinerja Individu",
                 "link": "#/IndeksKinerjaIndividuSDM"
-            }, {
+            },
+            {
                 "name": "Rekapitulasi IKI Pegawai",
                 "link": "#/RekapitulasiIkiPegawai"
-            }, {
+            },
+            {
                 "name": "Permohonan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
                 "link": "#/PermohonanPerubahanStatusPegawai"
-            }, {
+            },
+            {
                 "name": "Daftar Pengajuan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
                 "link": "#/DaftarPengajuanPerubahanStatus"
-            }, {
+            },
+            {
                 "name": "Pengajuan Mutasi Pegawai",
                 "link": "#/PengajuanMutasiPegawai"
-            }, {
+            },
+            {
                 "name": "Pengajuan Resign Pegawai",
                 "link": "#/PengajuanResignPegawai"
-            }, {
+            },
+            {
                 "name": "Pengajuan Sanksi Pegawai",
                 "link": "#/PengajuanSanksiPegawai"
-            }, {
+            },
+            {
                 "name": "Daftar Pengajuan Mutasi Resign Sanksi Pegawai",
                 "link": "#/DaftarPengajuanMutasiSanksiResign"
-            }, {
-				"name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
-				"link": "#/DaftarPenangguhanCuti"
-			}
+            },
+            {
+                "name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
+                "link": "#/DaftarPenangguhanCuti"
+            }
         ]
-    }, {
+    },
+    {
         "name": "Tata Usaha",
-        "children": [{
+        "children": [
+            {
                 "name": "Membuat Draft Surat",
                 "link": "#/BuatDraftSurat"
             },
@@ -232,8 +263,8 @@
         ]
     },
     {
-        "name":"Aplikasi IT",
-        "children":[
+        "name": "Aplikasi IT",
+        "children": [
             {
                 "name": "Permintaan Perbaikan dari Ruangan",
                 "link": "#/RevPermintaanPerbaikandariRuanganITNew"
@@ -246,10 +277,11 @@
             {
                 "name": "Permintaan Linen Bersih",
                 "link": "#/PermintaanLinenByRuangan"
-            },{
+            },
+            {
                 "name": "Verifikasi",
                 "link": "#/VerifikasiTerima"
             }
-    ]
+        ]
     }
 ]

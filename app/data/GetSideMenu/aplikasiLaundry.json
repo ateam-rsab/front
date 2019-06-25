@@ -1,4 +1,5 @@
-[{
+[
+    {
         "name": "Master",
         "children": [
             {
@@ -12,11 +13,11 @@
             {
                 "name": "Master Infeksius dan Non Infeksius",
                 "link": "#/MappingInfectionAndNon"
-            },            
+            },
             {
                 "name": "Master Jenis Linen",
                 "link": "#/MasterJenisLinen"
-            },            
+            },
             {
                 "name": "Master Jenis Bahan",
                 "link": "#/MasterJenisBahan"
@@ -29,13 +30,13 @@
                 "name": "Master Mapping Bahan to Mesin",
                 "link": "#/MappingBahanMesin"
             },
-			{
+            {
                 "name": "Daftar Master Mapping Bahan Mesin",
                 "link": "#/DaftarMappingBahanMesin"
             },
             {
-                "name":"Daftar Bahan Baku Infeksius dan Non Infeksius",
-                "link":"#/DaftarMappingInfectionAndNon"
+                "name": "Daftar Bahan Baku Infeksius dan Non Infeksius",
+                "link": "#/DaftarMappingInfectionAndNon"
             }
         ]
     },
@@ -46,11 +47,10 @@
                 "name": "Permintaan Linen dari Ruangan",
                 "link": "#/PermintaanLinenByRuangan"
             },
-             
             {
                 "name": "Pengambilan Linen dari Ruangan",
                 "link": "#/PengambilanLinenInt"
-            }, 
+            },
             {
                 "name": "Pencucian Linen",
                 "link": "#/RevPencucianLinen"
@@ -70,11 +70,11 @@
             {
                 "name": "Daftar Roll Press",
                 "link": "#/DaftarPackage"
-            },           
+            },
             {
                 "name": "Distribusi Barang Laundry",
                 "link": "#/Distribusibaranglaundry"
-            },           
+            },
             {
                 "name": "Verifikasi Terima",
                 "link": "#/VerifikasiTerima"
@@ -88,9 +88,9 @@
                 "link": "#/DaftarStokLinenLaundry"
             },
             {
-                "name":"Monitoring Permintaan Linen Bersih dari Ruangan",
-                "link":"#/DaftarPermintaanLinenDariRuangan"
-            }, 
+                "name": "Monitoring Permintaan Linen Bersih dari Ruangan",
+                "link": "#/DaftarPermintaanLinenDariRuangan"
+            },
             {
                 "name": "Rekap Layanan Laundry",
                 "link": "#/RekapLayananLaundry"
@@ -101,7 +101,6 @@
         "name": "Transaksi Eksternal",
         "children": [
             {
-
                 "name": "Order Laundry",
                 "link": "#/OrderLaundryEks"
             },
@@ -142,197 +141,212 @@
                 "link": "#/DaftarRetur"
             }
         ]
-    }, 
+    },
     {
-    "name": "Modul Inventori",
-    "children": [
-      {
-        "name": "Stok Barang",
+        "name": "Modul Inventori",
         "children": [
-          {
-            "name": "Data Stok Ruangan",
-            "link": "#/Logistik/StokRuangan"
-          }, 
-          {
-            "name": "Kartu Stok",
-            "link": "#/KartuStok"
-          }, 
-          {
-            "name": "Stok Opname",
-            "link": "#/Logistik/StokOpname"
-          },
-          {
-              "name": "Daftar Nilai Persediaan",
-              "link": "#/DaftarNilaiPersediaan"
-          },
-          {
-              "name": "Daftar Pemakaian Stok Ruangan",
-              "link": "#/DaftarPemakaianStokRuangan"
-          },
-          {
-              "name": "Saldo Penerimaan Dan Pengeluaran Barang",
-              "link": "#/SaldoBarangDetail"
-          }
+            {
+                "name": "Stok Barang",
+                "children": [
+                    {
+                        "name": "Data Stok Ruangan",
+                        "link": "#/Logistik/StokRuangan"
+                    },
+                    {
+                        "name": "Kartu Stok",
+                        "link": "#/KartuStok"
+                    },
+                    {
+                        "name": "Stok Opname",
+                        "link": "#/Logistik/StokOpname"
+                    },
+                    {
+                        "name": "Daftar Nilai Persediaan",
+                        "link": "#/DaftarNilaiPersediaan"
+                    },
+                    {
+                        "name": "Daftar Pemakaian Stok Ruangan",
+                        "link": "#/DaftarPemakaianStokRuangan"
+                    },
+                    {
+                        "name": "Saldo Penerimaan Dan Pengeluaran Barang",
+                        "link": "#/SaldoBarangDetail"
+                    }
+                ]
+            },
+            {
+                "name": "Daftar Transfer Barang",
+                "children": [
+                    {
+                        "name": "Order Barang",
+                        "link": "#/OrderBarangLogistik"
+                    },
+                    {
+                        "name": "Daftar Order Barang",
+                        "link": "#/DaftarOrderBarang"
+                    },
+                    {
+                        "name": "Kirim Barang",
+                        "link": "#/KirimBarangLogistik"
+                    },
+                    {
+                        "name": "Daftar Distribusi Barang",
+                        "link": "#/DaftarDistribusiBarang"
+                    }
+                ]
+            },
+            {
+                "name": "Master Produk Apotik",
+                "children": [
+                    {
+                        "name": "Konversi Satuan",
+                        "link": "#/KonversiSatuan"
+                    },
+                    {
+                        "name": "Barang Produksi",
+                        "link": "#/DaftarBarangProduksi"
+                    },
+                    {
+                        "name": "Paket Obat",
+                        "link": "#/DaftarPaketObat"
+                    }
+                ]
+            },
+            {
+                "name": "Usulan Permintaan Barang/Jasa",
+                "children": [
+                    {
+                        "name": "Daftar Usulan Permintaan Barang",
+                        "link": "#/DaftarUsulanPermintaanBarang"
+                    },
+                    {
+                        "name": "Usulan Permintaan Baru",
+                        "link": "#/UsulanPermintaanBarangJasaRuangan"
+                    }
+                ]
+            },
+            {
+                "name": "Surat Perintah Kerja",
+                "link": "#/DaftarSPK"
+            },
+            {
+                "name": "Penerimaan Barang Suplier",
+                "children": [
+                    {
+                        "name": "Daftar Penerimaan Barang Supplier",
+                        "link": "#/DaftarPenerimaanBarangSuplier"
+                    },
+                    {
+                        "name": "Penerimaan Barang",
+                        "link": "#/PenerimaanBarangSuplier"
+                    }
+                ]
+            },
+            {
+                "name": "Barang Investasi",
+                "children": [
+                    {
+                        "name": "Daftar Barang Investasi",
+                        "link": "#/Logistik/DaftarBarangInvestasi"
+                    },
+                    {
+                        "name": "Order Pemusnahan Barang",
+                        "link": "#/Logistik/PemusnahanBarang"
+                    }
+                ]
+            },
+            {
+                "name": "Retur Barang",
+                "children": [
+                    {
+                        "name": "Retur Barang Antar Ruangan",
+                        "link": "#/Logistik/ReturPengiriman"
+                    },
+                    {
+                        "name": "Daftar Retur Barang Antar Ruangan",
+                        "link": "#/Logistik/DaftarReturBarangRuangan"
+                    },
+                    {
+                        "name": "Penerimaan Retur Barang Ruangan",
+                        "link": "#/Logistik/PenerimaanReturnBarangRuangan"
+                    }
+                ]
+            },
+            {
+                "name": "Barang Habis Pakai",
+                "children": [
+                    {
+                        "name": "Pemakaian Barang Habis Pakai",
+                        "link": "#/Logistik/PemakaianBahandanAlat"
+                    },
+                    {
+                        "name": "Daftar Pemakaian Barang Habis Pakai",
+                        "link": "#/Logistik/PemakaianBahandanAlat/Informasi"
+                    }
+                ]
+            },
+            {
+                "name": "Monitoring Fast & Slow Barang",
+                "link": "#/Logistik/monitoringStokRuanganRev"
+            }
         ]
-      },
-      {
-        "name": "Daftar Transfer Barang",
-        "children": [
-          {
-            "name": "Order Barang",
-            "link": "#/OrderBarangLogistik"
-          }, 
-          {
-            "name": "Daftar Order Barang",
-              "link": "#/DaftarOrderBarang"
-              
-          }, 
-          {
-            "name": "Kirim Barang",
-            "link": "#/KirimBarangLogistik"
-          }, 
-          {
-            "name": "Daftar Distribusi Barang",
-            "link": "#/DaftarDistribusiBarang"
-          }
-        ]
-      },
-      {
-        "name": "Master Produk Apotik",
-        "children": [
-          {
-            "name": "Konversi Satuan",
-            "link": "#/KonversiSatuan"
-          },
-          {
-            "name": "Barang Produksi",
-            "link": "#/DaftarBarangProduksi"
-          },
-          {
-            "name": "Paket Obat",
-            "link": "#/DaftarPaketObat"
-          }
-        ]
-      },
-      {
-          "name": "Usulan Permintaan Barang/Jasa",
-          "children": [
-              {
-                  "name": "Daftar Usulan Permintaan Barang",
-                  "link": "#/DaftarUsulanPermintaanBarang"
-              },
-              {
-                  "name": "Usulan Permintaan Baru",
-                  "link": "#/UsulanPermintaanBarangJasaRuangan"
-              }
-          ]
-      },
-      {
-          "name": "Surat Perintah Kerja",
-          "link": "#/DaftarSPK"          
-      },
-      {
-          "name": "Penerimaan Barang Suplier",
-          "children": [
-              {
-                  "name": "Daftar Penerimaan Barang Supplier",
-                  "link": "#/DaftarPenerimaanBarangSuplier"
-              },
-              {
-                  "name": "Penerimaan Barang",
-                  "link": "#/PenerimaanBarangSuplier"
-              }
-          ]
-      },
-      {
-        "name": "Barang Investasi",
-        "children": [
-          {
-            "name": "Daftar Barang Investasi",
-            "link": "#/Logistik/DaftarBarangInvestasi"
-          }, {
-            "name": "Order Pemusnahan Barang",
-            "link": "#/Logistik/PemusnahanBarang"
-          }
-        ]
-      },
-      {
-        "name": "Retur Barang",
-        "children": [
-          {
-            "name": "Retur Barang Antar Ruangan",
-            "link": "#/Logistik/ReturPengiriman"
-          }, {
-            "name": "Daftar Retur Barang Antar Ruangan",
-            "link": "#/Logistik/DaftarReturBarangRuangan"
-          }, {
-            "name": "Penerimaan Retur Barang Ruangan",
-            "link": "#/Logistik/PenerimaanReturnBarangRuangan"
-          }
-        ]
-      },
-      {
-        "name": "Barang Habis Pakai",
-        "children": [
-          {
-            "name": "Pemakaian Barang Habis Pakai",
-            "link": "#/Logistik/PemakaianBahandanAlat"
-          }, {
-            "name": "Daftar Pemakaian Barang Habis Pakai",
-            "link": "#/Logistik/PemakaianBahandanAlat/Informasi"
-          }
-        ]
-      },
-      {
-        "name": "Monitoring Fast & Slow Barang",
-        "link": "#/Logistik/monitoringStokRuanganRev"
-      }
-    ]
-  },
+    },
     {
         "name": "SDM",
-        "children": [{
+        "children": [
+            {
                 "name": "Target Bobot Uraian Tugas",
                 "link": "#/TargetBobot"
-            }, {
+            },
+            {
                 "name": "Input Logbook",
                 "link": "#/InputLogbook"
-            }, {
+            },
+            {
                 "name": "Indeks Kinerja Individu",
                 "link": "#/IndeksKinerjaIndividuSDM"
-            }, {
+            },
+            {
                 "name": "Permohonan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
                 "link": "#/PermohonanPerubahanStatusPegawai"
-            }, {
-				"name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
-				"link": "#/DaftarPenangguhanCuti"
-			}, {
+            },
+            {
+                "name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
+                "link": "#/DaftarPenangguhanCuti"
+            },
+            {
                 "name": "Pengajuan Mutasi Pegawai",
                 "link": "#/PengajuanMutasiPegawai"
-            }, {
+            },
+            {
                 "name": "Pengajuan Resign Pegawai",
                 "link": "#/PengajuanResignPegawai"
-            }, {
+            },
+            {
                 "name": "Pengajuan Sanksi Pegawai",
                 "link": "#/PengajuanSanksiPegawai"
-            }, {
+            },
+            {
                 "name": "Daftar Pengajuan Mutasi Resign Sanksi",
                 "link": "#/DaftarPengajuanMutasiSanksiResign"
-            }, {
-				"name": "Monitoring Absensi",
-				"link": "#/MonitoringAbsensiPegawai"
-			}, {
-				"name": "InputLemburPegawaiUnitKerja",
-				"link": "#/InputLemburPegawaiUnitKerja"
-			},{
+            },
+            {
+                "name": "Monitoring Absensi",
+                "link": "#/MonitoringAbsensiPegawai"
+            },
+            {
+                "name": "InputLemburPegawaiUnitKerja",
+                "link": "#/InputLemburPegawaiUnitKerja"
+            },
+            {
                 "name": "Verifikasi Uraian Tugas Bawahan",
                 "link": "#/VerifikasiUraianTugasPegawaiLogin"
             }
         ]
     },
     {
-        "name":"Aplikasi IT",
-        "children":[
+        "name": "Aplikasi IT",
+        "children": [
             {
                 "name": "Permintaan Perbaikan dari Ruangan",
                 "link": "#/RevPermintaanPerbaikandariRuanganITNew"
@@ -349,12 +363,13 @@
             {
                 "name": "Respond Perbaikan",
                 "link": "#/RespondPerbaikan"
-            } 
+            }
         ]
-    }, 
+    },
     {
         "name": "Tata Usaha",
-        "children": [{
+        "children": [
+            {
                 "name": "Membuat Draft Surat",
                 "link": "#/BuatDraftSurat"
             },
@@ -397,7 +412,7 @@
         "children": [
             {
                 "name": "Ubah Password",
-                "link": "#/UbahPassword"  
+                "link": "#/UbahPassword"
             }
         ]
     }
