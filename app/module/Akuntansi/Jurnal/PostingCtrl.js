@@ -4,8 +4,8 @@ define(['initialize'], function(initialize) {
         function($q, $rootScope, $scope,manageAkuntansi,$state,cacheHelper,dateHelper,modelItemAkuntansi , $mdDialog) {
             $scope.item = {};
             $scope.dataVOloaded = true;
-            $scope.showPostingHarian = false;
-            $scope.showTambahPerkiraan = true;
+            $scope.showPostingHarian = true;
+            $scope.showTambahPerkiraan = false;
             $scope.now = new Date();
             $scope.isRouteLoading = false;
             const reducer = (accumulator, currentValue) => accumulator + currentValue;

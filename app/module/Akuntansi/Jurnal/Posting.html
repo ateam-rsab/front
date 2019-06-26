@@ -41,11 +41,11 @@
             <div class="grid_3">
             </div>
             <div class="grid_5">
-                <div class="grid_12">
+                <!-- <div class="grid_12">
                     <div class="k-state-default pull-right">
                         <span style="font-size: 15px">Total Pendapatan: <i>{{item.ttlDebet}}</i></span>
                     </div>
-                </div>
+                </div> -->
                 <!-- <div class="grid_6">
                     <div class="grid_12">
                         Total Kredit :Rp. {{item.ttlDebet}}
@@ -73,15 +73,9 @@
                     <div class="grid_7">
                     </div>
                     <div class="grid_5">
-                        <div class="grid_12">
+                        <!-- <div class="grid_12">
                             <div class="grid_12">
                                 <span style="font-size: 15px">Total Pendapatan: <i>{{item.ttlDebetDetail}}</i></span>
-                            </div>
-                            
-                        </div>
-                        <!-- <div class="grid_6">
-                            <div class="grid_12">
-                                Total Kredit :Rp. {{item.ttlDebet}}
                             </div>
                             
                         </div> -->
@@ -101,7 +95,7 @@
 
     </div>
 </div>
-<div ng-show="showTambahPerkiraan">
+<div ng-show="showTambahPerkiraan" >
     <div class="grid_12 headerBox">
         <h1 style="color: white;"><b>Tambah Mapping Nomor Perkiraan</b></h1>
     </div>
@@ -112,6 +106,11 @@
                 options="columnGridMappingPerkiraan"
                 k-ng-model="dataSelectedMapping">
             </kendo-grid>
+        </div>
+    </div>
+    <div class="grid_12">
+        <div class="grid_4">
+            <button class="k-button k-button-icontext k-grid-Edit" ng-click="showTambahPerkiraan = false; showPostingHarian = true"><span class="k-icon k-i-undo"></span>Kembali</button>
         </div>
     </div>
 </div>
