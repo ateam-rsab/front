@@ -2,7 +2,7 @@ define([], function () {
     'use strict';
     var baseURLFrontend = 'http://172.16.99.188',
         portFrontend = '5555',
-        baseURLBackend = 'http://localhost',
+        baseURLBackend = 'http://192.168.12.3',
         portBackend = '8080',
         portBackendEval = '8183';
     
@@ -92,10 +92,10 @@ define([], function () {
             // urlDataTableTransaksi_Akuntansi: 'http://192.168.12.3:2222/simrs_harkit/service/transaksi/',
             // baseApiPostData_Akuntansi: 'http://192.168.12.3:2222/simrs_harkit/service/',
 
-            urlDataGeneric_Akuntansi: 'http://smart.rsabhk.co.id:2222/simrs_harkit/service/list-generic?view=',
-            urlDataTableMaster_Akuntansi: 'http://smart.rsabhk.co.id:2222/simrs_harkit/service/master/',
-            urlDataTableTransaksi_Akuntansi: 'http://smart.rsabhk.co.id:2222/simrs_harkit/service/transaksi/',
-            baseApiPostData_Akuntansi: 'http://smart.rsabhk.co.id:2222/simrs_harkit/service/',
+            urlDataGeneric_Akuntansi: `${baseURLBackend}:${portFrontend}/simrs_harkit/service/list-generic?view=`,
+            urlDataTableMaster_Akuntansi: `${baseURLBackend}:${portFrontend}/simrs_harkit/service/master/`,
+            urlDataTableTransaksi_Akuntansi: `${baseURLBackend}:${portFrontend}/simrs_harkit/service/transaksi/`,
+            baseApiPostData_Akuntansi: `${baseURLBackend}:${portFrontend}/simrs_harkit/service/`,
 
             urlDataMaster: `${baseURLBackend}:${portBackend}/jasamedika-web/generated_master/`
 
