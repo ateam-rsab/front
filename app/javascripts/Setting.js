@@ -1,6 +1,6 @@
 define([], function () {
     'use strict';
-    var baseURLFrontend = 'http://172.16.99.60',
+    var baseURLFrontend = 'http://172.16.99.32',
         portFrontend = '5555',
         baseURLBackend = 'http://192.168.12.3',
         portBackend = '8080';
