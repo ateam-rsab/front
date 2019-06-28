@@ -91,11 +91,11 @@ define(['initialize'], function(initialize) {
                         toastr.warning("Data tanggal masuk pegawai di rekam data pegawai belum diisi!");
                         return;
                     }
-                    if (yearInput<yearMulaiDapatCuti+1 && $scope.item.komponenIndexPegawai.id==5) {
-                        $scope.isRouteLoading = false;
-                        toastr.warning("Pegawai tidak mendapat jatah cuti untuk tahun input ini!");
-                        return;
-                    }
+                    // if (yearInput<yearMulaiDapatCuti+1 && $scope.item.komponenIndexPegawai.id==5) {
+                    //     $scope.isRouteLoading = false;
+                    //     toastr.warning("Pegawai tidak mendapat jatah cuti untuk tahun input ini!");
+                    //     return;
+                    // }
                     var data = {
                         "statusEnabled": true,
                         "tahun": dateHelper.formatDate($scope.item.periode, "YYYY"),
