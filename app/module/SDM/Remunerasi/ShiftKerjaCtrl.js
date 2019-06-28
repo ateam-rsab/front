@@ -40,10 +40,10 @@ define(['initialize'], function(initialize) {
                 $scope.items = {};
                 var grid = $("#gridDaftarShift").data("kendoGrid"), listData = [];
                 manageSdmNew.getListData("sdm/get-list-shift-kerja", true).then(function(dat){
-                    var filteredData = _.filter(dat.data.data, function(o) { 
-                        return o.statusEnabled == true; 
-                    });
-                    for(var i = 0; i < filteredData.length; i++){
+                    // var filteredData = _.filter(dat.data.data, function(o) { 
+                    //     return o.statusEnabled == true; 
+                    // });
+                    for(var i = 0; i < dat.data.data.length; i++){
                         listData.push({
                             "id" : dat.data.data[i].idShiftKerja,
                             "kodeExternal" : dat.data.data[i].kodeExternal,

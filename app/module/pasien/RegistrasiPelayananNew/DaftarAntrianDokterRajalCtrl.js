@@ -1530,11 +1530,14 @@ define(['initialize'], function(initialize) {
                 } else {
                     $scope.isVerify = false;
                 }
+                $scope.item.jeniskonsultasi = dataItem.jeniskonsultasi;
                 $scope.item.dokterPengonsul = dataItem.pengonsul;
                 $scope.item.keteranganOrder = dataItem.keteranganorder;
                 $scope.item.diagnosaKerja = dataItem.diagnosakerja;
                 $scope.item.masalah = dataItem.masalah;
-                $scope.item.terapi = dataItem.terapi
+                $scope.item.terapi = dataItem.terapi;
+                $scope.item.periksaDidapatkan = dataItem.pemeriksaandidapat;
+                $scope.item.kesan = dataItem.keterangankeperluan;
                 $scope.statusKonsultasi = dataItem.status;
                 $scope.noRecKonsultasi = dataItem.norec;
                 $scope.noRecPdKonsultasi = dataItem.norec_pd;
