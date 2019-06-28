@@ -7909,6 +7909,25 @@
               }
             ]
         },
+        {
+          "name": "Posting",
+          "url": "/Posting",
+          "templateurl": "module/Akuntansi/Jurnal/Posting.html",
+          "controller": "PostingCtrl",
+          "deps": [{
+                "module": "Services",
+                "define": "Service"
+            },
+            {
+                "module": "LoginServices",
+                "define": "LoginService"
+            },
+            {
+                "module": "AkuntansiService",
+                "define": "AkuntansiService"
+            }
+          ]
+        },
         {                                                                          
             "name": "PembayaranPiutangPerusahaan",
             "url": "/PembayaranPiutangPerusahaan/:noposting",

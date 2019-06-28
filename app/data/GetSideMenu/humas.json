@@ -13,7 +13,7 @@
             {
                 "name": "Daftar Pasien Dalam Perawatan",
                 "link": "#/DaftarPasienDalamPerawatan"
-            },   
+            },
             {
                 "name": "Cek No Rekam Medis",
                 "link": "#/RegistrasiPasienLamaHumas"
@@ -28,16 +28,16 @@
             },
             {
                 "name": "Informasi Jadwal Pelayanan Dokter",
-                "link": "#/InformasiJadwalPelayananDokter" 
+                "link": "#/InformasiJadwalPelayananDokter"
             },
-            {   
-                "name":  "Registrasi Online",
-                "link":   "#/DaftarPasienReservasiOnline"
+            {
+                "name": "Registrasi Online",
+                "link": "#/DaftarPasienReservasiOnline"
             },
             {
                 "name": "Ketersediaan Tempat Tidur",
                 "link": "#/KetersediaanTempatTidur"
-            }            
+            }
         ]
     },
     {
@@ -72,7 +72,6 @@
                 "name": "Prosedur Layanan",
                 "link": "#/ProsedurLayanan"
             },
-            
             {
                 "name": "Keluhan Pelanggan",
                 "link": "#/KeluhanPelangganBaru"
@@ -93,7 +92,6 @@
                 "name": "Data Peserta Rumah Sakit",
                 "link": "#/DataPesertaRumahSakit"
             },
-            
             {
                 "name": "Data Peserta Yayasan",
                 "link": "#/DataPesertaYayasan"
@@ -118,7 +116,6 @@
                 "name": "Survei Kepuasan Pelanggan",
                 "link": "#/SurveiKepuasanPelanggan"
             },
-            
             {
                 "name": "Manajemen Promosi",
                 "link": "#/ManajemenPromosi"
@@ -134,7 +131,7 @@
             {
                 "name": "Form Ekstension",
                 "link": "#/FormEkstension"
-            },  
+            },
             {
                 "name": "Master Extension",
                 "link": "#/MasterExtension"
@@ -151,41 +148,40 @@
                 "name": "Mapping Pertanyaan to keterangan survei kepuasan pelanggan",
                 "link": "#/mappingpertanyaansurvei"
             },
-            {   
-                "name":  "Daftar Antrian Pasien Registrasi",
-                "link":   "#/DaftarAntrianPasienRegistrasi"         
+            {
+                "name": "Daftar Antrian Pasien Registrasi",
+                "link": "#/DaftarAntrianPasienRegistrasi"
             },
-
-            {   
-                "name":  "Daftar Pasien Rumah Sakit",
-                "link":   "#/DaftarPasienRumahSakit"         
+            {
+                "name": "Daftar Pasien Rumah Sakit",
+                "link": "#/DaftarPasienRumahSakit"
             },
-            {   
-                "name":  "Informasi Tarif Pelayanan",
-                "link":   "#/InformasiTarifLayanan"         
+            {
+                "name": "Informasi Tarif Pelayanan",
+                "link": "#/InformasiTarifLayanan"
             },
-            {   
-                "name":  "Informasi Kamar Rawat Inap",
-                "link":   "#/KamarInap"         
+            {
+                "name": "Informasi Kamar Rawat Inap",
+                "link": "#/KamarInap"
             },
-            {   
-                "name":  "Informasi Prosedur Pelayanan",
-                "link":   "#"         
+            {
+                "name": "Informasi Prosedur Pelayanan",
+                "link": "#"
             },
-            {   
-                "name":  "Daftar Pelaksanaan Pemasaran",
-                "link":   "#/"         
+            {
+                "name": "Daftar Pelaksanaan Pemasaran",
+                "link": "#/"
             },
-            {   
-                "name":  "Pelayanan CS",
-                "link":   "#/HistoryPelayananCustomer"         
+            {
+                "name": "Pelayanan CS",
+                "link": "#/HistoryPelayananCustomer"
             },
-            {   
-                "name":  "Rencana Pemasaran",
-                "link":   "#/RencanaPemasaran"         
+            {
+                "name": "Rencana Pemasaran",
+                "link": "#/RencanaPemasaran"
             },
-            {   
-                "name":  "Master",
+            {
+                "name": "Master",
                 "children": [
                     {
                         "name": "Master Komunikasi",
@@ -207,13 +203,13 @@
                         "name": "Master Rekanan",
                         "link": "#/Rekanan2"
                     }
-                ]       
+                ]
             }
         ]
-    },  
+    },
     {
         "name": "Laporan",
-        "children":[
+        "children": [
             {
                 "name": "Laporan Pasien Daftar",
                 "link": "#/LaporanPasienDaftar"
@@ -235,60 +231,60 @@
                 "link": "#/LaporanPendapatanPoli"
             }
         ]
-     },
-     {
+    },
+    {
         "name": "Inventori",
         "children": [
             {
-                    "name": "Stok Barang",
-                    "children": [
-                        {
-                            "name": "Data Stok Ruangan",
-                            "link": "#/Logistik/StokRuangan"
-                        },
-                        {
-                            "name": "Stok Opname",
-                            "link": "#/Logistik/StokOpname"
-                        },
-                        {
-                            "name": "Kartu Stok",
-                            "link": "#/KartuStok"
-                        },
-                        {
-                            "name": "Daftar Nilai Persediaan",
-                            "link": "#/DaftarNilaiPersediaan"
-                        },
-                        {
-                            "name": "Daftar Barang Kadaluarsa",
-                            "link": "#/DaftarBarangKadaluarsa"
-                        },
-                        {
-                            "name": "Daftar Barang Stok Minimum",
-                            "link": "#/DaftarBarangStokMinimum"
-                        }
-                    ]
-                },
-                {
-                    "name": "Daftar Transfer Barang",
-                    "children": [
-                        {
-                            "name": "Order Barang",
-                            "link": "#/OrderBarangLogistik"
-                        },
-                        {
-                            "name": "Daftar Order Barang",
-                            "link": "#/DaftarOrderBarang"
-                        },
-                        {
-                            "name": "Kirim Barang",
-                            "link": "#/KirimBarangLogistik"
-                        },
-                        {
-                            "name": "Daftar Distribusi Barang",
-                            "link": "#/DaftarDistribusiBarang"
-                        }
-                    ]
-                }
+                "name": "Stok Barang",
+                "children": [
+                    {
+                        "name": "Data Stok Ruangan",
+                        "link": "#/Logistik/StokRuangan"
+                    },
+                    {
+                        "name": "Stok Opname",
+                        "link": "#/Logistik/StokOpname"
+                    },
+                    {
+                        "name": "Kartu Stok",
+                        "link": "#/KartuStok"
+                    },
+                    {
+                        "name": "Daftar Nilai Persediaan",
+                        "link": "#/DaftarNilaiPersediaan"
+                    },
+                    {
+                        "name": "Daftar Barang Kadaluarsa",
+                        "link": "#/DaftarBarangKadaluarsa"
+                    },
+                    {
+                        "name": "Daftar Barang Stok Minimum",
+                        "link": "#/DaftarBarangStokMinimum"
+                    }
+                ]
+            },
+            {
+                "name": "Daftar Transfer Barang",
+                "children": [
+                    {
+                        "name": "Order Barang",
+                        "link": "#/OrderBarangLogistik"
+                    },
+                    {
+                        "name": "Daftar Order Barang",
+                        "link": "#/DaftarOrderBarang"
+                    },
+                    {
+                        "name": "Kirim Barang",
+                        "link": "#/KirimBarangLogistik"
+                    },
+                    {
+                        "name": "Daftar Distribusi Barang",
+                        "link": "#/DaftarDistribusiBarang"
+                    }
+                ]
+            }
         ]
     },
     {
@@ -306,19 +302,18 @@
                 "name": "Kirim Barang Aset",
                 "link": "#/KirimBarangAset"
             }
-           
         ]
-     },
-     {
-        "name":"Aplikasi IT",
-        "children":[
+    },
+    {
+        "name": "Aplikasi IT",
+        "children": [
             {
                 "name": "Permintaan Perbaikan dari Ruangan",
                 "link": "#/RevPermintaanPerbaikandariRuanganITNew"
             }
         ]
     },
-     {
+    {
         "name": "IP3RS",
         "children": [
             {
@@ -328,48 +323,61 @@
             {
                 "name": "Respond Perbaikan",
                 "link": "#/RespondPerbaikan"
-            } 
+            }
         ]
-    }, 
+    },
     {
         "name": "SDM",
-        "children": [{
+        "children": [
+            {
                 "name": "Target Bobot Uraian Tugas",
                 "link": "#/TargetBobot"
-            },{
+            },
+            {
                 "name": "Input Logbook",
                 "link": "#/InputLogbook"
-            }, {
+            },
+            {
                 "name": "Indeks Kinerja Individu",
                 "link": "#/IndeksKinerjaIndividuSDM"
-            },{
+            },
+            {
                 "name": "Permohonan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
                 "link": "#/PermohonanPerubahanStatusPegawai"
-            },{
-        		"name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
-        		"link": "#/DaftarPenangguhanCuti"
-        	},{
+            },
+            {
+                "name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
+                "link": "#/DaftarPenangguhanCuti"
+            },
+            {
                 "name": "Pengajuan Mutasi Pegawai",
                 "link": "#/PengajuanMutasiPegawai"
-            },{
+            },
+            {
                 "name": "Pengajuan Resign Pegawai",
                 "link": "#/PengajuanResignPegawai"
-            },{
+            },
+            {
                 "name": "Pengajuan Sanksi Pegawai",
                 "link": "#/PengajuanSanksiPegawai"
-            },{
+            },
+            {
                 "name": "Daftar Pengajuna Mutasi Sanksi Resign",
                 "link": "#/DaftarPengajuanMutasiSanksiResign"
-            },{
-        		"name": "Monitoring Absensi",
-        		"link": "#/MonitoringAbsensiPegawai"
-        	},{
-        		"name": "InputLemburPegawaiUnitKerja",
-        		"link": "#/InputLemburPegawaiUnitKerja"
-        	},{
+            },
+            {
+                "name": "Monitoring Absensi",
+                "link": "#/MonitoringAbsensiPegawai"
+            },
+            {
+                "name": "InputLemburPegawaiUnitKerja",
+                "link": "#/InputLemburPegawaiUnitKerja"
+            },
+            {
                 "name": "Verifikasi Uraian Tugas Bawahan",
                 "link": "#/VerifikasiUraianTugasPegawaiLogin"
-            },{
+            },
+            {
                 "name": "Pengajuan Pelatihan",
                 "children": [
                     {
@@ -402,18 +410,19 @@
             {
                 "name": "Permintaan Linen Bersih",
                 "link": "#/PermintaanLinenByRuangan"
-            },{
+            },
+            {
                 "name": "Verifikasi",
                 "link": "#/VerifikasiTerima"
             }
-    ]
+        ]
     },
     {
         "name": "Setting",
         "children": [
             {
                 "name": "Ubah Password",
-                "link": "#/UbahPassword"  
+                "link": "#/UbahPassword"
             }
         ]
     }

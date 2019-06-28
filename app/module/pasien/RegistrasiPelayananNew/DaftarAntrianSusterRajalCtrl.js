@@ -139,14 +139,14 @@ define(['initialize'], function(initialize) {
                         filterable : true
                     },
                     { 
-                        field: "namalengkap", 
+                        field: "pengonsul", 
                         title: "<h3>Dokter<br> Asal</h3>", 
                         width: 120, 
                         headerAttributes: { style: "text-align : center" },
                         filterable : true
                     },
                     { 
-                        field: "pengonsul", 
+                        field: "namalengkap", 
                         title: "<h3>Dokter<br> Tujuan</h3>", 
                         width: 120, 
                         headerAttributes: { style: "text-align : center" },
@@ -214,7 +214,6 @@ define(['initialize'], function(initialize) {
                 }
                 $scope.item.dokterPengonsul = dataItem.pengonsul;
                 $scope.item.dokterTarget = dataItem.namalengkap
-                $scope.item.keteranganOrder = dataItem.keteranganorder;
                 $scope.item.keteranganKeperluan = dataItem.keterangankeperluan
                 $scope.statusKonsultasi = dataItem.status;
                 $scope.noRecKonsultasi = dataItem.norec;
@@ -222,6 +221,13 @@ define(['initialize'], function(initialize) {
                 $scope.pegawaiFkKonsultasi = dataItem.pegawaifk;
                 $scope.objectRuanganFkTujuanKonsultasi = dataItem.objectruangantujuanfk;
                 $scope.objectRuanganFkKonsultasi = dataItem.objectruanganfk;
+                $scope.item.masalah = dataItem.masalah;
+                $scope.item.diagnosaKerja = dataItem.diagnosakerja;
+                $scope.item.ikhtisarKlinik = dataItem.keteranganorder;
+                $scope.item.terapiDanTindakan = dataItem.terapi;
+
+                $scope.item.padaPemeriksaan = dataItem.pemeriksaandidapat ? dataItem.pemeriksaandidapat : 'Belum ada Konsultasi';
+                $scope.item.keterangan = dataItem.keterangankeperluan ? dataItem.keterangankeperluan : 'Belum ada Konsultasi';
                 $scope.popUpHasilKonsul.center().open();
             
             }

@@ -1,4 +1,31 @@
 <style>
+    .divider {
+        display: flex;
+    }
+    .divider:before, .divider:after {
+        content: "";
+        flex: 1;
+    }
+    h4.divider.line.double-razor {
+        color: rgb(76, 83, 86);
+        font-size: 17px;
+    }
+    .line {
+        align-items: center;
+        /* margin: 1em -1em; */
+    }
+    .line:before, .line:after {
+        height: 1px;
+        margin: 0 1em;
+    }
+    .razor:before, .razor:after {
+        box-shadow: 0 0.5px 0 black;
+    }
+    .double-razor:before, .double-razor:after {
+        height: 3px;
+        box-shadow: 0 -0.5px 0 black, 0 0.5px 0 black;
+        border-width: 0;
+    }
     .view {
         display: flex;
     }
@@ -64,15 +91,15 @@
                     <div class="clear"></div>
                     <div class="grid_12">
                         <div class="grid_4">
-                            <input type="radio" name="jenisKonsul" id="alihRawat" class="k-radio" ng-model="item.jenisKonsultasi" value="Alih Rawat">
+                            <input type="radio" name="jenisKonsul" id="alihRawat" class="k-radio" ng-model="item.jenisKonsultasi" value="Alih Rawat" ng-disabled="isVerifikasi">
                             <label class="k-radio-label" for="alihRawat">Alih Rawat</label>
                         </div>
                         <div class="grid_4">
-                            <input type="radio" name="jenisKonsul" id="rawatBersama" class="k-radio" ng-model="item.jenisKonsultasi" value="Rawat Bersama">
+                            <input type="radio" name="jenisKonsul" id="rawatBersama" class="k-radio" ng-model="item.jenisKonsultasi" value="Rawat Bersama" ng-disabled="isVerifikasi">
                             <label class="k-radio-label" for="rawatBersama">Rawat Bersama</label>
                         </div>
                         <div class="grid_4">
-                            <input type="radio" name="jenisKonsul" id="konsultasiSewaktu" class="k-radio" ng-model="item.jenisKonsultasi" value="Konsultasi Sewaktu"  checked="checked">
+                            <input type="radio" name="jenisKonsul" id="konsultasiSewaktu" class="k-radio" ng-model="item.jenisKonsultasi" value="Konsultasi Sewaktu"  checked="checked" ng-disabled="isVerifikasi">
                             <label class="k-radio-label" for="konsultasiSewaktu">Konsultasi Sewaktu</label>
                         </div>
                         <!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.statusKonsul" k-data-text-field="'name'"
@@ -98,7 +125,7 @@
                     <div class="clear"></div>
                     <div class="grid_12">
                         <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruanganTujuan" k-data-text-field="'namaruangan'"
-                            k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+                            k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" ng-disabled="isVerifikasi"/>
                     </div>
                 </div>
                 <!-- Dokter -->
@@ -108,7 +135,7 @@
                     </div>
                     <div class="grid_12">
                         <input style="width: 100%;" kendo-combo-box k-ng-model="item.dokter" k-data-text-field="'namalengkap'" 
-                            k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDokter" />
+                            k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDokter" ng-disabled="isVerifikasi" />
                         <!-- <div ng-show="isRawatBersama">
                             <select kendo-multi-select
                                 k-options="selectOptions"
@@ -121,6 +148,15 @@
                     </div>
                 </div>
             </div>            
+            <div class="grid_12">
+                <div class="grid_12">
+                    <label c-label item="item">Masalah:</label>
+                </div>
+                <div class="clear"></div>
+                <div class="grid_12">
+                    <textarea class="k-textbox" style="height: 76px; width: 100%; resize: none;" ng-model="item.masalah" ng-disabled="isVerifikasi"></textarea>
+                </div>
+            </div>
             <div class="grid_12">
                 <div class="grid_12">
                     <label c-label item="item">Pasien dengan diagnosa kerja:</label>
@@ -151,13 +187,13 @@
         </fieldset>
 
         <div class="k-edit-buttons  k-state-default pull-right" style="margin-top:10px">
-            <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="Save()"><span class="k-icon k-update"></span>Simpan</button>
+            <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="Save()" ng-disabled="isVerifikasi"><span class="k-icon k-update"></span>Simpan</button>
             <button class="k-button  k-button-icontext" ng-click="batal()"><span class="k-icon k-cancel"></span>Batal</button>
         </div>
 
     </div>
 </div>
-<div kendo-window="popUpDetail" k-title="'Detail Konsultasi'" k-width="800" k-visible="false" k-on-open="win2visible = true" k-on-close="win2visible = false">
+<div kendo-window="popUpDetail" k-title="'Detail Konsultasi'" k-width="850" k-visible="false" k-on-open="win2visible = true" k-on-close="win2visible = false">
     <div class="view">
         <div style="width: 200px">
             <label><strong>Dokter Konsultasi</strong></label>
@@ -171,6 +207,10 @@
     
     <div>
         <fieldset style="margin-bottom: 10px">
+            <legend><strong>Masalah</strong></legend>
+            <p>{{item.masalah}}</p>
+        </fieldset>
+        <fieldset style="margin-bottom: 10px">
             <legend><strong>Pasien dengan diagnosa kerja</strong></legend>
             <p>{{item.diagnosakerja}}</p>
         </fieldset>
@@ -182,14 +222,14 @@
             <legend><strong>Terapi dan Tindakan yang sudah diberikan</strong></legend>
             <p>{{item.terapi}}</p>
         </fieldset>
+
+        <h4 class="divider line double-razor" contenteditable>Pendapat Konsulen</h4>
         <fieldset style="margin-bottom: 10px">
             <legend><strong>Pada pemeriksaan didapatkan</strong></legend>
-            <p>{{item.periksaDidapatkan}}</p>
+            <p>{{item.pemeriksaandidapat}}</p>
         </fieldset>
         <fieldset style="margin-bottom: 10px">
             <legend><strong>Hasil Konsultasi</strong></legend>
-            {{item.keterangankeperluan}}
-            <p>{{item.keperlua}}</p>
             <p>{{item.keterangankeperluan}}</p>
         </fieldset>
     </div>
@@ -198,4 +238,3 @@
         <button class="k-button  k-button-icontext" ng-click="tutupDetail(2)"><span class="k-icon k-cancel"></span>Tutup</button>
     </div>
 </div>
-

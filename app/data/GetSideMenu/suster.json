@@ -1,100 +1,112 @@
-[{
-    "name": "Layanan Medik",
-    "children": [{
-            "name": "Dokumen RekamMedis",
-            "link": "#/DokumenRekammedis"
-        }, 
-        {
-            "name": "Daftar Pasien Rawat Jalan",
-            "link": "#/DaftarAntrianSusterRajal"
-        }, 
-        {
-            "name": "Daftar Pasien Rawat Inap",
-            "link": "#/DaftarAntrianSusterRanap"
-        },
-        {
-            "name": "Daftar Pasien Bedah",
-            "link": "#/DaftarAntrianDokterBedah"
-        }, 
-        {
-            "name": "Daftar Pasien Rumah Sakit",
-            "link": "#/Daftar/Antrian/Semua"
-        },
-        {
-            "name": "Daftar Pasien Pulang",
-            "link": "#/Daftar/Antrian/Pulang"
-        },
-        {
-            "name": "Daftar Rencana Pindah Pasien",
-            "link": "#/DaftarRencanaPindahPasien"
-        },
-        {
-            "name": "Daftar Rencana Pulang Pasien",
-            "link": "#/DaftarRencanaPulangPasien"
-        }, 
-        {
-            "name": "Formulir Observasi Harian Terintegrasi Intensive Care Unit",
-            "link": "#/FormulirObservasiHarianTerintegrasiIntensiveCareUnit"
-        },
-        {
-            "name": "Daftar Registrasi Pasien",
-            "link": "#/DaftarRegistrasiPasien"
-        },
-        {
-            "name": "Order Menu Gizi",
-            "link": "#/OrderMenuGiziRev"
-        },
-        {
-            "name": "Daftar Order Menu Gizi",
-            "link": "#/DaftarOrderGiziSuster"
-        },
-        {
-            "name": "Daftar Pasien Jatuh",
-            "link": "#/DaftarPasienJatuh"
-        }
-    ]
-},
-{
-    "name": "Laporan",
-    "children": [{
-            "name": "Laporan Pasien Daftar",
-            "link": "#/LaporanPasienDaftar"
-        },{
-            "name": "Laporan Pasien Pulang",
-            "link": "#/LaporanPasienPulang"
-        },{
-            "name": "Laporan Pendapatan Poli",
-            "link": "#/LaporanPendapatanPoli"
-        }]
-},
-{
-    "name": "IGD",
-    "children": [{
-        "name": "Pendaftaran Triage",
-        "link": "#/GawatDarurat/Triage/Input"
+[
+    {
+        "name": "Layanan Medik",
+        "children": [
+            {
+                "name": "Dokumen RekamMedis",
+                "link": "#/DokumenRekammedis"
+            },
+            {
+                "name": "Daftar Pasien Rawat Jalan",
+                "link": "#/DaftarAntrianSusterRajal"
+            },
+            {
+                "name": "Daftar Pasien Rawat Inap",
+                "link": "#/DaftarAntrianSusterRanap"
+            },
+            {
+                "name": "Daftar Pasien Bedah",
+                "link": "#/DaftarAntrianDokterBedah"
+            },
+            {
+                "name": "Daftar Pasien Rumah Sakit",
+                "link": "#/Daftar/Antrian/Semua"
+            },
+            {
+                "name": "Daftar Pasien Pulang",
+                "link": "#/Daftar/Antrian/Pulang"
+            },
+            {
+                "name": "Daftar Rencana Pindah Pasien",
+                "link": "#/DaftarRencanaPindahPasien"
+            },
+            {
+                "name": "Daftar Rencana Pulang Pasien",
+                "link": "#/DaftarRencanaPulangPasien"
+            },
+            {
+                "name": "Formulir Observasi Harian Terintegrasi Intensive Care Unit",
+                "link": "#/FormulirObservasiHarianTerintegrasiIntensiveCareUnit"
+            },
+            {
+                "name": "Daftar Registrasi Pasien",
+                "link": "#/DaftarRegistrasiPasien"
+            },
+            {
+                "name": "Order Menu Gizi",
+                "link": "#/OrderMenuGiziRev"
+            },
+            {
+                "name": "Daftar Order Menu Gizi",
+                "link": "#/DaftarOrderGiziSuster"
+            },
+            {
+                "name": "Daftar Pasien Jatuh",
+                "link": "#/DaftarPasienJatuh"
+            }
+        ]
     },
     {
-        "name": "Daftar Hasil Triase",
-        "link": "#/DaftarHasilTriase"
-    }
-    ]
-},
-{
-    "name": "Rekam Medik",
-    "children": [{
-        "name": "Dashboard Pasien",
-        "link": "#/Daftar/Antrian/Main"
-    }]
-}, 
-{
-    "name": "Master",
-    "children": [ {
-        "name": "Diagnosa Keperawatan ",
-        "link": "#/DiagnosaKeperawatanRev"
-    }]
-},{
-    "name": "Inventori",
-    "children": [
+        "name": "Laporan",
+        "children": [
+            {
+                "name": "Laporan Pasien Daftar",
+                "link": "#/LaporanPasienDaftar"
+            },
+            {
+                "name": "Laporan Pasien Pulang",
+                "link": "#/LaporanPasienPulang"
+            },
+            {
+                "name": "Laporan Pendapatan Poli",
+                "link": "#/LaporanPendapatanPoli"
+            }
+        ]
+    },
+    {
+        "name": "IGD",
+        "children": [
+            {
+                "name": "Pendaftaran Triage",
+                "link": "#/GawatDarurat/Triage/Input"
+            },
+            {
+                "name": "Daftar Hasil Triase",
+                "link": "#/DaftarHasilTriase"
+            }
+        ]
+    },
+    {
+        "name": "Rekam Medik",
+        "children": [
+            {
+                "name": "Dashboard Pasien",
+                "link": "#/Daftar/Antrian/Main"
+            }
+        ]
+    },
+    {
+        "name": "Master",
+        "children": [
+            {
+                "name": "Diagnosa Keperawatan ",
+                "link": "#/DiagnosaKeperawatanRev"
+            }
+        ]
+    },
+    {
+        "name": "Inventori",
+        "children": [
             {
                 "name": "Stok Barang",
                 "children": [
@@ -142,44 +154,55 @@
                 ]
             }
         ]
-    }, 
+    },
     {
         "name": "SDM",
-        "children": [{
-            "name": "Target Bobot Uraian Tugas",
-            "link": "#/TargetBobot"
-        }, {
-            "name": "Input Logbook",
-            "link": "#/InputLogbook"
-        }, {
-            "name": "Indeks Kinerja Individu",
-            "link": "#/IndeksKinerjaIndividuSDM"
-        }, {
-            "name": "Permohonan Perubahan Status Pegawai (Cuti & Perjalanan Dinas)",
-            "link": "#/PermohonanPerubahanStatusPegawai"
-        }, {
-    		"name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
-    		"link": "#/DaftarPenangguhanCuti"
-    	}, {
-            "name": "Pengajuan Mutasi Pegawai",
-            "link": "#/PengajuanMutasiPegawai"
-        }, {
-            "name": "Pengajuan Resign Pegawai",
-            "link": "#/PengajuanResignPegawai"
-        }, {
-            "name": "Pengajuan Sanksi Pegawai",
-            "link": "#/PengajuanSanksiPegawai"
-        }, {
-            "name": "Daftar Pengajuan Mutasi Sanksi Resign",
-            "link": "#/DaftarPengajuanMutasiSanksiResign"
-        }, {
-    		"name": "Monitoring Absensi",
-    		"link": "#/MonitoringAbsensiPegawai"
-    	}, {
-    		"name": "Verifikasi Lembur",
-    		"link": "#/InputLemburPegawaiUnitKerja"
-    	},
-        {
+        "children": [
+            {
+                "name": "Target Bobot Uraian Tugas",
+                "link": "#/TargetBobot"
+            },
+            {
+                "name": "Input Logbook",
+                "link": "#/InputLogbook"
+            },
+            {
+                "name": "Indeks Kinerja Individu",
+                "link": "#/IndeksKinerjaIndividuSDM"
+            },
+            {
+                "name": "Permohonan Perubahan Status Pegawai (Cuti & Perjalanan Dinas)",
+                "link": "#/PermohonanPerubahanStatusPegawai"
+            },
+            {
+                "name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
+                "link": "#/DaftarPenangguhanCuti"
+            },
+            {
+                "name": "Pengajuan Mutasi Pegawai",
+                "link": "#/PengajuanMutasiPegawai"
+            },
+            {
+                "name": "Pengajuan Resign Pegawai",
+                "link": "#/PengajuanResignPegawai"
+            },
+            {
+                "name": "Pengajuan Sanksi Pegawai",
+                "link": "#/PengajuanSanksiPegawai"
+            },
+            {
+                "name": "Daftar Pengajuan Mutasi Sanksi Resign",
+                "link": "#/DaftarPengajuanMutasiSanksiResign"
+            },
+            {
+                "name": "Monitoring Absensi",
+                "link": "#/MonitoringAbsensiPegawai"
+            },
+            {
+                "name": "Verifikasi Lembur",
+                "link": "#/InputLemburPegawaiUnitKerja"
+            },
+            {
                 "name": "Pengajuan Pelatihan",
                 "children": [
                     {
@@ -203,8 +226,9 @@
                         "link": "#/DaftarRekapitulasiKehadiran"
                     }
                 ]
-            }]
-    }, 
+            }
+        ]
+    },
     {
         "name": "IP3RS",
         "children": [
@@ -215,79 +239,81 @@
             {
                 "name": "Respond Perbaikan",
                 "link": "#/RespondPerbaikan"
-            } 
+            }
         ]
-    }, 
-{
-    "name": "Tata Usaha",
-    "children": [{
-            "name": "Membuat Draft Surat",
-            "link": "#/BuatDraftSurat"
-        },
-        {
-            "name": "Daftar Draft",
-            "link": "#/DaftarDraft"
-        },
-        {
-            "name": "Daftar Draft Surat Masuk",
-            "link": "#/DaftarDraftSuratMasuk"
-        },
-        {
-            "name": "Dokumen Verbal Konsep",
-            "link": "#/DokumenVerbalKonsep/"
-        },
-        {
-            "name": "Verbal Konsep",
-            "link": "#/VerbalKonsep/"
-        },
-        {
-            "name": "Surat Masuk Internal dan Eksternal",
-            "link": "#/SuratMasukInternaldanEksternal"
-        },
-        {
-            "name": "Daftar Surat Masuk Internal Eksternal",
-            "link": "#/DaftarSuratMasukInternalEksternal"
-        },
-        {
-            "name": "Nota Dinas",
-            "link": "#/NotaDanDisposisi"
-        },
-        {
-            "name": "Daftar Nota Dinas",
-            "link": "#/ListNotaDinas"
-        }
-    ]
-},
-{
-    "name":"Aplikasi IT",
-    "children":[
-        {
-            "name": "Permintaan Perbaikan dari Ruangan",
-            "link": "#/RevPermintaanPerbaikandariRuanganITNew"
-        }
-    ]
-},
-{
-    "name": "Aplikasi Laundry",
-    "children": [
-        {
-            "name": "Permintaan Linen Bersih",
-            "link": "#/PermintaanLinenByRuangan"
-        },
-        {
-            "name": "Verifikasi",
-            "link": "#/VerifikasiTerima"
-        }
-]},
-{
-    "name": "Setting",
-    "children": [
-        {
-            "name": "Ubah Password",
-            "link": "#/UbahPassword"  
-        }
-    ]
-},
+    },
+    {
+        "name": "Tata Usaha",
+        "children": [
+            {
+                "name": "Membuat Draft Surat",
+                "link": "#/BuatDraftSurat"
+            },
+            {
+                "name": "Daftar Draft",
+                "link": "#/DaftarDraft"
+            },
+            {
+                "name": "Daftar Draft Surat Masuk",
+                "link": "#/DaftarDraftSuratMasuk"
+            },
+            {
+                "name": "Dokumen Verbal Konsep",
+                "link": "#/DokumenVerbalKonsep/"
+            },
+            {
+                "name": "Verbal Konsep",
+                "link": "#/VerbalKonsep/"
+            },
+            {
+                "name": "Surat Masuk Internal dan Eksternal",
+                "link": "#/SuratMasukInternaldanEksternal"
+            },
+            {
+                "name": "Daftar Surat Masuk Internal Eksternal",
+                "link": "#/DaftarSuratMasukInternalEksternal"
+            },
+            {
+                "name": "Nota Dinas",
+                "link": "#/NotaDanDisposisi"
+            },
+            {
+                "name": "Daftar Nota Dinas",
+                "link": "#/ListNotaDinas"
+            }
+        ]
+    },
+    {
+        "name": "Aplikasi IT",
+        "children": [
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/RevPermintaanPerbaikandariRuanganITNew"
+            }
+        ]
+    },
+    {
+        "name": "Aplikasi Laundry",
+        "children": [
+            {
+                "name": "Permintaan Linen Bersih",
+                "link": "#/PermintaanLinenByRuangan"
+            },
+            {
+                "name": "Verifikasi",
+                "link": "#/VerifikasiTerima"
+            }
+        ]
+    },
+    {
+        "name": "Setting",
+        "children": [
+            {
+                "name": "Ubah Password",
+                "link": "#/UbahPassword"
+            }
+        ]
+    },
     {
         "name": "Information",
         "children": [
@@ -301,7 +327,7 @@
             },
             {
                 "name": "Informasi Jadwal Pelayanan Dokter",
-                "link": "#/InformasiJadwalPelayananDokter" 
+                "link": "#/InformasiJadwalPelayananDokter"
             }
         ]
     },
@@ -310,7 +336,7 @@
         "children": [
             {
                 "name": "Ubah Password",
-                "link": "#/UbahPassword"  
+                "link": "#/UbahPassword"
             }
         ]
     }

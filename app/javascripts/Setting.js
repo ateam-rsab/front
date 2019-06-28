@@ -1,5 +1,6 @@
 define([], function () {
     'use strict';
+    var baseURLFrontend = 'http://172.16.99.41',
     var baseURLFrontend = 'http://172.16.99.32',
         portFrontend = '5555',
         baseURLBackend = 'http://192.168.12.3',
@@ -34,6 +35,9 @@ define([], function () {
             urlDataMaster: 'http://smart.rsabhk.co.id:2222/jasamedika-web/generated_master/',
 
             // rabbitMQHost: 'amqp://rsab:rsab@smart.rsabhk.co.id'
+
+
+
         };
     } else {
         return {
@@ -68,10 +72,27 @@ define([], function () {
             baseBridiging: "http://smart.rsabhk.co.id/Bridging/",
             
             urlSocket: `${baseURLFrontend}:${portFrontend}`,
+
             baseUrlData: `${baseURLFrontend}:${portFrontend}/app/data/`,
             urlRoute: `${baseURLFrontend}:${portFrontend}/app/data/GetRouting`,
             urlRoute_SDM: `${baseURLFrontend}:${portFrontend}/app/data/GetRoutingSDM`,
             urlRoute_Akuntansi: `${baseURLFrontend}:${portFrontend}/app/data/GetRoutingAkuntansi`,
+
+            urlPrinting: `${baseURLBackend}:${portBackend}/jasamedika-web/`,
+            baseUrlListData: `${baseURLBackend}:${portBackend}/jasamedika-web/service/list-generic/?view=`,
+            baseApiUrlData: `${baseURLBackend}:${portBackend}/jasamedika-web/`,
+            baseApiPostData: `${baseURLBackend}:${portBackend}/jasamedika-web/`,
+
+            baseUrlData: `${baseURLFrontend}:${portFrontend}/app/data/`,
+
+            baseUrlAction: "http://192.168.12.3:8080/jasamedika-web/",
+
+
+
+
+
+
+
 
             /**Login Java */
             // baseUrlLogin: "http://192.168.12.3:8080/jasamedika-web/auth/sign-in",
@@ -80,11 +101,37 @@ define([], function () {
             /**Login PHP */
             baseUrlLogin: "http://192.168.12.3:2222/simrs_harkit/service/auth/sign-in",
             baseUrlLogout: "http://192.168.12.3:2222/simrs_harkit/service/auth/sign-out",
+            baseBridiging: "http://smart.rsabhk.co.id/Bridging/",
+
+
+
             
+            urlRoute: `${baseURLFrontend}:${portFrontend}/app/data/GetRouting`,
+
+            urlRoute_Akuntansi: `${baseURLFrontend}:${portFrontend}/app/data/GetRoutingAkuntansi`,
+			urlDataGeneric_Akuntansi: 'http://192.168.12.3:2222/simrs_harkit/service/list-generic?view=',
+            urlDataTableMaster_Akuntansi: 'http://192.168.12.3:2222/simrs_harkit/service/master/',
+            urlDataTableTransaksi_Akuntansi: 'http://192.168.12.3:2222/simrs_harkit/service/transaksi/',
+            baseApiPostData_Akuntansi: 'http://192.168.12.3:2222/simrs_harkit/service/',
+
+            urlDataMaster: `${baseURLBackend}:${portBackend}/jasamedika-web/generated_master/`
+
+
             baseApiPostData_Akuntansi: 'http://192.168.12.3:2222/simrs_harkit/service/',
             urlDataTableMaster_Akuntansi: 'http://192.168.12.3:2222/simrs_harkit/service/master/',
             urlDataTableTransaksi_Akuntansi: 'http://192.168.12.3:2222/simrs_harkit/service/transaksi/',
             urlDataGeneric_Akuntansi: 'http://192.168.12.3:2222/simrs_harkit/service/list-generic?view=',
+
+
+
+
+
+
+
+
+
+
+
         };
     }
 });

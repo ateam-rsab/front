@@ -27346,46 +27346,6 @@
     ]
   },
   {
-    "name": "MasterJabatan",
-    "url": "/MasterJabatan",
-    "templateurl": "module/SDM/MasterJabatan.html",
-    "controller": "MasterJabatanCtrl",
-    "deps": [
-      {
-        "module": "Services",
-        "define": "Service"
-      },
-      {
-        "module": "LoginServices",
-        "define": "LoginService"
-      },
-      {
-        "module": "SdmService",
-        "define": "SdmService"
-      }
-    ]
-  },
-  {
-    "name": "MasterJabatanRev",
-    "url": "/MasterJabatanRev",
-    "templateurl": "module/SDM/MasterJabatanRev.html",
-    "controller": "MasterJabatanRevCtrl",
-    "deps": [
-      {
-        "module": "Services",
-        "define": "Service"
-      },
-      {
-        "module": "LoginServices",
-        "define": "LoginService"
-      },
-      {
-        "module": "SdmService",
-        "define": "SdmService"
-      }
-    ]
-  },
-  {
     "name": "DaftarJadwalKredensial",
     "url": "/DaftarJadwalKredensial",
     "templateurl": "module/SDM/DaftarJadwalKredensial.html",

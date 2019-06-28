@@ -3,6 +3,8 @@ define(['initialize'], function(initialize) {'use strict';
 		function($q, $parse, loginService, socket, $rootScope, $scope, ModelItem, $state,  DateHelper, ManageSdm
 			, reportHelper, CetakHelper, FindSdm, cetakHelper) {
 			$scope.now = new Date();
+			$scope.isIT = true;
+			var userLogin = JSON.parse(localStorage.getItem('datauserlogin'));
 			$scope.item ={
 				from: $scope.now,
 				until: $scope.now,
@@ -12,7 +14,11 @@ define(['initialize'], function(initialize) {'use strict';
 				periodeRekap: $scope.now,
 			};
 			var idPgw=0;
-			
+		if(userLogin.kdUser === 'admin.it') {
+			$scope.isIT = false;
+		} else {
+			$scope.isIT = true;
+		}
 		// $scope.item.from = $scope.now;
 		// $scope.item.until = $scope.now;
 		// $scope.item.waktu = $scope.now;
@@ -20,6 +26,7 @@ define(['initialize'], function(initialize) {'use strict';
 			start: "year",
 			depth: "year"
 		};
+		
 		$scope.showCetakLogbook = false; // hide button cetak logbookKinerja;
 		$scope.yearSelected = {
 			start: "year", 

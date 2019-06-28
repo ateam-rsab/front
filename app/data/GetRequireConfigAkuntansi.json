@@ -1333,6 +1333,10 @@
       "urlDep": "module/Akuntansi/Jurnal/JurnalRev2018Ctrl"    
     },
     {
+      "nameDep": "PostingCtrl",
+      "urlDep": "module/Akuntansi/Jurnal/PostingCtrl"
+    },
+    {
       "nameDep": "PembayaranPiutangKasirRevCtrl",
       "urlDep": "module/Akuntansi/Kasir/PembayaranPiutangKasirRevCtrl"
     },

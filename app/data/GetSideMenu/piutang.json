@@ -1,5 +1,4 @@
 [
-
     {
         "name": "Daftar Piutang Pasien",
         "link": "#/DaftarPiutangPasien"
@@ -15,7 +14,7 @@
     {
         "name": "Daftar Collecting Piutang",
         "link": "#/DaftarCollectingPiutang"
-    },   
+    },
     {
         "name": "Daftar Kartu Piutang Perusahaan",
         "link": "#/DaftarKartuPiutangRev"
@@ -71,9 +70,9 @@
         ]
     },
     {
-    "name": "Inventori",
-    "children": [
-        {
+        "name": "Inventori",
+        "children": [
+            {
                 "name": "Stok Barang",
                 "children": [
                     {
@@ -115,7 +114,7 @@
                     }
                 ]
             }
-    ]
+        ]
     },
     {
         "name": "Barang Investasi",
@@ -132,45 +131,56 @@
                 "name": "Kirim Barang Aset",
                 "link": "#/KirimBarangAset"
             }
-           
         ]
     },
     {
         "name": "SDM",
-        "children": [{
-            "name": "Input Logbook",
-            "link": "#/InputLogbook"
-        }, {
-            "name": "Indeks Kinerja Individu",
-            "link": "#/IndeksKinerjaIndividuSDM"
-        }, {
-            "name": "Permohonan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
-            "link": "#/PermohonanPerubahanStatusPegawai"
-        }, {
-			"name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
-			"link": "#/DaftarPenangguhanCuti"
-		}, {
-            "name": "Pengajuan Mutasi Pegawai",
-            "link": "#/PengajuanMutasiPegawai"
-        }, {
-            "name": "Pengajuan Resign Pegawai",
-            "link": "#/PengajuanResignPegawai"
-        }, {
-            "name": "Pengajuan Sanksi Pegawai",
-            "link": "#/PengajuanSanksiPegawai"
-        }, {
-            "name": "Daftar Pengajuan Mutasi Sanksi Resign",
-            "link": "#/DaftarPengajuanMutasiSanksiResign"
-        }, {
-			"name": "Monitoring Absensi",
-			"link": "#/MonitoringAbsensiPegawai"
-		}, {
-			"name": "InputLemburPegawaiUnitKerja",
-			"link": "#/InputLemburPegawaiUnitKerja"
-		},{
-            "name": "Verifikasi Uraian Tugas Bawahan",
-            "link": "#/VerifikasiUraianTugasPegawaiLogin"
-        },{
+        "children": [
+            {
+                "name": "Input Logbook",
+                "link": "#/InputLogbook"
+            },
+            {
+                "name": "Indeks Kinerja Individu",
+                "link": "#/IndeksKinerjaIndividuSDM"
+            },
+            {
+                "name": "Permohonan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
+                "link": "#/PermohonanPerubahanStatusPegawai"
+            },
+            {
+                "name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
+                "link": "#/DaftarPenangguhanCuti"
+            },
+            {
+                "name": "Pengajuan Mutasi Pegawai",
+                "link": "#/PengajuanMutasiPegawai"
+            },
+            {
+                "name": "Pengajuan Resign Pegawai",
+                "link": "#/PengajuanResignPegawai"
+            },
+            {
+                "name": "Pengajuan Sanksi Pegawai",
+                "link": "#/PengajuanSanksiPegawai"
+            },
+            {
+                "name": "Daftar Pengajuan Mutasi Sanksi Resign",
+                "link": "#/DaftarPengajuanMutasiSanksiResign"
+            },
+            {
+                "name": "Monitoring Absensi",
+                "link": "#/MonitoringAbsensiPegawai"
+            },
+            {
+                "name": "InputLemburPegawaiUnitKerja",
+                "link": "#/InputLemburPegawaiUnitKerja"
+            },
+            {
+                "name": "Verifikasi Uraian Tugas Bawahan",
+                "link": "#/VerifikasiUraianTugasPegawaiLogin"
+            },
+            {
                 "name": "Pengajuan Pelatihan",
                 "children": [
                     {
@@ -194,9 +204,10 @@
                         "link": "#/DaftarRekapitulasiKehadiran"
                     }
                 ]
-            }]
-    }, 
-   {
+            }
+        ]
+    },
+    {
         "name": "IP3RS",
         "children": [
             {
@@ -206,12 +217,13 @@
             {
                 "name": "Respond Perbaikan",
                 "link": "#/RespondPerbaikan"
-            } 
+            }
         ]
-    }, 
+    },
     {
         "name": "Tata Usaha",
-        "children": [{
+        "children": [
+            {
                 "name": "Membuat Draft Surat",
                 "link": "#/BuatDraftSurat"
             },
@@ -250,41 +262,43 @@
         ]
     },
     {
-    "name": "Setting",
-    "children": [
-        {
-            "name": "Ubah Password",
-            "link": "#/UbahPassword"  
-        }
-    ]
-},
-{
-    "name":"Aplikasi IT",
-    "children":[
-        {
-            "name": "Permintaan Perbaikan dari Ruangan",
-            "link": "#/RevPermintaanPerbaikandariRuanganITNew"
-        }
-    ]
-},
-{
-    "name": "Aplikasi Laundry",
-    "children": [
-        {
-            "name": "Permintaan Linen Bersih",
-            "link": "#/PermintaanLinenByRuangan"
-        },{
-			"name": "Verifikasi",
-			"link": "#/VerifikasiTerima"
-		}
-]},
-{
-    "name": "Setting",
-    "children": [
-        {
-            "name": "Ubah Password",
-            "link": "#/UbahPassword"  
-        }
-    ]
-}
+        "name": "Setting",
+        "children": [
+            {
+                "name": "Ubah Password",
+                "link": "#/UbahPassword"
+            }
+        ]
+    },
+    {
+        "name": "Aplikasi IT",
+        "children": [
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/RevPermintaanPerbaikandariRuanganITNew"
+            }
+        ]
+    },
+    {
+        "name": "Aplikasi Laundry",
+        "children": [
+            {
+                "name": "Permintaan Linen Bersih",
+                "link": "#/PermintaanLinenByRuangan"
+            },
+            {
+                "name": "Verifikasi",
+                "link": "#/VerifikasiTerima"
+            }
+        ]
+    },
+    {
+        "name": "Setting",
+        "children": [
+            {
+                "name": "Ubah Password",
+                "link": "#/UbahPassword"
+            }
+        ]
+    }
 ]

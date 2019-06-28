@@ -1,7 +1,8 @@
-
-[{
+[
+    {
         "name": "Dashboard Pasien",
-        "children": [{
+        "children": [
+            {
                 "name": "Daftar Pasien Rawat Jalan",
                 "link": "#/Daftar/Antrian"
             },
@@ -31,12 +32,10 @@
         "name": "Test Menu Dokter",
         "children": [
             {
-
                 "name": "Daftar Pasien Berdasarkan Diagnosa",
                 "link": "#/DaftarPasienByDiagnosa"
             },
             {
-
                 "name": "Daftar Pasien Rawat Jalan",
                 "link": "#/DaftarAntrianDokterRajal"
             },
@@ -52,30 +51,38 @@
     },
     {
         "name": "Laporan",
-        "children": [{
+        "children": [
+            {
                 "name": "Laporan Pasien Pulang",
                 "link": "#/LaporanPasienPulang"
-            },{
+            },
+            {
                 "name": "Laporan Pendapatan Ruangan",
                 "link": "#/LaporanPendapatanRuangan"
-            },{
+            },
+            {
                 "name": "Laporan Pendapatan Poli",
                 "link": "#/LaporanPendapatanPoli"
-            }]
+            }
+        ]
     },
     {
         "name": "IGD",
-        "children": [{
-            "name": "Pendaftaran Triage",
-            "link": "#/GawatDarurat/Triage/Input"
-        }]
+        "children": [
+            {
+                "name": "Pendaftaran Triage",
+                "link": "#/GawatDarurat/Triage/Input"
+            }
+        ]
     },
     {
         "name": "ICU",
-        "children": [{
-            "name": "Formulir Observasi Harian Terintegrasi Intensive Care Unit",
-            "link": "#/FormulirObservasiHarianTerintegrasiIntensiveCareUnit"
-        }]
+        "children": [
+            {
+                "name": "Formulir Observasi Harian Terintegrasi Intensive Care Unit",
+                "link": "#/FormulirObservasiHarianTerintegrasiIntensiveCareUnit"
+            }
+        ]
     },
     {
         "name": "Inventori",
@@ -122,55 +129,68 @@
                     }
                 ]
             }
-    ]
+        ]
     },
     {
         "name": "SDM",
-        "children": [{
+        "children": [
+            {
                 "name": "Target Bobot Uraian Tugas Per Tahun",
                 "link": "#/TargetBobotYear"
-            }, {
+            },
+            {
                 "name": "Target Bobot Uraian Tugas Per Bulan",
                 "link": "#/TargetBobot"
-            }, {
+            },
+            {
                 "name": "Input Logbook",
                 "link": "#/InputLogbook"
-            }, {
+            },
+            {
                 "name": "Indeks Kerja Individu",
                 "link": "#/IndeksKinerjaIndividuSDM"
-            }, {
+            },
+            {
                 "name": "Permohonan Perubahan Status Pegawai(Cuti & Perjalanan Dinas)",
                 "link": "#/PermohonanPerubahanStatusPegawai"
-            }, {
-				"name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
-				"link": "#/DaftarPenangguhanCuti"
-			}, {
+            },
+            {
+                "name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
+                "link": "#/DaftarPenangguhanCuti"
+            },
+            {
                 "name": "Pengajuan Mutasi Pegawai ",
                 "link": "#/PengajuanMutasiPegawai"
-            }, {
+            },
+            {
                 "name": "Pengajuan Resign Pegawai ",
                 "link": "#/PengajuanResignPegawai"
-            }, {
+            },
+            {
                 "name": "Pengajuan Sanksi Pegawai ",
                 "link": "#/PengajuanSanksiPegawai"
-            }, {
+            },
+            {
                 "name": "Daftar Pengajuan Mutasi Sanksi Resign ",
                 "link": "#/DaftarPengajuanMutasiSanksiResign"
-            }, {
-				"name": "Monitoring Absensi",
-				"link": "#/MonitoringAbsensiPegawai"
-			}, {
-				"name": "InputLemburPegawaiUnitKerja",
-				"link": "#/InputLemburPegawaiUnitKerja"
-			}, {
+            },
+            {
+                "name": "Monitoring Absensi",
+                "link": "#/MonitoringAbsensiPegawai"
+            },
+            {
+                "name": "InputLemburPegawaiUnitKerja",
+                "link": "#/InputLemburPegawaiUnitKerja"
+            },
+            {
                 "name": "Verifikasi Uraian Tugas Bawahan",
                 "link": "#/VerifikasiUraianTugasPegawaiLogin"
             }
         ]
     },
     {
-        "name":"Aplikasi IT",
-        "children":[
+        "name": "Aplikasi IT",
+        "children": [
             {
                 "name": "Permintaan Perbaikan dari Ruangan",
                 "link": "#/RevPermintaanPerbaikandariRuanganITNew"
@@ -187,12 +207,13 @@
             {
                 "name": "Respond Perbaikan",
                 "link": "#/RespondPerbaikan"
-            } 
+            }
         ]
-    }, 
+    },
     {
         "name": "Tata Usaha",
-        "children": [{
+        "children": [
+            {
                 "name": "Membuat Draft Surat",
                 "link": "#/BuatDraftSurat"
             },
@@ -231,21 +252,21 @@
         ]
     },
     {
-      "name": "Daftar Fee For Service",
-      "link": "#/FifoServiceDokter"
+        "name": "Daftar Fee For Service",
+        "link": "#/FifoServiceDokter"
     },
-     {
+    {
         "name": "Setting",
         "children": [
-        {
-            "name": "Ubah Password",
-            "link": "#/UbahPassword"  
-        }
-    ]
-},
-{
-    "name": "Information",
-    "children": [
+            {
+                "name": "Ubah Password",
+                "link": "#/UbahPassword"
+            }
+        ]
+    },
+    {
+        "name": "Information",
+        "children": [
             {
                 "name": "Informasi Tarif Layanan",
                 "link": "#/TarifLayanan"
@@ -256,7 +277,7 @@
             },
             {
                 "name": "Informasi Jadwal Pelayanan Dokter",
-                "link": "#/InformasiJadwalPelayananDokter" 
+                "link": "#/InformasiJadwalPelayananDokter"
             }
         ]
     },
@@ -266,10 +287,11 @@
             {
                 "name": "Permintaan Linen Bersih",
                 "link": "#/PermintaanLinenByRuangan"
-            },{
+            },
+            {
                 "name": "Verifikasi",
                 "link": "#/VerifikasiTerima"
             }
-    ]
+        ]
     }
 ]

@@ -370,44 +370,44 @@ define(['initialize'], function(initialize) {
                 columns: [
                     {
 						"field": "tglbuktitransaksi",
-						"title": "Tanggal",
+						"title": "<h3>Tanggal</h3>",
 						"width":"70px",
 		                    "template": "<span class='style-center'>#: tglbuktitransaksi #</span>"
 						// "template": "<span class='style-left'>{{formatTanggal('#: tglbuktitransaksi #')}}</span>"
 					},
 					{
 						"field": "nojurnal",
-						"title": "No Jurnal",
+						"title": "<h3>No Jurnal</h3>",
 						"width":"80px",
 		                    "template": "<span class='style-center'>#: nojurnal #</span>"
 					},
 					{
 						"field": "keteranganlainnya",
-						"title": "Keterangan",
+						"title": "<h3>Keterangan</h3>",
 						"width":"300px",
 						"template": "<span class='style-left'>#: keteranganlainnya #</span>"
 					},
 					{
 						"field": "noref",
-						"title": "No Ref",
+						"title": "<h3>No Ref</h3>",
 						"width":"100px",
 						"template": "<span class='style-center'>#: noref #</span>"
 					},
 					{
 						"field": "hargasatuand",
-						"title": "Debet",
+						"title": "<h3>Debet</h3>",
 						"width":"100px",
 						"template": "<span class='style-right'>{{formatRupiah('#: hargasatuand #', '')}}</span>"
 					},
 					{
 						"field": "hargasatuank",
-						"title": "Kredit",
+						"title": "<h3>Kredit</h3>",
 						"width":"100px",
 						"template": "<span class='style-right'>{{formatRupiah('#: hargasatuank #', '')}}</span>"
 					},
 					{
 						"field": "saldo",
-						"title": "Saldo",
+						"title": "<h3>Saldo</h3>",
 						"width":"100px",
 						"template": "<span class='style-right'>{{formatRupiah('#: saldo #', '')}}</span>"
 					}

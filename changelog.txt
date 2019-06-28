@@ -1,3 +1,21 @@
+> Changelog tanggal 17 Juni 2019:
+    - Menambahkan History Perubahan Data di Rekam Data Pegawai
+
+> Changelog tanggal 14 Juni 2019 :
+    - Label No. Identitas jadi N.I.K
+    - Label Nilai Jabatan jadi Nilai Jabatan / Grade
+    - Riwayat Keluarga dibagi 2 menjadi Suami/Istri dan Anak
+    - Form SIP/STR:
+        - Label tanggal awal dan tanggal akhir jadi Bulan awal dan Bulan Akhir Di form SIP dan STR
+        - Sekarang available paging
+        - Sekarang tidak ada grouping
+        - Import Excel di standarkan
+
+> Changelog tanggal 13 Juni 2019 :
+    - Perubahan di SDM Kepegawaian - Data Pegawai
+        - Sekarang bisa Export All to Excel
+        - Sekarang filter kedudukan semua bisa di munculkan (pensiun, dll)
+    
 > Changelog tanggal 12 Juni 2019 :
     - Sekarang semua menu ditambahkan Setting untuk ubah password user
     - Penambahan form baru Serah Terima Pasien (Unstable)

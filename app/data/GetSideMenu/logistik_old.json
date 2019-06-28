@@ -1,4 +1,5 @@
-[{
+[
+    {
         "name": "Form SPPB",
         "link": "#/FormBuatSppb"
     },
@@ -82,7 +83,7 @@
                     {
                         "name": "Daftar Produk",
                         "link": "#/Produk2"
-                    }, 
+                    },
                     {
                         "name": "Konversi Satuan",
                         "link": "#/KonversiSatuan"
@@ -156,7 +157,8 @@
     },
     {
         "name": "SDM",
-        "children": [{
+        "children": [
+            {
                 "name": "Target Bobot Uraian Tugas",
                 "link": "#/TargetBobot"
             },
@@ -205,9 +207,11 @@
     {
         "name": "Respond Perbaikan",
         "link": "#/RespondPerbaikan"
-    }, {
+    },
+    {
         "name": "Tata Usaha",
-        "children": [{
+        "children": [
+            {
                 "name": "Membuat Draft Surat",
                 "link": "#/BuatDraftSurat"
             },
@@ -246,8 +250,8 @@
         ]
     },
     {
-        "name":"Aplikasi IT",
-        "children":[
+        "name": "Aplikasi IT",
+        "children": [
             {
                 "name": "Permintaan Perbaikan dari Ruangan",
                 "link": "#/RevPermintaanPerbaikandariRuanganITNew"
@@ -260,9 +264,11 @@
             {
                 "name": "Permintaan Linen Bersih",
                 "link": "#/PermintaanLinenByRuangan"
-            },{
+            },
+            {
                 "name": "Verifikasi",
                 "link": "#/VerifikasiTerima"
             }
-    ]}
+        ]
+    }
 ]

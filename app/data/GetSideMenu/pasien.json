@@ -1,7 +1,8 @@
 [
     {
         "name": "Layanan Medik",
-        "children": [{
+        "children": [
+            {
                 "name": "Reservasi Online",
                 "link": "/app/reservasiOnline"
             },
@@ -16,8 +17,8 @@
         ]
     },
     {
-        "name":"Aplikasi IT",
-        "children":[
+        "name": "Aplikasi IT",
+        "children": [
             {
                 "name": "Permintaan Perbaikan dari Ruangan",
                 "link": "#/RevPermintaanPerbaikandariRuanganITNew"
@@ -34,7 +35,7 @@
             {
                 "name": "Respond Perbaikan",
                 "link": "#/RespondPerbaikan"
-            } 
+            }
         ]
     },
     {
@@ -43,17 +44,19 @@
             {
                 "name": "Permintaan Linen Bersih",
                 "link": "#/PermintaanLinenByRuangan"
-            },{
+            },
+            {
                 "name": "Verifikasi",
                 "link": "#/VerifikasiTerima"
             }
-    ]},
+        ]
+    },
     {
         "name": "Setting",
         "children": [
             {
                 "name": "Ubah Password",
-                "link": "#/UbahPassword"  
+                "link": "#/UbahPassword"
             }
         ]
     }

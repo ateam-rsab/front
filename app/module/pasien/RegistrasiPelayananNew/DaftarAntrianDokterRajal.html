@@ -80,23 +80,23 @@
         </div> -->
         <!-- sebelumnya dipakai -->
         <div class="grid_3">
-            <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="rekamMedisElektronik()" position="'right'">
+            <c-button style="width: 100%; padding:0px;margin:0px;" ng-click="rekamMedisElektronik()" position="'right'">
                 <span class="title">Pengkajian Medis</span>
             </c-button>
         </div> 
           <div class="grid_3">
-            <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="panggil()" position="'right'">
+            <c-button style="width: 100%; padding:0px;margin:0px;" ng-click="panggil()" position="'right'">
                 <span class="title">Panggil</span>
             </c-button>
         </div>
         <div class="grid_3">
-            <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="Detail()" position="'right'">
+            <c-button style="width: 100%; padding:0px;margin:0px;" ng-click="Detail()" position="'right'">
                 <span class="title">Rincian</span>
             </c-button>
         </div>
         <div class="grid_3">
-            <c-button style="width: 100%; padding:0px, margin:0px;" ng-click="konsul()" position="'right'">
-                <span class="title">Konsultasi <a style="font-color:white" ng-show="showNotif"><span  class="notif">{{lengthKonsul}}</span> </a></span>
+            <c-button style="width: 100%; padding:0px;margin:0px;" ng-click="konsul()" position="'right'">
+                <span class="title">Konsultasi <a style="color:white" ng-show="showNotif"><span  class="notif">{{lengthKonsul}}</span> </a></span>
             </c-button>
         </div>
        <!--  <div class="grid_3">
@@ -225,20 +225,21 @@
                 <strong>Keterangan dari {{item.dokterPengonsul}}</strong>
             </legend>
             <fieldset>
-                <legend><strong>Pasien dengan diagnosa kerja</strong></legend>
-                {{item.keteranganOrder}}
+                <legend><strong>Masalah</strong></legend>
+                {{item.masalah}}
             </fieldset>
             <fieldset>
-                <legend>Ikhtisar Klinik</strong></legend>
+                <legend><strong>Pasien dengan diagnosa kerja</strong></legend>
                 {{item.diagnosaKerja}}
+            </fieldset>
+            <fieldset>
+                <legend><strong>Ikhtisar Klinik</strong></legend>
+                {{item.keteranganOrder}}
             </fieldset>
             <fieldset>
                 <legend><strong>Terapi dan Tindakan yang sudah diberikan</strong></legend>
                 {{item.terapi}}
             </fieldset>
-            <!-- <p>
-               <i>"{{item.keteranganOrder}}"</i>
-            </p> -->
         </fieldset>
         <div class="grid_12">
             <div class="grid_12">
@@ -246,11 +247,12 @@
             </div>
             <div class="clear"></div>
             <div class="grid_12">
-                <textarea class="k-textbox" style="height: 76px; width: 100%; resize: none;" ng-model="item.periksaDidapatkan"ng-disabled="isVerify"></textarea>
+                <textarea class="k-textbox" style="height: 76px; width: 100%; resize: none;" ng-model="item.periksaDidapatkan" ng-disabled="isVerify"></textarea>
             </div>
         </div>
         <label c-label item="item" c-label-text=Keterangan></label>
-        <textarea ng-disabled="isVerify" ng-model="item.kesan" style="width: 99%; height: 80px;"></textarea>
+        <textarea class="k-textbox" style="height: 76px; width: 100%; resize: none;" ng-model="item.kesan" ng-disabled="isVerify"></textarea>
+        <!-- <textarea ng-disabled="isVerify" ng-model="item.kesan" style="width: 99%; height: 80px;"></textarea> -->
 
         <fieldset class="no-border">
             <legend>
