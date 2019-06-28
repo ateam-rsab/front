@@ -598,8 +598,7 @@ define(['initialize'], function(initialize) {
                         {
                             field: "jamEfektif",
                             aggregate: "sum"
-                        },
-                        editable: "inline"
+                        }
                         ]
                     });
 
