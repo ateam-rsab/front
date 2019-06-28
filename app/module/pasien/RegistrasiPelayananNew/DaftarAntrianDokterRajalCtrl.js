@@ -9,7 +9,7 @@ define(['initialize'], function(initialize) {
             // $scope.dataPasienSelected = {};
             // $scope.item.periodeAwal =  new Date();
             $scope.item.periodeAwal = dateHelper.setJamAwal(new Date());
-            $scope.item.periodeAkhir = new Date();            
+            $scope.item.periodeAkhir = new Date();
             $scope.dataPasienSelected = {};
             $scope.isRouteLoading=false;
             $rootScope.isOpen = true;
@@ -44,7 +44,7 @@ define(['initialize'], function(initialize) {
                     $scope.item.periodeAkhir = new Date(arrPeriode[1]); 
                     // $scope.item.tglpulang = new Date(arrPeriode[2]);                
                 }else{
-                    $scope.item.periodeAwal = new Date();
+                    $scope.item.periodeAwal = moment($scope.now).format('YYYY-MM-DD 00:00');
                     $scope.item.periodeAkhir = moment($scope.now).format('YYYY-MM-DD 23:59');
                     // $scope.item.tglpulang = $scope.now;                 
                 }
@@ -1530,11 +1530,14 @@ define(['initialize'], function(initialize) {
                 } else {
                     $scope.isVerify = false;
                 }
+                $scope.item.jeniskonsultasi = dataItem.jeniskonsultasi;
                 $scope.item.dokterPengonsul = dataItem.pengonsul;
                 $scope.item.keteranganOrder = dataItem.keteranganorder;
                 $scope.item.diagnosaKerja = dataItem.diagnosakerja;
                 $scope.item.masalah = dataItem.masalah;
-                $scope.item.terapi = dataItem.terapi
+                $scope.item.terapi = dataItem.terapi;
+                $scope.item.periksaDidapatkan = dataItem.pemeriksaandidapat;
+                $scope.item.kesan = dataItem.keterangankeperluan;
                 $scope.statusKonsultasi = dataItem.status;
                 $scope.noRecKonsultasi = dataItem.norec;
                 $scope.noRecPdKonsultasi = dataItem.norec_pd;
