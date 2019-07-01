@@ -2,6 +2,7 @@ define(['initialize'], function(initialize) {
 	'use strict';
 	initialize.controller('DaftarPegawaiPensiunMeninggalCtrl', ['$q', '$rootScope', '$scope', 'ModelItem','$state', 'FindSdm', '$timeout', 'ManageSdm', 'ManageSdmNew', 'DateHelper',
 		function($q, $rootScope, $scope, ModelItem, $state, FindSdm, $timeout, ManageSdm, ManageSdmNew, dateHelper) {
+            $state.go('UnderMaintenance',  { namaForm: 'DaftarPegawaiPensiunMeninggal' });
             $scope.title = "Data Pegawai Pensiun/Meninggal" ;
 			$scope.item = {};
 			$scope.isRouteLoading = true;
