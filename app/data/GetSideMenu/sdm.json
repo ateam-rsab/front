@@ -192,15 +192,15 @@
                     },
                     {
                         "name": "Rekam Data Pegawai",
-                        "link": "#/RekamDataPegawai/"
+                        "link": "#/UnderMaintenance/RekamDataPegawai"
                     },
                     {
                         "name": "Data Pegawai",
-                        "link": "#/DataPegawai"
+                        "link": "#/UnderMaintenance/DataPegawai"
                     },
                     {
                         "name": "Daftar Pegawai Pensiun Meninggal",
-                        "link": "#/DaftarPegawaiPensiunMeninggal"
+                        "link": "#/UnderMaintenance/DaftarPegawaiPensiunMeinggal"
                     },
                     {
                         "name": "Daftar Rencana Pensiun Pegawai",

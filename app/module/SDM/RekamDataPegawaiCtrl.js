@@ -2,6 +2,7 @@ define(['initialize'], function(initialize) {
     'use strict';
     initialize.controller('RekamDataPegawaiCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'DateHelper', 'FindPegawai', 'FindSdm', '$timeout', 'ManageSarprasPhp', 'ModelItemAkuntansi', '$mdDialog',
         function($q, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, dateHelper, FindPegawai, FindSdm, $timeout, manageSarprasPhp, modelItemAkuntansi, $mdDialog) {
+            //$state.go('UnderMaintenance',  { namaForm: 'RekamDataPegawai' });
             $scope.isSimpan = true;
             $scope.isAtasan = false;
             $scope.isDirut = false;
