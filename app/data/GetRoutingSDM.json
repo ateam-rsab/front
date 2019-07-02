@@ -5579,26 +5579,6 @@
       ]
     },
     {
-      "name": "DataCutiPegawai",
-      "url": "/DataCutiPegawai",
-      "templateurl": "module/SDM/DataCutiPegawai.html",
-      "controller": "DataCutiPegawaiCtrl",
-      "deps": [
-        {
-          "module": "Services",
-          "define": "Service"
-        },
-        {
-          "module": "LoginServices",
-          "define": "LoginService"
-        },
-        {
-          "module": "SdmService",
-          "define": "SdmService"
-        }
-      ]
-    },
-    {
       "name": "DashboardDataPegawai",
       "url": "/DashboardDataPegawai",
       "templateurl": "module/SDM/DashboardPegawai.html",

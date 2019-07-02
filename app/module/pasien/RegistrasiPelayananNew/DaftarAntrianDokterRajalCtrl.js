@@ -8,6 +8,8 @@ define(['initialize'], function(initialize) {
             $scope.item = {};
             // $scope.dataPasienSelected = {};
             // $scope.item.periodeAwal =  new Date();
+            $scope.item.periodeAwal = new Date();;
+            $scope.item.periodeAkhir = new Date();            
             $scope.item.periodeAwal = dateHelper.setJamAwal(new Date());
             $scope.item.periodeAkhir = new Date();
             $scope.dataPasienSelected = {};
@@ -40,10 +42,13 @@ define(['initialize'], function(initialize) {
                 if(chacePeriode != undefined){
                     //debugger;
                     var arrPeriode = chacePeriode.split('~');
+                    $scope.item.periodeAwal = new Date(arrPeriode[0]);
                     $scope.item.periodeAwal = new Date(dateHelper.setJamAwal(new Date()));
                     $scope.item.periodeAkhir = new Date(arrPeriode[1]); 
                     // $scope.item.tglpulang = new Date(arrPeriode[2]);                
                 }else{
+                    $scope.item.periodeAwal = new Date();
+                    $scope.item.periodeAkhir = moment( $scope.now).format('YYYY-MM-DD 23:59');
                     $scope.item.periodeAwal = moment($scope.now).format('YYYY-MM-DD 00:00');
                     $scope.item.periodeAkhir = moment($scope.now).format('YYYY-MM-DD 23:59');
                     // $scope.item.tglpulang = $scope.now;                 
@@ -183,52 +188,64 @@ define(['initialize'], function(initialize) {
                 columns :[
                 {                
                     "field":"no",
+                    "title":"No",
                     "title":"<h3>No</h3>",
                     "width":"40px",
                 },
                 {
                     "field":"tglregistrasi",
+                    "title":"Tgl Registrasi",
                     "title":"<h3>Tanggal<br> Registrasi</h3>",
                     "template": "#= new moment(new Date(tglregistrasi)).format('DD-MM-YYYY HH:mm') #",
                     "width":"80px"
                 }, 
                 {
                     "field":"noregistrasi",
+                    "title":"No Registrasi",
                     "title":"<h3>No. Registrasi</h3>",
                     "width":"80px"
                 },
                 {
                     "field":"nocm",
+                    "title":"No. Rekam Medis",
+                    "width":"80px"               
                     "title":"<h3>No. Rekam<br>Medis</h3>",
                     "width":"80px"
                 },
                 {
                     "field":"namapasien",
+                    "title":"Nama Pasien",
                     "title":"<h3>Nama Pasien</h3>",
                     "width":"100px"
                 }, 
                 {
                     "field":"umurzz",
+                    "title":"Umur",
                     "title":"<h3>Umur</h3>",
                     "width":"100px"      
                 }, 
                 {
                     "field":"namadokter",
+                    "title":"Dokter",
+                    "width":"100px"     
                     "title":"<h3>Dokter</h3>",
                     "width":"100px"
                 }, 
                 {
                     "field": "jeniskelamin",
+                    "title": "Jenis Kelamin",
                     "title": "<h3>Jenis Kelamin</h3>",
                     "width":"100px"
                 },
                 {
                     "field": "kelompokpasien",
+                    "title": "Tipe Pembayaran",
                     "title": "<h3>Tipe<br> Pembayaran</h3>",
                     "width":"80px"
                 }, 
                 {
                     "field": "statuspanggil",
+                    "title": "Status Panggil",
                     "title": "<h3>Status Panggil</h3>",
                     "width":"80px"
                 }, 
@@ -1505,9 +1522,11 @@ define(['initialize'], function(initialize) {
                     "dokterfk": $scope.pegawaiFkKonsultasi,
                     "objectruangantujuanfk": $scope.objectRuanganFkTujuanKonsultasi,
                     "objectruanganasalfk": $scope.objectRuanganFkKonsultasi,
+                    "periksaDidapatkan":$scope.item.periksaDidapatkan,
                     "pemeriksaandidapat":$scope.item.periksaDidapatkan,
                     "keterangankeperluan": $scope.item.kesan
                 }
+                console.log(dataKonsul);
                 // console.log(dataKonsul);
                 // $scope.winDescription.close();
                 // $scope.winKonsul.close();
@@ -1533,6 +1552,8 @@ define(['initialize'], function(initialize) {
                 $scope.item.jeniskonsultasi = dataItem.jeniskonsultasi;
                 $scope.item.dokterPengonsul = dataItem.pengonsul;
                 $scope.item.keteranganOrder = dataItem.keteranganorder;
+                $scope.item.diagnosaKerja = dataItem.diagnosakerja
+                $scope.item.terapi = dataItem.terapi
                 $scope.item.diagnosaKerja = dataItem.diagnosakerja;
                 $scope.item.masalah = dataItem.masalah;
                 $scope.item.terapi = dataItem.terapi;

@@ -29134,26 +29134,6 @@
     ]
   },
   {
-    "name": "MasterShiftKerja",
-    "url": "/Master/ShiftKerja",
-    "templateurl": "module/SDM/Remunerasi/ShiftKerja.html",
-    "controller": "ShiftKerjaCtrl",
-    "deps": [
-      {
-        "module": "Services",
-        "define": "Service"
-      },
-      {
-        "module": "LoginServices",
-        "define": "LoginService"
-      },
-      {
-        "module": "SdmService",
-        "define": "SdmService"
-      }
-    ]
-  },
-  {
     "name": "AbsensiPegawaiCtrl",
     "url": "/AbsensiPegawai",
     "templateurl": "module/SDM/Remunerasi/AbsensiPegawai.html",
