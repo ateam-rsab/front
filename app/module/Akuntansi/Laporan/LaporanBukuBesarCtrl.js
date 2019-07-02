@@ -93,20 +93,20 @@ define(['initialize'], function(initialize) {
 				// var tglAwal1 = tahun+"-"+bulan+"-01"
 				// var tglAkhir1 = tahun+"-"+bulan+"-"+getLastDay( parseInt(tahun),parseInt(bulan))
 
-				var tglAwal = moment($scope.item.tglAwal).format('YYYY-MM-DD HH:mm:00');
-                var tglAkhir = moment($scope.item.tglAkhir).format('YYYY-MM-DD HH:mm:59');
+				var tglAwal = moment($scope.item.tglAwal).format('YYYY-MM-DD');
+                var tglAkhir = moment($scope.item.tglAkhir).format('YYYY-MM-DD');
 				//$scope.item.test = tglAkhir1
 				//var tglAwal1=dateHelper.formatDate($scope.item.tanggalAwal,"YYYY-MM-DD");
 				//var tglAkhir1=dateHelper.formatDate($scope.item.tanggalAkhir,"YYYY-MM-DD");
-				var jp = "noaccount=-";
-				if($scope.item.kdAkun != undefined){
-					var jp = "noaccount=" + $scope.item.kdAkun.noaccount;
-				};
-                var jp2 = "&noaccount2=-";
-                if($scope.item.kdAkun2 != undefined){
-                    var jp2 = "&noaccount2=" + $scope.item.kdAkun2.noaccount;
-                };
-				modelItemAkuntansi.getDataTableTransaksi("akuntansi/get-data-buku-besar-rev2?"+ jp + jp2 + "&tglAwal=" + tglAwal + "&tglAkhir=" + tglAkhir ).then(function(data){
+				// var jp = "noaccount=-";
+				// if($scope.item.kdAkun != undefined){
+				// 	var jp = "noaccount=" + $scope.item.kdAkun.noaccount;
+				// };
+                // var jp2 = "&noaccount2=-";
+                // if($scope.item.kdAkun2 != undefined){
+                //     var jp2 = "&noaccount2=" + $scope.item.kdAkun2.noaccount;
+                // };
+				manageAkuntansi.getLaporanBukuBesar("accounting/bukubesar?noAcc="+ $scope.item.kdAkun.noaccount + "&sDate=" + tglAwal + "&eDate=" + tglAkhir ).then(function(data){
 					$scope.dataGrid = new kendo.data.DataSource({
 						data: data.data,
 						total: data.data.length,

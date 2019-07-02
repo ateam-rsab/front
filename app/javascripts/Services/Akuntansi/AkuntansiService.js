@@ -14,6 +14,12 @@
           });
       },
 
+      getLaporanBukuBesar:function(url) {
+        return r.get({
+          url: 'http://192.168.12.3:7777/' + url
+        })
+      },
+
             getJenisPelayanan:function(){
                 var data = [
                     {id:1, namaExternal:"Reguler"},
