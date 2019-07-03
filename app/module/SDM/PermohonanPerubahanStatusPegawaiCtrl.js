@@ -733,7 +733,7 @@ define(['initialize'], function(initialize) {
                             });
 
                             
-                            var filteredData2 = _.filter(filteredData, function(element) {
+                            $scope.filteredData2 = _.filter(filteredData, function(element) {
                                 
                                 return element['namaPegawai'].toLowerCase().indexOf($scope.item.cariDaftarPengajuanCuti.toLowerCase())>-1
                                 
@@ -744,7 +744,7 @@ define(['initialize'], function(initialize) {
                             
                             $scope.dataSource = new kendo.data.DataSource({
                                 pageSize: 5,
-                                data: filteredData2,
+                                data: $scope.filteredData2,
                                 autoSync: true
                             });
                             $scope.isRouteLoading = false;
@@ -807,162 +807,190 @@ define(['initialize'], function(initialize) {
                 return arr;
             }
 
-            $scope.Save = function() {
-                if($scope.item.statusPegawai == undefined){
-                    toastr.error('Status kehadiran harus di isi')
-                    return
-                }
-                var listRawRequired = [
-                    "item.namaPegawai|k-ng-model|Pegawai",
-                    "item.tglPengajuan|k-ng-model|Tanggal pengajuan",
-                    "item.statusPegawai|k-ng-model|Status kehadiran",
-                    "item.NoTelepon|k-ng-model|No Telepon",
-                    "item.Alamat|k-ng-model|Alamat",
-                ]
-
-                if($scope.item.statusPegawai.id == 28){
-                    listRawRequired.push(
-                    "item.noSuratTugas|k-ng-model|No Surat Tugas",
-                    "item.noNotaDinas|k-ng-model|No Nota Dinas",
-                    "item.tglNotaDinas|k-ng-model|Tanggal Nota Dinas",
-                    "item.jabatanNotaDinas|k-ng-model|Jabatan Pemberi Nota Dinas",
-                    "item.alamatTugas|k-ng-model|Alamat Tugas"
-                    )
-                }
-
-
-                if($scope.item.statusPegawai.id == 29 && $scope.tanggalPermohonan.length>1){
-                    if (kendo.toString($scope.tanggalPermohonan[0].tgl, "MM/dd/yyyy") === kendo.toString((kendo.toString($scope.tanggalPermohonan[1].tgl, "MM/dd/yyyy")))) {
-                            toastr.warning('Info! Pengajuan sakit selama satu hari silakan langsung menyerahkan surat sakit kepada pihak SDM')
-                            return
-                    }
-
-                }
-
-                
-
-                
-                if($scope.item.statusPegawai.id == 1){
-                    for(var i = 0; i < $scope.tanggalPermohonan.length; i++){
-                        if($scope.tanggalPermohonan[i].tgl instanceof Date)
-                            var tgl =  $scope.tanggalPermohonan[i].tgl.getFullYear()
-                        else
-                            var tgl = parseInt( $scope.tanggalPermohonan[i].tgl.substr(0,4))
-                        
-                        var yearNow = parseInt(moment(new Date()).format('YYYY'))
-                        if(tgl > yearNow){
-                            if($scope.item.isTangguhkanN==false){
-                                toastr.warning('Sisa cuti belum ditangguhkan/ Hutang cuti tidak diperkenankan !')
-                                return    
+            $scope.checkTanggalCuti = function () {
+                ManageSdmNew.getListData('sdm/get-list-tanggal-permohonan?idPegawai=' + $scope.item.namaPegawai.id).then(res => {
+                    var dataPengajuan = res.data.data;
+                    var dataPermohonan =$scope.tanggalPermohonan;
+                    for(let i = 0; i < dataPengajuan.length; i++) {
+                        for(let ii = 0; ii < dataPengajuan[i].lisTanggal.length; ii++) {
+                            var tglPermohonan;
+                            for(var key in dataPermohonan) {
+                                tglPermohonan = dataPermohonan[key]
+                                if(dataPermohonan[key].tgl) {
+                                    tglPermohonan = dataPermohonan[key].tgl;
+                                } else {
+                                    tglPermohonan = dataPermohonan[key];
+                                }
+                                tglPermohonan.setHours(7);
+                                console.log(dataPengajuan[i].lisTanggal[ii].tgl + ' & ' + DateHelper.toTimeStamp(new Date(tglPermohonan)))
+                                if(dataPengajuan[i].lisTanggal[ii].tgl === DateHelper.toTimeStamp(tglPermohonan)) {
+                                    toastr.warning('Anda tidak bisa mengajukan cuti pada tanggal ' + DateHelper.toDateFromTimestamp(tglPermohonan));
+                                    return false
+                                } else {
+                                    console.log('tgl beda');
+                                }
                             }
                             
-                        }    
+                        }
                     }
+                    // console.log($scope.tanggalPermohonan);
+                    // console.log($scope.dataSource._data)
+                    
+                }) 
+            }
 
-                }
+            $scope.Save = function() {
+                $scope.checkTanggalCuti();
+                // console.log($scope.checkTanggalCuti());
+                // if($scope.item.statusPegawai == undefined){
+                //     toastr.error('Status kehadiran harus di isi')
+                //     return
+                // }
+                // var listRawRequired = [
+                //     "item.namaPegawai|k-ng-model|Pegawai",
+                //     "item.tglPengajuan|k-ng-model|Tanggal pengajuan",
+                //     "item.statusPegawai|k-ng-model|Status kehadiran",
+                //     "item.NoTelepon|k-ng-model|No Telepon",
+                //     "item.Alamat|k-ng-model|Alamat",
+                // ]
 
-                // Untuk mengajukan cuti besar, pekerja minimal sudah bekerja selama 365 hari
-                // if ($scope.item.statusPegawai.id == 1){
-                //     var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
-                //     var firstDate = $scope.item.namaPegawai.tglMasuk;
-                //     var secondDate = new Date().getTime();
+                // if($scope.item.statusPegawai.id == 28){
+                //     listRawRequired.push(
+                //     "item.noSuratTugas|k-ng-model|No Surat Tugas",
+                //     "item.noNotaDinas|k-ng-model|No Nota Dinas",
+                //     "item.tglNotaDinas|k-ng-model|Tanggal Nota Dinas",
+                //     "item.jabatanNotaDinas|k-ng-model|Jabatan Pemberi Nota Dinas",
+                //     "item.alamatTugas|k-ng-model|Alamat Tugas"
+                //     )
+                // }
 
-                //     var diffDays = Math.round(Math.abs((firstDate - secondDate)/(oneDay)));
-
-                //     if (diffDays<365){
-                //         toastr.warning('Tidak bisa diajukan cuti. Masa kerja pegawai yang diajukan cuti kurang dari 1 tahun !')
-                //         return;    
-                //     } 
+                // if($scope.item.statusPegawai.id == 29 && $scope.tanggalPermohonan.length>1){
+                //     if (kendo.toString($scope.tanggalPermohonan[0].tgl, "MM/dd/yyyy") === kendo.toString((kendo.toString($scope.tanggalPermohonan[1].tgl, "MM/dd/yyyy")))) {
+                //             toastr.warning('Info! Pengajuan sakit selama satu hari silakan langsung menyerahkan surat sakit kepada pihak SDM')
+                //             return
+                //     }
 
                 // }
 
+                // if($scope.item.statusPegawai.id == 1){
+                //     for(var i = 0; i < $scope.tanggalPermohonan.length; i++){
+                //         if($scope.tanggalPermohonan[i].tgl instanceof Date)
+                //             var tgl =  $scope.tanggalPermohonan[i].tgl.getFullYear()
+                //         else
+                //             var tgl = parseInt( $scope.tanggalPermohonan[i].tgl.substr(0,4))
+                        
+                //         var yearNow = parseInt(moment(new Date()).format('YYYY'))
+                //         if(tgl > yearNow){
+                //             if($scope.item.isTangguhkanN==false){
+                //                 toastr.warning('Sisa cuti belum ditangguhkan/ Hutang cuti tidak diperkenankan !')
+                //                 return    
+                //             }
+                            
+                //         }    
+                //     }
+
+                // }
+
+                // // Untuk mengajukan cuti besar, pekerja minimal sudah bekerja selama 365 hari
+                // // if ($scope.item.statusPegawai.id == 1){
+                // //     var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+                // //     var firstDate = $scope.item.namaPegawai.tglMasuk;
+                // //     var secondDate = new Date().getTime();
+
+                // //     var diffDays = Math.round(Math.abs((firstDate - secondDate)/(oneDay)));
+
+                // //     if (diffDays<365){
+                // //         toastr.warning('Tidak bisa diajukan cuti. Masa kerja pegawai yang diajukan cuti kurang dari 1 tahun !')
+                // //         return;    
+                // //     } 
+
+                // // }
+
             
-                if (($scope.item.statusPegawai.id == 24 || $scope.item.statusPegawai.id == 25) && $scope.tanggalPermohonan.length === 1) {
-                    // if (!listPegawaiAdminSDM.includes($scope.pegawai.id)) {
-                        messageContainer.error('Tanggal harus terdiri dari tanggal awal dan tanggal akhir (periode)')
-                    // }
-                } else {
-
-                    if($scope.item.statusPegawai.id == 29 && $scope.tanggalPermohonan.length === 1){
-                        if (!listPegawaiAdminSDM.includes($scope.pegawai.id)) {
-                                messageContainer.error('Tanggal harus terdiri dari tanggal awal dan tanggal akhir (periode)')
-                                return
-                        }
+                // if (($scope.item.statusPegawai.id == 24 || $scope.item.statusPegawai.id == 25) && $scope.tanggalPermohonan.length === 1) {
+                //     // if (!listPegawaiAdminSDM.includes($scope.pegawai.id)) {
+                //         messageContainer.error('Tanggal harus terdiri dari tanggal awal dan tanggal akhir (periode)')
+                //     // }
+                // } else {
+                //     if($scope.item.statusPegawai.id == 29 && $scope.tanggalPermohonan.length === 1){
+                //         if (!listPegawaiAdminSDM.includes($scope.pegawai.id)) {
+                //                 messageContainer.error('Tanggal harus terdiri dari tanggal awal dan tanggal akhir (periode)')
+                //                 return
+                //         }
                                 
-                    }
+                //     }
+                //     var isValid = ModelItem.setValidation($scope, listRawRequired);
+                //     if (isValid.status) {
+                //         var listDate = [],
+                //             dataSend = {};
+                //         for (var i = 0; i < $scope.tanggalPermohonan.length; i++) {
+                //             var element = $scope.tanggalPermohonan[i];
+                //             for (var key in element) {
+                //                 if (element.hasOwnProperty(key)) {
+                //                     if (key === "tgl") {
+                //                         if (element[key] instanceof Date)
+                //                             listDate.push({
+                //                                 tgl: DateHelper.getTanggalFormattedNew(element[key])
+                //                             });
+                //                     }
+                //                 }
+                //             }
+                //         }
 
-                    var isValid = ModelItem.setValidation($scope, listRawRequired);
-                    if (isValid.status) {
-                        var listDate = [],
-                            dataSend = {};
-                        for (var i = 0; i < $scope.tanggalPermohonan.length; i++) {
-                            var element = $scope.tanggalPermohonan[i];
-                            for (var key in element) {
-                                if (element.hasOwnProperty(key)) {
-                                    if (key === "tgl") {
-                                        if (element[key] instanceof Date)
-                                            listDate.push({
-                                                tgl: DateHelper.getTanggalFormattedNew(element[key])
-                                            });
-                                    }
-                                }
-                            }
-                        }
-
-                        var statusCutiLuarNegeri="";
-                        if ($scope.item.isCutiLuarNegeri==undefined){
-                             toastr.warning('Status cuti luar negeri / dalam negeri belum dipilih', 'Peringatan');
-                            return;    
-                        }else{
-                            if ($scope.item.isCutiLuarNegeri==1){
-                            statusCutiLuarNegeri="true";
-                            }
-                            else{
-                                statusCutiLuarNegeri="false";
-                            }    
-                        }
+                //         var statusCutiLuarNegeri="";
+                //         if ($scope.item.isCutiLuarNegeri==undefined){
+                //              toastr.warning('Status cuti luar negeri / dalam negeri belum dipilih', 'Peringatan');
+                //             return;    
+                //         }else{
+                //             if ($scope.item.isCutiLuarNegeri==1){
+                //             statusCutiLuarNegeri="true";
+                //             }
+                //             else{
+                //                 statusCutiLuarNegeri="false";
+                //             }    
+                //         }
 
 
-                        dataSend = {
-                            "noPlanning": $scope.item.noUsulan,
-                            "pegawai": {
-                                "id": $scope.item.namaPegawai.id
-                            },
-                            "statusPegawaiPlan": {
-                                "id": $scope.item.statusPegawai.id
-                            },
-                            // "ruanganKerja": {
-                            //  "id": $scope.item.ruanganId
-                            // },
-                            "alamatCuti":  $scope.item.Alamat,
-                            "nomorTelepon": $scope.item.NoTelepon,
-                            "deskripsiStatusPegawaiPlan": $scope.item.deskripsiUsulan,
-                            "keteranganLainyaPlan": $scope.item.keterangan,
-                            "tglPengajuan": DateHelper.getTanggalFormattedNew($scope.item.tglPengajuan),
-                            "listTanggal": listDate,
-                            "noSuratTugas": $scope.item.noSuratTugas,
-                            "noNotaDinas": $scope.item.noNotaDinas,
-                            "tglNotaDinas":$scope.item.tglNotaDinas!= undefined ? DateHelper.getTanggalFormattedNew($scope.item.tglNotaDinas):null,
-                            "alamatTugas": $scope.item.alamatTugas,
-                            "jabatanPemberiNotaDinas": {
-                                "id": $scope.item.jabatanNotaDinas != undefined ? $scope.item.jabatanNotaDinas.id : 14
-                            },
-                            "isCutiLuarNegeri":statusCutiLuarNegeri
-                        }
-                        if (listDate.length == 0) {
-                            toastr.warning('Tanggal permohonan belum di isi', 'Peringatan');
-                            return;
-                        }
-                        ManageSdmNew.saveData(dataSend, "sdm/save-pegawai-status").then(function(e) {
-                            // console.log(JSON.stringify(e.data));
+                //         dataSend = {
+                //             "noPlanning": $scope.item.noUsulan,
+                //             "pegawai": {
+                //                 "id": $scope.item.namaPegawai.id
+                //             },
+                //             "statusPegawaiPlan": {
+                //                 "id": $scope.item.statusPegawai.id
+                //             },
+                //             // "ruanganKerja": {
+                //             //  "id": $scope.item.ruanganId
+                //             // },
+                //             "alamatCuti":  $scope.item.Alamat,
+                //             "nomorTelepon": $scope.item.NoTelepon,
+                //             "deskripsiStatusPegawaiPlan": $scope.item.deskripsiUsulan,
+                //             "keteranganLainyaPlan": $scope.item.keterangan,
+                //             "tglPengajuan": DateHelper.getTanggalFormattedNew($scope.item.tglPengajuan),
+                //             "listTanggal": listDate,
+                //             "noSuratTugas": $scope.item.noSuratTugas,
+                //             "noNotaDinas": $scope.item.noNotaDinas,
+                //             "tglNotaDinas":$scope.item.tglNotaDinas!= undefined ? DateHelper.getTanggalFormattedNew($scope.item.tglNotaDinas):null,
+                //             "alamatTugas": $scope.item.alamatTugas,
+                //             "jabatanPemberiNotaDinas": {
+                //                 "id": $scope.item.jabatanNotaDinas != undefined ? $scope.item.jabatanNotaDinas.id : 14
+                //             },
+                //             "isCutiLuarNegeri":statusCutiLuarNegeri
+                //         }
+                //         if (listDate.length == 0) {
+                //             toastr.warning('Tanggal permohonan belum di isi', 'Peringatan');
+                //             return;
+                //         }
+                //         ManageSdmNew.saveData(dataSend, "sdm/save-pegawai-status").then(function(e) {
+                //             // console.log(JSON.stringify(e.data));
 
-                            $scope.loadGrid();
-                            load();
-                        });
-                    } else {
-                        // ModelItem.showMessages(isValid.messages);
-                    }
-                }
+                //             $scope.loadGrid();
+                //             load();
+                //         });
+                //     } else {
+                //         // ModelItem.showMessages(isValid.messages);
+                //     }
+                // }
             }
             // $scope.Save = function () {
             //  // debugger;

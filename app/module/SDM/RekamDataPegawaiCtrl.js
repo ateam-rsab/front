@@ -475,18 +475,26 @@ define(['initialize'], function(initialize) {
                         "id": $state.params.idPegawai
                     },
                     "jabatan": {
-                        "id": dataItem.jabatanId
+                        "id": dataItem.jabatan.id
                     },
                     "statusEnabled": false,
                     "unitKerjaPegawai": {
-                        "id": dataItem.unitKerjaPegawaiId
+                        "id": dataItem.unitKerjaPegawai.id
                     },
                     "subUnitKerjaPegawai": {
-                        "id": dataItem.subUnitKerjaPegawaiId
+                        "id": dataItem.subUnitKerjaPegawai.id
                     },
                     "isCanCreateJadwal": dataItem.isCanCreateJadwal,
                     "isPrimary": dataItem.isPrimary,
-                    "isMonitoring": dataItem.isMonitoring
+                    "isMonitoring": dataItem.isMonitoring,
+                    "pejabatPenilai": {
+                        id: dataItem.pejabatPenilai.id
+                    },
+                    "atasanLangsung": {
+                        id:dataItem.atasanLangsung.id
+                    },
+                    "atasanPejabatPenilaiDireksi":dataItem.atasanPejabatPenilaiDireksi,
+                    "atasanLangsungDireksi":dataItem.atasanLangsungDireksi
                 }]
                 var confirm = $mdDialog.confirm()
                     .title('Apakah anda yakin akan menghapus data Jabatan Internal?')
@@ -501,7 +509,6 @@ define(['initialize'], function(initialize) {
                         $scope.popUpJabatan.close();
                         e.preventDefault();
                         $scope.loadDataGridJabatanInternal();
-                        toastr.success('Data Berhasil Dihapus');
                         console.warn('Data Berhasil Dihapus');
                     });
                     console.warn('Masuk sini pak eko');
@@ -523,7 +530,7 @@ define(['initialize'], function(initialize) {
                             }
                         }
                         if(key.indexOf('atasanPejabatPenilaiDireksi') >= 0) {
-                            if(newModel[0][key] === null) {
+                            if(newModel[0][key] === null || newModel[0][key] === '') {
                                 delete newModel[0][key];
                             }
                         }
@@ -1992,15 +1999,12 @@ define(['initialize'], function(initialize) {
                                 initRiwayatPerubahandData();
                                 var confirm = $mdDialog.confirm()
                                     .title('Apakah anda akan melanjutkan edit data?')
-                                    // .textContent(`Anda akan menghapus data Jabatan Internal`)
-                                    .ariaLabel('Lucky day')
-                                    // .targetEvent(e)
+                                    .ariaLabel('Lucky day')                                    
                                     .ok('Ya')
                                     .cancel('Kembali ke Data Pegawai');
                                 $mdDialog.show(confirm).then(function() {
                                     console.warn('Masuk sini pak eko');
                                 }, function() {
-                                    // console.error('Tidak jadi hapus');
                                     $state.go('DataPegawai');
                                 });
                             }
