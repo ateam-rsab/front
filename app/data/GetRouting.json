@@ -42379,26 +42379,6 @@
     ]
   },
   {
-    "name": "PengajuanMutasiPegawai",
-    "url": "/PengajuanMutasiPegawai",
-    "templateurl": "module/SDM/PengajuanMutasiPegawai.html",
-    "controller": "PengajuanMutasiPegawaiCtrl",
-    "deps": [
-      {
-        "module": "Services",
-        "define": "Service"
-      },
-      {
-        "module": "LoginServices",
-        "define": "LoginService"
-      },
-      {
-        "module": "SdmService",
-        "define": "SdmService"
-      }
-    ]
-  },
-  {
     "name": "PengajuanResignPegawai",
     "url": "/PengajuanResignPegawai",
     "templateurl": "module/SDM/PengajuanResignPegawai.html",
