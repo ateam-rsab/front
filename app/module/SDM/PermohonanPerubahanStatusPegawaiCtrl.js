@@ -807,6 +807,7 @@ define(['initialize'], function(initialize) {
                 return arr;
             }
 
+            var bisaCuti = false;
             $scope.checkTanggalCuti = function () {
                 ManageSdmNew.getListData('sdm/get-list-tanggal-permohonan?idPegawai=' + $scope.item.namaPegawai.id).then(res => {
                     var dataPengajuan = res.data.data;
@@ -824,17 +825,18 @@ define(['initialize'], function(initialize) {
                                 tglPermohonan.setHours(7);
                                 console.log(dataPengajuan[i].lisTanggal[ii].tgl + ' & ' + DateHelper.toTimeStamp(new Date(tglPermohonan)))
                                 if(dataPengajuan[i].lisTanggal[ii].tgl === DateHelper.toTimeStamp(tglPermohonan)) {
-                                    $scope.bisaCuti = false;
+                                    bisaCuti = false;
                                     toastr.warning('Anda tidak bisa mengajukan cuti pada tanggal ' + DateHelper.toDateFromTimestamp(tglPermohonan));
                                     break;
-                                } else {
-                                    $scope.bisaCuti = true;
+                                } 
+                                else {
+                                    bisaCuti = true;
                                 }
                                 
                             }
-                            break;
+                            // break;
                         }
-                        break;
+                        // break;
                     }
                     // console.log($scope.tanggalPermohonan);
                     // console.log($scope.dataSource._data)
@@ -846,8 +848,8 @@ define(['initialize'], function(initialize) {
 
             $scope.Save = function() {
                 $scope.checkTanggalCuti();
-                if(!$scope.bisaCuti) {
-                    return
+                if(!bisaCuti) {
+                    return;
                 }
                 if($scope.item.statusPegawai == undefined){
                     toastr.error('Status kehadiran harus di isi')
@@ -924,7 +926,6 @@ define(['initialize'], function(initialize) {
                                 messageContainer.error('Tanggal harus terdiri dari tanggal awal dan tanggal akhir (periode)')
                                 return
                         }
-                                
                     }
                     var isValid = ModelItem.setValidation($scope, listRawRequired);
                     if (isValid.status) {
@@ -995,7 +996,7 @@ define(['initialize'], function(initialize) {
                             load();
                         });
                     } else {
-                        // ModelItem.showMessages(isValid.messages);
+                        ModelItem.showMessages(isValid.messages);
                     }
                 }
             }
