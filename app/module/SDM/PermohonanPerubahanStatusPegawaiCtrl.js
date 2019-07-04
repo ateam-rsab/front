@@ -324,7 +324,7 @@ define(['initialize'], function(initialize) {
                 if (result[3].statResponse) {
                     listPegawaiAdminSDM = result[3].data.data;
                 }
-                // condition base if bagian sdm can view all permohonan perubahan status kehadiran
+                // $scope.condition base if bagian sdm can view all permohonan perubahan status kehadiran
                 // uncomment codes below to activate
                 // if(result[2].statResponse){
                 //  if(result[2].data.data.subUnitKerja.indexOf("Sub Bagian Kesejahteraan Pegawai") >= 0){
@@ -808,49 +808,65 @@ define(['initialize'], function(initialize) {
             }
 
             var bisaCuti = false;
+            var condition2;
             $scope.checkTanggalCuti = function () {
+                var listTanggalPermohonan = [];
+                var listTanggalPengajuan = [];
+                $scope.tanggalPermohonan.forEach(function (el) {
+                    if(el.tgl) {
+                        el.tgl.setHours(7);
+                        listTanggalPermohonan.push(DateHelper.toTimeStamp(new Date(el.tgl)));
+                    } else {
+                        el.setHours(7);
+                        listTanggalPermohonan.push(DateHelper.toTimeStamp(new Date(el)));
+                    }
+                });
                 ManageSdmNew.getListData('sdm/get-list-tanggal-permohonan?idPegawai=' + $scope.item.namaPegawai.id).then(res => {
                     var dataPengajuan = res.data.data;
-                    var dataPermohonan =$scope.tanggalPermohonan;
                     for(let i = 0; i < dataPengajuan.length; i++) {
-                        for(let ii = 0; ii < dataPengajuan[i].lisTanggal.length; ii++) {
-                            var tglPermohonan;
-                            for(var key in dataPermohonan) {
-                                tglPermohonan = dataPermohonan[key]
-                                if(dataPermohonan[key].tgl) {
-                                    tglPermohonan = dataPermohonan[key].tgl;
-                                } else {
-                                    tglPermohonan = dataPermohonan[key];
-                                }
-                                tglPermohonan.setHours(7);
-                                console.log(dataPengajuan[i].lisTanggal[ii].tgl + ' & ' + DateHelper.toTimeStamp(new Date(tglPermohonan)))
-                                if(dataPengajuan[i].lisTanggal[ii].tgl === DateHelper.toTimeStamp(tglPermohonan)) {
-                                    bisaCuti = false;
-                                    toastr.warning('Anda tidak bisa mengajukan cuti pada tanggal ' + DateHelper.toDateFromTimestamp(tglPermohonan));
-                                    break;
-                                } 
-                                else {
-                                    bisaCuti = true;
-                                }
-                                
-                            }
-                            // break;
-                        }
-                        // break;
+                        dataPengajuan[i].lisTanggal.forEach(function(data) {
+                            listTanggalPengajuan.push(data.tgl);
+                        })
                     }
-                    // console.log($scope.tanggalPermohonan);
-                    // console.log($scope.dataSource._data)
                     
-                    
+                    for(let i = 0; i < listTanggalPengajuan.length; i ++) {
+                        var condition = true;
+                        for(let ii = 0; ii < listTanggalPermohonan.length; ii++) {
+                            if(listTanggalPengajuan[i] === listTanggalPermohonan[ii]) {
+                                condition2 = 'no';
+                                condition = false;
+                                $scope.tanggalTidakBisaCuti = listTanggalPermohonan[ii];
+                                break;
+                            } else {
+                                condition2 = 'yes';
+                                condition = true;
+                                continue;
+                            }
+                            
+                        }
+                        if(!condition) {
+                            condition2 = 'no';
+                            condition = false;
+                            break;
+                        } else {
+                            condition2 = 'yes';
+                            condition = true;
+                        }
+                    }
+                    bisaCuti = condition;
                 });
-                // return true;
             }
 
             $scope.Save = function() {
                 $scope.checkTanggalCuti();
                 if(!bisaCuti) {
+                    $scope.checkTanggalCuti();
+                    toastr.info('Ada tanggal yang sama');
                     return;
+                } else {
+                    $scope.checkTanggalCuti();
                 }
+                console.log('masuk sini');
                 if($scope.item.statusPegawai == undefined){
                     toastr.error('Status kehadiran harus di isi')
                     return
