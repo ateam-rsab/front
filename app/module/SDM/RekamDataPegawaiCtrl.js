@@ -1895,7 +1895,6 @@ define(['initialize'], function (initialize) {
                                 } else {
                                     newData[key] = dateHelper.formatDate(newData[key], 'DD-MM-YYYY')
                                 }
-
                             };
                             if (newData[key] !== oldData[key]) {
                                 dataChanged[key] = newData[key];
