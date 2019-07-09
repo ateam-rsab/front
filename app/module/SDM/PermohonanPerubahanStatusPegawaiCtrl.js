@@ -809,6 +809,7 @@ define(['initialize'], function(initialize) {
 
             var bisaCuti = false;
             var condition2;
+            var condition = true;
             $scope.checkTanggalCuti = function () {
                 var listTanggalPermohonan = [];
                 var listTanggalPengajuan = [];
@@ -830,7 +831,6 @@ define(['initialize'], function(initialize) {
                     }
                     
                     for(let i = 0; i < listTanggalPengajuan.length; i ++) {
-                        var condition = true;
                         for(let ii = 0; ii < listTanggalPermohonan.length; ii++) {
                             if(listTanggalPengajuan[i] === listTanggalPermohonan[ii]) {
                                 condition2 = 'no';

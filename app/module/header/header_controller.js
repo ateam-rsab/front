@@ -79,7 +79,7 @@ define(['kendo.menu'], function(kendoMenu) {
 
         $scope.goToLink = function(url){
             if (url.toLowerCase().indexOf('logout') <0 ){
-                debugger;
+                //debugger;
                 if (url.toLowerCase().indexOf('bi-') > -1 ){
                     window.open($window.location.origin + url,'_blank')
                 }else{
