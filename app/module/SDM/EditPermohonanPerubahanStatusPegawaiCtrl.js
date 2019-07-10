@@ -440,7 +440,65 @@ define(['initialize'], function(initialize) {
 				return arr;
 			}
 
+			// var bisaCuti = false;
+   //          var condition2;
+   //          var condition = true;
+   //          $scope.checkTanggalCuti = function () {
+   //              var listTanggalPermohonan = [];
+   //              var listTanggalPengajuan = [];
+   //              $scope.tanggalPermohonan.forEach(function (el) {
+   //                  if(el.tgl) {
+   //                      el.tgl.setHours(7);
+   //                      listTanggalPermohonan.push(DateHelper.toTimeStamp(new Date(el.tgl)));
+   //                  } else {
+   //                      el.setHours(7);
+   //                      listTanggalPermohonan.push(DateHelper.toTimeStamp(new Date(el)));
+   //                  }
+   //              });
+   //              ManageSdmNew.getListData('sdm/get-list-tanggal-permohonan?idPegawai=' + $scope.dataItem.namaPegawai.id).then(res => {
+   //                  var dataPengajuan = res.data.data;
+   //                  for(let i = 0; i < dataPengajuan.length; i++) {
+   //                      dataPengajuan[i].lisTanggal.forEach(function(data) {
+   //                          listTanggalPengajuan.push(data.tgl);
+   //                      })
+   //                  }
+                    
+   //                  for(let i = 0; i < listTanggalPengajuan.length; i ++) {
+   //                      for(let ii = 0; ii < listTanggalPermohonan.length; ii++) {
+   //                          if(listTanggalPengajuan[i] === listTanggalPermohonan[ii]) {
+   //                              condition2 = 'no';
+   //                              condition = false;
+   //                              $scope.tanggalTidakBisaCuti = listTanggalPermohonan[ii];
+   //                              break;
+   //                          } else {
+   //                              condition2 = 'yes';
+   //                              condition = true;
+   //                              continue;
+   //                          }
+                            
+   //                      }
+   //                      if(!condition) {
+   //                          condition2 = 'no';
+   //                          condition = false;
+   //                          break;
+   //                      } else {
+   //                          condition2 = 'yes';
+   //                          condition = true;
+   //                      }
+   //                  }
+   //                  bisaCuti = condition;
+   //              });
+   //          }
+
 			$scope.Save = function(){
+				// $scope.checkTanggalCuti();
+    //             if(!bisaCuti) {
+    //                 $scope.checkTanggalCuti();
+    //                 toastr.info('Tanggal permohonan sudah diajukan!');
+    //                 return;
+    //             } else {
+    //                 $scope.checkTanggalCuti();
+    //             }
 				 if($scope.dataItem.statusPegawai == undefined){
                     toastr.error('Status kehadiran harus di isi')
                     return
@@ -537,7 +595,10 @@ define(['initialize'], function(initialize) {
 					}
 					// ManageSdm.editPermohonanUbhStsHadirPgw(dataSend).then(function(e) {
 					ManageSdmNew.saveData(dataSend,"sdm/update-pegawai-status").then(function(e) {
-
+						if (e.data.data.bisaCuti == false) {
+                            toastr.info('Tanggal permohonan sudah diajukan!');
+                            return;
+                        }
 						// $scope.loadGrid();
 						// load();
 						$scope.isNext = true;
