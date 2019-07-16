@@ -2,11 +2,6 @@ define(['initialize'], function(initialize) {'use strict';
 	initialize.controller('DashbboardSDMCtrl', ['$q', '$parse', 'LoginService', 'socket', '$rootScope', '$scope', 'ModelItem', '$state', 'DateHelper','ManageSdm','ReportHelper','CetakHelper', 'FindSdm', 'CetakHelper',
 		function($q, $parse, loginService, socket, $rootScope, $scope, ModelItem, $state,  DateHelper, ManageSdm
 			, reportHelper, CetakHelper, FindSdm, cetakHelper) {
-		var listPegawaiITIBolehEntrySDM = [29999];
-	    $scope.dataLogin = JSON.parse(window.localStorage.getItem('datauserlogin'));
- 	    if(!listPegawaiITIBolehEntrySDM.includes($scope.dataLogin.id)){
-	    	$state.go('UnderMaintenance',  { namaForm: 'DashbboardSDM' });
-	    }
 		$scope.now = new Date();
 		$scope.isIT = true;
 		var userLogin = JSON.parse(localStorage.getItem('datauserlogin'));
@@ -22,6 +17,7 @@ define(['initialize'], function(initialize) {'use strict';
 		if(userLogin.kdUser === 'admin.it') {
 			$scope.isIT = false;
 		} else {
+			$state.go('UnderMaintenance',  { namaForm: 'Dashboard Logbook SDM dan FFS' });
 			$scope.isIT = true;
 		}
 		// $scope.item.from = $scope.now;
