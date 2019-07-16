@@ -227,7 +227,7 @@ define(['initialize'], function(initialize) {
                     },
                     {
                         "field": "unitKerja",
-                        "title": "Sub Unit Kerja"
+                        "title": "Unit Kerja"
                     },
                     {
                         "field": "deskripsiStatusPegawaiPlan",
@@ -400,14 +400,32 @@ define(['initialize'], function(initialize) {
                     $scope.getDataPegawai(e);
                 }
             })
+            $scope.$watch('item.namaJabatan', function(e) {
+                // debugger;
+                if (!e) return;
+                $scope.item.unitkerja = e.namaUnitKerja;
+                $scope.item.ruangan = e.namaSubunitKerja;
+                // if (e.id==$scope.loginUser.idPegawai) {
+                //     $scope.tugasLuar = false;
+                //     $scope.getDataPegawai(e);
+                // } else if (e.id!=$scope.loginUser.idPegawai && ($scope.loginUser.idJabatan == 633 || $scope.loginUser.idJabatan == 1139)) {
+                //     $scope.item.statusPegawai = _.find($scope.listStatusPegawai, function(ed) {
+                //         $scope.tugasLuar = true;
+                //         return ed.id == 28;
+                //     })
+                //     $scope.getDataPegawai(e);
+                // } else {
+                //     $scope.getDataPegawai(e);
+                // }
+            })
             $scope.getDataPegawai = function(e) {
                 $scope.isRouteLoading = true;
-                ManageSdmNew.getListData("sdm/get-data-pegawai?pegawaiId=" + e.id, true).then(function(dat) {
+                ManageSdmNew.getListData("sdm/get-data-map-pegawai?pegawaiId=" + e.id, true).then(function(dat) {
                     // debugger;
-                    $scope.item.jabatan = dat.data.data.jabatan;
+                    // $scope.item.jabatan = dat.data.data.jabatan;
                     $scope.item.nip = dat.data.data.nip;
-                    $scope.item.ruangan = dat.data.data.subUnitKerja;
-                    $scope.item.ruanganId = dat.data.data.subUnitKerjaId;
+                    // $scope.item.ruangan = dat.data.data.subUnitKerja;
+                    // $scope.item.ruanganId = dat.data.data.subUnitKerjaId;
                     $scope.item.kategoriPegawaiId = dat.data.data.kategoriPegawaiId;
                     $scope.item.Alamat = dat.data.data.alamat
                     if (!$scope.item.kategoriPegawaiId) {
@@ -416,10 +434,15 @@ define(['initialize'], function(initialize) {
                         $scope.item.jumlahIjin = "";
                         $scope.item.sisaIjin = "";
                         // $scope.item.jmlsakit = "";
-                    }
-                    /*else{
+                    }/*else{
                         $scope.getIzin(e);
                     } */
+                    $scope.listjabatan = dat.data.data.jabatan;
+                    $scope.item.namaJabatan=_.find($scope.listjabatan, function(jab) {
+                        $scope.item.unitkerja = jab.namaUnitKerja;
+                        $scope.item.ruangan = jab.namaSubunitKerja;
+                        return jab.idJabatan;
+                    });
                     $scope.isRouteLoading = false;
                 }, (err) => {
                     $scope.isRouteLoading = false;

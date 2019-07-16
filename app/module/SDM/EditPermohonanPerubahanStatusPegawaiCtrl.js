@@ -294,29 +294,37 @@ define(['initialize'], function(initialize) {
 
                 });
             });
+
 			// $scope.getDataPegawai = function (e) {
 			// 	$scope.isRouteLoading = true;
-			// 	ManageSdm.getItem("sdm/get-data-pegawai?pegawaiId="+e.id, true).then(function(dat){
+			// 	ManageSdm.getItem("sdm/get-data-map-pegawai?pegawaiId="+e.id, true).then(function(dat){
 			// 		// debugger;
-			// 		$scope.item.jabatan = dat.data.data.jabatan;
-			// 		$scope.item.nip = dat.data.data.nip;
-			// 		$scope.item.ruangan = dat.data.data.unitKerja;
-			// 		$scope.item.ruanganId = dat.data.data.unitKerjaId;
-			// 		$scope.item.kategoriPegawaiId = dat.data.data.kategoriPegawaiId;
-            //         if(!$scope.item.kategoriPegawaiId){
-	        //            $scope.item.jumlahCuti = "";
-	        //            $scope.item.sisaCuti = "";
-	        //            $scope.item.jumlahIjin = "";
-	        //            $scope.item.sisaIjin = "";
-	        //            $scope.item.jmlsakit = "";
+			// 		// $scope.item.jabatan = dat.data.data.jabatan;
+			// 		$scope.dataItem.nip = dat.data.data.nip;
+			// 		// $scope.item.ruangan = dat.data.data.unitKerja;
+			// 		// $scope.item.ruanganId = dat.data.data.unitKerjaId;
+			// 		$scope.dataItem.kategoriPegawaiId = dat.data.data.kategoriPegawaiId;
+   //                  if(!$scope.dataItem.kategoriPegawaiId){
+	  //                  $scope.dataItem.jumlahCuti = "";
+	  //                  $scope.dataItem.sisaCuti = "";
+	  //                  $scope.dataItem.jumlahIjin = "";
+	  //                  $scope.dataItem.sisaIjin = "";
+	  //                  $scope.dataItem.jmlsakit = "";
 			// 		} /*else{
 			// 			$scope.getIzin(e);
 			// 		} */
+			// 		$scope.listjabatan = dat.data.data.jabatan;
+   //                  $scope.dataItem.namaJabatan=_.find($scope.listjabatan, function(jab) {
+   //                      $scope.dataItem.unitkerja = jab.namaUnitKerja;
+   //                      $scope.dataItem.ruangan = jab.namaSubunitKerja;
+   //                      return jab.idJabatan;
+   //                  });
 			// 		$scope.isRouteLoading = false;
 			// 	},(err) => {
 			// 		$scope.isRouteLoading = false;
 			// 	});
 			// }
+
 			$scope.getJabatan = function(params, value){
 				if (!value) return;
 				ManageSdmNew.getListData("sdm/get-data-pegawai?pegawaiId="+value.id, true).then(function(dat){

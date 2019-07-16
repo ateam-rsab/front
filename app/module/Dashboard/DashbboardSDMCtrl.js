@@ -2,18 +2,23 @@ define(['initialize'], function(initialize) {'use strict';
 	initialize.controller('DashbboardSDMCtrl', ['$q', '$parse', 'LoginService', 'socket', '$rootScope', '$scope', 'ModelItem', '$state', 'DateHelper','ManageSdm','ReportHelper','CetakHelper', 'FindSdm', 'CetakHelper',
 		function($q, $parse, loginService, socket, $rootScope, $scope, ModelItem, $state,  DateHelper, ManageSdm
 			, reportHelper, CetakHelper, FindSdm, cetakHelper) {
-			$scope.now = new Date();
-			$scope.isIT = true;
-			var userLogin = JSON.parse(localStorage.getItem('datauserlogin'));
-			$scope.item ={
-				from: $scope.now,
-				until: $scope.now,
-				waktu: $scope.now,
-				periode: $scope.now,
-				periodeFee: $scope.now,
-				periodeRekap: $scope.now,
-			};
-			var idPgw=0;
+		var listPegawaiITIBolehEntrySDM = [29999];
+	    $scope.dataLogin = JSON.parse(window.localStorage.getItem('datauserlogin'));
+ 	    if(!listPegawaiITIBolehEntrySDM.includes($scope.dataLogin.id)){
+	    	$state.go('UnderMaintenance',  { namaForm: 'DashbboardSDM' });
+	    }
+		$scope.now = new Date();
+		$scope.isIT = true;
+		var userLogin = JSON.parse(localStorage.getItem('datauserlogin'));
+		$scope.item ={
+			from: $scope.now,
+			until: $scope.now,
+			waktu: $scope.now,
+			periode: $scope.now,
+			periodeFee: $scope.now,
+			periodeRekap: $scope.now,
+		};
+		var idPgw=0;
 		if(userLogin.kdUser === 'admin.it') {
 			$scope.isIT = false;
 		} else {
