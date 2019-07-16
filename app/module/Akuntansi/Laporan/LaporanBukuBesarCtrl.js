@@ -1,7 +1,7 @@
 define(['initialize'], function(initialize) {
 	'use strict';
-	initialize.controller('LaporanBukuBesarCtrl', ['$sce', '$q', '$rootScope', '$scope', 'ModelItemAkuntansi', 'ManageAkuntansi','DateHelper','CacheHelper',
-		function($sce, $q, $rootScope, $scope, modelItemAkuntansi, manageAkuntansi,dateHelper,cacheHelper) {
+	initialize.controller('LaporanBukuBesarCtrl', ['$sce', '$q', '$rootScope', '$scope', 'ModelItemAkuntansi', 'ManageAkuntansi','DateHelper','CacheHelper', '$http',
+		function($sce, $q, $rootScope, $scope, modelItemAkuntansi, manageAkuntansi,dateHelper,cacheHelper, $http) {
 			$scope.dataVOloaded = true;
 			$scope.now = new Date();
 
@@ -30,9 +30,6 @@ define(['initialize'], function(initialize) {
 				var arrPeriode = chacePeriode.split('~');
 				$scope.item.tglAwal = new Date(arrPeriode[0]);
 				$scope.item.tglAkhir = new Date(arrPeriode[1]);
-
-				
-
 				// LoadData()
 			}
 			else
@@ -40,7 +37,7 @@ define(['initialize'], function(initialize) {
 				// $scope.item.bulan = $scope.now;
 				// $scope.item.tahun = $scope.now;
 				// $scope.item.tglAwal = $scope.now;
-    //            	$scope.item.tglAkhir = $scope.now;
+                //$scope.item.tglAkhir = $scope.now;
                $scope.item.tglAwal =  moment($scope.item.tglAwal).format('YYYY-MM-DD 00:00:00')//$scope.now;
                $scope.item.tglAkhir = moment($scope.item.tglAkhir).format('YYYY-MM-DD 23:59:59')//$scope.now;
 			};
@@ -87,68 +84,49 @@ define(['initialize'], function(initialize) {
 				}
 			}
 			function LoadData(){
-				//debugger;
-				// var bulan = dateHelper.formatDate($scope.item.bulan,"MM")
-				// var tahun = dateHelper.formatDate($scope.item.tahun,"YYYY")
-				// var tglAwal1 = tahun+"-"+bulan+"-01"
-				// var tglAkhir1 = tahun+"-"+bulan+"-"+getLastDay( parseInt(tahun),parseInt(bulan))
+                if(!$scope.item.kdAkun || !$scope.item.kdAkun2 ) {
+                    toastr.warning('Harap Lengkapi Kode Akun');
+                    return;
+                }
+				var tglAwal = moment($scope.item.tglAwal).format('YYYY-MM-DD');
+                var tglAkhir = moment($scope.item.tglAkhir).format('YYYY-MM-DD');
+				manageAkuntansi.getLaporanBukuBesar("akuntansi/get-data-buku-besar-rev3?noaccount=" + $scope.item.kdAkun.noaccount + "&noaccount2=" + $scope.item.kdAkun2.noaccount + "&tglAwal=" + tglAwal + "&tglAkhir=" + tglAkhir).then(function(data){
+                    // if(data.statResponse) {
+                        console.log(data.data.data)
+                        $scope.dataGrid = new kendo.data.DataSource({
+                            data: data.data.data,
+                            total: data.data.data.length,
+                            serverPaging: false,
+                            pageSize: 30
+                        });
+                    // }
 
-				var tglAwal = moment($scope.item.tglAwal).format('YYYY-MM-DD HH:mm:00');
-                var tglAkhir = moment($scope.item.tglAkhir).format('YYYY-MM-DD HH:mm:59');
-				//$scope.item.test = tglAkhir1
-				//var tglAwal1=dateHelper.formatDate($scope.item.tanggalAwal,"YYYY-MM-DD");
-				//var tglAkhir1=dateHelper.formatDate($scope.item.tanggalAkhir,"YYYY-MM-DD");
-				var jp = "noaccount=-";
-				if($scope.item.kdAkun != undefined){
-					var jp = "noaccount=" + $scope.item.kdAkun.noaccount;
-				};
-                var jp2 = "&noaccount2=-";
-                if($scope.item.kdAkun2 != undefined){
-                    var jp2 = "&noaccount2=" + $scope.item.kdAkun2.noaccount;
-                };
-				modelItemAkuntansi.getDataTableTransaksi("akuntansi/get-data-buku-besar-rev2?"+ jp + jp2 + "&tglAwal=" + tglAwal + "&tglAkhir=" + tglAkhir ).then(function(data){
-					$scope.dataGrid = new kendo.data.DataSource({
-						data: data.data,
-						total: data.data.length,
-						serverPaging: false,
-						pageSize: 30,
-						group: [
-	                        {field: "KodePerkiraan"}
-	                    ],
-                        sort:[
-                            {
-                                field: "tglbuktitransaksi",
-                                dir:"desc"
-                            }
-                        ],
-					});
-
-					// sSaldo = 0;
-			  //       if (parseFloat(data.saldoawal[0].hargasatuand) >0) {
-			  //       	sSaldo=parseFloat(data.saldoawal[0].hargasatuand)
-			  //      		$scope.item.saldoAwal = 'Rp. ' +  parseFloat(sSaldo).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,"); 
-			  //       }else{
-			  //       	sSaldo=parseFloat(data.saldoawal[0].hargasatuank) * (-1)
-			  //      		$scope.item.saldoAwal = 'Rp. ' +  parseFloat(sSaldo).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,"); 
-			  //       }
+		// 			// sSaldo = 0;
+		// 	  //       if (parseFloat(data.saldoawal[0].hargasatuand) >0) {
+		// 	  //       	sSaldo=parseFloat(data.saldoawal[0].hargasatuand)
+		// 	  //      		$scope.item.saldoAwal = 'Rp. ' +  parseFloat(sSaldo).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,"); 
+		// 	  //       }else{
+		// 	  //       	sSaldo=parseFloat(data.saldoawal[0].hargasatuank) * (-1)
+		// 	  //      		$scope.item.saldoAwal = 'Rp. ' +  parseFloat(sSaldo).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,"); 
+		// 	  //       }
 				          
-					// sDebet = 0;
-					// sKredit = 0;
+		// 			// sDebet = 0;
+		// 			// sKredit = 0;
 			          	
-		   //        	for(var i=0; i<data.data.length; i++){
-		   //        		if (data.data[i].saldonormaladd == "D") {
-		   //        			sSaldo = (sSaldo + parseFloat(data.data[i].hargasatuand))-parseFloat(data.data[i].hargasatuank);
-		   //        		}
-		   //        		if (data.data[i].saldonormaladd == "K") {
-		   //        			sSaldo = (sSaldo + parseFloat(data.data[i].hargasatuank))-parseFloat(data.data[i].hargasatuand);
-		   //        		}
-			  //         	sDebet = sDebet + parseFloat(data.data[i].hargasatuand);
-			  //         	sKredit = sKredit + parseFloat(data.data[i].hargasatuank);
-		   //        		data.data[i].saldo = sSaldo
-		   //        	};
-			  //       $scope.item.totalDebet= 'Rp. ' +  parseFloat(sDebet).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,"); 
-			  //       $scope.item.totalKredit= 'Rp. ' +  parseFloat(sKredit).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,"); 
-			  //       $scope.item.saldo =  'Rp. ' +  parseFloat(sSaldo).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,"); 
+		//    //        	for(var i=0; i<data.data.length; i++){
+		//    //        		if (data.data[i].saldonormaladd == "D") {
+		//    //        			sSaldo = (sSaldo + parseFloat(data.data[i].hargasatuand))-parseFloat(data.data[i].hargasatuank);
+		//    //        		}
+		//    //        		if (data.data[i].saldonormaladd == "K") {
+		//    //        			sSaldo = (sSaldo + parseFloat(data.data[i].hargasatuank))-parseFloat(data.data[i].hargasatuand);
+		//    //        		}
+		// 	  //         	sDebet = sDebet + parseFloat(data.data[i].hargasatuand);
+		// 	  //         	sKredit = sKredit + parseFloat(data.data[i].hargasatuank);
+		//    //        		data.data[i].saldo = sSaldo
+		//    //        	};
+		// 	  //       $scope.item.totalDebet= 'Rp. ' +  parseFloat(sDebet).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,"); 
+		// 	  //       $scope.item.totalKredit= 'Rp. ' +  parseFloat(sKredit).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,"); 
+		// 	  //       $scope.item.saldo =  'Rp. ' +  parseFloat(sSaldo).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,"); 
 				})
 			};
 			$scope.DetailJurnal = function(){
@@ -351,66 +329,54 @@ define(['initialize'], function(initialize) {
             ];
             $scope.optionsDataGrid = {
                 toolbar:["excel"],
-                excel: {
-                    fileName:"Buku Besar" ,
-                    allPages: true,
-                },
-                filterable: {
-                    extra: false,
-                    operators: {
-                        string: {
-                            contains: "Contains",
-                            startswith: "Starts with"
-                        }
-                    }
-                },
+                // excel: {
+                //     fileName:"Buku Besar" ,
+                //     allPages: true,
+                // },
+                // filterable: {
+                //     extra: false,
+                //     operators: {
+                //         string: {
+                //             contains: "Contains",
+                //             startswith: "Starts with"
+                //         }
+                //     }
+                // },
                 selectable: 'row',
                 pageable: true,
                 sortable: true,
                 columns: [
                     {
-						"field": "tglbuktitransaksi",
+						"field": "tgltrans",
 						"title": "<h3>Tanggal</h3>",
 						"width":"70px",
-		                    "template": "<span class='style-center'>#: tglbuktitransaksi #</span>"
-						// "template": "<span class='style-left'>{{formatTanggal('#: tglbuktitransaksi #')}}</span>"
+		                "template": "<span class='style-center'>#: tgltrans #</span>"
+					},
+					
+                    {
+						"field": "noaccount",
+						"title": "<h3>No. Perkiraan</h3>",
+                        "width":"80px",
+                        "template": "<span class='style-center'>#: noaccount #</span>"
 					},
 					{
-						"field": "nojurnal",
-						"title": "<h3>No Jurnal</h3>",
-						"width":"80px",
-		                    "template": "<span class='style-center'>#: nojurnal #</span>"
-					},
-					{
-						"field": "keteranganlainnya",
-						"title": "<h3>Keterangan</h3>",
-						"width":"300px",
-						"template": "<span class='style-left'>#: keteranganlainnya #</span>"
-					},
-					{
-						"field": "noref",
-						"title": "<h3>No Ref</h3>",
+						"field": "namaaccount",
+						"title": "<h3>Nama Perkiraan</h3>",
 						"width":"100px",
-						"template": "<span class='style-center'>#: noref #</span>"
+						"template": "<span class='style-left'>#: namaaccount #</span>"
 					},
 					{
-						"field": "hargasatuand",
+						"field": "debet",
 						"title": "<h3>Debet</h3>",
 						"width":"100px",
-						"template": "<span class='style-right'>{{formatRupiah('#: hargasatuand #', '')}}</span>"
+						"template": "<span class='style-right'>{{formatRupiah('#: debet #', '')}}</span>"
 					},
 					{
-						"field": "hargasatuank",
+						"field": "kredit",
 						"title": "<h3>Kredit</h3>",
 						"width":"100px",
-						"template": "<span class='style-right'>{{formatRupiah('#: hargasatuank #', '')}}</span>"
+						"template": "<span class='style-right'>{{formatRupiah('#: kredit #', '')}}</span>"
 					},
-					{
-						"field": "saldo",
-						"title": "<h3>Saldo</h3>",
-						"width":"100px",
-						"template": "<span class='style-right'>{{formatRupiah('#: saldo #', '')}}</span>"
-					}
                 ],
 
             };

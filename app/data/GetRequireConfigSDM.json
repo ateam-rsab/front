@@ -565,6 +565,10 @@
       "urlDep": "module/SDM/UangLemburCtrl"
     },
     {
+      "nameDep": "UnderMaintenanceCtrl",
+      "urlDep": "module/SDM/UnderMaintenanceCtrl"
+    },
+    {
       "nameDep": "AsuransiNakerCtrl",
       "urlDep": "module/SDM/AsuransiNakerCtrl"
     },

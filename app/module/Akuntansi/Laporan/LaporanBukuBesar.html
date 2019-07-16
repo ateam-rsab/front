@@ -50,7 +50,7 @@
                     <!-- AwalPeriode -->
                     <div class="grid_5 padDatePicker"  style="margin-top: 6px">
                         <div class="grid_12">
-                            <input style="width: 100%" k-ng-model="item.tglAwal"  kendo-datetimepicker k-max="now" placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" />
+                            <input style="width: 100%" k-ng-model="item.tglAwal"  kendo-date-picker k-max="now" placeholer="yyyy-MM-dd" k-format="'yyyy-MM-dd'" />
                         </div>
                     </div>
 
@@ -112,9 +112,9 @@
 		<!-- grid table -->
 		<div class="grid_12 borderBox">
         <div id="kGrid" 
-            kendo-grid k-data-source="dataGrid" 
-            k-selectable="'row'" 
-            class="max-height"
+            kendo-grid 
+            k-data-source="dataGrid"
+            k-selectable="'row'"
             k-ng-model="dataSelected"
             k-options="optionsDataGrid">
         </div>

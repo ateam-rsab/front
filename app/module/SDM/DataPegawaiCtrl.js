@@ -4,6 +4,7 @@ define(['initialize'], function(initialize) {
     initialize.controller('DataPegawaiCtrl', ['$q', 'CacheHelper', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'DaftarPegawaiService', 'DataHelper', 'FindSdm', 'DateHelper', '$timeout', 'CetakHelper', '$mdDialog',
         function($q, cacheHelper, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, DaftarPegawaiService, dataHelper, FindSdm, dateHelper, $timeout, cetakHelper, $mdDialog) {
             // $scope.dataVOloaded = true;
+            //$state.go('UnderMaintenance',  { namaForm: 'DataPegawai' });
             $scope.title = "Data Pegawai" ;
             $scope.item = {};
             $scope.username = "Show";

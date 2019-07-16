@@ -324,7 +324,7 @@ define(['initialize'], function(initialize) {
                 if (result[3].statResponse) {
                     listPegawaiAdminSDM = result[3].data.data;
                 }
-                // condition base if bagian sdm can view all permohonan perubahan status kehadiran
+                // $scope.condition base if bagian sdm can view all permohonan perubahan status kehadiran
                 // uncomment codes below to activate
                 // if(result[2].statResponse){
                 //  if(result[2].data.data.subUnitKerja.indexOf("Sub Bagian Kesejahteraan Pegawai") >= 0){
@@ -733,7 +733,7 @@ define(['initialize'], function(initialize) {
                             });
 
                             
-                            var filteredData2 = _.filter(filteredData, function(element) {
+                            $scope.filteredData2 = _.filter(filteredData, function(element) {
                                 
                                 return element['namaPegawai'].toLowerCase().indexOf($scope.item.cariDaftarPengajuanCuti.toLowerCase())>-1
                                 
@@ -744,7 +744,7 @@ define(['initialize'], function(initialize) {
                             
                             $scope.dataSource = new kendo.data.DataSource({
                                 pageSize: 5,
-                                data: filteredData2,
+                                data: $scope.filteredData2,
                                 autoSync: true
                             });
                             $scope.isRouteLoading = false;
@@ -807,7 +807,66 @@ define(['initialize'], function(initialize) {
                 return arr;
             }
 
+            var bisaCuti = false;
+            var condition2;
+            $scope.checkTanggalCuti = function () {
+                var listTanggalPermohonan = [];
+                var listTanggalPengajuan = [];
+                $scope.tanggalPermohonan.forEach(function (el) {
+                    if(el.tgl) {
+                        el.tgl.setHours(7);
+                        listTanggalPermohonan.push(DateHelper.toTimeStamp(new Date(el.tgl)));
+                    } else {
+                        el.setHours(7);
+                        listTanggalPermohonan.push(DateHelper.toTimeStamp(new Date(el)));
+                    }
+                });
+                ManageSdmNew.getListData('sdm/get-list-tanggal-permohonan?idPegawai=' + $scope.item.namaPegawai.id).then(res => {
+                    var dataPengajuan = res.data.data;
+                    for(let i = 0; i < dataPengajuan.length; i++) {
+                        dataPengajuan[i].lisTanggal.forEach(function(data) {
+                            listTanggalPengajuan.push(data.tgl);
+                        })
+                    }
+                    
+                    for(let i = 0; i < listTanggalPengajuan.length; i ++) {
+                        var condition = true;
+                        for(let ii = 0; ii < listTanggalPermohonan.length; ii++) {
+                            if(listTanggalPengajuan[i] === listTanggalPermohonan[ii]) {
+                                condition2 = 'no';
+                                condition = false;
+                                $scope.tanggalTidakBisaCuti = listTanggalPermohonan[ii];
+                                break;
+                            } else {
+                                condition2 = 'yes';
+                                condition = true;
+                                continue;
+                            }
+                            
+                        }
+                        if(!condition) {
+                            condition2 = 'no';
+                            condition = false;
+                            break;
+                        } else {
+                            condition2 = 'yes';
+                            condition = true;
+                        }
+                    }
+                    bisaCuti = condition;
+                });
+            }
+
             $scope.Save = function() {
+                $scope.checkTanggalCuti();
+                if(!bisaCuti) {
+                    $scope.checkTanggalCuti();
+                    toastr.info('Ada tanggal yang sama');
+                    return;
+                } else {
+                    $scope.checkTanggalCuti();
+                }
+                console.log('masuk sini');
                 if($scope.item.statusPegawai == undefined){
                     toastr.error('Status kehadiran harus di isi')
                     return
@@ -830,7 +889,6 @@ define(['initialize'], function(initialize) {
                     )
                 }
 
-
                 if($scope.item.statusPegawai.id == 29 && $scope.tanggalPermohonan.length>1){
                     if (kendo.toString($scope.tanggalPermohonan[0].tgl, "MM/dd/yyyy") === kendo.toString((kendo.toString($scope.tanggalPermohonan[1].tgl, "MM/dd/yyyy")))) {
                             toastr.warning('Info! Pengajuan sakit selama satu hari silakan langsung menyerahkan surat sakit kepada pihak SDM')
@@ -839,9 +897,6 @@ define(['initialize'], function(initialize) {
 
                 }
 
-                
-
-                
                 if($scope.item.statusPegawai.id == 1){
                     for(var i = 0; i < $scope.tanggalPermohonan.length; i++){
                         if($scope.tanggalPermohonan[i].tgl instanceof Date)
@@ -882,15 +937,12 @@ define(['initialize'], function(initialize) {
                         messageContainer.error('Tanggal harus terdiri dari tanggal awal dan tanggal akhir (periode)')
                     // }
                 } else {
-
                     if($scope.item.statusPegawai.id == 29 && $scope.tanggalPermohonan.length === 1){
                         if (!listPegawaiAdminSDM.includes($scope.pegawai.id)) {
                                 messageContainer.error('Tanggal harus terdiri dari tanggal awal dan tanggal akhir (periode)')
                                 return
                         }
-                                
                     }
-
                     var isValid = ModelItem.setValidation($scope, listRawRequired);
                     if (isValid.status) {
                         var listDate = [],
@@ -960,7 +1012,7 @@ define(['initialize'], function(initialize) {
                             load();
                         });
                     } else {
-                        // ModelItem.showMessages(isValid.messages);
+                        ModelItem.showMessages(isValid.messages);
                     }
                 }
             }

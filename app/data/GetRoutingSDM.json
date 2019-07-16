@@ -1207,6 +1207,26 @@
       ]
     },
     {
+      "name": "UnderMaintenance",
+      "url": "/UnderMaintenance/:namaForm",
+      "templateurl": "module/SDM/UnderMaintenance.html",
+      "controller": "UnderMaintenanceCtrl",
+      "deps": [
+        {
+          "module": "Services",
+          "define": "Service"
+        },
+        {
+          "module": "LoginServices",
+          "define": "LoginService"
+        },
+        {
+          "module": "SdmService",
+          "define": "SdmService"
+        }
+      ]
+    },
+    {
       "name": "AsuransiNaker",
       "url": "/AsuransiNaker",
       "templateurl": "module/SDM/AsuransiNaker.html",

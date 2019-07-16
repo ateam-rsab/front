@@ -2348,6 +2348,35 @@
         "name": "SDM",
         "children": [
             {
+                "name": "Data Pegawai",
+                "children": [
+                    {
+                        "name": "Dashboard Data Pegawai",
+                        "link": "#/DashboardDataPegawai"
+                    },
+                    {
+                        "name": "Rekam Data Pegawai",
+                        "link": "#/RekamDataPegawai/"
+                    },
+                    {
+                        "name": "Data Pegawai",
+                        "link": "#/DataPegawai"
+                    },
+                    {
+                        "name": "Daftar Pegawai Pensiun Meninggal",
+                        "link": "#/DaftarPegawaiPensiunMeninggal"
+                    },
+                    {
+                        "name": "Daftar Rencana Pensiun Pegawai",
+                        "link": "#/PegawaiPensiun"
+                    },
+                    {
+                        "name": "SIP/STR Pegawai",
+                        "link": "#/MasaBerlakuSipStr"
+                    }
+                ]
+            },
+            {
                 "name": "Target Bobot Uraian Tugas",
                 "link": "#/TargetBobot"
             },
