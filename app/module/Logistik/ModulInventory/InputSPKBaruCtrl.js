@@ -1027,7 +1027,7 @@ define(['initialize'], function(initialize) {
                             norec:norecResep,
                             ppn:TotPpn,
                             objectmataanggaranfk:mataanggaran,
-                            biayakirim:parseFloat($scope.item.BiayaKirim),
+                            biayakirim:$scope.item.BiayaKirim ? parseFloat($scope.item.BiayaKirim) : 0,
                             kontrak:kontrak,
                             // norecrealisasi:norec_Realisasi,
                             // norecriwayatrealisasi:norecRR,

@@ -44,12 +44,7 @@
 <div>
     <c-panel item="item" header="'Konsultasi'" disabled>
         <div class="panel panel-default container_12">
-            <div class="panel-body">
-                <!-- <div class="grid_2">
-                    <label c-label c-label-text="Ruangan Asal" real></label>
-                    <input style="width: 100%;" kendo-combo-box k-ng-model="filter.ruanganAsal" k-data-text-field="'namaruangan'"
-                        k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
-                </div> -->
+            <!-- <div class="panel-body">
                 <div class="grid_2">
                     <label c-label c-label-text="Ruangan Tujuan" real></label>
                     <input style="width: 100%;" kendo-combo-box k-ng-model="filter.ruanganTujuan" k-data-text-field="'namaruangan'"
@@ -60,16 +55,12 @@
                     <input style="width: 100%;" kendo-combo-box k-ng-model="filter.dokter" k-data-text-field="'namalengkap'"
                         k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDokter" />
                 </div>
-                <!-- <div class="grid_3">
-                    <label c-label item="item">Keterangan</label>
-                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="filter.keterangan" />
-                </div> -->
                 <div class="grid_1">
                     <label c-label c-label-text=""></label>
                     <em style="margin-top:6px;" ng-click='resetFilter()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary"
                         role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
                 </div>
-            </div>
+            </div> -->
         </div>
     </c-panel>
     <div class="grid_12" style="margin: 5px 5px 5px 5px;">
@@ -82,7 +73,7 @@
 <div kendo-window="popUp" k-title="'Masukan Konsultasi'" k-width="800" k-visible="false" k-on-open="win2visible = true"
     k-on-close="win2visible = false">
     <div class="panel panel-default container_12" style="padding: 0px 10px;">
-        <fieldset>
+    <fieldset>
             <div class="grid_12">
                 <div class="grid_12">
                     <div class="grid_12">
@@ -229,8 +220,16 @@
             <p>{{item.pemeriksaandidapat}}</p>
         </fieldset>
         <fieldset style="margin-bottom: 10px">
+            <legend><strong>Diagnosis</strong></legend>
+            <p>{{item.diagnosis}}</p>
+        </fieldset>
+        <fieldset style="margin-bottom: 10px">
             <legend><strong>Hasil Konsultasi</strong></legend>
             <p>{{item.keterangankeperluan}}</p>
+        </fieldset>
+        <fieldset style="margin-bottom: 10px">
+            <legend><strong>Saran</strong></legend>
+            <p>{{item.saran}}</p>
         </fieldset>
     </div>
     <div class="k-edit-buttons  k-state-default pull-right" style="margin-top:10px">

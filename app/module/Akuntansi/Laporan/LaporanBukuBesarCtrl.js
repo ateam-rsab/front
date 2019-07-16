@@ -92,7 +92,6 @@ define(['initialize'], function(initialize) {
                 var tglAkhir = moment($scope.item.tglAkhir).format('YYYY-MM-DD');
 				manageAkuntansi.getLaporanBukuBesar("akuntansi/get-data-buku-besar-rev3?noaccount=" + $scope.item.kdAkun.noaccount + "&noaccount2=" + $scope.item.kdAkun2.noaccount + "&tglAwal=" + tglAwal + "&tglAkhir=" + tglAkhir).then(function(data){
                     // if(data.statResponse) {
-                        debugger;
                         console.log(data.data.data)
                         $scope.dataGrid = new kendo.data.DataSource({
                             data: data.data.data,
@@ -330,10 +329,10 @@ define(['initialize'], function(initialize) {
             ];
             $scope.optionsDataGrid = {
                 toolbar:["excel"],
-                excel: {
-                    fileName:"Buku Besar" ,
-                    allPages: true,
-                },
+                // excel: {
+                //     fileName:"Buku Besar" ,
+                //     allPages: true,
+                // },
                 // filterable: {
                 //     extra: false,
                 //     operators: {
@@ -352,14 +351,8 @@ define(['initialize'], function(initialize) {
 						"title": "<h3>Tanggal</h3>",
 						"width":"70px",
 		                "template": "<span class='style-center'>#: tgltrans #</span>"
-						// "template": "<span class='style-left'>{{formatTanggal('#: tglbuktitransaksi #')}}</span>"
 					},
-					// {
-					// 	// "field": "noaccount",
-					// 	"title": "<h3>No. Jurnal</h3>",
-                    //     "width":"50px",
-                    //     "template": "<span class='style-center'>-</span>"
-                    // },
+					
                     {
 						"field": "noaccount",
 						"title": "<h3>No. Perkiraan</h3>",
@@ -369,15 +362,9 @@ define(['initialize'], function(initialize) {
 					{
 						"field": "namaaccount",
 						"title": "<h3>Nama Perkiraan</h3>",
-						"width":"200px",
+						"width":"100px",
 						"template": "<span class='style-left'>#: namaaccount #</span>"
 					},
-					// {
-					// 	"field": "noref",
-					// 	"title": "<h3>No Ref</h3>",
-					// 	"width":"100px",
-					// 	"template": "<span class='style-center'>#: noref #</span>"
-					// },
 					{
 						"field": "debet",
 						"title": "<h3>Debet</h3>",
@@ -390,12 +377,6 @@ define(['initialize'], function(initialize) {
 						"width":"100px",
 						"template": "<span class='style-right'>{{formatRupiah('#: kredit #', '')}}</span>"
 					},
-					// {
-					// 	"field": "saldo",
-					// 	"title": "<h3>Saldo</h3>",
-					// 	"width":"100px",
-					// 	"template": "<span class='style-right'>{{formatRupiah('#: saldo #', '')}}</span>"
-					// }
                 ],
 
             };

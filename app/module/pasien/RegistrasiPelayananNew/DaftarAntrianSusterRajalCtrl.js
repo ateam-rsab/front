@@ -212,6 +212,7 @@ define(['initialize'], function(initialize) {
                 if(dataItem.status == 'Selesai'){
                     $scope.isVerify = true;
                 }
+                $scope.item.jeniskonsultasi = dataItem.jeniskonsultasi;
                 $scope.item.dokterPengonsul = dataItem.pengonsul;
                 $scope.item.dokterTarget = dataItem.namalengkap
                 $scope.item.keteranganKeperluan = dataItem.keterangankeperluan
@@ -228,7 +229,10 @@ define(['initialize'], function(initialize) {
 
                 $scope.item.padaPemeriksaan = dataItem.pemeriksaandidapat ? dataItem.pemeriksaandidapat : 'Belum ada Konsultasi';
                 $scope.item.keterangan = dataItem.keterangankeperluan ? dataItem.keterangankeperluan : 'Belum ada Konsultasi';
+                $scope.item.diagnosisPasien = dataItem.diagnosis ? dataItem.diagnosis : 'Belum ada Konsultasi';
+                $scope.item.saran = dataItem.saran ? dataItem.saran : 'Belum ada Konsultasi';
                 $scope.popUpHasilKonsul.center().open();
+                
             
             }
 

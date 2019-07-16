@@ -19,9 +19,6 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
             // norec Antrian Etateh
           
             $scope.dataLogin = JSON.parse(localStorage.getItem('pegawai'))
-            // if ($scope.dataLogin.jenisPegawai.jenisPegawai.toLowerCase() !== 'dokter') {
-            //     $scope.isPerawat = false;
-            // } else {
             $scope.isPerawat = true;
             // }
             // $rootScope.cekGetData = $scope.cekGetData()
@@ -84,6 +81,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                 cacheHelper.set('OdontoGramDokterCtrl', arrStr);
                 cacheHelper.set('cacheRekamMedis', arrStr);
                 cacheHelper.set('cachePlanOfCare', arrStr);
+                cacheHelper.set('cacheAsesmenGizi', arrStr);
                 $state.go(state, $state.params);
                 // console.log($scope.currentState);
 
