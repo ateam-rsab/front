@@ -633,8 +633,9 @@ define(['initialize'], function (initialize) {
         var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
         var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
         var client = new HttpClient();
+        var tipeDokter = $scope.item.TipeDokter ? $scope.item.TipeDokter.id : '';
         client.get('http://127.0.0.1:1237/printvb/kasir?cetak-laporan-ffs-ranap=1' +//$scope.item.namaKasir.id+
-          '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '~' + personKa + '&idDokter=' + dokter + '&tgllibut=' + person  + '&view='+ruanganId+'&kpid='+kelompokPasienId + '&TipeDokter=' + $scope.item.TipeDokter.id, function (response) {
+          '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '~' + personKa + '&idDokter=' + dokter + '&tgllibut=' + person  + '&view='+ruanganId+'&kpid='+kelompokPasienId + '&TipeDokter=' + tipeDokter, function (response) {
 
           });
       }
