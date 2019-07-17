@@ -227,7 +227,7 @@ define(['initialize'], function(initialize) {
                     },
                     {
                         "field": "unitKerja",
-                        "title": "Sub Unit Kerja"
+                        "title": "Unit Kerja"
                     },
                     {
                         "field": "deskripsiStatusPegawaiPlan",
@@ -400,14 +400,32 @@ define(['initialize'], function(initialize) {
                     $scope.getDataPegawai(e);
                 }
             })
+            $scope.$watch('item.namaJabatan', function(e) {
+                // debugger;
+                if (!e) return;
+                $scope.item.unitkerja = e.namaUnitKerja;
+                $scope.item.ruangan = e.namaSubunitKerja;
+                // if (e.id==$scope.loginUser.idPegawai) {
+                //     $scope.tugasLuar = false;
+                //     $scope.getDataPegawai(e);
+                // } else if (e.id!=$scope.loginUser.idPegawai && ($scope.loginUser.idJabatan == 633 || $scope.loginUser.idJabatan == 1139)) {
+                //     $scope.item.statusPegawai = _.find($scope.listStatusPegawai, function(ed) {
+                //         $scope.tugasLuar = true;
+                //         return ed.id == 28;
+                //     })
+                //     $scope.getDataPegawai(e);
+                // } else {
+                //     $scope.getDataPegawai(e);
+                // }
+            })
             $scope.getDataPegawai = function(e) {
                 $scope.isRouteLoading = true;
-                ManageSdmNew.getListData("sdm/get-data-pegawai?pegawaiId=" + e.id, true).then(function(dat) {
+                ManageSdmNew.getListData("sdm/get-data-map-pegawai?pegawaiId=" + e.id, true).then(function(dat) {
                     // debugger;
-                    $scope.item.jabatan = dat.data.data.jabatan;
+                    // $scope.item.jabatan = dat.data.data.jabatan;
                     $scope.item.nip = dat.data.data.nip;
-                    $scope.item.ruangan = dat.data.data.subUnitKerja;
-                    $scope.item.ruanganId = dat.data.data.subUnitKerjaId;
+                    // $scope.item.ruangan = dat.data.data.subUnitKerja;
+                    // $scope.item.ruanganId = dat.data.data.subUnitKerjaId;
                     $scope.item.kategoriPegawaiId = dat.data.data.kategoriPegawaiId;
                     $scope.item.Alamat = dat.data.data.alamat
                     if (!$scope.item.kategoriPegawaiId) {
@@ -416,10 +434,15 @@ define(['initialize'], function(initialize) {
                         $scope.item.jumlahIjin = "";
                         $scope.item.sisaIjin = "";
                         // $scope.item.jmlsakit = "";
-                    }
-                    /*else{
+                    }/*else{
                         $scope.getIzin(e);
                     } */
+                    $scope.listjabatan = dat.data.data.jabatan;
+                    $scope.item.namaJabatan=_.find($scope.listjabatan, function(jab) {
+                        $scope.item.unitkerja = jab.namaUnitKerja;
+                        $scope.item.ruangan = jab.namaSubunitKerja;
+                        return jab.idJabatan;
+                    });
                     $scope.isRouteLoading = false;
                 }, (err) => {
                     $scope.isRouteLoading = false;
@@ -807,65 +830,65 @@ define(['initialize'], function(initialize) {
                 return arr;
             }
 
-            var bisaCuti = false;
-            var condition2;
-            $scope.checkTanggalCuti = function () {
-                var listTanggalPermohonan = [];
-                var listTanggalPengajuan = [];
-                $scope.tanggalPermohonan.forEach(function (el) {
-                    if(el.tgl) {
-                        el.tgl.setHours(7);
-                        listTanggalPermohonan.push(DateHelper.toTimeStamp(new Date(el.tgl)));
-                    } else {
-                        el.setHours(7);
-                        listTanggalPermohonan.push(DateHelper.toTimeStamp(new Date(el)));
-                    }
-                });
-                ManageSdmNew.getListData('sdm/get-list-tanggal-permohonan?idPegawai=' + $scope.item.namaPegawai.id).then(res => {
-                    var dataPengajuan = res.data.data;
-                    for(let i = 0; i < dataPengajuan.length; i++) {
-                        dataPengajuan[i].lisTanggal.forEach(function(data) {
-                            listTanggalPengajuan.push(data.tgl);
-                        })
-                    }
+            // var bisaCuti = false;
+            // var condition2;
+            // var condition = true;
+            // $scope.checkTanggalCuti = function () {
+            //     var listTanggalPermohonan = [];
+            //     var listTanggalPengajuan = [];
+            //     $scope.tanggalPermohonan.forEach(function (el) {
+            //         if(el.tgl) {
+            //             el.tgl.setHours(7);
+            //             listTanggalPermohonan.push(DateHelper.toTimeStamp(new Date(el.tgl)));
+            //         } else {
+            //             el.setHours(7);
+            //             listTanggalPermohonan.push(DateHelper.toTimeStamp(new Date(el)));
+            //         }
+            //     });
+            //     ManageSdmNew.getListData('sdm/get-list-tanggal-permohonan?idPegawai=' + $scope.item.namaPegawai.id).then(res => {
+            //         var dataPengajuan = res.data.data;
+            //         for(let i = 0; i < dataPengajuan.length; i++) {
+            //             dataPengajuan[i].lisTanggal.forEach(function(data) {
+            //                 listTanggalPengajuan.push(data.tgl);
+            //             })
+            //         }
                     
-                    for(let i = 0; i < listTanggalPengajuan.length; i ++) {
-                        var condition = true;
-                        for(let ii = 0; ii < listTanggalPermohonan.length; ii++) {
-                            if(listTanggalPengajuan[i] === listTanggalPermohonan[ii]) {
-                                condition2 = 'no';
-                                condition = false;
-                                $scope.tanggalTidakBisaCuti = listTanggalPermohonan[ii];
-                                break;
-                            } else {
-                                condition2 = 'yes';
-                                condition = true;
-                                continue;
-                            }
+            //         for(let i = 0; i < listTanggalPengajuan.length; i ++) {
+            //             for(let ii = 0; ii < listTanggalPermohonan.length; ii++) {
+            //                 if(listTanggalPengajuan[i] === listTanggalPermohonan[ii]) {
+            //                     condition2 = 'no';
+            //                     condition = false;
+            //                     $scope.tanggalTidakBisaCuti = listTanggalPermohonan[ii];
+            //                     break;
+            //                 } else {
+            //                     condition2 = 'yes';
+            //                     condition = true;
+            //                     continue;
+            //                 }
                             
-                        }
-                        if(!condition) {
-                            condition2 = 'no';
-                            condition = false;
-                            break;
-                        } else {
-                            condition2 = 'yes';
-                            condition = true;
-                        }
-                    }
-                    bisaCuti = condition;
-                });
-            }
+            //             }
+            //             if(!condition) {
+            //                 condition2 = 'no';
+            //                 condition = false;
+            //                 break;
+            //             } else {
+            //                 condition2 = 'yes';
+            //                 condition = true;
+            //             }
+            //         }
+            //         bisaCuti = condition;
+            //     });
+            // }
 
             $scope.Save = function() {
-                $scope.checkTanggalCuti();
-                if(!bisaCuti) {
-                    $scope.checkTanggalCuti();
-                    toastr.info('Ada tanggal yang sama');
-                    return;
-                } else {
-                    $scope.checkTanggalCuti();
-                }
+                // $scope.checkTanggalCuti();
+                // if(!bisaCuti) {
+                //     $scope.checkTanggalCuti();
+                //     toastr.info('Tanggal Permohonan sudah diajukan!');
+                //     return;
+                // } else {
+                //     $scope.checkTanggalCuti();
+                // }
                 console.log('masuk sini');
                 if($scope.item.statusPegawai == undefined){
                     toastr.error('Status kehadiran harus di isi')
@@ -1007,7 +1030,10 @@ define(['initialize'], function(initialize) {
                         }
                         ManageSdmNew.saveData(dataSend, "sdm/save-pegawai-status").then(function(e) {
                             // console.log(JSON.stringify(e.data));
-
+                            if (e.data.data.bisaCuti == false) {
+                                toastr.info('Tanggal permohonan sudah diajukan!');
+                                return;
+                            }
                             $scope.loadGrid();
                             load();
                         });

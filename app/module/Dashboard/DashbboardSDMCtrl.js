@@ -2,21 +2,22 @@ define(['initialize'], function(initialize) {'use strict';
 	initialize.controller('DashbboardSDMCtrl', ['$q', '$parse', 'LoginService', 'socket', '$rootScope', '$scope', 'ModelItem', '$state', 'DateHelper','ManageSdm','ReportHelper','CetakHelper', 'FindSdm', 'CetakHelper',
 		function($q, $parse, loginService, socket, $rootScope, $scope, ModelItem, $state,  DateHelper, ManageSdm
 			, reportHelper, CetakHelper, FindSdm, cetakHelper) {
-			$scope.now = new Date();
-			$scope.isIT = true;
-			var userLogin = JSON.parse(localStorage.getItem('datauserlogin'));
-			$scope.item ={
-				from: $scope.now,
-				until: $scope.now,
-				waktu: $scope.now,
-				periode: $scope.now,
-				periodeFee: $scope.now,
-				periodeRekap: $scope.now,
-			};
-			var idPgw=0;
+		$scope.now = new Date();
+		$scope.isIT = true;
+		var userLogin = JSON.parse(localStorage.getItem('datauserlogin'));
+		$scope.item ={
+			from: $scope.now,
+			until: $scope.now,
+			waktu: $scope.now,
+			periode: $scope.now,
+			periodeFee: $scope.now,
+			periodeRekap: $scope.now,
+		};
+		var idPgw=0;
 		if(userLogin.kdUser === 'admin.it') {
 			$scope.isIT = false;
 		} else {
+			$state.go('UnderMaintenance',  { namaForm: 'Dashboard Logbook SDM dan FFS' });
 			$scope.isIT = true;
 		}
 		// $scope.item.from = $scope.now;
@@ -493,7 +494,7 @@ define(['initialize'], function(initialize) {'use strict';
 			var isValid = ModelItem.setValidation($scope, listRawRequired);
 			if(isValid.status){
 				$scope.isRouteLoading = true;
-				FindSdm.getDataLogbookKinerja(DateHelper.getFormatMonthPicker($scope.item.periode), $scope.item.pegawai.id).then(function(dat) {
+				FindSdm.getDataLogbookKinerja(DateHelper.getDateTimeFormatted3($scope.item.periode), $scope.item.pegawai.id).then(function(dat) {
 					var dataGrid = [];
 					if(!dat.data.data) {
 						$scope.isRouteLoading = false;
@@ -586,7 +587,7 @@ define(['initialize'], function(initialize) {'use strict';
 							{ field: "hargaKelas1", title: "Tarif (Rp.)", "template" : '# if( hargaKelas1 != null ) {# #= hargaKelas1# #} else {# #= harga# #} #', format: "{0:n0}", width: 100, headerAttributes: { style: "text-align: center"}, attributes: {
 								"class": "table-cell", style: "text-align: right;  "//font-size: 14px;"
 							} },
-							{ field: "Pencapaian", headerAttributes: { style: "text-align: center"}, columns: $scope.generateGridColumn() },
+							// { field: "Pencapaian", headerAttributes: { style: "text-align: center"}, columns: $scope.generateGridColumn() },
 							{ title: "Total",  headerAttributes: { style: "text-align: center"}, columns: [
 							{ field: "totalTindakan", title: "Tindakan", width: 80, 
 							headerAttributes: { style: "text-align: center"}, attributes: { style: "text-align: right;" }, aggregates: ["sum"],  
@@ -661,26 +662,31 @@ $scope.generateGridColumn =  function(){
 			var value = grid.dataSource.aggregates().pointQty.sum;
 			model.assign($scope, value.toFixed(2));
 			$(grid.tbody).on("click", "td", function (e) {
+				e.stopImmediatePropagation();
 				if (e.currentTarget.innerText === "") return; // disable show popup on empty cell date value
 				var row = $(this).closest("tr");
 				var selectedData = grid.dataItem(row);
 				// var rowIdx = $("tr", grid.tbody).index(row);
 				var colIdx = $("td", row).index(this);
-				if (colIdx >= 5){
+				// if (colIdx >= 5){
+				if (colIdx == 5){
 					// disable show popup if cell index < 5
 					var colDateIdx = colIdx - 5;
 					var colName = $("#" + gridId + ' tr').eq(1).find('th').eq(colDateIdx).text();
 
-					if(colName.length === 1){
-						colName = "0" + colName;
-					}
-					if (colName.length <= 2){
+					// if(colName.length === 1){
+					// 	colName = "0" + colName;
+					// }
+					// if (colName.length <= 2){
+					if (colName == "Tindakan"){
 						// show detail on date cell click only
 						if(gridId === "gridOrder"){
-							var akhir = DateHelper.getFormatMonthPicker($scope.item.periode) + "-" + colName;
+							// var akhir = DateHelper.getFormatMonthPicker($scope.item.periode) + "-" + colName;
+							var akhir = DateHelper.getDateTimeFormatted3($scope.item.periode);
 							var ffs = false;
 						} else if (gridId === "gridOrderService"){
-							var akhir = DateHelper.getFormatMonthPicker($scope.item.periodeFee) + "-" + colName;
+							// var akhir = DateHelper.getFormatMonthPicker($scope.item.periodeFee) + "-" + colName;
+							var akhir = DateHelper.getDateTimeFormatted3($scope.item.periodeFee);
 							var ffs = true;
 						}
 						
@@ -777,11 +783,11 @@ $scope.generateGridColumn =  function(){
 		$scope.cetakLogBookKinerja = function(){
 			var listRawRequired = [
 			"item.pegawai|k-ng-model|Nama pegawai",
-			"item.periode|k-ng-model|Periode"
+			"item.periodeCetak|k-ng-model|Periode"
 			]
 			var isValid = ModelItem.setValidation($scope, listRawRequired);
 			if(isValid.status){
-				var fixUrlLaporan = cetakHelper.openURLReporting("reporting/lapLogbookKinerjaStaffMedis?idDokter="+$scope.item.pegawai.id+"&periode=" + DateHelper.getFormatMonthPicker($scope.item.periode));
+				var fixUrlLaporan = cetakHelper.openURLReporting("reporting/lapLogbookKinerjaStaffMedis?idDokter="+$scope.item.pegawai.id+"&periode=" + DateHelper.getFormatMonthPicker($scope.item.periodeCetak));
 				window.open(fixUrlLaporan, '', 'width=800,height=600')
 			} else {
 				ModelItem.showMessages(isValid.messages);

@@ -47,13 +47,24 @@
 					<div class="grid_3">
 						<label c-label item="item" style="margin-top: 10px">Jabatan</label>
 					</div>
-					<div class="grid_9">
+					<!-- <div class="grid_9">
 						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jabatan" disabled="true" />
+					</div> -->
+					<div class="grid_9">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaJabatan" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="true" k-data-source="listjabatan"/>
 					</div>
 				</div>
+				<!-- <div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Unit Kerja</label>
+					</div>
+					<div class="grid_9">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.unitkerja" disabled="true" />
+					</div>
+				</div> -->
 				<div class="grid_12">
 					<div class="grid_3">
-						<label c-label item="item" style="margin-top: 10px">Sub Unit Kerja</label>
+						<label c-label item="item" style="margin-top: 10px">Unit Kerja</label>
 					</div>
 					<div class="grid_9">
 						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.ruangan" disabled="true" />
