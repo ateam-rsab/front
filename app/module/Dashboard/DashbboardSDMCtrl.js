@@ -17,7 +17,7 @@ define(['initialize'], function(initialize) {'use strict';
 		if(userLogin.kdUser === 'admin.it') {
 			$scope.isIT = false;
 		} else {
-			$state.go('UnderMaintenance',  { namaForm: 'Dashboard Logbook SDM dan FFS' });
+			// $state.go('UnderMaintenance',  { namaForm: 'Dashboard Logbook SDM dan FFS' });
 			$scope.isIT = true;
 		}
 		// $scope.item.from = $scope.now;
