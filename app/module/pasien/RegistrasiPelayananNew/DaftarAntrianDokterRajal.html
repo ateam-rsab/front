@@ -262,20 +262,14 @@
                 <textarea class="k-textbox" style="height: 76px; width: 100%; resize: none;" ng-model="item.periksaDidapatkan" ng-disabled="isVerify"></textarea>
             </div>
         </div>
+        <label c-label item="item" c-label-text=Diagnosa></label>
+        <textarea class="k-textbox" style="height: 76px; width: 100%; resize: none;" ng-model="item.diagnosa" ng-disabled="isVerify"></textarea>
+
         <label c-label item="item" c-label-text=Keterangan></label>
         <textarea class="k-textbox" style="height: 76px; width: 100%; resize: none;" ng-model="item.kesan" ng-disabled="isVerify"></textarea>
-        <!-- <textarea ng-disabled="isVerify" ng-model="item.kesan" style="width: 99%; height: 80px;"></textarea> -->
 
-        <fieldset class="no-border">
-            <legend>
-                <i>Saran</i>
-            </legend>
-            <ul>
-                <li>1. Bila saran konsultasi disetujui DPJP, harap pindahkan kedalam formulir catatan perkembangan terintegrasi oleh DPJP</li>
-                <li>2. Bila rawat bersama, maka hasil saran ditulis juga kedalam formulir catatan perkembangan oleh konsulen</li>
-            </ul>
-        </fieldset>
-        
+        <label c-label item="item" c-label-text=Saran></label>
+        <textarea class="k-textbox" style="height: 76px; width: 100%; resize: none;" ng-model="item.saran" ng-disabled="isVerify"></textarea>
         <div class="grid_12">
             <div class="k-edit-buttons  k-state-default pull-right" style="margin-top:10px">
                 <button class="k-button k-button-icontext" ng-click="tutup(1)"><span class="k-icon k-cancel"></span>Tutup</button>

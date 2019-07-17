@@ -328,6 +328,10 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                     toastr.error('Alamat belum di isi', 'Error')
                     return
                 }
+                if ($scope.item.pendidikan == undefined) {
+                    toastr.error('Pendidikan belum di isi', 'Error')
+                    return
+                }
 
                 var postJson = {
                     'isbayi': $scope.isBayi,
