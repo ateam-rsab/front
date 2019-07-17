@@ -7,6 +7,8 @@ define(['initialize'], function (initialize) {
 			$scope.txtSimpan = 'Simpan';
 			$scope.isDietKhusus = false;
 			$scope.isDewasa = true;
+			$scope.dataUmur = [];
+			// $scope.item.umurPasien = [];
 			$scope.showInput = false;
 			$scope.item = {};
 			// $scope.item.number = ["1", "2", "3", "4", "5"]
@@ -22,11 +24,11 @@ define(['initialize'], function (initialize) {
 			]
 
 			$scope.isAnak = function () {
-				if ($scope.item.selectedJenisPasien.name === "Dewasa") {
-					$scope.isDewasa = true;
-				} else {
-					$scope.isDewasa = false;
-				}
+				// if ($scope.item.selectedJenisPasien.name === "Dewasa") {
+				// 	$scope.isDewasa = true;
+				// } else {
+				// 	$scope.isDewasa = false;
+				// }
 			}
 
 			$scope.yesOrNo = [
@@ -121,7 +123,29 @@ define(['initialize'], function (initialize) {
 
 			let initPage = function () {
 				$scope.item = {};
+				let dataUmur = [];
 				$scope.cache = cacheHelper.get('cacheAsesmenGizi');
+				let umur = $scope.cache[4];
+				$scope.item.umurPasien = umur.split(' ')
+				$scope.item.umurPasien.forEach(function (el) {
+					let temp = '';
+					if(el !== '') {
+						temp = el.replace(/\D/g,'');
+						$scope.dataUmur.push(temp);
+					}					
+				})
+				if(parseInt($scope.dataUmur[0]) > 16 && parseInt($scope.dataUmur[0]) > 12 && parseInt($scope.dataUmur[0]) > 29) {
+					$scope.isDewasa = true;
+				} else {
+					$scope.isDewasa = false;
+				}
+
+				// console.log(dataUmur);
+				$scope.item.umur = $scope.dataUmur[0];
+				$scope.item.bulan = $scope.dataUmur[1];
+				// $('#iptTahun').val(dataUmur[0]);
+				// $('#iptBulan').val(dataUmur[1]);
+				console.log($scope.item.umur);
 				$scope.item.noRegistrasi = $scope.cache[0];
 				$scope.optGridAsesmenGizi = {
 					toolbar: [{
@@ -170,6 +194,8 @@ define(['initialize'], function (initialize) {
 				$scope.showInput = true;
 				$scope.txtSimpan = 'Simpan';
 				$scope.item = {};
+				$scope.item.umur = $scope.dataUmur[0];
+				$scope.item.bulan = $scope.dataUmur[1];
 				$timeout(function () {
 					window.scrollBy({
 						top: 1000,
@@ -276,8 +302,9 @@ define(['initialize'], function (initialize) {
 					"intervensi_gizi": $scope.item.intervensiGizi,
 					"monitoring": $scope.item.monitoring,
 					"monitoring_ket": $scope.item.ketMonitoring,
+					"jenis_pasien": $scope.isDewasa ? 'Dewasa' : 'Anak'
 				}
-				debugger;
+				// debugger;
 				console.log(dataSave);
 				ManagePhp.postData(dataSave, `rekam-medis/post-asesmen-gizi-awal/save`).then(function (res) {
 					initPage();

@@ -58,23 +58,6 @@
                         </div>
                     </fieldset>
                 </div>
-                <div class="grid_6">
-                    <fieldset class="noborder">
-                        <legend>
-                            <strong>Jenis Pasien</strong>
-                        </legend>
-                        <div class="grid_8">
-                            <input kendo-combo-box
-                                k-ng-model="item.selectedJenisPasien" 
-                                k-data-text-field="'name'" 
-                                k-data-value-field="'id'" 
-                                k-filter="'contains'" 
-                                k-auto-bind="false" 
-                                k-data-source="listJenisPasien" 
-                                k-on-change="isAnak()"/>
-                        </div>
-                    </fieldset>
-                </div>
                 <!-- <div class="grid_6">
                 <fieldset class="noborder">
                     <legend>
@@ -244,14 +227,14 @@
                         </label>
                     </div>
                     <div class="grid_1">
-                        <input c-text-box class="k-textbox"  
+                        <input c-text-box class="k-textbox" id="iptTahun" disabled
                             ng-model="item.umur" />
                     </div>
                     <div class="grid_1" style="margin-top: 10px">
                         <label>tahun</label>
                     </div>
                     <div class="grid_1">
-                        <input c-text-box class="k-textbox"  
+                        <input c-text-box class="k-textbox" id="iptBulan" disabled
                             ng-model="item.bulan" />
                     </div>
                     <div class="grid_1" style="margin-top: 10px">
