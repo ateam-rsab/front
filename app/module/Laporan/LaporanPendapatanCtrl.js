@@ -662,7 +662,7 @@ define(['initialize'], function (initialize) {
         var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
         var client = new HttpClient();
         client.get('http://127.0.0.1:1237/printvb/kasir?cetak-rekap-ffs-ranap=1' +//$scope.item.namaKasir.id+
-          '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '~' + personKa + '&idDokter=' + dokter + '&tgllibut=' + person + '&view='+ruanganId+'&kpid='+kelompokPasienId, function (response) {
+          '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '~' + personKa + '&idDokter=' + dokter + '&tgllibut=' + person + '&view='+ruanganId+'&kpid='+kelompokPasienId + '&TipeDokter=' + $scope.item.TipeDokter.id, function (response) {
 
           });
       }
