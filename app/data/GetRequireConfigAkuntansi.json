@@ -1811,6 +1811,10 @@
       "urlDep": "module/RekamMedis/CPPTCtrl"    
     },
     {
+      "nameDep": "AsesmenGiziAwalCtrl",
+      "urlDep": "module/RekamMedis/AsesmenGiziAwalCtrl"
+    },
+    {
       "nameDep": "PlanOfCareCtrl",
       "urlDep": "module/RekamMedis/PlanOfCareCtrl"
     },
