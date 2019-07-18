@@ -220,8 +220,8 @@ define(['initialize'], function (initialize) {
 					$scope.showGiziLanjutan = true;
 				} else {
 					$scope.showGiziLanjutan = false;
-					$scope.item.umur = ''
-					$scope.item.bulan = ''
+					// $scope.item.umur = ''
+					// $scope.item.bulan = ''
 					$scope.item.statusGizi = ''
 					$scope.item.beratBadan = ''
 					$scope.item.tbU = ''
@@ -231,6 +231,8 @@ define(['initialize'], function (initialize) {
 					$scope.item.klinisFisik = ''
 					$scope.item.riwayatDiet = ''
 					$scope.item.riwayatPersonal = ''
+					$scope.item.lila = ''
+					$scope.item.lilau = ''
 				}
 			}
 
@@ -302,6 +304,8 @@ define(['initialize'], function (initialize) {
 					"intervensi_gizi": $scope.item.intervensiGizi,
 					"monitoring": $scope.item.monitoring,
 					"monitoring_ket": $scope.item.ketMonitoring,
+					"lila":$scope.item.lila, 
+					"lila_u":$scope.item.lilau, 
 					"jenis_pasien": $scope.isDewasa ? 'Dewasa' : 'Anak'
 				}
 				// debugger;
@@ -340,6 +344,9 @@ define(['initialize'], function (initialize) {
 				$scope.item.tindakLanjut = dataItem.tindak_lanjut;
 				$scope.item.monitoring = dataItem.monitoring;
 				$scope.item.diagnosaMedis = dataItem.diagnosa;
+				$scope.item.lila = dataItem.lila;
+				$scope.item.lila = dataItem.lila;
+				$scope.item.lilau = dataItem.lila_u;
 				if ($scope.item.tindakLanjut === "Perlu Asuhan Gizi (Lanjutkan ke Asesmen Gizi)") {
 					$scope.showGiziLanjutan = true;
 				} else {
