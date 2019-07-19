@@ -72,6 +72,7 @@ define(['initialize'], function (initialize) {
                 //     name: "create", text: "Tambah",
                 //     template: '<button ng-click="showInput()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah</button>'
                 // },],
+                sort: { field: "tglresume", dir: "asc" },
                 selectable: "row",
                 pageable: true,
                 scrollable: true,
@@ -302,7 +303,7 @@ define(['initialize'], function (initialize) {
                     ManagePhp.getData("rekam-medis/get-resume-medis-inap/" + $scope.nocm)
                 ]).then(function (res) {
                     if (res[0].statResponse) {
-                        var result = res[0].data.data;
+                        var result = res[0].data.data.reverse();
                         if (result.length > 0) {
                             for (var index = 0; index < result.length; index++) {
                                 result[index].no = index + 1

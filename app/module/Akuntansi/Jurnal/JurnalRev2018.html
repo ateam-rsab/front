@@ -24,7 +24,7 @@
         <div class="grid_12">
             
         <div class="grid_12 headerBox">
-            <h1 style="color: white;"><b>Jurnal</b></h1>
+            <h1 style="color: white;"><b>Jurnal Umum</b></h1>
         </div>
         <div class="grid_12">
             <div class="grid_4">
@@ -96,34 +96,7 @@
                 
             </div>
             <div class="grid_12">
-                    <!-- <div class="grid_12 headerBox">
-                        <p>Produk</p>
-                    </div> -->
-                    <!-- grid table -->
                      <div class="grid_12 borderBox">
-                        <!-- <div id="kGrid" 
-                        kendo-grid k-data-source="dataGrid" 
-                        class="max-height"
-                        k-selectable="'row'" 
-                        k-columns="columnGrid" 
-                        k-pageable="'false'" 
-                        k-sortable="'true'" 
-                        k-ng-model="dataSelected"
-                        ng-click="klikGrid(dataSelected)"> -->
-                            <!-- <div k-detail-template>
-                                <kendo-tabstrip>
-                                    <div>
-                                        <div id="kGridDetail" kendo-grid k-options="data2(dataItem)" 
-                                            k-sortable="'true'" 
-                                            k-selectable="'row'" 
-                                            k-ng-model="dataSelected2"
-                                            ng-click="klikDetail(dataSelected2)">
-                                        </div>
-                                    </div>
-                                </kendo-tabstrip>
-                            </div> -->
-                        <!-- </div> -->
-                    <!-- </div> -->
                     <kendo-grid
                          k-data-source="dataGrid" 
                          k-selectable="'row'" 
@@ -162,7 +135,7 @@
                     </div>
                 </div>
             </div>
-            <div class="grid_12">
+            <!-- <div class="grid_12">
                 <div class="grid_1">
                     <button class="c-button" ng-click="DetailJurnal()">Detail Jurnal</button>
                 </div>
@@ -187,9 +160,9 @@
                 <div class="grid_1">
                     <button class="c-button" ng-click="deleteJurnal()">Hapus</button>
                 </div>
-            </div>
+            </div> -->
             <div class="grid_12">
-                    {{item.notif}}
+                {{item.notif}}
              </div>
             <!-- <div class="grid_12">
                 <div class="grid_1">
@@ -335,17 +308,7 @@
                 </div>
                     
             </div>
-            <div class="grid_12 "> 
-              <!--  <div kendo-grid
-                 k-data-source="dataPopUp" 
-                 k-selectable="'row'" 
-                 options="columnGrid"
-                 k-columns="columnPopUp" 
-                 k-pageable="'true'"
-                 k-sortable="'true'" 
-                 k-ng-model="dataSelectedPopUp"
-                 ng-click="klikPopUp(dataSelectedPopUp)">
-                 </div> -->
+            <div class="grid_12 ">
                 <kendo-grid
                  k-data-source="dataPopUp" 
                  k-selectable="'row'" 
