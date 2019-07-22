@@ -136,12 +136,7 @@ define(['initialize'], function(initialize) {
 					pegawaiLogin = result.data.data;
 				}).then(function(){
 					var grid = $("#gridPerubahanStatus").data("kendoGrid"), filteredData;
-<<<<<<<<< Temporary merge branch 1
-
-					if (pegawaiLogin.idSubUnitKerja === 26 || pegawaiLogin.idJabatanInternal === 633){
-=========
 					if (pegawaiLogin.idSubUnitKerja === 26 || pegawaiLogin.idJabatanInternal === 633 || pegawaiLogin.idJabatanInternal === 1139){
->>>>>>>>> Temporary merge branch 2
 						$scope.isLoginKesja = true; // login bukan sdm, button verif & unverif disable
 
 						ManageSdmNew.getListData("sdm/get-list-approval-status-paging?idPegawai=" + "&take=" + $scope.rows + "&page=" + $scope.page + "&nama=" + $scope.namaPegawai + "&jenisPermohonan=" + $scope.jenisPermohonan + "&statusPermohonan=" + $scope.statusPermohonan).then(function(e){ 
