@@ -17,7 +17,7 @@ define(['initialize'], function(initialize) {'use strict';
 		if(userLogin.kdUser === 'admin.it') {
 			$scope.isIT = false;
 		} else {
-			$state.go('UnderMaintenance',  { namaForm: 'Dashboard Logbook SDM dan FFS' });
+			// $state.go('UnderMaintenance',  { namaForm: 'Dashboard Logbook SDM dan FFS' });
 			$scope.isIT = true;
 		}
 		// $scope.item.from = $scope.now;
@@ -811,11 +811,11 @@ $scope.generateGridColumn =  function(){
 		$scope.cetakDaftarLogBookKinerjaFFS = function(){
 			var listRawRequired = [
 			"item.pegawai|k-ng-model|Nama pegawai",
-			"item.periodeFee|k-ng-model|Periode"
+			"item.periodeCetakFee|k-ng-model|Periode"
 			]
 			var isValid = ModelItem.setValidation($scope, listRawRequired);
 			if(isValid.status){ 
-				var fixUrlLaporan = cetakHelper.openURLReporting("reporting/lapLogbookPegawaiVer2?idPegawai="+$scope.item.pegawai.id+"&periode=" + DateHelper.getFormatMonthPicker($scope.item.periodeFee) + "&isFFS=true");
+				var fixUrlLaporan = cetakHelper.openURLReporting("reporting/lapLogbookPegawaiVer2?idPegawai="+$scope.item.pegawai.id+"&periode=" + DateHelper.getFormatMonthPicker($scope.item.periodeCetakFee) + "&isFFS=true");
 				window.open(fixUrlLaporan, '', 'width=800,height=600')
 			} else {
 				ModelItem.showMessages(isValid.messages);
@@ -853,11 +853,11 @@ $scope.generateGridColumn =  function(){
 		$scope.cetakDaftarLogBookKinerjaRekapWithPasienFFs = function(){
 			var listRawRequired = [
 			"item.pegawai|k-ng-model|Nama pegawai",
-			"item.periodeFee|k-ng-model|Periode"
+			"item.periodeCetakFee|k-ng-model|Periode"
 			]
 			var isValid = ModelItem.setValidation($scope, listRawRequired);
 			if(isValid.status){ 
-				var fixUrlLaporan = cetakHelper.openURLReporting("reporting/logbookTindakanDokterDetailPasien?periode=" + DateHelper.getFormatMonthPicker($scope.item.periodeFee) +"&idPegawai="+$scope.item.pegawai.id+"&ffs=true" );
+				var fixUrlLaporan = cetakHelper.openURLReporting("reporting/logbookTindakanDokterDetailPasien?periode=" + DateHelper.getFormatMonthPicker($scope.item.periodeCetakFee) +"&idPegawai="+$scope.item.pegawai.id+"&ffs=true" );
 				window.open(fixUrlLaporan, '', 'width=800,height=600')
 			} else {
 				ModelItem.showMessages(isValid.messages);
@@ -872,7 +872,8 @@ $scope.generateGridColumn =  function(){
 			var isValid = ModelItem.setValidation($scope, listRawRequired);
 			if(isValid.status){
 				$scope.isRouteLoading = true;
-				FindSdm.getFeeForServiceDokter(DateHelper.getFormatMonthPicker($scope.item.periodeFee), $scope.item.pegawai.id).then(function(dat) {
+				// FindSdm.getFeeForServiceDokter(DateHelper.getFormatMonthPicker($scope.item.periodeFee), $scope.item.pegawai.id).then(function(dat) {
+				FindSdm.getFeeForServiceDokter(DateHelper.getDateTimeFormatted3($scope.item.periodeFee), $scope.item.pegawai.id).then(function(dat) {
 					var dataGrid = [];
 					if(!dat.data.data) {
 						$scope.isRouteLoading = false;
@@ -964,7 +965,7 @@ $scope.generateGridColumn =  function(){
 							{ field: "hargaKelas1", title: "Tarif (Rp.)", "template" : '# if( hargaKelas1 != null ) {# #= hargaKelas1# #} else {# #= harga# #} #', format: "{0:n0}", width: 100, headerAttributes: { style: "text-align: center"}, attributes: {
 								"class": "table-cell", style: "text-align: right;  "//font-size: 14px;"
 							} },
-							{ field: "Pencapaian", headerAttributes: { style: "text-align: center"}, columns: $scope.generateKolomFeeService() },
+							// { field: "Pencapaian", headerAttributes: { style: "text-align: center"}, columns: $scope.generateKolomFeeService() },
 							{ title: "Total",  headerAttributes: { style: "text-align: center"}, columns: [
 							{ field: "totalTindakan", title: "Tindakan", width: 80,
 							headerAttributes: { style: "text-align: center"}, aggregates: ["sum"], attributes: { style: "text-align: right;" },
