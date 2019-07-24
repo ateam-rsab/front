@@ -1468,6 +1468,7 @@ define(['initialize'], function(initialize) {
     //                 return;
 				// }
 				
+				$scope.isRouteLoading=true;
 				if ($scope.item.statusVerif == true) {
 					window.messageContainer.error("Data Sudah Diclosing, Hubungi Tatarekening!!!!");
                     return;
