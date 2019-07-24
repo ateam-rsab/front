@@ -90,6 +90,7 @@ define(['initialize'], function(initialize) {
                 }
 				var tglAwal = moment($scope.item.tglAwal).format('YYYY-MM-DD');
                 var tglAkhir = moment($scope.item.tglAkhir).format('YYYY-MM-DD');
+                
 				manageAkuntansi.getLaporanBukuBesar("akuntansi/get-data-buku-besar-rev3?noaccount=" + $scope.item.kdAkun.noaccount + "&noaccount2=" + $scope.item.kdAkun2.noaccount + "&tglAwal=" + tglAwal + "&tglAkhir=" + tglAkhir).then(function(data){
                     // if(data.statResponse) {
                         console.log(data.data.data)
@@ -315,11 +316,17 @@ define(['initialize'], function(initialize) {
                     "width" : "130px",
                     "template": "<span class='style-right'>{{formatRupiah('#: hargasatuand #', '')}}</span>"
                 },
+                // {
+                //     "field": "hargasatuank",
+                //     "title": "Saldo Kredit",
+                //     "width" : "100px",
+                //     "template": "<span class='style-right'>{{formatRupiah('#: hargasatuank #', '')}}</span>"
+                // },
                 {
-                    "field": "hargasatuank",
-                    "title": "Saldo Kredit",
-                    "width" : "100px",
-                    "template": "<span class='style-right'>{{formatRupiah('#: hargasatuank #', '')}}</span>"
+                    "field": "noref",
+                    "title": "<h3>No. Ref</h3>",
+                    "width":"100px",
+                    "template": "<span class='style-center'>#: noref ? noref: '' #</span>"
                 },
                 {
                     "field": "statusenabled",
@@ -352,7 +359,12 @@ define(['initialize'], function(initialize) {
 						"width":"70px",
 		                "template": "<span class='style-center'>#: tgltrans #</span>"
 					},
-					
+					{
+                        // "field": "noref",
+                        "title": "<h3>No. Ref</h3>",
+                        "width":"100px",
+                        "template": "<span class='style-center'>-</span>"
+                    },
                     {
 						"field": "noaccount",
 						"title": "<h3>No. Perkiraan</h3>",
@@ -370,7 +382,7 @@ define(['initialize'], function(initialize) {
 						"title": "<h3>Debet</h3>",
 						"width":"100px",
 						"template": "<span class='style-right'>{{formatRupiah('#: debet #', '')}}</span>"
-					},
+                    },
 					{
 						"field": "kredit",
 						"title": "<h3>Kredit</h3>",

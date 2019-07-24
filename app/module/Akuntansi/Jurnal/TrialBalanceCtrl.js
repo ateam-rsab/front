@@ -116,7 +116,8 @@ define(['initialize'], function (initialize) {
                 // var tglAwal = moment($scope.item.tglAwal).format('YYYY-MM-DD HH:mm:ss');
                 // var tglAkhir = moment($scope.item.tglAkhir).format('YYYY-MM-DD HH:mm:ss');
                 //manageAkuntansi.getDataTableTransaksi("akuntansi/get-data-trial-balance?"+
-                manageAkuntansi.getDataTableTransaksi("akuntansi/get-data-trial-balance-rev-2?" +
+                // service/transaksi/akuntansi/get-data-trial-balance-rev-1?bulan=05&tahun=2019
+                manageAkuntansi.getDataTableTransaksi("akuntansi/get-data-trial-balance-rev-1?" +
                     //"tglAwal=" + tglAwal1 + 
                     //"&tglAkhir=" + tglAkhir1 
                     "bulan=" + bulan +
@@ -130,18 +131,18 @@ define(['initialize'], function (initialize) {
                         var mutasiKredit = 0
                         var saldoAkhirDebet = 0
                         var saldoAkhirKredit = 0
-                        for (var i = 0; i < dat.data.length; i++) {
-                            dat.data[i].no = i + 1
+                        for (var i = 0; i < dat.data.data.length; i++) {
+                            // dat.data[i].no = i + 1
                             // dat.data[i].debetAwal =  parseFloat(dat.data[i].debetAwal)
                             // dat.data[i].kreditAwal =  parseFloat(dat.data[i].kreditAwal)
                             // dat.data[i].debetMutasi =  parseFloat(dat.data[i].debetMutasi)
                             // dat.data[i].kreditMutasi =  parseFloat(dat.data[i].kreditMutasi)
-                            dat.data[i].debet = parseFloat(dat.data[i].debet)
-                            dat.data[i].kredit = parseFloat(dat.data[i].kredit)
+                            dat.data.data[i].debet = parseFloat(dat.data.data[i].debet)
+                            dat.data.data[i].kredit = parseFloat(dat.data.data[i].kredit)
                             // sDebetAkhir=parseFloat(dat.data[i].debetAwal) + parseFloat(dat.data[i].debetMutasi)
                             // sKreditAkhir=parseFloat(dat.data[i].kreditAwal) + parseFloat(dat.data[i].kreditMutasi)
-                            sDebetAkhir = parseFloat(dat.data[i].debet)
-                            sKreditAkhir = parseFloat(dat.data[i].kredit)
+                            sDebetAkhir = parseFloat(dat.data.data[i].debet)
+                            sKreditAkhir = parseFloat(dat.data.data[i].kredit)
                             // if (sDebetAkhir > sKreditAkhir) {
                             //     dat.data[i].debetAkhir = sDebetAkhir - sKreditAkhir
                             //     dat.data[i].kreditAkhir = 0
@@ -150,14 +151,14 @@ define(['initialize'], function (initialize) {
                             //     dat.data[i].kreditAkhir = sKreditAkhir - sDebetAkhir 
                             // }
 
-                            // saldoAwalDebet = saldoAwalDebet + parseFloat(dat.data[i].debetAwal) 
-                            // saldoAwalKredit = saldoAwalKredit + parseFloat(dat.data[i].kreditAwal) 
+                            saldoAwalDebet = saldoAwalDebet + parseFloat(dat.data.data[i].debet) 
+                            saldoAwalKredit = saldoAwalKredit + parseFloat(dat.data.data[i].kredit) 
                             // mutasiDebet = mutasiDebet + parseFloat(dat.data[i].debetMutasi) 
                             // mutasiKredit = mutasiKredit + parseFloat(dat.data[i].kreditMutasi) 
                             // saldoAkhirDebet = saldoAkhirDebet + parseFloat(dat.data[i].debetAkhir) 
                             // saldoAkhirKredit = saldoAkhirKredit + parseFloat(dat.data[i].kreditAkhir) 
-                            mutasiDebet = mutasiDebet + parseFloat(dat.data[i].debet)
-                            mutasiKredit = mutasiKredit + parseFloat(dat.data[i].kredit)
+                            mutasiDebet = mutasiDebet + parseFloat(dat.data.data[i].debet)
+                            mutasiKredit = mutasiKredit + parseFloat(dat.data.data[i].kredit)
                         }
                         dataCOA = dat.data.data
                         $scope.dataGrid = new kendo.data.DataSource({
@@ -169,8 +170,8 @@ define(['initialize'], function (initialize) {
 
                         // $scope.dataGrid = dat.data;
                         // pegawaiUser = dat.data.datalogin
-                        // $scope.item.saldoAwalDebet = parseFloat(saldoAwalDebet).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")
-                        // $scope.item.saldoAwalKredit = parseFloat(saldoAwalKredit).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")
+                        $scope.item.saldoAwalDebet = parseFloat(saldoAwalDebet).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")
+                        $scope.item.saldoAwalKredit = parseFloat(saldoAwalKredit).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")
 
                         // $scope.item.mutasiDebet = parseFloat(mutasiDebet).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")
                         // $scope.item.mutasiKredit = parseFloat(mutasiKredit).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")
@@ -364,17 +365,17 @@ define(['initialize'], function (initialize) {
                 columns: [
                     {
                         "field": "no",
-                        "title": "No",
-                        "width": "50px",
+                        "title": "<h3>No</h3>",
+                        "width": "70px",
                     },
                     {
                         "field": "noaccount",
-                        "title": "No Akun",
+                        "title": "<h3>No Akun</h3>",
                         "width": "140px"
                     },
                     {
                         "field": "namaaccount",
-                        "title": "Nama Akun",
+                        "title": "<h3>Nama Akun</h3>",
                         "width": "250px"
                     },
                     // {
@@ -394,7 +395,7 @@ define(['initialize'], function (initialize) {
                     //     ]
                     // },
                     {
-                        "title": "Mutasi",
+                        "title": "<h3>Mutasi</h3>",
                         "width": "250px",
                         // "attributes": {
                         //     "style": "text-align:center;valign=middle"
@@ -402,12 +403,12 @@ define(['initialize'], function (initialize) {
                         "columns": [
                             {
                                 "field": "debet",
-                                "title": "Debet",
+                                "title": "<h3>Debet</h3>",
                                 "template": "<span class='style-right'>{{formatRupiah('#: debet #', '')}}</span>"
                             },
                             {
                                 "field": "kredit",
-                                "title": "Kredit",
+                                "title": "<h3>Kredit</h3>",
                                 "template": "<span class='style-right'>{{formatRupiah('#: kredit #', '')}}</span>"
                             }
                         ]

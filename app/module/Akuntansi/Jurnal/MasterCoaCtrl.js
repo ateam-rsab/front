@@ -405,20 +405,20 @@ define(['initialize'], function (initialize) {
                                 click: confirmHapusData,
                                 imageClass: "k-i-arrow-60-right"
                             },
-                            {
-                                name: 'VerifikasiDokter',
-                                text: "Riwayat Saldo",
-                                width: "40px",
-                                align: "center",
-                                attributes: {
-                                    align: "center"
-                                },
-                                click: showRiwayatSaldo,
-                                imageClass: "k-i-arrow-60-right"
-                            }
+                            // {
+                            //     name: 'VerifikasiDokter',
+                            //     text: "Riwayat Saldo",
+                            //     width: "40px",
+                            //     align: "center",
+                            //     attributes: {
+                            //         align: "center"
+                            //     },
+                            //     click: showRiwayatSaldo,
+                            //     imageClass: "k-i-arrow-60-right"
+                            // }
                         ],
                         title: "",
-                        width: "20%",
+                        width: "10%",
                         attributes: {
                             style: "text-align:center;valign=middle"
                         },

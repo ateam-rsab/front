@@ -48,16 +48,12 @@
                 "link": "#/UbahPassword"
             },
             {
-                "name": "Kode Perkiraan",
+                "name": "Master Nomor Perkiraan",
                 "link": "#/MasterCoa"
             },
             {
                 "name": "Master Mapping Nomor Perkiraan"
-            },
-            {
-                "name": "Master Nomor Perkiraan"
-            }
-            
+            }            
         ]
     }
 ]
