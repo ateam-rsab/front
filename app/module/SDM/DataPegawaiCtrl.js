@@ -460,8 +460,21 @@ define(['initialize'], function(initialize) {
             $scope.isRouteLoading = false;
         });
     }
+
+    $scope.selectOptions = {
+        placeholder: "Select kategori pegawai",
+        dataTextField: "kategoryPegawai",
+        dataValueField: "is",
+        valuePrimitive: true,
+        autoBind: false,
+    }
             // item.namaPegawai
     $scope.searchDataPegawai = function() {
+        let arrIdKategoriPegawai = [];
+        $scope.selectedStatusPegawai.forEach(function(el) {
+            arrIdKategoriPegawai.push(el.id);
+        })  
+        console.log(arrIdKategoriPegawai)
         var tgl = new Date($scope.item.tglMasuk);
         var tahunMasuk = tgl.getFullYear();
         var bulanMasuk = tgl.getMonth() + 1;
@@ -469,7 +482,8 @@ define(['initialize'], function(initialize) {
         console.log(bulanMasuk);
         $scope.isRouteLoading = true;
         var usergemes='';
-        ManageSdmNew.getListData(`pegawai/search-pegawai?nama=${$scope.item.namaPegawai ? $scope.item.namaPegawai : ''}&idUnitKerja=${$scope.item.unitKerja ? $scope.item.unitKerja.id : ''}&idKedudukan=${$scope.item.kedudukanPegawai ? $scope.item.kedudukanPegawai.id : ''}&idStatusPegawai=${$scope.item.selectedStatusPegawai ? $scope.item.selectedStatusPegawai.id: '' }&listIdStatusPegawai=${$scope.item.selectedJenisKategoriPegawai ? $scope.item.selectedJenisKategoriPegawai.value:'' }&periode=${$scope.item.tglMasuk ? tglMasuk: '' }`, true).then(res => {
+        // &listIdStatusPegawai=${$scope.item.selectedJenisKategoriPegawai ? $scope.item.selectedJenisKategoriPegawai.value:'' }
+        ManageSdmNew.getListData(`pegawai/search-pegawai?nama=${$scope.item.namaPegawai ? $scope.item.namaPegawai : ''}&idUnitKerja=${$scope.item.unitKerja ? $scope.item.unitKerja.id : ''}&idKedudukan=${$scope.item.kedudukanPegawai ? $scope.item.kedudukanPegawai.id : ''}&listStatusPegawaiId=${arrIdKategoriPegawai ? arrIdKategoriPegawai: '' }&periode=${$scope.item.tglMasuk ? tglMasuk: '' }`, true).then(res => {
             if(res.data.data.dataFound) {
                 for (var x = 0; x < res.data.data.pegawai.length; x++) {
                     var element = res.data.data.pegawai[x];

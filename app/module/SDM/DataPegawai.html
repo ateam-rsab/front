@@ -19,12 +19,13 @@
             </div>
             <div class="grid_2">
                 <label c-label item="item">Kategori Pegawai</label>
-                <input kendo-combo-box k-ng-model="item.selectedStatusPegawai" k-data-text-field="'kategoryPegawai'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListStatusPegawai" k-on-change="searchDataPegawai()"/>
+                <select kendo-multi-select k-options="selectOptions" k-data-source="ListStatusPegawai" k-ng-model="selectedStatusPegawai" k-on-change="searchDataPegawai()"></select>
+                <!-- <input kendo-combo-box k-ng-model="item.selectedStatusPegawai" k-data-text-field="'kategoryPegawai'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListStatusPegawai" k-on-change="searchDataPegawai()"/> -->
             </div>
-            <div class="grid_2">
+            <!-- <div class="grid_2">
                 <label c-label item="item">Jenis Kategori Pegawai</label>
                 <input kendo-combo-box k-ng-model="item.selectedJenisKategoriPegawai" k-data-text-field="'name'" k-data-value-field="'value'" k-filter="'contains'" k-auto-bind="false" k-data-source="listOfJenisKategoriPegawai" k-on-change="searchDataPegawai()"/>
-            </div>
+            </div> -->
             <div class="grid_1">
                 <label c-label item="item" c-label-text="TanggalMasuk" ></label>
                 <input kendo-date-picker k-ng-model="item.tglMasuk" k-format="'MM-yyyy'" k-options="monthSelectorOptions" k-on-change="searchDataPegawai()"/>
