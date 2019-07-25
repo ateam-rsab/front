@@ -7,6 +7,7 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             $scope.resep = {};
             $scope.listObat = [];
+            $scope.tempListResep = [];
             $scope.listResep = [];
             $scope.listOfProduk = [
                 "CTM",
@@ -27,6 +28,11 @@ define(['initialize'], function (initialize) {
 
                     }
                 ];
+                console.log(JSON.stringify($scope.tempListResep))
+                $scope.listResep = new kendo.data.DataSource({
+                    data: $scope.tempListResep,
+                    pageSize: 5
+                });
             }
             init();
 
@@ -46,34 +52,46 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.simpan = function () {
-                var data = {
-                    data:[],
-                    keterangan:$scope.item.keterangan
-                };
+                var dataResep = {
+                    resep: [],
+                    keterangan: $scope.item.keterangan
+                }
+
                 for (var i = 0; i < $scope.listObat.length; i++) {
-                    data.data.push({
+                    dataResep.resep.push({
                         namaObat: $scope.resep.namaObat[i],
                         jumlah: $scope.resep.jumlahObat[i],
                         satuanObat: $scope.resep.satuanObat[i]
-                    })
+                    });
                 }
-                // data["keterangan"] = $scope.item.keterangan;
-                // $scope.listResep.push(data);
-                // console.log($scope.listResep);
-                $scope.listResep = new kendo.data.DataSource({
-                    data: data.data
-                });
-                console.log(data);
+
+                $scope.tempListResep.push(dataResep)
+
+                // $scope.listResep = new kendo.data.DataSource({
+                //     data: dataResep,
+                //     pageSize: 5
+                // });
+                // console.log(dataResep);
+                clear();
+                init();
+            }
+
+            var clear = function () {
+                $scope.item.keterangan = '';
+                $scope.resep.namaObat = '';
+                $scope.resep.jumlahObat = '';
+                $scope.resep.satuanObat = '';
             }
 
             $scope.columnDataResep = {
                 pageable: true,
                 scrollable: true,
-                columns:[
-                    { field: "keterangan", title: "<h3>Keterangan</h3>", width: 40 },
-                    { command: [
-                        { name: "Detail", text: "Detail", click: showDetail },
-                    ], title: "&nbsp;", width: 120, 
+                columns: [
+                    { field: "keterangan", title: "<h3>Keterangan</h3>", width: '80%' },
+                    {
+                        command: [
+                            { name: "Detail", text: "Obat", click: showDetail },
+                        ], title: "&nbsp;", width: "20%",
                         attributes: {
                             style: "text-align:center;valign=middle"
                         }
