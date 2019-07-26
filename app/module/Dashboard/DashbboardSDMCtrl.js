@@ -1,7 +1,7 @@
 define(['initialize'], function(initialize) {'use strict';
-	initialize.controller('DashbboardSDMCtrl', ['$q', '$parse', 'LoginService', 'socket', '$rootScope', '$scope', 'ModelItem', '$state', 'DateHelper','ManageSdm','ReportHelper','CetakHelper', 'FindSdm', 'CetakHelper',
+	initialize.controller('DashbboardSDMCtrl', ['$q', '$parse', 'LoginService', 'socket', '$rootScope', '$scope', 'ModelItem', '$state', 'DateHelper','ManageSdm','ReportHelper','CetakHelper', 'FindSdm', 'CetakHelper', '$timeout',
 		function($q, $parse, loginService, socket, $rootScope, $scope, ModelItem, $state,  DateHelper, ManageSdm
-			, reportHelper, CetakHelper, FindSdm, cetakHelper) {
+			, reportHelper, CetakHelper, FindSdm, cetakHelper, $timeout) {
 		$scope.now = new Date();
 		$scope.isIT = true;
 		var userLogin = JSON.parse(localStorage.getItem('datauserlogin'));
@@ -164,6 +164,7 @@ define(['initialize'], function(initialize) {'use strict';
 			return editableCell;
 		}
 		$scope.cari = function() {
+			$scope.isRouteLoading = true;
 			
 			var search={};
 			var awal  =   moment($scope.item.from).format("YYYY-MM-DD");
@@ -172,6 +173,10 @@ define(['initialize'], function(initialize) {'use strict';
 			search.goleti=function(){
 				ManageSdm.getOrderList("sdm/get-persen-uraian-kerja/"+awal+"/"+akhir).then(function(dat){
 					$scope.sourceyes = dat.data.data;
+
+					$scope.filteredData = _.filter($scope.sourceyes, function(element) {
+						return element['namaProduk'].toLowerCase().indexOf($scope.item.cariAktivitas.toLowerCase())>-1;
+					});
 				});	
 			};
 
@@ -202,9 +207,43 @@ define(['initialize'], function(initialize) {'use strict';
 			search.goleti();
 			search.find ();
 
-			
-			
+			$scope.isRouteLoading = false;			
 
+		}
+
+		var timeoutPromise;
+		$scope.$watch('item.cariAktivitas', function(newVal, oldVal){
+			if(!newVal) return;
+			$timeout.cancel(timeoutPromise);
+			timeoutPromise = $timeout(function(){
+				if (newVal && newVal !== oldVal){
+					applyFilter("namaProduk", newVal)
+				}
+			}, 1000);
+		});
+
+		function applyFilter(filterField, filterValue){
+			var dataGrid = $("#grid").data("kendoGrid");
+			var currFilterObject = dataGrid.dataSource.filter();
+			var currentFilters = currFilterObject ? currFilterObject.filters : [];
+
+			if(currentFilters && currentFilters.length >0){
+				for(var i=0; i < currentFilters.length; i++){
+					if(currentFilters[i].field == filterField){
+						currentFilters.splice(i, 1);
+						break;
+					}
+				}
+			}
+			currentFilters.push({
+					field: filterField,
+					operator: "contains",
+					value: filterValue
+				});
+			dataGrid.dataSource.filter({
+				logic: "and",
+				filters: currentFilters
+			});
 		}
 
 		$scope.mencari = function() {

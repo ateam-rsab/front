@@ -7,15 +7,18 @@
             <div class="panel-heading-white"><span class="title" c-translate>Log Data</span></div>
             <div class="panel-body">
                 <div class="grid_12">
-                    <div class="grid_5">
+                    <div class="grid_7">
                         <div class="grid_12">
-                            <label c-label c-label-text="Periode"></label>
+                            <label c-label c-label-text="Pencarian"></label>
                         </div>
                         <div class="grid_12">
                             <div class="grid_6">
+                                <input kendo-combo-box k-ng-model="item.pegawai" k-data-value-field="'id'" k-data-text-field="'namaLengkap'" k-filter="'contains'" k-auto-bind="true" k-data-source="listPegawai" style="width:100%" ng-disabled="isIT"/>
+                            </div>
+                            <div class="grid_3">
                                 <input style="width: 100%" kendo-date-picker k-ng-model="item.from" k-format="'dd-MM-yyyy'" k-max="now" />
                             </div>
-                            <div class="grid_6">
+                            <div class="grid_3">
                                 <input style="width: 100%" k-ng-model='item.until' k-max='now' kendo-date-picker  k-format="'dd-MM-yyyy'" />
                             </div>
                         </div>
@@ -23,9 +26,12 @@
                     <div class="grid_2" style="margin: 28px 0 0 0">
                         <button class="c-button" ng-click="cari()">CARI</button>
                     </div>
+                    <div class="grid_3" style="margin: 22px 0 0 0">
+                        <input c-text-box type="input" placeholder="Cari Aktivitas" filter="" class="k-textbox" ng-model="item.cariAktivitas" />
+                    </div>
                 </div>
                 <div class="grid_12">
-                    <div data-kendo-grid="grid" k-groupable="'true'" k-data-source="patienGrids" k-selectable="'row'" k-sortable="'true'" k-columns="Column"></div>
+                    <div data-kendo-grid="grid" id="grid" k-groupable="'true'" k-data-source="patienGrids" k-selectable="'row'" k-sortable="'true'" k-columns="Column"></div>
                 </div>
             </div>
         </div>
@@ -45,14 +51,13 @@
         <div class="panel-body">
             <!-- <div class="grid_8"> -->
             <div class="grid_12">
-                <div class="grid_2">
-                    <!-- <label><b>Pegawai</b></label> -->
-                    <label><b>Pencarian</b></label>
+                <!-- <div class="grid_2">
+                    <label><b>Pegawai</b></label>
                     <input kendo-combo-box k-ng-model="item.pegawai" k-data-value-field="'id'" k-data-text-field="'namaLengkap'" k-filter="'contains'" k-auto-bind="true" k-data-source="listPegawai" style="width:100%" ng-disabled="isIT"/>
-                </div>
+                </div> -->
                 <div class="grid_2">
                     <!-- <label><b>Periode</b></label> -->
-                    <label c-label c-label-text=""></label>
+                    <label><b>Pencarian</b></label>
                     <!-- <input kendo-date-picker k-max ="now" k-ng-model="item.periode" style="width: 100%" k-options="yearSelected"/> -->
                     <input kendo-date-picker k-max ="now" k-ng-model="item.periode" k-format="'dd-MM-yyyy'" style="width: 100%"/>
                 </div>
@@ -103,14 +108,13 @@
         <div class="panel-heading-white"><span class="title" c-translate>Fee for service</span></div>
         <div class="panel-body">
             <div class="grid_12">
-                <div class="grid_2">
-                    <!-- <label><b>Pegawai</b></label> -->
-                    <label><b>Pencarian</b></label>
+                <!-- <div class="grid_2">
+                    <label><b>Pegawai</b></label>
                     <input kendo-combo-box k-ng-model="item.pegawai" k-data-value-field="'id'" k-data-text-field="'namaLengkap'" k-filter="'contains'" k-auto-bind="true" k-data-source="listPegawai" style="width:100%" ng-disabled="isIT"/>
-                </div>
+                </div> -->
                 <div class="grid_2">
                     <!-- <label><b>Periode</b></label> -->
-                    <label c-label c-label-text=""></label>
+                    <label><b>Pencarian</b></label>
                     <!-- <input kendo-date-picker k-max ="now" k-ng-model="item.periodeFee" style="width: 100%" k-options="yearSelected"/> -->
                     <input kendo-date-picker k-max ="now" k-ng-model="item.periodeFee" k-format="'dd-MM-yyyy'" style="width: 100%"/>
                 </div>
