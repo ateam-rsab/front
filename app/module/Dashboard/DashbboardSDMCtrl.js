@@ -1,6 +1,6 @@
 define(['initialize'], function(initialize) {'use strict';
-	initialize.controller('DashbboardSDMCtrl', ['$q', '$parse', 'LoginService', 'socket', '$rootScope', '$scope', 'ModelItem', '$state', 'DateHelper','ManageSdm','ReportHelper','CetakHelper', 'FindSdm', 'CetakHelper', '$timeout',
-		function($q, $parse, loginService, socket, $rootScope, $scope, ModelItem, $state,  DateHelper, ManageSdm
+	initialize.controller('DashbboardSDMCtrl', ['$q', '$parse', 'LoginService', 'socket', '$rootScope', '$scope', 'ModelItem', '$state', 'DateHelper','ManageSdm','ManageSdmNew','ReportHelper','CetakHelper', 'FindSdm', 'CetakHelper', '$timeout',
+		function($q, $parse, loginService, socket, $rootScope, $scope, ModelItem, $state,  DateHelper, ManageSdm, ManageSdmNew
 			, reportHelper, CetakHelper, FindSdm, cetakHelper, $timeout) {
 		$scope.now = new Date();
 		$scope.isIT = true;
@@ -54,8 +54,8 @@ define(['initialize'], function(initialize) {'use strict';
 		$scope.tanggal = new Date();
 		$scope.isRouteLoading = true;
 		$q.all([
-			ManageSdm.getOrderList("sdm/get-uraian-kerja", true),
-			ManageSdm.getOrderList("sdm/get-id-pgw"),
+			ManageSdmNew.getListData("sdm/get-uraian-kerja", true),
+			ManageSdmNew.getListData("sdm/get-id-pgw"),
 			ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true")
 			]).then(function(res){
 				if(res[0].statResponse){
@@ -149,7 +149,7 @@ define(['initialize'], function(initialize) {'use strict';
 
 		$scope.getDataPegawai = function () {
 			$scope.pegawaiId = $scope.item.pegawai.id;
-			ManageSdm.getItem("sdm/get-data-pegawai?pegawaiId="+$scope.pegawaiId, true).then(function(dat){
+			ManageSdmNew.getListData("sdm/get-data-pegawai?pegawaiId="+$scope.pegawaiId, true).then(function(dat){
 				$scope.item.jabatan = dat.data.data.jabatan;
 			});
 		}
@@ -171,7 +171,7 @@ define(['initialize'], function(initialize) {'use strict';
 			var akhir = moment($scope.item.until).format("YYYY-MM-DD");
 
 			search.goleti=function(){
-				ManageSdm.getOrderList("sdm/get-persen-uraian-kerja/"+awal+"/"+akhir).then(function(dat){
+				ManageSdmNew.getListData("sdm/get-persen-uraian-kerja/"+awal+"/"+akhir).then(function(dat){
 					$scope.sourceyes = dat.data.data;
 
 					$scope.filteredData = _.filter($scope.sourceyes, function(element) {
@@ -181,7 +181,7 @@ define(['initialize'], function(initialize) {'use strict';
 			};
 
 			search.find=function(){
-				ManageSdm.getOrderList("sdm/get-tindakan-by-user-id/"+awal+"/"+akhir).then(function(dat){
+				ManageSdmNew.getListData("sdm/get-tindakan-by-user-id/"+awal+"/"+akhir).then(function(dat){
 					$scope.patienGrids = dat.data.data;
 
 					var i=0;
@@ -250,7 +250,7 @@ define(['initialize'], function(initialize) {'use strict';
 			
 			var awal  =  moment($scope.item.waktu).format("YYYY-MM-DD");
 			$scope.tanggal = moment($scope.item.waktu).format("YYYY-MM-DD");
-			ManageSdm.getOrderList("sdm/get-uraian-kerja-dan-capaian/"+awal).then(function(dat){
+			ManageSdmNew.getListData("sdm/get-uraian-kerja-dan-capaian/"+awal).then(function(dat){
 				// $scope.daftarBahanLinen = dat.data.data;
 				$scope.daftarBahanLinen2 = new kendo.data.DataSource({
 					data: dat.data.data,
@@ -288,7 +288,7 @@ define(['initialize'], function(initialize) {'use strict';
 			var isValid = ModelItem.setValidation($scope, listRawRequired);
 			if(isValid.status){
 				$scope.isRouteLoading = true;
-				ManageSdm.getOrderList("sdm/get-rekapitulasi-capaian/"+DateHelper.getFormatMonthPicker($scope.item.periodeFee)+"/" + $scope.item.pegawai.id).then(function(dat){
+				ManageSdmNew.getListData("sdm/get-rekapitulasi-capaian/"+DateHelper.getFormatMonthPicker($scope.item.periodeFee)+"/" + $scope.item.pegawai.id).then(function(dat){
 					
 					var i=0;
 
@@ -1114,7 +1114,7 @@ $scope.generateGridColumn =  function(){
 				}
 				]
 			}
-			ManageSdm.saveDataUji(item,"sdm/save-uraian-tugas-transaksi/").then(function (e) {
+			ManageSdmNew.saveData(item,"sdm/save-uraian-tugas-transaksi/").then(function (e) {
 				$scope.getUraianTugas();
 				$scope.inputCapaian.close();
 			}, function(error){
