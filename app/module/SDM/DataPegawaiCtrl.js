@@ -394,7 +394,7 @@ define(['initialize'], function(initialize) {
     function confirmHapusDataPegawai(e) {
         e.preventDefault();
         var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-        console.log(dataItem);
+        // console.log(dataItem);
         var confirm = $mdDialog.confirm()
             .title('Apakah anda yakin akan menghapus data pegawai?')
             .textContent(`Anda akan menghapus data pegawai dengan nama ${dataItem.namaLengkap}`)
@@ -425,7 +425,7 @@ define(['initialize'], function(initialize) {
         $scope.isRouteLoading = true;
         ManageSdmNew.getListData("pegawai/get-all-pegawai-pns/").then(function(data) {
             var arr = [];
-            console.log(data)
+            // console.log(data)
             var usergemes='';
             for (var x = 0; x < data.data.data.pegawai.length; x++) {
                 var element = data.data.data.pegawai[x];
@@ -471,15 +471,17 @@ define(['initialize'], function(initialize) {
             // item.namaPegawai
     $scope.searchDataPegawai = function() {
         let arrIdKategoriPegawai = [];
-        $scope.selectedStatusPegawai.forEach(function(el) {
-            arrIdKategoriPegawai.push(el.id);
-        })  
-        console.log(arrIdKategoriPegawai)
+        if ($scope.selectedStatusPegawai) {
+            $scope.selectedStatusPegawai.forEach(function(el) {
+                arrIdKategoriPegawai.push(el.id);
+            })
+        }  
+        // console.log(arrIdKategoriPegawai)
         var tgl = new Date($scope.item.tglMasuk);
         var tahunMasuk = tgl.getFullYear();
         var bulanMasuk = tgl.getMonth() + 1;
         var tglMasuk = `${tahunMasuk}-${bulanMasuk > 9 ? bulanMasuk: '0' + bulanMasuk }`;
-        console.log(bulanMasuk);
+        // console.log(bulanMasuk);
         $scope.isRouteLoading = true;
         var usergemes='';
         // &listIdStatusPegawai=${$scope.item.selectedJenisKategoriPegawai ? $scope.item.selectedJenisKategoriPegawai.value:'' }
