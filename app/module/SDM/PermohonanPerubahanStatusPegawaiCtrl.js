@@ -896,7 +896,7 @@ define(['initialize'], function (initialize) {
                     }
                     //cek jumlah tanggal tidak lebih banyak dari total sisa cuti
                     if ($scope.tanggalPermohonan.length > ($scope.sisaCutiTotal-$scope.jumlahPengajuanDiproses)) {
-                        toastr.warning('Jumlah tanggal permohonan melebihi sisa cuti total!')
+                        toastr.warning('Jumlah tanggal permohonan melebihi sisa cuti total dan pengajuan cuti tahunan yang belum diputuskan persetujuannya!')
                         return
                     }
                 }
