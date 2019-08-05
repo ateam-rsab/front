@@ -1938,7 +1938,7 @@ define(['initialize'], function (initialize) {
                         
                     } else {
                         newModel.statusEnabled = true;
-                    }                 
+                    }
                     console.log($state.params.idPegawai);
                     if(newModel[key] === '' || newModel[key] === undefined || newModel[key] === null) {
                         delete newModel[key];
@@ -2016,7 +2016,7 @@ define(['initialize'], function (initialize) {
 
                 var isEmptyModel = _.isEmpty(newModel);
                 console.table(newModel)
-                if (!isEmptyModel) {
+                if (!isEmptyModel) {                    
                     
                     for (var key in newModel) {
                         if (newModel.hasOwnProperty(key)) {
