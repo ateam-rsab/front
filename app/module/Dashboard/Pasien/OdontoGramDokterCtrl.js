@@ -2,10 +2,10 @@ define(['initialize'], function(initialize) {
     'use strict';
     initialize.controller('OdontoGramDokterCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp','$state','CacheHelper', '$window','$location',
         function($q, $rootScope, $scope,manageLogistikPhp,$state,cacheHelper, $window,$location) {
-            // if( window.location.href != $location.$$absUrl ){
-            //     window.location.href= $location.$$absUrl
-            //     window.location.reload()  
-            // }
+            if( window.location.href != $location.$$absUrl ){
+                window.location.href= $location.$$absUrl
+                window.location.reload()  
+            }
          
             $scope.item = {};
             $scope.dataVOloaded = false;

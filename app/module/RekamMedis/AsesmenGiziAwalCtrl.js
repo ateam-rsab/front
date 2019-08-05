@@ -83,17 +83,33 @@ define(['initialize'], function (initialize) {
 			$scope.listOfRisikoMalnutrisi = [
 				{
 					id: 1,
-					name: 'Risiko Ringan (Nilai String Kids 0)'
+					name: 'Risiko Ringan (Nilai Strong Kids 0)'
 				},
 				{
 					id: 2,
-					name: 'Risiko Sedang (Nilai String Kids 1 - 3)'
+					name: 'Risiko Sedang (Nilai Strong Kids 1 - 3)'
 				},
 				{
 					id: 3,
-					name: 'Risiko Tinggi (Nilai String Kids 4 - 5)'
+					name: 'Risiko Tinggi (Nilai Strong Kids 4 - 5)'
 				}
 			];
+
+			$scope.listOfRisikoMalnutrisiDewasa = [
+				{
+					id: 11,
+					name: 'Risiko Ringan (Nilai MST 0)'
+				},
+				{
+					id: 12,
+					name: 'Risiko Sedang (Nilai MST 1 - 3)'
+				},
+				{
+					id: 13,
+					name: 'Risiko Tinggi (Nilai MST 4 - 5)'
+				}
+			];
+
 
 			let dataTempMakanan = [];
 
@@ -134,7 +150,8 @@ define(['initialize'], function (initialize) {
 						$scope.dataUmur.push(temp);
 					}					
 				})
-				if(parseInt($scope.dataUmur[0]) > 16 && parseInt($scope.dataUmur[0]) > 12 && parseInt($scope.dataUmur[0]) > 29) {
+				
+				if(parseInt($scope.dataUmur[0]) > 17) {
 					$scope.isDewasa = true;
 				} else {
 					$scope.isDewasa = false;
