@@ -379,15 +379,15 @@ define(['initialize'], function (initialize) {
                         // console.log(res);
                         if (res[0].statResponse) {
                             $scope.item = res[0].data.data;
-                            if ($scope.item.isMenanggung === null) {
-                                $scope.item.isMenanggung = {
-                                    name: 'Tidak',
-                                    id: 2
-                                }
-                            } else {
+                            if ($scope.item.isMenanggung) {
                                 $scope.item.isMenanggung = {
                                     name: 'Ya',
                                     id: 1
+                                }
+                            } else {
+                                $scope.item.isMenanggung = {
+                                    name: 'Tidak',
+                                    id: 2
                                 }
                             }
                             $scope.item.golongan = $scope.item.pangkat ? $scope.item.pangkat.golonganPegawai.golonganPegawai : ""
@@ -439,6 +439,7 @@ define(['initialize'], function (initialize) {
                                 $scope.getGolonganPangkat($scope.item.pangkat);
                             }
                             $scope.isRouteLoading = false;
+                            console.log($scope.item.isMenanggung)
                         }
                     }, function (error) {
                         $scope.isRouteLoading = false;
@@ -1930,10 +1931,6 @@ define(['initialize'], function (initialize) {
                     oldData = $scope.oldData;
                 if (oldData) {
                     for (var key in newData) {
-                        if(key == 'pangkatId') {
-                            console.log('masuk');
-                        }
-                        
                         if (oldData.hasOwnProperty(key)) {
                             if (key.indexOf("tgl") >= 0 && newData[key] != null) {
                                 if(convertTanggal(oldData.tglLahir) === dateHelper.formatDate(newData[key], 'DD-MM-YYYY')) {
@@ -1943,13 +1940,14 @@ define(['initialize'], function (initialize) {
                                 }
                             };
                             if(newData[key] === "") {
-                                console.log(key)
+                                // console.log(key)
                             }
                             if (newData[key] !== oldData[key]) {
+                                console.log(key)
                                 dataChanged[key] = newData[key];
                             }
                         } else if (newData.hasOwnProperty(key)) {
-                            dataChanged[key] = newData[key]
+                            dataChanged[key] = newData[key];
                         }
                     }
                 } else { // rekam data baru
@@ -1992,7 +1990,8 @@ define(['initialize'], function (initialize) {
                         newModel.statusEnabled = true;
                     }                 
                     // console.log($state.params.idPegawai);
-                    if(newModel[key] === '' || newModel[key] === undefined || newModel[key] === null) {
+                    // newModel[key] === '' || newModel[key] === undefined || 
+                    if(newModel[key] === null) {
                         delete newModel[key];
                     }
                     // if(newModel.statusRhesus) {
