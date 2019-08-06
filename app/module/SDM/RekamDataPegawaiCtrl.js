@@ -1931,9 +1931,9 @@ define(['initialize'], function (initialize) {
                 if (oldData) {
                     for (var key in newData) {
                         if(key == 'pangkatId') {
-                            // debugger;
                             console.log('masuk');
                         }
+                        
                         if (oldData.hasOwnProperty(key)) {
                             if (key.indexOf("tgl") >= 0 && newData[key] != null) {
                                 if(convertTanggal(oldData.tglLahir) === dateHelper.formatDate(newData[key], 'DD-MM-YYYY')) {
@@ -1942,6 +1942,9 @@ define(['initialize'], function (initialize) {
                                     newData[key] = dateHelper.formatDate(newData[key], 'DD-MM-YYYY')
                                 }
                             };
+                            if(newData[key] === "") {
+                                console.log(key)
+                            }
                             if (newData[key] !== oldData[key]) {
                                 dataChanged[key] = newData[key];
                             }
