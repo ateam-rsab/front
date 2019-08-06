@@ -1253,7 +1253,8 @@ define(['initialize'], function (initialize) {
                         {
                             field: "tglSk",
                             title: "<h3>Tanggal SK</h3>",
-                            width: "100px"
+                            width: "100px",
+                            template: "#= kendo.toString(new Date(tglSk), \"dd-MM-yyyy\") #"
                         },
                         {
                             field: "jenisJabatan",
@@ -1444,7 +1445,7 @@ define(['initialize'], function (initialize) {
                 $scope.item.riwayatJabatan = { idJabatan: dataItem.idJabatan, namaJabatan: dataItem.namaJabatan };
                 $scope.item.jenisJabatan = { id: dataItem.idJenisJabatan, jenisJabatan: dataItem.jenisJabatan };
                 $scope.item.noSK = dataItem.noSk;
-                $scope.item.tglSK = dataItem.tglSk;
+                $scope.item.tglSK = dateHelper.formatDate(dataItem.tglSk, 'DD-MM-YYYY');
                 $scope.tglSK = dataItem.tglSk;
                 // $scope.item.atasanTtdSK = { id: dataItem.idPgwTtd, namaLengkap:dataItem.namaLengkapTtd };
                 $scope.item.atasanTtdSK = dataItem.ttdPegawaiSk;
