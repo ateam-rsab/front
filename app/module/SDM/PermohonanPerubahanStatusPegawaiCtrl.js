@@ -994,6 +994,10 @@ define(['initialize'], function (initialize) {
                                 toastr.info('Tanggal permohonan sudah diajukan!');
                                 return;
                             }
+                            if (e.data.messages.ERROR_MESSAGE) {
+                                toastr.info('Fungsi simpan sedang dalam perbaikan!');
+                                return;
+                            }
                             $scope.loadGrid();
                             load();
                         });
