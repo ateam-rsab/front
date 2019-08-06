@@ -1670,6 +1670,7 @@ define(['initialize'], function (initialize) {
 
             $scope.createNewPendidikan = function () {
                 clearFieldPendidikan();
+                delete $scope.noRecRiwayatPendidikan;
                 $scope.popUpRiwayatPendidikan.center().open();
                 // var actions = $scope.popUpRiwayatPendidikan.options.actions; 
                 // actions.splice(actions.indexOf("Close"), 1); 
@@ -1682,7 +1683,7 @@ define(['initialize'], function (initialize) {
 
             $scope.savePendidikan = function () {
                 var dataSave = {
-                    "noRec": $scope.noRecRiwayatPendidikan ? $scope.noRecRiwayatPendidikan : null,
+                    // "noRec": $scope.noRecRiwayatPendidikan ? $scope.noRecRiwayatPendidikan : null,
                     "statusEnabled": true,
                     "jurusan": $scope.item.riwayatJurusan,
                     "namaTempatPendidikan": $scope.item.namaTempat,
@@ -1696,6 +1697,11 @@ define(['initialize'], function (initialize) {
                     "pendidikan": {
                         "id": $scope.item.riwayatPendidikan.id
                     }
+                }
+                if($scope.noRecRiwayatPendidikan) {
+                    dataSave.noRec = $scope.noRecRiwayatPendidikan
+                } else {
+                    delete dataSave.noRec;
                 }
                 ManageSdmNew.saveData(dataSave, 'pegawai/save-riwayat-pendidikan').then(res => {
                     // console.log(res);
