@@ -190,6 +190,7 @@ define(['initialize'], function (initialize) {
                             namaObat: $scope.resep.namaObat,
                             jumlah: $scope.resep.jumlahObat,
                             jenisKemasan: isRacikan,
+                            resepKe: $scope.tempListResep.length + 1,
                             pieces: pcs,
                             satuanObat: {
                                 satuanStandar: $scope.resep.satuanObat.satuanstandar,
@@ -202,6 +203,7 @@ define(['initialize'], function (initialize) {
                         dataResep.resep.push({
                             namaObat: $scope.resep.namaObat[i],
                             jumlah: $scope.resep.jumlahDosis[i],
+                            resepKe: $scope.tempListResep.length + 1,
                             pieces: pcs,
                             jenisKemasan: isRacikan,
                             satuanObat: {
@@ -212,7 +214,6 @@ define(['initialize'], function (initialize) {
                     }
                 }
                 $scope.tempListResep.push(dataResep);
-                // console.log($scope.tempListResep)
                 clear();
                 init();
             }
@@ -238,7 +239,6 @@ define(['initialize'], function (initialize) {
 
             // method untuk kirim resep ke farmasi
             $scope.kirimKeFarmasi = function () {
-                // console.log($scope.tempListResep)
                 let gridResep = $scope.tempListResep;
                 let dataResep = [];
                 let dataTemp = [{
@@ -272,11 +272,13 @@ define(['initialize'], function (initialize) {
                             "satuanstandar": gridResep[i].resep[ii].satuanObat.satuanStandar,
                             "satuanviewfk": gridResep[i].resep[ii].satuanObat.ssid,
                             "satuanview": gridResep[i].resep[ii].satuanObat.satuanStandar,
-                            "keterangan": gridResep[i].keterangan
+                            "keterangan": gridResep[i].keterangan,
+                            "rke":gridResep[i].resep[ii].resepKe
                         };
                         dataTemp[0]['orderfarmasi'].push(dataTempResep);
                         dataTemp[0]["resepdokter"].push(
                             {
+                                "rke":gridResep[i].resep[ii].resepKe,
                                 "produkfk": gridResep[i].resep[ii].namaObat.id,
                                 "jumlah": parseInt(gridResep[i].resep[ii].jumlah),
                                 "satuanstandarfk": gridResep[i].resep[ii].satuanObat.ssid,
@@ -289,6 +291,7 @@ define(['initialize'], function (initialize) {
                     }
                 }
                 dataResep.push(dataTemp[0]);
+                console.log(dataResep)
                 manageLogistikPhp.postpost('farmasi/resep-dokter?strukorder=' + norec_apd, dataResep).then(function (res) {
                     $scope.tempListResep = [];
                     dataResep = [];
@@ -296,7 +299,6 @@ define(['initialize'], function (initialize) {
                 })
             }
 
-            // 
             $scope.columnHistoryResep = {
                 pageable: true,
                 columns: [
