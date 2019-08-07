@@ -1985,7 +1985,6 @@ define(['initialize'], function (initialize) {
                 for (var key in newModel) {
                     if($state.params.idPegawai) {
                         newModel.id = $state.params.idPegawai;
-                        
                     } else {
                         newModel.statusEnabled = true;
                     }                 
@@ -1994,6 +1993,9 @@ define(['initialize'], function (initialize) {
                     if(newModel[key] === null) {
                         delete newModel[key];
                     }
+                    // if(newModel[key] === "") {
+                    //     newModel[key] = '-';
+                    // }
                     // if(newModel.statusRhesus) {
                     //     newModel.statusRhesus = newModel.statusRhesus.name
                     // }
