@@ -69,8 +69,7 @@
                                         k-filter="'contains'"
                                         k-auto-bind="false"
                                         k-data-source="listOfProduk"
-                                        k-on-change="getSatuan(resep.namaObat)"
-                                        />
+                                        k-on-change="getSatuan(resep.namaObat)"/>
                                 </div>
                                 <!-- Jumlah Obat -->
                                 <div class="grid_2">
@@ -89,7 +88,7 @@
                                         k-data-value-field="'ssid'"
                                         k-filter="'contains'"
                                         k-auto-bind="false"
-                                        k-data-source="listSatuan" />
+                                        k-data-source="listSatuan" k-on-change="getNilaiKonversi(resep.satuanObat)"/>
                                 </div>
                             </div>
 

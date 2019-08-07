@@ -156,6 +156,26 @@ define(['initialize'], function (initialize) {
                 // console.log(filtered);
             }
 
+            $scope.getSatuan = function (data) {
+                // console.log(data);
+                $scope.listSatuan = data.konversisatuan;
+                $scope.getHargaSatuan(data.id);
+            }
+
+            $scope.getHargaSatuan = function (id) {
+                manageLogistikPhp.getDataTableTransaksi("logistik/get-produkdetail?produkfk=" + id + 
+                    "&ruanganfk=94", true).then((res) => {
+                        // Math.round(parseFloat(dataProdukDetail[i].hargajual)* parseFloat($scope.item.nilaiKonversi)) 
+                        $scope.item.hargaSatuan = parseFloat(res.data.detail[0].hargajual);
+                        // console.log($scope.item.hargaSatuan)
+                        // console.log(res);
+                    })
+            }
+
+            $scope.getNilaiKonversi = function (data) {
+                $scope.item.nilaiKonversi = data.nilaikonversi;
+            }
+
             // simpan ke temporary resep
             $scope.simpan = function (data) {
                 var keteranganPenggunaan = '', intruksiPenggunaan = '', jumlah = '', isRacikan = false, pcs = 0;
@@ -187,6 +207,8 @@ define(['initialize'], function (initialize) {
                 if (data === 1) {
                     for (var i = 0; i < $scope.listObat.length; i++) {
                         dataResep.resep.push({
+                            nilaiKonversi: $scope.item.nilaiKonversi,
+                            hargaSatuan: $scope.item.hargaSatuan,
                             namaObat: $scope.resep.namaObat,
                             jumlah: $scope.resep.jumlahObat,
                             jenisKemasan: isRacikan,
@@ -202,6 +224,8 @@ define(['initialize'], function (initialize) {
                     for (var i = 0; i < $scope.listObat.length; i++) {
                         dataResep.resep.push({
                             namaObat: $scope.resep.namaObat[i],
+                            nilaiKonversi: $scope.item.nilaiKonversi,
+                            hargaSatuan: $scope.item.hargaSatuan,
                             jumlah: $scope.resep.jumlahDosis[i],
                             resepKe: $scope.tempListResep.length + 1,
                             pieces: pcs,
@@ -230,12 +254,7 @@ define(['initialize'], function (initialize) {
                 $scope.resep.kemasan = '';
                 $scope.item.intruksiPenggunaanRacikan = '';
                 $scope.item.intruksiPenggunaan = '';
-            }
-
-            $scope.getSatuan = function (data) {
-                // console.log(data);
-                $scope.listSatuan = data.konversisatuan;
-            }
+            }         
 
             // method untuk kirim resep ke farmasi
             $scope.kirimKeFarmasi = function () {
@@ -263,6 +282,8 @@ define(['initialize'], function (initialize) {
                     // }
                     for (let ii = 0; ii < gridResep[i].resep.length; ii++) {
                         let dataTempResep = {
+                            "hargasatuan": gridResep[i].resep[ii].hargaSatuan,
+                            "nilaikonversi": gridResep[i].resep[ii].nilaiKonversi,
                             "jeniskemasanfk": gridResep[i].resep[ii].jenisKemasan ? 1 : 2,
                             "pcs": parseInt(gridResep[i].resep[ii].pieces),
                             "ruanganfk": $scope.item.idRuangan,
@@ -273,12 +294,12 @@ define(['initialize'], function (initialize) {
                             "satuanviewfk": gridResep[i].resep[ii].satuanObat.ssid,
                             "satuanview": gridResep[i].resep[ii].satuanObat.satuanStandar,
                             "keterangan": gridResep[i].keterangan,
-                            "rke":gridResep[i].resep[ii].resepKe
+                            "rke": gridResep[i].resep[ii].resepKe
                         };
                         dataTemp[0]['orderfarmasi'].push(dataTempResep);
                         dataTemp[0]["resepdokter"].push(
                             {
-                                "rke":gridResep[i].resep[ii].resepKe,
+                                "rke": gridResep[i].resep[ii].resepKe,
                                 "produkfk": gridResep[i].resep[ii].namaObat.id,
                                 "jumlah": parseInt(gridResep[i].resep[ii].jumlah),
                                 "satuanstandarfk": gridResep[i].resep[ii].satuanObat.ssid,

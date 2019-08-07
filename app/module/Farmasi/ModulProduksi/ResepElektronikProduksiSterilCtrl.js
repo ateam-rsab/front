@@ -166,7 +166,7 @@ define(['initialize'], function(initialize) {
             // };
 
             $scope.refresh = function() {
-                debugger;
+                // debugger;
                 var nocm =''
                 if ($scope.noCm != undefined) {
                     nocm= '&nocm='+$scope.noCm
@@ -204,7 +204,7 @@ define(['initialize'], function(initialize) {
             $scope.now = new Date();
             $scope.detailOrder = function() {
                     //$state.go('ResepElektronikDetail', { noOrder: $scope.item.strukOrder.noOrder, noAntrianPasien: $scope.item.strukOrder.noRegistrasi.noRec });
-                    debugger;
+                    // debugger;
                     var arrStr ={ 0 : $scope.item.nocm ,
                         1 : $scope.item.namapasien,
                         2 : $scope.item.jeniskelamin,
@@ -252,7 +252,7 @@ define(['initialize'], function(initialize) {
                 }
 
                 $scope.verifikasi = function() {
-                    debugger;
+                    // debugger;
 
                     if ( $scope.item.statusorder == 'Menunggu') {
                     //$state.go('ResepElektronikVerifikasi', { noOrder: $scope.item.strukOrder.noOrder, noAntrianPasien: $scope.item.strukOrder.noRegistrasi.noRec });
