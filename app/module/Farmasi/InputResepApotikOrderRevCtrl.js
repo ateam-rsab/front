@@ -283,7 +283,7 @@ define(['initialize'], function (initialize) {
                     for (let ii = 0; ii < gridResep[i].resep.length; ii++) {
                         let dataTempResep = {
                             "hargasatuan": gridResep[i].resep[ii].hargaSatuan,
-                            "nilaikonversi": gridResep[i].resep[ii].nilaiKonversi,
+                            "nilaikonversi": parseInt(gridResep[i].resep[ii].nilaiKonversi),
                             "jeniskemasanfk": gridResep[i].resep[ii].jenisKemasan ? 1 : 2,
                             "pcs": parseInt(gridResep[i].resep[ii].pieces),
                             "ruanganfk": $scope.item.idRuangan,
