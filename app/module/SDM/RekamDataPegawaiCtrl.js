@@ -375,7 +375,7 @@ define(['initialize'], function (initialize) {
                 if ($state.params.idPegawai) { // Check parameter noRec pegawai in the url
                     $scope.isMenuDataPegawai = true; // show tombol hapus
                     $scope.isRouteLoading = true; // show loading icon
-                    $q.all([ManageSdmNew.getListData("pegawai/get-pegawai-by-customs/" + id)]).then(function (res) {
+                    $q.all([ManageSdmNew.getListData("pegawai/get-pegawai-detail-by-customs/" + id)]).then(function (res) {
                         // console.log(res);
                         if (res[0].statResponse) {
                             $scope.item = res[0].data.data;
@@ -1990,8 +1990,14 @@ define(['initialize'], function (initialize) {
                     }                 
                     // console.log($state.params.idPegawai);
                     // newModel[key] === '' || newModel[key] === undefined || 
-                    if(newModel[key] === null) {
-                        delete newModel[key];
+                    if(newModel[key] === null || newModel[key] === undefined) {
+                        if(key.indexOf("tgl") >= 0) {
+                            if(key === 'tglLahir') {
+                                newModel[key] = null;
+                            }
+                        } else {
+                            delete newModel[key];
+                        }
                     }
                     // if(newModel[key] === "") {
                     //     newModel[key] = '-';
@@ -2002,7 +2008,9 @@ define(['initialize'], function (initialize) {
                     if (newModel.hasOwnProperty(key)) {
                         if (key.indexOf("tgl") >= 0) {
                             newModel[key] = new Date(formatDate(newModel[key])).getTime();
-                            
+                            // if(newModel[key] == null) { 
+
+                            // }
                         }
                         if (key.indexOf('pangkat') >= 0) {
                             newModel[key] = {

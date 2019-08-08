@@ -171,13 +171,13 @@ define(['initialize'], function(initialize) {
 					for (var key in currentEdit){
 						if(currentEdit.hasOwnProperty(key)){
 							if(key.indexOf("tgl")>=0){
-								currentEdit[key] = DateHelper.getTanggalFormattedNew(new Date(currentEdit[key]));
+								currentEdit[key] = DateHelper.getDateTimeFormatted3(new Date(currentEdit[key]));
 							} else if(key == "listTanggal"){
 								currentEdit[key].forEach(function(lisTgl){
 									for(var subKeys in lisTgl){
 										if(lisTgl.hasOwnProperty(subKeys)){
 											if(subKeys == "tgl"){
-												lisTgl[subKeys] = DateHelper.getTanggalFormattedNew(new Date(lisTgl[subKeys]));
+												lisTgl[subKeys] = DateHelper.getDateTimeFormatted3(new Date(lisTgl[subKeys]));
 											}
 										}
 									}
@@ -553,7 +553,7 @@ define(['initialize'], function(initialize) {
 						for(var key in element){
 							if(element.hasOwnProperty(key) && key === "tgl"){
 								if(element[key] instanceof Date)
-									element[key] = DateHelper.getTanggalFormattedNew(element[key])
+									element[key] = DateHelper.getDateTimeFormatted3(element[key])
 							} else {
 								delete element[key];
 							}

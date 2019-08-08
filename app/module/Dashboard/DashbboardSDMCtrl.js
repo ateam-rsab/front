@@ -1109,6 +1109,13 @@ define(['initialize'], function (initialize) {
 							],
 							// dataBound: $scope.onDataBound
 						};
+						$scope.dataSource = new kendo.data.DataSource({
+							data: dataGrid,
+							aggregate: [
+								{ field: "totalTindakan", aggregate: "sum" },
+								{ field: "pointQty", aggregate: "sum" }
+							]
+						});
 						$scope.isRouteLoading = false;
 					}, (error) => {
 						$scope.isRouteLoading = false;
