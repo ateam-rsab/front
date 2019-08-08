@@ -935,7 +935,7 @@ define(['initialize'], function (initialize) {
                                     if (key === "tgl") {
                                         if (element[key] instanceof Date)
                                             listDate.push({
-                                                tgl: DateHelper.getTanggalFormattedNew(element[key])
+                                                tgl: DateHelper.getDateTimeFormatted3(element[key])
                                             });
                                     }
                                 }
@@ -975,7 +975,7 @@ define(['initialize'], function (initialize) {
                             "listTanggal": listDate,
                             "noSuratTugas": $scope.item.noSuratTugas,
                             "noNotaDinas": $scope.item.noNotaDinas,
-                            "tglNotaDinas": $scope.item.tglNotaDinas != undefined ? DateHelper.getTanggalFormattedNew($scope.item.tglNotaDinas) : null,
+                            "tglNotaDinas": $scope.item.tglNotaDinas != undefined ? DateHelper.getDateTimeFormatted3($scope.item.tglNotaDinas) : null,
                             "alamatTugas": $scope.item.alamatTugas,
                             "jabatanPemberiNotaDinas": {
                                 "id": $scope.item.jabatanNotaDinas != undefined ? $scope.item.jabatanNotaDinas.id : 14
