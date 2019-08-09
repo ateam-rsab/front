@@ -1,6 +1,6 @@
 define([], function () {
     'use strict';
-    var baseURLFrontend = 'http://172.16.99.80',
+    var baseURLFrontend = 'http://192.168.0.72',
         portFrontend = '5555',
 
         baseURLPhp = 'http://192.168.12.3',
@@ -9,6 +9,7 @@ define([], function () {
         baseURLJava = 'http://192.168.12.3',
         portJava = '8080',
 
+        baseURLEval = 'http://172.16.99.224',
         portEval = '8183';
     
     if (window.location.hostname.indexOf('rsabhk') > -1) {
@@ -70,8 +71,8 @@ define([], function () {
             baseUrlActionK3KL: `${baseURLJava}:${portJava}/jasamedika-k3kl/`,
             baseApiPostDataK3KL: `${baseURLJava}:${portJava}/jasamedika-k3kl/`,
             /* SDM */
-            baseUrlActionSDM: `${baseURLJava}:${portJava}/jasamedika-sdm/`,
-            baseApiPostDataSDM: `${baseURLJava}:${portJava}/jasamedika-sdm/`,
+            baseUrlActionSDM: `${baseURLEval}:${portEval}/jasamedika-sdm/`,
+            baseApiPostDataSDM: `${baseURLEval}:${portEval}/jasamedika-sdm/`,
             /* Reporting */
             urlReporting: `${baseURLJava}:${portJava}/jasamedika-reporting/`,
             /* LAUNDRY */
