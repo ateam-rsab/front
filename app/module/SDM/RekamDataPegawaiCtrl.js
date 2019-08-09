@@ -2108,7 +2108,6 @@ define(['initialize'], function (initialize) {
                                 $scope.item.tglTerbitStr = _.contains($scope.item.tglTerbitStr, '-') ? $scope.item.tglTerbitStr : dateHelper.formatDate($scope.item.tglTerbitStr, "DD-MM-YYYY");
                                 $scope.item.tglBerakhirStr = _.contains($scope.item.tglBerakhirStr, '-') ? $scope.item.tglBerakhirStr : dateHelper.formatDate($scope.item.tglBerakhirStr, "DD-MM-YYYY");
                             }
-                            getDataPegawai();
                         } else {
                             $scope.item = {
                                 "tglLahir": new Date(),
