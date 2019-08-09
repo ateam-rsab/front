@@ -971,7 +971,7 @@ define(['initialize'], function (initialize) {
                             "nomorTelepon": $scope.item.NoTelepon,
                             "deskripsiStatusPegawaiPlan": $scope.item.deskripsiUsulan,
                             "keteranganLainyaPlan": $scope.item.keterangan,
-                            "tglPengajuan": DateHelper.getTanggalFormattedNew($scope.item.tglPengajuan),
+                            "tglPengajuan": DateHelper.getDateTimeFormatted3($scope.item.tglPengajuan),
                             "listTanggal": listDate,
                             "noSuratTugas": $scope.item.noSuratTugas,
                             "noNotaDinas": $scope.item.noNotaDinas,
