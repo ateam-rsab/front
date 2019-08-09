@@ -24,6 +24,7 @@ define(['initialize'], function(initialize) {
 				columns: [
 					{"field": "noPlanning","title": "No Usulan",width: 100},
 					{"field": "namaPegawai","title": "Nama Pegawai"},
+					{"field": "nip","title": "NIP"},
 					// {"field": "namaJabatan","title": "Jabatan"},
 					// {"field": "unitKerja","title": "Ruangan Bekerja"},
 					{"field": "keteranganLainyaPlan","title": "Deskripsi Usulan"},
