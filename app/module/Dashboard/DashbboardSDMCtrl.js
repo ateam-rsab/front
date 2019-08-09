@@ -1070,7 +1070,7 @@ define(['initialize'], function (initialize) {
 							],
 							dataBound: $scope.onDataBound
 						};
-						$scope.dataSource = new kendo.data.DataSource({
+						$scope.dataSourceFfs = new kendo.data.DataSource({
 							data: dataGrid,
 							aggregate: [
 								{ field: "totalTindakan", aggregate: "sum" },
