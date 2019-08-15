@@ -1276,7 +1276,7 @@ define(['Configuration'], function(config) {
             },
             getDataLogbookKinerja: function(periode, pegawaiId){
                 return r.get({
-                    url: baseUrlActionSDM + "sdm/get-all-tindakan-dokter/"+ periode +"/"+ pegawaiId
+                    url: baseUrlActionSDM + "sdm/get-all-tindakan-dokter-rescored/"+ periode +"/"+ pegawaiId
                 })
             },
             getDetilLogbookKinerja: function(idProduk, idKelas, idPegawai, tgl, ffs){
@@ -1292,7 +1292,7 @@ define(['Configuration'], function(config) {
             },
             getFeeForServiceDokter: function(periode, idDokter){
                 return r.get({
-                    url: baseUrlActionSDM + "sdm/get-all-tindakan-dokter-fee-for-service/" +periode+ "/" +idDokter
+                    url: baseUrlActionSDM + "sdm/get-all-tindakan-dokter-fee-for-service-rescored/" +periode+ "/" +idDokter
                 })
             },
             getHistoryDataPg: function(idPegawai){
