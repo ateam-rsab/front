@@ -1,7 +1,7 @@
-define(['initialize'], function(initialize) {
+define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('DaftarAntrianDokterRajalCtrl', ['SaveToWindow', '$rootScope', '$scope', 'ModelItem', '$state', 'FindPasien', 'DateHelper', 'socket', 'ManagePasien', '$mdDialog', '$window',  'ManageSarprasPhp','CacheHelper', '$q',  'ManagePhp',
-        function(saveToWindow, $rootScope, $scope, ModelItem, $state, findPasien, dateHelper, socket, managePasien, $mdDialog, window, manageSarprasPhp, cacheHelper, $q, ManagePhp) {            
+    initialize.controller('DaftarAntrianDokterRajalCtrl', ['SaveToWindow', '$rootScope', '$scope', 'ModelItem', '$state', 'FindPasien', 'DateHelper', 'socket', 'ManagePasien', '$mdDialog', '$window', 'ManageSarprasPhp', 'CacheHelper', '$q', 'ManagePhp',
+        function (saveToWindow, $rootScope, $scope, ModelItem, $state, findPasien, dateHelper, socket, managePasien, $mdDialog, window, manageSarprasPhp, cacheHelper, $q, ManagePhp) {
             $scope.isVerify = false;
             $scope.dataVOloaded = true;
             $scope.now = new Date();
@@ -9,18 +9,18 @@ define(['initialize'], function(initialize) {
             // $scope.dataPasienSelected = {};
             // $scope.item.periodeAwal =  new Date();
             $scope.item.periodeAwal = new Date();;
-            $scope.item.periodeAkhir = new Date();            
+            $scope.item.periodeAkhir = new Date();
             $scope.item.periodeAwal = dateHelper.setJamAwal(new Date());
             $scope.item.periodeAkhir = new Date();
             $scope.dataPasienSelected = {};
-            $scope.isRouteLoading=false;
+            $scope.isRouteLoading = false;
             $rootScope.isOpen = true;
-            $scope.cboUbahDokter= true;
+            $scope.cboUbahDokter = true;
             // $scope.title = "ini page pencarian pasien";
             // $scope.kodeRuangan = $state.params.kodeRuangan;
             // $scope.isCalling = false;
             var cookie = document.cookie.split(';');
-                cookie = cookie[0].split('=');
+            cookie = cookie[0].split('=');
             $scope.dataLogin = JSON.parse(localStorage.getItem('pegawai'))
             $scope.pegawai = ModelItem.getPegawai();
             loadCombo();
@@ -29,133 +29,143 @@ define(['initialize'], function(initialize) {
             loadKonsul();
             function postRensarWTRJ() {
                 manageSarprasPhp.saveDataTransaksi('rensar/post-waktu-tunggu-rj')
-                .then(function (res) {
-                })
+                    .then(function (res) {
+                    })
             }
             // loadData()
             $scope.SearchEnter = function () {
                 loadData()
             }
 
-            function loadCombo(){
+            function loadCombo() {
                 var chacePeriode = cacheHelper.get('DaftarAntrianDokterRajalCtrl');
-                if(chacePeriode != undefined){
+                if (chacePeriode != undefined) {
                     //debugger;
                     var arrPeriode = chacePeriode.split('~');
                     $scope.item.periodeAwal = new Date(arrPeriode[0]);
                     $scope.item.periodeAwal = new Date(dateHelper.setJamAwal(new Date()));
-                    $scope.item.periodeAkhir = new Date(arrPeriode[1]); 
+                    $scope.item.periodeAkhir = new Date(arrPeriode[1]);
                     // $scope.item.tglpulang = new Date(arrPeriode[2]);                
-                }else{
+                } else {
                     $scope.item.periodeAwal = new Date();
-                    $scope.item.periodeAkhir = moment( $scope.now).format('YYYY-MM-DD 23:59');
+                    $scope.item.periodeAkhir = moment($scope.now).format('YYYY-MM-DD 23:59');
                     $scope.item.periodeAwal = moment($scope.now).format('YYYY-MM-DD 00:00');
                     $scope.item.periodeAkhir = moment($scope.now).format('YYYY-MM-DD 23:59');
                     // $scope.item.tglpulang = $scope.now;                 
                 }
-                manageSarprasPhp.getDataTableTransaksi("dokter/get-data-combo-dokter", false).then(function(data) {
+                manageSarprasPhp.getDataTableTransaksi("dokter/get-data-combo-dokter", false).then(function (data) {
                     $scope.listRuangan = data.data.ruanganRajal;
                 });
 
-                manageSarprasPhp.getDataTableTransaksi("pasien/get-dokters-combos", false).then(function(data) {
+                manageSarprasPhp.getDataTableTransaksi("pasien/get-dokters-combos", false).then(function (data) {
                     $scope.listDokter = data.data.dokter;
                 });
             }
 
-            function loadData(){
+            function loadData() {
                 $scope.isRouteLoading = true;
                 var tglAwal = moment($scope.item.periodeAwal).format('YYYY-MM-DD HH:mm:ss');
                 var tglAkhir = moment($scope.item.periodeAkhir).format('YYYY-MM-DD HH:mm:ss');
 
-                var nocm =""
-                if ($scope.item.noCm != undefined){
-                    var nocm ="&norm="+$scope.item.noCm
-                }   
-                var nama =""
-                if ($scope.item.namaPasien != undefined){
-                    var nama ="&nama="+$scope.item.namaPasien
+                var nocm = ""
+                if ($scope.item.noCm != undefined) {
+                    var nocm = "&norm=" + $scope.item.noCm
                 }
-                var noRegistrasi =""
-                if ($scope.item.noRegistrasi != undefined){
-                    var noRegistrasi ="&noreg="+$scope.item.noRegistrasi
+                var nama = ""
+                if ($scope.item.namaPasien != undefined) {
+                    var nama = "&nama=" + $scope.item.namaPasien
                 }
-                var dokId=""
-                if ($scope.pegawai.id != undefined){
-                   var dokId = "&dokId="+$scope.pegawai.id
+                var noRegistrasi = ""
+                if ($scope.item.noRegistrasi != undefined) {
+                    var noRegistrasi = "&noreg=" + $scope.item.noRegistrasi
                 }
-                var ruangId=""
-                if ($scope.item.ruangan != undefined){
-                   var ruangId = "&ruangId="+$scope.item.ruangan.id
+                var dokId = ""
+                if ($scope.pegawai.id != undefined) {
+                    var dokId = "&dokId=" + $scope.pegawai.id
+                }
+                var ruangId = ""
+                if ($scope.item.ruangan != undefined) {
+                    var ruangId = "&ruangId=" + $scope.item.ruangan.id
                 }
 
                 $q.all([
-                   manageSarprasPhp.getDataTableTransaksi("dokter/get-daftar-antrian-rajal?"+
-                    "&tglAwal="+tglAwal+
-                    "&tglAkhir="+tglAkhir+
-                    "&norm="+nocm+
-                    "&noreg="+noRegistrasi+
-                    "&nama="+nama
-                    +dokId+ruangId),
-                    ]).then(function(data) {
+                    manageSarprasPhp.getDataTableTransaksi("dokter/get-daftar-antrian-rajal?" +
+                        "&tglAwal=" + tglAwal +
+                        "&tglAkhir=" + tglAkhir +
+                        "&norm=" + nocm +
+                        "&noreg=" + noRegistrasi +
+                        "&nama=" + nama
+                        + dokId + ruangId),
+                ]).then(function (data) {
                     $scope.isRouteLoading = false;
                     var datas = data[0].data;
                     for (var i = 0; i < datas.length; i++) {
-                        datas[i].no = i+1
+                        datas[i].no = i + 1
                         var tanggal = $scope.now;
                         var tanggalLahir = new Date(datas[i].tgllahir);
                         var umurzz = dateHelper.CountAge(tanggalLahir, tanggal);
-                        datas[i].umurzz =umurzz.year + ' thn ' + umurzz.month + ' bln ' + umurzz.day + ' hari'
+                        datas[i].umurzz = umurzz.year + ' thn ' + umurzz.month + ' bln ' + umurzz.day + ' hari'
 
-                        if(datas[i].tgldipanggildokter == null)
-                           datas[i].statuspanggil = '-' 
+                        if (datas[i].tgldipanggildokter == null)
+                            datas[i].statuspanggil = '-'
                         else
-                           datas[i].statuspanggil = 'Selesai' 
+                            datas[i].statuspanggil = 'Selesai'
                     }
-                        $scope.GridPasien = new kendo.data.DataSource({
-                            data: datas,
-                            group: $scope.group,
-                            pageSize: 10,
-                            total: data.length,
-                            serverPaging: false,
-                            schema: {
-                                model: {
-                                    fields: {
-                                    }
+                    $scope.GridPasien = new kendo.data.DataSource({
+                        data: datas,
+                        group: $scope.group,
+                        pageSize: 10,
+                        total: data.length,
+                        serverPaging: false,
+                        schema: {
+                            model: {
+                                fields: {
                                 }
                             }
-                        });
-                        var chacePeriode = tglAwal + "~" + tglAkhir;
-                        cacheHelper.set('DaftarAntrianDokterRajalCtrl', chacePeriode);
+                        }
                     });
+                    var chacePeriode = tglAwal + "~" + tglAkhir;
+                    cacheHelper.set('DaftarAntrianDokterRajalCtrl', chacePeriode);
+                });
             }
-            function loadKonsul(){
-                  ManagePhp.getData("rekam-medis/get-order-konsul?dokterid=" +   $scope.dataLogin.id).then(function(e){
+            function loadKonsul() {
+                ManagePhp.getData("rekam-medis/get-order-konsul?dokterid=" + $scope.dataLogin.id).then(function (e) {
                     var res = e.data.data
                     for (var i = res.length - 1; i >= 0; i--) {
-                       if( res[i].norec_apd != null)
-                            res.splice([i],1)
+                        if (res[i].norec_apd != null)
+                            res.splice([i], 1)
                     }
-                    if(res.length > 0){
+                    if (res.length > 0) {
                         $scope.showNotif = true
-                        $scope.lengthKonsul =res.length;
-                    }else
-                         $scope.showNotif = false
-                                 
-                  })
+                        $scope.lengthKonsul = res.length;
+                    } else
+                        $scope.showNotif = false
+
+                })
             }
-            $scope.klikGrid = function(dataPasienSelected){            
+            $scope.klikGrid = function (dataPasienSelected) {
                 // loadCombo();
                 // $scope.item.periodeAwal = dateHelper.setJamAwal(new Date());
                 // $scope.item.periodeAkhir = $scope.now;
                 if (dataPasienSelected != undefined) {
-                    $scope.item.pilihDokter = {id:dataPasienSelected.objectpegawaifk,namalengkap:dataPasienSelected.namadokter}
+                    $scope.item.pilihDokter = { id: dataPasienSelected.objectpegawaifk, namalengkap: dataPasienSelected.namadokter }
                 }
             }
-            
+
 
             $scope.group = {
                 field: "namaruangan",
                 aggregates: [
+                    // {
+                    //     field: "pasien",
+                    //     aggregate: "count"
+                    // }, 
+                    {
+                        field: "namaruangan",
+                        aggregate: "count"
+                    }]
+            };
+            $scope.aggregate = [
                 // {
                 //     field: "pasien",
                 //     aggregate: "count"
@@ -164,103 +174,93 @@ define(['initialize'], function(initialize) {
                     field: "namaruangan",
                     aggregate: "count"
                 }]
-            };
-            $scope.aggregate = [
-            // {
-            //     field: "pasien",
-            //     aggregate: "count"
-            // }, 
-            {
-                field: "namaruangan",
-                aggregate: "count"
-            }]
-              var onDataBound = function () {
+            var onDataBound = function () {
                 $('td').each(function () {
-                  if ($(this).text() == '-') {$(this).addClass('red')}
-                  if ($(this).text() == 'Selesai') {$(this).addClass('green')}
-                
+                    if ($(this).text() == '-') { $(this).addClass('red') }
+                    if ($(this).text() == 'Selesai') { $(this).addClass('green') }
+
                 })
-              }
+            }
             // $scope.ColumnPasien = [
-            $scope.mainGridOptions= {
+            $scope.mainGridOptions = {
                 scrollable: true,
                 dataBound: onDataBound,
-                columns :[
-                {                
-                    "field":"no",
-                    "title":"No",
-                    "title":"<h3>No</h3>",
-                    "width":"40px",
-                },
-                {
-                    "field":"tglregistrasi",
-                    "title":"Tgl Registrasi",
-                    "title":"<h3>Tanggal<br> Registrasi</h3>",
-                    "template": "#= new moment(new Date(tglregistrasi)).format('DD-MM-YYYY HH:mm') #",
-                    "width":"80px"
-                }, 
-                {
-                    "field":"noregistrasi",
-                    "title":"No Registrasi",
-                    "title":"<h3>No. Registrasi</h3>",
-                    "width":"80px"
-                },
-                {
-                    "field":"nocm",
-                    "title":"No. Rekam Medis",
-                    "width":"80px"         ,      
-                    "title":"<h3>No. Rekam<br>Medis</h3>",
-                    "width":"80px"
-                },
-                {
-                    "field":"namapasien",
-                    "title":"Nama Pasien",
-                    "title":"<h3>Nama Pasien</h3>",
-                    "width":"100px"
-                }, 
-                {
-                    "field":"umurzz",
-                    "title":"Umur",
-                    "title":"<h3>Umur</h3>",
-                    "width":"100px"      
-                }, 
-                {
-                    "field":"namadokter",
-                    "title":"Dokter",
-                    "width":"100px",
-                    "title":"<h3>Dokter</h3>",
-                    "width":"100px"
-                }, 
-                {
-                    "field": "jeniskelamin",
-                    "title": "Jenis Kelamin",
-                    "title": "<h3>Jenis Kelamin</h3>",
-                    "width":"100px"
-                },
-                {
-                    "field": "kelompokpasien",
-                    "title": "Tipe Pembayaran",
-                    "title": "<h3>Tipe<br> Pembayaran</h3>",
-                    "width":"80px"
-                }, 
-                {
-                    "field": "statuspanggil",
-                    "title": "Status Panggil",
-                    "title": "<h3>Status Panggil</h3>",
-                    "width":"80px"
-                }, 
-                // {
-                //     field: "statusAntrian",
-                //     title: "Status",
-                //     aggregates: ["count"]
-                // }, 
-                {
-                    hidden: true,
-                    field: "namaruangan",
-                    title: "Nama Ruangan",
-                    aggregates: ["count"],
-                    groupHeaderTemplate: "Ruangan #= value # (Jumlah: #= count#)"
-                }
+                columns: [
+                    {
+                        "field": "no",
+                        "title": "No",
+                        "title": "<h3>No</h3>",
+                        "width": "40px",
+                    },
+                    {
+                        "field": "tglregistrasi",
+                        "title": "Tgl Registrasi",
+                        "title": "<h3>Tanggal<br> Registrasi</h3>",
+                        "template": "#= new moment(new Date(tglregistrasi)).format('DD-MM-YYYY HH:mm') #",
+                        "width": "80px"
+                    },
+                    {
+                        "field": "noregistrasi",
+                        "title": "No Registrasi",
+                        "title": "<h3>No. Registrasi</h3>",
+                        "width": "80px"
+                    },
+                    {
+                        "field": "nocm",
+                        "title": "No. Rekam Medis",
+                        "width": "80px",
+                        "title": "<h3>No. Rekam<br>Medis</h3>",
+                        "width": "80px"
+                    },
+                    {
+                        "field": "namapasien",
+                        "title": "Nama Pasien",
+                        "title": "<h3>Nama Pasien</h3>",
+                        "width": "100px"
+                    },
+                    {
+                        "field": "umurzz",
+                        "title": "Umur",
+                        "title": "<h3>Umur</h3>",
+                        "width": "100px"
+                    },
+                    {
+                        "field": "namadokter",
+                        "title": "Dokter",
+                        "width": "100px",
+                        "title": "<h3>Dokter</h3>",
+                        "width": "100px"
+                    },
+                    {
+                        "field": "jeniskelamin",
+                        "title": "Jenis Kelamin",
+                        "title": "<h3>Jenis Kelamin</h3>",
+                        "width": "100px"
+                    },
+                    {
+                        "field": "kelompokpasien",
+                        "title": "Tipe Pembayaran",
+                        "title": "<h3>Tipe<br> Pembayaran</h3>",
+                        "width": "80px"
+                    },
+                    {
+                        "field": "statuspanggil",
+                        "title": "Status Panggil",
+                        "title": "<h3>Status Panggil</h3>",
+                        "width": "80px"
+                    },
+                    // {
+                    //     field: "statusAntrian",
+                    //     title: "Status",
+                    //     aggregates: ["count"]
+                    // }, 
+                    {
+                        hidden: true,
+                        field: "namaruangan",
+                        title: "Nama Ruangan",
+                        aggregates: ["count"],
+                        groupHeaderTemplate: "Ruangan #= value # (Jumlah: #= count#)"
+                    }
                 ]
             }
 
@@ -270,271 +270,271 @@ define(['initialize'], function(initialize) {
                 buttonCount: 5
             }
 
-            $scope.diagnosaICD10 = function() {
+            $scope.diagnosaICD10 = function () {
                 debugger;
-                if ($scope.dataPasienSelected.nocm ==null && $scope.dataPasienSelected.norec_apd == null)
-                   {
-                        window.messageContainer.error("Pilih Dahulu Pasien!")
-                        return
-                    }
-                var arrStr ={ 0 : $scope.dataPasienSelected.nocm ,
-                    1 : $scope.dataPasienSelected.namapasien,
-                    2 : $scope.dataPasienSelected.jeniskelamin,
-                    3 : $scope.dataPasienSelected.noregistrasi, 
-                    4 : $scope.dataPasienSelected.umurzz,
-                    5 : $scope.dataPasienSelected.kelompokpasien,
-                    6 : $scope.dataPasienSelected.tglregistrasi,
-                    7 : $scope.dataPasienSelected.norec_apd,
-                    8 : $scope.dataPasienSelected.norec_pd,
-                    9 : $scope.dataPasienSelected.idkelas,
-                    10 : $scope.dataPasienSelected.namakelas,
-                    11 : $scope.dataPasienSelected.objectruanganfk,
-                    12 : $scope.dataPasienSelected.namaruangan
+                if ($scope.dataPasienSelected.nocm == null && $scope.dataPasienSelected.norec_apd == null) {
+                    window.messageContainer.error("Pilih Dahulu Pasien!")
+                    return
+                }
+                var arrStr = {
+                    0: $scope.dataPasienSelected.nocm,
+                    1: $scope.dataPasienSelected.namapasien,
+                    2: $scope.dataPasienSelected.jeniskelamin,
+                    3: $scope.dataPasienSelected.noregistrasi,
+                    4: $scope.dataPasienSelected.umurzz,
+                    5: $scope.dataPasienSelected.kelompokpasien,
+                    6: $scope.dataPasienSelected.tglregistrasi,
+                    7: $scope.dataPasienSelected.norec_apd,
+                    8: $scope.dataPasienSelected.norec_pd,
+                    9: $scope.dataPasienSelected.idkelas,
+                    10: $scope.dataPasienSelected.namakelas,
+                    11: $scope.dataPasienSelected.objectruanganfk,
+                    12: $scope.dataPasienSelected.namaruangan
                 }
                 cacheHelper.set('DiagnosaDokterCtrl', arrStr);
                 $state.go('DiagnosaDokter')
             }
-            $scope.diagnosaICD9 = function() {
+            $scope.diagnosaICD9 = function () {
                 // $state.go('RiwayatRegistrasi3', {
                 //     nocm: $scope.dataPasienSelected.nocm,
                 //     noregistrasi: $scope.dataPasienSelected.noregistrasi
                 // });
-                if ($scope.dataPasienSelected.nocm ==null && $scope.dataPasienSelected.norec_apd == null)
-                   {
-                        window.messageContainer.error("Pilih Dahulu Pasien!")
-                        return
-                    }
+                if ($scope.dataPasienSelected.nocm == null && $scope.dataPasienSelected.norec_apd == null) {
+                    window.messageContainer.error("Pilih Dahulu Pasien!")
+                    return
+                }
                 // debugger;
-                var arrStr ={ 0 : $scope.dataPasienSelected.nocm ,
-                    1 : $scope.dataPasienSelected.namapasien,
-                    2 : $scope.dataPasienSelected.jeniskelamin,
-                    3 : $scope.dataPasienSelected.noregistrasi, 
-                    4 : $scope.dataPasienSelected.umurzz,
-                    5 : $scope.dataPasienSelected.kelompokpasien,
-                    6 : $scope.dataPasienSelected.tglregistrasi,
-                    7 : $scope.dataPasienSelected.norec_apd,
-                    8 : $scope.dataPasienSelected.norec_pd,
-                    9 : $scope.dataPasienSelected.idkelas,
-                    10 : $scope.dataPasienSelected.namakelas,
-                    11 : $scope.dataPasienSelected.objectruanganfk,
-                    12 : $scope.dataPasienSelected.namaruangan
+                var arrStr = {
+                    0: $scope.dataPasienSelected.nocm,
+                    1: $scope.dataPasienSelected.namapasien,
+                    2: $scope.dataPasienSelected.jeniskelamin,
+                    3: $scope.dataPasienSelected.noregistrasi,
+                    4: $scope.dataPasienSelected.umurzz,
+                    5: $scope.dataPasienSelected.kelompokpasien,
+                    6: $scope.dataPasienSelected.tglregistrasi,
+                    7: $scope.dataPasienSelected.norec_apd,
+                    8: $scope.dataPasienSelected.norec_pd,
+                    9: $scope.dataPasienSelected.idkelas,
+                    10: $scope.dataPasienSelected.namakelas,
+                    11: $scope.dataPasienSelected.objectruanganfk,
+                    12: $scope.dataPasienSelected.namaruangan
                 }
                 cacheHelper.set('DiagnosaDokterICD9Ctrl', arrStr);
                 $state.go('DiagnosaDokterICD9')
             }
-            $scope.showInputDiagnosaDokter=function(){
-                 if ($scope.dataPasienSelected.nocm ==null && $scope.dataPasienSelected.norec_apd == null)
-                   {
-                        window.messageContainer.error("Pilih Dahulu Pasien!")
-                        return
-                    }
+            $scope.showInputDiagnosaDokter = function () {
+                if ($scope.dataPasienSelected.nocm == null && $scope.dataPasienSelected.norec_apd == null) {
+                    window.messageContainer.error("Pilih Dahulu Pasien!")
+                    return
+                }
                 // debugger;
-                var arrStr ={ 0 : $scope.dataPasienSelected.nocm ,
-                    1 : $scope.dataPasienSelected.namapasien,
-                    2 : $scope.dataPasienSelected.jeniskelamin,
-                    3 : $scope.dataPasienSelected.noregistrasi, 
-                    4 : $scope.dataPasienSelected.umurzz,
-                    5 : $scope.dataPasienSelected.kelompokpasien,
-                    6 : $scope.dataPasienSelected.tglregistrasi,
-                    7 : $scope.dataPasienSelected.norec_apd,
-                    8 : $scope.dataPasienSelected.norec_pd,
-                    9 : $scope.dataPasienSelected.idkelas,
-                    10 : $scope.dataPasienSelected.namakelas,
-                    11 : $scope.dataPasienSelected.objectruanganfk,
-                    12 : $scope.dataPasienSelected.namaruangan + '`'
+                var arrStr = {
+                    0: $scope.dataPasienSelected.nocm,
+                    1: $scope.dataPasienSelected.namapasien,
+                    2: $scope.dataPasienSelected.jeniskelamin,
+                    3: $scope.dataPasienSelected.noregistrasi,
+                    4: $scope.dataPasienSelected.umurzz,
+                    5: $scope.dataPasienSelected.kelompokpasien,
+                    6: $scope.dataPasienSelected.tglregistrasi,
+                    7: $scope.dataPasienSelected.norec_apd,
+                    8: $scope.dataPasienSelected.norec_pd,
+                    9: $scope.dataPasienSelected.idkelas,
+                    10: $scope.dataPasienSelected.namakelas,
+                    11: $scope.dataPasienSelected.objectruanganfk,
+                    12: $scope.dataPasienSelected.namaruangan + '`'
                 }
                 cacheHelper.set('CacheInputDiagnosaDokter', arrStr);
                 $state.go('InputDiagnosaDokter')
 
             }
-            $scope.rekamMedisElektronik=function(){
-                if ($scope.dataPasienSelected.nocm ==null && $scope.dataPasienSelected.norec_apd == null)
-                   {
-                        window.messageContainer.error("Pilih Dahulu Pasien!")
-                        return
-                    }
-                // debugger;
-                var arrStr ={ 0 : $scope.dataPasienSelected.nocm ,
-                    1 : $scope.dataPasienSelected.namapasien,
-                    2 : $scope.dataPasienSelected.jeniskelamin,
-                    3 : $scope.dataPasienSelected.noregistrasi, 
-                    4 : $scope.dataPasienSelected.umurzz,
-                    5 : $scope.dataPasienSelected.kelompokpasien,
-                    6 : $scope.dataPasienSelected.tglregistrasi,
-                    7 : $scope.dataPasienSelected.norec_apd,
-                    8 : $scope.dataPasienSelected.norec_pd,
-                    9 : $scope.dataPasienSelected.idkelas,
-                    10 : $scope.dataPasienSelected.namakelas,
-                    11 : $scope.dataPasienSelected.objectruanganfk,
-                    12 : $scope.dataPasienSelected.namaruangan + '`'
+            $scope.rekamMedisElektronik = function () {
+                if ($scope.dataPasienSelected.nocm == null && $scope.dataPasienSelected.norec_apd == null) {
+                    window.messageContainer.error("Pilih Dahulu Pasien!")
+                    return
                 }
-               cacheHelper.set('cacheRMelektronik', arrStr);
-               $state.go('RekamMedis',{
-                norecAPD: $scope.dataPasienSelected.norec_apd,
-                noRec: $scope.dataPasienSelected.norec_apd
-               })
-
-           }
-
-
-            $scope.resep = function() {
-                debugger;
-                if ($scope.dataPasienSelected.nocm ==null && $scope.dataPasienSelected.norec_apd == null)
-                   {
-                        window.messageContainer.error("Pilih Dahulu Pasien!")
-                        return
-                    }
                 // debugger;
-                var arrStr ={ 0 : $scope.dataPasienSelected.nocm ,
-                    1 : $scope.dataPasienSelected.namapasien,
-                    2 : $scope.dataPasienSelected.jeniskelamin,
-                    3 : $scope.dataPasienSelected.noregistrasi, 
-                    4 : $scope.dataPasienSelected.umurzz,
-                    5 : $scope.dataPasienSelected.kelompokpasien,
-                    6 : $scope.dataPasienSelected.tglregistrasi,
-                    7 : $scope.dataPasienSelected.norec_apd,
-                    8 : $scope.dataPasienSelected.norec_pd,
-                    9 : $scope.dataPasienSelected.idkelas,
-                    10 : $scope.dataPasienSelected.namakelas,
-                    11 : $scope.dataPasienSelected.objectruanganfk,
-                    12 : $scope.dataPasienSelected.namaruangan + '`'
+                var arrStr = {
+                    0: $scope.dataPasienSelected.nocm,
+                    1: $scope.dataPasienSelected.namapasien,
+                    2: $scope.dataPasienSelected.jeniskelamin,
+                    3: $scope.dataPasienSelected.noregistrasi,
+                    4: $scope.dataPasienSelected.umurzz,
+                    5: $scope.dataPasienSelected.kelompokpasien,
+                    6: $scope.dataPasienSelected.tglregistrasi,
+                    7: $scope.dataPasienSelected.norec_apd,
+                    8: $scope.dataPasienSelected.norec_pd,
+                    9: $scope.dataPasienSelected.idkelas,
+                    10: $scope.dataPasienSelected.namakelas,
+                    11: $scope.dataPasienSelected.objectruanganfk,
+                    12: $scope.dataPasienSelected.namaruangan + '`'
+                }
+                cacheHelper.set('cacheRMelektronik', arrStr);
+                $state.go('RekamMedis', {
+                    norecAPD: $scope.dataPasienSelected.norec_apd,
+                    noRec: $scope.dataPasienSelected.norec_apd
+                })
+
+            }
+
+
+            $scope.resep = function () {
+                debugger;
+                if ($scope.dataPasienSelected.nocm == null && $scope.dataPasienSelected.norec_apd == null) {
+                    window.messageContainer.error("Pilih Dahulu Pasien!")
+                    return
+                }
+                // debugger;
+                var arrStr = {
+                    0: $scope.dataPasienSelected.nocm,
+                    1: $scope.dataPasienSelected.namapasien,
+                    2: $scope.dataPasienSelected.jeniskelamin,
+                    3: $scope.dataPasienSelected.noregistrasi,
+                    4: $scope.dataPasienSelected.umurzz,
+                    5: $scope.dataPasienSelected.kelompokpasien,
+                    6: $scope.dataPasienSelected.tglregistrasi,
+                    7: $scope.dataPasienSelected.norec_apd,
+                    8: $scope.dataPasienSelected.norec_pd,
+                    9: $scope.dataPasienSelected.idkelas,
+                    10: $scope.dataPasienSelected.namakelas,
+                    11: $scope.dataPasienSelected.objectruanganfk,
+                    12: $scope.dataPasienSelected.namaruangan + '`'
                 }
                 cacheHelper.set('InputResepApotikOrderRevCtrl', arrStr);
                 $state.go('InputResepApotikOrderRev')
             }
 
-            $scope.laboratorium = function() {
+            $scope.laboratorium = function () {
                 debugger;
-                if ($scope.dataPasienSelected.nocm ==null && $scope.dataPasienSelected.norec_apd == null)
-                   {
-                        window.messageContainer.error("Pilih Dahulu Pasien!")
-                        return
-                    }
+                if ($scope.dataPasienSelected.nocm == null && $scope.dataPasienSelected.norec_apd == null) {
+                    window.messageContainer.error("Pilih Dahulu Pasien!")
+                    return
+                }
                 // debugger;
-                var arrStr ={ 0 : $scope.dataPasienSelected.nocm ,
-                    1 : $scope.dataPasienSelected.namapasien,
-                    2 : $scope.dataPasienSelected.jeniskelamin,
-                    3 : $scope.dataPasienSelected.noregistrasi, 
-                    4 : $scope.dataPasienSelected.umurzz,
-                    5 : $scope.dataPasienSelected.kelompokpasien,
-                    6 : $scope.dataPasienSelected.tglregistrasi,
-                    7 : $scope.dataPasienSelected.norec_apd,
-                    8 : $scope.dataPasienSelected.norec_pd,
-                    9 : $scope.dataPasienSelected.idkelas,
-                    10 : $scope.dataPasienSelected.namakelas,
-                    11 : $scope.dataPasienSelected.objectruanganfk,
-                    12 : $scope.dataPasienSelected.namaruangan + '`'
+                var arrStr = {
+                    0: $scope.dataPasienSelected.nocm,
+                    1: $scope.dataPasienSelected.namapasien,
+                    2: $scope.dataPasienSelected.jeniskelamin,
+                    3: $scope.dataPasienSelected.noregistrasi,
+                    4: $scope.dataPasienSelected.umurzz,
+                    5: $scope.dataPasienSelected.kelompokpasien,
+                    6: $scope.dataPasienSelected.tglregistrasi,
+                    7: $scope.dataPasienSelected.norec_apd,
+                    8: $scope.dataPasienSelected.norec_pd,
+                    9: $scope.dataPasienSelected.idkelas,
+                    10: $scope.dataPasienSelected.namakelas,
+                    11: $scope.dataPasienSelected.objectruanganfk,
+                    12: $scope.dataPasienSelected.namaruangan + '`'
                 }
                 cacheHelper.set('TransaksiPelayananLaboratoriumDokterRevCtrl', arrStr);
                 $state.go('TransaksiPelayananLaboratoriumDokterRev')
             }
 
-            $scope.radiologi = function() {
+            $scope.radiologi = function () {
                 debugger;
-                if ($scope.dataPasienSelected.nocm ==null && $scope.dataPasienSelected.norec_apd == null)
-                   {
-                        window.messageContainer.error("Pilih Dahulu Pasien!")
-                        return
-                    }
+                if ($scope.dataPasienSelected.nocm == null && $scope.dataPasienSelected.norec_apd == null) {
+                    window.messageContainer.error("Pilih Dahulu Pasien!")
+                    return
+                }
                 // debugger;
-                var arrStr ={ 0 : $scope.dataPasienSelected.nocm ,
-                    1 : $scope.dataPasienSelected.namapasien,
-                    2 : $scope.dataPasienSelected.jeniskelamin,
-                    3 : $scope.dataPasienSelected.noregistrasi, 
-                    4 : $scope.dataPasienSelected.umurzz,
-                    5 : $scope.dataPasienSelected.kelompokpasien,
-                    6 : $scope.dataPasienSelected.tglregistrasi,
-                    7 : $scope.dataPasienSelected.norec_apd,
-                    8 : $scope.dataPasienSelected.norec_pd,
-                    9 : $scope.dataPasienSelected.idkelas,
-                    10 : $scope.dataPasienSelected.namakelas,
-                    11 : $scope.dataPasienSelected.objectruanganfk,
-                    12 : $scope.dataPasienSelected.namaruangan + '`'
+                var arrStr = {
+                    0: $scope.dataPasienSelected.nocm,
+                    1: $scope.dataPasienSelected.namapasien,
+                    2: $scope.dataPasienSelected.jeniskelamin,
+                    3: $scope.dataPasienSelected.noregistrasi,
+                    4: $scope.dataPasienSelected.umurzz,
+                    5: $scope.dataPasienSelected.kelompokpasien,
+                    6: $scope.dataPasienSelected.tglregistrasi,
+                    7: $scope.dataPasienSelected.norec_apd,
+                    8: $scope.dataPasienSelected.norec_pd,
+                    9: $scope.dataPasienSelected.idkelas,
+                    10: $scope.dataPasienSelected.namakelas,
+                    11: $scope.dataPasienSelected.objectruanganfk,
+                    12: $scope.dataPasienSelected.namaruangan + '`'
                 }
                 cacheHelper.set('TransaksiPelayananRadiologiDokterRevCtrl', arrStr);
                 $state.go('TransaksiPelayananRadiologiDokterRev')
             }
 
-            $scope.inputTindakanDokter = function() {
+            $scope.inputTindakanDokter = function () {
                 debugger;
-                if ($scope.dataPasienSelected.nocm ==null && $scope.dataPasienSelected.norec_apd == null)
-                   {
-                        window.messageContainer.error("Pilih Dahulu Pasien!")
-                        return
-                    }
+                if ($scope.dataPasienSelected.nocm == null && $scope.dataPasienSelected.norec_apd == null) {
+                    window.messageContainer.error("Pilih Dahulu Pasien!")
+                    return
+                }
                 // debugger;
-                var arrStr ={ 0 : $scope.dataPasienSelected.nocm ,
-                    1 : $scope.dataPasienSelected.namapasien,
-                    2 : $scope.dataPasienSelected.jeniskelamin,
-                    3 : $scope.dataPasienSelected.noregistrasi, 
-                    4 : $scope.dataPasienSelected.umurzz,
-                    5 : $scope.dataPasienSelected.kelompokpasien,
-                    6 : $scope.dataPasienSelected.tglregistrasi,
-                    7 : $scope.dataPasienSelected.norec_apd,
-                    8 : $scope.dataPasienSelected.norec_pd,
-                    9 : $scope.dataPasienSelected.idkelas,
-                    10 : $scope.dataPasienSelected.namakelas,
-                    11 : $scope.dataPasienSelected.objectruanganfk,
-                    12 : $scope.dataPasienSelected.namaruangan + '`'
+                var arrStr = {
+                    0: $scope.dataPasienSelected.nocm,
+                    1: $scope.dataPasienSelected.namapasien,
+                    2: $scope.dataPasienSelected.jeniskelamin,
+                    3: $scope.dataPasienSelected.noregistrasi,
+                    4: $scope.dataPasienSelected.umurzz,
+                    5: $scope.dataPasienSelected.kelompokpasien,
+                    6: $scope.dataPasienSelected.tglregistrasi,
+                    7: $scope.dataPasienSelected.norec_apd,
+                    8: $scope.dataPasienSelected.norec_pd,
+                    9: $scope.dataPasienSelected.idkelas,
+                    10: $scope.dataPasienSelected.namakelas,
+                    11: $scope.dataPasienSelected.objectruanganfk,
+                    12: $scope.dataPasienSelected.namaruangan + '`'
                 }
                 cacheHelper.set('InputTindakanPelayananDokterRevCtrl', arrStr);
                 // $state.go('inputTindakanDokterRev')
 
-                 $state.go('InputTindakanPelayananDokterRev',{
-                        norecPD:$scope.dataPasienSelected.norec_pd,
-                        norecAPD: $scope.dataPasienSelected.norec_apd,
-                      
-                    });
-            }
-            
-            $scope.Monitoring = function() {
-                $state.go('MonitoringPasien', { 
-                    noCm: $scope.dataPasienSelected.nocm 
+                $state.go('InputTindakanPelayananDokterRev', {
+                    norecPD: $scope.dataPasienSelected.norec_pd,
+                    norecAPD: $scope.dataPasienSelected.norec_apd,
+
                 });
             }
 
-            $scope.PengkajianAwal = function(){
+            $scope.Monitoring = function () {
+                $state.go('MonitoringPasien', {
+                    noCm: $scope.dataPasienSelected.nocm
+                });
+            }
+
+            $scope.PengkajianAwal = function () {
                 var cookie = document.cookie.split(';');
                 var statusCode = ModelItem.getStatusUser();
                 var objValid = $scope.cekStatusBeforePemeriksaan(statusCode, $scope.item.statusAntrian);
                 // if (objValid.status) {
-                    saveToWindow.setItemToWindowChace("isRawatInap", false);
-                    cookie = cookie[0].split('=');
-                    // if ($scope.item.isKajianAwal || cookie[1] === 'suster') {
-                        $state.go('dashboardpasien.DashboardPAP', {
-                            noCM:  $scope.dataPasienSelected.nocm,
-                            tanggal: moment(new Date( $scope.dataPasienSelected.tglregistrasi)).format('YYYY-MM-DD HH:mm:ss'),
-                            noRec:  $scope.dataPasienSelected.norec_apd,
-                            ruangana:  $scope.dataPasienSelected.objectruanganfk
-                        });
-                    // } else {
-                    //     $state.go('dashboardpasien.DashboardPAP', {
-                    //         noCM: $scope.item.nocm,
-                    //         tanggal: moment(new Date($scope.item.nocm .tglregistrasi)).format('YYYY-MM-DD HH:mm:ss'),
-                    //         noRec: $scope.item.noRec,
-                    //         ruangana:$scope.item.ruangan.id
-                    //     });
-                    // }
+                saveToWindow.setItemToWindowChace("isRawatInap", false);
+                cookie = cookie[0].split('=');
+                // if ($scope.item.isKajianAwal || cookie[1] === 'suster') {
+                $state.go('dashboardpasien.DashboardPAP', {
+                    noCM: $scope.dataPasienSelected.nocm,
+                    tanggal: moment(new Date($scope.dataPasienSelected.tglregistrasi)).format('YYYY-MM-DD HH:mm:ss'),
+                    noRec: $scope.dataPasienSelected.norec_apd,
+                    ruangana: $scope.dataPasienSelected.objectruanganfk
+                });
+                // } else {
+                //     $state.go('dashboardpasien.DashboardPAP', {
+                //         noCM: $scope.item.nocm,
+                //         tanggal: moment(new Date($scope.item.nocm .tglregistrasi)).format('YYYY-MM-DD HH:mm:ss'),
+                //         noRec: $scope.item.noRec,
+                //         ruangana:$scope.item.ruangan.id
+                //     });
+                // }
                 // } else {
                 //     window.messageContainer.error(objValid.msg);
                 // }
             }
 
-            $scope.PengkajianMedis = function(){
+            $scope.PengkajianMedis = function () {
                 var cookie = document.cookie.split(';');
                 var statusCode = ModelItem.getStatusUser();
                 var objValid = $scope.cekStatusBeforePemeriksaan(statusCode, $scope.item.statusAntrian);
                 // if (objValid.status) {
-                    saveToWindow.setItemToWindowChace("isRawatInap", false);
-                    cookie = cookie[0].split('=');
-                    // if ($scope.item.isKajianAwal || cookie[1] === 'suster') {
-                        $state.go('dashboardpasien.PengkajianMedis', {
-                            noCM:  $scope.dataPasienSelected.nocm,
-                            tanggal: moment(new Date( $scope.dataPasienSelected.tglregistrasi)).format('YYYY-MM-DD HH:mm:ss'),
-                            noRec:  $scope.dataPasienSelected.norec_apd,
-                            ruangana:  $scope.dataPasienSelected.objectruanganfk
-                        });
-                    // } else {
+                saveToWindow.setItemToWindowChace("isRawatInap", false);
+                cookie = cookie[0].split('=');
+                // if ($scope.item.isKajianAwal || cookie[1] === 'suster') {
+                $state.go('dashboardpasien.PengkajianMedis', {
+                    noCM: $scope.dataPasienSelected.nocm,
+                    tanggal: moment(new Date($scope.dataPasienSelected.tglregistrasi)).format('YYYY-MM-DD HH:mm:ss'),
+                    noRec: $scope.dataPasienSelected.norec_apd,
+                    ruangana: $scope.dataPasienSelected.objectruanganfk
+                });
+                // } else {
                 //         $state.go('dashboardpasien.PengkajianMedis', {
                 //             noCM: $scope.item.pasien.noCm,
                 //             tanggal: moment(new Date($scope.item.pasienDaftar.tglRegistrasi)).format('YYYY-MM-DD HH:mm:ss'),
@@ -547,31 +547,31 @@ define(['initialize'], function(initialize) {
                 // }
             }
 
-            $scope.detailOrder = function() {
-                if ($scope.dataPasienSelected.nocm ==null && $scope.dataPasienSelected.norec_apd == null){
+            $scope.detailOrder = function () {
+                if ($scope.dataPasienSelected.nocm == null && $scope.dataPasienSelected.norec_apd == null) {
                     window.messageContainer.error("Pilih Dahulu Pasien!")
                     return
-                }else{
+                } else {
                     $state.go('dashboardpasien.BillingDetail', {
-                        noRecRegistrasi:  $scope.dataPasienSelected.norec_pd,
+                        noRecRegistrasi: $scope.dataPasienSelected.norec_pd,
                         noRec: $scope.dataPasienSelected.norec_apd
                     });
                 }
             }
 
-            $scope.detailPasien = function() {
+            $scope.detailPasien = function () {
                 var cookie = document.cookie.split(';');
                 var statusCode = ModelItem.getStatusUser();
                 var objValid = $scope.cekStatusBeforePemeriksaan(statusCode, $scope.item.statusAntrian);
                 // if (objValid.status) {
-                    saveToWindow.setItemToWindowChace("isRawatInap", false);
-                    cookie = cookie[0].split('=');
-                    // if ($scope.item.isKajianAwal || cookie[1] === 'suster') {
-                        $state.go('dashboardpasien.pasien', {
-                            noCM:  $scope.dataPasienSelected.nocm,
-                            tanggal: moment(new Date( $scope.dataPasienSelected.tglregistrasi)).format('YYYY-MM-DD HH:mm:ss'),
-                            noRec:   $scope.dataPasienSelected.norec_apd
-                        });
+                saveToWindow.setItemToWindowChace("isRawatInap", false);
+                cookie = cookie[0].split('=');
+                // if ($scope.item.isKajianAwal || cookie[1] === 'suster') {
+                $state.go('dashboardpasien.pasien', {
+                    noCM: $scope.dataPasienSelected.nocm,
+                    tanggal: moment(new Date($scope.dataPasienSelected.tglregistrasi)).format('YYYY-MM-DD HH:mm:ss'),
+                    noRec: $scope.dataPasienSelected.norec_apd
+                });
                 //     } else {
                 //         $state.go('dashboardpasien.pasien', {
                 //             noCM: $scope.item.pasien.noCm,
@@ -584,20 +584,20 @@ define(['initialize'], function(initialize) {
                 // }
             }
 
-            $scope.PengkajianLanjutan = function() {                
+            $scope.PengkajianLanjutan = function () {
                 var cookie = document.cookie.split(';');
                 var statusCode = ModelItem.getStatusUser();
                 var objValid = $scope.cekStatusBeforePemeriksaan(statusCode, $scope.item.statusAntrian);
                 // if (objValid.status) {
-                    saveToWindow.setItemToWindowChace("isRawatInap", false);
-                    cookie = cookie[0].split('=');
-                    // if ($scope.item.isKajianAwal || cookie[1] === 'suster') {
-                        $state.go('dashboardpasien.pengkajianLanjutan', {
-                            noCM:  $scope.dataPasienSelected.nocm,
-                            tanggal: moment(new Date( $scope.dataPasienSelected.tglregistrasi)).format('YYYY-MM-DD HH:mm:ss'),
-                            noRec:  $scope.dataPasienSelected.norec_apd,
-                            ruangana:  $scope.dataPasienSelected.objectruanganfk
-                        });
+                saveToWindow.setItemToWindowChace("isRawatInap", false);
+                cookie = cookie[0].split('=');
+                // if ($scope.item.isKajianAwal || cookie[1] === 'suster') {
+                $state.go('dashboardpasien.pengkajianLanjutan', {
+                    noCM: $scope.dataPasienSelected.nocm,
+                    tanggal: moment(new Date($scope.dataPasienSelected.tglregistrasi)).format('YYYY-MM-DD HH:mm:ss'),
+                    noRec: $scope.dataPasienSelected.norec_apd,
+                    ruangana: $scope.dataPasienSelected.objectruanganfk
+                });
                 //     } else {
                 //         $state.go('dashboardpasien.pengkajianLanjutan', {
                 //             noCM: $scope.item.pasien.noCm,
@@ -609,13 +609,13 @@ define(['initialize'], function(initialize) {
                 // } else {
                 //     window.messageContainer.error(objValid.msg);
                 // }
-            }            
-
-            $scope.findData = function() {
-               loadData()
             }
 
-            $scope.pemeriksaanPasien = function() {
+            $scope.findData = function () {
+                loadData()
+            }
+
+            $scope.pemeriksaanPasien = function () {
                 var cookie = document.cookie.split(';');
 
                 var statusCode = ModelItem.getStatusUser();
@@ -625,14 +625,14 @@ define(['initialize'], function(initialize) {
                     cookie = cookie[0].split('=');
                     if ($scope.item.isKajianAwal || cookie[1] === 'suster') {
                         $state.go('dashboardpasien.pengkajianUtama', {
-                            noCM:  $scope.dataPasienSelected.nocm,
-                            tanggal: moment(new Date( $scope.dataPasienSelected.tglregistrasi)).format('YYYY-MM-DD HH:mm:ss'),
+                            noCM: $scope.dataPasienSelected.nocm,
+                            tanggal: moment(new Date($scope.dataPasienSelected.tglregistrasi)).format('YYYY-MM-DD HH:mm:ss'),
                             noRec: $scope.dataPasienSelected.norec_apd
                         });
                     } else {
                         $state.go('dashboardpasien.pengkajianUtama', {
-                            noCM:  $scope.dataPasienSelected.pasien.nocm,
-                            tanggal: moment(new Date( $scope.dataPasienSelected.tglregistrasi)).format('YYYY-MM-DD HH:mm:ss'),
+                            noCM: $scope.dataPasienSelected.pasien.nocm,
+                            tanggal: moment(new Date($scope.dataPasienSelected.tglregistrasi)).format('YYYY-MM-DD HH:mm:ss'),
                             noRec: dataPasienSelected.norec_apd
                         });
                     }
@@ -641,7 +641,7 @@ define(['initialize'], function(initialize) {
                 }
             }
 
-            $scope.cekStatusBeforePemeriksaan = function(statusCode, statusAntrian) {
+            $scope.cekStatusBeforePemeriksaan = function (statusCode, statusAntrian) {
                 var obj = {
                     "msg": "",
                     "status": true
@@ -682,7 +682,7 @@ define(['initialize'], function(initialize) {
                 return obj;
             }
 
-            $scope.cekStatusBeforePanggil = function(statusCode, statusAntrian) {
+            $scope.cekStatusBeforePanggil = function (statusCode, statusAntrian) {
                 var obj = {
                     "msg": "",
                     "status": false,
@@ -743,73 +743,73 @@ define(['initialize'], function(initialize) {
             //       content: content
             //     }).data("kendoConfirm").open().result;
             // }
-             $scope.batalPanggil = function() {
+            $scope.batalPanggil = function () {
                 if ($scope.item.statusAntrian !== "SELESAI_DIPERIKSA") {
-                  
-                    if ($scope.item !== undefined && $scope.item.pasienDaftar !== undefined) {  
-      
-                        var dataJson = {
-                        "norec_apd": $scope.item.noRec
-                        // "idRuangan": $scope.item.ruangan.id
-                         }
-                         manageSarprasPhp.pasienBatalPanggil(dataJson)
-                        .then(function(e) {
-                           $scope.findData();
 
-                        });
+                    if ($scope.item !== undefined && $scope.item.pasienDaftar !== undefined) {
+
+                        var dataJson = {
+                            "norec_apd": $scope.item.noRec
+                            // "idRuangan": $scope.item.ruangan.id
+                        }
+                        manageSarprasPhp.pasienBatalPanggil(dataJson)
+                            .then(function (e) {
+                                $scope.findData();
+
+                            });
                     } else {
                         window.messageContainer.error('Pasien belum di pilih');
                     }
-                    } else {
+                } else {
                     messageContainer.error('Pasien sudah selesai diperiksa')
                 }
-                }
-               
-            $scope.UbahDokter = function() {
-                if ( $scope.dataPasienSelected == undefined){
+            }
+
+            $scope.UbahDokter = function () {
+                if ($scope.dataPasienSelected == undefined) {
                     alert("Pilih Pasien Dahulu!!!")
                     return;
-                }else{
-                    $scope.item.pilihDokter = {id:$scope.dataPasienSelected.objectpegawaifk,namalengkap:$scope.dataPasienSelected.namadokter}
+                } else {
+                    $scope.item.pilihDokter = { id: $scope.dataPasienSelected.objectpegawaifk, namalengkap: $scope.dataPasienSelected.namadokter }
                     $scope.winDialogss.center().open();
                 }
             }
-            $scope.simpanDokter = function() {
-                  // 
+            $scope.simpanDokter = function () {
+                // 
                 // var listRawRequired = [
                 //     "items.pilihDokter|k-ng-model|Dokter"
                 // ];
                 // var isValid = ModelItem.setValidation($scope, listRawRequired);
 
                 // if(isValid.status){
-                    // munculkan nama dokter di grid
-                   // items.pilihDokter = data.data.dokter.namalengkap;
+                // munculkan nama dokter di grid
+                // items.pilihDokter = data.data.dokter.namalengkap;
 
-                    // save dokter yang dipilih
-                    var tmpData = {
-                        norec_apd: $scope.dataPasienSelected.norec_apd,
-                        // iddokter: dataPasienSelected.pilihDokter.id
-                        iddokter: $scope.item.pilihDokter.id
-                    }
-                    manageSarprasPhp.updateDokters(tmpData).then(function(e){
-                        // update status antrian
-                        $scope.winDialogss.close();
-                        loadData();
-                        // $scope.findData(); 
-                        $scope.item.pilihDokter='';
-                       
-                    });
+                // save dokter yang dipilih
+                var tmpData = {
+                    norec_apd: $scope.dataPasienSelected.norec_apd,
+                    // iddokter: dataPasienSelected.pilihDokter.id
+                    iddokter: $scope.item.pilihDokter.id
+                }
+                manageSarprasPhp.updateDokters(tmpData).then(function (e) {
+                    // update status antrian
+                    $scope.winDialogss.close();
+                    loadData();
+                    // $scope.findData(); 
+                    $scope.item.pilihDokter = '';
+
+                });
                 // } else {
                 //     ModelItem.showMessages(isValid.messages);
                 // }
             }
-        
 
-            $scope.batalPeriksa = function() {
+
+            $scope.batalPeriksa = function () {
                 if ($scope.item.statusAntrian === "MENUNGGU") {
                     if ($scope.item !== undefined && $scope.item.pasienDaftar !== undefined) {
-                        
-                        findPasien.getListData('service/list-generic/?view=Pembatal&select=*').then(function(e){
+
+                        findPasien.getListData('service/list-generic/?view=Pembatal&select=*').then(function (e) {
                             $scope.listPembatalan = e.data;
                         })
                         $scope.listRuangan = [];
@@ -824,39 +824,39 @@ define(['initialize'], function(initialize) {
                     messageContainer.error('Pasien sudah diperiksa')
                 }
             }
-            $scope.lanjutBatal = function(data, batal) {
-                 var listRawRequired = [
+            $scope.lanjutBatal = function (data, batal) {
+                var listRawRequired = [
                     "items.pembatalan|k-ng-model|Pembatalan",
                     "items.alasanBatal|ng-model|Alasan pembatalan"
                 ];
                 var isValid = ModelItem.setValidation($scope, listRawRequired);
 
-                if(isValid.status){
-                    
+                if (isValid.status) {
+
                     var pegawai = JSON.parse(window.localStorage.getItem('pegawai'));
-                    var tmpData = {  
-                        "tanggalPembatalan":dateHelper.formatDate(new Date(), 'YYYY-MM-DD'),
-                        "alasanPembatalan":batal.alasanBatal,
-                        "pasienDaftar":{  
+                    var tmpData = {
+                        "tanggalPembatalan": dateHelper.formatDate(new Date(), 'YYYY-MM-DD'),
+                        "alasanPembatalan": batal.alasanBatal,
+                        "pasienDaftar": {
                             "noRec": data.pasienDaftar.noRec
                         },
-                        "pegawai":{  
+                        "pegawai": {
                             "id": pegawai.id
                         },
-                        "pembatalan":{  
-                            "id":batal.pembatalan.id
+                        "pembatalan": {
+                            "id": batal.pembatalan.id
                         }
                     }
                     var grid = $("#grid").data('kendoGrid');
-                    grid._data.forEach(function(items){
-                        if (items.noRec === data.noRec){
+                    grid._data.forEach(function (items) {
+                        if (items.noRec === data.noRec) {
                             // delete selected grid row 
                             grid.dataSource.remove(items);
                             grid.dataSource.sync();
                         }
                     })
                     // console.log(JSON.stringify(tmpData));
-                    managePasien.batalPeriksa(tmpData).then(function(e){
+                    managePasien.batalPeriksa(tmpData).then(function (e) {
                         $scope.items = {};
                         $scope.winDialog.close();
                     })
@@ -873,49 +873,49 @@ define(['initialize'], function(initialize) {
                 //     }
                 // })
             }
-            $scope.CetakSumList = function() {
-                if($scope.item != undefined){
+            $scope.CetakSumList = function () {
+                if ($scope.item != undefined) {
                     // var fixUrlLaporan = cetakHelper.open("reporting/lapResume?noCm=" + $scope.item.pasien.noCm + "&tglRegistrasi=" + new moment($scope.item.pasienDaftar.tglRegistrasi).format('DD-MM-YYYY'));
                     // window.open(fixUrlLaporan, '', 'width=800,height=600')
 
                     //cetakan langsung service VB6 by grh    
                     var client = new HttpClient();
-                    client.get('http://127.0.0.1:1237/printvb/Pendaftaran?cetak-summarylist=1&norec=' + $scope.item.pasien.noCm + '&view=false', function(response) {
+                    client.get('http://127.0.0.1:1237/printvb/Pendaftaran?cetak-summarylist=1&norec=' + $scope.item.pasien.noCm + '&view=false', function (response) {
                         // do something with response
                     });
 
 
                 }
             }
-            $scope.cetakBuktiLayanan = function() {
-                if($scope.item != undefined){
-                    
+            $scope.cetakBuktiLayanan = function () {
+                if ($scope.item != undefined) {
+
                     // var fixUrlLaporan = cetakHelper.open("reporting/lapBuktiPelayanan?noRegistrasi=" + $scope.item.pasienDaftar.noRegistrasi);
                     // window.open(fixUrlLaporan, '', 'width=800,height=600')
                     //cetakan langsung service VB6 by grh
                     var client = new HttpClient();
-                    client.get('http://127.0.0.1:1237/printvb/Pendaftaran?cetak-buktilayanan=1&norec=' + $scope.item.pasienDaftar.noRegistrasi + '&strIdPegawai=' + $scope.pegawai.id + '&view=false', function(response) {
-                       
+                    client.get('http://127.0.0.1:1237/printvb/Pendaftaran?cetak-buktilayanan=1&norec=' + $scope.item.pasienDaftar.noRegistrasi + '&strIdPegawai=' + $scope.pegawai.id + '&view=false', function (response) {
+
                     });
 
                 }
             }
-            $scope.cetakGelang = function() {
-                if($scope.item != undefined){
+            $scope.cetakGelang = function () {
+                if ($scope.item != undefined) {
                     var fixUrlLaporan = cetakHelper.open("registrasi-pelayanan/gelangPasien?id=" + $scope.item.pasien.id);
                     window.open(fixUrlLaporan, '', 'width=800,height=600')
                 }
             }
-            $scope.cetakHelper = function() {
-                if($scope.item != undefined){
+            $scope.cetakHelper = function () {
+                if ($scope.item != undefined) {
                     // var fixUrlLaporan = cetakHelper.open("reporting/lapTracer?noRegistrasi=" + $scope.item.pasienDaftar.noRegistrasi);
                     // window.open(fixUrlLaporan, '', 'width=800,height=600')
-                    
+
                     //cetakan langsung service VB6 by grh    
                     var client = new HttpClient();
-                    client.get('http://127.0.0.1:1237/printvb/Pendaftaran?cetak-tracer=1&norec=' + $scope.item.pasienDaftar.noRegistrasi + '&view=false', function(response) {
+                    client.get('http://127.0.0.1:1237/printvb/Pendaftaran?cetak-tracer=1&norec=' + $scope.item.pasienDaftar.noRegistrasi + '&view=false', function (response) {
                         // do something with response
-                    });            
+                    });
 
 
                 }
@@ -924,7 +924,7 @@ define(['initialize'], function(initialize) {
                 format: "#.#",
                 decimals: 0
             }
-            $scope.cetakLabel = function() {
+            $scope.cetakLabel = function () {
                 // if($scope.item != undefined){
                 //     var fixUrlLaporan = cetakHelper.open("reporting/labelPasien?noCm=" + $scope.item.pasien.noCm);
                 //     window.open(fixUrlLaporan, '', 'width=800,height=600')
@@ -934,20 +934,20 @@ define(['initialize'], function(initialize) {
                 }
                 $scope.dialogCetakLabel.center().open();
             }
-            $scope.pilihQty = function(data) {
+            $scope.pilihQty = function (data) {
                 var listRawRequired = [
                     "dats.qty|k-ng-model|kuantiti"
                 ];
                 var isValid = ModelItem.setValidation($scope, listRawRequired);
 
-                if(isValid.status){
+                if (isValid.status) {
                     var qty = data.qty;
-                    if(qty !== undefined){
+                    if (qty !== undefined) {
                         // var fixUrlLaporan = cetakHelper.open("reporting/labelPasien?noCm=" + $scope.item.pasienDaftar.noRegistrasi + "&qty=" + qty);
                         // window.open(fixUrlLaporan, '', 'width=800,height=600')
                         //cetakan langsung service VB6 by grh
                         var client = new HttpClient();
-                        client.get('http://127.0.0.1:1237/printvb/Pendaftaran?cetak-labelpasien=1&norec=' + $scope.item.pasienDaftar.noRegistrasi + '&view=false&qty=' + qty, function(response) {
+                        client.get('http://127.0.0.1:1237/printvb/Pendaftaran?cetak-labelpasien=1&norec=' + $scope.item.pasienDaftar.noRegistrasi + '&view=false&qty=' + qty, function (response) {
                             // do something with response
                         });
 
@@ -957,30 +957,30 @@ define(['initialize'], function(initialize) {
                     ModelItem.showMessages(isValid.messages);
                 }
             };
-            $scope.cetakNoAntrian = function() {
-                if($scope.item != undefined){
-                    
+            $scope.cetakNoAntrian = function () {
+                if ($scope.item != undefined) {
+
                     // var fixUrlLaporan = cetakHelper.open("registrasi-pelayanan/antrianPasienDiperiksa?noRec=" + $scope.item.noRec);
                     // window.open(fixUrlLaporan, '', 'width=800,height=600')
                     //cetakan langsung service VB 6 by grh   
                     var client = new HttpClient();
-                                
-                    client.get('http://127.0.0.1:1237/printvb/Pendaftaran?cetak-buktipendaftaran=1&norec=' + $scope.item.pasienDaftar.noRegistrasi + '&view=false', function(response) {
+
+                    client.get('http://127.0.0.1:1237/printvb/Pendaftaran?cetak-buktipendaftaran=1&norec=' + $scope.item.pasienDaftar.noRegistrasi + '&view=false', function (response) {
                         // do something with response
                     });
 
 
                 }
             }
-            $scope.cetakKartu = function() {
-                if($scope.item != undefined){
+            $scope.cetakKartu = function () {
+                if ($scope.item != undefined) {
                     // var fixUrlLaporan = cetakHelper.open("registrasi-pelayanan/kartuPasien?id=" + $scope.item.pasien.id);
                     // window.open(fixUrlLaporan, '', 'width=800,height=600')
-                
+
                     //cetakan langsung service VB 6 by grh   
                     var client = new HttpClient();
-                                
-                    client.get('http://127.0.0.1:1237/printvb/Pendaftaran?cetak-kartupasien=1&norec=' + $scope.item.pasien.id + '&view=false', function(response) {
+
+                    client.get('http://127.0.0.1:1237/printvb/Pendaftaran?cetak-kartupasien=1&norec=' + $scope.item.pasien.id + '&view=false', function (response) {
                         // do something with response
                     });
 
@@ -999,14 +999,14 @@ define(['initialize'], function(initialize) {
             //     "kdJenisDiagnosa": 5,
             //     "noRec": "5                               "
             // }]
-            $scope.openCetakRmk = function(){
-                if($scope.item != undefined){
-                    findPasien.getDiagnosaNyNoRec($scope.item.noRec).then(function(e){
+            $scope.openCetakRmk = function () {
+                if ($scope.item != undefined) {
+                    findPasien.getDiagnosaNyNoRec($scope.item.noRec).then(function (e) {
                         if (e.data.data.DiagnosaPasien.length > 0) {
                             $scope.cetakBro();
                         } else {
                             $scope.item.jenisDiagnosis = $scope.sourceJenisDiagnosisPrimer[4];
-                            ModelItem.getDataDummyGeneric("Diagnosa", true, true, 10).then(function(data) {
+                            ModelItem.getDataDummyGeneric("Diagnosa", true, true, 10).then(function (data) {
                                 $scope.sourceDiagnosisPrimer = data;
                             });
                             $scope.icd10.center().open();
@@ -1019,14 +1019,14 @@ define(['initialize'], function(initialize) {
                     // $scope.icd10.center().open();
                 }
             }
-            $scope.cetakRMK = function() {
+            $scope.cetakRMK = function () {
                 var listRawRequired = [
                     "item.diagnosisPrimer|k-ng-model|Diagnosa awal"
                 ]
                 var isValid = ModelItem.setValidation($scope, listRawRequired);
 
-                if(isValid.status){
-                    if($scope.item != undefined){
+                if (isValid.status) {
+                    if ($scope.item != undefined) {
                         var saveData = {
                             pasien: {
                                 id: $scope.item.pasien.id
@@ -1042,7 +1042,7 @@ define(['initialize'], function(initialize) {
                             noRecPasienDaftar: $scope.item.noRec
                         }
                         // console.log(JSON.stringify(saveData));
-                        managePasien.saveDiagnosaRmk(saveData).then(function(e){
+                        managePasien.saveDiagnosaRmk(saveData).then(function (e) {
                             $scope.icd10.close();
                             $scope.cetakBro();
                             // var fixUrlLaporan = cetakHelper.open("reporting/lapRingkasanKeluarMasuk?noRegistrasi=" + $scope.item.pasien.pasienDaftar.noRegistrasi);
@@ -1062,12 +1062,12 @@ define(['initialize'], function(initialize) {
                 } else {
                     ModelItem.showMessages(isValid.messages);
                 }
-                
+
             }
-            $scope.cetakBro = function(){
+            $scope.cetakBro = function () {
                 var client = new HttpClient();
-                client.get('http://127.0.0.1:1237/printvb/Pendaftaran?cetak-lembarmasukkeluar-byNorec=1&norec=' + $scope.item.noRec + '&view=false', function(response) {
-                        // do something with response
+                client.get('http://127.0.0.1:1237/printvb/Pendaftaran?cetak-lembarmasukkeluar-byNorec=1&norec=' + $scope.item.noRec + '&view=false', function (response) {
+                    // do something with response
                 });
             }
             // //*cetak SEP
@@ -1078,33 +1078,33 @@ define(['initialize'], function(initialize) {
             //     }
             // }
 
-            $scope.inputTindakan = function(){
-                if ($scope.item){
-                    $state.go('dashboardpasien.InputBilling',{
+            $scope.inputTindakan = function () {
+                if ($scope.item) {
+                    $state.go('dashboardpasien.InputBilling', {
                         noAntrianPasien: $scope.item.noRec,
                         noRegister: $scope.item.pasienDaftar.noRec,
-                        noRec: $scope.item.noRec   
+                        noRec: $scope.item.noRec
                     });
                 } else {
                     messageContainer.error('Pasien belum di pilih')
                 }
             }
-            
-            var HttpClient = function() {
-                this.get = function(aUrl, aCallback) {
+
+            var HttpClient = function () {
+                this.get = function (aUrl, aCallback) {
                     var anHttpRequest = new XMLHttpRequest();
-                    anHttpRequest.onreadystatechange = function() { 
+                    anHttpRequest.onreadystatechange = function () {
                         if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
                             aCallback(anHttpRequest.responseText);
                     }
 
-                    anHttpRequest.open( "GET", aUrl, true );            
-                    anHttpRequest.send( null );
-               }
+                    anHttpRequest.open("GET", aUrl, true);
+                    anHttpRequest.send(null);
+                }
             }
 
-            $scope.cetakSEP = function() {
-                if($scope.item != undefined && $scope.item.kelompokPasien !== "Umum/Pribadi"){
+            $scope.cetakSEP = function () {
+                if ($scope.item != undefined && $scope.item.kelompokPasien !== "Umum/Pribadi") {
                     // var noSep = e.data.data === null ? "2423432" : e.data.data;
                     // var fixUrlLaporan = cetakHelper.open("asuransi/asuransiBPJS?noSep=" + $scope.model.noSep);
                     // window.open(fixUrlLaporan, '', 'width=800,height=600')
@@ -1112,19 +1112,19 @@ define(['initialize'], function(initialize) {
                     //http://127.0.0.1:1237/printvb/Pendaftaran?cetak-sep=1&norec=1708000087&view=true   
                     //cetakan langsung service VB6 by grh    
                     var client = new HttpClient();
-                    client.get('http://127.0.0.1:1237/printvb/Pendaftaran?cetak-sep=1&norec=' + $scope.item.pasienDaftar.noRegistrasi + '&view=false', function(response) {
+                    client.get('http://127.0.0.1:1237/printvb/Pendaftaran?cetak-sep=1&norec=' + $scope.item.pasienDaftar.noRegistrasi + '&view=false', function (response) {
                         // do something with response
                     });
                 }
             }
 
             // edit data registrasi pasien
-            $scope.cekStatusBeforeEdit = function(statusAntrian){
+            $scope.cekStatusBeforeEdit = function (statusAntrian) {
                 var obj = {
                     "msg": "",
                     "status": true
                 }
-                
+
                 switch (statusAntrian) {
                     case "DIPANGGIL_DOKTER":
                         obj.msg = "Pasien sudah di panggil dokter";
@@ -1140,13 +1140,13 @@ define(['initialize'], function(initialize) {
                 }
                 return obj;
             }
-            $scope.editRegistrasi = function(){
+            $scope.editRegistrasi = function () {
                 // var objValid = $scope.cekStatusBeforeEdit($scope.item.statusAntrian);
                 // if (objValid.status) {
-                    $state.go('editRegistrasiPelayanan', {
-                        noCm: $scope.item.pasien.noCm,
-                        noRec: $scope.item.pasienDaftar.noRec
-                    });
+                $state.go('editRegistrasiPelayanan', {
+                    noCm: $scope.item.pasien.noCm,
+                    noRec: $scope.item.pasienDaftar.noRec
+                });
                 // } else {
                 //     window.messageContainer.error(objValid.msg);
                 // }
@@ -1156,12 +1156,12 @@ define(['initialize'], function(initialize) {
                 format: "dd-MM-yyyy HH:mm",	//set date format
                 timeFormat: "HH:mm",		//set drop down time format to 24 hours
             }
-            $scope.toogleKlikDiagnosa = function(){
+            $scope.toogleKlikDiagnosa = function () {
                 $scope.klikDiagnosa = !$scope.klikDiagnosa;
             }
-            $scope.findDiagnosaPasien = function(){
+            $scope.findDiagnosaPasien = function () {
                 $scope.currentNorec = $scope.item.noRec;
-                findPasien.getDiagnosaNyNoRec($scope.currentNorec).then(function(data) {
+                findPasien.getDiagnosaNyNoRec($scope.currentNorec).then(function (data) {
                     if (data.data.data.DiagnosaPasien === undefined) return;
                     if (data.data.data.DiagnosaPasien.length === 0) return;
                     $scope.listDiagnosa = ModelItem.beforePost(data.data.data.DiagnosaPasien[data.data.data.DiagnosaPasien.length - 1].diagnosis, true);
@@ -1183,17 +1183,17 @@ define(['initialize'], function(initialize) {
                     }
                     $scope.dataDiagnosisPrimer = new kendo.data.DataSource({
                         data: temp,
-                        change: function(e) {
+                        change: function (e) {
                             var row = 0;
-                            e.items.forEach(function(data){
+                            e.items.forEach(function (data) {
                                 data.rowNumber = ++row;
                             })
                         }
                     });
                 });
             }
-            $scope.inputDiagnosa = function(){
-                if($scope.item != undefined){
+            $scope.inputDiagnosa = function () {
+                if ($scope.item != undefined) {
                     $scope.item.pasienDaftar.tglRegistrasi = new Date($scope.item.pasienDaftar.tglRegistrasi);
                     $scope.findDiagnosaPasien();
                     $scope.isLoadingDiagnosis = false;
@@ -1206,7 +1206,7 @@ define(['initialize'], function(initialize) {
                     // $scope.WinInputDiagnosa.center().open();
                 }
             }
-            $scope.removeDiagnosa = function(e) {
+            $scope.removeDiagnosa = function (e) {
                 e.preventDefault();
                 var grid = this;
                 var row = $(e.currentTarget).closest("tr");
@@ -1215,7 +1215,7 @@ define(['initialize'], function(initialize) {
 
                 $scope.dataDiagnosisPrimer.remove(selectedItem);
             }
-            $scope.klikInputData = function(){
+            $scope.klikInputData = function () {
                 $scope.inputDataDiagnosis = !$scope.inputDataDiagnosis;
             }
             $scope.gridDiagnosa = {
@@ -1274,24 +1274,24 @@ define(['initialize'], function(initialize) {
             }
             $scope.listInputDiagnosis = new kendo.data.DataSource({
                 data: [],
-                change: function(e) {
+                change: function (e) {
                     var row = e.index;
-                    e.items.forEach(function(data){
+                    e.items.forEach(function (data) {
                         data.rowNumber = ++row;
                     })
                 }
             });
-            $scope.addDataDiagnosisPrimer = function(){
+            $scope.addDataDiagnosisPrimer = function () {
                 var listRawRequired = [
                     "item.jenisDiagnosis|k-ng-model|Jenis Diagnosa",
                     "item.diagnosisPrimer|k-ng-model|Diagnosa",
                 ]
                 var isValid = ModelItem.setValidation($scope, listRawRequired);
-                if(isValid.status){
+                if (isValid.status) {
                     $scope.listInputDiagnosis.add({
-                        "jenisDiagnosis" : $scope.item.jenisDiagnosis,
-                        "diagnosisPrimer" : $scope.item.diagnosisPrimer,
-                        "ketDiagnosis" : $scope.item.keteranganDiagnosis
+                        "jenisDiagnosis": $scope.item.jenisDiagnosis,
+                        "diagnosisPrimer": $scope.item.diagnosisPrimer,
+                        "ketDiagnosis": $scope.item.keteranganDiagnosis
                     });
                     delete $scope.item.jenisDiagnosis;
                     delete $scope.item.diagnosisPrimer;
@@ -1300,11 +1300,11 @@ define(['initialize'], function(initialize) {
                     ModelItem.showMessages(isValid.messages);
                 }
             }
-            $scope.simpanDiagnosa = function(){
-                if($scope.item != undefined){
-                    if ($scope.listInputDiagnosis._data.length >0){
+            $scope.simpanDiagnosa = function () {
+                if ($scope.item != undefined) {
+                    if ($scope.listInputDiagnosis._data.length > 0) {
                         var dataDiagnosis = [];
-                        $scope.listInputDiagnosis._data.forEach(function(elemen){
+                        $scope.listInputDiagnosis._data.forEach(function (elemen) {
                             dataDiagnosis.push({
                                 diagnosa: {
                                     id: elemen.diagnosisPrimer.id
@@ -1328,11 +1328,11 @@ define(['initialize'], function(initialize) {
                             noRecPasienDaftar: $scope.item.noRec
                         }
                         // console.log(JSON.stringify(saveData));
-                        managePasien.saveDiagnosaRmk(saveData).then(function(e){
+                        managePasien.saveDiagnosaRmk(saveData).then(function (e) {
                             // $scope.WinInputDiagnosa.close();
                             $scope.findDiagnosaPasien();
                             $scope.klikInputData();
-                        }, function(error){
+                        }, function (error) {
                             console.log(JSON.stringify(error))
                         })
                     } else {
@@ -1344,7 +1344,7 @@ define(['initialize'], function(initialize) {
                     return;
                 }
             }
-            $scope.updateKelasPelayanan = function(){
+            $scope.updateKelasPelayanan = function () {
                 if ($scope.item) {
                     $state.go('editKelasPelayanan', {
                         noCm: $scope.item.pasien.noCm,
@@ -1353,28 +1353,28 @@ define(['initialize'], function(initialize) {
                 }
             }
 
-            $scope.Detail = function(){
-                if($scope.dataPasienSelected.noregistrasi != undefined){
+            $scope.Detail = function () {
+                if ($scope.dataPasienSelected.noregistrasi != undefined) {
                     var obj = {
-                        noRegistrasi : $scope.dataPasienSelected.noregistrasi
+                        noRegistrasi: $scope.dataPasienSelected.noregistrasi
                     }
 
                     $state.go('RincianTagihanTataRekening', {
                         dataPasien: JSON.stringify(obj)
                     });
-                }else{
-                    toastr.error('Data belum dipilih','Info');
+                } else {
+                    toastr.error('Data belum dipilih', 'Info');
                 }
 
             }
 
-            $scope.TransaksiLayanan = function(){
+            $scope.TransaksiLayanan = function () {
                 // debugger;
                 if ($scope.dataPasienSelected.norec_apd == null) {
-                    toastr.error('Pilih Pasien dulu','Info');
+                    toastr.error('Pilih Pasien dulu', 'Info');
                     return
-                }else{
-                     $state.go('DashboardPasien', {
+                } else {
+                    $state.go('DashboardPasien', {
                         noregistrasi: $scope.dataPasienSelected.noregistrasi,
                         norec_pd: $scope.dataPasienSelected.norec_pd,
                         norec_apd: $scope.dataPasienSelected.norec_apd,
@@ -1384,11 +1384,11 @@ define(['initialize'], function(initialize) {
                 }
             }
 
-            $scope.OrderGizi =function(){
-                  $state.go('OrderMenuGiziRev');
+            $scope.OrderGizi = function () {
+                $state.go('OrderMenuGiziRev');
             }
 
-            $scope.skriningGizi = function() {
+            $scope.skriningGizi = function () {
                 // debugger
                 var cookie = document.cookie.split(';');
                 var statusCode = ModelItem.getStatusUser();
@@ -1408,15 +1408,15 @@ define(['initialize'], function(initialize) {
                             noCM: $scope.dataPasienSelected.nocm,
                             tanggal: moment(new Date($scope.dataPasienSelected.tglregistrasi)).format('YYYY-MM-DD HH:mm:ss'),
                             noRec: $scope.dataPasienSelected.norec_pd,
-                            ruangana:$scope.dataPasienSelected.objectruanganfk
+                            ruangana: $scope.dataPasienSelected.objectruanganfk
                         });
                     }
                 } else {
                     window.messageContainer.error(objValid.msg);
                 }
             }
-            $scope.pengkajianMedis = function() {
-                if ($scope.dataPasienSelected == undefined){
+            $scope.pengkajianMedis = function () {
+                if ($scope.dataPasienSelected == undefined) {
                     toastr.error('Pilih Data dulu')
                     return
                 }
@@ -1431,83 +1431,83 @@ define(['initialize'], function(initialize) {
                             noCM: $scope.dataPasienSelected.nocm,
                             tanggal: moment(new Date($scope.dataPasienSelected.tglregistrasi)).format('YYYY-MM-DD HH:mm:ss'),
                             noRec: $scope.dataPasienSelected.norec_pd,
-                            ruangana:$scope.dataPasienSelected.objectruanganfk
+                            ruangana: $scope.dataPasienSelected.objectruanganfk
                         });
                     } else {
                         $state.go('dashboardpasien.PengkajianMedis', {
                             noCM: $scope.dataPasienSelected.nocm,
                             tanggal: moment(new Date($scope.dataPasienSelected.tglregistrasi)).format('YYYY-MM-DD HH:mm:ss'),
                             noRec: $scope.dataPasienSelected.norec_pd,
-                            ruangana:$scope.dataPasienSelected.objectruanganfk
+                            ruangana: $scope.dataPasienSelected.objectruanganfk
                         });
                     }
                 } else {
                     window.messageContainer.error(objValid.msg);
                 }
             }
-            $scope.panggil = function(){
-                if ($scope.dataPasienSelected == undefined){
+            $scope.panggil = function () {
+                if ($scope.dataPasienSelected == undefined) {
                     toastr.error('Pilih Data dulu')
                     return
                 }
                 var cookie = document.cookie.split(';');
                 cookie = cookie[0].split('=');
-                var data ={
-                    "norec_apd" : $scope.dataPasienSelected.norec_apd,
-                    "kelompokUser" : cookie[1]
+                var data = {
+                    "norec_apd": $scope.dataPasienSelected.norec_apd,
+                    "kelompokUser": cookie[1]
                 }
-                manageSarprasPhp.saveDataTransaksi('dokter/save-panggil',data)
-                .then(function (res) {
-                    loadData()
-                })
+                manageSarprasPhp.saveDataTransaksi('dokter/save-panggil', data)
+                    .then(function (res) {
+                        loadData()
+                    })
             }
-            $scope.konsul = function(){
+            $scope.konsul = function () {
                 loadGridKonsul();
                 $scope.winKonsul.center().open();
             }
-            function loadGridKonsul(){
-                    ManagePhp.getData("rekam-medis/get-order-konsul?dokterid=" +   $scope.dataLogin.id).then(function(e){
-                        var result = e.data.data
-                        if(result.length > 0){
-                            $scope.item.dokterTujuan = result[0].namalengkap
-                            for (var i = 0; i < result.length; i++) {
-                                result[i].no = i + 1
-                                if(result[i].norec_apd != null)
-                                    result[i].status = 'Selesai'
-                                else
-                                    result[i].status = '-'
-                            }
+            function loadGridKonsul() {
+                ManagePhp.getData("rekam-medis/get-order-konsul?dokterid=" + $scope.dataLogin.id).then(function (e) {
+                    var result = e.data.data
+                    if (result.length > 0) {
+                        $scope.item.dokterTujuan = result[0].namalengkap
+                        for (var i = 0; i < result.length; i++) {
+                            result[i].no = i + 1
+                            if (result[i].norec_apd != null)
+                                result[i].status = 'Selesai'
+                            else
+                                result[i].status = '-'
+                        }
                     }
-                        $scope.sourceKonsul = new kendo.data.DataSource({
-                            data: result,
-                            pageSize: 20,
-                        });
-                 }, (error) => {
+                    $scope.sourceKonsul = new kendo.data.DataSource({
+                        data: result,
+                        pageSize: 20,
+                    });
+                }, (error) => {
                     throw error;
                 })
             }
             $scope.konsulOpt = {
-              
+
                 pageable: true,
                 scrollable: true,
                 columns: [
                     // { field: "rowNumber", title: "#", width: 40, width: 40, attributes: { style: "text-align:right; padding-right: 15px;"}, hideMe: true},
-                    { field: "no", title: "No", width: 40, headerAttributes: { style: "text-align : center" }},
-                    { field: "noregistrasi", title: "No Registrasi", width: 100, headerAttributes: { style: "text-align : center" }},
-                    { field: "nocm", title: "No RM", width: 80, headerAttributes: { style: "text-align : center" }},
-                    { field: "namapasien", title: "Nama Pasien", width: 150, headerAttributes: { style: "text-align : center" }},
-                    { field: "tglorder", title: "Tanggal", width: 120, headerAttributes: { style: "text-align : center" }},
-                    { field: "ruanganasal", title: "Ruangan Asal", width: 120, headerAttributes: { style: "text-align : center" }},
+                    { field: "no", title: "No", width: 40, headerAttributes: { style: "text-align : center" } },
+                    { field: "noregistrasi", title: "No Registrasi", width: 100, headerAttributes: { style: "text-align : center" } },
+                    { field: "nocm", title: "No RM", width: 80, headerAttributes: { style: "text-align : center" } },
+                    { field: "namapasien", title: "Nama Pasien", width: 150, headerAttributes: { style: "text-align : center" } },
+                    { field: "tglorder", title: "Tanggal", width: 120, headerAttributes: { style: "text-align : center" } },
+                    { field: "ruanganasal", title: "Ruangan Asal", width: 120, headerAttributes: { style: "text-align : center" } },
                     { field: "ruangantujuan", title: "Ruangan Tujuan", width: 150, headerAttributes: { style: "text-align : center" } },
-                    { field: "pengonsul", title: "Dokter<br> Pengonsul", width: 120, headerAttributes: { style: "text-align : center" }},
+                    { field: "pengonsul", title: "Dokter<br> Pengonsul", width: 120, headerAttributes: { style: "text-align : center" } },
                     // { field: "keteranganorder", title: "Keterangan", width: 120, headerAttributes: { style: "text-align : center" }},
-                    { field: "status", title: "Status", width: 120, headerAttributes: { style: "text-align : center" }},
-                    { command: [ { name: "edit", text: "Verifikasi", click: verif }], title: "&nbsp;", width: 120 }
+                    { field: "status", title: "Status", width: 120, headerAttributes: { style: "text-align : center" } },
+                    { command: [{ name: "edit", text: "Verifikasi", click: verif }], title: "&nbsp;", width: 120 }
                 ],
             };
 
             $scope.tutup = function (data) {
-                if(data == 1) {
+                if (data == 1) {
                     $scope.winDescription.close();
                 }
             }
@@ -1515,35 +1515,35 @@ define(['initialize'], function(initialize) {
             $scope.verifikasiKonsultasiDokter = function () {
                 var length = $scope.sourceKonsul._data.length + 1;
                 var dataKonsul = {
-                    "kelasfk":  6,
+                    "kelasfk": 6,
                     "noantrian": length,
                     "norec_so": $scope.noRecKonsultasi,
                     "norec_pd": $scope.noRecPdKonsultasi,
                     "dokterfk": $scope.pegawaiFkKonsultasi,
                     "objectruangantujuanfk": $scope.objectRuanganFkTujuanKonsultasi,
                     "objectruanganasalfk": $scope.objectRuanganFkKonsultasi,
-                    "periksaDidapatkan":$scope.item.periksaDidapatkan,
-                    "pemeriksaandidapat":$scope.item.periksaDidapatkan,
+                    "periksaDidapatkan": $scope.item.periksaDidapatkan,
+                    "pemeriksaandidapat": $scope.item.periksaDidapatkan,
                     "keterangankeperluan": $scope.item.kesan,
-                    "saran":$scope.item.saran,
-                    "diagnosis":$scope.item.diagnosa
+                    "saran": $scope.item.saran,
+                    "diagnosis": $scope.item.diagnosa
                 }
                 console.log(dataKonsul);
-                ManagePhp.postData2('rekam-medis/save-konsul-from-order',dataKonsul).then(function(e){
+                ManagePhp.postData2('rekam-medis/save-konsul-from-order', dataKonsul).then(function (e) {
                     $scope.winDescription.close();
                     $scope.winKonsul.close();
                     loadGridKonsul();
                     loadData();
                     loadKonsul();
                     $scope.saveLogKonsul();
-                    
+
                 });
             }
 
-            function verif(e){
+            function verif(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-                if(dataItem.status == 'Selesai'){
+                if (dataItem.status == 'Selesai') {
                     $scope.isVerify = true;
                 } else {
                     $scope.isVerify = false;
@@ -1567,16 +1567,16 @@ define(['initialize'], function(initialize) {
                 $scope.winDescription.center().open();
             }
             //#save Log Konsul
-            $scope.saveLogKonsul = function(){
-               manageTataRekening.getDataTableTransaksi("logging/save-log-konsul?norec_pd="
-                + $scope.item.norec_pd
-                + "&dokterfk="
-                + $scope.konsul.namaDokter.id
-                + "&kelasfk="
-                + 6
-                + "&objectruangantujuanfk="
-                + $scope.konsul.ruangan.id).then(function(data) {
-                }) 
+            $scope.saveLogKonsul = function () {
+                manageTataRekening.getDataTableTransaksi("logging/save-log-konsul?norec_pd="
+                    + $scope.item.norec_pd
+                    + "&dokterfk="
+                    + $scope.konsul.namaDokter.id
+                    + "&kelasfk="
+                    + 6
+                    + "&objectruangantujuanfk="
+                    + $scope.konsul.ruangan.id).then(function (data) {
+                    })
             }
         }
 

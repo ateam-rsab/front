@@ -497,6 +497,34 @@ define(['initialize'], function (initialize) {
 
 
             }
+
+            $scope.rekamMedisElektronik = function () {
+                if ($scope.dataPasienSelected.nocm ==null && $scope.dataPasienSelected.norec_apd == null)
+                   {
+                        window.messageContainer.error("Pilih Dahulu Pasien!")
+                        return
+                    }
+                // debugger;
+                var arrStr ={ 0 : $scope.dataPasienSelected.nocm ,
+                    1 : $scope.dataPasienSelected.namapasien,
+                    2 : $scope.dataPasienSelected.jeniskelamin,
+                    3 : $scope.dataPasienSelected.noregistrasi, 
+                    4 : $scope.dataPasienSelected.umurzz,
+                    5 : $scope.dataPasienSelected.kelompokpasien,
+                    6 : $scope.dataPasienSelected.tglregistrasi,
+                    7 : $scope.dataPasienSelected.norec_apd,
+                    8 : $scope.dataPasienSelected.norec_pd,
+                    9 : $scope.dataPasienSelected.idkelas,
+                    10 : $scope.dataPasienSelected.namakelas,
+                    11 : $scope.dataPasienSelected.objectruanganfk,
+                    12 : $scope.dataPasienSelected.namaruangan + '`'
+                }
+               cacheHelper.set('cacheRMelektronik', arrStr);
+               $state.go('RekamMedis',{
+                norecAPD: $scope.dataPasienSelected.norec,
+                noRec: $scope.dataPasienSelected.norec
+               })
+            }
             /*** END PAGE */
         }
     ]);

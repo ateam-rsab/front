@@ -1923,6 +1923,10 @@
       "urlDep": "module/pasien/RegistrasiPelayananNew/DaftarRegistrasiPasienVedikaCtrl"
     },
     {
+      "nameDep": "DaftarPasienVedikaCtrl",
+      "urlDep": "module/pasien/RegistrasiPelayananNew/DaftarPasienVedikaCtrl"
+    },
+    {
       "nameDep": "OdontoGramDokterCtrl",
       "urlDep": "module/Dashboard/Pasien/OdontoGramDokterCtrl"
     },

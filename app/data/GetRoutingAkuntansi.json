@@ -12354,6 +12354,30 @@
     ]
   },
   {
+    "name": "DaftarPasienVedika",
+    "url": "/DaftarPasienVedika",
+    "controller": "DaftarPasienVedikaCtrl",
+    "templateurl": "module/pasien/RegistrasiPelayananNew/DaftarPasienVedika.html",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "PasienService",
+        "define": "PasienService"
+      },
+      {
+        "module": "PhpService",
+        "define": "PhpService"
+      }
+    ]
+  },
+  {
     "name": "RekamMedis.PlanOfCare",
     "url": "/PlanOfCare",
     "templateurl": "module/RekamMedis/PlanOfCare.html",
