@@ -1,3 +1,37 @@
+<c-panel item="item" header="'Membuat Konsep Surat'" disabled>
+    <div class="grid_12">
+        <div class="grid_1" style="margin-top: 30px; margin-left: 20px;">
+            <label c-label item="item">No.</label>
+        </div>
+        <div class="grid_1" style="margin-top: 30px;">
+            <label c-label item="item">:</label>
+        </div>
+        <div class="grid_3" style="margin-top: 20px">
+            <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noNote" ng-disabled="true"/>
+        </div>
+        <div class="grid_1" style="margin-top: 30px; margin-left:20px;">
+            <label c-label item="item">Tanggal</label>
+        </div>
+        <div class="grid_1">
+            <label c-label item="item" style="margin-top:30px;">:</label>
+        </div>
+        <div class="grid_3" style="margin-top: 20px">
+            <input style="width:100%" readonly kendo-date-picker k-ng-model="item.tanggal"
+                   placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'" init="now"/>
+        </div>
+    </div>
+    <div class="grid_12">
+        <md-card>
+            <md-card-content>
+                <textarea kendo-editor k-ng-model="item.formatSurat" style="height:500px"></textarea>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end center">
+                <md-button class="md-raised md-primary" style="width: 10%" ng-click="simpan()">Simpan</md-button>
+                <!-- <md-button></md-button> -->
+            </md-card-actions>
+        </md-card>
+    </div>
+</c-panel>
 <style>
     .error{
         background-color:white !important;
@@ -40,7 +74,7 @@
     box-shadow: inset 0 14px 12px -12px rgba(0, 0, 0, 0.5);
 }
 </style>
-<div ng-controller="NotaDanDisposisiCtrl">
+<div ng-controller="NotaDanDisposisiCtrl" ng-show="false">
     <c-panel item="item" header="'Membuat Nota Surat'" disabled>
         <div class="panel panel-default container_12" disabled>
             <div class="grid_12">
