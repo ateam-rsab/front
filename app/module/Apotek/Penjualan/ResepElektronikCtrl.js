@@ -326,8 +326,8 @@ define(['initialize'], function(initialize) {
                         13 : $scope.item.AlergiYa,
                         14 : ''
                     }
-                    cacheHelper.set('InputResepApotikCtrl', arrStr);
-                    $state.go('InputResepApotik')
+                    cacheHelper.set('ResepApotikCtrl', arrStr);
+                    $state.go('ResepApotik')
 
                 }else{
                     alert('Sudah di verifikasi!!')
