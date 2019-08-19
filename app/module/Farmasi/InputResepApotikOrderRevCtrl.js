@@ -11,7 +11,6 @@ define(['initialize'], function (initialize) {
             $scope.resep = {};
             $scope.listObat = [];
             $scope.tempListResep = [];
-            $scope.listHistoryResep = [];
             $scope.listResep = [];
             $scope.listQuestion = [
                 {

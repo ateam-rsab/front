@@ -453,8 +453,8 @@
       "urlDep": "module/Farmasi/TransaksiPelayananApotikCtrl"
     },
     {
-      "nameDep": "ResepApotikCtrl",
-      "urlDep": "module/Farmasi/ResepApotikCtrl"
+      "nameDep": "InputResepApotikCtrl",
+      "urlDep": "module/Farmasi/InputResepApotikCtrl"
     },
     {
       "nameDep": "KonversiSatuanCtrl",

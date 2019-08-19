@@ -2152,10 +2152,10 @@
     ]
   },
   {
-    "name": "ResepApotik",
-    "url": "/ResepApotik",
-    "templateurl": "module/Farmasi/ResepApotik.html",
-    "controller": "ResepApotikCtrl",
+    "name": "InputResepApotik",
+    "url": "/InputResepApotik",
+    "templateurl": "module/Farmasi/InputResepApotik.html",
+    "controller": "InputResepApotikCtrl",
     "deps": [
       {
         "module": "Services",
