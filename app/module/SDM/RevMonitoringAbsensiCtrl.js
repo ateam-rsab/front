@@ -19,7 +19,7 @@ define(['initialize'], function(initialize) {
             $scope.dateLast =new Date(now.getFullYear(), now.getMonth()+1, dateLast); // variable dateLast masukin ke html k-max
             $scope.now = new Date();
             $scope.dataVOloaded = true;
-            $scope.isRouteLoading = true; 
+            $scope.isRouteLoading = false; 
             var validate = 2;
             var validateAll = 0;
             // var listPegawaiAdminSDM = [141,621,1107,1146,1344] //Para Pembesar SDM
@@ -33,7 +33,7 @@ define(['initialize'], function(initialize) {
                 start: "year",
                 depth: "year"
             };
-            $scope.isRouteLoading = true;
+            // $scope.isRouteLoading = true;
             $scope.isReport = true;
             $scope.cbAll = function() {
                 if ($scope.vals === true) {
