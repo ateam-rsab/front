@@ -94,20 +94,13 @@ define(['initialize'], function (initialize) {
                     $scope.isRouteLoading = false;
                     $scope.listPenulisResep = dat.data.penulisresep;
                     $scope.listRuangan = dat.data.ruangan;
-                    $scope.listJenisKemasan = dat.data.jeniskemasan;
-                    $scope.listProduk = dat.data.produk;
-                    $scope.listAsalProduk = dat.data.asalproduk;
-                    $scope.listRoute = dat.data.route;
-                    $scope.listAturanPakai = dat.data.signa;
-                    $scope.listJenisRacikan = dat.data.jenisracikan;
+                    // $scope.listJenisKemasan = dat.data.jeniskemasan;
+                    // $scope.listProduk = dat.data.produk;
+                    // $scope.listAsalProduk = dat.data.asalproduk;
+                    // $scope.listRoute = dat.data.route;
+                    // $scope.listAturanPakai = dat.data.signa;
+                    // $scope.listJenisRacikan = dat.data.jenisracikan;
                     pegawaiUser = dat.data.detaillogin[0];
-                });
-                manageLogistikPhp.getDataTableTransaksi("logistik/get-datacombo", true).then(function (dat) {
-                    $scope.listOfProduk = dat.data.produk;
-                    // for (let i = 0; i < dat.data.produk.length; i++) {
-                    //     dataTemp.push(dat.data.produk[i].namaproduk);
-                    // }
-                    
                 });
                 manageLogistikPhp.getDataTableTransaksi('rekam-medis/get-resep-dokter-detail?strukorder=' + norecResep).then(res => {
                     $scope.dataDetailResep = res.data.data;
@@ -208,6 +201,7 @@ define(['initialize'], function (initialize) {
             function inputObat(e) {
                 e.preventDefault();
                 let dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                $scope.dataResepDokterVerif = dataItem;
                 $scope.item = {
                     resep: dataItem.resep,
                     namaobat: dataItem.namaobat,
@@ -244,6 +238,8 @@ define(['initialize'], function (initialize) {
                 }
                 dataTemp.push(data);
                 $scope.listResepVerifikasi.add(data);
+                $scope.listResepDokter.remove($scope.dataResepDokterVerif);
+                $scope.popupInputObat.close();
             }
 
             $scope.getSatuan = function () {

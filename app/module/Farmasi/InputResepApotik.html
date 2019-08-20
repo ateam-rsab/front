@@ -219,16 +219,39 @@
             <!-- #endregion -->
             <!-- #region grid -->
             <div class="grid_6">
-                <div class="grid_12 headerBox">
-                    <p>Daftar Obat dari Dokter</p>
-                </div>
-                <div kendo-grid k-data-source="listResepDokter" options="columnResepDokter" style="margin-top: 27px;"></div>
+                <md-card>
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">Daftar Obat dari Dokter</span>
+                            <hr>
+                            <!-- <span class="md-subhead">
+                                
+                            </span> -->
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                        <div kendo-grid k-data-source="listResepDokter"
+                            options="columnResepDokter"></div>
+                    </md-card-content>
+
+                </md-card>
+
             </div>
             <div class="grid_6">
-                <div class="grid_12 headerBox" style="">
-                    <p>Daftar Obat Verifikasi Farmasi</p>
-                </div>
-                <div kendo-grid k-data-source="listResepVerifikasi" options="columnResepDokter" style="margin-top: 27px;"></div>
+
+                <md-card>
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">Daftar Obat Verifikasi Farmasi</span>
+                                <hr>
+                            <!-- <span class="md-subhead">Large</span> -->
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                        <div kendo-grid k-data-source="listResepVerifikasi"
+                            options="columnResepDokter"></div>
+                    </md-card-content>
+                </md-card>
             </div>
             <!-- #endregion grid -->
 
@@ -370,8 +393,8 @@
             <div class="k-edit-buttons k-state-default pull-right"
                 style="margin-top:10px">
                 <!-- <button class="k-button k-button-icontext k-primary k-grid-update" ng-disabled="isDisable"><span class="k-icon k-print"></span>Cetak</button> -->
-                <button class="k-button k-button-icontext" ng-click="close()"><span
-                        class="k-icon k-edit"></span>Simpan</button>
+                <button class="k-button k-button-icontext"
+                    ng-click="verifikasiObat()"><span class="k-icon k-edit"></span>Simpan</button>
             </div>
         </div>
     </div>
