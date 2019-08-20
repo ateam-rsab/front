@@ -2147,15 +2147,15 @@ define(['initialize'], function (initialize) {
                 $scope.isEdit = true;
             };
 
-            $scope.getDetailKategoriPegawai = function (idK) {
-                ManageSdm.getOrderList("service/list-generic/?view=DetailKategoryPegawai&select=id,detailKategoryPegawai&criteria=statusEnabled,kategoryPegawaiId&values=true," + idK.id, true).then(function (res) {
-                    $scope.listOfDetailJenisKategoriPegawai = res.data;
-                    if (res.data.length === 0) {
-                        $scope.item.detailKategoryPegawai = '';
-                    }
-                    // console.log(res);
-                });
-            };
+            // $scope.getDetailKategoriPegawai = function (idK) {
+            //     ManageSdm.getOrderList("service/list-generic/?view=DetailKategoryPegawai&select=id,detailKategoryPegawai&criteria=statusEnabled,kategoryPegawaiId&values=true," + idK.id, true).then(function (res) {
+            //         $scope.listOfDetailJenisKategoriPegawai = res.data;
+            //         if (res.data.length === 0) {
+            //             $scope.item.detailKategoryPegawai = '';
+            //         }
+            //         // console.log(res);
+            //     });
+            // };
 
             // $scope.$watch()
             // };
