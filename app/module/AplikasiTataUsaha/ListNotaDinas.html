@@ -1,5 +1,44 @@
-<div ng-controller="ListNotaDinasCtrl">
+<div style="margin: 10px">
+    <md-card>
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline" style="font-weight: bolder">
+                    Daftar Konsep Surat
+                </span>
+                <hr>
+                <!-- <span class="md-subhead">Large</span> -->
+            </md-card-title-text>
 
+        </md-card-title>
+        <div class="grid_12">
+            <div class="grid_2" style="margin: 10px 0 0 10px;">
+                <label c-label item="item">Periode</label>
+            </div>
+            <div class="grid_3" style="margin-top: 4.3px;">
+                <input kendo-date-picker k-ng-model="item.tanggalAwal"
+                    k-format="'dd-MM-yyyy'" style="width: 100%"
+                    kendo-date-picker ng-init="now" />
+            </div>
+            <div class="grid_1" style="margin-top: 16px; text-align:center;">
+                s/d
+            </div>
+            <div class="grid_3" style="margin-top: 4.3px;">
+                <input kendo-date-picker k-ng-model="item.tanggalAkhir"
+                    k-format="'dd-MM-yyyy'" style="width: 100%"
+                    kendo-date-picker ng-init="now" />
+            </div>
+            <div class="grid_2">
+                <!-- <button class="c-button" ng-click="cari()">cari</button> -->
+                <md-button class="md-raised md-primary" style="width: 10%" ng-click="cari()">Cari</md-button>
+            </div>
+        </div>
+        <md-card-content>
+            <div kendo-grid k-data-source="dataSourceKonsepSurat" options="optKonsepSurat" style="padding:10px;"></div>
+        </md-card-content>
+    </md-card>
+</div>
+
+<!-- <div ng-controller="ListNotaDinasCtrl">
     <c-panel item="item" header="'Daftar Nota Dinas'" disabled>
         <div class="panel panel-default container_12" disabled>
             <div class="grid_12">
@@ -7,45 +46,50 @@
                     <label c-label item="item">Periode</label>
                 </div>
                 <div class="grid_3">
-                    <input kendo-date-picker k-ng-model="item.tanggalAwal" k-format="'dd-MM-yyyy'" style="width: 100%" kendo-date-picker ng-init="now" />
+                    <input kendo-date-picker k-ng-model="item.tanggalAwal"
+                        k-format="'dd-MM-yyyy'" style="width: 100%"
+                        kendo-date-picker ng-init="now" />
                 </div>
-                <div class="grid_1" style="margin-top: 10px; text-align: center;">
+                <div class="grid_1" style="margin-top: 10px; text-align:
+                    center;">
                     s/d
                 </div>
                 <div class="grid_3">
-                    <input kendo-date-picker k-ng-model="item.tanggalAkhir" k-format="'dd-MM-yyyy'" style="width: 100%" kendo-date-picker ng-init="now" />
+                    <input kendo-date-picker k-ng-model="item.tanggalAkhir"
+                        k-format="'dd-MM-yyyy'" style="width: 100%"
+                        kendo-date-picker ng-init="now" />
                 </div>
                 <div class="grid_2" style="margin-top: 6px">
                     <button class="c-button" ng-click="cari()">cari</button>
                 </div>
             </div>
-            <div class="grid_12">
-                <md-content>
-                    <md-tabs md-dynamic-height md-border-bottom>
-                        <md-tab label="Kotak Masuk">
-                            <md-content class="md-padding">
-                                <div class="grid_12" style="margin: 0 0 0 10px;">
-                                    <div kendo-grid k-data-source="notaMasuk" k-selectable="'row'" k-columns="colNotaMasuk"></div>
-                                </div>
-                            </md-content>
-                        </md-tab>
-                        <md-tab label="Kotak Keluar">
-                            <md-content class="md-padding">
-                                <div class="grid_12" style="margin: 0 0 0 10px;">
-                                    <div kendo-grid k-data-source="notaKeluar" k-selectable="'row'" k-columns="colNotaKeluar">
-                                        <!--  <div k-detail-template>
-                                            <label c-label item="item">Tujuan Surat</label>
-                                            <div kendo-grid k-options="detailGridOptions(dataItem)"></div>
-                                        </div>-->
-                                    </div>
-                                </div>
-                            </md-content>
-                        </md-tab>
-                    </md-tabs>
 
-                </md-content>
-            </div>
 
         </div>
     </c-panel>
-</div>
+</div> -->
+<!-- 
+<div class="grid_12">
+    <md-content>
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Kotak Masuk">
+                <md-content class="md-padding">
+                    <div class="grid_12" style="margin: 0 0 0 10px;">
+                        <div kendo-grid k-data-source="notaMasuk"
+                            k-selectable="'row'" k-columns="colNotaMasuk"></div>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Kotak Keluar">
+                <md-content class="md-padding">
+                    <div class="grid_12" style="margin: 0 0 0 10px;">
+                        <div kendo-grid k-data-source="notaKeluar"
+                            k-selectable="'row'" k-columns="colNotaKeluar">
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+
+    </md-content>
+</div> -->

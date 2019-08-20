@@ -1,196 +1,82 @@
-<c-panel item="item" header="'Membuat Konsep Surat'" disabled>
-    <div class="grid_12">
-        <div class="grid_1" style="margin-top: 30px; margin-left: 20px;">
-            <label c-label item="item">No.</label>
-        </div>
-        <div class="grid_1" style="margin-top: 30px;">
-            <label c-label item="item">:</label>
-        </div>
-        <div class="grid_3" style="margin-top: 20px">
-            <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noNote" ng-disabled="true"/>
-        </div>
-        <div class="grid_1" style="margin-top: 30px; margin-left:20px;">
-            <label c-label item="item">Tanggal</label>
-        </div>
-        <div class="grid_1">
-            <label c-label item="item" style="margin-top:30px;">:</label>
-        </div>
-        <div class="grid_3" style="margin-top: 20px">
-            <input style="width:100%" readonly kendo-date-picker k-ng-model="item.tanggal"
-                   placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'" init="now"/>
-        </div>
-    </div>
-    <div class="grid_12">
-        <md-card>
-            <md-card-content>
-                <textarea kendo-editor k-ng-model="item.formatSurat" style="height:500px"></textarea>
-            </md-card-content>
-            <md-card-actions layout="row" layout-align="end center">
-                <md-button class="md-raised md-primary" style="width: 10%" ng-click="simpan()">Simpan</md-button>
-                <!-- <md-button></md-button> -->
-            </md-card-actions>
-        </md-card>
-    </div>
-</c-panel>
-<style>
-    .error{
-        background-color:white !important;
-    }
-    .yellow{
-        background-color:#ffff00
-    }
-     .green{
-        background-color:#00ff40
-    }
-      .red{
-        background-color:#FF0000
-    }
-    .k-grid  .k-grid-header  .k-header  .k-link {
-     height: auto;
-    }
+<!-- <c-panel item="item" header="'Membuat Konsep Surat'" disabled> -->
 
-    .k-grid  .k-grid-header  .k-header {
-     white-space: normal;
-    }
+<div class="grid_12">
+    <md-card>
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline" style="font-weight: bolder">Membuat
+                    Konsep Surat</span>
+                <hr>
+            </md-card-title-text>
 
-    .k-grid  .k-grid-header  .k-header {
-     text-align: center;
-    }
-    .fieldset2{
-        background-color: #363940; 
-    }
+        </md-card-title>
 
- .btnHapus2 {
-  margin-right: 10px;
-  padding: 7px 20px;
-  border: none;
-  color: white;
-  font-size: 12px;
-  background-color: #363940; }
-
-  .style-four {
-    height: 5px;
-    border: 0;
-    box-shadow: inset 0 14px 12px -12px rgba(0, 0, 0, 0.5);
-}
-</style>
-<div ng-controller="NotaDanDisposisiCtrl" ng-show="false">
-    <c-panel item="item" header="'Membuat Nota Surat'" disabled>
-        <div class="panel panel-default container_12" disabled>
+        <md-card-content>
             <div class="grid_12">
-                <div class="grid_1" style="margin-top: 30px; margin-left: 20px;">
-                    <label c-label item="item">No.</label>
+                <div class="grid_2">
+                    <label c-label item="item">Kategori</label>
+                    <input kendo-combo-box k-ng-model="item.kategoriSurat"
+                        k-data-text-field="'name'" k-data-value-field="'id'"
+                        k-filter="'contains'" k-auto-bind="false"
+                        k-data-source="listKategori" />
                 </div>
-                <div class="grid_1" style="margin-top: 30px;">
-                    <label c-label item="item">:</label>
+                <div class="grid_2">
+                    <label c-label item="item">Jenis Surat</label>
+                    <input kendo-combo-box k-ng-model="item.jenisSurat"
+                        k-data-text-field="'name'" k-data-value-field="'id'"
+                        k-filter="'contains'" k-auto-bind="false"
+                        k-data-source="listJenisSurat" />
                 </div>
-                <div class="grid_3" style="margin-top: 20px">
-                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noNote" ng-disabled="true"/>
-                </div>
-                <div class="grid_1" style="margin-top: 30px; margin-left:20px;">
-                    <label c-label item="item">Tanggal</label>
-                </div>
-                <div class="grid_1">
-                    <label c-label item="item" style="margin-top:30px;">:</label>
-                </div>
-                <div class="grid_3" style="margin-top: 20px">
-                    <input style="width:100%" readonly kendo-date-picker k-ng-model="item.tanggal"
-                           placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'" init="now"/>
+                <div class="grid_3">
+                    <label c-label item="item">Atasan</label>
+                    <input kendo-combo-box k-ng-model="item.jenisSurat"
+                        k-data-text-field="'name'" k-data-value-field="'id'"
+                        k-filter="'contains'" k-auto-bind="false"
+                        k-data-source="listJenisSurat" />
                 </div>
             </div>
-            <hr class="style-four"></hr>
             <div class="grid_12">
-                <div class="k-block grid_12">
-                    <div class="k-header" style="margin: 10px 0 0 10px;">Pilih Penerima</div>
-                    <div class="grid_11">
-                        <div class="grid_12">
-                            <div class="grid_4" style="margin: 10px 0 0 10px;">
-                                <label c-label item="item" style="color:white;">Ruangan</label>
-                            </div>
-                            <div class="grid_4" style="margin: 10px 0 0 10px;">
-                                <label c-label item="item" style="color:white;">Jabatan</label>
-                            </div>
-                            <div class="grid_3" style="margin: 10px 0 0 10px;">
-                                <label c-label item="item" style="color:white;">Nama Pegawai</label>
-                            </div>
-                        </div>
-                        <div class="grid_12" style="margin: 0 0 0 10px;">
-                            <div class="grid_4">
-                                <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan"
-                                       k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'"
-                                       k-auto-bind="false" k-data-source="ListRuangan"/>
-                            </div>
-                            <div class="grid_4">
-                                <input style="width: 100%;" kendo-combo-box k-ng-model="item.JabatanPegawai"
-                                       k-data-text-field="'jabatanInternal_namaJabatan'" k-data-value-field="'id'"
-                                       k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai"/>
-                            </div>
-                            <div class="grid_4">
-                                <input style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai"
-                                       k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'"
-                                       k-auto-bind="false" k-data-source="listPegawai"/>
-                            </div>
-                        </div>
-
-                        <div class="grid_12">
-                            <div class="grid_2" style="margin: 10px 0 0 10px;">
-                                <label c-label item="item" style="color:white;">Ditujukan Kepada</label>
-                            </div>
-                            <div class="grid_12" style="margin: 0 0 0 10px;">
-                                <div kendo-grid k-data-source="dataPenerima" k-selectable="'row'"
-                                     k-columns="colDaftarPenerima"></div>
-                            </div>
-                        </div>
+                <div class="grid_4">
+                    <div class="grid_12">
+                        <label c-label item="item">No.</label>
+                        <input c-text-box type="input" filter="'varchar'"
+                            class="k-textbox" ng-model="item.noNote"
+                            style="width:70%" />
                     </div>
-
+                    <div class="grid_12" style="margin-top: 10px;">
+                        <label c-label item="item">Dari</label>
+                        <input c-text-box type="input" filter="'varchar'"
+                            class="k-textbox" ng-model="item.dari"
+                            style="width:70%" disabled />
+                    </div>
+                </div>
+                <div class="grid_4">
+                    <div class="grid_12">
+                        <label c-label item="item">Hal</label>
+                        <input c-text-box type="input" filter="'varchar'"
+                            class="k-textbox" ng-model="item.perihal"
+                            style="width:70%"
+                            />
+                    </div>
+                    <div class="grid_12" style="margin-top: 10px;">
+                        <label c-label item="item">Tanggal</label>
+                        <input style="width:70%" readonly kendo-date-picker
+                            k-ng-model="item.tanggal"
+                            placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'"
+                            />
+                    </div>
                 </div>
             </div>
-            <div class="grid_12">
-                <div class="grid_1" style="margin: 10px 0 0 10px;">
-                    <label c-label item="item">Dari</label>
-                </div>
-                <div class="grid_3">
-                    <input c-text-box type="input" class="k-textbox" ng-model="item.asalNote" ng-disabled="true"/>
-                </div>
-                <div class="grid_1" style="margin: 10px 0 0 10px;">
-                    <label c-label item="item">Jenis</label>
-                </div>
-                <div class="grid_3">
-                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisSurat" k-data-text-field="'name'"
-                           k-data-value-field="'name'" k-filter="'contains'" k-auto-bind="false"
-                           k-data-source="listjenisSurat"/>
-                </div>
-            </div>
-            <div class="grid_12">
-                <div class="grid_1" style="margin: 10px 0 0 10px;">
-                    <label c-label item="item">Perihal</label>
-                </div>
-                <div class="grid_8">
-                    <input c-text-box type="input" class="k-textbox" ng-model="item.Perihal"/>
-                </div>
-            </div>
-            <div class="grid_12">
-                <div class="grid_1" style="margin: 10px 0 0 10px;">
-
-                    <label c-label item="item">Isi</label>
-                </div>
-                <div class="grid_10">
-                    <textarea ng-model="item.lampiran" data-bind="value: textareaValue" class="k-textbox"
-                              style="height: 150px; width: 100%;"></textarea>
-                </div>
-            </div>
-            <hr class="style-four">
-            <div class="grid_12" style="margin-top: -20px">
-                <div class="grid_8"></div>
-                <div class="grid_2">
-                    <button class="c-button success" ng-click="save()">Simpan</button>
-                </div>
-                <div class="grid_2">
-                    <button class="c-button" ng-click="redirect()">Daftar Draft</button>
-                </div>
-            </div>
-            <div class="grid_12"></div>
-        </div>
-    </c-panel>
-
+            <textarea kendo-editor k-ng-model="item.formatSurat"
+                style="height:500px"></textarea>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+            <md-button class="md-raised md-accent" style="width: 10%"
+                ng-click="back()">Kembali</md-button>
+            <md-button class="md-raised md-primary" style="width: 10%"
+                ng-click="simpan()">Simpan</md-button>
+            <!-- <md-button></md-button> -->
+        </md-card-actions>
+    </md-card>
 </div>
+<!-- </c-panel> -->

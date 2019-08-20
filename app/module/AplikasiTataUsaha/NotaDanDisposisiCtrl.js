@@ -3,14 +3,30 @@ define(['initialize'], function (initialize) {
     initialize.controller('NotaDanDisposisiCtrl', ['$rootScope', '$scope', 'ModelItem', 'ManageSarpras', 'DateHelper', '$state', '$window',
         function ($rootScope, $scope, ModelItem, ManageSarpras, DateHelper, $state, $window) { 
             $scope.item = {};
-            // $('#idTextEditor').kendoEditor({ resizeble: {
-            //     content:true,
-            //     toolbar: true
-            // }})
+            $scope.listKategori = [
+                { name: 'Nota Dinas', id:1 },
+                { name: 'Undangan', id:2 }
+            ];
+            
+            $scope.listJenisSurat = [
+                { name: 'Biasa', id:1 },
+                { name: 'Penting', id:2 }
+            ];
+
             $scope.item.formatSurat = ""
             $scope.simpan = function () {
                 console.log($scope.item.formatSurat);
             }
+            $scope.back = function() {
+                window.history.back();
+            }
+
+            var init = function() {
+                let dataUser = JSON.parse(localStorage.getItem('pegawai'));
+                $scope.item.dari = dataUser.ruangan.lokasiruangan;
+            }
+            init();
+            
         }
     ])
 })

@@ -67,11 +67,7 @@
             "link": "#/DaftarSuratMasukInternalEksternal"
          },
          {
-            "name": "Buat Konsep Surat",
-            "link": "#/NotaDanDisposisi"
-         },
-         {
-            "name": "Daftar Nota Dinas",
+            "name": "Daftar Konsep Surat",
             "link": "#/ListNotaDinas"
          }
       ]
