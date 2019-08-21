@@ -2,7 +2,7 @@
 
 <div class="grid_12">
     <md-card>
-        <md-card-title>
+        <md-card-title style="padding-bottom: 0;">
             <md-card-title-text>
                 <span class="md-headline" style="font-weight: bolder">Membuat
                     Konsep Surat</span>
@@ -29,54 +29,98 @@
                 </div>
                 <div class="grid_3">
                     <label c-label item="item">Atasan</label>
-                    <input kendo-combo-box k-ng-model="item.jenisSurat"
-                        k-data-text-field="'name'" k-data-value-field="'id'"
+                    <input kendo-combo-box k-ng-model="item.atasanPegawai"
+                        k-data-text-field="'namalengkap'" k-data-value-field="'id'"
                         k-filter="'contains'" k-auto-bind="false"
-                        k-data-source="listJenisSurat" />
+                        k-data-source="listPegawai" />
                 </div>
             </div>
             <div class="grid_12">
-                <div class="grid_4">
+                <div class="grid_2">
                     <div class="grid_12">
-                        <label c-label item="item">No.</label>
+                        <label c-label item="item">No. Surat</label>
                         <input c-text-box type="input" filter="'varchar'"
-                            class="k-textbox" ng-model="item.noNote"
-                            style="width:70%" />
+                            class="k-textbox" ng-model="item.noSurat"
+                            style="width:100%" />
                     </div>
                     <div class="grid_12" style="margin-top: 10px;">
                         <label c-label item="item">Dari</label>
                         <input c-text-box type="input" filter="'varchar'"
                             class="k-textbox" ng-model="item.dari"
-                            style="width:70%" disabled />
+                            style="width:100%" disabled />
                     </div>
                 </div>
-                <div class="grid_4">
+                <div class="grid_2">
                     <div class="grid_12">
                         <label c-label item="item">Hal</label>
                         <input c-text-box type="input" filter="'varchar'"
                             class="k-textbox" ng-model="item.perihal"
-                            style="width:70%"
+                            style="width:100%"
                             />
                     </div>
                     <div class="grid_12" style="margin-top: 10px;">
                         <label c-label item="item">Tanggal</label>
-                        <input style="width:70%" readonly kendo-date-picker
-                            k-ng-model="item.tanggal"
-                            placeholder="'dd-mm-yyyy'" k-format="'dd-MM-yyyy'"
+                        <input style="width:100%" kendo-date-picker
+                            k-ng-model="item.tanggal" placeholder="'dd-mm-yyyy'"
+                            k-format="'dd-MM-yyyy'"
                             />
                     </div>
                 </div>
             </div>
-            <textarea kendo-editor k-ng-model="item.formatSurat"
-                style="height:500px"></textarea>
+            <div class="grid_12">
+                <textarea kendo-editor k-ng-model="item.formatSurat" id="isiSurat" style="height:500px"></textarea>
+            </div>
+            <div class="grid_12" style="margin-top: 10px">
+                <fieldset class="borderBox">
+                    <legend>
+                        <h4 style="font-size: 20px; color:rgba(0,0,0,0.87)">
+                            Tembusan
+                        </h4>
+                    </legend>
+                    <div class="grid_2">
+                        <input c-text-box type="input" filter="'varchar'"
+                            class="k-textbox" ng-model="item.tembusan1"
+                            style="width:100%" />
+                    </div>
+                    <div class="grid_2">
+                        <input c-text-box type="input" filter="'varchar'"
+                            class="k-textbox" ng-model="item.tembusan2"
+                            style="width:100%" />
+                    </div>
+                    <div class="grid_2">
+                        <input c-text-box type="input" filter="'varchar'"
+                            class="k-textbox" ng-model="item.tembusan3"
+                            style="width:100%" />
+                    </div>
+                    <!-- <div class="grid_2">
+                        <input c-text-box type="input" filter="'varchar'"
+                            class="k-textbox" ng-model="item.noSurat"
+                            style="width:100%" />
+                    </div> -->
+                </fieldset>
+
+            </div>
         </md-card-content>
         <md-card-actions layout="row" layout-align="end center">
-            <md-button class="md-raised md-accent" style="width: 10%"
-                ng-click="back()">Kembali</md-button>
+            <md-button class="md-raised md-accent" style="width: 15%" ng-click="preview()">Pratinjau Surat</md-button>
+            <md-button class="md-raised md-accent" style="width: 10%" ng-click="back()">Kembali</md-button>
             <md-button class="md-raised md-primary" style="width: 10%"
                 ng-click="simpan()">Simpan</md-button>
-            <!-- <md-button></md-button> -->
         </md-card-actions>
     </md-card>
 </div>
 <!-- </c-panel> -->
+
+<div kendo-window="popupPreview" k-title="'Pratinjau Pesan'" k-width="650" k-visible="false"  
+	k-on-open="win2visible = true" k-on-close="win2visible = false">
+	<div class="panel panel-default container_12" style="padding: 0px 10px;"> 
+        <md-card>
+            <md-card-content>
+                <div ng-bind-html="item.showFormat">
+                    <!-- {{item.showFormat}} -->
+                </div>
+                
+            </md-card-content>
+        </md-card>
+	</div>
+</div>

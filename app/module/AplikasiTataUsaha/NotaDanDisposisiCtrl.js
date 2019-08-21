@@ -1,32 +1,82 @@
 define(['initialize'], function (initialize) {
     'use strict';
     initialize.controller('NotaDanDisposisiCtrl', ['$rootScope', '$scope', 'ModelItem', 'ManageSarpras', 'DateHelper', '$state', '$window',
-        function ($rootScope, $scope, ModelItem, ManageSarpras, DateHelper, $state, $window) { 
+        function ($rootScope, $scope, ModelItem, ManageSarpras, DateHelper, $state, $window) {
             $scope.item = {};
+            let dataUser = JSON.parse(localStorage.getItem('pegawai'));
+            $scope.item.tanggal = new Date();
             $scope.listKategori = [
-                { name: 'Nota Dinas', id:1 },
-                { name: 'Undangan', id:2 }
-            ];
-            
-            $scope.listJenisSurat = [
-                { name: 'Biasa', id:1 },
-                { name: 'Penting', id:2 }
+                { name: 'Nota Dinas', id: 1 },
+                { name: 'Undangan', id: 2 }
             ];
 
-            $scope.item.formatSurat = ""
+            $scope.listJenisSurat = [
+                { name: 'Biasa', id: 1 },
+                { name: 'Penting', id: 2 }
+            ];
+
+            // $scope.item.formatSurat = ""
             $scope.simpan = function () {
                 console.log($scope.item.formatSurat);
             }
-            $scope.back = function() {
+            $scope.back = function () {
                 window.history.back();
             }
 
-            var init = function() {
-                let dataUser = JSON.parse(localStorage.getItem('pegawai'));
+            var init = function () {
                 $scope.item.dari = dataUser.ruangan.lokasiruangan;
+                ManageSarpras.getMaster('pegawai/get-form-pegawai-combo').then(res => {
+                    $scope.listPegawai = res.data.data
+                });
+
             }
             init();
-            
+
+            $scope.simpan = function () {
+                let dataSave = {
+                    "noSurat": $scope.item.noSurat.toString(),
+                    "pegawaifk": dataUser.id.toString(),
+                    "atasanfk": $scope.item.atasanPegawai.id.toString(),
+                    "statusSurat": false.toString(),
+                    "tglSurat": DateHelper.formatDate($scope.item.tanggal, 'YYYY-MM-DD'),
+                    "ruanganfk": dataUser.ruangan.id.toString(),
+                    "jenis": $scope.item.jenisSurat.id.toString(),
+                    "kategori": $scope.item.kategoriSurat.id.toString(),
+                    "keterangan": "-",
+                    "hal": $scope.item.perihal,
+                    "isi": $scope.item.formatSurat,
+                    "tembusan1": $scope.item.tembusan1,
+                    "tembusan2": $scope.item.tembusan2,
+                    "tembusan3": $scope.item.tembusan3,
+
+                    // "noSurat": "1234567890",
+                    // "pegawaifk": "88",
+                    // "atasanfk": "3",
+                    // "statusSurat": "false",
+                    // "tglSurat": "2019-08-20",
+                    // "ruanganfk": "1",
+                    // "kategori": "1",
+                    // "jenis": "1",
+                    // "hal": "Konfirmasi",
+                    // "isi": "<p style=\"margin-bottom:15px;padding:0px;text-align:justify;font-family:'Open Sans', Arial, sans-serif;font-size:14px;background-color:#ffffff;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam efficitur diam a ipsum ultrices, vitae dignissim arcu semper. Nullam vel sollicitudin enim, sit amet vehicula tortor. Aliquam pulvinar, est eu vestibulum efficitur, eros dolor finibus orci, ac pellentesque ipsum orci id lorem. Cras et quam nec arcu dignissim aliquam sed sed nisi. Integer eget velit eu sem ultrices fringilla. Morbi semper, sem ac eleifend vulputate, leo ex tempus magna, vel tempor augue nisi at leo. Etiam quam elit, tristique at euismod eu, posuere et risus. Donec sodales nulla augue, non vulputate sem dignissim sit amet. Donec neque dui, facilisis in purus sed, sagittis feugiat turpis. Curabitur quis nunc ac tortor commodo eleifend at a turpis. Integer semper, orci sit amet interdum maximus, orci urna blandit sem, in porta velit risus rutrum tellus. In ornare justo at nunc finibus vestibulum.</p>",
+                    // "keterangan": "tlng diperbaik untuk bagian ini",
+                    // "tembusan1": "Arsip1",
+                    // "tembusan2": "Arsip2",
+                    // "tembusan3": "Arsip3"
+                }
+                console.log(dataSave);
+                ManageSarpras.saveTransaksi('humas/save-pembuatan-surat/save', dataSave).then(res => {
+                    console.log(res);
+                })
+            }
+
+            $scope.preview = function () {
+                $scope.item.showFormat = $scope.item.formatSurat;
+                // let data = innerHtml($scope.item.showFormat)
+                // console.log($scope.item.showFormat)
+                $scope.popupPreview.center().open();
+            }
+
         }
     ])
 })

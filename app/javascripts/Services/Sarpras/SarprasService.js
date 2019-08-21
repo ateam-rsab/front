@@ -21,9 +21,27 @@ define(['Configuration'], function (config) {
     var baseUrlDataMaster = config.urlDataMaster;
     var baseUrlListProduk = config.baseUrlListProduk;
     var baseUrlDataUser = config.urlDataUser;
+    var baseGetDataMaster = config.urlDataTableMaster_Akuntansi;
+    var baseUrlTransaksi = config.urlDataTableTransaksi_Akuntansi;
+
     var sarprasService = angular.module('SarprasService', ['ngResource', 'HttpServices', 'Services']);
     sarprasService.service('ManageSarpras', ['ModelItem', 'R', 'DateHelper', function (modelItem, r, dateHelper) {
         return {
+            getMaster: function (urlGet) {
+                return r.get({
+                    url: baseGetDataMaster + urlGet
+                });
+            },
+            getTransaksi: function (urlGet) {
+                return r.get({
+                    url: baseUrlTransaksi + urlGet
+                });
+            },
+            saveTransaksi: function (url, data) {
+                return r.post({
+                    url: baseUrlTransaksi + url
+                }, data);
+            },
             saveLoginUser: function (data) {
                 return r.post({
                     url: baseUrlApiAction + "user/save-login-user/"

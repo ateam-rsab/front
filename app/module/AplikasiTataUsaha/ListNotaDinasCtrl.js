@@ -7,70 +7,37 @@ define(['initialize'], function (initialize) {
             $scope.item.tanggalAwal = $scope.now;
             $scope.item.tanggalAkhir = $scope.now;
             $scope.isRouteLoading = true;
-            $scope.dataSourceKonsepSurat = new kendo.data.DataSource({
-                data: [],
-                pageSize: 5
-            })
             initializeData();
 
             function initializeData() {
                 var tglAwal = moment($scope.item.tanggalAwal).format('DD-MM-YYYY');
                 var tglAkhir = moment($scope.item.tanggalAkhir).add(1, 'day').format('DD-MM-YYYY');
                 var idPegawai = ModelItem.getPegawai().id;
-                $q.all([
-                    ManageSarpras.getOrderList("nota-dinas/get-inbox-nota-dinas?dateStart=" + tglAwal + "&dateEnd=" + tglAkhir + "&idPegawai=" + idPegawai, true),
-                    ManageSarpras.getOrderList("nota-dinas/get-outbox-nota-dinas?dateStart=" + tglAwal + "&dateEnd=" + tglAkhir + "&idPegawai=" + idPegawai, true),
-                ]).then(function (data) {
-                    $scope.notaMasuk = new kendo.data.DataSource({
-                        data: data[0].data.data
-                    });
+                // $q.all([
+                //     ManageSarpras.getOrderList("nota-dinas/get-inbox-nota-dinas?dateStart=" + tglAwal + "&dateEnd=" + tglAkhir + "&idPegawai=" + idPegawai, true),
+                //     ManageSarpras.getOrderList("nota-dinas/get-outbox-nota-dinas?dateStart=" + tglAwal + "&dateEnd=" + tglAkhir + "&idPegawai=" + idPegawai, true),
+                // ]).then(function (data) {
+                //     $scope.notaMasuk = new kendo.data.DataSource({
+                //         data: data[0].data.data
+                //     });
 
-                    $scope.notaKeluar = new kendo.data.DataSource({
-                        data: data[1].data.data
-                    });
-                });
+                //     $scope.notaKeluar = new kendo.data.DataSource({
+                //         data: data[1].data.data
+                //     });
+                // });
+
+                ManageSarpras.getTransaksi('humas/get-daftar-surat').then(res => {
+                    $scope.dataSourceKonsepSurat = new kendo.data.DataSource({
+                        data: res.data.data,
+                        pageSize: 5
+                    })
+                })
             }
 
             $scope.cari = function () {
                 initializeData();
             }
-            $scope.colNotaMasuk = [{
-                "field": "pembuat",
-                "title": "<h3 align=center>Pengirim.<h3>",
-                "width": "30%"
-            }, {
-
-                "field": "perihal",
-                "title": "<h3 align=center>Perihal<h3>",
-                "width": "50%"
-            }, {
-
-                "field": "jenis",
-                "title": "<h3 align=center>Jenis<h3>",
-                "width": "10%"
-            }, {
-
-                "field": "tanggal",
-                "title": "<h3 align=center>Tanggal<h3>",
-                "width": "10%"
-            }];
-
-            $scope.colNotaKeluar = [{
-                "field": "perihal",
-                "title": "<h3 align=center>Perihal<h3>",
-                "width": "50%"
-            }, {
-
-                "field": "jenis",
-                "title": "<h3 align=center>Jenis<h3>",
-                "width": "10%"
-            }, {
-
-                "field": "tanggal",
-                "title": "<h3 align=center>Tanggal<h3>",
-                "width": "10%"
-            }];
-
+           
             $scope.detailGridOptions = function (dataItem) {
                 return {
                     dataSource: new kendo.data.DataSource({
@@ -114,38 +81,41 @@ define(['initialize'], function (initialize) {
                 scrollable: true,
                 columns: [
                     {
-                        // field: "nipPns",
-                        title: "<h3>No.</h3>",
+                        field: "nosurat",
+                        title: "<h3>No. Surat</h3>",
                         width: "17%",
                     },
                     {
-                        // field: "namaLengkap",
+                        field: "tglsurat",
                         title: "<h3>Tanggal</h3>",
                         width: "25%"
                     },
                     {
-                        // field: "unitKerja",
+                        field: "hal",
                         title: "<h3>Tema Surat</h3>",
                         width: "20%"
                     },
                     {
-                        // field: "subUnitKerja",
+                        field: "status_surat",
                         title: "<h3>Status</h3>",
-                        width: "20%"
-                    },
-                    {
-                        // field: "jabatanInternal",
-                        title: "<h3>Terkirim</h3>",
                         width: "20%",
+                        template: "#if(status_surat) { # #= Approve # #} else { # Konsep # } #",
                     },
-                    {
-                        field: "kategoriPegawai",
-                        title: "<h3>Dibaca</h3>",
-                        width: "15%",
-                        attributes: {
-                            style: "text-align:center;valign=middle"
-                        }
-                    },
+                    // {
+                    //     // field: "jabatanInternal",
+                    //     title: "<h3>Terkirim</h3>",
+                    //     width: "20%",
+                    //     template: "-",
+                    // },
+                    // {
+                    //     // field: "kategoriPegawai",
+                    //     title: "<h3>Dibaca</h3>",
+                    //     width: "15%",
+                    //     attributes: {
+                    //         style: "text-align:center;valign=middle"
+                    //     },
+                    //     template: "-",
+                    // },
                     {
                         command: [
                             {
