@@ -55,7 +55,13 @@ define(['initialize'], function(initialize) {
                     $scope.listUnitKerja = res[1].data.data;
                     $scope.showButtonInputJadwalDinas = res[0].data.data;                
                     $scope.isMonitoring = res[0].data.dataMonitoring;
-                    if(ModelItem.getPegawai().nama === "Administrator" || res[2].data.data.includes(ModelItem.getPegawai().id) || res[3].data.data.idJabatan==633){
+                    var isPegawaiSDM = false;
+                    for (var i = 0; i < res[2].data.data.length; i++) {
+                        if (res[2].data.data[i] == ModelItem.getPegawai().id) {
+                            isPegawaiSDM = true;
+                        }
+                    };
+                    if(ModelItem.getPegawai().nama === "Administrator" || isPegawaiSDM || res[3].data.data.idJabatan==633){
                         $scope.isSingle = false;
                              // FindSdm.getUnitKerja().then(function(dat) {
                             ManageSdmNew.getListData("sdm/get-all-unit-kerja").then(function(dat) {

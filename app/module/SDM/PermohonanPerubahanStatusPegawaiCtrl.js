@@ -919,7 +919,13 @@ define(['initialize'], function (initialize) {
                     // }
                 } else {
                     if ($scope.item.statusPegawai.id == 29 && $scope.tanggalPermohonan.length === 1) {
-                        if (!listPegawaiAdminSDM.includes($scope.pegawai.id)) {
+                        var isPegawaiSDM = false;
+                        for (let i = 0; i < listPegawaiAdminSDM.data.length; i++) {
+                            if (listPegawaiAdminSDM.data[i]==$scope.pegawai.id) {
+                                isPegawaiSDM = true;
+                            };
+                        }
+                        if (!isPegawaiSDM) {
                             messageContainer.error('Tanggal harus terdiri dari tanggal awal dan tanggal akhir (periode)')
                             return
                         }
@@ -1097,7 +1103,13 @@ define(['initialize'], function (initialize) {
                         $scope.winDialog.close();
                         delete $scope.currentData.pegawai1;
                         delete $scope.currentData.pegawai2;
-                        if (listPegawaiAdminSDM.includes($scope.pegawai.id)) {
+                        var isPegawaiSDM = false;
+                        for (let i = 0; i < listPegawaiAdminSDM.data.length; i++) {
+                            if (listPegawaiAdminSDM.data[i]==$scope.pegawai.id) {
+                                isPegawaiSDM = true;
+                            };
+                        }
+                        if (!isPegawaiSDM) {
                             if (data.pegwaiId == $scope.pegawai.id) {
                                 window.open(urlLaporan, "halamanCetakDua", "width=800, height=600, top=10, left=10");
                             }
