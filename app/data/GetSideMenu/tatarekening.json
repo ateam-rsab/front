@@ -263,6 +263,10 @@
         "name": "SDM",
         "children": [
             {
+                "name": "Logbook Kinerja",
+                "link": "#/LogbookKinerja"
+            },
+            {
                 "name": "Target Bobot Uraian Tugas",
                 "link": "#/TargetBobot"
             },

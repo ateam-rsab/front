@@ -19,7 +19,7 @@ define(['initialize'], function(initialize) {
             $scope.dateLast =new Date(now.getFullYear(), now.getMonth()+1, dateLast); // variable dateLast masukin ke html k-max
             $scope.now = new Date();
             $scope.dataVOloaded = true;
-            $scope.isRouteLoading = true; 
+            $scope.isRouteLoading = false; 
             var validate = 2;
             var validateAll = 0;
             // var listPegawaiAdminSDM = [141,621,1107,1146,1344] //Para Pembesar SDM
@@ -33,7 +33,7 @@ define(['initialize'], function(initialize) {
                 start: "year",
                 depth: "year"
             };
-            $scope.isRouteLoading = true;
+            // $scope.isRouteLoading = true;
             $scope.isReport = true;
             $scope.cbAll = function() {
                 if ($scope.vals === true) {
@@ -55,7 +55,13 @@ define(['initialize'], function(initialize) {
                     $scope.listUnitKerja = res[1].data.data;
                     $scope.showButtonInputJadwalDinas = res[0].data.data;                
                     $scope.isMonitoring = res[0].data.dataMonitoring;
-                    if(ModelItem.getPegawai().nama === "Administrator" || res[2].data.data.includes(ModelItem.getPegawai().id) || res[3].data.data.idJabatan==633){
+                    var isPegawaiSDM = false;
+                    for (var i = 0; i < res[2].data.data.length; i++) {
+                        if (res[2].data.data[i] == ModelItem.getPegawai().id) {
+                            isPegawaiSDM = true;
+                        }
+                    };
+                    if(ModelItem.getPegawai().nama === "Administrator" || isPegawaiSDM || res[3].data.data.idJabatan==633){
                         $scope.isSingle = false;
                              // FindSdm.getUnitKerja().then(function(dat) {
                             ManageSdmNew.getListData("sdm/get-all-unit-kerja").then(function(dat) {
