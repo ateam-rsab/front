@@ -1,6 +1,6 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('InputResepApotikCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper',
+    initialize.controller('InputResepElektronikApotikCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper',
         function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper) {
             $scope.item = {};
             $scope.dataVOloaded = true;
@@ -12,6 +12,7 @@ define(['initialize'], function (initialize) {
             $scope.tombolSimpanVis = true
             $scope.disabledRuangan = false;
             $scope.statusConsis = false;
+            $scope.dataTempResep = [];
 
             $scope.item.hargaNetto = 0;
 
@@ -34,13 +35,6 @@ define(['initialize'], function (initialize) {
             // $scope.item.tglAkhir = $scope.now;
             LoadCache();
             function LoadCache() {
-                // manageLogistikPhp.getDataTableTransaksi("akutansi/get-terakhir-posting", true).then(function(dat){
-                //     var tgltgltgltgl = dat.data.data[0].max
-                //     $scope.startDateOptions = {
-                //         min: new Date(tgltgltgltgl),
-                //         max: new Date($scope.now)
-                //     };
-                // })
                 manageLogistikPhp.getDataTableTransaksi("akutansi/get-tgl-posting", true).then(function (dat) {
                     var tgltgltgltgl = dat.data.mindate[0].max
                     var tglkpnaja = dat.data.datedate
@@ -93,7 +87,6 @@ define(['initialize'], function (initialize) {
             }
             function init() {
                 $scope.isRouteLoading = true;
-                // debugger;
                 manageLogistikPhp.getDataTableTransaksi("logistik/get-datacombo", true).then(function (dat) {
                     $scope.isRouteLoading = false;
                     $scope.listPenulisResep = dat.data.penulisresep;
@@ -261,6 +254,98 @@ define(['initialize'], function (initialize) {
                     }
                 });
 
+                manageLogistikPhp.getDataTableTransaksi("rekam-medis/get-resep-dokter-detail?strukorder=" + norecResep, true).then(res => {
+                    for (let i = 0; i < res.data.data.length; i++) {
+                        for (let ii = 0; ii < res.data.data[i].obat.length; ii++) {
+                            let dataTemp = {
+                                resep: res.data.data[i].resep,
+                                keteranganlainnya: res.data.data[i].obat[ii].keteranganlainnya,
+                                keteranganpakai: res.data.data[i].obat[ii].keteranganpakai,
+                                namaobat: res.data.data[i].obat[ii].namaobat,
+                                objectprodukfk: res.data.data[i].obat[ii].objectprodukfk,
+                                qtyproduk: res.data.data[i].obat[ii].qtyproduk,
+                                satuanview: res.data.data[i].obat[ii].satuanview,
+
+                            }
+                            $scope.dataTempResep.push(dataTemp);
+                        }
+                    }
+                    // console.log($scope.dataTempResep);
+                    $scope.dataSourceResepDokter = new kendo.data.DataSource({
+                        data: $scope.dataTempResep,
+                        pageSize: 5
+                    })
+                });
+
+                $scope.columnResepDokter = {
+                    pageable: true,
+                    columns: [
+                        {
+
+                            field: "resep",
+                            title: "<h3>r/Ke</h3>",
+                            width: "3%",
+                            attributes: {
+                                style: "text-align:center;valign=middle"
+                            },
+                        },
+                        {
+
+                            field: "namaobat",
+                            title: "<h3>Nama Obat</h3>",
+                            width: "150px",
+                            // attributes: {
+                            //     style: "text-align:center;valign=middle"
+                            // },
+                        },
+                        {
+
+                            field: "keteranganpakai",
+                            title: "<h3>Keterangan Pakai</h3>",
+                            width: "100px",
+                            attributes: {
+                                style: "text-align:center;valign=middle"
+                            },
+                        },
+                        {
+
+                            field: "keteranganlainnya",
+                            title: "<h3>Instruksi</h3>",
+                            width: "100px",
+                            attributes: {
+                                style: "text-align:center;valign=middle"
+                            },
+                        },
+                        {
+                            command: [
+                                { text: "Detail", click: showDetail }
+                            ],
+                            title: "&nbsp;",
+                            width: "3%",
+                            attributes: {
+                                style: "text-align:center;valign=middle"
+                            },
+                        }
+                    ]
+                }
+
+
+
+            }
+
+            function showDetail(e) {
+                e.preventDefault();
+                let dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+
+                $scope.resep = {
+                    rke: dataItem.resep,
+                    namaObat: dataItem.namaobat,
+                    jumlah: dataItem.qtyproduk,
+                    keteranganPakai: dataItem.keteranganpakai,
+                    instruksi: dataItem.keteranganlainnya
+                }
+
+                $scope.popupInputObat.center().open();
             }
 
             $scope.getSatuan = function () {
@@ -646,7 +731,6 @@ define(['initialize'], function (initialize) {
                             $scope.item.totalSubTotal = parseFloat(subTotal).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")
 
                         }
-                        // break;
                     }
 
                 } else {
@@ -711,14 +795,13 @@ define(['initialize'], function (initialize) {
                 // 29  0   t       jasa pelayanan IV Admixture
                 // 30  0   t       jasa pelayanan Repacking obat injeksi
                 // strStatus= $scope.item.produk.id
-
-                Kosongkan()
+                $scope.popupInputObat.close();
+                Kosongkan();
                 racikan = ''
             }
 
             $scope.klikGrid = function (dataSelected) {
                 var dataProduk = [];
-                //no:no,
                 $scope.item.no = dataSelected.no
                 $scope.item.rke = dataSelected.rke
                 manageLogistikPhp.getDataTableTransaksi("farmasi/get-jenis-obat?jrid=" + dataSelected.jenisobatfk, true).then(function (JR) {
@@ -834,68 +917,7 @@ define(['initialize'], function (initialize) {
                     "template": "<span class='style-right'>{{formatRupiah('#: total #', '')}}</span>"
                 }
             ];
-            // $scope.columnGridR = [
-            // {
-            //     "field": "no",
-            //     "title": "No",
-            //     "width" : "30px",
-            // },
-            // {
-            //     "field": "rke",
-            //     "title": "R/ke",
-            //     "width" : "40px",
-            // },
-            // {
-            //     "field": "jeniskemasan",
-            //     "title": "Kemasan",
-            //     "width" : "70px",
-            // },
-            // {
-            //     "field": "asalproduk",
-            //     "title": "Asal Produk",
-            //     "width" : "100px",
-            // },
-            // {
-            //     "field": "namaproduk",
-            //     "title": "Deskripsi",
-            //     "width" : "200px",
-            // },
-            // {
-            //     "field": "satuanstandar",
-            //     "title": "Satuan",
-            //     "width" : "80px",
-            // },
-            // {
-            //     "field": "jumlah",
-            //     "title": "Qty",
-            //     "width" : "70px",
-            // },
-            // {
-            //     "field": "hargasatuan",
-            //     "title": "Harga Satuan",
-            //     "width" : "100px",
-            //     "template": "<span class='style-right'>{{formatRupiah('#: hargasatuan #', '')}}</span>"
-            // },
-            // {
-            //     "field": "hargadiscount",
-            //     "title": "Harga Discount",
-            //     "width" : "100px",
-            //     "template": "<span class='style-right'>{{formatRupiah('#: hargadiscount #', '')}}</span>"
-            // },
-            // {
-            //     "field": "total",
-            //     "title": "Total",
-            //     "width" : "100px",
-            //     "template": "<span class='style-right'>{{formatRupiah('#: total #', '')}}</span>"
-            // }
-            // ];
-            // $scope.mainGridOptions = { 
-            //     pageable: true,
-            //     columns: $scope.columnProduk,
-            //     editable: "popup",
-            //     selectable: "row",
-            //     scrollable: false
-            // };
+
             $scope.formatRupiah = function (value, currency) {
                 return currency + " " + parseFloat(value).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
             }
@@ -946,7 +968,6 @@ define(['initialize'], function (initialize) {
                     strukresep: strukresep,
                     pelayananpasien: data2//$scope.dataGrid._data
                 }
-
                 $scope.tombolSimpanVis = false;
                 manageLogistikPhp.postpelayananapotik(objSave).then(function (e) {
                     $scope.tombolSimpanVis = true;

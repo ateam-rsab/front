@@ -173,8 +173,7 @@ define(['initialize'], function (initialize) {
                 //     $scope.resep.satuanObat = {};
                 // }
                 $scope.getHargaSatuan(data.id);
-                manageLogistikPhp.getDataTableTransaksi("logistik/get-info-stok?produkfk=" + data.id, true)
-                    .then(function (e) { })
+                manageLogistikPhp.getDataTableTransaksi("logistik/get-info-stok?produkfk=" + data.id, true).then(function (e) { })
             }
 
             $scope.getSatuanNonRacikan = function (data) {

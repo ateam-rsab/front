@@ -2172,6 +2172,26 @@
     ]
   },
   {
+    "name": "InputResepElektronikApotik",
+    "url": "/InputResepElektronikApotik",
+    "templateurl": "module/Farmasi/InputResepElektronikApotik.html",
+    "controller": "InputResepElektronikApotikCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      }
+    ]
+  },
+  {
     "name": "KonversiSatuan",
     "url": "/KonversiSatuan",
     "templateurl": "module/Farmasi/KonversiSatuan.html",

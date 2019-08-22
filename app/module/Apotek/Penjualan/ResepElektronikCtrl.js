@@ -17,64 +17,73 @@ define(['initialize'], function (initialize) {
                     "field": "noorder",
                     "title": "No Pesanan",
                     "width": "60px",
-
-
-                }, {
+                },
+                {
                     "field": "nocm",
                     "title": "No Rekam Medis",
                     "width": "60px",
 
 
-                }, {
+                },
+                {
                     "field": "namapasien",
                     "title": "Nama Pasien",
                     "width": "100px",
 
-                }, {
+                },
+                {
                     "field": "jeniskelamin",
                     "title": "Jenis Kelamin",
                     "width": "60px",
 
-                }, {
+                },
+                {
                     "field": "namaruanganrawat",
                     "title": "Ruang Rawat",
                     "width": "100px",
 
-                }, {
-                    template: "#= new moment(new Date(tglorder)).format('DD-MM-YYYY HH:mm:ss') #",
+                },
+                {
                     "field": "strukOrder.tglOrder",
                     "title": "Tanggal/Jam Masuk",
                     "width": "100px",
+                    "template": "#= new moment(new Date(tglorder)).format('DD-MM-YYYY HH:mm:ss') #",
 
-                }, {
+                },
+                {
                     "field": "namalengkap",
                     "title": "Dokter",
                     "width": "100px",
 
-                }, {
+                },
+                {
                     "field": "kelompokpasien",
                     "title": "Tipe Pasien",
                     "width": "60px",
 
-                }, {
-                    hidden: true,
+                },
+                {
                     "field": "namaruangan",
                     "width": "70px",
                     "title": "Depo",
+                    hidden: true,
                     aggregates: ["count"],
                     groupHeaderTemplate: "Ruangan #= value # "
 
-                }, {
+                },
+                {
                     "field": "statusorder",
                     "title": "Status",
                     "width": "60px",
 
-                }, {
+                },
+                {
                     "field": "namapengambilorder",
                     "title": "Pengambil Obat",
                     "width": "70px",
 
-                }];
+                }
+            ];
 
             LoadCache();
             function LoadCache() {
@@ -101,7 +110,7 @@ define(['initialize'], function (initialize) {
                     aggregate: "count"
                 }]
             };
-         
+
 
             $scope.refresh = function () {
                 // debugger;
@@ -244,8 +253,7 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.verifikasi = function () {
-                // debugger;
-
+                console.log($scope.item);
                 if ($scope.item.statusorder == 'Menunggu') {
                     //$state.go('ResepElektronikVerifikasi', { noOrder: $scope.item.strukOrder.noOrder, noAntrianPasien: $scope.item.strukOrder.noRegistrasi.noRec });
                     var arrStr = {
@@ -260,18 +268,21 @@ define(['initialize'], function (initialize) {
                         8: $scope.item.norec,
                         9: $scope.item.noorder,
                         10: $scope.item.jenisPenjamin,
-                        11: $scope.item.kelompokPasien,
+                        11: $scope.item.kelompokpasien,
                         12: $scope.item.beratBadan,
                         13: $scope.item.AlergiYa,
-                        14: $scope.item.norec_so
+                        14: $scope.item.norec_so,
+                        15: $scope.item.tglorder,
+                        16: $scope.item.namalengkap
                     }
-                    cacheHelper.set('InputResepApotik', arrStr);
-                    $state.go('InputResepApotik')
+                    cacheHelper.set('InputResepApotikCtrl', arrStr);
+                    $state.go('InputResepElektronikApotik')
 
                 } else {
                     alert('Sudah di verifikasi!!')
                 }
             }
+
             $scope.ambilObat = function () {
                 if ($scope.item.statusorder == 'Selesai') {
                     //$state.go('ResepElektronikAmbilObat', { noOrder: $scope.item.strukOrder.noOrder, noAntrianPasien: $scope.item.strukOrder.noRegistrasi.noRec });
@@ -280,6 +291,7 @@ define(['initialize'], function (initialize) {
                     alert('Status harus Selesai!!')
                 }
             }
+
             $scope.columnGridRiwayat = [
                 {
                     "field": "no",
@@ -326,13 +338,13 @@ define(['initialize'], function (initialize) {
                     title: "Qty",
                     width: "100px"
                 },
-               
+
                 {
                     "field": "namaruangan",
                     "title": "Apotik",
                     "width": "70px",
                 },
-               
+
             ];
             $scope.detailGridOptions = function (dataItem) {
                 return {

@@ -457,6 +457,10 @@
       "urlDep": "module/Farmasi/InputResepApotikCtrl"
     },
     {
+      "nameDep": "InputResepElektronikApotikCtrl",
+      "urlDep": "module/Farmasi/InputResepElektronikApotikCtrl"
+    },
+    {
       "nameDep": "KonversiSatuanCtrl",
       "urlDep": "module/Farmasi/KonversiSatuanCtrl"
     },
