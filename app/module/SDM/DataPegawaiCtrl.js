@@ -415,7 +415,7 @@ define(['initialize'], function(initialize) {
             id: id,
             statusEnabled: false
         }
-        ManageSdmNew.saveData(jsonDelete, "sdm/save-rekam-data-pegawai").then(function(dat) {
+        ManageSdmNew.saveData(jsonDelete, "sdm/hapus-pegawai").then(function(dat) {
             getPegawaiAlls();
         });
     }
