@@ -39,7 +39,8 @@ define(['initialize'], function (initialize) {
                     manageSarprasPhp.getDataTableTransaksi("historypegawai/get-data-riwayat-pendidikan-pgw?id=" + $state.params.idPegawai),
                     ManageSdm.getOrderList("service/list-generic/?view=Agama&select=*", true),
                     ManageSdm.getOrderList("service/list-generic/?view=PosisiLamaran&select=*", true),
-                    ManageSdm.getOrderList("service/list-generic/?view=StatusPerkawinanPegawai&select=id,statusPerkawinan&criteria=statusEnabled&values=true", true),
+                    // ManageSdm.getOrderList("service/list-generic/?view=StatusPerkawinanPegawai&select=id,statusPerkawinan&criteria=statusEnabled&values=true", true),
+                    ManageSdm.getOrderList("service/list-generic/?view=StatusPerkawinan&select=id,statusPerkawinan&criteria=statusEnabled&values=true", true),
                     ManageSdm.getOrderList("service/list-generic/?view=KategoryPegawai&select=id,kategoryPegawai&criteria=statusEnabled&values=true", true),
                     ManageSdm.getOrderList("service/list-generic/?view=JenisKelamin&select=id,jenisKelamin&criteria=statusEnabled&values=true", true),
                     ManageSdm.getOrderList("service/list-generic/?view=Eselon&select=id,eselon&criteria=statusEnabled&values=true", true),
@@ -88,7 +89,8 @@ define(['initialize'], function (initialize) {
                     // $scope.ListAgama = res[2].data.splice(1, 6);
                     let tempDataAgama = res[2].data;
                     $scope.ListPosisiLamaran = res[3].data;
-                    let tempStatusKawin = res[4].data;
+                    // let tempStatusKawin = res[4].data;
+                    $scope.ListStatusKawin = res[4].data;
                     $scope.ListKategoriPegawai = res[5].data.splice(1);
                     $scope.ListJenisKelamin = res[6].data.splice(1);
                     $scope.ListEselon = res[7].data;
@@ -119,7 +121,7 @@ define(['initialize'], function (initialize) {
                     $scope.listJenisJabatan = res[28].data;
                     $scope.listOfNegara = res[29].data;
                     $scope.listOfSatuanKerja = res[30].data;
-                    $scope.ListStatusKawin = [];
+                    // $scope.ListStatusKawin = [];
                     $scope.ListAgama = [];
                     $scope.ListKedudukanPegawai = [];
                     $scope.ListDetilKelompokJabatan = [];
@@ -154,15 +156,15 @@ define(['initialize'], function (initialize) {
                             $scope.ListAgama.push(dataTemp);
                         }
                     })
-                    tempStatusKawin.forEach(function (el) {
-                        if (el.statusPerkawinan === 'Belum Kawin' || el.statusPerkawinan === 'Janda/Duda' || el.statusPerkawinan === 'Kawin') {
-                            var tempDataKawin = {
-                                statusPerkawinan: el.statusPerkawinan,
-                                id: el.id
-                            }
-                            $scope.ListStatusKawin.push(tempDataKawin);
-                        }
-                    })
+                    // tempStatusKawin.forEach(function (el) {
+                    //     if (el.statusPerkawinan === 'Belum Kawin' || el.statusPerkawinan === 'Janda/Duda' || el.statusPerkawinan === 'Kawin') {
+                    //         var tempDataKawin = {
+                    //             statusPerkawinan: el.statusPerkawinan,
+                    //             id: el.id
+                    //         }
+                    //         $scope.ListStatusKawin.push(tempDataKawin);
+                    //     }
+                    // })
                     getDataPegawai($state.params.idPegawai);
 
                 });
@@ -1978,7 +1980,8 @@ define(['initialize'], function (initialize) {
                 //     $scope.item.tglPensiun = new Date(formatDate($scope.item.tglPensiun));
                 // }
 
-                var newModel = getDataChanged($scope.item);
+                // var newModel = getDataChanged($scope.item);
+                var newModel = $scope.item;
                 if(newModel.statusRhesus) {
                     newModel.statusRhesus = newModel.statusRhesus.name
                 }
@@ -2035,27 +2038,27 @@ define(['initialize'], function (initialize) {
                     }
                 }
                 
-                if (!$scope.disableSip) {
-                    $scope.item.noSip = $scope.item.noSip;
-                    var tglTerbitSip = isDate($scope.item.tglTerbitSip),
-                        tglBerakhirSip = isDate($scope.item.tglBerakhirSip);
-                    if (tglBerakhirSip) {
-                        tglBerakhirSip = new Date($scope.item.tglBerakhirSip).getTime();
-                    } else {
-                        tglBerakhirSip = new Date(dateHelper.newStringToDateTime($scope.item.tglBerakhirSip)).getTime();
-                    }
-                    if (tglTerbitSip) {
-                        tglTerbitSip = new Date($scope.item.tglTerbitSip).getTime();
-                    } else {
-                        tglTerbitSip = new Date(dateHelper.newStringToDateTime($scope.item.tglTerbitSip)).getTime();
-                    }
-                    $scope.item.tglTerbitSip = tglTerbitSip;
-                    $scope.item.tglBerakhirSip = tglBerakhirSip;
-                } else {
-                    if ($scope.item.noSip) $scope.item.noSip = null;
-                    if ($scope.item.tglTerbitSip) $scope.item.tglTerbitSip = null;
-                    if ($scope.item.tglBerakhirSip) $scope.item.tglBerakhirSip = null;
-                }
+                // if (!$scope.disableSip) {
+                //     $scope.item.noSip = $scope.item.noSip;
+                //     var tglTerbitSip = isDate($scope.item.tglTerbitSip),
+                //         tglBerakhirSip = isDate($scope.item.tglBerakhirSip);
+                //     if (tglBerakhirSip) {
+                //         tglBerakhirSip = new Date($scope.item.tglBerakhirSip).getTime();
+                //     } else {
+                //         tglBerakhirSip = new Date(dateHelper.newStringToDateTime($scope.item.tglBerakhirSip)).getTime();
+                //     }
+                //     if (tglTerbitSip) {
+                //         tglTerbitSip = new Date($scope.item.tglTerbitSip).getTime();
+                //     } else {
+                //         tglTerbitSip = new Date(dateHelper.newStringToDateTime($scope.item.tglTerbitSip)).getTime();
+                //     }
+                //     $scope.item.tglTerbitSip = tglTerbitSip;
+                //     $scope.item.tglBerakhirSip = tglBerakhirSip;
+                // } else {
+                //     if ($scope.item.noSip) $scope.item.noSip = null;
+                //     if ($scope.item.tglTerbitSip) $scope.item.tglTerbitSip = null;
+                //     if ($scope.item.tglBerakhirSip) $scope.item.tglBerakhirSip = null;
+                // }
                 if (!$scope.disableStr) {
                     $scope.item.noStr = $scope.item.noStr;
                     var tglTerbitStr = isDate($scope.item.tglTerbitStr),
@@ -2079,7 +2082,7 @@ define(['initialize'], function (initialize) {
                 }
 
                 var isEmptyModel = _.isEmpty(newModel);
-                console.table(newModel)
+                // console.table(newModel)
                 if (!isEmptyModel) {
                     
                     for (var key in newModel) {

@@ -9,8 +9,8 @@ define([], function () {
         baseURLJava = 'http://192.168.12.3',
         portJava = '8080',
 
-        baseURLEval = 'http://172.16.99.224',
-        portEval = '8183';
+        baseURLEval = 'http://192.168.12.3',
+        portEval = '8080';
     
     if (window.location.hostname.indexOf('rsabhk') > -1) {
         return {
