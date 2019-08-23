@@ -1,0 +1,79 @@
+<md-card style="margin:10px">
+    <md-card-title>
+        <md-card-title-text>
+            <span class="md-headline" style="font-weight: bolder">
+                Daftar Distribusi Surat
+            </span>
+            <hr>
+        </md-card-title-text>
+    </md-card-title>
+    <md-card-content>
+        <div kendo-grid k-data-source="dataSourceDistribusi"
+            options="optDistribusiSurat" style="padding:10px;"></div>
+    </md-card-content>
+</md-card>
+
+<div kendo-window="popupPreview" k-title="'Pratinjau Pesan'" k-width="650"
+    k-visible="false"
+    k-on-open="win2visible= true" k-on-close="win2visible= false">
+    <div class="panel panel-default container_12" style="padding: 0px 10px;">
+        <md-card>
+            <md-card-content>
+                <div ng-bind-html="item.showFormat">
+                    <!-- {{item.showFormat}} -->
+                </div>
+
+            </md-card-content>
+        </md-card>
+    </div>
+</div>
+<div kendo-window="popupDistribusi" k-title="'Distribusi Surat'" k-width="850"
+    k-visible="false" k-on-open="win2visible= true" k-on-close="win2visible=
+    false">
+    <div class="panel panel-default container_12" style="padding: 0px 10px;">
+        <md-card>
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline" style="font-weight: bolder">
+                        Distribusikan Surat
+                    </span>
+                    <hr>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <div class="grid_4">
+                    <label>Nama Penerima</label>
+                    <input kendo-combo-box k-ng-model="item.namaPenerima"
+                        k-data-text-field="'namalengkap'"
+                        k-data-value-field="'id'"
+                        k-filter="'contains'" k-auto-bind="false"
+                        k-data-source="listPegawai" />
+                </div>
+                <div class="grid_4">
+                    <label>Ruangan Penerima</label>
+                    <input kendo-combo-box k-ng-model="item.ruanganPegawai"
+                        k-data-text-field="'namalengkap'"
+                        k-data-value-field="'id'"
+                        k-filter="'contains'" k-auto-bind="false"
+                        k-data-source="listPegawai" />
+                </div>
+                <div class="grid_4">
+                    <md-button class="md-raised md-primary" style="width:
+                        15%;margin-top: 16px;" ng-click="tambahPenerima()">Tambah</md-button>
+                </div>
+            </md-card-content>
+        </md-card>
+        <md-card>
+            <md-card-content>
+                <div class="grid_12">
+                    <div kendo-grid k-data-source="dataSourceListPenerima"
+                        options="optListPenerima" style="padding:10px;"></div>
+                </div>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end center">
+
+                <md-button class="md-raised md-primary" style="width: 15%" ng-click="distribusiSurat()">Kirim Surat</md-button>
+            </md-card-actions>
+        </md-card>
+    </div>
+</div>

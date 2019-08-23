@@ -72,8 +72,11 @@ define(['initialize'], function (initialize) {
 
             $scope.preview = function () {
                 $scope.item.showFormat = $scope.item.formatSurat;
-                // let data = innerHtml($scope.item.showFormat)
-                // console.log($scope.item.showFormat)
+                if(!$scope.item.showFormat) {
+                    toastr.info('Isi Surat Masih Kosong!')
+                    return
+                }
+                console.log($scope.item.showFormat)
                 $scope.popupPreview.center().open();
             }
 

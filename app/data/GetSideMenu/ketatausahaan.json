@@ -69,6 +69,10 @@
          {
             "name": "Daftar Konsep Surat",
             "link": "#/ListNotaDinas"
+         },
+         {
+            "name": "Daftar Surat Distribusi",
+            "link": "#/DaftarSuratDistribusi"
          }
       ]
    },

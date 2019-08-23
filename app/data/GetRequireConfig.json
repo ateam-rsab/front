@@ -7770,6 +7770,10 @@
       "urlDep": "module/AplikasiTataUsaha/ListNotaDinasCtrl"
     },
     {
+      "nameDep": "DaftarSuratDistribusiCtrl",
+      "urlDep": "module/AplikasiTataUsaha/DaftarSuratDistribusiCtrl"
+    },
+    {
       "nameDep": "PenilaianResikoJatuhPasienCtrl",
       "urlDep": "module/PengkajianAwalPasienRawatJalanAnak/PenilaianResikoJatuhPasienCtrl"
     },

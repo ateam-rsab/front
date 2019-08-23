@@ -6,6 +6,7 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             $scope.item.tanggalAwal = $scope.now;
             $scope.item.tanggalAkhir = $scope.now;
+            let user = JSON.parse(localStorage.getItem('pegawai'));
             $scope.isRouteLoading = true;
             initializeData();
 
@@ -25,8 +26,9 @@ define(['initialize'], function (initialize) {
                 //         data: data[1].data.data
                 //     });
                 // });
+                console.log(user);
 
-                ManageSarpras.getTransaksi('humas/get-daftar-surat').then(res => {
+                ManageSarpras.getTransaksi('humas/get-daftar-surat?ruanganfk=' + user.ruangan.id).then(res => {
                     $scope.dataSourceKonsepSurat = new kendo.data.DataSource({
                         data: res.data.data,
                         pageSize: 5
@@ -99,7 +101,8 @@ define(['initialize'], function (initialize) {
                         field: "status_surat",
                         title: "<h3>Status</h3>",
                         width: "20%",
-                        template: "#if(status_surat) { # #= Approve # #} else { # Konsep # } #",
+                        // template: "#if(status_surat) { #  Approve # #} else { # Konsep # } #",
+                        template: "#if(status_surat) { #Approve# } else { #Konsep# } #",
                     },
                     // {
                     //     // field: "jabatanInternal",

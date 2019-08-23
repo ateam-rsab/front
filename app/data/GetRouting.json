@@ -44668,6 +44668,26 @@
     ]
   },
   {
+    "name": "DaftarSuratDistribusi",
+    "url": "/DaftarSuratDistribusi",
+    "templateurl": "module/AplikasiTataUsaha/DaftarSuratDistribusi.html",
+    "controller": "DaftarSuratDistribusiCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SarprasService",
+        "define": "SarprasService"
+      }
+    ]
+  },
+  {
     "name": "dashboardpasien.DashboardSkriningUmum.SkriningGiziDewasa",
     "url": "/SkriningGiziDewasa/:noCM/:tanggal/:noRec/:noRecSOAP/:noRecPasienDaftar",
     "templateurl": "module/PengkajianAwalPasienRawatJalanAnak/SkriningGiziDewasa.html",
