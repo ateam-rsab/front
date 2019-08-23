@@ -381,17 +381,17 @@ define(['initialize'], function (initialize) {
                         // console.log(res);
                         if (res[0].statResponse) {
                             $scope.item = res[0].data.data;
-                            if ($scope.item.isMenanggung) {
-                                $scope.item.isMenanggung = {
-                                    name: 'Ya',
-                                    id: 1
-                                }
-                            } else {
-                                $scope.item.isMenanggung = {
-                                    name: 'Tidak',
-                                    id: 2
-                                }
-                            }
+                            // if ($scope.item.isMenanggung) {
+                            //     $scope.item.isMenanggung = {
+                            //         name: 'Ya',
+                            //         id: 1
+                            //     }
+                            // } else {
+                            //     $scope.item.isMenanggung = {
+                            //         name: 'Tidak',
+                            //         id: 2
+                            //     }
+                            // }
                             $scope.item.golongan = $scope.item.pangkat ? $scope.item.pangkat.golonganPegawai.golonganPegawai : ""
                             $scope.item.tglBerakhirSip = $scope.item.tglBerakhirSip ? dateHelper.toDateFromTimestamp(res[0].data.data.tglBerakhirSip) : null;
                             $scope.item.tglBerakhirStr = $scope.item.tglBerakhirStr ? dateHelper.toDateFromTimestamp(res[0].data.data.tglBerakhirStr) : null;
