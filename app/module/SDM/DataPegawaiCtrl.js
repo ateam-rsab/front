@@ -645,9 +645,9 @@ define(['initialize'], function (initialize) {
                 }
                 return false;
             }
-            $scope.$watch('item.selectedStatusPegawai', function(newVal, oldVal){ 
-                $scope.searchDataPegawai();
-            })
+            // $scope.$watch('item.selectedStatusPegawai', function(newVal, oldVal){ 
+            //     $scope.searchDataPegawai();
+            // })
 
             var timeoutPromise;
             // $scope.$watch('item.qnamaPegawai', function(newVal, oldVal){
