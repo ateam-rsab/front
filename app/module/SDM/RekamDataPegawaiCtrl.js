@@ -112,6 +112,7 @@ define(['initialize'], function (initialize) {
                     // $scope.ListDetailKelompokJabatan = res[13].data;
 
                     $scope.ListKualifikasiJurusan = res[20].data;
+                    // $scope.listOfPangkat = res[21].data;
                     $scope.ListPendidikan = res[22].data;
                     $scope.ListPTKP = res[23].data;
                     $scope.ListSuku = res[24].data.splice(1);
@@ -245,13 +246,13 @@ define(['initialize'], function (initialize) {
                     $scope.initRiwayatPendidikan();
                 } else if (key == 5) {
                     $scope.isRiwayat = false;
-                } else if (key == 6) {
-                    if ($scope.item) {
-                        if ($scope.item.kategoryPegawai != null || $scope.item.kategoryPegawai != undefined) {
-                            $scope.getDetailKategoriPegawai($scope.item.kategoryPegawai);
-                        }
-                    }
-                    $scope.isRiwayat = true;
+                // } else if (key == 6) {
+                //     if ($scope.item) {
+                //         if ($scope.item.kategoryPegawai != null || $scope.item.kategoryPegawai != undefined) {
+                //             $scope.getDetailKategoriPegawai($scope.item.kategoryPegawai);
+                //         }
+                //     }
+                //     $scope.isRiwayat = true;
                 } else if (key == 7) {
                     initDataAnak();
                 } else if (key == 8) {
@@ -402,9 +403,26 @@ define(['initialize'], function (initialize) {
                             $scope.item.tglMasuk = $scope.item.tglMasuk ? dateHelper.toDateFromTimestamp(res[0].data.data.tglMasuk) : null;
                             $scope.item.tglPensiun = $scope.item.tglPensiun ? dateHelper.toDateFromTimestamp(res[0].data.data.tglPensiun) : null;
                             $scope.item.tglkeluar = $scope.item.tglkeluar ? dateHelper.toDateFromTimestamp(res[0].data.data.tglkeluar) : null;
-                            $scope.item.statusRhesus = {
-                                id: $scope.item.statusRhesus
+                            if ($scope.item.statusRhesus == '+') {
+                                $scope.item.statusRhesus = {
+                                    id: 1
+                                }
+                            } else if ($scope.item.statusRhesus == '-') {
+                                $scope.item.statusRhesus = {
+                                    id: 2
+                                }
                             }
+                            
+                            if ($scope.item.isMenanggung == true) {
+                                $scope.item.isMenanggung = {
+                                    id: 1
+                                }
+                            } else if ($scope.item.isMenanggung == false) {
+                                $scope.item.isMenanggung = {
+                                    id: 2
+                                }
+                            }
+                            
                             // if ($scope.item.detailKelompokJabatan) {
                             //     if ($scope.item.detailKelompokJabatan.detailKelompokJabatan.toUpperCase() === 'DIREKTUR UTAMA (DIRUT)' ||
                             //         $scope.item.detailKelompokJabatan.detailKelompokJabatan.toUpperCase() === 'DIREKTUR UTAMA' ||
@@ -426,7 +444,7 @@ define(['initialize'], function (initialize) {
                             //     }
                             // }
                             $scope.item.golonganPegawai = {
-                                id: res[0].data.data.golonganPegawaiId
+                                id: res[0].data.data.pangkat.golonganPegawai.id
                             }
                             $scope.disableSip = true;
                             $scope.disableStr = true;
@@ -1985,6 +2003,14 @@ define(['initialize'], function (initialize) {
                 if (newModel.statusRhesus) {
                     newModel.statusRhesus = newModel.statusRhesus.name
                 }
+                if(newModel.isMenanggung) {
+                    if (newModel.isMenanggung.id == 1) {
+                        newModel.isMenanggung = true
+                    } else if (newModel.isMenanggung.id == 2) {
+                        newModel.isMenanggung = false
+                    }
+                    
+                }
                 for (var key in newModel) {
                     if ($state.params.idPegawai) {
                         newModel.id = $state.params.idPegawai;
@@ -2032,24 +2058,24 @@ define(['initialize'], function (initialize) {
                         }
                         if (key.indexOf('pangkat') >= 0) {
                             newModel[key] = {
-                                id: newModel[key].idPangkat,
+                                id: newModel[key].id,
                                 namaPangkat: newModel[key].namaPangkat
                             }
                         }
                         var keys = key;
-                        if (key.indexOf("tglMeninggal") >= 0 || key.indexOf('tglPensiun') >= 0 || key.indexOf('tglkeluar') >= 0) {
+                        if (key.indexOf("tglMeninggal") >= 0 || key.indexOf('tglPensiun') >= 0) {
                             newModel[keys] = newModel[key];
                             delete newModel[key];
                         }
                         // if(key)
-                        if (key.indexOf('isMenanggung') >= 0) {
-                            // console.log(newModel[key]);
-                            if (newModel[key].id == 1) {
-                                newModel[key] = true;
-                            } else {
-                                newModel[key] = false;
-                            }
-                        }
+                        // if (key.indexOf('isMenanggung') >= 0) {
+                        //     // console.log(newModel[key]);
+                        //     if (newModel[key].id == 1) {
+                        //         newModel[key] = true;
+                        //     } else if (newModel[key].id == 2) {
+                        //         newModel[key] = false;
+                        //     }
+                        // }
                     }
                 }
 
@@ -2074,27 +2100,27 @@ define(['initialize'], function (initialize) {
                 //     if ($scope.item.tglTerbitSip) $scope.item.tglTerbitSip = null;
                 //     if ($scope.item.tglBerakhirSip) $scope.item.tglBerakhirSip = null;
                 // }
-                if (!$scope.disableStr) {
-                    $scope.item.noStr = $scope.item.noStr;
-                    var tglTerbitStr = isDate($scope.item.tglTerbitStr),
-                        tglBerakhirStr = isDate($scope.item.tglBerakhirStr);
-                    if (tglBerakhirStr) {
-                        tglBerakhirStr = new Date($scope.item.tglBerakhirStr).getTime();
-                    } else {
-                        tglBerakhirStr = new Date(dateHelper.newStringToDateTime($scope.item.tglBerakhirStr)).getTime();
-                    }
-                    if (tglTerbitStr) {
-                        tglTerbitStr = new Date($scope.item.tglTerbitStr).getTime();
-                    } else {
-                        tglTerbitStr = new Date(dateHelper.newStringToDateTime($scope.item.tglTerbitStr)).getTime();
-                    }
-                    $scope.item.tglTerbitStr = tglTerbitStr;
-                    $scope.item.tglBerakhirStr = tglBerakhirStr;
-                } else {
-                    if ($scope.item.noStr) $scope.item.noStr = null;
-                    if ($scope.item.tglTerbitStr) $scope.item.tglTerbitStr = null;
-                    if ($scope.item.tglBerakhirStr) $scope.item.tglBerakhirStr = null;
-                }
+                // if (!$scope.disableStr) {
+                //     $scope.item.noStr = $scope.item.noStr;
+                //     var tglTerbitStr = isDate($scope.item.tglTerbitStr),
+                //         tglBerakhirStr = isDate($scope.item.tglBerakhirStr);
+                //     if (tglBerakhirStr) {
+                //         tglBerakhirStr = new Date($scope.item.tglBerakhirStr).getTime();
+                //     } else {
+                //         tglBerakhirStr = new Date(dateHelper.newStringToDateTime($scope.item.tglBerakhirStr)).getTime();
+                //     }
+                //     if (tglTerbitStr) {
+                //         tglTerbitStr = new Date($scope.item.tglTerbitStr).getTime();
+                //     } else {
+                //         tglTerbitStr = new Date(dateHelper.newStringToDateTime($scope.item.tglTerbitStr)).getTime();
+                //     }
+                //     $scope.item.tglTerbitStr = tglTerbitStr;
+                //     $scope.item.tglBerakhirStr = tglBerakhirStr;
+                // } else {
+                //     if ($scope.item.noStr) $scope.item.noStr = null;
+                //     if ($scope.item.tglTerbitStr) $scope.item.tglTerbitStr = null;
+                //     if ($scope.item.tglBerakhirStr) $scope.item.tglBerakhirStr = null;
+                // }
 
                 var isEmptyModel = _.isEmpty(newModel);
                 // console.table(newModel)
@@ -2113,7 +2139,6 @@ define(['initialize'], function (initialize) {
                                 $state.go('DataPegawai');
                             } else {
                                 $scope.ubahDataPegawai();
-                                getDataPegawai($state.params.idPegawai);
                                 initRiwayatPerubahandData();
                                 var confirm = $mdDialog.confirm()
                                     .title('Apakah anda akan melanjutkan edit data?')
@@ -2121,7 +2146,7 @@ define(['initialize'], function (initialize) {
                                     .ok('Ya')
                                     .cancel('Kembali ke Data Pegawai');
                                 $mdDialog.show(confirm).then(function () {
-                                    console.warn('Masuk sini pak eko');
+                                    getDataPegawai($state.params.idPegawai);
                                 }, function () {
                                     $state.go('DataPegawai');
                                 });
@@ -2141,7 +2166,9 @@ define(['initialize'], function (initialize) {
                                 "tglkeluar": new Date()
                             };
                         }
-                    }, (error) => { });
+                    }, (error) => { 
+                        getDataPegawai($state.params.idPegawai);
+                    });
                 } else {
                     messageContainer.error('Tidak ada perubahan data');
                 }
