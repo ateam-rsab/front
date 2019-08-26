@@ -2029,18 +2029,18 @@ define(['initialize'], function (initialize) {
                         }
                     }
 
-                    if (newModel[key] === 'detailKategoryPegawai' || 
-                        newModel[key] === 'pendidikan' || 
-                        newModel[key] === "pangkatId" || 
-                        newModel[key] === "eselonId" || 
-                        newModel[key] === "noRec" || 
-                        newModel[key] === "Golongan" || 
-                        newModel[key] === "golonganPegawai" || 
-                        newModel[key] === "jabatanFungsional" || 
-                        newModel[key] === "satuanKerja" || 
-                        newModel[key] === "statusPerkawinanPegawai" || 
-                        newModel[key] === "ruangan" || 
-                        newModel[key] === "ruanganPegawai") {
+                    // if (newModel[key] === 'detailKategoryPegawai' || 
+                    //     newModel[key] === 'pendidikan' || 
+                    //     newModel[key] === "pangkatId" || 
+                    //     newModel[key] === "eselonId" || 
+                    //     newModel[key] === "noRec" || 
+                    //     newModel[key] === "Golongan" || 
+                    //     newModel[key] === "golonganPegawai" || 
+                    //     newModel[key] === "jabatanFungsional" || 
+                    //     newModel[key] === "satuanKerja" || 
+                    //     newModel[key] === "statusPerkawinanPegawai" || 
+                    //     newModel[key] === "ruangan" || 
+                    //     newModel[key] === "ruanganPegawai") {
                     if(key === 'golongan') {
                         delete newModel[key];
                     }
