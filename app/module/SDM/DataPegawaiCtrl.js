@@ -67,6 +67,23 @@ define(['initialize'], function (initialize) {
 
                 $scope.ListStatusPegawai = result[6].data;
 
+                
+                $scope.ListStatusPegawai = [];
+                var tempListStatusPegawai = result[6].data;
+                tempListStatusPegawai.forEach(function (el) {
+                    if (el.kategoryPegawai !== '-') {
+                        if (el.kategoryPegawai !== 'MITRA') {
+                            if (el.kategoryPegawai !== 'PESERTA DIDIK') {
+                                var tempList = {
+                                    id: el.id,
+                                    kategoryPegawai: el.kategoryPegawai,
+                                }
+                                $scope.ListStatusPegawai.push(tempList);
+                            }
+                        }
+                    }
+                });
+                 
                 // restructure json get mapping atasan
                 if (result[7].statResponse) {
                     $scope.arrayMapAtasan = [];

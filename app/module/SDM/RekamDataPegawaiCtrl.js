@@ -247,11 +247,11 @@ define(['initialize'], function (initialize) {
                 } else if (key == 5) {
                     $scope.isRiwayat = false;
                 } else if (key == 6) {
-                    if ($scope.item) {
-                        if ($scope.item.kategoryPegawai != null || $scope.item.kategoryPegawai != undefined) {
-                            $scope.getDetailKategoriPegawai($scope.item.kategoryPegawai);
-                        }
-                    }
+                    // if ($scope.item) {
+                    //     if ($scope.item.kategoryPegawai != null || $scope.item.kategoryPegawai != undefined) {
+                    //         $scope.getDetailKategoriPegawai($scope.item.kategoryPegawai);
+                    //     }
+                    // }
                     $scope.isRiwayat = true;
                 } else if (key == 7) {
                     initDataAnak();
@@ -542,7 +542,7 @@ define(['initialize'], function (initialize) {
                     .ok('Ya')
                     .cancel('Tidak');
                 $mdDialog.show(confirm).then(function () {
-                    ManageSdmNew.saveData(dataSave, "map-pegawai-jabatan-unitkerja/save-map").then(function (res) {
+                    ManageSdmNew.saveData(dataSave, "map-pegawai-jabatan-unitkerja/hapus-map").then(function (res) {
                         $scope.isRouteLoading = true;
                         $scope.popUpJabatan.close();
                         e.preventDefault();
@@ -1906,13 +1906,13 @@ define(['initialize'], function (initialize) {
             };
 
             $scope.changedNamaLengkap = function () {
-                if ($scope.item.gelarDepan === undefined) {
+                if (!$scope.item.gelarDepan) {
                     $scope.item.gelarDepan = '';
                 }
-                if ($scope.item.nama === undefined) {
+                if (!$scope.item.nama) {
                     $scope.item.nama = '';
                 }
-                if ($scope.item.gelarBelakang === undefined) {
+                if (!$scope.item.gelarBelakang) {
                     $scope.item.gelarBelakang = '';
                 }
                 $scope.item.namaLengkap = `${$scope.item.gelarDepan} ${$scope.item.nama}, ${$scope.item.gelarBelakang}`;
@@ -2041,6 +2041,7 @@ define(['initialize'], function (initialize) {
                         newModel[key] === "statusPerkawinanPegawai" || 
                         newModel[key] === "ruangan" || 
                         newModel[key] === "ruanganPegawai") {
+                    if(key === 'golongan') {
                         delete newModel[key];
                     }
                     // if(newModel[key] === "") {
