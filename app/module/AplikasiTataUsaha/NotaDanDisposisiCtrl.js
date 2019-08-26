@@ -52,7 +52,7 @@ define(['initialize'], function (initialize) {
                 console.log(dataSave);
                 ManageSarpras.saveTransaksi('humas/save-pembuatan-surat/save', dataSave).then(res => {
                     $state.go('ListNotaDinas');
-                })
+                });
                 
             }
 
