@@ -66,7 +66,21 @@ define(['initialize'], function(initialize) {
                     $scope.ListKedudukanPegawai = listKedudukan;
                 }
                 
-                $scope.ListStatusPegawai = result[6].data;
+                $scope.ListStatusPegawai = [];
+                var tempListStatusPegawai = result[6].data;
+                tempListStatusPegawai.forEach(function (el) {
+                    if (el.kategoryPegawai !== '-') {
+                        if (el.kategoryPegawai !== 'MITRA') {
+                            if (el.kategoryPegawai !== 'PESERTA DIDIK') {
+                                var tempList = {
+                                    id: el.id,
+                                    kategoryPegawai: el.kategoryPegawai,
+                                }
+                                $scope.ListStatusPegawai.push(tempList);
+                            }
+                        }
+                    }
+                });
                  
                 // restructure json get mapping atasan
                 if(result[7].statResponse){
@@ -254,6 +268,10 @@ define(['initialize'], function(initialize) {
             { value: "Agama" },
             { value: "Unit Kerja" },
             { value: "Sub Unit Kerja" },
+            { value: "Atasan Langsung" },
+            { value: "Pejabat Penilai" },
+            { value: "Atasan Langsung untuk Pejabat Direksi" },
+            { value: "Pejabat Penilai untuk Pejabat Direksi" },
             { value: "Eselon" },
             { value: "Pola Kerja"},
             { value: "Nilai Jabatan"},
@@ -308,6 +326,10 @@ define(['initialize'], function(initialize) {
                     { value: data[i].agama },
                     { value: data[i].unitKerja },
                     { value: data[i].subUnitKerja },
+                    { value: data[i].atasanLangsung },
+                    { value: data[i].pejabatPenilai },
+                    { value: data[i].atasanLangsungUntukPejabatDireksi },
+                    { value: data[i].pejabatPenilaiUntukPejabatDireksi },
                     { value: data[i].eselon },
                     { value: data[i].shiftKerja },
                     { value: data[i].nilaiJabatan },
@@ -330,6 +352,10 @@ define(['initialize'], function(initialize) {
                         filter: { from: 0, to: 1 },
                         columns: [
                             // Column settings (width)
+                            { autoWidth: true },
+                            { autoWidth: true },
+                            { autoWidth: true },
+                            { autoWidth: true },
                             { autoWidth: true },
                             { autoWidth: true },
                             { autoWidth: true },
