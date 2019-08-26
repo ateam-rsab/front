@@ -14,6 +14,51 @@ define(['initialize'], function (initialize) {
                 var tglAwal = moment($scope.item.tanggalAwal).format('DD-MM-YYYY');
                 var tglAkhir = moment($scope.item.tanggalAkhir).add(1, 'day').format('DD-MM-YYYY');
                 var idPegawai = ModelItem.getPegawai().id;
+                ManageSarpras.getMaster('pegawai/get-form-pegawai-combo').then(res => {
+                    $scope.listPegawai = res.data.data
+                });
+                $scope.optListPenerima = {
+                    pageable: true,
+                    pageSize: 5,
+                    selectable: 'row',
+                    scrollable: true,
+                    columns: [
+                        {
+                            field: "namaPenerima",
+                            title: "<h3>Nama Penerima</h3>",
+                            width: "17%",
+                        },
+                        {
+                            field: "ruanganPenerima",
+                            title: "<h3>Ruangan Penerima</h3>",
+                            width: "17%",
+                        },
+                        {
+                            command: [
+                                {
+                                    text: "Hapus",
+                                    width: "40px",
+                                    align: "center",
+                                    attributes: {
+                                        align: "center"
+                                    },
+                                    click: hapusPenerima,
+                                    imageClass: "k-i-arrow-60-right"
+                                },
+
+                            ],
+                            title: "",
+                            width: "10%",
+                            attributes: {
+                                style: "text-align:center;valign=middle"
+                            },
+                        }
+                    ]
+                }
+                $scope.dataSourceListPenerima = new kendo.data.DataSource({
+                    data: [],
+                    pageSize: 5,
+                });
                 // $q.all([
                 //     ManageSarpras.getOrderList("nota-dinas/get-inbox-nota-dinas?dateStart=" + tglAwal + "&dateEnd=" + tglAkhir + "&idPegawai=" + idPegawai, true),
                 //     ManageSarpras.getOrderList("nota-dinas/get-outbox-nota-dinas?dateStart=" + tglAwal + "&dateEnd=" + tglAkhir + "&idPegawai=" + idPegawai, true),
@@ -32,14 +77,24 @@ define(['initialize'], function (initialize) {
                     $scope.dataSourceKonsepSurat = new kendo.data.DataSource({
                         data: res.data.data,
                         pageSize: 5
-                    })
+                    });
+                });
+
+                ManageSarpras.getMasterJava("service/list-generic/?view=SatuanKerja&select=id,satuanKerja&criteria=statusEnabled&values=true", true).then(res => {
+                    console.log(res);
                 })
+            }
+
+            function hapusPenerima(e) {
+                e.preventDefault();
+                let dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                $scope.dataSourceListPenerima.remove(dataItem);
             }
 
             $scope.cari = function () {
                 initializeData();
             }
-           
+
             $scope.detailGridOptions = function (dataItem) {
                 return {
                     dataSource: new kendo.data.DataSource({
@@ -122,13 +177,25 @@ define(['initialize'], function (initialize) {
                     {
                         command: [
                             {
-                                text: "Lihat",
+                                name: 'Edit',
+                                text: "Pratinjau",
                                 width: "40px",
                                 align: "center",
                                 attributes: {
                                     align: "center"
                                 },
-                                // click: editDataPegawai,
+                                click: previewSurat,
+                                imageClass: "k-i-arrow-60-right"
+                            },
+                            {
+                                name: "VerifikasiDokter",
+                                text: "Distribusi",
+                                width: "40px",
+                                align: "center",
+                                attributes: {
+                                    align: "center"
+                                },
+                                click: distribusiSurat,
                                 imageClass: "k-i-arrow-60-right"
                             },
                             {
@@ -173,6 +240,77 @@ define(['initialize'], function (initialize) {
             $scope.tambahSuratBaru = function () {
                 $state.go('NotaDanDisposisi')
             }
+
+            function distribusiSurat(e) {
+                e.preventDefault();
+                let dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                $scope.noreSurat = dataItem.norec;
+                $scope.popupDistribusi.center().open();
+            }
+
+            $scope.tambahPenerima = function () {
+                if (!$scope.item.namaPenerima) {
+                    toastr.warning('Harap isi Nama Penerima');
+                    return
+                }
+                if (!$scope.item.ruanganPegawai) {
+                    toastr.warning('Harap isi Ruangan Penerima');
+                    return
+                }
+                let data = {
+                    namaPenerima: $scope.item.namaPenerima.namalengkap,
+                    idPenerima: $scope.item.namaPenerima.id,
+                    ruanganPenerima: $scope.item.ruanganPegawai.namalengkap,
+                    idRuangan: $scope.item.namaPenerima.id
+                }
+
+                $scope.item.namaPenerima = "";
+                $scope.item.ruanganPegawai = "";
+                $scope.dataSourceListPenerima.add(data);
+
+            }
+
+            $scope.distribusiSurat = function () {
+                let dataTemp = [];
+                let dataGrid = $scope.dataSourceListPenerima._data;
+                let dataUser = {
+                    ruanganId: user.ruangan.id,
+                    idPegawai: user.id
+                }
+
+                for (let i = 0; i < dataGrid.length; i++) {
+                    dataTemp.push({
+                        "norec": $scope.noreSurat,
+                        "pegawaifk": dataUser.idPegawai.toString(),
+                        "ruanganpengirimfk": dataUser.ruanganId.toString(),
+                        "pegawaiterimafk": dataGrid[i].idPenerima.toString(),
+                        "ruanganpenerimafk": "111",
+                        "ruanganpenerimafk": dataGrid[i].idRuangan,
+
+                    });
+                }
+
+                let data = [
+                    {
+                        "distribusi": dataTemp
+                    }]
+
+                ManageSarpras.saveTransaksi('humas/save-distribusi-surat', data).then(res => {
+                    // console.log(res);
+                    $scope.popupDistribusi.close();
+                    toastr.success('Sukses');
+
+                })
+            }
+
+
+            function previewSurat(e) {
+                e.preventDefault();
+                let dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                $scope.item.showFormat = dataItem.isi;
+                $scope.popupPreview.center().open();
+            }
+
         }
     ])
 })

@@ -32,6 +32,11 @@ define(['Configuration'], function (config) {
                     url: baseGetDataMaster + urlGet
                 });
             },
+            getMasterJava: function (urlGet) {
+                return r.get({
+                    url: baseUrlAction + urlGet
+                });
+            },
             getTransaksi: function (urlGet) {
                 return r.get({
                     url: baseUrlTransaksi + urlGet

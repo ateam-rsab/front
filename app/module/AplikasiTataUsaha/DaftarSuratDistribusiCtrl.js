@@ -181,7 +181,6 @@ define(['initialize'], function (initialize) {
             function hapusPenerima(e) {
                 e.preventDefault();
                 let dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-
                 $scope.dataSourceListPenerima.remove(dataItem);
             }
 
@@ -217,19 +216,24 @@ define(['initialize'], function (initialize) {
 
                 for(let i = 0; i < dataGrid.length; i++) {
                     dataTemp.push({
-                        "norec": $scope.noreSurat,
-                        "pegawaifk": dataUser.idPegawai,
-                        "ruanganpengirimfk": dataUser.ruanganId,
-                        "pegawaiterimafk": dataGrid[i].idPenerima,                        
-                        "ruanganpenerimafk": 1,
+                        // "norec": $scope.noreSurat,
+                        // "pegawaifk": dataUser.idPegawai.toString(),
+                        // "ruanganpengirimfk": dataUser.ruanganId.toString(),
+                        // "pegawaiterimafk": dataGrid[i].idPenerima.toString(),
+                        // "ruanganpenerimafk": "111",
                         // "ruanganpenerimafk": dataGrid[i].idRuangan,
+                        "norec": "ddc88820-c32e-11e9-bef4-89ffccef",
+                        "pegawaifk": "88",
+                        "ruanganpengirimfk": "1",
+                        "ruanganpenerimafk": "111",
+                        "pegawaiterimafk": "1"
                     });
                 }
                 
-                let data = 
+                let data = [
                     {
                         "distribusi": dataTemp
-                    }
+                    }]
                 
                 ManageSarpras.saveTransaksi('humas/save-distribusi-surat', data).then(res => {
                     console.log(res);
