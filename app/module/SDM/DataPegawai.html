@@ -19,7 +19,16 @@
             </div>
             <div class="grid_2">
                 <label c-label item="item">Kategori Pegawai</label>
-                <select kendo-multi-select k-options="selectOptions" k-data-source="ListStatusPegawai" k-ng-model="selectedStatusPegawai" k-on-change="searchDataPegawai()"></select>
+                <!-- <select kendo-multi-select k-options="selectOptions" k-ng-model="selectedStatusPegawai"></select> -->
+                <!-- <select kendo-multi-select k-options="selectOptions" k-data-source="ListStatusPegawai" k-data-text-field="'kategoryPegawai'" k-data-value-field="'id'" k-ng-model="selectedStatusPegawai" k-filter="'contains'" k-auto-bind="true" k-on-change="searchDataPegawai()"></select> -->
+                <select kendo-multi-select 
+                        k-data-source="ListStatusPegawai" 
+                        k-data-text-field="'kategoryPegawai'" 
+                        k-data-value-field="'id'" 
+                        k-placeholder="'-- Pilih Kategori Pegawai --'" 
+                        k-on-change="searchDataPegawai()"
+                        k-ng-model="item.selectedStatusPegawai" >
+                </select>
                 <!-- <input kendo-combo-box k-ng-model="item.selectedStatusPegawai" k-data-text-field="'kategoryPegawai'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListStatusPegawai" k-on-change="searchDataPegawai()"/> -->
             </div>
             <!-- <div class="grid_2">

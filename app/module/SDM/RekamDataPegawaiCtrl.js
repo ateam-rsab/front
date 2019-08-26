@@ -246,13 +246,13 @@ define(['initialize'], function (initialize) {
                     $scope.initRiwayatPendidikan();
                 } else if (key == 5) {
                     $scope.isRiwayat = false;
-                // } else if (key == 6) {
-                //     if ($scope.item) {
-                //         if ($scope.item.kategoryPegawai != null || $scope.item.kategoryPegawai != undefined) {
-                //             $scope.getDetailKategoriPegawai($scope.item.kategoryPegawai);
-                //         }
-                //     }
-                //     $scope.isRiwayat = true;
+                } else if (key == 6) {
+                    if ($scope.item) {
+                        if ($scope.item.kategoryPegawai != null || $scope.item.kategoryPegawai != undefined) {
+                            $scope.getDetailKategoriPegawai($scope.item.kategoryPegawai);
+                        }
+                    }
+                    $scope.isRiwayat = true;
                 } else if (key == 7) {
                     initDataAnak();
                 } else if (key == 8) {

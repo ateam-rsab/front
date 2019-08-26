@@ -8,6 +8,7 @@ define(['initialize'], function (initialize) {
             $scope.title = "Data Pegawai";
             $scope.item = {};
             $scope.username = "Show";
+            $scope.item.selectedStatusPegawai = [];
             $scope.isRouteLoading = true;
             $scope.listOfJenisKategoriPegawai = [
                 { name: 'Tetap', id: 1, value: '1,2,10,12,14' },
@@ -31,8 +32,6 @@ define(['initialize'], function (initialize) {
                 serverPaging: false,
                 serverFiltering: false
             });
-
-            // $scope.item.selectedStatusPegawai =[]
 
             $q.all([
                 ManageSdm.getOrderList("service/list-generic/?view=Jabatan&select=id,namaJabatan&criteria=jenisJabatan&values=3", true),
@@ -462,18 +461,28 @@ define(['initialize'], function (initialize) {
                 });
             }
 
-            $scope.selectOptions = {
-                placeholder: "Select kategori pegawai",
-                dataTextField: "kategoryPegawai",
-                dataValueField: "is",
-                valuePrimitive: true,
-                autoBind: false,
-            }
+            // $scope.selectOptions = {
+            //     placeholder: "Pilih Pegawai",
+            //     dataTextField: "kategoryPegawai",
+            //     dataValueField: "id",
+            //     valuePrimitive: true,
+            //     autoBind: false,
+            //     dataSource: $scope.ListStatusPegawai
+            // };
+
+            // $scope.selectOptions = {
+            //     placeholder: "Select kategori pegawai",
+            //     dataTextField: "kategoryPegawai",
+            //     dataValueField: "id",
+            //     autoBind: true
+            //     // valuePrimitive: true,
+            //     // autoBind: false,
+            // }
             // item.namaPegawai
             $scope.searchDataPegawai = function () {
                 let arrIdKategoriPegawai = [];
-                if ($scope.selectedStatusPegawai) {
-                    $scope.selectedStatusPegawai.forEach(function (el) {
+                if ($scope.item.selectedStatusPegawai) {
+                    $scope.item.selectedStatusPegawai.forEach(function (el) {
                         arrIdKategoriPegawai.push(el.id);
                     })
                 }
@@ -608,6 +617,9 @@ define(['initialize'], function (initialize) {
                 }
                 return false;
             }
+            $scope.$watch('item.selectedStatusPegawai', function(newVal, oldVal){ 
+                $scope.searchDataPegawai();
+            })
 
             var timeoutPromise;
             // $scope.$watch('item.qnamaPegawai', function(newVal, oldVal){
