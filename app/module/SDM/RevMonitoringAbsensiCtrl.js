@@ -65,10 +65,12 @@ define(['initialize'], function(initialize) {
                     };
                     if(ModelItem.getPegawai().nama === "Administrator" || isPegawaiSDM || res[3].data.data.idJabatan==633){
                         $scope.isSingle = false;
-                             // FindSdm.getUnitKerja().then(function(dat) {
-                            ManageSdmNew.getListData("sdm/get-all-unit-kerja").then(function(dat) {
-                                  $scope.listUnitKerja = dat.data.data;
-                            });
+                        $scope.listPegawai = res[4].data;
+                        isPegawaiSDM = true;
+                        // FindSdm.getUnitKerja().then(function(dat) {
+                        ManageSdmNew.getListData("sdm/get-all-unit-kerja").then(function(dat) {
+                                $scope.listUnitKerja = dat.data.data;
+                        });
                     }else 
                     if($scope.showButtonInputJadwalDinas === false){
                         var single = res[0].data.dataSingle[0];
@@ -113,11 +115,14 @@ define(['initialize'], function(initialize) {
                 //3 by unit kerja
                 //get from validat
                 $scope.cs();
-                if ($scope.item.unitKerja === undefined) {
+                if (($scope.item.unitKerja === undefined || $scope.item.unitKerja) && $scope.isSingle) {
                     window.messageContainer.error("Unit Kerja harus dipilih terlebih dahulu");
                     return;
-                } else if ($scope.item.subUnitKerja === undefined ||$scope.item.subUnitKerja =='') {
+                } else if (($scope.item.subUnitKerja === undefined ||$scope.item.subUnitKerja =='') && $scope.isSingle) {
                     window.messageContainer.error("Sub Unit Kerja harus dipilih terlebih dahulu");
+                    return;
+                } else if(!$scope.item.pegawai) {
+                    window.messageContainer.error("Pilih Pegawai Terlebih Dahulu");
                     return;
                 } else if ($scope.item.pegawai.id !== undefined) {
                     $scope.paramURl = "sdm/get-kehadiran/" + $scope.item.pegawai.id + "/" + moment($scope.item.monitoringAwal).format("YYYY-MM-DD") + "/" + moment($scope.item.monitoringAkhir).format("YYYY-MM-DD");
