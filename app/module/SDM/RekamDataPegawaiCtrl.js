@@ -294,12 +294,13 @@ define(['initialize'], function (initialize) {
                         {
                             field: "atasanLangsung",
                             title: "<h3 class='small-font'>Atasan<br>Langsung</h3>", width: "150px",
-                            template: "#if(atasanLangsung) { # #= atasanLangsung.namaLengkap # #} else { #-# } #"
+                            template: "#if(!atasanLangsungDireksi) { # #= atasanLangsung.namaLengkap # #} else { # #=atasanLangsungDireksi# # } #"
                         },
+                        
                         {
                             field: "pejabatPenilai",
                             title: "<h3 class='small-font'>Pejabat Penilai</h3>", width: "150px",
-                            template: "#if(pejabatPenilai) { # #= pejabatPenilai.namaLengkap # #} else { #-# } #"
+                            template: "#if(!pejabatPenilaiDireksi) { # #= pejabatPenilai.namaLengkap # #} else { # #=pejabatPenilaiDireksi# # } #"
                         },
                         {
                             field: "atasanLangsungDireksi",
