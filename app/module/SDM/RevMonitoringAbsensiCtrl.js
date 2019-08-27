@@ -58,15 +58,14 @@ define(['initialize'], function(initialize) {
                     var isPegawaiSDM = false;
                     for (var i = 0; i < res[2].data.data.data.length; i++) {
                         if (res[2].data.data.data[i] == ModelItem.getPegawai().id) {
-                            $scope.listPegawai = res[4].data;
-                            $scope.isSingle = false;
                             isPegawaiSDM = true;
                         }
                     };
+                    $scope.isBebasValidasi = false;
                     if(ModelItem.getPegawai().nama === "Administrator" || isPegawaiSDM || res[3].data.data.idJabatan==633){
                         $scope.isSingle = false;
                         $scope.listPegawai = res[4].data;
-                        isPegawaiSDM = true;
+                        $scope.isBebasValidasi = true;
                         // FindSdm.getUnitKerja().then(function(dat) {
                         ManageSdmNew.getListData("sdm/get-all-unit-kerja").then(function(dat) {
                                 $scope.listUnitKerja = dat.data.data;
@@ -115,14 +114,11 @@ define(['initialize'], function(initialize) {
                 //3 by unit kerja
                 //get from validat
                 $scope.cs();
-                if (($scope.item.unitKerja === undefined || $scope.item.unitKerja) && $scope.isSingle) {
+                if ($scope.item.unitKerja === undefined && !$scope.isBebasValidasi) {
                     window.messageContainer.error("Unit Kerja harus dipilih terlebih dahulu");
                     return;
-                } else if (($scope.item.subUnitKerja === undefined ||$scope.item.subUnitKerja =='') && $scope.isSingle) {
+                } else if (($scope.item.subUnitKerja === undefined || $scope.item.subUnitKerja =='') && !$scope.isBebasValidasi) {
                     window.messageContainer.error("Sub Unit Kerja harus dipilih terlebih dahulu");
-                    return;
-                } else if(!$scope.item.pegawai) {
-                    window.messageContainer.error("Pilih Pegawai Terlebih Dahulu");
                     return;
                 } else if ($scope.item.pegawai.id !== undefined) {
                     $scope.paramURl = "sdm/get-kehadiran/" + $scope.item.pegawai.id + "/" + moment($scope.item.monitoringAwal).format("YYYY-MM-DD") + "/" + moment($scope.item.monitoringAkhir).format("YYYY-MM-DD");
