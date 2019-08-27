@@ -412,7 +412,7 @@ define(['initialize'], function (initialize) {
                                     id: 2
                                 }
                             }
-                            
+
                             if ($scope.item.isMenanggung == true) {
                                 $scope.item.isMenanggung = {
                                     id: 1
@@ -422,7 +422,7 @@ define(['initialize'], function (initialize) {
                                     id: 2
                                 }
                             }
-                            
+
                             // if ($scope.item.detailKelompokJabatan) {
                             //     if ($scope.item.detailKelompokJabatan.detailKelompokJabatan.toUpperCase() === 'DIREKTUR UTAMA (DIRUT)' ||
                             //         $scope.item.detailKelompokJabatan.detailKelompokJabatan.toUpperCase() === 'DIREKTUR UTAMA' ||
@@ -572,6 +572,11 @@ define(['initialize'], function (initialize) {
                                 delete newModel[0][key];
                             }
                         }
+
+                        if (key === 'idGridInternalJabatan' || key === 'jenisJabatan') {
+                            delete newModel[0][key]
+                        }
+
 
                         if (key.indexOf('atasanLangsung') == 0) {
                             if (newModel[0]['atasanLangsung'] === null || newModel[0]['atasanLangsung'] === '') {
@@ -2003,13 +2008,13 @@ define(['initialize'], function (initialize) {
                 if (newModel.statusRhesus) {
                     newModel.statusRhesus = newModel.statusRhesus.name
                 }
-                if(newModel.isMenanggung) {
+                if (newModel.isMenanggung) {
                     if (newModel.isMenanggung.id == 1) {
                         newModel.isMenanggung = true
                     } else if (newModel.isMenanggung.id == 2) {
                         newModel.isMenanggung = false
                     }
-                    
+
                 }
                 for (var key in newModel) {
                     if ($state.params.idPegawai) {
@@ -2041,7 +2046,7 @@ define(['initialize'], function (initialize) {
                     //     newModel[key] === "statusPerkawinanPegawai" || 
                     //     newModel[key] === "ruangan" || 
                     //     newModel[key] === "ruanganPegawai") {
-                    if(key === 'golongan') {
+                    if (key === 'golongan') {
                         delete newModel[key];
                     }
                     // if(newModel[key] === "") {
@@ -2167,7 +2172,7 @@ define(['initialize'], function (initialize) {
                                 "tglkeluar": new Date()
                             };
                         }
-                    }, (error) => { 
+                    }, (error) => {
                         getDataPegawai($state.params.idPegawai);
                     });
                 } else {
