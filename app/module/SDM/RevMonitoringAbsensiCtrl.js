@@ -47,8 +47,8 @@ define(['initialize'], function(initialize) {
                 manageSarprasPhp.getDataTableMaster("monitoringabsensi/get-status-create-jadwal?id=" + ModelItem.getPegawai().id),
                 manageSarprasPhp.getDataTableMaster("monitoringabsensi/get-drop-down-unit?id=" + ModelItem.getPegawai().id),
                 ManageSdmNew.getListData("pegawai/get-pegawai-sdm-for-cred"),
-                ManageSdmNew.getListData("sdm/get-jabatan-login-user")
-                //ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true"),
+                ManageSdmNew.getListData("sdm/get-jabatan-login-user"),
+                ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true")
                 //ManageSdm.getOrderList("sdm/get-pegawai-bawahan/" + ModelItem.getPegawai().id),
                 ]).then(function(res) {
                     $scope.isSingle = false;
@@ -56,8 +56,10 @@ define(['initialize'], function(initialize) {
                     $scope.showButtonInputJadwalDinas = res[0].data.data;                
                     $scope.isMonitoring = res[0].data.dataMonitoring;
                     var isPegawaiSDM = false;
-                    for (var i = 0; i < res[2].data.data.length; i++) {
-                        if (res[2].data.data[i] == ModelItem.getPegawai().id) {
+                    for (var i = 0; i < res[2].data.data.data.length; i++) {
+                        if (res[2].data.data.data[i] == ModelItem.getPegawai().id) {
+                            $scope.listPegawai = res[4].data;
+                            $scope.isSingle = false;
                             isPegawaiSDM = true;
                         }
                     };
