@@ -10,7 +10,8 @@
                 <input id="category" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaPegawai" ng-blur="searchDataPegawai()"/>
             </div>
             <div class="grid_2">
-                <label c-label item="item" c-label-text="Unit Kerja"></label>
+                <!-- <label c-label item="item" c-label-text="Unit Kerja"></label> -->
+                <label c-label item="item">Unit Kerja</label>
                 <input style="width: 100%;" kendo-combo-box k-ng-model="item.unitKerja" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja" k-on-change="searchDataPegawai()"/>
             </div>
             <div class="grid_2">
@@ -36,7 +37,8 @@
                 <input kendo-combo-box k-ng-model="item.selectedJenisKategoriPegawai" k-data-text-field="'name'" k-data-value-field="'value'" k-filter="'contains'" k-auto-bind="false" k-data-source="listOfJenisKategoriPegawai" k-on-change="searchDataPegawai()"/>
             </div> -->
             <div class="grid_1">
-                <label c-label item="item" c-label-text="TanggalMasuk" ></label>
+                <!-- <label c-label item="item" c-label-text="TanggalMasuk" ></label> -->
+                <label c-label item="item">Bulan Masuk</label>
                 <input kendo-date-picker k-ng-model="item.tglMasuk" k-format="'MM-yyyy'" k-options="monthSelectorOptions" k-on-change="searchDataPegawai()"/>
             </div>
             <!-- style="margin-left: 60px;margin-top: 6px;" -->

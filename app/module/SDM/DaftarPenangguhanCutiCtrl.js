@@ -101,7 +101,7 @@ define(['initialize'], function(initialize) {
 
 
 
-					ManageSdmNew.getListData("sdm/get-list-permohonan-status-cuti-paging/?isSdm=" + $scope.isLoginKesja + "&take=" + $scope.rows + "&page=" + page + "&nama=" +nama).then(function(result){
+					ManageSdmNew.getListData("sdm/get-list-permohonan-status-cuti-paging/?isSdm=" + $scope.isLoginKesja + "&take=" + $scope.rows + "&page=" + page + "&sort=tglPengajuan&dir=desc" + "&nama=" +nama).then(function(result){
 					
 
 					//Data yang masuk kesini sudah dipaging di server	
