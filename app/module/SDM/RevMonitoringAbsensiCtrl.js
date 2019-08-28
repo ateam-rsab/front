@@ -55,14 +55,15 @@ define(['initialize'], function(initialize) {
                     $scope.listUnitKerja = res[1].data.data;
                     $scope.showButtonInputJadwalDinas = res[0].data.data;                
                     $scope.isMonitoring = res[0].data.dataMonitoring;
-                    var isPegawaiSDM = false;
+                    $scope.isPegawaiSDM = false;
+                    $scope.pegawaiDayaGunaSDM = res[3].data.data.idJabatan;
                     for (var i = 0; i < res[2].data.data.data.length; i++) {
                         if (res[2].data.data.data[i] == ModelItem.getPegawai().id) {
-                            isPegawaiSDM = true;
+                            $scope.isPegawaiSDM = true;
                         }
                     };
                     $scope.isBebasValidasi = false;
-                    if(ModelItem.getPegawai().nama === "Administrator" || isPegawaiSDM || res[3].data.data.idJabatan==633){
+                    if(ModelItem.getPegawai().nama === "Administrator" || $scope.isPegawaiSDM || $scope.pegawaiDayaGunaSDM==633){
                         $scope.isSingle = false;
                         $scope.listPegawai = res[4].data;
                         $scope.isBebasValidasi = true;
@@ -822,17 +823,32 @@ define(['initialize'], function(initialize) {
                 })
             }
 
+            function resetAndCheckListPegawai() {
+                ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true").then(function(data) {
+                    if(ModelItem.getPegawai().nama === "Administrator" || $scope.isPegawaiSDM || $scope.pegawaiDayaGunaSDM==633){
+                        $scope.isSingle = false;
+                        $scope.listPegawai = data.data;
+                        $scope.isBebasValidasi = true;
+                        // FindSdm.getUnitKerja().then(function(dat) {
+                        ManageSdmNew.getListData("sdm/get-all-unit-kerja").then(function(dat) {
+                                $scope.listUnitKerja = dat.data.data;
+                        });
+                    }
+                });
+            }
+
             $scope.resetFilters = function() {
                 var gridData = $("#grid").data("kendoGrid");
                 gridData.dataSource.filter({});
                 $scope.filter = {};
             }
              $scope.resetFilters2 = function() {
+                resetAndCheckListPegawai();
                 $scope.item.unitKerja="";
                 $scope.item.subUnitKerja="";
                 $scope.item.pegawai="";
-                 $scope.item.monitoringAwal =$scope.now;
-                 $scope.item.monitoringAkhir=$scope.now;
+                $scope.item.monitoringAwal =$scope.now;
+                $scope.item.monitoringAkhir=$scope.now;
             }
         }
 
