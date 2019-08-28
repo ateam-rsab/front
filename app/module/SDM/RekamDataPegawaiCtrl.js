@@ -327,18 +327,17 @@ define(['initialize'], function (initialize) {
                             },
                         },
                         {
-                            field: "isCanCreateJadwal",
-                            title: "<h3 class='small-font'>Membuat Jadwal</h3>", width: "100px",
-                            template: "#if(isCanCreateJadwal) { #Ya# } else { #Tidak# } #",
+                            field: "isMonitoring",
+                            title: "<h3 class='small-font'>Monitoring</h3>", width: "80px",
+                            template: "#if(isMonitoring) { #Ya# } else { #Tidak# } #",
                             attributes: {
                                 style: "text-align:center;valign=middle"
                             },
                         },
-
                         {
-                            field: "isMonitoring",
-                            title: "<h3 class='small-font'>Monitoring</h3>", width: "80px",
-                            template: "#if(isMonitoring) { #Ya# } else { #Tidak# } #",
+                            field: "isCanCreateJadwal",
+                            title: "<h3 class='small-font'>Membuat Jadwal</h3>", width: "100px",
+                            template: "#if(isCanCreateJadwal) { #Ya# } else { #Tidak# } #",
                             attributes: {
                                 style: "text-align:center;valign=middle"
                             },
