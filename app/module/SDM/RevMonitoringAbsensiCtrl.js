@@ -71,7 +71,8 @@ define(['initialize'], function(initialize) {
                                 $scope.listUnitKerja = dat.data.data;
                         });
                     }else 
-                    if($scope.showButtonInputJadwalDinas === false){
+                    // if($scope.showButtonInputJadwalDinas === false){
+                    if($scope.listUnitKerja.length == 1 && !$scope.isMonitoring){
                         var single = res[0].data.dataSingle[0];
                         $scope.isSingle = true;
                         $scope.listUnitKerja =[{id:single.idUnit,name:single.nameUnit}];
@@ -80,6 +81,15 @@ define(['initialize'], function(initialize) {
                         $scope.item.unitKerja  = {id:single.idUnit,name:single.nameUnit};
                         $scope.item.subUnitKerja = {id:single.idSub,name:single.nameSub};
                         $scope.item.pegawai = {id:single.idPgw,namalengkap:single.namalengkap}; 
+                    } else if ($scope.listUnitKerja.length == 1 && $scope.isMonitoring) {
+                        var single = res[0].data.dataSingle[0];
+                        $scope.isSingle = true;
+                        $scope.listUnitKerja =[{id:single.idUnit,name:single.nameUnit}];
+                        $scope.listSubUnitKerja = [{id:single.idSub,name:single.nameSub}];
+                        // $scope.listPegawai = [{id:single.idPgw,namalengkap:single.namalengkap}];
+                        $scope.item.unitKerja  = {id:single.idUnit,name:single.nameUnit};
+                        $scope.item.subUnitKerja = {id:single.idSub,name:single.nameSub};
+                        // $scope.item.pegawai = {id:single.idPgw,namalengkap:single.namalengkap}; 
                     }
                     $scope.isRouteLoading = false;
                     // $scope.jabatanLogin = res[3].data.data.idJabatan;
@@ -115,10 +125,16 @@ define(['initialize'], function(initialize) {
                 //get from validat
                 $scope.cs();
                 if ($scope.item.unitKerja === undefined && !$scope.isBebasValidasi) {
-                    window.messageContainer.error("Unit Kerja harus dipilih terlebih dahulu");
+                    window.messageContainer.error("Unit Kerja harus dipilih terlebih dahulu!");
                     return;
                 } else if (($scope.item.subUnitKerja === undefined || $scope.item.subUnitKerja =='') && !$scope.isBebasValidasi) {
-                    window.messageContainer.error("Sub Unit Kerja harus dipilih terlebih dahulu");
+                    window.messageContainer.error("Subunit Kerja harus dipilih terlebih dahulu!");
+                    return;
+                } else if (!$scope.item.unitKerja && !$scope.item.pegawai && $scope.isBebasValidasi) {
+                    window.messageContainer.error("Unit Kerja / Pegawai harus dipilih terlebih dahulu!");
+                    return;
+                } else if (!$scope.item.subUnitKerja && !$scope.item.pegawai && $scope.isBebasValidasi) {
+                    window.messageContainer.error("Subunit Kerja / Pegawai harus dipilih terlebih dahulu!");
                     return;
                 } else if ($scope.item.pegawai.id !== undefined) {
                     $scope.paramURl = "sdm/get-kehadiran/" + $scope.item.pegawai.id + "/" + moment($scope.item.monitoringAwal).format("YYYY-MM-DD") + "/" + moment($scope.item.monitoringAkhir).format("YYYY-MM-DD");
