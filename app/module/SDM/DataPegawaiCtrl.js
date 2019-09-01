@@ -318,7 +318,7 @@ define(['initialize'], function (initialize) {
                                 { value: data[i].namaPendidikan },
                                 { value: data[i].jabatanInternal },
                                 { value: data[i].kelompokJabatan },
-                                { value: data[i].statusPerkawinanPegawai },
+                                { value: data[i].statusKawin },
                                 { value: data[i].bankRekeningNomor },
                                 { value: data[i].bankRekeningAtasNama },
                                 { value: data[i].bankRekeningNama },
