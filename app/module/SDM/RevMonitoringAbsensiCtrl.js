@@ -713,27 +713,39 @@ define(['initialize'], function(initialize) {
                         switch (validate) {
                             case 2:
                             idPegawai = $scope.item.pegawai.id;
-                            unitKerja = $scope.item.unitKerja.id;
-                            subUnitKerja = $scope.item.subUnitKerja.id;
+                            if ($scope.isBebasValidasi && $scope.item.unitKerja == undefined) {
+                                unitKerja = "";
+                            } else {
+                                unitKerja = $scope.item.unitKerja.id;
+                            }
+                            if ($scope.isBebasValidasi && $scope.item.subUnitKerja == undefined) {
+                                subUnitKerja = "";
+                            } else {
+                                subUnitKerja = $scope.item.subUnitKerja.id;
+                            }
                             if (!$scope.item.pegawai) {
                                 idPegawai = "";
                             };
-                            if (!$scope.item.unitKerja) {
+                            if (!$scope.item.unitKerja && !$scope.isBebasValidasi) {
                                 messageContainer.error("Unit kerja belum di pilih");
                                 return
                             };
-                            if (!$scope.item.subUnitKerja) {
+                            if (!$scope.item.subUnitKerja && !$scope.isBebasValidasi) {
                                 messageContainer.error("Sub unit kerja belum di pilih");
                                 return
                             };
                             break;
                             case 3:
-                            if (!$scope.item.unitKerja) {
+                            if (!$scope.item.unitKerja && !$scope.isBebasValidasi) {
                                 messageContainer.error("Unit kerja belum di pilih");
                                 return
                             };
                             idPegawai = "";
-                            unitKerja = $scope.item.unitKerja.id;
+                            if ($scope.isBebasValidasi && $scope.item.unitKerja == undefined) {
+                                unitKerja = "";
+                            } else {
+                                unitKerja = $scope.item.unitKerja.id;
+                            }
                             break;
                         }
                     // var urlLaporan = reportHelper.open("reporting/lapMonitoringAbsensi?idPegawai=" + idPegawai + "&startDate=" + tanggalAwal + "&endDate=" + tanggalAkhir);
