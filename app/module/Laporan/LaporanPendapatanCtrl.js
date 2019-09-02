@@ -687,7 +687,7 @@ define(['initialize'], function (initialize) {
         var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
         var client = new HttpClient();
         client.get('http://127.0.0.1:1237/printvb/kasir?cetak-laporan-ffs-bedah=' +kelompokPasienId+//$scope.item.namaKasir.id+
-          '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '&idDokter=' + dokter + '&tgllibut=' + person + '&jasa=' + personKa + '&view='+ruanganId, function (response) {
+          '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '&idDokter=' + dokter + '&tgllibut=' + person + '&jasa=' + personKa + '&view=' + ruanganId + '&kpid=' + kelompokPasienId + '&TipeDokter=' + TipeDokter, function (response) {
 
           });
       }
