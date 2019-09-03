@@ -708,7 +708,7 @@ define(['initialize'], function (initialize) {
         var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
         var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
         var client = new HttpClient();
-        client.get('http://127.0.0.1:1237/printvb/kasir?cetak-laporan-ffs-bedah=' +//kelompokPasienId+$scope.item.namaKasir.id+
+        client.get('http://127.0.0.1:1237/printvb/kasir?cetak-laporan-ffs-bedah=' +kelompokPasienId+//$scope.item.namaKasir.id+
           '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '&idDokter=' + dokter + '&tgllibut=' + person + '&jasa=' + personKa + '&view=' + ruanganId + '&kpid=' + kelompokPasienId + '&tipeDokter=' + tipeDokter, function (response) {
 
           });
