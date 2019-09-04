@@ -44,17 +44,19 @@ define(['initialize'], function(initialize) {
             }
 
             $q.all([ 
-                manageSarprasPhp.getDataTableMaster("monitoringabsensi/get-status-create-jadwal?id=" + ModelItem.getPegawai().id),
-                manageSarprasPhp.getDataTableMaster("monitoringabsensi/get-drop-down-unit?id=" + ModelItem.getPegawai().id),
+                // manageSarprasPhp.getDataTableMaster("monitoringabsensi/get-status-create-jadwal?id=" + ModelItem.getPegawai().id),
+                ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-status-create-jadwal?id=" + ModelItem.getPegawai().id),
+                // manageSarprasPhp.getDataTableMaster("monitoringabsensi/get-drop-down-unit?id=" + ModelItem.getPegawai().id),
+                ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-drop-down-unit?id=" + ModelItem.getPegawai().id),
                 ManageSdmNew.getListData("pegawai/get-pegawai-sdm-for-cred"),
                 ManageSdmNew.getListData("sdm/get-jabatan-login-user"),
                 ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true")
                 //ManageSdm.getOrderList("sdm/get-pegawai-bawahan/" + ModelItem.getPegawai().id),
                 ]).then(function(res) {
                     $scope.isSingle = false;
-                    $scope.listUnitKerja = res[1].data.data;
-                    $scope.showButtonInputJadwalDinas = res[0].data.data;                
-                    $scope.isMonitoring = res[0].data.dataMonitoring;
+                    $scope.listUnitKerja = res[1].data.data.data;
+                    $scope.showButtonInputJadwalDinas = res[0].data.data.data;                
+                    $scope.isMonitoring = res[0].data.data.dataMonitoring;
                     $scope.isPegawaiSDM = false;
                     $scope.pegawaiDayaGunaSDM = res[3].data.data.idJabatan;
                     for (var i = 0; i < res[2].data.data.data.length; i++) {
@@ -74,7 +76,7 @@ define(['initialize'], function(initialize) {
                     }else 
                     // if($scope.showButtonInputJadwalDinas === false){
                     if($scope.listUnitKerja.length == 1 && !$scope.isMonitoring){
-                        var single = res[0].data.dataSingle[0];
+                        var single = res[0].data.data.dataSingle[0];
                         $scope.isSingle = true;
                         $scope.listUnitKerja =[{id:single.idUnit,name:single.nameUnit}];
                         $scope.listSubUnitKerja = [{id:single.idSub,name:single.nameSub}];
@@ -83,7 +85,7 @@ define(['initialize'], function(initialize) {
                         $scope.item.subUnitKerja = {id:single.idSub,name:single.nameSub};
                         $scope.item.pegawai = {id:single.idPgw,namalengkap:single.namalengkap}; 
                     } else if ($scope.listUnitKerja.length == 1 && $scope.isMonitoring) {
-                        var single = res[0].data.dataSingle[0];
+                        var single = res[0].data.data.dataSingle[0];
                         $scope.isSingle = true;
                         $scope.listUnitKerja =[{id:single.idUnit,name:single.nameUnit}];
                         $scope.listSubUnitKerja = [{id:single.idSub,name:single.nameSub}];
@@ -763,9 +765,10 @@ define(['initialize'], function(initialize) {
             $scope.$watch('item.unitKerja', function(newVal, oldVal) {
                 if (!newVal) return;
                 if ((newVal && oldVal) && newVal.id == oldVal.id || $scope.isSingle === true ) return;
-                manageSarprasPhp.getDataTableMaster("monitoringabsensi/get-drop-down-subunit?id=" + ModelItem.getPegawai().id + "&idUnit=" + newVal.id + "&isMonitoring=" + $scope.isMonitoring).then(function(data) {
+                // manageSarprasPhp.getDataTableMaster("monitoringabsensi/get-drop-down-subunit?id=" + ModelItem.getPegawai().id + "&idUnit=" + newVal.id + "&isMonitoring=" + $scope.isMonitoring).then(function(data) {
+                ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-drop-down-subunit?id=" + ModelItem.getPegawai().id + "&idUnit=" + newVal.id + "&isMonitoring=" + $scope.isMonitoring).then(function(data) {
                     $scope.item.subUnitKerja = "";
-                    $scope.listSubUnitKerja = data.data;
+                    $scope.listSubUnitKerja = data.data.data;
                 });
 
             });

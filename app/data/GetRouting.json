@@ -48272,26 +48272,6 @@
     ]
   },
   {
-    "name": "MasaBerlakuSipStr",
-    "url": "/MasaBerlakuSipStr",
-    "templateurl": "module/SDM/SipStrExpired.html",
-    "controller": "SipStrExpiredCtrl",
-    "deps": [
-      {
-        "module": "Services",
-        "define": "Service"
-      },
-      {
-        "module": "LoginServices",
-        "define": "LoginService"
-      },
-      {
-        "module": "SdmService",
-        "define": "SdmService"
-      }
-    ]
-  },
-  {
     "name": "dashboardpasien.PengkajianMedis.DashboardDiagnosis.DiagnosisICD9New",
     "url": "/DiagnosisICD9New",
     "templateurl": "module/Dashboard/Pasien/DiagnosaICD9.html",
