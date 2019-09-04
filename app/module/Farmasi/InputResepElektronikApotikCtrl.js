@@ -1,8 +1,9 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('InputResepElektronikApotikCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper',
-        function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper) {
+    initialize.controller('InputResepElektronikApotikCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper', '$mdDialog',
+        function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, $mdDialog) {
             $scope.item = {};
+            $scope.onSave = false;
             $scope.dataVOloaded = true;
             $scope.now = new Date();
             $scope.item.rke = 1;
@@ -13,7 +14,9 @@ define(['initialize'], function (initialize) {
             $scope.disabledRuangan = false;
             $scope.statusConsis = false;
             $scope.dataTempResep = [];
-
+            $scope.dataGrid = new kendo.data.DataSource({
+                data: []
+            })
             $scope.item.hargaNetto = 0;
 
             var pegawaiUser = {}
@@ -153,7 +156,8 @@ define(['initialize'], function (initialize) {
                                 }
                                 // $scope.dataGrid.add($scope.dataSelected)
                                 $scope.dataGrid = new kendo.data.DataSource({
-                                    data: data2
+                                    data: data2,
+                                    pageSize: 10
                                 });
                                 // $scope.dataGrid = dat.data.orderpelayanan
                                 // $scope.item.ruangan = {id:dat.data.strukorder.id,namaruangan:dat.data.strukorder.namaruangan}
@@ -240,7 +244,8 @@ define(['initialize'], function (initialize) {
                                 }
                                 // $scope.dataGrid.add($scope.dataSelected)
                                 $scope.dataGrid = new kendo.data.DataSource({
-                                    data: data2
+                                    data: data2,
+                                    pageSize: 10
                                 });
                                 // $scope.dataGrid = dat.data.orderpelayanan
 
@@ -265,7 +270,7 @@ define(['initialize'], function (initialize) {
                                 objectprodukfk: res.data.data[i].obat[ii].objectprodukfk,
                                 qtyproduk: res.data.data[i].obat[ii].qtyproduk,
                                 satuanview: res.data.data[i].obat[ii].satuanview,
-
+                                isRacikan: res.data.data[i].obat.length > 1 ? true : false
                             }
                             $scope.dataTempResep.push(dataTemp);
                         }
@@ -336,13 +341,24 @@ define(['initialize'], function (initialize) {
             function showDetail(e) {
                 e.preventDefault();
                 let dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                $scope.item.rke = dataItem.resep;
+                // $scope.item.aturanPakai = "";
+                $scope.item.aturanPakai = dataItem.keteranganpakai;
+
+                $scope.item.produk = null;
+                $scope.item.route = null;
+                $scope.item.dosis = 1;
+                $scope.item.jumlahxmakan = 1;
+                $scope.item.satuan = null;
+                $scope.item.stok = 0;
 
                 $scope.resep = {
                     rke: dataItem.resep,
                     namaObat: dataItem.namaobat,
                     jumlah: dataItem.qtyproduk,
                     keteranganPakai: dataItem.keteranganpakai,
-                    instruksi: dataItem.keteranganlainnya
+                    instruksi: dataItem.keteranganlainnya,
+                    isRacikan: dataItem.isRacikan ? 'Dosis' : 'Jumlah'
                 }
 
                 $scope.popupInputObat.center().open();
@@ -637,10 +653,10 @@ define(['initialize'], function (initialize) {
                     alert("Harga Satuan tidak memiliki harga!")
                     return;
                 }
-                if ($scope.item.total == 0) {
-                    alert("Stok tidak ada harus di isi!")
-                    return;
-                }
+                // if ($scope.item.total == 0) {
+                //     alert("Stok tidak ada harus di isi!")
+                //     return;
+                // }
                 if ($scope.item.jenisKemasan == undefined) {
                     alert("Pilih Jenis Kemasan terlebih dahulu!!")
                     return;
@@ -651,7 +667,7 @@ define(['initialize'], function (initialize) {
                     return;
                 }
                 if ($scope.item.produk == undefined) {
-                    alert("Pilih Produk terlebih dahulu!!")
+                    alert("Produk terlebih dahulu!!")
                     return;
                 }
                 if ($scope.item.satuan == undefined) {
@@ -722,7 +738,8 @@ define(['initialize'], function (initialize) {
 
                             data2[i] = data;
                             $scope.dataGrid = new kendo.data.DataSource({
-                                data: data2
+                                data: data2,
+                                pageSize: 10
                             });
                             var subTotal = 0;
                             for (var i = data2.length - 1; i >= 0; i--) {
@@ -775,7 +792,8 @@ define(['initialize'], function (initialize) {
                     data2.push(data)
                     // $scope.dataGrid.add($scope.dataSelected)
                     $scope.dataGrid = new kendo.data.DataSource({
-                        data: data2
+                        data: data2,
+                        pageSize: 10
                     });
                     var subTotal = 0;
                     for (var i = data2.length - 1; i >= 0; i--) {
@@ -798,6 +816,106 @@ define(['initialize'], function (initialize) {
                 $scope.popupInputObat.close();
                 Kosongkan();
                 racikan = ''
+            }
+            let subTotal = 0;
+            $scope.tambahObat = function () {
+                // 
+                var nomor = 0
+                if ($scope.dataGrid == undefined) {
+                    nomor = 1
+                } else {
+                    nomor = data2.length + 1
+                }
+                var jRacikan = null
+                if ($scope.item.jenisRacikan != undefined) {
+                    jRacikan = $scope.item.jenisRacikan.id
+                }
+
+                var dosis = 1;
+                if ($scope.item.jenisKemasan.jeniskemasan == 'Racikan') {
+                    dosis = $scope.item.dosis
+                }
+
+                // if ($scope.item.stok === 0) {
+                //     toastr.warning('Stock kosong');
+                //     return;
+                // }
+
+                // if ($scope.item.jumlah === 0) {
+                //     toastr.warning('QTY Mash Kosong');
+                //     return;
+                // }
+
+                // if ($scope.dataGrid._data.length === $scope.dataSourceResepDokter._data.length) {
+                //     toastr.warning('Sudah tidak bisa entry obat');
+                //     return;
+                // }
+                let obat = {
+                    no: nomor,
+                    noregistrasifk: norec_apd,//$scope.item.noRegistrasi,
+                    tglregistrasi: moment($scope.item.tglregistrasi).format('YYYY-MM-DD hh:mm:ss'),
+                    generik: null,
+                    hargajual: String($scope.item.hargaSatuan),
+                    jenisobatfk: jRacikan,
+                    kelasfk: $scope.item.kelas.id,
+                    stock: String($scope.item.stok),
+                    harganetto: String($scope.item.hargaNetto),
+                    nostrukterimafk: noTerima,
+                    ruanganfk: $scope.item.ruangan.id,//£££
+                    rke: $scope.item.rke,
+                    jeniskemasanfk: $scope.item.jenisKemasan.id,
+                    jeniskemasan: $scope.item.jenisKemasan.jeniskemasan,
+                    // aturanpakaifk:$scope.item.aturanPakai.id,
+                    // aturanpakai:$scope.item.aturanPakai.name,
+                    aturanpakai: $scope.item.aturanPakai,
+                    routefk: $scope.item.route.id,
+                    route: $scope.item.route.name,
+                    asalprodukfk: $scope.item.asal.id,
+                    asalproduk: $scope.item.asal.asalproduk,
+                    produkfk: $scope.item.produk.id,
+                    namaproduk: $scope.item.produk.namaproduk,
+                    nilaikonversi: $scope.item.nilaiKonversi,
+                    satuanstandarfk: $scope.item.satuan.ssid,
+                    satuanstandar: $scope.item.satuan.satuanstandar,
+                    satuanviewfk: $scope.item.satuan.ssid,
+                    satuanview: $scope.item.satuan.satuanstandar,
+                    jmlstok: String($scope.item.stok),
+                    jumlah: $scope.item.jumlah,
+                    dosis: dosis,
+                    hargasatuan: String($scope.item.hargaSatuan),
+                    hargadiscount: String($scope.item.hargadiskon),
+                    total: $scope.item.total,
+                    jmldosis: String(($scope.item.jumlah) / dosis) + '/' + String(dosis),
+                    jasa: $scope.item.jumlah === 0 ? 0 : 800
+                }
+                // var subTotal = 0;
+                // if($scope.dataGrid._data.length == 0) {
+                //     for (var i = 1; i >= 0; i--) {
+                //         subTotal = subTotal + parseFloat($scope.dataGrid._data[i].total)
+                //     }
+                // } else {
+                //     for (var i = $scope.dataGrid._data.length - 1; i >= 0; i--) {
+                //         subTotal = subTotal + parseFloat($scope.dataGrid._data[i].total)
+                //     }
+                // }
+                // let subTotal = 0;
+                // if ($scope.dataGrid._data.length == 0) {
+                //     $scope.item.totalSubTotal = parseFloat(obat.total).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+                //     subTotal = subTotal + obat.total;
+                //     // toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")
+                // } else {
+                //     // let currentSubtotal = $scope.item.totalSubTotal.split(/[.,]/);
+
+                //     // let total = currentSubtotal[0] + currentSubtotal[1]
+
+                //     // console.log(total);
+                    subTotal = subTotal + obat.total;
+                    $scope.item.totalSubTotal = subTotal.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })
+                //     // .toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")
+                // }
+                Kosongkan();
+                $scope.dataGrid.add(obat);
+                $scope.popupInputObat.close();
             }
 
             $scope.klikGrid = function (dataSelected) {
@@ -854,7 +972,7 @@ define(['initialize'], function (initialize) {
                 $scope.dataSelected = undefined
             }
             $scope.batal = function () {
-                Kosongkan()
+                Kosongkan();
             }
 
             $scope.columnGrid = [
@@ -915,12 +1033,52 @@ define(['initialize'], function (initialize) {
                     "title": "Total",
                     "width": "100px",
                     "template": "<span class='style-right'>{{formatRupiah('#: total #', '')}}</span>"
+                },
+                {
+                    command: [
+                        {
+                            text: "Hapus",
+                            width: "40px",
+                            align: "center",
+                            attributes: {
+                                align: "center"
+                            },
+                            click: hapusObat,
+                            imageClass: "k-i-arrow-60-right"
+                        }
+                    ],
+                    title: "",
+                    width: "5%",
+                    attributes: {
+                        style: "text-align:center;valign=middle"
+                    },
                 }
             ];
 
             $scope.formatRupiah = function (value, currency) {
                 return currency + " " + parseFloat(value).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
             }
+
+            function hapusObat(e) {
+                e.preventDefault();
+                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                var confirm = $mdDialog.confirm()
+                    .title('Apakah anda yakin menghapus Obat?')
+                    // .textContent(`Anda akan menghapus data pegawai dengan nama ${dataItem}`)
+                    .ariaLabel('Lucky day')
+                    .targetEvent(e)
+                    .ok('Ya')
+                    .cancel('Tidak');
+                $mdDialog.show(confirm).then(function () {
+                    // hapusDataPegawai(dataItem.idPegawai);
+                    Kosongkan();
+                    $scope.dataGrid.remove(dataItem);
+                    console.warn('Masuk sini pak eko');
+                }, function () {
+                    console.error('Tidak jadi hapus');
+                });
+            }
+
             $scope.kembali = function () {
                 //$state.go("TransaksiPelayananApotik")
                 window.history.back();
@@ -935,11 +1093,13 @@ define(['initialize'], function (initialize) {
                         }
                     });
                 if ($scope.item.penulisResep == undefined) {
-                    alert("Pilih Penulis Resep terlebih dahulu!!")
+                    // alert("Pilih Penulis Resep terlebih dahulu!!");
+                    toastr.warning('Pilih Penulis Resep terlebih dahulu!!');
                     return
                 }
-                if (data2.length == 0) {
-                    alert("Pilih Produk terlebih dahulu!!")
+                if (data2.length == 0 && $scope.dataGrid._data.length == 0) {
+                    // alert("Pilih Produk terlebih dahulu!!");
+                    toastr.warning('Pilih Produk terlebih dahulu!!');
                     return
                 }
                 for (var i = data2.length - 1; i >= 0; i--) {
@@ -951,7 +1111,7 @@ define(['initialize'], function (initialize) {
                 }
                 var strukresep = {
                     tglresep: moment($scope.item.tglAwal).format('YYYY-MM-DD HH:mm:ss'),
-                    pasienfk: norec_apd,//
+                    pasienfk: norec_apd,
                     nocm: $scope.item.nocm,
                     namapasien: $scope.item.namaPasien,
                     penulisresepfk: $scope.item.penulisResep.id,
@@ -963,23 +1123,26 @@ define(['initialize'], function (initialize) {
                     retur: '-',
                     isobatalkes: isPemakaianObatAlkes
                 }
-                var objSave =
-                {
+
+                var objSave = {
                     strukresep: strukresep,
-                    pelayananpasien: data2//$scope.dataGrid._data
+                    pelayananpasien: $scope.dataGrid._data//$scope.dataGrid._data
                 }
-                $scope.tombolSimpanVis = false;
+
+                // $scope.tombolSimpanVis = false;
                 manageLogistikPhp.postpelayananapotik(objSave).then(function (e) {
-                    $scope.tombolSimpanVis = true;
+                    // $scope.tombolSimpanVis = true;
                     $scope.item.resep = e.data.noresep.norec
+                    $scope.onSave = true;
                     //Bridging Consis
                     if ($scope.item.consisid != undefined) {
-                        var objSave =
-                        {
+                        var objSave = {
                             strukresep: $scope.item.resep,
                             counterid: $scope.item.consisid
                         }
                         manageLogistikPhp.postbridgingconsisd(objSave).then(function (e) {
+                        }, function(error) {
+                            $scope.onSave = false;
                         })
                     }
                     //Bridging Consis
@@ -991,6 +1154,8 @@ define(['initialize'], function (initialize) {
 
                     manageLogistikPhp.postbridgingminir45(objSave).then(function (e) {
 
+                    }, function(error) {
+                        $scope.onSave = false;
                     })
                     //Bridging minir45
 
@@ -1004,6 +1169,9 @@ define(['initialize'], function (initialize) {
                         + "&tglresep="
                         + moment($scope.item.tglAwal).format('YYYY-MM-DD hh:mm:ss')
                     ).then(function (data) {
+
+                    }, function(error) {
+                        $scope.onSave = false;
                     })
                     //##end 
 
@@ -1027,12 +1195,13 @@ define(['initialize'], function (initialize) {
                     // }
                     window.history.back();
                 }, function (error) {
-                    $scope.tombolSimpanVis = true;
+                    $scope.onSave = false;
                 })
 
                 // $state.go("TransaksiPelayananApotik")
 
             }
+
             var HttpClient = function () {
                 this.get = function (aUrl, aCallback) {
                     var anHttpRequest = new XMLHttpRequest();
@@ -1045,6 +1214,7 @@ define(['initialize'], function (initialize) {
                     anHttpRequest.send(null);
                 }
             }
+
             $scope.BatalR = function () {
                 $scope.showInputObat = true
                 $scope.showRacikan = false
@@ -1052,6 +1222,7 @@ define(['initialize'], function (initialize) {
 
                 racikan = ''
             }
+
             $scope.hapus = function () {
                 // if ($scope.item.jumlah == 0) {
                 //     alert("Jumlah harus di isi!")
@@ -1099,7 +1270,8 @@ define(['initialize'], function (initialize) {
                             }
                             // data2.length = data2.length -1
                             $scope.dataGrid = new kendo.data.DataSource({
-                                data: data2
+                                data: data2,
+                                pageSize: 10
                             });
                             // for (var i = data2.length - 1; i >= 0; i--) {
                             //     subTotal=subTotal+ parseFloat(data2[i].total)
@@ -1113,6 +1285,12 @@ define(['initialize'], function (initialize) {
                 }
                 Kosongkan()
             }
+
+            // $scope.hapusData = function () {
+            //     Kosongkan();
+            //     $scope.dataGrid.remove($scope.dataSelected);
+            // }
+
             $scope.columnGridStok = [
                 {
                     "field": "no",

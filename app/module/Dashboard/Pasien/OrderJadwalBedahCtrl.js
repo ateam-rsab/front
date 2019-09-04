@@ -90,7 +90,7 @@ define(['initialize'], function (initialize) {
             }
 
             function getLapPascaBedah() {
-                managePhp.getData("rekam-medis/get-lap-pasca-bedah?noregistrasifk=" + norec_apd, true).then(function (dat) {
+                managePhp.getData("rekam-medis/get-lap-pasca-bedah?nocm=" + $scope.item.noMr, true).then(function (dat) {
                     $scope.dataDaftar = new kendo.data.DataSource({
                         data: dat.data.data,
                         pageSize: 10,
@@ -462,99 +462,114 @@ define(['initialize'], function (initialize) {
             // };
 
             $scope.Simpan = function () {
-                if (!$scope.item.selectedAnestesiologis &&
-                    !$scope.item.selectedPenataAnest &&
-                    !$scope.item.selectedPerawatInstrumen &&
-                    !$scope.item.selectedDataOperator &&
-                    !$scope.item.selectedAsistenOperator) {
-                    toastr.warning('Belum ada pegawai yg dipilih');
-                } else if (!$scope.item.selectedAnestesiologis ||
-                    !$scope.item.selectedPenataAnest ||
-                    !$scope.item.selectedPerawatInstrumen ||
-                    !$scope.item.selectedDataOperator ||
-                    !$scope.item.selectedAsistenOperator) {
-                    toastr.warning('Harap isi semua pegawai');
-                    // } else if(($scope.item.jamMulai == '' || $scope.item.jamMulai == undefined) || ($scope.item.jamMulai == '' || $scope.item.jamMulai == undefined)) {
-                    //     toastr.warning('Jam tidak boleh kosong')
-                } else if ($scope.item.jamMulai > $scope.item.jamSelesai) {
-                    toastr.warning('Jam Mulai tidak boleh kurang dari Jam Selesai');
-                } else if ($scope.item.tglPembedahan == undefined || $scope.item.tglPembedahan === "" || $scope.item.tglPembedahan === null) {
-                    toastr.warning('Harap isi tanggal pembedahan')
-                } else {
-                    var tglDimulai = '';
-                    var tglSelesai = '';
-                    if ($scope.item.idRuangan === undefined) {
-                        LoadCache();
-                    }
-                    if ($scope.item.jamMulai) {
-                        if (DateHelper.getJamFormatted(new Date($scope.item.jamMulai)) == 'NaN:NaN') {
-                            tglDimulai = $scope.item.jamMulai;
-                        } else {
-                            tglDimulai = DateHelper.getJamFormatted(new Date($scope.item.jamMulai));
-                        }
+                // if (!$scope.item.selectedAnestesiologis &&
+                //     !$scope.item.selectedPenataAnest &&
+                //     !$scope.item.selectedPerawatInstrumen &&
+                //     !$scope.item.selectedDataOperator &&
+                //     !$scope.item.selectedAsistenOperator) {
+                //     toastr.warning('Belum ada pegawai yg dipilih');
+                //     return;
+                // }
+                // if (!$scope.item.selectedAnestesiologis ||
+                //     !$scope.item.selectedPenataAnest ||
+                //     !$scope.item.selectedPerawatInstrumen ||
+                //     !$scope.item.selectedDataOperator ||
+                //     !$scope.item.selectedAsistenOperator) {
+                //     toastr.warning('Harap isi semua pegawai');
+                //     return;
+                //     // } else if(($scope.item.jamMulai == '' || $scope.item.jamMulai == undefined) || ($scope.item.jamMulai == '' || $scope.item.jamMulai == undefined)) {
+                //     //     toastr.warning('Jam tidak boleh kosong')
+                // }
 
+                if ($scope.item.jamMulai > $scope.item.jamSelesai) {
+                    toastr.warning('Jam Mulai tidak boleh kurang dari Jam Selesai');
+                    return;
+                }
+
+                if ($scope.item.tglPembedahan == undefined || $scope.item.tglPembedahan === "" || $scope.item.tglPembedahan === null) {
+                    toastr.warning('Harap isi tanggal pembedahan');
+                    return;
+                }
+                var tglDimulai = '';
+                var tglSelesai = '';
+                if ($scope.item.idRuangan === undefined) {
+                    LoadCache();
+                }
+
+                if ($scope.item.jamMulai) {
+                    if (DateHelper.getJamFormatted(new Date($scope.item.jamMulai)) == 'NaN:NaN') {
+                        tglDimulai = $scope.item.jamMulai;
                     } else {
-                        tglDimulai = '';
+                        tglDimulai = DateHelper.getJamFormatted(new Date($scope.item.jamMulai));
                     }
-                    if ($scope.item.jamSelesai) {
-                        if (DateHelper.getJamFormatted(new Date($scope.item.jamSelesai)) === 'NaN:NaN') {
-                            tglSelesai = $scope.item.jamSelesai;
-                        } else {
-                            tglSelesai = DateHelper.getJamFormatted(new Date($scope.item.jamSelesai));
-                        }
+
+                } else {
+                    tglDimulai = '';
+                }
+
+                if ($scope.item.jamSelesai) {
+                    if (DateHelper.getJamFormatted(new Date($scope.item.jamSelesai)) === 'NaN:NaN') {
+                        tglSelesai = $scope.item.jamSelesai;
                     } else {
-                        tglSelesai = '';
+                        tglSelesai = DateHelper.getJamFormatted(new Date($scope.item.jamSelesai));
                     }
-                    var dataSave = {
-                        anestesiologisfk: $scope.item.selectedAnestesiologis.id,
-                        ruanganfk: $scope.item.idRuangan,
-                        tglbedah: new moment(new Date($scope.item.tglPembedahan)).format('YYYY-MM-DD'),
-                        noregistrasifk: norec_apd,
-                        pasienfk: $scope.item.noMr,
-                        operatorfk: $scope.item.selectedDataOperator.id,
-                        penataanestesifk: $scope.item.selectedPenataAnest.id,
-                        asistenoperatorfk: $scope.item.selectedAsistenOperator.id,
-                        perawatinstfk: $scope.item.selectedPerawatInstrumen.id,
-                        jammulai: tglDimulai,
-                        jamselesai: tglSelesai,
-                        lamabedah: $scope.item.lamaPembedahan,
-                        labelpasien: $scope.item.selectedLabelPasien ? $scope.item.selectedLabelPasien.name : '',
-                        kondisipenanganan: $scope.item.selectedPenangananKhusus ? $scope.item.selectedPenangananKhusus.name : '',
-                        status: $scope.item.selectedStatus ? $scope.item.selectedStatus.name : '',
-                        tindakanbedah1: $scope.item.tindakanPembedahanSatu ? $scope.item.tindakanPembedahanSatu : '',
-                        tindakanbedah2: $scope.item.tindakanPembedahanDua ? $scope.item.tindakanPembedahanDua : '',
-                        tindakanbedah3: $scope.item.tindakanPembedahanTiga ? $scope.item.tindakanPembedahanTiga : '',
-                        tindakanbedah4: $scope.item.tindakanPembedahanEmpat ? $scope.item.tindakanPembedahanEmpat : '',
-                        jaringanpatologi: $scope.item.jaringanPatologi ? $scope.item.jaringanPatologi : '',
-                        uraianbedah: $scope.item.uraianPembedahan ? $scope.item.uraianPembedahan : '',
-                        tekanandarah: $scope.item.tekananDarah ? $scope.item.tekananDarah : '',
-                        nadi: $scope.item.nadi ? $scope.item.nadi : '',
-                        suhu: $scope.item.suhu ? $scope.item.suhu : '',
-                        pernafasan: $scope.item.pernafasan ? $scope.item.pernafasan : '',
-                        makan: $scope.item.selectedAvailMakan ? $scope.item.selectedAvailMakan : '',
-                        minum: $scope.item.selectedAvailMinum ? $scope.item.selectedAvailMinum : '',
-                        infusmacam: $scope.item.macam ? $scope.item.macam : '',
-                        infusjml: $scope.item.jumlah ? $scope.item.jumlah : '',
-                        infustetesan: $scope.item.tetesan ? $scope.item.tetesan : '',
-                        obat: $scope.item.obatObatan ? $scope.item.obatObatan : '',
-                        instruksikhusus: $scope.item.instruksiKhusus ? $scope.item.instruksiKhusus : '',
-                        norec: $scope.item.noRecBedah ? $scope.item.noRecBedah : '',
-                        jmlperdarahan: $scope.item.jmlPendarahan ? $scope.item.jmlPendarahan : 'Tidak ada',
-                        komplikasi: $scope.item.komplikasi ? $scope.item.komplikasi : 'Tidak ada',
-                        macamjaringan: $scope.item.macamJaringan ? $scope.item.macamJaringan : 'Tidak ada',
-                        diagnosaprabedah: $scope.item.diagnosaPraBedah ? $scope.item.diagnosaPraBedah : 'Tidak ada',
-                        diagnosapascabedah: $scope.item.diagnosaPascaBedah ? $scope.item.diagnosaPascaBedah : 'Tidak ada',
-                        kesesuiandiagnosa: $scope.item.kesuaianDiagnosa ? $scope.item.kesuaianDiagnosa.name : '',
-                    };
-                    console.log(dataSave);
-                    managePhp.postData(dataSave, 'rekam-medis/post-lap-pasca-bedah/save').then(function (e) {
+                } else {
+                    tglSelesai = '';
+                }
+
+                var dataSave = {
+                    anestesiologisfk: $scope.item.selectedAnestesiologis ? $scope.item.selectedAnestesiologis.id : null,
+                    ruanganfk: $scope.item.idRuangan,
+                    tglbedah: new moment(new Date($scope.item.tglPembedahan)).format('YYYY-MM-DD'),
+                    noregistrasifk: norec_apd,
+                    pasienfk: $scope.item.noMr,
+                    operatorfk: $scope.item.selectedDataOperator ? $scope.item.selectedDataOperator.id : null,
+                    penataanestesifk: $scope.item.selectedPenataAnest ? $scope.item.selectedPenataAnest.id : null,
+                    asistenoperatorfk: $scope.item.selectedAsistenOperator ? $scope.item.selectedAsistenOperator.id : null,
+                    perawatinstfk: $scope.item.selectedPerawatInstrumen ? $scope.item.selectedPerawatInstrumen.id : null,
+                    jammulai: tglDimulai,
+                    jamselesai: tglSelesai,
+                    lamabedah: $scope.item.lamaPembedahan,
+                    labelpasien: $scope.item.selectedLabelPasien ? $scope.item.selectedLabelPasien.name : '',
+                    kondisipenanganan: $scope.item.selectedPenangananKhusus ? $scope.item.selectedPenangananKhusus.name : '',
+                    status: $scope.item.selectedStatus ? $scope.item.selectedStatus.name : '',
+                    tindakanbedah1: $scope.item.tindakanPembedahanSatu ? $scope.item.tindakanPembedahanSatu : '',
+                    tindakanbedah2: $scope.item.tindakanPembedahanDua ? $scope.item.tindakanPembedahanDua : '',
+                    tindakanbedah3: $scope.item.tindakanPembedahanTiga ? $scope.item.tindakanPembedahanTiga : '',
+                    tindakanbedah4: $scope.item.tindakanPembedahanEmpat ? $scope.item.tindakanPembedahanEmpat : '',
+                    jaringanpatologi: $scope.item.jaringanPatologi ? $scope.item.jaringanPatologi : '',
+                    uraianbedah: $scope.item.uraianPembedahan ? $scope.item.uraianPembedahan : '',
+                    tekanandarah: $scope.item.tekananDarah ? $scope.item.tekananDarah : '',
+                    nadi: $scope.item.nadi ? $scope.item.nadi : '',
+                    suhu: $scope.item.suhu ? $scope.item.suhu : '',
+                    pernafasan: $scope.item.pernafasan ? $scope.item.pernafasan : '',
+                    makan: $scope.item.selectedAvailMakan ? $scope.item.selectedAvailMakan : '',
+                    minum: $scope.item.selectedAvailMinum ? $scope.item.selectedAvailMinum : '',
+                    infusmacam: $scope.item.macam ? $scope.item.macam : '',
+                    infusjml: $scope.item.jumlah ? $scope.item.jumlah : '',
+                    infustetesan: $scope.item.tetesan ? $scope.item.tetesan : '',
+                    obat: $scope.item.obatObatan ? $scope.item.obatObatan : '',
+                    instruksikhusus: $scope.item.instruksiKhusus ? $scope.item.instruksiKhusus : '',
+                    norec: $scope.item.noRecBedah ? $scope.item.noRecBedah : '',
+                    jmlperdarahan: $scope.item.jmlPendarahan ? $scope.item.jmlPendarahan : '',
+                    komplikasi: $scope.item.komplikasi ? $scope.item.komplikasi : '',
+                    macamjaringan: $scope.item.macamJaringan ? $scope.item.macamJaringan : '',
+                    diagnosaprabedah: $scope.item.diagnosaPraBedah ? $scope.item.diagnosaPraBedah : '',
+                    diagnosapascabedah: $scope.item.diagnosaPascaBedah ? $scope.item.diagnosaPascaBedah : '',
+                    kesesuiandiagnosa: $scope.item.kesuaianDiagnosa ? $scope.item.kesuaianDiagnosa.name : '',
+                };
+
+                // console.log(dataSave);
+                managePhp.postData(dataSave, 'rekam-medis/post-lap-pasca-bedah/save').then(function (e) {
+                    if (e.data.message != 'Error') {
                         init();
                         $scope.item = {};
                         $scope.showInputan = false;
-                        //ManagePhp.postLogging('POC', 'Norec planofcare_t',e.data.norec, 'POC').then(function (res) {
-                        //})
-                    });
-                }
+                    }
+                    s//ManagePhp.postLogging('POC', 'Norec planofcare_t',e.data.norec, 'POC').then(function (res) {
+                    //})
+                });
+
 
                 //console.log(dataSave);
 

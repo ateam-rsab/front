@@ -14,7 +14,8 @@ define(['initialize'], function(initialize) {
 
 				if (data[0].statResponse){
 					$scope.item = data[0];
-					$scope.item.totalTagihan = $scope.item.jumlahBayar;
+					$scope.item.totalTagihan = $scope.item.jumlahBayar.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })
+					// subTotal.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })
 					$scope.item.jumlahBayarFix = $scope.item.jumlahBayar - $scope.item.totalDeposit;
 					$scope.dataDaftarTagihan = new kendo.data.DataSource({
 						data: data[0].detailTagihan

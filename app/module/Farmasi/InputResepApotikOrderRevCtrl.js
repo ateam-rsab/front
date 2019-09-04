@@ -3,6 +3,7 @@ define(['initialize'], function (initialize) {
     initialize.controller('InputResepApotikOrderRevCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper',
         function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper) {
             
+            
             $scope.isRouteLoading = false;
             $scope.jumlahObat = 3;
             $scope.isResepEmpty = true;
@@ -92,29 +93,32 @@ define(['initialize'], function (initialize) {
                 }
             }
 
-            var getNamaObat = function(){
-                let dataTemp = [];
+            var getNamaObat = function () {
+                $scope.dataTempObat = [];
                 manageLogistikPhp.getDataTableTransaksi("logistik/get-datacombo", true).then(function (dat) {
                     $scope.listOfProduk = dat.data.produk;
                     for (let i = 0; i < dat.data.produk.length; i++) {
-                        dataTemp.push(dat.data.produk[i].namaproduk);
+                        $scope.dataTempObat.push(dat.data.produk[i].namaproduk);
                     }
-                    $scope.listOfProdukArray = dataTemp;
+                    $scope.listOfProdukArray = $scope.dataTempObat;
+                    // autocompleteRacikan.dataSource.add($scope.dataTempObat);
+                    // autocompleteRacikan.dataSource.read();
+                    // autocompleteNonRacikan.dataSource.add($scope.dataTempObat);
+                    // autocompleteNonRacikan.dataSource.read();
                     $("#listObatRacikan").kendoAutoComplete({
-                        dataSource: dataTemp,
+                        dataSource: $scope.dataTempObat,
                         filter: "startswith",
-                        placeholder: "Masukkan Nama Obat...",
-                        // separator: ", "
+                        // placeholder: "Masukkan Nama Obat...",
+                       
                     });
                     $("#listObatNonRacikan").kendoAutoComplete({
-                        dataSource: dataTemp,
+                        dataSource: $scope.dataTempObat,
                         filter: "startswith",
-                        placeholder: "Masukkan Nama Obat...",
-                        // separator: ", "
-                    })
+                        // placeholder: "Masukkan Nama Obat..."                        
+                    });
                 });
             }
-            
+            getNamaObat();
 
             var init = function () {
                 getNamaObat();
@@ -193,13 +197,18 @@ define(['initialize'], function (initialize) {
 
             // untuk menambah obat racikan
             $scope.tambahObat = function () {
+
                 var data = {
                     key: 1 + $scope.listObat.length,
                     namaObatRacikan: "",
                     satuan: "",
                     jumlah: ""
                 }
-
+                for(let i = 0; i < $scope.listObat.length; i++) {
+                    console.log($scope.resep.namaObatRacikan);
+                    $scope.resep.namaObatRacikan[i] = ''
+                }
+                // for($scope.listObat.length)
                 $scope.listObat.push(data);
             }
 
@@ -309,6 +318,7 @@ define(['initialize'], function (initialize) {
                         });
                     }
                 }
+
                 $scope.tempListResep.push(dataResep);
                 // $scope.resep.namaObatNew = '';
                 // $scope.resep.namaObatRacikan = '';
@@ -318,8 +328,11 @@ define(['initialize'], function (initialize) {
 
             // clear out variable
             var clear = function () {
+                // delete $scope.resep.namaObatRacikan;
+                // delete $scope.resep.namaObatNew;
+
                 $scope.item.keterangan = '';
-                $scope.resep.namaObatNew = [];
+                $scope.resep.namaObatNew = null;
                 $scope.resep.namaObatRacikan = [];
                 $scope.resep.jumlahObat = '';
                 $scope.resep.satuanObat = '';
@@ -333,9 +346,14 @@ define(['initialize'], function (initialize) {
 
             // method untuk kirim resep ke farmasi
             $scope.kirimKeFarmasi = function () {
+                $scope.isRouteLoading = true;
                 if (!$scope.resep.riwayatAlergi.name) {
                     toastr.warning('Anda belum mengisi Riwayat Alergi');
                     return;
+                }
+                if (!$scope.resep.beratBadan) {
+                    toastr.warning('Anda belum mengisi Berat Badan');
+                    return
                 }
                 let gridResep = $scope.tempListResep;
                 let dataResep = [];
@@ -388,7 +406,9 @@ define(['initialize'], function (initialize) {
                 console.warn(dataResep);
                 manageLogistikPhp.postpost('farmasi/resep-dokter?strukorder=' + norec_apd, dataResep).then(function (res) {
                     $scope.tempListResep = [];
+                    $scope.resep.beratBadan = '';
                     dataResep = [];
+                    $scope.isRouteLoading = false;
                     $scope.isResepEmpty = true;
                 })
             }
@@ -432,7 +452,7 @@ define(['initialize'], function (initialize) {
                     $scope.dataDetailResep = res.data.data;
                     console.log($scope.dataDetailResep)
                     let dataTemp = [];
-                   
+
                 });
             }
 

@@ -234,7 +234,7 @@
                             <hr>
                         </md-card-title-text>
                     </md-card-title>
-                    <div class="grid_12">
+                    <!-- <div class="grid_12">
                         <div class="grid_12" style="margin-top: -5px">
                             <div class="grid_1">
                                 <div class="grid_12">
@@ -244,7 +244,7 @@
                                 <div class="grid_12">
                                     <input c-text-box type="input" filter=""
                                         class="k-textbox" ng-model="item.no"
-                                        ng-disabled='true'/><!--  ng-show="false"/> -->
+                                        ng-disabled='true'/>
                                 </div>
                             </div>
                             <div class="grid_1">
@@ -338,7 +338,7 @@
                                         Pakai"></label>
                                 </div>
                                 <div class="grid_12">
-                                    <!-- <input kendo-combo-box k-ng-model="item.aturanPakai" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAturanPakai" /> -->
+                                    
                                     <input c-text-box type="input" filter=""
                                         class="k-textbox"
                                         ng-model="item.aturanPakai" />
@@ -359,14 +359,7 @@
                                         k-data-source="listRoute" />
                                 </div>
                             </div>
-                            <!--  <div class="grid_1">
-                        <div class="grid_12">
-                            <label c-label item="item" c-label-text="Jenis Obat"></label>
-                        </div>
-                        <div class="grid_12">
-                            <input kendo-combo-box k-ng-model="item.route" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRoute" />
-                        </div>
-                    </div> -->
+                           
                         </div>
                         <div class="grid_3">
                             <div class="grid_12">
@@ -483,7 +476,7 @@
                                 </div>
                                 <div class="grid_4">
                                     <button class="btnTemplate1"
-                                        ng-click="hapus()">Hapus</button>
+                                        ng-click="hapusData()">Hapus</button>
                                 </div>
                                 <div class="grid_4">
                                     <button class="btnTemplate1"
@@ -491,7 +484,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <md-card-content>
                         <div id="kGrid"
                             kendo-grid k-data-source="dataGrid"
@@ -562,13 +555,12 @@
                 <div class="grid_6">
                     <div class="grid_6">
                     </div>
-                    <div class="grid_2" style="margin-top: 22px"
-                        ng-show='tombolSimpanVis'>
-                        <button class="c-button" ng-click="simpan()">Simpan</button>
+                    <div class="grid_2" style="margin-top: 22px">
+                        <button class="c-button" ng-click="simpan()" ng-disabled="onSave">Simpan</button>
                     </div>
                     <!--  <div class="grid_2" style="margin-top: 22px">
-                <button class="c-button" ng-click="Cetak()">Cetak</button>
-            </div> -->
+                        <button class="c-button" ng-click="Cetak()">Cetak</button>
+                    </div> -->
                     <div class="grid_2" style="margin-top: 22px">
                         <button class="c-button" ng-click="Batal()">Batal</button>
                     </div>
@@ -585,7 +577,7 @@
 </div>
 
 <div kendo-window="popupInputObat" k-title="'Verifikasi Obat'"
-    k-visible="false" k-on-open="win2visible= true" k-width="1000"
+    k-visible="false" k-on-open="win2visible= true" k-width="1300"
     k-on-close="win2visible= false">
     <div class="panel panel-default container_12" style="padding: 0px 10px;"
         ng-show="!showLoader">
@@ -625,7 +617,7 @@
                         <div style="margin-bottom: 10px">
                             <div class="grid_12">
                                 <label c-label item="item">
-                                    <strong>Jumlah</strong>
+                                    <strong>{{resep.isRacikan}}</strong>
                                 </label>
                             </div>
                             <div class="clear"></div>
@@ -692,7 +684,7 @@
                             </div>
                             <div class="grid_12">
                                 <input c-text-box type="input" filter=""
-                                    class="k-textbox" ng-model="item.no" /><!--  ng-show="false"/> -->
+                                    class="k-textbox" ng-model="item.no" ng-disabled="true"/><!--  ng-show="false"/> -->
                             </div>
                         </div>
                         <!-- jenis kemasan -->
@@ -772,8 +764,6 @@
                             </div>
                             <div class="grid_12">
                                 <input c-text-box type="input"
-                                    style="text-align:
-                                    right"
                                     filter="" class="k-textbox"
                                     ng-model="item.jumlahxmakan" />
                             </div>
@@ -785,8 +775,6 @@
                             </div>
                             <div class="grid_12">
                                 <input c-text-box type="input"
-                                    style="text-align:
-                                    right"
                                     filter="" class="k-textbox"
                                     ng-model="item.dosis" />
                             </div>
@@ -899,8 +887,7 @@
                     </div>
                     <div class="grid_4">
                         <div class="grid_12">
-                            <label c-label item="item" c-label-text="Harga
-                                Diskon"></label>
+                            <label c-label item="item" c-label-text="Harga Diskon"></label>
                         </div>
                         <div class="grid_12">
                             <input c-text-box type="input"
@@ -922,23 +909,7 @@
                                 ng-disabled="true" ng-disabled="txtbiaya" />
                         </div>
                     </div>
-                    <!-- <div class="grid_4">
-                        <div class="grid_12" style="margin-top: 10px">
-                            <div class="grid_4">
-                                <button class="btnTemplate1"
-                                    ng-click="tambah()">Tambah</button>
-                            </div>
-                            <div class="grid_4">
-                                <button class="btnTemplate1"
-                                    ng-click="hapus()">Hapus</button>
-                            </div>
-                            <div class="grid_4">
-                                <button class="btnTemplate1"
-                                    ng-click="batal()">Batal</button>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- </div> -->
+                   
                 </md-card-content>
             </md-card>
             <!-- </fieldset> -->
@@ -947,7 +918,7 @@
             <div class="k-edit-buttons k-state-default pull-right"
                 style="margin-top:10px">
                 <button class="k-button k-button-icontext"
-                    ng-click="tambah()"><span class="k-icon
+                    ng-click="tambahObat()"><span class="k-icon
                         k-edit"></span>Simpan</button>
             </div>
         </div>

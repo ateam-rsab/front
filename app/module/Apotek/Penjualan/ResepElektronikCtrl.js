@@ -17,73 +17,64 @@ define(['initialize'], function (initialize) {
                     "field": "noorder",
                     "title": "No Pesanan",
                     "width": "60px",
-                },
-                {
+
+
+                }, {
                     "field": "nocm",
                     "title": "No Rekam Medis",
                     "width": "60px",
 
 
-                },
-                {
+                }, {
                     "field": "namapasien",
                     "title": "Nama Pasien",
                     "width": "100px",
 
-                },
-                {
+                }, {
                     "field": "jeniskelamin",
                     "title": "Jenis Kelamin",
                     "width": "60px",
 
-                },
-                {
+                }, {
                     "field": "namaruanganrawat",
                     "title": "Ruang Rawat",
                     "width": "100px",
 
-                },
-                {
+                }, {
+                    template: "#= new moment(new Date(tglorder)).format('DD-MM-YYYY HH:mm:ss') #",
                     "field": "strukOrder.tglOrder",
                     "title": "Tanggal/Jam Masuk",
                     "width": "100px",
-                    "template": "#= new moment(new Date(tglorder)).format('DD-MM-YYYY HH:mm:ss') #",
 
-                },
-                {
+                }, {
                     "field": "namalengkap",
                     "title": "Dokter",
                     "width": "100px",
 
-                },
-                {
+                }, {
                     "field": "kelompokpasien",
                     "title": "Tipe Pasien",
                     "width": "60px",
 
-                },
-                {
+                }, {
+                    hidden: true,
                     "field": "namaruangan",
                     "width": "70px",
                     "title": "Depo",
-                    hidden: true,
                     aggregates: ["count"],
                     groupHeaderTemplate: "Ruangan #= value # "
 
-                },
-                {
+                }, {
                     "field": "statusorder",
                     "title": "Status",
                     "width": "60px",
 
-                },
-                {
+                }, {
                     "field": "namapengambilorder",
                     "title": "Pengambil Obat",
                     "width": "70px",
 
-                }
-            ];
+                }];
 
             LoadCache();
             function LoadCache() {
@@ -110,7 +101,69 @@ define(['initialize'], function (initialize) {
                     aggregate: "count"
                 }]
             };
+            // $scope.arrColumnGridResepElektronik = [{
+            //     "field": "strukOrder.noOrder",
+            //     "title": "No Pesanan",
 
+
+            // }, {
+            //     "field": "pasien.noCm",
+            //     "title": "No Rekam Medis",
+
+
+            // }, {
+            //     "field": "pasien.namaPasien",
+            //     "title": "Nama Pasien",
+
+            // }, {
+            //     "field": "pasien.jenisKelamin.jenisKelamin",
+            //     "title": "Jenis Kelamin",
+
+            // }, {
+            //     "field": "strukOrder.ruangan.namaRuangan",
+            //     "title": "Ruang Rawat",
+
+            // }, {
+            //     template: "#= new moment(new Date(strukOrder.tglOrder)).format('DD-MM-YYYY HH:mm:ss') #",
+            //     "field": "strukOrder.tglOrder",
+            //     "title": "Tanggal/Jam Masuk",
+
+            // }, {
+            //     "field": "penulisResep.namaLengkap",
+            //     "title": "Dokter",
+
+            // }, {
+            //     "field": "strukOrder.pasienDaftar.kelompokPasien.kelompokPasien",
+            //     "title": "Tipe Pasien",
+
+            // }, {
+            //     hidden: true,
+            //     "field": "strukOrder.ruanganTujuan.namaRuangan",
+            //     "title": "Depo",
+            //     aggregates: ["count"],
+            //     groupHeaderTemplate: "Ruangan #= value # "
+
+            // }, {
+            //     "field": "statusAntrian",
+            //     "title": "Status",
+
+            // }, {
+            //     "field": "strukOrder.namaPengambilOrder",
+            //     "title": "Pengambil Obat",
+
+            // }];
+
+            // $scope.noCm = "";
+            // $scope.startDate = new Date();
+            // $scope.untilDate = new Date();
+            // $scope.ruanganId = "";
+            // $scope.group = {
+            //     field: "strukOrder.ruanganTujuan.namaRuangan",
+            //     aggregates: [{
+            //         field: "strukOrder.ruanganTujuan.namaRuangan",
+            //         aggregate: "count"
+            //     }]
+            // };
 
             $scope.refresh = function () {
                 // debugger;
@@ -150,7 +203,7 @@ define(['initialize'], function (initialize) {
 
             $scope.now = new Date();
             $scope.detailOrder = function () {
-
+                console.log($scope.item);
                 //$state.go('ResepElektronikDetail', { noOrder: $scope.item.strukOrder.noOrder, noAntrianPasien: $scope.item.strukOrder.noRegistrasi.noRec });
 
                 // *** OLD
@@ -253,7 +306,8 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.verifikasi = function () {
-                console.log($scope.item);
+                // debugger;
+
                 if ($scope.item.statusorder == 'Menunggu') {
                     //$state.go('ResepElektronikVerifikasi', { noOrder: $scope.item.strukOrder.noOrder, noAntrianPasien: $scope.item.strukOrder.noRegistrasi.noRec });
                     var arrStr = {
@@ -265,24 +319,21 @@ define(['initialize'], function (initialize) {
                         5: $scope.item.klid,
                         6: $scope.item.namakelas,
                         7: $scope.item.tglregistrasi,
-                        8: $scope.item.norec,
+                        8: $scope.item.norec_apd,
                         9: $scope.item.noorder,
                         10: $scope.item.jenisPenjamin,
                         11: $scope.item.kelompokpasien,
                         12: $scope.item.beratBadan,
                         13: $scope.item.AlergiYa,
-                        14: $scope.item.norec_so,
-                        15: $scope.item.tglorder,
-                        16: $scope.item.namalengkap
+                        14: $scope.item.norec_so
                     }
                     cacheHelper.set('InputResepApotikCtrl', arrStr);
-                    $state.go('InputResepElektronikApotik')
+                    $state.go('InputResepElektronikApotik');
 
                 } else {
                     alert('Sudah di verifikasi!!')
                 }
             }
-
             $scope.ambilObat = function () {
                 if ($scope.item.statusorder == 'Selesai') {
                     //$state.go('ResepElektronikAmbilObat', { noOrder: $scope.item.strukOrder.noOrder, noAntrianPasien: $scope.item.strukOrder.noRegistrasi.noRec });
@@ -291,7 +342,6 @@ define(['initialize'], function (initialize) {
                     alert('Status harus Selesai!!')
                 }
             }
-
             $scope.columnGridRiwayat = [
                 {
                     "field": "no",
@@ -338,13 +388,21 @@ define(['initialize'], function (initialize) {
                     title: "Qty",
                     width: "100px"
                 },
-
+                // {
+                //     "field": "namalengkap",
+                //     "title": "Dokter",
+                //     "width" : "100px"
+                // },
                 {
                     "field": "namaruangan",
                     "title": "Apotik",
                     "width": "70px",
                 },
-
+                // {
+                //     "field": "statusorder",
+                //     "title": "Status",
+                //     "width" : "70px",
+                // }
             ];
             $scope.detailGridOptions = function (dataItem) {
                 return {
