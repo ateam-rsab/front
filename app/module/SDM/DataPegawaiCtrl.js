@@ -307,7 +307,7 @@ define(['initialize'], function (initialize) {
                                 { value: data[i].gelarBelakang },
                                 { value: data[i].namaLengkap },
                                 { value: data[i].tempatLahir },
-                                { value: data[i].tglLahir, format: "dd MM yyyy" },
+                                { value: data[i].tglLahir },
                                 { value: data[i].jenisKelamin },
                                 { value: data[i].kategoriPegawai },
                                 { value: data[i].kedudukan },
@@ -318,7 +318,7 @@ define(['initialize'], function (initialize) {
                                 { value: data[i].namaPendidikan },
                                 { value: data[i].jabatanInternal },
                                 { value: data[i].kelompokJabatan },
-                                { value: data[i].statusPerkawinanPegawai },
+                                { value: data[i].statusKawin },
                                 { value: data[i].bankRekeningNomor },
                                 { value: data[i].bankRekeningAtasNama },
                                 { value: data[i].bankRekeningNama },
@@ -542,7 +542,7 @@ define(['initialize'], function (initialize) {
                                 usergemes = element.usernames.usernames[i].namaUser + ', ' + usergemes;
                             }
                             res.data.data.pegawai[x].NamaUser = usergemes;
-                            element.tglLahir = moment(res.data.data.pegawai[x].tglLahir).format('DD-MM-YYYY');
+                            // element.tglLahir = moment(res.data.data.pegawai[x].tglLahir).format('DD-MM-YYYY');
                             element.pencarian = "";
                         }
                         $scope.listPegawai = res.data.data.pegawai;

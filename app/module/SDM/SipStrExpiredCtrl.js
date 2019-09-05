@@ -1,7 +1,7 @@
 define(['initialize'], function(initialize) {
 	'use strict';
-	initialize.controller('SipStrExpiredCtrl', ['$rootScope', '$scope', '$timeout', 'ModelItem','$state','ManageSdm', 'FindSdm', 'DateHelper',
-		function($rootScope, $scope, $timeout, ModelItem, $state, ManageSdm, FindSdm, dateHelper) {
+	initialize.controller('SipStrExpiredCtrl', ['$rootScope', '$scope', '$timeout', 'ModelItem','$state','ManageSdm', 'ManageSdmNew', 'FindSdm', 'DateHelper',
+		function($rootScope, $scope, $timeout, ModelItem, $state, ManageSdm, ManageSdmNew, FindSdm, dateHelper) {
             $scope.item = {};
             $scope.yearSelected = { 
                 format: "MMMM yyyy",
@@ -10,7 +10,7 @@ define(['initialize'], function(initialize) {
             };
             $scope.loadDataSip = function(){
                 $scope.isRouteLoading = true;
-                ManageSdm.getOrderList("pegawai/get-pegawai-sip-expired").then(function(res){
+                ManageSdmNew.getListData("pegawai/get-pegawai-sip-expired").then(function(res){
                     $scope.datagridSip = new kendo.data.DataSource({
                         data: res.data.data,
                         pageSize: 15,
@@ -31,7 +31,7 @@ define(['initialize'], function(initialize) {
             };
             $scope.loadDataStr = function(){
                 $scope.isRouteLoading = true;
-                ManageSdm.getOrderList("pegawai/get-pegawai-str-expired").then(function(res){
+                ManageSdmNew.getListData("pegawai/get-pegawai-str-expired").then(function(res){
                     $scope.datagridStr = new kendo.data.DataSource({
                         data: res.data.data,
                         pageSize: 10,
