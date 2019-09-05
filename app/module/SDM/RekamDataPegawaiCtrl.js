@@ -1315,13 +1315,13 @@ define(['initialize'], function (initialize) {
                             width: "200px"
                         },
                         {
-                            field: "ttdJabatanSk",
-                            title: "<h3>Jabatan Tertanda</h3>",
+                            field: "ttdPegawaiSk",
+                            title: "<h3>Nama Tertanda SK</h3>",
                             width: "200px"
                         },
                         {
-                            field: "ttdPegawaiSk",
-                            title: "<h3>Nama Tertanda SK</h3>",
+                            field: "ttdJabatanSk",
+                            title: "<h3>Jabatan Tertanda</h3>",
                             width: "200px"
                         },
                         {

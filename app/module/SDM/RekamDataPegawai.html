@@ -844,45 +844,49 @@
 </div>
 <div kendo-window="popUpRiwayat" k-title="'Riwayat Jabatan Pegawai'" k-width="650" k-visible="false"  
 	k-on-open="win2visible = true" k-on-close="win2visible = false">
-	<div class="panel panel-default container_12" style="padding: 0px 10px;"> 
-		<div class="grid_6">
-		    <div class="grid_12">
-			    <label c-label item="item" c-label-text="JenisJabatan"></label>
-			</div>
-			<div class="clear"></div> 
-			<div class="grid_12">                 							 
-			    <input kendo-combo-box k-ng-model="item.jenisJabatan" k-data-text-field="'jenisJabatan'" 
-				    k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisJabatan" k-on-change="getDataJabatan(item.jenisJabatan.id)"/>
-			</div>
-		</div> 
-		<div class="grid_6">
-		    <div class="grid_12">
-			    <label c-label item="item" c-label-text="Jabatan"></label>
-			</div>
-			<div class="clear"></div> 
-			<div class="grid_12">                 
-                <input style="width: 100%;" kendo-combo-box k-ng-model="item.riwayatJabatan" k-data-text-field="'namaJabatan'" k-data-value-field="'idJabatan'" k-filter="'contains'" k-data-source="listJabatanByJenisJabatan"/>
-			    <!-- <input kendo-combo-box k-ng-model="item.jabatanRiwayat" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJabatanByJenisJabatan" /> -->
-			</div>
-		</div>  
-		<div class="grid_6">
-		    <div class="grid_12">
-			    <label c-label item="item" c-label-text="No SK"></label>
-			</div>
-            <div class="clear"></div> 
-            <div class="grid_12">                 
-                <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noSK" />
+    <div class="panel panel-default container_12" style="padding: 0px 10px;">   
+        <div class="grid_12">
+            <div class="grid_6">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="No SK"></label>
+                </div>
+                <div class="clear"></div> 
+                <div class="grid_12">                 
+                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.noSK" />
+                </div>
             </div>
-		</div>
-		<div class="grid_6">
-		    <div class="grid_12">
-			    <label c-label item="item" c-label-text="Tanggal SK"></label>
-			</div>
-			<div class="clear"></div> 
-			<div class="grid_12">                  
-			    <input kendo-date-picker k-ng-model="item.tglSK" k-format="'dd-MM-yyyy'" style="width: 100%" />
-			</div>
-		</div>  
+            <div class="grid_6">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Tanggal SK"></label>
+                </div>
+                <div class="clear"></div> 
+                <div class="grid_12">                  
+                    <input kendo-date-picker k-ng-model="item.tglSK" k-format="'dd-MM-yyyy'" style="width: 100%" />
+                </div>
+            </div>  
+        </div>
+        <div class="grid_12">
+            <div class="grid_6">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="JenisJabatan"></label>
+                </div>
+                <div class="clear"></div> 
+                <div class="grid_12">                 							 
+                    <input kendo-combo-box k-ng-model="item.jenisJabatan" k-data-text-field="'jenisJabatan'" 
+                        k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisJabatan" k-on-change="getDataJabatan(item.jenisJabatan.id)"/>
+                </div>
+            </div> 
+            <div class="grid_6">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Jabatan"></label>
+                </div>
+                <div class="clear"></div> 
+                <div class="grid_12">                 
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.riwayatJabatan" k-data-text-field="'namaJabatan'" k-data-value-field="'idJabatan'" k-filter="'contains'" k-data-source="listJabatanByJenisJabatan"/>
+                    <!-- <input kendo-combo-box k-ng-model="item.jabatanRiwayat" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJabatanByJenisJabatan" /> -->
+                </div>
+            </div>
+        </div>
 		<div class="grid_12">
 		    <div class="grid_6"> 
 			    <div class="grid_12">
@@ -892,7 +896,7 @@
 				<div class="grid_12">
                     <!-- <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.atasanTtdSK" /> -->
                     <!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.atasanTtdSK" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawaiRiwayat" /> -->
-                    <input kendo-auto-complete ng-model="item.atasanTtdSK" k-data-source="listPegawaiRiwayatAuto" style="width: 100%;" />
+                    <input kendo-auto-complete ng-model="item.atasanTtdSK" k-filter="'contains'" k-data-source="listPegawaiRiwayatAuto" style="width: 100%;" />
 				</div>
 			</div>
 			<div class="grid_6">
@@ -903,7 +907,7 @@
 				<div class="grid_12">
                     <!-- <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.jabatanTtd" /> -->
                     <!-- <input kendo-combo-box k-ng-model="item.jabatanTtd" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListJabatan" /> -->
-                    <input kendo-auto-complete ng-model="item.jabatanTtd" k-data-source="ListJabatanAuto" style="width: 100%;" />
+                    <input kendo-auto-complete ng-model="item.jabatanTtd" k-filter="'contains'" k-data-source="ListJabatanAuto" style="width: 100%;" />
 				</div>
 			</div>
 		</div>
