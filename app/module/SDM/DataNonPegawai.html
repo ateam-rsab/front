@@ -1,0 +1,59 @@
+<div style="display: flex; flex-direction: column">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="title" c-translate>Data Non Pegawai</span>
+            <div class="panel-place panel-place-custom" ng-show="klikRiwayat"><i
+                    style="cursor:pointer;" ng-click='closeHistory()' class="fa
+                    fa-times-circle fa-2x" aria-hidden="true"></i></div>
+        </div>
+        <div class="grid_12">
+            <div class="grid_2">
+                <label>Nama</label>
+                <input id="category" c-text-box type="input" filter="'varchar'"
+                    class="k-textbox" ng-model="item.namaPegawai"
+                    ng-blur="searchDataPegawai()" />
+            </div>
+            <div class="grid_2">
+                <label>Unit Kerja</label>
+                <input style="width: 100%;" kendo-combo-box
+                    k-ng-model="item.unitKerja" k-data-text-field="'name'"
+                    k-data-value-field="'id'" k-filter="'contains'"
+                    k-auto-bind="false" k-data-source="listUnitKerja"
+                    k-on-change="searchDataPegawai()" />
+            </div>
+            <div class="grid_2">
+                <label>Bulan Masuk</label>
+                <input kendo-date-picker k-ng-model="item.tglMasuk"
+                    k-format="'MM-yyyy'" k-on-change="searchDataPegawai()" />
+            </div>
+            <!-- style="margin-left: 60px;margin-top: 6px;" -->
+            <div class="grid_1" style="margin-top: 16px;">
+                <div class="grid_6">
+                    <i ng-click='searchDataPegawai()' id="iconButton"
+                        data-role="button" class="k-button k-button-icon
+                        k-primary" role="button" aria-disabled="false"
+                        tabindex="0" style="margin-left: 33%;"><span
+                            class="k-sprite k-icon k-i-search">Refresh</span></i>
+                </div>
+                <div class="grid_6">
+                    <i ng-click='resetFilter()' id="iconButton"
+                        data-role="button" class="k-button k-button-icon
+                        k-primary" role="button" aria-disabled="false"
+                        tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></i>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <md-card>
+        <md-card-content>
+            <div kendo-grid id="gridDataPegawai"
+                k-data-source="daftarPegawai" options="daftarpegawaiOpt"
+                style="padding:10px;"></div>
+        </md-card-content>
+    </md-card>
+</div>
+
+
+<div ng-include='" ../app/module/Shared/TemplateLoading" '></div>

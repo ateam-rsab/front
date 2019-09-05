@@ -4065,6 +4065,10 @@
       "urlDep": "module/SDM/RegistrasiPelamarCtrl"
     },
     {
+      "nameDep": "RekamDataNonPegawaiCtrl",
+      "urlDep": "module/SDM/RekamDataNonPegawaiCtrl"
+    },
+    {
       "nameDep": "RekamDataPegawaiCtrl",
       "urlDep": "module/SDM/RekamDataPegawaiCtrl"
     },
@@ -4087,6 +4091,10 @@
     {
       "nameDep": "DataPegawaiCtrl",
       "urlDep": "module/SDM/DataPegawaiCtrl"
+    },
+    {
+      "nameDep": "DataNonPegawaiCtrl",
+      "urlDep": "module/SDM/DataNonPegawaiCtrl"
     },
     {
       "nameDep": "MasterUrutanTestCtrl",

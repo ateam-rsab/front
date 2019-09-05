@@ -29,7 +29,7 @@ define(['initialize'], function (initialize) {
             var getPangkatDanGolongan = function () {
                 ManageSdmNew.getListData('pegawai/get-all-pangkat-golongan').then(function (res) {
                     $scope.listOfPangkat = res.data.data;
-                    console.log(res);
+                    // console.log(res);
                 })
             }
             $scope.init = function () {
@@ -73,7 +73,7 @@ define(['initialize'], function (initialize) {
                     // ManageSdm.getOrderList("service/list-generic/?view=Jabatan&select=id,namaJabatan&criteria=statusEnabled&values=true", true),
                 ]).then(function (res) {
                     // var tempStatusKawin = [];
-                    console.log(res);
+                    // console.log(res);
                     if (res[0].data) {
                         $scope.ListJabatanInternal = res[0].data.data.dataJabatanInternal;
                         $scope.ListJabatanInternalPop = res[0].data.data.dataJabatanInternal;
@@ -123,6 +123,16 @@ define(['initialize'], function (initialize) {
                     $scope.ListAgama = [];
                     $scope.ListKedudukanPegawai = [];
                     $scope.ListDetilKelompokJabatan = [];
+                    $scope.listPegawaiRiwayatAuto = [];
+                    for(let i = 0;$scope.listPegawaiRiwayat.length > i; i++) {
+                        $scope.listPegawaiRiwayatAuto.push($scope.listPegawaiRiwayat[i].namaLengkap);
+                    }
+
+                    $scope.ListJabatanAuto = [];
+                    for(let i = 0;$scope.ListJabatan.length > i; i++) {
+                        $scope.ListJabatanAuto.push($scope.ListJabatan[i].namaJabatan);
+                    }
+                    
                     tempDataKelompokJabatan.forEach(function (el) {
                         if (el.detailKelompokJabatan !== '-') {
                             var dataTemp = {
@@ -373,7 +383,7 @@ define(['initialize'], function (initialize) {
                     $scope.isMenuDataPegawai = true; // show tombol hapus
                     $scope.isRouteLoading = true; // show loading icon
                     $q.all([ManageSdmNew.getListData("pegawai/get-pegawai-by-customs/" + id)]).then(function (res) {
-                        console.log(res);
+                        // console.log(res);
                         if (res[0].statResponse) {
                             $scope.item = res[0].data.data;
                             if ($scope.item.isMenanggung === null) {
@@ -387,7 +397,7 @@ define(['initialize'], function (initialize) {
                                     id: 1
                                 }
                             }
-                            $scope.item.golongan = $scope.item.pangkat ? $scope.item.pangkat.golonganPegawai.golonganPegawai : ""
+                            $scope.item.golongan = $scope.item.pangkat ? $scope.item.pangkat.golonganPegawai != null ? $scope.item.pangkat.golonganPegawai.golonganPegawai : '' : "";
                             $scope.item.tglBerakhirSip = $scope.item.tglBerakhirSip ? dateHelper.toDateFromTimestamp(res[0].data.data.tglBerakhirSip) : null;
                             $scope.item.tglBerakhirStr = $scope.item.tglBerakhirStr ? dateHelper.toDateFromTimestamp(res[0].data.data.tglBerakhirStr) : null;
                             $scope.item.tglTerbitSip = $scope.item.tglTerbitSip ? dateHelper.toDateFromTimestamp(res[0].data.data.tglTerbitSip) : null;
@@ -1243,7 +1253,8 @@ define(['initialize'], function (initialize) {
                         {
                             field: "tglSk",
                             title: "<h3>Tanggal SK</h3>",
-                            width: "100px"
+                            width: "100px",
+                            template: "#= kendo.toString(new Date(tglSk), \"dd/MM/yyyy\") #"
                         },
                         {
                             field: "jenisJabatan",
@@ -1649,7 +1660,7 @@ define(['initialize'], function (initialize) {
                     }
                 }
                 ManageSdmNew.saveData(dataObjPost, 'pegawai/save-riwayat-pendidikan').then(res => {
-                    console.log(res);
+                    // console.log(res);
                     $scope.getDataRiwayatPendidikan();
                     $scope.popUpRiwayatPendidikan.close();
                 });
@@ -1685,7 +1696,7 @@ define(['initialize'], function (initialize) {
                     }
                 }
                 ManageSdmNew.saveData(dataSave, 'pegawai/save-riwayat-pendidikan').then(res => {
-                    console.log(res);
+                    // console.log(res);
                     $scope.getDataRiwayatPendidikan();
                     $scope.popUpRiwayatPendidikan.close();
                 });

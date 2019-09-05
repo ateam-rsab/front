@@ -382,6 +382,34 @@
         }
       ]
     },
+     {
+      "name": "RekamDataNonPegawai",
+      "url": "/RekamDataNonPegawai",
+      "templateurl": "module/SDM/RekamDataNonPegawai.html",
+      "controller": "RekamDataNonPegawaiCtrl",
+      "deps": [
+        {
+          "module": "Services",
+          "define": "Service"
+        },
+        {
+          "module": "LoginServices",
+          "define": "LoginService"
+        },
+        {
+          "module": "SdmService",
+          "define": "SdmService"
+        },
+        {
+          "module": "PegawaiService",
+          "define": "PegawaiService"
+        },
+        {
+          "module": "PhpService",
+          "define": "PhpService"
+        }
+      ]
+    },
     {
       "name": "MutasiPegawai",
       "url": "/MutasiPegawai/:idPegawai",
@@ -467,6 +495,30 @@
       "url": "/DataPegawai",
       "templateurl": "module/SDM/DataPegawai.html",
       "controller": "DataPegawaiCtrl",
+      "deps": [
+        {
+          "module": "Services",
+          "define": "Service"
+        },
+        {
+          "module": "LoginServices",
+          "define": "LoginService"
+        },
+        {
+          "module": "SdmService",
+          "define": "SdmService"
+        },
+        {
+          "module": "SarprasService",
+          "define": "SarprasService"
+        }
+      ]
+    },
+    {
+      "name": "DataNonPegawai",
+      "url": "/DataNonPegawai",
+      "templateurl": "module/SDM/DataNonPegawai.html",
+      "controller": "DataNonPegawaiCtrl",
       "deps": [
         {
           "module": "Services",
