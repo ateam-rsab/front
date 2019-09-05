@@ -36,7 +36,8 @@ define(['initialize'], function (initialize) {
                 getPangkatDanGolongan();
                 $q.all([
                     ManageSdmNew.getListData("sdm/get-riwayat-jabatan?idPegawai=" + $state.params.idPegawai + "&idJenisJabatan=3"),
-                    manageSarprasPhp.getDataTableTransaksi("historypegawai/get-data-riwayat-pendidikan-pgw?id=" + $state.params.idPegawai),
+                    // manageSarprasPhp.getDataTableTransaksi("historypegawai/get-data-riwayat-pendidikan-pgw?id=" + $state.params.idPegawai),
+                    ManageSdmNew.getListData("sdm/get-data-riwayat-pendidikan-pgw?id=" + $state.params.idPegawai),
                     ManageSdm.getOrderList("service/list-generic/?view=Agama&select=*", true),
                     ManageSdm.getOrderList("service/list-generic/?view=PosisiLamaran&select=*", true),
                     // ManageSdm.getOrderList("service/list-generic/?view=StatusPerkawinanPegawai&select=id,statusPerkawinan&criteria=statusEnabled&values=true", true),
@@ -85,7 +86,7 @@ define(['initialize'], function (initialize) {
                             id: res[14].data.data.dataJabatanFungsional[0].id
                         };
                     }
-                    $scope.historyListPedidikan = res[1].data;
+                    $scope.historyListPedidikan = res[1].data.data.data;
                     // $scope.ListAgama = res[2].data.splice(1, 6);
                     let tempDataAgama = res[2].data;
                     $scope.ListPosisiLamaran = res[3].data;
@@ -442,8 +443,10 @@ define(['initialize'], function (initialize) {
                             //         grid.showColumn(5);
                             //     }
                             // }
-                            $scope.item.golonganPegawai = {
-                                id: res[0].data.data.pangkat.golonganPegawai.id
+                            if (res[0].data.data.pangkat !== undefined) {
+                                $scope.item.golonganPegawai = {
+                                    id: res[0].data.data.pangkat.golonganPegawai.id
+                                }
                             }
                             $scope.disableSip = true;
                             $scope.disableStr = true;
