@@ -1,10 +1,10 @@
 define([], function () {
     'use strict';
-    var baseURLFrontend = 'http://172.16.99.136',
+    var baseURLFrontend = 'http://172.16.99.167',
         portFrontend = '5555',
 
         baseURLPhp = 'http://192.168.12.3',
-        portPhp = '2222',
+        portPhp = '5555',
 
         baseURLJava = 'http://192.168.12.3',
         portJava = '8080',
@@ -45,8 +45,8 @@ define([], function () {
     } else {
         return {
             /**Login PHP */
-            baseUrlLogin: `${baseURLPhp}:${portPhp}/simrs_harkit/service/auth/sign-in`,
-            baseUrlLogout: `${baseURLPhp}:${portPhp}/simrs_harkit/service/auth/sign-out`,
+            // baseUrlLogin: `${baseURLPhp}:${portPhp}/simrs_harkit/service/auth/sign-in`,
+            // baseUrlLogout: `${baseURLPhp}:${portPhp}/simrs_harkit/service/auth/sign-out`,
 
             urlDataGeneric_Akuntansi: `${baseURLPhp}:${portPhp}/simrs_harkit/service/list-generic?view=`,
             urlDataTableMaster_Akuntansi: `${baseURLPhp}:${portPhp}/simrs_harkit/service/master/`,
@@ -54,8 +54,8 @@ define([], function () {
             baseApiPostData_Akuntansi: `${baseURLPhp}:${portPhp}/simrs_harkit/service/`,
 
             /**Login Java */
-            // baseUrlLogin: `${baseURLJava}:${portJava}/jasamedika-web/auth/sign-in`,
-            // baseUrlLogout: `${baseURLJava}:${portJava}/jasamedika-web/auth/sign-out`,
+            baseUrlLogin: `${baseURLJava}:${portJava}/jasamedika-web/auth/sign-in`,
+            baseUrlLogout: `${baseURLJava}:${portJava}/jasamedika-web/auth/sign-out`,
 
             baseUrlAction: `${baseURLJava}:${portJava}/jasamedika-web/`,
             baseApiUrlData: `${baseURLJava}:${portJava}/jasamedika-web/`,

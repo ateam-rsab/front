@@ -213,6 +213,10 @@
                 ]
             },
             {
+                "name": "Data Non Pegawai",
+                "link": "#/DataNonPegawai"
+            },
+            {
                 "name": "Mutasi, Resign dan Sanksi Pegawai",
                 "children": [
                     {

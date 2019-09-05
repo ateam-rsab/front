@@ -127,6 +127,16 @@ define(['initialize'], function (initialize) {
                     $scope.ListAgama = [];
                     $scope.ListKedudukanPegawai = [];
                     $scope.ListDetilKelompokJabatan = [];
+                    $scope.listPegawaiRiwayatAuto = [];
+                    for(let i = 0;$scope.listPegawaiRiwayat.length > i; i++) {
+                        $scope.listPegawaiRiwayatAuto.push($scope.listPegawaiRiwayat[i].namaLengkap);
+                    }
+
+                    $scope.ListJabatanAuto = [];
+                    for(let i = 0;$scope.ListJabatan.length > i; i++) {
+                        $scope.ListJabatanAuto.push($scope.ListJabatan[i].namaJabatan);
+                    }
+                    
                     tempDataKelompokJabatan.forEach(function (el) {
                         if (el.detailKelompokJabatan !== '-') {
                             var dataTemp = {
