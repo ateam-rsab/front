@@ -217,17 +217,17 @@ define(['initialize'], function (initialize) {
                 }
                 if ($scope.item.ruanganTujuan == undefined) {
                     toastr.warning("Pilih Ruangan Tujuan terlebih dahulu!")
-                    return
+                    return;
                 }
-                if ($scope.item.dokter == undefined) {
-                    toastr.warning("Pilih Dokter terlebih dahulu!")
-                    return
-                }
+                // if ($scope.item.dokter == undefined) {
+                //     toastr.warning("Pilih Dokter terlebih dahulu!")
+                //     return;
+                // }
                 var objSave = {
                     jeniskonsultasi: $scope.item.jenisKonsultasi,
                     norec_so: $scope.item.norec != undefined ? $scope.item.norec : '',
                     norec_pd: $scope.norecPd,
-                    pegawaifk: $scope.item.dokter.id,
+                    pegawaifk: $scope.item.dokter ? $scope.item.dokter.id : null,
                     objectruanganasalfk: $scope.item.ruanganAsal.id,
                     objectruangantujuanfk: $scope.item.ruanganTujuan.id,
                     keterangan: $scope.item.ikhtisarKlinik ? $scope.item.ikhtisarKlinik : '',
