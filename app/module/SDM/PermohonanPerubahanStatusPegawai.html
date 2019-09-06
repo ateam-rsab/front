@@ -82,7 +82,7 @@
 					<div class="grid_6" >
 						<div ng-repeat="opsi in radioIsCutiLuarNegeri | orderBy:'id'" style="margin-left: -150px; margin-top: -8px">
 	                		<div class="grid_2">
-		                    	<input type="radio" name="{{opsi.nama}}" id="{{opsi.nama}}" class="k-radio" ng-model="item.isCutiLuarNegeri" value="{{opsi.id}}">
+		                    	<input type="radio" name="{{opsi.nama}}" id="{{opsi.nama}}" class="k-radio" ng-model="item.isCutiLuarNegeri" ng-change="setMinDate()" value="{{opsi.id}}">
 		                    	<label class="k-radio-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
 	                		</div>
 	            		</div>

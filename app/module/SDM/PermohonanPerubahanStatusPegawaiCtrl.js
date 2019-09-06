@@ -36,13 +36,30 @@ define(['initialize'], function (initialize) {
                 format: 'dd-MM-yyyy',
                 change: onChangeDate,
                 // min: twoDaysAfter($scope.now)
+                // min: $scope.item.isCutiLuarNegeri ? $scope.item.isCutiLuarNegeri === 1 ? getNextMonth($scope.now) : $scope.now : $scope.now
                 min: getNextMonth($scope.now)
             }
 
             function getNextMonth(date) {
                 let now = new Date();
+                // let
+                let today = now.getDate();
                 let current = new Date();
-                return new Date(now.getFullYear(), now.getMonth() + 1, 1);
+                // debugger;
+                console.log(now.getDate());
+                if (today === 31) {
+                    today = 30;
+                }
+                return new Date(now.getFullYear(), now.getMonth() + 1, today);
+            }
+
+            $scope.setMinDate = function () {
+                // alert($scope.item.isCutiLuarNegeri);
+                if ($scope.item.isCutiLuarNegeri === 1) {
+                    $scope.datePickerOptions.min = getNextMonth($scope.now);
+                } else {
+                    $scope.datePickerOptions.min = $scope.now;
+                }
             }
 
             function onChangeDate(e) {
