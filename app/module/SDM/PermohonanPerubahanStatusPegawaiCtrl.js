@@ -13,7 +13,6 @@ define(['initialize'], function (initialize) {
             var listPegawaiAdminSDM = [];
             $scope.now = new Date();
             $scope.titlePelimpahan = '';
-
             function twoDaysAfter(date) {
                 var newDate = date;
                 newDate.setDate(newDate.getDate() + 2);
@@ -35,8 +34,15 @@ define(['initialize'], function (initialize) {
             };
             $scope.datePickerOptions = {
                 format: 'dd-MM-yyyy',
-                change: onChangeDate
+                change: onChangeDate,
                 // min: twoDaysAfter($scope.now)
+                min: getNextMonth($scope.now)
+            }
+
+            function getNextMonth(date) {
+                let now = new Date();
+                let current = new Date();
+                return new Date(now.getFullYear(), now.getMonth() + 1, 1);
             }
 
             function onChangeDate(e) {
@@ -895,7 +901,7 @@ define(['initialize'], function (initialize) {
                         }
                     }
                     //cek jumlah tanggal tidak lebih banyak dari total sisa cuti
-                    if ($scope.tanggalPermohonan.length > ($scope.sisaCutiTotal-$scope.jumlahPengajuanDiproses)) {
+                    if ($scope.tanggalPermohonan.length > ($scope.sisaCutiTotal - $scope.jumlahPengajuanDiproses)) {
                         toastr.warning('Jumlah tanggal permohonan melebihi sisa cuti total dan pengajuan cuti tahunan yang belum diputuskan persetujuannya!')
                         return
                     }
@@ -921,7 +927,7 @@ define(['initialize'], function (initialize) {
                     if ($scope.item.statusPegawai.id == 29 && $scope.tanggalPermohonan.length === 1) {
                         var isPegawaiSDM = false;
                         for (let i = 0; i < listPegawaiAdminSDM.data.length; i++) {
-                            if (listPegawaiAdminSDM.data[i]==$scope.pegawai.id) {
+                            if (listPegawaiAdminSDM.data[i] == $scope.pegawai.id) {
                                 isPegawaiSDM = true;
                             };
                         }
@@ -1105,7 +1111,7 @@ define(['initialize'], function (initialize) {
                         delete $scope.currentData.pegawai2;
                         var isPegawaiSDM = false;
                         for (let i = 0; i < listPegawaiAdminSDM.data.length; i++) {
-                            if (listPegawaiAdminSDM.data[i]==$scope.pegawai.id) {
+                            if (listPegawaiAdminSDM.data[i] == $scope.pegawai.id) {
                                 isPegawaiSDM = true;
                             };
                         }
