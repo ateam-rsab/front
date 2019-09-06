@@ -1527,10 +1527,10 @@ define(['initialize'], function (initialize) {
                     selectable: 'row',
                     columns: [
                         {
-                            field: "namaTempatPendidikan", title: "<h3>Nama Institusi</h3>", width: "150px"
+                            field: "pendidikan", title: "<h3>Pendidikan</h3>", width: "100px"
                         },
                         {
-                            field: "pendidikan", title: "<h3>Pendidikan</h3>", width: "100px"
+                            field: "namaTempatPendidikan", title: "<h3>Nama Institusi</h3>", width: "150px"
                         },
                         {
                             field: "jurusan", title: "<h3>Jurusan</h3>", width: "150px"
