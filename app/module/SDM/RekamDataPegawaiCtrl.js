@@ -1049,7 +1049,8 @@ define(['initialize'], function (initialize) {
                     // "pegawaiTtd":{
                     //     "id":143
                     // },
-                    "tglSK": dateHelper.toTimeStamp($scope.item.tglSK),
+                    // "tglSK": dateHelper.toTimeStamp($scope.item.tglSK),
+                    "tglSK": $scope.tglSK,
                     "jabatan": {
                         "id": $scope.item.riwayatJabatan.idJabatan
                     },
