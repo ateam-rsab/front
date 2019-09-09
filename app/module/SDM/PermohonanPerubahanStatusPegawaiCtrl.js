@@ -32,12 +32,14 @@ define(['initialize'], function (initialize) {
                 start: "year",
                 depth: "year"
             };
+
             $scope.datePickerOptions = {
                 format: 'dd-MM-yyyy',
                 change: onChangeDate,
                 // min: twoDaysAfter($scope.now)
                 // min: $scope.item.isCutiLuarNegeri ? $scope.item.isCutiLuarNegeri === 1 ? getNextMonth($scope.now) : $scope.now : $scope.now
-                min: getNextMonth($scope.now)
+                // min: getNextMonth($scope.now)
+                min: $scope.now
             }
 
             function getNextMonth(date) {
@@ -1016,7 +1018,10 @@ define(['initialize'], function (initialize) {
                             toastr.warning('Tanggal permohonan belum di isi', 'Peringatan');
                             return;
                         }
-
+                        if($scope.validateTanggal) {
+                            $scope.validateTanggal();
+                            return;
+                        }
                         ManageSdmNew.saveData(dataSend, "sdm/save-pegawai-status").then(function (e) {
                             // console.log(JSON.stringify(e.data));
                             if (e.data.data.bisaCuti == false) {
@@ -1034,6 +1039,28 @@ define(['initialize'], function (initialize) {
                         ModelItem.showMessages(isValid.messages);
                     }
                 }
+            }
+
+            $scope.validateTanggal = function () {
+                let tempTanggal = [];
+                
+                for(let i = 0; i < $scope.tanggalPermohonan.length; i++) {
+                    tempTanggal.push($scope.tanggalPermohonan[i].tgl);
+                }
+                if(parseInt($scope.item.isCutiLuarNegeri) === 1) {
+                    let now = new Date();
+                    let nextMonth = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 30);
+                    for(let i = 0; i < tempTanggal.length; i++) {
+                        if(tempTanggal[i] < nextMonth) {
+                            toastr.warning('Tidak bisa mengajukan cuti pada tangga ' + DateHelper.formatDate(tempTanggal[i], "DD-MM-YYYY"));
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                }
+                return false;
+                // console.log(tempTanggal)
             }
 
             // $scope.Save = function () {
