@@ -971,8 +971,8 @@ define(['initialize'], function (initialize) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                 var dataDelete = {
-                    ttdPegawaiSk: $scope.item.atasanTtdSK,
-                    ttdJabatanSk: $scope.item.jabatanTtd,
+                    ttdPegawaiSk: dataItem.ttdPegawaiSk,
+                    ttdJabatanSk: dataItem.ttdJabatanSk,
                     // jabatanTtd :{
                     //     id:dataItem.idJabatanTtd
                     // },
@@ -1714,7 +1714,13 @@ define(['initialize'], function (initialize) {
                     },
                     "pendidikan": {
                         "id": dataItem.idPendidikan
-                    }
+                    },
+                    "namaTempatPendidikan": dataItem.namaTempatPendidikan,
+                    "jurusan": dataItem.jurusan,
+                    "tglLulus": dataItem.tglLulus,
+                    "nilaiIPK": dataItem.nilaiIPK,
+                    "noIjazah": dataItem.noIjazah,
+                    "tglIjazah": dataItem.tglIjazah 
                 }
                 ManageSdmNew.saveData(dataObjPost, 'pegawai/save-riwayat-pendidikan').then(res => {
                     // console.log(res);
