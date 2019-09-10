@@ -982,7 +982,8 @@ define(['initialize'], function (initialize) {
                     // pegawaiTtd : {
                     //     id:dataItem.idPgwTtd
                     // },
-                    noSk: dataItem.noSk,
+                    noSK: dataItem.noSk,
+                    tglSK: dataItem.tglSk,
                     pegawai: {
                         id: dataItem.idPgw
                     },
@@ -1036,6 +1037,11 @@ define(['initialize'], function (initialize) {
                     toastr.warning('Anda belum memilih Jabatan Tanda Tangan SK');
                     return;
                 }
+
+                if ($scope.item.tglSK) {
+                    $scope.tglSK = dateHelper.toTimeStamp($scope.item.tglSK);
+                }
+
                 var dataSave = {
                     "noRec": $scope.noRecRiwayatJabatan ? $scope.noRecRiwayatJabatan : null,
                     "pegawai": {
@@ -1049,7 +1055,6 @@ define(['initialize'], function (initialize) {
                     // "pegawaiTtd":{
                     //     "id":143
                     // },
-                    // "tglSK": dateHelper.toTimeStamp($scope.item.tglSK),
                     "tglSK": $scope.tglSK,
                     "jabatan": {
                         "id": $scope.item.riwayatJabatan.idJabatan
