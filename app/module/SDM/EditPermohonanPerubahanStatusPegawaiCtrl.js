@@ -9,6 +9,12 @@ define(['initialize'], function(initialize) {
 				start: "year",
 				depth: "year"
 			};
+			$scope.datePickerOptionsCutiLuar = {
+				format: 'yyyy-MM-dd',
+				change: onChangeDate,
+				// min: twoDaysAfter($scope.now)
+				min: $scope.now
+			};
 			$scope.datePickerOptions = {
 				format: 'yyyy-MM-dd',
 				change: onChangeDate
@@ -164,7 +170,14 @@ define(['initialize'], function(initialize) {
 			// });
 			var load = function () {
 
-				
+				if (currentEdit.isCutiLuarNegeri == "1") {
+					$scope.cutiLuar = true;
+					$scope.cutiDalam = false;
+					$scope.datePickerOptionsCutiLuar.min = getNextMonth($scope.now);
+				} else if (currentEdit.isCutiLuarNegeri == "2") {
+					$scope.cutiLuar = false;
+                    $scope.cutiDalam = true;
+				}
 
 				//debugger;
 				if (currentEdit && currentEdit.noRec === $state.params.noRec){
@@ -411,7 +424,19 @@ define(['initialize'], function(initialize) {
 			
 			$scope.radioIsCutiLuarNegeri=[
                 {"id":1,"nama":"Ya"},{"id":2,"nama":"Tidak"}]
-
+			
+			$scope.setMinDate = function () {
+				// alert($scope.item.isCutiLuarNegeri);
+				if ($scope.item.isCutiLuarNegeri === "1") {
+					$scope.cutiLuar = true;
+					$scope.cutiDalam = false;
+					$scope.datePickerOptionsCutiLuar.min = getNextMonth($scope.now);
+				} 
+				else {
+					$scope.cutiLuar = false;
+					$scope.cutiDalam = true;
+				}
+			}
 
 			$scope.alertTgl = function(ev) {
 				$mdDialog.show(
