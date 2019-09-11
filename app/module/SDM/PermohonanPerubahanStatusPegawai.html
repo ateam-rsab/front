@@ -274,7 +274,10 @@
 						<span class="errorCuti">Anda tidak memiliki sisa cuti. Sisa cuti anda saat ini adalah <b>{{item.sisaCuti}}</b></span>
 					</div>
 					<div class="grid_4" data-ng-repeat="tanggal in tanggalPermohonan" ng-hide="cutiHabis">
-						<div class="grid_8">
+						<div class="grid_8" ng-show="cutiLuar">
+							<input style="width:100%" kendo-date-picker k-ng-model="tanggal.tgl" k-options="datePickerOptionsCutiLuar"/>
+						</div>
+						<div class="grid_8" ng-show="cutiDalam">
 							<input style="width:100%" kendo-date-picker k-ng-model="tanggal.tgl" k-options="datePickerOptions"/>
 						</div>
 						<div class="grid_4" style="margin-top: 6px;">

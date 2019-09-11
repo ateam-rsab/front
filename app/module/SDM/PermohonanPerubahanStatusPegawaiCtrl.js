@@ -33,13 +33,18 @@ define(['initialize'], function (initialize) {
                 depth: "year"
             };
 
-            $scope.datePickerOptions = {
+            $scope.datePickerOptionsCutiLuar = {
                 format: 'dd-MM-yyyy',
                 change: onChangeDate,
                 // min: twoDaysAfter($scope.now)
                 // min: $scope.item.isCutiLuarNegeri ? $scope.item.isCutiLuarNegeri === 1 ? getNextMonth($scope.now) : $scope.now : $scope.now
                 // min: getNextMonth($scope.now)
                 min: $scope.now
+            }
+
+            $scope.datePickerOptions = {
+                format: 'dd-MM-yyyy',
+                change: onChangeDate
             }
 
             function getNextMonth(date) {
@@ -55,12 +60,18 @@ define(['initialize'], function (initialize) {
                 return new Date(now.getFullYear(), now.getMonth() + 1, today);
             }
 
+            $scope.cutiLuar = false;
+            $scope.cutiDalam = true;
             $scope.setMinDate = function () {
                 // alert($scope.item.isCutiLuarNegeri);
-                if ($scope.item.isCutiLuarNegeri === 1) {
-                    $scope.datePickerOptions.min = getNextMonth($scope.now);
-                } else {
-                    $scope.datePickerOptions.min = $scope.now;
+                if ($scope.item.isCutiLuarNegeri === "1") {
+                    $scope.cutiLuar = true;
+                    $scope.cutiDalam = false;
+                    $scope.datePickerOptionsCutiLuar.min = getNextMonth($scope.now);
+                } 
+                else {
+                    $scope.cutiLuar = false;
+                    $scope.cutiDalam = true;
                 }
             }
 
