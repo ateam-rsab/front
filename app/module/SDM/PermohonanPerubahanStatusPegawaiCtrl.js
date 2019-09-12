@@ -1029,10 +1029,6 @@ define(['initialize'], function (initialize) {
                             toastr.warning('Tanggal permohonan belum di isi', 'Peringatan');
                             return;
                         }
-                        if($scope.validateTanggal) {
-                            $scope.validateTanggal();
-                            return;
-                        }
                         ManageSdmNew.saveData(dataSend, "sdm/save-pegawai-status").then(function (e) {
                             // console.log(JSON.stringify(e.data));
                             if (e.data.data.bisaCuti == false) {
