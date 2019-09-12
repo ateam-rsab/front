@@ -1046,10 +1046,6 @@ define(['initialize'], function (initialize) {
                     return;
                 }
 
-                if ($scope.item.tglSK) {
-                    $scope.tglSK = dateHelper.toTimeStamp($scope.item.tglSK);
-                }
-
                 var dataSave = {
                     "noRec": $scope.noRecRiwayatJabatan ? $scope.noRecRiwayatJabatan : null,
                     "pegawai": {
