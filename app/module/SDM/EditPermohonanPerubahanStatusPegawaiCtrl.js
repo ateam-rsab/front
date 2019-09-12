@@ -533,7 +533,7 @@ define(['initialize'], function(initialize) {
     //                 $scope.checkTanggalCuti();
     //             }
 				 if($scope.dataItem.statusPegawai == undefined){
-                    toastr.error('Status kehadiran harus di isi')
+                    toastr.error('Status kehadiran harus diisi')
                     return
                 }
 				var listRawRequired = [
