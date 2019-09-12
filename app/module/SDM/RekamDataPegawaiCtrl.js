@@ -6,6 +6,9 @@ define(['initialize'], function (initialize) {
             // if (!$scope.dataLogin.ruangan.namaruangan == 'Inst.Teknologi & Informasi') {
             //     $state.go('UnderMaintenance', { namaForm: 'RekamDataPegawai' });
             // }
+            let acTtdSk = $('#autoCompleteAtasanTtd').data("kendoAutoComplete");
+            let acJabatan = $('#autoCompleteAtasanJabatan').data("kendoAutoComplete");
+            
             $scope.isSimpan = true;
             $scope.isAtasan = false;
             $scope.isDirut = false;
@@ -131,12 +134,17 @@ define(['initialize'], function (initialize) {
                     for (let i = 0; $scope.listPegawaiRiwayat.length > i; i++) {
                         $scope.listPegawaiRiwayatAuto.push($scope.listPegawaiRiwayat[i].namaLengkap);
                     }
-
+                    $("#autoCompleteAtasanTtd").kendoAutoComplete({
+                        dataSource: $scope.listPegawaiRiwayatAuto
+                    });
+                    
                     $scope.ListJabatanAuto = [];
                     for (let i = 0; $scope.ListJabatan.length > i; i++) {
                         $scope.ListJabatanAuto.push($scope.ListJabatan[i].namaJabatan);
                     }
-
+                    $("#autoCompleteAtasanJabatan").kendoAutoComplete({
+                        dataSource:$scope.ListJabatanAuto
+                    });
                     tempDataKelompokJabatan.forEach(function (el) {
                         if (el.detailKelompokJabatan !== '-') {
                             var dataTemp = {
@@ -1494,13 +1502,16 @@ define(['initialize'], function (initialize) {
             };
 
             function changeRowJabatan(e) {
+                
+                
                 clearField();
                 e.preventDefault();
                 var grid = this;
                 var row = $(e.currentTarget).closest("tr");
                 var tr = $(e.target).closest("tr");
                 var dataItem = this.dataItem(tr);
-                // console.log(dataItem);
+                // acTtdSk.destroy();
+                // acJabatan.destroy();
                 $scope.getDataJabatan(dataItem.idJenisJabatan);
                 $scope.noRecRiwayatJabatan = dataItem.noRec;
                 $scope.item.riwayatJabatan = { idJabatan: dataItem.idJabatan, namaJabatan: dataItem.namaJabatan };
@@ -1511,6 +1522,7 @@ define(['initialize'], function (initialize) {
                 // $scope.item.atasanTtdSK = { id: dataItem.idPgwTtd, namaLengkap:dataItem.namaLengkapTtd };
                 $scope.item.atasanTtdSK = dataItem.ttdPegawaiSk;
                 $scope.item.keterangan = dataItem.keterangan;
+                
                 // $scope.item.jabatanTtd = { id:dataItem.idJabatanTtd, namaJabatan:dataItem.namaJabatanTtd };
                 $scope.item.jabatanTtd = dataItem.ttdJabatanSk;
                 $scope.popUpRiwayat.center().open();

@@ -896,7 +896,7 @@
 				<div class="grid_12">
                     <!-- <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.atasanTtdSK" /> -->
                     <!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.atasanTtdSK" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawaiRiwayat" /> -->
-                    <input kendo-auto-complete ng-model="item.atasanTtdSK" k-filter="'contains'" k-data-source="listPegawaiRiwayatAuto" style="width: 100%;" />
+                    <input id="autoCompleteAtasanTtd" ng-model="item.atasanTtdSK" k-filter="'contains'" k-data-source="listPegawaiRiwayatAuto" style="width: 100%;" />
 				</div>
 			</div>
 			<div class="grid_6">
@@ -907,7 +907,7 @@
 				<div class="grid_12">
                     <!-- <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.jabatanTtd" /> -->
                     <!-- <input kendo-combo-box k-ng-model="item.jabatanTtd" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListJabatan" /> -->
-                    <input kendo-auto-complete ng-model="item.jabatanTtd" k-filter="'contains'" k-data-source="ListJabatanAuto" style="width: 100%;" />
+                    <input id="autoCompleteAtasanJabatan" ng-model="item.jabatanTtd" k-filter="'contains'" k-data-source="ListJabatanAuto" style="width: 100%;" />
 				</div>
 			</div>
 		</div>
