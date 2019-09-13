@@ -20,6 +20,18 @@ define(['initialize'], function(initialize) {
 				change: onChangeDate
 				// min: twoDaysAfter($scope.now)
 			};
+			function getNextMonth(date) {
+                let now = new Date();
+                // let
+                let today = now.getDate();
+                let current = new Date();
+                // debugger;
+                console.log(now.getDate());
+                if (today === 31) {
+                    today = 30;
+                }
+                return new Date(now.getFullYear(), now.getMonth() + 1, today);
+            }
 			function onChangeDate(e){
 				if($scope.tanggalPermohonan.length>1){
 					var lastModel = $scope.tanggalPermohonan.length - 1;
