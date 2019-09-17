@@ -39,7 +39,8 @@ define(['initialize'], function (initialize) {
                 // min: twoDaysAfter($scope.now)
                 // min: $scope.item.isCutiLuarNegeri ? $scope.item.isCutiLuarNegeri === 1 ? getNextMonth($scope.now) : $scope.now : $scope.now
                 // min: getNextMonth($scope.now)
-                min: $scope.now
+                // min: $scope.now
+                min: new Date(new Date().getFullYear(), new Date().getMonth() + 1, getNextMonth($scope.now))
             }
 
             $scope.datePickerOptions = {
@@ -49,15 +50,19 @@ define(['initialize'], function (initialize) {
 
             function getNextMonth(date) {
                 let now = new Date();
-                // let
+                let year = now.getFullYear();
+                let month = now.getMonth();
                 let today = now.getDate();
-                let current = new Date();
-                // debugger;
-                console.log(now.getDate());
-                if (today === 31) {
-                    today = 30;
+                let lastDay = new Date(year, month + 1, 0);
+                if (lastDay == 31) {
+                    today = today - 1;
+                } else if (lastDay == 28) {
+                    today = today + 2;
+                } else if (lastDay == 29) {
+                    today = today + 1;
                 }
-                return new Date(now.getFullYear(), now.getMonth() + 1, today);
+                // debugger;
+                return today;
             }
 
             $scope.cutiLuar = false;
@@ -67,7 +72,7 @@ define(['initialize'], function (initialize) {
                 if ($scope.item.isCutiLuarNegeri === "1") {
                     $scope.cutiLuar = true;
                     $scope.cutiDalam = false;
-                    $scope.datePickerOptionsCutiLuar.min = getNextMonth($scope.now);
+                    // $scope.datePickerOptionsCutiLuar.min = getNextMonth($scope.now);
                 } 
                 else {
                     $scope.cutiLuar = false;
@@ -1123,7 +1128,12 @@ define(['initialize'], function (initialize) {
 
             $scope.cetakCutiAlasanPenting = function (data) {
                 var idKaRuangan = data.kepalaRuangan ? data.kepalaRuangan.id : "";
-                var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCuti?noRecPlanning=" + data.noRec + "&idAtasan1=" + data.atasanLangsung.id + "&idAtasan2=" + data.pejabatPenilai.id + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + data.jabatanAtasanLangsung.id + "&idJabatanAtasan2=" + data.jabatanPejabatPenilai.id);
+                if (data.isCutiLuarNegeri == "1") {
+                    var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCutiLuarNegeri?noRecPlanning=" + data.noRec + "&idAtasan1=" + data.atasanLangsung.id + "&idAtasan2=" + data.pejabatPenilai.id + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + data.jabatanAtasanLangsung.id + "&idJabatanAtasan2=" + data.jabatanPejabatPenilai.id);
+                } else {
+                    var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCuti?noRecPlanning=" + data.noRec + "&idAtasan1=" + data.atasanLangsung.id + "&idAtasan2=" + data.pejabatPenilai.id + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + data.jabatanAtasanLangsung.id + "&idJabatanAtasan2=" + data.jabatanPejabatPenilai.id);
+                }
+                
                 window.open(urlLaporan, "halamanCetakDua");
             }
 
@@ -1156,7 +1166,11 @@ define(['initialize'], function (initialize) {
                     } else if (data.statusPegawai === "Cuti Alasan Penting") {
                         var idKaRuangan = data.kepalaRuangan ? data.kepalaRuangan.id : "";
                         var urlSuratIzinSementara = cetakHelper.openURLReporting("reporting/suratIzinSementara?noRecPlanning=" + data.noRec + "&idAtasan1=" + data.atasanLangsung.id + "&idAtasan2=" + data.pejabatPenilai.id + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + data.jabatanAtasanLangsung.id + "&idJabatanAtasan2=" + data.jabatanPejabatPenilai.id);
-                        var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCuti?noRecPlanning=" + data.noRec + "&idAtasan1=" + data.atasanLangsung.id + "&idAtasan2=" + data.pejabatPenilai.id + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + data.jabatanAtasanLangsung.id + "&idJabatanAtasan2=" + data.jabatanPejabatPenilai.id);
+                        if (data.isCutiLuarNegeri == "1") {
+                            var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCutiLuarNegeri?noRecPlanning=" + data.noRec + "&idAtasan1=" + data.atasanLangsung.id + "&idAtasan2=" + data.pejabatPenilai.id + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + data.jabatanAtasanLangsung.id + "&idJabatanAtasan2=" + data.jabatanPejabatPenilai.id);
+                        } else {
+                            var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCuti?noRecPlanning=" + data.noRec + "&idAtasan1=" + data.atasanLangsung.id + "&idAtasan2=" + data.pejabatPenilai.id + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + data.jabatanAtasanLangsung.id + "&idJabatanAtasan2=" + data.jabatanPejabatPenilai.id);
+                        }
                         $scope.winDialog.close();
                         delete $scope.currentData.pegawai1;
                         delete $scope.currentData.pegawai2;
@@ -1186,7 +1200,11 @@ define(['initialize'], function (initialize) {
                         window.open(urlLaporan, "halamanCetak", "width=800, height=600");
                     } else {
                         var idKaRuangan = data.kepalaRuangan ? data.kepalaRuangan.id : "";
-                        var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCuti?noRecPlanning=" + data.noRec + "&idAtasan1=" + data.atasanLangsung.id + "&idAtasan2=" + data.pejabatPenilai.id + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + data.jabatanAtasanLangsung.id + "&idJabatanAtasan2=" + data.jabatanPejabatPenilai.id);
+                        if (data.isCutiLuarNegeri == "1") {
+                            var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCutiLuarNegeri?noRecPlanning=" + data.noRec + "&idAtasan1=" + data.atasanLangsung.id + "&idAtasan2=" + data.pejabatPenilai.id + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + data.jabatanAtasanLangsung.id + "&idJabatanAtasan2=" + data.jabatanPejabatPenilai.id);
+                        } else {
+                            var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCuti?noRecPlanning=" + data.noRec + "&idAtasan1=" + data.atasanLangsung.id + "&idAtasan2=" + data.pejabatPenilai.id + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + data.jabatanAtasanLangsung.id + "&idJabatanAtasan2=" + data.jabatanPejabatPenilai.id);
+                        }
                         $scope.winDialog.close();
                         delete $scope.currentData.pegawai1;
                         delete $scope.currentData.pegawai2;

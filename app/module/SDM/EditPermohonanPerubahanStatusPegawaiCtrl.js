@@ -13,7 +13,7 @@ define(['initialize'], function(initialize) {
 				format: 'yyyy-MM-dd',
 				change: onChangeDate,
 				// min: twoDaysAfter($scope.now)
-				min: $scope.now
+				min: new Date(new Date().getFullYear(), new Date().getMonth() + 1, getNextMonth($scope.now))
 			};
 			$scope.datePickerOptions = {
 				format: 'yyyy-MM-dd',
@@ -22,15 +22,19 @@ define(['initialize'], function(initialize) {
 			};
 			function getNextMonth(date) {
                 let now = new Date();
-                // let
+                let year = now.getFullYear();
+                let month = now.getMonth();
                 let today = now.getDate();
-                let current = new Date();
-                // debugger;
-                console.log(now.getDate());
-                if (today === 31) {
-                    today = 30;
+                let lastDay = new Date(year, month + 1, 0);
+                if (lastDay == 31) {
+                    today = today - 1;
+                } else if (lastDay == 28) {
+                    today = today + 2;
+                } else if (lastDay == 29) {
+                    today = today + 1;
                 }
-                return new Date(now.getFullYear(), now.getMonth() + 1, today);
+                // debugger;
+                return today;
             }
 			function onChangeDate(e){
 				if($scope.tanggalPermohonan.length>1){
@@ -442,7 +446,7 @@ define(['initialize'], function(initialize) {
 				if ($scope.item.isCutiLuarNegeri === "1") {
 					$scope.cutiLuar = true;
 					$scope.cutiDalam = false;
-					$scope.datePickerOptionsCutiLuar.min = getNextMonth($scope.now);
+					// $scope.datePickerOptionsCutiLuar.min = getNextMonth($scope.now);
 				} 
 				else {
 					$scope.cutiLuar = false;

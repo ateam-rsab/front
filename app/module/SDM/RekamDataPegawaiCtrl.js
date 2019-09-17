@@ -1020,6 +1020,10 @@ define(['initialize'], function (initialize) {
                 });
             }
 
+            function isString(arg) {
+                return typeof arg === 'string';
+            }
+
             $scope.simpanRiwayatJabatan = function () {
                 if (!$scope.item.jenisJabatan) {
                     toastr.warning('Anda belum memilih jenis jabatan');
@@ -1044,6 +1048,15 @@ define(['initialize'], function (initialize) {
                 if (!$scope.item.jabatanTtd) {
                     toastr.warning('Anda belum memilih Jabatan Tanda Tangan SK');
                     return;
+                }
+
+                if ($scope.item.tglSK) {
+                    $scope.tglSK = dateHelper.toTimeStamp($scope.item.tglSK);
+                    if (isString($scope.item.tglSK)) {
+                        var dateDetail = $scope.item.tglSK.split("-");
+                        var newDate=dateDetail[1]+"/"+dateDetail[0]+"/"+dateDetail[2];
+                        $scope.tglSK = new Date(newDate).getTime();
+                    }
                 }
 
                 var dataSave = {
