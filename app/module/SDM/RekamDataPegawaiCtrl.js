@@ -589,10 +589,6 @@ define(['initialize'], function (initialize) {
 
             $scope.simpanJabatanInternal = function () {
                 var newModel = [];
-                if (!validateJabatanUtama()) {
-                    toastr.warning('Harap Pilih Satu Jabatan sebagai Jabatan Utama')
-                    return
-                }
                 newModel.push(getDataChanged($scope.ji));
                 newModel[0]['id'] = $scope.ji.idGridInternalJabatan;
                 newModel[0]['statusEnabled'] = true;
@@ -631,6 +627,13 @@ define(['initialize'], function (initialize) {
                         }
 
 
+                    }
+                }
+
+                if (!validateJabatanUtama()) {
+                    if (!newModel[0].isPrimary) {
+                        toastr.warning('Harap Pilih Satu Jabatan sebagai Jabatan Utama')
+                    return
                     }
                 }
 
