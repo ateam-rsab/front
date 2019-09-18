@@ -1500,6 +1500,8 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.createNewRiwayatJabatan = function () {
+                $scope.popUpRiwayat.center().open();
+                
                 $scope.item.noSK = '';
                 $scope.item.tglSK = '';
                 $scope.item.jenisJabatan = '';
@@ -1507,10 +1509,9 @@ define(['initialize'], function (initialize) {
                 $scope.item.atasanTtdSK = '';
                 $scope.item.jabatanTtd = '';
                 // $scope.noRecRiwayatJabatan =
-                var actions = $scope.popUpRiwayat.options.actions;
-                actions.splice(actions.indexOf("Close"), 1);
-                $scope.popUpRiwayat.setOptions({ actions: actions });
-                $scope.popUpRiwayat.center().open();
+                // var actions = $scope.popUpRiwayat.options.actions;
+                // actions.splice(actions.indexOf("Close"), 1);
+                // $scope.popUpRiwayat.setOptions({ actions: actions });
             };
 
             function changeRowJabatan(e) {
