@@ -7,7 +7,7 @@ define([], function () {
         portPhp = '5555',
 
         baseURLJava = 'http://192.168.12.3',
-        portJava = '8080',
+        portJava = '8181',
 
         baseURLEval = 'http://192.168.12.3',
         portEval = '8080';

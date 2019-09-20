@@ -208,7 +208,7 @@ define(['initialize'], function(initialize) {
                 {
                     "field":"nocm",
                     "title":"No. Rekam Medis",
-                    "width":"80px"               
+                    "width":"80px"         ,      
                     "title":"<h3>No. Rekam<br>Medis</h3>",
                     "width":"80px"
                 },
@@ -227,7 +227,7 @@ define(['initialize'], function(initialize) {
                 {
                     "field":"namadokter",
                     "title":"Dokter",
-                    "width":"100px"     
+                    "width":"100px",
                     "title":"<h3>Dokter</h3>",
                     "width":"100px"
                 }, 
@@ -1524,12 +1524,11 @@ define(['initialize'], function(initialize) {
                     "objectruanganasalfk": $scope.objectRuanganFkKonsultasi,
                     "periksaDidapatkan":$scope.item.periksaDidapatkan,
                     "pemeriksaandidapat":$scope.item.periksaDidapatkan,
-                    "keterangankeperluan": $scope.item.kesan
+                    "keterangankeperluan": $scope.item.kesan,
+                    "saran":$scope.item.saran,
+                    "diagnosis":$scope.item.diagnosa
                 }
                 console.log(dataKonsul);
-                // console.log(dataKonsul);
-                // $scope.winDescription.close();
-                // $scope.winKonsul.close();
                 ManagePhp.postData2('rekam-medis/save-konsul-from-order',dataKonsul).then(function(e){
                     $scope.winDescription.close();
                     $scope.winKonsul.close();

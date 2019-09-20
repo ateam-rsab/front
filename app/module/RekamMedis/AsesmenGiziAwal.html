@@ -1,0 +1,458 @@
+<style>
+    fieldset.noborder {
+        border:none;
+    }
+    .fieldlist li {
+        margin-top: 10px
+    }
+    .btnSimpan {
+        background-color: #306fa7;
+        border-color: #306fa7;
+    }
+
+    .btnCancel {
+        background-color: #fa3939;
+        border-color: #fa3939;
+    }
+</style>
+<div class="grid_12">
+    <div class="panel-body grid_12">
+        <div class="grid_12 headerBox">
+            <p>Asesmen Gizi</p>
+        </div>
+        <div class="grid_12 borderBox">
+            <div kendo-grid id="gridDataPegawai" k-data-source="dataAsesmenGizi"
+                options="optGridAsesmenGizi" style="padding:10px;"></div>
+        </div>
+    </div>
+    <hr>
+    <div class="grid_12">
+        <div class="panel-body grid_12">
+            <div class="grid_12 headerBox">
+                <p>Asesmen Gizi yang belum di Verifikasi</p>
+            </div>
+            <div class="grid_12 borderBox">
+                <div kendo-grid id="gridDataPegawai"
+                    k-data-source="dataAsesmenGiziUnverif"
+                    options="optGridAsesmenGiziNotVerif" style="padding:10px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-show="showInput">
+    <div>
+        <div class="grid_12">
+            <div class="grid_12 headerBox">
+                <h1 style="color: white;"><b>Asesmen Gizi Awal</b></h1>
+            </div>
+
+            <div class="grid_12">
+                <div class="grid_6">
+                    <fieldset class="noborder">
+                        <legend>
+                            <strong>Diagnosa Medis</strong>
+                        </legend>
+                        <div class="grid_8">
+                            <input c-text-box class="k-textbox"  
+                                ng-model="item.diagnosaMedis" />
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="grid_6">
+                    <fieldset class="noborder">
+                        <legend>
+                            <strong>Jenis Pasien</strong>
+                        </legend>
+                        <div class="grid_8">
+                            <input kendo-combo-box
+                                k-ng-model="item.selectedJenisPasien" 
+                                k-data-text-field="'name'" 
+                                k-data-value-field="'id'" 
+                                k-filter="'contains'" 
+                                k-auto-bind="false" 
+                                k-data-source="listJenisPasien" 
+                                k-on-change="isAnak()"/>
+                        </div>
+                    </fieldset>
+                </div>
+                <!-- <div class="grid_6">
+                <fieldset class="noborder">
+                    <legend>
+                        <strong>Tanggal</strong>
+                    </legend>
+                    <div class="grid_8">
+                        <input style="width: 100%" kendo-date-time-picker
+                            k-ng-model="item.tanggalAwal" k-format="'dd-MM-yyyy
+                            HH:mm'" />
+                    </div>
+                </fieldset>
+
+            </div> -->
+            </div>
+
+            <div class="grid_12">
+                <!-- 1 -->
+                <div class="grid_6" ng-show="isDewasa">
+                    <fieldset class="noborder">
+                        <legend>
+                            <strong>{{isDewasa ? 1 : 0}}. Risiko malnutrisi berdasarkan hasil
+                                skrining
+                                gizi oleh perawat. kondisi pasien termasuk:</strong>
+                        </legend>
+                        <ul class="fieldlist">
+                            <li ng-repeat="risiko in listOfRisikoMalnutrisi">
+                                <input type="radio" name="RisikoMalnutrisi"  
+                                    ng-model="item.risikoMalnutrisi"
+                                    value="{{risiko.name}}"
+                                    id="{{risiko.id}}" class="rbRisikoMalnutrisi
+                                    k-radio">
+                                <label class="k-radio-label"
+                                    for="{{risiko.id}}">{{risiko.name}}</label>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </div>
+                <!-- 2 -->
+                <div class="grid_6">
+                    <fieldset class="noborder">
+                        <legend>
+                            <strong> {{isDewasa ? 2 : 1}}. Pasien mempunyai kondisi khusus</strong>
+                        </legend>
+                        <ul class="fieldlist">
+                            <li ng-repeat="kondisi in yesOrNo">
+                                <input type="radio" name="PasienKondisiKhusus"  
+                                    ng-model="item.pasienKondisiKhusus"
+                                    value="{{kondisi.name}}"
+                                    id="{{kondisi.name}}" class="k-radio
+                                    rbPasienKondisiKhusus">
+                                <label class="k-radio-label"
+                                    for="{{kondisi.name}}">{{kondisi.name}}</label>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </div>
+            </div>
+
+            <div class="grid_12">
+                <!-- 3 -->
+                <div class="grid_6">
+                    <fieldset class="noborder">
+                        <legend>
+                            <strong>{{isDewasa ? 3 : 2}}. Alergi Makanan</strong>
+                        </legend>
+
+                        <ul class="fieldlist">
+                            <li ng-repeat="list in listOfAlergiMakanan">
+                                <input type="checkbox" id="{{list.key}}"  
+                                    name="alergiMakanan"
+                                    ng-click="getItemMakanan($event, list)"
+                                    value="{{list.name}}"
+                                    class="k-checkbox cbAlergi">
+                                <label class="k-checkbox-label"
+                                    for="{{list.key}}">{{list.name}}</label>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </div>
+                <!-- 4 -->
+                <div class="grid_6">
+                    <fieldset class="noborder">
+                        <legend>
+                            <strong>{{isDewasa ? 4 : 3}}. Preskripsi Diet</strong>
+                        </legend>
+                        <ul class="fieldlist">
+                            <li>
+                                <input type="radio" name="perskripsiDiet"
+                                    ng-model="item.preskripsiDiet"  
+                                    value="Makan Biasa"
+                                    id="makanBiasa" class="k-radio"
+                                    ng-click="showDietKhusus(false)">
+                                <label class="k-radio-label" for="makanBiasa">Makan
+                                    Biasa</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="perskripsiDiet"
+                                    ng-click="showDietKhusus(true)"  
+                                    id="dietKhusus" class="k-radio">
+                                <label class="k-radio-label" for="dietKhusus">Diet
+                                    Khusus</label>
+                            </li>
+                            <li ng-show="isDietKhusus">
+                                <input c-text-box class="k-textbox"  
+                                    ng-model="item.preskripsiDiet">
+                            </li>
+                        </ul>
+                    </fieldset>
+                </div>
+            </div>
+
+            <!-- 5 -->
+            <div class="grid_12">
+                <div class="grid_6">
+                    <fieldset class="noborder">
+                        <legend>
+                            <strong>{{isDewasa ? 5 : 4}}. Tindak Lanjut</strong>
+                        </legend>
+                        <ul class="fieldlist">
+                            <li>
+                                <input type="radio" name="tindakLanjut"
+                                    id="perluAsuhanGizi" class="k-radio"  
+                                    value="Perlu Asuhan Gizi (Lanjutkan ke Asesmen Gizi)" ng-model="item.tindakLanjut"
+                                    ng-click="isPerluLanjutan(true)">
+                                <label class="k-radio-label"
+                                    for="perluAsuhanGizi">Perlu Asuhan Gizi (Lanjutkan ke Asesmen Gizi)</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="tindakLanjut"
+                                    value="Belum Perlu Asuhan Gizi"
+                                    ng-click="isPerluLanjutan(false)"
+                                    ng-model="item.tindakLanjut"  
+                                    id="belumPerluAsuhan" class="k-radio">
+                                <label class="k-radio-label"
+                                    for="belumPerluAsuhan">Belum Perlu Asuhan
+                                    Gizi</label>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </div>
+            </div>
+
+            <!-- Gizi lanjutan -->
+            <div ng-show="showGiziLanjutan">
+                <div class="grid_12 headerBox">
+                    <h1 style="color: white;"><b>Asesmen Gizi Lanjut</b></h1>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_6">
+                        <fieldset class="noborder">
+                            <legend>
+                                <strong>Antropometri:</strong>
+                            </legend>
+                            <!-- <div class="grid_8">
+                            <input c-text-box class="k-textbox"
+                                ng-model="item.antropometri" /> -->
+                        </div>
+                    </fieldset>
+                </div>
+
+
+                <div class="grid_12">
+                    <div class="grid_1" style="margin-top: 10px">
+                        <label>
+                            <strong>Umur:</strong>
+                        </label>
+                    </div>
+                    <div class="grid_1">
+                        <input c-text-box class="k-textbox"  
+                            ng-model="item.umur" />
+                    </div>
+                    <div class="grid_1" style="margin-top: 10px">
+                        <label>tahun</label>
+                    </div>
+                    <div class="grid_1">
+                        <input c-text-box class="k-textbox"  
+                            ng-model="item.bulan" />
+                    </div>
+                    <div class="grid_1" style="margin-top: 10px">
+                        <label>bulan</label>
+                    </div>
+                    <div class="grid_1"></div>
+                    <!-- <div class="grid_1"></div> -->
+                    <div class="grid_2" style="margin-top: 10px">
+                        <label>
+                            <strong>Status Gizi:</strong>
+                        </label>
+                    </div>
+                    <div class="grid_3">
+                        <input c-text-box class="k-textbox"  
+                            ng-model="item.statusGizi" />
+                    </div>
+                </div>
+
+                <div class="grid_12">
+                    <div class="grid_1" style="margin-top: 10px">
+                        <label>
+                            <strong>BB:</strong>
+                        </label>
+                    </div>
+                    <div class="grid_1">
+                        <input c-text-box class="k-textbox"  
+                            ng-model="item.beratBadan" />
+                    </div>
+                    <div class="grid_1" style="margin-top: 10px">
+                        <label>
+                            <strong>kg</strong>
+                        </label>
+                    </div>
+                    <div class="grid_3"></div>
+                    <div class="grid_1" style="margin-top: 10px">
+                        <label>
+                            <strong>TB / U:</strong>
+                        </label>
+                    </div>
+                    <div class="grid_1"></div>
+                    <div class="grid_1">
+                        <input c-text-box class="k-textbox"  
+                            ng-model="item.tbU" />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_1" style="margin-top: 10px">
+                        <label>
+                            <strong>TB:</strong>
+                        </label>
+                    </div>
+                    <div class="grid_1">
+                        <input c-text-box class="k-textbox"  
+                            ng-model="item.tb" />
+                    </div>
+                    <div class="grid_1" style="margin-top: 10px">
+                        <label>
+                            <strong>cm</strong>
+                        </label>
+                    </div>
+                    <div class="grid_3"></div>
+                    <div class="grid_1" style="margin-top: 10px">
+                        <label>
+                            <strong>BB / TB:</strong>
+                        </label>
+                    </div>
+                    <div class="grid_1"></div>
+                    <div class="grid_1">
+                        <input c-text-box class="k-textbox"  
+                            ng-model="item.bbtb" />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div style="margin:10px">
+                        <label>
+                            <strong>Biokimia</strong>
+                        </label>
+                        <textarea class="k-textbox" style="height: 76px; width:
+                            100%; resize: none;"   ng-model="item.biokimia"></textarea>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div style="margin:10px">
+                        <label>
+                            <strong>Klinis / Fisik</strong>
+                        </label>
+                        <textarea class="k-textbox" style="height: 76px; width:
+                            100%; resize: none;"   ng-model="item.klinisFisik"></textarea>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div style="margin:10px">
+                        <label>
+                            <strong>Riwayat Diet</strong>
+                        </label>
+                        <textarea class="k-textbox" style="height: 76px; width:
+                            100%; resize: none;"   ng-model="item.riwayatDiet"></textarea>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div style="margin:10px">
+                        <label>
+                            <strong>Riwayat Personal</strong>
+                        </label>
+                        <textarea class="k-textbox" style="height: 76px; width:
+                            100%; resize: none;"  
+                            ng-model="item.riwayatPersonal"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid_12 headerBox">
+                <h1 style="color: white;"><b>Diagnosis Gizi</b></h1>
+            </div>
+            <div class="grid_12">
+                <div style="margin: 10px">
+                    <textarea class="k-textbox" style="height: 100px; width:
+                        100%;
+                        resize: none;"   ng-model="item.diagnosisGizi"></textarea>
+                </div>
+            </div>
+
+            <div class="grid_12 headerBox">
+                <h1 style="color: white;"><b>Intervensi Gizi</b></h1>
+            </div>
+            <div class="grid_12">
+                <div style="margin: 10px">
+                    <textarea class="k-textbox" 
+                        style="height: 150px; width:100%;resize: none;" 
+                          ng-model="item.intervensiGizi"></textarea>
+                </div>
+            </div>
+
+            <div class="grid_12 headerBox">
+                <h1 style="color: white;"><b>Monitoring Evaluasi</b></h1>
+            </div>
+            <div class="grid_6">
+                <fieldset class="borderBox" style="margin-top: 10px;
+                    min-height:166px">
+                    <ul class="fieldlist">
+                        <li>
+                            <input type="radio" name="monitoring"  
+                                value="Pasien dipantau oleh dietisien"
+                                ng-model="item.monitoring"
+                                id="pasienDipantau" class="k-radio">
+                            <label class="k-radio-label" for="pasienDipantau">
+                                Pasien dipantau oleh dietisien
+                            </label>
+                        </li>
+                        <li>
+                            <input type="radio" name="monitoring"
+                                ng-model="item.monitoring"  
+                                value="Mohon dikonsulkan untuk rawat bersama dengan Sp.A(K) & Penyakit Metabolik / Sp.GK karena"
+                                id="mohonDikonsulkan" class="k-radio">
+                            <label class="k-radio-label" for="mohonDikonsulkan">
+                                Mohon dikonsulkan untuk rawat bersama dengan
+                                Sp.A(K)
+                                & Penyakit Metabolik / Sp.GK karena
+                            </label>
+                        </li>
+                        <li>
+                            <input type="radio" name="monitoring"
+                                ng-model="item.monitoring" 
+                                value="Nutrisi Parental"  
+                                id="nutrisiParental" class="k-radio">
+                            <label class="k-radio-label" for="nutrisiParental">
+                                Nutrisi Parental
+                            </label>
+                        </li>
+                        <li>
+                            <input type="radio" name="monitoring"  
+                                ng-model="item.monitoring" value="Lainnya"
+                                id="lainnya" class="k-radio">
+                            <label class="k-radio-label" for="lainnya">
+                                Lainnya
+                            </label>
+                            <!-- <input c-text-box class="k-textbox"
+                                ng-model="item.lainnya" /> -->
+                        </li>
+                    </ul>
+                </fieldset>
+            </div>
+            <div class="grid_6">
+                <fieldset class="borderBox" style="margin-top: 10px;
+                    min-height:166px">
+                    <textarea class="k-textbox"   style="height: 163px; width:
+                        100%;
+                        resize: none;" ng-model="item.ketMonitoring"></textarea>
+                </fieldset>
+            </div>
+        </div>
+        <div class="grid_6"></div>
+        <div class="grid_6">
+            <div class="grid_8">
+            </div>
+            <div class="grid_2" style="margin-top: 22px">
+                <button class="k-button btnSimpan" style="width: 100%" ng-click="saveDataAsesmen()" ng-disabled="isEdit">{{txtSimpan}}</button>
+            </div>
+            <div class="grid_2" style="margin-top: 22px">
+                <button class="k-button btnCancel" style="width: 100%" ng-click="Batal()">Batal</button>
+            </div>
+
+        </div>
+    </div>
+</div>

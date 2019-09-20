@@ -52,18 +52,22 @@
             <a class=" n1 green" ng-class="{'active': currentState == 'RekamMedis.OdontoGramDokter'}"
                 data-ng-click="nav('RekamMedis.OdontoGramDokter')">Odontogram</a>
         </div>
+        <div class="grid_1" >
+            <a class=" n1 green" ng-class="{'active': currentState == 'RekamMedis.AsesmenGizi'}"
+                data-ng-click="nav('RekamMedis.AsesmenGizi')">Asesmen Gizi</a>
+        </div>
         <!-- Summary List -->
         <div class="grid_2" >
             <a class=" n1 green" ng-class="{'active': currentState == 'RekamMedis.ResumeRJ'}"
                 data-ng-click="nav('RekamMedis.ResumeRJ')">Summary List</a>
         </div>
         <!-- Resume Medis -->
-        <div class="grid_2" >
+        <div class="grid_1" >
             <a class=" n1 green" ng-class="{'active': currentState == 'RekamMedis.ResumeRI'}"
                 data-ng-click="nav('RekamMedis.ResumeRI')">Resume Medis</a>
         </div>
         <!-- Konsultasi -->
-        <div class="grid_2" ng-show="isPerawat">
+        <div class="grid_2">
             <a class=" n1 green" ng-class="{'active': currentState == 'RekamMedis.KonsultasiDokter'}"
                 data-ng-click="nav('RekamMedis.KonsultasiDokter')">Konsultasi</a>
         </div>
