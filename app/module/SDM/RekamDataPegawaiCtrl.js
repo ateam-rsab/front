@@ -149,6 +149,7 @@ define(['initialize'], function (initialize) {
                         $scope.listPegawaiRiwayatAuto.push($scope.listPegawaiRiwayat[i].namaLengkap);
                     }
                     $("#autoCompleteAtasanTtd").kendoAutoComplete({
+                        filter: "contains",
                         dataSource: $scope.listPegawaiRiwayatAuto
                     });
                     
@@ -157,6 +158,7 @@ define(['initialize'], function (initialize) {
                         $scope.ListJabatanAuto.push($scope.ListJabatan[i].namaJabatan);
                     }
                     $("#autoCompleteAtasanJabatan").kendoAutoComplete({
+                        filter: "contains",
                         dataSource:$scope.ListJabatanAuto
                     });
                     tempDataKelompokJabatan.forEach(function (el) {
@@ -581,11 +583,11 @@ define(['initialize'], function (initialize) {
                         $scope.popUpJabatan.close();
                         e.preventDefault();
                         $scope.loadDataGridJabatanInternal();
-                        console.warn('Data Berhasil Dihapus');
+                        // console.warn('Data Berhasil Dihapus');
                     });
-                    console.warn('Masuk sini pak eko');
+                    // console.warn('Masuk sini pak eko');
                 }, function () {
-                    console.error('Tidak jadi hapus');
+                    // console.error('Tidak jadi hapus');
                 });
 
             }
@@ -649,6 +651,7 @@ define(['initialize'], function (initialize) {
                 if (!validateJabatanUtama()) {
                     if (!newModel[0].isPrimary) {
                         toastr.warning('Harap Pilih Satu Jabatan sebagai Jabatan Utama')
+                    $scope.enableBtnSimpanJabatanInternal = true;
                     return
                     }
                 }
@@ -709,8 +712,7 @@ define(['initialize'], function (initialize) {
                     $scope.enableBtnSimpanJabatanInternal = true;
                 }, (error) => { 
                     $scope.enableBtnSimpanJabatanInternal = true;
-                }                
-                );
+                });
             }
 
             $scope.getDataSubUnitKerjaById = function (id, data) {
