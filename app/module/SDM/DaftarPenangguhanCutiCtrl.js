@@ -10,6 +10,12 @@ define(['initialize'], function(initialize) {
 				start: "year",
 				depth: "year"
 			};
+			// $scope.listStatusPermohonan = [
+			// 	{id:0, name: "Belum diputuskan"},
+			// 	// {id:1, name: "Disetujui"},
+			// 	{id:2, name: "Ditolak"},
+			// 	{id:3, name: "Ditangguhkan"},
+			// ]
 			$scope.mainGridOptions = { 
 				// pageable: true,
 
@@ -99,9 +105,23 @@ define(['initialize'], function(initialize) {
 						nama=$scope.filter.namaPegawai;
 					}
 
+					if($scope.filter.statusPegawai==undefined){
+						$scope.jenisPermohonan="";
+					}else{
+						$scope.jenisPermohonan=$scope.filter.statusPegawai;
+					}
 
+					// if($scope.filter.status==undefined){
+					// 	$scope.statusPermohonan="";
+					// }else{
+					// 	$scope.statusPermohonan=$scope.filter.status.id;
+					// }
 
-					ManageSdmNew.getListData("sdm/get-list-permohonan-status-cuti-paging/?isSdm=" + $scope.isLoginKesja + "&take=" + $scope.rows + "&page=" + page + "&sort=tglPengajuan&dir=desc" + "&nama=" +nama).then(function(result){
+					ManageSdmNew.getListData("sdm/get-list-permohonan-status-cuti-paging/?idPegawai=" +"&isSdm=" + $scope.isLoginKesja 
+					+ "&take=" + $scope.rows + "&page=" + page + "&sort=tglPengajuan&dir=desc" + "&nama=" +nama
+					+ "&jenisPermohonan=" + $scope.jenisPermohonan 
+					+ "&statusPermohonan=" //+ $scope.statusPermohonan
+					).then(function(result){
 					
 
 					//Data yang masuk kesini sudah dipaging di server	
@@ -322,6 +342,23 @@ define(['initialize'], function(initialize) {
                     }
                 }, 1000);
 			});
+			$scope.$watch('filter.statusPegawai', function(newVal, oldVal){
+				if(!newVal) return;
+				$timeout.cancel(timeoutPromise);
+                timeoutPromise = $timeout(function(){
+                    if (newVal && newVal !== oldVal){
+                        // applyFilter("statusPegawai", newVal)
+                        $scope.loadGrid();
+                    }
+                }, 1000);
+			});
+			// $scope.$watch('filter.status', function(newVal, oldVal){
+			// 	if(!newVal) return;
+			// 	if (newVal && newVal !== oldVal){
+			// 		// applyFilter("approvalStatus", newVal.id)
+			// 		$scope.loadGrid();
+			// 	}
+			// })
 			function applyFilter(filterField, filterValue){
 				var dataGrid = $("#gridPerubahanStatus").data("kendoGrid");
 				var currFilterObject = dataGrid.dataSource.filter();

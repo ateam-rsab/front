@@ -507,6 +507,14 @@ define(['initialize'], function (initialize) {
             //     // autoBind: false,
             // }
             // item.namaPegawai
+
+            $scope.onEnter = function($event){
+                var keyCode = $event.which || $event.keyCode;
+                if (keyCode === 13) {
+                    $scope.searchDataPegawai();
+                }
+            };
+
             $scope.searchDataPegawai = function () {
                 let arrIdKategoriPegawai = [];
                 if ($scope.item.selectedStatusPegawai) {

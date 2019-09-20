@@ -18,6 +18,7 @@ define(['initialize'], function (initialize) {
             // $scope.isRekanan = false;
             $scope.isEdit = false;
             $scope.dataVOloaded = true;
+            $scope.enableBtnSimpanJabatanInternal = true;
             // $scope.item.detailKategoryPegawai = '';
             $scope.item = {};
             $scope.ji = {};
@@ -109,8 +110,21 @@ define(['initialize'], function (initialize) {
                     // $scope.ListDetilKelompokJabatan = res[13].data.data;
                     var tempDataKelompokJabatan = res[13].data.data;
                     $scope.ListRuangan = res[16].data;
-                    $scope.listPegawai = res[15].data;
-                    $scope.listPegawaiRiwayat = res[15].data;
+                    var tempDataPegawai = res[15].data;
+                    $scope.listPegawai = [];
+                    $scope.listPegawaiRiwayat = [];
+                    // $scope.listPegawai = res[15].data;
+                    // $scope.listPegawaiRiwayat = res[15].data;
+                    tempDataPegawai.forEach(function (el) {
+                        if (el.id !== 320272) {
+                            var dataTemp = {
+                                namaLengkap: el.namaLengkap,
+                                id: el.id
+                            }
+                            $scope.listPegawai.push(dataTemp);
+                            $scope.listPegawaiRiwayat.push(dataTemp);
+                        }
+                    })
                     $scope.ListJabatan = res[17].data;
                     $scope.ListJenisPegawai = res[18].data;
                     // $scope.ListDetailKelompokJabatan = res[13].data;
@@ -588,6 +602,8 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.simpanJabatanInternal = function () {
+                $scope.enableBtnSimpanJabatanInternal = false;
+
                 var newModel = [];
                 newModel.push(getDataChanged($scope.ji));
                 newModel[0]['id'] = $scope.ji.idGridInternalJabatan;
@@ -690,7 +706,11 @@ define(['initialize'], function (initialize) {
                     $scope.idGridInternalJabatan = null;
                     $scope.popUpJabatan.close();
                     $scope.loadDataGridJabatanInternal();
-                });
+                    $scope.enableBtnSimpanJabatanInternal = true;
+                }, (error) => { 
+                    $scope.enableBtnSimpanJabatanInternal = true;
+                }                
+                );
             }
 
             $scope.getDataSubUnitKerjaById = function (id, data) {
