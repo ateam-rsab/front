@@ -42,7 +42,7 @@ button:disabled {
                     <div class="grid_12">
                         <div class="grid_3">
                             <div class="grid_12">
-                                <label c-label item="item" c-label-text="Unit Kerja"></label>
+                                <label c-label item="item">Unit Kerja</label>
                             </div>
                             <div class="clear"></div>
 
@@ -54,7 +54,7 @@ button:disabled {
 
                         <div class="grid_3">
                             <div class="grid_12">
-                                <label c-label item="item" c-label-text="Sub Unit Kerja"></label>
+                                <label c-label item="item">Subunit Kerja</label>
                             </div>
                             <div class="clear"></div>
 
@@ -65,7 +65,7 @@ button:disabled {
 
                         <div class="grid_2">
                             <div class="grid_12">
-                                <label c-label item="item" c-label-text="pegawai (opsional)"></label>
+                                <label c-label item="item">Pegawai</label>
                             </div>
                             <div class="clear"></div>
 
@@ -76,7 +76,7 @@ button:disabled {
 
                         <div class="grid_1">
                             <div class="grid_12">
-                                <label c-label item="item" c-label-text="Tanggal Awal"></label>
+                                <label c-label item="item">Tanggal Awal</label>
                             </div>
                             <div class="clear"></div>
 
@@ -86,7 +86,7 @@ button:disabled {
                         </div>
                         <div class="grid_1">
                             <div class="grid_12">
-                                <label c-label item="item" c-label-text="Tanggal Akhir"></label>
+                                <label c-label item="item">Tanggal Akhir</label>
                             </div>
                             <div class="clear"></div>
 
@@ -111,35 +111,28 @@ button:disabled {
                     </div>
                 </div>
                 <div>
-                  <div class="grid_12 borderBox containerBorderBox">
-
-                    
-
-                    <div class="grid_2"  ng-show="isSingle==false">
-                        <div class="grid_12">
-                            <label c-label item="item" c-label-text="Pencarian Nama"></label>
-                        </div>
-                        <div class="clear"></div>
-
-                        <div class="grid_12">
-                            <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="filter.namaPegawai" />
-                        </div>
-                    </div>
-
-                   
-
-                        <div class="grid_3 k-edit-buttons  k-state-default " style="margin-top:23px">
-                            <button class="k-button  k-button-icontext" ng-click="resetFilters()" style="width:100px">
-                            <span class="k-sprite k-icon k-delete"></span>Clear</button>
-                        </div>
-
+                    <div class="grid_12 borderBox containerBorderBox">  
                         <div ng-show="isAdaDataBelumDiinputJadwal"   >
-                            <span  style="margin-top:23px;float:right;font-size:15px;color:red" ng-click="showNotif()">Ada {{item.jmlBelumDiinputJadwal}} data pegawai shift yang belum koreksi jadwal / pegawai nonshift belum mengajukan lembur</span>
+                            <span style="margin-top:23px;float:right;font-size:15px;color:red" ng-click="showNotif()">Ada {{item.jmlBelumDiinputJadwal}} data pegawai shift yang belum koreksi jadwal / pegawai nonshift belum mengajukan lembur</span>
                         </div>
-
                         <div class="grid_12" style="margin: 10px 0 50px;">
                             <kendo-grid id="grid" data-source="sourceOrder" options="mainGridOption"></kendo-grid>
                             <!-- <div kendo-grid="grid" id="grid" k-data-source="sourceOrder" options="mainGridOption" k-selectable="'row'" style="font-size: small;" k-ng-model="current" ng-click="klik(current)"></div> -->
+                        </div>
+                        <div class="grid_12" style="margin: 10px 0 50px;">
+                            <div class="grid_2"  ng-show="isSingle==false">
+                                <div class="grid_12">
+                                    <label c-label item="item">Pencarian Nama</label>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="grid_12">
+                                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="filter.namaPegawai" />
+                                </div>
+                            </div>
+                            <div class="grid_3 k-edit-buttons  k-state-default " style="margin-top:23px">
+                                <button class="k-button  k-button-icontext" ng-click="resetFilters()" style="width:100px">
+                                <span class="k-sprite k-icon k-delete"></span>Clear</button>
+                            </div>
                         </div>
                     </div>
                 </div>

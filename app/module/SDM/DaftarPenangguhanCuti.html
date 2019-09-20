@@ -27,12 +27,31 @@
                     <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaJabatan" disabled="true"/>
                 </div>
             </div> -->
-			<!-- DaftarPengajuanMutasiSanksiResign -->
-			<div class="grid_12">
-                <div id="gridPerubahanStatus" kendo-grid options="mainGridOptions" k-data-source="dataSource" k-selectable="'row'" k-ng-model="current" ng-click="click(current)"></div>
-            </div>
+			
             <div class="panel-body">
                 <!-- pencarianNamaPegawai -->
+				<div class="grid_10">
+                    <div class="grid_3">
+                        <label c-label item="item" c-label-text="namaPegawai"></label>
+                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="filter.namaPegawai" />
+                    </div>
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="jenisPermohonan"></label>
+                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="filter.statusPegawai" />
+                    </div>
+                    <!-- <div class="grid_2">
+                        <label c-label item="item" c-label-text="statusPermohonan"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="filter.status" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listStatusPermohonan" />
+                    </div> -->
+                    <div class="grid_1">
+                        <label c-label c-label-text=""></label>
+                        <em style="margin-top:6px;" ng-click='resetFilters()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+                    </div>
+                </div>
+                <!-- DaftarPengajuanMutasiSanksiResign -->
+			    <div class="grid_12">
+                    <div id="gridPerubahanStatus" kendo-grid options="mainGridOptions" k-data-source="dataSource" k-selectable="'row'" k-ng-model="current" ng-click="click(current)"></div>
+                </div>
                 <div class="grid_12 headerBox"><p>Filter Data</p></div>
                 <div class="grid_12">
                     
@@ -69,16 +88,15 @@
 
                         
                         
-                        <div class="grid_12">
+                        <!-- <div class="grid_12">
                             <label c-label item="item" c-label-text="namaPegawai"></label>
                         </div>
                         
                         <div class="grid_4">
                             <input c-text-box type="input" filter="" class="k-textbox" ng-model="filter.namaPegawai" /> 
-                             
-                        </div>
+                        </div> 
 
-                        <em style="margin-top:10px;" ng-click='resetFilters()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>    
+                        <em style="margin-top:10px;" ng-click='resetFilters()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>     -->
                             
                         
                     

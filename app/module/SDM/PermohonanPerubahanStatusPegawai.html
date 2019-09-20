@@ -1,13 +1,7 @@
-<style>
-	button:disabled {
-    background: #B5B2B1;
-}
-</style>
 <div ng-show="dataVOloaded">
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<span class="title" c-translate>PermohonanPerubahan Status Kehadiran Pegawai</span>
-			
 		</div>
 		<div class="panel-body">
 			<div class="grid_6">
@@ -16,7 +10,8 @@
 						<label c-label item="item" style="margin-top: 10px">No Usulan</label>
 					</div>
 					<div class="grid_9">
-						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noUsulan" disabled="true" />
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noUsulan"
+							disabled="true" />
 					</div>
 				</div>
 				<div class="grid_12">
@@ -24,8 +19,9 @@
 						<label c-label item="item" style="margin-top: 10px">Deskripsi Usulan</label>
 					</div>
 					<div class="grid_9">
-						<textarea style="height: 90px" c-text-box type="input" class="k-textbox" ng-model="item.deskripsiUsulan" />
-					</div>
+						<textarea style="height: 90px" c-text-box type="input" class="k-textbox"
+							ng-model="item.deskripsiUsulan" placeholder="Alasan Pengajuan Usulan"/>
+						</div>
 				</div>
 				<div class="grid_12">
 					<div class="grid_3">
@@ -47,13 +43,24 @@
 					<div class="grid_3">
 						<label c-label item="item" style="margin-top: 10px">Jabatan</label>
 					</div>
-					<div class="grid_9">
+					<!-- <div class="grid_9">
 						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jabatan" disabled="true" />
+					</div> -->
+					<div class="grid_9">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaJabatan" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="true" k-data-source="listjabatan"/>
 					</div>
 				</div>
+				<!-- <div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Unit Kerja</label>
+					</div>
+					<div class="grid_9">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.unitkerja" disabled="true" />
+					</div>
+				</div> -->
 				<div class="grid_12">
 					<div class="grid_3">
-						<label c-label item="item" style="margin-top: 10px">Sub Unit Kerja</label>
+						<label c-label item="item" style="margin-top: 10px">Unit Kerja</label>
 					</div>
 					<div class="grid_9">
 						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.ruangan" disabled="true" />
@@ -67,27 +74,20 @@
 						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.NoTelepon"/>
 					</div>
 				</div>
-
-				
 				<div class="grid_12">
 					<div class="grid_6">
 						<label c-label item="item">Cuti Luar Negeri ?</label>
 					</div>
 					<!-- <div class="clear"></div> -->
-
 					<div class="grid_6" >
-						
 						<div ng-repeat="opsi in radioIsCutiLuarNegeri | orderBy:'id'" style="margin-left: -150px; margin-top: -8px">
-
 	                		<div class="grid_2">
-		                    	<input type="radio" name="{{opsi.nama}}" id="{{opsi.nama}}" class="k-radio" ng-model="item.isCutiLuarNegeri" value="{{opsi.id}}">
+		                    	<input type="radio" name="{{opsi.nama}}" id="{{opsi.nama}}" class="k-radio" ng-model="item.isCutiLuarNegeri" ng-change="setMinDate()" value="{{opsi.id}}">
 		                    	<label class="k-radio-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
 	                		</div>
 	            		</div>
-
 					</div>
 				</div>
-
 			</div>
 			<div class="grid_6">
 				<div class="grid_12">
@@ -140,25 +140,18 @@
 					</div>
 				</div>
 				<div class="grid_12" ng-show="hideJumlahCuti" ng-disabled="disJumlahCuti" >
-					
 					<div class="grid_3">
 						<label c-label item="item" style="margin-top: 10px">Jatah Cuti</label>
 					</div>
-
 					<div class="grid_3">
 						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jumlahCuti" disabled="true" />
 					</div>
-					
 					<div class="grid_3">
 						<label c-label item="item" style="margin-top: 10px">Sisa Cuti</label>
 					</div>
-					
 					<div class="grid_3">
 						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.sisaCuti" disabled="true" />
 					</div>
-
-
-
 					<div class="grid_3">
 						<label c-label item="item" style="margin-top: 10px">Jatah Cuti {{item.tahunCutiN1}}</label>
 					</div>
@@ -172,39 +165,30 @@
 					<div class="grid_3">
 						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.sisaCutiN1" disabled="true" />
 					</div>
-
-					
-
 					<div class="grid_3">
 						<label c-label item="item" style="margin-top: 10px">Jatah Cuti {{item.tahunCutiN2}}</label>
 					</div>
 					<div class="grid_3">
 						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jumlahCutiN2" disabled="true" />
 					</div>
-
 					<div class="grid_3">
 						<label c-label item="item" style="margin-top: 10px">Sisa Cuti {{item.tahunCutiN2}}</label>
 					</div>
 					<div class="grid_3">
 						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.sisaCutiN2" disabled="true" />
 					</div>
-
-
 					<div class="grid_3">
 						<label c-label item="item" style="margin-top: 10px">Jatah Cuti Bersama</label>
 					</div>
 					<div class="grid_3">
 						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jumlahCutiB" disabled="true" />
 					</div>
-
 					<div class="grid_3">
 						<label c-label item="item" style="margin-top: 10px">Sisa Cuti Bersama</label>
 					</div>
 					<div class="grid_3">
 						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.sisaCutiB" disabled="true" />
 					</div>
-
-
 				</div>
 				<div class="grid_12" ng-show="hideJumlahIjin" ng-disabled="disJumlahIjin" >
 					<div class="grid_3">
@@ -227,7 +211,6 @@
 					<div class="grid_9">
 						<input style="width: 100%;" kendo-combo-box k-ng-model="item.sakit" k-data-text-field="'sakit'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDetailSakit" k-on-change="showJumlahSakit()"/>
 					</div>
-					
 					<!-- <div class="grid_3">
 						<label c-label item="item" style="margin-top: 10px">Jumlah Max Sakit</label>
 					</div>
@@ -275,36 +258,32 @@
 					<div class="grid_3" ng-show="item.statusPegawai.id==24 || item.statusPegawai.id==25 || item.statusPegawai.id==29">
 						<label c-label item="item" style="margin-top: 10px">Tanggal Akhir</label>
 					</div> -->	
-
 					<div class="grid_3"  ng-hide="hideTglpermohonan">
 							<label c-label item="item" style="margin-top: 10px">Tanggal Permohonan</label>
 					</div>
-
 					<div class="grid_3" ng-show="showTglAwal">
 
 						<label c-label item="item" style="margin-top: 10px">Tanggal Awal</label>
 					</div>
-
-					
 					<div class="grid_3" ng-show="showTglAkhir">
 						<label c-label item="item" style="margin-top: 10px">Tanggal Akhir</label>
 					</div>
-
 				</div>
 				<div class="grid_12">
 					<div class="grid_12" ng-show="cutiHabis">
 						<span class="errorCuti">Anda tidak memiliki sisa cuti. Sisa cuti anda saat ini adalah <b>{{item.sisaCuti}}</b></span>
 					</div>
-					
 					<div class="grid_4" data-ng-repeat="tanggal in tanggalPermohonan" ng-hide="cutiHabis">
-						<div class="grid_8">
+						<div class="grid_8" ng-show="cutiLuar">
+							<input style="width:100%" kendo-date-picker k-ng-model="tanggal.tgl" k-options="datePickerOptionsCutiLuar"/>
+						</div>
+						<div class="grid_8" ng-show="cutiDalam">
 							<input style="width:100%" kendo-date-picker k-ng-model="tanggal.tgl" k-options="datePickerOptions"/>
 						</div>
 						<div class="grid_4" style="margin-top: 6px;">
 							<kendo-button icon="'k-icon k-i-close'" ng-click='removeNewTgl(tanggal.id)'></kendo-button>
 							<kendo-button ng-show='showAddTgl(tanggal)' icon="'k-icon k-i-plus'" ng-click='addNewTgl()'></kendo-button>
 						</div>
-
 						<div class="clearfix"></div>
 						<div class="grid_12" ng-show="{{tanggal.isDuplicate}}">
 							<label class="duplicateDate">tanggal yang diajukan tidak boleh sama</label>
@@ -330,11 +309,8 @@
 			</div>
 		</div>
 	</div>
-
-
 	
 	<div class="panel panel-default">
-		
 		<div class="panel-header"><h3>Daftar Pengajuan Cuti</h3></div>
 		<div class="panel-body">
 			<div class="grid_12">
@@ -355,10 +331,10 @@
 	<!-- <div class="grid_1" style="margin-top:1px">
 		<button class="c-button" ng-click="cari()">Cari</button>
 	</div> -->
-
 		
 	<div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
 </div>
+
 <div kendo-window="winDialog" k-title="'Cetak Permohonan Cuti'" k-width="400" k-height="320" k-visible="false">
 	<!--<div class="k-demo k-content container">-->
 		<label c-label item="item" c-label-text="Bulan"></label>
@@ -393,6 +369,7 @@
 			<button class='k-button btnEdit pull-right' ng-click='cetakPermohonan(currentData)'>Cetak</button>
 		</div>
 </div>
+
 <div kendo-window="winCetakPelimpahan" k-title="'Cetak Pelimpahan Tugas'" k-width="400" k-height="200" k-visible="false">
 	<label c-label item="item" c-label-text="Dilimpahkan kepada"></label>
 	<input style="width: 100%;" kendo-combo-box k-ng-model="currentData.pegawaiDilimpah" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="true" k-data-source="listPegawai"/>
@@ -408,7 +385,11 @@
 		<button class='k-button btnEdit pull-right' ng-click='cetakPelimpahan(currentData)'>Cetak</button>
 	</div>
 </div>
+
 <style type="text/css">
+button:disabled {
+	background: #B5B2B1;
+}
 .custom-button {
     margin: 0 0 10px;
     background: none;

@@ -610,18 +610,22 @@ define(['initialize'], function (initialize) {
         // }
 
         var dokter = ''
+        //if ($scope.item.namaPegawai != undefined) {
+        //  dokter = $scope.item.namaPegawai.id
+        //}
         if($scope.item.namaPegawai && $scope.item.TipeDokter) {
           $scope.item.namaPegawai = {
             namalengkap: '',
             id:null
           }
-          dokter = $scope.item.TipeDokter.id
+          //dokter = $scope.item.TipeDokter.id
         }
         if ($scope.item.namaPegawai != undefined) {
           dokter = $scope.item.namaPegawai.id
-        } else if($scope.item.TipeDokter) {
-          dokter = $scope.item.TipeDokter.id
-        }
+        } //else if($scope.item.TipeDokter) {
+          //dokter = $scope.item.TipeDokter.id
+        //}
+
         var ruanganId = ''
         if ($scope.item.ruangan != undefined) {
           ruanganId = $scope.item.ruangan.id
@@ -630,17 +634,21 @@ define(['initialize'], function (initialize) {
         if ($scope.item.kelompokPasien != undefined) {
           kelompokPasienId = $scope.item.kelompokPasien.id
         }
+        var tipeDokter = ''
+        if($scope.item.TipeDokter != undefined) {
+          tipeDokter = $scope.item.TipeDokter.id 
+        }
         var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
         var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
         var client = new HttpClient();
         client.get('http://127.0.0.1:1237/printvb/kasir?cetak-laporan-ffs-ranap=1' +//$scope.item.namaKasir.id+
-          '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '~' + personKa + '&idDokter=' + dokter + '&tgllibut=' + person  + '&view='+ruanganId+'&kpid='+kelompokPasienId, function (response) {
+          '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '~' + personKa + '&idDokter=' + dokter + '&tgllibut=' + person  + '&view='+ruanganId+'&kpid='+kelompokPasienId + '&tipeDokter=' + tipeDokter, function (response) {
 
           });
       }
       $scope.CetakRekapLaporanFFSRI = function () {
         var person = prompt("Masukan tgl libur", "");
-        var personKa = prompt("Pilih Kepala Instalasi :                                                                       1. DR. dr. Setyadewi Lusyati, SpA (K), Ph.D                                                                                                                    2. dr. Retno Widyaningsih, SpA (K)", "1");
+        var personKa = prompt("Pilih Kepala Instalasi :                                                                       1. dr. Endah Citraresmi, Sp.A(K),MARS                                                                                                                    2. dr. Retno Widyaningsih, SpA (K)", "1");
 
         // if (person == null) {
         //     alert('')
@@ -671,9 +679,19 @@ define(['initialize'], function (initialize) {
         var personKa = prompt("Pilih Jasa :                                                                          1. Jasa Medis                                                                           2. Jasa Dr Anestesi                                                                           3. Jasa Asisten Spesialis", "1");
 
         var dokter = ''
+
+        if($scope.item.namaPegawai && $scope.item.TipeDokter) {
+          $scope.item.namaPegawai = {
+            namalengkap: '',
+            id:null
+          }
+          //dokter = $scope.item.TipeDokter.id
+        }
+
         if ($scope.item.namaPegawai != undefined) {
           dokter = $scope.item.namaPegawai.id
         }
+
         var ruanganId = ''
         if ($scope.item.ruangan != undefined) {
           ruanganId = $scope.item.ruangan.id
@@ -683,11 +701,15 @@ define(['initialize'], function (initialize) {
         if ($scope.item.kelompokPasien != undefined) {
           kelompokPasienId = $scope.item.kelompokPasien.id
         }
+        var tipeDokter = ''
+        if($scope.item.TipeDokter != undefined) {
+          tipeDokter = $scope.item.TipeDokter.id 
+        }
         var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
         var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
         var client = new HttpClient();
         client.get('http://127.0.0.1:1237/printvb/kasir?cetak-laporan-ffs-bedah=' +kelompokPasienId+//$scope.item.namaKasir.id+
-          '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '&idDokter=' + dokter + '&tgllibut=' + person + '&jasa=' + personKa + '&view='+ruanganId, function (response) {
+          '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '&idDokter=' + dokter + '&tgllibut=' + person + '&jasa=' + personKa + '&view=' + ruanganId + '&kpid=' + kelompokPasienId + '&tipeDokter=' + tipeDokter, function (response) {
 
           });
       }

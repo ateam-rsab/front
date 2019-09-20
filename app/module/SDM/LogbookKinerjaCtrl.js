@@ -40,7 +40,7 @@ define(['initialize'], function(initialize) {'use strict';
                 if(isValid.status){
                     $scope.isRouteLoading = true;
                     $q.all([
-                        ManageSdmNew.getListData("sdm/get-all-tindakan-dokter/"+ dateHelper.getFormatMonthPicker($scope.item.periode) +"/"+ $scope.item.pegawai.id),
+                        ManageSdmNew.getListData("sdm/get-all-tindakan-dokter-rescored/"+ dateHelper.getFormatMonthPicker($scope.item.periode) +"/"+ $scope.item.pegawai.id),
                         ManageSdmNew.getListData("sdm/get-rekapitulasi-capaian/"+dateHelper.getFormatMonthPicker($scope.item.periode)+"/" + $scope.item.pegawai.id)
                         ]).then(function(res) {
                             if(res[0].statResponse){

@@ -2,7 +2,7 @@
     <div class="panel-heading">
         <label class='title' c-label>Log Book</label>
     </div>
-    <div class="grid_6">
+    <!-- <div class="grid_6">
         <div class="panel panel-default panel-white">
             <div class="panel-heading-white"><span class="title" c-translate>Log Data</span></div>
             <div class="panel-body">
@@ -34,12 +34,12 @@
         <div class="panel panel-default panel-white">
             <div class="panel-heading-white"><span class="title" c-translate>Dashboard</span>
             </div>
-            <div class="panel-body">
+            <div class="panel-body"> -->
                 <!--<input style="width: 100%; " kendo-combo-box k-ng-model="groupItem " k-data-text-field=" 'name' " k-filter=" 'contains' " k-data-value-field=" 'value' " k-auto-bind="false " k-data-source="kelompok" />-->
-                <div kendo-chart k-options="pie" k-data-source="sourceyes"></div>
+                <!--<div kendo-chart k-options="pie" k-data-source="sourceyes"></div>
             </div>
         </div>
-    </div>
+    </div> -->
     <div class="grid_12 panel panel-default panel-white">
         <div class="panel-heading-white"><span class="title" c-translate>Logbook Kinerja Staff</span></div>
         <div class="panel-body">
@@ -115,7 +115,7 @@
             <!-- grid tindakan pegawai -->
             <div class="grid_12" style="margin: 10px 0 50px;">
                 <!-- <div kendo-grid id="gridLogKinerja" k-data-source="dataSource" k-options="mainGridOption"></div> -->
-                <div kendo-grid id="gridOrderService" k-options="gridFeeService"></div>
+                <div kendo-grid id="gridOrderService" k-data-source="dataSourceFfs" k-options="gridFeeService"></div>
             </div>
 
             <div class="grid_12">               

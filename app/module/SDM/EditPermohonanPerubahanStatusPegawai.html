@@ -53,10 +53,18 @@
 				</div>
 				<div class="grid_12">
 					<div class="grid_3">
-						<label c-label item="item" style="margin-top: 10px">Sub Unit Kerja</label>
+						<label c-label item="item" style="margin-top: 10px">Unit Kerja</label>
 					</div>
 					<div class="grid_9">
 						<input c-text-box type="input" filter="" class="k-textbox" ng-model="dataItem.unitKerja" disabled="true" />
+					</div>
+				</div>
+				<div class="grid_12">
+					<div class="grid_3">
+						<label c-label item="item" style="margin-top: 10px">Sub Unit Kerja</label>
+					</div>
+					<div class="grid_9">
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="dataItem.ruangan" disabled="true" />
 					</div>
 				</div>
 				<div class="grid_12">
@@ -79,7 +87,7 @@
 						<div ng-repeat="opsi in radioIsCutiLuarNegeri | orderBy:'id'" style="margin-left: -150px; margin-top: -8px">
 
 	                		<div class="grid_2">
-		                    	<input type="radio" name="{{opsi.nama}}" id="{{opsi.nama}}" class="k-radio" ng-model="item.isCutiLuarNegeri" value="{{opsi.id}}">
+		                    	<input type="radio" name="{{opsi.nama}}" id="{{opsi.nama}}" class="k-radio" ng-model="item.isCutiLuarNegeri" ng-change="setMinDate()" value="{{opsi.id}}">
 		                    	<label class="k-radio-label" for="{{opsi.nama}}">{{opsi.nama}}</label>
 	                		</div>
 	            		</div>
@@ -259,7 +267,10 @@
 						<span class="errorCuti">Anda tidak memiliki sisa cuti. Sisa cuti anda saat ini adalah <b>{{item.sisaCuti}}</b></span>
 					</div>
 					<div class="grid_4" data-ng-repeat="tanggal in tanggalPermohonan" ng-hide="cutiHabis">
-						<div class="grid_8">
+						<div class="grid_8" ng-show="cutiLuar">
+							<input style="width:100%" kendo-date-picker k-ng-model="tanggal.tgl" k-options="datePickerOptionsCutiLuar"/>
+						</div>
+						<div class="grid_8" ng-show="cutiDalam">
 							<input style="width:100%" kendo-date-picker k-ng-model="tanggal.tgl" k-options="datePickerOptions"/>
 						</div>
 						<div class="grid_4" style="margin-top: 6px;">

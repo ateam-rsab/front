@@ -96,53 +96,53 @@ define(['initialize'], function(initialize) {'use strict';
 		// 	idPgw = dat.data.data.id; 
 		// });
 
-		$scope.pie={
-			title: {
-				text: "Pengelompokan " 
-			},
-			legend: {
-				position: "top"
-			},
-			seriesDefaults: {
-				labels: {
-					template: "#= category # - #= kendo.format('{0:P}', percentage)#",
-					position: "outsideEnd",
-					visible: true,
-					background: "transparent"
-				}
-			},
-			series: [{
-				type: "pie",
-				field:"persen",
-				categoryField:"namaProduk"
-			}],
-			tooltip: {
-				visible: true,
-				template: "#= category # - #= kendo.format('{0:P}', percentage) #"
-			}
-		};
+		// $scope.pie={
+		// 	title: {
+		// 		text: "Pengelompokan " 
+		// 	},
+		// 	legend: {
+		// 		position: "top"
+		// 	},
+		// 	seriesDefaults: {
+		// 		labels: {
+		// 			template: "#= category # - #= kendo.format('{0:P}', percentage)#",
+		// 			position: "outsideEnd",
+		// 			visible: true,
+		// 			background: "transparent"
+		// 		}
+		// 	},
+		// 	series: [{
+		// 		type: "pie",
+		// 		field:"persen",
+		// 		categoryField:"namaProduk"
+		// 	}],
+		// 	tooltip: {
+		// 		visible: true,
+		// 		template: "#= category # - #= kendo.format('{0:P}', percentage) #"
+		// 	}
+		// };
 
 		
 		
-		$scope.Column = [
+		// $scope.Column = [
 		
-		{
-			field: "no",
-			title: "No",
-			width: 50
-		},
+		// {
+		// 	field: "no",
+		// 	title: "No",
+		// 	width: 50
+		// },
 
-		{
-			field: "tglPelayanan",
-			title: "Tanggal Aktivitas",
-			template: "#= new moment(new Date(tglPelayanan)).format('DD-MM-YYYY HH:mm:ss') #"
-		},
+		// {
+		// 	field: "tglPelayanan",
+		// 	title: "Tanggal Aktivitas",
+		// 	template: "#= new moment(new Date(tglPelayanan)).format('DD-MM-YYYY HH:mm:ss') #"
+		// },
 
-		{
-			field: "namaProduk",
-			title: "Keterangan",
-		}
-		];
+		// {
+		// 	field: "namaProduk",
+		// 	title: "Keterangan",
+		// }
+		// ];
 
 		
 
@@ -319,7 +319,7 @@ define(['initialize'], function(initialize) {'use strict';
 			}
 		}
 
-		$scope.cari();
+		// $scope.cari();
 
 		// $scope.getUraianTugas();
 
@@ -980,6 +980,13 @@ $scope.generateGridColumn =  function(){
 								],
 								dataBound: $scope.onDataBound
 							};
+							$scope.dataSourceFfs = new kendo.data.DataSource({
+								data: dataGrid,
+								aggregate: [
+									{ field: "totalTindakan", aggregate: "sum" },
+									{ field: "pointQty", aggregate: "sum" }
+								]
+							});
 							$scope.isRouteLoading = false;
 						},(error) => {
 							$scope.isRouteLoading = false;

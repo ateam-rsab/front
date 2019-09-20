@@ -192,11 +192,11 @@
                     },
                     {
                         "name": "Rekam Data Pegawai",
-                        "link": "#/UnderMaintenance/RekamDataPegawai"
+                        "link": "#/RekamDataPegawai/"
                     },
                     {
                         "name": "Data Pegawai",
-                        "link": "#/UnderMaintenance/DataPegawai"
+                        "link": "#/DataPegawai"
                     },
                     {
                         "name": "Daftar Pegawai Pensiun Meninggal",
@@ -211,6 +211,10 @@
                         "link": "#/MasaBerlakuSipStr"
                     }
                 ]
+            },
+            {
+                "name": "Data Non Pegawai",
+                "link": "#/DataNonPegawai"
             },
             {
                 "name": "Mutasi, Resign dan Sanksi Pegawai",

@@ -1,0 +1,275 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span class="title" c-translate>Input Data Non Pegawai</span>
+    </div>
+    <div class="grid_6">
+        <md-card>
+            <md-card-header>
+                <span style="font-size: 20px;font-weight: 900">Biodata</span>
+            </md-card-header>
+
+            <md-card-content>
+                <!-- Nama Format Lama -->
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label><b>Nama (Format Lama)*</b></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" placeholder="Nama"
+                            class="k-textbox" ng-model="item.namaLengkap"
+                            disabled
+                            />
+                    </div>
+                </div>
+                <!-- Nama dan Gelar -->
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label><b>Nama dan Gelar</b></label>
+                    </div>
+                    <div class="grid_2">
+                        <input c-text-box type="input" placeholder="Gelar"
+                            filter="'varchar'" class="k-textbox"
+                            ng-model="item.gelarDepan" ng-disabled="isSimpan"
+                            ng-change="changedNamaLengkap()" />
+                    </div>
+                    <div class="grid_4">
+                        <input c-text-box type="input" placeholder="Nama"
+                            filter="'varchar'" class="k-textbox"
+                            ng-model="item.nama"
+                            ng-disabled="isSimpan"
+                            ng-change="changedNamaLengkap()"
+                            />
+                    </div>
+                    <div class="grid_2">
+                        <input c-text-box type="input" placeholder="Gelar"
+                            filter="'varchar'" class="k-textbox"
+                            ng-model="item.gelarBelakang" ng-disabled="isSimpan"
+                            ng-change="changedNamaLengkap()" />
+                    </div>
+                </div>
+                <!-- NIK -->
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label><b>N.I.K</b></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input"
+                            placeholder="Nomor Identitas (SIM, KTP, Paspor)"
+                            filter="'varchar'"
+                            class="k-textbox"
+                            ng-model="item.noIdentitas" ng-disabled="isSimpan"
+                            />
+                    </div>
+                </div>
+                <!-- Jenis kelamin -->
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label><b>Jenis Kelamin</b></label>
+                    </div>
+                    <div class="grid_8">
+                        <input style="width: 100%;" kendo-combo-box
+                            k-ng-model="item.jenisKelamin"
+                            k-data-text-field="'jenisKelamin'"
+                            k-data-value-field="'id'"
+                            k-filter="'contains'" k-auto-bind="false"
+                            k-data-source="listJenisKelamin" />
+                    </div>
+                </div>
+                <!-- Tempat tanggal lahir -->
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label c-label item="item">Tempat Tanggal Lahir</label>
+                    </div>
+                    <div class="grid_4">
+                        <input c-text-box type="input" placeholder="Tempat
+                            Lahir"
+                            filter="'varchar'" class="k-textbox"
+                            ng-model="item.tempatLahir" ng-disabled="isSimpan"
+                            />
+                    </div>
+                    <div class="grid_4">
+                        <input kendo-date-picker k-ng-model="item.tglLahir"
+                            k-format="'dd-MM-yyyy'" style="width: 100%"
+                            ng-disabled="isSimpan" />
+                    </div>
+                </div>
+                <!-- Agama -->
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label c-label item="item" c-label-text="Agama"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input style="width: 100%;" kendo-combo-box
+                            k-ng-model="item.agama" k-data-text-field="'agama'"
+                            k-data-value-field="'id'" k-filter="'contains'"
+                            k-data-source="ListAgama" ng-disabled="isSimpan" />
+                    </div>
+                </div>
+                <!-- Kewarganegaraan -->
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label c-label item="item"
+                            c-label-text="Kewarganegaraan"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input style="width: 100%;" kendo-combo-box
+                            k-ng-model="item.negara"
+                            k-data-text-field="'namaNegara'"
+                            k-data-value-field="'id'" k-filter="'contains'"
+                            k-data-source="listOfNegara" ng-disabled="isSimpan"
+                            />
+                    </div>
+                </div>
+                <!-- Suku -->
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 6px 0 0 0;">
+                        <label c-label item="item" c-label-text="Suku"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input style="width: 100%;" kendo-combo-box
+                            k-ng-model="item.suku" k-data-text-field="'suku'"
+                            k-data-value-field="'id'" k-filter="'contains'"
+                            k-auto-bind="false" k-data-source="ListSuku"
+                            ng-disabled="isSimpan" />
+                    </div>
+                </div>
+                <!-- Status Pernikahan -->
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label c-label item="item" c-label-text="Status
+                            Pernikahan"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input style="width: 100%;" kendo-combo-box
+                            k-ng-model="item.statusKawin"
+                            k-data-text-field="'statusPerkawinan'"
+                            k-data-value-field="'id'" k-filter="'contains'"
+                            k-auto-bind="false" k-data-source="ListStatusKawin"
+                            ng-disabled="isSimpan" />
+                    </div>
+                </div>
+                <!-- Golongan Darah / Rhesus -->
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label><b>Golongan Darah / Rhesus</b></label>
+                    </div>
+                    <div class="grid_4">
+                        <input style="width: 100%;" kendo-combo-box
+                            k-ng-model="item.golonganDarah"
+                            k-data-text-field="'golonganDarah'"
+                            k-data-value-field="'id'" k-filter="'contains'"
+                            k-data-source="ListGolDarah" ng-disabled="isSimpan"
+                            />
+                    </div>
+                    <div class="grid_4">
+                        <input style="width: 100%;" kendo-combo-box
+                            k-ng-model="item.statusRhesus"
+                            k-data-text-field="'name'"
+                            k-data-value-field="'id'" k-filter="'contains'"
+                            k-data-source="listOfGolonganRhesus"
+                            ng-disabled="isSimpan"
+                            />
+                    </div>
+                </div>
+                <!-- Menanggung -->
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label c-label item="item" c-label-text="Menanggung"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input style="width: 100%;" kendo-combo-box
+                            k-ng-model="item.isMenanggung"
+                            k-data-text-field="'name'"
+                            k-data-value-field="'id'" k-filter="'contains'"
+                            k-data-source="dataYesOrNo" ng-disabled="isSimpan"
+                            />
+                    </div>
+                </div>
+            </md-card-content>
+        </md-card>
+    </div>
+    <div class="grid_6">
+        <md-card>
+            <md-card-header>
+                <span style="font-size: 20px;font-weight: 900">Biodata</span>
+            </md-card-header>
+
+
+
+            <md-card-content>
+                <!-- Email -->
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label><b>Email</b></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" placeholder="Email"
+                            filter="'varchar'" class="k-textbox"
+                            ng-model="item.email" ng-disabled="isSimpan" />
+                    </div>
+                </div>
+                <!-- Email Lainnya -->
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label><b>Email Lainnya</b></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input"
+                            placeholder="Email Lainnya" filter="'varchar'"
+                            class="k-textbox"
+                            ng-model="item.emailAlternatif"
+                            ng-disabled="isSimpan" />
+                    </div>
+                </div>
+                <!-- No Telp -->
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label><b>No. Telepon</b></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input"
+                            placeholder="Nomor Telepon" filter="'varchar'"
+                            class="k-textbox"
+                            ng-model="item.noTlp" ng-disabled="isSimpan" />
+                    </div>
+                </div>
+                <!-- No Hp -->
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label><b>No. Handphone</b></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input"
+                            placeholder="Nomor Handphone" filter="'varchar'"
+                            class="k-textbox"
+                            ng-model="item.noHandphone" ng-disabled="isSimpan"
+                            />
+                    </div>
+                </div>
+                <!-- Alamat -->
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label c-label item="item" c-label-text="Alamat"></label>
+                    </div>
+                    <div class="grid_8">
+                        <textarea ng-model="item.alamat" placeholder="Alamat"
+                            style="width: 99%; height: 80px;"
+                            ng-disabled="isSimpan"></textarea>
+                    </div>
+                </div>
+                <!-- Kode Pos -->
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 10px 0 0 0;">
+                        <label c-label item="item" c-label-text="KodePos"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" placeholder="Kode Pos"
+                            filter="'varchar'" class="k-textbox"
+                            ng-model="item.kodePos" ng-disabled="isSimpan" />
+                    </div>
+                </div>
+
+            </md-card-content>
+        </md-card>
+    </div>
+</div>

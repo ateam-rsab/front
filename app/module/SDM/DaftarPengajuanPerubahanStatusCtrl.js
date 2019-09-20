@@ -24,6 +24,7 @@ define(['initialize'], function(initialize) {
 				columns: [
 					{"field": "noPlanning","title": "No Usulan",width: 100},
 					{"field": "namaPegawai","title": "Nama Pegawai"},
+					{"field": "nip","title": "NIP"},
 					// {"field": "namaJabatan","title": "Jabatan"},
 					// {"field": "unitKerja","title": "Ruangan Bekerja"},
 					{"field": "keteranganLainyaPlan","title": "Deskripsi Usulan"},
@@ -136,12 +137,7 @@ define(['initialize'], function(initialize) {
 					pegawaiLogin = result.data.data;
 				}).then(function(){
 					var grid = $("#gridPerubahanStatus").data("kendoGrid"), filteredData;
-<<<<<<<<< Temporary merge branch 1
-
-					if (pegawaiLogin.idSubUnitKerja === 26 || pegawaiLogin.idJabatanInternal === 633){
-=========
 					if (pegawaiLogin.idSubUnitKerja === 26 || pegawaiLogin.idJabatanInternal === 633 || pegawaiLogin.idJabatanInternal === 1139){
->>>>>>>>> Temporary merge branch 2
 						$scope.isLoginKesja = true; // login bukan sdm, button verif & unverif disable
 
 						ManageSdmNew.getListData("sdm/get-list-approval-status-paging?idPegawai=" + "&take=" + $scope.rows + "&page=" + $scope.page + "&nama=" + $scope.namaPegawai + "&jenisPermohonan=" + $scope.jenisPermohonan + "&statusPermohonan=" + $scope.statusPermohonan).then(function(e){ 
