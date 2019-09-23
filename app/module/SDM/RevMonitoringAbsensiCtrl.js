@@ -67,7 +67,18 @@ define(['initialize'], function(initialize) {
                     $scope.isBebasValidasi = false;
                     if(ModelItem.getPegawai().nama === "Administrator" || $scope.isPegawaiSDM || $scope.pegawaiDayaGunaSDM==633){
                         $scope.isSingle = false;
-                        $scope.listPegawai = res[4].data;
+                        var tempDataPegawai = res[4].data;
+                        $scope.listPegawai = [];
+                        tempDataPegawai.forEach(function (el) {
+                            if (el.namaLengkap !== '-') {
+                                var dataTemp = {
+                                    namaLengkap: el.namaLengkap,
+                                    id: el.id
+                                }
+                                $scope.listPegawai.push(dataTemp);
+                            }
+                        })
+                        // $scope.listPegawai = res[4].data;
                         $scope.isBebasValidasi = true;
                         // FindSdm.getUnitKerja().then(function(dat) {
                         ManageSdmNew.getListData("sdm/get-all-unit-kerja").then(function(dat) {
