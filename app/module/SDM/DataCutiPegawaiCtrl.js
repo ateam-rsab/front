@@ -47,7 +47,20 @@ define(['initialize'], function(initialize) {
                             }
                         })
                     }
-                    if(res[1].statResponse) $scope.listPegawai = res[1].data;
+                    if(res[1].statResponse) {
+                        var tempDataPegawai = res[1].data;
+                        $scope.listPegawai = [];
+                        tempDataPegawai.forEach(function (el) {
+                            if (el.namaLengkap !== '-') {
+                                var dataTemp = {
+                                    namaLengkap: el.namaLengkap,
+                                    id: el.id
+                                }
+                                $scope.listPegawai.push(dataTemp);
+                            }
+                        })
+                        // $scope.listPegawai = res[1].data;
+                    } 
                     $scope.isRouteLoading = false;
                 },(error) => {
                     $scope.isRouteLoading = false;
