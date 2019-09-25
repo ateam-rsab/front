@@ -1023,6 +1023,7 @@ define(['initialize'], function (initialize) {
                             "noSuratTugas": $scope.item.noSuratTugas,
                             "noNotaDinas": $scope.item.noNotaDinas,
                             "tglNotaDinas": $scope.item.tglNotaDinas != undefined ? DateHelper.getDateTimeFormatted3($scope.item.tglNotaDinas) : null,
+                            "jenisPerawatan": $scope.item.sakit.id != undefined ? $scope.item.sakit.id : null,
                             "alamatTugas": $scope.item.alamatTugas,
                             "jabatanPemberiNotaDinas": {
                                 "id": $scope.item.jabatanNotaDinas != undefined ? $scope.item.jabatanNotaDinas.id : 14
@@ -1280,6 +1281,12 @@ define(['initialize'], function (initialize) {
                     messageContainer.error("Data tidak dapat diubah");
                     return;
                 } else {
+                    var detailSakit = '';
+                    if (dataItem.sakit == 1) {
+                        detailSakit = 'Rawat Jalan'
+                    } else if (dataItem.sakit == 2) {
+                        detailSakit =  'Rawat Inap'
+                    }
                     // console.log(JSON.stringify(dataItem));
                     var setCurrentData = {
                         "approvalStatus": dataItem.approvalStatus,
@@ -1305,6 +1312,10 @@ define(['initialize'], function (initialize) {
                         "noSuratTugas": dataItem.noSuratTugas,
                         "noNotaDinas": dataItem.noNotaDinas,
                         "tglNotaDinas": dataItem.tglNotaDinas == null || dataItem.tglNotaDinas == undefined ? new Date() : dataItem.tglNotaDinas,
+                        "sakit": {
+                            id: dataItem.sakit,
+                            sakit: detailSakit
+                        },
                         "alamatTugas": dataItem.alamatTugas,
                         "jabatanPemberiNotaDinas": {
                             id: dataItem.jabatanIdPemberiNotaDinas,

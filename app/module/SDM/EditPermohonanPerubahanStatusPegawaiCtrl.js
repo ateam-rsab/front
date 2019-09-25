@@ -185,6 +185,10 @@ define(['initialize'], function(initialize) {
 			// 	console.log('error get user login data');
 			// });
 			var load = function () {
+				var d = new Date();
+				var y = d.getFullYear();
+				$scope.item.tahunCutiN1 = y - 1
+				$scope.item.tahunCutiN2 = y - 2
 
 				if (currentEdit.isCutiLuarNegeri == "1") {
 					$scope.cutiLuar = true;
@@ -222,6 +226,7 @@ define(['initialize'], function(initialize) {
 					}
 					
 					$scope.dataItem = currentEdit;
+
 					$scope.item.isCutiLuarNegeri=$scope.dataItem.isCutiLuarNegeri;
 					// $scope.item.isCutiLuarNegeri="1";
                     $scope.isRouteLoading = false;
@@ -635,7 +640,8 @@ define(['initialize'], function(initialize) {
 						"listTanggal": $scope.tanggalPermohonan,
 						"noSuratTugas": $scope.dataItem.noSuratTugas,
                         "noNotaDinas": $scope.dataItem.noNotaDinas,
-                        "tglNotaDinas": $scope.dataItem.tglNotaDinas,
+						"tglNotaDinas": $scope.dataItem.tglNotaDinas,
+						"jenisPerawatan": $scope.dataItem.sakit.id,
                         "alamatTugas": $scope.dataItem.alamatTugas,
                         "jabatanPemberiNotaDinas": {
                             "id": $scope.dataItem.jabatanPemberiNotaDinas.id != null ? $scope.dataItem.jabatanPemberiNotaDinas.id : 14

@@ -59,14 +59,14 @@
 						<input c-text-box type="input" filter="" class="k-textbox" ng-model="dataItem.unitKerja" disabled="true" />
 					</div>
 				</div>
-				<div class="grid_12">
+				<!-- <div class="grid_12">
 					<div class="grid_3">
 						<label c-label item="item" style="margin-top: 10px">Sub Unit Kerja</label>
 					</div>
 					<div class="grid_9">
 						<input c-text-box type="input" filter="" class="k-textbox" ng-model="dataItem.ruangan" disabled="true" />
 					</div>
-				</div>
+				</div> -->
 				<div class="grid_12">
 					<div class="grid_3">
 						<label c-label item="item" style="margin-top: 10px">No Telepon yg Bisa Dihubungi</label>
@@ -161,14 +161,14 @@
 					</div>
 
 					<div class="grid_3">
-						<label c-label item="item" style="margin-top: 10px">Jatah Cuti {{dataItem.tahunCutiN1}}</label>
+						<label c-label item="item" style="margin-top: 10px">Jatah Cuti {{item.tahunCutiN1}}</label>
 					</div>
 					<div class="grid_3">
 						<input c-text-box type="input" filter="" class="k-textbox" ng-model="dataItem.jumlahCutiN1" disabled="true" />
 					</div>
 
 					<div class="grid_3">
-						<label c-label item="item" style="margin-top: 10px">Sisa Cuti {{dataItem.tahunCutiN1}}</label>
+						<label c-label item="item" style="margin-top: 10px">Sisa Cuti {{item.tahunCutiN1}}</label>
 					</div>
 					<div class="grid_3">
 						<input c-text-box type="input" filter="" class="k-textbox" ng-model="dataItem.sisaCutiN1" disabled="true" />
@@ -177,14 +177,14 @@
 					
 
 					<div class="grid_3">
-						<label c-label item="item" style="margin-top: 10px">Jatah Cuti {{dataItem.tahunCutiN2}}</label>
+						<label c-label item="item" style="margin-top: 10px">Jatah Cuti {{item.tahunCutiN2}}</label>
 					</div>
 					<div class="grid_3">
 						<input c-text-box type="input" filter="" class="k-textbox" ng-model="dataItem.jumlahCutiN2" disabled="true" />
 					</div>
 
 					<div class="grid_3">
-						<label c-label item="item" style="margin-top: 10px">Sisa Cuti {{dataItem.tahunCutiN2}}</label>
+						<label c-label item="item" style="margin-top: 10px">Sisa Cuti {{item.tahunCutiN2}}</label>
 					</div>
 					<div class="grid_3">
 						<input c-text-box type="input" filter="" class="k-textbox" ng-model="dataItem.sisaCutiN2" disabled="true" />
@@ -225,7 +225,8 @@
 						<label c-label item="item" style="margin-top: 10px">Sakit</label>
 					</div>
 					<div class="grid_9">
-						<input style="width: 100%;" kendo-combo-box k-ng-model="dataItem.sakit" k-data-text-field="'sakit'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDetailSakit" k-on-change="showJumlahSakit()"/>
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="dataItem.sakit.sakit" disabled="true" />
+						<!-- <input style="width: 100%;" kendo-combo-box k-ng-model="dataItem.sakit" k-data-text-field="'sakit'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDetailSakit" k-on-change="showJumlahSakit()"/> -->
 					</div>
 					<!-- <div class="grid_3">
 						<label c-label item="item" style="margin-top: 10px">Jumlah Max Sakit</label>
