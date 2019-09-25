@@ -200,7 +200,7 @@
                     },
                     {
                         "name": "Daftar Pegawai Pensiun Meninggal",
-                        "link": "#/UnderMaintenance/DaftarPegawaiPensiunMeninggal"
+                        "link": "#/DaftarPegawaiPensiunMeninggal"
                     },
                     {
                         "name": "Daftar Rencana Pensiun Pegawai",

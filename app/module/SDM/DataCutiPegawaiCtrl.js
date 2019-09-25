@@ -254,11 +254,12 @@ define(['initialize'], function(initialize) {
                     selectable: 'row',
 
                     dataBound:function(e){
-          $( ".k-state-disabled" ).each(function( index ) {
-            $(this).removeClass('k-grid-delete')
-            $(this).removeClass('k-grid-edit')
-          });
-        },
+                    $( ".k-state-disabled" ).each(function( index ) {
+                        $(this).removeClass('k-grid-delete')
+                        $(this).removeClass('k-grid-edit')
+                    });
+                    },
+
                     columns: [
                         { field: "komponenIndex", title: "Komponen Index", width: "18%" },
                         // { field: "namaPegawai", title: "Nama Lengkap", width: "18%" },
@@ -267,7 +268,7 @@ define(['initialize'], function(initialize) {
                         // { field: "subUnitKerja", title: "SubUnit Kerja", width: "15%" },
                         { field: "tahun", title: "Periode", width: "8%" },
                         { field: "value", title: "Jatah Cuti", width: "10%" },
-                        { field: "cutiTerpakai", title: "Cuti Terpakai", width: "13%" },
+                        { field: "cutiTerpakai", title: "Jatah Cuti Terpakai", width: "13%" },
                         { field: "sisaCuti", title: "Sisa Cuti", width: "10%" },
                         { field: "isTangguhkan", title: "Penangguhan", width: "15%", 
                         "template": "#if(isTangguhkan===false){# Belum / Tidak ditangguhkan #} else if(isTangguhkan===true){# Ditangguhkan #}#"},
