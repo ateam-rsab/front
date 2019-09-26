@@ -94,8 +94,17 @@ define(['initialize'], function (initialize) {
                     // $scope.ListAgama = res[2].data.splice(1, 6);
                     let tempDataAgama = res[2].data;
                     $scope.ListPosisiLamaran = res[3].data;
-                    // let tempStatusKawin = res[4].data;
-                    $scope.ListStatusKawin = res[4].data;
+                    var tempStatusKawin = res[4].data;
+                    $scope.ListStatusKawin = [];
+                    tempStatusKawin.forEach(function (el) {
+                        if (el.statusPerkawinan !== '-') {
+                            var dataTemp = {
+                                id: el.id,
+                                statusPerkawinan: el.statusPerkawinan
+                            }
+                            $scope.ListStatusKawin.push(dataTemp);
+                        }                        
+                    });
                     $scope.ListKategoriPegawai = res[5].data.splice(1);
                     $scope.ListJenisKelamin = res[6].data.splice(1);
                     $scope.ListEselon = res[7].data;
