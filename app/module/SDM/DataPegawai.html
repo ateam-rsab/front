@@ -9,13 +9,13 @@
                 <label c-label item="item">Nama</label>
                 <input id="category" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaPegawai" ng-blur="searchDataPegawai()" ng-keypress="onEnter($event)"/>
             </div>
-            <div class="grid_2">
+            <div class="grid_3">
                 <!-- <label c-label item="item" c-label-text="Unit Kerja"></label> -->
                 <label c-label item="item">Unit Kerja</label>
                 <input style="width: 100%;" kendo-combo-box k-ng-model="item.unitKerja" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja" k-on-change="searchDataPegawai()"/>
             </div>
-            <div class="grid_2">
-                <label c-label item="item" c-label-text="Kedudukan"></label>
+            <div class="grid_3">
+                <label c-label item="item">Kedudukan</label>
                 <input style="width: 100%;" kendo-combo-box k-ng-model="item.kedudukanPegawai" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListKedudukanPegawai" k-on-change="searchDataPegawai()"/>
             </div>
             <div class="grid_2">

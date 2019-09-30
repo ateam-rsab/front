@@ -47,7 +47,17 @@ define(['initialize'], function (initialize) {
             ]).then(function (result) {
                 $scope.ListJabatanInternal = result[0].data;
                 $scope.listSubUnitKerja = $scope.listSubUnit = result[1].data.data;
-                $scope.listUnitKerja = result[2].data.data;
+
+                if (result[2].statResponse) {
+                    var toRemove = [0],
+                        listUnitKerja = result[2].data.data;
+
+                    $scope.listUnitKerja = listUnitKerja.filter(function(el) {
+                        return !toRemove.includes(el.id);
+                    });
+                }
+
+                // $scope.listUnitKerja = result[2].data.data;
                 if (result[3].data.data.length > 0 || result[4].data.data.length > 0) {
                     $scope.messages = "Sistem mendeteksi SIP dan STR pegawai yang akan berakhir dalam 6 bulan ke depan. Klik (OK) untuk melihat daftar SIP dan atau STR."
                     $scope.dialogPopup.setOptions({
@@ -59,29 +69,40 @@ define(['initialize'], function (initialize) {
                 };
                 // $scope.ListKedudukanPegawai = result[5].data.data;
                 if (result[5].statResponse) {
-                    var toRemove = [3, 4, 5, 24, 25],
+                    var toRemove = [3, 4, 5, 22, 23, 24, 25, 28],
                         listKedudukan = result[5].data.data;
 
-                    $scope.ListKedudukanPegawai = listKedudukan;
+                    $scope.ListKedudukanPegawai = listKedudukan.filter(function(el) {
+                        return !toRemove.includes(el.id);
+                    });
                 }
 
                 // $scope.ListStatusPegawai = result[6].data;
+
+                if (result[6].statResponse) {
+                    var toRemove = [13, 16, 17],
+                        listKategory = result[6].data;
+
+                    $scope.ListStatusPegawai = listKategory.filter(function(el) {
+                        return !toRemove.includes(el.id);
+                    });
+                }
                 
-                $scope.ListStatusPegawai = [];
-                var tempListStatusPegawai = result[6].data;
-                tempListStatusPegawai.forEach(function (el) {
-                    if (el.kategoryPegawai !== '-') {
-                        if (el.kategoryPegawai !== 'MITRA') {
-                            if (el.kategoryPegawai !== 'PESERTA DIDIK') {
-                                var tempList = {
-                                    id: el.id,
-                                    kategoryPegawai: el.kategoryPegawai,
-                                }
-                                $scope.ListStatusPegawai.push(tempList);
-                            }
-                        }
-                    }
-                });
+                // $scope.ListStatusPegawai = [];
+                // var tempListStatusPegawai = result[6].data;
+                // tempListStatusPegawai.forEach(function (el) {
+                //     if (el.kategoryPegawai !== '-') {
+                //         if (el.kategoryPegawai !== 'MITRA') {
+                //             if (el.kategoryPegawai !== 'PESERTA DIDIK') {
+                //                 var tempList = {
+                //                     id: el.id,
+                //                     kategoryPegawai: el.kategoryPegawai,
+                //                 }
+                //                 $scope.ListStatusPegawai.push(tempList);
+                //             }
+                //         }
+                //     }
+                // });
                  
                 // restructure json get mapping atasan
                 if (result[7].statResponse) {
