@@ -349,7 +349,7 @@ define(['initialize'], function (initialize) {
                         },
                         {
                             field: "pejabatPenilai",
-                            title: "<h3 class='small-font'>Pejabat Penilai</h3>", width: "150px",
+                            title: "<h3 class='small-font'>Atasan<br>Pejabat Penilai</h3>", width: "150px",
                             template: "#if(!pejabatPenilaiDireksi) { # #= pejabatPenilai.namaLengkap # #} else { # #=pejabatPenilaiDireksi# # } #"
                         },
                         {
