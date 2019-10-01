@@ -16,15 +16,23 @@ define(['initialize'], function (initialize) {
             $scope.showSearch = false;
             $scope.$watch('item.unitKerja', function(e){
 				if(!e) return;
-				FindSdm.getSubUnitKerjaById(e.id).then(function(res){
+				// FindSdm.getSubUnitKerjaById(e.id).then(function(res){
+                ManageSdmNew.getListData("sdm/get-sub-unit-kerja-by-unit-kerja/"+e.id).then(function(res){
                     $scope.listSubUnitKerja = res.data.data;
 				})
 			})
             // ManageSdm.getOrderList("service/list-generic/?view=Ruangan&select=id,namaRuangan").then(function (dat) {
             //     $scope.listUnitKerja = dat.data;
             // });
-            FindSdm.getUnitKerja().then(function(result){
-                $scope.listUnitKerja = result.data.data;
+            // FindSdm.getUnitKerja().then(function(result){
+            ManageSdmNew.getListData("sdm/get-all-unit-kerja").then(function(result){
+                var toRemove = [0],
+                    listUnitKerja = result.data.data;
+
+                $scope.listUnitKerja = listUnitKerja.filter(function(el) {
+                    return !toRemove.includes(el.id);
+                });
+                // $scope.listUnitKerja = result.data.data;
                 $scope.isRouteLoading = false;
             }, function(error){
                 $scope.isRouteLoading = false;
@@ -93,7 +101,7 @@ define(['initialize'], function (initialize) {
                             { title: "Tugas Luar", field: "tugasLuar", width: "100px", attributes: { class: "cell-right"} },
                             { title: "T/PC", field: "tpc", width: "100px", attributes: { class: "cell-right"} },
                             { field: "izin", title: "Izin", width: "100px", attributes: { class: "cell-right"} },
-                            { field: "kelebihanJamKerja", title: "Kelebihan Jam Kerja", width: "100px", attributes: { class: "cell-right"} },
+                            { field: "kelebihanJamKerja", title: "Kelebihan Menit Kerja", width: "100px", attributes: { class: "cell-right"} },
                             { field: "lemburs", title: "Lembur Kerja", width: "100px", attributes: { class: "cell-right"} },
                             { field: "mangkir", title: "Mangkir", width: "100px", attributes: { class: "cell-right"} },
                             { field: "absenTunggal", title: "Absen Tunggal", width: "100px", attributes: { class: "cell-right"} },
@@ -200,7 +208,7 @@ define(['initialize'], function (initialize) {
                 console.log(dataSend);
 
 
-                ManageSdm.saveDataUji(dataSend, "sdm/save-rekap-kehadiran/").then(function (e) {
+                ManageSdmNew.saveData(dataSend, "sdm/save-rekap-kehadiran/").then(function (e) {
                     console.log("DATA :" + JSON.stringify(dataSend));
                 });
                 if (datas.length > 0) {
