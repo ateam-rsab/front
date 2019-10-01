@@ -258,7 +258,7 @@ define(['initialize'], function(initialize) {
                         ]
                     });
                     //save the file as Excel file with extension xlsx
-                    kendo.saveAs({dataURI: workbook.toDataURL(), fileName: "Daftar Masa Berlaku SIP-"+ dateHelper.formatDate(new Date(), 'DD-MMM-YYYY') +".xlsx"});
+                    kendo.saveAs({dataURI: workbook.toDataURL(), fileName: "Daftar Masa Berlaku STR-"+ dateHelper.formatDate(new Date(), 'DD-MMM-YYYY') +".xlsx"});
                 });
             };
 
