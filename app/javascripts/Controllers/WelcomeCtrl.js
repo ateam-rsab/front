@@ -1,20 +1,62 @@
-define(['initialize'], function(initialize) {
-    initialize.controller('WelcomeCtrl', ['$scope', 'R', '$rootScope', 'MenuService', 'LoginHelper',
-        function($scope, r, $rootScope, MenuService, LoginHelper) {
+define(['initialize'], function (initialize) {
+    initialize.controller('WelcomeCtrl', ['$scope', 'R', '$rootScope', 'MenuService', 'LoginHelper', '$mdDialog', 'DateHelper',
+        function ($scope, r, $rootScope, MenuService, LoginHelper, $mdDialog, DateHelper) {
 
-            $scope.title = "hayolohhh muncul";
-
+            $scope.now = new Date();
+            $scope.sixMoth = $scope.now.setMonth($scope.now.getMonth() + 6)
             $rootScope.isOpen = true;
 
+            var getNotif = function() {
+                MenuService.getNotification('sdm/get-sip-str-expired-pegawai').then(res => {
+                    $scope.messageNotif = '';
+                    let data = res.data.data;
+                    console.log(new Date().setMonth(new Date(data.tglBerakhirSip).getMonth() - 6))
+
+                    // kondisi jika dua dua nya telah berakhir
+                    // if((data.tglBerakhirSip < DateHelper.toTimeStamp($scope.now)) && (data.tglBerakhirStr < DateHelper.toTimeStamp($scope.now))) {
+                    // $scope.messageNotif = `Mohon hubungi SDM karena SIP Anda telah berakhir pada ${data.tglBerakhirSip2} dan STR Anda telah berakhir pada ${data.tglBerakhirStr2}`;
+
+                    if(data.noSip && data.noStr) {
+                        if(data.tglBerakhirSip > DateHelper.toTimeStamp($scope.now) && data.tglBerakhirStr > DateHelper.toTimeStamp($scope.now)) {
+                            if((new Date().setMonth(new Date(data.tglBerakhirSip).getMonth() - 6)) < DateHelper.toTimeStamp($scope.now) && (new Date().setMonth(new Date(data.tglBerakhirStr).getMonth() - 6)) < DateHelper.toTimeStamp($scope.now)) {
+                                if((new Date().setMonth(new Date(data.tglBerakhirSip).getMonth() - 6)) < DateHelper.toTimeStamp($scope.now) && (new Date().setMonth(new Date(data.tglBerakhirStr).getMonth() - 6)) > DateHelper.toTimeStamp($scope.now)) {
+                                    $scope.messageNotif = `SIP mau berakhir`;
+                                } else if((new Date().setMonth(new Date(data.tglBerakhirSip).getMonth() - 6)) < DateHelper.toTimeStamp($scope.now) && (new Date().setMonth(new Date(data.tglBerakhirStr).getMonth() - 6)) > DateHelper.toTimeStamp($scope.now)) {
+                                    
+                                    $scope.messageNotif = `STR mau berakhir`;
+                                } else {
+                                    $scope.messageNotif = `SIP dan STR mau berakhir`;
+                                }
+                            } 
+                        } else if((data.tglBerakhirSip < DateHelper.toTimeStamp($scope.now)) && (data.tglBerakhirStr < DateHelper.toTimeStamp($scope.now))) {
+                            $scope.messageNotif = `Mohon hubungi SDM karena SIP Anda telah berakhir pada ${data.tglBerakhirSip2} dan STR Anda telah berakhir pada ${data.tglBerakhirStr2}`;
+                        } else if((data.tglBerakhirSip < DateHelper.toTimeStamp($scope.now)) && (new Date().setMonth(new Date(data.tglBerakhirStr).getMonth() - 6)) < DateHelper.toTimeStamp($scope.now)) {
+                            $scope.messageNotif = `SIP udah berakhir tapi SIP baru mau berakhir`;
+                        } else if((data.tglBerakhirStr > DateHelper.toTimeStamp($scope.now)) && (new Date().setMonth(new Date(data.tglBerakhirSip).getMonth() - 6)) < DateHelper.toTimeStamp($scope.now)) { 
+                            $scope.messageNotif = `STR udah berakhir tapi SIP baru mau berakhir`;
+                        } else if(res.data.data.tglBerakhirSip < DateHelper.toTimeStamp($scope.now)) {
+                            $scope.messageNotif = `Mohon hubungi SDM karena SIP Anda telah berakhir pada ${data.tglBerakhirSip2}`;
+                        } else {
+                            $scope.messageNotif = `Mohon hubungi SDM karena STR Anda telah berakhir pada ${data.tglBerakhirStr2}`;
+                        }
+                    }
+                    // else if()
+                    $scope.notificationSIP.open().center();  
+                });
+                
+            }
+
+            getNotif();
+
             $rootScope.hideMenuUp = false;
-            $scope.changeMenu = function(menu) {
+            $scope.changeMenu = function (menu) {
 
                 if (menu.children !== undefined) {
                     $scope.menus = menu.children;
                     $scope.listMenu.push($scope.menus);
                 }
             };
-            $scope.Back = function() {
+            $scope.Back = function () {
                 var item = $scope.listMenu.slice(0, $scope.listMenu.length - 1);
                 $scope.listMenu = item;
                 $scope.menus = item[item.length - 1];
@@ -76,11 +118,11 @@ define(['initialize'], function(initialize) {
             }];
 
             $scope.listMenu = [$scope.menus];
-            $scope.request = function() {
+            $scope.request = function () {
                 r({
                     method: 'GET',
                     url: '/app/data/GetRequireConfig'
-                }).then(function(data) {}, function(error) {});
+                }).then(function (data) { }, function (error) { });
             }
             $scope.data = [{
                 link: '#/Pasien',
@@ -97,8 +139,7 @@ define(['initialize'], function(initialize) {
 
             $scope.showMenuUtama = true;
 
-            $scope.backToMenuUtama = function()
-            {
+            $scope.backToMenuUtama = function () {
                 $scope.showMenuManajemen = false;
                 $scope.showMenuSDM = false;
                 $scope.showMenuKeuangan = false;
@@ -108,7 +149,7 @@ define(['initialize'], function(initialize) {
                 $scope.showMenuUtama = true;
             }
 
-            $scope.goToMenuLayanan = function(showMenuLayanan){
+            $scope.goToMenuLayanan = function (showMenuLayanan) {
                 $scope.showMenuManajemen = false;
                 $scope.showMenuSDM = false;
                 $scope.showMenuKeuangan = false;
@@ -124,87 +165,87 @@ define(['initialize'], function(initialize) {
                     $scope.DaftarMenu = result;
                 });*/
 
-               switch(showMenuLayanan){
-                   case "showMenuManajemen":
+                switch (showMenuLayanan) {
+                    case "showMenuManajemen":
                         $scope.titleMenu = "Manajemen";
                         $scope.DaftarMenu = [
-                            { "title" : "eis", "url_image" : "menu-manajemen/eis.jpg" },
-                            { "title" : "komite-etik-hukum", "url_image" : "menu-manajemen/komite-etik-hukum.jpg" },
-                            { "title" : "komite-keperawatan", "url_image" : "menu-manajemen/komite-keperawatan.jpg" },
-                            { "title" : "komite-medis", "url_image" : "menu-manajemen/komite-medis.jpg" },
-                            { "title" : "spi", "url_image" : "menu-manajemen/spi.jpg" },
-                            { "title" : "sysadmin", "url_image" : "menu-manajemen/sysadmin.jpg" }
+                            { "title": "eis", "url_image": "menu-manajemen/eis.jpg" },
+                            { "title": "komite-etik-hukum", "url_image": "menu-manajemen/komite-etik-hukum.jpg" },
+                            { "title": "komite-keperawatan", "url_image": "menu-manajemen/komite-keperawatan.jpg" },
+                            { "title": "komite-medis", "url_image": "menu-manajemen/komite-medis.jpg" },
+                            { "title": "spi", "url_image": "menu-manajemen/spi.jpg" },
+                            { "title": "sysadmin", "url_image": "menu-manajemen/sysadmin.jpg" }
                         ];
 
-                   break;
+                        break;
 
-                   case "showMenuSDM":
+                    case "showMenuSDM":
                         $scope.titleMenu = "Sumber Daya Manusia";
                         $scope.DaftarMenu = [
-                            { "title" : "sdm", "url_image" : "menu-sdm/sdm.jpg" },
-                            { "title" : "pendidikan", "url_image" : "menu-sdm/pendidikan.jpg" },
-                            { "title" : "pelatihan", "url_image" : "menu-sdm/pelatihan.jpg" },
-                            { "title" : "sysadmin", "url_image" : "menu-sdm/sysadmin.jpg" }
+                            { "title": "sdm", "url_image": "menu-sdm/sdm.jpg" },
+                            { "title": "pendidikan", "url_image": "menu-sdm/pendidikan.jpg" },
+                            { "title": "pelatihan", "url_image": "menu-sdm/pelatihan.jpg" },
+                            { "title": "sysadmin", "url_image": "menu-sdm/sysadmin.jpg" }
                         ];
-                   break;
+                        break;
 
-                   case "showMenuKeuangan":
+                    case "showMenuKeuangan":
                         $scope.titleMenu = "Keuangan";
                         $scope.DaftarMenu = [
-                            { "title" : "akuntansi", "url_image" : "menu-keuangan/akuntansi.jpg" },
-                            { "title" : "bendahara-penerimaan", "url_image" : "menu-keuangan/bendahara-penerimaan.jpg" },
-                            { "title" : "bendahara-pengeluaran", "url_image" : "menu-keuangan/bendahara-pengeluaran.jpg" },
-                            { "title" : "hutang-piutang", "url_image" : "menu-keuangan/hutang-piutang.jpg" },
-                            { "title" : "kasir-penerimaan", "url_image" : "menu-keuangan/kasir-penerimaan.jpg" },
-                            { "title" : "kasir-pengeluaran", "url_image" : "menu-keuangan/kasir-pengeluaran.jpg" },
-                            { "title" : "perencanaan-anggaran", "url_image" : "menu-keuangan/perencanaan-anggaran.jpg" },
-                            { "title" : "sysadmin", "url_image" : "menu-keuangan/sysadmin.jpg" }
+                            { "title": "akuntansi", "url_image": "menu-keuangan/akuntansi.jpg" },
+                            { "title": "bendahara-penerimaan", "url_image": "menu-keuangan/bendahara-penerimaan.jpg" },
+                            { "title": "bendahara-pengeluaran", "url_image": "menu-keuangan/bendahara-pengeluaran.jpg" },
+                            { "title": "hutang-piutang", "url_image": "menu-keuangan/hutang-piutang.jpg" },
+                            { "title": "kasir-penerimaan", "url_image": "menu-keuangan/kasir-penerimaan.jpg" },
+                            { "title": "kasir-pengeluaran", "url_image": "menu-keuangan/kasir-pengeluaran.jpg" },
+                            { "title": "perencanaan-anggaran", "url_image": "menu-keuangan/perencanaan-anggaran.jpg" },
+                            { "title": "sysadmin", "url_image": "menu-keuangan/sysadmin.jpg" }
                         ];
-                   break;
+                        break;
 
-                   case "showMenuRmPelayanan":
+                    case "showMenuRmPelayanan":
                         $scope.titleMenu = "Rekam Medis & Pelayanan";
                         $scope.DaftarMenu = [
-                            { "title" : "bedah-sentral", "url_image" : "menu-rm-pelayanan/bedah-sentral.jpg" },
-                            { "title" : "depo-farmasi", "url_image" : "menu-rm-pelayanan/depo-farmasi.jpg" },
-                            { "title" : "gawat-darurat", "url_image" : "menu-rm-pelayanan/gawat-darurat.jpg" },
-                            { "title" : "gizi-kantin", "url_image" : "menu-rm-pelayanan/gizi-kantin.jpg" },
-                            { "title" : "gudang-farmasi", "url_image" : "menu-rm-pelayanan/gudang-farmasi.jpg" },
-                            { "title" : "lab", "url_image" : "menu-rm-pelayanan/lab.jpg" },
-                            { "title" : "radiology", "url_image" : "menu-rm-pelayanan/radiology.jpg" },
-                            { "title" : "rawat-inap", "url_image" : "menu-rm-pelayanan/rawat-inap.jpg" },
-                            { "title" : "rawat-jalan", "url_image" : "menu-rm-pelayanan/rawat-jalan.jpg" },
-                            { "title" : "regis-pasien", "url_image" : "menu-rm-pelayanan/regis-pasien.jpg" },
-                            { "title" : "rehab-medik", "url_image" : "menu-rm-pelayanan/rehab-medik.jpg" },
-                            { "title" : "rekam-medis", "url_image" : "menu-rm-pelayanan/rekam-medis.jpg" },
-                            { "title" : "sistem-informasi-rs", "url_image" : "menu-rm-pelayanan/sistem-informasi-rs.jpg" },
-                            { "title" : "sysadmin", "url_image" : "menu-rm-pelayanan/sysadmin.jpg" }
+                            { "title": "bedah-sentral", "url_image": "menu-rm-pelayanan/bedah-sentral.jpg" },
+                            { "title": "depo-farmasi", "url_image": "menu-rm-pelayanan/depo-farmasi.jpg" },
+                            { "title": "gawat-darurat", "url_image": "menu-rm-pelayanan/gawat-darurat.jpg" },
+                            { "title": "gizi-kantin", "url_image": "menu-rm-pelayanan/gizi-kantin.jpg" },
+                            { "title": "gudang-farmasi", "url_image": "menu-rm-pelayanan/gudang-farmasi.jpg" },
+                            { "title": "lab", "url_image": "menu-rm-pelayanan/lab.jpg" },
+                            { "title": "radiology", "url_image": "menu-rm-pelayanan/radiology.jpg" },
+                            { "title": "rawat-inap", "url_image": "menu-rm-pelayanan/rawat-inap.jpg" },
+                            { "title": "rawat-jalan", "url_image": "menu-rm-pelayanan/rawat-jalan.jpg" },
+                            { "title": "regis-pasien", "url_image": "menu-rm-pelayanan/regis-pasien.jpg" },
+                            { "title": "rehab-medik", "url_image": "menu-rm-pelayanan/rehab-medik.jpg" },
+                            { "title": "rekam-medis", "url_image": "menu-rm-pelayanan/rekam-medis.jpg" },
+                            { "title": "sistem-informasi-rs", "url_image": "menu-rm-pelayanan/sistem-informasi-rs.jpg" },
+                            { "title": "sysadmin", "url_image": "menu-rm-pelayanan/sysadmin.jpg" }
                         ];
-                   break;
+                        break;
 
-                   case "showMenuSarpras":
+                    case "showMenuSarpras":
                         $scope.titleMenu = "Sarana dan Prasarana";
                         $scope.DaftarMenu = [
-                            { "title" : "adm-tatausaha", "url_image" : "menu-sarpras/adm-tatausaha.jpg" },
-                            { "title" : "ambulance", "url_image" : "menu-sarpras/ambulance.jpg" },
-                            { "title" : "binatu-laundry", "url_image" : "menu-sarpras/binatu-laundry.jpg" },
-                            { "title" : "cssd", "url_image" : "menu-sarpras/cssd.jpg" },
-                            { "title" : "gudang-gizi", "url_image" : "menu-sarpras/gudang-gizi.jpg" },
-                            { "title" : "gudang-terminal", "url_image" : "menu-sarpras/gudang-terminal.jpg" },
-                            { "title" : "gudang-umum", "url_image" : "menu-sarpras/gudang-umum.jpg" },
-                            { "title" : "hukum-organisasi", "url_image" : "menu-sarpras/hukum-organisasi.jpg" },
-                            { "title" : "humas-pemasaran", "url_image" : "menu-sarpras/humas-pemasaran.jpg" },
-                            { "title" : "informasi-rs", "url_image" : "menu-sarpras/informasi-rs.jpg" },
-                            { "title" : "kesehatan-keselamatan-kerja", "url_image" : "menu-sarpras/kesehatan-keselamatan-kerja.jpg" },
-                            { "title" : "psrs", "url_image" : "menu-sarpras/psrs.jpg" },
-                            { "title" : "rumah-tangga", "url_image" : "menu-sarpras/rumah-tangga.jpg" },
-                            { "title" : "ulp", "url_image" : "menu-sarpras/ulp.jpg" },
-                            { "title" : "sysadmin", "url_image" : "menu-sarpras/sysadmin.jpg" }
+                            { "title": "adm-tatausaha", "url_image": "menu-sarpras/adm-tatausaha.jpg" },
+                            { "title": "ambulance", "url_image": "menu-sarpras/ambulance.jpg" },
+                            { "title": "binatu-laundry", "url_image": "menu-sarpras/binatu-laundry.jpg" },
+                            { "title": "cssd", "url_image": "menu-sarpras/cssd.jpg" },
+                            { "title": "gudang-gizi", "url_image": "menu-sarpras/gudang-gizi.jpg" },
+                            { "title": "gudang-terminal", "url_image": "menu-sarpras/gudang-terminal.jpg" },
+                            { "title": "gudang-umum", "url_image": "menu-sarpras/gudang-umum.jpg" },
+                            { "title": "hukum-organisasi", "url_image": "menu-sarpras/hukum-organisasi.jpg" },
+                            { "title": "humas-pemasaran", "url_image": "menu-sarpras/humas-pemasaran.jpg" },
+                            { "title": "informasi-rs", "url_image": "menu-sarpras/informasi-rs.jpg" },
+                            { "title": "kesehatan-keselamatan-kerja", "url_image": "menu-sarpras/kesehatan-keselamatan-kerja.jpg" },
+                            { "title": "psrs", "url_image": "menu-sarpras/psrs.jpg" },
+                            { "title": "rumah-tangga", "url_image": "menu-sarpras/rumah-tangga.jpg" },
+                            { "title": "ulp", "url_image": "menu-sarpras/ulp.jpg" },
+                            { "title": "sysadmin", "url_image": "menu-sarpras/sysadmin.jpg" }
                         ];
-                   break;
-               };
+                        break;
+                };
 
-                if($scope.DaftarMenu.length > 8)
+                if ($scope.DaftarMenu.length > 8)
                     $scope.gridStyle = "grid_2";
                 else
                     $scope.gridStyle = "grid_3";
@@ -217,20 +258,20 @@ define(['initialize'], function(initialize) {
             $scope.showTooltipRmPelayanan = false;
             $scope.showTooltipSarpras = false;
 
-            $scope.hoverMenu = function(showTooltip){
+            $scope.hoverMenu = function (showTooltip) {
                 $scope[showTooltip] = true;
             }
 
-            $scope.leaveMenu = function(showTooltip){
+            $scope.leaveMenu = function (showTooltip) {
                 $scope[showTooltip] = false;
             }
 
-            $scope.showSubMenu = function(title){
+            $scope.showSubMenu = function (title) {
                 //ini ambil menu sesuai hirarkinya
                 MenuService.get("GetSideMenu" + "/Menu" + title)
-                .then(function(result) {
-                    $rootScope.menu = result;
-                });
+                    .then(function (result) {
+                        $rootScope.menu = result;
+                    });
                 $rootScope.isOpenMenu = !$rootScope.isOpenMenu;
             }
         }

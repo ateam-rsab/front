@@ -5,16 +5,31 @@ define(['initialize'], function (initialize) {
         function ($q, cacheHelper, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, DaftarPegawaiService, dataHelper, FindSdm, dateHelper, $timeout, cetakHelper, $mdDialog) {
             $scope.item = {};
             $scope.item.tglMasuk = new Date();
-
+            $scope.listKategoriPegawai = [
+                {
+                    name:'Mitra',
+                    value:'mitra'
+                },
+                {
+                    name:'Pesera Didik',
+                    value:'peserta-didik'
+                }
+            ]
 
             $scope.init = function () {
-                $scope.daftarPegawai = new kendo.data.DataSource({
-                    data: [],
-                })
+               
                 ManageSdmNew.getListData("sdm/get-all-unit-kerja").then(res => {
                     $scope.listUnitKerja = res.data.data
                     $scope.isRouteLoading = false;
                 });
+
+                ManageSdmNew.getListData('pegawai/get-all-pegawai-mitra/').then(res => {
+                    // pegawai/get-all-pegawai-peserta-didik/
+                    $scope.daftarPegawai = new kendo.data.DataSource({
+                        data: res.data.data.pegawai,
+                        pageSize: 20
+                    })
+                })
 
                 $scope.daftarpegawaiOpt = {
                     toolbar: [
@@ -68,8 +83,8 @@ define(['initialize'], function (initialize) {
                         },
                         {
                             field: "kategoriPegawai",
-                            title: "<h3>Status</h3>",
-                            width: "15%",
+                            title: "<h3>Kategori<br> Pegawai</h3>",
+                            width: "10%",
                             attributes: {
                                 style: "text-align:center;valign=middle"
                             }
@@ -77,37 +92,39 @@ define(['initialize'], function (initialize) {
                         {
                             field: "tglMasuk",
                             title: "<h3>Tanggal <br>Masuk</h3>",
-                            width: "10%"
+                            width: "10%",
+                            template: "#if(tglMasuk) { # #= kendo.toString(new Date(tglMasuk), \"dd-MM-yyyy\") # # } else { #-# } #",
+                            // template: "#= kendo.toString(new Date(tglMasuk), \"dd-MM-yyyy\") #"
                         },
-                        // {
-                        //     command: [
-                        //         {
-                        //             text: "Lihat",
-                        //             width: "40px",
-                        //             align: "center",
-                        //             attributes: {
-                        //                 align: "center"
-                        //             },
-                        //             click: editDataPegawai,
-                        //             imageClass: "k-i-arrow-60-right"
-                        //         },
-                        //         {
-                        //             text: "Hapus",
-                        //             width: "40px",
-                        //             align: "center",
-                        //             attributes: {
-                        //                 align: "center"
-                        //             },
-                        //             click: confirmHapusDataPegawai,
-                        //             imageClass: "k-i-arrow-60-right"
-                        //         }
-                        //     ],
-                        //     title: "",
-                        //     width: "20%",
-                        //     attributes: {
-                        //         style: "text-align:center;valign=middle"
-                        //     },
-                        // }
+                        {
+                            command: [
+                                {
+                                    text: "Lihat",
+                                    width: "40px",
+                                    align: "center",
+                                    attributes: {
+                                        align: "center"
+                                    },
+                                    click: editDataPegawai,
+                                    imageClass: "k-i-arrow-60-right"
+                                },
+                                // {
+                                //     text: "Hapus",
+                                //     width: "40px",
+                                //     align: "center",
+                                //     attributes: {
+                                //         align: "center"
+                                //     },
+                                //     click: confirmHapusDataPegawai,
+                                //     imageClass: "k-i-arrow-60-right"
+                                // }
+                            ],
+                            title: "",
+                            width: "20%",
+                            attributes: {
+                                style: "text-align:center;valign=middle"
+                            },
+                        }
                     ],
                     // excelExport: function (e) {
                     //     var columns = e.workbook.sheets[0].columns;
@@ -133,8 +150,69 @@ define(['initialize'], function (initialize) {
             }
             $scope.init();
 
+            function editDataPegawai(e) {
+                e.preventDefault();
+                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                $scope.dataItem = dataItem;
+                if ($scope.dataItem) {
+                    $state.go("RekamDataPegawai", { idPegawai: $scope.dataItem.idPegawai });
+                } else {
+                    messageContainer.error('Pegawai belum di pilih')
+                }
+            }
+
+            $scope.search = function() {
+                $scope.isRouteLoading = true;
+                ManageSdmNew.getListData('pegawai/get-all-pegawai-' + $scope.item.kategoriPegawai.value + '/').then(res => {
+                    $scope.isRouteLoading = false;
+                    // pegawai/get-all-pegawai-peserta-didik/
+                    $scope.daftarPegawai = new kendo.data.DataSource({
+                        data: res.data.data.pegawai,
+                        pageSize: 20
+                    });
+                });
+            }
+            var timeoutPromise;
+            $scope.$watch('item.namaPegawai', function(newVal, oldVal){
+                if(!newVal) return;
+                $timeout.cancel(timeoutPromise);
+                timeoutPromise = $timeout(function(){
+                    if(newVal && newVal !== oldVal){
+                        applyFilter("namaLengkap", newVal);
+                    }
+                }, 500)
+            });
+
+            function applyFilter(filterField, filterValue){
+                var dataGrid = $("#gridDataPegawai").data("kendoGrid");
+                var currFilterObject = dataGrid.dataSource.filter();
+                var currentFilters = currFilterObject ? currFilterObject.filters : [];
+
+                if(currentFilters && currentFilters.length > 0){
+                    for (var i = 0; i < currentFilters.length; i++) {
+                        if (currentFilters[i].field == filterField) {
+                            currentFilters.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+
+                if (filterField === "namaLengkap") {
+                    currentFilters.push({
+                        field: filterField,
+                        operator: "contains",
+                        value: filterValue
+                    });
+                } 
+
+                dataGrid.dataSource.filter({
+                    logic: "and",
+                    filters: currentFilters
+                });
+            }
+
             $scope.inputBaru = function () {
-                $state.go('RekamDataNonPegawai')
+                $state.go('RekamDataPegawai')
             }
         }
     ]);

@@ -3,7 +3,7 @@ define(['Configuration'], function(config) {
   var baseUrlData = config.baseUrlData;
   var basePostData = config.baseApiPostData;
   var urlDataTableTransaksi = config.urlDataTableTransaksi_Akuntansi;
-
+  var baseUrlSDM = config.baseUrlActionSDM;
   var dataRequestService = angular.module('Headers', []);
   dataRequestService.service('LoginHelper', ['$q', '$http', function() {
 
@@ -73,6 +73,11 @@ define(['Configuration'], function(config) {
           return r.post({
             url: basePostData + "user/save-login-user/"
           }, data);
+        },
+        getNotification: function(url) {
+          return r.get({
+            url: baseUrlSDM + url
+          })
         }
 
       };
