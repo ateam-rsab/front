@@ -82,7 +82,12 @@ define(['initialize'], function(initialize) {
                         $scope.isBebasValidasi = true;
                         // FindSdm.getUnitKerja().then(function(dat) {
                         ManageSdmNew.getListData("sdm/get-all-unit-kerja").then(function(dat) {
-                                $scope.listUnitKerja = dat.data.data;
+                            var toRemove = [0],
+                                listUnitKerja = dat.data.data;
+
+                            $scope.listUnitKerja = listUnitKerja.filter(function(el) {
+                                return !toRemove.includes(el.id);
+                            });
                         });
                     }else 
                     // if($scope.showButtonInputJadwalDinas === false){
