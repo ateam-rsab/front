@@ -7,22 +7,25 @@ define(['initialize'], function(initialize) {
             $scope.dataShiftPegawai = [] /* temp array data shift pegawai yang akan di simpan ke backend */
             $scope.simpan = true;
 
-            if($scope.ruanganKerja.includes(modelItem.getPegawai().ruangan.id)){
-                // findSdm.getUnitKerja().then(function(res){
-                manageSdmNew.getListData("sdm/get-all-unit-kerja").then(function(res){
-                   $scope.listUnitKerja = res.data.data;                          
-               }) 
-            }else{             
-           //   manageSdm.getItem("/map-pegawai-jabatan-unitkerja/get-unit-by-pegawai-jadwal/"+ modelItem.getPegawai().id).then(function(res){
-           //     $scope.listUnitKerja = res.data.data;
-               // for (var i = $scope.listUnitKerja.length - 1; i >= 0; i--) {
-               //      if (!$scope.listUnitKerja[i].isCanCreateJadwal) {
-               //          $scope.listUnitKerja.splice([i],1)
-               //      } 
-               //  }                          
-           // })
-         }
-         $q.all([
+            if (modelItem.getPegawai().ruangan) {
+                if($scope.ruanganKerja.includes(modelItem.getPegawai().ruangan.id)){
+                    // findSdm.getUnitKerja().then(function(res){
+                    manageSdmNew.getListData("sdm/get-all-unit-kerja").then(function(res){
+                       $scope.listUnitKerja = res.data.data;                          
+                   }) 
+                }
+                // else{             
+               //   manageSdm.getItem("/map-pegawai-jabatan-unitkerja/get-unit-by-pegawai-jadwal/"+ modelItem.getPegawai().id).then(function(res){
+               //     $scope.listUnitKerja = res.data.data;
+                   // for (var i = $scope.listUnitKerja.length - 1; i >= 0; i--) {
+                   //      if (!$scope.listUnitKerja[i].isCanCreateJadwal) {
+                   //          $scope.listUnitKerja.splice([i],1)
+                   //      } 
+                   //  }                          
+               // })
+                // }     
+            }
+            $q.all([
                 // modelItem.getPegawai(),
                 // findSdm.getSubUnitKerja(),
                 // manageSdm.getItem("service/list-generic/?view=ShiftKerja&select=id,kodeExternal,namaShift,jamMasuk,jamPulang,statusEnabled&criteria=statusEnabled&values=true")
@@ -63,10 +66,12 @@ define(['initialize'], function(initialize) {
                     }
                     var str = $scope.currentUserLogin.jabatanInternal;
                     if($scope.currentUserLogin.idUnitKerja) 
-                         if($scope.ruanganKerja.includes(modelItem.getPegawai().ruangan.id)){  
-                        $scope.item.unitKerja = {
-                            id: res.data.data.idUnitKerja,
-                            name: res.data.data.unitKerja
+                        if (modelItem.getPegawai().ruangan) {
+                            if($scope.ruanganKerja.includes(modelItem.getPegawai().ruangan.id)){  
+                                $scope.item.unitKerja = {
+                                id: res.data.data.idUnitKerja,
+                                name: res.data.data.unitKerja
+                            };
                         };
 
                         if($scope.currentUserLogin.subUnitKerja)
@@ -76,8 +81,22 @@ define(['initialize'], function(initialize) {
                             }
                         }
                     // var objIsSdm = $scope.checkRuanganKerja(modelItem.getPegawai().ruangan.id, $scope.ruanganKerja);
-                    if($scope.ruanganKerja.includes(modelItem.getPegawai().ruangan.id)){
-                        return;
+                    if (modelItem.getPegawai().ruangan) {
+                        if($scope.ruanganKerja.includes(modelItem.getPegawai().ruangan.id)){
+                            return;
+                        } else {
+                            if(str) {
+                                str = str.toLowerCase();
+                                if (str.indexOf('kepala') == 0) {
+                                    if (str.indexOf('instalasi') > 0 || str.indexOf('bid') > 0) {
+                                        $scope.disableUnit = true;
+                                    } else {
+                                        $scope.disableSubUnit = true;
+                                        $scope.disableUnit = true;
+                                    }
+                                }
+                            }
+                        }
                     } else {
                         if(str) {
                             str = str.toLowerCase();
@@ -166,6 +185,26 @@ define(['initialize'], function(initialize) {
                     .ok('OK')
                     );
             };
+
+            $scope.checkUnitKerja = function(){
+                var obj = {
+                    status: false,
+                    message: "Unauthorized"
+                }
+                var str = $scope.currentUserLogin.jabatanInternal;
+                if(!str){
+                    $scope.showAlert('Unauthorized');
+                    return;
+                }
+                for (var i = $scope.dSource.length - 1; i >= 0; i--) {
+                    $scope.dSource[i].isCanCreateJadwal==true
+                    obj.status = true;
+                    obj.message = 'Authorized';
+                    return obj;  
+                    break
+                }
+            }
+
             $scope.checkRuanganKerja = function(e, daftarRuangan){
                 var obj = {
                     status: false,
@@ -242,7 +281,12 @@ define(['initialize'], function(initialize) {
                     window.messageContainer.info('Data kehadiran sudah terisi');
                     return;
                 }
-                var objValid = $scope.checkRuanganKerja(modelItem.getPegawai().ruangan.id, $scope.ruanganKerja);
+
+                if (modelItem.getPegawai().ruangan) {
+                    var objValid = $scope.checkRuanganKerja(modelItem.getPegawai().ruangan.id, $scope.ruanganKerja);
+                } else {
+                    var objValid = $scope.checkUnitKerja();
+                }
 
                 if (objValid.status){
                     $scope.selectedShift = tgl;
@@ -526,33 +570,40 @@ define(['initialize'], function(initialize) {
                 if(!newVal) return;
                 if((newVal && oldVal) && newVal.id == oldVal.id) return;
                 $scope.isRouteLoading = true;
-                if($scope.ruanganKerja.includes(modelItem.getPegawai().ruangan.id)){
-                   // findSdm.getSubUnitKerjaById(newVal.id).then(function(res){
-                    manageSdmNew.getListData("sdm/get-sub-unit-kerja-by-unit-kerja/" + newVal.id + "/").then(function(res){
+                if (modelItem.getPegawai().ruangan) {
+                    if($scope.ruanganKerja.includes(modelItem.getPegawai().ruangan.id)){
+                        // findSdm.getSubUnitKerjaById(newVal.id).then(function(res){
+                         manageSdmNew.getListData("sdm/get-sub-unit-kerja-by-unit-kerja/" + newVal.id + "/").then(function(res){
+                         $scope.listSubUnitKerja = res.data.data;
+                         if($scope.item.subUnitKerja){
+                             for(var i =0; i < $scope.listSubUnitKerja; i++){
+                                 if($scope.listSubUnitKerja[i].id = $scope.item.subUnitKerja.id){
+                                     $scope.item.subUnitKerja = $scope.listSubUnitKerja[i]
+                                 }
+                             }
+                         } else {
+                                 $scope.item.subUnitKerja = $scope.listSubUnitKerja[0]; // autobind first sub unit kerja to model item.unitKerja
+                             }
+                             $scope.isRouteLoading = false;
+                         }, (error) => {
+                             $scope.isRouteLoading = false;
+                             throw(error);
+                         })
+                    } else{                    
+                        // manageSdm.getItem("map-pegawai-jabatan-unitkerja/get-sub-unit-by-unit-jadwal/"+modelItem.getPegawai().id+"/"+$scope.item.unitKerja.id).then(function(res){
+                        manageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-sub-unit-by-unit-jadwal/"+modelItem.getPegawai().id+"/"+$scope.item.unitKerja.id).then(function(res){
+                        $scope.listSubUnitKerja = res.data.data;
+                        $scope.isRouteLoading = false;
+                        })
+                    }
+                } else{                    
+                    // manageSdm.getItem("map-pegawai-jabatan-unitkerja/get-sub-unit-by-unit-jadwal/"+modelItem.getPegawai().id+"/"+$scope.item.unitKerja.id).then(function(res){
+                    manageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-sub-unit-by-unit-jadwal/"+modelItem.getPegawai().id+"/"+$scope.item.unitKerja.id).then(function(res){
                     $scope.listSubUnitKerja = res.data.data;
-                    if($scope.item.subUnitKerja){
-                        for(var i =0; i < $scope.listSubUnitKerja; i++){
-                            if($scope.listSubUnitKerja[i].id = $scope.item.subUnitKerja.id){
-                                $scope.item.subUnitKerja = $scope.listSubUnitKerja[i]
-                            }
-                        }
-                    } else {
-                            $scope.item.subUnitKerja = $scope.listSubUnitKerja[0]; // autobind first sub unit kerja to model item.unitKerja
-                        }
-                        $scope.isRouteLoading = false;
-                    }, (error) => {
-                        $scope.isRouteLoading = false;
-                        throw(error);
+                    $scope.isRouteLoading = false;
                     })
-               }else{                    
-                // manageSdm.getItem("map-pegawai-jabatan-unitkerja/get-sub-unit-by-unit-jadwal/"+modelItem.getPegawai().id+"/"+$scope.item.unitKerja.id).then(function(res){
-                manageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-sub-unit-by-unit-jadwal/"+modelItem.getPegawai().id+"/"+$scope.item.unitKerja.id).then(function(res){
-                   $scope.listSubUnitKerja = res.data.data;
-                   $scope.isRouteLoading = false;
-               })
-            }
-
-        });
+                }
+            });
             // $scope.Back = function(){
             //     $scope.refresh();
             // }
