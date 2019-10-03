@@ -3,47 +3,45 @@ define(['initialize'], function (initialize) {
         function ($scope, r, $rootScope, MenuService, LoginHelper, $mdDialog, DateHelper) {
 
             $scope.now = new Date();
-            $scope.sixMoth = $scope.now.setMonth($scope.now.getMonth() + 6)
             $rootScope.isOpen = true;
 
             var getNotif = function() {
                 MenuService.getNotification('sdm/get-sip-str-expired-pegawai').then(res => {
                     $scope.messageNotif = '';
                     let data = res.data.data;
-                    console.log(new Date().setMonth(new Date(data.tglBerakhirSip).getMonth() - 6))
 
-                    // kondisi jika dua dua nya telah berakhir
-                    // if((data.tglBerakhirSip < DateHelper.toTimeStamp($scope.now)) && (data.tglBerakhirStr < DateHelper.toTimeStamp($scope.now))) {
-                    // $scope.messageNotif = `Mohon hubungi SDM karena SIP Anda telah berakhir pada ${data.tglBerakhirSip2} dan STR Anda telah berakhir pada ${data.tglBerakhirStr2}`;
-
-                    if(data.noSip && data.noStr) {
-                        if(data.tglBerakhirSip > DateHelper.toTimeStamp($scope.now) && data.tglBerakhirStr > DateHelper.toTimeStamp($scope.now)) {
-                            if((new Date().setMonth(new Date(data.tglBerakhirSip).getMonth() - 6)) < DateHelper.toTimeStamp($scope.now) && (new Date().setMonth(new Date(data.tglBerakhirStr).getMonth() - 6)) < DateHelper.toTimeStamp($scope.now)) {
-                                if((new Date().setMonth(new Date(data.tglBerakhirSip).getMonth() - 6)) < DateHelper.toTimeStamp($scope.now) && (new Date().setMonth(new Date(data.tglBerakhirStr).getMonth() - 6)) > DateHelper.toTimeStamp($scope.now)) {
-                                    $scope.messageNotif = `SIP mau berakhir`;
-                                } else if((new Date().setMonth(new Date(data.tglBerakhirSip).getMonth() - 6)) < DateHelper.toTimeStamp($scope.now) && (new Date().setMonth(new Date(data.tglBerakhirStr).getMonth() - 6)) > DateHelper.toTimeStamp($scope.now)) {
-                                    
-                                    $scope.messageNotif = `STR mau berakhir`;
-                                } else {
-                                    $scope.messageNotif = `SIP dan STR mau berakhir`;
-                                }
-                            } 
-                        } else if((data.tglBerakhirSip < DateHelper.toTimeStamp($scope.now)) && (data.tglBerakhirStr < DateHelper.toTimeStamp($scope.now))) {
-                            $scope.messageNotif = `Mohon hubungi SDM karena SIP Anda telah berakhir pada ${data.tglBerakhirSip2} dan STR Anda telah berakhir pada ${data.tglBerakhirStr2}`;
-                        } else if((data.tglBerakhirSip < DateHelper.toTimeStamp($scope.now)) && (new Date().setMonth(new Date(data.tglBerakhirStr).getMonth() - 6)) < DateHelper.toTimeStamp($scope.now)) {
-                            $scope.messageNotif = `SIP udah berakhir tapi SIP baru mau berakhir`;
-                        } else if((data.tglBerakhirStr > DateHelper.toTimeStamp($scope.now)) && (new Date().setMonth(new Date(data.tglBerakhirSip).getMonth() - 6)) < DateHelper.toTimeStamp($scope.now)) { 
-                            $scope.messageNotif = `STR udah berakhir tapi SIP baru mau berakhir`;
-                        } else if(res.data.data.tglBerakhirSip < DateHelper.toTimeStamp($scope.now)) {
-                            $scope.messageNotif = `Mohon hubungi SDM karena SIP Anda telah berakhir pada ${data.tglBerakhirSip2}`;
-                        } else {
-                            $scope.messageNotif = `Mohon hubungi SDM karena STR Anda telah berakhir pada ${data.tglBerakhirStr2}`;
+                    if (data.tglBerakhirSip && data.tglBerakhirStr) {
+                        if (data.tglBerakhirSip > DateHelper.toTimeStamp($scope.now) && data.tglBerakhirStr > DateHelper.toTimeStamp($scope.now)) {
+                            $scope.messageNotif = `SIP dan STR Anda akan berakhir pada ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirSip))} dan ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirStr))}. Mohon hubungi Bagian SDM untuk mengkonfirmasi SIP dan STR terbaru Anda. Terima kasih`;
+                            $scope.notificationSIP.open().center();
+                        } else if (data.tglBerakhirSip < DateHelper.toTimeStamp($scope.now) && data.tglBerakhirStr > DateHelper.toTimeStamp($scope.now)) {
+                            $scope.messageNotif = `Mohon hubungi Bagian SDM karena SIP Anda telah berakhir pada ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirSip))}. STR Anda akan berakhir pada ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirStr))}, mohon hubungi Bagian SDM untuk mengkonfirmasi STR terbaru Anda. Terima kasih`;
+                            $scope.notificationSIP.open().center();
+                        } else if (data.tglBerakhirSip > DateHelper.toTimeStamp($scope.now) && data.tglBerakhirStr < DateHelper.toTimeStamp($scope.now)) {
+                            $scope.messageNotif = `Mohon hubungi Bagian SDM karena STR Anda telah berakhir pada ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirStr))}. SIP Anda akan berakhir pada ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirSip))}, mohon hubungi Bagian SDM untuk mengkonfirmasi SIP terbaru Anda. Terima kasih`;
+                            $scope.notificationSIP.open().center();
+                        } else if (data.tglBerakhirSip < DateHelper.toTimeStamp($scope.now) && data.tglBerakhirStr < DateHelper.toTimeStamp($scope.now)) {
+                            $scope.messageNotif = `Mohon hubungi Bagian SDM karena SIP dan STR Anda telah berakhir pada ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirSip))} dan ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirStr))}. Terima kasih`;
+                            $scope.notificationSIP.open().center();
+                        }
+                    } else if (data.tglBerakhirSip) {
+                        if (data.tglBerakhirSip > DateHelper.toTimeStamp($scope.now)) {
+                            $scope.messageNotif = `SIP Anda akan berakhir pada ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirSip))}. Mohon hubungi Bagian SDM untuk mengkonfirmasi SIP terbaru Anda. Terima kasih`;
+                            $scope.notificationSIP.open().center();
+                        } else if (data.tglBerakhirSip < DateHelper.toTimeStamp($scope.now)) {
+                            $scope.messageNotif = `Mohon hubungi Bagian SDM karena SIP Anda telah berakhir pada ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirSip))}. Terima kasih`;
+                            $scope.notificationSIP.open().center();
+                        }
+                    } else if (data.tglBerakhirStr) {
+                        if (data.tglBerakhirStr > DateHelper.toTimeStamp($scope.now)) {
+                            $scope.messageNotif = `STR Anda akan berakhir pada ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirStr))}. Mohon hubungi Bagian SDM untuk mengkonfirmasi STR terbaru Anda. Terima kasih`;
+                            $scope.notificationSIP.open().center();
+                        } else if (data.tglBerakhirStr < DateHelper.toTimeStamp($scope.now)) {
+                            $scope.messageNotif = `Mohon hubungi Bagian SDM karena STR Anda telah berakhir pada ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirStr))}. Terima kasih`;
+                            $scope.notificationSIP.open().center();
                         }
                     }
-                    // else if()
-                    $scope.notificationSIP.open().center();  
                 });
-                
             }
 
             getNotif();
@@ -158,12 +156,6 @@ define(['initialize'], function (initialize) {
 
                 $scope[showMenuLayanan] = true;
                 $scope.showMenuUtama = false;
-
-                //get menu form db
-                /*MenuService.get(showMenuLayanan)
-                .then(function(result) {
-                    $scope.DaftarMenu = result;
-                });*/
 
                 switch (showMenuLayanan) {
                     case "showMenuManajemen":

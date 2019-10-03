@@ -65,21 +65,24 @@ define(['initialize'], function(initialize) {
                         $scope.dialogPopup.center().open();
                     }
                     var str = $scope.currentUserLogin.jabatanInternal;
-                    if($scope.currentUserLogin.idUnitKerja) 
+                    if($scope.currentUserLogin.idUnitKerja) {
                         if (modelItem.getPegawai().ruangan) {
-                            if($scope.ruanganKerja.includes(modelItem.getPegawai().ruangan.id)){  
+                            if($scope.ruanganKerja.includes(modelItem.getPegawai().ruangan.id)) {   
                                 $scope.item.unitKerja = {
-                                id: res.data.data.idUnitKerja,
-                                name: res.data.data.unitKerja
-                            };
-                        };
+                                    id: res.data.data.idUnitKerja,
+                                    name: res.data.data.unitKerja
+                                }
 
-                        if($scope.currentUserLogin.subUnitKerja)
-                            $scope.item.subUnitKerja = {
-                                id: res.data.data.idSubUnitKerja,
-                                name: res.data.data.subUnitKerja
-                            }
+                                if($scope.currentUserLogin.subUnitKerja) {
+                                    $scope.item.subUnitKerja = {
+                                        id: res.data.data.idSubUnitKerja,
+                                        name: res.data.data.subUnitKerja
+                                    }
+                                }
+                            }       
                         }
+                    }
+
                     // var objIsSdm = $scope.checkRuanganKerja(modelItem.getPegawai().ruangan.id, $scope.ruanganKerja);
                     if (modelItem.getPegawai().ruangan) {
                         if($scope.ruanganKerja.includes(modelItem.getPegawai().ruangan.id)){
@@ -262,19 +265,30 @@ define(['initialize'], function(initialize) {
                 // return obj;
             }
             let pegawais = JSON.parse(localStorage.getItem('pegawai'))
+
+            manageSdmNew.getListData("/map-pegawai-jabatan-unitkerja/get-unit-by-pegawai-jadwal/"+ pegawais.id).then(function(res){
+                $scope.listUnitKerja = res.data.data;
+                for (var i = $scope.listUnitKerja.length - 1; i >= 0; i--) {
+                    if (!$scope.listUnitKerja[i].isCanCreateJadwal) {
+                        $scope.listUnitKerja.splice([i],1)
+                    } 
+                }                          
+            })  
+
             // manageSdm.getOrderList("map-pegawai-jabatan-unitkerja/get-map-by-pegawai/" + pegawais.id).then(function(data) {
-            manageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-map-by-pegawai/" + pegawais.id).then(function(data) {
-                $scope.dSource = data.data.data;
-                var listUKerja = $scope.dSource;
-                for (var i = listUKerja.length - 1; i >= 0; i--) {
-                    listUKerja[i].name = listUKerja[i].unitKerjaPegawai.name;
-                    listUKerja[i].id = listUKerja[i].unitKerjaPegawai.id;
-                    if (!listUKerja[i].isCanCreateJadwal) {
-                        listUKerja.splice([i],1)
-                    }                     
-                }
-                $scope.listUnitKerja = listUKerja;
-            })
+            // manageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-map-by-pegawai/" + pegawais.id).then(function(data) {
+            //     var listUKerja = [];
+            //     $scope.dSource = data.data.data;
+            //     var listSource = $scope.dSource;
+            //     for (var i = listSource.length - 1; i >= 0; i--) {
+            //         listUKerja[i].name = listSource[i].unitKerjaPegawai.name;
+            //         listUKerja[i].id = listSource[i].unitKerjaPegawai.id;
+            //         if (!listSource[i].isCanCreateJadwal) {
+            //             listUKerja.splice([i],1)
+            //         }                     
+            //     }
+            //     $scope.listUnitKerja = listUKerja;
+            // })
 
             $scope.changeShift = function(item, tgl) {
                 if (tgl.kehadiranKerja !== undefined) {
