@@ -441,8 +441,10 @@ define(['initialize'], function (initialize) {
                 $scope.isRouteLoading = true;
                 ManageSdmNew.getListData("sdm/get-data-map-pegawai?pegawaiId=" + e.id, true).then(function (dat) {
                     // debugger;
-                    // $scope.item.jabatan = dat.data.data.jabatan;
+                    $scope.item.jabatan = dat.data.data.namaJabatan;
                     $scope.item.nip = dat.data.data.nip;
+                    $scope.item.ruangan = dat.data.data.namaUnitKerja;
+                    $scope.item.NoTelepon = dat.data.data.noHandphone;
                     // $scope.item.ruangan = dat.data.data.subUnitKerja;
                     // $scope.item.ruanganId = dat.data.data.subUnitKerjaId;
                     $scope.item.kategoriPegawaiId = dat.data.data.kategoriPegawaiId;
@@ -456,12 +458,12 @@ define(['initialize'], function (initialize) {
                     }/*else{
                         $scope.getIzin(e);
                     } */
-                    $scope.listjabatan = dat.data.data.jabatan;
-                    $scope.item.namaJabatan = _.find($scope.listjabatan, function (jab) {
-                        $scope.item.unitkerja = jab.namaUnitKerja;
-                        $scope.item.ruangan = jab.namaSubunitKerja;
-                        return jab.idJabatan;
-                    });
+                    // $scope.listjabatan = dat.data.data.jabatan;
+                    // $scope.item.namaJabatan = _.find($scope.listjabatan, function (jab) {
+                    //     $scope.item.unitkerja = jab.namaUnitKerja;
+                    //     $scope.item.ruangan = jab.namaSubunitKerja;
+                    //     return jab.idJabatan;
+                    // });
                     $scope.isRouteLoading = false;
                 }, (err) => {
                     $scope.isRouteLoading = false;

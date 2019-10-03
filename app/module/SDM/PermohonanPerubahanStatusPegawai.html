@@ -20,7 +20,7 @@
 					</div>
 					<div class="grid_9">
 						<textarea style="height: 90px" c-text-box type="input" class="k-textbox"
-							ng-model="item.deskripsiUsulan" placeholder="Alasan Permohonan Usulan"/>
+							ng-model="item.deskripsiUsulan" placeholder="Alasan Permohonan Usulan / Nama Kegiatan Acara Dinas Luar"/>
 						</div>
 				</div>
 				<div class="grid_12">
@@ -43,12 +43,12 @@
 					<div class="grid_3">
 						<label c-label item="item" style="margin-top: 10px">Jabatan</label>
 					</div>
-					<!-- <div class="grid_9">
-						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jabatan" disabled="true" />
-					</div> -->
 					<div class="grid_9">
-						<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaJabatan" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="true" k-data-source="listjabatan"/>
+						<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jabatan" disabled="true" />
 					</div>
+					<!-- <div class="grid_9">
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaJabatan" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="true" k-data-source="listjabatan"/>
+					</div> -->
 				</div>
 				<!-- <div class="grid_12">
 					<div class="grid_3">
@@ -337,10 +337,10 @@
 
 <div kendo-window="winDialog" k-title="'Cetak Permohonan Cuti'" k-width="400" k-height="320" k-visible="false">
 	<!--<div class="k-demo k-content container">-->
-		<label c-label item="item" c-label-text="Bulan"></label>
+		<!-- <label c-label item="item" c-label-text="Bulan"></label>
 		<input kendo-date-picker k-ng-model="currentData.until" k-format="'MMM-yyyy'" k-options="monthSelectorOptions" k-auto-bind="true" style="width: 100%;">
 		<br/>
-		<br/>
+		<br/> -->
 		<label c-label item="item" c-label-text="Kepala Ruangan"></label>
 		<input style="width: 100%;" kendo-combo-box k-ng-model="currentData.kepalaRuangan" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="true" k-data-source="listPegawai"/>
 		<br/>
