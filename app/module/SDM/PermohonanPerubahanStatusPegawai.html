@@ -341,11 +341,17 @@
 		<input kendo-date-picker k-ng-model="currentData.until" k-format="'MMM-yyyy'" k-options="monthSelectorOptions" k-auto-bind="true" style="width: 100%;">
 		<br/>
 		<br/> -->
+		<label c-label item="item" c-label-text="Jabatan"></label>
+		<!-- <input c-text-box type="input" filter="" class="k-textbox" ng-model="currentData.jabatanAtasanLangsung" disabled="true"/> -->
+		<input style="width: 100%;" kendo-combo-box k-ng-model="currentData.jabatanCetak" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="true" k-data-source="listJabatanCetak"/>
+		<br/>
+		<br/>
 		<label c-label item="item" c-label-text="Kepala Ruangan"></label>
 		<input style="width: 100%;" kendo-combo-box k-ng-model="currentData.kepalaRuangan" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="true" k-data-source="listPegawai"/>
 		<br/>
 		<br/>
 		<label c-label item="item" c-label-text="Atasan 1 / Penandatangan"></label>
+		<!-- <input style="width: 100%;" kendo-combo-box k-ng-model="currentData.atasanLangsung" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="true" k-data-source="listAtasan1"/> -->
 		<input style="width: 100%;" kendo-combo-box k-ng-model="currentData.atasanLangsung" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="true" k-data-source="listPegawai"/>
 		<br/>
 		<br/>
@@ -356,6 +362,7 @@
 		<br/>
 		<br/>
 		<label c-label item="item" c-label-text="Atasan 2 / Penandatangan"></label>
+		<!-- <input style="width: 100%;" kendo-combo-box k-ng-model="currentData.pejabatPenilai" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="true" k-data-source="listAtasan2"/> -->
 		<input style="width: 100%;" kendo-combo-box k-ng-model="currentData.pejabatPenilai" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="true" k-data-source="listPegawai"/>
 		<br/>
 		<br/>
