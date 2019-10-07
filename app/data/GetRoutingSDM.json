@@ -384,7 +384,7 @@
     },
      {
       "name": "RekamDataNonPegawai",
-      "url": "/RekamDataNonPegawai",
+      "url": "/RekamDataNonPegawai/:form/:idPegawai",
       "templateurl": "module/SDM/RekamDataNonPegawai.html",
       "controller": "RekamDataNonPegawaiCtrl",
       "deps": [
@@ -516,7 +516,7 @@
     },
     {
       "name": "DataNonPegawai",
-      "url": "/DataNonPegawai",
+      "url": "/DataNonPegawai/:form",
       "templateurl": "module/SDM/DataNonPegawai.html",
       "controller": "DataNonPegawaiCtrl",
       "deps": [

@@ -5,6 +5,13 @@ define(['initialize'], function (initialize) {
         function ($q, cacheHelper, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, DaftarPegawaiService, dataHelper, FindSdm, dateHelper, $timeout, cetakHelper, $mdDialog) {
             $scope.item = {};
             $scope.item.tglMasuk = new Date();
+            let dataForm = $state.params.form;
+            $scope.namaForm = '';
+            if($state.params.form === "mitra") {
+                $scope.namaForm = 'Pegawai Mitra';
+            } else {
+                $scope.namaForm = 'Peserta Didik';
+            }
             $scope.listKategoriPegawai = [
                 {
                     name:'Mitra',
@@ -17,14 +24,18 @@ define(['initialize'], function (initialize) {
             ]
 
             $scope.init = function () {
-               
+                let url = '';
+                if($state.params.form === "mitra") {
+                    url = 'pegawai/get-all-pegawai-mitra/';
+                } else {
+                    url = 'pegawai/get-all-pegawai-peserta-didik/';
+                }
                 ManageSdmNew.getListData("sdm/get-all-unit-kerja").then(res => {
                     $scope.listUnitKerja = res.data.data
                     $scope.isRouteLoading = false;
                 });
 
-                ManageSdmNew.getListData('pegawai/get-all-pegawai-mitra/').then(res => {
-                    // pegawai/get-all-pegawai-peserta-didik/
+                ManageSdmNew.getListData(url).then(res => {
                     $scope.daftarPegawai = new kendo.data.DataSource({
                         data: res.data.data.pegawai,
                         pageSize: 20
@@ -155,7 +166,7 @@ define(['initialize'], function (initialize) {
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                 $scope.dataItem = dataItem;
                 if ($scope.dataItem) {
-                    $state.go("RekamDataPegawai", { idPegawai: $scope.dataItem.idPegawai });
+                    $state.go("RekamDataNonPegawai", { form: dataItem.kategoriPegawai.toLowerCase(), idPegawai: $scope.dataItem.idPegawai });
                 } else {
                     messageContainer.error('Pegawai belum di pilih')
                 }
@@ -212,7 +223,7 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.inputBaru = function () {
-                $state.go('RekamDataPegawai')
+                $state.go('RekamDataNonPegawai', {form: 'mitra'})
             }
         }
     ]);

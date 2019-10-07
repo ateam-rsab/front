@@ -2348,6 +2348,14 @@
         "name": "SDM",
         "children": [
             {
+                "name": "Data Pegawai Mitra",
+                "link": "#/DataNonPegawai/mitra"
+            },
+            {
+                "name": "Data Peserta Didik",
+                "link": "#/DataNonPegawai/PesertaDidik"
+            },
+            {
                 "name": "Data Pegawai",
                 "children": [
                     {
