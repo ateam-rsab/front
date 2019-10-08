@@ -58,11 +58,13 @@
                 </div>
                 <div class="grid_1" style="margin-top:5px">
                     <label c-label c-label-text=""></label>
-                    <button class="c-button"  ng-click="cetakLogBookKinerja()">Cetak</button>
+                    <!-- <button class="c-button"  ng-click="cetakLogBookKinerja()">Cetak</button> -->
+                    <button class="c-button" ng-click="openWindowCetak('CetakLogbook')">Cetak</button>
                 </div>
                 <div class="grid_2" style="margin-top:5px">
                     <label c-label c-label-text=""></label>
-                    <button class="c-button"  ng-click="cetakDaftarLogBookKinerja()">Cetak Daftar</button>
+                    <!-- <button class="c-button"  ng-click="cetakDaftarLogBookKinerja()">Cetak Daftar</button> -->
+                    <button class="c-button"  ng-click="openWindowCetak('CetakDaftarLogbook')">Cetak Daftar</button>
                 </div>
             </div>
             <div class="grid_2 pull-right" style="text-align:right;font-style:italic">
@@ -80,7 +82,8 @@
          <div class="grid_12">
                 <div class="grid_3" style="margin-top:5px">
                     <label c-label c-label-text=""></label>
-                    <button class="c-button"  ng-click="cetakDaftarLogBookKinerjaRekapWithPasien()">Cetak Rekapitulasi Kinerja dan Detail Pasien</button>
+                    <!-- <button class="c-button"  ng-click="cetakDaftarLogBookKinerjaRekapWithPasien()">Cetak Rekapitulasi Kinerja dan Detail Pasien</button> -->
+                    <button class="c-button"  ng-click="openWindowCetak('CetakDetailLogbook')">Cetak Rekapitulasi Kinerja dan Detail Pasien</button>
                 </div>  
             </div>
     </div>
@@ -102,7 +105,8 @@
                 </div>
                 <div class="grid_2" style="margin-top:5px">
                     <label c-label c-label-text=""></label>
-                    <button class="c-button"  ng-click="cetakDaftarLogBookKinerjaFFS()">Cetak Daftar</button>
+                    <!-- <button class="c-button"  ng-click="cetakDaftarLogBookKinerjaFFS()">Cetak Daftar</button> -->
+                    <button class="c-button"  ng-click="openWindowCetak('CetakDaftarFFS')">Cetak Daftar</button>
                 </div>
             </div>
             
@@ -121,7 +125,8 @@
             <div class="grid_12">               
                 <div class="grid_3" style="margin-top:5px">
                     <label c-label c-label-text=""></label>
-                    <button class="c-button"  ng-click="cetakDaftarLogBookKinerjaRekapWithPasienFFs()">Cetak Rekapitulasi Kinerja dan Detail Pasien</button>
+                    <!-- <button class="c-button"  ng-click="cetakDaftarLogBookKinerjaRekapWithPasienFFs()">Cetak Rekapitulasi Kinerja dan Detail Pasien</button> -->
+                    <button class="c-button"  ng-click="openWindowCetak('CetakDetailFFS')">Cetak Rekapitulasi Kinerja dan Detail Pasien</button>
                 </div>             
             </div>
 
@@ -137,7 +142,8 @@
                 </div>    
                 <div class="grid_3" style="margin-top:5px">
                     <label c-label c-label-text=""></label>
-                    <button class="c-button"  ng-click="cetakDaftarLogBookKinerjaRekap()">Cetak Rekapitulasi Kinerja LogBook dan FFS</button>
+                    <!-- <button class="c-button"  ng-click="cetakDaftarLogBookKinerjaRekap()">Cetak Rekapitulasi Kinerja LogBook dan FFS</button> -->
+                    <button class="c-button"  ng-click="openWindowCetak('CetakRekapLogbookFFS')">Cetak Rekapitulasi Kinerja LogBook dan FFS</button>
                 </div>  
             </div>
     <div class="grid_12 panel panel-default panel-white">
@@ -165,6 +171,48 @@
 </div>  
 <div class="grid_12">
     <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+</div>
+<div kendo-window="win1" id="winPopUpCetak" k-title="'Cetak Logbook'" k-width="'55%'" k-draggable="false" k-position="{ 'top': '30%', 'left':'20%' }" k-on-close="closeWindow()" k-visible="isShowPopUp">
+    <div class="grid_12">
+        <div class="grid_12">
+            <label c-label item="item" c-label-text="Jabatan"></label>
+        </div>
+        <div class="clear"></div>
+
+        <div class="grid_12">
+        <!-- <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jabatan" disabled="true"/> -->
+        <input style="width: 100%;" kendo-combo-box k-ng-model="item.jabatanCetak" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJabatanCetak"/>
+        </div>
+    </div>
+    <div class="grid_12">
+        <div class="grid_12">
+            <label c-label item="item" c-label-text="Atasan / Penandatangan"></label>
+        </div>
+        <div class="clear"></div>
+
+        <div class="grid_12">
+        <input style="width: 100%;" kendo-combo-box k-ng-model="item.atasanCetak" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listAtasan" k-on-change="getJabatanAtasanCetak()"/>
+        </div>
+    </div>
+    <div class="grid_12">
+        <div class="grid_12">
+            <label c-label item="item" c-label-text="Jabatan Atasan / Penandatangan"></label>
+        </div>
+        <div class="clear"></div>
+
+        <div class="grid_12">
+        <!-- <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jabatan" disabled="true"/> -->
+        <input style="width: 100%;" kendo-combo-box k-ng-model="item.jabatanAtasanCetak" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJabatanAtasanCetak"/>
+        </div>
+    </div>
+    <div class="grid_12">
+        <div class="grid_6">
+            <button class='btnEdit' ng-click='cetakLogBook()'>Cetak </button>
+        </div>
+        <div class="grid_6">
+            <button class='btnHapus' ng-click='batalCetak()'> Cancel </button>
+        </div>
+    </div>
 </div>
 <div kendo-window="win1" id="winPopUp" k-title="'Cetak LogBook'" k-width="'55%'" k-draggable="false" k-position="{ 'top': '30%', 'left':'20%' }" k-on-close="closeWindow()" k-visible="isShowPopUp">
     <div class="grid_12">

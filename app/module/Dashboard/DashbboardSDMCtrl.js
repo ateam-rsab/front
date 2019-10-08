@@ -153,6 +153,14 @@ define(['initialize'], function(initialize) {'use strict';
 				$scope.item.jabatan = dat.data.data.jabatan;
 			});
 		}
+
+		$scope.getJabatanAtasanCetak = function () {
+			ManageSdmNew.getListData("pegawai/get-all-jabatan-by-pegawai?idPegawai=" + $scope.item.atasanCetak.id).then(function (res) {
+				$scope.listJabatanAtasanCetak = res.data.data;
+				$scope.item.jabatanAtasanCetak = $scope.listJabatanAtasanCetak[0];
+			});
+		}
+
 		$scope.toogleEditCell = function(items){
 			
 			var editableCell;
@@ -437,6 +445,48 @@ define(['initialize'], function(initialize) {'use strict';
 		// 	$scope.listPegawai = dat.data;
 		// });
 
+		$scope.cetakLogBook = function() {
+			if ($scope.jenisCetakan == 'CetakLogbook') {
+				$scope.cetakLogBookKinerja();
+			} else if ($scope.jenisCetakan == 'CetakDaftarLogbook') {
+				$scope.cetakDaftarLogBookKinerja();
+			} else if ($scope.jenisCetakan == 'CetakDetailLogbook') {
+				$scope.cetakDaftarLogBookKinerjaRekapWithPasien();
+			} else if ($scope.jenisCetakan == 'CetakDaftarFFS') {
+				$scope.cetakDaftarLogBookKinerjaFFS();
+			} else if ($scope.jenisCetakan == 'CetakDetailFFS') {
+				$scope.cetakDaftarLogBookKinerjaRekapWithPasienFFs();
+			} else if ($scope.jenisCetakan == 'CetakRekapLogbookFFS') {
+				$scope.cetakDaftarLogBookKinerjaRekap();
+			}
+			var myWindow = $("#winPopUpCetak");
+			myWindow.data("kendoWindow").close();
+		}
+
+		$scope.isShowPopUpCetak = false;
+		$scope.openWindowCetak = function(param){
+			ManageSdmNew.getListData("pegawai/get-all-jabatan-by-pegawai?idPegawai=" + $scope.item.pegawai.id).then(function (res) {
+				$scope.listJabatanCetak = res.data.data;
+				$scope.item.jabatanCetak = $scope.listJabatanCetak[0];
+			});
+
+			ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/list-atasan-langsung-pegawai?idPegawai="+$scope.item.pegawai.id, true).then(function (dat) {
+				$scope.listAtasan = dat.data.data.data;
+				$scope.item.atasanCetak = dat.data.data.data[0];
+
+				ManageSdmNew.getListData("pegawai/get-all-jabatan-by-pegawai?idPegawai=" + $scope.item.atasanCetak.id).then(function (res) {
+					$scope.listJabatanAtasanCetak = res.data.data;
+					$scope.item.jabatanAtasanCetak = $scope.listJabatanAtasanCetak[0];
+				});
+			});	
+
+			$scope.jenisCetakan = param;
+			
+			var myWindow = $("#winPopUpCetak");
+			myWindow.data("kendoWindow").open();
+			$scope.isShowPopUp = true;	
+		}
+
 		$scope.isShowPopUp = false;
 		$scope.openWindow = function(){
 			
@@ -466,6 +516,11 @@ define(['initialize'], function(initialize) {'use strict';
 			var urlLaporan = CetakHelper.openURLReporting("reporting/lapCapaianKinerja?idAtasan="+$scope.item.pegawai.id+"&date="+periode);
 			window.open(urlLaporan, '_blank');
 		};	
+
+		$scope.batalCetak = function(){
+			var myWindow = $("#winPopUpCetak");
+			myWindow.data("kendoWindow").close();
+		}
 
 		$scope.cancelData = function(){
 			var myWindow = $("#winPopUp");
@@ -777,14 +832,16 @@ $scope.generateGridColumn =  function(){
 				$scope.isRouteLoading = false;
 			})
 		}
+
 		$scope.cetakLogBookKinerja = function(){
 			var listRawRequired = [
 			"item.pegawai|k-ng-model|Nama pegawai",
 			"item.periode|k-ng-model|Periode"
 			]
 			var isValid = ModelItem.setValidation($scope, listRawRequired);
+
 			if(isValid.status){
-				var fixUrlLaporan = cetakHelper.openURLReporting("reporting/lapLogbookKinerjaStaffMedis?idDokter="+$scope.item.pegawai.id+"&periode=" + DateHelper.getFormatMonthPicker($scope.item.periode));
+				var fixUrlLaporan = cetakHelper.openURLReporting("reporting/lapLogbookKinerjaStaffMedis?idDokter="+$scope.item.pegawai.id+"&idJabatan="+$scope.item.jabatanCetak.id+"&periode=" + DateHelper.getFormatMonthPicker($scope.item.periode));
 				window.open(fixUrlLaporan, '', 'width=800,height=600')
 			} else {
 				ModelItem.showMessages(isValid.messages);
@@ -798,7 +855,7 @@ $scope.generateGridColumn =  function(){
 			]
 			var isValid = ModelItem.setValidation($scope, listRawRequired);
 			if(isValid.status){ 
-				var fixUrlLaporan = cetakHelper.openURLReporting("reporting/lapLogbookPegawaiVer2?idPegawai="+$scope.item.pegawai.id+"&periode=" + DateHelper.getFormatMonthPicker($scope.item.periode) + "&isFFS=false");
+				var fixUrlLaporan = cetakHelper.openURLReporting("reporting/lapLogbookPegawaiVer2?idPegawai="+$scope.item.pegawai.id+"&idJabatan="+$scope.item.jabatanCetak.id+"&idAtasan="+$scope.item.atasanCetak.id+"&idJabatanAtasan="+$scope.item.jabatanAtasanCetak.id+"&periode=" + DateHelper.getFormatMonthPicker($scope.item.periode) + "&isFFS=false");
 				window.open(fixUrlLaporan, '', 'width=800,height=600')
 			} else {
 				ModelItem.showMessages(isValid.messages);
@@ -812,7 +869,7 @@ $scope.generateGridColumn =  function(){
 			]
 			var isValid = ModelItem.setValidation($scope, listRawRequired);
 			if(isValid.status){ 
-				var fixUrlLaporan = cetakHelper.openURLReporting("reporting/lapLogbookPegawaiVer2?idPegawai="+$scope.item.pegawai.id+"&periode=" + DateHelper.getFormatMonthPicker($scope.item.periodeFee) + "&isFFS=true");
+				var fixUrlLaporan = cetakHelper.openURLReporting("reporting/lapLogbookPegawaiVer2?idPegawai="+$scope.item.pegawai.id+"&idJabatan="+$scope.item.jabatanCetak.id+"&idAtasan="+$scope.item.atasanCetak.id+"&idJabatanAtasan="+$scope.item.jabatanAtasanCetak.id+"&periode=" + DateHelper.getFormatMonthPicker($scope.item.periodeFee) + "&isFFS=true");
 				window.open(fixUrlLaporan, '', 'width=800,height=600')
 			} else {
 				ModelItem.showMessages(isValid.messages);
@@ -826,7 +883,7 @@ $scope.generateGridColumn =  function(){
 			]
 			var isValid = ModelItem.setValidation($scope, listRawRequired);
 			if(isValid.status){ 
-				var fixUrlLaporan = cetakHelper.openURLReporting("reporting/lapLogbookPegawaiRekap?idPegawai="+$scope.item.pegawai.id+"&periode=" + DateHelper.getFormatMonthPicker($scope.item.periodeRekaps) );
+				var fixUrlLaporan = cetakHelper.openURLReporting("reporting/lapLogbookPegawaiRekap?idPegawai="+$scope.item.pegawai.id+"&idJabatan="+$scope.item.jabatanCetak.id+"&idAtasan="+$scope.item.atasanCetak.id+"&idJabatanAtasan="+$scope.item.jabatanAtasanCetak.id+"&periode=" + DateHelper.getFormatMonthPicker($scope.item.periodeRekaps) );
 				window.open(fixUrlLaporan, '', 'width=800,height=600')
 			} else {
 				ModelItem.showMessages(isValid.messages);
@@ -840,7 +897,7 @@ $scope.generateGridColumn =  function(){
 			]
 			var isValid = ModelItem.setValidation($scope, listRawRequired);
 			if(isValid.status){ 
-				var fixUrlLaporan = cetakHelper.openURLReporting("reporting/logbookTindakanDokterDetailPasien?periode=" + DateHelper.getFormatMonthPicker($scope.item.periode) +"&idPegawai="+$scope.item.pegawai.id+"&ffs=false" );
+				var fixUrlLaporan = cetakHelper.openURLReporting("reporting/logbookTindakanDokterDetailPasien?periode=" + DateHelper.getFormatMonthPicker($scope.item.periode) +"&idPegawai="+$scope.item.pegawai.id+"&idJabatan="+$scope.item.jabatanCetak.id+"&idAtasan="+$scope.item.atasanCetak.id+"&idJabatanAtasan="+$scope.item.jabatanAtasanCetak.id+"&ffs=false" );
 				window.open(fixUrlLaporan, '', 'width=800,height=600')
 			} else {
 				ModelItem.showMessages(isValid.messages);
@@ -854,7 +911,7 @@ $scope.generateGridColumn =  function(){
 			]
 			var isValid = ModelItem.setValidation($scope, listRawRequired);
 			if(isValid.status){ 
-				var fixUrlLaporan = cetakHelper.openURLReporting("reporting/logbookTindakanDokterDetailPasien?periode=" + DateHelper.getFormatMonthPicker($scope.item.periodeFee) +"&idPegawai="+$scope.item.pegawai.id+"&ffs=true" );
+				var fixUrlLaporan = cetakHelper.openURLReporting("reporting/logbookTindakanDokterDetailPasien?periode=" + DateHelper.getFormatMonthPicker($scope.item.periodeFee) +"&idPegawai="+$scope.item.pegawai.id+"&idJabatan="+$scope.item.jabatanCetak.id+"&idAtasan="+$scope.item.atasanCetak.id+"&idJabatanAtasan="+$scope.item.jabatanAtasanCetak.id+"&ffs=true" );
 				window.open(fixUrlLaporan, '', 'width=800,height=600')
 			} else {
 				ModelItem.showMessages(isValid.messages);
