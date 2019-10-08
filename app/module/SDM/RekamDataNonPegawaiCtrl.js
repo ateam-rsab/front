@@ -12,14 +12,50 @@ define(['initialize'], function (initialize) {
                     id: 1,
                     jenisKelamin: 'Perempuan',
                 },
-            ]
+            ];
+
+
 
             $scope.init = function () {
                 ManageSdm.getOrderList("service/list-generic/?view=Agama&select=*", true).then(res => {
                     $scope.ListAgama = res.data
-                })
+                });
+                ManageSdm.getOrderList("service/list-generic/?view=Negara&select=id,namaNegara&criteria=statusEnabled&values=true&order=namaNegara:asc", true).then(res => {
+                    $scope.listOfNegara = res.data;
+                });
+                ManageSdm.getOrderList("service/list-generic/?view=Suku&select=id,suku&criteria=statusEnabled&values=true&order=suku:asc", true).then(res => {
+                    $scope.ListSuku = res.data;
+                });
+
+                ManageSdm.getOrderList("service/list-generic/?view=StatusPerkawinan&select=id,statusPerkawinan&criteria=statusEnabled&values=true&order=statusPerkawinan:asc", true).then(res => {
+                    var tempStatusKawin = res.data;
+                    $scope.ListStatusKawin = [];
+                    tempStatusKawin.forEach(function (el) {
+                        if (el.statusPerkawinan !== '-') {
+                            var dataTemp = {
+                                id: el.id,
+                                statusPerkawinan: el.statusPerkawinan
+                            }
+                            $scope.ListStatusKawin.push(dataTemp);
+                        }                        
+                    });
+                });
+                if ($state.params.idPegawai) {
+                    ManageSdmNew.getListData("pegawai/get-pegawai-detail-by-customs/" + $state.params.idPegawai).then(res => {
+                        $scope.item = res.data.data;
+                    });
+                }
             }
             $scope.init();
+
+            $scope.save = function() {
+                toastr.info('Dummy Sukses');
+            }
+
+            $scope.back = function() {
+                window.history.back();
+            }
+
         }
     ]);
 });

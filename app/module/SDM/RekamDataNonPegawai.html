@@ -81,8 +81,8 @@
                         <label c-label item="item">Tempat Tanggal Lahir</label>
                     </div>
                     <div class="grid_4">
-                        <input c-text-box type="input" placeholder="Tempat
-                            Lahir"
+                        <input c-text-box type="input" 
+                            placeholder="Tempat Lahir"
                             filter="'varchar'" class="k-textbox"
                             ng-model="item.tempatLahir" ng-disabled="isSimpan"
                             />
@@ -271,5 +271,11 @@
 
             </md-card-content>
         </md-card>
+    </div>
+    <div class="grid_12">
+        <div class="k-edit-buttons  k-state-default pull-right" style="margin-top:10px"	>		
+            <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="save()" ><span class="k-icon k-update"></span>Simpan</button>
+            <button class="k-button  k-button-icontext" ng-click="back()" ><span class="k-icon k-cancel"></span>Kembali</button>
+        </div>
     </div>
 </div>
