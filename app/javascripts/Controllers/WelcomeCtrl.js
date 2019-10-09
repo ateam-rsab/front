@@ -11,7 +11,7 @@ define(['initialize'], function (initialize) {
                     let data = res.data.data;
 
                     if (data.tglBerakhirSip && data.tglBerakhirStr) {
-                        if (data.tglBerakhirSip >= DateHelper.toTimeStamp($scope.now) && data.tglBerakhirStr > DateHelper.toTimeStamp($scope.now)) {
+                        if (data.tglBerakhirSip >= DateHelper.toTimeStamp($scope.now) && data.tglBerakhirStr >= DateHelper.toTimeStamp($scope.now)) {
                             $scope.messageNotif = `SIP dan STR Anda akan berakhir pada ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirSip))} dan ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirStr))}. Mohon hubungi Bagian SDM untuk mengkonfirmasi SIP dan STR terbaru Anda. Terima kasih`;
                             $scope.notificationSIP.open().center();
                         } else if (data.tglBerakhirSip < DateHelper.toTimeStamp($scope.now) && data.tglBerakhirStr >= DateHelper.toTimeStamp($scope.now)) {
