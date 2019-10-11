@@ -12,13 +12,13 @@ define(['initialize'], function (initialize) {
 
                     if (data.tglBerakhirSip && data.tglBerakhirStr) {
                         if (data.tglBerakhirSip >= DateHelper.toTimeStamp($scope.now) && data.tglBerakhirStr >= DateHelper.toTimeStamp($scope.now)) {
-                            $scope.messageNotif = `SIP dan STR Anda akan berakhir pada ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirSip))} dan ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirStr))}. Mohon hubungi Bagian SDM untuk mengkonfirmasi SIP dan STR terbaru Anda. Terima kasih`;
+                            $scope.messageNotif = `SIP dan STR Anda akan berakhir pada ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirSip))} dan ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirStr))}. Mohon hubungi Bagian SDM untuk mengkonfirmasi status SIP dan STR terbaru Anda. Terima kasih`;
                             $scope.notificationSIP.open().center();
                         } else if (data.tglBerakhirSip < DateHelper.toTimeStamp($scope.now) && data.tglBerakhirStr >= DateHelper.toTimeStamp($scope.now)) {
-                            $scope.messageNotif = `Mohon hubungi Bagian SDM karena SIP Anda telah berakhir pada ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirSip))}. STR Anda akan berakhir pada ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirStr))}, mohon hubungi Bagian SDM untuk mengkonfirmasi STR terbaru Anda. Terima kasih`;
+                            $scope.messageNotif = `Mohon hubungi Bagian SDM karena SIP Anda telah berakhir pada ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirSip))}. STR Anda akan berakhir pada ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirStr))}, mohon hubungi Bagian SDM untuk mengkonfirmasi status STR terbaru Anda. Terima kasih`;
                             $scope.notificationSIP.open().center();
                         } else if (data.tglBerakhirSip >= DateHelper.toTimeStamp($scope.now) && data.tglBerakhirStr < DateHelper.toTimeStamp($scope.now)) {
-                            $scope.messageNotif = `Mohon hubungi Bagian SDM karena STR Anda telah berakhir pada ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirStr))}. SIP Anda akan berakhir pada ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirSip))}, mohon hubungi Bagian SDM untuk mengkonfirmasi SIP terbaru Anda. Terima kasih`;
+                            $scope.messageNotif = `Mohon hubungi Bagian SDM karena STR Anda telah berakhir pada ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirStr))}. SIP Anda akan berakhir pada ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirSip))}, mohon hubungi Bagian SDM untuk mengkonfirmasi status SIP terbaru Anda. Terima kasih`;
                             $scope.notificationSIP.open().center();
                         } else if (data.tglBerakhirSip < DateHelper.toTimeStamp($scope.now) && data.tglBerakhirStr < DateHelper.toTimeStamp($scope.now)) {
                             $scope.messageNotif = `Mohon hubungi Bagian SDM karena SIP dan STR Anda telah berakhir pada ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirSip))} dan ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirStr))}. Terima kasih`;
@@ -26,7 +26,7 @@ define(['initialize'], function (initialize) {
                         }
                     } else if (data.tglBerakhirSip) {
                         if (data.tglBerakhirSip >= DateHelper.toTimeStamp($scope.now)) {
-                            $scope.messageNotif = `SIP Anda akan berakhir pada ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirSip))}. Mohon hubungi Bagian SDM untuk mengkonfirmasi SIP terbaru Anda. Terima kasih`;
+                            $scope.messageNotif = `SIP Anda akan berakhir pada ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirSip))}. Mohon hubungi Bagian SDM untuk mengkonfirmasi status SIP terbaru Anda. Terima kasih`;
                             $scope.notificationSIP.open().center();
                         } else if (data.tglBerakhirSip < DateHelper.toTimeStamp($scope.now)) {
                             $scope.messageNotif = `Mohon hubungi Bagian SDM karena SIP Anda telah berakhir pada ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirSip))}. Terima kasih`;
@@ -34,7 +34,7 @@ define(['initialize'], function (initialize) {
                         }
                     } else if (data.tglBerakhirStr) {
                         if (data.tglBerakhirStr >= DateHelper.toTimeStamp($scope.now)) {
-                            $scope.messageNotif = `STR Anda akan berakhir pada ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirStr))}. Mohon hubungi Bagian SDM untuk mengkonfirmasi STR terbaru Anda. Terima kasih`;
+                            $scope.messageNotif = `STR Anda akan berakhir pada ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirStr))}. Mohon hubungi Bagian SDM untuk mengkonfirmasi status STR terbaru Anda. Terima kasih`;
                             $scope.notificationSIP.open().center();
                         } else if (data.tglBerakhirStr < DateHelper.toTimeStamp($scope.now)) {
                             $scope.messageNotif = `Mohon hubungi Bagian SDM karena STR Anda telah berakhir pada ${DateHelper.getTanggalFormatted(new Date(data.tglBerakhirStr))}. Terima kasih`;
