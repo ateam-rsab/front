@@ -379,7 +379,7 @@ define(['initialize'], function (initialize) {
                     }
                 });
 
-                ManageSdm.getItem("service/list-generic/?view=Pegawai&select=id,namaLengkap,tglMasuk&criteria=statusEnabled&values=true", true).then(function (dat) {
+                ManageSdm.getItem("service/list-generic/?view=Pegawai&select=id,namaLengkap,tglMasuk&criteria=statusEnabled&values=true&order=namaLengkap:asc", true).then(function (dat) {
                     $scope.listPegawai = dat.data;
                 }).then(function () {
                     if ($scope.loginUser.idSubUnitKerja == 26) {
@@ -1130,14 +1130,32 @@ define(['initialize'], function (initialize) {
             // }
 
             $scope.cetakCutiAlasanPenting = function (data) {
-                var idKaRuangan = data.kepalaRuangan ? data.kepalaRuangan.id : "";
-                if (data.isCutiLuarNegeri == "1") {
-                    var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCutiLuarNegeri?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + data.atasanLangsung.id + "&idAtasan2=" + data.pejabatPenilai.id + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + data.jabatanAtasanLangsung.id + "&idJabatanAtasan2=" + data.jabatanPejabatPenilai.id);
-                } else {
-                    var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCuti?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + data.atasanLangsung.id + "&idAtasan2=" + data.pejabatPenilai.id + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + data.jabatanAtasanLangsung.id + "&idJabatanAtasan2=" + data.jabatanPejabatPenilai.id);
+                if (!data) {
+                    messageContainer.error("Data Tidak Ditemukan");
+                    return;
                 }
-                
-                window.open(urlLaporan, "halamanCetakDua");
+
+                var listRawRequired = [
+                    "currentData.jabatanCetak|k-ng-model|Jabatan",
+                    "currentData.atasanLangsung|k-ng-model|Atasan langsung",
+                    "currentData.jabatanAtasanLangsung|ng-model|Jabatan atasan langsung",
+                    "currentData.pejabatPenilai|k-ng-model|Pejabat penilai",
+                    "currentData.jabatanPejabatPenilai|ng-model|Jabatan pejabat penilai"
+                ];
+
+                var isValid = ModelItem.setValidation($scope, listRawRequired);
+                if (isValid.status) {
+                    var idKaRuangan = data.kepalaRuangan ? data.kepalaRuangan.id : "";
+                    if (data.isCutiLuarNegeri == "1") {
+                        var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCutiLuarNegeri?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + data.atasanLangsung.id + "&idAtasan2=" + data.pejabatPenilai.id + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + data.jabatanAtasanLangsung.id + "&idJabatanAtasan2=" + data.jabatanPejabatPenilai.id);
+                    } else {
+                        var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCuti?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + data.atasanLangsung.id + "&idAtasan2=" + data.pejabatPenilai.id + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + data.jabatanAtasanLangsung.id + "&idJabatanAtasan2=" + data.jabatanPejabatPenilai.id);
+                    }
+                    
+                    window.open(urlLaporan, "halamanCetakDua");
+                } else {
+                    ModelItem.showMessages(isValid.messages);
+                }
             }
 
             var holderCallback = function () { }
@@ -1345,8 +1363,14 @@ define(['initialize'], function (initialize) {
                 }
 
                 ManageSdmNew.getListData("pegawai/get-all-jabatan-by-pegawai?idPegawai=" + dataItem.pegwaiId).then(function (res) {
-                    $scope.listJabatanCetak = res.data.data
-                    $scope.currentData.jabatanCetak = $scope.listJabatanCetak[0]
+                    $scope.listJabatanCetak = res.data.data;
+                    if (res.data.data.length > 0) {
+                        dataItem.jabatanCetak = {
+                            id: res.data.data[0].id,
+                            namaJabatan : res.data.data[0].namaLengkap,
+                            idUnitKerja : res.data.data[0].idUnitKerja
+                        };
+                    };
                 });
 
                 ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/list-atasan-langsung-pegawai?idPegawai="+dataItem.pegwaiId, true).then(function (dat) {
@@ -1360,7 +1384,7 @@ define(['initialize'], function (initialize) {
                 if (dataItem.statusPegawaiId == 28) {
                     if (dataItem.noSuratTugas == undefined || dataItem.noSuratTugas == null) {
                         messageContainer.error("No Surat Tugas tidak boleh kosong");
-                        return;
+                        return;putty
                     }
                     if (dataItem.noNotaDinas == undefined || dataItem.noNotaDinas == null) {
                         messageContainer.error("No Nota Dinas tidak boleh kosong");
@@ -1384,11 +1408,11 @@ define(['initialize'], function (initialize) {
                         if (res.data.data.length > 0) {
                             dataItem.atasanLangsung = {
                                 id: res.data.data[0].idAtasanLangsung,
-                                namaLengkap: res.data.data.namaAtasanLangsung
+                                namaLengkap: res.data.data[0].namaAtasanLangsung
                             };
                             dataItem.pejabatPenilai = {
                                 id: res.data.data[0].idAtasanPejabatPenilai,
-                                namaLengkap: res.data.data.namaAtasanPejabatPenilai
+                                namaLengkap: res.data.data[0].namaAtasanPejabatPenilai
                             }
                         }
                     }, function (error) {
