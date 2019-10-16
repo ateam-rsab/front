@@ -924,6 +924,7 @@ define(['initialize'], function (initialize) {
                 }
 
                 if ($scope.item.statusPegawai.id == 1) {
+                    var tahunFuture = [];
                     for (var i = 0; i < $scope.tanggalPermohonan.length; i++) {
                         if ($scope.tanggalPermohonan[i].tgl instanceof Date)
                             var tgl = $scope.tanggalPermohonan[i].tgl.getFullYear()
@@ -931,11 +932,16 @@ define(['initialize'], function (initialize) {
                             var tgl = parseInt($scope.tanggalPermohonan[i].tgl.substr(0, 4))
                         var yearNow = parseInt(moment(new Date()).format('YYYY'))
                         if (tgl > yearNow) {
-                            if ($scope.item.isTangguhkanN == false) {
+                            tahunFuture.push(tgl);
+                            if ($scope.item.isTangguhkanN == false && $scope.item.sisaCuti > 6 && $scope.sisaCutiTotal == $scope.item.sisaCuti) {
                                 toastr.warning('Sisa cuti belum ditangguhkan/ Hutang cuti tidak diperkenankan !')
                                 return
                             }
                         }
+                    }
+                    if ($scope.item.isTangguhkanN == false && $scope.item.sisaCuti > 6 && tahunFuture.length > $scope.sisaCutiTotal-$scope.item.sisaCuti) {
+                        toastr.warning('Sisa cuti belum ditangguhkan/ Hutang cuti tidak diperkenankan !')
+                        return
                     }
                     //cek jumlah tanggal tidak lebih banyak dari total sisa cuti
                     if ($scope.tanggalPermohonan.length > ($scope.sisaCutiTotal - $scope.jumlahPengajuanDiproses)) {
@@ -1025,7 +1031,7 @@ define(['initialize'], function (initialize) {
                             "noSuratTugas": $scope.item.noSuratTugas,
                             "noNotaDinas": $scope.item.noNotaDinas,
                             "tglNotaDinas": $scope.item.tglNotaDinas != undefined ? DateHelper.getDateTimeFormatted3($scope.item.tglNotaDinas) : null,
-                            "jenisPerawatan": $scope.item.sakit.id != undefined ? $scope.item.sakit.id : null,
+                            "jenisPerawatan": $scope.item.sakit != undefined ? $scope.item.sakit.id : null,
                             "alamatTugas": $scope.item.alamatTugas,
                             "jabatanPemberiNotaDinas": {
                                 "id": $scope.item.jabatanNotaDinas != undefined ? $scope.item.jabatanNotaDinas.id : 14
