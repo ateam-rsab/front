@@ -82,15 +82,15 @@ define(['initialize'], function (initialize) {
 
 			$scope.listOfRisikoMalnutrisi = [
 				{
-					id: 1,
+					id: 122,
 					name: 'Risiko Ringan (Nilai Strong Kids 0)'
 				},
 				{
-					id: 2,
+					id: 222,
 					name: 'Risiko Sedang (Nilai Strong Kids 1 - 3)'
 				},
 				{
-					id: 3,
+					id: 322,
 					name: 'Risiko Tinggi (Nilai Strong Kids 4 - 5)'
 				}
 			];

@@ -969,9 +969,9 @@ define(['initialize'], function(initialize) {
                                 strukresep:$scope.item.resep
                             }
                     
-                        manageLogistikPhp.postbridgingminir45(objSave).then(function(e) {
+                        // manageLogistikPhp.postbridgingminir45(objSave).then(function(e) {
                             
-                        })
+                        // })
                     //Bridging minir45
 
                     //##save Logging user

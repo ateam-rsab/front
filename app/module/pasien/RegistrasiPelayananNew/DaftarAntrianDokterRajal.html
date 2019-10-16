@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="grid_12" >
-                <div class="grid_12 borderBox">
+                <div class="grid_12">
                  <kendo-grid id="grid"  
                    data-source="GridPasien" options="mainGridOptions"
                     k-pageable="'true'"
@@ -195,7 +195,7 @@
         <button class="k-button" ng-click="simpanDokter(item, items.pilihDokter)" style="float:right;margin-top:4%">Simpan</button>
     </div>
 
-    <div kendo-window="winKonsul" k-title="'Konsultasi Dokter'" k-width="1300" k-height="450" k-visible="false" k-on-open="win2visible = true" k-on-close="win2visible = false">
+    <div kendo-window="winKonsul" k-title="'Konsultasi Dokter'" k-width="1200" k-height="450" k-visible="false" k-on-open="win2visible = true" k-on-close="win2visible = false">
         <div class="panel panel-default container_12">
             <!-- <div class="panel panel-default container_12" style="padding: 0px 10px;"> -->
             <fieldset class="effect-shadow" style=" border-radius: 4px">
@@ -221,7 +221,7 @@
             <button class="k-button" ng-click="simpanDokter(item, items.pilihDokter)" style="float:right;margin-top:4%">Simpan</button> -->
         </div>
     </div>
-    <div kendo-window="winDescription" k-title="'Description'" k-width="1200" k-visible="false" k-on-open="win2visible = true" k-on-close="win2visible = false">
+    <div kendo-window="winDescription" k-title="'Description'" k-width="1200"  k-height="450" k-visible="false" k-on-open="win2visible = true" k-on-close="win2visible = false">
         <div class="view">
             <!-- <div style="width: 200px">
                 <label><strong>Dokter Konsultasi</strong></label>

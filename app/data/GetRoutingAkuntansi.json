@@ -2192,6 +2192,46 @@
     ]
   },
   {
+    "name": "ProduksiElektronik",
+    "url": "/ProduksiElektronik/:norec_so",
+    "templateurl": "module/Apotek/Penjualan/ProduksiElektronik.html",
+    "controller": "ProduksiElektronikCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      }
+    ]
+  },
+  {
+    "name": "EditResepElektronik",
+    "url": "/EditResepElektronik/:norec_so",
+    "templateurl": "module/Apotek/Penjualan/EditResepElektronik.html",
+    "controller": "EditResepElektronikCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      }
+    ]
+  },
+  {
     "name": "KonversiSatuan",
     "url": "/KonversiSatuan",
     "templateurl": "module/Farmasi/KonversiSatuan.html",
@@ -11007,6 +11047,29 @@
     "url": "/CPPT",
     "templateurl": "module/RekamMedis/CPPT.html",
     "controller": "CPPTCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "PhpService",
+        "define": "PhpService"
+      },
+      {
+        "define": "RekamMedisCtrl"
+      }
+    ]
+  },
+  {
+    "name": "RekamMedis.TBAK",
+    "url": "/TBAK",
+    "templateurl": "module/RekamMedis/TBAK.html",
+    "controller": "TBAKCtrl",
     "deps": [
       {
         "module": "Services",

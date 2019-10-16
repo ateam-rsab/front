@@ -461,6 +461,14 @@
       "urlDep": "module/Farmasi/InputResepElektronikApotikCtrl"
     },
     {
+      "nameDep": "ProduksiElektronikCtrl",
+      "urlDep": "module/Apotek/Penjualan/ProduksiElektronikCtrl"
+    },
+    {
+      "nameDep": "EditResepElektronikCtrl",
+      "urlDep": "module/Apotek/Penjualan/EditResepElektronikCtrl"
+    },
+    {
       "nameDep": "KonversiSatuanCtrl",
       "urlDep": "module/Farmasi/KonversiSatuanCtrl"
     },
@@ -1812,7 +1820,11 @@
     },
     {
       "nameDep": "CPPTCtrl",
-      "urlDep": "module/RekamMedis/CPPTCtrl"    
+      "urlDep": "module/RekamMedis/CPPTCtrl"
+    },
+    {
+      "nameDep": "TBAKCtrl",
+      "urlDep": "module/RekamMedis/TBAKCtrl"
     },
     {
       "nameDep": "AsesmenGiziAwalCtrl",

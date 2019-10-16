@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('DaftarAntrianDokterRajalCtrl', ['SaveToWindow', '$rootScope', '$scope', 'ModelItem', '$state', 'FindPasien', 'DateHelper', 'socket', 'ManagePasien', '$mdDialog', '$window', 'ManageSarprasPhp', 'CacheHelper', '$q', 'ManagePhp',
-        function (saveToWindow, $rootScope, $scope, ModelItem, $state, findPasien, dateHelper, socket, managePasien, $mdDialog, window, manageSarprasPhp, cacheHelper, $q, ManagePhp) {
+    initialize.controller('DaftarAntrianDokterRajalCtrl', ['SaveToWindow', '$rootScope', '$scope', '$timeout', 'ModelItem', '$state', 'FindPasien', 'DateHelper', 'socket', 'ManagePasien', '$mdDialog', '$window', 'ManageSarprasPhp', 'CacheHelper', '$q', 'ManagePhp',
+        function (saveToWindow, $rootScope, $scope, $timeout, ModelItem, $state, findPasien, dateHelper, socket, managePasien, $mdDialog, window, manageSarprasPhp, cacheHelper, $q, ManagePhp) {
             $scope.isVerify = false;
             $scope.dataVOloaded = true;
             $scope.now = new Date();
@@ -21,7 +21,7 @@ define(['initialize'], function (initialize) {
             // $scope.isCalling = false;
             var cookie = document.cookie.split(';');
             cookie = cookie[0].split('=');
-            $scope.dataLogin = JSON.parse(localStorage.getItem('pegawai'))
+            $scope.dataLogin = JSON.parse(localStorage.getItem('pegawai'));
             $scope.pegawai = ModelItem.getPegawai();
             loadCombo();
             loadData();
@@ -1515,20 +1515,19 @@ define(['initialize'], function (initialize) {
             $scope.verifikasiKonsultasiDokter = function () {
                 var length = $scope.sourceKonsul._data.length + 1;
                 var dataKonsul = {
-                    "kelasfk": 6,
                     "noantrian": length,
                     "norec_so": $scope.noRecKonsultasi,
                     "norec_pd": $scope.noRecPdKonsultasi,
                     "dokterfk": $scope.pegawaiFkKonsultasi,
                     "objectruangantujuanfk": $scope.objectRuanganFkTujuanKonsultasi,
+                    "kelasfk": $scope.kelasfk,
                     "objectruanganasalfk": $scope.objectRuanganFkKonsultasi,
-                    "periksaDidapatkan": $scope.item.periksaDidapatkan,
                     "pemeriksaandidapat": $scope.item.periksaDidapatkan,
                     "keterangankeperluan": $scope.item.kesan,
                     "saran": $scope.item.saran,
                     "diagnosis": $scope.item.diagnosa
                 }
-                console.log(dataKonsul);
+                
                 ManagePhp.postData2('rekam-medis/save-konsul-from-order', dataKonsul).then(function (e) {
                     $scope.winDescription.close();
                     $scope.winKonsul.close();
@@ -1551,11 +1550,11 @@ define(['initialize'], function (initialize) {
                 $scope.item.jeniskonsultasi = dataItem.jeniskonsultasi;
                 $scope.item.dokterPengonsul = dataItem.pengonsul;
                 $scope.item.keteranganOrder = dataItem.keteranganorder;
-                $scope.item.diagnosaKerja = dataItem.diagnosakerja
-                $scope.item.terapi = dataItem.terapi
                 $scope.item.diagnosaKerja = dataItem.diagnosakerja;
-                $scope.item.masalah = dataItem.masalah;
                 $scope.item.terapi = dataItem.terapi;
+                $scope.item.diagnosa = dataItem.diagnosis;
+                $scope.item.masalah = dataItem.masalah;
+                $scope.item.saran = dataItem.saran;
                 $scope.item.periksaDidapatkan = dataItem.pemeriksaandidapat;
                 $scope.item.kesan = dataItem.keterangankeperluan;
                 $scope.statusKonsultasi = dataItem.status;
@@ -1564,6 +1563,7 @@ define(['initialize'], function (initialize) {
                 $scope.pegawaiFkKonsultasi = dataItem.pegawaifk;
                 $scope.objectRuanganFkTujuanKonsultasi = dataItem.objectruangantujuanfk;
                 $scope.objectRuanganFkKonsultasi = dataItem.objectruanganfk;
+                $scope.kelasfk = dataItem.kelasfk;
                 $scope.winDescription.center().open();
             }
             //#save Log Konsul

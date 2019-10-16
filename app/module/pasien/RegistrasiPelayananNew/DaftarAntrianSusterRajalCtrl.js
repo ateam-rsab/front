@@ -3,12 +3,13 @@ define(['initialize'], function (initialize) {
     initialize.controller('DaftarAntrianSusterRajalCtrl', ['SaveToWindow', '$rootScope', '$scope', 'ModelItem', '$state', 'FindPasien', 'DateHelper', 'socket', 'ManagePasien', '$mdDialog', '$window', 'ManageSarprasPhp', 'CacheHelper', '$q', 'ManagePhp',
         function (saveToWindow, $rootScope, $scope, ModelItem, $state, findPasien, dateHelper, socket, managePasien, $mdDialog, window, manageSarprasPhp, cacheHelper, $q, ManagePhp) {
             $scope.dataVOloaded = true;
+            $scope.edit = {};
             $scope.now = new Date();
             $scope.item = {};
-            $scope.dataLogin = JSON.parse(localStorage.getItem('pegawai'))
+            $scope.dataLogin = JSON.parse(localStorage.getItem('pegawai'));
             // $scope.dataPasienSelected = {};
-            $scope.item.periodeAwal = new Date();
-            // $scope.item.periodeAwal = dateHelper.setJamAwal(new Date());
+            // $scope.item.periodeAwal = new Date();
+            $scope.item.periodeAwal = dateHelper.setJamAwal(new Date());
             $scope.item.periodeAkhir = new Date();
             $scope.dataPasienSelected = {};
             $scope.isRouteLoading = false;
@@ -53,33 +54,15 @@ define(['initialize'], function (initialize) {
                 })
             }
 
+            ManagePhp.getData("rekam-medis/get-combo").then(function (e) {
+                $scope.listDokter = e.data.dokter;
+            });
+
             $scope.konsul = function () {
                 loadKonsul();
                 $scope.winKonsul.center().open();
             }
-
-            // function loadGridKonsul(){
-            //     ManagePhp.getData("rekam-medis/get-order-konsul").then(function(e){
-            //         var result = e.data.data
-            //         if(result.length > 0){
-            //             $scope.item.dokterTujuan = result[0].namalengkap
-            //             for (var i = 0; i < result.length; i++) {
-            //                 result[i].no = i + 1
-            //                 if(result[i].norec_apd != null)
-            //                     result[i].status = 'Selesai'
-            //                 else
-            //                     result[i].status = '-'
-            //             }
-            //         }
-            //         $scope.sourceKonsul = new kendo.data.DataSource({
-            //             data: result,
-            //             pageSize: 20,
-            //         });
-            //     }, (error) => {
-            //         throw error;
-            //     })
-            // }
-
+           
             $scope.konsulOpt = {
                 pageable: true,
                 scrollable: true,
@@ -150,16 +133,25 @@ define(['initialize'], function (initialize) {
                         title: "<h3>Dokter<br> Tujuan</h3>",
                         width: 120,
                         headerAttributes: { style: "text-align : center" },
-                        filterable: true
+                        filterable: true,
+                        // template: "#if(!namalengkap) { # <button class='k-button'>Tambah Dokter</button> # } else { # #:namalengkap# # } #",
+                        template: "#if(!namalengkap) { #-# } else { # #:namalengkap# # } #",
                     },
                     // { field: "keteranganorder", title: "Keterangan", width: 120, headerAttributes: { style: "text-align : center" }},
                     // { field: "status", title: "Status", width: 120, headerAttributes: { style: "text-align : center" }},
                     {
-                        command: [{
-                            name: "Edit",
-                            text: "Detail",
-                            click: verif
-                        }],
+                        command: [
+                            {
+                                name: "Detail",
+                                text: "Detail",
+                                click: verif
+                            },
+                            {
+                                name: "Edit",
+                                text: "Edit",
+                                click: edit
+                            }
+                        ],
                         title: "&nbsp;",
                         width: 120,
                         attributes: { style: "text-align:center;valign=middle" }
@@ -197,9 +189,25 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.searchDataPegawai = function () {
-                ManagePhp.getData("rekam-medis/get-order-konsul?" + $scope.item.paramDokter).then(function (res) {
-                    var data = res;
+                ManagePhp.getData("rekam-medis/get-order-konsul?dokterid=" + $scope.item.paramDokter.id).then(function (res) {
+                    // var data = res;
                     // load
+                    // $scope.sourceKonsul = new kendo.data.DataSource({
+                    //     data: res,
+                    //     pageSize: 20,
+                    // });
+                    var res = res.data.data
+                    for (var i = res.length - 1; i >= 0; i--) {
+                        if (res[i].norec_apd != null) {
+                            res.splice([i], 1)
+                        }
+                    }
+                    if (res.length > 0) {
+                        $scope.showNotif = true
+                        $scope.lengthKonsul = res.length;
+                    } else {
+                        $scope.showNotif = false;
+                    }
                     $scope.sourceKonsul = new kendo.data.DataSource({
                         data: res,
                         pageSize: 20,
@@ -238,17 +246,65 @@ define(['initialize'], function (initialize) {
 
             }
 
+            function edit(e) {
+                e.preventDefault();
+                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                $scope.item.dokter = "";
+                
+                $scope.edit = dataItem;
+                console.log($scope.edit);
+                // $scope.edit.diagnosakerja = dataItem.diagnosakerja;
+                // $scope.edit.jenisKonsultasi = dataItem.jeniskonsultasi;
+                // $scope.edit.keterangankeperluan = dataItem.keterangankeperluan;
+                // $scope.edit.keteranganorder = dataItem.keteranganorder;
+                // $scope.edit.masalah = dataItem.masalah;
+                // $scope.edit.namalengkap = dataItem.namalengkap;
+                // $scope.edit.namapasien = dataItem.namapasien;
+                // $scope.edit.nocm = dataItem.nocm;
+                // $scope.edit.noorder = dataItem.noorder;
+                // $scope.edit.norec = dataItem.norec;
+                // $scope.edit.norec_apd = dataItem.norec_apd;
+                // $scope.edit.norec_pd = dataItem.norec_pd;
+                // $scope.edit.noregistrasi = dataItem.noregistrasi;
+                // $scope.edit.objectruanganfk = dataItem.objectruanganfk;
+                // $scope.edit.objectruangantujuanfk = dataItem.objectruangantujuanfk;
+                // $scope.edit.parent = dataItem.parent;
+                // $scope.edit.pegawaifk = dataItem.pegawaifk;
+                // $scope.edit.pemeriksaandidapat = dataItem.pemeriksaandidapat;
+                // $scope.edit.pengonsul = dataItem.pengonsul;
+                // $scope.edit.ruanganasal = dataItem.ruanganasal;
+                // $scope.edit.ruangantujuan = dataItem.ruangantujuan;
+                // $scope.edit.terapi = dataItem.terapi;
+                // $scope.edit.tglorder = dataItem.tglorder;
+                // $scope.edit.tglregistrasi = dataItem.tglregistrasi;
+
+                $scope.popupEdit.open().center();
+            }
+
+            $scope.saveDokter = function () {
+                // save untuk tambah dokter pengonsul
+                var objSave = {
+                    pegawaifk: $scope.item.dokter ? $scope.item.dokter.id : null,
+                };
+
+                console.log(objSave);
+                ManagePhp.postData(objSave, 'rekam-medis/post-ganti-dokter-konsultasi?norec=' + $scope.edit.norec).then(function (e) {
+                    $scope.popupEdit.close();
+                    loadKonsul();
+                });
+            }
+
             function loadCombo() {
                 var chacePeriode = cacheHelper.get('DaftarAntrianDokterRajalCtrl');
                 if (chacePeriode != undefined) {
                     //debugger;
                     var arrPeriode = chacePeriode.split('~');
-                    $scope.item.periodeAwal = new Date(arrPeriode[0]);
-                    $scope.item.periodeAkhir = new Date(arrPeriode[1]);
+                    // $scope.item.periodeAwal = new Date(arrPeriode[0]);
+                    // $scope.item.periodeAkhir = new Date(arrPeriode[1]);
                     // $scope.item.tglpulang = new Date(arrPeriode[2]);                
                 } else {
-                    $scope.item.periodeAwal = $scope.now;
-                    $scope.item.periodeAkhir = $scope.now;
+                    // $scope.item.periodeAwal = $scope.now;
+                    // $scope.item.periodeAkhir = $scope.now;
                     // $scope.item.tglpulang = $scope.now;                 
                 }
                 manageSarprasPhp.getDataTableTransaksi("dokter/get-data-combo-dokter", false).then(function (data) {
@@ -318,7 +374,7 @@ define(['initialize'], function (initialize) {
                         }
                     });
                     var chacePeriode = tglAwal + "~" + tglAkhir;
-                    cacheHelper.set('DaftarAntrianDokterRajalCtrl', chacePeriode);
+                    // cacheHelper.set('DaftarAntrianDokterRajalCtrl', chacePeriode);
                 });
             }
 

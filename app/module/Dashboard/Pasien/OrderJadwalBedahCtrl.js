@@ -19,6 +19,26 @@ define(['initialize'], function (initialize) {
             $scope.header.DataNoregis = '';
             var myVar = 0
             var detail = ''
+
+            $scope.lengthKomplikasi = 0;
+            $scope.lengthMacamJaringan = 0;
+            $scope.lengthUraianPemebedahan = 0;
+            $scope.lengthMakan = 0;
+            $scope.lengthMinum = 0;
+            $scope.lengthObat = 0;
+            $scope.lengthInstruksiKhusus = 0;
+            $scope.lengthTindakanPembedahanSatu = 0;
+            $scope.lengthTindakanPembedahanDua = 0;
+            $scope.lengthTindakanPembedahanTiga = 0;
+            $scope.lengthTindakanPembedahanEmpat = 0;
+            $scope.lengthDiagnosaPascaBedah = 0;
+            $scope.lengthDiagnosaPraBedah = 0;
+            $scope.lengthPatologi = 0;
+            $scope.lengthMacam = 0;
+            $scope.lengthJumlah = 0;
+            $scope.lengthTetesan = 0;
+            
+
             $scope.showInputan = false;
             LoadCache();
             function LoadCache() {
@@ -119,8 +139,9 @@ define(['initialize'], function (initialize) {
                     { id: 3, name: 'Belum dipasang' },
                 ];
                 $scope.listOfStatus = [
-                    { id: 1, name: 'Emergency' },
-                    { id: 3, name: 'Elektif' },
+                    { id: 11, name: 'Emergency' },
+                    { id: 33, name: 'Elektif' },
+                    { id: 34, name: 'Poliklinik' },
                 ];
                 $scope.listYesOrNo = [
                     { id: 1, name: 'Ya' },
@@ -209,15 +230,84 @@ define(['initialize'], function (initialize) {
 
             }
 
+            $scope.countLengthKomplikasi = function () {
+                $scope.lengthKomplikasi = $scope.item.komplikasi.length;
+            }
+
+            $scope.countLengthKMacamJaringan = function () {
+                $scope.lengthMacamJaringan = $scope.item.macamJaringan.length;
+            }
+
+            $scope.countLengthUraianPembedahan = function () {
+                $scope.lengthUraianPemebedahan = $scope.item.uraianPembedahan.length;
+            }
+
+            $scope.countLengthMinum = function () {
+                $scope.lengthMinum = $scope.item.selectedAvailMinum.length;
+            }
+
+            $scope.countLengthMakan = function () {
+                $scope.lengthMakan = $scope.item.selectedAvailMakan.length;
+            }
+
+            $scope.countObat = function () {
+                $scope.lengthObat = $scope.item.obatObatan.length;
+            }
+
+            $scope.countLengthKInstruksiKhusus = function () {
+                $scope.lengthInstruksiKhusus = $scope.item.instruksiKhusus.length;
+            }
+
+            $scope.countLengthPatologi = function () {
+                $scope.lengthPatologi = $scope.item.jaringanPatologi.length;
+            }
+
+            $scope.countTindakanPembedahan = function (key) {
+                switch(key) {
+                    case 1:
+                        $scope.lengthTindakanPembedahanSatu = $scope.item.tindakanPembedahanSatu.length;
+                        break;
+                    case 2: 
+                        $scope.lengthTindakanPembedahanDua = $scope.item.tindakanPembedahanDua.length;
+                        break;
+                    case 3:
+                        $scope.lengthTindakanPembedahanTiga = $scope.item.tindakanPembedahanTiga.length;
+                        break;
+                    case 4:
+                        $scope.lengthTindakanPembedahanEmpat = $scope.item.tindakanPembedahanEmpat.length;
+                        break;
+                };
+            }
+
+            $scope.countInfus = function (key) {
+                switch(key) {
+                    case 1:
+                        $scope.lengthMacam = $scope.item.macam.length;
+                        break;
+                    case 2: 
+                        $scope.lengthJumlah = $scope.item.jumlah.length;
+                        break;
+                    case 3:
+                        $scope.lengthTetesan = $scope.item.tetesan.length;
+                        break;
+                  
+                };
+            }
+            
+            $scope.countLengthDiagnosaPraBedah = function () {
+                $scope.lengthDiagnosaPraBedah = $scope.item.diagnosaPraBedah.length;
+            }
+
+            $scope.countLengthDiagnosaPascaBedah = function () {
+                $scope.lengthDiagnosaPascaBedah = $scope.item.diagnosaPascaBedah.length;
+            }
+
+
             $scope.Batal = function () {
                 $scope.showInputan = false;
             };
 
             $scope.showInput = function (namaEMR, noEMR) {
-                // $state.go("RekamMedis.OrderJadwalBedah.ProsedurKeselamatan", {
-                //     namaEMR : namaEMR,
-                //     nomorEMR : noEMR
-                // });
                 if (!$scope.showData) {
                     $scope.showData = true;
                 } else {
@@ -363,9 +453,9 @@ define(['initialize'], function (initialize) {
                 $scope.item.jamMulai = dataItem.jammulai;
                 $scope.item.jamSelesai = dataItem.jamselesai;
                 $scope.item.lamaPembedahan = dataItem.lamabedah;
-                $scope.item.selectedLabelPasien = { name: dataItem.labelpasien };
-                $scope.item.selectedPenangananKhusus = { name: dataItem.kondisipenanganan };
-                $scope.item.selectedStatus = { name: dataItem.status };
+                $scope.item.selectedLabelPasien = dataItem.labelpasien;
+                $scope.item.selectedPenangananKhusus = dataItem.kondisipenanganan 
+                $scope.item.selectedStatus = dataItem.status
                 $scope.item.tindakanPembedahanSatu = dataItem.tindakanbedah1;
                 $scope.item.tindakanPembedahanDua = dataItem.tindakanbedah2;
                 $scope.item.tindakanPembedahanTiga = dataItem.tindakanbedah3;
@@ -391,9 +481,7 @@ define(['initialize'], function (initialize) {
                 $scope.item.macamJaringan = dataItem.macamjaringan;
                 $scope.item.diagnosaPraBedah = dataItem.diagnosaprabedah;
                 $scope.item.diagnosaPascaBedah = dataItem.diagnosapascabedah;
-                $scope.item.kesuaianDiagnosa = {
-                    name: dataItem.kesesuiandiagnosa
-                }
+                $scope.item.kesuaianDiagnosa = dataItem.kesesuiandiagnosa;
 
                 $timeout(function () {
                     $scope.showInputan = true;
@@ -530,9 +618,9 @@ define(['initialize'], function (initialize) {
                     jammulai: tglDimulai,
                     jamselesai: tglSelesai,
                     lamabedah: $scope.item.lamaPembedahan,
-                    labelpasien: $scope.item.selectedLabelPasien ? $scope.item.selectedLabelPasien.name : '',
-                    kondisipenanganan: $scope.item.selectedPenangananKhusus ? $scope.item.selectedPenangananKhusus.name : '',
-                    status: $scope.item.selectedStatus ? $scope.item.selectedStatus.name : '',
+                    labelpasien: $scope.item.selectedLabelPasien ? $scope.item.selectedLabelPasien : '',
+                    kondisipenanganan: $scope.item.selectedPenangananKhusus ? $scope.item.selectedPenangananKhusus : '',
+                    status: $scope.item.selectedStatus ? $scope.item.selectedStatus : '',
                     tindakanbedah1: $scope.item.tindakanPembedahanSatu ? $scope.item.tindakanPembedahanSatu : '',
                     tindakanbedah2: $scope.item.tindakanPembedahanDua ? $scope.item.tindakanPembedahanDua : '',
                     tindakanbedah3: $scope.item.tindakanPembedahanTiga ? $scope.item.tindakanPembedahanTiga : '',
@@ -556,7 +644,7 @@ define(['initialize'], function (initialize) {
                     macamjaringan: $scope.item.macamJaringan ? $scope.item.macamJaringan : '',
                     diagnosaprabedah: $scope.item.diagnosaPraBedah ? $scope.item.diagnosaPraBedah : '',
                     diagnosapascabedah: $scope.item.diagnosaPascaBedah ? $scope.item.diagnosaPascaBedah : '',
-                    kesesuiandiagnosa: $scope.item.kesuaianDiagnosa ? $scope.item.kesuaianDiagnosa.name : '',
+                    kesesuiandiagnosa: $scope.item.kesuaianDiagnosa ? $scope.item.kesuaianDiagnosa : '',
                 };
 
                 // console.log(dataSave);
@@ -566,7 +654,7 @@ define(['initialize'], function (initialize) {
                         $scope.item = {};
                         $scope.showInputan = false;
                     }
-                    s//ManagePhp.postLogging('POC', 'Norec planofcare_t',e.data.norec, 'POC').then(function (res) {
+                    //ManagePhp.postLogging('POC', 'Norec planofcare_t',e.data.norec, 'POC').then(function (res) {
                     //})
                 });
 

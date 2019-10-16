@@ -1,18 +1,17 @@
-define(['initialize'], function(initialize) {
+define(['initialize'], function (initialize) {
 	'use strict';
 	initialize.controller('PembayaranTagihanLayananKasirCtrl', ['$state', '$q', '$rootScope', '$scope', 'ModelItemAkuntansi', 'ManageKasir',
-		function($state, $q, $rootScope, $scope, modelItemAkuntansi, manageKasir) {
-			
+		function ($state, $q, $rootScope, $scope, modelItemAkuntansi, manageKasir) {
+
 			$scope.dataParams = JSON.parse($state.params.dataPasien);
 
 			$scope.item = {};
 
 			$q.all([
-				modelItemAkuntansi.getDataTableTransaksi("kasir/detail-tagihan-pasien/"+ $scope.dataParams.noRegistrasi )
-				])
-			.then(function(data) {
+				modelItemAkuntansi.getDataTableTransaksi("kasir/detail-tagihan-pasien/" + $scope.dataParams.noRegistrasi)
+			]).then(function (data) {
 
-				if (data[0].statResponse){
+				if (data[0].statResponse) {
 					$scope.item = data[0];
 					$scope.item.totalTagihan = $scope.item.jumlahBayar.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })
 					// subTotal.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })
@@ -24,7 +23,7 @@ define(['initialize'], function(initialize) {
 
 			});
 
-			function showButton(){
+			function showButton() {
 				//$scope.showBtnCetak = true;
 				//$scope.showBtnBatal = true;
 				$scope.showBtnBayar = true;
@@ -37,73 +36,79 @@ define(['initialize'], function(initialize) {
 			$scope.now = new Date();
 
 
-			
+
 			$scope.columnDaftarTagihan = [
-			{
-				"field": "namaLayanan",
-				"title": "Layanan",
-				"width":"200px",
-				"template": "<span class='style-left'>#: namaLayanan #</span>"
-			},
-			{
-				"field": "jumlah",
-				"title": "Jumlah",
-				"width":"50px",
-				"template": "<span class='style-right'>#: jumlah #</span>"
-			},
-			{
-				"field": "harga",
-				"title": "Harga",
-				"width":"150px",
-				"template": "<span class='style-right'>{{formatRupiah('#: harga #', 'Rp.')}}</span>"
-			},
-			{
-				"field": "diskon",
-				"title": "Harga Diskon",
-				"width":"150px",
-				"template": "<span class='style-right'>{{formatRupiah('#: diskon #', 'Rp.')}}</span>"
-			},
-			{
-				"field": "total",
-				"title": "Total",
-				"width":"150px",
-				"template": "<span class='style-right'>{{formatRupiah('#: total #', 'Rp.')}}</span>"
-			}
+				{
+					"field": "namaLayanan",
+					"title": "Layanan",
+					"width": "200px",
+					"template": "<span class='style-left'>#: namaLayanan #</span>"
+				},
+				{
+					"field": "jumlah",
+					"title": "Jumlah",
+					"width": "50px",
+					"template": "<span class='style-right'>#: jumlah #</span>"
+				},
+				{
+					"field": "harga",
+					"title": "Harga",
+					"width": "150px",
+					"template": "<span class='style-right'>{{formatRupiah('#: harga #', 'Rp.')}}</span>"
+				},
+				{
+					"field": "jasa",
+					"title": "Jasa",
+					"width": "150px",
+					"template": "<span class='style-right'>{{formatRupiah('#: jasa #', 'Rp.')}}</span>"
+				},
+				{
+					"field": "diskon",
+					"title": "Harga Diskon",
+					"width": "150px",
+					"template": "<span class='style-right'>{{formatRupiah('#: diskon #', 'Rp.')}}</span>"
+				},
+				{
+					"field": "total",
+					"title": "Total",
+					"width": "150px",
+					"template": "<span class='style-right'>{{formatRupiah('#: total #', 'Rp.')}}</span>"
+				}
 			];
 
-			$scope.Cetak = function(){
-				
+			$scope.Cetak = function () {
+
 			}
 
-			$scope.Batal = function(){
-				
+			$scope.Batal = function () {
+
 			}
 
-			$scope.Bayar = function(){
+			$scope.Bayar = function () {
 				$scope.changePage("PenerimaanPembayaranKasir");
 			}
 
-			$scope.changePage = function(stateName){
+			$scope.changePage = function (stateName) {
 				debugger;
 				var obj = {
 					pageFrom: "PembayaranTagihanLayananKasir",
-            		noRegistrasi : $scope.dataParams.noRegistrasi 
-            	}
+					noRegistrasi: $scope.dataParams.noRegistrasi
+				}
 
-                $state.go(stateName, {
-                   dataPasien: JSON.stringify(obj)
-                });
+				$state.go(stateName, {
+					dataPasien: JSON.stringify(obj)
+				});
 			}
 
 
-			$scope.Kembali = function(){
+			$scope.Kembali = function () {
 				$state.go('DaftarPasienPulangKasir', {});
 			}
 
-			$scope.formatRupiah = function(value, currency) {
-			    return currency + " " + parseFloat(value).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+			$scope.formatRupiah = function (value, currency) {
+				return currency + " " + parseFloat(value).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
 			}
 
 		}
-		]);
+	]);
 });

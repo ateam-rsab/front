@@ -7,6 +7,7 @@ define(['initialize'], function (initialize) {
             $scope.item = {
                 tglresume: $scope.now
             } // set defined object
+            $scope.dataLogin = JSON.parse(localStorage.getItem('pegawai'));
             $scope.filter = {}
             $scope.listOfStatusKonsult = [
                 { name: 'Alih Rawat', id: 1},
@@ -219,15 +220,13 @@ define(['initialize'], function (initialize) {
                     toastr.warning("Pilih Ruangan Tujuan terlebih dahulu!")
                     return;
                 }
-                // if ($scope.item.dokter == undefined) {
-                //     toastr.warning("Pilih Dokter terlebih dahulu!")
-                //     return;
-                // }
+
                 var objSave = {
                     jeniskonsultasi: $scope.item.jenisKonsultasi,
                     norec_so: $scope.item.norec != undefined ? $scope.item.norec : '',
                     norec_pd: $scope.norecPd,
                     pegawaifk: $scope.item.dokter ? $scope.item.dokter.id : null,
+                    petugasfk: $scope.dataLogin.id,
                     objectruanganasalfk: $scope.item.ruanganAsal.id,
                     objectruangantujuanfk: $scope.item.ruanganTujuan.id,
                     keterangan: $scope.item.ikhtisarKlinik ? $scope.item.ikhtisarKlinik : '',
@@ -235,7 +234,7 @@ define(['initialize'], function (initialize) {
                     terapi: $scope.item.terapiDanTindakan ? $scope.item.terapiDanTindakan : '',
                     masalah:$scope.item.masalah ? $scope.item.masalah : ''
                 }
-                console.log(objSave);
+                // console.log(objSave);
                 ManagePhp.postData(objSave, 'rekam-medis/post-konsultasi').then(function (e) {
                     clear()
                     init();

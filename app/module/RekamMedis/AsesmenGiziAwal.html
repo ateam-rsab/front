@@ -16,17 +16,39 @@
     }
 </style>
 <div class="grid_12">
-    <div class="panel-body grid_12">
-        <div class="grid_12 headerBox">
+    <md-card>
+        <md-card-title>
+            <strong>
+                Asesmen Gizi
+            </strong>
+        </md-card-title>
+        <md-card-content>
+            <div kendo-grid id="gridDataPegawai" k-data-source="dataAsesmenGizi"
+                options="optGridAsesmenGizi" style="padding:10px;"></div>
+        </md-card-content>
+    </md-card>
+    <!-- <div class="panel-body grid_12">
+        <div class="headerBox">
             <p>Asesmen Gizi</p>
         </div>
         <div class="grid_12 borderBox">
             <div kendo-grid id="gridDataPegawai" k-data-source="dataAsesmenGizi"
                 options="optGridAsesmenGizi" style="padding:10px;"></div>
         </div>
-    </div>
+    </div> -->
     <hr>
-    <div class="grid_12">
+    <md-card>
+        <md-card-title>
+            <strong>
+                Asesmen Gizi yang belum di Verifikasi
+            </strong>
+        </md-card-title>
+        <md-card-content>
+            <div kendo-grid id="gridDataPegawai" k-data-source="dataAsesmenGiziUnverif"
+                options="optGridAsesmenGiziNotVerif" style="padding:10px;"></div>
+        </md-card-content>
+    </md-card>
+    <!-- <div class="grid_12">
         <div class="panel-body grid_12">
             <div class="grid_12 headerBox">
                 <p>Asesmen Gizi yang belum di Verifikasi</p>
@@ -37,7 +59,7 @@
                     options="optGridAsesmenGiziNotVerif" style="padding:10px;"></div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 <div ng-show="showInput">
     <div>
@@ -70,15 +92,12 @@
                                 gizi oleh perawat. kondisi pasien termasuk:</strong>
                         </legend>
                         <ul class="fieldlist" ng-show="isDewasa">
-                            <li ng-repeat="risiko in
-                                listOfRisikoMalnutrisiDewasa">
+                            <li ng-repeat="risiko in listOfRisikoMalnutrisiDewasa">
                                 <input type="radio" name="RisikoMalnutrisi"
                                     ng-model="item.risikoMalnutrisi"
                                     value="{{risiko.name}}"
-                                    id="{{risiko.id}}" class="rbRisikoMalnutrisi
-                                    k-radio">
-                                <label class="k-radio-label"
-                                    for="{{risiko.id}}">{{risiko.name}}</label>
+                                    id="{{risiko.id}}" class="rbRisikoMalnutrisi k-radio">
+                                <label class="k-radio-label" for="{{risiko.id}}">{{risiko.name}}</label>
                             </li>
                         </ul>
                         <ul class="fieldlist" ng-show="!isDewasa">

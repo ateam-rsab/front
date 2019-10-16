@@ -20,9 +20,177 @@ define(['initialize'], function (initialize) {
             loadCombo()
             loadData()
             // loadData()
+            loadKonsul();
 
             $scope.SearchEnter = function () {
                 loadData()
+            }
+
+            manageSarprasPhp.getDataTableTransaksi("pasien/get-dokters-combos", false).then(function (data) {
+                $scope.listDokter = data.data.dokter;
+            });
+
+            $scope.konsulOpt = {
+                pageable: true,
+                scrollable: true,
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            startswith: "Dimulai dengan",
+                            contains: "mengandung kata",
+                            neq: "Tidak mengandung kata"
+                        }
+                    }
+                },
+                columns: [
+                    // { field: "rowNumber", title: "#", width: 40, width: 40, attributes: { style: "text-align:right; padding-right: 15px;"}, hideMe: true},
+                    // { field: "no", title: "No", width: 40, headerAttributes: { style: "text-align : center" }},
+                    {
+                        field: "noregistrasi",
+                        title: "<h3>No Registrasi</h3>",
+                        width: 100,
+                        headerAttributes: { style: "text-align : center" },
+                        filterable: true
+                    },
+                    {
+                        field: "nocm",
+                        title: "<h3>No RM</h3>",
+                        width: 80,
+                        headerAttributes: { style: "text-align : center" },
+                        filterable: true
+                    },
+                    {
+                        field: "namapasien",
+                        title: "<h3>Nama Pasien</h3>",
+                        width: 150,
+                        headerAttributes: { style: "text-align : center" },
+                        filterable: true
+                    },
+                    {
+                        field: "tglorder",
+                        title: "<h3>Tanggal</h3>",
+                        width: 120,
+                        headerAttributes: { style: "text-align : center" },
+                        filterable: true
+                    },
+                    {
+                        field: "ruanganasal",
+                        title: "<h3>Ruangan Asal</h3>",
+                        width: 120,
+                        headerAttributes: { style: "text-align : center" },
+                        filterable: true
+                    },
+                    {
+                        field: "ruangantujuan",
+                        title: "<h3>Ruangan Tujuan</h3>",
+                        width: 150,
+                        headerAttributes: { style: "text-align : center" },
+                        filterable: true
+                    },
+                    {
+                        field: "pengonsul",
+                        title: "<h3>Dokter<br> Asal</h3>",
+                        width: 120,
+                        headerAttributes: { style: "text-align : center" },
+                        filterable: true
+                    },
+                    {
+                        field: "namalengkap",
+                        title: "<h3>Dokter<br> Tujuan</h3>",
+                        width: 120,
+                        headerAttributes: { style: "text-align : center" },
+                        filterable: true,
+                        // template: "#if(!namalengkap) { # <button class='k-button'>Tambah Dokter</button> # } else { # #:namalengkap# # } #",
+                        template: "#if(!namalengkap) { #-# } else { # #:namalengkap# # } #",
+                    },
+                    // { field: "keteranganorder", title: "Keterangan", width: 120, headerAttributes: { style: "text-align : center" }},
+                    // { field: "status", title: "Status", width: 120, headerAttributes: { style: "text-align : center" }},
+                    {
+                        command: [
+                            {
+                                name: "Detail",
+                                text: "Detail",
+                                click: verif
+                            },
+                            {
+                                name: "Edit",
+                                text: "Edit",
+                                click: edit
+                            }
+                        ],
+                        title: "&nbsp;",
+                        width: 120,
+                        attributes: { style: "text-align:center;valign=middle" }
+                    }
+                ],
+            };
+
+            $scope.konsul = function () {
+                loadKonsul();
+                $scope.winKonsul.center().open();
+            }
+
+            function verif(e) {
+                e.preventDefault();
+                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+
+                if (dataItem.status == 'Selesai') {
+                    $scope.isVerify = true;
+                }
+                $scope.item.jeniskonsultasi = dataItem.jeniskonsultasi;
+                $scope.item.dokterPengonsul = dataItem.pengonsul;
+                $scope.item.dokterTarget = dataItem.namalengkap
+                $scope.item.keteranganKeperluan = dataItem.keterangankeperluan
+                $scope.statusKonsultasi = dataItem.status;
+                $scope.noRecKonsultasi = dataItem.norec;
+                $scope.noRecPdKonsultasi = dataItem.norec_pd;
+                $scope.pegawaiFkKonsultasi = dataItem.pegawaifk;
+                $scope.objectRuanganFkTujuanKonsultasi = dataItem.objectruangantujuanfk;
+                $scope.objectRuanganFkKonsultasi = dataItem.objectruanganfk;
+                $scope.item.masalah = dataItem.masalah;
+                $scope.item.diagnosaKerja = dataItem.diagnosakerja;
+                $scope.item.ikhtisarKlinik = dataItem.keteranganorder;
+                $scope.item.terapiDanTindakan = dataItem.terapi;
+
+                $scope.item.padaPemeriksaan = dataItem.pemeriksaandidapat ? dataItem.pemeriksaandidapat : 'Belum ada Konsultasi';
+                $scope.item.keterangan = dataItem.keterangankeperluan ? dataItem.keterangankeperluan : 'Belum ada Konsultasi';
+                $scope.item.diagnosisPasien = dataItem.diagnosis ? dataItem.diagnosis : 'Belum ada Konsultasi';
+                $scope.item.saran = dataItem.saran ? dataItem.saran : 'Belum ada Konsultasi';
+                $scope.popUpHasilKonsul.center().open();
+
+
+            }
+
+            function edit(e) {
+                e.preventDefault();
+                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                
+                $scope.edit = dataItem;
+                console.log($scope.edit);
+
+                $scope.popupEdit.open().center();
+            }
+
+            function loadKonsul() {
+                manageSarprasPhp.getDataTableTransaksi("rekam-medis/get-order-konsul").then(function (e) {
+                    var res = e.data.data
+                    for (var i = res.length - 1; i >= 0; i--) {
+                        if (res[i].norec_apd != null) {
+                            res.splice([i], 1)
+                        }
+                    }
+                    if (res.length > 0) {
+                        $scope.showNotif = true
+                        $scope.lengthKonsul = res.length;
+                    } else {
+                        $scope.showNotif = false;
+                    }
+                    $scope.sourceKonsul = new kendo.data.DataSource({
+                        data: res,
+                        pageSize: 20,
+                    });
+                })
             }
 
             function loadCombo() {
@@ -976,6 +1144,27 @@ define(['initialize'], function (initialize) {
                         noRec: $scope.item.norec_apd
                     });
                 }
+            }
+
+            $scope.searchDataPegawai = function () {
+                manageSarprasPhp.getDataTableTransaksi("rekam-medis/get-order-konsul?dokterid=" + $scope.item.paramDokter.id).then(function (res) {
+                    var res = res.data.data
+                    for (var i = res.length - 1; i >= 0; i--) {
+                        if (res[i].norec_apd != null) {
+                            res.splice([i], 1)
+                        }
+                    }
+                    if (res.length > 0) {
+                        $scope.showNotif = true
+                        $scope.lengthKonsul = res.length;
+                    } else {
+                        $scope.showNotif = false;
+                    }
+                    $scope.sourceKonsul = new kendo.data.DataSource({
+                        data: res,
+                        pageSize: 20,
+                    });
+                });
             }
             
         }

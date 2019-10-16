@@ -3,6 +3,7 @@ define(['initialize'], function (initialize) {
 	initialize.controller('DaftarPenerimaanKasirCtrl', ['$state', '$mdDialog', '$q', '$rootScope', '$scope', 'ModelItemAkuntansi', 'MnKeu', 'CacheHelper', 'ManageKasir', 'ManageServicePhp',
 		function ($state, $mdDialog, $q, $rootScope, $scope, modelItemAkuntansi, mnKeu, cacheHelper, manageKasir, manageServicePhp) {
 			let dataUserLogin = JSON.parse(localStorage.getItem('datauserlogin'));
+			let dataPegawai = JSON.parse(localStorage.getItem('pegawai'));
 			$scope.dataVOloaded = true;
 			$scope.now = new Date();
 			$scope.item = {};
@@ -465,8 +466,11 @@ define(['initialize'], function (initialize) {
 				loadData();
 			}
 			$scope.HapusSBM = function () {
-
-				if (dataUserLogin.id === 77 || dataUserLogin.id === 282489) {
+				// 23 = Edy
+				// 22 = Irna
+				// 21 = Kris Hartining
+				// 18984 = Juhrati
+				if (dataUserLogin.id === 23 || dataUserLogin.id === 22 || dataUserLogin.id === 21 || dataUserLogin.id === 18984) {
 					if ($scope.dataSbnSelected.status != 'Setor') {
 						// var stt = 'true';
 						var isDeposit = '';

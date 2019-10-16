@@ -1,0 +1,115 @@
+<style>
+    .resep-title {
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .header-resep {
+        font-weight: bolder;
+    }
+    .card-block-ui {
+        background-color: rgba(107, 107, 107, 0.5);
+    }
+    .loader {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
+</style>
+<md-card>
+    <md-card-title class="card-title-header">
+        <p style="font-size:20px">
+            <strong> Daftar Resep Produksi </strong>
+        </p>
+    </md-card-title>
+    <md-card-content ng-show="showLoader">
+        <div class="loader">
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        </div>
+    </md-card-content>
+    <md-card-content>
+        <div class="grid_6" ng-repeat="resep in dataResep">
+            <md-card id="resep{{resep.resep}}">
+                <md-card-title>
+                    <span class="resep-title">R/{{resep.resep}}</span>
+                </md-card-title>
+                <md-card-content>
+                    <!-- <p class="header-resep">{{resep.jenisKemasan}}</p> -->
+                    <p class="header-resep">{{resep.obat[0].jeniskemasan}}</p>
+                    <div class="grid_12" ng-repeat="obat in resep.obat">
+                        <div class="grid_6">
+                            <span>{{obat.namaproduk}}</span>
+                        </div>
+                        <div class="grid_4">
+                            <span>{{obat.jumlah}} {{obat.satuan}}</span>
+                            <!-- <span>{{obat.jumlah}}</span> -->
+                        </div>
+                        <div class="grid_2">
+                            <button class="k-button"
+                                ng-click="batalkanResep(obat)">
+                                <span class="fa fa-trash"></span>
+                            </button>
+                            <button class="k-button"
+                                ng-click="editResep(obat)">
+                                <span class="fa fa-edit"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_6">
+                            <fieldset class="borderBox">
+                                <legend>
+                                    <i>Aturan Pakai</i>
+                                </legend>
+                                {{resep.obat[0].aturanpakai}}
+                            </fieldset>
+                        </div>
+                        <div class="grid_6">
+                            <fieldset class="borderBox">
+                                <legend>
+                                    <i>Route</i>
+                                </legend>
+                                {{resep.obat[0].route}}
+                            </fieldset>
+                        </div>
+                    </div>
+                </md-card-content>
+            </md-card>
+        </div>
+    </md-card-content>
+    <md-card-actions style="display: flex; justify-content: flex-end">
+        <button style="width:10%" class="md-raised md-warn md-button"
+            ng-click="kembali()">Kembali</button>
+        <button style="width:10%" class="md-raised md-primary md-button"
+            ng-click="selesaiProduksi()">Selesai</button>
+    </md-card-actions>
+</md-card>
+
+<div kendo-window="popupEditObat" k-title="'Edit Obat'"
+    k-visible="false" k-on-open="win2visible= true" k-width="600"
+    k-on-close="win2visible= false">
+    <md-card>
+        <md-card-content>
+            <div class="grid_4">
+                <label>Nama Obat</label>
+                <input c-text-box type="input" class="k-textbox"
+                    ng-model="namaObat" disabled />
+            </div>
+            <div class="grid_4">
+                <label>Jumlah</label>
+                <input c-text-box type="input" class="k-textbox"
+                    ng-model="quantity" />
+            </div>
+            <div class="grid_4">
+                <label>Satuan</label>
+                <input c-text-box type="input" class="k-textbox"
+                    ng-model="satuan" disabled />
+            </div>
+        </md-card-content>
+    </md-card>
+    <div class="grid_12">
+        <div class="k-edit-buttons k-state-default pull-right" style="margin-top:10px">
+            <button class="k-button k-button-icontext"
+                ng-click="simpanResep()"><span class="k-icon k-edit"></span>Simpan</button>
+        </div>
+    </div>
+</div>

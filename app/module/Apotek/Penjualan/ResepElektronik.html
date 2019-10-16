@@ -1,5 +1,31 @@
+<style>
+    .dibatalkan-pasien {
+        background-color:#f75f00;
+		color: #000000;
+		font-weight: bold;
+    }
+    .verifikasi {
+        background-color:#52de97;
+		color: #000000;
+		font-weight: bold;
+    }
+    .selesai {
+        background-color:#1089ff;
+		color: #fff;
+		font-weight: bold;
+    }
+    .sudah-bayar {
+        background-color:#d1eecc;
+		color: #000000;
+		font-weight: bold;
+    }
+    .blm-verifikasi {
+        background-color:#f34573;
+		color: #fff;
+		font-weight: bold;
+    }
+</style>
 <div ng-controller="ResepElektronikCtrl">
-
     <div ng-show="dataVOloaded">
         <div class="panel panel-default">
             <div class="panel-body">
@@ -23,21 +49,56 @@
                             </div>
                         </div>
                     </div>
-                    <div class="grid_3">
+                    <div class="grid_2" style="margin-top: 5px">
                         <div class="grid_12">
                             <label c-label c-label-text="NoRM" real></label>
                         </div>
                         <div class="grid_12">
-                            <div class="grid_8">
-                                <input c-text-box type="input" class="k-textbox"
-                                    ng-model="noCm" />
-                            </div>
-                            <div class="grid_4">
-                                <c-button class="c-button" style="padding:0px" click='refresh'>
-                                    <span c-translate>CARI</span>
-                                </c-button>
-                            </div>
+                            <input c-text-box type="input" class="k-textbox"
+                                ng-model="noCm" />
                         </div>
+                    </div>
+                    <div class="grid_2" style="margin-top: 5px">
+                        <div class="grid_12">
+                            <label c-label c-label-text="Nama Departemen" real></label>
+                        </div>
+                        <input kendo-combo-box
+                            k-ng-model="item.namaDept"
+                            k-data-text-field="'namaRuangan'"
+                            k-data-value-field="'id'"
+                            k-filter="'contains'"
+                            k-auto-bind="false"
+                            k-data-source="listInstalasi" />
+                    </div>
+                    <div class="grid_2" style="margin-top: 5px">
+                        <div class="grid_12">
+                            <label c-label c-label-text="Nama Ruangan" real></label>
+                        </div>
+                        <input kendo-combo-box
+                            k-ng-model="item.namaRuangan"
+                            k-data-text-field="'namaRuangan'"
+                            k-data-value-field="'id'"
+                            k-filter="'contains'"
+                            k-auto-bind="false"
+                            k-data-source="listRuangan" />
+                    </div>
+                    <div class="grid_2" style="margin-top: 5px">
+                        <div class="grid_12">
+                            <label c-label c-label-text="Kelompok Pasien" real></label>
+                        </div>
+                        <input kendo-combo-box
+                            k-ng-model="item.kelompokPasien"
+                            k-data-text-field="'kelompokpasien'"
+                            k-data-value-field="'id'"
+                            k-filter="'contains'"
+                            k-auto-bind="false"
+                            k-data-source="listOfKelompokPasien" />
+                    </div>
+                    <div class="grid_1">
+                        <button class="c-button" style="padding:0px;margin-top:
+                            27px;" ng-click="refresh()">
+                            <span c-translate>CARI</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -46,24 +107,36 @@
             <!--<div class="panel-heading">{{title}}</div>-->
             <div class="panel-body" style="padding:0px">
                 <div class="grid_12">
-                    <kendo-grid k-groupable="'true'" k-ng-model="item"
+                    <!-- <kendo-grid k-groupable="'true'" k-ng-model="item"
                         k-data-source="patienGrids" k-selectable="'row'"
                         k-sortable="'true'"
-                        k-columns="arrColumnGridResepElektronik"></kendo-grid>
+                        k-columns="arrColumnGridResepElektronik"></kendo-grid> -->
+                    <!-- <div id="kGrid" kendo-grid
+                        k-data-source="patienGrids"
+                        k-options="arrColumnGridResepElektronik"
+                        k-selectable="'row'"
+                        k-sortable="'true'"
+                        k-pageable="true"
+                        k-ng-model="dataSelected"
+                        ng-click="klik(dataSelected)">
+                    </div> -->
+                    <div kendo-grid k-groupable="'true'" k-ng-model="item"
+                        k-data-source="patienGrids" k-selectable="'row'"
+                        k-sortable="'true'"
+                        k-options="arrColumnGridResepElektronik"></div>
                 </div>
             </div>
         </div>
 
         <div class="grid_12 place_button">
             <div class="grid_2">
-                <c-button ng-show="!isLoading" style="width: 100%; padding:0px;margin:0px;" item="item" position="'right'"
+                <c-button ng-show="!isLoading" style="width: 100%;
+                    padding:0px;margin:0px;" item="item" position="'right'"
                     click="verifikasi">
                     <span class="title"><label c-label c-label-text='verifikasi'
                             font-size="13"></label></span>
                 </c-button>
             </div>
-
-
             <!-- <div class="grid_2">
                 <c-button ng-show="!isLoading" style="width: 100%; padding:0px;margin:0px;" item="item" position="'right'" click="detailOrder">
                     <span class="title">
@@ -72,34 +145,30 @@
                 </c-button>
             </div> -->
             <div class="grid_2">
-                <c-button ng-show="!isLoading" style="width: 100%; padding:0px;margin:0px;" item="item" position="'right'"
+                <c-button ng-show="!isLoading" style="width: 100%;
+                    padding:0px;margin:0px;" item="item" position="'right'"
                     click="updateProduksi">
                     <span class="title"><label c-label c-label-text='Produksi'
                             font-size="13"></label></span>
                 </c-button>
             </div>
-            <!-- <div class="grid_2">
-                <c-button ng-show="!isLoading" style="width: 100%; padding:0px;margin:0px;" item="item" position="'right'"
-                    click="updatePackaging">
-                    <span class="title"><label c-label c-label-text='Packaging'
-                            font-size="13"></label></span>
-                </c-button>
-            </div> -->
             <div class="grid_2">
-                <c-button ng-show="!isLoading" style="width: 100%; padding:0px;margin:0px;" item="item" position="'right'"
-                    click="updateDone">
-                    <span class="title"><label c-label c-label-text='Selesai'
+                <c-button ng-show="!isLoading" style="width: 100%;
+                    padding:0px;margin:0px;" item="item" position="'right'"
+                    click="editObat">
+                    <span class="title"><label c-label c-label-text='Edit'
                             font-size="13"></label></span>
                 </c-button>
             </div>
-            <!-- <div class="grid_2">
-                <c-button ng-show="!isLoading" style="width: 100%; padding:0px;margin:0px;" item="item" position="'right'"
-                    click="ambilObat">
-                    <span class="title"><label c-label
-                            c-label-text='PenyerahanObat' font-size="13"></label></span>
+            <div class="grid_2">
+                <c-button ng-show="!isLoading" style="width: 100%;
+                    padding:0px;margin:0px;" item="item" position="'right'"
+                    click="lihatResep">
+                    <span class="title"><label c-label c-label-text='Lihat
+                            Resep'
+                            font-size="13"></label></span>
                 </c-button>
-            </div> -->
-
+            </div>
         </div>
     </div>
     <div kendo-window="popUp" k-title="'Detail Order'" k-width="1000"
@@ -174,5 +243,48 @@
                 </div>
             </fieldset>
         </div>
+    </div>
+    <div kendo-window="popupLihatObat" k-title="'Verifikasi Obat'"
+        k-visible="false" k-on-open="win2visible= true" k-width="700"
+        k-max-height="800"
+        k-on-close="win2visible= false">
+
+        <div ng-repeat="resep in dataResepDetail">
+            <md-card>
+                <md-card-title>
+                    <span style="font-size: 20px; font-weight: bolder">R/{{resep.resep}}</span>
+                </md-card-title>
+                <md-card-content>
+                    <md-card-content>
+                        <p style="font-weight: bold">{{resep.jenisKemasan}}</p>
+                        <div style="display: flex; flex-direction: column;"
+                            ng-repeat="obat in resep.obat">
+                            <div style="display: flex;
+                                justify-content:flex-start">
+                                <span style="width: 40%">{{obat.namaobat}}</span>
+                                <span style="width: 40%">{{obat.qtyproduk}}</span>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: flex-start;
+                            margin-top: 10px">
+                            <fieldset class="borderBox" style="width: 50%">
+                                <legend>
+                                    <i>Keterangan</i>
+                                </legend>
+                                <span>{{resep.obat[0].keteranganlainnya}}</span>
+                            </fieldset>
+                            <fieldset class="borderBox" style="width: 50%">
+                                <legend>
+                                    <i>Keterangan Pakai</i>
+                                </legend>
+                                <span>{{resep.obat[0].keteranganpakai}}</span>
+                            </fieldset>
+
+                        </div>
+                    </md-card-content>
+                </md-card-content>
+            </md-card>
+        </div>
+
     </div>
 </div>
