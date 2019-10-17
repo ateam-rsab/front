@@ -11776,6 +11776,30 @@
     ]
   },
   {
+    "name": "DashboardResepElektronik",
+    "url": "/DashboardResepElektronik",
+    "templateurl": "module/Apotek/Penjualan/DashboardResepElektronik.html",
+    "controller": "DashboardResepElektronikCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "PasienService",
+        "define": "PasienService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      }
+    ]
+  },
+  {
     "name": "ResepElektronikCetak",
     "url": "/ResepElektronik/Cetak/:noOrder/:noAntrianPasien",
     "templateurl": "module/Apotek/Penjualan/ResepElektronik.Cetak.html",

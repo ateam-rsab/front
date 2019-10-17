@@ -232,15 +232,23 @@ define(['initialize'], function (initialize) {
                 .title('Ada Resep yg belum di Verifikasi?')
                 .textContent(`Apakah akan melanjutkan Pembayaran?`)
                 .ariaLabel('Lucky day')
-                .targetEvent(e)
                 .ok('Ya')
                 .cancel('Tidak');
 
               $mdDialog.show(confirm).then(function () {
                 // tambahkan API pembatalan disini
                 // ----------------------------- //
-                console.warn('Masuk sini pak eko');
+                // console.warn('Masuk sini pak eko');
+                manageTataRekening.postData('tatarekening/batal-resep-oleh-pasien?noRegister=' + $scope.dataPasienSelected.noRegistrasi).then(res => {
+                  // console.log(res);
+                  $scope.changePage("VerifikasiTagihan");
+                });
+                
               }, function () {
+                // $scope.changePage("VerifikasiTagihan");
+                
+
+                // tatarekening/batal-resep-oleh-pasien?noRegister=
                 console.error('Tidak jadi hapus');
               });
             }
