@@ -9,14 +9,20 @@ define(['initialize'], function (initialize) {
 
             ManageSdmNew.getListData("pegawai/get-pegawai-detail-by-customs/" + idPegawai).then(function (res) {
                 $scope.item = res.data.data;
-                $scope.item.tglLahir = dateHelper.formatDate($scope.item.tglLahir, "DD MMM YYYY");
-                $scope.item.tglMasuk = dateHelper.formatDate($scope.item.tglMasuk, "DD MMM YYYY");
-                $scope.item.tglkeluar = dateHelper.formatDate($scope.item.tglkeluar, "DD MMM YYYY");
-                $scope.item.tglPensiun = dateHelper.formatDate($scope.item.tglPensiun, "DD MMM YYYY");
+                $scope.item.tglLahir = $scope.item.tglLahir ? dateHelper.formatDate($scope.item.tglLahir, "DD MMM YYYY") : "-";
+                $scope.item.tglMasuk = $scope.item.tglMasuk ? dateHelper.formatDate($scope.item.tglMasuk, "DD MMM YYYY") : "-";
+                $scope.item.tglkeluar = $scope.item.tglkeluar ? dateHelper.formatDate($scope.item.tglkeluar, "DD MMM YYYY") : "-";
+                $scope.item.tglPensiun = $scope.item.tglPensiun ? dateHelper.formatDate($scope.item.tglPensiun, "DD MMM YYYY") : "-";
                 $scope.item.tglTerbitSip = $scope.item.tglTerbitSip ? dateHelper.formatDate($scope.item.tglTerbitSip, "DD MMM YYYY") : "-";
                 $scope.item.tglTerbitStr = $scope.item.tglTerbitStr ? dateHelper.formatDate($scope.item.tglTerbitStr, "DD MMM YYYY") : "-";
                 $scope.item.tglBerakhirSip = $scope.item.tglBerakhirSip ? dateHelper.formatDate($scope.item.tglBerakhirSip, "DD MMM YYYY") : "-";
                 $scope.item.tglBerakhirStr = $scope.item.tglBerakhirStr ? dateHelper.formatDate($scope.item.tglBerakhirStr, "DD MMM YYYY") : "-";
+
+                $scope.item.pangkat = $scope.item.pangkat ? $scope.item.pangkat.namaPangkat : "-";
+                $scope.item.pensiun = $scope.item.pensiun ? $scope.item.pensiun : "-";
+                $scope.item.golonganDarah = $scope.item.golonganDarah ? $scope.item.golonganDarah.golonganDarah : "-";
+                $scope.item.golonganPangkat = $scope.pangkat ? $scope.pangkat.golonganPegawai.golonganPegawai : "-";
+                $scope.item.eselon = $scope.item.eselon ? $scope.item.eselon.eselon : "-"
 
                 $scope.item.noSip = $scope.item.noSip ? $scope.item.noSip : "-"
                 $scope.item.noStr = $scope.item.noStr ? $scope.item.noStr : "-"

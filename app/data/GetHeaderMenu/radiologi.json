@@ -22,8 +22,4 @@
     "caption": "Manajemen",
     "link": "#/Menejemen",
     "shortcut": "ctrl+1"
-}, {
-    "caption": "Logout",
-    "link": "/app/Logout",
-    "shortcut": "ctrl+1"
 }]  

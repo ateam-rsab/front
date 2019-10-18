@@ -5,7 +5,8 @@ define(['kendo.menu'], function(kendoMenu) {
         $scope.isOpen = true;
         $scope.listMenuHeader = {};
         $scope.messages = [];
-
+        $scope.pegawai = JSON.parse(window.localStorage.getItem('pegawai'));
+        
         $rootScope.$watch('addData', function(e) {
             $scope.messages.push(e);
         });
