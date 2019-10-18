@@ -12,6 +12,16 @@
         box-shadow: inset 0 50px 0 0 #31302B;
         color: #fff;
     }
+    .label-user {
+        color: white;
+        cursor: pointer;
+        transition: all 1s;
+    }
+
+    .label-user:hover {
+        color: #10c4b2;
+        
+    }
 </style>
 <div ng-controller="HeaderCtrl">
     <div class="container"
@@ -45,32 +55,54 @@
             <i class="fa fa-bell" aria-hidden="true" ng-click='open()'></i>
         </span> -->
         <div>
-            <div class="grid_6" style="margin-top: 16px;font-weight: bolder;">
-                <label style="color: white;">Hai, {{pegawai.namaLengkap}}</label>
+            <div class="grid_6" style="margin-top: 16px;font-weight: bolder;" ng-click="goToLink('#/ProfilePegawai')">
+                <label class="label-user">Hai, {{pegawai.namaLengkap}}</label>
             </div>
             <div class="grid_6">
                 <md-menu>
-
-                    <md-button style="font-size: 30px;" class="md-icon-button" ng-mouseenter="$mdMenu.open()"
+                    <md-button style="font-size: 30px;" class="md-fab-mini md-icon-button"class=""
+                        ng-mouseenter="$mdMenu.open()"
                         ng-click="$mdMenu.open()">
-                        <i class="fa fa-user"></i>
+                        <i class="fa fa-user-circle-o"></i>
                     </md-button>
                     <md-menu-content width="4" ng-mouseleave="$mdMenu.close()">
                         <md-menu-item>
-                            <md-button>
-                                <i class="fa fa-list" style="color: black;" ></i>
+                            <md-button ng-click="goToLink('#/ProfilePegawai')">
+                                <i class="fa fa-address-book" style="color: black;"></i>
                                 Profile
                             </md-button>
                         </md-menu-item>
                         <md-menu-item>
                             <md-button>
-                                <i class="fa fa-shield" style="color: black;" ></i>
+                                <i class="fa fa-shield" style="color: black;"></i>
                                 Ubah Password
                             </md-button>
                         </md-menu-item>
+                        <div ng-repeat="menu in listMenuHeader">
+                            <md-menu-item>
+                                <md-button ng-click="goToLink(menu.link)">
+                                    <i class="fa fa-list" 
+                                        style="color:black;"></i>
+                                        {{menu.caption}}
+                                </md-button>
+                            </md-menu-item>
+                        </div>
+                        <!-- <md-menu-item>
+                            <li ng-repeat="menu in listMenuHeader"
+                                class="button_sliding"
+                                style="border:
+                                1px solid
+                                #31302B; background:#ccc !important;">
+                                <button class="button_sliding"
+                                    style="margin:0px; padding:
+                                    0px; background:none; border:none;">
+                                    {{menu.caption}}
+                                </button>
+                            </li>
+                        </md-menu-item> -->
                         <md-menu-divider></md-menu-divider>
                         <md-menu-item>
-                            <md-button>
+                            <md-button ng-click="goToLink('/app/Logout')">
                                 <i class="fa fa-sign-out" style="color: black;"></i>
                                 Logout
                             </md-button>

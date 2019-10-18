@@ -28,19 +28,19 @@ define(['kendo.menu'], function(kendoMenu) {
                             var element = result[key];
                             if (element.caption.toLowerCase().indexOf('logout') < 0)
                                 temp.push(element);
-                            else {
-                                valid = true;
-                                temp.push(element);
-                            }
+                            // else {
+                            //     valid = true;
+                            //     temp.push(element);
+                            // }
                         }
                     }
 
-                    var pegawai = JSON.parse(window.localStorage.getItem('pegawai'));
-                    if (valid === false)
-                        temp.push({
-                            caption: "Logout (" + pegawai.namaLengkap + ")",
-                            link: "/app/Logout",
-                        });
+                    // var pegawai = JSON.parse(window.localStorage.getItem('pegawai'));
+                    // if (valid === false)
+                    //     temp.push({
+                    //         caption: "Logout (" + pegawai.namaLengkap + ")",
+                    //         link: "/app/Logout",
+                    //     });
                     $scope.listMenuHeader = temp;
 
                 });
@@ -83,7 +83,7 @@ define(['kendo.menu'], function(kendoMenu) {
                 //debugger;
                 if (url.toLowerCase().indexOf('bi-') > -1 ){
                     window.open($window.location.origin + url,'_blank')
-                }else{
+                } else{
                     $window.location.href = url;
                     if (!$rootScope.$$phase) $rootScope.$apply();
                 }
