@@ -18,16 +18,25 @@ define(['initialize'], function (initialize) {
                 $scope.item.tglBerakhirSip = $scope.item.tglBerakhirSip ? dateHelper.formatDate($scope.item.tglBerakhirSip, "DD MMM YYYY") : "-";
                 $scope.item.tglBerakhirStr = $scope.item.tglBerakhirStr ? dateHelper.formatDate($scope.item.tglBerakhirStr, "DD MMM YYYY") : "-";
 
+                $scope.item.bankRekeningNama = $scope.item.bankRekeningNama ? $scope.item.bankRekeningNama : "-";
+                $scope.item.bankRekeningNomor = $scope.item.bankRekeningNomor ? $scope.item.bankRekeningNomor : "-";
+                $scope.item.bankRekeningAtasNama = $scope.item.bankRekeningAtasNama ? $scope.item.bankRekeningAtasNama : "-";
+                $scope.item.npwp = $scope.item.npwp ? $scope.item.npwp : "-";
+                $scope.item.noBPJS = $scope.item.noBPJS ? $scope.item.noBPJS : "-";
+
+                $scope.item.alamat = $scope.item.alamat ? $scope.item.alamat : "-";
+                $scope.item.suku = $scope.item.suku ? $scope.item.suku.suku : "-";
+
                 $scope.item.pangkat = $scope.item.pangkat ? $scope.item.pangkat.namaPangkat : "-";
                 $scope.item.pensiun = $scope.item.pensiun ? $scope.item.pensiun : "-";
                 $scope.item.golonganDarah = $scope.item.golonganDarah ? $scope.item.golonganDarah.golonganDarah : "-";
                 $scope.item.golonganPangkat = $scope.pangkat ? $scope.pangkat.golonganPegawai.golonganPegawai : "-";
                 $scope.item.eselon = $scope.item.eselon ? $scope.item.eselon.eselon : "-"
 
-                $scope.item.noSip = $scope.item.noSip ? $scope.item.noSip : "-"
-                $scope.item.noStr = $scope.item.noStr ? $scope.item.noStr : "-"
+                $scope.item.noSip = $scope.item.noSip ? $scope.item.noSip : "-";
+                $scope.item.noStr = $scope.item.noStr ? $scope.item.noStr : "-";
 
-                $scope.item.nip = $scope.item.nip ? $scope.item.nip : '-'
+                $scope.item.nip = $scope.item.nip ? $scope.item.nip : "-";
 
                 if ($scope.item.isMenanggung) {
                     $scope.item.isMenanggung = "Ya";
