@@ -515,6 +515,30 @@
       ]
     },
     {
+      "name": "ProfilePegawai",
+      "url": "/ProfilePegawai",
+      "templateurl": "module/SDM/ProfilePegawai.html",
+      "controller": "ProfilePegawaiCtrl",
+      "deps": [
+        {
+          "module": "Services",
+          "define": "Service"
+        },
+        {
+          "module": "LoginServices",
+          "define": "LoginService"
+        },
+        {
+          "module": "SdmService",
+          "define": "SdmService"
+        },
+        {
+          "module": "SarprasService",
+          "define": "SarprasService"
+        }
+      ]
+    },
+    {
       "name": "DataNonPegawai",
       "url": "/DataNonPegawai/:form",
       "templateurl": "module/SDM/DataNonPegawai.html",

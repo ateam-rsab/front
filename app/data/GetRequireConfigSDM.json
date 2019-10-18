@@ -97,6 +97,10 @@
       "urlDep": "module/SDM/DataPegawaiCtrl"
     },
     {
+      "nameDep": "ProfilePegawaiCtrl",
+      "urlDep": "module/SDM/ProfilePegawaiCtrl"
+    },
+    {
       "nameDep": "MasterUrutanTestCtrl",
       "urlDep": "module/SDM/MasterUrutanTestCtrl"
     },

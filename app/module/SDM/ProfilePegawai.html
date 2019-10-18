@@ -1,0 +1,224 @@
+<style>
+    .label-head {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bolder;
+        font-size: 12px;
+    }
+    .label-content {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+    .user-photo {
+        max-width: 400px;
+    }
+    hr {
+        border: 1px dashed #cccccc;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        display: inline-block;
+        width: 100%;
+    }
+</style>
+<md-card>
+    <md-card-title>
+        <md-card-title-text
+            style="font-size: 20px;font-weight:bolder;text-align:
+            center;margin-bottom: 20px;">
+            Profile Pegawai
+        </md-card-title-text>
+    </md-card-title>
+    <md-card-content>
+        <div class="grid_4"
+            style="display: flex;justify-content:center;align-items: center;">
+            <img class="user-photo"
+                src="../../../app//stylesheets/image-coming-soon.jpg" alt="jpg">
+        </div>
+        <div class="grid_8">
+            <div class="grid_12">
+                <div class="grid_4">
+                    <label class="label-head">Nama</label>
+                    <label class="label-content">{{item.namaLengkap}}</label>
+                </div>
+                <div class="grid_2">
+                    <label class="label-head">N.I.K</label>
+                    <label class="label-content">{{item.noIdentitas}}</label>
+                </div>
+                <div class="grid_2">
+                    <label class="label-head">Jenis Kelamin</label>
+                    <label class="label-content">{{item.jenisKelamin.jenisKelamin}}</label>
+                </div>
+                <div class="grid_4">
+                    <label class="label-head">Tempat Tanggal Lahir</label>
+                    <label class="label-content">{{item.tempatLahir}},
+                        {{item.tglLahir}}</label>
+                </div>
+            </div>
+            <hr>
+            <div class="grid_12">
+                <div class="grid_2">
+                    <label class="label-head">Agama</label>
+                    <label class="label-content">{{item.agama.agama}}</label>
+                </div>
+                <div class="grid_2">
+                    <label class="label-head">Kewarganegaraan</label>
+                    <label class="label-content">{{item.negara.namaNegara}}</label>
+                </div>
+                <div class="grid_2">
+                    <label class="label-head">Suku</label>
+                    <label class="label-content">{{item.suku.suku}}</label>
+                </div>
+                <div class="grid_3">
+                    <label class="label-head">Status Pernikahan</label>
+                    <label class="label-content">{{item.statusKawin.statusPerkawinan}}</label>
+                </div>
+                <div class="grid_3">
+                    <label class="label-head">Golongan Darah & Rhesus</label>
+                    <label class="label-content">{{item.golonganDarah.golonganDarah}}
+                        {{item.statusRhesus}}</label>
+                </div>
+            </div>
+            <hr>
+            <div class="grid_12">
+                <div class="grid_6">
+                    <div class="grid_6">
+                        <label class="label-head">Email</label>
+                        <label class="label-content">{{item.email}}</label>
+                    </div>
+                    <div class="grid_6">
+                        <label class="label-head">Email Lainnya</label>
+                        <label class="label-content">{{item.emailAlternatif}}</label>
+                    </div>
+                    <div class="grid_6">
+                        <label class="label-head">No. Telepon</label>
+                        <label class="label-content">{{item.noTlp}}</label>
+                    </div>
+                    <div class="grid_6">
+                        <label class="label-head">No. Handphone</label>
+                        <label class="label-content">{{item.noHandphone}}</label>
+                    </div>
+                </div>
+                <div class="grid_6">
+                    <label class="label-head">Alamat</label>
+                    <label class="label-content">{{item.alamat}}</label>
+                </div>
+
+
+            </div>
+            <hr>
+            <div class="grid_12">
+                <div class="grid_2">
+                    <label class="label-head">Nama Bank</label>
+                    <label class="label-content">{{item.bankRekeningNama}}</label>
+                </div>
+                <div class="grid_2">
+                    <label class="label-head">No. Rekening</label>
+                    <label class="label-content">{{item.bankRekeningNomor}}</label>
+                </div>
+                <div class="grid_4">
+                    <label class="label-head">Nama Pemilik Bank</label>
+                    <label class="label-content">{{item.bankRekeningAtasNama}}</label>
+                </div>
+                <div class="grid_2">
+                    <label class="label-head">NPWP</label>
+                    <label class="label-content">{{item.npwp}}</label>
+                </div>
+                <div class="grid_2">
+                    <label class="label-head">No. BPJS</label>
+                    <label class="label-content">{{item.noBPJS}}</label>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="grid_12">
+            <div class="grid_2">
+                <label class="label-head">N.I.P</label>
+                <label class="label-content">{{item.nip}}</label>
+            </div>
+            <div class="grid_2">
+                <label class="label-head">Kategori Pegawai</label>
+                <label class="label-content">{{item.kategoryPegawai.kategoryPegawai}}</label>
+            </div>
+            <div class="grid_2">
+                <label class="label-head">Kedudukan Pegawai</label>
+                <label class="label-content">{{item.kedudukan.name}}</label>
+            </div>
+            <div class="grid_2">
+                <label class="label-head">Pangkat</label>
+                <label class="label-content">{{item.pangkat.namaPangkat}}</label>
+            </div>
+            <div class="grid_2">
+                <label class="label-head">Golongan</label>
+                <label class="label-content">{{item.pangkat.golonganPegawai.golonganPegawai}}</label>
+            </div>
+            <div class="grid_2">
+                <label class="label-head">Eselon</label>
+                <label class="label-content">{{item.eselon.eselon}}</label>
+            </div>
+        </div>
+        <hr>
+        <div class="grid_12">
+            <div class="grid_2">
+                <label class="label-head">ID Finger Print</label>
+                <label class="label-content">{{item.idFinger}}</label>
+            </div>
+            <div class="grid_2">
+                <label class="label-head">Pola Kerja Shift</label>
+                <label class="label-content">{{item.shiftKerja.kelompokShiftKerja}}</label>
+            </div>
+            <div class="grid_2">
+                <label class="label-head">Tanggal Masuk</label>
+                <label class="label-content">{{item.tglMasuk}}</label>
+            </div>
+            <div class="grid_2">
+                <label class="label-head">Tanggal Keluar</label>
+                <label class="label-content">{{item.tglkeluar}}</label>
+            </div>
+            <div class="grid_2">
+                <label class="label-head">Umur Pensiun</label>
+                <label class="label-content">{{item.pensiun}}</label>
+            </div>
+            <div class="grid_2">
+                <label class="label-head">Tahun Pensiun</label>
+                <label class="label-content">{{item.tglPensiun}}</label>
+            </div>
+        </div>
+        <hr>
+        <div class="grid_12">
+            <div class="grid_6">
+                <div class="grid_12">
+                    <label class="label-head">No SIP</label>
+                    <label class="label-content">{{item.noSip}}</label>
+                </div>
+                <div class="grid_6">
+                    <label class="label-head">Terbit</label>
+                    <label class="label-content">{{item.tglTerbitSip}}</label>
+                </div>
+                <div class="grid_6">
+                    <label class="label-head">Berakhir</label>
+                    <label class="label-content">{{item.tglBerakhirSip}}</label>
+                </div>
+            </div>
+            
+            <div class="grid_6">
+                <div class="grid_12">
+                    <label class="label-head">No STR</label>
+                    <label class="label-content">{{item.noStr}}</label>
+                </div>
+                <div class="grid_6">
+                    <label class="label-head">Terbit</label>
+                    <label class="label-content">{{item.tglTerbitStr}}</label>
+                </div>
+                <div class="grid_6">
+                    <label class="label-head">Berakhir</label>
+                    <label class="label-content">{{item.tglBerakhirStr}}</label>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="grid_12">
+            <div id="grid" kendo-grid options="gridJabatanInternal" data-source="dataSourceJabatanInternal"></div>
+        </div>
+    </md-card-content>
+</md-card>

@@ -1364,6 +1364,10 @@
             {
                 "name": "Ubah Password",
                 "link": "#/UbahPassword"
+            },
+            {
+                "name": "Profile Pegawai",
+                "link": "#/ProfilePegawai"
             }
         ]
     }
