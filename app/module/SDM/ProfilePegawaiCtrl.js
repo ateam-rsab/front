@@ -26,6 +26,10 @@ define(['initialize'], function (initialize) {
 
                 $scope.item.alamat = $scope.item.alamat ? $scope.item.alamat : "-";
                 $scope.item.suku = $scope.item.suku ? $scope.item.suku.suku : "-";
+                $scope.item.email = $scope.item.email ? $scope.item.email : "-";
+                $scope.item.emailAlternatif = $scope.item.emailAlternatif ? $scope.item.emailAlternatif : "-";
+                $scope.item.noHandphone = $scope.item.noHandphone ? $scope.item.noHandphone : "-";
+                $scope.item.noTlp = $scope.item.noTlp ? $scope.item.noTlp : "-";
 
                 $scope.item.pangkat = $scope.item.pangkat ? $scope.item.pangkat.namaPangkat : "-";
                 $scope.item.pensiun = $scope.item.pensiun ? $scope.item.pensiun : "-";
