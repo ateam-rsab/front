@@ -110,10 +110,10 @@
                 </div>
             </div>
             
-            <div class="grid_2 pull-right" style="text-align:right;font-style:italic">
+            <!-- <div class="grid_2 pull-right" style="text-align:right;font-style:italic">
                 <label c-label>Total Capaian:</label>
                     <input c-text-box type="input" placeholder="0,00" filter="'varchar'" class="k-textbox label-total" ng-model="gridOrderService" style="text-align:right" disabled/>
-            </div>
+            </div> -->
             <div class="clearfix"></div>
             
             <!-- grid tindakan pegawai -->
@@ -308,7 +308,8 @@
             </div>
             <div class="clearfix"></div>
             <div class="grid_12" style="margin:20px 0 20px">
-                <div kendo-grid="gridDetil" k-data-source="dataDetil" options="detilGridOptions"></div>
+                <div kendo-grid="gridDetil" k-data-source="dataDetil" options="detilGridOptions" ng-show="showDetailPasien"></div>
+                <div kendo-grid="gridDetil" k-data-source="dataDetil" options="detilGridFfsOptions" ng-show="showDetailPasienFfs"></div>
             </div>
         </div>
     </div>
