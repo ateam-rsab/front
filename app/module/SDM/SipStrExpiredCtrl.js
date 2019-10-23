@@ -197,6 +197,16 @@ define(['initialize'], function (initialize) {
                 toolbar: [
                     { text: "export", name: "Export detail", template: '<button ng-click="exportDetailSTR()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>' },
                 ],
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            startswith: "Dimulai dengan",
+                            contains: "mengandung kata",
+                            neq: "Tidak mengandung kata"
+                        }
+                    }
+                },
                 excel: {
                     fileName: "Daftar STR Pegawai.xlsx",
                     allPages: true,
