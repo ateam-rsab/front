@@ -245,10 +245,6 @@ define(['initialize'], function (initialize) {
                 });
                 
               }, function () {
-                // $scope.changePage("VerifikasiTagihan");
-                
-
-                // tatarekening/batal-resep-oleh-pasien?noRegister=
                 console.error('Tidak jadi hapus');
               });
             }

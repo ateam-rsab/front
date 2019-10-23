@@ -15,7 +15,7 @@ define(['initialize'], function(initialize) {
 			// $scope.cboUbahDokter =true;
 			$scope.isRouteLoading=false;
 
-			var data2= {};
+			var data2 = {};
 
 			loadCombo();
 			loadData();
@@ -29,7 +29,7 @@ define(['initialize'], function(initialize) {
 					$scope.item.periodeAkhir = new Date(arrPeriode[1]);	
 					$scope.item.tglpulang = new Date(arrPeriode[2]);				
 				}else{
-					$scope.item.periodeAwal = $scope.now;
+					$scope.item.periodeAwal = dateHelper.setJamAwal(new Date());
 					$scope.item.periodeAkhir = $scope.now;
 					$scope.item.tglpulang = $scope.now;					
 				}

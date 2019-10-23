@@ -1,10 +1,10 @@
 define([], function () {
     'use strict';
-    var baseURLFrontend = 'http://172.16.99.143',
+    var baseURLFrontend = 'http://172.16.99.126',
         portFrontend = '5555',
 
-        baseURLPhp = 'http://172.16.99.153',
-        portPhp = '8000',
+        baseURLPhp = 'http://192.168.12.3',
+        portPhp = '5555',
 
         baseURLJava = 'http://192.168.12.3',
         portJava = '8080',
@@ -21,7 +21,7 @@ define([], function () {
             urlSocket: 'http://smart.rsabhk.co.id:2222',
 
             urlPrinting: 'http://smart.rsabhk.co.id:2222/jasamedika-web/',
-            baseUrlListData: "http://smart.rsabhk.co.id:2222/jasamedika-web/service/list-generic/?view=",
+            baseUrlListData: "http://smart.rsabhk.co.id:2222/jasamedika-web/simrs_harkit/service/list-generic/?view=",
             baseApiUrlData: "http://smart.rsabhk.co.id:2222/jasamedika-web/",
             baseApiPostData: "http://smart.rsabhk.co.id:2222/jasamedika-web/",
             baseUrlData: "http://smart.rsabhk.co.id:2222/app/data/",
@@ -32,10 +32,10 @@ define([], function () {
             urlRoute: 'http://smart.rsabhk.co.id:2222/app/data/GetRouting',
 
             urlRoute_Akuntansi: 'http://smart.rsabhk.co.id:2222/app/data/GetRoutingAkuntansi',
-            urlDataGeneric_Akuntansi: 'http://smart.rsabhk.co.id/service/list-generic?view=',
-            urlDataTableMaster_Akuntansi: 'http://smart.rsabhk.co.id/service/master/',
-            urlDataTableTransaksi_Akuntansi: 'http://smart.rsabhk.co.id/service/transaksi/',
-            baseApiPostData_Akuntansi: 'http://smart.rsabhk.co.id/service/',
+            urlDataGeneric_Akuntansi: 'http://smart.rsabhk.co.id/simrs_harkit/service/list-generic?view=',
+            urlDataTableMaster_Akuntansi: 'http://smart.rsabhk.co.id/simrs_harkit/service/master/',
+            urlDataTableTransaksi_Akuntansi: 'http://smart.rsabhk.co.id/simrs_harkit/service/transaksi/',
+            baseApiPostData_Akuntansi: 'http://smart.rsabhk.co.id/simrs_harkit/service/',
 
             urlDataMaster: 'http://smart.rsabhk.co.id:2222/jasamedika-web/generated_master/'
 
@@ -44,13 +44,13 @@ define([], function () {
     } else {
         return {
             /**Login PHP */
-            baseUrlLogin: `${baseURLPhp}:${portPhp}/service/auth/sign-in`,
-            baseUrlLogout: `${baseURLPhp}:${portPhp}/service/auth/sign-out`,
+            baseUrlLogin: `${baseURLPhp}:${portPhp}/simrs_harkit/service/auth/sign-in`,
+            baseUrlLogout: `${baseURLPhp}:${portPhp}/simrs_harkit/service/auth/sign-out`,
 
-            urlDataGeneric_Akuntansi: `${baseURLPhp}:${portPhp}/service/list-generic?view=`,
-            urlDataTableMaster_Akuntansi: `${baseURLPhp}:${portPhp}/service/master/`,
-            urlDataTableTransaksi_Akuntansi: `${baseURLPhp}:${portPhp}/service/transaksi/`,
-            baseApiPostData_Akuntansi: `${baseURLPhp}:${portPhp}/service/`,
+            urlDataGeneric_Akuntansi: `${baseURLPhp}:${portPhp}/simrs_harkit/service/list-generic?view=`,
+            urlDataTableMaster_Akuntansi: `${baseURLPhp}:${portPhp}/simrs_harkit/service/master/`,
+            urlDataTableTransaksi_Akuntansi: `${baseURLPhp}:${portPhp}/simrs_harkit/service/transaksi/`,
+            baseApiPostData_Akuntansi: `${baseURLPhp}:${portPhp}/simrs_harkit/service/`,
 
             /**Login Java */
             // baseUrlLogin: `${baseURLJava}:${portJava}/jasamedika-web/auth/sign-in`,
@@ -63,7 +63,7 @@ define([], function () {
 
             urlDataMaster: `${baseURLJava}:${portJava}/jasamedika-web/generated_master/`,
 
-            baseUrlListData: `${baseURLJava}:${portJava}/jasamedika-web/service/list-generic/?view=`,
+            baseUrlListData: `${baseURLJava}:${portJava}/jasamedika-web/simrs_harkit/service/list-generic/?view=`,
             
             // URL BARU
             // K3KL

@@ -29,115 +29,72 @@
                     role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
             </div>
         </div> -->
-        <div kendo-window="popUp" k-title="'VIEW DATA'" k-width="800" k-visible="false"
-            k-on-open="win2visible = true" k-on-close="win2visible = false">
-                <div class="panel panel-default container_12" style="padding: 0px 10px;">
-                    <fieldset ng-show="isSoap">
-                        <div class="grid_12">
-                            <div class="grid_11">
-                                <textarea style="width: 99%; height: 10px;" ng-model="cppt.pegawaifk" ng-disabled="isDetail" ng-show="false"></textarea>
-                            </div>
-                            <div class="clear"></div>
-                        </div> 
-                        <div class="grid_12">
-                            <div class="grid_1">
-                                <span class="big-title">S</span>
-                            </div>
-                            <div class="grid_11">
-                                <textarea style="width: 99%; height: 80px;" ng-disabled="isDetail" ng-model="cppt.s"></textarea>
-                            </div>
-                            <div class="clear"></div>
+        <div kendo-window="popUp" k-title="'VIEW DATA'" k-width="800"
+            k-visible="false"
+            k-on-open="win2visible= true" k-on-close="win2visible= false">
+            <div class="panel panel-default container_12" style="padding: 0px
+                10px;">
+                <md-card ng-show="isSoap">
+                    <div class="grid_12">
+                        <div class="grid_11">
+                            <textarea style="width: 99%; height: 10px;"
+                                ng-model="cppt.pegawaifk" ng-disabled="isDetail"
+                                ng-show="false"></textarea>
                         </div>
-                   
-                        <div class="grid_12">
-                            <div class="grid_1">
-                                <span class="big-title">O</span>
-                            </div>
-                            <div class="grid_11">
-                                <textarea style="width: 99%; height: 80px;" ng-disabled="isDetail" ng-model="cppt.o"></textarea>
-                            </div>
-                            <div class="clear"></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_1">
+                            <span class="big-title">S</span>
                         </div>
-                        
-                        <div class="grid_12">
-                            <div class="grid_1">
-                                <span class="big-title">A</span>
-                            </div>
-                            <div class="grid_11">
-                                <textarea style="width: 99%; height: 80px;" ng-disabled="isDetail" ng-model="cppt.a"></textarea>
-                            </div>
-                            <div class="clear"></div>
+                        <div class="grid_11">
+                            <textarea style="width: 99%; height: 80px;"
+                                ng-disabled="isDetail" ng-model="cppt.s"></textarea>
                         </div>
-                       
-                        <div class="grid_12">
-                            <div class="grid_1">
-                                <span class="big-title">P</span>
-                            </div>
-                            <div class="grid_11">
-                                <textarea style="width: 99%; height: 80px;" ng-disabled="isDetail" ng-model="cppt.p"></textarea>
-                            </div>
-                            <div class="clear"></div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="grid_12">
+                        <div class="grid_1">
+                            <span class="big-title">O</span>
                         </div>
-                        <div ng-show="isSoapie">
-                            <div class="grid_12">
-                                <div class="grid_1">
-                                    <span class="big-title">I</span>
-                                </div>
-                                <div class="grid_11">
-                                    <textarea style="width: 99%; height: 80px;" ng-disabled="isDetail" ng-model="cppt.cppt_i"></textarea>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-    
-                            <div class="grid_12">
-                                <div class="grid_1">
-                                    <span class="big-title">E</span>
-                                </div>
-                                <div class="grid_11">
-                                    <textarea style="width: 99%; height: 80px;" ng-disabled="isDetail" ng-model="cppt.cppt_e"></textarea>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
+                        <div class="grid_11">
+                            <textarea style="width: 99%; height: 80px;"
+                                ng-disabled="isDetail" ng-model="cppt.o"></textarea>
                         </div>
-                        
-                    </fieldset>
-                    <fieldset ng-show="isAdime">
-                        <div class="grid_12">
-                            <div class="grid_1">
-                                <span class="big-title">A</span>
-                            </div>
-                            <div class="grid_11">
-                                <textarea style="width: 99%; height: 75px;" ng-model="cppt.aa" ng-disabled="isDetail"></textarea>
-                            </div>
-                            <div class="clear"></div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="grid_12">
+                        <div class="grid_1">
+                            <span class="big-title">A</span>
                         </div>
-               
-                        <div class="grid_12">
-                            <div class="grid_1">
-                                <span class="big-title">D</span>
-                            </div>
-                            <div class="grid_11">
-                                <textarea style="width: 99%; height: 75px;" ng-model="cppt.d" ng-disabled="isDetail"></textarea>
-                            </div>
-                            <div class="clear"></div>
+                        <div class="grid_11">
+                            <textarea style="width: 99%; height: 80px;"
+                                ng-disabled="isDetail" ng-model="cppt.a"></textarea>
                         </div>
-                        
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="grid_12">
+                        <div class="grid_1">
+                            <span class="big-title">P</span>
+                        </div>
+                        <div class="grid_11">
+                            <textarea style="width: 99%; height: 80px;"
+                                ng-disabled="isDetail" ng-model="cppt.p"></textarea>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div ng-show="isSoapie">
                         <div class="grid_12">
                             <div class="grid_1">
                                 <span class="big-title">I</span>
                             </div>
                             <div class="grid_11">
-                                <textarea style="width: 99%; height: 75px;" ng-model="cppt.i" ng-disabled="isDetail"></textarea>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                    
-                        <div class="grid_12">
-                            <div class="grid_1">
-                                <span class="big-title">M</span>
-                            </div>
-                            <div class="grid_11">
-                                <textarea style="width: 99%; height: 75px;" ng-model="cppt.m" ng-disabled="isDetail"></textarea>
+                                <textarea style="width: 99%; height: 80px;"
+                                    ng-disabled="isDetail"
+                                    ng-model="cppt.cppt_i"></textarea>
                             </div>
                             <div class="clear"></div>
                         </div>
@@ -147,17 +104,86 @@
                                 <span class="big-title">E</span>
                             </div>
                             <div class="grid_11">
-                                <textarea style="width: 99%; height: 75px;" ng-model="cppt.e" ng-disabled="isDetail"></textarea>
+                                <textarea style="width: 99%; height: 80px;"
+                                    ng-disabled="isDetail"
+                                    ng-model="cppt.cppt_e"></textarea>
                             </div>
                             <div class="clear"></div>
                         </div>
-                    </fieldset>
-                    <div class="k-edit-buttons  k-state-default pull-right" style="margin-top:10px">
-                        <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="Save()" ng-disabled="isDisable"><span class="k-icon k-update"></span>Simpan</button>
-                        <button class="k-button  k-button-icontext" ng-click="close()"><span class="k-icon k-cancel"></span>Batal</button>
                     </div>
+
+                </md-card>
+                <md-card ng-show="isAdime">
+                    <div class="grid_12">
+                        <div class="grid_1">
+                            <span class="big-title">A</span>
+                        </div>
+                        <div class="grid_11">
+                            <textarea style="width: 99%; height: 75px;"
+                                ng-model="cppt.aa" ng-disabled="isDetail"></textarea>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="grid_12">
+                        <div class="grid_1">
+                            <span class="big-title">D</span>
+                        </div>
+                        <div class="grid_11">
+                            <textarea style="width: 99%; height: 75px;"
+                                ng-model="cppt.d" ng-disabled="isDetail"></textarea>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="grid_12">
+                        <div class="grid_1">
+                            <span class="big-title">I</span>
+                        </div>
+                        <div class="grid_11">
+                            <textarea style="width: 99%; height: 75px;"
+                                ng-model="cppt.i" ng-disabled="isDetail"></textarea>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="grid_12">
+                        <div class="grid_1">
+                            <span class="big-title">M</span>
+                        </div>
+                        <div class="grid_11">
+                            <textarea style="width: 99%; height: 75px;"
+                                ng-model="cppt.m" ng-disabled="isDetail"></textarea>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="grid_12">
+                        <div class="grid_1">
+                            <span class="big-title">E</span>
+                        </div>
+                        <div class="grid_11">
+                            <textarea style="width: 99%; height: 75px;"
+                                ng-model="cppt.e" ng-disabled="isDetail"></textarea>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </md-card>
+                <md-card ng-show="isTbak">
+                    
+                    <textarea ng-model="item.contentTBAK"  ng-disabled="isDetail"
+                        style="height:180px"></textarea>
+                </md-card>
+                <div class="k-edit-buttons k-state-default pull-right"
+                    style="margin-top:10px">
+                    <button class="k-button k-button-icontext k-primary
+                        k-grid-update" ng-click="Save()"
+                        ng-disabled="isDisable"><span class="k-icon k-update"></span>Simpan</button>
+                    <button class="k-button k-button-icontext"
+                        ng-click="close()"><span class="k-icon k-cancel"></span>Batal</button>
                 </div>
-        </div> 
+            </div>
+        </div>
         <!-- END CPPT PopUp-->
         <div class="grid_12">
             <div class="panel-body grid_12">
@@ -165,12 +191,13 @@
                     <p>Riwayat CPPT</p>
                 </div>
                 <div class="grid_12 borderBox">
-                    <div kendo-grid id="idGridCPPT" k-data-source="sourceCPPT" k-selectable="'row'" options="gridCPPT"
+                    <div kendo-grid id="idGridCPPT" k-data-source="sourceCPPT"
+                        k-selectable="'row'" options="gridCPPT"
                         k-ng-model="dataCPPT"></div>
                 </div>
             </div>
         </div>
-        
+
         <!-- <div class="grid_12">
             <div class="grid_6"></div>
             <div class="grid_6">
@@ -197,14 +224,15 @@
                 </div>
             </div>
         </div> -->
-       <hr>
+        <hr>
         <div class="grid_12">
             <div class="panel-body grid_12">
                 <div class="grid_12 headerBox">
                     <p>Riwayat CPPT yang belum di Verifikasi</p>
                 </div>
                 <div class="grid_12 borderBox">
-                    <div kendo-grid id="idGridCPPTnotVerif" k-data-source="sourceCPPTnotVerif" k-selectable="'row'"
+                    <div kendo-grid id="idGridCPPTnotVerif"
+                        k-data-source="sourceCPPTnotVerif" k-selectable="'row'"
                         options="gridCPPTnotVerif" k-ng-model="dataCPPT"></div>
                 </div>
             </div>
@@ -271,7 +299,7 @@
 
                     </div>
                 </div> -->
-                <!-- <div kendo-window="popUp" k-title="'Detail SOAP'" k-width="750" k-height="500" k-visible="false"
+    <!-- <div kendo-window="popUp" k-title="'Detail SOAP'" k-width="750" k-height="500" k-visible="false"
                     k-on-open="win2visible = true" k-on-close="win2visible = true">
                     <div class="panel panel-default container_12">
                            

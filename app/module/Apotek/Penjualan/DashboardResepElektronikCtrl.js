@@ -4,6 +4,7 @@ define(['initialize'], function (initialize) {
         function (managePasien, socket, $state, $timeout, findPasien, $rootScope, $scope, ModelItem, DateHelper, $document, r, manageLogistikPhp, cacheHelper) {
             $("#header").hide();
             $scope.item = {};
+            $scope.showLoader = true;
 
             var tglAwal = moment(new Date()).format('YYYY-MM-DD');
             var tglAkhir = moment(new Date()).format('YYYY-MM-DD');
@@ -65,11 +66,8 @@ define(['initialize'], function (initialize) {
                 ],
                 editable: false
             }
-
             
-
             $scope.init = function () {
-                $scope.showLoader = true;
                 manageLogistikPhp.getDataTableTransaksi('logistik/get-daftar-order-resep-elektronik?tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + "&dep_id=" + ($scope.item.namaDept ? $scope.item.namaDept.id : "") + "&kelompok_id=" + ($scope.item.kelompokPasien ? $scope.item.kelompokPasien.id : "")).then(function (e) {
                     $scope.showLoader = false;
                     let data = [];
@@ -80,11 +78,11 @@ define(['initialize'], function (initialize) {
                         var umur = DateHelper.CountAge(tanggalLahir, tanggal);
                         e.data[i].umur = umur.year + ' thn ' + umur.month + ' bln ' + umur.day + ' hari'
 
-                        if(e.data[i].statusorder == "Sudah Bayar") {
+                        if (e.data[i].statusorder == "Sudah Bayar") {
                             data.push(e.data[i]);
-                            
+
                         }
-                        
+
                     }
                     $scope.patienGrids = new kendo.data.DataSource({
                         data: ModelItem.beforePost(data, true),
@@ -93,6 +91,15 @@ define(['initialize'], function (initialize) {
 
                 });
             }
+
+            $scope.intervalFunction = function () {
+                $timeout(function () {
+                    $scope.init();
+                    $scope.intervalFunction();
+                }, 6000);
+            }
+
+            $scope.intervalFunction();
 
             $scope.init();
         }
