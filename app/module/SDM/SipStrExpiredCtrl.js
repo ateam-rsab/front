@@ -8,6 +8,22 @@ define(['initialize'], function(initialize) {
                 start: "year", 
                 depth: "year" 
             };
+            function getSixMonths() {
+                let now = new Date();
+                let year = now.getFullYear();
+                let month = now.getMonth();
+                let today = now.getDate();
+                let lastDayNextSixMonth = new Date(year, month + 6, 0);
+                if (lastDayNextSixMonth == 31) {
+                    today = today - 1;
+                } else if (lastDayNextSixMonth == 28) {
+                    today = today + 2;
+                } else if (lastDayNextSixMonth == 29) {
+                    today = today + 1;
+                }
+                return today;
+            }
+            $scope.batasData = dateHelper.getTanggalFormatted(new Date(new Date().getFullYear(), new Date().getMonth() + 6, getSixMonths()));
             $scope.loadDataSip = function(){
                 $scope.isRouteLoading = true;
                 ManageSdmNew.getListData("pegawai/get-pegawai-sip-expired").then(function(res){
