@@ -199,13 +199,13 @@ define(['initialize'], function(initialize) {
                     $scope.showAlert('Unauthorized');
                     return;
                 }
-                for (var i = $scope.dSource.length - 1; i >= 0; i--) {
-                    $scope.dSource[i].isCanCreateJadwal==true
+                // for (var i = $scope.dSource.length - 1; i >= 0; i--) {
+                //     $scope.dSource[i].isCanCreateJadwal==true
                     obj.status = true;
                     obj.message = 'Authorized';
                     return obj;  
-                    break
-                }
+                //     break
+                // }
             }
 
             $scope.checkRuanganKerja = function(e, daftarRuangan){
@@ -225,13 +225,13 @@ define(['initialize'], function(initialize) {
                         $scope.showAlert('Unauthorized');
                         return;
                     }
-                    for (var i = $scope.dSource.length - 1; i >= 0; i--) {
-                        $scope.dSource[i].isCanCreateJadwal==true
+                    // for (var i = $scope.dSource.length - 1; i >= 0; i--) {
+                    //     $scope.dSource[i].isCanCreateJadwal==true
                         obj.status = true;
                         obj.message = 'Authorized';
                         return obj;  
-                        break
-                    }
+                    //     break
+                    // }
                
                     // if(!obj.status) {
                     //     obj.message = "Ruangan tidak valid.";
