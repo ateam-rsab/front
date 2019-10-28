@@ -67,6 +67,13 @@
                     </md-button>
                     <md-menu-content width="4" ng-mouseleave="$mdMenu.close()">
                         <md-menu-item>
+                            <md-button ng-click="goToLink('/app/Logout')">
+                                <i class="fa fa-sign-out" style="color: black;"></i>
+                                Logout
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-divider></md-menu-divider>
+                        <md-menu-item>
                             <md-button ng-click="goToLink('#/ProfilePegawai')">
                                 <i class="fa fa-address-book" style="color: black;"></i>
                                 Profile
@@ -100,13 +107,6 @@
                                 </button>
                             </li>
                         </md-menu-item> -->
-                        <md-menu-divider></md-menu-divider>
-                        <md-menu-item>
-                            <md-button ng-click="goToLink('/app/Logout')">
-                                <i class="fa fa-sign-out" style="color: black;"></i>
-                                Logout
-                            </md-button>
-                        </md-menu-item>
                     </md-menu-content>
                 </md-menu>
             </div>
