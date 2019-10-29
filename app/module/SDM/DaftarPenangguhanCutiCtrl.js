@@ -58,7 +58,7 @@ define(['initialize'], function(initialize) {
 				ManageSdmNew.getListData("sdm/get-list-penandatangan-surat-izin-cuti")
 			]).then(function(result){
 				$scope.isLoginKesja = false;
-				if(result[0].data.data.idSubUnitKerja === 26) $scope.isLoginKesja = true;
+				if(result[0].data.data.idSubUnitKerja === 26 || result[0].data.data.idSubUnitKerja === 27) $scope.isLoginKesja = true;
 				$scope.listPegawai = result[1].data;
 				$scope.pegawai = result[2];
 				$scope.listPejabat = result[3].data.data;
