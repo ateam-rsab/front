@@ -900,9 +900,7 @@ define(['initialize'], function (initialize) {
                 var listRawRequired = [
                     "item.namaPegawai|k-ng-model|Pegawai",
                     "item.tglPengajuan|k-ng-model|Tanggal pengajuan",
-                    "item.statusPegawai|k-ng-model|Status kehadiran",
-                    "item.NoTelepon|k-ng-model|No Telepon",
-                    "item.Alamat|k-ng-model|Alamat",
+                    "item.statusPegawai|k-ng-model|Status kehadiran"
                 ]
 
                 if ($scope.item.statusPegawai.id == 28) {
@@ -912,6 +910,11 @@ define(['initialize'], function (initialize) {
                         "item.tglNotaDinas|k-ng-model|Tanggal Nota Dinas",
                         "item.jabatanNotaDinas|k-ng-model|Jabatan Pemberi Nota Dinas",
                         "item.alamatTugas|k-ng-model|Alamat Tugas"
+                    )
+                } else {
+                    listRawRequired.push(
+                        "item.NoTelepon|k-ng-model|No Telepon",
+                        "item.Alamat|k-ng-model|Alamat",
                     )
                 }
 
