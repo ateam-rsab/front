@@ -40,7 +40,7 @@ define(['initialize'], function (initialize) {
                 $scope.item.noSip = $scope.item.noSip ? $scope.item.noSip : "-";
                 $scope.item.noStr = $scope.item.noStr ? $scope.item.noStr : "-";
 
-                $scope.item.nip = $scope.item.nip ? $scope.item.nip : "-";
+                $scope.item.nip = $scope.item.nipPns ? $scope.item.nipPns : "-";
 
                 if ($scope.item.isMenanggung) {
                     $scope.item.isMenanggung = "Ya";
