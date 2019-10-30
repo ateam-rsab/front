@@ -730,29 +730,29 @@ $scope.generateGridColumn =  function(){
 					// disable show popup if cell index < 5
 					var colDateIdx = colIdx - 5;
 					var colName = $("#" + gridId + ' tr').eq(1).find('th').eq(colDateIdx).text();
-
-					if(colName.length === 1){
-						colName = "0" + colName;
-					}
-					if (colName.length <= 2){
-						// show detail on date cell click only
-						if(gridId === "gridOrder"){
-							var akhir = DateHelper.getFormatMonthPicker($scope.item.periode) + "-" + colName;
-							var ffs = false;
-
-							$scope.showDetailPasien = true;
-							$scope.showDetailPasienFfs = false;
-							$scope.showDetail(selectedData.idProduk, selectedData.idKelas, $scope.item.pegawai.id, akhir,ffs );
-						} else if (gridId === "gridOrderService"){
-							var akhir = DateHelper.getFormatMonthPicker($scope.item.periodeFee) + "-" + colName;
-							var ffs = true;
-
-							$scope.showDetailPasien = false;
-							$scope.showDetailPasienFfs = true;
-							$scope.showDetailFfs(selectedData.idProduk, selectedData.idKelas, selectedData.idKomponenHarga, $scope.item.pegawai.id, akhir,ffs );
+					if (colName !== "") {
+						if(colName.length === 1){
+							colName = "0" + colName;
 						}
+						if (colName.length <= 2){
+							// show detail on date cell click only
+							if(gridId === "gridOrder"){
+								var akhir = DateHelper.getFormatMonthPicker($scope.item.periode) + "-" + colName;
+								var ffs = false;
+	
+								$scope.showDetailPasien = true;
+								$scope.showDetailPasienFfs = false;
+								$scope.showDetail(selectedData.idProduk, selectedData.idKelas, $scope.item.pegawai.id, akhir,ffs );
+							} else if (gridId === "gridOrderService"){
+								var akhir = DateHelper.getFormatMonthPicker($scope.item.periodeFee) + "-" + colName;
+								var ffs = true;
+	
+								$scope.showDetailPasien = false;
+								$scope.showDetailPasienFfs = true;
+								$scope.showDetailFfs(selectedData.idProduk, selectedData.idKelas, selectedData.idJasa, $scope.item.pegawai.id, akhir,ffs );
+							}
+						}	
 					}
-					
 				}
 				
 				// var colIdx = colIdx.toString();
@@ -845,7 +845,7 @@ $scope.generateGridColumn =  function(){
 		$scope.showDetailFfs = function(idProduk, idKelas, idKomponenHarga, idPegawai, tgl, ffs){
 			$scope.isRouteLoading = true;
 			// FindSdm.getDetilLogbookKinerja(idProduk, idKelas, idPegawai, tgl, ffs).then(function(data){
-			ManageSdmNew.getListData("sdm/get-detail-pasien-ffs/"+idProduk+"/"+idKelas+"/"+idKomponenHarga+"/"+idPegawai+"/"+tgl+"/"+ffs).then(function(data){
+			ManageSdmNew.getListData("sdm/get-detail-pasien-ffs/"+idProduk+"/"+idKelas+"/"+idKomponenHarga+"/"+idPegawai+"/"+tgl).then(function(data){
 				$scope.dats = data.data.data;
 				$scope.dats.tgl = DateHelper.formatDate(tgl, "dd-MM-yyyy");
 				$scope.detilGridFfsOptions = {
@@ -890,6 +890,24 @@ $scope.generateGridColumn =  function(){
 							"style": "text-align: right;"
 						}
 					}, {
+						"field": "jumlah",
+						"title": "Jumlah<br>Tindakan",
+						"width": 90
+					}, {
+						"field": "jasaMedis",
+						"title": "Harga<br>Jasa Medis",
+						"template": "#= kendo.toString(jasaMedis, 'n0') #",
+						"width": 120
+					// }, {
+					// 	"field": "hargaDiscount",
+					// 	"title": "Harga<br>Diskon",
+					// 	"template": "#= kendo.toString(hargaDiscount, 'n0') #",
+					// 	"width": 120
+					// }, {
+					// 	"title": "Total Jasa Medis",
+					// 	"template": "#= kendo.toString((hargaJual-hargaDiscount)*jumlah, 'n0') #",
+					// 	"width": 120
+					}, {
 						"title": "Pasien",
 						"columns": [
 						{ "field": "noCm", "title": "No. CM", "width": 100},
@@ -898,24 +916,6 @@ $scope.generateGridColumn =  function(){
 						]
 					}, { 
 						"field": "jenisPetugas", "title": "Petugas", "width": 150
-					}, {
-						"field": "jumlah",
-						"title": "Jumlah<br>Tindakan",
-						"width": 90
-					}, {
-						"field": "hargaJual",
-						"title": "Harga<br>Jual",
-						"template": "#= kendo.toString(hargaJual, 'n0') #",
-						"width": 120
-					}, {
-						"field": "hargaDiscount",
-						"title": "Harga<br>Diskon",
-						"template": "#= kendo.toString(hargaDiscount, 'n0') #",
-						"width": 120
-					}, {
-						"title": "Total",
-						"template": "#= kendo.toString((hargaJual-hargaDiscount)*jumlah, 'n0') #",
-						"width": 120
 					}]
 				}
 				$scope.dataDetil = new kendo.data.DataSource({
@@ -1009,7 +1009,8 @@ $scope.generateGridColumn =  function(){
 			]
 			var isValid = ModelItem.setValidation($scope, listRawRequired);
 			if(isValid.status){ 
-				var fixUrlLaporan = cetakHelper.openURLReporting("reporting/logbookTindakanDokterDetailPasien?periode=" + DateHelper.getFormatMonthPicker($scope.item.periodeFee) +"&idPegawai="+$scope.item.pegawai.id+"&idJabatan="+$scope.item.jabatanCetak.id+"&idAtasan="+$scope.item.atasanCetak.id+"&idJabatanAtasan="+$scope.item.jabatanAtasanCetak.id+"&ffs=true" );
+				// var fixUrlLaporan = cetakHelper.openURLReporting("reporting/logbookTindakanDokterDetailPasien?periode=" + DateHelper.getFormatMonthPicker($scope.item.periodeFee) +"&idPegawai="+$scope.item.pegawai.id+"&idJabatan="+$scope.item.jabatanCetak.id+"&idAtasan="+$scope.item.atasanCetak.id+"&idJabatanAtasan="+$scope.item.jabatanAtasanCetak.id+"&ffs=true" );
+				var fixUrlLaporan = cetakHelper.openURLReporting("reporting/laporanFeeForServiceDokter?periode=" + DateHelper.getFormatMonthPicker($scope.item.periodeFee) +"&idPegawai="+$scope.item.pegawai.id+"&idJabatan="+$scope.item.jabatanCetak.id+"&idAtasan="+$scope.item.atasanCetak.id+"&idJabatanAtasan="+$scope.item.jabatanAtasanCetak.id );
 				window.open(fixUrlLaporan, '', 'width=800,height=600')
 			} else {
 				ModelItem.showMessages(isValid.messages);
@@ -1153,8 +1154,8 @@ $scope.generateGridColumn =  function(){
 							$scope.dataSourceFfs = new kendo.data.DataSource({
 								data: dataGrid,
 								aggregate: [
-									{ field: "totalTindakan", aggregate: "sum" },
-									// { field: "pointQty", aggregate: "sum" }
+									{ field: "totalTindakan", aggregate: "sum" }
+									// ,{ field: "pointQty", aggregate: "sum" }
 								]
 							});
 							$scope.isRouteLoading = false;
