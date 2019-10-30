@@ -7,6 +7,7 @@ define(['initialize'], function (initialize) {
             $scope.now = new Date();
             $scope.pegawaiLogin = JSON.parse(localStorage.getItem('pegawai'))
             let jenisPegawai = $scope.pegawaiLogin.jenisPegawai.jenispegawai;
+            let idPegawaiLogin = $scope.pegawaiLogin;
             $scope.item.tglOperasi = new Date();
             var norec_apd = '';
             var norec_pd = '';
@@ -433,13 +434,11 @@ define(['initialize'], function (initialize) {
 
             function editData(e) {
                 e.preventDefault();
-                
-                if(jenisPegawai !== "DOKTER") {
+                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                if(jenisPegawai !== "DOKTER" && idPegawaiLogin !== dataItem.pegawaifk) {
                     $scope.isSuster = true;
                 }
                 
-                
-                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                 console.log(dataItem);
                 $scope.item.selectedAsistenOperator = {
                     namaLengkap: dataItem.asistenoperator,
@@ -506,6 +505,11 @@ define(['initialize'], function (initialize) {
             }
 
             function hapusData(e) {
+                if(jenisPegawai !== "DOKTER" && idPegawaiLogin !== dataItem.pegawaifk) {
+                    toastr.info('Anda tidak memiliki hak akses untuk hapus');
+                    return;
+                }
+               
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
 
@@ -653,6 +657,7 @@ define(['initialize'], function (initialize) {
                     instruksikhusus: $scope.item.instruksiKhusus ? $scope.item.instruksiKhusus : '',
                     norec: $scope.item.noRecBedah ? $scope.item.noRecBedah : '',
                     jmlperdarahan: $scope.item.jmlPendarahan ? $scope.item.jmlPendarahan : '',
+                    pegawaifk: idPegawaiLogin.id,
                     komplikasi: $scope.item.komplikasi ? $scope.item.komplikasi : '',
                     macamjaringan: $scope.item.macamJaringan ? $scope.item.macamJaringan : '',
                     diagnosaprabedah: $scope.item.diagnosaPraBedah ? $scope.item.diagnosaPraBedah : '',
