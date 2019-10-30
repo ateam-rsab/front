@@ -1,136 +1,164 @@
-[
+[   
     {
-        "name": "Diklit",
+        "name": "Pelatihan",
         "children": [
             {
-                "name": "Pendidikan",
+                "name": "Master",
                 "children": [
                     {
-                        "name": "Master Kategori Pendidikan",
-                        "link": "#/MasterKategoriPendidikan"
+                        "name": "Master GBPP",
+                        "link": "#/MasterGGBP"
                     },
                     {
-                        "name": "Master Jurusan Peminatan",
-                        "link": "#/MasterJurusanPeminatan"
+                        "name": "Master Jenis Pelatihan",
+                        "link": "#/MasterJenisPelatihan"
                     },
                     {
-                        "name": "Master Mapping Kategori Pendidikan To Program Pendidikan",
-                        "link": "#/MasterMappingKategoriPendidikanToProgramPendidikan"
+                        "name": "Master Akreditasi Pelatihan",
+                        "link": "#/MasterAkreditasiPelatihan"
                     },
                     {
-                        "name": "Informasi Tentang Komkordik",
-                        "link": "#/InformasiKomkordik"
+                        "name": "Master Biaya Diklat",
+                        "link": "#/MasterBiayaDiklatRev"
                     },
                     {
-                        "name": "Struktur Komkordik",
-                        "link": "#/StrukturKomkordik"
-                    },
-                    {
-                        "name": "Input MOU/PKS",
-                        "link": "#/InputMOU"
-                    },
-                    {
-                        "name": "Master - Peserta Didik",
-                        "link": "#/PesertaDidik"
-                    },
-                    {
-                        "name": "Master - Tenaga Pengajar",
-                        "link": "#/TenagaPengajar"
-                    },
-                    {
-                        "name": "Perencanaan Penerimaan Peserta Didik",
-                        "link": "#/PenerimaanPesertaDidik"
-                    },
-                    {
-                        "name": "Kegiatan Pendidikan",
-                        "link": "#/KegiatanPendidikan"
+                        "name": "Master Narasumber",
+                        "link": "#/MasterNarasumber"
                     }
                 ]
             },
             {
-                "name": "Penelitian",
+                "name": "Pengajuan Pelatihan",
                 "children": [
                     {
-                        "name": "Master",
-                        "children": [
-                            {
-                                "name": "Fakultas",
-                                "link": "#/MasterFakultas"
-                            },
-                            {
-                                "name": "Institusi Pendidikan",
-                                "link": "#/MasterInstitusiPendidikan"
-                            }
-                        ]
+                        "name": "Monitoring Pengajuan Pelatihan",
+                        "link": "#/MonitoringPengajuanPelatihan"
                     },
                     {
-                        "name": "Penelitian Eksternal",
-                        "children": [
-                            {
-                                "name": "Kegiatan Penelitian Eksternal",
-                                "link": "#/PenelitianEksternalRev"
-                            },
-                            {
-                                "name": "Daftar Penelitian Eksternal",
-                                "link": "#/DaftarPenelitianEksternalRev"
-                            }
-                        ]
+                        "name": "Pengajuan Pelatihan",
+                        "link": "#/PermintaaanPelatihanRev"
                     },
                     {
-                        "name": "Penelitian Pegawai",
-                        "children": [
-                            {
-                                "name": "Kegiatan Penelitian Pegawai",
-                                "link": "#/PenelitianPegawaiRev"
-                            },
-                            {
-                                "name": "Daftar Penelitian Pegawai",
-                                "link": "#/DaftarPenelitianPegawaiRev"
-                            }
-                        ]
+                        "name": "Daftar Undangan Pelatihan",
+                        "link": "#/DaftarUndanganPelatihan"
                     },
                     {
-                        "name": "Informasi Prosedur Penelitian",
-                        "link": "#/ProsedurPenelitian"
+                        "name": "Daftar Kehadiran Peserta Pelatihan",
+                        "link": "#/DaftarKehadiranPesertaPelatihan"
                     },
                     {
-                        "name": "Upload Formulir-Formulir Penelitian",
-                        "link": "#/UploadFormulirPenelitian"
+                        "name": "Daftar Rekapitulasi Kehadiran Peserta Pelatihan",
+                        "link": "#/DaftarRekapitulasiKehadiran"
                     },
                     {
-                        "name": "Download Formulir-Formulir Penelitian",
-                        "link": "#/DownloadFormulirPenelitian"
-                    },
-                    {
-                        "name": "Upload Usulan Pengajuan Penelitian",
-                        "link": "#/UploadPengajuanPenelitian"
-                    },
-                    {
-                        "name": "Monitoring Hasil Pengajuan Penelitian",
-                        "link": "#/MonitoringPengajuanPenelitian"
-                    },
-                    {
-                        "name": "Hasil Review HTA",
-                        "link": "#/HasilReviewHTA"
-                    },
-                    {
-                        "name": "Input Rekomendasi HTA",
-                        "link": "#/InputRekomendasiHTA"
+                        "name": "Pelaksanaan Pelatihan",
+                        "link": "#/PelaksanaanPelatihan"
                     }
                 ]
             },
             {
-                "name": "Laporan",
-                "children": [
-                    {
-                        "name": "Laporan Jumlah Penelitian",
-                        "link": "#/LaporanJumlahPenelitian"
-                    },
-                    {
-                        "name": "Cetak Laporan Jumlah Peserta Didik",
-                        "link": "#/LaporanPesertaDidik"
-                    }
-                ]
+                "name": "Narasumber dan Kompetensi",
+                "link": "#/InputNarasumberRev"
+            },
+            {
+                "name": "Kurikulum Pelatihan",
+                "link": "#/DaftarKurikulumPelatihan"
+            },
+            {
+                "name": "Evaluasi Narasumber",
+                "link": "#/DaftarEvaluasiNarasumber"
+            },
+            {
+                "name": "Evaluasi Penyelenggara",
+                "link": "#/DaftarEvaluasiPenyelenggara"
+            },
+            {
+                "name": "Hasil RTL Penilaian Pegawai",
+                "link": "#/HasilRTL"
+            },
+            {
+                "name": "Rekapitulasi Hasil Evaluasi Narasumber",
+                "link": "#/RekapitulasiNarasumber"
+            },
+            {
+                "name": "Input Evaluasi Penyelenggaraan",
+                "link": "#/InputEvaluasiPenyelenggaraanRev"
+            },
+            {
+                "name": "Rekapitulasi Hasil Evaluasi Penyelenggaraan",
+                "link": "#/RekapitulasiHasilEvaluasi"
+            },
+            {
+                "name": "Request Protokol dan Dokumentasi",
+                "link": "#/RequestProtokol"
+            },
+            {
+                "name": "Kelola Bank Soal",
+                "link": "#/KelolaBankSoal"
+            },
+            {
+                "name": "Daftar Soal",
+                "link": "#/DaftarSoal"
+            },
+            {
+                "name": "Pre Test",
+                "link": "#/PreTest"
+            },
+            {
+                "name": "Post Test",
+                "link": "#/PostTest"
+            },
+            {
+                "name": "Verifikasi Nilai Pre-Test dan Post Test",
+                "link": "#/VerifikasiNilai"
+            },
+            {
+                "name": "Penyusunan Unit Cost Kegiatan",
+                "link": "#/UnitCostKegiatan"
+            },
+            {
+                "name": "Upload Template Sertifikat Pelatihan",
+                "link": "#/UploadSertifikatPelatihan"
+            },
+            {
+                "name": "Laporan Jam Pelatihan Per Karyawan",
+                "link": "#/LaporanJamPelatihan"
+            },
+            {
+                "name": "Laporan Penerimaan Biaya Pelatihan Eksternal",
+                "link": "#/LaporanPenerimaanBiayaEksternal"
+            },
+            {
+                "name": "Laporan Jumlah Peserta Pelatihan",
+                "link": "#/LaporanJumlahPeserta"
+            },
+            {
+                "name": "Input Evaluasi Pasca Pelatihan",
+                "link": "#/InputEvaluasi"
+            },
+            {
+                "name": "Input Paket Pelatihan",
+                "link": "#/PaketPelatihanSeminar"
+            },
+            {
+                "name": "Daftar Paket Pelatihan",
+                "link": "#/DaftarPaketPelatihan"
+            },
+            {
+                "name": "Isi Pelatihan",
+                "link": "#/IsiPelatihan"
+            },
+            {
+                "name": "Pengajuan Perjalanan Dinas",
+                "link": "#/PengajuanPerjalananDinas"
+            },
+            {
+                "name": "Daftar Pengajuan Perjalanan Dinas",
+                "link": "#/DaftarPengajuanPerjalananDinas"
+            },
+            {
+                "name": "Daftar  Terima Pengajuan Perjalanan Dinas",
+                "link": "#/DaftarTerimaPengajuanPerjalananDinas"
             }
         ]
     },

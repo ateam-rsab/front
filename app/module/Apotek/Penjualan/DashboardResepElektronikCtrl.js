@@ -28,7 +28,7 @@ define(['initialize'], function (initialize) {
                         "width": "160px",
                     },
                     {
-                        "field": "noorder",
+                        "field": "noresep",
                         "title": "<h3>No. Resep</h3>",
                         "width": "160px",
                     },
@@ -78,7 +78,7 @@ define(['initialize'], function (initialize) {
                         var umur = DateHelper.CountAge(tanggalLahir, tanggal);
                         e.data[i].umur = umur.year + ' thn ' + umur.month + ' bln ' + umur.day + ' hari'
 
-                        if (e.data[i].statusorder == "Sudah Bayar") {
+                        if (e.data[i].statusorder == "Sudah Bayar" || e.data[i].statusorder == "Verifikasi") {
                             data.push(e.data[i]);
 
                         }
@@ -87,8 +87,6 @@ define(['initialize'], function (initialize) {
                     $scope.patienGrids = new kendo.data.DataSource({
                         data: ModelItem.beforePost(data, true),
                     });
-
-
                 });
             }
 

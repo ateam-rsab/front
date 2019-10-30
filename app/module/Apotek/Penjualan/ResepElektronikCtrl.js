@@ -115,24 +115,24 @@ define(['initialize'], function (initialize) {
                         "groupHeaderTemplate": "Ruangan #= value # "
 
                     },
-                    {
-                        "field": "cito",
-                        "title": "Cito",
-                        "width": "70px",
-                        "template": "#if(cito) { #Ya# } else { #Tidak# } #",
-                    },
-                    {
-                        "field": "dipulangkan",
-                        "title": "Segera<br> Pulang",
-                        "width": "70px",
-                        "template": "#if(dipulangkan===1) { #Ya# } else { #Tidak# } #",
-                    },
-                    {
-                        // "field": "dipulangkan",
-                        "title": "Subtitusi",
-                        "width": "70px",
-                        "template": "Ya",
-                    },
+                    // {
+                    //     "field": "cito",
+                    //     "title": "Cito",
+                    //     "width": "70px",
+                    //     "template": "#if(cito) { #Ya# } else { #-# } #",
+                    // },
+                    // {
+                    //     "field": "dipulangkan",
+                    //     "title": "Segera<br> Pulang",
+                    //     "width": "70px",
+                    //     "template": "#if(dipulangkan===1) { #Ya# } else { #Tidak# } #",
+                    // },
+                    // {
+                    //     // "field": "dipulangkan",
+                    //     "title": "Subtitusi",
+                    //     "width": "70px",
+                    //     "template": "Ya",
+                    // },
                     {
                         "field": "statusorder",
                         "title": "Status",
@@ -252,6 +252,7 @@ define(['initialize'], function (initialize) {
                     }
                     
                 } else if ($scope.item.statusorder == 'Selesai') {
+                    $state.go('ProduksiElektronik', { norec_so: $scope.item.norec_so });
                     toastr.info('Obat sudah selesai tidak bisa Produksi')
                 } else {
                     toastr.info('Belum bisa di Produksi');

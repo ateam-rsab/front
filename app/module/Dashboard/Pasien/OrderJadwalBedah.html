@@ -104,7 +104,7 @@
                                         k-data-value-field="'id'"
                                         k-filter="'contains'"
                                         k-auto-bind="false"
-                                        k-data-source="dataMasterPetugas" />
+                                        k-data-source="dataMasterPetugas" ng-disabled="isSuster" />
                                 </div>
                             </div>
                             <!-- Penata Anestesi  -->
@@ -119,7 +119,7 @@
                                         k-data-value-field="'id'"
                                         k-filter="'contains'"
                                         k-auto-bind="false"
-                                        k-data-source="dataMasterPetugas" />
+                                        k-data-source="dataMasterPetugas" ng-disabled="isSuster"/>
                                 </div>
                             </div>
                             <!-- Perawat Instrumen -->
@@ -134,7 +134,7 @@
                                         k-data-value-field="'id'"
                                         k-filter="'contains'"
                                         k-auto-bind="false"
-                                        k-data-source="dataMasterPetugas" />
+                                        k-data-source="dataMasterPetugas" ng-disabled="isSuster"/>
                                 </div>
                             </div>
                         </div>
@@ -152,7 +152,7 @@
                                         k-data-value-field="'id'"
                                         k-filter="'contains'"
                                         k-auto-bind="false"
-                                        k-data-source="dataMasterPetugas" />
+                                        k-data-source="dataMasterPetugas" ng-disabled="isSuster"/>
                                 </div>
                             </div>
                             <!-- Asisten Operator -->
@@ -167,7 +167,7 @@
                                         k-data-value-field="'id'"
                                         k-filter="'contains'"
                                         k-auto-bind="false"
-                                        k-data-source="dataMasterPetugas" />
+                                        k-data-source="dataMasterPetugas" ng-disabled="isSuster"/>
                                 </div>
                             </div>
 
@@ -180,7 +180,7 @@
                                     <input style="width: 100%" kendo-date-picker
                                         k-ng-model="item.tglPembedahan"
                                         placeholer="Hari-Bln-Thn"
-                                        k-format="'dd-MM-yyyy'" />
+                                        k-format="'dd-MM-yyyy'" ng-disabled="isSuster"/>
                                 </div>
                             </div>
 
@@ -197,7 +197,7 @@
                                         k-ng-model="item.jamMulai"
                                         placeholer="HH:mm"
                                         k-format="'HH:mm'"
-                                        k-on-change="setLamaPembedahan()" />
+                                        k-on-change="setLamaPembedahan()" ng-disabled="isSuster"/>
                                     <!-- <input style="width: 100%" kendo-time-picker
                                         k-ng-model="item.jamMulai" 
                                         ng-change="setLamaPembedahan()"
@@ -215,7 +215,7 @@
                                         k-ng-model="item.jamSelesai"
                                         placeholer="HH:mm"
                                         k-format="'HH:mm'"
-                                        k-on-change="setLamaPembedahan()" />
+                                        k-on-change="setLamaPembedahan()" ng-disabled="isSuster"/>
                                     <!-- <input style="width: 100%" kendo-time-picker 
                                         ng-change="setLamaPembedahan()"
                                         k-ng-model="item.jamSelesai"
@@ -253,7 +253,7 @@
                                         placeholder="Jumlah Pendarahan
                                         *Kosongkan jika tidak ada"
                                         class="k-textbox"
-                                        ng-model="item.jmlPendarahan" />
+                                        ng-model="item.jmlPendarahan" ng-disabled="isSuster"/>
                                 </div>
                                 <div class="grid_2" style="margin: 10px 0 0 0;">
                                     <label>
@@ -286,7 +286,7 @@
                                         <input type="radio"
                                             name="selectedLabelPasien"
                                             ng-model="item.selectedLabelPasien"
-                                            value="Sudah"
+                                            value="Sudah" ng-disabled="isSuster"
                                             id="makanBiasa" class="k-radio">
                                         <label class="k-radio-label"
                                             for="makanBiasa">Sudah</label>
@@ -295,7 +295,7 @@
                                         <input type="radio"
                                             name="selectedLabelPasien"
                                             ng-model="item.selectedLabelPasien"
-                                            value="Belum dipasang"
+                                            value="Belum dipasang" ng-disabled="isSuster"
                                             id="belum" class="k-radio">
                                         <label class="k-radio-label"
                                             for="belum">Belum dipasang</label>
@@ -322,7 +322,7 @@
                                         <input type="radio"
                                             name="selectedStatus"
                                             ng-model="item.selectedStatus"
-                                            value="Emergency"
+                                            value="Emergency" ng-disabled="isSuster"
                                             id="emergency" class="k-radio">
                                         <label class="k-radio-label"
                                             for="emergency">Emergency</label>
@@ -331,7 +331,7 @@
                                         <input type="radio"
                                             name="selectedStatus"
                                             ng-model="item.selectedStatus"
-                                            value="Elektif"
+                                            value="Elektif" ng-disabled="isSuster"
                                             id="elektif" class="k-radio">
                                         <label class="k-radio-label"
                                             for="elektif">Elektif</label>
@@ -347,7 +347,7 @@
                                         <input type="radio"
                                             name="selectedPenangananKhusus"
                                             ng-model="item.selectedPenangananKhusus"
-                                            value="Minor"
+                                            value="Minor" ng-disabled="isSuster"
                                             id="minor" class="k-radio">
                                         <label class="k-radio-label"
                                             for="minor">Minor</label>
@@ -356,7 +356,7 @@
                                         <input type="radio"
                                             name="selectedPenangananKhusus"
                                             ng-model="item.selectedPenangananKhusus"
-                                            value="Medium"
+                                            value="Medium" ng-disabled="isSuster"
                                             id="medium" class="k-radio">
                                         <label class="k-radio-label"
                                             for="medium">Medium</label>
@@ -365,7 +365,7 @@
                                         <input type="radio"
                                             name="selectedPenangananKhusus"
                                             ng-model="item.selectedPenangananKhusus"
-                                            value="Mayor"
+                                            value="Mayor" ng-disabled="isSuster"
                                             id="mayor" class="k-radio">
                                         <label class="k-radio-label"
                                             for="mayor">Mayor</label>
@@ -374,7 +374,7 @@
                                         <input type="radio"
                                             name="selectedPenangananKhusus"
                                             ng-model="item.selectedPenangananKhusus"
-                                            value="Khusus"
+                                            value="Khusus" ng-disabled="isSuster"
                                             id="khusus" class="k-radio">
                                         <label class="k-radio-label"
                                             for="khusus">Khusus</label>
@@ -413,7 +413,7 @@
                                         ng-model="item.komplikasi" /> -->
                                     <textarea ng-model="item.komplikasi"
                                         ng-keyup="countLengthKomplikasi()"
-                                        maxlength="300"
+                                        maxlength="300" ng-disabled="isSuster"
                                         style="height:100px"></textarea>
                                     <p class="length-textarea">300/{{lengthKomplikasi}}</p>
                                 </div>
@@ -429,7 +429,7 @@
                                 <div class="grid_10">
                                     <textarea ng-model="item.macamJaringan"
                                         ng-keyup="countLengthKMacamJaringan()"
-                                        maxlength="300"
+                                        maxlength="300" ng-disabled="isSuster"
                                         style="height:100px"></textarea>
                                     <p class="length-textarea">300/{{lengthMacamJaringan}}</p>
                                 </div>
@@ -453,7 +453,7 @@
                                             <textarea
                                                 ng-model="item.tindakanPembedahanSatu"
                                                 ng-keyup="countTindakanPembedahan(1)"
-                                                maxlength="500"
+                                                maxlength="500" ng-disabled="isSuster"
                                                 style="height:105px"></textarea>
                                             <p class="length-textarea">500/{{lengthTindakanPembedahanSatu}}</p>
                                         </li>
@@ -466,7 +466,7 @@
                                             <textarea
                                                 ng-model="item.tindakanPembedahanDua"
                                                 ng-keyup="countTindakanPembedahan(2)"
-                                                maxlength="500"
+                                                maxlength="500" ng-disabled="isSuster"
                                                 style="height:105px"></textarea>
                                             <p class="length-textarea">500/{{lengthTindakanPembedahanDua}}</p>
                                         </li>
@@ -479,7 +479,7 @@
                                             <textarea
                                                 ng-model="item.tindakanPembedahanTiga"
                                                 ng-keyup="countTindakanPembedahan(3)"
-                                                maxlength="500"
+                                                maxlength="500" ng-disabled="isSuster"
                                                 style="height:105px"></textarea>
                                             <p class="length-textarea">500/{{lengthTindakanPembedahanTiga}}</p>
                                         </li>
@@ -492,7 +492,7 @@
                                             <textarea
                                                 ng-model="item.tindakanPembedahanEmpat"
                                                 ng-keyup="countTindakanPembedahan(4)"
-                                                maxlength="500"
+                                                maxlength="500" ng-disabled="isSuster"
                                                 style="height:105px"></textarea>
                                             <p class="length-textarea">500/{{lengthTindakanPembedahanEmpat}}</p>
                                         </li>
@@ -516,7 +516,7 @@
                                 <div class="grid_8">
                                     <textarea ng-model="item.uraianPembedahan"
                                         ng-keyup="countLengthUraianPembedahan()"
-                                        maxlength="1000"
+                                        maxlength="1000" ng-disabled="isSuster"
                                         style="height:180px"></textarea>
                                     <p class="length-textarea">1000/{{lengthUraianPemebedahan}}</p>
                                 </div>
@@ -531,7 +531,7 @@
                                 <div class="grid_8">
                                     <textarea ng-model="item.jaringanPatologi"
                                         ng-keyup="countLengthPatologi()"
-                                        maxlength="500"
+                                        maxlength="500" ng-disabled="isSuster"
                                         style="height:100px"></textarea>
                                     <p class="length-textarea">500/{{lengthPatologi}}</p>
                                     <!-- <input c-text-box type="input"
@@ -551,7 +551,7 @@
                                 <div class="grid_8">
                                     <textarea ng-model="item.diagnosaPraBedah"
                                         ng-keyup="countLengthDiagnosaPraBedah()"
-                                        maxlength="500"
+                                        maxlength="500" ng-disabled="isSuster"
                                         style="height:100px"></textarea>
                                     <p class="length-textarea">500/{{lengthDiagnosaPraBedah}}</p>
                                 </div>
@@ -566,7 +566,7 @@
                                 <div class="grid_8">
                                     <textarea ng-model="item.diagnosaPascaBedah"
                                         ng-keyup="countLengthDiagnosaPascaBedah()"
-                                        maxlength="500"
+                                        maxlength="500" ng-disabled="isSuster"
                                         style="height:100px"></textarea>
                                     <p class="length-textarea">500/{{lengthDiagnosaPascaBedah}}</p>
                                 </div>
@@ -593,7 +593,7 @@
                                             <input type="radio"
                                                 name="kesuaianDiagnosa"
                                                 ng-model="item.kesuaianDiagnosa"
-                                                value="Sesuai"
+                                                value="Sesuai" ng-disabled="isSuster"
                                                 id="sesuai" class="k-radio">
                                             <label class="k-radio-label"
                                                 for="sesuai">Sesuai</label>
@@ -603,7 +603,7 @@
                                                 name="kesuaianDiagnosa"
                                                 ng-model="item.kesuaianDiagnosa"
                                                 value="Tidak Sesuai"
-                                                id="tidakSesuai"
+                                                id="tidakSesuai" ng-disabled="isSuster"
                                                 class="k-radio">
                                             <label class="k-radio-label"
                                                 for="tidakSesuai">Tidak Sesuai</label>
@@ -674,26 +674,25 @@
                                 <ul class="fieldlist">
                                     <li>
                                         <label>Tekanan Darah Setiap</label>
-                                        <input c-text-box type="input"
+                                        <input c-text-box type="input" ng-disabled="isSuster"
                                             filter="'varchar'" class="k-textbox"
-                                            ng-model="item.tekananDarah"
-                                            required/>
+                                            ng-model="item.tekananDarah" required/>
                                     </li>
                                     <li>
                                         <label>Nadi Setiap</label>
-                                        <input c-text-box type="input"
+                                        <input c-text-box type="input" ng-disabled="isSuster"
                                             filter="'varchar'" class="k-textbox"
                                             ng-model="item.nadi" />
                                     </li>
                                     <li>
                                         <label>Suhu Setiap</label>
-                                        <input c-text-box type="input"
+                                        <input c-text-box type="input" ng-disabled="isSuster"
                                             filter="'varchar'" class="k-textbox"
                                             ng-model="item.suhu" />
                                     </li>
                                     <li>
                                         <label>Pernafasan Setiap</label>
-                                        <input c-text-box type="input"
+                                        <input c-text-box type="input" ng-disabled="isSuster"
                                             filter="'varchar'" class="k-textbox"
                                             ng-model="item.pernafasan" />
                                     </li>
@@ -712,7 +711,7 @@
                                         <textarea
                                             ng-model="item.selectedAvailMakan"
                                             ng-keyup="countLengthMakan()"
-                                            maxlength="200"
+                                            maxlength="200" ng-disabled="isSuster"
                                             style="height:90px"></textarea>
                                         <p class="length-textarea">200/{{lengthMakan}}</p>
                                     </li>
@@ -721,7 +720,7 @@
                                         <textarea
                                             ng-model="item.selectedAvailMinum"
                                             ng-keyup="countLengthMinum()"
-                                            maxlength="200"
+                                            maxlength="200" ng-disabled="isSuster"
                                             style="height:90px"></textarea>
                                         <p class="length-textarea">200/{{lengthMinum}}</p>
                                     </li>
@@ -738,7 +737,7 @@
                                         <label>Macam</label>
                                         <textarea ng-model="item.macam"
                                             ng-keyup="countInfus(1)"
-                                            maxlength="100"
+                                            maxlength="100" ng-disabled="isSuster"
                                             style="height:50px"></textarea>
                                         <p class="length-textarea">100/{{lengthMacam}}</p>
                                     </li>
@@ -746,7 +745,7 @@
                                         <label>Jumlah</label>
                                         <textarea ng-model="item.jumlah"
                                             ng-keyup="countInfus(2)"
-                                            maxlength="100"
+                                            maxlength="100" ng-disabled="isSuster"
                                             style="height:50px"></textarea>
                                         <p class="length-textarea">100/{{lengthJumlah}}</p>
                                     </li>
@@ -754,7 +753,7 @@
                                         <label>Tetesan</label>
                                         <textarea ng-model="item.tetesan"
                                             ng-keyup="countInfus(3)"
-                                            maxlength="100"
+                                            maxlength="100" ng-disabled="isSuster"
                                             style="height:50px"></textarea>
                                         <p class="length-textarea">100/{{lengthTetesan}}</p>
                                     </li>
@@ -767,7 +766,7 @@
                                 <legend>
                                     <strong>4. Obat - obat</strong>
                                 </legend>
-                                <textarea ng-model="item.obatObatan"
+                                <textarea ng-model="item.obatObatan" ng-disabled="isSuster"
                                     ng-keyup="countObat()" maxlength="300"
                                     style="height:90px"></textarea>
                                 <p class="length-textarea">300/{{lengthObat}}</p>
@@ -776,7 +775,7 @@
                                 <legend>
                                     <strong>5. Instruksi Khusus</strong>
                                 </legend>
-                                <textarea ng-model="item.instruksiKhusus"
+                                <textarea ng-model="item.instruksiKhusus" ng-disabled="isSuster"
                                     ng-keyup="countLengthKInstruksiKhusus()"
                                     maxlength="300"
                                     style="height:90px"></textarea>
@@ -791,7 +790,7 @@
                     <div class="grid_8">
                     </div>
                     <div class="grid_2" style="margin-top: 22px">
-                        <button class="c-button" ng-click="Simpan()">Simpan</button>
+                        <button class="c-button" ng-click="Simpan()" ng-disabled="isSuster">Simpan</button>
                     </div>
                     <div class="grid_2" style="margin-top: 22px">
                         <button class="c-button" ng-click="Batal()">Batal</button>

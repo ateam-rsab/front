@@ -5,7 +5,7 @@ define(['initialize'], function(initialize) {
             $scope.item = {};
             $scope.dataVOloaded = true;
             $scope.now = new Date();
-            $scope.item.rke =1;
+            $scope.item.rke = 1;
             $scope.showInputObat =true
             $scope.showRacikan = false
             $scope.isRouteLoading=false;
@@ -934,6 +934,8 @@ define(['initialize'], function(initialize) {
                             nocm:$scope.item.nocm,
                             namapasien: $scope.item.namaPasien,
                             penulisresepfk: $scope.item.penulisResep.id,
+                            // norec_so null karena tidak dibutuhkan di entry resep manual
+                            norec_so:null,
                             ruanganfk: $scope.item.ruangan.id,
                             noorder:noOrder,
                             status:strStatus,

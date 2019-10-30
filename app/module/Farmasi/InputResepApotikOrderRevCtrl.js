@@ -536,14 +536,13 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.reoderResep = function () {
-                console.log($scope.dataDetailResep);
                 let data = [];
                 for(let i = 0; i < $scope.dataDetailResep.length; i++) {
                     let dataTemp = {
                         keterangan: $scope.dataDetailResep[i].obat[0].keteranganpakai,
                         intruksi: $scope.dataDetailResep[i].obat[0].keteranganlainnya,
                         resep: []
-                    };S
+                    };
                     for(let ii = 0; ii < $scope.dataDetailResep[i].obat.length; ii++) {
                         dataTemp.resep.push({
                             namaObat: $scope.dataDetailResep[i].obat[ii].namaobat,

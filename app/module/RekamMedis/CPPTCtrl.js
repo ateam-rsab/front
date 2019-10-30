@@ -559,7 +559,7 @@ define(['initialize'], function (initialize) {
                     { field: "namalengkap", title: "Pegawai", width: 150 },
                     { field: "namaruangan", title: "Ruangan", width: 150 },
                     { field: "noregistrasi", title: "No Registrasi", width: 100 },
-                    { field: "flag_", title: "Keterangan", template: '# if( flag_==1) {# SOAP # } else if( flag_== 2) {#ADIME#} else if( flag_== 3) {#SOAPIE#} #', "width": "100px" },
+                    { field: "flag_", title: "Keterangan", template: '# if( flag_ == 1) {# SOAP # } else if( flag_ == 2) {#ADIME#} else if( flag_ == 3) {#SOAPIE#} else if( flag_ == 4) {#TBAK#} #', "width": "100px" },
                     //{field: "pegawaiasalfk", title: "Pegawai", widht:100},
                     {
                         command: [

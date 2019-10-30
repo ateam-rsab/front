@@ -6,6 +6,7 @@ define(['initialize'], function (initialize) {
             $scope.dataVOloaded = true;
             $scope.now = new Date();
             $scope.pegawaiLogin = JSON.parse(localStorage.getItem('pegawai'))
+            let jenisPegawai = $scope.pegawaiLogin.jenisPegawai.jenispegawai;
             $scope.item.tglOperasi = new Date();
             var norec_apd = '';
             var norec_pd = '';
@@ -321,6 +322,12 @@ define(['initialize'], function (initialize) {
             };
 
             $scope.inputBaru = function () {
+                if(jenisPegawai != "DOKTER") {
+                    toastr.info("Anda tidak bisa menambahkan Laporan Bedah");
+                    $scope.isSuster = true;
+                    return;
+                }
+                $scope.isSuster = false;
                 $scope.showInputan = true;
                 $scope.item = {};
                 // window.scrollBy(0, 50);
@@ -426,6 +433,12 @@ define(['initialize'], function (initialize) {
 
             function editData(e) {
                 e.preventDefault();
+                
+                if(jenisPegawai !== "DOKTER") {
+                    $scope.isSuster = true;
+                }
+                
+                
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                 console.log(dataItem);
                 $scope.item.selectedAsistenOperator = {
