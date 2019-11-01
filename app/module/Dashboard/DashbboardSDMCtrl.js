@@ -846,8 +846,8 @@ $scope.generateGridColumn =  function(){
 			$scope.isRouteLoading = true;
 			// FindSdm.getDetilLogbookKinerja(idProduk, idKelas, idPegawai, tgl, ffs).then(function(data){
 			ManageSdmNew.getListData("sdm/get-detail-pasien-ffs/"+idProduk+"/"+idKelas+"/"+idKomponenHarga+"/"+idPegawai+"/"+tgl).then(function(data){
-				$scope.dats = data.data.data;
-				$scope.dats.tgl = DateHelper.formatDate(tgl, "dd-MM-yyyy");
+				$scope.dataFfs = data.data.data;
+				$scope.dataFfs.tgl = DateHelper.formatDate(tgl, "dd-MM-yyyy");
 				$scope.detilGridFfsOptions = {
 					scrollable: true,
 					columns: [{
@@ -918,7 +918,7 @@ $scope.generateGridColumn =  function(){
 						"field": "jenisPetugas", "title": "Petugas", "width": 150
 					}]
 				}
-				$scope.dataDetil = new kendo.data.DataSource({
+				$scope.dataDetilFfs = new kendo.data.DataSource({
 					data: data.data.data,
 					// aggregate: [
 					//     { field: "point", aggregate: "sum" }
