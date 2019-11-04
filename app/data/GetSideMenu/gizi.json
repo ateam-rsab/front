@@ -16,6 +16,19 @@
         "link": "#/MonitorSkorGizi"
     },
     {
+        "name": "Usulan",
+        "children": [
+            {
+                "name": "Daftar Monitoring Usulan",
+                "link": "#/DaftarMonitoringUsulan"
+            },
+            {
+                "name": "Rencana Usulan Barang",
+                "link": "#/DaftarRencanaUsulanPermintaanBarang"
+            }
+        ]
+    },
+    {
         "name": "Modul Inventori",
         "children": [
             {
