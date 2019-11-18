@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
 	'use strict';
-	initialize.controller('DaftarKirimMenuCtrl', ['$mdDialog', '$timeout', '$state', '$q', '$rootScope', '$scope', 'CacheHelper', 'DateHelper', 'ManageServicePhp',
-		function ($mdDialog, $timeout, $state, $q, $rootScope, $scope, cacheHelper, dateHelper, manageServicePhp) {
+	initialize.controller('DaftarKirimMenuCtrl', ['$mdDialog', '$timeout', '$state', '$q', '$rootScope', '$scope', 'CacheHelper', 'DateHelper', 'ManageServicePhp', 'CetakHelper',
+		function ($mdDialog, $timeout, $state, $q, $rootScope, $scope, cacheHelper, dateHelper, manageServicePhp, CetakHelper) {
 
 			$scope.dataVOloaded = true;
 			$scope.now = new Date();
@@ -476,27 +476,40 @@ define(['initialize'], function (initialize) {
 				}
 			}
 
-			$scope.showCetak = function () {
+			// $scope.showCetak = function () {
 
-				if ($scope.dataPasienSelected == undefined) {
-					toastr.error('Pilih data terlebih dahulu')
-					return
-				}
-				$scope.popUpCetakLabel.center().open();
-				$scope.popUpCetakLabel.qty = 1;
+			// 	if ($scope.dataPasienSelected == undefined) {
+			// 		toastr.error('Pilih data terlebih dahulu')
+			// 		return
+			// 	}
+			// 	$scope.popUpCetakLabel.center().open();
+			// 	$scope.popUpCetakLabel.qty = 1;
+			// }
+
+			$scope.klikDetail = function(data) {
+				$scope.dataSelected = data;
 			}
 
 			$scope.cetak = function () {
 
-				if ($scope.popUpCetakLabel.qty == 0) {
-					toastr.error('qty tidak boleh nol')
-					return
-				}
+				// if ($scope.popUpCetakLabel.qty == 0) {
+				// 	toastr.error('qty tidak boleh nol')
+				// 	return
+				// }
 
-				var client = new HttpClient();
-				client.get('http://127.0.0.1:1237/printvb/gizi?cetak-label-gizi=' + $scope.dataPasienSelected.norec_sk + '&view=false&qty=' + $scope.popUpCetakLabel.qty, function (response) {
+				console.log($scope.dataSelected.noregistrasi);
 
-				});
+				// var client = new HttpClient();
+				
+				var url = "http://172.16.99.48:7777/service-reporting/label-gizi/" + $scope.dataSelected.noregistrasi;
+				window.open(url);
+				// // http://172.16.99.48:7777/service-reporting/label-gizi/1910022368
+				// client.get("http://172.16.99.48:7777/service-reporting/label-gizi/" + $scope.dataSelected.noregistrasi, function (res) {
+				// 	console.log(res);
+				// });
+				// client.get('http://127.0.0.1:1237/printvb/gizi?cetak-label-gizi=' + $scope.dataPasienSelected.norec_sk + '&view=false&qty=' + $scope.popUpCetakLabel.qty, function (response) {
+
+				// });
 			}
 
 

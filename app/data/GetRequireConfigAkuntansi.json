@@ -1345,6 +1345,10 @@
       "urlDep": "module/Akuntansi/Jurnal/JurnalRev2018Ctrl"    
     },
     {
+      "nameDep": "DailyPostingCtrl",
+      "urlDep": "module/Akuntansi/Jurnal/DailyPostingCtrl"
+    },
+    {
       "nameDep": "PostingCtrl",
       "urlDep": "module/Akuntansi/Jurnal/PostingCtrl"
     },

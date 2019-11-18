@@ -8109,6 +8109,26 @@
     ]
   },
   {
+    "name": "DailyPosting",
+    "url": "/DailyPosting",
+    "templateurl": "module/Akuntansi/Jurnal/DailyPosting.html",
+    "controller": "DailyPostingCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
+      }
+    ]
+  },
+  {
     "name": "Posting",
     "url": "/Posting",
     "templateurl": "module/Akuntansi/Jurnal/Posting.html",

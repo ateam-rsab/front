@@ -61,7 +61,7 @@ define(['initialize'], function(initialize) {
                 $scope.item.ruanganTujuan = [];
                 $scope.item.pegawai = ModelItem.getPegawai();
                 $scope.item.namaPengirim = $scope.item.pegawai.namaLengkap;
-                $scope.item.ruanganAsal = $scope.item.pegawai.ruangan.namaRuangan;
+                $scope.item.ruanganAsal = $scope.item.pegawai.ruangan.namaruangan;
                 $scope.item.ruanganAsalTujuan = { 'id': 304, 'namaRuangan': 'Sub Bagian Tata Usaha' };
                 $scope.item.ruanganTujuan = $scope.item.ruanganAsalTujuan.namaRuangan;
                 $scope.item.tanggal = $scope.now;

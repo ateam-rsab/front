@@ -2,7 +2,7 @@ define(['initialize'], function (initialize) {
     'use strict';
     initialize.controller('DashboardResepElektronikCtrl', ['ManagePasien', 'socket', '$state', '$timeout', 'FindPasien', '$rootScope', '$scope', 'ModelItem', 'DateHelper', '$document', 'R', 'ManageLogistikPhp', 'CacheHelper',
         function (managePasien, socket, $state, $timeout, findPasien, $rootScope, $scope, ModelItem, DateHelper, $document, r, manageLogistikPhp, cacheHelper) {
-            $("#header").hide();
+            // $("#header").hide();
             $scope.item = {};
             $scope.showLoader = true;
 

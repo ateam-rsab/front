@@ -716,7 +716,7 @@ define(['initialize'], function (initialize) {
 
                                 $scope.tombolSimpanVis = false;
                                 manageLogistikPhp.poststockmerger(objSave).then(function (e) {
-                                    Kosongkan()
+                                    Kosongkan();
                                 })
                             } else {
                                 // Do nothing!

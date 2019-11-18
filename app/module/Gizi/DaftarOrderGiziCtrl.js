@@ -65,6 +65,7 @@ define(['initialize'], function (initialize) {
 			$scope.SearchData = function () {
 				loadData()
 			}
+
 			function loadData() {
 				dataMenuSiklus = [];
 				$scope.isRouteLoading = true;
@@ -148,6 +149,7 @@ define(['initialize'], function (initialize) {
 					});
 
 			};
+
 			$scope.selectRow = function (dataItem) {
 				var dataSelect = _.find($scope.sourceGrid._data, function (data) {
 					return data.norec_op == dataItem.norec_op;
@@ -171,22 +173,22 @@ define(['initialize'], function (initialize) {
 				if (dataSelect.statCheckbox) {
 					var tglMenu = moment(dataSelect.tglmenu).format('YYYY-MM-DD');
 					var arrTgl = tglMenu.split('-');
-					manageServicePhp.getDataTableTransaksi("gizi/get-produk-menudiet?jenisDietId="
-						+ dataSelect.objectjenisdietfk
-						+ "&kelasId=" + dataSelect.objectkelasfk
-						+ "&siklusKe=" + arrTgl[2]
-						+ "&jenisWaktuId=" + dataSelect.objectjeniswaktufk
-						+ "&norec_op=" + dataSelect.norec_op
-						+ "&norec_pd=" + dataSelect.norec_pd
-					).then(function (e) {
-						var result = e.data.data
-						result.forEach(function (res) {
-							dataMenuSiklus.push(res)
+					// manageServicePhp.getDataTableTransaksi("gizi/get-produk-menudiet?jenisDietId="
+					// 	+ dataSelect.objectjenisdietfk
+					// 	+ "&kelasId=" + dataSelect.objectkelasfk
+					// 	+ "&siklusKe=" + arrTgl[2]
+					// 	+ "&jenisWaktuId=" + dataSelect.objectjeniswaktufk
+					// 	+ "&norec_op=" + dataSelect.norec_op
+					// 	+ "&norec_pd=" + dataSelect.norec_pd
+					// ).then(function (e) {
+					// 	var result = e.data.data
+					// 	result.forEach(function (res) {
+					// 		dataMenuSiklus.push(res)
 
-						})
-						console.log(JSON.stringify(dataMenuSiklus));
+					// 	})
+					// 	console.log(JSON.stringify(dataMenuSiklus));
 
-					})
+					// })
 				} else {
 					for (var i = dataMenuSiklus.length - 1; i >= 0; i--)
 						if (dataMenuSiklus[i].norec_op === dataSelect.norec_op) {
@@ -200,6 +202,7 @@ define(['initialize'], function (initialize) {
 				/*end Get */
 				console.log($scope.sourceGrid)
 			}
+
 			var isCheckAll = false
 			$scope.selectUnselectAllRow = function () {
 				var tempData = $scope.sourceGrid._data;
@@ -220,22 +223,22 @@ define(['initialize'], function (initialize) {
 
 						var tglMenu = moment(tempData[i].tglmenu).format('YYYY-MM-DD');
 						var arrTgl = tglMenu.split('-');
-						manageServicePhp.getDataTableTransaksi("gizi/get-produk-menudiet?jenisDietId="
-							+ tempData[i].objectjenisdietfk
-							+ "&kelasId=" + tempData[i].objectkelasfk
-							+ "&siklusKe=" + arrTgl[2]
-							+ "&jenisWaktuId=" + tempData[i].objectjeniswaktufk
-							+ "&norec_op=" + tempData[i].norec_op
-							+ "&norec_pd=" + tempData[i].norec_pd
-						).then(function (e) {
-							var result = e.data.data
-							result.forEach(function (res) {
-								dataMenuSiklus.push(res)
+						// manageServicePhp.getDataTableTransaksi("gizi/get-produk-menudiet?jenisDietId="
+						// 	+ tempData[i].objectjenisdietfk
+						// 	+ "&kelasId=" + tempData[i].objectkelasfk
+						// 	+ "&siklusKe=" + arrTgl[2]
+						// 	+ "&jenisWaktuId=" + tempData[i].objectjeniswaktufk
+						// 	+ "&norec_op=" + tempData[i].norec_op
+						// 	+ "&norec_pd=" + tempData[i].norec_pd
+						// ).then(function (e) {
+						// 	var result = e.data.data
+						// 	result.forEach(function (res) {
+						// 		dataMenuSiklus.push(res)
 
-							})
-							console.log(JSON.stringify(dataMenuSiklus));
+						// 	})
+						// 	console.log(JSON.stringify(dataMenuSiklus));
 
-						})
+						// })
 					}
 				}
 				console.log($scope.selectedOnCheck)
@@ -535,22 +538,22 @@ define(['initialize'], function (initialize) {
 				if (checked) {
 					var tglMenu = moment(dataItem.tglmenu).format('YYYY-MM-DD');
 					var arrTgl = tglMenu.split('-');
-					manageServicePhp.getDataTableTransaksi("gizi/get-produk-menudiet?jenisDietId="
-						+ dataItem.objectjenisdietfk
-						+ "&kelasId=" + dataItem.objectkelasfk
-						+ "&siklusKe=" + arrTgl[2]
-						+ "&jenisWaktuId=" + dataItem.objectjeniswaktufk
-						+ "&norec_op=" + dataItem.norec_op
-						+ "&norec_pd=" + dataItem.norec_pd
-					).then(function (e) {
-						var result = e.data.data
-						result.forEach(function (res) {
-							dataMenuSiklus.push(res)
+					// manageServicePhp.getDataTableTransaksi("gizi/get-produk-menudiet?jenisDietId="
+					// 	+ dataItem.objectjenisdietfk
+					// 	+ "&kelasId=" + dataItem.objectkelasfk
+					// 	+ "&siklusKe=" + arrTgl[2]
+					// 	+ "&jenisWaktuId=" + dataItem.objectjeniswaktufk
+					// 	+ "&norec_op=" + dataItem.norec_op
+					// 	+ "&norec_pd=" + dataItem.norec_pd
+					// ).then(function (e) {
+					// 	var result = e.data.data
+					// 	result.forEach(function (res) {
+					// 		dataMenuSiklus.push(res)
 
-						})
-						console.log(JSON.stringify(dataMenuSiklus));
+					// 	})
+					// 	console.log(JSON.stringify(dataMenuSiklus));
 
-					})
+					// })
 				} else {
 					for (var i = dataMenuSiklus.length - 1; i >= 0; i--)
 						if (dataMenuSiklus[i].norec_op === dataItem.norec_op) {
@@ -590,6 +593,7 @@ define(['initialize'], function (initialize) {
 					row.removeClass("k-state-selected");
 				}
 			}
+
 			$scope.getSiklusMenus = function () {
 
 				var qtyProduk = 0
@@ -718,33 +722,38 @@ define(['initialize'], function (initialize) {
 
 
 
-			$scope.showCetak = function () {
+			// $scope.showCetak = function () {
 
-				if ($scope.dataPasienSelected == undefined) {
-					toastr.error('Pilih data terlebih dahulu')
-					return
-				}
-				$scope.popUpCetakLabel.center().open();
-				$scope.popUpCetakLabel.qty = 1;
+			// 	if ($scope.dataPasienSelected == undefined) {
+			// 		toastr.error('Pilih data terlebih dahulu')
+			// 		return
+			// 	}
+			// 	$scope.popUpCetakLabel.center().open();
+			// 	$scope.popUpCetakLabel.qty = 1;
+			// }
+
+			$scope.klikGrid = function (data) {
+				console.log(data)
 			}
 
 			$scope.cetak = function () {
 
-				if ($scope.popUpCetakLabel.qty == 0) {
-					toastr.error('qty tidak boleh nol')
-					return
-				}
-				var noKirim = ""
-				if ($scope.noKirim != undefined) {
-					noKirim = $scope.noKirim
-				} else {
-					noKirim = $scope.dataPasienSelected.strukkirimfk
-				}
+				// if ($scope.popUpCetakLabel.qty == 0) {
+				// 	toastr.error('qty tidak boleh nol')
+				// 	return
+				// }
+				// var noKirim = ""
+				// if ($scope.noKirim != undefined) {
+				// 	noKirim = $scope.noKirim
+				// } else {
+				// 	noKirim = $scope.dataPasienSelected.strukkirimfk
+				// }
 
-				var client = new HttpClient();
-				client.get('http://127.0.0.1:1237/printvb/gizi?cetak-label-gizi=' + noKirim + '&view=false&qty=' + $scope.popUpCetakLabel.qty, function (response) {
+				// var client = new HttpClient();
+				// client.get('http://127.0.0.1:1237/printvb/gizi?cetak-label-gizi=' + noKirim + '&view=false&qty=' + $scope.popUpCetakLabel.qty, function (response) {
 
-				});
+				// });
+				window.open("http://172.16.99.48:7777/service-reporting/label-gizi/" + $scope.dataPasienSelected.noregistrasi);
 			}
 
 
