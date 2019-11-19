@@ -1855,11 +1855,11 @@ define(['initialize'], function (initialize) {
                     ]
                 }
                 ManageSdmNew.getListData("sdm/get-list-history-pegawai/" + $state.params.idPegawai).then(function (res) {
-                    if (res.data.data.length > 0) {
-                        $scope.lastEditDate = res.data.data[0].tanggal ? dateHelper.formatDate(new Date(res.data.data[0].tanggal), 'DD-MM-YYYY HH:mm') : '-';
-                        $scope.lastEditBy = res.data.data[0].petugas ? res.data.data[0].petugas : '-';
+                    if (res.data.data.dataFound) {
+                        $scope.lastEditDate = res.data.data.data[0].tanggal ? dateHelper.formatDate(new Date(res.data.data.data[0].tanggal), 'DD-MM-YYYY HH:mm') : '-';
+                        $scope.lastEditBy = res.data.data.data[0].petugas ? res.data.data.data[0].petugas : '-';
                         $scope.dataHistoriPegawai = new kendo.data.DataSource({
-                            data: res.data.data,
+                            data: res.data.data.data,
                             pageSize: 10
                         });
                         $scope.klikRiwayat = true;
