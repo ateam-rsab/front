@@ -266,7 +266,7 @@ define(['initialize'], function(initialize) {
                     alert("Harus Non Racikan!!")
                     return
                 }
-                var kampret = prompt("Input Counter ID", "1");
+                var kampret = prompt("Input Counter ID", "3");
                 var objSave = 
                     {
                         strukresep:$scope.dataSelected.norec_resep,

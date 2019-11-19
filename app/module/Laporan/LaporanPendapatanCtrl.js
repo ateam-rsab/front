@@ -662,15 +662,22 @@ define(['initialize'], function (initialize) {
         if ($scope.item.ruangan != undefined) {
           ruanganId = $scope.item.ruangan.id
         }
-         var kelompokPasienId = ''
+
+        var TipeDokter = ''
+        if ($scope.item.TipeDokter != undefined) {
+          TipeDokter = $scope.item.TipeDokter.id
+        }
+
+        var kelompokPasienId = ''
         if ($scope.item.kelompokPasien != undefined) {
           kelompokPasienId = $scope.item.kelompokPasien.id
         }
+        
         var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
         var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
         var client = new HttpClient();
         client.get('http://127.0.0.1:1237/printvb/kasir?cetak-rekap-ffs-ranap=1' +//$scope.item.namaKasir.id+
-          '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '~' + personKa + '&idDokter=' + dokter + '&tgllibut=' + person + '&view='+ruanganId+'&kpid='+kelompokPasienId, function (response) {
+          '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '~' + personKa + '&idDokter=' + dokter + '&tgllibut=' + person + '&view='+ruanganId+'&kpid='+kelompokPasienId + '&TipeDokter='+TipeDokter, function (response) {
 
           });
       }
@@ -713,6 +720,7 @@ define(['initialize'], function (initialize) {
 
           });
       }
+      
       $scope.CetakRekapLaporanFFSIBS = function () {
         var person = prompt("Masukan tgl libur", "");
         var personKa = prompt("Pilih Jasa :                                                                          1. Jasa Medis                                                                           2. Jasa Dr Anestesi                                                                           3. Jasa Asisten Spesialis", "1");
@@ -730,11 +738,17 @@ define(['initialize'], function (initialize) {
         if ($scope.item.kelompokPasien != undefined) {
           kelompokPasienId = $scope.item.kelompokPasien.id
         }
+
+        var TipeDokter = ''
+        if ($scope.item.TipeDokter != undefined) {
+          TipeDokter = $scope.item.TipeDokter.id
+        }
+        
         var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
         var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
         var client = new HttpClient();
         client.get('http://127.0.0.1:1237/printvb/kasir?cetak-rekap-ffs-bedah=' +kelompokPasienId+//$scope.item.namaKasir.id+
-          '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '&idDokter=' + dokter + '&tgllibut=' + person + '&idJasa=' + personKa +'&view='+ruanganId, function (response) {
+          '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '&idDokter=' + dokter + '&tgllibut=' + person + '&idJasa=' + personKa +'&view='+ruanganId + '&TipeDokter='+TipeDokter, function (response) {
 
           });
       }

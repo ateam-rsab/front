@@ -299,6 +299,46 @@
                                         </div>
 
                                     </div>
+
+                                    <div class="grid_12" ng-show="showTriase">
+                                        <md-card>
+                                            <md-card-title style="font-size: 20px;font-weight: bolder;">
+                                                Hasil Triase
+                                            </md-card-title>
+                                            <md-card-content>
+                                                <div class="grid_12">
+                                                    <span style="display: block; text-align: center;font-size: 15px;font-weight: bolder">Jalan Nafas</span>
+                                                    <div class="grid_2" ng-repeat="data in triase.jalanNafas" style="text-align: center">
+                                                        <label>{{data.namatriage}}</label>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="grid_12">
+                                                    <span style="display: block; text-align: center;font-size: 15px;font-weight: bolder">Kesadaran</span>
+                                                    <div class="grid_2" ng-repeat="data in triase.kesadaran" style="text-align: center">
+                                                        <label>{{data.namatriage}}</label>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="grid_12">
+                                                    <span style="display: block; text-align: center;font-size: 15px;font-weight: bolder">Pernafasan</span>
+                                                    <div class="grid_2" ng-repeat="data in triase.pernafasan" style="text-align: center">
+                                                        <label>{{data.namatriage}}</label>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="grid_12">
+                                                    <span style="display: block; text-align: center;font-size: 15px;font-weight: bolder">Sirkulasi</span>
+                                                    <div class="grid_2" ng-repeat="data in triase.sirkulasi" style="text-align: center">
+                                                        <label>{{data.namatriage}}</label>
+                                                    </div>
+                                                </div>
+                                            </md-card-content>
+                                        </md-card>
+                                        <md-card-actions>
+                                            <md-button class="md-raised md-warn" ng-click="tutupTriase()">Tutup</md-button>
+                                        </md-card-actions>
+                                    </div>
                                     
                                 </md-content>
                             </md-tab>

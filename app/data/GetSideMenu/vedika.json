@@ -4,6 +4,10 @@
         "link": "#/DaftarRegistrasiPasienVedika"
     },
     {
+        "name": "Rekam Medis",
+        "link": "#/DaftarPasienVedika"
+    },
+    {
         "name": "Setting",
         "children": [
             {

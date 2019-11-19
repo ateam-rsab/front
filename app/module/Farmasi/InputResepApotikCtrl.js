@@ -5,7 +5,7 @@ define(['initialize'], function(initialize) {
             $scope.item = {};
             $scope.dataVOloaded = true;
             $scope.now = new Date();
-            $scope.item.rke =1;
+            $scope.item.rke = 1;
             $scope.showInputObat =true
             $scope.showRacikan = false
             $scope.isRouteLoading=false;
@@ -97,7 +97,8 @@ define(['initialize'], function(initialize) {
             manageLogistikPhp.getDataTableTransaksi("logistik/get-datacombo", true).then(function(dat){
                 $scope.isRouteLoading=false;
                 $scope.listPenulisResep = dat.data.penulisresep;
-                $scope.listRuangan = dat.data.ruangan;
+                //$scope.listRuangan = dat.data.ruangan;
+                $scope.listRuangan = dat.data.ruanganfarmasi;
                 $scope.listJenisKemasan = dat.data.jeniskemasan;
                 $scope.listProduk = dat.data.produk;
                 $scope.listAsalProduk = dat.data.asalproduk;
@@ -106,7 +107,7 @@ define(['initialize'], function(initialize) {
                 $scope.listJenisRacikan = dat.data.jenisracikan;
                 pegawaiUser = dat.data.detaillogin[0]; 
 
-                // $scope.item.ruangan = {id:$scope.listRuangan[0].id,namaruangan:$scope.listRuangan[0].namaruangan}
+                 $scope.item.ruangan = {id:$scope.listRuangan[0].id,namaruangan:$scope.listRuangan[0].namaruangan}
                 // $scope.item.penulisResep = {id:data_ih.data.detailresep.pgid,namalengkap:data_ih.data.detailresep.namalengkap}
 
                 
@@ -933,6 +934,8 @@ define(['initialize'], function(initialize) {
                             nocm:$scope.item.nocm,
                             namapasien: $scope.item.namaPasien,
                             penulisresepfk: $scope.item.penulisResep.id,
+                            // norec_so null karena tidak dibutuhkan di entry resep manual
+                            norec_so:null,
                             ruanganfk: $scope.item.ruangan.id,
                             noorder:noOrder,
                             status:strStatus,
@@ -968,9 +971,9 @@ define(['initialize'], function(initialize) {
                                 strukresep:$scope.item.resep
                             }
                     
-                        manageLogistikPhp.postbridgingminir45(objSave).then(function(e) {
+                        // manageLogistikPhp.postbridgingminir45(objSave).then(function(e) {
                             
-                        })
+                        // })
                     //Bridging minir45
 
                     //##save Logging user

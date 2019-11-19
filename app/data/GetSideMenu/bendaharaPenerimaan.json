@@ -36,6 +36,10 @@
         "link": "#/Deposite"
     },
     {
+        "name": "Daftar Deposit Pasien",
+        "link": "#/DaftarDepositPasien"
+    },
+    {
         "name": "Inventori",
         "children": [
             {

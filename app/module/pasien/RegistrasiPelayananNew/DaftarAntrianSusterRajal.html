@@ -75,7 +75,7 @@
                 </div>
             </div>
             <div class="grid_12">
-                <div class="grid_12 borderBox">
+                <div class="grid_12">
 
                     <div kendo-grid id="grid"
                         k-groupable="'true'"
@@ -329,6 +329,49 @@
             <!-- </div> -->
             <!--    <div class="clear">
         <button class="k-button" ng-click="simpanDokter(item, items.pilihDokter)" style="float:right;margin-top:4%">Simpan</button> -->
+        </div>
+    </div>
+
+    <div kendo-window="popupEdit" k-title="'Edit Dokter Konsulatasi'" k-width="800" k-visible="false" k-on-open="win2visible= true" k-on-close="win2visible= false">
+        <div class="panel panel-default container_12">
+            <md-card>
+                <md-card-title>
+                    <span style="font-size: 15px; font-weight: bold">
+                        {{item.jeniskonsultasi}}
+                    </span>
+                </md-card-title>
+                <div class="grid_12">
+                    <div class="grid_3">
+                        <label for="nama">No. RM</label>
+                        <input class="k-textbox" ng-model="edit.nocm" disabled>
+                    </div>
+                    <div class="grid_3">
+                        <label for="nama">Nama Pasien</label>
+                        <input class="k-textbox" ng-model="edit.namapasien" disabled>
+                    </div>
+                    <div class="grid_3">
+                        <label for="nama">Dokter Asal</label>
+                        <input class="k-textbox" ng-model="edit.pengonsul" disabled>
+                    </div>
+                    <div class="grid_3">
+                        <label for="nama">Dokter Tujuan</label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.dokter" k-data-text-field="'namalengkap'" 
+                            k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDokter" />
+                    </div>
+                    <!-- <md-card-action>
+                        <button class="k-button k-grid-" ng-click="Save()" ng-disabled="isVerifikasi">Simpan</button>
+                    </md-card-action>  -->
+                </div>
+                
+            </md-card>
+            <div class="grid_12">
+                <div class="k-edit-buttons k-state-default pull-right"
+                    style="margin-top:10px">
+                    <button class="k-button k-grid-" ng-click="saveDokter()" ng-disabled="isVerifikasi">Simpan</button>
+                    <button class="k-button k-button-icontext" ng-click="popupEdit.close()"><span
+                            class="k-icon k-cancel"></span>Tutup</button>
+                </div>
+            </div>
         </div>
     </div>
 

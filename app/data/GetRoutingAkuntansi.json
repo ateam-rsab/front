@@ -2172,6 +2172,66 @@
     ]
   },
   {
+    "name": "InputResepElektronikApotik",
+    "url": "/InputResepElektronikApotik",
+    "templateurl": "module/Farmasi/InputResepElektronikApotik.html",
+    "controller": "InputResepElektronikApotikCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      }
+    ]
+  },
+  {
+    "name": "ProduksiElektronik",
+    "url": "/ProduksiElektronik/:norec_so",
+    "templateurl": "module/Apotek/Penjualan/ProduksiElektronik.html",
+    "controller": "ProduksiElektronikCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      }
+    ]
+  },
+  {
+    "name": "EditResepElektronik",
+    "url": "/EditResepElektronik/:norec_so",
+    "templateurl": "module/Apotek/Penjualan/EditResepElektronik.html",
+    "controller": "EditResepElektronikCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      }
+    ]
+  },
+  {
     "name": "KonversiSatuan",
     "url": "/KonversiSatuan",
     "templateurl": "module/Farmasi/KonversiSatuan.html",
@@ -8049,6 +8109,26 @@
     ]
   },
   {
+    "name": "DailyPosting",
+    "url": "/DailyPosting",
+    "templateurl": "module/Akuntansi/Jurnal/DailyPosting.html",
+    "controller": "DailyPostingCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
+      }
+    ]
+  },
+  {
     "name": "Posting",
     "url": "/Posting",
     "templateurl": "module/Akuntansi/Jurnal/Posting.html",
@@ -11006,6 +11086,29 @@
     ]
   },
   {
+    "name": "RekamMedis.TBAK",
+    "url": "/TBAK",
+    "templateurl": "module/RekamMedis/TBAK.html",
+    "controller": "TBAKCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "PhpService",
+        "define": "PhpService"
+      },
+      {
+        "define": "RekamMedisCtrl"
+      }
+    ]
+  },
+  {
     "name": "RekamMedis.AsesmenGizi",
     "url": "/AsesmenGizi",
     "templateurl": "module/RekamMedis/AsesmenGiziAwal.html",
@@ -12346,6 +12449,30 @@
       {
         "module": "LoginServices",
         "define": "LoginService"
+      },
+      {
+        "module": "PhpService",
+        "define": "PhpService"
+      }
+    ]
+  },
+  {
+    "name": "DaftarPasienVedika",
+    "url": "/DaftarPasienVedika",
+    "controller": "DaftarPasienVedikaCtrl",
+    "templateurl": "module/pasien/RegistrasiPelayananNew/DaftarPasienVedika.html",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "PasienService",
+        "define": "PasienService"
       },
       {
         "module": "PhpService",

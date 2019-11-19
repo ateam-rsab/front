@@ -1,0 +1,176 @@
+<style>
+	.kat-1 {
+		background-color: #ffa500;
+	}
+	.kat-2 {
+		background-color: #ff3232;
+		color: white;
+	}
+	.kat-3 {
+		background-color: #ffff46;
+	}
+	.kat-4 {
+		background-color: #9acd32;
+	}
+
+</style>
+<div ng-show="dataVOloaded">
+	<c-panel item="item" header="'Daftar Hasil Triase'" disabled>
+
+
+
+
+		<div class="grid_12">
+
+			<!-- periode -->
+
+			<div class="grid_3" style="margin-top: 5px">
+				<label c-label item="item" c-label-text="Nama Pasien"></label>
+				<input c-text-box type="input" filter="" class="k-textbox"
+					ng-model="item.carinamapasien" />
+
+			</div>
+
+			<div class="grid_4">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="periode"></label>
+				</div>
+				<!-- <div class="clear"></div> -->
+
+				<div class="grid_6">
+					<input style="width: 100%" k-ng-model="item.tglMasukAwal" kendo-date-picker
+						k-max="now" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
+				</div>
+
+
+
+				<div class="grid_6">
+					<input style="width: 100%" k-ng-model="item.tglMasukAkhir"
+						kendo-date-picker k-max="now" placeholer="dd-mm-yyyy"
+						k-format="'dd-MM-yyyy'" />
+				</div>
+			</div>
+			<div class="grid_1" style="margin-top:26px">
+				<button class="c-button" ng-click="cari()">Cari</button>
+			</div>
+
+		</div>
+
+		<!-- AsuransiPasien -->
+		<div class="grid_12">
+
+			<!-- grid table -->
+			<div class="grid_12">
+				<kendo-grid k-options="mainGridOptions" k-data-source="dataSource"
+					k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+			</div>
+			<div class="clear"></div>
+		</div>
+
+		<div class="clear"></div>
+
+
+	</c-panel>
+	<div kendo-window="popUpEdit" k-title="'Edit No. Registrasi'"
+		k-width="650" k-visible="false" k-on-open="win2visible= true"
+		k-on-close="win2visible= false">
+		<div class="panel panel-default container_12" style="padding: 0px 10px;">
+			<md-card>
+				<md-card-content>
+					<div style="display: flex;justify-content: space-around">
+						<div>
+							<strong>Tanggal & Jam Masuk</strong>
+							<p>{{edit.tanggalmasuk}}</p>
+						</div>
+
+						<div>
+							<strong>No. Transaksi</strong>
+							<p>{{edit.generatetriase}}</p>
+						</div>
+
+						<div>
+							<strong>Nama Pasien</strong>
+							<p>{{edit.namapasien}}</p>
+						</div>
+					</div>
+					<hr>
+					<div class="grid_12">
+						<div class="grid_10">
+							<label for="noreg">
+								<strong>
+									No. Registrasi
+								</strong>
+							</label>
+							<input c-text-box type="input" filter="" class="k-textbox"
+								ng-model="item.editNoreg" />
+						</div>
+						<div class="grid_2" style="margin-top: 20px">
+							<kendo-button icon="'k-icon k-i-refresh'" ng-click="validationNoreg()"></kendo-button>
+						</div>
+					</div>
+					<hr ng-show="isSafeSave">
+					<div class="grid_12" style="display: flex;justify-content: space-around"
+						ng-show="isSafeSave">
+						<div>
+							<strong>No Registrasi</strong>
+							<p>{{dataRegis.noreg}}</p>
+						</div>
+
+						<div>
+							<strong>Nama Pasien</strong>
+							<p>{{dataRegis.nama}}</p>
+						</div>
+					</div>
+				</md-card-content>
+			</md-card>
+		</div>
+		<div class="grid_12">
+			<div class="k-edit-buttons k-state-default pull-right"
+				style="margin-top:10px">
+				<button class="k-button k-button-icontext" ng-click="close()"><span
+						class="k-icon k-cancel"></span>Batal</button>
+				<button class="k-button k-button-icontext k-primary k-grid-update"
+					ng-click="editNoregistrasi()"
+					ng-disabled="isDisable"><span class="k-icon k-save"></span>Save</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="grid_4">
+		<md-card>
+			<md-card-content>
+				<div class="grid_12" style="margin: 5px">
+					<span style="width:10px;height: 10px;border:1px solid black;background-color: orange">&nbsp;&nbsp;&nbsp;</span>
+					<span style="font-weight: bolder">Kategori 1</span>
+					<span>:</span>
+					<span>Harus segera ditangani</span>
+				</div>
+				<div class="grid_12" style="margin: 5px">
+					<span style="width:10px;height: 10px;border:1px solid black;background-color: #ff3232">&nbsp;&nbsp;&nbsp;</span>
+					<span style="font-weight: bolder">Kategori 2</span>
+					<span>:</span>
+					<span>Maksimal waktu tunggu 10 menit</span>
+				</div>
+				<div class="grid_12" style="margin: 5px">
+					<span style="width:10px;height: 10px;border:1px solid black;background-color: #ffff46">&nbsp;&nbsp;&nbsp;</span>
+					<span style="font-weight: bolder">Kategori 3</span>
+					<span>:</span>
+					<span>Maksimal waktu tunggu 30 menit</span>
+				</div>
+				<div class="grid_12" style="margin: 5px">
+					<span style="width:10px;height: 10px;border:1px solid black;background-color: #9acd32">&nbsp;&nbsp;&nbsp;</span>
+					<span style="font-weight: bolder">Kategori 4</span>
+					<span>:</span>
+					<span>Maksimal waktu tunggu 60 menit</span>
+				</div>
+				<div class="grid_12" style="margin: 5px">
+					<span style="width:10px;height: 10px;border:1px solid black;background-color: whitesmoke">&nbsp;&nbsp;&nbsp;</span>
+					<span style="font-weight: bolder">Kategori 5</span>
+					<span>:</span>
+					<span>Maksimal waktu tunggu 120 menit</span>
+				</div>
+			</md-card-content>
+		</md-card>
+	</div>
+
+</div>

@@ -1,10 +1,10 @@
 define([], function () {
     'use strict';
-    var baseURLFrontend = 'http://172.16.99.126',
+    var baseURLFrontend = 'http://172.16.99.160',
         portFrontend = '5555',
 
-        baseURLPhp = 'http://192.168.12.3',
-        portPhp = '5555',
+        baseURLPhp = 'http://172.16.111.25',
+        portPhp = '8000',
 
         baseURLJava = 'http://192.168.12.3',
         portJava = '8080',
@@ -33,10 +33,10 @@ define([], function () {
             urlRoute: 'http://smart.rsabhk.co.id:2222/app/data/GetRouting',
 
             urlRoute_Akuntansi: 'http://smart.rsabhk.co.id:2222/app/data/GetRoutingAkuntansi',
-            urlDataGeneric_Akuntansi: 'http://smart.rsabhk.co.id/simrs_harkit/service/list-generic?view=',
-            urlDataTableMaster_Akuntansi: 'http://smart.rsabhk.co.id/simrs_harkit/service/master/',
-            urlDataTableTransaksi_Akuntansi: 'http://smart.rsabhk.co.id/simrs_harkit/service/transaksi/',
-            baseApiPostData_Akuntansi: 'http://smart.rsabhk.co.id/simrs_harkit/service/',
+            urlDataGeneric_Akuntansi: 'http://smart.rsabhk.co.id/service/list-generic?view=',
+            urlDataTableMaster_Akuntansi: 'http://smart.rsabhk.co.id/service/master/',
+            urlDataTableTransaksi_Akuntansi: 'http://smart.rsabhk.co.id/service/transaksi/',
+            baseApiPostData_Akuntansi: 'http://smart.rsabhk.co.id/service/',
 
             urlDataMaster: 'http://smart.rsabhk.co.id:2222/jasamedika-web/generated_master/'
 
@@ -45,13 +45,18 @@ define([], function () {
     } else {
         return {
             /**Login PHP */
+<<<<<<< HEAD
             // baseUrlLogin: `${baseURLPhp}:${portPhp}/simrs_harkit/service/auth/sign-in`,
             // baseUrlLogout: `${baseURLPhp}:${portPhp}/simrs_harkit/service/auth/sign-out`,
+=======
+            baseUrlLogin: `${baseURLPhp}:${portPhp}/service/auth/sign-in`,
+            baseUrlLogout: `${baseURLPhp}:${portPhp}/service/auth/sign-out`,
+>>>>>>> 3447f54d1cce34f93b3207f17c6db5d800243f6f
 
-            urlDataGeneric_Akuntansi: `${baseURLPhp}:${portPhp}/simrs_harkit/service/list-generic?view=`,
-            urlDataTableMaster_Akuntansi: `${baseURLPhp}:${portPhp}/simrs_harkit/service/master/`,
-            urlDataTableTransaksi_Akuntansi: `${baseURLPhp}:${portPhp}/simrs_harkit/service/transaksi/`,
-            baseApiPostData_Akuntansi: `${baseURLPhp}:${portPhp}/simrs_harkit/service/`,
+            urlDataGeneric_Akuntansi: `${baseURLPhp}:${portPhp}/service/list-generic?view=`,
+            urlDataTableMaster_Akuntansi: `${baseURLPhp}:${portPhp}/service/master/`,
+            urlDataTableTransaksi_Akuntansi: `${baseURLPhp}:${portPhp}/service/transaksi/`,
+            baseApiPostData_Akuntansi: `${baseURLPhp}:${portPhp}/service/`,
 
             /**Login Java */
             baseUrlLogin: `${baseURLJava}:${portJava}/jasamedika-web/auth/sign-in`,

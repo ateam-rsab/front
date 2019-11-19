@@ -1,0 +1,375 @@
+[   
+    {
+        "name": "Pelatihan",
+        "children": [
+            {
+                "name": "Master",
+                "children": [
+                    {
+                        "name": "Master GBPP",
+                        "link": "#/MasterGGBP"
+                    },
+                    {
+                        "name": "Master Jenis Pelatihan",
+                        "link": "#/MasterJenisPelatihan"
+                    },
+                    {
+                        "name": "Master Akreditasi Pelatihan",
+                        "link": "#/MasterAkreditasiPelatihan"
+                    },
+                    {
+                        "name": "Master Biaya Diklat",
+                        "link": "#/MasterBiayaDiklatRev"
+                    },
+                    {
+                        "name": "Master Narasumber",
+                        "link": "#/MasterNarasumber"
+                    }
+                ]
+            },
+            {
+                "name": "Pengajuan Pelatihan",
+                "children": [
+                    {
+                        "name": "Monitoring Pengajuan Pelatihan",
+                        "link": "#/MonitoringPengajuanPelatihan"
+                    },
+                    {
+                        "name": "Pengajuan Pelatihan",
+                        "link": "#/PermintaaanPelatihanRev"
+                    },
+                    {
+                        "name": "Daftar Undangan Pelatihan",
+                        "link": "#/DaftarUndanganPelatihan"
+                    },
+                    {
+                        "name": "Daftar Kehadiran Peserta Pelatihan",
+                        "link": "#/DaftarKehadiranPesertaPelatihan"
+                    },
+                    {
+                        "name": "Daftar Rekapitulasi Kehadiran Peserta Pelatihan",
+                        "link": "#/DaftarRekapitulasiKehadiran"
+                    },
+                    {
+                        "name": "Pelaksanaan Pelatihan",
+                        "link": "#/PelaksanaanPelatihan"
+                    }
+                ]
+            },
+            {
+                "name": "Narasumber dan Kompetensi",
+                "link": "#/InputNarasumberRev"
+            },
+            {
+                "name": "Kurikulum Pelatihan",
+                "link": "#/DaftarKurikulumPelatihan"
+            },
+            {
+                "name": "Evaluasi Narasumber",
+                "link": "#/DaftarEvaluasiNarasumber"
+            },
+            {
+                "name": "Evaluasi Penyelenggara",
+                "link": "#/DaftarEvaluasiPenyelenggara"
+            },
+            {
+                "name": "Hasil RTL Penilaian Pegawai",
+                "link": "#/HasilRTL"
+            },
+            {
+                "name": "Rekapitulasi Hasil Evaluasi Narasumber",
+                "link": "#/RekapitulasiNarasumber"
+            },
+            {
+                "name": "Input Evaluasi Penyelenggaraan",
+                "link": "#/InputEvaluasiPenyelenggaraanRev"
+            },
+            {
+                "name": "Rekapitulasi Hasil Evaluasi Penyelenggaraan",
+                "link": "#/RekapitulasiHasilEvaluasi"
+            },
+            {
+                "name": "Request Protokol dan Dokumentasi",
+                "link": "#/RequestProtokol"
+            },
+            {
+                "name": "Kelola Bank Soal",
+                "link": "#/KelolaBankSoal"
+            },
+            {
+                "name": "Daftar Soal",
+                "link": "#/DaftarSoal"
+            },
+            {
+                "name": "Pre Test",
+                "link": "#/PreTest"
+            },
+            {
+                "name": "Post Test",
+                "link": "#/PostTest"
+            },
+            {
+                "name": "Verifikasi Nilai Pre-Test dan Post Test",
+                "link": "#/VerifikasiNilai"
+            },
+            {
+                "name": "Penyusunan Unit Cost Kegiatan",
+                "link": "#/UnitCostKegiatan"
+            },
+            {
+                "name": "Upload Template Sertifikat Pelatihan",
+                "link": "#/UploadSertifikatPelatihan"
+            },
+            {
+                "name": "Laporan Jam Pelatihan Per Karyawan",
+                "link": "#/LaporanJamPelatihan"
+            },
+            {
+                "name": "Laporan Penerimaan Biaya Pelatihan Eksternal",
+                "link": "#/LaporanPenerimaanBiayaEksternal"
+            },
+            {
+                "name": "Laporan Jumlah Peserta Pelatihan",
+                "link": "#/LaporanJumlahPeserta"
+            },
+            {
+                "name": "Input Evaluasi Pasca Pelatihan",
+                "link": "#/InputEvaluasi"
+            },
+            {
+                "name": "Input Paket Pelatihan",
+                "link": "#/PaketPelatihanSeminar"
+            },
+            {
+                "name": "Daftar Paket Pelatihan",
+                "link": "#/DaftarPaketPelatihan"
+            },
+            {
+                "name": "Isi Pelatihan",
+                "link": "#/IsiPelatihan"
+            },
+            {
+                "name": "Pengajuan Perjalanan Dinas",
+                "link": "#/PengajuanPerjalananDinas"
+            },
+            {
+                "name": "Daftar Pengajuan Perjalanan Dinas",
+                "link": "#/DaftarPengajuanPerjalananDinas"
+            },
+            {
+                "name": "Daftar  Terima Pengajuan Perjalanan Dinas",
+                "link": "#/DaftarTerimaPengajuanPerjalananDinas"
+            }
+        ]
+    },
+    {
+        "name": "Information",
+        "children": [
+            {
+                "name": "Informasi Tarif Layanan",
+                "link": "#/TarifLayanan"
+            },
+            {
+                "name": "Informasi Jadwal Dokter",
+                "link": "#/InformasiJadwalDokter"
+            },
+            {
+                "name": "Informasi Jadwal Pelayanan Dokter",
+                "link": "#/InformasiJadwalPelayananDokter"
+            },
+            {
+                "name": "Ketersediaan Tempat Tidur",
+                "link": "#/KetersediaanTempatTidur"
+            }
+        ]
+    },
+    {
+        "name": "Inventori",
+        "children": [
+            {
+                "name": "Stok Barang",
+                "children": [
+                    {
+                        "name": "Data Stok Ruangan",
+                        "link": "#/Logistik/StokRuangan"
+                    },
+                    {
+                        "name": "Stok Opname",
+                        "link": "#/Logistik/StokOpname"
+                    },
+                    {
+                        "name": "Kartu Stok",
+                        "link": "#/KartuStok"
+                    },
+                    {
+                        "name": "Daftar Nilai Persediaan",
+                        "link": "#/DaftarNilaiPersediaan"
+                    }
+                ]
+            },
+            {
+                "name": "Daftar Transfer Barang",
+                "children": [
+                    {
+                        "name": "Order Barang",
+                        "link": "#/OrderBarangLogistik"
+                    },
+                    {
+                        "name": "Daftar Order Barang",
+                        "link": "#/DaftarOrderBarang"
+                    },
+                    {
+                        "name": "Kirim Barang",
+                        "link": "#/KirimBarangLogistik"
+                    },
+                    {
+                        "name": "Daftar Distribusi Barang",
+                        "link": "#/DaftarDistribusiBarang"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "SDM",
+        "children": [
+            {
+                "name": "Target Bobot Uraian Tugas",
+                "link": "#/TargetBobot"
+            },
+            {
+                "name": "Input Logbook",
+                "link": "#/InputLogbook"
+            },
+            {
+                "name": "Indeks Kinerja Individu",
+                "link": "#/IndeksKinerjaIndividuSDM"
+            },
+            {
+                "name": "Permohonan Perubahan Status Pegawai (Cuti & Dinas Perjalanan)",
+                "link": "#/PermohonanPerubahanStatusPegawai"
+            },
+            {
+                "name": "Daftar Ketidakhadiran Pegawai yang Disetujui",
+                "link": "#/DaftarPenangguhanCuti"
+            },
+            {
+                "name": "Pengajuan Mutasi Pegawai",
+                "link": "#/PengajuanMutasiPegawai"
+            },
+            {
+                "name": "Pengajuan Resign Pegawai",
+                "link": "#/PengajuanResignPegawai"
+            },
+            {
+                "name": "Pengajuan Sanksi Pegawai",
+                "link": "#/PengajuanSanksiPegawai"
+            },
+            {
+                "name": "Daftar Pengajuna Mutasi Sanksi Resign",
+                "link": "#/DaftarPengajuanMutasiSanksiResign"
+            },
+            {
+                "name": "Monitoring Absensi",
+                "link": "#/MonitoringAbsensiPegawai"
+            },
+            {
+                "name": "InputLemburPegawaiUnitKerja",
+                "link": "#/InputLemburPegawaiUnitKerja"
+            },
+            {
+                "name": "Verifikasi Uraian Tugas Bawahan",
+                "link": "#/VerifikasiUraianTugasPegawaiLogin"
+            }
+        ]
+    },
+    {
+        "name": "Aplikasi IT",
+        "children": [
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/RevPermintaanPerbaikandariRuanganITNew"
+            }
+        ]
+    },
+    {
+        "name": "IP3RS",
+        "children": [
+            {
+                "name": "Permintaan Perbaikan dari Ruangan",
+                "link": "#/PermintaanPerbaikandariRuangan"
+            },
+            {
+                "name": "Respond Perbaikan",
+                "link": "#/RespondPerbaikan"
+            }
+        ]
+    },
+    {
+        "name": "Tata Usaha",
+        "children": [
+            {
+                "name": "Membuat Draft Surat",
+                "link": "#/BuatDraftSurat"
+            },
+            {
+                "name": "Daftar Draft",
+                "link": "#/DaftarDraft"
+            },
+            {
+                "name": "Daftar Draft Surat Masuk",
+                "link": "#/DaftarDraftSuratMasuk"
+            },
+            {
+                "name": "Dokumen Verbal Konsep",
+                "link": "#/DokumenVerbalKonsep/"
+            },
+            {
+                "name": "Verbal Konsep",
+                "link": "#/VerbalKonsep/"
+            },
+            {
+                "name": "Surat Masuk Internal dan Eksternal",
+                "link": "#/SuratMasukInternaldanEksternal"
+            },
+            {
+                "name": "Daftar Surat Masuk Internal Eksternal",
+                "link": "#/DaftarSuratMasukInternalEksternal"
+            },
+            {
+                "name": "Nota Dinas",
+                "link": "#/NotaDanDisposisi"
+            },
+            {
+                "name": "Daftar Nota Dinas",
+                "link": "#/ListNotaDinas"
+            }
+        ]
+    },
+    {
+        "name": "Aplikasi Laundry",
+        "children": [
+            {
+                "name": "Permintaan Linen Bersih",
+                "link": "#/PermintaanLinenByRuangan"
+            },
+            {
+                "name": "Verifikasi",
+                "link": "#/VerifikasiTerima"
+            }
+        ]
+    },
+    {
+        "name": "Setting",
+        "children": [
+            {
+                "name": "Map Akomodasi Otomatis",
+                "link": "#/MapAkomodasiOtomatis"
+            },
+            {
+                "name": "Ubah Password",
+                "link": "#/UbahPassword"
+            }
+        ]
+    }
+]

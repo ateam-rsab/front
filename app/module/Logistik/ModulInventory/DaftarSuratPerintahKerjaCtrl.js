@@ -246,7 +246,7 @@ define(['initialize'], function(initialize) {
                 // cacheHelper.set('UsulanPelaksanaanKegiatanCtrl', chacePeriode);
                 // $state.go('UsulanPelaksanaanKegiatan')
                 cacheHelper.set('KegiatanSPKCtrl', chacePeriode);
-                $state.go('KegiatanSPK', {
+                $state.go('EditKegiatanSPK', {
                     norec: $scope.dataSelected.norec,
                     noOrder:'EditTerima'
                 });

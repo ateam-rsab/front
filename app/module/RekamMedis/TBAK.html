@@ -1,0 +1,45 @@
+<div class="panel panel-default">
+    <div class="panel-heading" style="font-size: 18px;" c-translate>TBAK</div>
+    <md-content class="md-padding">
+        <div class="panel-body grid_12" style="margin-bottom: 20px">
+            <div class="grid_12 headerBox">
+                <p>Riwayat TBAK</p>
+            </div>
+            <div class="grid_12 borderBox">
+                <div kediv kendo-grid id="idGridCPPT" k-data-source="sourceCPPT"
+                    k-selectable="'row'" options="gridTbak"
+                    k-ng-model="dataCPPT"></div>
+            </div>
+        </div>
+
+        <div class="panel-body grid_12">
+            <div class="grid_12 headerBox">
+                <p>TBAK yang belum diverifikasi</p>
+            </div>
+            <div class="grid_12 borderBox">
+                <div kediv kendo-grid id="idGridCPPT" k-data-source="sourceCPPT"
+                    k-selectable="'row'" options="gridTbak"
+                    k-ng-model="dataCPPT"></div>
+            </div>
+        </div>
+    </md-content>
+    <div kendo-window="popUp" k-title="'Input TBAK'"
+        k-width="1200"
+        k-visible="false"
+        k-on-open="win2visible= true"
+        k-on-close="win2visible= false">
+        <div class="panel panel-default container_12" style="padding: 0px
+            10px;">
+            <textarea ng-model="item.contentTBAK"
+                style="height:180px"></textarea>
+            <div class="k-edit-buttons k-state-default pull-right"
+                style="margin-top:10px">
+                <button class="k-button k-button-icontext k-primary
+                    k-grid-update" ng-click="Save()" ng-disabled="isDisable"><span
+                        class="k-icon k-update"></span>Simpan</button>
+                <button class="k-button k-button-icontext" ng-click="popUp.close()"><span
+                        class="k-icon k-cancel"></span>Batal</button>
+            </div>
+        </div>
+    </div>
+</div>

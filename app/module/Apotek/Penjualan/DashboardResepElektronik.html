@@ -1,0 +1,61 @@
+<style>
+    .resep-title {
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .header-resep {
+        font-weight: bolder;
+    }
+    .card-block-ui {
+        background-color: rgba(107, 107, 107, 0.5);
+    }
+    .loader {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
+    .dibatalkan-pasien {
+        background-color:#f75f00;
+		color: #000000;
+		font-weight: bold;
+    }
+    .verifikasi {
+        background-color:#52de97;
+		color: #000000;
+		font-weight: bold;
+    }
+    .selesai {
+        background-color:#1089ff;
+		color: #fff;
+		font-weight: bold;
+    }
+    .sudah-bayar {
+        background-color:#d1eecc;
+		color: #000000;
+		font-weight: bold;
+    }
+    .blm-verifikasi {
+        background-color:#f34573;
+		color: #fff;
+		font-weight: bold;
+    }
+</style>
+<md-card>
+    <md-card-title>
+        <md-card-title-text style="text-align: center;font-size: 50px;font-weight: bolder;">
+            Antrian Resep
+        </md-card-title-text>
+    </md-card-title>
+    <md-card-content ng-show="showLoader">
+        <div class="loader">
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        </div>
+    </md-card-content>
+    <md-card-content  ng-show="!showLoader">
+        <div kendo-grid k-selectable="'row'"
+            k-sortable="'true'"
+            k-data-source="patienGrids"
+            k-options="gridOptionDashboardResep">
+        </div>
+    </md-card-content>
+</md-card>

@@ -12,6 +12,7 @@ define(['initialize'], function(initialize) {
             $scope.isRouteLoading=false;
             $rootScope.isOpen = true;
             $scope.cboUbahDokter= true;
+            $scope.dataLogin = JSON.parse(localStorage.getItem('pegawai'));
             // $scope.isRouteLoading = true;
             // $scope.title = "ini page pencarian pasien";
             // $scope.kodeRuangan = $state.params.kodeRuangan;
@@ -20,6 +21,122 @@ define(['initialize'], function(initialize) {
             loadCombo()
             loadData()
             // loadData()
+            loadKonsul();
+            function loadKonsul() {
+                manageSarprasPhp.getDataTableTransaksi("rekam-medis/get-order-konsul?dokterid=" + $scope.dataLogin.id).then(function (e) {
+                    var res = e.data.data
+                    for (var i = res.length - 1; i >= 0; i--) {
+                        if (res[i].norec_apd != null)
+                            res.splice([i], 1)
+                    }
+                    if (res.length > 0) {
+                        $scope.showNotif = true
+                        $scope.lengthKonsul = res.length;
+                    } else
+                        $scope.showNotif = false
+
+                })
+            }
+
+            $scope.konsulOpt = {
+
+                pageable: true,
+                scrollable: true,
+                columns: [
+                    // { field: "rowNumber", title: "#", width: 40, width: 40, attributes: { style: "text-align:right; padding-right: 15px;"}, hideMe: true},
+                    { field: "no", title: "No", width: 40, headerAttributes: { style: "text-align : center" } },
+                    { field: "noregistrasi", title: "No Registrasi", width: 100, headerAttributes: { style: "text-align : center" } },
+                    { field: "nocm", title: "No RM", width: 80, headerAttributes: { style: "text-align : center" } },
+                    { field: "namapasien", title: "Nama Pasien", width: 150, headerAttributes: { style: "text-align : center" } },
+                    { field: "tglorder", title: "Tanggal", width: 120, headerAttributes: { style: "text-align : center" } },
+                    { field: "ruanganasal", title: "Ruangan Asal", width: 120, headerAttributes: { style: "text-align : center" } },
+                    { field: "ruangantujuan", title: "Ruangan Tujuan", width: 150, headerAttributes: { style: "text-align : center" } },
+                    { field: "pengonsul", title: "Dokter<br> Pengonsul", width: 120, headerAttributes: { style: "text-align : center" } },
+                    // { field: "keteranganorder", title: "Keterangan", width: 120, headerAttributes: { style: "text-align : center" }},
+                    { field: "status", title: "Status", width: 120, headerAttributes: { style: "text-align : center" } },
+                    { command: [{ name: "edit", text: "Verifikasi", click: verif }], title: "&nbsp;", width: 120 }
+                ],
+            };
+            
+            function verif(e) {
+                e.preventDefault();
+                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                if (dataItem.status == 'Selesai') {
+                    $scope.isVerify = true;
+                } else {
+                    $scope.isVerify = false;
+                }
+                $scope.item.jeniskonsultasi = dataItem.jeniskonsultasi;
+                $scope.item.dokterPengonsul = dataItem.pengonsul;
+                $scope.item.keteranganOrder = dataItem.keteranganorder;
+                $scope.item.diagnosaKerja = dataItem.diagnosakerja;
+                $scope.item.terapi = dataItem.terapi;
+                $scope.item.diagnosa = dataItem.diagnosis;
+                $scope.item.masalah = dataItem.masalah;
+                $scope.item.saran = dataItem.saran;
+                $scope.kelasfk = dataItem.kelasfk;
+                $scope.item.periksaDidapatkan = dataItem.pemeriksaandidapat;
+                $scope.item.kesan = dataItem.keterangankeperluan;
+                $scope.statusKonsultasi = dataItem.status;
+                $scope.noRecKonsultasi = dataItem.norec;
+                $scope.noRecPdKonsultasi = dataItem.norec_pd;
+                $scope.pegawaiFkKonsultasi = dataItem.pegawaifk;
+                $scope.objectRuanganFkTujuanKonsultasi = dataItem.objectruangantujuanfk;
+                $scope.objectRuanganFkKonsultasi = dataItem.objectruanganfk;
+                $scope.winDescription.center().open();
+            }
+
+            function loadGridKonsul() {
+                manageSarprasPhp.getDataTableTransaksi("rekam-medis/get-order-konsul?dokterid=" + $scope.dataLogin.id).then(function (e) {
+                    var result = e.data.data
+                    if (result.length > 0) {
+                        $scope.item.dokterTujuan = result[0].namalengkap
+                        for (var i = 0; i < result.length; i++) {
+                            result[i].no = i + 1
+                            if (result[i].norec_apd != null)
+                                result[i].status = 'Selesai'
+                            else
+                                result[i].status = '-'
+                        }
+                    }
+                    $scope.sourceKonsul = new kendo.data.DataSource({
+                        data: result,
+                        pageSize: 20,
+                    });
+                }, (error) => {
+                    throw error;
+                })
+            }
+
+            $scope.verifikasiKonsultasiDokter = function () {
+                var length = $scope.sourceKonsul._data.length + 1;
+                var dataKonsul = {
+                    "kelasfk": $scope.kelasfk,
+                    "noantrian": length,
+                    "norec_so": $scope.noRecKonsultasi,
+                    "norec_pd": $scope.noRecPdKonsultasi,
+                    "dokterfk": $scope.pegawaiFkKonsultasi,
+                    "objectruangantujuanfk": $scope.objectRuanganFkTujuanKonsultasi,
+                    "objectruanganasalfk": $scope.objectRuanganFkKonsultasi,
+                    "periksaDidapatkan": $scope.item.periksaDidapatkan,
+                    "pemeriksaandidapat": $scope.item.periksaDidapatkan,
+                    "keterangankeperluan": $scope.item.kesan,
+                    "saran": $scope.item.saran,
+                    "diagnosis": $scope.item.diagnosa
+                }
+                console.log(dataKonsul);
+                manageSarprasPhp.saveDataTransaksi('rekam-medis/save-konsul-from-order', dataKonsul).then(function (e) {
+                    $scope.winDescription.close();
+                    $scope.winKonsul.close();
+                    loadGridKonsul();
+                    loadData();
+                    loadKonsul();
+                });
+            }
+            $scope.konsul = function () {
+                loadGridKonsul();
+                $scope.winKonsul.center().open();
+            }
 
             $scope.SearchEnter = function () {
                 loadData()

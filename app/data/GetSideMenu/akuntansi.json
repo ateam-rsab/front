@@ -8,7 +8,7 @@
             },
             {
                 "name": "Posting Harian",
-                "link": "#/Posting"
+                "link": "#/DailyPosting"
             },
             {
                 "name": "Buku Besar ",
@@ -129,6 +129,10 @@
             {
                 "name": "Kode Perkiraan",
                 "link": "#/MasterCoa"
+            },
+            {
+                "name": "Posting",
+                "link": "#/Posting"
             },
             {
                 "name": "Setting Laporan Keuangan",
