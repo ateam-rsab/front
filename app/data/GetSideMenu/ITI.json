@@ -2349,11 +2349,29 @@
         "children": [
             {
                 "name": "Data Pegawai Mitra",
-                "link": "#/DataNonPegawai/mitra"
+                "children": [
+                    {
+                        "name": "Rekam Data Pegawai Mitra",
+                        "link": "#/RekamDataPegawaiMitra/"
+                    },
+                    {
+                        "name": "Data Pegawai Mitra",
+                        "link": "#/DataPegawaiMitra"
+                    }
+                ]
             },
             {
                 "name": "Data Peserta Didik",
-                "link": "#/DataNonPegawai/PesertaDidik"
+                "children": [
+                    {
+                        "name": "Rekam Data Peserta Didik",
+                        "link": "#/RekamDataPesertaDidik/"
+                    },
+                    {
+                        "name": "Data Peserta Didik",
+                        "link": "#/DataPesertaDidik"
+                    }
+                ]
             },
             {
                 "name": "Data Pegawai",

@@ -4077,6 +4077,14 @@
       "urlDep": "module/SDM/RekamDataPegawaiCtrl"
     },
     {
+      "nameDep": "RekamDataPegawaiMitraCtrl",
+      "urlDep": "module/SDM/RekamDataPegawaiMitraCtrl"
+    },
+    {
+      "nameDep": "RekamDataPesertaDidikCtrl",
+      "urlDep": "module/SDM/RekamDataPesertaDidikCtrl"
+    },
+    {
       "nameDep": "MutasiPegawaiCtrl",
       "urlDep": "module/SDM/MutasiPegawaiCtrl"
     },
@@ -4095,6 +4103,14 @@
     {
       "nameDep": "DataPegawaiCtrl",
       "urlDep": "module/SDM/DataPegawaiCtrl"
+    },
+    {
+      "nameDep": "DataPegawaiMitraCtrl",
+      "urlDep": "module/SDM/DataPegawaiMitraCtrl"
+    },
+    {
+      "nameDep": "DataPesertaDidikCtrl",
+      "urlDep": "module/SDM/DataPesertaDidikCtrl"
     },
     {
       "nameDep": "DataNonPegawaiCtrl",
@@ -8352,6 +8368,10 @@
     {
       "nameDep": "RevMonitoringAbsensiCtrl",
       "urlDep": "module/SDM/RevMonitoringAbsensiCtrl"
+    },
+    {
+      "nameDep": "LaporanPendapatanLayananCtrl",
+      "urlDep": "module/Laporan/LaporanPendapatanLayananCtrl"
     },
     {
       "nameDep": "TandaVitalRevCtrl",

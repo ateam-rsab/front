@@ -1,6 +1,6 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('RekamDataPegawaiCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'DateHelper', 'FindPegawai', 'FindSdm', '$timeout', 'ManageSarprasPhp', 'ModelItemAkuntansi', '$mdDialog',
+    initialize.controller('RekamDataPesertaDidikCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'DateHelper', 'FindPegawai', 'FindSdm', '$timeout', 'ManageSarprasPhp', 'ModelItemAkuntansi', '$mdDialog',
         function ($q, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, dateHelper, FindPegawai, FindSdm, $timeout, manageSarprasPhp, modelItemAkuntansi, $mdDialog) {
             $scope.dataLogin = JSON.parse(window.localStorage.getItem('pegawai'));
             // if (!$scope.dataLogin.ruangan.namaruangan == 'Inst.Teknologi & Informasi') {
@@ -308,7 +308,7 @@ define(['initialize'], function (initialize) {
                 console.log(e);
             }
 
-            // #region Rekam Data Pegawai
+            // #region Rekam Data Peserta Didik
             var initRekamDataPegawai = function () {
                 $scope.listIdKedudukan = [3, 4, 5, 24, 25]; // input kedudukan pegawai yang dijadikan parameter untuk set statusEnabled pegawai = false
                 $scope.isRouteLoading = true;
@@ -944,7 +944,7 @@ define(['initialize'], function (initialize) {
                     if (res.status === 200) {
                         messageContainer.log('SUKSES');
                         $scope.confirmDialog.close();
-                        $state.go('DataPegawai');
+                        $state.go('DataPesertaDidik');
                     } else {
                         messageContainer.error('Something went wrong');
                     }
@@ -1153,7 +1153,7 @@ define(['initialize'], function (initialize) {
                     }
                 }
             };
-            // #endregion Rekam Data Pegawai
+            // #endregion Rekam Data Peserta Didik
 
             // #region Data Suami/Istri
             var initDataSuamiAtauIstri = function () {
@@ -1893,7 +1893,7 @@ define(['initialize'], function (initialize) {
                         $scope.popupHistory.setOptions({
                             width: "90%",
                             height: "80%",
-                            title: 'Rekam Data Pegawai'
+                            title: 'Rekam Data Peserta Didik'
                         });
                         $scope.dataDetil = dataObject;
                         $scope.popupHistory.center().open();
@@ -2231,7 +2231,7 @@ define(['initialize'], function (initialize) {
                         if (dat.data.data.noRec) {
                             var idPegawai = dat.data.data.noRec;
                             if (!$state.params.idPegawai) {
-                                $state.go('DataPegawai');
+                                $state.go('DataPesertaDidik');
                             } else {
                                 $scope.ubahDataPegawai();
                                 initRiwayatPerubahandData();
@@ -2239,11 +2239,11 @@ define(['initialize'], function (initialize) {
                                     .title('Apakah anda akan melanjutkan edit data?')
                                     .ariaLabel('Lucky day')
                                     .ok('Ya')
-                                    .cancel('Kembali ke Data Pegawai');
+                                    .cancel('Kembali ke Data Peserta Didik');
                                 $mdDialog.show(confirm).then(function () {
                                     getDataPegawai($state.params.idPegawai);
                                 }, function () {
-                                    $state.go('DataPegawai');
+                                    $state.go('DataPesertaDidik');
                                 });
                             }
                             if ($scope.item.noSip) {
