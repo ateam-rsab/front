@@ -648,8 +648,8 @@ define(['initialize'], function (initialize) {
                 //     }
                 // }
                 var confirm = $mdDialog.confirm()
-                    .title('Apakah anda yakin akan menghapus data Jabatan Internal?')
-                    .textContent(`Anda akan menghapus data Jabatan Internal`)
+                    .title('Apakah anda yakin akan menghapus data Dokter Penanggung Jawab?')
+                    .textContent(`Anda akan menghapus data Dokter Penanggung Jawab`)
                     .ariaLabel('Lucky day')
                     .targetEvent(e)
                     .ok('Ya')
@@ -660,6 +660,7 @@ define(['initialize'], function (initialize) {
                         $scope.popUpJabatan.close();
                         e.preventDefault();
                         $scope.loadDataGridJabatanInternal();
+                        initRiwayatPerubahandData();
                         // console.warn('Data Berhasil Dihapus');
                     });
                     // console.warn('Masuk sini pak eko');
