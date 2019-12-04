@@ -5,6 +5,20 @@ define(['initialize'], function (initialize) {
             $scope.now = new Date();
             $rootScope.isOpen = true;
 
+            $scope.goToLink = function(url){
+                if (url.toLowerCase().indexOf('logout') <0 ){
+                    if (url.toLowerCase().indexOf('bi-') > -1 ){
+                        window.open($window.location.origin + url,'_blank')
+                    } else{
+                        $window.location.href = url;
+                        if (!$rootScope.$$phase) $rootScope.$apply();
+                    }
+                 
+                } else {
+                    $rootScope.doLogout();
+                }
+            };
+
             var getNotif = function() {
                 MenuService.getNotification('sdm/get-sip-str-expired-pegawai').then(res => {
                     $scope.messageNotif = '';
@@ -45,6 +59,18 @@ define(['initialize'], function (initialize) {
             }
 
             getNotif();
+
+            var checkAndSetPPDSLogin = function () {
+                MenuService.getServiceSdm('pegawai/reset-login-pegawai-keluar').then(res =>{
+                    if (res.data.data.message == 'SUKSES') {
+                        $scope.messageNotif = `Program Pendidikan Dokter Spesialis Anda di RSAB Harapan Kita telah selesai!`;
+                        $scope.notificationSIP.open().center();
+                        setTimeout(function() { $scope.notificationSIP.close(); }, 3000);
+                    }
+                })
+            }       
+            
+            checkAndSetPPDSLogin();
 
             $rootScope.hideMenuUp = false;
             $scope.changeMenu = function (menu) {
