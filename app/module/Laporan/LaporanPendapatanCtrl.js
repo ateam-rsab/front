@@ -942,7 +942,7 @@ define(['initialize'], function (initialize) {
         var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
         var client = new HttpClient();
        client.get('http://127.0.0.1:1237/printvb/kasir?cetak-laporan-ffs-edelweis=1' +//$scope.item.namaKasir.id+
-            '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '&personKa=' + personKa + '&idDokter=' + dokter + '&tgllibut=' + person + '&kdRuangan='+ruanganId+'&kpid='+kelompokPasienId+'&TipeDokter='+TipeDokter, function (response) {
+            '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '&personKa=' + personKa + '&idDokter=' + dokter + '&tgllibut=' + person + '&kdRuangan='+ruanganId+'&kpid='+kelompokPasienId+'&tipeDokter='+TipeDokter, function (response) {
 
           });
       }
@@ -970,7 +970,7 @@ define(['initialize'], function (initialize) {
         var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
         var client = new HttpClient();
         client.get('http://127.0.0.1:1237/printvb/kasir?cetak-rekap-ffs-edelweis=1' +//$scope.item.namaKasir.id+
-          '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '&personKa=' + personKa + '&idDokter=' + dokter + '&tgllibut=' + person + '&view='+ruanganId+'&kpid='+kelompokPasienId+'&TipeDokter='+TipeDokter, function (response) {
+          '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '&personKa=' + personKa + '&idDokter=' + dokter + '&tgllibut=' + person + '&view='+ruanganId+'&kpid='+kelompokPasienId+'&tipeDokter='+TipeDokter, function (response) {
 
         });
       }
