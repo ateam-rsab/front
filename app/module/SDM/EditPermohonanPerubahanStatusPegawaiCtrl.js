@@ -390,13 +390,18 @@ define(['initialize'], function(initialize) {
                     $scope.dataItem.jumlahCutiN2 = dat.data.data.dataCutiN2;
                     $scope.dataItem.jumlahCutiN3 = dat.data.data.dataCutiN3;
 
-					if ($scope.dataItem.jumlahCuti <= 0) {
-						$scope.cutiHabis = true;
-					} else {
-						$scope.cutiHabis = false;
-					}
+					$scope.sisaCutiTotal = $scope.dataItem.sisaCutiN2 + $scope.dataItem.sisaCutiN1 + $scope.dataItem.sisaCuti + $scope.dataItem.sisaCutiB;
+                    if ($scope.dataItem.sisaCutiN2 <= 0 && $scope.dataItem.sisaCutiN1 <= 0 && $scope.dataItem.sisaCuti <= 0 && $scope.dataItem.sisaCutiB <= 0) {
+                        $scope.cutiHabis = true;
+                    } else {
+                        $scope.cutiHabis = false;
+                    }
 
 				});
+
+				ManageSdmNew.getListData("sdm/get-jumlah-cuti-tahunan-diproses?idPegawai=" + $scope.dataItem.namaPegawai.id, true).then(function (dat) {
+                    $scope.jumlahPengajuanDiproses = dat.data.data.jumlahCutiTahunanDiproses;
+                });
 			}
 			$scope.getIzin = function (e) {
 			    // debugger;
@@ -577,6 +582,7 @@ define(['initialize'], function(initialize) {
                 }
                	
                	if($scope.dataItem.statusPegawai.id == 1){
+					var tahunFuture = [];
 	                for(var i = 0; i < $scope.tanggalPermohonan.length; i++){
 	                    if($scope.tanggalPermohonan[i].tgl instanceof Date)
 	                        var tgl =  $scope.tanggalPermohonan[i].tgl.getFullYear()
@@ -587,8 +593,24 @@ define(['initialize'], function(initialize) {
 	                    // if(tgl > yearNow){
 	                    //     toastr.warning('Sisa cuti belum ditangguhkan/ Hutang cuti tidak diperkenankan !')
 	                    //     return
-	                    // }    
-	                }
+						// }    
+						if (tgl > yearNow) {
+                            tahunFuture.push(tgl);
+                            if ($scope.dataItem.isTangguhkanN == false && $scope.dataItem.sisaCuti > 6 && $scope.sisaCutiTotal == $scope.dataItem.sisaCuti) {
+                                toastr.warning('Sisa cuti belum ditangguhkan/ Hutang cuti tidak diperkenankan !')
+                                return
+                            }
+                        }
+					}
+					if ($scope.dataItem.isTangguhkanN == false && $scope.dataItem.sisaCuti > 6 && tahunFuture.length > $scope.sisaCutiTotal-$scope.dataItem.sisaCuti) {
+                        toastr.warning('Sisa cuti belum ditangguhkan/ Hutang cuti tidak diperkenankan !')
+                        return
+                    }
+                    //cek jumlah tanggal tidak lebih banyak dari total sisa cuti
+                    if ($scope.tanggalPermohonan.length > ($scope.sisaCutiTotal - $scope.jumlahPengajuanDiproses)) {
+                        toastr.warning('Jumlah tanggal permohonan melebihi sisa cuti total dan pengajuan cuti tahunan yang belum diputuskan persetujuannya!')
+                        return
+                    }
             	}
                	
 				var isValid = ModelItem.setValidation($scope, listRawRequired);
