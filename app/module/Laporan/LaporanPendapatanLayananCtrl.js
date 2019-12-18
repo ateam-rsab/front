@@ -90,6 +90,8 @@ define(['initialize'], function (initialize) {
           $scope.isLoadingData = true;
 
           $scope.listPegawai = [];
+          $scope.item.pegawai = "";
+          
           ManageSdmNew.getListData('pegawai/get-list-pegawai-pendapatan?idDepartemen=' + idDepartemen + '&idRuangan=' + idRuangan + '&idUnitKerja=' + idUnitKerja + '&month=' + periode).then(res => {
             if (res.data.data.dataFound) {
               var tempPegawai = res.data.data.data;
