@@ -168,6 +168,7 @@ define(['initialize'], function (initialize) {
 					$scope.listAllJabatan = result[2].data.data;
 				}
 				$scope.getCuti();
+				$scope.getIzin();
 				// condition base if bagian sdm can view all permohonan perubahan status kehadiran
 				// uncomment codes below to activate
 				// if(result[2].statResponse){
@@ -399,8 +400,9 @@ define(['initialize'], function (initialize) {
 
 				});
 
-				ManageSdmNew.getListData("sdm/get-jumlah-cuti-tahunan-diproses-edit?idPegawai=" + $scope.dataItem.namaPegawai.id + "&noPlanning=" + $scope.dataItem.noPlanning, true).then(function (dat) {
-					$scope.jumlahPengajuanDiproses = dat.data.data.jumlahCutiTahunanDiproses;
+				var cutiTahunan = 1;
+				ManageSdmNew.getListData("sdm/get-jumlah-pengajuan-ketidakhadiran-diproses-edit?idPegawai=" + $scope.dataItem.namaPegawai.id + "&idPlan=" + cutiTahunan + "&noPlanning=" + $scope.dataItem.noPlanning, true).then(function (dat) {
+					$scope.jumlahCutiTahunanDiproses = dat.data.data.jumlahPengajuanDiproses;
 				});
 			}
 			$scope.getIzin = function (e) {
@@ -409,13 +411,19 @@ define(['initialize'], function (initialize) {
 				ManageSdmNew.getListData("sdm/get-data-cuti?pegawaiId=" + $scope.dataItem.namaPegawai.id + "&statusPegawaiId=" + $scope.dataItem.statusPegawai.id + "&kategoriPegawaiId=" + $scope.dataItem.kategoriPegawaiId, true).then(function (dat) {
 					// +$scope.item.kategoriPegawaiId
 
-					$scope.dataItem.jumlahIjin = dat.data.data.dataCutiN;
-					$scope.dataItem.sisaIjin = dat.data.data.sisaCutiN;
-					if ($scope.dataItem.jumlahIjin <= 0) {
+					$scope.dataItem.jumlahIjin = dat.data.data.jatahIzin;
+					$scope.dataItem.sisaIjin = dat.data.data.sisaIzin;
+					$scope.sisaIzin = dat.data.data.sisaIzin;
+					if ($scope.dataItem.sisaIjin <= 0) {
 						$scope.cutiHabis = true;
 					} else {
 						$scope.cutiHabis = false;
 					}
+				});
+
+				var izin = 27;
+				ManageSdmNew.getListData("sdm/get-jumlah-pengajuan-ketidakhadiran-diproses-edit?idPegawai=" + $scope.dataItem.namaPegawai.id + "&idPlan=" + izin + "&noPlanning=" + $scope.dataItem.noPlanning, true).then(function (dat) {
+					$scope.jumlahIzinDiproses = dat.data.data.jumlahPengajuanDiproses;
 				});
 			}
 			$scope.cutiHabis = false;
@@ -607,8 +615,13 @@ define(['initialize'], function (initialize) {
 						return
 					}
 					//cek jumlah tanggal tidak lebih banyak dari total sisa cuti
-					if ($scope.tanggalPermohonan.length > ($scope.sisaCutiTotal - $scope.jumlahPengajuanDiproses)) {
+					if ($scope.tanggalPermohonan.length > ($scope.sisaCutiTotal - $scope.jumlahCutiTahunanDiproses)) {
 						toastr.warning('Jumlah tanggal permohonan melebihi sisa cuti total dan pengajuan cuti tahunan yang belum diputuskan persetujuannya!')
+						return
+					}
+				} else if ($scope.dataItem.statusPegawai.id == 27) {
+					if ($scope.tanggalPermohonan.length > ($scope.sisaIzin - $scope.jumlahIzinDiproses)) {
+						toastr.warning('Jumlah tanggal permohonan melebihi sisa hak izin tahunan!')
 						return
 					}
 				}
