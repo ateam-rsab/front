@@ -403,6 +403,7 @@ define(['initialize'], function (initialize) {
 				var cutiTahunan = 1;
 				ManageSdmNew.getListData("sdm/get-jumlah-pengajuan-ketidakhadiran-diproses-edit?idPegawai=" + $scope.dataItem.namaPegawai.id + "&idPlan=" + cutiTahunan + "&noPlanning=" + $scope.dataItem.noPlanning, true).then(function (dat) {
 					$scope.jumlahCutiTahunanDiproses = dat.data.data.jumlahPengajuanDiproses;
+					$scope.jumlahCutiTahunDepanDiproses = dat.data.data.jumlahPengajuanTahunDepanDiproses;
 				});
 			}
 			$scope.getIzin = function (e) {
@@ -414,11 +415,11 @@ define(['initialize'], function (initialize) {
 					$scope.dataItem.jumlahIjin = dat.data.data.jatahIzin;
 					$scope.dataItem.sisaIjin = dat.data.data.sisaIzin;
 					$scope.sisaIzin = dat.data.data.sisaIzin;
-					if ($scope.dataItem.sisaIjin <= 0) {
-						$scope.cutiHabis = true;
-					} else {
-						$scope.cutiHabis = false;
-					}
+					// if ($scope.dataItem.sisaIjin <= 0) {
+					// 	$scope.cutiHabis = true;
+					// } else {
+					// 	$scope.cutiHabis = false;
+					// }
 				});
 
 				var izin = 27;
@@ -604,13 +605,13 @@ define(['initialize'], function (initialize) {
 						// }    
 						if (tgl > yearNow) {
 							tahunFuture.push(tgl);
-							if ($scope.dataItem.isTangguhkanN == false && $scope.dataItem.sisaCuti > 6 && $scope.sisaCutiTotal == $scope.dataItem.sisaCuti) {
-								toastr.warning('Sisa cuti belum ditangguhkan/ Hutang cuti tidak diperkenankan !')
-								return
-							}
+							// if ($scope.dataItem.isTangguhkanN == false && $scope.dataItem.sisaCuti > 6 && $scope.sisaCutiTotal == $scope.dataItem.sisaCuti) {
+							// 	toastr.warning('Sisa cuti belum ditangguhkan/ Hutang cuti tidak diperkenankan !')
+							// 	return
+							// }
 						}
 					}
-					if ($scope.dataItem.isTangguhkanN == false && $scope.dataItem.sisaCuti > 6 && tahunFuture.length > $scope.sisaCutiTotal - $scope.dataItem.sisaCuti) {
+					if ($scope.dataItem.isTangguhkanN == false && $scope.dataItem.sisaCuti > 6 && tahunFuture.length + $scope.jumlahCutiTahunDepanDiproses > $scope.sisaCutiTotal - 6) {
 						toastr.warning('Sisa cuti belum ditangguhkan/ Hutang cuti tidak diperkenankan !')
 						return
 					}

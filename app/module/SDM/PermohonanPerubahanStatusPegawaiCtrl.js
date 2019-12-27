@@ -560,6 +560,7 @@ define(['initialize'], function (initialize) {
                 var cutiTahunan = 1;
                 ManageSdmNew.getListData("sdm/get-jumlah-pengajuan-ketidakhadiran-diproses?idPegawai=" + $scope.item.namaPegawai.id + "&idPlan=" + cutiTahunan, true).then(function (dat) {
                     $scope.jumlahCutiTahunanDiproses = dat.data.data.jumlahPengajuanDiproses;
+                    $scope.jumlahCutiTahunDepanDiproses = dat.data.data.jumlahPengajuanTahunDepanDiproses;
                 });
             }
 
@@ -946,13 +947,13 @@ define(['initialize'], function (initialize) {
                         var yearNow = parseInt(moment(new Date()).format('YYYY'))
                         if (tgl > yearNow) {
                             tahunFuture.push(tgl);
-                            if ($scope.item.isTangguhkanN == false && $scope.item.sisaCuti > 6 && $scope.sisaCutiTotal == $scope.item.sisaCuti) {
-                                toastr.warning('Sisa cuti belum ditangguhkan/ Hutang cuti tidak diperkenankan !')
-                                return
-                            }
+                            // if ($scope.item.isTangguhkanN == false && $scope.item.sisaCuti > 6 && $scope.sisaCutiTotal == $scope.item.sisaCuti) {
+                            //     toastr.warning('Sisa cuti belum ditangguhkan/ Hutang cuti tidak diperkenankan !')
+                            //     return
+                            // }
                         }
                     }
-                    if ($scope.item.isTangguhkanN == false && $scope.item.sisaCuti > 6 && tahunFuture.length > $scope.sisaCutiTotal - $scope.item.sisaCuti) {
+                    if ($scope.item.isTangguhkanN == false && $scope.item.sisaCuti > 6 && tahunFuture.length + $scope.jumlahCutiTahunDepanDiproses > $scope.sisaCutiTotal - 6) {
                         toastr.warning('Sisa cuti belum ditangguhkan/ Hutang cuti tidak diperkenankan !')
                         return
                     }

@@ -145,8 +145,13 @@ define(['initialize'], function(initialize) {
             // ]
 
             $scope.listTahun = [];
-            for (var i = 2014; i <= new Date().getFullYear(); i++)
-                $scope.listTahun.push({ id: i });
+            if (new Date().getMonth() == 11) {
+                for (var i = 2014; i <= new Date().getFullYear()+1; i++)
+                    $scope.listTahun.push({ id: i });    
+            } else {
+                for (var i = 2014; i <= new Date().getFullYear(); i++)
+                    $scope.listTahun.push({ id: i });
+            }
             $scope.listMonth = [];
             for (var i = 0; i <= 11; i++)
                 $scope.listMonth.push({
@@ -402,10 +407,17 @@ define(['initialize'], function(initialize) {
                 //     return "holiday";
                 // } 
             }
+
+            var tahunIni = 2014;
+            if (new Date().getMonth() == 11) {
+                tahunIni = $scope.listTahun.length - 2
+            } else {
+                tahunIni = $scope.listTahun.length - 1
+            }
             
             $scope.item ={
                 selectedBulan: $scope.listMonth[new Date().getMonth()],
-                selectedTahun: $scope.listTahun[$scope.listTahun.length - 1]
+                selectedTahun: $scope.listTahun[tahunIni]
             };
 
             $scope.initialize = function(item, tgl) {
