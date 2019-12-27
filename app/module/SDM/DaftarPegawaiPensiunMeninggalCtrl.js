@@ -203,7 +203,7 @@ define(['initialize'], function(initialize) {
                 }
                 // FindSdm.getHistoryDataPg(data.idPegawai).then(function(res){
                 ManageSdmNew.getListData("sdm/get-list-history-pegawai/" + parseInt(data.idPegawai)).then(function(res){
-                    if(res.data.data.length > 0){
+                    if(res.data.data.dataFound){
                         $scope.title = "Histori Perubahan Data Pegawai" ;
                         $scope.optHistoriPegawai = {
                             selectable: "row",
@@ -215,7 +215,7 @@ define(['initialize'], function(initialize) {
                             ]
                         }
                         $scope.dataHistoriPegawai = new kendo.data.DataSource({
-                            data: res.data.data,
+                            data: res.data.data.data,
                             pageSize: 10
                         });
                         $scope.klikRiwayat = true;

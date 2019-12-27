@@ -78,6 +78,11 @@ define(['Configuration'], function(config) {
           return r.get({
             url: baseUrlSDM + url
           })
+        },
+        getServiceSdm: function(url) {
+          return r.get({
+            url: baseUrlSDM + url
+          })
         }
 
       };

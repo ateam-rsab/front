@@ -382,6 +382,62 @@
         }
       ]
     },
+    {
+      "name": "RekamDataPegawaiMitra",
+      "url": "/RekamDataPegawaiMitra/:idPegawai",
+      "templateurl": "module/SDM/RekamDataPegawaiMitra.html",
+      "controller": "RekamDataPegawaiMitraCtrl",
+      "deps": [
+        {
+          "module": "Services",
+          "define": "Service"
+        },
+        {
+          "module": "LoginServices",
+          "define": "LoginService"
+        },
+        {
+          "module": "SdmService",
+          "define": "SdmService"
+        },
+        {
+          "module": "PegawaiService",
+          "define": "PegawaiService"
+        },
+        {
+          "module": "PhpService",
+          "define": "PhpService"
+        }
+      ]
+    },
+    {
+      "name": "RekamDataPesertaDidik",
+      "url": "/RekamDataPesertaDidik/:idPegawai",
+      "templateurl": "module/SDM/RekamDataPesertaDidik.html",
+      "controller": "RekamDataPesertaDidikCtrl",
+      "deps": [
+        {
+          "module": "Services",
+          "define": "Service"
+        },
+        {
+          "module": "LoginServices",
+          "define": "LoginService"
+        },
+        {
+          "module": "SdmService",
+          "define": "SdmService"
+        },
+        {
+          "module": "PegawaiService",
+          "define": "PegawaiService"
+        },
+        {
+          "module": "PhpService",
+          "define": "PhpService"
+        }
+      ]
+    },
      {
       "name": "RekamDataNonPegawai",
       "url": "/RekamDataNonPegawai/:form/:idPegawai",
@@ -495,6 +551,54 @@
       "url": "/DataPegawai",
       "templateurl": "module/SDM/DataPegawai.html",
       "controller": "DataPegawaiCtrl",
+      "deps": [
+        {
+          "module": "Services",
+          "define": "Service"
+        },
+        {
+          "module": "LoginServices",
+          "define": "LoginService"
+        },
+        {
+          "module": "SdmService",
+          "define": "SdmService"
+        },
+        {
+          "module": "SarprasService",
+          "define": "SarprasService"
+        }
+      ]
+    },
+    {
+      "name": "DataPegawaiMitra",
+      "url": "/DataPegawaiMitra",
+      "templateurl": "module/SDM/DataPegawaiMitra.html",
+      "controller": "DataPegawaiMitraCtrl",
+      "deps": [
+        {
+          "module": "Services",
+          "define": "Service"
+        },
+        {
+          "module": "LoginServices",
+          "define": "LoginService"
+        },
+        {
+          "module": "SdmService",
+          "define": "SdmService"
+        },
+        {
+          "module": "SarprasService",
+          "define": "SarprasService"
+        }
+      ]
+    },
+    {
+      "name": "DataPesertaDidik",
+      "url": "/DataPesertaDidik",
+      "templateurl": "module/SDM/DataPesertaDidik.html",
+      "controller": "DataPesertaDidikCtrl",
       "deps": [
         {
           "module": "Services",

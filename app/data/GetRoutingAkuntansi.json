@@ -2736,6 +2736,38 @@
     ]
   },
   {
+    "name": "LaporanPendapatanLayanan",
+    "url": "/LaporanPendapatanLayanan",
+    "templateurl": "module/Laporan/LaporanPendapatanLayanan.html",
+    "controller": "LaporanPendapatanLayananCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      },
+      {
+        "module": "TataRekeningService",
+        "define": "TataRekeningService"
+      }
+    ]
+  },
+  {
     "name": "LaporanAkuntansi",
     "url": "/LaporanAkuntansi",
     "templateurl": "module/Laporan/LaporanAkuntansi.html",

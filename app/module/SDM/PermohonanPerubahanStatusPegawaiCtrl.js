@@ -73,7 +73,7 @@ define(['initialize'], function (initialize) {
                     $scope.cutiLuar = true;
                     $scope.cutiDalam = false;
                     // $scope.datePickerOptionsCutiLuar.min = getNextMonth($scope.now);
-                } 
+                }
                 else {
                     $scope.cutiLuar = false;
                     $scope.cutiDalam = true;
@@ -557,25 +557,30 @@ define(['initialize'], function (initialize) {
                     }
                 });
 
-                ManageSdmNew.getListData("sdm/get-jumlah-cuti-tahunan-diproses?idPegawai=" + $scope.item.namaPegawai.id, true).then(function (dat) {
-                    $scope.jumlahPengajuanDiproses = dat.data.data.jumlahCutiTahunanDiproses;
+                var cutiTahunan = 1;
+                ManageSdmNew.getListData("sdm/get-jumlah-pengajuan-ketidakhadiran-diproses?idPegawai=" + $scope.item.namaPegawai.id + "&idPlan=" + cutiTahunan, true).then(function (dat) {
+                    $scope.jumlahCutiTahunanDiproses = dat.data.data.jumlahPengajuanDiproses;
+                    $scope.jumlahCutiTahunDepanDiproses = dat.data.data.jumlahPengajuanTahunDepanDiproses;
                 });
             }
 
             $scope.getIzin = function (e) {
-                // debugger;
                 $scope.cutiHabis = false;
 
                 ManageSdmNew.getListData("sdm/get-data-cuti?pegawaiId=" + $scope.item.namaPegawai.id + "&statusPegawaiId=" + $scope.item.statusPegawai.id, true).then(function (dat) {
-                    // +$scope.item.kategoriPegawaiId
-
-                    $scope.item.jumlahIjin = dat.data.data.jatahCuti;
-                    $scope.item.sisaIjin = dat.data.data.sisaCuti;
-                    if ($scope.item.jumlahIjin <= 0) {
+                    $scope.item.jumlahIjin = dat.data.data.jatahIzin;
+                    $scope.item.sisaIjin = dat.data.data.sisaIzin;
+                    $scope.sisaIzin = dat.data.data.sisaIzin;
+                    if ($scope.item.sisaIjin <= 0) {
                         $scope.cutiHabis = true;
                     } else {
                         $scope.cutiHabis = false;
                     }
+                });
+
+                var izin = 27;
+                ManageSdmNew.getListData("sdm/get-jumlah-pengajuan-ketidakhadiran-diproses?idPegawai=" + $scope.item.namaPegawai.id + "&idPlan=" + izin, true).then(function (dat) {
+                    $scope.jumlahIzinDiproses = dat.data.data.jumlahPengajuanDiproses;
                 });
             }
 
@@ -609,12 +614,18 @@ define(['initialize'], function (initialize) {
                 }
 
                 //Ijin
+                if ($scope.item.statusPegawai.id == 27) {
+                    $scope.hideSakit = false;
+                    $scope.cutiHabis = false;
+                    $scope.getIzin();
+                } else {
+                    $scope.hideJumlahIjin = false;
+                }
                 //Cuti Alasan Penting   26
                 //Tugas Luar    28 
                 //Cuti Melahirkan   25
                 //Cuti Besar    24 
-                if ($scope.item.statusPegawai.id == 27 || $scope.item.statusPegawai.id == 26 ||
-                    $scope.item.statusPegawai.id == 28 ||
+                if ($scope.item.statusPegawai.id == 26 || $scope.item.statusPegawai.id == 28 ||
                     $scope.item.statusPegawai.id == 24 || $scope.item.statusPegawai.id == 25) {
                     $scope.hideSakit = false;
                     $scope.cutiHabis = false;
@@ -936,19 +947,24 @@ define(['initialize'], function (initialize) {
                         var yearNow = parseInt(moment(new Date()).format('YYYY'))
                         if (tgl > yearNow) {
                             tahunFuture.push(tgl);
-                            if ($scope.item.isTangguhkanN == false && $scope.item.sisaCuti > 6 && $scope.sisaCutiTotal == $scope.item.sisaCuti) {
-                                toastr.warning('Sisa cuti belum ditangguhkan/ Hutang cuti tidak diperkenankan !')
-                                return
-                            }
+                            // if ($scope.item.isTangguhkanN == false && $scope.item.sisaCuti > 6 && $scope.sisaCutiTotal == $scope.item.sisaCuti) {
+                            //     toastr.warning('Sisa cuti belum ditangguhkan/ Hutang cuti tidak diperkenankan !')
+                            //     return
+                            // }
                         }
                     }
-                    if ($scope.item.isTangguhkanN == false && $scope.item.sisaCuti > 6 && tahunFuture.length > $scope.sisaCutiTotal-$scope.item.sisaCuti) {
+                    if ($scope.item.isTangguhkanN == false && $scope.item.sisaCuti > 6 && tahunFuture.length + $scope.jumlahCutiTahunDepanDiproses > $scope.sisaCutiTotal - 6) {
                         toastr.warning('Sisa cuti belum ditangguhkan/ Hutang cuti tidak diperkenankan !')
                         return
                     }
                     //cek jumlah tanggal tidak lebih banyak dari total sisa cuti
-                    if ($scope.tanggalPermohonan.length > ($scope.sisaCutiTotal - $scope.jumlahPengajuanDiproses)) {
+                    if ($scope.tanggalPermohonan.length > ($scope.sisaCutiTotal - $scope.jumlahCutiTahunanDiproses)) {
                         toastr.warning('Jumlah tanggal permohonan melebihi sisa cuti total dan pengajuan cuti tahunan yang belum diputuskan persetujuannya!')
+                        return
+                    }
+                } else if ($scope.item.statusPegawai.id == 27) {
+                    if ($scope.tanggalPermohonan.length > ($scope.sisaIzin - $scope.jumlahIzinDiproses)) {
+                        toastr.warning('Jumlah tanggal permohonan melebihi sisa hak izin tahunan!')
                         return
                     }
                 }
@@ -1067,15 +1083,15 @@ define(['initialize'], function (initialize) {
 
             $scope.validateTanggal = function () {
                 let tempTanggal = [];
-                
-                for(let i = 0; i < $scope.tanggalPermohonan.length; i++) {
+
+                for (let i = 0; i < $scope.tanggalPermohonan.length; i++) {
                     tempTanggal.push($scope.tanggalPermohonan[i].tgl);
                 }
-                if(parseInt($scope.item.isCutiLuarNegeri) === 1) {
+                if (parseInt($scope.item.isCutiLuarNegeri) === 1) {
                     let now = new Date();
                     let nextMonth = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 30);
-                    for(let i = 0; i < tempTanggal.length; i++) {
-                        if(tempTanggal[i] < nextMonth) {
+                    for (let i = 0; i < tempTanggal.length; i++) {
+                        if (tempTanggal[i] < nextMonth) {
                             toastr.warning('Tidak bisa mengajukan cuti pada tangga ' + DateHelper.formatDate(tempTanggal[i], "DD-MM-YYYY"));
                             return true;
                         } else {
@@ -1160,7 +1176,7 @@ define(['initialize'], function (initialize) {
                     } else {
                         var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCuti?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + data.atasanLangsung.id + "&idAtasan2=" + data.pejabatPenilai.id + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + data.jabatanAtasanLangsung.id + "&idJabatanAtasan2=" + data.jabatanPejabatPenilai.id);
                     }
-                    
+
                     window.open(urlLaporan, "halamanCetakDua");
                 } else {
                     ModelItem.showMessages(isValid.messages);
@@ -1234,7 +1250,7 @@ define(['initialize'], function (initialize) {
                         if (data.isCutiLuarNegeri == "1") {
                             var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCutiLuarNegeri?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + data.atasanLangsung.id + "&idAtasan2=" + data.pejabatPenilai.id + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + data.jabatanAtasanLangsung.id + "&idJabatanAtasan2=" + data.jabatanPejabatPenilai.id);
                         } else {
-                            var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCuti?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + data.atasanLangsung.id + "&idAtasan2=" + data.pejabatPenilai.id + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + data.jabatanAtasanLangsung.id + "&idJabatanAtasan2=" + data.jabatanPejabatPenilai.id);   
+                            var urlLaporan = cetakHelper.openURLReporting("reporting/lapPermohonanCuti?noRecPlanning=" + data.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + data.atasanLangsung.id + "&idAtasan2=" + data.pejabatPenilai.id + "&periode=" + DateHelper.formatDate(data.until, "YYYY-MM") + "&idKaRu=" + idKaRuangan + "&idJabatanAtasan1=" + data.jabatanAtasanLangsung.id + "&idJabatanAtasan2=" + data.jabatanPejabatPenilai.id);
                         }
                         $scope.winDialog.close();
                         delete $scope.currentData.pegawai1;
@@ -1315,7 +1331,7 @@ define(['initialize'], function (initialize) {
                     if (dataItem.sakit == 1) {
                         detailSakit = 'Rawat Jalan'
                     } else if (dataItem.sakit == 2) {
-                        detailSakit =  'Rawat Inap'
+                        detailSakit = 'Rawat Inap'
                     }
                     // console.log(JSON.stringify(dataItem));
                     var setCurrentData = {
@@ -1376,24 +1392,24 @@ define(['initialize'], function (initialize) {
                     if (res.data.data.length > 0) {
                         dataItem.jabatanCetak = {
                             id: res.data.data[0].id,
-                            namaJabatan : res.data.data[0].namaLengkap,
-                            idUnitKerja : res.data.data[0].idUnitKerja
+                            namaJabatan: res.data.data[0].namaLengkap,
+                            idUnitKerja: res.data.data[0].idUnitKerja
                         };
                     };
                 });
 
-                ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/list-atasan-langsung-pegawai?idPegawai="+dataItem.pegwaiId, true).then(function (dat) {
+                ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/list-atasan-langsung-pegawai?idPegawai=" + dataItem.pegwaiId, true).then(function (dat) {
                     $scope.listAtasan1 = dat.data.data;
                 });
 
-                ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/list-pejabat-penilai-pegawai?idPegawai="+dataItem.pegwaiId, true).then(function (dat) {
+                ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/list-pejabat-penilai-pegawai?idPegawai=" + dataItem.pegwaiId, true).then(function (dat) {
                     $scope.listAtasan2 = dat.data.data;
                 });
 
                 if (dataItem.statusPegawaiId == 28) {
                     if (dataItem.noSuratTugas == undefined || dataItem.noSuratTugas == null) {
                         messageContainer.error("No Surat Tugas tidak boleh kosong");
-                        return;putty
+                        return; putty
                     }
                     if (dataItem.noNotaDinas == undefined || dataItem.noNotaDinas == null) {
                         messageContainer.error("No Nota Dinas tidak boleh kosong");

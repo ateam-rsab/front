@@ -94,6 +94,14 @@
             "name": "Pemesanan Barang",
             "children": [
                {
+                   "name": "Rencana Usulan Barang",
+                   "link": "#/DaftarRencanaUsulanPermintaanBarang"
+               },
+               {
+                  "name": "Daftar Monitoring Usulan",
+                  "link": "#/DaftarMonitoringUsulan"
+               },
+               {
                   "name": "Daftar Usulan Permintaan Barang",
                   "link": "#/DaftarUsulanPermintaanBarang"
                },
