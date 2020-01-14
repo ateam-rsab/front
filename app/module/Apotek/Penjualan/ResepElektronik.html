@@ -94,11 +94,16 @@
                             k-auto-bind="false"
                             k-data-source="listOfKelompokPasien" />
                     </div>
-                    <div class="grid_1">
-                        <button class="c-button" style="padding:0px;margin-top:
+                    <div class="grid_1" style="margin-top: 27px;">
+                        <md-button class="md-raised md-primary medium-button"
+                            ng-click="refresh()">
+                            <span style="margin-right: 5px;">CARI</span>
+                            <i class="fa fa-search"></i>
+                        </md-button>
+                        <!-- <button class="c-button" style="padding:0px;margin-top:
                             27px;" ng-click="refresh()">
                             <span c-translate>CARI</span>
-                        </button>
+                        </button> -->
                     </div>
                 </div>
             </div>
@@ -130,12 +135,17 @@
 
         <div class="grid_12 place_button">
             <div class="grid_2">
-                <c-button ng-show="!isLoading" style="width: 100%;
+                <md-button class="md-raised md-primary medium-button"
+                    ng-click="verifikasi()">
+                    <span style="margin-right: 5px;">Verifikasi</span>
+                    <i class="fa fa-check"></i>
+                </md-button>
+                <!-- <c-button ng-show="!isLoading" style="width: 100%;
                     padding:0px;margin:0px;" item="item" position="'right'"
                     click="verifikasi">
                     <span class="title"><label c-label c-label-text='verifikasi'
                             font-size="13"></label></span>
-                </c-button>
+                </c-button> -->
             </div>
             <!-- <div class="grid_2">
                 <c-button ng-show="!isLoading" style="width: 100%; padding:0px;margin:0px;" item="item" position="'right'" click="detailOrder">
@@ -145,29 +155,45 @@
                 </c-button>
             </div> -->
             <div class="grid_2">
-                <c-button ng-show="!isLoading" style="width: 100%;
+                <md-button class="md-raised md-primary medium-button"
+                    ng-click="updateProduksi()">
+                    
+                    <span style="margin-right: 5px;">Produksi</span>
+                    <i class="fa fa-sync"></i>
+                </md-button>
+                <!-- <c-button ng-show="!isLoading" style="width: 100%;
                     padding:0px;margin:0px;" item="item" position="'right'"
                     click="updateProduksi">
                     <span class="title"><label c-label c-label-text='Produksi'
                             font-size="13"></label></span>
-                </c-button>
+                </c-button> -->
             </div>
             <div class="grid_2">
-                <c-button ng-show="!isLoading" style="width: 100%;
+                <md-button class="md-raised md-primary medium-button"
+                    ng-click="editObat()">
+                    <span style="margin-right: 5px;">Edit Obat</span>
+                    <i class="fa fa-edit"></i>
+                </md-button>
+                <!-- <c-button ng-show="!isLoading" style="width: 100%;
                     padding:0px;margin:0px;" item="item" position="'right'"
                     click="editObat">
                     <span class="title"><label c-label c-label-text='Edit'
                             font-size="13"></label></span>
-                </c-button>
+                </c-button> -->
             </div>
             <div class="grid_2">
-                <c-button ng-show="!isLoading" style="width: 100%;
+                <md-button class="md-raised md-primary medium-button"
+                    ng-click="lihatResep()">
+                    <span style="margin-right: 5px;">Lihat Resep</span>
+                    <i class="fa fa-file-text"></i>
+                </md-button>
+                <!-- <c-button ng-show="!isLoading" style="width: 100%;
                     padding:0px;margin:0px;" item="item" position="'right'"
                     click="lihatResep">
                     <span class="title"><label c-label c-label-text='Lihat
                             Resep'
                             font-size="13"></label></span>
-                </c-button>
+                </c-button> -->
             </div>
         </div>
     </div>
@@ -244,7 +270,7 @@
             </fieldset>
         </div>
     </div>
-    <div kendo-window="popupLihatObat" k-title="'Verifikasi Obat'"
+    <div kendo-window="popupLihatObat" k-title="'Resep dari Dokter'"
         k-visible="false" k-on-open="win2visible= true" k-width="700"
         k-max-height="800"
         k-on-close="win2visible= false">
@@ -284,7 +310,19 @@
                     </md-card-content>
                 </md-card-content>
             </md-card>
-        </div>
 
+        </div>
+        <div class="grid_12">
+            <div class="grid_6 pull-right">
+                <md-button class="md-raised md-primary medium-button"
+                    ng-click="printCopyResep()">
+                    <span style="margin-right: 5px;">Cetak</span>
+                    <i class="fa fa-print"></i>
+                </md-button>
+            </div>
+
+        </div>
     </div>
+
+    <div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
 </div>

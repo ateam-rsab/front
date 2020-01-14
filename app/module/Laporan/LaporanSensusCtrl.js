@@ -50,7 +50,7 @@ define(['initialize'], function(initialize) {
 
 			 ]
         
-        debugger;
+        
         $scope.date = new Date();
         var tanggals = DateHelper.getDateTimeFormatted3($scope.date);
         
@@ -67,7 +67,7 @@ define(['initialize'], function(initialize) {
         // if($scope.item.format == undefined){
         // 	alert('format file harus dipilih terlebih dahulu !!!')
         // }
-            debugger;
+            
             if($scope.item.tglawal == $scope.tglawal)
                 var tglawal = $scope.item.tglawal;
             else

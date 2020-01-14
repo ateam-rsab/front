@@ -9,7 +9,7 @@ define(['initialize'], function (initialize) {
 			$scope.item.periodeAwal = new Date();
 			$scope.item.periodeAkhir = new Date();
 			$scope.item.tanggalPulang = new Date();
-			$scope.dataPasienSelected = {};
+			// $scope.dataPasienSelected = {};
 
 			$scope.isRouteLoading = false;
 			var dataMenuSiklus = [];
@@ -307,7 +307,7 @@ define(['initialize'], function (initialize) {
 				$scope.dataPasienSelected = dataPasienSelected
 			}
 			$scope.Edit = function () {
-				if ($scope.dataPasienSelected == undefined) {
+				if (!$scope.dataPasienSelected) {
 					toastr.error('Pilih data dulu')
 					return
 				}

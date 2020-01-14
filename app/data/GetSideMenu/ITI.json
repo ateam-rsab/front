@@ -2345,6 +2345,40 @@
         ]
     },
     {
+        "name": "Pemesanan Barang",
+        "children": [
+            {
+                "name": "Rencana Usulan Barang",
+                "link": "#/DaftarRencanaUsulanPermintaanBarang"
+            },
+            {
+                "name": "Daftar Usulan Permintaan Barang",
+                "link": "#/DaftarUsulanPermintaanBarang"
+            },
+            {
+                "name": "Daftar Usulan Pelaksanaan Kegiatan /UPK",
+                "link": "#/DaftarSuratPerintahKerja"
+            },
+            {
+                "name": "Daftar Surat Perintah Kerja /SPK",
+                "link": "#/DaftarSPK"
+            },
+            {
+                "name": "SPPB",
+                "children": [
+                    {
+                        "name": "Daftar Pemesanan Barang /SPPB",
+                        "link": "#/DaftarPemesananBarang"
+                    },
+                    {
+                        "name": "Detail Daftar Pemesanan Barang /SPPB",
+                        "link": "#/DetailDaftarPemesananBarang"
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "name": "SDM",
         "children": [
             {

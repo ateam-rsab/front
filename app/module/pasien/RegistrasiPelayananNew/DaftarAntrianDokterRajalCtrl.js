@@ -2,6 +2,7 @@ define(['initialize'], function (initialize) {
     'use strict';
     initialize.controller('DaftarAntrianDokterRajalCtrl', ['SaveToWindow', '$rootScope', '$scope', '$timeout', 'ModelItem', '$state', 'FindPasien', 'DateHelper', 'socket', 'ManagePasien', '$mdDialog', '$window', 'ManageSarprasPhp', 'CacheHelper', '$q', 'ManagePhp',
         function (saveToWindow, $rootScope, $scope, $timeout, ModelItem, $state, findPasien, dateHelper, socket, managePasien, $mdDialog, window, manageSarprasPhp, cacheHelper, $q, ManagePhp) {
+            $scope.lengthKonsul = 0;
             $scope.isVerify = false;
             $scope.dataVOloaded = true;
             $scope.now = new Date();

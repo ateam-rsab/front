@@ -59,66 +59,82 @@ span.errorCuti {
 	font: italic 14px/30px arial, sans-serif;
 }
 </style>
-
 <div ng-show="dataVOloaded">
-	<c-panel item="item" header="'Daftar Pasien Jatuh'" disabled>
-		<div class="grid_12">
-			<div class="grid_2">
-				<div class="grid_12">
-					<label c-label item="item" c-label-text="Instalasi"></label>
-				</div>
-				<div class="clear"></div>
-				<div class="grid_12">
-					<input style="width: 100%;" kendo-combo-box k-ng-model="item.instalasi" k-data-text-field="'departemen'"
-					 k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDepartemen" k-on-change='getIsiComboRuangan()' />
-				</div>
-			</div>
-			<div class="grid_2">
-				<div class="grid_12">
-					<label c-label item="item" c-label-text="Ruangan"></label>
-				</div>
-				<div class="clear"></div>
-				<div class="grid_12">
-					<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'ruangan'"
-					 k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
-				</div>
-			</div>
-			<div class="grid_2">
-			</div>
-			<div class="grid_1">
-			</div>
-			<div class="grid_4">
-				<div class="grid_12">
-					<label c-label item="item" c-label-text="Periode Jatuh"></label>
-				</div>
-				<div class="clear"></div>
-				<div class="grid_12">
-					<div class="grid_6 padDatePicker">
-						<input style="width: 100%" k-ng-model="item.periodeAwal" kendo-datetimepicker k-max="now" placeholer="yyyy-MM-dd HH:mm"
-						 k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
-					</div>
-					<div class="grid_6 padDatePicker">
-						<input style="width: 100%" k-ng-model="item.periodeAkhir" kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm"
-						 k-format="'yyyy-MM-dd HH:mm'" />
-					</div>
-					<div class="clear"></div>
-				</div>
-			</div>
-			<div class="grid_1">
-				<label c-label c-label-text=""></label>
-				<em style="margin-top:6px;" ng-click='SearchData()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary"
-				 role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-search">Refresh</span></em>
-				<em style="margin-top:6px;" ng-click='ClearSearch()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary"
-				 role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Reset</span></em>
-			</div>
+	<!-- <c-panel item="item" header="'Daftar Pasien Jatuh'" disabled> -->
+	<md-toolbar md-scroll-shrink class="shadow">
+		<div class="md-toolbar-tools">Daftar Pasien Jatuh</div>
+	</md-toolbar>
+	<div class="grid_12">
+		<div class="grid_2">
+			<label c-label item="item" c-label-text="Instalasi"></label>
+
+			<input style="width: 100%;" kendo-combo-box k-ng-model="item.instalasi"
+				k-data-text-field="'departemen'"
+				k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
+				k-data-source="listDepartemen" k-on-change='getIsiComboRuangan()' />
+
 		</div>
-	</c-panel>
+		<div class="grid_2">
+
+			<label c-label item="item" c-label-text="Ruangan"></label>
+
+			<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan"
+				k-data-text-field="'ruangan'"
+				k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
+				k-data-source="listRuangan" />
+
+		</div>
+		<!-- <div class="grid_2">
+		</div>
+		<div class="grid_1">
+		</div> -->
+		<div class="grid_4">
+
+			<label c-label item="item" c-label-text="Periode Jatuh"></label>
+			<div class="grid_6 padDatePicker">
+				<input style="width: 100%" k-ng-model="item.periodeAwal"
+					kendo-datetimepicker k-max="now" placeholer="yyyy-MM-dd HH:mm"
+					k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
+			</div>
+			<div class="grid_6 padDatePicker">
+				<input style="width: 100%" k-ng-model="item.periodeAkhir"
+					kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm"
+					k-format="'yyyy-MM-dd HH:mm'" />
+			</div>
+			<!-- <div class="clear"></div> -->
+
+		</div>
+		<div class="grid_1" style="margin-top: 5px;">
+			<label c-label c-label-text=""></label>
+			<md-button class="md-raised md-primary medium-button"
+				style="width: 40%;"
+				ng-click="SearchData()">
+				<i class="fa fa-search"></i>
+			</md-button>
+			<md-button class="md-raised md-primary medium-button"
+				style="width: 40%;"
+				ng-click="ClearSearch()">
+				<i class="fa fa-eraser"></i>
+			</md-button>
+			<!-- <em style="margin-top:6px;" ng-click='SearchData()' id="iconButton"
+				data-role="button" class="k-button k-button-icon k-primary"
+				role="button" aria-disabled="false" tabindex="0"><span class="k-sprite
+					k-icon k-i-search">Refresh</span></em>
+			<em style="margin-top:6px;" ng-click='ClearSearch()' id="iconButton"
+				data-role="button" class="k-button k-button-icon k-primary"
+				role="button" aria-disabled="false" tabindex="0"><span class="k-sprite
+					k-icon k-i-cancel">Reset</span></em> -->
+		</div>
+	</div>
+	<!-- </c-panel> -->
 
 	<div class="grid_12">
 		<div class="clear"></div>
 		<div class="grid_12 borderBox">
-			<div id="kGrid" kendo-grid k-data-source="sourceGrid" k-selectable="'row'" k-columns="columnGrid" k-pageable="'true'"
-			 k-sortable="'true'" k-ng-model="dataPasienSelected" ng-click="klikGrid(dataPasienSelected)">
+			<div id="kGrid" kendo-grid k-data-source="sourceGrid" k-selectable="'row'"
+				k-columns="columnGrid" k-pageable="'true'"
+				k-sortable="'true'" k-ng-model="dataPasienSelected"
+				ng-click="klikGrid(dataPasienSelected)">
 			</div>
 		</div>
 	</div>
@@ -131,7 +147,8 @@ span.errorCuti {
 			<div class="clear"></div>
 
 			<div class="grid_12">
-				<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noReg" />
+				<input c-text-box type="input" filter="" class="k-textbox"
+					ng-model="item.noReg" />
 			</div>
 		</div>
 		<div class="grid_1">
@@ -140,7 +157,8 @@ span.errorCuti {
 			</div>
 			<div class="clear"></div>
 			<div class="grid_12">
-				<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noRm" />
+				<input c-text-box type="input" filter="" class="k-textbox"
+					ng-model="item.noRm" />
 			</div>
 		</div>
 		<div class="grid_2">
@@ -150,7 +168,8 @@ span.errorCuti {
 			<div class="clear"></div>
 
 			<div class="grid_12">
-				<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nama" />
+				<input c-text-box type="input" filter="" class="k-textbox"
+					ng-model="item.nama" />
 			</div>
 		</div>
 		<div class="grid_2">
@@ -160,51 +179,65 @@ span.errorCuti {
 			<div class="clear"></div>
 
 			<div class="grid_12">
-				<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.keterangan" />
+				<input c-text-box type="input" filter="" class="k-textbox"
+					ng-model="item.keterangan" />
 			</div>
 		</div>
 		<div class="grid_2" style="margin-top: 22px">
-				<button class="c-button primary" style="margin-left: 0;" ng-click="Tambah()">Tambah</button>
-			</div>
-		<div class="grid_2" style="margin-top: 22px">
-			<button class="c-button primary" style="margin-left: 0;" ng-click="Edit()">Edit</button>
+			<md-button class="md-raised md-primary medium-button" ng-click="Tambah()">Tambah</md-button>
+			<!-- <button class="c-button primary" style="margin-left: 0;" ng-click="Tambah()">Tambah</button> -->
 		</div>
 		<div class="grid_2" style="margin-top: 22px">
-			<button class="c-button primary" style="margin-left: 0;" ng-click="Hapus()">Hapus</button>
+			<md-button class="md-raised md-primary medium-button" ng-click="Edit()">Edit</md-button>
+			<!-- <button class="c-button primary" style="margin-left: 0;" ng-click="Edit()">Edit</button> -->
+		</div>
+		<div class="grid_2" style="margin-top: 22px">
+			<md-button class="md-raised md-warn medium-button" ng-click="Hapus()">Hapus</md-button>
+			<!-- <button class="c-button primary" style="margin-left: 0;" ng-click="Hapus()">Hapus</button> -->
 		</div>
 
 		<div class="grid_12" style="margin-top:60px">
-			<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+			<div ng-include='" ../app/module/Shared/TemplateLoading" '></div>
 		</div>
 	</div>
 
 </div>
 
-<div kendo-window="dialogPasienJatuh" k-title="'Pasien Jatuh'" k-width="400" k-height="350" k-visible="false" k-on-open="win2visible = true"
- k-on-close="win2visible = false">
+<div kendo-window="dialogPasienJatuh" k-title="'Pasien Jatuh'" k-width="400" k-visible="false" k-on-open="win2visible= true"
+	k-on-close="win2visible= false">
 	<div class="grid_12">
-		<label c-label item="item ">No RM</label>
-		<input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="dialog.nocm" disabled />
+		<label c-label item="item">No RM</label>
+		<input c-text-box type="input" filter="'char'" class="k-textbox"
+			ng-model="dialog.nocm" disabled />
 	</div>
 	<div class="grid_12">
-		<label c-label item="item ">Nama Pasien</label>
-		<input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="dialog.namapasien" disabled />
+		<label c-label item="item">Nama Pasien</label>
+		<input c-text-box type="input" filter="'char'" class="k-textbox"
+			ng-model="dialog.namapasien" disabled />
 	</div>
 	<div class="grid_12">
-		<label c-label item="item ">Tgl Jatuh</label>
-		<input style="width: 100%" k-ng-model="dialog.tglJatuh" kendo-datetimepicker k-max="now" placeholer="yyyy-MM-dd HH:mm"
-		 k-format="'yyyy-MM-dd HH:mm'" />
+		<label c-label item="item">Tgl Jatuh</label>
+		<input style="width: 100%" k-ng-model="dialog.tglJatuh" kendo-datetimepicker
+			k-max="now" placeholer="yyyy-MM-dd HH:mm"
+			k-format="'yyyy-MM-dd HH:mm'" />
 	</div>
 	<div class="grid_12">
-		<label c-label item="item ">Jumlah</label>
-		<input c-text-box type="number" filter="'number'" class="k-textbox" ng-model="dialog.jumlah" />
+		<label c-label item="item">Jumlah</label>
+		<input c-text-box type="number" filter="'number'" class="k-textbox"
+			ng-model="dialog.jumlah" />
 	</div>
 	<div class="grid_12">
-		<label c-label item="item ">Keterangan</label>
-		<input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="dialog.keterangan" />
+		<label c-label item="item">Keterangan</label>
+		<input c-text-box type="input" filter="'char'" class="k-textbox"
+			ng-model="dialog.keterangan" />
 	</div>
-	<div class="clear">
-		<button class="k-button" ng-click="simpanJatuh(dialog)" style="float:right;margin-top:4%">Simpan</button>
+	<div class="clear" style="margin-top: 10px;">
+		<!-- <button class="k-button" ng-click="simpanJatuh(dialog)"
+			style="float:right;margin-top:4%">Simpan</button> -->
+		<md-button class="md-raised md-primary medium-button" style="width: 30%;" ng-click="simpanJatuh(dialog)">
+			<span style="margin-right: 5px;">Simpan</span>
+			<i class="fa fa-save"></i>			
+		</md-button>
 	</div>
 
 </div>

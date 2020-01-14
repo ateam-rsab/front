@@ -3,7 +3,7 @@ define(['initialize'], function(initialize) {
 	initialize.controller('SkriningGiziDewasaRevCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'FindPasien', 'CacheHelper', 'ManagePasien', 'DateHelper','ManagePhp',
 		function($q, $rootScope, $scope, ModelItem, $state, findPasien, cacheHelper, ManagePasien, dateHelper,ManagePhp) 
 		{
-			// debugger;
+			
 			$scope.dataForm = {};
 			var isNotClick = true;
 			$scope.isRawatInap = window.isRawatInap;
@@ -51,7 +51,7 @@ define(['initialize'], function(initialize) {
 			]			
 
 			$scope.klikChange = function(data, stat) {
-				debugger;
+				
 				// $scope.pasienDewasa.perluKonsultasi.detail.forEach(function(items){
 				// 	items.value = null
 				// })
@@ -67,7 +67,7 @@ define(['initialize'], function(initialize) {
 					"value": "true"
 				}
 				if (result.length == 0) {
-					debugger;
+					
 					$scope.arrPengkajianSkrining.push(tempData);
 					// console.log(JSON.stringify($scope.arrayDetilPengkajianAwal));
 				} else {
@@ -78,7 +78,7 @@ define(['initialize'], function(initialize) {
 						}
 					$scope.arrPengkajianSkrining.push(tempData);
 					console.log(JSON.stringify($scope.arrPengkajianSkrining));
-					debugger;
+					
 				}
 			}
 			
@@ -469,7 +469,7 @@ define(['initialize'], function(initialize) {
 					"value": "true"
 				}
 				if (result.length == 0) {
-					debugger;
+					
 					$scope.arrPengkajianSkrining.push(tempData);
 					console.log(JSON.stringify($scope.arrPengkajianSkrining));
 				} else {
@@ -480,7 +480,7 @@ define(['initialize'], function(initialize) {
 						}
 					$scope.arrPengkajianSkrining.push(tempData);
 					console.log(JSON.stringify($scope.arrPengkajianSkrining));
-					debugger;
+					
 				}
 
 				// $scope.arrayDetilPengkajianAwal.forEach(function(data){
@@ -500,7 +500,7 @@ define(['initialize'], function(initialize) {
 					"value": "true"
 				}
 				if (result.length == 0) {
-					debugger;
+					
 					$scope.arrPengkajianMST.push(tempData);
 					console.log(JSON.stringify($scope.arrPengkajianMST));
 				} else {
@@ -511,7 +511,7 @@ define(['initialize'], function(initialize) {
 						}
 					$scope.arrPengkajianMST.push(tempData);
 					console.log(JSON.stringify($scope.arrPengkajianMST));
-					debugger;
+					
 				}
 				getTotalMST();
 			}

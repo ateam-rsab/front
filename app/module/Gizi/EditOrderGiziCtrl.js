@@ -474,6 +474,10 @@ define(['initialize'], function (initialize) {
 				})
 			}
 
+			$scope.Back = function() {
+				window.history.back();
+			}
+
 		}
 	]);
 });

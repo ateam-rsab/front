@@ -14,12 +14,15 @@
     }   
 </style>
 <div ng-show="dataVOloaded">
-    <div class="grid_12 headerBox">
+    <md-toolbar md-scroll-shrink class="shadow">
+        <div class="md-toolbar-tools">Laporan Kegiatan & Operasional PER Ruangan</div>
+    </md-toolbar>
+    <!-- <div class="grid_12 headerBox">
         <h2 style="color: white;">
             <p>LAPORAN KEGIATAN & OPERASIONAL PERRUANGAN</p>
         </h2>
-    </div>
-    <fieldset class="effect-shadow" style=" border-radius: 4px">
+    </div> -->
+    <fieldset class="effect-shadow" style="border-radius: 4px">
         <legend id="filterData">
             <a ng-click="showAndHide()">Pencarian</a>
         </legend>
@@ -29,7 +32,8 @@
                     <label c-label item="item" c-label-text="Bulan"></label>
                 </div>
                 <div class="grid_12">
-                    <input style="width: 100%" k-options="monthOnly" k-ng-model="item.bulan" kendo-date-picker
+                    <input style="width: 100%" k-options="monthOnly"
+                        k-ng-model="item.bulan" kendo-date-picker
                         placeholer="MMMM YYYY" />
                 </div>
             </div>
@@ -38,18 +42,38 @@
                     <label c-label item="item" c-label-text="Jenis"></label>
                 </div>
                 <div class="grid_12">
-                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenis" k-data-text-field="'jenisruangan'"
-                        k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenis"
-                     />
+                    <input style="width: 100%;" kendo-combo-box
+                        k-ng-model="item.jenis"
+                        k-data-text-field="'jenisruangan'"
+                        k-data-value-field="'id'" k-filter="'contains'"
+                        k-auto-bind="false" k-data-source="listJenis"
+                        />
                 </div>
             </div>
-            <div class="grid_1">
-                <label c-label c-label-text=""></label>
-                <em style="margin-top:6px;" ng-click='search()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary"
-                    role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-search">Refresh</span></em>
-                <em style="margin-top:6px;" ng-click='clears()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary"
-                    role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
-
+            <div class="grid_1" style="margin-top: 22px;">
+                <md-button class="md-raised md-primary
+                    medium-button"
+                    ng-click="search()">
+                    <span style="margin-right: 5px;">Cari</span>
+                    <i class="fa fa-search"></i>
+                </md-button>
+                <!-- <label c-label c-label-text=""></label>
+                <em style="margin-top:6px;" ng-click='search()' id="iconButton"
+                    data-role="button" class="k-button k-button-icon k-primary"
+                    role="button" aria-disabled="false" tabindex="0"><span
+                        class="k-sprite k-icon k-i-search">Refresh</span></em>
+                <em style="margin-top:6px;" ng-click='clears()' id="iconButton"
+                    data-role="button" class="k-button k-button-icon k-primary"
+                    role="button" aria-disabled="false" tabindex="0"><span
+                        class="k-sprite k-icon k-i-cancel">Refresh</span></em> -->
+            </div>
+            <div class="grid_1" style="margin-top: 22px;">
+                <md-button class="md-raised md-warn
+                    medium-button"
+                    ng-click="clears()">
+                    <span style="margin-right: 5px;">Clear</span>
+                    <i class="fa fa-remove"></i>
+                </md-button>
             </div>
             <!-- <div class="grid_2 k-edit-buttons  k-state-default " style="margin-top:22px">
             <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="search()" style="width:100px"><span
@@ -60,15 +84,16 @@
     </fieldset>
     <div class="grid_12" style="margin-top:10px">
         <div class="clear"></div>
-        <div class="grid_12 borderBox">
+        <div class="grid_12">
             <kendo-grid id="kGrid" data-source="sourceLaporan"
-            class="max-height" options="optionsGrid" k-selectable="'row'" k-ng-model="dataSelect"
+                class="max-height" options="optionsGrid" k-selectable="'row'"
+                k-ng-model="dataSelect"
                 ng-click="klikGrid(dataSelect)"></kendo-grid>
         </div>
     </div>
 
     <div class="grid_12" style="margin-top:60px">
-        <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+        <div ng-include='" ../app/module/Shared/TemplateLoading" '></div>
     </div>
     <style>
         legend {

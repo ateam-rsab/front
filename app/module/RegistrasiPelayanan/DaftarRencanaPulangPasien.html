@@ -1,66 +1,103 @@
 <div ng-controller="DaftarRencanaPulangPasienCtrl">
     <div ng-show="dataVOloaded">
-        <div class="panel panel-default panel-white">
-            <div class="panel-heading-white"><span class="title" c-translate>Parameter Pencarian</span></div>
-            <div class="panel-body">
-                <div class="grid_12">
-                    <div class="grid_2" style="margin-top: 6px;">
-                        <div class="grid_12">
-                            <label c-label c-label-text="Nocm"></label>
-                        </div>
-                        <div class="grid_12">
-                            <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.NoCm" />
-                        </div>
+        <!-- <div class="panel panel-default panel-white"> -->
+        <md-toolbar md-scroll-shrink class="shadow">
+            <div class="md-toolbar-tools">Daftar Rencana Pasien Pulang</div>
+        </md-toolbar>
+        <!-- <div class="panel-heading-white"><span class="title" c-translate>Parameter Pencarian</span></div> -->
+        <div class="panel-body">
+            <div class="grid_12">
+                <div class="grid_2" style="margin-top: 6px;">
+                    <div class="grid_12">
+                        <label c-label c-label-text="Nocm"></label>
                     </div>
-                    <div class="grid_3" style="margin-top: 6px;">
-                        <div class="grid_12">
-                            <label c-label c-label-text="Noregistrasi"></label>
-                        </div>
-                        <div class="grid_12">
-                            <input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.Noregistrasi" />
-                        </div>
-                    </div>
-                    <div class="grid_6">
-                        <div class="grid_12">
-                            <label c-label c-label-text="tanggalRencanaPindah"></label>
-                        </div>
-                        <div class="grid_12">
-                            <div class="grid_6">
-                                <input style="width: 100%" k-ng-model="item.tglawal" kendo-date-picker k-format="'dd-MM-yyyy'" />
-                            </div>
-                            <div class="grid_6">
-                                <input style="width: 100%" k-ng-model="item.tglakhir" kendo-date-picker k-format="'dd-MM-yyyy'" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid_1" style="margin-top:5px">
-                        <label c-label c-label-text=""></label>
-                        <em style="margin-top: 6px;" ng-click='findData()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+                    <div class="grid_12">
+                        <input c-text-box type="input" filter="'string'"
+                            class="k-textbox" ng-model="item.NoCm" />
                     </div>
                 </div>
+                <div class="grid_3" style="margin-top: 6px;">
+                    <div class="grid_12">
+                        <label c-label c-label-text="Noregistrasi"></label>
+                    </div>
+                    <div class="grid_12">
+                        <input c-text-box type="input" filter="'string'"
+                            class="k-textbox" ng-model="item.Noregistrasi"
+                            />
+                    </div>
+                </div>
+                <div class="grid_4">
+                    <div class="grid_12">
+                        <label c-label c-label-text="tanggalRencanaPindah"></label>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_6">
+                            <input style="width: 100%"
+                                k-ng-model="item.tglawal" kendo-date-picker
+                                k-format="'dd-MM-yyyy'" />
+                        </div>
+                        <div class="grid_6">
+                            <input style="width: 100%"
+                                k-ng-model="item.tglakhir" kendo-date-picker
+                                k-format="'dd-MM-yyyy'" />
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_1" style="margin-top:27px">
+                    <md-button class="md-raised md-primary medium-button"
+                        ng-click="findData()">
+                        <span style="margin-right: 5px;">Cari</span>
+                        <i class="fa fa-search"></i>
+                    </md-button>
+                    <!-- <label c-label c-label-text=""></label>
+                        <em style="margin-top: 6px;" ng-click='findData()'
+                            id="iconButton" data-role="button" class="k-button
+                            k-button-icon" role="button" aria-disabled="false"
+                            tabindex="0"><span class="k-sprite k-icon
+                                k-i-refresh">Refresh</span></em> -->
+                </div>
+                <!-- <div class="grid_1" style="margin-top:5px">
+                    <label c-label c-label-text=""></label>
+                    <em style="margin-top: 6px;" ng-click='findData()'
+                        id="iconButton" data-role="button" class="k-button
+                        k-button-icon" role="button" aria-disabled="false"
+                        tabindex="0"><span class="k-sprite k-icon
+                            k-i-refresh">Refresh</span></em>
+                </div> -->
             </div>
         </div>
+        <!-- </div> -->
         <div class="panel panel-default panel-white">
-            <div class="panel-heading-white"><span class="title" c-translate>{{title}}</span></div>
+            <!-- <div class="panel-heading-white"><span class="title" c-translate>{{title}}</span></div> -->
             <div class="panel-body">
                 <div class="grid_12" style="margin-bottom:5px">
-                   <!--  <kendo-grid k-ng-model="data" k-data-source="listDaftar" options='mainGridOptions' k-selectable="'row'"></kendo-grid> -->
-                   <kendo-grid  id="kGrid"  data-source="listDaftar" options="mainGridOptions"
-                                k-selectable="'row'" 
-                                k-sortable="'true'"
-                                k-resizable="'true'"
-                                k-ng-model="data"
-                                ng-click="klikGrid(dataPasienSelected)"></kendo-grid>
+                    <!--  <kendo-grid k-ng-model="data" k-data-source="listDaftar" options='mainGridOptions' k-selectable="'row'"></kendo-grid> -->
+                    <kendo-grid id="kGrid" data-source="listDaftar"
+                        options="mainGridOptions"
+                        k-selectable="'row'"
+                        k-sortable="'true'"
+                        k-resizable="'true'"
+                        k-ng-model="data"
+                        ng-click="klikGrid(dataPasienSelected)"></kendo-grid>
                 </div>
                 <div class="clear"></div>
             </div>
         </div>
-        <div class="grid_12 place_button">
-            <div class="grid_3 " style="float:right;margin-right:23px;">
-                <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px; margin:0px;" item="item" size="36" position="'right'" is-validate click="pindah">
+        <div class="grid_12">
+            <div class="grid_3">
+                <md-button class="md-raised md-button md-primary" is-validate
+                    ng-click="pindah()">
+                    Proses Pulang
+                </md-button>
+                <!-- <c-button ng-show="!isLoading" style="width: 100%; font-size:
+                    24px; padding:0px; margin:0px;" item="item" size="36"
+                    position="'right'" is-validate click="pindah">
                     <span class="title">Proses Pulang</span>
-                </c-button>
+                </c-button> -->
             </div>
+        </div>
+        <div class="grid_12" style="margin-top:60px">
+            <div ng-include='" ../app/module/Shared/TemplateLoading" '></div>
         </div>
     </div>
 </div>

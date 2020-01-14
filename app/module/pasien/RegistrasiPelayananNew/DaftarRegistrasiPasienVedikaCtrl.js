@@ -348,8 +348,24 @@ define(['initialize'], function (initialize) {
                     "field": "statusorder",
                     "title": "Keterangan",
                     "width": "80px",
+                },
+                {
+                    command: [
+                        { text: "PDF", click: exportToPdf },
+                    ], title: "&nbsp;", width: 50,
+                    attributes: {
+                        style: "text-align:center;valign=middle"
+                    }
+
                 }
             ];
+
+            function exportToPdf(e) {
+                e.preventDefault();
+                let dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                console.log(dataItem);
+                window.open('http://192.168.12.4:7777/service-reporting/lap-lab/' + dataItem.noregistrasi);
+            }
             $scope.detailHasilRad = function (dataItem) {
                 return {
                     dataSource: new kendo.data.DataSource({

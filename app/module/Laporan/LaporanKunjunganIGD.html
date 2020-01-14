@@ -1,6 +1,6 @@
 <!-- <div ng-controller="LaporanKematianRsCtrl"> -->
 
-    <style>
+<style>
     .k-grid .k-grid-header .k-header .k-link {
         height: auto;
     }
@@ -14,64 +14,82 @@
 </style>
 <div ng-show="dataVOloaded">
     <!-- <c-panel item="item" header="'Daftar Tagihan Rekanan'" disabled> -->
-        <div class="grid_12 headerBox">
+    <md-toolbar md-scroll-shrink class="shadow">
+        <div class="md-toolbar-tools">Laporan Kunjungan Instalasi Gawat Darurat</div>
+    </md-toolbar>
+    <!-- <div class="grid_12 headerBox">
             <h2 style="color: white;">
                  <p>LAPORAN KUNJUNGAN INSTALASI GAWAT DARURAT (IGD)</p>
             </h2>
+        </div> -->
+    <div class="grid_12">
+
+        <div class="grid_3">
+            <label c-label item="item" c-label-text="Tanggal awal"></label>
+            <input style="width: 100%" k-ng-model="item.tglawal"
+                kendo-datetimepicker placeholer="yyyy-mm-dd"
+                k-format="'yyyy-MM-dd HH:mm'"
+                />
         </div>
 
-       <div class="grid_12">
-
-            <div class="grid_3">
-                <label c-label item="item" c-label-text="Tanggal awal"></label>
-                <input style="width: 100%" k-ng-model="item.tglawal" kendo-datetimepicker placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd HH:mm'"
+        <div class="grid_3">
+            <label c-label item="item" c-label-text="Tanggal Akhir"></label>
+            <input style="width: 100%" k-ng-model="item.tglakhir"
+                kendo-datetimepicker placeholer="yyyy-mm-dd"
+                k-format="'yyyy-MM-dd HH:mm'"
                 />
-            </div>
-
-            <div class="grid_3">
-                <label c-label item="item" c-label-text="Tanggal Akhir"></label>
-                <input style="width: 100%" k-ng-model="item.tglakhir" kendo-datetimepicker placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd HH:mm'"
-                />
-            </div>
-            
-            <!-- Button Search -->
-            <div class="grid_1">
-                <div class="grid_12">
-                    <label>&nbsp;</label>
-                </div>
-                <!-- <div class="clear"></div> -->
-
-                <div class="grid_12">
-                    <button class="primary c-button" style="margin-top: 6px" ng-click="CariData()">Cari</button>
-                </div>
-            </div>
-
-            <!-- Button Clear -->
-            <div class="grid_1">
-                <div class="grid_12">
-                    <label>&nbsp;</label>
-                </div>
-                <div class="clear"></div>
-
-                <div class="grid_12">
-                    <button class="cancel c-button" style="margin-top: 6px" ng-click="ClearSearch()">Clear</button>
-                </div>
-            </div>
         </div>
-        <div class="grid_12" style="margin-top:10px; margin-bottom: 15px">
-            <div class="grid_12 headerBox">
-                <p>Data Laporan</p>
+
+        <!-- Button Search -->
+        <div class="grid_1" style="margin-top: 22px;">
+            <md-button class="md-raised md-primary medium-button"
+                ng-click="CariData()">
+                <span style="margin-right: 5px;">Cari</span>
+                <i class="fa fa-search"></i>
+            </md-button>
+            <!-- <div class="grid_12">
+                <label>&nbsp;</label>
             </div>
             <div class="clear"></div>
-            <div class="grid_12 borderBox">
-                <div id="kGrid" kendo-grid                 
-                k-aggregate='aggregate' 
-                k-data-source="sourceLaporan" 
-                k-selectable="'row'" 
-                k-columns="columnLaporan" 
+
+            <div class="grid_12">
+                <button class="primary c-button" style="margin-top: 6px"
+                    ng-click="CariData()">Cari</button>
+            </div> -->
+        </div>
+
+        <!-- Button Clear -->
+        <div class="grid_1" style="margin-top: 22px;">
+            <md-button class="md-raised md-warn medium-button"
+                ng-click="ClearSearch()">
+                <span style="margin-right: 5px;">Clear</span>
+                <i class="fa fa-remove"></i>
+            </md-button>
+            <!-- <div class="grid_12">
+                <label>&nbsp;</label>
+            </div>
+            <div class="clear"></div>
+
+            <div class="grid_12">
+                <button class="cancel c-button" style="margin-top: 6px"
+                    ng-click="ClearSearch()">Clear</button>
+            </div> -->
+        </div>
+    </div>
+    <div class="grid_12" style="margin-top:10px; margin-bottom: 15px">
+        <div class="headerBox">
+            <p>Data Laporan</p>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_12">
+            <div id="kGrid" kendo-grid
+                k-aggregate='aggregate'
+                k-data-source="sourceLaporan"
+                k-selectable="'row'"
+                k-columns="columnLaporan"
                 k-pageable="'true'"
-                k-sortable="'true'" 
-                k-ng-model="dataPasienSelected" 
+                k-sortable="'true'"
+                k-ng-model="dataPasienSelected"
                 ng-click="click(dataPasienSelected)">
             </div>
         </div>
@@ -79,27 +97,30 @@
     <div class="grid_9"></div>
     <div class="grid_3 borderBox containerBorderBox">
         <div class="grid_12" style="margin-right: 5px">
-                    <div class="grid_12">
-                        <label c-label item="item" c-label-text="Total Keseluruhan"></label>
-                    </div>
-                    <div class="clear"></div>
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="Total Keseluruhan"></label>
+            </div>
+            <div class="clear"></div>
 
-                    <div class="grid_12" style="margin-top: 15px; margin-bottom: 10px; margin-right: 10px" >
-                        <input c-text-box type="text" filter="" class="k-textbox" ng-model="item.totalAll" ng-disabled="true" ng-show="showTotal"/>
-                        <!-- {{item.totalAll | }} -->
-                    </div>
-                </div>
+            <div class="grid_12" style="margin-top: 15px; margin-bottom: 10px;
+                margin-right: 10px">
+                <input c-text-box type="text" filter="" class="k-textbox"
+                    ng-model="item.totalAll" ng-disabled="true"
+                    ng-show="showTotal" />
+                <!-- {{item.totalAll | }} -->
+            </div>
+        </div>
         <div class="grid_12">
-    </div>
-    
+        </div>
+
         <div class="grid_12" style="float:right">
             <div class="grid_10"></div>
-                <!-- <div class="grid_2" style="margin-top: 10px ">
+            <!-- <div class="grid_2" style="margin-top: 10px ">
                     <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Cetak()">
                         <span class="title">Cetak</span>
                     </button>
                 </div> -->
-                <!-- <div class="grid_3 " style="margin-top: 25px ">
+            <!-- <div class="grid_3 " style="margin-top: 25px ">
                     <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakVolume()">
                         <span class="title">Cetak Volume</span>
                     </button>
@@ -109,13 +130,13 @@
                         <span class="title">Cetak Rekap Pendapatan</span>
                     </button>
                 </div> -->
-            </div>
         </div>
-        <br/>
     </div>
     <br/>
-    <!-- </div> -->
-</div>
- <div class="grid_12" style="margin-top:60px" >
-    <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
- </div> 
+    </div>
+    <br/>
+        <!-- </div> -->
+    </div>
+    <div class="grid_12" style="margin-top:60px">
+        <div ng-include='" ../app/module/Shared/TemplateLoading" '></div>
+    </div>

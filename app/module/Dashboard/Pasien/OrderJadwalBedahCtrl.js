@@ -389,12 +389,19 @@ define(['initialize'], function (initialize) {
                     {
                         command: [
                             { text: "Edit", click: editData, imageClass: "k-icon k-i-pencil" },
-                            { text: "Detail", click: detailData, imageClass: "k-icon k-i-detail" },
-                            { text: "Hapus", click: hapusData, imageClass: "k-icon k-i-cancel" }
-                        ], title: "", width: 120
+                            { text: "Detail", click: detailData, imageClass: "k-icon k-detail" },
+                            { text: "Hapus", click: hapusData, imageClass: "k-icon k-i-cancel" },
+                            { text: "Cetak", click: cetakBedah, imageClass: "k-icon k-print" }
+                        ], title: "", width: 160
                     }
                 ]
             };
+
+            function cetakBedah(e) {
+                e.preventDefault();
+                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                window.open("http://192.168.12.4:7777/service-reporting/lap-bedah/" + dataItem.noregistrasi);
+            }
 
             $scope.setLamaPembedahan = function () {
                 console.log($scope.item.jamMulai);
@@ -437,11 +444,11 @@ define(['initialize'], function (initialize) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                 if (idPegawaiLogin.id !== dataItem.pegawaifk) {
-                    $scope.isSuster = false;
+                    $scope.isSuster = true;
                     toastr.info("Anda tidak memiliki hak akses untuk Edit");
                     return;
                 } else {
-                    $scope.isSuster = true;
+                    $scope.isSuster = false;
                 }
 
                 console.log(dataItem);

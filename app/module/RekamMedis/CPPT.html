@@ -1,7 +1,7 @@
 <!-- <div ng-include='"../app/module/pasien/RegistrasiPelayananNew/HeaderRekamMedis"'></div> -->
 <div class="panel panel-default">
     <div class="panel-heading" style="font-size: 18px;" c-translate>SOAP</div>
-    <md-content class="md-padding" ng-show="!isShowSoap">
+    <div class="md-padding" ng-show="!isShowSoap">
         <!-- <div class="grid_12">
             <div class="grid_2">
                 <label c-label c-label-text="No Registrasi"></label>
@@ -170,27 +170,43 @@
                     </div>
                 </md-card>
                 <md-card ng-show="isTbak">
-                    
-                    <textarea ng-model="item.contentTBAK"  ng-disabled="isDetail"
+
+                    <textarea ng-model="item.contentTBAK" ng-disabled="isDetail"
                         style="height:180px"></textarea>
                 </md-card>
-                <div class="k-edit-buttons k-state-default pull-right"
+                <div class="k-edit-buttons k-state-default"
                     style="margin-top:10px">
-                    <button class="k-button k-button-icontext k-primary
+                    <div class="grid_8"></div>
+                    <div class="grid_2">
+                        <md-button class="md-raised md-warn medium-button"
+                            ng-click="close()">
+                            <span style="margin-right: 5px;">Batal</span>
+                            <i class="fa fa-close"></i>
+                        </md-button>
+                    </div>
+                    <div class="grid_2">
+                        <md-button class="md-raised md-primary medium-button"
+                            ng-click="Save()">
+                            <span style="margin-right: 5px;">Simpan</span>
+                            <i class="fa fa-save"></i>
+                        </md-button>
+                    </div>
+                    <!-- <button class="k-button k-button-icontext k-primary
                         k-grid-update" ng-click="Save()"
                         ng-disabled="isDisable"><span class="k-icon k-update"></span>Simpan</button>
                     <button class="k-button k-button-icontext"
-                        ng-click="close()"><span class="k-icon k-cancel"></span>Batal</button>
+                        ng-click="close()"><span class="k-icon k-cancel"></span>Batal</button> -->
                 </div>
             </div>
         </div>
         <!-- END CPPT PopUp-->
         <div class="grid_12">
             <div class="panel-body grid_12">
-                <div class="grid_12 headerBox">
+                <!-- <div class="grid_12 headerBox">
                     <p>Riwayat CPPT/TBAK</p>
-                </div>
-                <div class="grid_12 borderBox">
+                </div> -->
+                <md-subheader class="md-primary">Riwayat CPPT/TBAK</md-subheader>
+                <div class="grid_12">
                     <div kendo-grid id="idGridCPPT" k-data-source="sourceCPPT"
                         k-selectable="'row'" options="gridCPPT"
                         k-ng-model="dataCPPT"></div>
@@ -227,17 +243,19 @@
         <hr>
         <div class="grid_12">
             <div class="panel-body grid_12">
-                <div class="grid_12 headerBox">
+                <!-- <div class="grid_12 headerBox">
                     <p>Riwayat CPPT/TBAK yang belum di Verifikasi</p>
-                </div>
-                <div class="grid_12 borderBox">
+                </div> -->
+                <md-subheader class="md-primary">Riwayat CPPT/TBAK yang belum di
+                    Verifikasi</md-subheader>
+                <div class="grid_12">
                     <div kendo-grid id="idGridCPPTnotVerif"
                         k-data-source="sourceCPPTnotVerif" k-selectable="'row'"
                         options="gridCPPTnotVerif" k-ng-model="dataCPPT"></div>
                 </div>
             </div>
         </div>
-    </md-content>
+    </div>
     <!-- <div class="panel-body" ng-show="isShowSoap">
                         <hr>
                         <div class="grid_12">

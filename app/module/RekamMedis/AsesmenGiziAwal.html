@@ -36,7 +36,7 @@
                 options="optGridAsesmenGizi" style="padding:10px;"></div>
         </div>
     </div> -->
-    <hr>
+    <!-- <hr> -->
     <md-card>
         <md-card-title>
             <strong>
@@ -44,7 +44,8 @@
             </strong>
         </md-card-title>
         <md-card-content>
-            <div kendo-grid id="gridDataPegawai" k-data-source="dataAsesmenGiziUnverif"
+            <div kendo-grid id="gridDataPegawai"
+                k-data-source="dataAsesmenGiziUnverif"
                 options="optGridAsesmenGiziNotVerif" style="padding:10px;"></div>
         </md-card-content>
     </md-card>
@@ -64,9 +65,12 @@
 <div ng-show="showInput">
     <div>
         <div class="grid_12">
-            <div class="grid_12 headerBox">
+            <!-- <div class="grid_12 headerBox">
                 <h1 style="color: white;"><b>Asesmen Gizi Awal</b></h1>
-            </div>
+            </div> -->
+            <md-toolbar md-scroll-shrink class="shadow">
+                <div class="md-toolbar-tools">Asesmen Gizi Awal</div>
+            </md-toolbar>
 
             <div class="grid_12">
                 <div class="grid_6">
@@ -92,12 +96,15 @@
                                 gizi oleh perawat. kondisi pasien termasuk:</strong>
                         </legend>
                         <ul class="fieldlist" ng-show="isDewasa">
-                            <li ng-repeat="risiko in listOfRisikoMalnutrisiDewasa">
+                            <li ng-repeat="risiko in
+                                listOfRisikoMalnutrisiDewasa">
                                 <input type="radio" name="RisikoMalnutrisi"
                                     ng-model="item.risikoMalnutrisi"
                                     value="{{risiko.name}}"
-                                    id="{{risiko.id}}" class="rbRisikoMalnutrisi k-radio">
-                                <label class="k-radio-label" for="{{risiko.id}}">{{risiko.name}}</label>
+                                    id="{{risiko.id}}" class="rbRisikoMalnutrisi
+                                    k-radio">
+                                <label class="k-radio-label"
+                                    for="{{risiko.id}}">{{risiko.name}}</label>
                             </li>
                         </ul>
                         <ul class="fieldlist" ng-show="!isDewasa">
@@ -198,10 +205,12 @@
                             <li>
                                 <input type="radio" name="tindakLanjut"
                                     id="perluAsuhanGizi" class="k-radio"
-                                    value="Perlu Asuhan Gizi (Lanjutkan ke Asesmen Gizi)" ng-model="item.tindakLanjut"
+                                    value="Perlu Asuhan Gizi (Lanjutkan ke
+                                    Asesmen Gizi)" ng-model="item.tindakLanjut"
                                     ng-click="isPerluLanjutan(true)">
                                 <label class="k-radio-label"
-                                    for="perluAsuhanGizi">Perlu Asuhan Gizi (Lanjutkan ke Asesmen Gizi)</label>
+                                    for="perluAsuhanGizi">Perlu Asuhan Gizi
+                                    (Lanjutkan ke Asesmen Gizi)</label>
                             </li>
                             <li>
                                 <input type="radio" name="tindakLanjut"
@@ -220,9 +229,12 @@
 
             <!-- Gizi lanjutan -->
             <div ng-show="showGiziLanjutan">
-                <div class="grid_12 headerBox">
+                <md-toolbar md-scroll-shrink class="shadow">
+                    <div class="md-toolbar-tools">Asesmen Gizi Lanjut</div>
+                </md-toolbar>
+                <!-- <div class="grid_12 headerBox">
                     <h1 style="color: white;"><b>Asesmen Gizi Lanjut</b></h1>
-                </div>
+                </div> -->
                 <div class="grid_12">
                     <div class="grid_6">
                         <fieldset class="noborder">
@@ -417,9 +429,12 @@
                 </div>
             </div>
 
-            <div class="grid_12 headerBox">
+            <!-- <div class="grid_12 headerBox">
                 <h1 style="color: white;"><b>Diagnosis Gizi</b></h1>
-            </div>
+            </div> -->
+            <md-toolbar md-scroll-shrink class="shadow">
+                <div class="md-toolbar-tools">Diagnosis Gizi</div>
+            </md-toolbar>
             <div class="grid_12">
                 <div style="margin: 10px">
                     <textarea class="k-textbox" style="height: 100px; width:
@@ -428,9 +443,12 @@
                 </div>
             </div>
 
-            <div class="grid_12 headerBox">
+            <!-- <div class="grid_12 headerBox">
                 <h1 style="color: white;"><b>Intervensi Gizi</b></h1>
-            </div>
+            </div> -->
+            <md-toolbar md-scroll-shrink class="shadow">
+                <div class="md-toolbar-tools">Intervensi Gizi</div>
+            </md-toolbar>
             <div class="grid_12">
                 <div style="margin: 10px">
                     <textarea class="k-textbox"
@@ -439,9 +457,12 @@
                 </div>
             </div>
 
-            <div class="grid_12 headerBox">
+            <!-- <div class="grid_12 headerBox">
                 <h1 style="color: white;"><b>Monitoring Evaluasi</b></h1>
-            </div>
+            </div> -->
+            <md-toolbar md-scroll-shrink class="shadow">
+                <div class="md-toolbar-tools">Monitoring Evaluasi</div>
+            </md-toolbar>
             <div class="grid_6">
                 <fieldset class="borderBox" style="margin-top: 10px;
                     min-height:166px">
@@ -504,12 +525,24 @@
             <div class="grid_8">
             </div>
             <div class="grid_2" style="margin-top: 22px">
-                <button class="k-button btnSimpan" style="width: 100%"
-                    ng-click="saveDataAsesmen()" ng-disabled="isEdit">{{txtSimpan}}</button>
+                <md-button class="md-raised
+                    md-warn"
+                    ng-click="Batal()">
+                    <span style="margin-right:5px;">Batal</span>
+                    <i class="fa fa-close"></i>
+                </md-button>
+                <!-- <button class="k-button btnSimpan" style="width: 100%"
+                    ng-click="saveDataAsesmen()" ng-disabled="isEdit"></button> -->
             </div>
             <div class="grid_2" style="margin-top: 22px">
-                <button class="k-button btnCancel" style="width: 100%"
-                    ng-click="Batal()">Batal</button>
+                <md-button class="md-raised
+                    md-primary"
+                    ng-click="saveDataAsesmen()">
+                    <span style="margin-right:5px;">{{txtSimpan}}</span>
+                    <i class="fa fa-save"></i>
+                </md-button>
+                <!-- <button class="k-button btnCancel" style="width: 100%"
+                    ng-click="Batal()">Batal</button> -->
             </div>
 
         </div>

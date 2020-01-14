@@ -1,54 +1,78 @@
 <div ng-show="dataVOloaded">
     <!-- <c-panel item="item" header="'Daftar Tagihan Rekanan'" disabled> -->
-    <div class="grid_12 headerBox">
+    <!-- <div class="grid_12 headerBox">
         <h1 style="color: white;">
             <b>Laporan Pendapatan</b>
         </h1>
-    </div>
+    </div> -->
+    <md-toolbar md-scroll-shrink class="shadow">
+        <div class="md-toolbar-tools">Laporan Pendapatan</div>
+    </md-toolbar>
 
     <div class="grid_12">
-
         <div class="grid_2">
             <label c-label item="item" c-label-text="Tanggal awal"></label>
-            <input style="width: 100%" k-ng-model="item.tglawal" kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'"
-            />
+            <input style="width: 100%" k-ng-model="item.tglawal"
+                kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm"
+                k-format="'yyyy-MM-dd HH:mm'"
+                />
         </div>
 
         <div class="grid_2">
             <label c-label item="item" c-label-text="Tanggal Akhir"></label>
-            <input style="width: 100%" k-ng-model="item.tglakhir" kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'"
-            />
+            <input style="width: 100%" k-ng-model="item.tglakhir"
+                kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm"
+                k-format="'yyyy-MM-dd HH:mm'"
+                />
         </div>
         <div class="grid_2">
             <label c-label item="item" c-label-text="Nama Dokter"></label>
-            <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaPegawai" k-data-text-field="'namalengkap'" k-data-value-field="'id'"
-                k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" k-on-change="getDataPegawai()" />
+            <input style="width: 100%;" kendo-combo-box
+                k-ng-model="item.namaPegawai" k-data-text-field="'namalengkap'"
+                k-data-value-field="'id'"
+                k-filter="'contains'" k-auto-bind="false"
+                k-data-source="listPegawai" k-on-change="getDataPegawai()" />
         </div>
         <div class="grid_3">
-			<label c-label item="item" c-label-text="Departement"></label>
-			<input  style="width: 100%;" kendo-combo-box k-ng-model="item.departement" k-data-text-field="'departemen'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDepartemen"  k-on-change="getIsiComboRuangan()"/>
-		</div>
+            <label c-label item="item" c-label-text="Departement"></label>
+            <input style="width: 100%;" kendo-combo-box
+                k-ng-model="item.departement" k-data-text-field="'departemen'"
+                k-data-value-field="'id'" k-filter="'contains'"
+                k-auto-bind="false" k-data-source="listDepartemen"
+                k-on-change="getIsiComboRuangan()" />
+        </div>
         <div class="grid_3">
-			<label c-label item="item" c-label-text="Ruangan"></label>
-			<input ng-disabled="isDisable" style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'ruangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan"/>
-		</div>
+            <label c-label item="item" c-label-text="Ruangan"></label>
+            <input ng-disabled="isDisable" style="width: 100%;" kendo-combo-box
+                k-ng-model="item.ruangan" k-data-text-field="'ruangan'"
+                k-data-value-field="'id'" k-filter="'contains'"
+                k-auto-bind="false" k-data-source="listRuangan" />
+        </div>
         <div class="grid_2">
             <label c-label item="item" c-label-text="Kelompok Pasien"></label>
-            <input style="width: 100%;" kendo-combo-box k-ng-model="item.kelompokPasien" k-data-text-field="'kelompokpasien'" k-data-value-field="'id'"
-            k-filter="'contains'" k-auto-bind="false" k-data-source="listKelompokPasien" />
+            <input style="width: 100%;" kendo-combo-box
+                k-ng-model="item.kelompokPasien"
+                k-data-text-field="'kelompokpasien'" k-data-value-field="'id'"
+                k-filter="'contains'" k-auto-bind="false"
+                k-data-source="listKelompokPasien" />
         </div>
-         <div class="grid_2">
+        <div class="grid_2">
             <label c-label item="item" c-label-text="Tipe Dokter"></label>
-            <input style="width: 100%;" kendo-combo-box k-ng-model="item.TipeDokter" k-data-text-field="'tipedokter'" k-data-value-field="'id'"
-                k-filter="'contains'" k-auto-bind="false" k-data-source="listTipeDokter" />
+            <input style="width: 100%;" kendo-combo-box
+                k-ng-model="item.TipeDokter" k-data-text-field="'tipedokter'"
+                k-data-value-field="'id'"
+                k-filter="'contains'" k-auto-bind="false"
+                k-data-source="listTipeDokter" />
         </div>
         <div class="grid_2">
             <label c-label item="item" c-label-text="Kelas"></label>
-            <input style="width: 100%;" kendo-combo-box k-ng-model="item.kelas" k-data-text-field="'tipedokter'" k-data-value-field="'id'"
-                k-filter="'contains'" k-auto-bind="false" k-data-source="listOfKelas" />
+            <input style="width: 100%;" kendo-combo-box k-ng-model="item.kelas"
+                k-data-text-field="'tipedokter'" k-data-value-field="'id'"
+                k-filter="'contains'" k-auto-bind="false"
+                k-data-source="listOfKelas" />
         </div>
         <!-- Button Search -->
-       <!--  <div class="grid_1">
+        <!--  <div class="grid_1">
             <div class="grid_12">
                 <label>&nbsp;</label>
             </div>
@@ -58,7 +82,6 @@
                 <button class="btnTemplate1" style="margin-left: 0;" ng-click="CariLapPendapatan()">Cari</button>
             </div>
         </div> -->
-
         <!-- Button Clear -->
         <!-- <div class="grid_1">
             <div class="grid_12">
@@ -93,39 +116,48 @@
         <div class="grid_12 borderBox containerBorderBox">
 
             <!- total pendapatan -->
-            <!-- <div class="grid_12">
+    <!-- <div class="grid_12">
                 <div class="grid_4">
                     <label c-label item="item" c-label-text="Total"></label>
                 </div>
                 <div class="grid_8"></div>
                 {{item.total | currency: "Rp. "}}
             </div>
-        </div> --> 
-
-
-    </div>
+        </div> -->
 </div>
 
 
 <div class="grid_12">
     <div class="grid_12" style="float:right">
         <div class="grid_12">
-            <div class="grid_3 " style="margin-top: 25px ">
-                <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakLaporanPendapatan()">
+            <div class="grid_3" style="margin-top: 25px">
+                <!-- <button class="c-button" ng-show="!isLoading" item="item"
+                    is-validate ng-click="CetakLaporanPendapatan()">
                     <span class="title">Laporan Pendapatan</span>
-                </button>
+                </button> -->
+                <md-button class="md-raised md-primary" ng-show="!isLoading"
+                    is-validate
+                    ng-click="CetakLaporanPendapatan()">
+                    <span>Laporan Pendapatan</span>
+                </md-button>
             </div>
             <!-- <div class="grid_3 " style="margin-top: 25px ">
                 <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakLaporanPendapatanPerDokter()">
                     <span class="title">Laporan Pendapatan Per Dokter</span>
                 </button>
             </div> -->
-            <div class="grid_3 " style="margin-top: 25px ">
-                <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakRekapPendapatan()">
+            <div class="grid_3" style="margin-top: 25px">
+                <md-button class="md-raised md-primary" ng-show="!isLoading"
+                    is-validate
+                    ng-click="CetakRekapPendapatan()">
+                    <span>Rekap Pendapatan</span>
+                </md-button>
+                <!-- <button class="c-button" ng-show="!isLoading" item="item"
+                    is-validate ng-click="CetakRekapPendapatan()">
                     <span class="title">Rekap Pendapatan</span>
-                </button>
+                </button> -->
             </div>
-           
+
             <!-- <div class="grid_3 " style="margin-top: 25px ">
                 <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakLaporanPendapatanFFS()">
                     <span class="title">Laporan Pendapatan FFS</span>
@@ -136,51 +168,101 @@
                     <span class="title">Laporan Pendapatan Remunerasi</span>
                 </button>
             </div> -->
-            <div class="grid_3 " style="margin-top: 25px ">
-                <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakLaporanFFSIGD()">
+            <div class="grid_3" style="margin-top: 25px">
+                <md-button class="md-raised md-primary" ng-show="!isLoading"
+                    is-validate
+                    ng-click="CetakLaporanFFSIGD()">
+                    <span>Laporan Fee For Service IGD</span>
+                </md-button>
+                <!-- <button class="c-button" ng-show="!isLoading" item="item"
+                    is-validate ng-click="CetakLaporanFFSIGD()">
                     <span class="title">Laporan Fee For Service IGD</span>
-                </button>
+                </button> -->
             </div>
-            <div class="grid_3 " style="margin-top: 25px ">
-                <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakRekapLaporanFFSIGD()">
+            <div class="grid_3" style="margin-top: 25px">
+                <md-button class="md-raised md-primary" ng-show="!isLoading"
+                    is-validate
+                    ng-click="CetakRekapLaporanFFSIGD()">
+                    <span>Rekap Fee For Service IGD</span>
+                </md-button>
+                <!-- <button class="c-button" ng-show="!isLoading" item="item"
+                    is-validate ng-click="CetakRekapLaporanFFSIGD()">
                     <span class="title">Rekap Fee For Service IGD</span>
-                </button>
+                </button> -->
             </div>
         </div>
         <div class="grid_12">
-             <div class="grid_3 " style="margin-top: 25px ">
-                <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakLaporanFFSRI()">
+            <div class="grid_3" style="margin-top: 25px">
+                <md-button class="md-raised md-primary" ng-show="!isLoading"
+                    is-validate
+                    ng-click="CetakLaporanFFSRI()">
+                    <span>Laporan Fee For Service Rawat Inap</span>
+                </md-button>
+                <!-- <button class="c-button" ng-show="!isLoading" item="item"
+                    is-validate ng-click="CetakLaporanFFSRI()">
                     <span class="title">Laporan Fee For Service Rawat Inap</span>
-                </button>
+                </button> -->
             </div>
-            <div class="grid_3 " style="margin-top: 25px ">
-                <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakRekapLaporanFFSRI()">
+            <div class="grid_3" style="margin-top: 25px">
+                <md-button class="md-raised md-primary" ng-show="!isLoading"
+                    is-validate
+                    ng-click="CetakRekapLaporanFFSRI()">
+                    <span>Rekap Fee For Service Rawat Inap</span>
+                </md-button>
+                <!-- <button class="c-button" ng-show="!isLoading" item="item"
+                    is-validate ng-click="CetakRekapLaporanFFSRI()">
                     <span class="title">Rekap Fee For Service Rawat Inap</span>
-                </button>
+                </button> -->
             </div>
-            <div class="grid_3 " style="margin-top: 25px ">
-                <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakLaporanFFSIBS()">
+            <div class="grid_3" style="margin-top: 25px">
+                <md-button class="md-raised md-primary" ng-show="!isLoading"
+                    is-validate
+                    ng-click="CetakLaporanFFSIBS()">
+                    <span>Laporan Fee For Service Instalasi Bedah</span>
+                </md-button>
+                <!-- <button class="c-button" ng-show="!isLoading" item="item"
+                    is-validate ng-click="CetakLaporanFFSIBS()">
                     <span class="title">Laporan Fee For Service Instalasi Bedah</span>
-                </button>
+                </button> -->
             </div>
-            <div class="grid_3 " style="margin-top: 25px ">
-                <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakRekapLaporanFFSIBS()">
+            <div class="grid_3" style="margin-top: 25px">
+                <md-button class="md-raised md-primary" ng-show="!isLoading"
+                    is-validate
+                    ng-click="CetakRekapLaporanFFSIBS()">
+                    <span>Rekap Fee For Service Instalasi Bedah</span>
+                </md-button>
+                <!-- <button class="c-button" ng-show="!isLoading" item="item"
+                    is-validate ng-click="CetakRekapLaporanFFSIBS()">
                     <span class="title">Rekap Fee For Service Instalasi Bedah</span>
-                </button>
+                </button> -->
             </div>
         </div>
         <div class="grid_12">
-            <div class="grid_3 " style="margin-top: 25px ">
-                <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakLaporanFFSRad()">
-                    <span class="title">Laporan Fee For Service Instalasi Radiologi</span>
-                </button>
+            <div class="grid_3" style="margin-top: 25px">
+                <md-button class="md-raised md-primary" ng-show="!isLoading"
+                    is-validate style="font-size: 12px;"
+                    ng-click="CetakLaporanFFSRad()">
+                    <span>Laporan Fee For Service Instalasi Radiologi</span>
+                </md-button>
+                <!-- <button class="c-button" ng-show="!isLoading" item="item"
+                    is-validate ng-click="CetakLaporanFFSRad()">
+                    <span class="title">Laporan Fee For Service Instalasi
+                        Radiologi</span>
+                </button> -->
             </div>
-            <div class="grid_3 " style="margin-top: 25px ">
-                <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakRekapLaporanFFSRad()">
-                    <span class="title">Rekap Fee For Service Instalasi Radiologi</span>
-                </button>
+            <div class="grid_3" style="margin-top: 25px">
+                <md-button class="md-raised md-primary" ng-show="!isLoading"
+                    is-validate style="font-size: 12px;"
+                    ng-click="CetakRekapLaporanFFSRad()">
+                    <span>Rekap Fee For Service Instalasi Radiologi</span>
+                </md-button>
+                <!-- <button class="c-button" ng-show="!isLoading" item="item"
+                    is-validate ng-click="CetakRekapLaporanFFSRad()">
+                    <span class="title">Rekap Fee For Service Instalasi
+                        Radiologi</span>
+                </button> -->
             </div>
-           <!--  <div class="grid_3 " style="margin-top: 25px ">
+            <!--  <div class="grid_3 " style="margin-top: 25px ">
                 <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakLaporanFFSLab()">
                     <span class="title">Laporan Fee For Service Instalasi Laboratorium</span>
                 </button>
@@ -190,39 +272,75 @@
                     <span class="title">Rekap Fee For Service Instalasi Laboratorium</span>
                 </button>
             </div> -->
-            <div class="grid_3 " style="margin-top: 25px ">
-                <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakLaporanFFSRJ()">
+            <div class="grid_3" style="margin-top: 25px">
+                <md-button class="md-raised md-primary" ng-show="!isLoading"
+                    is-validate style="font-size: 12px;"
+                    ng-click="CetakLaporanFFSRJ()">
+                    <span>Laporan Fee For Service Rawat Jalan</span>
+                </md-button>
+                <!-- <button class="c-button" ng-show="!isLoading" item="item"
+                    is-validate ng-click="CetakLaporanFFSRJ()">
                     <span class="title">Laporan Fee For Service Rawat Jalan</span>
-                </button>
+                </button> -->
             </div>
-            <div class="grid_3 " style="margin-top: 25px ">
-                <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakRekapLaporanFFSRJ()">
+            <div class="grid_3" style="margin-top: 25px">
+                <md-button class="md-raised md-primary" ng-show="!isLoading"
+                    is-validate
+                    ng-click="CetakRekapLaporanFFSRJ()">
+                    <span>Rekap Fee For Service Rawat Jalan</span>
+                </md-button>
+                <!-- <button class="c-button" ng-show="!isLoading" item="item"
+                    is-validate ng-click="CetakRekapLaporanFFSRJ()">
                     <span class="title">Rekap Fee For Service Rawat Jalan</span>
-                </button>
+                </button> -->
             </div>
         </div>
         <div class="grid_12">
-            <div class="grid_3 " style="margin-top: 25px ">
-                <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakLaporanFFSEdelweis()">
+            <div class="grid_3" style="margin-top: 25px">
+                <md-button class="md-raised md-primary" ng-show="!isLoading"
+                    is-validate style="font-size: 12px;"
+                    ng-click="CetakLaporanFFSEdelweis()">
+                    <span>Laporan Fee For Service Rawat Edelweis</span>
+                </md-button>
+                <!-- <button class="c-button" ng-show="!isLoading" item="item"
+                    is-validate ng-click="CetakLaporanFFSEdelweis()">
                     <span class="title">Laporan Fee For Service Rawat Edelweis</span>
-                </button>
+                </button> -->
             </div>
-            <div class="grid_3 " style="margin-top: 25px ">
-                <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakRekapLaporanFFSEdelweis()">
+            <div class="grid_3" style="margin-top: 25px">
+                <md-button class="md-raised md-primary" ng-show="!isLoading"
+                    is-validate style="font-size: 12px;"
+                    ng-click="CetakRekapLaporanFFSEdelweis()">
+                    <span>Rekap Fee For Service Rawat Edelweis</span>
+                </md-button>
+                <!-- <button class="c-button" ng-show="!isLoading" item="item"
+                    is-validate ng-click="CetakRekapLaporanFFSEdelweis()">
                     <span class="title">Rekap Fee For Service Rawat Edelweis</span>
-                </button>
+                </button> -->
             </div>
-            <div class="grid_3 " style="margin-top: 25px ">
-                <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakRekapPendapatanKeuangan()">
+            <div class="grid_3" style="margin-top: 25px">
+                <md-button class="md-raised md-primary" ng-show="!isLoading"
+                    is-validate
+                    ng-click="CetakRekapPendapatanKeuangan()">
+                    <span>Rekap Pendapatan Keuangan</span>
+                </md-button>
+                <!-- <button class="c-button" ng-show="!isLoading" item="item"
+                    is-validate ng-click="CetakRekapPendapatanKeuangan()">
                     <span class="title">Rekap Pendapatan Keuangan</span>
-                </button>
+                </button> -->
             </div>
-            <div class="grid_3 " style="margin-top: 25px ">
-                <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakRekapPendapatanKsm()">
+            <div class="grid_3" style="margin-top: 25px">
+                <md-button class="md-raised md-primary" ng-show="!isLoading"
+                    is-validate
+                    ng-click="CetakRekapPendapatanKsm()">
+                    <span>Laporan Pendapatan KSM</span>
+                </md-button>
+                <!-- <button class="c-button" ng-show="!isLoading" item="item"
+                    is-validate ng-click="CetakRekapPendapatanKsm()">
                     <span class="title">Laporan Pendapatan KSM</span>
-                </button>
+                </button> -->
             </div>
-        </div>        
+        </div>
     </div>
 </div>
 <!-- <div class="grid_12" style="float:right"> -->
@@ -320,15 +438,19 @@
     <div class="clear"></div>
 
     <div class="grid_12 borderBox">
-        <div id="kGrid" kendo-grid k-data-source="dataRekapPendapatan" k-selectable="'row'" k-columns="columnRekapPendapatan" k-pageable="'true'"
-            k-sortable="'true'" k-ng-model="dataPasienSelected" ng-click="click(dataPasienSelected)">
+        <div id="kGrid" kendo-grid k-data-source="dataRekapPendapatan"
+            k-selectable="'row'" k-columns="columnRekapPendapatan"
+            k-pageable="'true'"
+            k-sortable="'true'" k-ng-model="dataPasienSelected"
+            ng-click="click(dataPasienSelected)">
         </div>
     </div>
 
     <div class="grid_12">
         <div class="grid_10"></div>
-        <div class="grid_2" style="margin-top: 25px ">
-            <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakRekapPendapatan()">
+        <div class="grid_2" style="margin-top: 25px">
+            <button class="c-button" ng-show="!isLoading" item="item"
+                is-validate ng-click="CetakRekapPendapatan()">
                 <span class="title">Cetak</span>
             </button>
         </div>
@@ -349,15 +471,19 @@
     <div class="clear"></div>
 
     <div class="grid_12 borderBox">
-        <div id="kGrid" kendo-grid k-data-source="dataRekapPendapatanKeuangan" k-selectable="'row'" k-columns="columnRekapPendapatanKeuangan"
-            k-pageable="'true'" k-sortable="'true'" k-ng-model="dataPasienSelected" ng-click="click(dataPasienSelected)">
+        <div id="kGrid" kendo-grid k-data-source="dataRekapPendapatanKeuangan"
+            k-selectable="'row'" k-columns="columnRekapPendapatanKeuangan"
+            k-pageable="'true'" k-sortable="'true'"
+            k-ng-model="dataPasienSelected"
+            ng-click="click(dataPasienSelected)">
         </div>
     </div>
 
     <div class="grid_12">
         <div class="grid_10"></div>
-        <div class="grid_2" style="margin-top: 25px ">
-            <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakRekapPendapatanKeuangan()">
+        <div class="grid_2" style="margin-top: 25px">
+            <button class="c-button" ng-show="!isLoading" item="item"
+                is-validate ng-click="CetakRekapPendapatanKeuangan()">
                 <span class="title">Cetak</span>
             </button>
         </div>
@@ -378,15 +504,19 @@
     <div class="clear"></div>
 
     <div class="grid_12 borderBox">
-        <div id="kGrid" kendo-grid k-data-source="dataLaporanPendapatanFFS" k-selectable="'row'" k-columns="columnLaporanPendapatanFFS"
-            k-pageable="'true'" k-sortable="'true'" k-ng-model="dataPasienSelected" ng-click="click(dataPasienSelected)">
+        <div id="kGrid" kendo-grid k-data-source="dataLaporanPendapatanFFS"
+            k-selectable="'row'" k-columns="columnLaporanPendapatanFFS"
+            k-pageable="'true'" k-sortable="'true'"
+            k-ng-model="dataPasienSelected"
+            ng-click="click(dataPasienSelected)">
         </div>
     </div>
 
     <div class="grid_12">
         <div class="grid_10"></div>
-        <div class="grid_2" style="margin-top: 25px ">
-            <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakLaporanPendapatanFFS()">
+        <div class="grid_2" style="margin-top: 25px">
+            <button class="c-button" ng-show="!isLoading" item="item"
+                is-validate ng-click="CetakLaporanPendapatanFFS()">
                 <span class="title">Cetak</span>
             </button>
         </div>
@@ -407,15 +537,19 @@
     <div class="clear"></div>
 
     <div class="grid_12 borderBox">
-        <div id="kGrid" kendo-grid k-data-source="dataLaporanPendapatanRemun" k-selectable="'row'" k-columns="columnLaporanPendapatanRemun"
-            k-pageable="'true'" k-sortable="'true'" k-ng-model="dataPasienSelected" ng-click="click(dataPasienSelected)">
+        <div id="kGrid" kendo-grid k-data-source="dataLaporanPendapatanRemun"
+            k-selectable="'row'" k-columns="columnLaporanPendapatanRemun"
+            k-pageable="'true'" k-sortable="'true'"
+            k-ng-model="dataPasienSelected"
+            ng-click="click(dataPasienSelected)">
         </div>
     </div>
 
     <div class="grid_12">
         <div class="grid_10"></div>
-        <div class="grid_2" style="margin-top: 25px ">
-            <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="CetakLaporanPendapatanRemun()">
+        <div class="grid_2" style="margin-top: 25px">
+            <button class="c-button" ng-show="!isLoading" item="item"
+                is-validate ng-click="CetakLaporanPendapatanRemun()">
                 <span class="title">Cetak</span>
             </button>
         </div>
@@ -463,7 +597,7 @@
         </div>
     </div> -->
 <div class="grid_12" style="margin-top:60px" ng-show="isLoadingData">
-    <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+    <div ng-include='" ../app/module/Shared/TemplateLoading" '></div>
 </div>
 <br/>
 </div>

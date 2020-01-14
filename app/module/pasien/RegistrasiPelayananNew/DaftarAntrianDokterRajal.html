@@ -1,8 +1,12 @@
 
 <div class="panel panel-default container_12" ng-hide="klikDiagnosa">
-    <div class="panel-heading">
+    <!-- <div class="panel-heading">
         <label class='title' c-label item="item">Daftar Pasien Rawat Jalan</label>
-    </div>
+    </div> -->
+    <md-toolbar md-scroll-shrink class="shadow">
+        <div class="md-toolbar-tools">Daftar Pasien Rawat Jalan</div>
+    </md-toolbar>
+
     <div class="panel-body">
         <div class="grid_12">
             <div class="grid_4" style="margin-top:5px">
@@ -56,12 +60,22 @@
                     k-auto-bind="false" k-data-source="listRuangan" />
                 <!--<input style="width: 100%;" kendo-combo-box k-ng-model="item.Ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ruangans"/>-->
             </div>
-            <div class="grid_1" style="margin-top:5px">
-                <label c-label c-label-text=""></label>
+            <div class="grid_1" style="margin-top:28px">
+                <!-- <md-button class="md-raised md-primary medium-button"
+                    style="width: 30%;"
+                    ng-click="findData()">
+                    <i class="fa fa-search"></i>
+                </md-button> -->
+                <md-button class="md-raised md-primary medium-button"
+                    ng-click="findData()">
+                    <span style="margin-right: 5px;">Cari</span>
+                    <i class="fa fa-search"></i>
+                </md-button>
+                <!-- <label c-label c-label-text=""></label>
                 <em style="margin-top:6px;" ng-click='findData()'
                     id="iconButton" data-role="button" class="k-button
                     k-button-icon" role="button" aria-disabled="false"
-                    tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+                    tabindex="0"><span class="k-sprite k-icon k-i-search">Refresh</span></em> -->
             </div>
         </div>
         <div class="grid_12">
@@ -82,9 +96,8 @@
 </div>
 <div class="grid_12">
     <div class="grid_3">
-        <md-button class="md-raised md-primary"
+        <md-button class="md-raised md-button md-primary smart-button-warn"
             ng-click="rekamMedisElektronik()">
-            <i class="fa fa-file-medical"></i>
             Pengkajian Medis
         </md-button>
         <!-- <c-button style="width: 100%; padding:0px;margin:0px;" ng-click="rekamMedisElektronik()" position="'right'">
@@ -93,7 +106,6 @@
     </div>
     <div class="grid_3">
         <md-button class="md-raised md-primary" ng-click="panggil()">
-            <i class="fa fa-phone"></i>
             Panggil
         </md-button>
         <!-- <c-button style="width: 100%; padding:0px;margin:0px;"
@@ -103,7 +115,6 @@
     </div>
     <div class="grid_3">
         <md-button class="md-raised md-primary" ng-click="Detail()">
-            <i class="fa fa-file-invoice"></i>
             Rincian
         </md-button>
         <!-- <c-button style="width: 100%; padding:0px;margin:0px;"
@@ -112,9 +123,10 @@
             </c-button> -->
     </div>
     <div class="grid_3">
-        <md-button class="md-raised md-primary" ng-click="konsul()">
-            <i class="fas fa-file-alt"></i>
-            Konsultasi
+        <md-button class="md-raised md-primary" ng-click="konsul()"
+            style="display: flex; justify-content: center;">
+            <span style="margin-right: 10px;">Konsultasi</span>
+            <span class="button-badge">{{lengthKonsul}}</span>
         </md-button>
         <!-- <c-button style="width: 100%; padding:0px;margin:0px;"
                 ng-click="konsul()" position="'right'">
@@ -280,7 +292,7 @@
     .md-button {
         margin: 0;
     }
-    .md-button i {
+    /* .md-button i {
         margin: 10px;
-    }
+    } */
 </style>

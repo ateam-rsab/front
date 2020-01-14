@@ -74,7 +74,7 @@ define(['initialize'], function(initialize) {
         // console.log($scope.mainGroupOptionLaporanRehab.columns)
         // $scope.loadData();
         $scope.loadData = function(){
-            // debugger
+            
             $scope.isRouteLoading = true;
             var periode = new moment($scope.item.tglawal).format('YYYY-MM-01');
             var idDept = "";
@@ -144,7 +144,7 @@ define(['initialize'], function(initialize) {
         ]
         //sdm service hanya sementara, nanti harus diganti pake service kasir !!
 
-        debugger;
+        
 	    // ManageSdm.getItem("service/list-generic/?view=Ruangan&select=id,namaRuangan").then(function(dat) {
 	    // $scope.listRuangan = dat.data;
 	    // });
@@ -170,7 +170,7 @@ define(['initialize'], function(initialize) {
              }
 		];
         
-        // debugger;
+        ;
         $scope.date = new Date();
         var tanggals = DateHelper.getDateTimeFormatted3($scope.date);
 
@@ -179,11 +179,11 @@ define(['initialize'], function(initialize) {
         $scope.pegawai = modelItemAkuntansi.getPegawai();
 		
         $scope.Cetak = function() {
-            debugger;
+            
         // if($scope.item.format == undefined){
         // 	alert('format file harus dipilih terlebih dahulu !!!')
         // }
-            // debugger;
+            ;
             var tglawal = DateHelper.getDateTimeFormatted2($scope.item.tglawal, "01-MM-yyyy");
             if($scope.item.departement == undefined)
                 var departement = "";
@@ -211,11 +211,11 @@ define(['initialize'], function(initialize) {
             // }   
 	    }
 	    $scope.CetakObat = function() {
-            debugger;
+            
         // if($scope.item.format == undefined){
         // 	alert('format file harus dipilih terlebih dahulu !!!')
         // }
-            // debugger;
+            ;
             var tglawal = DateHelper.getDateTimeFormatted2($scope.item.tglawal, "01-MM-yyyy");
             var stt = 'false'
             if (confirm('View Laporan Bulanan Rehab Medik? ')){

@@ -3,6 +3,7 @@ define(['initialize'], function(initialize) {
     initialize.controller('DaftarAntrianDokterRanapCtrl', ['SaveToWindow', '$rootScope', '$scope', 'ModelItem', '$state', 'FindPasien', 'DateHelper', 'socket', 'ManagePasien', '$mdDialog', '$window', 'CetakHelper', 'ManageSarprasPhp','CacheHelper', '$q', 
         function(saveToWindow, $rootScope, $scope, ModelItem, $state, findPasien, DateHelper, socket, managePasien, $mdDialog, window, cetakHelper, manageSarprasPhp, cacheHelper, $q) {            
             $scope.dataVOloaded = true;
+            $scope.lengthKonsul = 0;
             $scope.now = new Date();
             $scope.item = {};
             $scope.itema = {};

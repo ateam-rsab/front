@@ -33,7 +33,7 @@
         <!-- <c-panel item="item" header="'Produk'" disabled> -->
         <div class="grid_12">
             
-        <div class="grid_12 headerBox">
+        <div class="headerBox">
             <h1 style="color: white;"><b>Daftar Surat Perintah Kerja (SPK)</b></h1>
         </div>
         <div class="grid_12">
@@ -81,15 +81,12 @@
                 </div>                
             </div>
             <div class="grid_12">
-                    <!-- <div class="grid_12 headerBox">
-                        <p>Produk</p>
-                    </div> -->
-                    <!-- grid table -->
+                <!-- k-columns="columnGrid"  -->
                      <div class="grid_12 borderBox">
                         <div id="kGrid" 
                         kendo-grid k-data-source="dataGrid" 
                         k-selectable="'row'" 
-                        k-columns="columnGrid" 
+                        k-options="opsiGridSip"
                         k-pageable="'true'" 
                         k-sortable="'true'" 
                         k-ng-model="dataSelected">

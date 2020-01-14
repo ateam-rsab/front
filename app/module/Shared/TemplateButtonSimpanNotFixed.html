@@ -1,87 +1,196 @@
-<div class="grid_12 " style="float:left;" ng-hide="isHide">
+<div class="grid_12" style="float:left;" ng-hide="isHide">
     <!--<div class="grid_3">
         &nbsp;
     </div>-->
     <div ng-hide='isNext' class="grid_3" style="float:right">
-        <c-button ng-show="!isLoading" class="success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" is-validate click="Save">
+        <md-button class="md-raised md-primary" ng-click="Save()"
+            ng-show="!isLoading">
+            <span style="margin-right: 5px;">Simpan</span>
+            <i class="fa fa-save"></i>
+        </md-button>
+        <!-- <c-button ng-show="!isLoading" class="success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" is-validate click="Save">
             <span class="title">Simpan</span>
-        </c-button>
+        </c-button> -->
     </div>
 
     <div ng-show='isNext' class="grid_3" style="float:right;">
-        <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" click="Next">
+        <md-button class="md-raised md-primary" ng-show="!isLoading" is-back>
+            <span style="margin-right: 5px;">Kembali</span>
+            <i class="fa fa-arrow-left"></i>
+        </md-button>
+        <!-- <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px;
+            padding:0px, margin:0px;" item="item" size="36" position="'right'"
+            click="Next">
             <span class="title">Selanjutnya</span>
-        </c-button>
+        </c-button> -->
     </div>
     <div ng-show='isNext' class="grid_3" style="float:right;">
-        <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" is-back>
+        <md-button class="md-raised md-primary" ng-click="Next()"
+            ng-show="!isLoading">
+            <span style="margin-right: 5px;">Selanjutnya</span>
+            <i class="fa fa-arrow-right"></i>
+        </md-button>
+        <!-- <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px;
+            padding:0px, margin:0px;" item="item" size="36" position="'right'"
+            is-back>
             <span class="title">Kembali</span>
-        </c-button>
+        </c-button> -->
     </div>
     <div ng-hide='isNext' class="grid_3" style="float:right">
-        <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" class="cancel" click="Back">
+        <md-button class="md-raised md-warn" ng-show="!isLoading"
+            ng-click="Back()">
+            <span style="margin-right: 5px;">Batal</span>
+            <i class="fa fa-remove"></i>
+        </md-button>
+        <!-- <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px;
+            padding:0px, margin:0px;" item="item" size="36" position="'right'"
+            class="cancel" click="Back">
             <span class="title">Batal</span>
-        </c-button>
+        </c-button> -->
     </div>
     <div ng-show='isReportPendaftaran' class="grid_3" style="float:right;">
-        <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="inputTindakan">
+        <md-button class="md-raised md-primary" ng-show="!isLoading"
+            ng-click="inputTindakan()">
+            <span>Input Tindakan</span>
+        </md-button>
+        <!-- <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px;
+            padding:0px, margin:0px;" item="item" size="36" position="'right'"
+            is-validate click="inputTindakan">
             <span class="title">Input Tindakan</span>
-        </c-button>
+        </c-button> -->
     </div>
     <div ng-show='isReport' class="grid_3" style="float:right;">
-        <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate click="cetak">
+        <md-button class="md-raised md-primary" ng-show="!isLoading"
+            ng-click="cetak()">
+            <span style="margin-right: 5px;">Cetak</span>
+            <i class="fa fa-print"></i>
+        </md-button>
+        <!-- <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px;
+            padding:0px, margin:0px;" item="item" size="36" position="'right'"
+            is-validate click="cetak">
             <span class="title">Cetak</span>
-        </c-button>
+        </c-button> -->
     </div>
     <div ng-show='isReportPendaftaran && isReportRawatJalan' class="grid_3">
-        <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate ng-click="cetakGelang()">
+        <md-button class="md-raised md-primary" ng-show="!isLoading"
+            ng-click="cetakGelang()">
+            <span style="margin-right: 5px;">Gelang Pasien</span>
+            <i class="fa fa-print"></i>
+        </md-button>
+        <!-- <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px;
+            padding:0px, margin:0px;" item="item" size="36" position="'right'"
+            is-validate ng-click="cetakGelang()">
             <span class="title">Gelang Pasien</span>
-        </c-button>
-    </div>
-    <div class="grid_3" ng-show='isReportPendaftaran  && !isReportRawatJalan'>
-        <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" ng-click="cetakKartu()">
-            <span class="title">Kartu Pasien</span>
-        </c-button>
-    </div>
-    <div class="grid_3" ng-show='isReportPendaftaran'>
-        <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" ng-click="cetakLabel()">
-            <span class="title">Label Pasien</span>
-        </c-button>
-    </div>
-    <div class="grid_3" ng-show='isReportPendaftaran  && !isReportRawatJalan'>
-        <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" ng-click="tracerBon()">
-            <span class="title">Tracer</span>
-        </c-button>
-    </div>
-    <div ng-show='isReportPendaftaran && !isReportRawatJalan' class="grid_3">
-        <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate ng-click="cetakBuktiLayanan()">
-            <span class="title">Bukti Layanan</span>
-        </c-button>
+        </c-button> -->
     </div>
     <div class="grid_3" ng-show='isReportPendaftaran && !isReportRawatJalan'>
-        <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" ng-click="CetakSumList()">
+        <md-button class="md-raised md-primary" ng-show="!isLoading"
+            ng-click="cetakKartu()">
+            <span style="margin-right: 5px;">Kartu Pasien</span>
+            <i class="fa fa-print"></i>
+        </md-button>
+        <!-- <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px;
+            padding:0px, margin:0px;" item="item" size="36" position="'right'"
+            ng-click="cetakKartu()">
+            <span class="title">Kartu Pasien</span>
+        </c-button> -->
+    </div>
+    <div class="grid_3" ng-show='isReportPendaftaran'>
+        <md-button class="md-raised md-primary" ng-show="!isLoading"
+            ng-click="cetakLabel()">
+            <span style="margin-right: 5px;">Label Pasien</span>
+            <i class="fa fa-print"></i>
+        </md-button>
+        <!-- <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px;
+            padding:0px, margin:0px;" item="item" size="36" position="'right'"
+            ng-click="cetakLabel()">
+            <span class="title">Label Pasien</span>
+        </c-button> -->
+    </div>
+    <div class="grid_3" ng-show='isReportPendaftaran && !isReportRawatJalan'>
+        <md-button class="md-raised md-primary" ng-show="!isLoading"
+            ng-click="tracerBon()">
+            <span style="margin-right: 5px;">Tracer</span>
+            <i class="fa fa-print"></i>
+        </md-button>
+        <!-- <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px;
+            padding:0px, margin:0px;" item="item" size="36" position="'right'"
+            ng-click="tracerBon()">
+            <span class="title">Tracer</span>
+        </c-button> -->
+    </div>
+    <div ng-show='isReportPendaftaran && !isReportRawatJalan' class="grid_3">
+        <md-button class="md-raised md-primary" ng-show="!isLoading"
+            ng-click="cetakBuktiLayanan()">
+            <span style="margin-right: 5px;">Bukti Layanan</span>
+            <i class="fa fa-print"></i>
+        </md-button>
+        <!-- <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px;
+            padding:0px, margin:0px;" item="item" size="36" position="'right'"
+            is-validate ng-click="cetakBuktiLayanan()">
+            <span class="title">Bukti Layanan</span>
+        </c-button> -->
+    </div>
+    <div class="grid_3" ng-show='isReportPendaftaran && !isReportRawatJalan'>
+        <md-button class="md-raised md-primary" ng-show="!isLoading"
+            ng-click="CetakSumList()">
+            <span style="margin-right: 5px;">Summary List</span>
+            <i class="fa fa-print"></i>
+        </md-button>
+        <!-- <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px;
+            padding:0px, margin:0px;" item="item" size="36" position="'right'"
+            ng-click="CetakSumList()">
             <span class="title">Summary List</span>
-        </c-button>
+        </c-button> -->
     </div>
     <div ng-show='isAsuransi' class="grid_3" style="float:left;">
-        <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate ng-click="cetakSEP()">
+        <md-button class="md-raised md-primary" ng-show="!isLoading"
+            ng-click="cetakSEP()">
+            <span style="margin-right: 5px;">Cetak SEP</span>
+            <i class="fa fa-print"></i>
+        </md-button>
+        <!-- <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px;
+            padding:0px, margin:0px;" item="item" size="36" position="'right'"
+            is-validate ng-click="cetakSEP()">
             <span class="title">Cetak SEP</span>
-        </c-button>
+        </c-button> -->
     </div>
     <div ng-show='isReportRawatJalan' class="grid_3" style="float:left;">
-        <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate ng-click="generalConsent()">
+        <md-button class="md-raised md-primary" ng-show="!isLoading"
+            ng-click="generalConsent()">
+            <span style="margin-right: 5px;">General Consent</span>
+            <i class="fa fa-print"></i>
+        </md-button>
+        <!-- <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px;
+            padding:0px, margin:0px;" item="item" size="36" position="'right'"
+            is-validate ng-click="generalConsent()">
             <span class="title">General Consent</span>
-        </c-button>
+        </c-button> -->
     </div>
     <div ng-show='isReportRawatJalan' class="grid_3" style="float:left;">
-        <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate ng-click="ringkasanInOut()">
+        <md-button class="md-raised md-primary" ng-show="!isLoading"
+            ng-click="ringkasanInOut()">
+            <span style="margin-right: 5px;">Ringkasan Masuk &amp; Keluar</span>
+            <i class="fa fa-file-text"></i>
+        </md-button>
+        <!-- <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px;
+            padding:0px, margin:0px;" item="item" size="36" position="'right'"
+            is-validate ng-click="ringkasanInOut()">
             <span class="title">Ringkasan Masuk &amp; Keluar</span>
-        </c-button>
+        </c-button> -->
     </div>
-    <div ng-show='isMenuDataPegawai' class="grid_3 btn btn-danger" style="float:left;">
-        <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px;margin:0px" item="item" size="36" position="'right'" is-validate ng-click="hapusPegawai()">
+    <div ng-show='isMenuDataPegawai' class="grid_3 btn btn-danger"
+        style="float:left;">
+        <md-button class="md-raised md-warn" ng-show="!isLoading"
+            ng-click="hapusPegawai()">
+            <span style="margin-right: 5px;">Hapus</span>
+            <i class="fa fa-print"></i>
+        </md-button>
+        <!-- <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px;
+            padding:0px;margin:0px" item="item" size="36" position="'right'"
+            is-validate ng-click="hapusPegawai()">
             <span class="title">Hapus</span>
-        </c-button>
+        </c-button> -->
     </div>
 
 

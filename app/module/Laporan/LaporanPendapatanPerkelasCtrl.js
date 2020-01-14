@@ -17,7 +17,7 @@ define(['initialize'], function (initialize) {
                 $scope.isRouteLoading = true;
                 var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm');
                 var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm');;
-                debugger;
+                
 
 
                 // var tempDepartemenId = "";
@@ -77,7 +77,7 @@ define(['initialize'], function (initialize) {
 
             $scope.click = function (dataPasienSelected) {
                 var data = dataPasienSelected;
-                //debugger;
+                //
             };
             $scope.formatTanggal = function (tanggal) {
                 return moment(tanggal).format('DD-MMM-YYYY HH:mm');
@@ -313,7 +313,7 @@ define(['initialize'], function (initialize) {
 
             ]
 
-            debugger;
+            
             $scope.date = new Date();
             var tanggals = DateHelper.getDateTimeFormatted3($scope.date);
 
@@ -327,7 +327,7 @@ define(['initialize'], function (initialize) {
             $scope.pegawai = modelItemAkuntansi.getPegawai();
 
             $scope.Cetak = function () {
-                debugger;
+                
                 var daftarCetak = [];
                 if($scope.selectedData.length > 0){
                     $scope.selectedData.forEach(function(items){
@@ -386,7 +386,7 @@ define(['initialize'], function (initialize) {
         // if($scope.item.format == undefined){
         //  alert('format file harus dipilih terlebih dahulu !!!')
         // }
-            debugger;
+            
             if($scope.item.tglawal == $scope.tglawal)
                 var tglawal = $scope.item.tglawal;
             else
@@ -433,7 +433,7 @@ define(['initialize'], function (initialize) {
         // if($scope.item.format == undefined){
         //  alert('format file harus dipilih terlebih dahulu !!!')
         // }
-            debugger;
+            
             if($scope.item.tglawal == $scope.tglawal)
                 var tglawal = $scope.item.tglawal;
             else
@@ -481,7 +481,7 @@ define(['initialize'], function (initialize) {
         // if($scope.item.format == undefined){
         //  alert('format file harus dipilih terlebih dahulu !!!')
         // }
-            debugger;
+            
             if($scope.item.tglawal == $scope.tglawal)
                 var tglawal = $scope.item.tglawal;
             else
@@ -531,7 +531,7 @@ define(['initialize'], function (initialize) {
 
             // $scope.CetakDetail = function () {
 
-            //     debugger;
+            //     
             //     if ($scope.item.tglawal == $scope.tglawal)
             //         var tglawal = $scope.item.tglawal;
             //     else

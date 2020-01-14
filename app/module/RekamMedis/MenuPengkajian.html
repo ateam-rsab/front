@@ -1,41 +1,60 @@
-<div class="grid_12">
+<div class="grid_12" style="margin-bottom:10px">
     <div class=' grid_12 panel panel-default'>
-        <div class='panel-heading'  style="font-size: 18px;" c-translate>Pengkajian Pasien</div>
-            <div class="breadcrum" >
+        <div class='panel-heading' style="font-size: 18px;" c-translate>Pengkajian
+            Pasien</div>
+        <div class="breadcrum">
 
-                <div class="grid_2" ng-hide="israwatinap">
-                    <a class="n1 green" ng-class="{'active': activeMenuDashboardPAP == 'RekamMedis.MenuPengkajian.SkriningUmum'}"
-                        data-ng-click="navigasiPap('RekamMedis.MenuPengkajian.SkriningUmum')">Skrining Umum</a>
-                </div>
+            <div class="grid_2" ng-hide="israwatinap">
+                <md-button class="md-raised md-primary medium-button"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum')">
+                    <span>Skrining Umum</span>
+                </md-button>
+                <!-- <a class="n1 green" ng-class="{'active': activeMenuDashboardPAP == 'RekamMedis.MenuPengkajian.SkriningUmum'}"
+                        data-ng-click="navigasiPap('RekamMedis.MenuPengkajian.SkriningUmum')">Skrining Umum</a> -->
+            </div>
 
-                <div class="grid_2">
-                    <a class="n1 green" ng-class="{'active': activeMenuDashboardPAP == 'RekamMedis.MenuPengkajian.SkriningKhusus'}"
-                        data-ng-click="navigasiPap('RekamMedis.MenuPengkajian.SkriningKhusus')">Skrining Kekhususan</a>
-                </div>
+            <div class="grid_2">
+                <md-button class="md-raised md-primary medium-button"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningKhusus')">
+                    <span>Skrining Kekhususan</span>
+                </md-button>
+                <!-- <a class="n1 green" ng-class="{'active': activeMenuDashboardPAP
+                    == 'RekamMedis.MenuPengkajian.SkriningKhusus'}"
+                    data-ng-click="navigasiPap('RekamMedis.MenuPengkajian.SkriningKhusus')">Skrining
+                    Kekhususan</a> -->
+            </div>
 
-                <div class="grid_2" ng-hide="israwatinap">
-                    <a class="n1 green" ng-class="{'active': activeMenuDashboardPAP == 'RekamMedis.MenuPengkajian.SkriningKeperawatan'}"
-                        data-ng-click="navigasiPap('RekamMedis.MenuPengkajian.SkriningKeperawatan')">Masalah
-                        Keperawatan</a>
-                </div>
+            <div class="grid_2" ng-hide="israwatinap">
+                <md-button class="md-raised md-primary medium-button"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningKeperawatan')">
+                    <span>Skrining Keperawatan</span>
+                </md-button>
+                <!-- <a class="n1 green" ng-class="{'active': activeMenuDashboardPAP
+                    == 'RekamMedis.MenuPengkajian.SkriningKeperawatan'}"
+                    data-ng-click="navigasiPap('RekamMedis.MenuPengkajian.SkriningKeperawatan')">Masalah
+                    Keperawatan</a> -->
+            </div>
 
-                <!-- <div class="grid_2" ng-hide="israwatinap || isRawatJalan && isNeonatal || isAnak || isRawatJalan && isDewasa ">
+            <!-- <div class="grid_2" ng-hide="israwatinap || isRawatJalan && isNeonatal || isAnak || isRawatJalan && isDewasa ">
                     <a class="n1" ng-class="{'active': activeMenuDashboardPAP == 'RekamMedis.MenuPengkajian.DiagnosisKebidanan'}"
                         data-ng-click="navigasiPap('RekamMedis.MenuPengkajian.DiagnosisKebidanan')">Diagnosis Kebidanan</a>
                 </div> -->
-                <!-- <div class="grid_2" ng-hide="israwatinap || isRawatJalan && isNeonatal || isAnak || isRawatJalan && isDewasa ">
+            <!-- <div class="grid_2" ng-hide="israwatinap || isRawatJalan && isNeonatal || isAnak || isRawatJalan && isDewasa ">
                     <a class="n1"  ng-class="{'active': activeMenuDashboardPAP == 'dashboardpasien.MasalahKeperawatan'}"data-ng-click="navigasiPap('dashboardpasien.MasalahKeperawatan')">Diagnosis Kebidanan</a>
                 </div> -->
-
-                <div class="grid_2" ng-hide="israwatinap || isRawatJalan && isNeonatal || isRawatJalan && isAnak || isRawatJalan && isDewasa">
-                    <a class="n1 green" ng-class="{'active': activeMenuDashboardPAP == 'RekamMedis.MenuPengkajian.PerencanaanPulang'}"
-                        data-ng-click="navigasiPap('RekamMedis.MenuPengkajian.PerencanaanPulang')">Perencanaan Pulang</a>
-                </div>
+            <div class="grid_2" ng-hide="israwatinap || isRawatJalan &&
+                isNeonatal || isRawatJalan && isAnak || isRawatJalan &&
+                isDewasa">
+                <a class="n1 green" ng-class="{'active': activeMenuDashboardPAP
+                    == 'RekamMedis.MenuPengkajian.PerencanaanPulang'}"
+                    data-ng-click="navigasiPap('RekamMedis.MenuPengkajian.PerencanaanPulang')">Perencanaan
+                    Pulang</a>
             </div>
         </div>
     </div>
+</div>
 
-    <div ui-view></div>
+<div ui-view></div>
 
 <style type="text/css">
     .active {

@@ -34,6 +34,7 @@ define(['initialize'], function (initialize) {
                 columns: [
                     // { field: "rowNumber", title: "#", width: 40, width: 40, attributes: { style: "text-align:right; padding-right: 15px;"}, hideMe: true},
                     { field: "no", title: "<h3>No</h3>", width: 40 },
+                    { field: "noorder", title: "<h3>No. Konsultasi</h3>", width: 70 },
                     { field: "noregistrasi", title: "<h3>No. Registrasi</h3>", width: 70 },
                     { field: "tglorder", title: "<h3>Tanggal</h3>", width: 120 },
                     { field: "ruanganasal", title: "<h3>Ruangan Asal</h3>", width: 120 },
@@ -45,13 +46,20 @@ define(['initialize'], function (initialize) {
                         { text: "Edit", click: editData },
                         // { name: "Verifikasi", text: "Hasil Konsul", click: hasilKonsult },
                         { name: "Detail", text: "Detail", click: showDetail },
-                    ], title: "&nbsp;", width: 120, 
+                        { name: "Edit", text: "Cetak", click: cetakReport },
+                    ], title: "&nbsp;", width: 140, 
                         attributes: {
                             style: "text-align:center;valign=middle"
                         }
                     }
                 ],
             };
+
+            function cetakReport(e) {
+                e.preventDefault();
+                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                window.open("http://192.168.12.4:7777/service-reporting/lap-konsul/" + dataItem.noorder);
+            }
 
             function showDetail(e) {
                 e.preventDefault();

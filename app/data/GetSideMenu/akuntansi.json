@@ -1,5 +1,18 @@
 [
     {
+        "name": "Master Akuntansi",
+        "children": [
+            {
+                "name": "Master Perkiraan",
+                "link": "#/"
+            },
+            {
+                "name": "Mapping Perkiraan",
+                "link": "#/"
+            }
+        ]
+    },
+    {
         "name": "Transaksi Akuntansi",
         "children": [
             {
@@ -45,6 +58,27 @@
             {
                 "name": "Laporan Akuntansi",
                 "link": "#/LaporanAkuntansi"
+            }
+        ]
+    },
+    {
+        "name": "Setup Account",
+        "children": [
+            {
+                "name": "Kode Perkiraan",
+                "link": "#/MasterCoa"
+            },
+            {
+                "name": "Posting",
+                "link": "#/Posting"
+            },
+            {
+                "name": "Setting Laporan Keuangan",
+                "link": "#/MapLaporanKeuanganToCoa"
+            },
+            {
+                "name": "Entry Jurnal Pelayanan",
+                "link": "#/ListJurnalPosting"
             }
         ]
     },
@@ -120,27 +154,6 @@
             {
                 "name": "Pembayaran Gaji",
                 "link": "#/VerifikasiPembayaranGaji"
-            }
-        ]
-    },
-    {
-        "name": "Setup Account",
-        "children": [
-            {
-                "name": "Kode Perkiraan",
-                "link": "#/MasterCoa"
-            },
-            {
-                "name": "Posting",
-                "link": "#/Posting"
-            },
-            {
-                "name": "Setting Laporan Keuangan",
-                "link": "#/MapLaporanKeuanganToCoa"
-            },
-            {
-                "name": "Entry Jurnal Pelayanan",
-                "link": "#/ListJurnalPosting"
             }
         ]
     },

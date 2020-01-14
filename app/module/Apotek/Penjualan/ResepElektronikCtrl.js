@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('ResepElektronikCtrl', ['ManagePasien', 'socket', '$state', '$timeout', 'FindPasien', '$rootScope', '$scope', 'ModelItem', 'DateHelper', '$document', 'R', 'ManageLogistikPhp', 'CacheHelper',
-        function (managePasien, socket, $state, $timeout, findPasien, $rootScope, $scope, ModelItem, DateHelper, $document, r, manageLogistikPhp, cacheHelper) {
+    initialize.controller('ResepElektronikCtrl', ['ManagePasien', 'socket', '$state', '$timeout', 'FindPasien', '$rootScope', '$scope', 'ModelItem', 'DateHelper', '$document', 'R', 'ManageLogistikPhp', 'CacheHelper', "CetakHelper",
+        function (managePasien, socket, $state, $timeout, findPasien, $rootScope, $scope, ModelItem, DateHelper, $document, r, manageLogistikPhp, cacheHelper, cetakHelper) {
             $scope.title = "Resep elektronik";
             $scope.dataResep = [];
             $scope.dataVOloaded = true;
@@ -35,10 +35,10 @@ define(['initialize'], function (initialize) {
 
             $scope.arrColumnGridResepElektronik = {
                 toolbar: [
-                    { text: "export", name:"Export detail", template: '<button ng-click="refresh()" class="k-button k-button-icontext k-grid-refresh"><span class="k-icon k-i-refresh"></span>Refresh</button>'},
-                    { text: "export", name:"Export detail", template: '<button ng-click="toDashboard()" class="k-button k-button-icontext k-grid-left"><span class="k-icon k-i-left"></span>Dashboard Antrian</button>'},
+                    { text: "export", name: "Export detail", template: '<button ng-click="refresh()" class="k-button k-button-icontext k-grid-refresh"><span class="k-icon k-i-refresh"></span>Refresh</button>' },
+                    // { text: "export", name: "Export detail", template: '<button ng-click="toDashboard()" class="k-button k-button-icontext k-grid-left"><span class="k-icon k-i-left"></span>Dashboard Antrian</button>' },
                 ],
-                
+
                 pageable: false,
                 dataBound: function (e) {
                     $('td').each(function () {
@@ -88,24 +88,24 @@ define(['initialize'], function (initialize) {
 
                     },
                     {
-                        
+
                         "field": "strukOrder.tglOrder",
                         "title": "Tanggal/Jam Masuk",
                         "width": "150px",
                         "template": "#= new moment(new Date(tglorder)).format('DD-MM-YYYY HH:mm:ss') #"
-                    }, 
+                    },
                     {
                         "field": "namalengkap",
                         "title": "Dokter",
                         "width": "150px",
 
-                    }, 
+                    },
                     {
                         "field": "kelompokpasien",
                         "title": "Tipe Pasien",
                         "width": "160px",
 
-                    }, 
+                    },
                     {
                         hidden: true,
                         "field": "namaruangan",
@@ -234,7 +234,7 @@ define(['initialize'], function (initialize) {
             //         $scope.intervalFunction();
             //       }, 6000);
             // }
-            
+
             // $scope.intervalFunction();
 
             $scope.now = new Date();
@@ -245,12 +245,12 @@ define(['initialize'], function (initialize) {
                 } else if ($scope.item.statusorder == 'Sudah Bayar') {
                     $state.go('ProduksiElektronik', { norec_so: $scope.item.norec_so });
                 } else if ($scope.item.statusorder == 'Verifikasi' && $scope.item.dep_id === 18) {
-                    if($scope.item.kelompokpasien === "BPJS") {
+                    if ($scope.item.kelompokpasien === "BPJS") {
                         $state.go('ProduksiElektronik', { norec_so: $scope.item.norec_so });
                     } else {
                         toastr.info('Pasien Belum Bayar');
                     }
-                    
+
                 } else if ($scope.item.statusorder == 'Selesai') {
                     $state.go('ProduksiElektronik', { norec_so: $scope.item.norec_so });
                     toastr.info('Obat sudah selesai tidak bisa Produksi')
@@ -435,6 +435,11 @@ define(['initialize'], function (initialize) {
                     $scope.popupLihatObat.open().center();
                 };
             };
+
+            $scope.printCopyResep = function () {
+                console.log($scope.item);
+                window.open("https://192.168.12.4:7777/service-reporting/resep-pasien/" + $scope.item.norec_so);
+            }
         }
     ]);
 });

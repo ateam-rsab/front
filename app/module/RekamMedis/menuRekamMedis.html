@@ -2,84 +2,171 @@
     <div class="breadcrum green" id="MenuNav">
         <!-- Pengkajian Awal -->
         <div class="grid_2">
-            <a class="n1 green" ng-class="{'active': currentState == 'RekamMedis.RekamMedisElektronik'}" ng-click="nav('RekamMedis.RekamMedisElektronik')">Pengkajian Awal</a>
+            <!-- <a class="n1 green" ng-class="{'active': currentState == 'RekamMedis.RekamMedisElektronik'}" ng-click="nav('RekamMedis.RekamMedisElektronik')">Pengkajian Awal</a> -->
+            <md-button class="md-raised md-primary medium-button"
+                ng-click="nav('RekamMedis.RekamMedisElektronik')">
+                <span>Pengkajian Awal</span>
+            </md-button>
         </div>
         <!-- Pengkajian Keperawatan -->
         <div class="grid_2">
-            <a class="n1 green" ng-class="{'active': currentState == 'RekamMedis.PengkajianPasien'}" data-ng-click="nav('RekamMedis.PengkajianPasien')">Pengkajian Keperawatan</a>
+            <md-button class="md-raised md-primary medium-button"
+                ng-click="nav('RekamMedis.PengkajianPasien')">
+                <span>Pengkajian Keperawatan</span>
+            </md-button>
+            <!-- <a class="n1 green" ng-class="{'active': currentState == 'RekamMedis.PengkajianPasien'}"
+                data-ng-click="nav('RekamMedis.PengkajianPasien')">Pengkajian
+                Keperawatan</a> -->
         </div>
         <!-- CPPT -->
-    <div class="grid_1">
-            <a class="n1 green" ng-class="{'active': currentState == 'RekamMedis.CPPT'}" ng-click="nav('RekamMedis.CPPT')">CPPT/TBAK</a>
+        <div class="grid_1">
+            <md-button class="md-raised md-primary medium-button"
+                ng-click="nav('RekamMedis.CPPT')">
+                <span>CPPT/TBAK</span>
+            </md-button>
+            <!-- <a class="n1 green" ng-class="{'active': currentState ==
+                'RekamMedis.CPPT'}" ng-click="nav('RekamMedis.CPPT')">CPPT/TBAK</a> -->
         </div>
         <!-- Diagnosis -->
         <div class="grid_1">
-            <a class=" n1 green" ng-class="{'active': currentState == 'RekamMedis.InputDiagnosaDokter'}" data-ng-click="nav('RekamMedis.InputDiagnosaDokter')">Diagnosis</a>
+            <md-button class="md-raised md-primary medium-button"
+                ng-click="nav('RekamMedis.InputDiagnosaDokter')">
+                <span>Diagnosis</span>
+            </md-button>
+            <!-- <a class="n1 green" ng-class="{'active': currentState ==
+                'RekamMedis.InputDiagnosaDokter'}"
+                data-ng-click="nav('RekamMedis.InputDiagnosaDokter')">Diagnosis</a> -->
         </div>
         <!-- Tindakan -->
         <div class="grid_1">
-            <a class=" n1 green" ng-class="{'active': currentState == 'RekamMedis.InputTindakanPelayananDokterRev'}"
-                data-ng-click="nav('RekamMedis.InputTindakanPelayananDokterRev')">Tindakan</a>
+            <md-button class="md-raised md-primary medium-button"
+                ng-click="nav('RekamMedis.InputTindakanPelayananDokterRev')">
+                <span>Tindakan</span>
+            </md-button>
+            <!-- <a class="n1 green" ng-class="{'active': currentState ==
+                'RekamMedis.InputTindakanPelayananDokterRev'}"
+                data-ng-click="nav('RekamMedis.InputTindakanPelayananDokterRev')">Tindakan</a> -->
         </div>
         <!-- Resep Elektronik -->
         <div class="grid_1">
-            <a class=" n1 green" ng-class="{'active': currentState == 'RekamMedis.InputResepApotikOrderRev'}" data-ng-click="nav('RekamMedis.InputResepApotikOrderRev')">Resep
-                Elektronik</a>
+            <md-button class="md-raised md-primary medium-button" style="font-size: 9px;"
+                ng-click="nav('RekamMedis.InputResepApotikOrderRev')">
+                <span>Resep Elektronik</span>
+            </md-button>
+            <!-- <a class="n1 green" ng-class="{'active': currentState ==
+                'RekamMedis.InputResepApotikOrderRev'}"
+                data-ng-click="nav('RekamMedis.InputResepApotikOrderRev')">Resep
+                Elektronik</a> -->
         </div>
         <!-- Laboratorium -->
         <div class="grid_1">
-            <a class=" n1 green" ng-class="{'active': currentState == 'RekamMedis.TransaksiPelayananLaboratoriumDokterRev'}"
-                data-ng-click="nav('RekamMedis.TransaksiPelayananLaboratoriumDokterRev')">Laboratorium</a>
+            <md-button class="md-raised md-primary medium-button"
+                ng-click="nav('RekamMedis.TransaksiPelayananLaboratoriumDokterRev')">
+                <span>Laboratorium</span>
+            </md-button>
+            <!-- <a class="n1 green" ng-class="{'active': currentState ==
+                'RekamMedis.TransaksiPelayananLaboratoriumDokterRev'}"
+                data-ng-click="nav('RekamMedis.TransaksiPelayananLaboratoriumDokterRev')">Laboratorium</a> -->
         </div>
         <!-- Radiologi -->
         <div class="grid_1">
-            <a class=" n1 green" ng-class="{'active': currentState == 'RekamMedis.TransaksiPelayananRadiologiDokterRev'}"
-                data-ng-click="nav('RekamMedis.TransaksiPelayananRadiologiDokterRev')">Radiologi</a>
+            <md-button class="md-raised md-primary medium-button"
+                ng-click="nav('RekamMedis.TransaksiPelayananRadiologiDokterRev')">
+                <span>Radiologi</span>
+            </md-button>
+            <!-- <a class="n1 green" ng-class="{'active': currentState ==
+                'RekamMedis.TransaksiPelayananRadiologiDokterRev'}"
+                data-ng-click="nav('RekamMedis.TransaksiPelayananRadiologiDokterRev')">Radiologi</a> -->
         </div>
         <!-- Pasien Perjanjian  -->
         <div class="grid_2">
-            <a class=" n1 green" ng-class="{'active': currentState == 'RekamMedis.PasienPerjanjian'}"
-                data-ng-click="nav('RekamMedis.PasienPerjanjian')">Pasien Perjanjian</a>
+            <md-button class="md-raised md-primary medium-button"
+                ng-click="nav('RekamMedis.PasienPerjanjian')">
+                <span>Pasien Perjanjian</span>
+            </md-button>
+            <!-- <a class="n1 green" ng-class="{'active': currentState ==
+                'RekamMedis.PasienPerjanjian'}"
+                data-ng-click="nav('RekamMedis.PasienPerjanjian')">Pasien
+                Perjanjian</a> -->
         </div>
         <!-- Plan Of Care -->
         <div class="grid_2">
-            <a class=" n1 green" ng-class="{'active': currentState == 'RekamMedis.PlanOfCare'}"
-                data-ng-click="nav('RekamMedis.PlanOfCare')">Plan of Care</a>
+            <md-button class="md-raised md-primary medium-button"
+                ng-click="nav('RekamMedis.PlanOfCare')">
+                <span>Plan of Care</span>
+            </md-button>
+            <!-- <a class="n1 green" ng-class="{'active': currentState == 'RekamMedis.PlanOfCare'}"
+                data-ng-click="nav('RekamMedis.PlanOfCare')">Plan of Care</a> -->
         </div>
-            
+
         <!-- Odontogram -->
-         <div class="grid_2">
-            <a class=" n1 green" ng-class="{'active': currentState == 'RekamMedis.OdontoGramDokter'}"
-                data-ng-click="nav('RekamMedis.OdontoGramDokter')">Odontogram</a>
+        <div class="grid_2">
+            <md-button class="md-raised md-primary medium-button"
+                ng-click="nav('RekamMedis.OdontoGramDokter')">
+                <span>Odontogram</span>
+            </md-button>
+            <!-- <a class="n1 green" ng-class="{'active': currentState ==
+                'RekamMedis.OdontoGramDokter'}"
+                data-ng-click="nav('RekamMedis.OdontoGramDokter')">Odontogram</a> -->
         </div>
-        <div class="grid_1" >
-            <a class=" n1 green" ng-class="{'active': currentState == 'RekamMedis.AsesmenGizi'}"
-                data-ng-click="nav('RekamMedis.AsesmenGizi')">Asesmen Gizi</a>
+        <div class="grid_1">
+            <md-button class="md-raised md-primary medium-button"
+                ng-click="nav('RekamMedis.AsesmenGizi')">
+                <span>Asesmen Gizi</span>
+            </md-button>
+            <!-- <a class="n1 green" ng-class="{'active': currentState ==
+                'RekamMedis.AsesmenGizi'}"
+                data-ng-click="nav('RekamMedis.AsesmenGizi')">Asesmen Gizi</a> -->
         </div>
         <!-- Summary List -->
-        <div class="grid_2" >
-            <a class=" n1 green" ng-class="{'active': currentState == 'RekamMedis.ResumeRJ'}"
-                data-ng-click="nav('RekamMedis.ResumeRJ')">Summary List</a>
+        <div class="grid_2">
+            <md-button class="md-raised md-primary medium-button"
+                ng-click="nav('RekamMedis.ResumeRJ')">
+                <span>Summary List</span>
+            </md-button>
+            <!-- <a class="n1 green" ng-class="{'active': currentState ==
+                'RekamMedis.ResumeRJ'}"
+                data-ng-click="nav('RekamMedis.ResumeRJ')">Summary List</a> -->
         </div>
         <!-- Resume Medis -->
-        <div class="grid_1" >
-            <a class=" n1 green" ng-class="{'active': currentState == 'RekamMedis.ResumeRI'}"
-                data-ng-click="nav('RekamMedis.ResumeRI')">Resume Medis</a>
+        <div class="grid_1">
+            <md-button class="md-raised md-primary medium-button"
+                ng-click="nav('RekamMedis.ResumeRI')">
+                <span>Resume Medis</span>
+            </md-button>
+            <!-- <a class="n1 green" ng-class="{'active': currentState ==
+                'RekamMedis.ResumeRI'}"
+                data-ng-click="nav('RekamMedis.ResumeRI')">Resume Medis</a> -->
         </div>
         <!-- Konsultasi -->
         <div class="grid_2">
-            <a class=" n1 green" ng-class="{'active': currentState == 'RekamMedis.KonsultasiDokter'}"
-                data-ng-click="nav('RekamMedis.KonsultasiDokter')">Konsultasi</a>
+            <md-button class="md-raised md-primary medium-button"
+                ng-click="nav('RekamMedis.KonsultasiDokter')">
+                <span>Konsultasi</span>
+            </md-button>
+            <!-- <a class="n1 green" ng-class="{'active': currentState ==
+                'RekamMedis.KonsultasiDokter'}"
+                data-ng-click="nav('RekamMedis.KonsultasiDokter')">Konsultasi</a> -->
         </div>
         <!-- Bedah -->
-        <div class="grid_1" >
-            <a class=" n1 green" ng-class="{'active': currentState == 'RekamMedis.OrderJadwalBedah'}"
-                data-ng-click="nav('RekamMedis.OrderJadwalBedah')">Bedah</a>
+        <div class="grid_1">
+            <md-button class="md-raised md-primary medium-button"
+                ng-click="nav('RekamMedis.OrderJadwalBedah')">
+                <span>Bedah</span>
+            </md-button>
+            <!-- <a class="n1 green" ng-class="{'active': currentState ==
+                'RekamMedis.OrderJadwalBedah'}"
+                data-ng-click="nav('RekamMedis.OrderJadwalBedah')">Bedah</a> -->
         </div>
         <!-- ICU -->
-        <div class="grid_1" >
-            <a class=" n1 green" ng-class="{'active': currentState == 'RekamMedis.PengkajianICU'}"
-                data-ng-click="nav('RekamMedis.PengkajianICU')">ICU</a>
+        <div class="grid_1">
+            <md-button class="md-raised md-primary medium-button"
+                ng-click="nav('RekamMedis.PengkajianICU')">
+                <span>I C U</span>
+            </md-button>
+            <!-- <a class="n1 green" ng-class="{'active': currentState ==
+                'RekamMedis.PengkajianICU'}"
+                data-ng-click="nav('RekamMedis.PengkajianICU')">ICU</a> -->
         </div>
     </div>
 </div>
@@ -91,5 +178,10 @@
         display: block;
         padding: 10px 0 20px;
         font-weight: 600;
+    }
+
+    .md-default {
+        /* background-color: blanchedalmond!important;
+        color: #2a2d33!important; */
     }
 </style>

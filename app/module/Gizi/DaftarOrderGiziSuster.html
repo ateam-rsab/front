@@ -60,102 +60,114 @@ span.errorCuti {
 }
 </style>
 <div ng-show="dataVOloaded">
-	<c-panel item="item" header="'Daftar Order Menu Gizi'" disabled>
-		<div class="grid_12">
+	<!-- <c-panel item="item" header="'Daftar Order Menu Gizi'" disabled> -->
+	<md-toolbar md-scroll-shrink class="shadow">
+		<div class="md-toolbar-tools">Daftar Order Menu Gizi</div>
+	</md-toolbar>
+	<div class="grid_12">
 
-
-			<div class="grid_2">
-				<div class="grid_12">
-					<label c-label item="item" c-label-text="Instalasi"></label>
-				</div>
-				<div class="clear"></div>
-
-				<div class="grid_12">
-					<input style="width: 100%;" kendo-combo-box k-ng-model="item.instalasi"
-						k-data-text-field="'departemen'" k-data-value-field="'id'"
-						k-filter="'contains'" k-auto-bind="false" k-data-source="listDepartemen"
-						k-on-change='getIsiComboRuangan()'/>
-				</div>
+		<div class="grid_2">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="Instalasi"></label>
 			</div>
+			<div class="clear"></div>
 
-			<div class="grid_2">
-				<div class="grid_12">
-					<label c-label item="item" c-label-text="Ruangan"></label>
-				</div>
-				<div class="clear"></div>
-
-				<div class="grid_12">
-					<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan"
-						k-data-text-field="'ruangan'" k-data-value-field="'id'"
-						k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
-				</div>
-			</div>
-			<div class="grid_2">
-				<div class="grid_12">
-					<label c-label item="item" c-label-text="Jenis Diet"></label>
-				</div>
-				<div class="clear"></div>
-
-				<div class="grid_12">
-					<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisDiets"
-						k-data-text-field="'jenisdiet'" k-data-value-field="'id'"
-						k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisDiet" />
-				</div>
-			</div>
-			<div class="grid_1">
-				<div class="grid_12">
-					<label c-label item="item" c-label-text="Jenis Waktu"></label>
-				</div>
-				<div class="clear"></div>
-
-				<div class="grid_12">
-					<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisWaktu"
-						k-data-text-field="'jeniswaktu'" k-data-value-field="'id'"
-						k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisWaktu"
-						/>
-				</div>
-			</div>
-
-			<div class="grid_4">
-				<div class="grid_12">
-					<label c-label item="item" c-label-text="Periode"></label>
-				</div>
-				<div class="clear"></div>
-
-				<div class="grid_12">
-
-					<div class="grid_6 padDatePicker">
-						<input style="width: 100%" k-ng-model="item.periodeAwal"
-							kendo-datetimepicker k-max="now" placeholer="yyyy-MM-dd HH:mm"
-							k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
-					</div>
-					<div class="grid_6 padDatePicker">
-						<input style="width: 100%" k-ng-model="item.periodeAkhir"
-							kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd
-							HH:mm'" />
-					</div>
-					<div class="clear"></div>
-				</div>
-			</div>
-
-			<div class="grid_1">
-				<label c-label c-label-text=""></label>
-				<em style="margin-top:6px;" ng-click='SearchData()' id="iconButton"
-					data-role="button" class="k-button k-button-icon k-primary" role="button"
-					aria-disabled="false" tabindex="0"><span class="k-sprite k-icon
-						k-i-search">Refresh</span></em>
-				<em style="margin-top:6px;" ng-click='ClearSearch()' id="iconButton"
-					data-role="button" class="k-button k-button-icon k-primary" role="button"
-					aria-disabled="false" tabindex="0"><span class="k-sprite k-icon
-						k-i-cancel">Reset</span></em>
+			<div class="grid_12">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.instalasi"
+					k-data-text-field="'departemen'" k-data-value-field="'id'"
+					k-filter="'contains'" k-auto-bind="false" k-data-source="listDepartemen"
+					k-on-change='getIsiComboRuangan()'/>
 			</div>
 		</div>
-	</c-panel>
+
+		<div class="grid_2">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="Ruangan"></label>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_12">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan"
+					k-data-text-field="'ruangan'" k-data-value-field="'id'"
+					k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+			</div>
+		</div>
+		<div class="grid_2">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="Jenis Diet"></label>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_12">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisDiets"
+					k-data-text-field="'jenisdiet'" k-data-value-field="'id'"
+					k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisDiet" />
+			</div>
+		</div>
+		<div class="grid_1">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="Jenis Waktu"></label>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_12">
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisWaktu"
+					k-data-text-field="'jeniswaktu'" k-data-value-field="'id'"
+					k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisWaktu"
+					/>
+			</div>
+		</div>
+
+		<div class="grid_4">
+			<div class="grid_12">
+				<label c-label item="item" c-label-text="Periode"></label>
+			</div>
+			<div class="clear"></div>
+
+			<div class="grid_12">
+
+				<div class="grid_6 padDatePicker">
+					<input style="width: 100%" k-ng-model="item.periodeAwal"
+						kendo-datetimepicker k-max="now" placeholer="yyyy-MM-dd HH:mm"
+						k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
+				</div>
+				<div class="grid_6 padDatePicker">
+					<input style="width: 100%" k-ng-model="item.periodeAkhir"
+						kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd
+						HH:mm'" />
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+
+		<div class="grid_1" style="margin-top: 23px;">
+			<md-button class="md-raised md-primary medium-button"
+				style="width: 40%;"
+				ng-click="SearchData()">
+				<i class="fa fa-search"></i>
+			</md-button>
+			<md-button class="md-raised md-primary medium-button"
+				style="width: 40%;"
+				ng-click="ClearSearch()">
+				<i class="fa fa-eraser"></i>
+			</md-button>
+			<!-- <label c-label c-label-text=""></label>
+			<em style="margin-top:6px;" ng-click='SearchData()' id="iconButton"
+				data-role="button" class="k-button k-button-icon k-primary" role="button"
+				aria-disabled="false" tabindex="0"><span class="k-sprite k-icon
+					k-i-search">Refresh</span></em>
+			<em style="margin-top:6px;" ng-click='ClearSearch()' id="iconButton"
+				data-role="button" class="k-button k-button-icon k-primary" role="button"
+				aria-disabled="false" tabindex="0"><span class="k-sprite k-icon
+					k-i-cancel">Reset</span></em> -->
+		</div>
+	</div>
+	<!-- </c-panel> -->
 
 	<div class="grid_12">
 		<div class="clear"></div>
 
-		<div class="grid_12 borderBox">
+		<div class="grid_12">
 			<div id="kGrid" kendo-grid
 				k-data-source="sourceGrid"
 				k-selectable="'row'"
@@ -241,12 +253,13 @@ span.errorCuti {
 		</div>
 
 	</div>
-	<div ng-hide="isCalling" class="grid_12 place_button">
-		<div class="grid_3" style="float:right">
-			<c-button style="width: 100%; font-size: 24px; padding:0px, margin:0px;"
+	<div ng-hide="isCalling" class="grid_12">
+		<div class="grid_3">
+			<md-button class="md-raised md-primary" ng-click="Edit()">Edit Order</md-button>
+			<!-- <c-button style="width: 100%; font-size: 24px; padding:0px, margin:0px;"
 				item="item" size="36" position="'right'" is-validate click="Edit">
 				<span class="title">Edit Order</span>
-			</c-button>
+			</c-button> -->
 		</div>
 
 	</div>

@@ -1,7 +1,10 @@
 <div>
     <div class="panel panel-default container_12" ng-hide="klikDiagnosa">
-        <div class="panel-heading"><label class='title' c-label item="item">Daftar
-                Pasien Rawat Inap</label></div>
+        <!-- <div class="panel-heading"><label class='title' c-label item="item">Daftar
+                Pasien Rawat Inap</label></div> -->
+        <md-toolbar md-scroll-shrink class="shadow">
+            <div class="md-toolbar-tools">Daftar Pasien Rawat Inap</div>
+        </md-toolbar>
         <div class="panel-body">
             <div class="grid_12">
                 <!-- <div class="grid_4">
@@ -53,17 +56,22 @@
                         k-auto-bind="false" k-data-source="listRuangan" />
                     <!--<input style="width: 100%;" kendo-combo-box k-ng-model="item.Ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ruangans"/>-->
                 </div>
-                <div class="grid_1" style="margin-top:5px">
-                    <label c-label c-label-text=""></label>
+                <div class="grid_1" style="margin-top:27px">
+                    <md-button class="md-raised md-primary medium-button"
+                        ng-click="findData()">
+                        <span style="margin-right: 5px;">Cari</span>
+                        <i class="fa fa-search"></i>
+                    </md-button>
+                    <!-- <label c-label c-label-text=""></label>
                     <em style="margin-top:6px;" ng-click='findData()'
                         id="iconButton" data-role="button" class="k-button
                         k-button-icon"
                         role="button" aria-disabled="false" tabindex="0"><span
-                            class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+                            class="k-sprite k-icon k-i-refresh">Refresh</span></em> -->
                 </div>
             </div>
             <div class="grid_12">
-                <div class="grid_12 borderBox">
+                <div class="grid_12">
 
                     <div kendo-grid id="grid" k-groupable="'true'"
                         k-aggregate='aggregate' k-ng-model="item"
@@ -78,77 +86,121 @@
     </div>
     <div class="grid_12">
         <div class="grid_3">
-            <c-button style="width: 100%; padding:0px;margin:0px;" item="item"
+            <md-button class="md-raised md-button md-primary smart-button-warn"
+                ng-click="Monitoring()">
+                Monitoring
+            </md-button>
+            <!-- <c-button style="width: 100%; padding:0px;margin:0px;" item="item"
                 position="'right'" is-validate click="Monitoring">
                 <span class="title">Monitoring</span>
-            </c-button>
+            </c-button> -->
         </div>
         <div class="grid_3" ng-hide="validasiruangan == 14">
-            <c-button style="width: 100%; padding:0px;margin:0px;" item="item"
+            <md-button class="md-raised md-button md-primary smart-button-warn"
+                ng-click="UbahDokter()">
+                Pilih Dokter
+            </md-button>
+            <!-- <c-button style="width: 100%; padding:0px;margin:0px;" item="item"
                 position="'right'" is-validate click="UbahDokter">
                 <span class="title">Pilih Dokter</span>
-            </c-button>
+            </c-button> -->
         </div>
         <div class="grid_3">
-            <c-button style="width: 100%; padding:0px' margin:0px;"
+            <md-button class="md-raised md-button md-primary smart-button-warn"
+                ng-click="rekamMedisElektronik()">
+                Pengkajian Medis
+            </md-button>
+            <!-- <c-button style="width: 100%; padding:0px' margin:0px;"
                 ng-click="rekamMedisElektronik()" position="'right'">
                 <span class="title">Pengkajian Medis</span>
-            </c-button>
+            </c-button> -->
         </div>
 
         <div class="grid_3">
-            <c-button style="width: 100%; padding:0;margin:0;"
+            <md-button class="md-raised md-button md-primary smart-button-warn"
+                ng-click="Detail()">
+                Rincian
+            </md-button>
+            <!-- <c-button style="width: 100%; padding:0;margin:0;"
                 ng-click="Detail()" position="'right'">
                 <span class="title">Rincian</span>
-            </c-button>
+            </c-button> -->
         </div>
         <div class="grid_3">
-            <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px;
+            <md-button class="md-raised md-button md-primary smart-button-warn"
+                ng-click="cetakGelang()">
+                Cetak Gelang
+            </md-button>
+            <!-- <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px;
                 padding:0px;margin:0px;" item="item"
                 size="36" position="'right'" ng-click="cetakGelang()">
                 <span class="title">Cetak Gelang</span>
-            </c-button>
+            </c-button> -->
         </div>
         <div class="grid_3">
-            <c-button click='detailPasien' style="width: 100%;
+            <md-button class="md-raised md-button md-primary smart-button-warn"
+                ng-click="Lanjutkan()">
+                Detail Pasien
+            </md-button>
+            <!-- <c-button click='detailPasien' style="width: 100%;
                 padding:0px;margin:0px;" item="item" position="'right'"
                 is-validate click="Lanjutkan">
                 <span class="title">Detail Pasien</span>
-            </c-button>
+            </c-button> -->
         </div>
         <div class="grid_3">
-            <c-button click='pasienPulang' style="width: 100%;
+            <md-button class="md-raised md-button md-primary smart-button-warn"
+                ng-click="Lanjutkan()">
+                Pindah atau Pulang
+            </md-button>
+            <!-- <c-button click='pasienPulang' style="width: 100%;
                 padding:0px;margin:0px;" item="item" position="'right'"
                 is-validate click="Lanjutkan">
                 <span class="title">Pindah atau Pulang</span>
-            </c-button>
+            </c-button> -->
         </div>
         <div class="grid_3">
-            <c-button style="width: 100%; padding:0px;margin:0px;" item="item"
+            <md-button class="md-raised md-button md-primary smart-button-warn"
+                ng-click="pemeriksaanUscom()">
+                USCOM
+            </md-button>
+            <!-- <c-button style="width: 100%; padding:0px;margin:0px;" item="item"
                 position="'right'" is-validate click="pemeriksaanUscom">
                 <span class="title">USCOM</span>
-            </c-button>
+            </c-button> -->
         </div>
         <div class="grid_3">
-            <c-button click='skriningGizi' style="width: 100%;
+            <md-button class="md-raised md-button md-primary smart-button-warn"
+                ng-click="Lanjutkan()">
+                Skrining Gizi dan Tanda Vital
+            </md-button>
+            <!-- <c-button click='skriningGizi' style="width: 100%;
                 padding:0px;margin:0px;" item="item" position="'right'"
                 is-validate click="Lanjutkan">
                 <span class="title">Skrining Gizi dan Tanda Vital</span>
-            </c-button>
+            </c-button> -->
         </div>
         <div class="grid_3">
-            <c-button click='observasi' style="width: 100%;
+            <md-button class="md-raised md-button md-primary smart-button-warn"
+                ng-click="Lanjutkan()">
+                Observasi
+            </md-button>
+            <!-- <c-button click='observasi' style="width: 100%;
                 padding:0px;margin:0px;" item="item" position="'right'"
                 is-validate click="Lanjutkan">
                 <span class="title">Observasi</span>
-            </c-button>
+            </c-button> -->
         </div>
         <div class="grid_3">
-            <c-button click='pasienJatuh' style="width: 100%;
+            <md-button class="md-raised md-button md-primary smart-button-warn"
+                ng-click="pasienJatuh()">
+                Pasien Jatuh
+            </md-button>
+            <!-- <c-button click='pasienJatuh' style="width: 100%;
                 padding:0px;margin:0px;" item="item" position="'right'"
                 is-validate>
                 <span class="title">Pasien Jatuh</span>
-            </c-button>
+            </c-button> -->
         </div>
         <!-- <div class="grid_3">
             <c-button click='serahTerimaPasien' style="width: 100%;
@@ -158,12 +210,17 @@
             </c-button>
         </div> -->
         <div class="grid_3">
-            <c-button style="width: 100%; padding:0px;margin:0px;"
+            <md-button class="md-raised md-primary" ng-click="konsul()"
+                style="display: flex; justify-content: center;">
+                <span style="margin-right: 10px;">Konsultasi</span>
+                <span class="button-badge">{{lengthKonsul}}</span>
+            </md-button>
+            <!-- <c-button style="width: 100%; padding:0px;margin:0px;"
                 ng-click="konsul()" position="'right'">
                 <span class="title">Konsultasi <a style="color:white"
                         ng-show="showNotif"><span class="notif">{{lengthKonsul}}</span>
                     </a></span>
-            </c-button>
+            </c-button> -->
         </div>
     </div>
 
@@ -173,10 +230,11 @@
     <div kendo-window="winDialogss" k-title="'Pilih Dokter'" k-width="400"
         k-height="120" k-visible="false" k-on-open="win2visible= true"
         k-on-close="win2visible= false">
-        <label c-label item="item"c-label-text="dokterPemeriksaan"></label>
-        <input style="width: 100%;"kendo-combo-box
+        <label c-label item="item" c-label-text="dokterPemeriksaan"></label>
+        <input style="width: 100%;" kendo-combo-box
             k-ng-model="items.pilihDokter" k-data-text-field="'namalengkap'"
-            k-filter="'contains'"k-data-value-field="'id'"k-auto-bind="false"k-data-source="listDokter"
+            k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false"
+            k-data-source="listDokter"
             />
         <div class="clear">
             <button class="k-button" ng-click="simpanDokter(item,

@@ -10,37 +10,44 @@
     width: 99.96%!important;
 }
 </style>
-<div class="grid_12" ng-controller="SkriningGiziAnakRevCtrl" style="margin-bottom: 60px">
-    <div>
-        <div class="grid_12 headerBox">
-            <h1 style="color: white;"><b>STATUS SKRINING GIZI</b></h1>
-        </div>
-        <div class="clear"></div>
-        <br/>
-        <div class="grid_12" style="margin-bottom:20px">
-            <div class="grid_12">
-                <div class="grid_3" ng-repeat="data in skriningGiziAnak">
-                    <div class="grid_12" style="margin-bottom:5px">
-                        <label c-label item="item">{{data.name}}</label>
-                    </div>
+<div class="grid_12" ng-controller="SkriningGiziAnakRevCtrl"
+    style="margin-bottom: 60px">
 
-                    <div class="grid_12 parentKeteranganFieldTambahan">
-                       <!-- <input kendo-numeric-text-box ng-model="data.nilai" style="width: 100%;" />
+    <!-- <div class="grid_12 headerBox">
+            <h1 style="color: white;"><b>STATUS SKRINING GIZI</b></h1>
+        </div> -->
+    <md-toolbar md-scroll-shrink class="shadow">
+        <div class="md-toolbar-tools">Status Skrining Gizi</div>
+    </md-toolbar>
+    <div class="grid_12" style="margin-bottom:20px">
+        <div class="grid_12">
+            <div class="grid_3" ng-repeat="data in skriningGiziAnak">
+                <div class="grid_12" style="margin-bottom:5px">
+                    <label c-label item="item">{{data.name}}</label>
+                </div>
+
+                <div class="grid_12 parentKeteranganFieldTambahan">
+                    <!-- <input kendo-numeric-text-box ng-model="data.nilai" style="width: 100%;" />
                      -->
-                     <input c-text-box type="number" filter="" class="k-textbox" ng-model="data.nilai" style="width: 100%;" />
-                            <label class="keteranganFieldTambahan"style="margin-top: 5px;margin-right: 30px">{{data.ket}}</label>
-                    </div>
+                    <input c-text-box type="number" filter=""
+                        class="k-textbox" ng-model="data.nilai"
+                        style="width: 100%;" />
+                    <label class="keteranganFieldTambahan"
+                        style="margin-top: 5px;margin-right: 30px">{{data.ket}}</label>
                 </div>
             </div>
         </div>
-        <!-- Daftar Penyakit Resiko Malnutrisi -->
-        <div class="grid_12 headerBox">
-			<h1 style="color: white;"><b>Skrining gizi anak usia 1 bulan-18 tahun (Modifikasi strong-kind)</b></h1>
-		</div>
-		<div class="clear"></div>
-        <br/>
-        <div class="grid_12">
-            <table class="tg">
+    </div>
+    <!-- Daftar Penyakit Resiko Malnutrisi -->
+    <md-toolbar md-scroll-shrink class="shadow">
+        <div class="md-toolbar-tools">Skrining gizi anak usia 1 bulan-18 tahun (Modifikasi strong-kind)</div>
+    </md-toolbar>
+    <!-- <div class="grid_12 headerBox">
+        <h1 style="color: white;"><b>Skrining gizi anak usia 1 bulan-18
+                tahun (Modifikasi strong-kind)</b></h1>
+    </!--> 
+    <div class="grid_12">
+        <table class="tg">
             <tr>
                 <th class="tg-yw4l">No</th>
                 <th class="tg-yw4l">Parameter</th>
@@ -49,32 +56,47 @@
             <tr>
                 <td class="tg-yw4l">1</td>
                 <td class="tg-yw4l">{{pasienAnak.nutrisiBuruk.nama}}</td>
-                <td ng-repeat="opsi in opsiYaTidak | orderBy:'id'" class="tg-yw4l">
-                    <input type="radio" ng-model="item.dataSoalSatu" ng-value="opsi.value" ng-click="cekSkor(pasienAnak.nutrisiBuruk, opsi)" >
+                <td ng-repeat="opsi in opsiYaTidak | orderBy:'id'"
+                    class="tg-yw4l">
+                    <input type="radio" ng-model="item.dataSoalSatu"
+                        ng-value="opsi.value"
+                        ng-click="cekSkor(pasienAnak.nutrisiBuruk,
+                        opsi)">
                     <label for="{{opsi.nama}}">{{opsi.nama}}({{opsi.descNilai}})</label>
                 </td>
             </tr>
             <tr>
                 <td class="tg-yw4l">2</td>
                 <td class="tg-yw4l">{{pasienAnak.beratBadan.nama}}</td>
-                <td ng-repeat="opsi in opsiYaTidak | orderBy:'id'" class="tg-yw4l">
-                    <input type="radio" ng-model="item.dataSoalDua" ng-value="opsi.value" ng-click="cekSkor(pasienAnak.beratBadan, opsi)" >
+                <td ng-repeat="opsi in opsiYaTidak | orderBy:'id'"
+                    class="tg-yw4l">
+                    <input type="radio" ng-model="item.dataSoalDua"
+                        ng-value="opsi.value"
+                        ng-click="cekSkor(pasienAnak.beratBadan, opsi)">
                     <label for="{{opsi.nama}}">{{opsi.nama}}({{opsi.descNilai}})</label>
                 </td>
             </tr>
             <tr>
                 <td class="tg-yw4l">3</td>
                 <td class="tg-yw4l">{{pasienAnak.kondisiTertentu.nama}}</td>
-                <td ng-repeat="opsi in opsiYaTidak | orderBy:'id'" class="tg-yw4l">
-                    <input type="radio" ng-model="item.dataSoalTiga" ng-value="opsi.value" ng-click="cekSkor(pasienAnak.kondisiTertentu, opsi)" >
+                <td ng-repeat="opsi in opsiYaTidak | orderBy:'id'"
+                    class="tg-yw4l">
+                    <input type="radio" ng-model="item.dataSoalTiga"
+                        ng-value="opsi.value"
+                        ng-click="cekSkor(pasienAnak.kondisiTertentu,
+                        opsi)">
                     <label for="{{opsi.nama}}">{{opsi.nama}}({{opsi.descNilai}})</label>
                 </td>
             </tr>
             <tr>
                 <td class="tg-yw4l">4</td>
                 <td class="tg-yw4l">{{pasienAnak.resikoMalnutrisi.nama}}</td>
-                <td ng-repeat="opsi in opsiYaTidak4 | orderBy:'id'" class="tg-yw4l">
-                    <input type="radio" ng-model="item.dataSoalEmpat" ng-value="opsi.value" ng-click="cekSkor(pasienAnak.resikoMalnutrisi, opsi)" >
+                <td ng-repeat="opsi in opsiYaTidak4 | orderBy:'id'"
+                    class="tg-yw4l">
+                    <input type="radio" ng-model="item.dataSoalEmpat"
+                        ng-value="opsi.value"
+                        ng-click="cekSkor(pasienAnak.resikoMalnutrisi,
+                        opsi)">
                     <label for="{{opsi.nama}}">{{opsi.nama}}({{opsi.descNilai}})</label>
                 </td>
             </tr>
@@ -82,27 +104,37 @@
                 <td class="tg-yw4l nilai" colspan="2">Total Skor</td>
                 <td class="tg-yw4l nilai" colspan="2">{{totalSkor}}</td>
             </tr>
-            </table>
-       </div>
+        </table>
     </div>
-    <div>
-        <!-- Daftar Penyakit Resiko Malnutrisi -->
-        <div class="grid_12 headerBox">
-			<h1 style="color: white;"><b>{{title}}</b></h1>
-		</div>
-		<div class="clear"></div>
-        <br/>
-        <div class="grid_12" style="border: 1px solid; border-color: #10C4B2" style="padding:5px">
-            <div class="grid_3" ng-repeat="list in listDataPenyakit | orderBy:'id'">
-                <label class="secondLine">&#9658; {{list.nama}}</label>
-                <ul>
-                    <li class="grid_12" ng-repeat="sublist in list.detail | orderBy:'id'">
-                        <label style="font-family:Arial, sans-serif;margin-top: 5px;">&#9673; {{sublist.nama}}</label>
-                    </li>
-                </ul>
-            </div>
-            <div class="clear"></div>
+
+
+    <!-- Daftar Penyakit Resiko Malnutrisi -->
+    <!-- <div class="grid_12 headerBox">
+        <h1 style="color: white;"><b>{{title}}</b></h1>
+    </div> -->
+    <md-toolbar md-scroll-shrink class="shadow">
+        <div class="md-toolbar-tools">{{title}}</div>
+    </md-toolbar>
+    <div class="clear"></div>
+    <div class="grid_12" style="border: 1px solid; border-color:
+        #10C4B2" style="padding:5px">
+        <div class="grid_3" ng-repeat="list in listDataPenyakit |
+            orderBy:'id'">
+            <label class="secondLine">&#9658; {{list.nama}}</label>
+            <ul>
+                <li class="grid_12" ng-repeat="sublist in
+                    list.detail | orderBy:'id'">
+                    <label style="font-family:Arial,
+                        sans-serif;margin-top: 5px;">&#9673;
+                        {{sublist.nama}}</label>
+                </li>
+            </ul>
         </div>
+        <div class="clear"></div>
     </div>
-    <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
+
+    <div ng-include='"
+        ../app/module/Shared/TemplateButtonSimpanNotFixed"
+        '></div>
+        
 </div>

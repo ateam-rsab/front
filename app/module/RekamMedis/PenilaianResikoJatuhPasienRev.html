@@ -52,847 +52,1185 @@
     margin-bottom: 20px
 }
 </style>
-
 <div class="grid_12" ng-controller="PenilaianResikoJatuhPasienRevCtrl">
     <div ng-show="dataVOloaded">
-        <div >
-            <div class="grid_12">
-                <div class="grid_12 headerBox">
-                    <h1 style="color: white;">
-                        <b>Resiko Jatuh</b>
-                    </h1>
+        <div class="grid_12">
+            <md-toolbar md-scroll-shrink class="shadow">
+                <div class="md-toolbar-tools">Resiko Jatuh</div>
+            </md-toolbar>
+            <!-- <div class="grid_12 headerBox">
+                <h1 style="color: white;">
+                    <b>Resiko Jatuh</b>
+                </h1>
+            </div> -->
+            <div class="grid_12 rowstyle">
+                <div class="grid_12">
+                    <label c-label>{{titlePenilaian}}</label>
                 </div>
-                <div class="clear"></div>
-                <br/>
-                <div class="grid_12 rowstyle">
-                    <div class="grid_12" style="margin: 10px 0 0 10px;">
-                        <label c-label>{{titlePenilaian}}</label>
-                    </div>
-                    <div class="grid_12" style="margin-left: 20px">
-                        <input type="radio" name="mandiri" id="1" class="k-radio" ng-model="item.aktivitas" value="1">
-                        <label class="k-radio-label" for="1">Risiko jatuh rendah</label>
-                    </div>
-                    <div class="grid_12" style="margin-left: 20px">
-                        <input type="radio" name="dibantu" id="2" class="k-radio" ng-model="item.aktivitas" value="2">
-                        <label class="k-radio-label" for="2">Risiko jatuh tinggi</label>
+                <div class="grid_12">
+                    <div style="margin-left: 20px">
+                        <input type="radio" name="mandiri" id="1"
+                            class="k-radio" ng-model="item.aktivitas"
+                            value="1">
+                        <label class="k-radio-label" for="1">Risiko jatuh
+                            rendah</label>
                     </div>
                 </div>
-                <div  ng-hide="isRawatInap">
-                    <div class="grid_12" style="margin: 10px 0 0 10px;">
-                        <label c-label>Rawat Jalan</label>
-                    </div>
-                    <div class="grid_12">
-                        <div class="grid_6" style="margin-left: 20px">
-                            <label>{{titleSatu}}</label>
-                        </div>
-                        <div class="grid_2">
-                            <input type="radio" name="ya" id="3" class="k-radio" ng-model="item.jatuh" value="1">
-                            <label class="k-radio-label" for="3">Ya</label>
-                        </div>
-                        <div class="grid_2">
-                            <input type="radio" name="tidak" id="4" class="k-radio" ng-model="item.jatuh" value="2">
-                            <label class="k-radio-label" for="4">Tidak</label>
-                        </div>
-                    </div>
-                    <div class="grid_12">
-                        <div class="grid_6" style="margin-left: 20px">
-                            <label>{{titleDua}}</label>
-                        </div>
-                        <div class="grid_2">
-                            <input type="radio" name="yes" id="5" class="k-radio" ng-model="item.alatBantu" value="1">
-                            <label class="k-radio-label" for="5">Ya</label>
-                        </div>
-                        <div class="grid_2">
-                            <input type="radio" name="no" id="6" class="k-radio" ng-model="item.alatBantu" value="2">
-                            <label class="k-radio-label" for="6">Tidak</label>
-                        </div>
-                    </div>
-                    <div class="grid_12">
-                        <div class="grid_6" style="margin-left: 20px">
-                            <label>{{titleTiga}}</label>
-                        </div>
-                    </div>
-                    <div class="grid_12">
-                        <div class="grid_6" style="margin-left: 30px">
-                            <label>{{titleEmpat}}</label>
-                            <br>
-                            <br>
-                            <label>{{titleLima}}</label>
-                        </div>
+                <div class="grid_12">
+                    <div style="margin-left: 20px">
+                        <input type="radio" name="dibantu" id="2"
+                            class="k-radio" ng-model="item.aktivitas"
+                            value="2">
+                        <label class="k-radio-label" for="2">Risiko jatuh
+                            tinggi</label>
                     </div>
                 </div>
             </div>
-            <div class="grid_12" style="margin-top:10px" ng-show="isRawatInap && isAnak" ng-hide="isDewasa || isRawatJalan">
-                <div class="grid_12 headerBox">
-                    <h1 style="color: white;">
-                        <b>{{titleHumpty}}</b>
-                    </h1>
+            <div ng-hide="isRawatInap">
+                <div class="grid_12">
+                    <label c-label>Rawat Jalan</label>
                 </div>
-                <div class="grid_12 header">
-                    <div class="grid_1" style="border-bottom:1px solid blue; text-align:center">
-                        <b>No</b>
+                <div class="grid_12">
+                    <div class="grid_6" style="margin-left: 20px">
+                        <label>{{titleSatu}}</label>
                     </div>
-                    <div class="grid_2" style="border-bottom:1px solid blue;">
-                        <b>Parameter</b>
+                    <div class="grid_2">
+                        <input type="radio" name="ya" id="3" class="k-radio"
+                            ng-model="item.jatuh" value="1">
+                        <label class="k-radio-label" for="3">Ya</label>
                     </div>
-                    <div class="grid_7" style="border-bottom:1px solid blue;">
-                        <b>Kriteria</b>
-                    </div>
-                    <div class="grid_1" style="border-bottom:1px solid blue; text-align:center">
-                        <b>Skor</b>
-                    </div>
-                    <div class="grid_1" style="border-bottom:1px solid blue; text-align:center">
-                        <b>Hasil</b>
+                    <div class="grid_2">
+                        <input type="radio" name="tidak" id="4"
+                            class="k-radio" ng-model="item.jatuh" value="2">
+                        <label class="k-radio-label" for="4">Tidak</label>
                     </div>
                 </div>
-                <div ng-repeat="tanya in listUmur | orderBy:'id'">
-                    <div class="grid_12" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index">
-                        <div ng-switch on="jawabIndex">
-                            <div ng-switch-when="0">
-                                <div class="grid_12">
-                                    <div class="grid_1" style="text-align:center">
-                                        <label>1</label>
-                                    </div>
-                                    <div class="grid_2">
-                                        <label>
-                                            <b>{{tanya.nama}}</b>
-                                        </label>
-                                    </div>
-                                    <div class="grid_7" style="margin-bottom: 10px">
-                                        <div class="grid_12">
-                                            <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.umur" value="{{jawab.id}}" ng-click="cekSkorHumpy(tanya, jawab)">
-                                            <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
-                                        </div>
-                                    </div>
-                                    <div class="grid_1" style="text-align:center">
-                                        <label>{{jawab.descNilai}}</label>
-                                    </div>
-                                    <div class="grid_1" style="text-align:center">
-                                        <label>{{tanya.descNilai}}</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div ng-switch-default>
-                                <div class="grid_12">
-                                    <div class="grid_1">&nbsp;</div>
-                                    <div class="grid_2">&nbsp;</div>
-                                    <div class="grid_7" style="margin-bottom: 5px">
-                                        <div class="grid_12">
-                                            <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.umur" value="{{jawab.id}}" ng-click="cekSkorHumpy(tanya, jawab)">
-                                            <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
-                                        </div>
-                                    </div>
-                                    <div class="grid_1" style="text-align:center">
-                                        <label>{{jawab.descNilai}}</label>
-                                    </div>
-                                    <div class="grid_1" style="text-align:center">&nbsp;</div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="grid_12">
+                    <div class="grid_6" style="margin-left: 20px">
+                        <label>{{titleDua}}</label>
+                    </div>
+                    <div class="grid_2">
+                        <input type="radio" name="yes" id="5"
+                            class="k-radio" ng-model="item.alatBantu"
+                            value="1">
+                        <label class="k-radio-label" for="5">Ya</label>
+                    </div>
+                    <div class="grid_2">
+                        <input type="radio" name="no" id="6" class="k-radio"
+                            ng-model="item.alatBantu" value="2">
+                        <label class="k-radio-label" for="6">Tidak</label>
                     </div>
                 </div>
-                <div class="grid_12 rowstyle">&nbsp;</div>
-                <div ng-repeat="tanya in listJK | orderBy:'id'">\
-                    <div class="grid_12" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index">
-                        <div ng-switch on="jawabIndex">
-                            <div ng-switch-when="0">
-                                <div class="grid_12">
-                                    <div class="grid_1" style="text-align:center">
-                                        <label>2</label>
-                                    </div>
-                                    <div class="grid_2">
-                                        <label>
-                                            <b>{{tanya.nama}}</b>
-                                        </label>
-                                    </div>
-                                    <div class="grid_7" style="margin-bottom: 10px">
-                                        <div class="grid_12">
-                                            <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.jk" value="{{jawab.id}}" ng-click="cekSkorHumpy(tanya, jawab)">
-                                            <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
-                                        </div>
-                                    </div>
-                                    <div class="grid_1" style="text-align:center">
-                                        <label>{{jawab.descNilai}}</label>
-                                    </div>
-                                    <div class="grid_1" style="text-align:center">
-                                        <label>{{tanya.descNilai}}</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div ng-switch-default>
-                                <div class="grid_12">
-                                    <div class="grid_1">&nbsp;</div>
-                                    <div class="grid_2">&nbsp;</div>
-                                    <div class="grid_7" style="margin-bottom: 5px">
-                                        <div class="grid_12">
-                                            <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.jk" value="{{jawab.id}}" ng-click="cekSkorHumpy(tanya, jawab)">
-                                            <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
-                                        </div>
-                                    </div>
-                                    <div class="grid_1" style="text-align:center">
-                                        <label>{{jawab.descNilai}}</label>
-                                    </div>
-                                    <div class="grid_1" style="text-align:center">&nbsp;</div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="grid_12">
+                    <div class="grid_6" style="margin-left: 20px">
+                        <label>{{titleTiga}}</label>
                     </div>
                 </div>
-                <div class="grid_12 rowstyle">&nbsp;</div>
-                <div ng-repeat="tanya in listDiagnosis | orderBy:'id'">\
-                    <div class="grid_12" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index">
-                        <div ng-switch on="jawabIndex">
-                            <div ng-switch-when="0">
-                                <div class="grid_12">
-                                    <div class="grid_1" style="text-align:center">
-                                        <label>3</label>
-                                    </div>
-                                    <div class="grid_2">
-                                        <label>
-                                            <b>{{tanya.nama}}</b>
-                                        </label>
-                                    </div>
-                                    <div class="grid_7" style="margin-bottom: 10px">
-                                        <div class="grid_12">
-                                            <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.diagnosis" value="{{jawab.id}}"
-                                            ng-click="cekSkorHumpy(tanya, jawab)">
-                                            <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
-                                        </div>
-                                    </div>
-                                    <div class="grid_1" style="text-align:center">
-                                        <label>{{jawab.descNilai}}</label>
-                                    </div>
-                                    <div class="grid_1" style="text-align:center">
-                                        <label>{{tanya.descNilai}}</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div ng-switch-default>
-                                <div class="grid_12">
-                                    <div class="grid_1">&nbsp;</div>
-                                    <div class="grid_2">&nbsp;</div>
-                                    <div class="grid_7" style="margin-bottom: 5px">
-                                        <div class="grid_12">
-                                            <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.diagnosis" value="{{jawab.id}}"
-                                            ng-click="cekSkorHumpy(tanya, jawab)">
-                                            <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
-                                        </div>
-                                    </div>
-                                    <div class="grid_1" style="text-align:center">
-                                        <label>{{jawab.descNilai}}</label>
-                                    </div>
-                                    <div class="grid_1" style="text-align:center">&nbsp;</div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="grid_12">
+                    <div class="grid_6" style="margin-left: 30px">
+                        <label>{{titleEmpat}}</label>
+                        <br>
+                        <br>
+                        <label>{{titleLima}}</label>
                     </div>
-                </div>
-                <div class="grid_12 rowstyle">&nbsp;</div>
-                <div ng-repeat="tanya in listKognitif | orderBy:'id'">\
-                    <div class="grid_12" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index">
-                        <div ng-switch on="jawabIndex">
-                            <div ng-switch-when="0">
-                                <div class="grid_12">
-                                    <div class="grid_1" style="text-align:center">
-                                        <label>4</label>
-                                    </div>
-                                    <div class="grid_2">
-                                        <label>
-                                            <b>{{tanya.nama}}</b>
-                                        </label>
-                                    </div>
-                                    <div class="grid_7" style="margin-bottom: 10px">
-                                        <div class="grid_12">
-                                            <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.kognitif" value="{{jawab.id}}"
-                                            ng-click="cekSkorHumpy(tanya, jawab)">
-                                            <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
-                                        </div>
-                                    </div>
-                                    <div class="grid_1" style="text-align:center">
-                                        <label>{{jawab.descNilai}}</label>
-                                    </div>
-                                    <div class="grid_1" style="text-align:center">
-                                        <label>{{tanya.descNilai}}</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div ng-switch-default>
-                                <div class="grid_12">
-                                    <div class="grid_1">&nbsp;</div>
-                                    <div class="grid_2">&nbsp;</div>
-                                    <div class="grid_7" style="margin-bottom: 5px">
-                                        <div class="grid_12">
-                                            <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.kognitif" value="{{jawab.id}}"
-                                            ng-click="cekSkorHumpy(tanya, jawab)">
-                                            <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
-                                        </div>
-                                    </div>
-                                    <div class="grid_1" style="text-align:center">
-                                        <label>{{jawab.descNilai}}</label>
-                                    </div>
-                                    <div class="grid_1" style="text-align:center">&nbsp;</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid_12 rowstyle">&nbsp;</div>
-                <div ng-repeat="tanya in listLingkungan | orderBy:'id'">\
-                    <div class="grid_12" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index">
-                        <div ng-switch on="jawabIndex">
-                            <div ng-switch-when="0">
-                                <div class="grid_12">
-                                    <div class="grid_1" style="text-align:center">
-                                        <label>5</label>
-                                    </div>
-                                    <div class="grid_2">
-                                        <label>
-                                            <b>{{tanya.nama}}</b>
-                                        </label>
-                                    </div>
-                                    <div class="grid_7" style="margin-bottom: 10px">
-                                        <div class="grid_12">
-                                            <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.lingkungan" value="{{jawab.id}}"
-                                            ng-click="cekSkorHumpy(tanya, jawab)">
-                                            <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
-                                        </div>
-                                    </div>
-                                    <div class="grid_1" style="text-align:center">
-                                        <label>{{jawab.descNilai}}</label>
-                                    </div>
-                                    <div class="grid_1" style="text-align:center">
-                                        <label>{{tanya.descNilai}}</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div ng-switch-default>
-                                <div class="grid_12">
-                                    <div class="grid_1">&nbsp;</div>
-                                    <div class="grid_2">&nbsp;</div>
-                                    <div class="grid_7" style="margin-bottom: 5px">
-                                        <div class="grid_12">
-                                            <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.lingkungan" value="{{jawab.id}}"
-                                            ng-click="cekSkorHumpy(tanya, jawab)">
-                                            <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
-                                        </div>
-                                    </div>
-                                    <div class="grid_1" style="text-align:center">
-                                        <label>{{jawab.descNilai}}</label>
-                                    </div>
-                                    <div class="grid_1" style="text-align:center">&nbsp;</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid_12 rowstyle">&nbsp;</div>
-                <div ng-repeat="tanya in listRespon | orderBy:'id'">\
-                    <div class="grid_12" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index">
-                        <div ng-switch on="jawabIndex">
-                            <div ng-switch-when="0">
-                                <div class="grid_12">
-                                    <div class="grid_1" style="text-align:center">
-                                        <label>6</label>
-                                    </div>
-                                    <div class="grid_2">
-                                        <label>
-                                            <b>{{tanya.nama}}</b>
-                                        </label>
-                                    </div>
-                                    <div class="grid_7" style="margin-bottom: 10px">
-                                        <div class="grid_12">
-                                            <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.respon" value="{{jawab.id}}"
-                                            ng-click="cekSkorHumpy(tanya, jawab)">
-                                            <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
-                                        </div>
-                                    </div>
-                                    <div class="grid_1" style="text-align:center">
-                                        <label>{{jawab.descNilai}}</label>
-                                    </div>
-                                    <div class="grid_1" style="text-align:center">
-                                        <label>{{tanya.descNilai}}</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div ng-switch-default>
-                                <div class="grid_12">
-                                    <div class="grid_1">&nbsp;</div>
-                                    <div class="grid_2">&nbsp;</div>
-                                    <div class="grid_7" style="margin-bottom: 5px">
-                                        <div class="grid_12">
-                                            <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.respon" value="{{jawab.id}}"
-                                            ng-click="cekSkorHumpy(tanya, jawab)">
-                                            <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
-                                        </div>
-                                    </div>
-                                    <div class="grid_1" style="text-align:center">
-                                        <label>{{jawab.descNilai}}</label>
-                                    </div>
-                                    <div class="grid_1" style="text-align:center">&nbsp;</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid_12 rowstyle">&nbsp;</div>
-                <div ng-repeat="tanya in listObat | orderBy:'id'">\
-                    <div class="grid_12" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index">
-                        <div ng-switch on="jawabIndex">
-                            <div ng-switch-when="0">
-                                <div class="grid_12">
-                                    <div class="grid_1" style="text-align:center">
-                                        <label>7</label>
-                                    </div>
-                                    <div class="grid_2">
-                                        <label>
-                                            <b>{{tanya.nama}}</b>
-                                        </label>
-                                    </div>
-                                    <div class="grid_7" style="margin-bottom: 10px">
-                                        <div class="grid_12">
-                                            <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.obat" value="{{jawab.id}}" ng-click="cekSkorHumpy(tanya, jawab)">
-                                            <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
-                                        </div>
-                                    </div>
-                                    <div class="grid_1" style="text-align:center">
-                                        <label>{{jawab.descNilai}}</label>
-                                    </div>
-                                    <div class="grid_1" style="text-align:center">
-                                        <label>{{tanya.descNilai}}</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div ng-switch-default>
-                                <div class="grid_12">
-                                    <div class="grid_1">&nbsp;</div>
-                                    <div class="grid_2">&nbsp;</div>
-                                    <div class="grid_7" style="margin-bottom: 5px">
-                                        <div class="grid_12">
-                                            <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.obat" value="{{jawab.id}}" ng-click="cekSkorHumpy(tanya, jawab)">
-                                            <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
-                                        </div>
-                                    </div>
-                                    <div class="grid_1" style="text-align:center">
-                                        <label>{{jawab.descNilai}}</label>
-                                    </div>
-                                    <div class="grid_1" style="text-align:center">&nbsp;</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid_12 rowstyle">&nbsp;</div>
-                <div class="grid_12 footer" style="border-top:1px solid lightblue">
-                    <div class="grid_10">Total Skor</div>
-                    <div class="grid_2">{{totalSkorResikoAnak}}</div>
                 </div>
             </div>
-                <div class="grid_12" style="margin-top:10px" ng-show="isDewasa && isRawatInap" ng-hide="isRawatJalan && isDewasa || isRawatJalan && isAnak || isRawatInap && isAnak">
-                    <div class="grid_12 headerBox">
-                        <h1 style="color: white;">
-                            <b>{{titleIntensif}}</b>
-                        </h1>
-                    </div>
-                    <div class="grid_12 header">
-                        <div class="grid_1" style="border-bottom:1px solid blue; text-align:center">
-                            <b>No</b>
-                        </div>
-                        <div class="grid_2" style="border-bottom:1px solid blue;">
-                            <b>Tingkat Risiko</b>
-                        </div>
-                        <div class="grid_7" style="border-bottom:1px solid blue;">
-                            <b>Kriteria</b>
-                        </div>
-                        <div class="grid_1" style="border-bottom:1px solid blue; text-align:center">
-                            <b>Skor</b>
-                        </div>
-                        <div class="grid_1" style="border-bottom:1px solid blue; text-align:center">
-                            <b>Hasil</b>
-                        </div>
-                    </div>
-                    <div ng-repeat="tanya in listRiwayatJatuh | orderBy:'id'">\
-                        <div class="grid_12" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index">
-                            <div ng-switch on="jawabIndex">
-                                <div ng-switch-when="0">
-                                    <div class="grid_12">
-                                        <div class="grid_1" style="text-align:center">
-                                            <label>1</label>
-                                        </div>
-                                        <div class="grid_2">
-                                            <label>
-                                                <b>{{tanya.nama}}</b>
-                                            </label>
-                                        </div>
-                                        <div class="grid_7" style="margin-bottom: 10px">
-                                            <div class="grid_12">
-                                                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.riwayatJatuh" value="{{jawab.id}}"
-                                                ng-click="cekSkorDewasaPasien(tanya, jawab)">
-                                                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
-                                            </div>
-                                        </div>
-                                        <div class="grid_1" style="text-align:center">
-                                            <label>{{jawab.descNilai}}</label>
-                                        </div>
-                                        <div class="grid_1" style="text-align:center">
-                                            <label>{{tanya.descNilai}}</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div ng-switch-default>
-                                    <div class="grid_12">
-                                        <div class="grid_1">&nbsp;</div>
-                                        <div class="grid_2">&nbsp;</div>
-                                        <div class="grid_7" style="margin-bottom: 5px">
-                                            <div class="grid_12">
-                                                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.riwayatJatuh" value="{{jawab.id}}"
-                                                ng-click="cekSkorDewasaPasien(tanya, jawab)">
-                                                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
-                                            </div>
-                                        </div>
-                                        <div class="grid_1" style="text-align:center">
-                                            <label>{{jawab.descNilai}}</label>
-                                        </div>
-                                        <div class="grid_1" style="text-align:center">&nbsp;</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid_12 rowstyle">&nbsp;</div>
-                    <div ng-repeat="tanya in listDiagnosisSekunder  | orderBy:'id'">\
-                        <div class="grid_12" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index">
-                            <div ng-switch on="jawabIndex">
-                                <div ng-switch-when="0">
-                                    <div class="grid_12">
-                                        <div class="grid_1" style="text-align:center">
-                                            <label>2</label>
-                                        </div>
-                                        <div class="grid_2">
-                                            <label>
-                                                <b>{{tanya.nama}}</b>
-                                            </label>
-                                        </div>
-                                        <div class="grid_7" style="margin-bottom: 10px">
-                                            <div class="grid_12">
-                                                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.diagnosisSekunder" value="{{jawab.id}}"
-                                                ng-click="cekSkorDewasaPasien(tanya, jawab)">
-                                                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
-                                            </div>
-                                        </div>
-                                        <div class="grid_1" style="text-align:center">
-                                            <label>{{jawab.descNilai}}</label>
-                                        </div>
-                                        <div class="grid_1" style="text-align:center">
-                                            <label>{{tanya.descNilai}}</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div ng-switch-default>
-                                    <div class="grid_12">
-                                        <div class="grid_1">&nbsp;</div>
-                                        <div class="grid_2">&nbsp;</div>
-                                        <div class="grid_7" style="margin-bottom: 5px">
-                                            <div class="grid_12">
-                                                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.diagnosisSekunder" value="{{jawab.id}}"
-                                                ng-click="cekSkorDewasaPasien(tanya, jawab)">
-                                                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
-                                            </div>
-                                        </div>
-                                        <div class="grid_1" style="text-align:center">
-                                            <label>{{jawab.descNilai}}</label>
-                                        </div>
-                                        <div class="grid_1" style="text-align:center">&nbsp;</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid_12 rowstyle">&nbsp;</div>
-                    <div ng-repeat="tanya in listAlatBantu | orderBy:'id'">\
-                        <div class="grid_12" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index">
-                            <div ng-switch on="jawabIndex">
-                                <div ng-switch-when="0">
-                                    <div class="grid_12">
-                                        <div class="grid_1" style="text-align:center">
-                                            <label>3</label>
-                                        </div>
-                                        <div class="grid_2">
-                                            <label>
-                                                <b>{{tanya.nama}}</b>
-                                            </label>
-                                        </div>
-                                        <div class="grid_7" style="margin-bottom: 10px">
-                                            <div class="grid_12">
-                                                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.alatBantu" value="{{jawab.id}}"
-                                                ng-click="cekSkorDewasaPasien(tanya, jawab)">
-                                                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
-                                            </div>
-                                        </div>
-                                        <div class="grid_1" style="text-align:center">
-                                            <label>{{jawab.descNilai}}</label>
-                                        </div>
-                                        <div class="grid_1" style="text-align:center">
-                                            <label>{{tanya.descNilai}}</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div ng-switch-default>
-                                    <div class="grid_12">
-                                        <div class="grid_1">&nbsp;</div>
-                                        <div class="grid_2">&nbsp;</div>
-                                        <div class="grid_7" style="margin-bottom: 5px">
-                                            <div class="grid_12">
-                                                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.alatBantu" value="{{jawab.id}}"
-                                                ng-click="cekSkorDewasaPasien(tanya, jawab)">
-                                                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
-                                            </div>
-                                        </div>
-                                        <div class="grid_1" style="text-align:center">
-                                            <label>{{jawab.descNilai}}</label>
-                                        </div>
-                                        <div class="grid_1" style="text-align:center">&nbsp;</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid_12 rowstyle">&nbsp;</div>
-                    <div ng-repeat="tanya in listAksesIv | orderBy:'id'">\
-                        <div class="grid_12" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index">
-                            <div ng-switch on="jawabIndex">
-                                <div ng-switch-when="0">
-                                    <div class="grid_12">
-                                        <div class="grid_1" style="text-align:center">
-                                            <label>4</label>
-                                        </div>
-                                        <div class="grid_2">
-                                            <label>
-                                                <b>{{tanya.nama}}</b>
-                                            </label>
-                                        </div>
-                                        <div class="grid_7" style="margin-bottom: 10px">
-                                            <div class="grid_12">
-                                                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.akses" value="{{jawab.id}}"
-                                                ng-click="cekSkorDewasaPasien(tanya, jawab)">
-                                                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
-                                            </div>
-                                        </div>
-                                        <div class="grid_1" style="text-align:center">
-                                            <label>{{jawab.descNilai}}</label>
-                                        </div>
-                                        <div class="grid_1" style="text-align:center">
-                                            <label>{{tanya.descNilai}}</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div ng-switch-default>
-                                    <div class="grid_12">
-                                        <div class="grid_1">&nbsp;</div>
-                                        <div class="grid_2">&nbsp;</div>
-                                        <div class="grid_7" style="margin-bottom: 5px">
-                                            <div class="grid_12">
-                                                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.akses" value="{{jawab.id}}"
-                                                ng-click="cekSkorDewasaPasien(tanya, jawab)">
-                                                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
-                                            </div>
-                                        </div>
-                                        <div class="grid_1" style="text-align:center">
-                                            <label>{{jawab.descNilai}}</label>
-                                        </div>
-                                        <div class="grid_1" style="text-align:center">&nbsp;</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid_12 rowstyle">&nbsp;</div>
-                    <div ng-repeat="tanya in listCaraBerjalan | orderBy:'id'">\
-                        <div class="grid_12" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index">
-                            <div ng-switch on="jawabIndex">
-                                <div ng-switch-when="0">
-                                    <div class="grid_12">
-                                        <div class="grid_1" style="text-align:center">
-                                            <label>5</label>
-                                        </div>
-                                        <div class="grid_2">
-                                            <label>
-                                                <b>{{tanya.nama}}</b>
-                                            </label>
-                                        </div>
-                                        <div class="grid_7" style="margin-bottom: 10px">
-                                            <div class="grid_12">
-                                                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.caraBerjalan" value="{{jawab.id}}"
-                                                ng-click="cekSkorDewasaPasien(tanya, jawab)">
-                                                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
-                                            </div>
-                                        </div>
-                                        <div class="grid_1" style="text-align:center">
-                                            <label>{{jawab.descNilai}}</label>
-                                        </div>
-                                        <div class="grid_1" style="text-align:center">
-                                            <label>{{tanya.descNilai}}</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div ng-switch-default>
-                                    <div class="grid_12">
-                                        <div class="grid_1">&nbsp;</div>
-                                        <div class="grid_2">&nbsp;</div>
-                                        <div class="grid_7" style="margin-bottom: 5px">
-                                            <div class="grid_12">
-                                                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.caraBerjalan" value="{{jawab.id}}"
-                                                ng-click="cekSkorDewasaPasien(tanya, jawab)">
-                                                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
-                                            </div>
-                                        </div>
-                                        <div class="grid_1" style="text-align:center">
-                                            <label>{{jawab.descNilai}}</label>
-                                        </div>
-                                        <div class="grid_1" style="text-align:center">&nbsp;</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid_12 rowstyle">&nbsp;</div>
-                    <div ng-repeat="tanya in listStatusPasien | orderBy:'id'">\
-                        <div class="grid_12" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index">
-                            <div ng-switch on="jawabIndex">
-                                <div ng-switch-when="0">
-                                    <div class="grid_12">
-                                        <div class="grid_1" style="text-align:center">
-                                            <label>6</label>
-                                        </div>
-                                        <div class="grid_2">
-                                            <label>
-                                                <b>{{tanya.nama}}</b>
-                                            </label>
-                                        </div>
-                                        <div class="grid_7" style="margin-bottom: 10px">
-                                            <div class="grid_12">
-                                                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.statusPasien" value="{{jawab.id}}"
-                                                ng-click="cekSkorDewasaPasien(tanya, jawab)">
-                                                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
-                                            </div>
-                                        </div>
-                                        <div class="grid_1" style="text-align:center">
-                                            <label>{{jawab.descNilai}}</label>
-                                        </div>
-                                        <div class="grid_1" style="text-align:center">
-                                            <label>{{tanya.descNilai}}</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div ng-switch-default>
-                                    <div class="grid_12">
-                                        <div class="grid_1">&nbsp;</div>
-                                        <div class="grid_2">&nbsp;</div>
-                                        <div class="grid_7" style="margin-bottom: 5px">
-                                            <div class="grid_12">
-                                                <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.statusPasien" value="{{jawab.id}}"
-                                                ng-click="cekSkorDewasaPasien(tanya, jawab)">
-                                                <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
-                                            </div>
-                                        </div>
-                                        <div class="grid_1" style="text-align:center">
-                                            <label>{{jawab.descNilai}}</label>
-                                        </div>
-                                        <div class="grid_1" style="text-align:center">&nbsp;</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid_12 rowstyle">&nbsp;</div>
-                    <div class="grid_12 footer" style="border-top:1px solid lightblue">
-                        <div class="grid_10">Total Skor</div>
-                        <div class="grid_2">{{totalSkorResikoDewasa}}</div>
-                    </div>
-                    <div class="grid_12" align="center">
-                        <label c-label>Catatan : Total nilai 0 - 24 : Tidak Tidak Berisiko; >51: Risiko Tinggi</label>
-                    </div>
-
-
-                </div>
-                <!-- panel Geriatri   -->
-                <div class="grid_12" style="margin-top:10px" ng-show="isDewasa && isRawatInap">
-                    <div class="grid_12 headerBox">
-                        <h1 style="color: white;">
-                            <b>{{titleGeriatri}}</b>
-                        </h1>
-                    </div>
-                    <br/>
-                    <div class="grid_12 header">
-                        <div class="grid_1" style="border-bottom:1px solid blue; text-align:center">
-                            <b>No</b>
-                        </div>
-                        <div class="grid_9" style="border-bottom:1px solid blue">
-                            <b>Kriteria</b>
-                        </div>
-                        <div class="grid_2" style="border-bottom:1px solid blue; text-align:center">
-                            <b>Skor</b>
-                        </div>
-                        <!--<div class="grid_1" style="border-bottom:1px solid blue"><b>Nilai Skor</b></div>-->
-                    </div>
-                    <div ng-repeat="tanya in listGeriatri | orderBy:'id'" ng-init="no = no + 1">
-                        <div class="grid_12" ng-repeat="jawab in tanya.detail | orderBy:'id'" ng-init="jawabIndex = $index">
-                            <div ng-switch on="jawabIndex">
-                                <div ng-switch-when="0">
-                                    <div class="grid_12">
-                                        <div class="grid_1" style="text-align:center">
-                                            <label>{{jawab.id}}</label>
-                                        </div>
-
-                                        <div class="grid_9">
-                                            <div class="grid_12">
-                                                <!-- <input type="checkbox" class="k-checkbox" ng-change="cekArrGeriatri(bool, jawab)"  name="{{jawab.nama}}" id="{{jawab.nama}}"  ng-model="bool" ng-checked="isChecked(jawab.id)"> -->
-                                                <input type="checkbox" class="k-checkbox" ng-click="addListGeriatri(jawab)"  name="{{jawab.nama}}" id="{{jawab.nama}}"  value="{{jawab.id}}"  ng-checked="jawab.isChecked">
-                                                <label for="{{jawab.nama}}" class="k-checkbox-label" >{{jawab.nama}}</label>
-                                                <!-- <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.geriatri" value="{{jawab.id}}"
-                                                    ng-click="cekSkorDewasaPasien(tanya, jawab)"> -->
-                                                    <!-- <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label> -->
-                                                </div>
-                                            </div>
-                                            <div class="grid_2" style="text-align:center">
-                                                <label>{{jawab.descNilai}}</label>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div ng-switch-default>
-                                        <div class="grid_12">
-                                            <div class="grid_1" style="text-align:center">
-                                                <label>{{jawab.id}}</label>
-                                            </div>
-
-                                            <div class="grid_9">
-                                                <div class="grid_12">
-                                                    <!-- <input type="checkbox" ng-checked="data.isChecked" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" value="{{data.id}}"  ng-click="addListKelainan(data)" ng-disabled="disableLokasi"> -->
-                                                    <input type="checkbox" class="k-checkbox" ng-click="addListGeriatri(jawab)"  name="{{jawab.nama}}" id="{{jawab.nama}}"  value="{{jawab.id}}"  ng-checked="jawab.isChecked">
-                                                    <label for="{{jawab.nama}}" class="k-checkbox-label" >{{jawab.nama}}</label>
-                                                </div>
-                                            </div>
-                                            <div class="grid_2" style="text-align:center">
-                                                <label>{{jawab.descNilai}}</label>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid_12 footer" style="border-top:1px solid lightblue">
-                            <div class="grid_10">Total Skor</div>
-                            <div class="grid_2">{{totalSkorResikoGeriatri}}</div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-            <br/>
-            <br/>
-            <div ng-include=' "../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
         </div>
-    
+        <div class="grid_12" style="margin-top:10px" ng-show="isRawatInap &&
+            isAnak" ng-hide="isDewasa || isRawatJalan">
+            <div class="grid_12 headerBox">
+                <h1 style="color: white;">
+                    <b>{{titleHumpty}}</b>
+                </h1>
+            </div>
+            <div class="grid_12 header">
+                <div class="grid_1" style="border-bottom:1px solid blue;
+                    text-align:center">
+                    <b>No</b>
+                </div>
+                <div class="grid_2" style="border-bottom:1px solid blue;">
+                    <b>Parameter</b>
+                </div>
+                <div class="grid_7" style="border-bottom:1px solid blue;">
+                    <b>Kriteria</b>
+                </div>
+                <div class="grid_1" style="border-bottom:1px solid blue;
+                    text-align:center">
+                    <b>Skor</b>
+                </div>
+                <div class="grid_1" style="border-bottom:1px solid blue;
+                    text-align:center">
+                    <b>Hasil</b>
+                </div>
+            </div>
+            <div ng-repeat="tanya in listUmur | orderBy:'id'">
+                <div class="grid_12" ng-repeat="jawab in tanya.detail |
+                    orderBy:'id'" ng-init="jawabIndex= $index">
+                    <div ng-switch on="jawabIndex">
+                        <div ng-switch-when="0">
+                            <div class="grid_12">
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>1</label>
+                                </div>
+                                <div class="grid_2">
+                                    <label>
+                                        <b>{{tanya.nama}}</b>
+                                    </label>
+                                </div>
+                                <div class="grid_7" style="margin-bottom:
+                                    10px">
+                                    <div class="grid_12">
+                                        <input type="radio"
+                                            name="{{jawab.nama}}"
+                                            id="{{jawab.nama}}"
+                                            class="k-radio"
+                                            ng-model="item.umur"
+                                            value="{{jawab.id}}"
+                                            ng-click="cekSkorHumpy(tanya,
+                                            jawab)">
+                                        <label class="k-radio-label"
+                                            for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{tanya.descNilai}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-switch-default>
+                            <div class="grid_12">
+                                <div class="grid_1">&nbsp;</div>
+                                <div class="grid_2">&nbsp;</div>
+                                <div class="grid_7" style="margin-bottom:
+                                    5px">
+                                    <div class="grid_12">
+                                        <input type="radio"
+                                            name="{{jawab.nama}}"
+                                            id="{{jawab.nama}}"
+                                            class="k-radio"
+                                            ng-model="item.umur"
+                                            value="{{jawab.id}}"
+                                            ng-click="cekSkorHumpy(tanya,
+                                            jawab)">
+                                        <label class="k-radio-label"
+                                            for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12 rowstyle">&nbsp;</div>
+            <div ng-repeat="tanya in listJK | orderBy:'id'">\
+                <div class="grid_12" ng-repeat="jawab in tanya.detail |
+                    orderBy:'id'" ng-init="jawabIndex= $index">
+                    <div ng-switch on="jawabIndex">
+                        <div ng-switch-when="0">
+                            <div class="grid_12">
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>2</label>
+                                </div>
+                                <div class="grid_2">
+                                    <label>
+                                        <b>{{tanya.nama}}</b>
+                                    </label>
+                                </div>
+                                <div class="grid_7" style="margin-bottom:
+                                    10px">
+                                    <div class="grid_12">
+                                        <input type="radio"
+                                            name="{{jawab.nama}}"
+                                            id="{{jawab.nama}}"
+                                            class="k-radio"
+                                            ng-model="item.jk"
+                                            value="{{jawab.id}}"
+                                            ng-click="cekSkorHumpy(tanya,
+                                            jawab)">
+                                        <label class="k-radio-label"
+                                            for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{tanya.descNilai}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-switch-default>
+                            <div class="grid_12">
+                                <div class="grid_1">&nbsp;</div>
+                                <div class="grid_2">&nbsp;</div>
+                                <div class="grid_7" style="margin-bottom:
+                                    5px">
+                                    <div class="grid_12">
+                                        <input type="radio"
+                                            name="{{jawab.nama}}"
+                                            id="{{jawab.nama}}"
+                                            class="k-radio"
+                                            ng-model="item.jk"
+                                            value="{{jawab.id}}"
+                                            ng-click="cekSkorHumpy(tanya,
+                                            jawab)">
+                                        <label class="k-radio-label"
+                                            for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12 rowstyle">&nbsp;</div>
+            <div ng-repeat="tanya in listDiagnosis | orderBy:'id'">\
+                <div class="grid_12" ng-repeat="jawab in tanya.detail |
+                    orderBy:'id'" ng-init="jawabIndex= $index">
+                    <div ng-switch on="jawabIndex">
+                        <div ng-switch-when="0">
+                            <div class="grid_12">
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>3</label>
+                                </div>
+                                <div class="grid_2">
+                                    <label>
+                                        <b>{{tanya.nama}}</b>
+                                    </label>
+                                </div>
+                                <div class="grid_7" style="margin-bottom:
+                                    10px">
+                                    <div class="grid_12">
+                                        <input type="radio"
+                                            name="{{jawab.nama}}"
+                                            id="{{jawab.nama}}"
+                                            class="k-radio"
+                                            ng-model="item.diagnosis"
+                                            value="{{jawab.id}}"
+                                            ng-click="cekSkorHumpy(tanya,
+                                            jawab)">
+                                        <label class="k-radio-label"
+                                            for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{tanya.descNilai}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-switch-default>
+                            <div class="grid_12">
+                                <div class="grid_1">&nbsp;</div>
+                                <div class="grid_2">&nbsp;</div>
+                                <div class="grid_7" style="margin-bottom:
+                                    5px">
+                                    <div class="grid_12">
+                                        <input type="radio"
+                                            name="{{jawab.nama}}"
+                                            id="{{jawab.nama}}"
+                                            class="k-radio"
+                                            ng-model="item.diagnosis"
+                                            value="{{jawab.id}}"
+                                            ng-click="cekSkorHumpy(tanya,
+                                            jawab)">
+                                        <label class="k-radio-label"
+                                            for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12 rowstyle">&nbsp;</div>
+            <div ng-repeat="tanya in listKognitif | orderBy:'id'">\
+                <div class="grid_12" ng-repeat="jawab in tanya.detail |
+                    orderBy:'id'" ng-init="jawabIndex= $index">
+                    <div ng-switch on="jawabIndex">
+                        <div ng-switch-when="0">
+                            <div class="grid_12">
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>4</label>
+                                </div>
+                                <div class="grid_2">
+                                    <label>
+                                        <b>{{tanya.nama}}</b>
+                                    </label>
+                                </div>
+                                <div class="grid_7" style="margin-bottom:
+                                    10px">
+                                    <div class="grid_12">
+                                        <input type="radio"
+                                            name="{{jawab.nama}}"
+                                            id="{{jawab.nama}}"
+                                            class="k-radio"
+                                            ng-model="item.kognitif"
+                                            value="{{jawab.id}}"
+                                            ng-click="cekSkorHumpy(tanya,
+                                            jawab)">
+                                        <label class="k-radio-label"
+                                            for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{tanya.descNilai}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-switch-default>
+                            <div class="grid_12">
+                                <div class="grid_1">&nbsp;</div>
+                                <div class="grid_2">&nbsp;</div>
+                                <div class="grid_7" style="margin-bottom:
+                                    5px">
+                                    <div class="grid_12">
+                                        <input type="radio"
+                                            name="{{jawab.nama}}"
+                                            id="{{jawab.nama}}"
+                                            class="k-radio"
+                                            ng-model="item.kognitif"
+                                            value="{{jawab.id}}"
+                                            ng-click="cekSkorHumpy(tanya,
+                                            jawab)">
+                                        <label class="k-radio-label"
+                                            for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12 rowstyle">&nbsp;</div>
+            <div ng-repeat="tanya in listLingkungan | orderBy:'id'">\
+                <div class="grid_12" ng-repeat="jawab in tanya.detail |
+                    orderBy:'id'" ng-init="jawabIndex= $index">
+                    <div ng-switch on="jawabIndex">
+                        <div ng-switch-when="0">
+                            <div class="grid_12">
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>5</label>
+                                </div>
+                                <div class="grid_2">
+                                    <label>
+                                        <b>{{tanya.nama}}</b>
+                                    </label>
+                                </div>
+                                <div class="grid_7" style="margin-bottom:
+                                    10px">
+                                    <div class="grid_12">
+                                        <input type="radio"
+                                            name="{{jawab.nama}}"
+                                            id="{{jawab.nama}}"
+                                            class="k-radio"
+                                            ng-model="item.lingkungan"
+                                            value="{{jawab.id}}"
+                                            ng-click="cekSkorHumpy(tanya,
+                                            jawab)">
+                                        <label class="k-radio-label"
+                                            for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{tanya.descNilai}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-switch-default>
+                            <div class="grid_12">
+                                <div class="grid_1">&nbsp;</div>
+                                <div class="grid_2">&nbsp;</div>
+                                <div class="grid_7" style="margin-bottom:
+                                    5px">
+                                    <div class="grid_12">
+                                        <input type="radio"
+                                            name="{{jawab.nama}}"
+                                            id="{{jawab.nama}}"
+                                            class="k-radio"
+                                            ng-model="item.lingkungan"
+                                            value="{{jawab.id}}"
+                                            ng-click="cekSkorHumpy(tanya,
+                                            jawab)">
+                                        <label class="k-radio-label"
+                                            for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12 rowstyle">&nbsp;</div>
+            <div ng-repeat="tanya in listRespon | orderBy:'id'">\
+                <div class="grid_12" ng-repeat="jawab in tanya.detail |
+                    orderBy:'id'" ng-init="jawabIndex= $index">
+                    <div ng-switch on="jawabIndex">
+                        <div ng-switch-when="0">
+                            <div class="grid_12">
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>6</label>
+                                </div>
+                                <div class="grid_2">
+                                    <label>
+                                        <b>{{tanya.nama}}</b>
+                                    </label>
+                                </div>
+                                <div class="grid_7" style="margin-bottom:
+                                    10px">
+                                    <div class="grid_12">
+                                        <input type="radio"
+                                            name="{{jawab.nama}}"
+                                            id="{{jawab.nama}}"
+                                            class="k-radio"
+                                            ng-model="item.respon"
+                                            value="{{jawab.id}}"
+                                            ng-click="cekSkorHumpy(tanya,
+                                            jawab)">
+                                        <label class="k-radio-label"
+                                            for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{tanya.descNilai}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-switch-default>
+                            <div class="grid_12">
+                                <div class="grid_1">&nbsp;</div>
+                                <div class="grid_2">&nbsp;</div>
+                                <div class="grid_7" style="margin-bottom:
+                                    5px">
+                                    <div class="grid_12">
+                                        <input type="radio"
+                                            name="{{jawab.nama}}"
+                                            id="{{jawab.nama}}"
+                                            class="k-radio"
+                                            ng-model="item.respon"
+                                            value="{{jawab.id}}"
+                                            ng-click="cekSkorHumpy(tanya,
+                                            jawab)">
+                                        <label class="k-radio-label"
+                                            for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12 rowstyle">&nbsp;</div>
+            <div ng-repeat="tanya in listObat | orderBy:'id'">\
+                <div class="grid_12" ng-repeat="jawab in tanya.detail |
+                    orderBy:'id'" ng-init="jawabIndex= $index">
+                    <div ng-switch on="jawabIndex">
+                        <div ng-switch-when="0">
+                            <div class="grid_12">
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>7</label>
+                                </div>
+                                <div class="grid_2">
+                                    <label>
+                                        <b>{{tanya.nama}}</b>
+                                    </label>
+                                </div>
+                                <div class="grid_7" style="margin-bottom:
+                                    10px">
+                                    <div class="grid_12">
+                                        <input type="radio"
+                                            name="{{jawab.nama}}"
+                                            id="{{jawab.nama}}"
+                                            class="k-radio"
+                                            ng-model="item.obat"
+                                            value="{{jawab.id}}"
+                                            ng-click="cekSkorHumpy(tanya,
+                                            jawab)">
+                                        <label class="k-radio-label"
+                                            for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{tanya.descNilai}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-switch-default>
+                            <div class="grid_12">
+                                <div class="grid_1">&nbsp;</div>
+                                <div class="grid_2">&nbsp;</div>
+                                <div class="grid_7" style="margin-bottom:
+                                    5px">
+                                    <div class="grid_12">
+                                        <input type="radio"
+                                            name="{{jawab.nama}}"
+                                            id="{{jawab.nama}}"
+                                            class="k-radio"
+                                            ng-model="item.obat"
+                                            value="{{jawab.id}}"
+                                            ng-click="cekSkorHumpy(tanya,
+                                            jawab)">
+                                        <label class="k-radio-label"
+                                            for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12 rowstyle">&nbsp;</div>
+            <div class="grid_12 footer" style="border-top:1px solid
+                lightblue">
+                <div class="grid_10">Total Skor</div>
+                <div class="grid_2">{{totalSkorResikoAnak}}</div>
+            </div>
+        </div>
+        <div class="grid_12" style="margin-top:10px" ng-show="isDewasa &&
+            isRawatInap" ng-hide="isRawatJalan && isDewasa || isRawatJalan
+            && isAnak || isRawatInap && isAnak">
+            <div class="grid_12 headerBox">
+                <h1 style="color: white;">
+                    <b>{{titleIntensif}}</b>
+                </h1>
+            </div>
+            <div class="grid_12 header">
+                <div class="grid_1" style="border-bottom:1px solid blue;
+                    text-align:center">
+                    <b>No</b>
+                </div>
+                <div class="grid_2" style="border-bottom:1px solid blue;">
+                    <b>Tingkat Risiko</b>
+                </div>
+                <div class="grid_7" style="border-bottom:1px solid blue;">
+                    <b>Kriteria</b>
+                </div>
+                <div class="grid_1" style="border-bottom:1px solid blue;
+                    text-align:center">
+                    <b>Skor</b>
+                </div>
+                <div class="grid_1" style="border-bottom:1px solid blue;
+                    text-align:center">
+                    <b>Hasil</b>
+                </div>
+            </div>
+            <div ng-repeat="tanya in listRiwayatJatuh | orderBy:'id'">\
+                <div class="grid_12" ng-repeat="jawab in tanya.detail |
+                    orderBy:'id'" ng-init="jawabIndex= $index">
+                    <div ng-switch on="jawabIndex">
+                        <div ng-switch-when="0">
+                            <div class="grid_12">
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>1</label>
+                                </div>
+                                <div class="grid_2">
+                                    <label>
+                                        <b>{{tanya.nama}}</b>
+                                    </label>
+                                </div>
+                                <div class="grid_7" style="margin-bottom:
+                                    10px">
+                                    <div class="grid_12">
+                                        <input type="radio"
+                                            name="{{jawab.nama}}"
+                                            id="{{jawab.nama}}"
+                                            class="k-radio"
+                                            ng-model="item.riwayatJatuh"
+                                            value="{{jawab.id}}"
+                                            ng-click="cekSkorDewasaPasien(tanya,
+                                            jawab)">
+                                        <label class="k-radio-label"
+                                            for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{tanya.descNilai}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-switch-default>
+                            <div class="grid_12">
+                                <div class="grid_1">&nbsp;</div>
+                                <div class="grid_2">&nbsp;</div>
+                                <div class="grid_7" style="margin-bottom:
+                                    5px">
+                                    <div class="grid_12">
+                                        <input type="radio"
+                                            name="{{jawab.nama}}"
+                                            id="{{jawab.nama}}"
+                                            class="k-radio"
+                                            ng-model="item.riwayatJatuh"
+                                            value="{{jawab.id}}"
+                                            ng-click="cekSkorDewasaPasien(tanya,
+                                            jawab)">
+                                        <label class="k-radio-label"
+                                            for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12 rowstyle">&nbsp;</div>
+            <div ng-repeat="tanya in listDiagnosisSekunder | orderBy:'id'">\
+                <div class="grid_12" ng-repeat="jawab in tanya.detail |
+                    orderBy:'id'" ng-init="jawabIndex= $index">
+                    <div ng-switch on="jawabIndex">
+                        <div ng-switch-when="0">
+                            <div class="grid_12">
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>2</label>
+                                </div>
+                                <div class="grid_2">
+                                    <label>
+                                        <b>{{tanya.nama}}</b>
+                                    </label>
+                                </div>
+                                <div class="grid_7" style="margin-bottom:
+                                    10px">
+                                    <div class="grid_12">
+                                        <input type="radio"
+                                            name="{{jawab.nama}}"
+                                            id="{{jawab.nama}}"
+                                            class="k-radio"
+                                            ng-model="item.diagnosisSekunder"
+                                            value="{{jawab.id}}"
+                                            ng-click="cekSkorDewasaPasien(tanya,
+                                            jawab)">
+                                        <label class="k-radio-label"
+                                            for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{tanya.descNilai}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-switch-default>
+                            <div class="grid_12">
+                                <div class="grid_1">&nbsp;</div>
+                                <div class="grid_2">&nbsp;</div>
+                                <div class="grid_7" style="margin-bottom:
+                                    5px">
+                                    <div class="grid_12">
+                                        <input type="radio"
+                                            name="{{jawab.nama}}"
+                                            id="{{jawab.nama}}"
+                                            class="k-radio"
+                                            ng-model="item.diagnosisSekunder"
+                                            value="{{jawab.id}}"
+                                            ng-click="cekSkorDewasaPasien(tanya,
+                                            jawab)">
+                                        <label class="k-radio-label"
+                                            for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12 rowstyle">&nbsp;</div>
+            <div ng-repeat="tanya in listAlatBantu | orderBy:'id'">\
+                <div class="grid_12" ng-repeat="jawab in tanya.detail |
+                    orderBy:'id'" ng-init="jawabIndex= $index">
+                    <div ng-switch on="jawabIndex">
+                        <div ng-switch-when="0">
+                            <div class="grid_12">
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>3</label>
+                                </div>
+                                <div class="grid_2">
+                                    <label>
+                                        <b>{{tanya.nama}}</b>
+                                    </label>
+                                </div>
+                                <div class="grid_7" style="margin-bottom:
+                                    10px">
+                                    <div class="grid_12">
+                                        <input type="radio"
+                                            name="{{jawab.nama}}"
+                                            id="{{jawab.nama}}"
+                                            class="k-radio"
+                                            ng-model="item.alatBantu"
+                                            value="{{jawab.id}}"
+                                            ng-click="cekSkorDewasaPasien(tanya,
+                                            jawab)">
+                                        <label class="k-radio-label"
+                                            for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{tanya.descNilai}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-switch-default>
+                            <div class="grid_12">
+                                <div class="grid_1">&nbsp;</div>
+                                <div class="grid_2">&nbsp;</div>
+                                <div class="grid_7" style="margin-bottom:
+                                    5px">
+                                    <div class="grid_12">
+                                        <input type="radio"
+                                            name="{{jawab.nama}}"
+                                            id="{{jawab.nama}}"
+                                            class="k-radio"
+                                            ng-model="item.alatBantu"
+                                            value="{{jawab.id}}"
+                                            ng-click="cekSkorDewasaPasien(tanya,
+                                            jawab)">
+                                        <label class="k-radio-label"
+                                            for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12 rowstyle">&nbsp;</div>
+            <div ng-repeat="tanya in listAksesIv | orderBy:'id'">\
+                <div class="grid_12" ng-repeat="jawab in tanya.detail |
+                    orderBy:'id'" ng-init="jawabIndex= $index">
+                    <div ng-switch on="jawabIndex">
+                        <div ng-switch-when="0">
+                            <div class="grid_12">
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>4</label>
+                                </div>
+                                <div class="grid_2">
+                                    <label>
+                                        <b>{{tanya.nama}}</b>
+                                    </label>
+                                </div>
+                                <div class="grid_7" style="margin-bottom:
+                                    10px">
+                                    <div class="grid_12">
+                                        <input type="radio"
+                                            name="{{jawab.nama}}"
+                                            id="{{jawab.nama}}"
+                                            class="k-radio"
+                                            ng-model="item.akses"
+                                            value="{{jawab.id}}"
+                                            ng-click="cekSkorDewasaPasien(tanya,
+                                            jawab)">
+                                        <label class="k-radio-label"
+                                            for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{tanya.descNilai}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-switch-default>
+                            <div class="grid_12">
+                                <div class="grid_1">&nbsp;</div>
+                                <div class="grid_2">&nbsp;</div>
+                                <div class="grid_7" style="margin-bottom:
+                                    5px">
+                                    <div class="grid_12">
+                                        <input type="radio"
+                                            name="{{jawab.nama}}"
+                                            id="{{jawab.nama}}"
+                                            class="k-radio"
+                                            ng-model="item.akses"
+                                            value="{{jawab.id}}"
+                                            ng-click="cekSkorDewasaPasien(tanya,
+                                            jawab)">
+                                        <label class="k-radio-label"
+                                            for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12 rowstyle">&nbsp;</div>
+            <div ng-repeat="tanya in listCaraBerjalan | orderBy:'id'">\
+                <div class="grid_12" ng-repeat="jawab in tanya.detail |
+                    orderBy:'id'" ng-init="jawabIndex= $index">
+                    <div ng-switch on="jawabIndex">
+                        <div ng-switch-when="0">
+                            <div class="grid_12">
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>5</label>
+                                </div>
+                                <div class="grid_2">
+                                    <label>
+                                        <b>{{tanya.nama}}</b>
+                                    </label>
+                                </div>
+                                <div class="grid_7" style="margin-bottom:
+                                    10px">
+                                    <div class="grid_12">
+                                        <input type="radio"
+                                            name="{{jawab.nama}}"
+                                            id="{{jawab.nama}}"
+                                            class="k-radio"
+                                            ng-model="item.caraBerjalan"
+                                            value="{{jawab.id}}"
+                                            ng-click="cekSkorDewasaPasien(tanya,
+                                            jawab)">
+                                        <label class="k-radio-label"
+                                            for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{tanya.descNilai}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-switch-default>
+                            <div class="grid_12">
+                                <div class="grid_1">&nbsp;</div>
+                                <div class="grid_2">&nbsp;</div>
+                                <div class="grid_7" style="margin-bottom:
+                                    5px">
+                                    <div class="grid_12">
+                                        <input type="radio"
+                                            name="{{jawab.nama}}"
+                                            id="{{jawab.nama}}"
+                                            class="k-radio"
+                                            ng-model="item.caraBerjalan"
+                                            value="{{jawab.id}}"
+                                            ng-click="cekSkorDewasaPasien(tanya,
+                                            jawab)">
+                                        <label class="k-radio-label"
+                                            for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12 rowstyle">&nbsp;</div>
+            <div ng-repeat="tanya in listStatusPasien | orderBy:'id'">\
+                <div class="grid_12" ng-repeat="jawab in tanya.detail |
+                    orderBy:'id'" ng-init="jawabIndex= $index">
+                    <div ng-switch on="jawabIndex">
+                        <div ng-switch-when="0">
+                            <div class="grid_12">
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>6</label>
+                                </div>
+                                <div class="grid_2">
+                                    <label>
+                                        <b>{{tanya.nama}}</b>
+                                    </label>
+                                </div>
+                                <div class="grid_7" style="margin-bottom:
+                                    10px">
+                                    <div class="grid_12">
+                                        <input type="radio"
+                                            name="{{jawab.nama}}"
+                                            id="{{jawab.nama}}"
+                                            class="k-radio"
+                                            ng-model="item.statusPasien"
+                                            value="{{jawab.id}}"
+                                            ng-click="cekSkorDewasaPasien(tanya,
+                                            jawab)">
+                                        <label class="k-radio-label"
+                                            for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{tanya.descNilai}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-switch-default>
+                            <div class="grid_12">
+                                <div class="grid_1">&nbsp;</div>
+                                <div class="grid_2">&nbsp;</div>
+                                <div class="grid_7" style="margin-bottom:
+                                    5px">
+                                    <div class="grid_12">
+                                        <input type="radio"
+                                            name="{{jawab.nama}}"
+                                            id="{{jawab.nama}}"
+                                            class="k-radio"
+                                            ng-model="item.statusPasien"
+                                            value="{{jawab.id}}"
+                                            ng-click="cekSkorDewasaPasien(tanya,
+                                            jawab)">
+                                        <label class="k-radio-label"
+                                            for="{{jawab.nama}}">{{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+                                <div class="grid_1"
+                                    style="text-align:center">&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12 rowstyle">&nbsp;</div>
+            <div class="grid_12 footer" style="border-top:1px solid
+                lightblue">
+                <div class="grid_10">Total Skor</div>
+                <div class="grid_2">{{totalSkorResikoDewasa}}</div>
+            </div>
+            <div class="grid_12" align="center">
+                <label c-label>Catatan : Total nilai 0 - 24 : Tidak Tidak
+                    Berisiko; >51: Risiko Tinggi</label>
+            </div>
+
+
+        </div>
+        <!-- panel Geriatri   -->
+        <div class="grid_12" style="margin-top:10px" ng-show="isDewasa &&
+            isRawatInap">
+            <div class="grid_12 headerBox">
+                <h1 style="color: white;">
+                    <b>{{titleGeriatri}}</b>
+                </h1>
+            </div>
+            <div class="grid_12 header">
+                <div class="grid_1" style="border-bottom:1px solid blue;
+                    text-align:center">
+                    <b>No</b>
+                </div>
+                <div class="grid_9" style="border-bottom:1px solid
+                    blue">
+                    <b>Kriteria</b>
+                </div>
+                <div class="grid_2" style="border-bottom:1px solid blue;
+                    text-align:center">
+                    <b>Skor</b>
+                </div>
+                <!--<div class="grid_1" style="border-bottom:1px solid blue"><b>Nilai Skor</b></div>-->
+            </div>
+            <div ng-repeat="tanya in listGeriatri | orderBy:'id'"
+                ng-init="no= no + 1">
+                <div class="grid_12" ng-repeat="jawab in tanya.detail |
+                    orderBy:'id'" ng-init="jawabIndex= $index">
+                    <div ng-switch on="jawabIndex">
+                        <div ng-switch-when="0">
+                            <div class="grid_12">
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{jawab.id}}</label>
+                                </div>
+
+                                <div class="grid_9">
+                                    <div class="grid_12">
+                                        <!-- <input type="checkbox" class="k-checkbox" ng-change="cekArrGeriatri(bool, jawab)"  name="{{jawab.nama}}" id="{{jawab.nama}}"  ng-model="bool" ng-checked="isChecked(jawab.id)"> -->
+                                        <input type="checkbox"
+                                            class="k-checkbox"
+                                            ng-click="addListGeriatri(jawab)"
+                                            name="{{jawab.nama}}"
+                                            id="{{jawab.nama}}"
+                                            value="{{jawab.id}}"
+                                            ng-checked="jawab.isChecked">
+                                        <label for="{{jawab.nama}}"
+                                            class="k-checkbox-label">{{jawab.nama}}</label>
+                                        <!-- <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.geriatri" value="{{jawab.id}}"
+                                                    ng-click="cekSkorDewasaPasien(tanya, jawab)"> -->
+                                        <!-- <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label> -->
+                                    </div>
+                                </div>
+                                <div class="grid_2"
+                                    style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div ng-switch-default>
+                            <div class="grid_12">
+                                <div class="grid_1"
+                                    style="text-align:center">
+                                    <label>{{jawab.id}}</label>
+                                </div>
+
+                                <div class="grid_9">
+                                    <div class="grid_12">
+                                        <!-- <input type="checkbox" ng-checked="data.isChecked" class="k-checkbox" name="{{data.name}}" id="{{data.name}}" value="{{data.id}}"  ng-click="addListKelainan(data)" ng-disabled="disableLokasi"> -->
+                                        <input type="checkbox"
+                                            class="k-checkbox"
+                                            ng-click="addListGeriatri(jawab)"
+                                            name="{{jawab.nama}}"
+                                            id="{{jawab.nama}}"
+                                            value="{{jawab.id}}"
+                                            ng-checked="jawab.isChecked">
+                                        <label for="{{jawab.nama}}"
+                                            class="k-checkbox-label">{{jawab.nama}}</label>
+                                    </div>
+                                </div>
+                                <div class="grid_2"
+                                    style="text-align:center">
+                                    <label>{{jawab.descNilai}}</label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12 footer" style="border-top:1px solid
+                lightblue">
+                <div class="grid_10">Total Skor</div>
+                <div class="grid_2">{{totalSkorResikoGeriatri}}</div>
+            </div>
+
+        </div>
+    </div>
+    <div
+        ng-include='" ../app/module/Shared/TemplateButtonSimpanNotFixed" '>
+    </div>
+</div>

@@ -59,23 +59,24 @@
         margin-bottom: 20px
     }
 </style>
-
-
 <div ng-show="dataVOloaded">
     <div class="grid_12">
-        <div class="grid_12 headerBox">
+        <md-toolbar md-scroll-shrink class="shadow">
+            <div class="md-toolbar-tools">{{title}}</div>
+        </md-toolbar>
+        <!-- <div class="grid_12 headerBox">
             <h1 style="color: white;"><b>{{title}}</b></h1>
-        </div>
-
-        <br />
+        </div> -->
         <div class="grid_12">
             <div class="grid_3">
                 <div class="grid_12" style="margin-bottom:5px">
                     <label c-label item="item">Berat Badan pre HD</label>
                 </div>
                 <div class="grid_12 parentKeteranganFieldTambahan">
-                    <input c-text-box type="number" filter="" class="k-textbox" ng-model="item.beratBadanPre" />
-                    <label class="keteranganFieldTambahan" style="margin-top: 5px;margin-right: 30px">Kg</label>
+                    <input c-text-box type="number" filter="" class="k-textbox"
+                        ng-model="item.beratBadanPre" />
+                    <label class="keteranganFieldTambahan" style="margin-top:
+                        5px;margin-right: 30px">Kg</label>
                 </div>
             </div>
             <div class="grid_3">
@@ -83,8 +84,10 @@
                     <label c-label item="item" c-label-text="Suhu"></label>
                 </div>
                 <div class="grid_12 parentKeteranganFieldTambahan">
-                    <input c-text-box type="number" filter="" class="k-textbox" ng-model="item.suhu" />
-                    <label class="keteranganFieldTambahan" style="margin-top: 5px;margin-right: 30px">°C</label>
+                    <input c-text-box type="number" filter="" class="k-textbox"
+                        ng-model="item.suhu" />
+                    <label class="keteranganFieldTambahan" style="margin-top:
+                        5px;margin-right: 30px">°C</label>
                 </div>
             </div>
             <div class="grid_3">
@@ -92,8 +95,10 @@
                     <label c-label item="item" c-label-text="Nadi"></label>
                 </div>
                 <div class="grid_12 parentKeteranganFieldTambahan">
-                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nadi" />
-                    <label class="keteranganFieldTambahan" style="margin-top: 5px;margin-right: 30px">x/menit</label>
+                    <input c-text-box type="input" filter="" class="k-textbox"
+                        ng-model="item.nadi" />
+                    <label class="keteranganFieldTambahan" style="margin-top:
+                        5px;margin-right: 30px">x/menit</label>
                 </div>
             </div>
             <div class="grid_3">
@@ -101,8 +106,10 @@
                     <label c-label item="item" c-label-text="Frekuensi Nafas"></label>
                 </div>
                 <div class="grid_12 parentKeteranganFieldTambahan">
-                    <input c-text-box type="input" filter="'char'" class="k-textbox" ng-model="item.frekuensi" />
-                    <label class="keteranganFieldTambahan" style="margin-top: 5px;margin-right: 30px">x/menit</label>
+                    <input c-text-box type="input" filter="'char'"
+                        class="k-textbox" ng-model="item.frekuensi" />
+                    <label class="keteranganFieldTambahan" style="margin-top:
+                        5px;margin-right: 30px">x/menit</label>
                 </div>
             </div>
 
@@ -113,8 +120,10 @@
                     <label c-label item="item">Berat Badan post HD</label>
                 </div>
                 <div class="grid_12 parentKeteranganFieldTambahan">
-                    <input c-text-box type="number" filter="" class="k-textbox" ng-model="item.beratBadanPost" />
-                    <label class="keteranganFieldTambahan" style="margin-top: 5px;margin-right: 30px">Kg</label>
+                    <input c-text-box type="number" filter="" class="k-textbox"
+                        ng-model="item.beratBadanPost" />
+                    <label class="keteranganFieldTambahan" style="margin-top:
+                        5px;margin-right: 30px">Kg</label>
                 </div>
             </div>
             <div class="grid_3">
@@ -122,8 +131,10 @@
                     <label c-label item="item" c-label-text="Tekanan Darah"></label>
                 </div>
                 <div class="grid_12 parentKeteranganFieldTambahan">
-                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.tekananDarah" />
-                    <label class="keteranganFieldTambahan" style="margin-top: 5px;margin-right: 30px">mm/Hg</label>
+                    <input c-text-box type="input" filter="" class="k-textbox"
+                        ng-model="item.tekananDarah" />
+                    <label class="keteranganFieldTambahan" style="margin-top:
+                        5px;margin-right: 30px">mm/Hg</label>
                 </div>
             </div>
 
@@ -134,18 +145,23 @@
                     <label c-label item="item">Berat Badan kering</label>
                 </div>
                 <div class="grid_12 parentKeteranganFieldTambahan">
-                    <input c-text-box type="number" filter="" class="k-textbox" ng-model="item.beratBadanKering" />
-                    <label class="keteranganFieldTambahan" style="margin-top: 5px;margin-right: 30px">Kg</label>
+                    <input c-text-box type="number" filter="" class="k-textbox"
+                        ng-model="item.beratBadanKering" />
+                    <label class="keteranganFieldTambahan" style="margin-top:
+                        5px;margin-right: 30px">Kg</label>
                 </div>
             </div>
             <div class="grid_3">
                 <div class="grid_12" style="margin-bottom:5px">
                     <label c-label item="item" c-label-text="Keadaan Umum"></label>
                 </div>
-                <div class="grid_12" ng-repeat="list in listKeadaanUmum | orderBy:'id'">
+                <div class="grid_12" ng-repeat="list in listKeadaanUmum |
+                    orderBy:'id'">
                     <div ng-repeat="jawab in list.detail | orderBy:'id'">
                         <div class="grid_4">
-                            <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.keadaanUmum"
+                            <input type="radio" name="{{jawab.nama}}"
+                                id="{{jawab.nama}}" class="k-radio"
+                                ng-model="item.keadaanUmum"
                                 value="{{jawab.id}}">
                             <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
                             <!-- <input type="checkbox" ng-checked="opsi.isChecked" class="k-checkbox" name="{{opsi.nama}}"
@@ -161,11 +177,14 @@
                 <!-- <div class="grid_12" style="margin-bottom:5px">
                     <label c-label item="item" c-label-text="Edema"></label>
                 </div> -->
-                <div class="grid_12" ng-repeat="list in listEdema | orderBy:'id'">
+                <div class="grid_12" ng-repeat="list in listEdema |
+                    orderBy:'id'">
                     <b>{{list.nama}}</b>
                     <div ng-repeat="jawab in list.detail | orderBy:'id'">
                         <div class="grid_4">
-                            <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.edema"
+                            <input type="radio" name="{{jawab.nama}}"
+                                id="{{jawab.nama}}" class="k-radio"
+                                ng-model="item.edema"
                                 value="{{jawab.id}}">
                             <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
                         </div>
@@ -173,11 +192,14 @@
                 </div>
             </div>
             <div class="grid_3">
-                <div class="grid_12" ng-repeat="list in listKonjuctiva | orderBy:'id'">
+                <div class="grid_12" ng-repeat="list in listKonjuctiva |
+                    orderBy:'id'">
                     <b>{{list.nama}}</b>
                     <div ng-repeat="jawab in list.detail | orderBy:'id'">
                         <div class="grid_4">
-                            <input type="radio" name="{{jawab.nama}}" id="{{jawab.nama}}" class="k-radio" ng-model="item.konjuctiva"
+                            <input type="radio" name="{{jawab.nama}}"
+                                id="{{jawab.nama}}" class="k-radio"
+                                ng-model="item.konjuctiva"
                                 value="{{jawab.id}}">
                             <label class="k-radio-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
                         </div>
@@ -185,13 +207,18 @@
                 </div>
             </div>
             <div class="grid_3">
-                <div class="grid_12" ng-repeat="list in listPernapasan | orderBy:'id'">
+                <div class="grid_12" ng-repeat="list in listPernapasan |
+                    orderBy:'id'">
                     <b>{{list.nama}}</b>
                     <div ng-repeat="jawab in list.detail | orderBy:'id'">
                         <div class="grid_4">
-                            <input type="checkbox" ng-checked="jawab.isChecked" class="k-checkbox" name="{{jawab.nama}}"
-                                id="{{jawab.nama}}" ng-model="bool" value="{{jawab.id}}" ng-click="addPernapasan(bool,jawab)">
-                            <label class="k-checkbox-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+                            <input type="checkbox" ng-checked="jawab.isChecked"
+                                class="k-checkbox" name="{{jawab.nama}}"
+                                id="{{jawab.nama}}" ng-model="bool"
+                                value="{{jawab.id}}"
+                                ng-click="addPernapasan(bool,jawab)">
+                            <label class="k-checkbox-label"
+                                for="{{jawab.nama}}">{{jawab.nama}}</label>
                         </div>
                     </div>
                 </div>
@@ -199,25 +226,35 @@
         </div>
         <div class="grid_12">
             <div class="grid_3">
-                <div class="grid_12" ng-repeat="list in listAksesVaskular | orderBy:'id'">
+                <div class="grid_12" ng-repeat="list in listAksesVaskular |
+                    orderBy:'id'">
                     <b>{{list.nama}}</b>
                     <div ng-repeat="jawab in list.detail | orderBy:'id'">
                         <div class="grid_4">
-                            <input type="checkbox" ng-checked="jawab.isChecked" class="k-checkbox" name="{{jawab.nama}}"
-                                id="{{jawab.nama}}" ng-model="bool" value="{{jawab.id}}" ng-click="addVaskuler(bool,jawab)">
-                            <label class="k-checkbox-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+                            <input type="checkbox" ng-checked="jawab.isChecked"
+                                class="k-checkbox" name="{{jawab.nama}}"
+                                id="{{jawab.nama}}" ng-model="bool"
+                                value="{{jawab.id}}"
+                                ng-click="addVaskuler(bool,jawab)">
+                            <label class="k-checkbox-label"
+                                for="{{jawab.nama}}">{{jawab.nama}}</label>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="grid_3">
-                <div class="grid_12" ng-repeat="list in listHDcatheter | orderBy:'id'">
+                <div class="grid_12" ng-repeat="list in listHDcatheter |
+                    orderBy:'id'">
                     <b>{{list.nama}}</b>
                     <div ng-repeat="jawab in list.detail | orderBy:'id'">
                         <div class="grid_4">
-                            <input type="checkbox" ng-checked="jawab.isChecked" class="k-checkbox" name="{{jawab.nama}}"
-                                id="{{jawab.nama}}" ng-model="bool" value="{{jawab.id}}" ng-click="addHDcatheter(bool,jawab)">
-                            <label class="k-checkbox-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
+                            <input type="checkbox" ng-checked="jawab.isChecked"
+                                class="k-checkbox" name="{{jawab.nama}}"
+                                id="{{jawab.nama}}" ng-model="bool"
+                                value="{{jawab.id}}"
+                                ng-click="addHDcatheter(bool,jawab)">
+                            <label class="k-checkbox-label"
+                                for="{{jawab.nama}}">{{jawab.nama}}</label>
                         </div>
                     </div>
                 </div>
@@ -226,18 +263,25 @@
 
     </div>
     <div class="grid_12">
-        <div class="grid_12 headerBox">
+        <md-toolbar md-scroll-shrink class="shadow">
+            <div class="md-toolbar-tools">{{titlePengkajian}}</div>
+        </md-toolbar>
+        <!-- <div class="grid_12 headerBox">
             <h1 style="color: white;"><b>{{titlePengkajian}}</b></h1>
-        </div>
+        </div> -->
         <div class="clear"></div>
         <br />
         <div class="grid_12 header">
             <div class="grid_1" style="border-bottom:1px solid blue;"><b>No</b></div>
-            <div class="grid_2" style="border-bottom:1px solid blue ;margin-left:-80px"><b>Diagnosis Keperawatan</b></div>
-            <div class="grid_1" style="border-bottom:1px solid blue; "><b>Tujuan</b></div>
-            <div class="grid_2" style="border-bottom:1px solid blue ;text-align:center"><b>Intervensi</b></div>
-            <div class="grid_3" style="border-bottom:1px solid blue; text-align:center"><b>Implementasi</b></div>
-            <div class="grid_3" style="border-bottom:1px solid blue; text-align:center"><b>Evaluasi</b></div>
+            <div class="grid_2" style="border-bottom:1px solid blue
+                ;margin-left:-80px"><b>Diagnosis Keperawatan</b></div>
+            <div class="grid_1" style="border-bottom:1px solid blue;"><b>Tujuan</b></div>
+            <div class="grid_2" style="border-bottom:1px solid blue
+                ;text-align:center"><b>Intervensi</b></div>
+            <div class="grid_3" style="border-bottom:1px solid blue;
+                text-align:center"><b>Implementasi</b></div>
+            <div class="grid_3" style="border-bottom:1px solid blue;
+                text-align:center"><b>Evaluasi</b></div>
         </div>
         <div ng-repeat="tanya in listPolaNapas | orderBy:'id'">
             <div class="grid_12">
@@ -254,16 +298,26 @@
                     <label>{{tanya.intervensi}}</label>
                 </div>
                 <div class="grid_3">
-                    <div class="grid_12 rowstyle" ng-repeat="jawab in tanya.implementasi | orderBy:'id'" style="margin-bottom: 10px">
-                        <input type="checkbox" ng-checked="jawab.isChecked" class="k-checkbox" name="{{jawab.nama}}" id="{{jawab.nama}}"
-                            ng-model="bool" value="{{jawab.id}}" ng-click="addPolaNapasImplementasi(bool,jawab)">
+                    <div class="grid_12 rowstyle" ng-repeat="jawab in
+                        tanya.implementasi | orderBy:'id'" style="margin-bottom:
+                        10px">
+                        <input type="checkbox" ng-checked="jawab.isChecked"
+                            class="k-checkbox" name="{{jawab.nama}}"
+                            id="{{jawab.nama}}"
+                            ng-model="bool" value="{{jawab.id}}"
+                            ng-click="addPolaNapasImplementasi(bool,jawab)">
                         <label class="k-checkbox-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
                     </div>
                 </div>
                 <div class="grid_3">
-                    <div class="grid_12 rowstyle" ng-repeat="jawab in tanya.evaluasi | orderBy:'id'" style="margin-bottom: 10px">
-                        <input type="checkbox" ng-checked="jawab.isChecked" class="k-checkbox" name="{{jawab.nama}}" id="{{jawab.nama}}"
-                            ng-model="bool" value="{{jawab.id}}" ng-click="addPolaNapasEvaluasi(bool,jawab)">
+                    <div class="grid_12 rowstyle" ng-repeat="jawab in
+                        tanya.evaluasi | orderBy:'id'" style="margin-bottom:
+                        10px">
+                        <input type="checkbox" ng-checked="jawab.isChecked"
+                            class="k-checkbox" name="{{jawab.nama}}"
+                            id="{{jawab.nama}}"
+                            ng-model="bool" value="{{jawab.id}}"
+                            ng-click="addPolaNapasEvaluasi(bool,jawab)">
                         <label class="k-checkbox-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
                     </div>
                 </div>
@@ -284,16 +338,26 @@
                     <label>{{tanya.intervensi}}</label>
                 </div>
                 <div class="grid_3">
-                    <div class="grid_12 rowstyle" ng-repeat="jawab in tanya.implementasi | orderBy:'id'" style="margin-bottom: 10px">
-                        <input type="checkbox" ng-checked="jawab.isChecked" class="k-checkbox" name="{{jawab.nama}}" id="{{jawab.nama}}"
-                            ng-model="bool" value="{{jawab.id}}" ng-click="addHipervolemiaImplementasi(bool,jawab)">
+                    <div class="grid_12 rowstyle" ng-repeat="jawab in
+                        tanya.implementasi | orderBy:'id'" style="margin-bottom:
+                        10px">
+                        <input type="checkbox" ng-checked="jawab.isChecked"
+                            class="k-checkbox" name="{{jawab.nama}}"
+                            id="{{jawab.nama}}"
+                            ng-model="bool" value="{{jawab.id}}"
+                            ng-click="addHipervolemiaImplementasi(bool,jawab)">
                         <label class="k-checkbox-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
                     </div>
                 </div>
                 <div class="grid_3">
-                    <div class="grid_12 rowstyle" ng-repeat="jawab in tanya.evaluasi | orderBy:'id'" style="margin-bottom: 10px">
-                        <input type="checkbox" ng-checked="jawab.isChecked" class="k-checkbox" name="{{jawab.nama}}" id="{{jawab.nama}}"
-                            ng-model="bool" value="{{jawab.id}}" ng-click="addHipervolemiaEvaluasi(bool,jawab)">
+                    <div class="grid_12 rowstyle" ng-repeat="jawab in
+                        tanya.evaluasi | orderBy:'id'" style="margin-bottom:
+                        10px">
+                        <input type="checkbox" ng-checked="jawab.isChecked"
+                            class="k-checkbox" name="{{jawab.nama}}"
+                            id="{{jawab.nama}}"
+                            ng-model="bool" value="{{jawab.id}}"
+                            ng-click="addHipervolemiaEvaluasi(bool,jawab)">
                         <label class="k-checkbox-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
                     </div>
                 </div>
@@ -314,25 +378,33 @@
                     <label>{{tanya.intervensi}}</label>
                 </div>
                 <div class="grid_3">
-                    <div class="grid_12 rowstyle" ng-repeat="jawab in tanya.implementasi | orderBy:'id'" style="margin-bottom: 10px">
-                        <input type="checkbox" ng-checked="jawab.isChecked" class="k-checkbox" name="{{jawab.nama}}" id="{{jawab.nama}}"
-                            ng-model="bool" value="{{jawab.id}}" ng-click="addRisikoImpl(bool,jawab)">
+                    <div class="grid_12 rowstyle" ng-repeat="jawab in
+                        tanya.implementasi | orderBy:'id'" style="margin-bottom:
+                        10px">
+                        <input type="checkbox" ng-checked="jawab.isChecked"
+                            class="k-checkbox" name="{{jawab.nama}}"
+                            id="{{jawab.nama}}"
+                            ng-model="bool" value="{{jawab.id}}"
+                            ng-click="addRisikoImpl(bool,jawab)">
                         <label class="k-checkbox-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
                     </div>
                 </div>
                 <div class="grid_3">
-                    <div class="grid_12 rowstyle" ng-repeat="jawab in tanya.evaluasi | orderBy:'id'" style="margin-bottom: 10px">
-                        <input type="checkbox" ng-checked="jawab.isChecked" class="k-checkbox" name="{{jawab.nama}}" id="{{jawab.nama}}"
-                            ng-model="bool" value="{{jawab.id}}" ng-click="addRisikoEvl(bool,jawab)">
+                    <div class="grid_12 rowstyle" ng-repeat="jawab in
+                        tanya.evaluasi | orderBy:'id'" style="margin-bottom:
+                        10px">
+                        <input type="checkbox" ng-checked="jawab.isChecked"
+                            class="k-checkbox" name="{{jawab.nama}}"
+                            id="{{jawab.nama}}"
+                            ng-model="bool" value="{{jawab.id}}"
+                            ng-click="addRisikoEvl(bool,jawab)">
                         <label class="k-checkbox-label" for="{{jawab.nama}}">{{jawab.nama}}</label>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-</div>
 
-<div ng-include='"
-                    ../app/module/Shared/TemplateButtonSimpanNotFixed"'> </div>
+    <div ng-include='"
+        ../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
 </div>
