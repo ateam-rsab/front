@@ -38,7 +38,6 @@ define(['initialize'], function (initialize) {
 						title: "Obat-obatan/Jenis Pemeriksaan",
 						width: 120,
 						template: function (dataItem){
-							debugger;
 							console.log(dataItem);
 							return dataItem.obat[dataItem.obat.length - 1].obat
 						}

@@ -22,7 +22,7 @@ define(['initialize'], function(initialize) {
 			function loadCombo(){
 				var chacePeriode = cacheHelper.get('DaftarRegistrasiPasienCtrl');
 				if(chacePeriode != undefined){
-					debugger;
+					// debugger;
 					var arrPeriode = chacePeriode.split('~');
 					$scope.item.periodeAwal = new Date(arrPeriode[0]);
 					$scope.item.periodeAkhir = new Date(arrPeriode[1]);

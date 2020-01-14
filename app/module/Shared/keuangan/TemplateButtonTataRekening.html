@@ -1,105 +1,173 @@
-<div class="grid_12 place_button" style="float:left; margin:15px -20px 15px -20px">
+<div class="grid_12 place_button">
 
-  
+    <div class="grid_2" ng-show="showBtnBatalVerifikasi">
+        <md-button class="md-raised md-warn medium-button"
+            ng-click="BatalVerifikasi()">
+            <span>Batal Verifikasi</span>
+        </md-button>
+    </div>
 
-     <button class="btnTemplate1" 
+    <div class="grid_2" ng-show="showBtnKembali">
+        <md-button class="md-raised medium-button"
+            ng-click="Back()">
+            <span>Kembali</span>
+        </md-button>
+    </div>
+
+    <div class="grid_2" ng-show="showBtnSimpan">
+        <md-button class="md-raised md-primary medium-button"
+            ng-click="Save()">
+            <span>Simpan</span>
+        </md-button>
+    </div>
+
+    <div class="grid_2" ng-show="showBtnPerbaharui">
+        <md-button class="md-raised md-primary medium-button"
+            ng-click="Perbaharui()">
+            <span>Perbaharui</span>
+        </md-button>
+    </div>
+
+    <div class="grid_2" ng-show="showBtnUbahJenis">
+        <md-button class="md-raised md-primary medium-button"
+            ng-click="UbahJenisPasien()">
+            <span>Surat Perjanjian</span>
+        </md-button>
+    </div>
+
+    <div class="grid_2" ng-show="showBtnUnVerifikasi">
+        <md-button class="md-raised md-primary medium-button"
+            ng-click="unVerifikasi()">
+            <span>Unverifikasi</span>
+        </md-button>
+    </div>
+
+    <div class="grid_2" ng-show="showBtnVerifikasi">
+        <md-button class="md-raised md-primary medium-button"
+            ng-click="Verifikasi()">
+            <span>Verifikasi</span>
+        </md-button>
+    </div>
+
+    <div class="grid_2" ng-show="showBtnKelengkapanDokumen">
+        <md-button class="md-raised md-primary medium-button"
+            ng-click="KelengkapanDokumen()">
+            <span>Kelengkapan Dokumen</span>
+        </md-button>
+    </div>
+
+    <div class="grid_2" ng-show="showBtnCetak">
+        <md-button class="md-raised md-primary medium-button"
+            ng-click="Cetak()">
+            <span>Cetak</span>
+        </md-button>
+    </div>
+
+    <div class="grid_2" ng-show="showBtnDetail">
+        <md-button class="md-raised md-primary medium-button"
+            ng-click="Detail()">
+            <span>Detail Tagihan</span>
+        </md-button>
+    </div>
+
+    <div class="grid_2" ng-show="showBtnCollecting">
+        <md-button class="md-raised md-primary medium-button"
+            ng-click="Collecting()">
+            <span>Collecting</span>
+        </md-button>
+    </div>
+
+    <div class="grid_2" ng-show="showBtnBatalPulang">
+        <md-button class="md-raised md-primary medium-button"
+            ng-click="BtalPulang()">
+            <span>Batal Pulang</span>
+        </md-button>
+    </div>
+
+    <!-- <button class="btnTemplate1"
         ng-show="showBtnBatalVerifikasi"
-        ng-click="BatalVerifikasi()" 
+        ng-click="BatalVerifikasi()"
         style="float:right;
-               width:150px">
+        width:150px">
         Batal Verifikasi
-    </button>
-
-
-
-    <button class="btnTemplate1" 
-        ng-show="showBtnKembali" 
-        ng-click="Back()" 
+    </button> -->
+    <!-- <button class="btnTemplate1"
+        ng-show="showBtnKembali"
+        ng-click="Back()"
         style="float:right;
-               width:150px">
+        width:150px">
         Kembali
-    </button>
-
-    <button class="btnTemplate1" 
+    </button> -->
+    <!-- <button class="btnTemplate1"
         ng-show="showBtnSimpan"
-        ng-click="Save()" 
+        ng-click="Save()"
         style="float:right;
-               width:150px">
+        width:150px">
         Simpan
-    </button>
-
-    <button class="btnTemplate1" 
+    </button> -->
+    <!-- <button class="btnTemplate1"
         ng-show="showBtnPerbaharui"
-        ng-click="Perbaharui()" 
+        ng-click="Perbaharui()"
         style="float:right;
-               width:150px">
+        width:150px">
         Perbaharui
-    </button>
-
-    <button class="btnTemplate1" 
+    </button> -->
+    <!-- <button class="btnTemplate1"
         ng-show="showBtnUbahJenis"
-        ng-click="UbahJenisPasien()" 
+        ng-click="UbahJenisPasien()"
         style="float:right;
-               width:150px">
+        width:150px">
         Surat Perjanjian
-    </button>
-
-    <button class="btnTemplate1" 
+    </button> -->
+    <!-- <button class="btnTemplate1"
         ng-show="showBtnUnVerifikasi"
-        ng-click="unVerifikasi()" 
+        ng-click="unVerifikasi()"
         style="float:right;
-               width:150px">
+        width:150px">
         Unverifikasi
-    </button>
-
-    <button class="btnTemplate1" 
+    </button> -->
+    <!-- <button class="btnTemplate1"
         ng-show="showBtnVerifikasi"
-        ng-click="Verifikasi()" 
+        ng-click="Verifikasi()"
         style="float:right;
-               width:150px">
+        width:150px">
         Verifikasi
-    </button>
-
-    <button class="btnTemplate1" 
+    </button> -->
+    <!-- <button class="btnTemplate1"
         ng-show="showBtnKelengkapanDokumen"
-        ng-click="KelengkapanDokumen()" 
+        ng-click="KelengkapanDokumen()"
         style="float:right;
-               width:150px">
+        width:150px">
         Kelengkapan Dokumen
-    </button>
-
-    <button class="btnTemplate1" 
+    </button> -->
+    <!-- <button class="btnTemplate1"
         ng-show="showBtnCetak"
-        ng-click="Cetak()" 
+        ng-click="Cetak()"
         style="float:right;
-               width:150px">
+        width:150px">
         Cetak
-    </button>
-
-    <button class="btnTemplate1" 
+    </button> -->
+    <!-- <button class="btnTemplate1"
         ng-show="showBtnDetail"
-        ng-click="Detail()" 
+        ng-click="Detail()"
         style="float:right;
-               width:150px">
+        width:150px">
         Detail Tagihan
-    </button>
-
-    <button class="btnTemplate1" 
+    </button> -->
+    <!-- <button class="btnTemplate1"
         ng-show="showBtnCollecting"
-        ng-click="Collecting()" 
+        ng-click="Collecting()"
         style="float:right;
-               width:150px">
+        width:150px">
         Collecting
-    </button>
-
-    <button class="btnTemplate1" 
-    ng-show="showBtnBatalPulang"
-    ng-click="BtalPulang()" 
-    style="float:right;
-           width:150px">
-    Batal Pulang
-    </button>
-
+    </button> -->
+    <!-- <button class="btnTemplate1"
+        ng-show="showBtnBatalPulang"
+        ng-click="BtalPulang()"
+        style="float:right;
+        width:150px">
+        Batal Pulang
+    </button> -->
     <!-- <button class="btnTemplate1" 
         ng-show="showBtnDetailSuratPerjanjia"
         ng-click="DetailSuratPerjanjian()" 
@@ -107,7 +175,6 @@
                width:150px">
         Detail Surat Perjanjian
     </button> -->
-
     <!--<div ng-show="showBtnKembali" class="grid_1" style="float:right">
         <c-button class="success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position=" 'right'" is-validate click="Back">
             <span class="title">Kembali</span>

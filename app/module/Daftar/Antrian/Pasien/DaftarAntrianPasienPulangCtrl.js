@@ -6,7 +6,7 @@ define(['initialize'], function(initialize) {
             $scope.title = "ini page pencarian pasien";
             $scope.kodeRuangan = $state.params.kodeRuangan;
             $scope.tglhariIni = " ";
-            debugger;
+            
             var pegawai = JSON.parse(window.localStorage.getItem('pegawai'));
             if (pegawai.ruangan !== undefined)
                 $scope.validasiruangan = pegawai.ruangan.departemenId
@@ -202,9 +202,9 @@ define(['initialize'], function(initialize) {
                         data: $scope.listPasien,
                         group: $scope.group
                     });
-                    debugger;
+                    
                     if ($scope.kodeRuangan !== undefined) {
-                        debugger;
+                        
                         // $scope.listPasien.then(function(e) {
                         $scope.listPatients = $scope.listPasien;
                         $scope.patienGrids = new kendo.data.DataSource({
@@ -362,7 +362,7 @@ define(['initialize'], function(initialize) {
             }
 
             $scope.detailPasien = function() {
-                debugger;
+                
                 var cookie = document.cookie.split(';');
 
                 var statusCode = ModelItem.getStatusUser();

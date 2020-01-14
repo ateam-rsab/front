@@ -348,8 +348,24 @@ define(['initialize'], function (initialize) {
                     "field": "statusorder",
                     "title": "Keterangan",
                     "width": "80px",
+                },
+                {
+                    command: [
+                        { text: "PDF", click: exportToPdf },
+                    ], title: "&nbsp;", width: 50,
+                    attributes: {
+                        style: "text-align:center;valign=middle"
+                    }
+
                 }
             ];
+
+            function exportToPdf(e) {
+                e.preventDefault();
+                let dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                console.log(dataItem);
+                window.open('http://192.168.12.4:7777/service-reporting/lap-lab/' + dataItem.noregistrasi);
+            }
             $scope.detailHasilRad = function (dataItem) {
                 return {
                     dataSource: new kendo.data.DataSource({
@@ -496,6 +512,34 @@ define(['initialize'], function (initialize) {
 
 
 
+            }
+
+            $scope.rekamMedisElektronik = function () {
+                if ($scope.dataPasienSelected.nocm ==null && $scope.dataPasienSelected.norec_apd == null)
+                   {
+                        window.messageContainer.error("Pilih Dahulu Pasien!")
+                        return
+                    }
+                // debugger;
+                var arrStr ={ 0 : $scope.dataPasienSelected.nocm ,
+                    1 : $scope.dataPasienSelected.namapasien,
+                    2 : $scope.dataPasienSelected.jeniskelamin,
+                    3 : $scope.dataPasienSelected.noregistrasi, 
+                    4 : $scope.dataPasienSelected.umurzz,
+                    5 : $scope.dataPasienSelected.kelompokpasien,
+                    6 : $scope.dataPasienSelected.tglregistrasi,
+                    7 : $scope.dataPasienSelected.norec_apd,
+                    8 : $scope.dataPasienSelected.norec_pd,
+                    9 : $scope.dataPasienSelected.idkelas,
+                    10 : $scope.dataPasienSelected.namakelas,
+                    11 : $scope.dataPasienSelected.objectruanganfk,
+                    12 : $scope.dataPasienSelected.namaruangan + '`'
+                }
+               cacheHelper.set('cacheRMelektronik', arrStr);
+               $state.go('RekamMedis',{
+                norecAPD: $scope.dataPasienSelected.norec,
+                noRec: $scope.dataPasienSelected.norec
+               })
             }
             /*** END PAGE */
         }

@@ -6,8 +6,8 @@
 .tg .nilai{vertical-align:middle;text-align: center;font-weight: bold;}
 .tg .jawaban{vertical-align:middle;text-align: center;}
 </style>
-
-<div class="grid_12" ng-controller="SkriningGiziDewasaRevCtrl" style="margin-bottom:60px">
+<div class="grid_12" ng-controller="SkriningGiziDewasaRevCtrl"
+    style="margin-bottom:60px">
     <div>
         <!-- panel Skrining Gizi -->
         <!-- <c-panel item="item" header="'DemoSkriningGizi[Master]'" disabled style="margin-bottom:60px"> -->
@@ -15,161 +15,247 @@
             <h1 style="color: white;">DemoSkriningGizi[Master]</h1>
         </div>
         <div class="clear"></div> -->
-        <div class="grid_12 headerBox">
+        <md-toolbar md-scroll-shrink class="shadow">
+            <div class="md-toolbar-tools">Status Skrining Gizi</div>
+        </md-toolbar>
+        <!-- <div class="grid_12 headerBox">
             <h1 style="color: white;"><b>STATUS SKRINING GIZI</b></h1>
-        </div>
+        </div> -->
         <div class="clear"></div>
         <br/>
-        <div class="grid_12" style="margin-bottom:20px">
-            <div class="grid_12">
-                <div class="grid_2" ng-repeat="data in skriningGiziDewasa">
-                    <div ng-switch on="data.type">
-                        <div ng-switch-when="numeric">
-                            <div class="grid_12" style="margin-bottom:5px">
-                                <label c-label item="item">{{data.name}}</label>
-                            </div>
+            <div class="grid_12" style="margin-bottom:20px">
+                <div class="grid_12">
+                    <div class="grid_2" ng-repeat="data in skriningGiziDewasa">
+                        <div ng-switch on="data.type">
+                            <div ng-switch-when="numeric">
+                                <div class="grid_12" style="margin-bottom:5px">
+                                    <label c-label item="item">{{data.name}}</label>
+                                </div>
 
-                            <div class="grid_12 parentKeteranganFieldTambahan">
-                                <input kendo-numeric-text-box ng-model="data.nilai" style="width: 100%;" />
-                                <!--<input c-text-box type="input" filter="data.type" class="k-textbox" ng-model="data.nilai" />-->
-                                <label class="keteranganFieldTambahan numericPAP" style="margin: 5px 30px 0 0;">{{data.ket}}</label>
+                                <div class="grid_12
+                                    parentKeteranganFieldTambahan">
+                                    <input kendo-numeric-text-box
+                                        ng-model="data.nilai" style="width:
+                                        100%;" />
+                                    <!--<input c-text-box type="input" filter="data.type" class="k-textbox" ng-model="data.nilai" />-->
+                                    <label class="keteranganFieldTambahan
+                                        numericPAP" style="margin: 5px 30px 0
+                                        0;">{{data.ket}}</label>
+                                </div>
+                            </div>
+                            <div ng-switch-default>
+                                <div class="grid_12" style="margin-bottom:5px">
+                                    <label c-label item="item">{{data.name}}</label>
+                                </div>
+
+                                <div class="grid_12
+                                    parentKeteranganFieldTambahan">
+                                    <input c-text-box type="input"
+                                        class="k-textbox" ng-model="data.nilai"
+                                        />
+                                    <label class="keteranganFieldTambahan"
+                                        style="margin-top:5px">{{data.ket}}</label>
+                                </div>
                             </div>
                         </div>
-                        <div ng-switch-default>
-                            <div class="grid_12" style="margin-bottom:5px">
-                                <label c-label item="item">{{data.name}}</label>
-                            </div>
-
-                            <div class="grid_12 parentKeteranganFieldTambahan">
-                                <input c-text-box type="input" class="k-textbox" ng-model="data.nilai" />
-                                <label class="keteranganFieldTambahan" style="margin-top:5px">{{data.ket}}</label>
+                    </div>
+                </div>
+            </div>
+            <!-- Form PASIEN DEWASA -->
+            <md-toolbar md-scroll-shrink class="shadow">
+                <div class="md-toolbar-tools">Skrining Gizi Dewasa</div>
+            </md-toolbar>
+            <!-- <div class="grid_12 headerBox">
+                <h1 style="color: white;"><b>SCREENING GIZI DEWASA</b></h1>
+            </div> -->
+            <div class="clear"></div>
+            <br/>
+                <div class="grid_12" style="margin-bottom:20px">
+                    <div style="background-color: #10C4B2; height: 25px;
+                        padding-left: 5px; margin-top: 5px; text-align: left;
+                        border: 1px solid; border-color: #10C4B2;"
+                        class="grid_12">
+                        <span style="font-size: 18px; color: white; padding:
+                            5px;">1. {{skrining.turunBeratBadan.nama}}</span>
+                    </div>
+                    <div class="grid_12" ng-repeat="opsi in
+                        skrining.turunBeratBadan.detail | orderBy:'id'"
+                        style="margin: 5px 0 0 15px;">
+                        <div ng-if="opsi.detail === undefined">
+                            <input type="radio" ng-model="item.turunBeratBadan"
+                                ng-value="opsi.id"
+                                ng-click="cekTotalSkor(skrining.turunBeratBadan,
+                                opsi)">
+                            <label for="{{opsi.nama}}">{{opsi.nama}}</label>
+                        </div>
+                        <div ng-if="opsi.detail !== undefined">
+                            <input type="radio" value="subOpsi.id" disabled>
+                            <label for="{{subOpsi.nama}}">{{opsi.nama}}</label>
+                            <div class="grid_12" ng-repeat="subOpsi in
+                                opsi.detail | orderBy:'id'" style="margin: 5px 0
+                                0 20px;">
+                                <input type="radio"
+                                    ng-model="item.turunBeratBadan"
+                                    ng-value="subOpsi.id"
+                                    ng-click="cekTotalSkor(skrining.turunBeratBadan,
+                                    subOpsi)">
+                                <label for="{{subOpsi.nama}}">{{subOpsi.nama}}</label>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <!-- Form PASIEN DEWASA -->
-        <div class="grid_12 headerBox">
-			<h1 style="color: white;"><b>SCREENING GIZI DEWASA</b></h1>
-		</div>
-		<div class="clear"></div>
-        <br/>
-        <div class="grid_12" style="margin-bottom:20px">
-            <div style="background-color: #10C4B2; height: 25px; padding-left: 5px; margin-top: 5px; text-align: left; border: 1px solid; border-color: #10C4B2;" class="grid_12">
-                <span style="font-size: 18px; color: white; padding: 5px;">1. {{skrining.turunBeratBadan.nama}}</span>
-            </div>
-            <div class="grid_12" ng-repeat="opsi in skrining.turunBeratBadan.detail | orderBy:'id'" style="margin: 5px 0 0 15px;">
-                <div ng-if="opsi.detail === undefined">
-                    <input type="radio" ng-model="item.turunBeratBadan" ng-value="opsi.id" ng-click="cekTotalSkor(skrining.turunBeratBadan, opsi)" >
-                    <label for="{{opsi.nama}}">{{opsi.nama}}</label>
-                </div>
-                <div ng-if="opsi.detail !== undefined">
-                    <input type="radio" value="subOpsi.id" disabled >
-                    <label for="{{subOpsi.nama}}">{{opsi.nama}}</label>
-                    <div class="grid_12" ng-repeat="subOpsi in opsi.detail | orderBy:'id'" style="margin: 5px 0 0 20px;">
-                        <input type="radio" ng-model="item.turunBeratBadan" ng-value="subOpsi.id" ng-click="cekTotalSkor(skrining.turunBeratBadan, subOpsi)" >
-                        <label for="{{subOpsi.nama}}">{{subOpsi.nama}}</label>
-                    </div>
-                </div>
-            </div>
 
-            <div style="background-color: #10C4B2; height: 25px; padding-left: 5px; margin-top: 5px; text-align: left; border: 1px solid; border-color: #10C4B2;" class="grid_12">
-                <span style="font-size: 18px; color: white; padding: 5px;">2. {{skrining.tidakNafsuMakan.nama}}</span>
-            </div>
-            <div class="grid_12" ng-repeat="opsi in skrining.tidakNafsuMakan.detail | orderBy:'id'" style="margin: 5px 0 0 15px;">
-                <div ng-if="opsi.detail === undefined">
-                    <input type="radio" ng-model="item.tidakNafsuMakan" ng-value="opsi.id" ng-click="cekTotalSkor(skrining.tidakNafsuMakan, opsi)" >
-                    <label for="{{opsi.nama}}">{{opsi.nama}}</label>
-                </div>
-                <div ng-if="opsi.detail !== undefined">
-                    <input type="radio" value="subOpsi.id" disabled >
-                    <label for="{{subOpsi.nama}}">{{opsi.nama}}</label>
-                    <div class="grid_12" ng-repeat="subOpsi in opsi.detail | orderBy:'id'" style="margin-left:15px">
-                        <input type="radio" ng-model="item.tidakNafsuMakan" ng-value="subOpsi.id" ng-click="cekTotalSkor(skrining.tidakNafsuMakan, subOpsi)" >
-                        <label for="{{subOpsi.nama}}">{{subOpsi.nama}}</label>
+                    <div style="background-color: #10C4B2; height: 25px;
+                        padding-left: 5px; margin-top: 5px; text-align: left;
+                        border: 1px solid; border-color: #10C4B2;"
+                        class="grid_12">
+                        <span style="font-size: 18px; color: white; padding:
+                            5px;">2. {{skrining.tidakNafsuMakan.nama}}</span>
                     </div>
-                </div>
-            </div>
+                    <div class="grid_12" ng-repeat="opsi in
+                        skrining.tidakNafsuMakan.detail | orderBy:'id'"
+                        style="margin: 5px 0 0 15px;">
+                        <div ng-if="opsi.detail === undefined">
+                            <input type="radio" ng-model="item.tidakNafsuMakan"
+                                ng-value="opsi.id"
+                                ng-click="cekTotalSkor(skrining.tidakNafsuMakan,
+                                opsi)">
+                            <label for="{{opsi.nama}}">{{opsi.nama}}</label>
+                        </div>
+                        <div ng-if="opsi.detail !== undefined">
+                            <input type="radio" value="subOpsi.id" disabled>
+                            <label for="{{subOpsi.nama}}">{{opsi.nama}}</label>
+                            <div class="grid_12" ng-repeat="subOpsi in
+                                opsi.detail | orderBy:'id'"
+                                style="margin-left:15px">
+                                <input type="radio"
+                                    ng-model="item.tidakNafsuMakan"
+                                    ng-value="subOpsi.id"
+                                    ng-click="cekTotalSkor(skrining.tidakNafsuMakan,
+                                    subOpsi)">
+                                <label for="{{subOpsi.nama}}">{{subOpsi.nama}}</label>
+                            </div>
+                        </div>
+                    </div>
 
-            <div style="background-color: #10C4B2; height: 25px; padding-left: 5px; margin-top: 5px; text-align: left; border: 1px solid; border-color: #10C4B2;" class="grid_12">
-                <span style="font-size: 18px; color: white; padding: 5px;">3. {{skrining.perluKonsultasi.nama}}</span>
-            </div>
-            <div class="grid_12" ng-repeat="opsi in skrining.perluKonsultasi.detail | orderBy:'id'" style="margin: 5px 0 0 15px;">
-                <div ng-if="opsi.detail === undefined">
-                    <input type="radio" ng-model="item.perluKonsultasi" ng-value="opsi.id" ng-click="cekTotalSkor(skrining.perluKonsultasi, opsi)" >
-                    <label for="{{opsi.nama}}">{{opsi.nama}}</label>
-                </div>
-                <div ng-if="opsi.detail !== undefined">
-                    <input type="radio" value="subOpsi.id" disabled >
-                    <label for="{{subOpsi.nama}}">{{opsi.nama}}</label>
-                    <div class="grid_12" ng-repeat="subOpsi in opsi.detail | orderBy:'id'" style="margin-left:15px">
-                        <input type="radio" ng-model="item.perluKonsultasi" ng-value="subOpsi.id" ng-click="cekTotalSkor(skrining.perluKonsultasi, subOpsi)" >
-                        <label for="{{subOpsi.nama}}">{{subOpsi.nama}}</label>
+                    <div style="background-color: #10C4B2; height: 25px;
+                        padding-left: 5px; margin-top: 5px; text-align: left;
+                        border: 1px solid; border-color: #10C4B2;"
+                        class="grid_12">
+                        <span style="font-size: 18px; color: white; padding:
+                            5px;">3. {{skrining.perluKonsultasi.nama}}</span>
+                    </div>
+                    <div class="grid_12" ng-repeat="opsi in
+                        skrining.perluKonsultasi.detail | orderBy:'id'"
+                        style="margin: 5px 0 0 15px;">
+                        <div ng-if="opsi.detail === undefined">
+                            <input type="radio" ng-model="item.perluKonsultasi"
+                                ng-value="opsi.id"
+                                ng-click="cekTotalSkor(skrining.perluKonsultasi,
+                                opsi)">
+                            <label for="{{opsi.nama}}">{{opsi.nama}}</label>
+                        </div>
+                        <div ng-if="opsi.detail !== undefined">
+                            <input type="radio" value="subOpsi.id" disabled>
+                            <label for="{{subOpsi.nama}}">{{opsi.nama}}</label>
+                            <div class="grid_12" ng-repeat="subOpsi in
+                                opsi.detail | orderBy:'id'"
+                                style="margin-left:15px">
+                                <input type="radio"
+                                    ng-model="item.perluKonsultasi"
+                                    ng-value="subOpsi.id"
+                                    ng-click="cekTotalSkor(skrining.perluKonsultasi,
+                                    subOpsi)">
+                                <label for="{{subOpsi.nama}}">{{subOpsi.nama}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_12" style="margin-top: 10px">
+                        <table class="tg">
+                            <tr>
+                                <td class="tg-yw4l nilai">Total Skor</td>
+                                <td class="tg-yw4l nilai">{{dataForm.totalSkorSkrining}}</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
+
+                <!-- Form Pasien Obstetri -->
+                <md-toolbar md-scroll-shrink class="shadow">
+                    <div class="md-toolbar-tools">Malnutrition Screening Tools (MST)</div>
+                </md-toolbar>
+                <!-- <div class="grid_12 headerBox">
+                    <h1 style="color: white;"><b>MALNUTRITION SCREENING TOOLS
+                            (MST)</b></h1>
+                </div> -->
+                <div class="clear"></div>
+                <br/>
+                    <div class="grid_12">
+                        <table class="tg">
+                            <tr>
+                                <th class="tg-yw4l">No</th>
+                                <th class="tg-yw4l">Parameter</th>
+                                <th class="tg-yw4l jawaban" colspan="2">Jawaban</th>
+                            </tr>
+                            <tr>
+                                <td class="tg-yw4l">1</td>
+                                <td class="tg-yw4l">{{mst.asupanMakanan.nama}}</td>
+                                <td ng-repeat="opsi in opsiYaTidak |
+                                    orderBy:'id'" class="tg-yw4l">
+                                    <input type="radio"
+                                        ng-model="item.dataMstSatu"
+                                        ng-value="opsi.id"
+                                        ng-click="cekSkorMST(mst.asupanMakanan,
+                                        opsi)">
+                                    <label for="{{opsi.nama}}">{{opsi.nama}}({{opsi.descNilai}})</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tg-yw4l">2</td>
+                                <td class="tg-yw4l">{{mst.metabolisme.nama}}</td>
+                                <td ng-repeat="opsi in opsiYaTidak |
+                                    orderBy:'id'" class="tg-yw4l">
+                                    <input type="radio"
+                                        ng-model="item.dataMstDua"
+                                        ng-value="opsi.id"
+                                        ng-click="cekSkorMST(mst.metabolisme,
+                                        opsi)">
+                                    <label for="{{opsi.nama}}">{{opsi.nama}}({{opsi.descNilai}})</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tg-yw4l">3</td>
+                                <td class="tg-yw4l">{{mst.tambahBeratBadan.nama}}</td>
+                                <td ng-repeat="opsi in opsiYaTidak |
+                                    orderBy:'id'" class="tg-yw4l">
+                                    <input type="radio"
+                                        ng-model="item.dataMstTiga"
+                                        ng-value="opsi.id"
+                                        ng-click="cekSkorMST(mst.tambahBeratBadan,
+                                        opsi)">
+                                    <label for="{{opsi.nama}}">{{opsi.nama}}({{opsi.descNilai}})</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tg-yw4l">4</td>
+                                <td class="tg-yw4l">{{mst.nilaiHB.nama}}</td>
+                                <td ng-repeat="opsi in opsiYaTidak |
+                                    orderBy:'id'" class="tg-yw4l">
+                                    <input type="radio"
+                                        ng-model="item.dataMstEmpat"
+                                        ng-value="opsi.id"
+                                        ng-click="cekSkorMST(mst.nilaiHB,
+                                        opsi)">
+                                    <label for="{{opsi.nama}}">{{opsi.nama}}({{opsi.descNilai}})</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tg-yw4l nilai" colspan="2">Total Skor</td>
+                                <td class="tg-yw4l nilai" colspan="2">{{dataForm.totalSkorMST}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div ng-include='"
+                        ../app/module/Shared/TemplateButtonSimpan"
+                        '></div>
+                </div>
             </div>
-            <div class="grid_12" style="margin-top: 10px">
-                <table class="tg">
-                    <tr>
-                        <td class="tg-yw4l nilai">Total Skor</td>
-                        <td class="tg-yw4l nilai">{{dataForm.totalSkorSkrining}}</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-       
-       <!-- Form Pasien Obstetri -->
-        <div class="grid_12 headerBox">
-			<h1 style="color: white;"><b>MALNUTRITION SCREENING TOOLS (MST)</b></h1>
-		</div>
-		<div class="clear"></div>
-        <br/>
-        <div class="grid_12">
-            <table class="tg">
-            <tr>
-                <th class="tg-yw4l">No</th>
-                <th class="tg-yw4l">Parameter</th>
-                <th class="tg-yw4l jawaban" colspan="2">Jawaban</th>
-            </tr>
-            <tr>
-                <td class="tg-yw4l">1</td>
-                <td class="tg-yw4l">{{mst.asupanMakanan.nama}}</td>
-                <td ng-repeat="opsi in opsiYaTidak | orderBy:'id'" class="tg-yw4l">
-                    <input type="radio" ng-model="item.dataMstSatu" ng-value="opsi.id" ng-click="cekSkorMST(mst.asupanMakanan, opsi)" >
-                    <label for="{{opsi.nama}}">{{opsi.nama}}({{opsi.descNilai}})</label>
-                </td>
-            </tr>
-            <tr>
-                <td class="tg-yw4l">2</td>
-                <td class="tg-yw4l">{{mst.metabolisme.nama}}</td>
-                <td ng-repeat="opsi in opsiYaTidak | orderBy:'id'" class="tg-yw4l">
-                    <input type="radio" ng-model="item.dataMstDua" ng-value="opsi.id" ng-click="cekSkorMST(mst.metabolisme, opsi)" >
-                    <label for="{{opsi.nama}}">{{opsi.nama}}({{opsi.descNilai}})</label>
-                </td>
-            </tr>
-            <tr>
-                <td class="tg-yw4l">3</td>
-                <td class="tg-yw4l">{{mst.tambahBeratBadan.nama}}</td>
-                <td ng-repeat="opsi in opsiYaTidak | orderBy:'id'" class="tg-yw4l">
-                    <input type="radio" ng-model="item.dataMstTiga" ng-value="opsi.id" ng-click="cekSkorMST(mst.tambahBeratBadan, opsi)" >
-                    <label for="{{opsi.nama}}">{{opsi.nama}}({{opsi.descNilai}})</label>
-                </td>
-            </tr>
-            <tr>
-                <td class="tg-yw4l">4</td>
-                <td class="tg-yw4l">{{mst.nilaiHB.nama}}</td>
-                <td ng-repeat="opsi in opsiYaTidak | orderBy:'id'" class="tg-yw4l">
-                    <input type="radio" ng-model="item.dataMstEmpat" ng-value="opsi.id" ng-click="cekSkorMST(mst.nilaiHB, opsi)" >
-                    <label for="{{opsi.nama}}">{{opsi.nama}}({{opsi.descNilai}})</label>
-                </td>
-            </tr>
-            <tr>
-                <td class="tg-yw4l nilai" colspan="2">Total Skor</td>
-                <td class="tg-yw4l nilai" colspan="2">{{dataForm.totalSkorMST}}</td>
-            </tr>
-            </table>
-        </div>
-        <div ng-include=' "../app/module/Shared/TemplateButtonSimpan" '></div>
-    </div>
-</div>

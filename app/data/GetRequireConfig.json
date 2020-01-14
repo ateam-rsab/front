@@ -1393,6 +1393,10 @@
       "urlDep": "module/Apotek/Penjualan/ResepElektronikCtrl"
     },
     {
+      "nameDep": "DashboardResepElektronikCtrl",
+      "urlDep": "module/Apotek/Penjualan/DashboardResepElektronikCtrl"
+    },
+    {
       "nameDep": "EntryResepCtrl",
       "urlDep": "module/Apotek/Penjualan/EntryResepCtrl"
     },

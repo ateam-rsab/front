@@ -23,9 +23,12 @@
         <!-- <c-panel item="item" header="'Produk'" disabled> -->
         <div class="grid_12">
             
-        <div class="grid_12 headerBox">
+        <!-- <div class="grid_12 headerBox">
             <h1 style="color: white;"><b>Resep Obat Bebas</b></h1>
-        </div>
+        </div> -->
+        <md-toolbar md-scroll-shrink class="shadow">
+            <div class="md-toolbar-tools">Resep Obat Bebas</div>
+        </md-toolbar>
         <div class="grid_6">
             <div class="grid_3">
                 <div class="grid_12">
@@ -127,8 +130,11 @@
    
 <div class="grid_12"  ng-show='showInputObat'>
 
-    <div class="grid_12 headerBox">
+    <!-- <div class="headerBox">
         <p>Input Obat dan Alkes</p>
+    </div> -->
+    <div class="panel panel-default">
+        <div class="panel-heading" style="font-size: 18px;" c-translate>Input Obat dan Alkes</div>
     </div>
     <div class="grid_12" style="margin-top: -5px">
         <div class="grid_1">
@@ -188,7 +194,7 @@
             </div>
         </div>
 
-        <div class="grid_1">
+        <div class="grid_2">
             <div class="grid_12">
                 <label c-label item="item" c-label-text="Aturan Pakai"></label>
             </div>
@@ -205,6 +211,14 @@
                 <input kendo-combo-box k-ng-model="item.route" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listRoute" />
             </div>
         </div>
+        <div class="grid_3">
+            <div class="grid_12">
+                <label c-label item="item" c-label-text="Produk"></label>
+            </div>
+            <div class="grid_12">
+                <input kendo-combo-box k-ng-model="item.produk" k-data-text-field="'namaproduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listProduk" k-on-change='getSatuan()'/>
+            </div>
+        </div>
        <!--  <div class="grid_1">
             <div class="grid_12">
                 <label c-label item="item" c-label-text="Jenis Obat"></label>
@@ -214,14 +228,7 @@
             </div>
         </div> -->
     </div>
-    <div class="grid_3">
-        <div class="grid_12">
-            <label c-label item="item" c-label-text="Produk"></label>
-        </div>
-        <div class="grid_12">
-            <input kendo-combo-box k-ng-model="item.produk" k-data-text-field="'namaproduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listProduk" k-on-change='getSatuan()'/>
-        </div>
-    </div>
+    
 
     <div class="grid_1">
         <div class="grid_12">
@@ -279,22 +286,50 @@
             <input c-text-box type="input" style="text-align: right" filter="" class="k-textbox" ng-model="item.total" ng-disabled="true" ng-disabled="txtbiaya"  />
         </div>
     </div>
-    <div class="grid_2">
-        <div class="grid_12" style="margin-top: 10px">
-            <div class="grid_4">
+    <div class="grid_3" style="margin-top: 16px">
+        <!-- <div class="grid_12" style="margin-top: 18px"> -->
+            <!-- <div class="grid_4">
                 <button class="btnTemplate1" ng-click="tambah()">Tambah</button>
-            </div>
-            <div class="grid_4">
+            </div> -->
+
+            <!-- <div class="grid_4">
                 <button class="btnTemplate1" ng-click="hapus()">Hapus</button>
-            </div>
-            <div class="grid_4">
+            </div> -->
+
+            <!-- <div class="grid_4">
                 <button class="btnTemplate1" ng-click="batal()">Batal</button>
+            </div> -->
+            
+            <div class="grid_4">
+                <md-button class="md-raised
+                    md-primary medium-button"
+                    ng-click="tambah()">
+                    <span style="margin-right:5px;">Tambah</span>
+                    <i class="fa fa-plus"></i>
+                </md-button>
             </div>
-        </div>
+            
+            <div class="grid_4">
+                <md-button class="md-raised md-warn medium-button"
+                    ng-click="hapus()">
+                    <span style="margin-right: 5px;">Hapus</span>
+                    <i class="fa fa-trash"></i>
+                </md-button>
+            </div>
+
+            <div class="grid_4">
+                <md-button class="md-raised md-warn medium-button"
+                    ng-click="batal()">
+                    <span style="margin-right: 5px;">Batal</span>
+                    <i class="fa fa-close"></i>
+                </md-button>
+            </div>
+            
+        <!-- </div> -->
     </div>
 
     <div class="grid_12">
-         <div class="grid_12 borderBox">
+         <div class="borderBox">
             <div id="kGrid" 
             kendo-grid k-data-source="dataGrid" 
             k-selectable="'row'" 
@@ -332,18 +367,30 @@
         <div class="grid_6">
             <div class="grid_6">
             </div>
-            <div class="grid_2" style="margin-top: 22px">
-                <button class="c-button" ng-click="simpan()">Simpan</button>
+            <div class="grid_2" style="margin-top: 10px">
+                <md-button class="md-raised md-primary"
+                    ng-click="Simpan()">Simpan</md-button>
             </div>
+            <div class="grid_2" style="margin-top: 10px">
+                <md-button class="md-raised md-warn"
+                    ng-click="BatalInput()">Batal</md-button>
+            </div>
+            <div class="grid_2" style="margin-top: 10px">
+                <md-button class="md-raised"
+                    ng-click="kembali()">Kembali</md-button>
+            </div>
+            <!-- <div class="grid_2" style="margin-top: 22px">
+                <button class="c-button" ng-click="simpan()">Simpan</button>
+            </div> -->
            <!--  <div class="grid_2" style="margin-top: 22px">
                 <button class="c-button" ng-click="Cetak()">Cetak</button>
             </div> -->
-            <div class="grid_2" style="margin-top: 22px">
+            <!-- <div class="grid_2" style="margin-top: 22px">
                 <button class="c-button" ng-click="BatalInput()">Batal</button>
-            </div>
-            <div class="grid_2" style="margin-top: 22px">
+            </div> -->
+            <!-- <div class="grid_2" style="margin-top: 22px">
                 <button class="c-button" ng-click="kembali()">Kembali</button>
-            </div>
+            </div> -->
         </div>
     </div>
     <div class="grid_12" style="margin-top:60px">

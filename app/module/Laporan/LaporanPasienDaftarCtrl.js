@@ -53,7 +53,7 @@ define(['initialize'], function (initialize) {
 
             ]
 
-            //debugger;
+            
             $scope.date = new Date();
             var tanggals = DateHelper.getDateTimeFormatted3($scope.date);
 
@@ -70,7 +70,7 @@ define(['initialize'], function (initialize) {
                 // if($scope.item.format == undefined){
                 // 	alert('format file harus dipilih terlebih dahulu !!!')
                 // }
-                //debugger;
+                
                 if ($scope.item.tglawal == $scope.tglawal)
                     var tglawal = $scope.item.tglawal;
                 else
@@ -115,7 +115,7 @@ define(['initialize'], function (initialize) {
             };
 
             modelItemAkuntansi.getDataTableTransaksi("laporan/get-data-combo-laporan", true).then(function (dat) {
-                debugger;
+                
                 // $scope.listPegawai = dat.data.dokter;
                 $scope.listDepartemen = dat.departemen;
                 // $scope.listPegawaiKasir = dat.data.kasir;
@@ -138,7 +138,7 @@ define(['initialize'], function (initialize) {
                 $scope.isRouteLoading = true;
                 var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm');
                 var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm');;
-                //debugger;
+                
 
                 var tempDepartemenId = "";
                 if ($scope.item.departement != undefined) {

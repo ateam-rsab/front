@@ -7,6 +7,8 @@ define(['initialize'], function (initialize) {
 			$scope.txtSimpan = 'Simpan';
 			$scope.isDietKhusus = false;
 			$scope.isDewasa = true;
+			$scope.dataUmur = [];
+			// $scope.item.umurPasien = [];
 			$scope.showInput = false;
 			$scope.item = {};
 			// $scope.item.number = ["1", "2", "3", "4", "5"]
@@ -22,11 +24,11 @@ define(['initialize'], function (initialize) {
 			]
 
 			$scope.isAnak = function () {
-				if ($scope.item.selectedJenisPasien.name === "Dewasa") {
-					$scope.isDewasa = true;
-				} else {
-					$scope.isDewasa = false;
-				}
+				// if ($scope.item.selectedJenisPasien.name === "Dewasa") {
+				// 	$scope.isDewasa = true;
+				// } else {
+				// 	$scope.isDewasa = false;
+				// }
 			}
 
 			$scope.yesOrNo = [
@@ -80,18 +82,34 @@ define(['initialize'], function (initialize) {
 
 			$scope.listOfRisikoMalnutrisi = [
 				{
-					id: 1,
-					name: 'Risiko Ringan (Nilai String Kids 0)'
+					id: 122,
+					name: 'Risiko Ringan (Nilai Strong Kids 0)'
 				},
 				{
-					id: 2,
-					name: 'Risiko Sedang (Nilai String Kids 1 - 3)'
+					id: 222,
+					name: 'Risiko Sedang (Nilai Strong Kids 1 - 3)'
 				},
 				{
-					id: 3,
-					name: 'Risiko Tinggi (Nilai String Kids 4 - 5)'
+					id: 322,
+					name: 'Risiko Tinggi (Nilai Strong Kids 4 - 5)'
 				}
 			];
+
+			$scope.listOfRisikoMalnutrisiDewasa = [
+				{
+					id: 11,
+					name: 'Risiko Ringan (Nilai MST 0)'
+				},
+				{
+					id: 12,
+					name: 'Risiko Sedang (Nilai MST 1 - 3)'
+				},
+				{
+					id: 13,
+					name: 'Risiko Tinggi (Nilai MST 4 - 5)'
+				}
+			];
+
 
 			let dataTempMakanan = [];
 
@@ -121,7 +139,30 @@ define(['initialize'], function (initialize) {
 
 			let initPage = function () {
 				$scope.item = {};
+				let dataUmur = [];
 				$scope.cache = cacheHelper.get('cacheAsesmenGizi');
+				let umur = $scope.cache[4];
+				$scope.item.umurPasien = umur.split(' ')
+				$scope.item.umurPasien.forEach(function (el) {
+					let temp = '';
+					if(el !== '') {
+						temp = el.replace(/\D/g,'');
+						$scope.dataUmur.push(temp);
+					}					
+				})
+				
+				if(parseInt($scope.dataUmur[0]) > 17) {
+					$scope.isDewasa = true;
+				} else {
+					$scope.isDewasa = false;
+				}
+
+				// console.log(dataUmur);
+				$scope.item.umur = $scope.dataUmur[0];
+				$scope.item.bulan = $scope.dataUmur[1];
+				// $('#iptTahun').val(dataUmur[0]);
+				// $('#iptBulan').val(dataUmur[1]);
+				console.log($scope.item.umur);
 				$scope.item.noRegistrasi = $scope.cache[0];
 				$scope.optGridAsesmenGizi = {
 					toolbar: [{
@@ -170,6 +211,8 @@ define(['initialize'], function (initialize) {
 				$scope.showInput = true;
 				$scope.txtSimpan = 'Simpan';
 				$scope.item = {};
+				$scope.item.umur = $scope.dataUmur[0];
+				$scope.item.bulan = $scope.dataUmur[1];
 				$timeout(function () {
 					window.scrollBy({
 						top: 1000,
@@ -194,8 +237,8 @@ define(['initialize'], function (initialize) {
 					$scope.showGiziLanjutan = true;
 				} else {
 					$scope.showGiziLanjutan = false;
-					$scope.item.umur = ''
-					$scope.item.bulan = ''
+					// $scope.item.umur = ''
+					// $scope.item.bulan = ''
 					$scope.item.statusGizi = ''
 					$scope.item.beratBadan = ''
 					$scope.item.tbU = ''
@@ -205,6 +248,8 @@ define(['initialize'], function (initialize) {
 					$scope.item.klinisFisik = ''
 					$scope.item.riwayatDiet = ''
 					$scope.item.riwayatPersonal = ''
+					$scope.item.lila = ''
+					$scope.item.lilau = ''
 				}
 			}
 
@@ -276,8 +321,11 @@ define(['initialize'], function (initialize) {
 					"intervensi_gizi": $scope.item.intervensiGizi,
 					"monitoring": $scope.item.monitoring,
 					"monitoring_ket": $scope.item.ketMonitoring,
+					"lila":$scope.item.lila, 
+					"lila_u":$scope.item.lilau, 
+					"jenis_pasien": $scope.isDewasa ? 'Dewasa' : 'Anak'
 				}
-				debugger;
+				// debugger;
 				console.log(dataSave);
 				ManagePhp.postData(dataSave, `rekam-medis/post-asesmen-gizi-awal/save`).then(function (res) {
 					initPage();
@@ -313,6 +361,9 @@ define(['initialize'], function (initialize) {
 				$scope.item.tindakLanjut = dataItem.tindak_lanjut;
 				$scope.item.monitoring = dataItem.monitoring;
 				$scope.item.diagnosaMedis = dataItem.diagnosa;
+				$scope.item.lila = dataItem.lila;
+				$scope.item.lila = dataItem.lila;
+				$scope.item.lilau = dataItem.lila_u;
 				if ($scope.item.tindakLanjut === "Perlu Asuhan Gizi (Lanjutkan ke Asesmen Gizi)") {
 					$scope.showGiziLanjutan = true;
 				} else {

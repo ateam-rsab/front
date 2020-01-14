@@ -1,11 +1,103 @@
+
+<style>
+    md-card {
+        background-color: #4a4c4c;
+        border-radius: 5px;
+        width: 30%;
+    }
+    .card-title {
+        font-size: 25px;
+        font-weight: 600;
+        color: #10c4b2;
+    }
+    .label-input {
+        color: #fff6e4;
+        font-weight: 600;
+        font-size: 13px;
+    }
+    hr {
+        border: none;
+        display: block;
+        height: 1.5px;
+        margin: 1rem 0;
+        background-color: #767676;
+    }
+    
+    .button {
+        border: none;
+        color: white;
+        padding: 10px 30px;
+        text-align: center;
+        border-radius: 4px;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin:10px;
+        
+    }
+    .button-login { 
+        background-color: #109dd6;
+        transition: all .3s;
+    }
+    .button-login:hover {
+        background-color: #0e7aa5;
+    }
+
+    .button-cancel { 
+        background-color: rgb(255,87,34);
+        transition: all .3s;
+    }
+    .button-cancel:hover {
+        background-color: rgb(223, 72, 26)
+    }
+    mat-card-actions {
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .loading-container {
+        width: 30%;
+        background-color: #ffffff57;
+        display: flex;
+        position: absolute;
+        height: 367.813px;
+        border-radius: 4px;
+        justify-content: center;
+        justify-items: center;
+        align-items: center;
+    }
+    .lds-dual-ring {
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+    }
+    .lds-dual-ring:after {
+        content: " ";
+        display: block;
+        width: 64px;
+        height: 64px;
+        margin: 8px;
+        border-radius: 50%;
+        border: 6px solid #fff;
+        border-color: #10c4b2 transparent #10c4b2 transparent;
+        animation: lds-dual-ring 1.2s linear infinite;
+    }
+    @keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+</style>
 <div class="c-login" ng-show="showPageLogin">
-    <!-- image lama -- >
-    <!-- <img src="resources/images/welcomeScreen.jpg">-->
+    <!-- image lama
+    <img src="resources/images/welcomeScreen.jpg">-->
 
     <!-- image baru -->
-    <img src="resources/images/welcomeScreenNew.jpg">
-    
-    <div class="panel">
+    <!-- <img src="resources/images/welcomeScreenNew.jppg"> -->
+    <!-- <div class="panel">
         <core-busy busy="isLoading"></core-busy>
         <div style="position: absolute; width: 100%;">
             <h1>&nbsp;SMART<span class="c-color">RSAB</span></h1>
@@ -61,5 +153,30 @@
 	<br/>
         <h5 class="c-color" style="text-align: center; left: 0px; right: 0px; bottom: 0px; ; position: absolute"><span style="font-size:18pt;color:white;font-style: italic;">RSAB Harapan Kita</span>
             <br/>Terdepan Dalam Layanan Kesehatan Perempuan, Perinatal dan Anak </h5>
+    </div> -->
+    <div class="loading-container" ng-show="isLoading">
+        <div class="lds-dual-ring"></div>
     </div>
+    <md-card class="md-elevation-z4">
+        <md-card-title>
+            <span class="card-title">
+                SMARTRSAB <span style="color: white;">1.0</span>
+            </span>
+        </md-card-title>
+        <md-card-content>
+            <label class="label-input">Nama Pengguna/Username</label>
+            <input id="userName" focus-me="userName" ng-model="userName" ng-disabled="isLoading" type="text" class="k-textbox" style="width: 100%" />
+            <hr>
+            <label class="label-input">Kata Kunci/Password</label>
+            <input id="password" focus-me="password" ng-model="password" ng-disabled="isLoading" type="password" ng-keyup="$event.keyCode == 13 ? validate() : null" ng-keydown='keyDown($event)' class="k-textbox" style="display: block; width: 100%;" />
+            
+        </md-card-content>
+        <md-card-actions style="display: flex;justify-content: center;">
+            <button class="button button-login" ng-click="validate()">Masuk</button>
+            <button class="button button-cancel" ng-click="reset()">Batal</button>
+        </md-card-actions>
+        <h5 class="c-color"><span style="font-size:18pt;color:white;font-style: italic;">RSAB Harapan Kita</span>
+            <br/>Terdepan Dalam Layanan Kesehatan Perempuan, Perinatal dan Anak </h5>
+    </md-card>
+
 </div>

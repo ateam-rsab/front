@@ -110,9 +110,9 @@ define(['initialize'], function(initialize, pasienServices) {
                 buttonCount: 5
             }
             $scope.$on("kendoWidgetCreated", function(event, widget) {
-                // debugger;
+                
                 if (widget === $scope.grid) {
-                    // debugger;
+                    
                     $scope.grid.element.on("change", "input.chkbx", function(e) {
                         var grid = $scope.grid,
                             dataItem = grid.dataItem($(e.target).closest("tr"));
@@ -132,7 +132,7 @@ define(['initialize'], function(initialize, pasienServices) {
                     });
                 } else if (widget === $scope.gridDokumen) {
                     $scope.gridDokumen.element.on("change", "input.k-input", function(e) {
-                        // debugger;
+                        
                         var grid = $scope.grid,
                             dataItem = grid.dataItem($(e.target).closest("tr"));
                         dataItem.set("isCheck", this.checked);
@@ -144,7 +144,7 @@ define(['initialize'], function(initialize, pasienServices) {
                 if ($scope.ruangan.id !== undefined) $scope.ruangan = $scope.ruangan.id;
                 if($scope.pegawai.ruangan.id === 147 || $scope.pegawai.ruangan.id === 130) {
                     findPasien.findDokumenRekammediss(dateHelper.formatDate($scope.from, 'YYYY-DD-MM'), dateHelper.formatDate($scope.until, 'YYYY-DD-MM'), $scope.ruangan, $scope.namaPasien).then(function(e) {
-                        debugger;
+                        
                         $scope.isRouteLoading = false;
                         var data = [];
                         for (var key in e.data.result) {
@@ -164,7 +164,7 @@ define(['initialize'], function(initialize, pasienServices) {
                     });
                 } else {
                     findPasien.getDokumenKirim(dateHelper.formatDate($scope.from, 'YYYY-DD-MM'), dateHelper.formatDate($scope.until, 'YYYY-DD-MM'), $scope.ruangan, $scope.namaPasien).then(function(e) {
-                        debugger;
+                        
                         $scope.isRouteLoading = false;
                         var data = [];
                         for (var key in e.data.result) {
@@ -197,7 +197,7 @@ define(['initialize'], function(initialize, pasienServices) {
                     
                 if(isValid.status){
                     // $scope.isTerimaDokumen = false;
-                    // debugger;
+                    
                     var array = [];
                     $scope.patienGrids._data.forEach(function(element){
                         if (element !== undefined && element.isCheck === true) {
@@ -216,7 +216,7 @@ define(['initialize'], function(initialize, pasienServices) {
                                 }
                             }
                             array.push(arr);
-                            debugger;
+                            
                         }
                     })
                     var dataPush = {

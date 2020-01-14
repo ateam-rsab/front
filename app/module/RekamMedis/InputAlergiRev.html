@@ -1,8 +1,11 @@
 <div class="grid_12" ng-controller="InputAlergiRevCtrl">
 
-    <div item="item" header="'DataAlergi'" disabled >
+    <div item="item" header="'DataAlergi'" disabled>
         <div class="panel panel-default">
-            <div class="panel-heading" c-translate>Masukan Alergi</div>
+            <md-toolbar md-scroll-shrink class="shadow">
+                <div class="md-toolbar-tools">Masukan Alergi</div>
+            </md-toolbar>
+            <!-- <div class="panel-heading" c-translate>Masukan Alergi</div> -->
             <div class="panel-body">
 
                 <div class="grid_12" style="padding-top:20px">
@@ -12,18 +15,23 @@
                                 <!-- <label c-label item="item" c-label-text="Alergi"></label> -->
                                 <label c-label>Alergi</label>
                             </div>
-                            <div class="grid_1" style="padding-top:10px" align="right">
+                            <div class="grid_1" style="padding-top:10px"
+                                align="right">
                                 <!-- <label c-label item="item" c-label-text="Alergi"></label> -->
                                 <label c-label>:</label>
                             </div>
-                            <div ng-repeat="stat in listDataAlergi | orderBy:'id'">
-                                    <div class="grid_2">
-                                        <input type="radio" name="{{stat.name}}" id="{{stat.name}}" class="k-radio" ng-model="data.alergi" 
-                                        value="{{stat.id}}" ">
-                                        <label class="k-radio-label" for="{{stat.name}}">{{stat.name}}</label>
-                                    </div>
+                            <div ng-repeat="stat in listDataAlergi |
+                                orderBy:'id'">
+                                <div class="grid_2">
+                                    <input type="radio" name="{{stat.name}}"
+                                        id="{{stat.name}}" class="k-radio"
+                                        ng-model="data.alergi"
+                                        value="{{stat.id}}"">
+                                    <label class="k-radio-label"
+                                        for="{{stat.name}}">{{stat.name}}</label>
                                 </div>
-                               
+                            </div>
+
                             <!-- <div class="grid_3" ng-repeat="stat in listDataAlergi | orderBy:'id'">
                                 <label for="{{stat.name}}" class="k-radio-label">
                                     <input type="radio"  ng-model="data.alergi" ng-value="stat.value  " ng-change="klikOption(item.alergi, stat)">
@@ -31,14 +39,17 @@
                                 </label>
                             </div> -->
                         </div>
-                        
+
                     </div>
-                    <div class="grid_4 " style="margin-left: -230px">
-                        <textarea c-text-area type="input" filter="'string'" class="k-textbox" ng-model="data.keterangan" placeholder="Keterangan"/>
-                   </div>
+                    <div class="grid_4"style="margin-left: -230px">
+                        <textarea c-text-area type="input" filter="'string'"
+                            class="k-textbox" ng-model="data.keterangan"
+                            placeholder="Keterangan" />
+                        </div>
+                    </div>
+                    <div ng-include='"
+                        ../app/module/Shared/TemplateButtonSimpanNotFixed" '></div>
                 </div>
-                <div ng-include='"../app/module/Shared/TemplateButtonSimpanNotFixed"'></div>
             </div>
         </div>
     </div>
-</div>

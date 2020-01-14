@@ -1,6 +1,55 @@
+.md-button.md-info.md-raised {
+  background-color: #3675db!important;  
+  color: white;
+}
+
+.md-toolbar-tools {
+  display: flex;
+  justify-content: center;
+  font-weight: bolder!important;
+}
+
+.button-badge {
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: #777;
+  border-radius: 10px;
+}
+
+.md-subheader.md-primary { 
+  color: rgb(238, 238, 238);
+  background-color: #10c4b2;
+  font-weight: bolder;
+}
+
+.shadow {
+  margin-bottom: 5px;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  /* font-size: 18pt; */
+  /* -webkit-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+  -moz-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+  box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3); */
+}
+
+.smart-button-warn {
+  background-color: #FF7600;
+}
+
 .k-grid-Hapus {
   background-color: #fa3939;
   border-color: #fa3939;
+}
+.k-grid-Konfirmasi {
+  background-color: #2dbecd;
+  border-color: #2dbecd;
 }
 .k-grid-Hapus:hover {
   background-color: #fd2d2d;
@@ -546,11 +595,32 @@ hr {
   color: red !important;
   text-align: left; }
 
-.md-primary {
+.md-button {
+  margin: 0 !important;
+}
+
+.md-primary, .md-warn, .md-raised {
   width: 100%; }
 
 .md-button.md-primary.md-raised {
-  background-color: #10c4b2 !important; }
+  background-color: #2ecc71!important;
+}
+
+.md-button {
+  font-weight: bold !important;
+}
+
+.md-button.md-danger.md-raised {
+  color: white;
+  background-color: #da2d2d!important;;
+}
+
+.md-button.medium-button {
+  min-height: 0px;
+  min-width: 0px;
+  line-height: 26px;
+  font-size: 11px;
+}
 
 .md-list-item-text h3,
 .md-list-item-text h4 {
@@ -1141,8 +1211,15 @@ textarea {
   position: relative;
   z-index: 1;
   color: white;
+  /* color: #2a2d33; */
   background-color: #10c4b2;
-  font-size: 18pt; }
+  /* background-color: #c4ffe2; */
+  /* box-shadow: 0 8px 6px -6px #00000040; */
+  /* box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); */
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);;
+  font-size: 18pt;
+  margin-bottom: 10px;
+}
 
 .panel-default > .panel-heading + .panel-collapse > .panel-body {
   border-top-color: #10c4b2; }
@@ -1369,13 +1446,28 @@ h6 {
   margin-left: 86px; }
 
 /*login ========================== */
-.c-login img {
-  visibility: visible;
+.c-login {
+  /* visibility: visible;
   display: block;
   background-color: #0072c6;
   height: 100%;
   position: fixed;
-  width: 70%; }
+  width: 70%;  */
+  visibility: visible;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  margin: 0 auto;
+  height: 100vh;
+  /* background-image: linear-gradient(rgba(255, 0, 0, 0.45), rgba(255, 0, 0, 0.45)), url(../../../assets/bg-login.jpg); */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-image: url(../resources/images/welcomeScreenNew.jpg); */
+  /* background-image:linear-gradient(to right, rgba(161, 255, 206, 0.2), rgba(250, 255, 209, 0.2)), url(../stylesheets/bg4.jpg); */
+  background-image: url(../stylesheets/bg.jpg);
+}
 
 .c-login .panel {
   visibility: visible;
@@ -1479,7 +1571,9 @@ c-side-nav .side_right {
   clear: both; }
 
 #header {
-  background-color: #2a2d33; }
+  background-color: #2a2d33; 
+  box-shadow: 0px 2px 1px -1px rgba(145, 133, 133, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
 
 #header,
 .header-panel {
@@ -2173,7 +2267,9 @@ input.k-textbox:hover,
 textarea.k-textbox,
 textarea.k-textbox:hover {
   width: 100%; }
-
+  input.k-textbox {
+    border-radius: 4px;
+  }
 .k-grid-content {
   max-height: 300px; }
 
@@ -2212,23 +2308,32 @@ textarea.k-textbox:hover {
 .k-textbox {
   padding-bottom: 1px;
   margin-bottom: 1px;
-  font-size: 10pt; }
+  font-size: 10pt; 
+}
 
 .k-datepicker,
 .k-combobox {
-  padding-bottom: 1px; }
+  padding-bottom: 1px; 
+}
 
 .k-button:hover {
-  background: #363940 !important; }
+  background: #363940 !important;
+}
+
+.k-button {
+  border-radius: 4px;
+}
 
 .k-item {
-  background-color: #4a4c4c !important; }
+  background-color: #4a4c4c !important; 
+}
 
 .k-button.k-state-hover,
 .k-button:hover {
   color: white;
   border-color: #10c4b2 !important;
-  background-color: #10c4b2 !important; }
+  background-color: #10c4b2 !important;
+}
 
 .item-listbox {
   cursor: pointer;
@@ -4305,3 +4410,10 @@ kendo-pdf-document .customer-photo {
   right: 24%;
   width: 150px;
   height: 28px; }
+
+footer {
+  margin: 44px 0px 0 0;
+  background-color: #2a2d33;
+  padding: 10px 5px;
+  color: white;
+}

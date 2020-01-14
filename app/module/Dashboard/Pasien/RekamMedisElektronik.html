@@ -28,7 +28,6 @@
         display: table-row !important;
     }
 </style>
-
 <div>
     <div class="grid_12">
         <!-- <div ng-include='"../app   /module/pasien/RegistrasiPelayananNew/HeaderRekamMedis"'></div> -->
@@ -68,7 +67,6 @@
                 </div>
 
             </div> -->
-
         <div class="panel panel-default">
             <!--Add Pengkajian Awal Created by : IK; date:01.05.2019-->
             <!-- <div kendo-window="popUp" ng-show="isShowSoap" k-title="'Form Tambah Pengkajian Awal'" k-width="750" k-height="500" k-visible="true"
@@ -130,67 +128,106 @@
                         </div>
                     </div>
             </div> -->
-
-            <div kendo-window="popUp" k-title="'Tambah Pengkajian Awal'" k-width="750" k-height="650" k-visible="false"
-                k-on-open="win2visible = true" k-on-close="win2visible = false">
-                <div class="panel panel-default container_12" style="padding: 0px 10px;">
-                    <fieldset>    <!-- <hr> -->
+            <div kendo-window="popUp" k-title="'Tambah Pengkajian Awal'"
+                k-width="750" k-visible="false"
+                k-on-open="win2visible= true" k-on-close="win2visible= false">
+                <div class="panel panel-default container_12" style="padding:
+                    0px 10px;">
+                    <fieldset> <!-- <hr> -->
                         <div class="grid_12">
                             <div class="grid_12">
-                                <label c-label item="item" c-label-text="Anamnesis" real style="margin-top: 5px; margin-bottom:5px;"></label>
+                                <label c-label item="item"
+                                    c-label-text="Anamnesis" real
+                                    style="margin-top: 5px; margin-bottom:5px;"></label>
                             </div>
                             <div class="grid_12">
-                                <textarea style="width: 99%; height: 80px;" ng-model="item.anamnesis"></textarea>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                   
-                        <div class="grid_12">
-                            <div class="grid_12">
-                                <label c-label item="item" c-label-text="Pemeriksaan Fisik Umum" real style="margin-top: 5px; margin-bottom:5px;"></label>
-                            </div>
-                            <div class="grid_12">
-                                <textarea style="width: 99%; height: 80px;" ng-model="item.pemeriksaanUmum"></textarea>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                        
-                        <div class="grid_12">
-                            <div class="grid_12">
-                                <label c-label item="item" c-label-text="Analisis" real style="margin-top: 5px; margin-bottom:5px;"></label>
-                            </div>
-                            <div class="grid_12">
-                                <textarea style="width: 99%; height: 80px;" ng-model="item.analisis"></textarea>
+                                <textarea style="width: 99%; height: 80px;"
+                                    ng-model="item.anamnesis"></textarea>
                             </div>
                             <div class="clear"></div>
                         </div>
 
                         <div class="grid_12">
                             <div class="grid_12">
-                                <label c-label item="item" c-label-text="Rencana" real style="margin-top: 5px; margin-bottom:5px;"></label>
+                                <label c-label item="item"
+                                    c-label-text="Pemeriksaan Fisik Umum" real
+                                    style="margin-top: 5px; margin-bottom:5px;"></label>
                             </div>
                             <div class="grid_12">
-                                <textarea style="width: 99%; height: 80px;" ng-model="item.rencana"></textarea>
+                                <textarea style="width: 99%; height: 80px;"
+                                    ng-model="item.pemeriksaanUmum"></textarea>
                             </div>
                             <div class="clear"></div>
                         </div>
-                       
+
                         <div class="grid_12">
                             <div class="grid_12">
-                                <label c-label item="item" c-label-text="Edukasi" real style="margin-top: 5px; margin-bottom:5px;"></label>
+                                <label c-label item="item"
+                                    c-label-text="Analisis" real
+                                    style="margin-top: 5px; margin-bottom:5px;"></label>
                             </div>
                             <div class="grid_12">
-                                <textarea style="width: 99%; height: 80px;" ng-model="item.edukasi"></textarea>
+                                <textarea style="width: 99%; height: 80px;"
+                                    ng-model="item.analisis"></textarea>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="grid_12">
+                            <div class="grid_12">
+                                <label c-label item="item"
+                                    c-label-text="Rencana" real
+                                    style="margin-top: 5px; margin-bottom:5px;"></label>
+                            </div>
+                            <div class="grid_12">
+                                <textarea style="width: 99%; height: 80px;"
+                                    ng-model="item.rencana"></textarea>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="grid_12">
+                            <div class="grid_12">
+                                <label c-label item="item"
+                                    c-label-text="Edukasi" real
+                                    style="margin-top: 5px; margin-bottom:5px;"></label>
+                            </div>
+                            <div class="grid_12">
+                                <textarea style="width: 99%; height: 80px;"
+                                    ng-model="item.edukasi"></textarea>
                             </div>
                             <div class="clear"></div>
                         </div>
                     </fieldset>
 
-                        <div class="k-edit-buttons  k-state-default pull-right" style="margin-top:10px">
-                            <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="save()"><span class="k-icon k-update"></span>Simpan</button>
-                            <button class="k-button  k-button-icontext" ng-click="close()"><span class="k-icon k-cancel"></span>Batal</button>
+                    <div class="k-edit-buttons k-state-default"
+                        style="margin-top:10px">
+                        <div class="grid_8"></div>
+                        <div class="grid_2">
+                            <md-button class="md-raised md-primary
+                                medium-button"
+                                ng-click="save()">
+                                <span style="margin-right: 5px;">Simpan</span>
+                                <i class="fa fa-save"></i>
+                            </md-button>
                         </div>
+                        <div class="grid_2">
+                            <md-button class="md-raised md-warn medium-button"
+                                ng-click="close()">
+                                <span style="margin-right: 5px;">Batal</span>
+                                <i class="fa fa-remove"></i>
+                            </md-button>
+                        </div>
+
+
+
+                        <!-- <button class="k-button k-button-icontext k-primary
+                            k-grid-update" ng-click="save()"><span class="k-icon
+                                k-update"></span>Simpan</button>
+                        <button class="k-button k-button-icontext"
+                            ng-click="close()"><span class="k-icon k-cancel"></span>Batal</button> -->
                     </div>
+                </div>
             </div>
 
             <!-- <div kendo-window="popUp" k-title="'Detail Pengkajian Awal'" k-width="750" k-height="520" k-visible="false"
@@ -256,24 +293,35 @@
             -->
             <!--End PopUp Add Pengkajian Awal-->
             <!-- anamnesis -->
-            <div class="panel-heading" style="font-size: 18px;"><span c-translate>Pengkajian Awal</span>
-                <span class="icon fa fa-chevron-circle-down" ng-show="!isShowAnamnesis" style="right:10px" ng-click="showAnamnesis()"></span>
-                <span class="icon fa fa-chevron-circle-up" ng-show="isShowAnamnesis" style="right:10px" ng-click="showAnamnesis()"></span>
+            <div class="panel-heading" style="font-size: 18px;"><span
+                    c-translate>Pengkajian Awal</span>
+                <span class="icon fa fa-chevron-circle-down"
+                    ng-show="!isShowAnamnesis" style="right:10px"
+                    ng-click="showAnamnesis()"></span>
+                <span class="icon fa fa-chevron-circle-up"
+                    ng-show="isShowAnamnesis" style="right:10px"
+                    ng-click="showAnamnesis()"></span>
             </div>
             <div class="panel-body" ng-show="isShowAnamnesis">
-                <div class="grid_12" ng-show="!isRiwayatAnam && !isRiwayatPengobatan">
+                <div class="grid_12" ng-show="!isRiwayatAnam &&
+                    !isRiwayatPengobatan">
                     <md-content>
                         <md-tabs md-dynamic-height md-border-bottom>
                             <md-tab label="Riwayat Penyakit Sekarang">
                                 <md-content class="md-padding">
-                                    <div class="grid_12" style="padding-top:10px">
-                                        <div kendo-grid k-data-source="sourceAnamnesis" k-ng-model="dataAnamnesis"
-                                         k-selectable="'row'" options="gridAnamnesis"></div>
+                                    <div class="grid_12"
+                                        style="padding-top:10px">
+                                        <div kendo-grid
+                                            k-data-source="sourceAnamnesis"
+                                            k-ng-model="dataAnamnesis"
+                                            k-selectable="'row'"
+                                            options="gridAnamnesis"></div>
                                     </div>
                                     <div class="grid_12">
                                         <div class="grid_6"></div>
                                         <div class="grid_12">
-                                            <div class="grid_3" style="float:right;">
+                                            <div class="grid_3"
+                                                style="float:right;">
                                                 <!-- <button class="c-button success" ng-click="tambahAnamnesis()">
                                                     <span style="font-size:10!important">Tambah</span>
                                                 </button> -->
@@ -299,7 +347,81 @@
                                         </div>
 
                                     </div>
-                                    
+
+                                    <div class="grid_12" ng-show="showTriase">
+                                        <md-card>
+                                            <md-card-title style="font-size:
+                                                20px;font-weight: bolder;">
+                                                Hasil Triase
+                                            </md-card-title>
+                                            <md-card-content>
+                                                <div class="grid_12">
+                                                    <span style="display: block;
+                                                        text-align:
+                                                        center;font-size:
+                                                        15px;font-weight:
+                                                        bolder">Jalan Nafas</span>
+                                                    <div class="grid_2"
+                                                        ng-repeat="data in
+                                                        triase.jalanNafas"
+                                                        style="text-align:
+                                                        center">
+                                                        <label>{{data.namatriage}}</label>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="grid_12">
+                                                    <span style="display: block;
+                                                        text-align:
+                                                        center;font-size:
+                                                        15px;font-weight:
+                                                        bolder">Kesadaran</span>
+                                                    <div class="grid_2"
+                                                        ng-repeat="data in
+                                                        triase.kesadaran"
+                                                        style="text-align:
+                                                        center">
+                                                        <label>{{data.namatriage}}</label>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="grid_12">
+                                                    <span style="display: block;
+                                                        text-align:
+                                                        center;font-size:
+                                                        15px;font-weight:
+                                                        bolder">Pernafasan</span>
+                                                    <div class="grid_2"
+                                                        ng-repeat="data in
+                                                        triase.pernafasan"
+                                                        style="text-align:
+                                                        center">
+                                                        <label>{{data.namatriage}}</label>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="grid_12">
+                                                    <span style="display: block;
+                                                        text-align:
+                                                        center;font-size:
+                                                        15px;font-weight:
+                                                        bolder">Sirkulasi</span>
+                                                    <div class="grid_2"
+                                                        ng-repeat="data in
+                                                        triase.sirkulasi"
+                                                        style="text-align:
+                                                        center">
+                                                        <label>{{data.namatriage}}</label>
+                                                    </div>
+                                                </div>
+                                            </md-card-content>
+                                        </md-card>
+                                        <md-card-actions>
+                                            <md-button class="md-raised md-warn"
+                                                ng-click="tutupTriase()">Tutup</md-button>
+                                        </md-card-actions>
+                                    </div>
+
                                 </md-content>
                             </md-tab>
                             <md-tab label="Riwayat Penyakit Terdahulu">
@@ -307,44 +429,88 @@
                                     <div class="grid_12">
 
                                         <div class="grid_6">
-                                            <label c-label item="item" c-label-text="riwayatPenyakit" real></label>
-                                            <textarea style="width: 99%; height: 80px;" ng-model="riwayat.riwayatPenyakit"></textarea>
+                                            <label c-label item="item"
+                                                c-label-text="riwayatPenyakit"
+                                                real></label>
+                                            <textarea style="width: 99%; height:
+                                                80px;"
+                                                ng-model="riwayat.riwayatPenyakit"></textarea>
                                         </div>
                                         <div class="grid_6">
-                                            <label c-label item="item " c-label-text="riwayatPengobatanYangDiterima "
+                                            <label c-label item="item"
+                                                c-label-text="riwayatPengobatanYangDiterima"
                                                 real></label>
-                                            <textarea style="width: 99%; height: 80px;" ng-model="riwayat.riwayatPengobatan"></textarea>
+                                            <textarea style="width: 99%; height:
+                                                80px;"
+                                                ng-model="riwayat.riwayatPengobatan"></textarea>
                                         </div>
                                     </div>
-                                    <div class="clear "></div>
+                                    <div class="clear"></div>
                                     <div class="grid_12">
                                         <div class="grid_6"></div>
                                         <div class="grid_6">
-                                            <div class="grid_3">
-                                                <button class="c-button success" ng-click="tambahRiwayatPenyakit()">
+                                            <div class="grid_4"></div>
+                                            <div class="grid_2">
+                                                <md-button class="md-raised
+                                                    md-primary medium-button"
+                                                    ng-click="tambahRiwayatPenyakit()">
+                                                    <span style="margin-right:
+                                                        5px;">Tambah</span>
+                                                    <i class="fa fa-plus"></i>
+                                                </md-button>
+                                                <!-- <button class="c-button success" ng-click="tambahRiwayatPenyakit()">
                                                     <span style="font-size:10!important">Tambah</span>
-                                                </button>
+                                                </button> -->
                                             </div>
-                                            <div class="grid_3">
-                                                <button class="c-button cancel" ng-click="hapusRiwayatPenyakit()">
-                                                    <span style="font-size:10!important">Hapus</span>
-                                                </button>
+                                            <div class="grid_2">
+                                                <md-button
+                                                    class="md-raised md-warn
+                                                    medium-button"
+                                                    ng-click="hapusRiwayatPenyakit()">
+                                                    <span style="margin-right:
+                                                        5px;">Hapus</span>
+                                                    <i class="fa fa-trash"></i>
+                                                </md-button>
+                                                <!-- <button class="c-button cancel"
+                                                    ng-click="hapusRiwayatPenyakit()">
+                                                    <span
+                                                        style="font-size:10!important">Hapus</span>
+                                                </button> -->
                                             </div>
-                                            <div class="grid_3">
-                                                <button class="c-button" ng-click="batal()">
-                                                    <span style="font-size:10!important">Batal</span>
-                                                </button>
+                                            <div class="grid_2">
+                                                <md-button class="md-raised md-warn
+                                                    medium-button"
+                                                    ng-click="batal()">
+                                                    <span style="margin-right: 5px;">Batal</span>
+                                                    <i class="fa fa-close"></i>
+                                                </md-button>
+                                                <!-- <button class="c-button"
+                                                    ng-click="batal()">
+                                                    <span
+                                                        style="font-size:10!important">Batal</span>
+                                                </button> -->
                                             </div>
-                                            <div class="grid_3">
-                                                <button class="c-button" ng-click="riwayatPengobatan(true)">
-                                                    <span style="font-size:10!important">Riwayat</span>
-                                                </button>
+                                            <div class="grid_2">
+                                                <md-button class="md-raised
+                                                    medium-button"
+                                                    ng-click="riwayatPengobatan(true)">
+                                                    <span style="margin-right: 5px;">Riwayat</span>
+                                                    <i class="fa fa-file-text" style="color:black"></i>
+                                                </md-button>
+                                                <!-- <button class="c-button"
+                                                    ng-click="riwayatPengobatan(true)">
+                                                    <span
+                                                        style="font-size:10!important">Riwayat</span>
+                                                </button> -->
                                             </div>
                                         </div>
                                     </div>
                                     <div class="grid_12">
-                                        <div kendo-grid k-data-source="sourceRiwayatAnamnesis" k-ng-model="dataRiwayatAnamnesis"
-                                            ng-click="klikRiwayatAnamnesis(dataRiwayatAnamnesis)" k-selectable="'row'"
+                                        <div kendo-grid
+                                            k-data-source="sourceRiwayatAnamnesis"
+                                            k-ng-model="dataRiwayatAnamnesis"
+                                            ng-click="klikRiwayatAnamnesis(dataRiwayatAnamnesis)"
+                                            k-selectable="'row'"
                                             options="gridRiwayatAnamnesis"></div>
                                     </div>
                                 </md-content>
@@ -356,17 +522,24 @@
                     <div class="grid_12">
                         <div class="grid_3">
                             <label c-label c-label-text="Anamnesis"></label>
-                            <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="anamnesis.cariAnamnesis" />
+                            <input c-text-box type="input" filter="'varchar'"
+                                class="k-textbox"
+                                ng-model="anamnesis.cariAnamnesis" />
                         </div>
                         <div class="grid_3">
                             <label c-label c-label-text="Petugas"></label>
-                            <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="anamnesis.cariPetugas" />
+                            <input c-text-box type="input" filter="'varchar'"
+                                class="k-textbox"
+                                ng-model="anamnesis.cariPetugas" />
                         </div>
 
                         <div class="grid_1">
                             <label c-label c-label-text=""></label>
-                            <em style="margin-top:6px;" ng-click='resetFilter()' id="iconButton" data-role="button"
-                                class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span
+                            <em style="margin-top:6px;" ng-click='resetFilter()'
+                                id="iconButton" data-role="button"
+                                class="k-button k-button-icon k-primary"
+                                role="button" aria-disabled="false"
+                                tabindex="0"><span
                                     class="k-sprite k-icon k-i-cancel">Refresh</span></em>
                         </div>
                     </div>
@@ -376,8 +549,11 @@
                                 <p>Riwayat Anamnesis</p>
                             </div>
                             <div class="grid_12 borderBox">
-                                <div kendo-grid id="gridRiwayatAnamnesisss" k-data-source="sourceRiwayatAnamnesis2"
-                                    k-ng-model="dataRiwayatAnamnesis2" k-selectable="'row'" options="gridRiwayatAnamnesis2"></div>
+                                <div kendo-grid id="gridRiwayatAnamnesisss"
+                                    k-data-source="sourceRiwayatAnamnesis2"
+                                    k-ng-model="dataRiwayatAnamnesis2"
+                                    k-selectable="'row'"
+                                    options="gridRiwayatAnamnesis2"></div>
                             </div>
                         </div>
                     </div>
@@ -387,9 +563,18 @@
                             <div class="grid_9">
                             </div>
                             <div class="grid_3">
-                                <button class="c-button" ng-click="riwayatAnamnesis(false)">
+                                <md-button
+                                    class="md-raised md-primary medium-button"
+                                    ng-click="riwayatAnamnesis(false)">
+                                    <i class="fa fa-arrow-left"
+                                        style="margin-right: 5px;"></i>
+                                    <span>Kembali</span>
+
+                                </md-button>
+                                <!-- <button class="c-button"
+                                    ng-click="riwayatAnamnesis(false)">
                                     <span style="font-size:10!important">Kembali</span>
-                                </button>
+                                </button> -->
                             </div>
                         </div>
                     </div>
@@ -398,17 +583,23 @@
                     <div class="grid_12">
                         <div class="grid_3">
                             <label c-label c-label-text="Riwayat Penyakit"></label>
-                            <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="riwayat.penyakit" />
+                            <input c-text-box type="input" filter="'varchar'"
+                                class="k-textbox" ng-model="riwayat.penyakit" />
                         </div>
                         <div class="grid_3">
                             <label c-label c-label-text="Riwayat Pengobatan"></label>
-                            <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="riwayat.pengobatan" />
+                            <input c-text-box type="input" filter="'varchar'"
+                                class="k-textbox" ng-model="riwayat.pengobatan"
+                                />
                         </div>
 
                         <div class="grid_1">
                             <label c-label c-label-text=""></label>
-                            <em style="margin-top:6px;" ng-click='resetFilter()' id="iconButton" data-role="button"
-                                class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span
+                            <em style="margin-top:6px;" ng-click='resetFilter()'
+                                id="iconButton" data-role="button"
+                                class="k-button k-button-icon k-primary"
+                                role="button" aria-disabled="false"
+                                tabindex="0"><span
                                     class="k-sprite k-icon k-i-cancel">Refresh</span></em>
                         </div>
                     </div>
@@ -418,8 +609,10 @@
                                 <p>Riwayat</p>
                             </div>
                             <div class="grid_12 borderBox">
-                                <div kendo-grid id="idRiwayatPengobatan" k-data-source="sourceRiwayatPengobatan"
-                                    k-selectable="'row'" options="gridRiwayatPengobatan"></div>
+                                <div kendo-grid id="idRiwayatPengobatan"
+                                    k-data-source="sourceRiwayatPengobatan"
+                                    k-selectable="'row'"
+                                    options="gridRiwayatPengobatan"></div>
                             </div>
                         </div>
                     </div>
@@ -429,9 +622,18 @@
                             <div class="grid_9">
                             </div>
                             <div class="grid_3">
-                                <button class="c-button" ng-click="riwayatPengobatan(false)">
+                                <md-button
+                                    class="md-raised medium-button"
+                                    ng-click="riwayatPengobatan(false)">
+                                    <i class="fa fa-arrow-left"
+                                        style="margin-right: 5px; color:
+                                        black;"></i>
+                                    <span style="margin-right: 5px;">Kembali</span>
+                                </md-button>
+                                <!-- <button class="c-button"
+                                    ng-click="riwayatPengobatan(false)">
                                     <span style="font-size:10!important">Kembali</span>
-                                </button>
+                                </button> -->
                             </div>
                         </div>
                     </div>
@@ -611,7 +813,6 @@
                     </div>
                 </md-content>
             </div> -->
-
             <!-- endRencana-->
 
             <!-- Edukasi -->
@@ -820,6 +1021,6 @@
             <!-- END PERJANJIAN -->
         </div>
         <div class="grid_12" style="margin-top:60px">
-            <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+            <div ng-include='" ../app/module/Shared/TemplateLoading" '></div>
         </div>
     </div>

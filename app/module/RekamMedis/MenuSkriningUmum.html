@@ -4,37 +4,70 @@
         <div class="breadcrum" style='margin-top: 0px;'>
             <div class="grid_2">
                 <!--<a class="n1" ng-class='{warning:flagDomisili.status===false}' ng-click="nav('dashboardpasien.DashboardSkriningUmum.TandaVital')">Tanda Vital</a>-->
-                <a class="n1" ng-class="{'active': activeMenuSkriningUmum == 'RekamMedis.MenuPengkajian.SkriningUmum.KeluhanUtamaRev'}"
-                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.KeluhanUtamaRev')">Keluhan Utama</a>
+                <md-button class="md-raised md-info medium-button"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.KeluhanUtamaRev')">
+                    <span>Keluhan Utama</span>
+                </md-button>
+                <!-- <a class="n1" ng-class="{'active': activeMenuSkriningUmum == 'RekamMedis.MenuPengkajian.SkriningUmum.KeluhanUtamaRev'}"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.KeluhanUtamaRev')">Keluhan Utama</a> -->
             </div>
             <div class="grid_2">
                 <!--<a class="n1" ng-class='{warning:flagDomisili.status===false}' ng-click="nav('dashboardpasien.DashboardSkriningUmum.TandaVital')">Tanda Vital</a>-->
-                <a class="n1" ng-class="{'active': activeMenuSkriningUmum == 'RekamMedis.MenuPengkajian.SkriningUmum.TandaVital'}"
-                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.TandaVital')">Tanda Vital</a>
+                <md-button class="md-raised md-info medium-button"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.TandaVital')">
+                    <span>Tanda Vital</span>
+                </md-button>
+                <!-- <a class="n1" ng-class="{'active': activeMenuSkriningUmum ==
+                    'RekamMedis.MenuPengkajian.SkriningUmum.TandaVital'}"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.TandaVital')">Tanda
+                    Vital</a> -->
             </div>
 
             <div class="grid_2">
+                <md-button class="md-raised md-info medium-button"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.InputAlergiRev')">
+                    <span>Alergi</span>
+                </md-button>
                 <!--<a class="n1" ng-class='{warning:flagKomposisiKeluarga.status===false}' ng-click="nav('dashboardpasien.DashboardSkriningUmum.inputAlergi')">Alergi</a>-->
-                <a class="n1" ng-class="{'active': activeMenuSkriningUmum == 'RekamMedis.MenuPengkajian.SkriningUmum.InputAlergiRev'}"
-                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.InputAlergiRev')">Alergi</a>
+                <!-- <a class="n1" ng-class="{'active': activeMenuSkriningUmum ==
+                    'RekamMedis.MenuPengkajian.SkriningUmum.InputAlergiRev'}"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.InputAlergiRev')">Alergi</a> -->
             </div>
 
             <div class="grid_2" ng-show="isDewasa">
                 <!--<a class="n1" ng-class='{warning:flagKomposisiKeluarga.status===false}' ng-click="nav('dashboardpasien.DashboardSkriningUmum.SkriningGiziDewasa')">Skrining Gizi</a>-->
-                <a class="n1" ng-class="{'active': activeMenuSkriningUmum == 'RekamMedis.MenuPengkajian.SkriningUmum.SkriningGiziDewasaRev'}"
-                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.SkriningGiziDewasaRev')">Skrining Gizi Dewasa</a>
+                <md-button class="md-raised md-info medium-button"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.SkriningGiziDewasaRev')">
+                    <span>Skrining Gizi Dewasa</span>
+                </md-button>
+                <!-- <a class="n1" ng-class="{'active': activeMenuSkriningUmum ==
+                    'RekamMedis.MenuPengkajian.SkriningUmum.SkriningGiziDewasaRev'}"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.SkriningGiziDewasaRev')">Skrining
+                    Gizi Dewasa</a> -->
             </div>
 
             <div class="grid_2" ng-show="isNeonatal">
                 <!--<a class="n1" ng-class='{warning:flagKomposisiKeluarga.status===false}' ng-click="nav('dashboardpasien.DashboardSkriningUmum.SkriningGiziNeo')">Skrining Gizi</a>-->
-                <a class="n1" ng-class="{'active': activeMenuSkriningUmum == 'RekamMedis.MenuPengkajian.SkriningUmum.SkriningGiziNeoRev'}"
-                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.SkriningGiziNeoRev')">Skrining Gizi</a>
+                <md-button class="md-raised md-info medium-button"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.SkriningGiziNeoRev')">
+                    <span>Skrining Gizi</span>
+                </md-button>
+                <!-- <a class="n1" ng-class="{'active': activeMenuSkriningUmum ==
+                    'RekamMedis.MenuPengkajian.SkriningUmum.SkriningGiziNeoRev'}"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.SkriningGiziNeoRev')">Skrining
+                    Gizi</a> -->
             </div>
 
             <div class="grid_2" ng-show="isAnak">
                 <!--<a class="n1" ng-class='{warning:flagKomposisiKeluarga.status===false}' ng-click="nav('dashboardpasien.DashboardSkriningUmum.SkriningGiziAnak')">Skrining Gizi</a>-->
-                <a class="n1" ng-class="{'active': activeMenuSkriningUmum == 'RekamMedis.MenuPengkajian.SkriningUmum.SkriningGiziAnakRev'}"
-                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.SkriningGiziAnakRev')">Skrining Gizi Anak</a>
+                <md-button class="md-raised md-info medium-button"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.SkriningGiziAnakRev')">
+                    <span>Skrining Gizi Anak</span>
+                </md-button>
+                <!-- <a class="n1" ng-class="{'active': activeMenuSkriningUmum ==
+                    'RekamMedis.MenuPengkajian.SkriningUmum.SkriningGiziAnakRev'}"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.SkriningGiziAnakRev')">Skrining
+                    Gizi Anak</a> -->
             </div>
 
             <!-- <div class="grid_2"> -->
@@ -44,41 +77,62 @@
  -->
             <div class="grid_2">
                 <!--<a class="n1" ng-class='{warning:flagKomposisiKeluarga.status===false}' ng-click="nav('dashboardpasien.DashboardSkriningUmum.SkriningNyeri')">Skrining Nyeri</a>-->
-                <a class="n1" ng-class="{'active': activeMenuSkriningUmum == 'RekamMedis.MenuPengkajian.SkriningUmum.SkriningNyeriRev'}"
-                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.SkriningNyeriRev')">Skrining Nyeri</a>
+                <md-button class="md-raised md-info medium-button"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.SkriningNyeriRev')">
+                    <span>Skrining Nyeri</span>
+                </md-button>
+                <!-- <a class="n1" ng-class="{'active': activeMenuSkriningUmum ==
+                    'RekamMedis.MenuPengkajian.SkriningUmum.SkriningNyeriRev'}"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.SkriningNyeriRev')">Skrining
+                    Nyeri</a> -->
             </div>
 
             <div class="grid_2" ng-hide="isNeonatal">
                 <!--<a class="n1" ng-class='{warning:flagKomposisiKeluarga.status===false}' ng-click="nav('dashboardpasien.DashboardSkriningUmum.ResikoJatuh')">Resiko Jatuh</a>-->
-                <a class="n1" ng-class="{'active': activeMenuSkriningUmum == 'RekamMedis.MenuPengkajian.SkriningUmum.ResikoJatuhRev'}"
-                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.ResikoJatuhRev')">Resiko Jatuh</a>
+                <md-button class="md-raised md-info medium-button"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.ResikoJatuhRev')">
+                    <span>Resiko Jatuh</span>
+                </md-button>
+                <!-- <a class="n1" ng-class="{'active': activeMenuSkriningUmum ==
+                    'RekamMedis.MenuPengkajian.SkriningUmum.ResikoJatuhRev'}"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.ResikoJatuhRev')">Resiko
+                    Jatuh</a> -->
             </div>
 
             <!--    <div class="grid_2" ng-hide="isNeonatal">
               
                     <a class="n1" ng-class="{'active': activeMenuSkriningUmum == 'dashboardpasien.DashboardSkriningUmum.ResikoJatuh'}" ng-click="nav('dashboardpasien.DashboardSkriningUmum.ResikoJatuh')">Resiko Jatuh</a>
                 </div> -->
-
             <!-- <div class="grid_2" ng-hide="isNeonatal"> -->
             <!--<a class="n1" ng-class='{warning:flagKomposisiKeluarga.status===false}' ng-click="nav('dashboardpasien.DashboardSkriningUmum.StatusFungsional')">Status Fungsional</a>-->
             <!--  <a class="n1" ng-class="{'active': activeMenuSkriningUmum == 'dashboardpasien.DashboardSkriningUmum.StatusFungsional'}" ng-click="nav('dashboardpasien.DashboardSkriningUmum.StatusFungsional')">Status Fungsional old</a>
                 </div> -->
-
             <div class="grid_2" ng-hide="isNeonatal">
                 <!--<a class="n1" ng-class='{warning:flagKomposisiKeluarga.status===false}' ng-click="nav('dashboardpasien.DashboardSkriningUmum.StatusFungsional')">Status Fungsional</a>-->
-                <a class="n1" ng-class="{'active': activeMenuSkriningUmum == 'RekamMedis.MenuPengkajian.SkriningUmum.StatusFungsionalRev'}"
-                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.StatusFungsionalRev')">Status Fungsional</a>
+                <md-button class="md-raised md-info medium-button"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.StatusFungsionalRev')">
+                    <span>Status Fungsional</span>
+                </md-button>
+                <!-- <a class="n1" ng-class="{'active': activeMenuSkriningUmum ==
+                    'RekamMedis.MenuPengkajian.SkriningUmum.StatusFungsionalRev'}"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.StatusFungsionalRev')">Status
+                    Fungsional</a> -->
             </div>
 
             <!-- <div class="grid_2" > -->
             <!--<a class="n1" ng-class='{warning:flagKomposisiKeluarga.status===false}' ng-click="nav('dashboardpasien.DashboardSkriningUmum.KebutuhanEdukasi')">Kebutuhan Edukasi</a>-->
             <!-- <a class="n1" ng-class="{'active': activeMenuSkriningUmum == 'dashboardpasien.DashboardSkriningUmum.KebutuhanEdukasi'}" ng-click="nav('dashboardpasien.DashboardSkriningUmum.KebutuhanEdukasi')">Kebutuhan Edukasi</a>
                 </div> -->
-
             <div class="grid_2">
                 <!--<a class="n1" ng-class='{warning:flagKomposisiKeluarga.status===false}' ng-click="nav('dashboardpasien.DashboardSkriningUmum.KebutuhanEdukasi')">Kebutuhan Edukasi</a>-->
-                <a class="n1" ng-class="{'active': activeMenuSkriningUmum == 'RekamMedis.MenuPengkajian.SkriningUmum.KebutuhanEdukasiRev'}"
-                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.KebutuhanEdukasiRev')">Kebutuhan Edukasi</a>
+                <md-button class="md-raised md-info medium-button"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.KebutuhanEdukasiRev')">
+                    <span>Kebutuhan Edukasi</span>
+                </md-button>
+                <!-- <a class="n1" ng-class="{'active': activeMenuSkriningUmum ==
+                    'RekamMedis.MenuPengkajian.SkriningUmum.KebutuhanEdukasiRev'}"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.KebutuhanEdukasiRev')">Kebutuhan
+                    Edukasi</a> -->
             </div>
 
             <!--  <div class="grid_2">
@@ -91,19 +145,35 @@
                 </div> -->
             <div class="grid_2" ng-show="isRawatInap">
                 <!--<a class="n1" ng-class='{warning:flagKomposisiKeluarga.status===false}' ng-click="nav('dashboardpasien.DashboardSkriningUmum.KebutuhanDasarSuster')">Pengkajian Kebutuhan Dasar</a>-->
-                <a class="n1" ng-class="{'active': activeMenuSkriningUmum == 'RekamMedis.MenuPengkajian.SkriningUmum.KebutuhanDasarSusterRev'}"
+                <md-button class="md-raised md-info medium-button"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.KebutuhanDasarSusterRev')">
+                    <span>Pengkajian Kebutuhan Dasar</span>
+                </md-button>
+                <!-- <a class="n1" ng-class="{'active': activeMenuSkriningUmum ==
+                    'RekamMedis.MenuPengkajian.SkriningUmum.KebutuhanDasarSusterRev'}"
                     ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.KebutuhanDasarSusterRev')">Pengkajian
-                    Kebutuhan Dasar</a>
+                    Kebutuhan Dasar</a> -->
             </div>
 
             <div class="grid_2" ng-show="isRawatInap">
                 <!--<a class="n1" ng-class='{warning:flagKomposisiKeluarga.status===false}' ng-click="nav('dashboardpasien.DashboardSkriningUmum.Psikososial')">Psikososial</a>-->
-                <a class="n1" ng-class="{'active': activeMenuSkriningUmum == 'RekamMedis.MenuPengkajian.SkriningUmum.PsikososialRev'}"
-                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.PsikososialRev')">Psikososial</a>
+                <md-button class="md-raised md-info medium-button"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.PsikososialRev')">
+                    <span>Psikososial</span>
+                </md-button>
+                <!-- <a class="n1" ng-class="{'active': activeMenuSkriningUmum ==
+                    'RekamMedis.MenuPengkajian.SkriningUmum.PsikososialRev'}"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.PsikososialRev')">Psikososial</a> -->
             </div>
-            <div class="grid_2" >
-                  <a class="n1" ng-class="{'active': activeMenuSkriningUmum == 'RekamMedis.MenuPengkajian.SkriningUmum.PengkajianKlinikHemodialisa'}"
-                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.PengkajianKlinikHemodialisa')">Pengkajian Hemodialisa</a>
+            <div class="grid_2">
+                <md-button class="md-raised md-info medium-button"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.PengkajianKlinikHemodialisa')">
+                    <span>Pengkajian Hemodialisa</span>
+                </md-button>
+                <!-- <a class="n1" ng-class="{'active': activeMenuSkriningUmum ==
+                    'RekamMedis.MenuPengkajian.SkriningUmum.PengkajianKlinikHemodialisa'}"
+                    ng-click="nav('RekamMedis.MenuPengkajian.SkriningUmum.PengkajianKlinikHemodialisa')">Pengkajian
+                    Hemodialisa</a> -->
             </div>
         </div>
     </div>

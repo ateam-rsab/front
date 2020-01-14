@@ -21,10 +21,16 @@
           });
       },
 
-      postDataTableMaster:function(urlGet){
+      saveData:function (urlPost) {  
+        return r.get({
+          url: baseUrlApiAction + urlGet
+        })
+      },
+
+      postDataTableMaster:function(urlGet, data){
         return r.post({
               url: baseMaster + urlGet
-          });
+          }, data);
       },
 
       postpost: function(url,data){

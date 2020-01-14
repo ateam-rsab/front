@@ -28,7 +28,6 @@ define(['initialize'], function(initialize) {
        function loadCombo(){
          var chacePeriode = cacheHelper.get('DaftarPasienPulangKasir');
          if(chacePeriode != undefined){
-            debugger;
             var arrPeriode = chacePeriode.split('~');
             $scope.item.periodeAwal = new Date(arrPeriode[0]);
             $scope.item.periodeAkhir = new Date(arrPeriode[1]);
@@ -310,7 +309,6 @@ $scope.changePage2 = function(stateName){
 				loadData()
 			}
 			function loadData(){
-				//debugger;
         $scope.isRouteLoading=true;
 				var tglAwal = moment($scope.item.periodeAwal).format('YYYY-MM-DD HH:mm');
 				var tglAkhir = moment($scope.item.periodeAkhir).format('YYYY-MM-DD HH:mm');

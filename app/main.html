@@ -4,7 +4,7 @@
 <head>
 
     <title>.:: Smart RSAB Harapan Kita ::.</title>
-
+    
     <link href="../app/stylesheets/kendo.flat.css" rel="stylesheet">
     <link href="../app/stylesheets/kendo.common.css" rel="stylesheet">
     <link href="../app/stylesheets/kendo.rtl.css" rel="stylesheet">
@@ -14,6 +14,7 @@
 
     <link href="../bower_components/animate.css/animate.css" rel="stylesheet">
     <link href="../bower_components/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="stylesheets/font-awesome/css/all.css"> -->
     <link href="../bower_components/freewall/freewall.css" rel="stylesheet"></link>
     <link href="../bower_components/toastr/toastr.css" rel="stylesheet">
     <link href="../bower_components/angular-material/angular-material.min.css" rel="stylesheet"></link>
@@ -25,7 +26,7 @@
 
 <body ng-controller="Controller" id="body">
     <div class="pageLoader animated" ng-class={slideOutUp:hasLoad}>
-        <img src="../app/stylesheets/Flat/loading-image.gif"/>
+        <img src="../app/stylesheets/Flat/loading-image.gif"/>        
     </div>
     <div id="header">
         <div ng-include='"../app/module/header/header"'></div>
@@ -36,7 +37,9 @@
         <md-sidenav class="md-sidenav-left" md-component-id="right">
 
             <md-toolbar class="md-theme-light">
-                <h1 class="md-toolbar-tools"><i class="fa fa-bars" aria-hidden="true"></i> &nbsp; Navigasi</h1>
+                <h1 class="md-toolbar-tools">
+                    Navigasi
+                </h1>
             </md-toolbar>
             <md-content layout-padding>
                 <tree-bind data="menu">
@@ -49,12 +52,13 @@
 
         
     </c-side-nav>-->
-    <div class="grid_12">
+    <!-- <div class="grid_12">
         <div class="panel-message">
 
         </div>
-    </div>
+    </div> -->
 
+    <!-- <footer>Tes</footer> -->
     <script src="../app/javascripts/Kendo/jquery.js"></script>
     <script src="../bower_components/toastr/toastr.js"></script>
     <script src="../app/javascripts/jquery-mask.js"></script>

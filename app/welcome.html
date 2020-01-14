@@ -1,9 +1,43 @@
-<div ng-controller="WelcomeCtrl">
-    <br/>
-    <br/>
-    <button ng-show="listMenu.length!==1" ng-click='Back()'>Back</button>
+<style>
+    .smart-container-home {
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
+        align-content: center;
+        align-items: center;
+        margin: 10px;
+        
+        /* background-image: linear-gradient(rgba(255, 0, 0, 0.45), rgba(255, 0, 0, 0.45)), url(../../../assets/bg-login.jpg); */
+        /* background-position: center; */
+        /* background-repeat: no-repeat; */
+        /* background-size: cover; */
+        /* background-image: linear-gradient(109.6deg, rgba(170, 255, 169, .5) 11.2%, rgba(17, 255, 189, .5) 91.1%), url(../app/stylesheets/banner-proceeding-book.jpg); */
+    }
+    .smart-container-content {
+        margin-top: 10px;
+        min-width: 700px;
+        max-width: 700px;
+    }
+    .label-welcome {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 5px;
+        text-align: center;
+    }
+    .list-visi-misi {
 
-    <div class="home-animation">
+    }
+    .list-visi-misi  li {
+        /* margin: 10px 0px; */
+    }
+    .list-visi-misi  li p {
+        font-weight: 700;
+    }
+</style>
+<div ng-controller="WelcomeCtrl">
+
+    <!-- <button ng-show="listMenu.length!==1" ng-click='Back()'>Back</button> -->
+    <!-- <div class="home-animation">
         <div class="mainmenu">
             <a href="/app/#/RekamMedik"><img class="menu01 anime01" src="images/logo/cover01.png"></a>
             <a href="/app/#/LayananMedik"><img class="menu02 anime02" src="images/logo/cover02.png"></a>
@@ -13,18 +47,66 @@
             <a href="/app/#/Sarpras"><img class="menu05 anime05" src="images/logo/cover05.png"></a>
             <a href="/app/#/Menejemen"><img class="menu06 anime06" src="images/logo/cover06.png"></a>
         </div>
-    </div>
-    <div kendo-window="notificationSIP" id="winSipStr" k-title="'Pemberitahuan'" k-width="550" k-visible="false" k-on-open="win2visible = true">
-        <div class="panel panel-default container_12" style="padding: 0px 10px;">                
+    </div> -->
+    <div kendo-window="notificationSIP" k-title="'Pemberitahuan'"
+        k-width="550" k-visible="false" k-on-open="win2visible= true"
+        k-on-close="ji.idGridInternalJabatan= null">
+        <div class="panel panel-default container_12" style="padding:
+            0px 10px;">
             <label>{{messageNotif}}</label>
         </div>
     </div>
-
+    
     <div kendo-window="notification" id="winNotif" k-title="'Pemberitahuan'" k-width="550" k-visible="false" k-on-open="win2visible = true" k-on-close="goToLink('/app/Logout')">
         <div class="panel panel-default container_12" style="padding: 0px 10px;">                
             <label>{{pesanPemberitahuan}}</label>
         </div>
     </div>
+    <div class="smart-container-home">
+        <!-- <img src="../app/images/logo/rsabhk-logo.png" style="margin: 0 auto;"> -->
+        <img src="../app/stylesheets/welcome2.jpg" style="margin: 0 auto;width: 40%;">
+        <!-- <div class="smart-container-content">
+            <div class="label-welcome">Visi</div>
+            <hr style="margin: 10px 0;">
+            <div class="smart-content">
+                <ul class="list-visi-misi">
+                    <li>
+                        <p>Terdepan Dalam Pelayanan Kesehatan Perempuan, Perinatal dan Anak</p>
+                    </li>
+                </ul>
+                
+            </div>
+        </div>
+
+        <div class="smart-container-content">
+            <div class="label-welcome">Misi</div>
+            <hr style="margin: 10px 0;">
+            <div class="smart-content">
+                <ul class="list-visi-misi">
+                    <li>
+                        <p>Menyelenggarakan pelayanan kesehatan perempuan, perinatal dan anak yang aman dan berkualitas </p>
+                    </li>
+                    <li>
+                        <p>Menyelenggarakan pendidikan tenaga kesehatan di bidang kesehatan perempuan, perinatal dan anak </p>
+                    </li>
+                    <li>
+                        <p>Menyelenggarakan pelatihan di bidang kesehatan perempuan, perinatal dan anak </p>
+                    </li>
+                    <li>
+                        <p>Menyelenggarakan penelitian di bidang kesehatan perempuan, perinatal dan anak </p>
+                    </li>
+                    <li>
+                        <p>Meningkatkan jejaring dan sistem rujukan di bidang kesehatan perempuan, perinatal dan anak </p>
+                    </li>
+                </ul>
+            </div>
+        </div> -->
+    </div>
+    <!-- <md-card>
+        <img src="../app/stylesheets/RSAB-Harapan-Kita.jpg"
+            class="md-card-image" alt="home">
+
+    </md-card> -->
     <!-- <div loginService access="suster">
       <h1>
         Hello admin
@@ -33,29 +115,31 @@
         ini adalah admin
       </p>
     </div> -->
-
     <!-- <img style="position: fixed;
     left: 50%;
     transform: translateX(-50%);
     background-size: cover;
     height: 100%;" src="images/logo.svg" alt="Kiwi standing on oval"> -->
-
     <div class="tiles" style="display:none">
         <div class="grid_6">
             <h1>FRONT OFFICE</h1>
             <div class="grid_12" ng-repeat="menu in menus">
-                <div class="tile bg-yellow-saffron primary" style="height:200px;" ng-click="changeMenu(menu)">
-                    <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                <div class="tile bg-yellow-saffron primary"
+                    style="height:200px;" ng-click="changeMenu(menu)">
+                    <div class="corner" style="float: left; font-weight:
+                        bold; padding: 0 5px;"><span></span></div>
                     <div class="check"></div>
                     <div class="tile-body" style="overflow: initial">
                         <i style="font-style: normal;"></i>
                     </div>
-                    <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                    <div class="tile-object" style="top:0!important;bottom:auto !important;">
                         <div class="icon-panel main">
                             <img height='150px' src='' />
                         </div>
                         <div class="text_panel main">
-                            <span class="title"><label c-label c-label-text="{{menu.title}}" class="title"></label></span>
+                            <span class="title"><label c-label
+                                    c-label-text="{{menu.title}}"
+                                    class="title"></label></span>
                         </div>
                     </div>
                 </div>
@@ -64,18 +148,23 @@
         <div class="grid_6">
             <h1>BACK OFFICE</h1>
             <div class="grid_12" ng-repeat="menu in menuBackOffices">
-                <div class="tile bg-yellow-saffron primary" style="height:200px;" ng-click="changeMenu(menu)">
-                    <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
+                <div class="tile bg-yellow-saffron primary"
+                    style="height:200px;" ng-click="changeMenu(menu)">
+                    <div class="corner" style="float: left; font-weight:
+                        bold; padding: 0 5px;"><span></span></div>
                     <div class="check"></div>
                     <div class="tile-body" style="overflow: initial">
                         <i style="font-style: normal;"></i>
                     </div>
-                    <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
+                    <div class="tile-object" style=";top:0
+                        !important;bottom:auto !important;">
                         <div class="icon-panel main">
-                           
+
                         </div>
                         <div class="text_panel main">
-                            <span class="title"><label c-label c-label-text="{{menu.title}}" class="title"></label></span>
+                            <span class="title"><label c-label
+                                    c-label-text="{{menu.title}}"
+                                    class="title"></label></span>
                         </div>
                     </div>
                 </div>
@@ -170,6 +259,5 @@
                 </div>
             </div>
         </div>-->
-
     </div>
 </div>

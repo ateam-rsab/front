@@ -1,35 +1,51 @@
 <div ng-controller="InformasiJadwalPelayananDokterCtrl">
-	<div class="panel panel-default container_12"> 
-		<div class="panel-heading" c-translate>Informasi Jadwal Pelayanan Dokter</div>
+	<div class="panel panel-default container_12">
+		<md-toolbar md-scroll-shrink class="shadow">
+			<div class="md-toolbar-tools">Informasi Jadwal Pelayanan Dokter</div>
+		</md-toolbar>
+		<!-- <div class="panel-heading" c-translate>Informasi Jadwal Pelayanan Dokter</div> -->
 		<div class="panel-body">
-			<div class="grid_12" >
+			<div class="grid_12">
 				<div class="grid_2">
 					<div class="grid_12" padDatePicker>
 						<label c-label c-label-text="Periode" real></label>
-						<input style="width: 100%" k-ng-model="item.periodeAwal"  kendo-datetimepicker k-max="now" placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
-					</div>	
+						<input style="width: 100%" k-ng-model="item.periodeAwal"
+							kendo-datetimepicker k-max="now" placeholer="yyyy-MM-dd HH:mm"
+							k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
+					</div>
 				</div>
 				<div class="grid_2" style="margin-top: 16px;" padDatePicker>
 					<div class="grid_12">
 						<!-- <label c-label c-label-text="Periode" real></label> -->
-						<input style="width: 100%" k-ng-model="item.periodeAkhir"  kendo-datetimepicker  placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" />
-					</div>	
+						<input style="width: 100%" k-ng-model="item.periodeAkhir"
+							kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd
+							HH:mm'" />
+					</div>
 				</div>
 				<div class="grid_3">
 					<div class="grid_12">
 						<label c-label item="item" c-label-text="Dokter"></label>
-						<input style="width: 100%;" kendo-combo-box k-ng-model="item.dokter" k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListDokter" />
-					</div>	
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.dokter"
+							k-data-text-field="'namalengkap'" k-data-value-field="'id'"
+							k-filter="'contains'" k-auto-bind="false" k-data-source="ListDokter" />
+					</div>
 				</div>
 				<div class="grid_3">
 					<div class="grid_12">
 						<label c-label item="item" c-label-text="Nama Ruangan"></label>
-						<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaruangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListRuangan" />
-					</div>	
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan"
+							k-data-text-field="'namaruangan'" k-data-value-field="'id'"
+							k-filter="'contains'" k-auto-bind="false" k-data-source="ListRuangan" />
+					</div>
 				</div>
 				<div class="grid_1" style="margin-top: 22px;">
-            	    <button class="c-button" ng-click="SearchData()">Cari</button>
-                </div>
+					<!-- <button class="c-button" ng-click="SearchData()">Cari</button> -->
+					<md-button class="md-raised md-primary medium-button"
+						ng-click="SearchData()">
+						<span style="margin-right: 5px;">Cari</span>
+						<i class="fa fa-search"></i>
+					</md-button>
+				</div>
 			</div>
 			<!-- <div class="grid_12" >
 				<div class="grid_6" style="margin: 10px 0 10px 0;" >
@@ -60,26 +76,25 @@
             	    <button class="c-button" ng-click="cari()">Cari</button>
                 </div>
 			</div> -->
-			
-			<div class="grid_12" style="margin: 30px 0 30px 0;">
-					<div kendo-grid id="kGrid"
-						k-data-source="sourceJadwal"
-		                k-groupable="'true'"
-						k-selectable="'row'" 
-		                class="max-height"
-		                k-pageable="'true'" 
-						k-columns="columndataMasterDataJadwal" 
-						k-sortable="'true'"
-						k-ng-model="dataSelected" 
-						ng-click="kl">
-		            </div>
-                <!-- <div class="grid_12">
+			<div class="grid_12" style="margin: 15px 0 30px 0;">
+				<div kendo-grid id="kGrid"
+					k-data-source="sourceJadwal"
+					k-groupable="'true'"
+					k-selectable="'row'"
+					class="max-height"
+					k-pageable="'true'"
+					k-columns="columndataMasterDataJadwal"
+					k-sortable="'true'"
+					k-ng-model="dataSelected"
+					ng-click="kl">
+				</div>
+				<!-- <div class="grid_12">
         			<div kendo-grid  k-data-source="sourceJadwal" k-selectable="'row'" k-columns="columndataMasterDataJadwal" k-ng-model="current" ng-click="kl">
                     </div>
                 </div> -->
-            </div>
-            <div class="grid_12" style="margin-top:60px">
-				<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+			</div>
+			<div class="grid_12" style="margin-top:60px">
+				<div ng-include='" ../app/module/Shared/TemplateLoading" '></div>
 			</div>
 		</div>
 	</div>

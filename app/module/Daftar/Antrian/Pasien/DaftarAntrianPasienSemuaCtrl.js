@@ -205,7 +205,7 @@ define(['initialize'], function(initialize) {
                     $scope.ruangan.id = "";
                 $scope.isLoading === true
                 findPasien.findQueueSemua($scope.from, $scope.until, $scope.ruangan, $scope.namaPasien).then(function(e) {
-                    debugger;
+                    
                     $scope.isRouteLoading = false;
                     $scope.isLoading === false
                     var data = [];
@@ -228,9 +228,9 @@ define(['initialize'], function(initialize) {
                         data: $scope.listPasien,
                         group: $scope.group
                     });
-                    debugger;
+                    
                     if ($scope.kodeRuangan !== undefined) {
-                            debugger;
+                            
                         // $scope.listPasien.then(function(e) {
                         $scope.listPatients = $scope.listPasien;
                         $scope.patienGrids = new kendo.data.DataSource({
@@ -363,7 +363,7 @@ define(['initialize'], function(initialize) {
 
             
             $scope.pemeriksaanPasien = function() {
-                debugger
+                
                 var cookie = document.cookie.split(';');
                 var statusCode = ModelItem.getStatusUser();
                 var objValid = $scope.cekStatusBeforePemeriksaan(statusCode, $scope.item.statusAntrian);

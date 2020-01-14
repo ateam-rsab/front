@@ -457,6 +457,18 @@
       "urlDep": "module/Farmasi/InputResepApotikCtrl"
     },
     {
+      "nameDep": "InputResepElektronikApotikCtrl",
+      "urlDep": "module/Farmasi/InputResepElektronikApotikCtrl"
+    },
+    {
+      "nameDep": "ProduksiElektronikCtrl",
+      "urlDep": "module/Apotek/Penjualan/ProduksiElektronikCtrl"
+    },
+    {
+      "nameDep": "EditResepElektronikCtrl",
+      "urlDep": "module/Apotek/Penjualan/EditResepElektronikCtrl"
+    },
+    {
       "nameDep": "KonversiSatuanCtrl",
       "urlDep": "module/Farmasi/KonversiSatuanCtrl"
     },
@@ -1333,6 +1345,10 @@
       "urlDep": "module/Akuntansi/Jurnal/JurnalRev2018Ctrl"    
     },
     {
+      "nameDep": "DailyPostingCtrl",
+      "urlDep": "module/Akuntansi/Jurnal/DailyPostingCtrl"
+    },
+    {
       "nameDep": "PostingCtrl",
       "urlDep": "module/Akuntansi/Jurnal/PostingCtrl"
     },
@@ -1808,7 +1824,11 @@
     },
     {
       "nameDep": "CPPTCtrl",
-      "urlDep": "module/RekamMedis/CPPTCtrl"    
+      "urlDep": "module/RekamMedis/CPPTCtrl"
+    },
+    {
+      "nameDep": "TBAKCtrl",
+      "urlDep": "module/RekamMedis/TBAKCtrl"
     },
     {
       "nameDep": "AsesmenGiziAwalCtrl",
@@ -1921,6 +1941,10 @@
     {
       "nameDep": "DaftarRegistrasiPasienVedikaCtrl",
       "urlDep": "module/pasien/RegistrasiPelayananNew/DaftarRegistrasiPasienVedikaCtrl"
+    },
+    {
+      "nameDep": "DaftarPasienVedikaCtrl",
+      "urlDep": "module/pasien/RegistrasiPelayananNew/DaftarPasienVedikaCtrl"
     },
     {
       "nameDep": "OdontoGramDokterCtrl",

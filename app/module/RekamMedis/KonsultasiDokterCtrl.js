@@ -7,6 +7,7 @@ define(['initialize'], function (initialize) {
             $scope.item = {
                 tglresume: $scope.now
             } // set defined object
+            $scope.dataLogin = JSON.parse(localStorage.getItem('pegawai'));
             $scope.filter = {}
             $scope.listOfStatusKonsult = [
                 { name: 'Alih Rawat', id: 1},
@@ -33,6 +34,7 @@ define(['initialize'], function (initialize) {
                 columns: [
                     // { field: "rowNumber", title: "#", width: 40, width: 40, attributes: { style: "text-align:right; padding-right: 15px;"}, hideMe: true},
                     { field: "no", title: "<h3>No</h3>", width: 40 },
+                    { field: "noorder", title: "<h3>No. Konsultasi</h3>", width: 70 },
                     { field: "noregistrasi", title: "<h3>No. Registrasi</h3>", width: 70 },
                     { field: "tglorder", title: "<h3>Tanggal</h3>", width: 120 },
                     { field: "ruanganasal", title: "<h3>Ruangan Asal</h3>", width: 120 },
@@ -44,13 +46,20 @@ define(['initialize'], function (initialize) {
                         { text: "Edit", click: editData },
                         // { name: "Verifikasi", text: "Hasil Konsul", click: hasilKonsult },
                         { name: "Detail", text: "Detail", click: showDetail },
-                    ], title: "&nbsp;", width: 120, 
+                        { name: "Edit", text: "Cetak", click: cetakReport },
+                    ], title: "&nbsp;", width: 140, 
                         attributes: {
                             style: "text-align:center;valign=middle"
                         }
                     }
                 ],
             };
+
+            function cetakReport(e) {
+                e.preventDefault();
+                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                window.open("http://192.168.12.4:7777/service-reporting/lap-konsul/" + dataItem.noorder);
+            }
 
             function showDetail(e) {
                 e.preventDefault();
@@ -217,17 +226,15 @@ define(['initialize'], function (initialize) {
                 }
                 if ($scope.item.ruanganTujuan == undefined) {
                     toastr.warning("Pilih Ruangan Tujuan terlebih dahulu!")
-                    return
+                    return;
                 }
-                if ($scope.item.dokter == undefined) {
-                    toastr.warning("Pilih Dokter terlebih dahulu!")
-                    return
-                }
+
                 var objSave = {
                     jeniskonsultasi: $scope.item.jenisKonsultasi,
                     norec_so: $scope.item.norec != undefined ? $scope.item.norec : '',
                     norec_pd: $scope.norecPd,
-                    pegawaifk: $scope.item.dokter.id,
+                    pegawaifk: $scope.item.dokter ? $scope.item.dokter.id : null,
+                    petugasfk: $scope.dataLogin.id,
                     objectruanganasalfk: $scope.item.ruanganAsal.id,
                     objectruangantujuanfk: $scope.item.ruanganTujuan.id,
                     keterangan: $scope.item.ikhtisarKlinik ? $scope.item.ikhtisarKlinik : '',
@@ -235,7 +242,7 @@ define(['initialize'], function (initialize) {
                     terapi: $scope.item.terapiDanTindakan ? $scope.item.terapiDanTindakan : '',
                     masalah:$scope.item.masalah ? $scope.item.masalah : ''
                 }
-                console.log(objSave);
+                // console.log(objSave);
                 ManagePhp.postData(objSave, 'rekam-medis/post-konsultasi').then(function (e) {
                     clear()
                     init();

@@ -10,7 +10,7 @@ define(['initialize'], function(initialize) {
         $scope.item={};
         var details =[];
         $scope.dataLogin = JSON.parse(window.localStorage.getItem('pegawai'));
-        debugger;
+        
         $scope.CariLapPasienPulang = function () {
             $scope.isRouteLoading = true;
             LoadData()
@@ -302,7 +302,7 @@ define(['initialize'], function(initialize) {
 	    // $scope.listPasien = dat.data;
 	    // });
         // manageLogistikPhp.getDataTableTransaksi("kasir/laporan-penerimaan-kasir-datacombo", true).then(function(dat){
-        //     debugger;
+        //     
         //     //$scope.listPegawai = dat.data.dataDokter;
         //     $scope.listRuangan = dat.data.dataruangan;
         //     //$scope.listPegawaiKasir = dat.data.datakasir;
@@ -313,7 +313,7 @@ define(['initialize'], function(initialize) {
             $scope.kelompokPasiens = e.data.data
         })
         $scope.$watch('item.namaPenjamin', function(e){
-            debugger;
+            
             if (e === undefined) return;
             findPasien.getDataRekanan(e.id).then(function(data) {
                 $scope.sourceDataRekanan = data.data.data.listData;

@@ -1,0 +1,144 @@
+<style>
+    .resep-title {
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .header-resep {
+        font-weight: bolder;
+    }
+    .card-block-ui {
+        background-color: rgba(107, 107, 107, 0.5);
+    }
+    .loader {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
+</style>
+<md-card>
+    <md-card-title class="card-title-header">
+        <p style="font-size:20px">
+            <strong> Daftar Resep Produksi </strong>
+        </p>
+    </md-card-title>
+    <md-card-content  ng-show="showLoader">
+        <div class="loader">
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        </div>
+    </md-card-content>
+    <md-card-content>
+        <div class="grid_6" ng-repeat="resep in dataResep">
+            <md-card id="resep{{resep.resep}}">
+                <md-card-title>
+                    <md-checkbox md-no-ink ng-model="cb[$index]"
+                        class="md-primary"
+                        ng-checked="onchecked({{resep.resep}}, cb[$index])">
+                        <span class="resep-title">R/{{resep.resep}}</span>
+                    </md-checkbox>
+                </md-card-title>
+                <md-card-content>
+                    <p class="header-resep">{{resep.jenisKemasan}}</p>
+                    <div class="grid_12" ng-repeat="obat in resep.obat">
+                        <div class="grid_6">
+                            <span>{{obat.namaproduk}}</span>
+                        </div>
+                        <div class="grid_6">
+                            <span>{{obat.dosis}}/{{obat.satuan}}</span>
+                        </div>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_6">
+                            <fieldset class="borderBox">
+                                <legend>
+                                    <i>Aturan Pakai</i>
+                                </legend>
+                                {{resep.obat[0].aturanpakai}}
+                            </fieldset>
+                        </div>
+                        <div class="grid_6">
+                            <fieldset class="borderBox">
+                                <legend>
+                                    <i>Route</i>
+                                </legend>
+                                {{resep.obat[0].route}}
+                            </fieldset>
+                        </div>
+                    </div>
+                </md-card-content>
+            </md-card>
+        </div>
+        <!-- <div class="grid_6">
+            <md-card>
+                <md-card-title>
+                    <md-checkbox md-no-ink aria-label="Checkbox No Ink"
+                        ng-model="cb2" class="md-primary">
+                        <span class="resep-title">R/2</span>
+                    </md-checkbox>
+                </md-card-title>
+                <md-card-content>
+                    <p class="header-resep">Racikan</p>
+                    <div class="grid_6">
+                        <span>Amoxicillin 500 mg</span>
+                    </div>
+                    <div class="grid_6">
+                        <span>1mg</span>
+                    </div>
+                    <div class="grid_6">
+                        <span>RHINOFED TAB</span>
+                    </div>
+                    <div class="grid_6">
+                        <span>2mg</span>
+                    </div>
+                </md-card-content>
+            </md-card>
+        </div>
+        <div class="grid_6">
+            <md-card>
+                <md-card-title>
+                    <md-checkbox md-no-ink aria-label="Checkbox No Ink"
+                        ng-model="cb3" class="md-primary">
+                        <span class="resep-title">R/3</span>
+                    </md-checkbox>
+                </md-card-title>
+                <md-card-content>
+                    <p class="header-resep">Racikan</p>
+                    <div class="grid_6">
+                        <span>AMOXSAN TAB</span>
+                    </div>
+                    <div class="grid_6">
+                        <span>2mg</span>
+                    </div>
+                    <div class="grid_6">
+                        <span>RHINOFED TAB</span>
+                    </div>
+                    <div class="grid_6">
+                        <span>3mg</span>
+                    </div>
+                </md-card-content>
+            </md-card>
+        </div>
+        <div class="grid_6">
+            <md-card>
+                <md-card-title>
+                    <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="cb4" class="md-primary">
+                        <span class="resep-title">R/5</span>
+                    </md-checkbox>
+                </md-card-title>
+                <md-card-content>
+                    <p class="header-resep">Non Racikan</p>
+                    <div class="grid_6">
+                        <span>AMOXSAN FORTE 60 ML SYR</span>
+                    </div>
+                    <div class="grid_6">
+                        <span>1 Botol</span>
+                    </div>
+                </md-card-content>
+            </md-card>
+        </div> -->
+    </md-card-content>
+    <md-card-actions style="display: flex; justify-content: flex-end">
+        <button style="width:10%" class="md-raised md-warn md-button" ng-click="kembali()">Kembali</button>
+        <button style="width:10%" class="md-raised md-primary md-button" ng-click="selesaiProduksi()">Selesai</button>
+    </md-card-actions>
+
+</md-card>

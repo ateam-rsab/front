@@ -1,42 +1,61 @@
+<style>
+		.custom-event {
+		  text-shadow: 0 1px 1px #000;
+		}
+		.custom-all-day-event {
+		  text-align: center;
+		  text-transform: uppercase
+		}
+	  </style>
 <div ng-controller="InformasiJadwalDokterCtrl">
-	<div class="panel panel-default container_12"> 
-	<div class="panel-heading" c-translate>Informasi Jadwal Dokter</div>
+	<div class="panel panel-default container_12">
+		<md-toolbar md-scroll-shrink class="shadow">
+			<div class="md-toolbar-tools">Informasi Jadwal Dokter</div>
+		</md-toolbar>
+		<!-- <div class="panel-heading" c-translate>Informasi Jadwal Dokter</div> -->
 		<div class="panel-body">
-
-
 			<div class="grid_12">
 				<div class="grid_3">
 					<div class="grid_12">
 						<label c-label item="item" c-label-text="Dokter"></label>
 						<div class="grid_12">
-					        <input kendo-combo-box k-ng-model="item.dokter" k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listdokter" />
-					    </div>
-					</div>	
+							<input kendo-combo-box k-ng-model="item.dokter"
+								k-data-text-field="'namalengkap'" k-data-value-field="'id'"
+								k-filter="'contains'" k-auto-bind="false" k-data-source="listdokter" />
+						</div>
+					</div>
 				</div>
 				<div class="grid_3">
 					<div class="grid_12">
-						 <label c-label item="item" c-label-text="Ruangan"></label>
-						 <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaruangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListRuangan" />
-					</div>	
+						<label c-label item="item" c-label-text="Ruangan"></label>
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan"
+							k-data-text-field="'namaruangan'" k-data-value-field="'id'"
+							k-filter="'contains'" k-auto-bind="false" k-data-source="ListRuangan" />
+					</div>
 				</div>
-				<div class="grid_2" style="margin-top: 22px;">
-            	    <button class="c-button" ng-click="SearchData()">Cari</button>
-                </div>
+				<div class="grid_1" style="margin-top: 23px;">
+					<md-button class="md-raised md-primary medium-button"
+						ng-click="SearchData()">
+						<span style="margin-right: 5px;">Cari</span>
+						<i class="fa fa-search"></i>
+					</md-button>
+					<!-- <button class="c-button" ng-click="SearchData()">Cari</button> -->
+				</div>
 			</div>
 			<div class="grid_12" style="margin: 30px 0 30px 0;" ng-show="grishoW">
-                <!-- grid table -->
-                <div class="grid_12 borderBox">
-                 	<div kendo-grid id="kGrid"
-					k-data-source="sourceJadwal"
-	                k-groupable="'true'"
-					k-selectable="'row'" 
-	                class="max-height"
-	                k-pageable="'true'" 
-					k-columns="columndata" 
-					k-sortable="'true'"
-					k-ng-model="dataSelected" 
-					ng-click="klik(dataSelected)">
-	                    <!-- <div k-detail-template>
+				<!-- grid table -->
+				<div class="grid_12 borderBox">
+					<div kendo-grid id="kGrid"
+						k-data-source="sourceJadwal"
+						k-groupable="'true'"
+						k-selectable="'row'"
+						class="max-height"
+						k-pageable="'true'"
+						k-columns="columndata"
+						k-sortable="'true'"
+						k-ng-model="dataSelected"
+						ng-click="klik(dataSelected)">
+						<!-- <div k-detail-template>
 	                        <kendo-tabstrip>
 	                            <div>
 	                                <div id="kGridDetail" kendo-grid k-options="data2(dataItem)" 
@@ -48,32 +67,24 @@
 	                            </div>
 	                        </kendo-tabstrip>
 	                    </div> -->
-	                </div>
-	            </div>
-	        </div>
-			<div class="grid_12" style="margin-top: 15px;">
-			    <div class="grid_12">
-			    	<!-- <div id="example" ng-app="KendoDemos"> -->
-				      <!-- <div ng-controller="MyCtrl"> -->
-				      <div kendo-scheduler="scheduler" k-options="schedulerOptions"></div>
-				      <!-- </div> -->
-				      <style>
-				        .custom-event {
-				          text-shadow: 0 1px 1px #000;
-				        }
-				        .custom-all-day-event {
-				          text-align: center;
-				          text-transform: uppercase
-				        }
-				      </style>
-				    </div>
+					</div>
 				</div>
 			</div>
-			<div class="grid_12" style="margin-top:60px">
-				<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
-			</div>
+			<div class="grid_12" style="margin-top: 15px;">
+				<div class="grid_12">
+					<!-- <div id="example" ng-app="KendoDemos"> -->
+					<!-- <div ng-controller="MyCtrl"> -->
+					<div kendo-scheduler="scheduler" k-options="schedulerOptions"></div>
+					<!-- </div> -->
 
-				<!-- <div class="grid_12" >
+				</div>
+			</div>
+		</div>
+		<div class="grid_12" style="margin-top:60px">
+			<div ng-include='" ../app/module/Shared/TemplateLoading" '></div>
+		</div>
+
+		<!-- <div class="grid_12" >
 					<div class="grid_2" style="margin: 13px 0 30px 0;" >
 						<label c-label item="item" c-label-text="Nama Dokter"></label>
 					</div>
@@ -103,6 +114,5 @@
 		            </div>
 		        </div>
 					&nbsp;&nbsp;	# Mohon Konfirmasi Ulang Terlebih Dahulu ke (021)-5668284 ext 1110 (Customer Service) -->
-		</div>
 	</div>
 </div>

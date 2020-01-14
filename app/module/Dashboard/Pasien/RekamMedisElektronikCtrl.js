@@ -2,7 +2,7 @@ define(['initialize'], function (initialize) {
     'use strict';
     initialize.controller('RekamMedisElektronikCtrl', ['$scope', '$timeout', 'ModelItem', 'ModelItemAkuntansi', '$state', 'CacheHelper', 'DateHelper', 'ManagePhp',
         function ($scope, $timeout, ModelItem, modelItemAkuntansi, $state, cacheHelper, dateHelper, ManagePhp) {
-
+            $scope.showTriase = false;
             $scope.item = {};
             $scope.now = new Date();
             $scope.dataVOloaded = true
@@ -110,24 +110,32 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.gridAnamnesis = {
-                toolbar: [{
-                    name: "create", text: "Input Baru",
-                    template: '<button ng-click="inputBaru()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah Pengkajian Awal</button>'
-                }],
+                toolbar: [
+                    {
+                        name: "create", text: "Input Baru",
+                        template: '<button ng-click="inputBaru()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah Pengkajian Awal</button>'
+                    },
+                    {
+                        name: "create", text: "Input Baru",
+                        template: '<button ng-click="hasilTriase()" class="k-button k-button-icontext k-grid-upload" href="\\#">Hasil Triase</button>'
+                    }
+                ],
                 pageable: true,
                 scrollable: true,
                 columns: [
-                    {field: "tglinput", title: "<h3>Tanggal/Jam</h3>", width: 100}, 
-                    {field: "namalengkap", title: "<h3>Dokter</h3>",width: 150}, 
-                    {field: "namaruangan", title: "<h3>Ruangan</h3>", width: 120}, 
-                    {field: "anamnesisdokter", title: "<h3>Anamnesis</h3>", width: 190},
-                    {field: "pemeriksaanumum", title: "<h3>Pemeriksaan<br> Fisik Umum</h3>", widht: 190}, 
-                    {field: "analisis", title: "<h3>Analisis</h3>", widht: 190}, 
-                    {field: "rencana", title: "<h3>Rencana</h3>", widht: 190}, 
-                    {field: "edukasi", title: "<h3>Edukasi</h3>", widht: 190}, 
-                    {command: [{text: "Edit", click: editData, imageClass: "k-icon k-i-pencil"}, 
-                       {text: "Hapus", click: deleteData, imageClass: "k-icon k-i-cancel"}
-                    ], title: "", width: 160, attributes: { style: "text-align:center;valign=middle"}}
+                    { field: "tglinput", title: "<h3>Tanggal/Jam</h3>", width: 100 },
+                    { field: "namalengkap", title: "<h3>Dokter</h3>", width: 150 },
+                    { field: "namaruangan", title: "<h3>Ruangan</h3>", width: 120 },
+                    { field: "anamnesisdokter", title: "<h3>Anamnesis</h3>", width: 190 },
+                    { field: "pemeriksaanumum", title: "<h3>Pemeriksaan<br> Fisik Umum</h3>", widht: 190 },
+                    { field: "analisis", title: "<h3>Analisis</h3>", widht: 190 },
+                    { field: "rencana", title: "<h3>Rencana</h3>", widht: 190 },
+                    { field: "edukasi", title: "<h3>Edukasi</h3>", widht: 190 },
+                    {
+                        command: [{ text: "Edit", click: editData, imageClass: "k-icon k-i-pencil" },
+                        { text: "Hapus", click: deleteData, imageClass: "k-icon k-i-cancel" }
+                        ], title: "", width: 160, attributes: { style: "text-align:center;valign=middle" }
+                    }
                 ]
             };
 
@@ -268,7 +276,7 @@ define(['initialize'], function (initialize) {
                 ManagePhp.postData(jsonSave, 'rekam-medis/post-anamnesis/save').then(function (e) {
                     loadAnamnesis()
                     $scope.anamnesis = {}
-                    ManagePhp.postLogging('Pengkajian Awal', 'Norec anamnesis_t',e.data.norec, 'Anamnesis').then(function (res) {
+                    ManagePhp.postLogging('Pengkajian Awal', 'Norec anamnesis_t', e.data.norec, 'Anamnesis').then(function (res) {
                     })
                 });
             };
@@ -309,7 +317,7 @@ define(['initialize'], function (initialize) {
                     anamnesissuster: null,
                     ruanganfk: $scope.item.idRuangan,
                     pegawaifk: $scope.dataLogin.id,
-                    pemeriksaanumum: $scope.item.pemeriksaanUmum, 
+                    pemeriksaanumum: $scope.item.pemeriksaanUmum,
                     analisis: $scope.item.analisis,
                     rencana: $scope.item.rencana,
                     edukasi: $scope.item.edukasi,
@@ -317,7 +325,7 @@ define(['initialize'], function (initialize) {
                 ManagePhp.postData(jsonSave, 'rekam-medis/save-pengkajian-awal/save').then(function (e) {
                     loadAnamnesis()
                     $scope.anamnesis = {}
-                    ManagePhp.postLogging('Pengkajian Awal', 'Norec anamnesis_t',e.data.norec, 'Anamnesis').then(function (res) {
+                    ManagePhp.postLogging('Pengkajian Awal', 'Norec anamnesis_t', e.data.norec, 'Anamnesis').then(function (res) {
                     })
                 });
                 $scope.popUp.close();
@@ -330,11 +338,11 @@ define(['initialize'], function (initialize) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
 
-                if(!dataItem) {
+                if (!dataItem) {
                     toastr.warning('Data tidak ditemukan')
                     return
                 }
-                if($scope.dataLogin.id != dataItem.pegawaifk) {
+                if ($scope.dataLogin.id != dataItem.pegawaifk) {
                     toastr.warning('Tidak bisa edit data')
                     return
                 }
@@ -345,7 +353,7 @@ define(['initialize'], function (initialize) {
                 $scope.item.analisis = dataItem.analisis
                 $scope.item.rencana = dataItem.rencana
                 $scope.item.edukasi = dataItem.edukasi
-    
+
                 $scope.popUp.center().open();
 
             }
@@ -355,16 +363,16 @@ define(['initialize'], function (initialize) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
 
-                if(!dataItem) {
+                if (!dataItem) {
                     toastr.warning('Data tidak ditemukan')
                     return
                 }
-                if($scope.dataLogin.id != dataItem.pegawaifk) {
+                if ($scope.dataLogin.id != dataItem.pegawaifk) {
                     toastr.warning('Tidak bisa hapus data')
                     return
                 }
                 var itemDelete = {
-                    "norec" : dataItem.norec
+                    "norec": dataItem.norec
                 }
 
                 ManagePhp.postData(itemDelete, 'rekam-medis/save-pengkajian-awal/delete').then(function (e) {
@@ -384,7 +392,38 @@ define(['initialize'], function (initialize) {
                 delete $scope.item.edukasi
             }
 
-            $scope.inputBaru = function(e) {
+            $scope.hasilTriase = function () {
+                ManagePhp.getData('generic/get-hasil-triase?&noregistrasi=' + $scope.header.noregistrasi).then(res => {
+                    $scope.triase = res.data;
+                    $scope.jalanNafas = res.data.jalanNafas;
+                    $scope.kesadaran = res.data.kesadaran;
+                    console.log($scope.jalanNafas);
+                    $timeout(function () {
+                        $scope.showTriase = true;
+                        window.scrollBy({
+                            top: 580,
+                            behavior: 'smooth'
+                        });
+                        // console.log('aaaaaaaaaa')
+                    }, 100);
+                    $scope.showTriase = true;
+                })
+                // http://172.16.99.236:8000/service/transaksi/generic/get-hasil-triase?noRec=f3641240-e97a-11e9-bf0a-f12f07ae&noregistrasi=1811011060
+            }
+            
+            $scope.tutupTriase = function () {
+                $timeout(function () {
+                    $scope.showTriase = false;
+                    window.scrollBy({
+                        top: -580,
+                        behavior: 'smooth'
+                    });
+                    // console.log('aaaaaaaaaa')
+                }, 100);
+                $scope.showTriase = false;
+            }
+
+            $scope.inputBaru = function (e) {
                 //clear(); //dokter dpt menggunakan data yg ditampilkan, bisa dimodifikasi sesuai dengan kebutuhan
                 delete $scope.item.norec
                 $scope.item.pemeriksaanUmum = "Keadaan umum : Sadar, tidak sesak tidak sianosis dan tidak ada nyeri."
@@ -392,14 +431,14 @@ define(['initialize'], function (initialize) {
                     + "\n" + "Faring: tidak hiperemis. Jantung/Paru : dalam batas normal."
                     + "\n" + "Perut: lemas,  Hepar/lien tidak teraba.  Tidak ada nyeri tekan dan turgor cukup."
                     + "\n" + "Ekstremitas : akral hangat";
-                
+
                 $scope.popUp.center().open();
             }
 
-            $scope.close = function() {
+            $scope.close = function () {
                 $scope.popUp.close();
             }
-            
+
             // riawyat anamnesis
             var timeoutPromise;
             $scope.$watch('anamnesis.cariAnamnesis', function (newVal, oldVal) {
@@ -552,7 +591,7 @@ define(['initialize'], function (initialize) {
                 ManagePhp.postData(jsonSave, 'rekam-medis/post-riwayat/save').then(function (e) {
                     loadRiwayat()
                     $scope.riwayat = {}
-                    ManagePhp.postLogging('Pengkajian Awal', 'Norec riwayatpengobatan_t',e.data.norec, 'Riwayat Pengobatan').then(function (res) {
+                    ManagePhp.postLogging('Pengkajian Awal', 'Norec riwayatpengobatan_t', e.data.norec, 'Riwayat Pengobatan').then(function (res) {
                     })
                 });
             };
@@ -720,7 +759,7 @@ define(['initialize'], function (initialize) {
                 ManagePhp.postData(jsonSave, 'rekam-medis/post-pemeriksaanumum/save').then(function (e) {
                     loadPemeriksaan()
                     $scope.pemriksaan = {}
-                    ManagePhp.postLogging('Pengkajian Awal', 'Norec pemeriksaanumum_t',e.data.norec, 'Pemeriksaan Umum').then(function (res) {
+                    ManagePhp.postLogging('Pengkajian Awal', 'Norec pemeriksaanumum_t', e.data.norec, 'Pemeriksaan Umum').then(function (res) {
                     })
                 });
             };
@@ -872,7 +911,7 @@ define(['initialize'], function (initialize) {
                 ManagePhp.postData(jsonSave, 'rekam-medis/post-rencana/save').then(function (e) {
                     loadRencana()
                     $scope.rencana = {}
-                    ManagePhp.postLogging('Pengkajian Awal', 'Norec rencana_t',e.data.norec, 'Rencana').then(function (res) {
+                    ManagePhp.postLogging('Pengkajian Awal', 'Norec rencana_t', e.data.norec, 'Rencana').then(function (res) {
                     })
                 });
             };
@@ -1024,7 +1063,7 @@ define(['initialize'], function (initialize) {
                 ManagePhp.postData(jsonSave, 'rekam-medis/post-edukasi/save').then(function (e) {
                     loadEdukasi()
                     $scope.edukasi = {}
-                    ManagePhp.postLogging('Pengkajian Awal', 'Norec edukasi_t',e.data.norec, 'Edukasi').then(function (res) {
+                    ManagePhp.postLogging('Pengkajian Awal', 'Norec edukasi_t', e.data.norec, 'Edukasi').then(function (res) {
                     })
                 });
             };

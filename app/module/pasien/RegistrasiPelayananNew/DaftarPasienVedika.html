@@ -1,0 +1,134 @@
+<div>
+    <div class="panel panel-default container_12" ng-hide="klikDiagnosa">
+        <div class="panel-heading"><label class='title' c-label item="item">Daftar
+                Pasien</label></div>
+        <div class="panel-body">
+            <div class="grid_12">
+                <div class="grid_4" style="margin-top:5px">
+                    <div class="grid_12" style="margin-left:10px">
+                        <label c-label c-label-text="tanggalMasuk"></label>
+                    </div>
+                    <div class="grid_12">
+                        <div class="grid_6 padDatePicker">
+                            <input style="width: 100%"
+                                k-ng-model="item.periodeAwal"
+                                kendo-datetimepicker k-max="now"
+                                placeholer="yyyy-MM-dd HH:mm"
+                                k-format="'yyyy-MM-dd HH:mm'"
+                                parsedate="yyyy-MM-dd HH:mm" />
+                        </div>
+                        <div class="grid_6 padDatePicker">
+                            <input style="width: 100%"
+                                k-ng-model="item.periodeAkhir"
+                                kendo-datetimepicker placeholer="yyyy-MM-dd
+                                HH:mm" k-format="'yyyy-MM-dd HH:mm'" />
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_1" style="margin-top:5px">
+                    <label c-label real>No RM</label>
+                    <input c-text-box type="input" filter="'char'"
+                        class="k-textbox" ng-model="item.noCm"
+                        ng-keypress="($event.which == 13)?
+                        SearchEnter():item.noCm" />
+                </div>
+                <div class="grid_2" style="margin-top:5px">
+                    <label c-label real>No Registrasi</label>
+                    <input c-text-box type="input" filter="'char'"
+                        class="k-textbox" ng-model="item.noRegistrasi"
+                        ng-keypress="($event.which == 13)?
+                        SearchEnter():item.noRegistrasi" />
+                </div>
+                <div class="grid_2" style="margin-top:5px">
+                    <label c-label real>Nama Pasien</label>
+                    <input c-text-box type="input" filter="'char'"
+                        class="k-textbox" ng-model="item.namaPasien"
+                        ng-keypress="($event.which == 13)?
+                        SearchEnter():item.namaPasien" />
+                </div>
+                <div class="grid_2" style="margin-top:5px">
+                    <label c-label c-label-text="namaRuangan" real></label>
+                    <input style="width: 100%;" kendo-combo-box
+                        k-ng-model="item.ruangan"
+                        k-data-text-field="'namaruangan'"
+                        k-data-value-field="'id'" k-filter="'contains'"
+                        k-auto-bind="false" k-data-source="listRuangan" />
+                    <!--<input style="width: 100%;" kendo-combo-box k-ng-model="item.Ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ruangans"/>-->
+                </div>
+                <div class="grid_1" style="margin-top:5px">
+                    <label c-label c-label-text=""></label>
+                    <em style="margin-top:6px;" ng-click='findData()'
+                        id="iconButton" data-role="button" class="k-button
+                        k-button-icon" role="button" aria-disabled="false"
+                        tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_12 borderBox">
+                    <kendo-grid id="grid"
+                        data-source="GridPasien" options="mainGridOptions"
+                        k-pageable="'true'"
+                        k-sortable="'true'"
+                        k-groupable="'true'"
+                        k-resizable="'true'"
+                        k-selectable="'row'"
+                        k-ng-model="dataPasienSelected"
+                        ng-click="klikGrid(dataPasienSelected)"></kendo-grid>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid_12">
+        <div class="grid_3">
+            <c-button style="width: 100%; padding:0px;margin:0px;"
+                ng-click="rekamMedisElektronik()" position="'right'">
+                <span class="title">Pengkajian Medis</span>
+            </c-button>
+        </div>
+        
+    </div>
+   
+    <div class="grid_12" style="margin-top:60px">
+        <div ng-include='" ../app/module/Shared/TemplateLoading" '></div>
+    </div>
+</div>
+
+
+<style>
+    .view {
+        display: flex;
+    }
+    .k-window-content .k-content {
+        overflow: none
+    }
+    legend {
+        cursor:pointer;
+        padding: 10px;
+    }
+    .effect-shadow{
+    -webkit-box-shadow: 2px 2px 5px #b6b6b6;
+       -moz-box-shadow: 2px 2px 5px #b6b6b6;
+            box-shadow: 2px 2px 5px #b6b6b6;
+    }
+    .notif{
+             background-color: #ff3860;
+              height: 25px;
+              width: 25px;
+              border-radius: 50%;
+              display: inline-block;
+    }
+    .green{
+        background-color:#98FB98;
+        color: #000000;
+        /*font-weight: bold;*/
+    }
+    .red{
+        background-color: #ff3860;
+        color: #FFFFFF;
+        /*font-weight: bold;*/
+    }
+    .no-border {
+        border: none;
+    }
+</style>

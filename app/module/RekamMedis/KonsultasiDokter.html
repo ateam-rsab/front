@@ -41,8 +41,8 @@
         text-align: center;
     }
 </style>
-<div>
-    <c-panel item="item" header="'Konsultasi'" disabled>
+<div class="panel panel-default">
+    <div class="panel-heading" style="font-size: 18px;" c-translate>Konsultasi</div>
         <div class="panel panel-default container_12">
             <!-- <div class="panel-body">
                 <div class="grid_2">
@@ -62,8 +62,8 @@
                 </div>
             </div> -->
         </div>
-    </c-panel>
-    <div class="grid_12" style="margin: 5px 5px 5px 5px;">
+    </div>
+    <div class="grid_12" style="margin-top:10px">
         <div id="gridResume" kendo-grid k-data-source="sourceResume" options="resumeOpt"></div>
     </div>
     <div class="grid_12" style="margin-top:100px">
@@ -81,17 +81,21 @@
                     </div>
                     <div class="clear"></div>
                     <div class="grid_12">
-                        <div class="grid_4">
+                        <div class="grid_3">
                             <input type="radio" name="jenisKonsul" id="alihRawat" class="k-radio" ng-model="item.jenisKonsultasi" value="Alih Rawat" ng-disabled="isVerifikasi">
                             <label class="k-radio-label" for="alihRawat">Alih Rawat</label>
                         </div>
-                        <div class="grid_4">
+                        <div class="grid_3">
                             <input type="radio" name="jenisKonsul" id="rawatBersama" class="k-radio" ng-model="item.jenisKonsultasi" value="Rawat Bersama" ng-disabled="isVerifikasi">
                             <label class="k-radio-label" for="rawatBersama">Rawat Bersama</label>
                         </div>
-                        <div class="grid_4">
+                        <div class="grid_3">
                             <input type="radio" name="jenisKonsul" id="konsultasiSewaktu" class="k-radio" ng-model="item.jenisKonsultasi" value="Konsultasi Sewaktu"  checked="checked" ng-disabled="isVerifikasi">
                             <label class="k-radio-label" for="konsultasiSewaktu">Konsultasi Sewaktu</label>
+                        </div>
+                        <div class="grid_3">
+                            <input type="radio" name="jenisKonsul" id="serahTerimaPasien" class="k-radio" ng-model="item.jenisKonsultasi" value="Serah Terima Pasien" ng-disabled="isVerifikasi">
+                            <label class="k-radio-label" for="serahTerimaPasien">Serah Terima Pasien</label>
                         </div>
                         <!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.statusKonsul" k-data-text-field="'name'"
                             k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listOfStatusKonsult" /> -->
@@ -177,9 +181,31 @@
             </div>
         </fieldset>
 
-        <div class="k-edit-buttons  k-state-default pull-right" style="margin-top:10px">
-            <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="Save()" ng-disabled="isVerifikasi"><span class="k-icon k-update"></span>Simpan</button>
-            <button class="k-button  k-button-icontext" ng-click="batal()"><span class="k-icon k-cancel"></span>Batal</button>
+        <div class="k-edit-buttons  k-state-default" style="margin-top:10px">
+                <div class="grid_8"></div>
+                
+                <div class="grid_2">
+                        <md-button class="md-raised
+                        md-warn medium-button"
+                        ng-click="batal()">
+                        <span style="margin-right:5px;">Batal</span>
+                        <i class="fa fa-close"></i>
+                    </md-button>
+                    <!-- <md-button class="md-raised md-warn medium-button"
+                        ng-click="batal()">Batal</md-button> -->
+                </div>
+                <div class="grid_2">
+                    <md-button class="md-raised
+                        md-primary medium-button"
+                        ng-click="Save()">
+                        <span style="margin-right:5px;">Simpan</span>
+                        <i class="fa fa-plus"></i>
+                    </md-button>
+                    <!-- <md-button class="md-raised md-primary medium-button"
+                        ng-click="Save()">Simpan</md-button> -->
+                </div>
+            <!-- <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="Save()" ng-disabled="isVerifikasi"><span class="k-icon k-update"></span>Simpan</button>
+            <button class="k-button  k-button-icontext" ng-click="batal()"><span class="k-icon k-cancel"></span>Batal</button> -->
         </div>
 
     </div>

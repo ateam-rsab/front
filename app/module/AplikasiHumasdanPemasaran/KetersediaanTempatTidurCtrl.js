@@ -1,34 +1,34 @@
-define(['initialize'], function(initialize){
+define(['initialize'], function (initialize) {
 	'use strict';
 	initialize.controller('KetersediaanTempatTidurCtrl', ['$rootScope', '$scope', 'ModelItem', 'DateHelper', 'ManageSarpras', 'ModelItemAkuntansi',
-		function($rootScope, $scope, ModelItem, DateHelper, ManageSarpras, modelItemAkuntansi){
+		function ($rootScope, $scope, ModelItem, DateHelper, ManageSarpras, modelItemAkuntansi) {
 			$scope.title = "";
 			$scope.item = {};
 			$scope.dataVOloaded = true;
-			$scope.isRouteLoading=false;
+			$scope.isRouteLoading = false;
 			loadDataCombo();
 
 			$scope.item = {};
 
-			function loadDataCombo(){
-				
-				// modelItemAkuntansi.getDataDummyPHP("humas/get-daftar-data-produk", true, true, 20).then(function(data) {
-    //                 $scope.listProduk=data;
-    //             });
+			function loadDataCombo() {
 
-                modelItemAkuntansi.getDataTableTransaksi("humas/get-daftar-combo?", true).then(function(dat){
-                	$scope.ListKelas=dat.kelaskamar;
-                	$scope.ListRuangan=dat.ruanganrawatinap;
-                })
-                LoadDataViewBed();
-                LoadData();
+				// modelItemAkuntansi.getDataDummyPHP("humas/get-daftar-data-produk", true, true, 20).then(function(data) {
+				//                 $scope.listProduk=data;
+				//             });
+
+				modelItemAkuntansi.getDataTableTransaksi("humas/get-daftar-combo?", true).then(function (dat) {
+					$scope.ListKelas = dat.kelaskamar;
+					$scope.ListRuangan = dat.ruanganrawatinap;
+				})
+				LoadDataViewBed();
+				LoadData();
 			}
 
-			function LoadData(){
-				$scope.isRouteLoading=true;
+			function LoadData() {
+				$scope.isRouteLoading = true;
 				var nmR = "";
 				if ($scope.item.ruangan != undefined) {
-					nmR ='namaruangan=' + $scope.item.ruangan.namaruangan;
+					nmR = 'namaruangan=' + $scope.item.ruangan.namaruangan;
 				}
 				// var nmK = "";
 				// if ($scope.item.namaKamar != undefined) {
@@ -36,14 +36,13 @@ define(['initialize'], function(initialize){
 				// }
 				var nmK = "";
 				if ($scope.item.kelas != undefined) {
-					nmK ='&idkelas=' + $scope.item.kelas.id;
+					nmK = '&idkelas=' + $scope.item.kelas.id;
 				}
 				// var Stt = "";
 				// if ($scope.item.status != undefined) {
 				// 	Stt ='&idstatusbed=' + $scope.item.status.id;
 				// }
-				modelItemAkuntansi.getDataTableMaster("tarif/view-bed?" + nmR + nmK).then(function(data){
-					// debugger;
+				modelItemAkuntansi.getDataTableMaster("tarif/view-bed?" + nmR + nmK).then(function (data) {
 					var no = 0;
 					for (var i = 0; i < data.length; i++) {
 						no = no + 1;
@@ -56,31 +55,33 @@ define(['initialize'], function(initialize){
 					var arrayS = {};
 					var arrayK = {};
 					var arrayM = {};
-					var stt=true;
+					var stt = true;
 					for (var i = 0; i < data.length; i++) {
-						arrayM={idtempattidur:data[i].idtempattidur,
-								idruangan:data[i].idruangan,
-								namaruangan:data[i].namaruangan,
-								idkamar:data[i].idkamar,
-								namakamar:data[i].namakamar,
-								reportdisplay:data[i].reportdisplay,
-								nomorbed:data[i].nomorbed,
-								idstatusbed:data[i].idstatusbed,
-								statusbed:data[i].statusbed};
+						arrayM = {
+							idtempattidur: data[i].idtempattidur,
+							idruangan: data[i].idruangan,
+							namaruangan: data[i].namaruangan,
+							idkamar: data[i].idkamar,
+							namakamar: data[i].namakamar,
+							reportdisplay: data[i].reportdisplay,
+							nomorbed: data[i].nomorbed,
+							idstatusbed: data[i].idstatusbed,
+							statusbed: data[i].statusbed
+						};
 						arrTT.push(arrayM)
 					}
 					for (var i = 0; i < data.length; i++) {
 						//kamar
-						stt=true;
+						stt = true;
 						for (var j = 0; j < arrKamar.length; j++) {
 							if (data[i].idkamar == arrKamar[j].idkamar) {
-								arrKamar[j].qtyBed = arrKamar[j].qtyBed +1;
+								arrKamar[j].qtyBed = arrKamar[j].qtyBed + 1;
 								if (data[i].idstatusbed == 1) {
-									arrKamar[j].isi = arrKamar[j].isi +1;
-								}else{
-									arrKamar[j].kosong = arrKamar[j].kosong +1;
+									arrKamar[j].isi = arrKamar[j].isi + 1;
+								} else {
+									arrKamar[j].kosong = arrKamar[j].kosong + 1;
 								}
-								stt=false;
+								stt = false;
 							}
 						}
 						if (stt == true) {
@@ -90,45 +91,49 @@ define(['initialize'], function(initialize){
 									arrTTT.push(arrTT[j]);
 								}
 							}
-							
+
 							if (data[i].idstatusbed == 1) {
-								arrayK={idruangan:data[i].idruangan,
-										idkamar:data[i].idkamar,
-										namakamar:data[i].namakamar,
-										idkelas:data[i].idkelas,
-										namakelas:data[i].namakelas,
-										qtyBed:1,
-										isi:1,
-										kosong:0,
-										tempattidur:arrTTT};
-							}else{
-								arrayK={idruangan:data[i].idruangan,
-										idkamar:data[i].idkamar,
-										namakamar:data[i].namakamar,
-										idkelas:data[i].idkelas,
-										namakelas:data[i].namakelas,
-										qtyBed:1,
-										isi:0,
-										kosong:1,
-										tempattidur:arrTTT};
+								arrayK = {
+									idruangan: data[i].idruangan,
+									idkamar: data[i].idkamar,
+									namakamar: data[i].namakamar,
+									idkelas: data[i].idkelas,
+									namakelas: data[i].namakelas,
+									qtyBed: 1,
+									isi: 1,
+									kosong: 0,
+									tempattidur: arrTTT
+								};
+							} else {
+								arrayK = {
+									idruangan: data[i].idruangan,
+									idkamar: data[i].idkamar,
+									namakamar: data[i].namakamar,
+									idkelas: data[i].idkelas,
+									namakelas: data[i].namakelas,
+									qtyBed: 1,
+									isi: 0,
+									kosong: 1,
+									tempattidur: arrTTT
+								};
 							}
 							arrKamar.push(arrayK);
 						}
-						
-						
+
+
 					}
 					for (var i = 0; i < data.length; i++) {
 						//ruang
-						stt=true;
+						stt = true;
 						for (var j = 0; j < arrRuang.length; j++) {
 							if (data[i].idruangan == arrRuang[j].idruangan) {
-								arrRuang[j].qtyBed = arrRuang[j].qtyBed +1;
+								arrRuang[j].qtyBed = arrRuang[j].qtyBed + 1;
 								if (data[i].idstatusbed == 1) {
-									arrRuang[j].isi = arrRuang[j].isi +1;
-								}else{
-									arrRuang[j].kosong = arrRuang[j].kosong +1;
+									arrRuang[j].isi = arrRuang[j].isi + 1;
+								} else {
+									arrRuang[j].kosong = arrRuang[j].kosong + 1;
 								}
-								stt=false;
+								stt = false;
 							}
 						}
 						if (stt == true) {
@@ -139,35 +144,39 @@ define(['initialize'], function(initialize){
 								}
 							}
 							if (data[i].idstatusbed == 1) {
-								arrayS={idruangan:data[i].idruangan,
-										namaruangan:data[i].namaruangan,
-										qtyBed:1,
-										isi:1,
-										kosong:0,
-										kamar:arrTTT};
-							}else{
-								arrayS={idruangan:data[i].idruangan,
-										namaruangan:data[i].namaruangan,
-										qtyBed:1,
-										isi:0,
-										kosong:1,
-										kamar:arrTTT};
+								arrayS = {
+									idruangan: data[i].idruangan,
+									namaruangan: data[i].namaruangan,
+									qtyBed: 1,
+									isi: 1,
+									kosong: 0,
+									kamar: arrTTT
+								};
+							} else {
+								arrayS = {
+									idruangan: data[i].idruangan,
+									namaruangan: data[i].namaruangan,
+									qtyBed: 1,
+									isi: 0,
+									kosong: 1,
+									kamar: arrTTT
+								};
 							}
-							
+
 							arrRuang.push(arrayS);
 						}
-						
+
 					}
-					$scope.isRouteLoading=false;
-					$scope.dataSource2=arrRuang;
+					$scope.isRouteLoading = false;
+					$scope.dataSource2 = arrRuang;
 				});
 			}
 
-			function LoadDataViewBed(){
-				$scope.isRouteLoading=true;
+			function LoadDataViewBed() {
+				$scope.isRouteLoading = true;
 				var nmR = "";
 				if ($scope.item.ruangan != undefined) {
-					nmR ='namaruangan=' + $scope.item.ruangan.namaruangan;
+					nmR = 'namaruangan=' + $scope.item.ruangan.namaruangan;
 				}
 				// var nmK = "";
 				// if ($scope.item.namaKamar != undefined) {
@@ -175,14 +184,13 @@ define(['initialize'], function(initialize){
 				// }
 				var nmK = "";
 				if ($scope.item.kelas != undefined) {
-					nmK ='&idkelas=' + $scope.item.kelas.id;
+					nmK = '&idkelas=' + $scope.item.kelas.id;
 				}
 				// var Stt = "";
 				// if ($scope.item.status != undefined) {
 				// 	Stt ='&idstatusbed=' + $scope.item.status.id;
 				// }
-				modelItemAkuntansi.getDataTableTransaksi("humas/get-ketersediaan-tempat-tidur-view?" + nmR + nmK).then(function(data){
-					debugger;
+				modelItemAkuntansi.getDataTableTransaksi("humas/get-ketersediaan-tempat-tidur-view?" + nmR + nmK).then(function (data) {					
 					var dataView = data[0];
 					$scope.infoKamar = [
 						{
@@ -210,130 +218,130 @@ define(['initialize'], function(initialize){
 							"path": "stylesheets/greybed.png"
 						}
 					];
-						// 	// $scope.item.kosong = data.data.data.Kosong;
-						// 	// debugger;
+					// 	// $scope.item.kosong = data.data.data.Kosong;
+					// 	
 				});
 			}
 
-			$scope.SearchData = function(){
+			$scope.SearchData = function () {
 				LoadData();
 				LoadDataViewBed();
 			}
 
 			$scope.columnPencatatanPiutang = [
-			{
-				"field": "no",
-				"title": "No",
-				"width" : "50px",
-			},
-			{
-				"field": "namaruangan",
-				"title": "Nama Ruangan",
-				"width" : "150px",
-			},
-			{
-				"field": "namakamar",
-				"title": "Nama Kamar",
-				"width" : "150px",
-			},
-			{
-				"field": "reportdisplay",
-				"title": "Nama Bed",
-				"width" : "150px",
-			},
-			{
-				"field": "nomorbed",
-				"title": "No Bed",
-				"width" : "80px",
-			},
-			{
-				"field": "statusbed",
-				"title": "Status",
-				"width" : "80px",
-			}
+				{
+					"field": "no",
+					"title": "No",
+					"width": "50px",
+				},
+				{
+					"field": "namaruangan",
+					"title": "Nama Ruangan",
+					"width": "150px",
+				},
+				{
+					"field": "namakamar",
+					"title": "Nama Kamar",
+					"width": "150px",
+				},
+				{
+					"field": "reportdisplay",
+					"title": "Nama Bed",
+					"width": "150px",
+				},
+				{
+					"field": "nomorbed",
+					"title": "No Bed",
+					"width": "80px",
+				},
+				{
+					"field": "statusbed",
+					"title": "Status",
+					"width": "80px",
+				}
 			];
 			$scope.columnPencatatanPiutang2 = [
-			{
-				"field": "namaruangan",
-				"title": "Nama Ruangan",
-				"width" : "150px",
-			},
-			{
-				"field": "qtyBed",
-				"title": "Qty Bed",
-				"width" : "80px",
-			},
-			{
-				"field": "isi",
-				"title": "Jumlah Bed Isi",
-				"width" : "80px",
-			},
-			{
-				"field": "kosong",
-				"title": "Jumlah Bed Kosong",
-				"width" : "80px",
-			}
+				{
+					"field": "namaruangan",
+					"title": "Nama Ruangan",
+					"width": "150px",
+				},
+				{
+					"field": "qtyBed",
+					"title": "Qty Bed",
+					"width": "80px",
+				},
+				{
+					"field": "isi",
+					"title": "Jumlah Bed Isi",
+					"width": "80px",
+				},
+				{
+					"field": "kosong",
+					"title": "Jumlah Bed Kosong",
+					"width": "80px",
+				}
 			];
 
-			$scope.data2 = function(dataItem) {
+			$scope.data2 = function (dataItem) {
 				return {
-						dataSource: new kendo.data.DataSource({
-							data: dataItem.kamar
-						}),
-              			columns: [
+					dataSource: new kendo.data.DataSource({
+						data: dataItem.kamar
+					}),
+					columns: [
 						{
 							"field": "namakamar",
 							"title": "Nama Kamar",
-							"width" : "150px",
+							"width": "150px",
 						},
 						{
 							"field": "namakelas",
 							"title": "Kelas",
-							"width" : "100px",
+							"width": "100px",
 						},
 						{
 							"field": "qtyBed",
 							"title": "Qty Bed",
-							"width" : "80px",
+							"width": "80px",
 						},
 						{
 							"field": "isi",
 							"title": "Jumlah Bed Isi",
-							"width" : "80px",
+							"width": "80px",
 						},
 						{
 							"field": "kosong",
 							"title": "Jumlah Bed Kosong",
-							"width" : "80px",
+							"width": "80px",
 						}
 					]
 				}
-			};	
-			$scope.data3 = function(dataItem) {
+			};
+			$scope.data3 = function (dataItem) {
 				return {
-						dataSource: new kendo.data.DataSource({
-							data: dataItem.tempattidur
-						}),
-              			columns: [
-              			{
+					dataSource: new kendo.data.DataSource({
+						data: dataItem.tempattidur
+					}),
+					columns: [
+						{
 							"field": "reportdisplay",
 							"title": "Nama Bed",
-							"width" : "150px"//,
+							"width": "150px"//,
 							//"template": "<input  class='k-textbox' ng-model='dataModelGrid[#: idtempattidur #].reportdisplay'/>"
 						},
 						{
 							"field": "nomorbed",
 							"title": "No Bed",
-							"width" : "80px"
+							"width": "80px"
 						},
 						{
 							"field": "statusbed",
 							"title": "Status",
-							"width" : "80px"
+							"width": "80px"
 						}
 					]
 				}
-			};	
+			};
 
 			// $scope.$watch('item.ruangan', function(date) {
 			// 	var ruangan = $scope.item.ruangan.id;
@@ -341,7 +349,7 @@ define(['initialize'], function(initialize){
 			// 	ManageSarpras.getOrderList("ketersediaan-tempat-tidur/get-kelas-by-ruangan/"+ruangan+"/").then(function(data){
 			// 		$scope.sourceKelas = data.data.data;
 			// 	});   
-   //          });
+			//          });
 
 			$scope.columnKamar = [
 				{
@@ -367,7 +375,7 @@ define(['initialize'], function(initialize){
 			];
 
 			// ManageSarpras.getOrderList("ketersediaan-tempat-tidur/get-ruangan-rawat-inap/").then(function(data){
-			// 	// debugger;
+			// 	
 			// 	$scope.sourceRuangan = data.data.data;
 			// });
 
@@ -399,32 +407,32 @@ define(['initialize'], function(initialize){
 			// 		}
 			// 	];
 			// 	// $scope.item.kosong = data.data.data.Kosong;
-			// 	// debugger;
+			// 	
 			// });	
 
-		$scope.batal = function(){
-			 $scope.item= {};
-		}			
+			$scope.batal = function () {
+				$scope.item = {};
+			}
 
-		$scope.now = new Date();
-		$scope.tanggal = DateHelper.getTanggalFormatted($scope.now);
-		var HH = $scope.now.getHours();
-		var mm = $scope.now.getMinutes();
-		var ss = $scope.now.getSeconds();
-		if(HH<10) HH = "0" + HH;
-		if(mm<10) mm = "0" + mm;
-		if(ss<10) ss = "0" + ss;
-		$scope.jam = HH + ":" + mm + ":" + ss;
+			$scope.now = new Date();
+			$scope.tanggal = DateHelper.getTanggalFormatted($scope.now);
+			var HH = $scope.now.getHours();
+			var mm = $scope.now.getMinutes();
+			var ss = $scope.now.getSeconds();
+			if (HH < 10) HH = "0" + HH;
+			if (mm < 10) mm = "0" + mm;
+			if (ss < 10) ss = "0" + ss;
+			$scope.jam = HH + ":" + mm + ":" + ss;
 
-		$scope.Search = function(){
-			var ruangan = $scope.item.ruangan.id;
-			var kelas = $scope.item.kelas.id;
-			// console.log(JSON.stringify(kamar));
+			$scope.Search = function () {
+				var ruangan = $scope.item.ruangan.id;
+				var kelas = $scope.item.kelas.id;
+				// console.log(JSON.stringify(kamar));
 
-			ManageSarpras.getOrderList("ketersediaan-tempat-tidur/find-kamar-by-ruangan-and-kelas/"+ruangan+"/"+kelas).then(function(data){
-				// debugger;
-				$scope.sourceInfoKamar = data.data.data;
-			});
-		}
-	}])
+				ManageSarpras.getOrderList("ketersediaan-tempat-tidur/find-kamar-by-ruangan-and-kelas/" + ruangan + "/" + kelas).then(function (data) {
+					
+					$scope.sourceInfoKamar = data.data.data;
+				});
+			}
+		}])
 })

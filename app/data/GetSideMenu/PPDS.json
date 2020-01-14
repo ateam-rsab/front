@@ -1,0 +1,65 @@
+[
+    {
+        "name": "Dashboard Pasien",
+        "children": [
+            {
+                "name": "Daftar Pasien Berdasarkan Diagnosa",
+                "link": "#/DaftarPasienByDiagnosa"
+            },
+            {
+                "name": "Daftar Pasien Rawat Jalan",
+                "link": "#/DaftarAntrianDokterRajal"
+            },
+            {
+                "name": "Daftar Pasien Rawat Inap",
+                "link": "#/DaftarAntrianDokterRanap"
+            },
+            {
+                "name": "Daftar Registrasi Pasien",
+                "link": "#/DaftarRegistrasiPasien"
+            },
+            {
+                "name": "Order Menu Gizi",
+                "link": "#/OrderMenuGiziRev"
+            },
+            {
+                "name": "Daftar Kunjungan Pasien",
+                "link": "#/DaftarPasienStatus"
+            },
+            {
+                "name": "Pemeriksaan Keluar Laboratorium",
+                "link": "#/DaftarPemeriksaanLuarLab"
+            },
+            {
+                "name": "Kasus Infeksi VAP",
+                "link": "#/IkiDirutCapaian"
+            }
+        ]
+    },
+    {
+        "name": "Information",
+        "children": [
+            {
+                "name": "Informasi Tarif Layanan",
+                "link": "#/TarifLayanan"
+            },
+            {
+                "name": "Informasi Jadwal Dokter",
+                "link": "#/InformasiJadwalDokter"
+            },
+            {
+                "name": "Informasi Jadwal Pelayanan Dokter",
+                "link": "#/InformasiJadwalPelayananDokter"
+            }
+        ]
+    },
+    {
+        "name": "Setting",
+        "children": [
+            {
+                "name": "Ubah Password",
+                "link": "#/UbahPassword"
+            }
+        ]
+    }
+]

@@ -2041,9 +2041,11 @@ define(['Configuration', 'jQuery', 'kendo.angular',
                             });
                         } else {
                             if (scope.userName === '')
-                                focus('userName');
+                                // focus('userName');
+                                toastr.info('Username masih kosong');
                             else
                                 focus('password');
+                                toastr.error('Username dan password salah!');
                             scope.notification.show("User Id atau kata kunci belum terisi", "info");
                         }
                     }

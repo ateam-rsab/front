@@ -2,7 +2,7 @@ define(['initialize'], function(initialize) {
 	'use strict';
 	initialize.controller('PenerimaanPembayaranKasirCtrl', ['$mdDialog', '$state', '$q', '$rootScope', '$scope', 'ModelItemAkuntansi', 'ManageKasir',
 		function($mdDialog, $state, $q, $rootScope, $scope, modelItemAkuntansi, manageKasir) {
-			debugger;
+			// debugger;
 			$scope.dataParams = JSON.parse($state.params.dataPasien);	
 
 			$scope.showCC = false;
@@ -173,7 +173,7 @@ define(['initialize'], function(initialize) {
 
 
 			var urlGetDataDetail = "";
-			debugger;
+			// debugger;
 			switch ($scope.dataParams.pageFrom) {
 			    case "PembayaranTagihanLayananKasir":
 			    	$scope.dataPrevPage = {
@@ -184,7 +184,7 @@ define(['initialize'], function(initialize) {
 			        urlGetDataDetail = "kasir/pembayaran?noRecStrukPelayanan="+ $scope.dataParams.noRegistrasi +"&tipePembayaran=tagihanPasien";
 			        break;
 			     case "PembayaranTagihanNonLayananKasir":
-			     	debugger;
+			     	// debugger;
 			    	$scope.dataPrevPage = {
 			    		noRecStrukPelayanan : $scope.dataParams.noRegistrasi,
 			    		tipePembayaran : "tagihanNonLayanan",
@@ -193,7 +193,7 @@ define(['initialize'], function(initialize) {
 			        urlGetDataDetail = "kasir/pembayaran?noRecStrukPelayanan="+ $scope.dataParams.noRegistrasi +"&tipePembayaran=tagihanPasien";
 			        break;
 			     case "InputTagihanNonLayanan":
-			     	debugger;
+			     	// debugger;
 			    	$scope.dataPrevPage = {
 			    		noRecStrukPelayanan : $scope.dataParams.noRegistrasi,
 			    		tipePembayaran : "tagihanNonLayanan",
@@ -202,7 +202,7 @@ define(['initialize'], function(initialize) {
 			        urlGetDataDetail = "kasir/pembayaran?noRecStrukPelayanan="+ $scope.dataParams.noRegistrasi +"&tipePembayaran=tagihanPasien";
 			        break;
 			     case "DaftarNonLayananKasir":
-			     	debugger;
+			     	// debugger;
 			    	$scope.dataPrevPage = {
 			    		noRecStrukPelayanan : $scope.dataParams.noRegistrasi,
 			    		tipePembayaran : "tagihanNonLayanan",
@@ -211,7 +211,7 @@ define(['initialize'], function(initialize) {
 			        urlGetDataDetail = "kasir/pembayaran?noRecStrukPelayanan="+ $scope.dataParams.noRegistrasi +"&tipePembayaran=tagihanPasien";
 			        break;
 			    case "DaftarPenjualanApotekKasir/terimaUmum":
-			     	debugger;
+			     	// debugger;
 			    	$scope.dataPrevPage = {
 			    		noRecStrukPelayanan : $scope.dataParams.noRegistrasi,
 			    		tipePembayaran : "tagihanNonLayanan",
@@ -221,7 +221,7 @@ define(['initialize'], function(initialize) {
 			        break;
 			     
 			    case "DaftarPenjualanApotekKasir/obatBebas":
-			     	debugger;
+			     	// debugger;
 			    	$scope.dataPrevPage = {
 			    		noRecStrukPelayanan : $scope.dataParams.noRegistrasi,
 			    		tipePembayaran : "tagihanNonLayanan",
@@ -377,7 +377,7 @@ define(['initialize'], function(initialize) {
 			            	arrObjPembayaran.push(objPembayaran);
                 		}
                 		dataObjPost.pembayaran = arrObjPembayaran;
-                		debugger;
+                		// debugger;
 		            	modelItemAkuntansi.cekEnableDisableButton(buttonDisabled);
 	                    buttonDisabled = true;
 
@@ -391,7 +391,7 @@ define(['initialize'], function(initialize) {
 							
 							})
 								// end jurnal pembayaran 
-							debugger;
+							// debugger;
 		                	$scope.showBtnSimpan = false;
 		                	modelItemAkuntansi.cekEnableDisableButton(buttonDisabled);
 	                        buttonDisabled = false;
@@ -504,7 +504,7 @@ define(['initialize'], function(initialize) {
 			}
 
             $scope.showPageCetak = function(noSBM,noReg){
-				debugger;
+				// debugger;
 
                 switch ($scope.dataParams.pageFrom) {
 				    case "PembayaranTagihanLayananKasir":

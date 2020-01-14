@@ -70,7 +70,7 @@ define(['initialize'], function(initialize) {
 				});
 
 				modelItemAkuntansi.getDataTableTransaksi("tatarekening/get-data-combo-piutang").then(function(data) {		    		
-		    		debugger;
+		    		
 		    		$scope.listRekanan = data.rekanan;		    	
 		    	});
 
@@ -386,7 +386,7 @@ define(['initialize'], function(initialize) {
 			  ];
 				
 			  prosesSearch(kriteriaFilter);*/
-			  //debugger;
+			  //
 			  $scope.isRouteLoading=true;
 			  var tglAkhir = moment($scope.item.akhirPeriode).format('YYYY-MM-DD');
 			  var tglAwal = moment($scope.item.awalPeriode).format('YYYY-MM-DD');
@@ -576,7 +576,7 @@ define(['initialize'], function(initialize) {
         }
 
         $scope.CetakSurat = function() {
-            debugger;
+            
             if ($scope.dataPasienSelected.noRegistrasi == undefined) {
             	alert("data belum di pilih !!!")
             }else if ($scope.dataPasienSelected.jenisPasisen == "BPJS"){
@@ -599,7 +599,7 @@ define(['initialize'], function(initialize) {
             
 	    }
 	    $scope.CetakKwitansi = function() {
-            debugger;
+            
             if ($scope.dataPasienSelected.noRegistrasi == undefined) {
             	alert("data belum di pilih !!!")
             }else if ($scope.dataPasienSelected.jenisPasisen == "BPJS"){

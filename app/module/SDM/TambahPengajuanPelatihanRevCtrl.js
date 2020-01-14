@@ -338,6 +338,7 @@ define(['initialize'], function(initialize) {
                     namaplanning: $scope.item.namaPaketPelatihan,
                     deskripsiplanning: $scope.item.Ruangan.namaruangan, //$scope.item.penyelenggara,
                     objectruanganfk:  $scope.item.Ruangan.id,
+                    objectpegawaifk: $scope.item.penanggungJawab.id,
                     jenispelatihan: $scope.item.jenisPelatihan.id,
                     tglpelatihanawal: moment($scope.item.tanggalAwal).format('YYYY-MM-DD HH:mm:ss'),
                     tglpelatihanakhir: moment($scope.item.tanggalAkhir).format('YYYY-MM-DD HH:mm:ss'),

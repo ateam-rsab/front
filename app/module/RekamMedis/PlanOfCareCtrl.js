@@ -168,7 +168,8 @@ define(['initialize'], function (initialize) {
                         //
                         //}
                         $scope.sourcePOC = new kendo.data.DataSource({
-                            data: array
+                            data: array,
+                            pageSize: 5
                         });
                     })
             }
