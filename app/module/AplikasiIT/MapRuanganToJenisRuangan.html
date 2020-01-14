@@ -28,28 +28,34 @@
         box-shadow: 2px 2px 5px #b6b6b6;
     }
 </style>
-
 <div ng-show="dataVOloaded">
     <div class="grid_12">
 
-        <div class="grid_12 headerBox">
+        <!-- <div class="grid_12 headerBox">
             <h1 style="color: white;"><b>Map Jenis To Ruangan</b></h1>
-        </div>
-        <br>
+        </div> -->
+        <md-toolbar md-scroll-shrink class="shadow">
+            <div class="md-toolbar-tools">Map Jenis To Ruangan</div>
+        </md-toolbar>
         <div class="md-padding">
             <div class="grid_12" style="margin-top:10px">
                 <div class="grid_12 headerBox">
                     <p>List Map</p>
                 </div>
-                <div class="grid_12 borderBox containerBorderBox" style="overflow-y: scroll; height:500px;">
+                <div class="grid_12 borderBox containerBorderBox"
+                    style="overflow-y: scroll; height:500px;">
                     <div class="grid_12">
                         <div class="grid_3">
                             <div class="grid_4" style="margin-top:10px">
                                 <label c-label item="item">Jenis</label>
                             </div>
                             <div class="grid_8">
-                                <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenis" k-data-text-field="'jenisruangan'"
-                                    k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenis"
+                                <input style="width: 100%;" kendo-combo-box
+                                    k-ng-model="item.jenis"
+                                    k-data-text-field="'jenisruangan'"
+                                    k-data-value-field="'id'"
+                                    k-filter="'contains'" k-auto-bind="false"
+                                    k-data-source="listJenis"
                                     k-on-change="loadData(item.jenis)" />
                             </div>
                         </div>
@@ -64,19 +70,30 @@
                                 role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
                         </div> -->
                     </div>
-                    <div class="grid_12 " style="margin-top: 12px">
+                    <div class="grid_12" style="margin-top: 12px">
                         <div class="grid_12 headerBox">
-                            <p> <input type="checkbox" class="k-checkbox" id="cekAll" ng-model="item.cekAll" ng-click="cekAll(item.cekAll)">
-                                <label class="k-checkbox-label" for="cekAll"><b>Check All Ruangan</b></label></p>
+                            <p> <input type="checkbox" class="k-checkbox"
+                                    id="cekAll" ng-model="item.cekAll"
+                                    ng-click="cekAll(item.cekAll)">
+                                <label class="k-checkbox-label" for="cekAll"><b>Check
+                                        All Ruangan</b></label></p>
                         </div>
-                        <div class="grid_12 borderBox containerBorderBox" style="overflow-y: scroll; height:340px;">
-                            <div class="grid_2" ng-repeat="ruang in listRuangan track by $index  " >
+                        <div class="grid_12 borderBox containerBorderBox"
+                            style="overflow-y: scroll; height:340px;">
+                            <div class="grid_2" ng-repeat="ruang in listRuangan
+                                track by $index">
                                 <!-- <input type="checkbox" class="k-checkbox" id="{{ruang.id}}" ng-model="item.arrMap"
                                     ng-checked="{{ruang.value}}">
                                 <label class="k-checkbox-label" for="{{ruang.id}}">{{ruang.namaruangan}}</label> -->
-                                <input type="checkbox" ng-checked="ruang.isChecked" class="k-checkbox" name="{{ruang.namaruangan}}"
-                                    id="{{ruang.namaruangan}}" ng-model="bool" value="{{ruang.id}}" ng-click="addRuangan(bool,ruang)">
-                                <label class="k-checkbox-label" for="{{ruang.namaruangan}}">{{ruang.namaruangan}}</label>
+                                <input type="checkbox"
+                                    ng-checked="ruang.isChecked"
+                                    class="k-checkbox"
+                                    name="{{ruang.namaruangan}}"
+                                    id="{{ruang.namaruangan}}" ng-model="bool"
+                                    value="{{ruang.id}}"
+                                    ng-click="addRuangan(bool,ruang)">
+                                <label class="k-checkbox-label"
+                                    for="{{ruang.namaruangan}}">{{ruang.namaruangan}}</label>
                                 <!-- <span ng-mode="" id="diceklis" >&nbsp;&nbsp;&nbsp;</span> -->
                             </div>
                         </div>
@@ -86,18 +103,39 @@
                                     <label c-label item="item">Ruangan</label>
                                 </div>
                                 <div class="grid_8">
-                                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.ruangan" />
+                                    <input c-text-box type="input" filter=""
+                                        class="k-textbox"
+                                        ng-model="item.ruangan" />
                                 </div>
                             </div>
                             <div class="grid_1" style="margin-top: 10px">
-                                <button class="c-button" ng-click="cariRuangan()">Cari</button>
+                                <md-button class="md-raised md-primary
+                                    medium-button"
+                                    ng-click="cariRuangan()">
+                                    <span style="margin-right: 5px;">Cari</span>
+                                    <i class="fa fa-search"></i>
+                                </md-button>
+                                <!-- <button class="c-button" ng-click="cariRuangan()">Cari</button> -->
                             </div>
                             <div class="grid_6"></div>
                             <div class="grid_1" style="margin-top: 10px">
-                                <button class="c-button" ng-click="simpan()">Simpan</button>
+                                <md-button class="md-raised md-primary
+                                    medium-button"
+                                    ng-click="simpan()">
+                                    <span style="margin-right: 5px;">Simpan</span>
+                                    <i class="fa fa-save"></i>
+                                </md-button>
+                                <!-- <button class="c-button" ng-click="simpan()">Simpan</button> -->
                             </div>
                             <div class="grid_1" style="margin-top: 10px">
-                                <button class="c-button error" ng-click="Batal()">Batal</button>
+                                <md-button class="md-raised md-warn
+                                    medium-button"
+                                    ng-click="Batal()">
+                                    <span style="margin-right: 5px;">Batal</span>
+                                    <i class="fa fa-remove"></i>
+                                </md-button>
+                                <!-- <button class="c-button error"
+                                    ng-click="Batal()">Batal</button> -->
                             </div>
 
                         </div>
@@ -108,7 +146,7 @@
     </div>
 </div>
 <div class="grid_12" style="margin-top:60px">
-    <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+    <div ng-include='" ../app/module/Shared/TemplateLoading" '></div>
 </div>
 <style>
 .warna {

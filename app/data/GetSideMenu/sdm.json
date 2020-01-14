@@ -548,6 +548,10 @@
                 ]
             },
             {
+                "name": "Laporan Pendapatan Layanan",
+                "link": "#/LaporanPendapatanLayanan"
+            },
+            {
                 "name": "Logbook",
                 "children": [
                     {

@@ -25,7 +25,7 @@ define(['initialize'], function (initialize) {
 
       LoadCache();
       $scope.BtalPulang = function () {
-        // debugger;
+        
         if ($scope.dataPasienSelected.deptid != '16') {
           window.messageContainer.error("Fitur Ini Khusus Pasien Rawat Inap!!!");
           return;
@@ -80,7 +80,7 @@ define(['initialize'], function (initialize) {
       }
 
       $scope.getIsiComboRuangan = function () {
-        //debugger;
+        
         $scope.listRuangan = $scope.item.instalasi.ruangan
       }
 
@@ -94,7 +94,7 @@ define(['initialize'], function (initialize) {
         //  // $scope.listRuangan=data.data.Ruangan;
         //  $scope.listDepartemen=data.data.departemen;
         // });
-        ////debugger;
+        //
         // manageSdm.getOrderList("departemen/get-all-departemen-for-tagihan").then(function(data){
         //   $scope.listDepartemen=data.data.data.departemen;
         // });
@@ -119,7 +119,7 @@ define(['initialize'], function (initialize) {
       }
       $scope.click = function (dataPasienSelected) {
         var data = dataPasienSelected;
-        ////debugger;
+        //
       };
 
       $scope.columnPasienPulang = [
@@ -187,7 +187,7 @@ define(['initialize'], function (initialize) {
           $mdDialog.show(alertDialog).then(function () { });
         }
         else {
-          ////debugger;
+          //
           if ($scope.dataPasienSelected.noRegistrasi != undefined) {
             var stt = 'false'
             if (confirm('View ? ')) {
@@ -397,7 +397,7 @@ define(['initialize'], function (initialize) {
         $scope.isRouteLoading = true;
         var tglAwal = moment($scope.item.tanggalRegistrasiAwal).format('YYYY-MM-DD HH:mm');
         var tglAkhir = moment($scope.item.tanggalRegistrasiAkhir).format('YYYY-MM-DD HH:mm');;
-        //debugger;
+        
 
         var tempNamaOrReg = "";
         if ($scope.item.namaOrReg != undefined) {

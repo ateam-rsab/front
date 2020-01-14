@@ -733,10 +733,14 @@ define(['initialize'], function(initialize) {
                             idPegawai = $scope.item.pegawai.id;
                             if ($scope.isBebasValidasi && $scope.item.unitKerja == undefined) {
                                 unitKerja = "";
+                            } else if ($scope.isBebasValidasi && $scope.item.unitKerja == "") {
+                                unitKerja = "";
                             } else {
                                 unitKerja = $scope.item.unitKerja.id;
                             }
                             if ($scope.isBebasValidasi && $scope.item.subUnitKerja == undefined) {
+                                subUnitKerja = "";
+                            } else if ($scope.isBebasValidasi && $scope.item.subUnitKerja == "") {
                                 subUnitKerja = "";
                             } else {
                                 subUnitKerja = $scope.item.subUnitKerja.id;
@@ -760,6 +764,8 @@ define(['initialize'], function(initialize) {
                             };
                             idPegawai = "";
                             if ($scope.isBebasValidasi && $scope.item.unitKerja == undefined) {
+                                unitKerja = "";
+                            } else if ($scope.isBebasValidasi && $scope.item.unitKerja == "") {
                                 unitKerja = "";
                             } else {
                                 unitKerja = $scope.item.unitKerja.id;

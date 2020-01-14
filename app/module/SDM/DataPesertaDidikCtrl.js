@@ -42,7 +42,7 @@ define(['initialize'], function (initialize) {
                 // ManageSdmNew.getListData("pegawai/get-pegawai-sip-expired"),
                 ManageSdmNew.getListData("sdm/get-all-kedudukan"),
                 // ManageSdm.getOrderList("service/list-generic/?view=KategoryPegawai&select=id,kategoryPegawai&criteria=statusEnabled&values=true"),
-                // ManageSdmNew.getListData("sdm/get-mapping-pegawai"),
+                ManageSdmNew.getListData("sdm/get-mapping-pegawai"),
                 // ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true"),
             ]).then(function (result) {
                 // $scope.ListJabatanInternal = result[0].data;
@@ -69,7 +69,7 @@ define(['initialize'], function (initialize) {
                 // };
                 // $scope.ListKedudukanPegawai = result[5].data.data;
                 if (result[1].statResponse) {
-                    var toRemove = [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,22,24,25,27,28],
+                    var toRemove = [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,22,25,27,28],
                         listKedudukan = result[1].data.data;
 
                     $scope.ListKedudukanPegawai = listKedudukan.filter(function(el) {
@@ -105,25 +105,25 @@ define(['initialize'], function (initialize) {
                 // });
                  
                 // restructure json get mapping atasan
-                // if (result[7].statResponse) {
-                //     $scope.arrayMapAtasan = [];
-                //     result[7].data.data.forEach(function (item) {
-                //         $scope.arrayMapAtasan.push({
-                //             pegawai: {
-                //                 id: item.idPegawai,
-                //                 namaLengkap: item.namaPegawai
-                //             },
-                //             atasanLangsung: {
-                //                 id: item.idAtasanLangsung,
-                //                 namaLengkap: item.namaAtasanLangsung
-                //             },
-                //             atasanPejabatPenilai: {
-                //                 id: item.idAtasanPejabatPenilai,
-                //                 namaLengkap: item.namaAtasanPejabatPenilai
-                //             }
-                //         });
-                //     });
-                // }
+                if (result[2].statResponse) {
+                    $scope.arrayMapAtasan = [];
+                    result[2].data.data.forEach(function (item) {
+                        $scope.arrayMapAtasan.push({
+                            pegawai: {
+                                id: item.idPegawai,
+                                namaLengkap: item.namaPegawai
+                            },
+                            atasanLangsung: {
+                                id: item.idAtasanLangsung,
+                                namaLengkap: item.namaAtasanLangsung
+                            },
+                            atasanPejabatPenilai: {
+                                id: item.idAtasanPejabatPenilai,
+                                namaLengkap: item.namaAtasanPejabatPenilai
+                            }
+                        });
+                    });
+                }
                 // if (result[8].statResponse) {
                 //     $scope.dropDownPegawai = result[8].data;
                 // }

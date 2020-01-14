@@ -206,6 +206,19 @@
         "name": "SDM",
         "children": [
             {
+                "name": "Data Peserta Didik",
+                "children": [
+                    {
+                        "name": "Rekam Data Peserta Didik",
+                        "link": "#/RekamDataPesertaDidik/"
+                    },
+                    {
+                        "name": "Data Peserta Didik",
+                        "link": "#/DataPesertaDidik"
+                    }
+                ]
+            },
+            {
                 "name": "Target Bobot Uraian Tugas",
                 "link": "#/TargetBobot"
             },

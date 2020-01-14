@@ -35,7 +35,7 @@ define(['initialize'], function (initialize) {
                     },
                     {
                         field: "nocm",
-                        title: "<h3>No Rekam Medis</h3>",
+                        title: "<h3>No. Rekam<br> Medis</h3>",
                         width: 100
                     },
                     {
@@ -65,12 +65,12 @@ define(['initialize'], function (initialize) {
                     },
                     {
                         field: "notelepon",
-                        title: "<h3>Nomor Telepon</h3>",
+                        title: "<h3>Nomor<br> Telepon</h3>",
                         width: 100
                     },
                     {
                         command: [
-                            {  text: "Konfirmasi", click: confirm }
+                            { text: "Konfirmasi", click: confirm }
                         ], width: 130, align: "center",
                         attributes: {
                             align: "center"
@@ -193,20 +193,50 @@ define(['initialize'], function (initialize) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                 console.log(dataItem);
-                let cache = {
-                    0: dataItem,
-                    1: 'Online',
-                    2: '',
-                    3: '',
-                    4: '',
-                    5: '',
-                    6: ''
-                }
-                cacheHelper.set('CacheRegisOnline', cache);
+                if (dataItem.nocm) {
+                    let data = {
+                        "noreservasi": dataItem.noreservasi,
+                    }
 
-                $state.go('RegistrasiPasienNewRev', {
-                    noRec: dataItem.norec
-                });
+                    manageAkuntansi.postupdatestatusconfirm(data).then(function (e) {
+                        LoadData();
+                        var param = dataItem.norec + "*" + dataItem.nocm;
+                        // $state.go('registrasiPelayanan', {
+                        //      noCm: param
+                        //  });
+                        var cacheSet = undefined;
+                        cacheHelper.set('CacheRegistrasiPasien', cacheSet);
+                        var cahce = {
+                            0: dataItem,
+                            1: 'Online',
+                            2: '',
+                            3: '',
+                            4: '',
+                            5: '',
+                            6: ''
+                        };
+                        cacheHelper.set('CacheRegisOnline', cahce);
+                        $state.go('RegistrasiPelayananRev', {
+                            noCm: dataItem.nocm
+                        });
+                    })
+                } else {
+                    let cache = {
+                        0: dataItem,
+                        1: 'Online',
+                        2: '',
+                        3: '',
+                        4: '',
+                        5: '',
+                        6: ''
+                    }
+                    cacheHelper.set('CacheRegisOnline', cache);
+
+                    $state.go('RegistrasiPasienNewRev', {
+                        noRec: dataItem.norec
+                    });
+                }
+
             }
 
             $scope.reconfirm = function () {
@@ -234,8 +264,7 @@ define(['initialize'], function (initialize) {
                     //     });
                     // }
 
-                }
-                else {
+                } else {
                     var data = {
                         "noreservasi": $scope.item.noreservasi,
                     }
@@ -263,7 +292,6 @@ define(['initialize'], function (initialize) {
                         });
                     })
                 }
-                // });
             }
 
             var HttpClient = function () {

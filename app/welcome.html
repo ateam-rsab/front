@@ -56,6 +56,12 @@
             <label>{{messageNotif}}</label>
         </div>
     </div>
+    
+    <div kendo-window="notification" id="winNotif" k-title="'Pemberitahuan'" k-width="550" k-visible="false" k-on-open="win2visible = true" k-on-close="goToLink('/app/Logout')">
+        <div class="panel panel-default container_12" style="padding: 0px 10px;">                
+            <label>{{pesanPemberitahuan}}</label>
+        </div>
+    </div>
     <div class="smart-container-home">
         <!-- <img src="../app/images/logo/rsabhk-logo.png" style="margin: 0 auto;"> -->
         <img src="../app/stylesheets/welcome2.jpg" style="margin: 0 auto;width: 40%;">
