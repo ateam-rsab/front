@@ -549,11 +549,15 @@ define(['initialize'], function (initialize) {
         if ($scope.item.kelompokPasien != undefined) {
           kelompokPasienId = $scope.item.kelompokPasien.id
         }
+        var tipeDokter = ''
+        if($scope.item.TipeDokter != undefined) {
+          tipeDokter = $scope.item.TipeDokter.id 
+        }
         var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
         var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
         var client = new HttpClient();
         client.get('http://127.0.0.1:1237/printvb/kasir?cetak-laporan-ffs-gawatdarurat=1' +//$scope.item.namaKasir.id+
-          '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '&idDokter=' + dokter + '&tgllibut=' + person + '&kdRuangan='+ruanganId+'&kpid='+kelompokPasienId, function (response) {
+          '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '&idDokter=' + dokter + '&tgllibut=' + person + '&kdRuangan='+ruanganId+'&kpid='+kelompokPasienId+'&tipeDokter='+tipeDokter, function (response) {
 
           });
       }

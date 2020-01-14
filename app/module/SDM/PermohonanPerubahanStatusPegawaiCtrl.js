@@ -549,6 +549,7 @@ define(['initialize'], function (initialize) {
                     $scope.item.tahunCutiN1 = y - 1
                     $scope.item.tahunCutiN2 = y - 2
 
+                    $scope.sisaCutiN1 = $scope.item.sisaCutiN1;
                     $scope.sisaCutiTotal = $scope.item.sisaCutiN2 + $scope.item.sisaCutiN1 + $scope.item.sisaCuti + $scope.item.sisaCutiB;
                     if ($scope.item.sisaCutiN2 <= 0 && $scope.item.sisaCutiN1 <= 0 && $scope.item.sisaCuti <= 0 && $scope.item.sisaCutiB <= 0) {
                         $scope.cutiHabis = true;
@@ -939,12 +940,19 @@ define(['initialize'], function (initialize) {
 
                 if ($scope.item.statusPegawai.id == 1) {
                     var tahunFuture = [];
+                    var tahunPermohonan = [];
+
+                    var yearNow = parseInt(moment(new Date()).format('YYYY'))
                     for (var i = 0; i < $scope.tanggalPermohonan.length; i++) {
-                        if ($scope.tanggalPermohonan[i].tgl instanceof Date)
-                            var tgl = $scope.tanggalPermohonan[i].tgl.getFullYear()
-                        else
-                            var tgl = parseInt($scope.tanggalPermohonan[i].tgl.substr(0, 4))
-                        var yearNow = parseInt(moment(new Date()).format('YYYY'))
+                        if ($scope.tanggalPermohonan[i].tgl instanceof Date) {
+                            var tgl = $scope.tanggalPermohonan[i].tgl.getFullYear();
+                            if (tgl == yearNow - 1)
+                                tahunPermohonan.push(tgl);
+                        } else {
+                            var tgl = parseInt($scope.tanggalPermohonan[i].tgl.substr(0, 4));
+                            if (tgl == yearNow - 1)
+                                tahunPermohonan.push(tgl);
+                        }
                         if (tgl > yearNow) {
                             tahunFuture.push(tgl);
                             // if ($scope.item.isTangguhkanN == false && $scope.item.sisaCuti > 6 && $scope.sisaCutiTotal == $scope.item.sisaCuti) {
@@ -960,6 +968,11 @@ define(['initialize'], function (initialize) {
                     //cek jumlah tanggal tidak lebih banyak dari total sisa cuti
                     if ($scope.tanggalPermohonan.length > ($scope.sisaCutiTotal - $scope.jumlahCutiTahunanDiproses)) {
                         toastr.warning('Jumlah tanggal permohonan melebihi sisa cuti total dan pengajuan cuti tahunan yang belum diputuskan persetujuannya!')
+                        return
+                    }
+                    //validasi pengajuan cuti tahun n dengan tgl permohonan n-1 dan tidak ada sisa cuti n-1
+                    if ($scope.sisaCutiN1 < tahunPermohonan.length) {
+                        toastr.warning('Hutang cuti tidak diperkenankan!')
                         return
                     }
                 } else if ($scope.item.statusPegawai.id == 27) {
@@ -1068,10 +1081,10 @@ define(['initialize'], function (initialize) {
                                 toastr.info('Tanggal permohonan sudah diajukan!');
                                 return;
                             }
-                            if (e.data.messages.ERROR_MESSAGE) {
-                                toastr.info('Fungsi simpan sedang dalam perbaikan!');
-                                return;
-                            }
+                            // if (e.data.messages.ERROR_MESSAGE) {
+                            //     toastr.info('Fungsi simpan sedang dalam perbaikan!');
+                            //     return;
+                            // }
                             $scope.loadGrid();
                             load();
                         });
