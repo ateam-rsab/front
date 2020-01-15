@@ -618,7 +618,7 @@ define(['initialize'], function(initialize) {'use strict';
 							sheet.name = "Orders";
 
 							var myHeaders = [{
-								value:"Logbook " + $scope.item.pegawai.namaLengkap + $scope.item.pegawai.namaLengkap  + " ( Periode " + dateHelper.getFormatMonthPicker($scope.item.periode) +" )",
+								value:"Logbook " + $scope.item.pegawai.namaLengkap  + " (Periode " + DateHelper.getPeriodFormat($scope.item.periode) +")",
 								fontSize: 20,
 								textAlign: "center",
 								background:"#ffffff",
@@ -1094,7 +1094,7 @@ $scope.generateGridColumn =  function(){
 							sheet.name = "Orders";
 
 							var myHeaders = [{
-								value:"Logbook " + $scope.item.pegawai.namaLengkap  + " ( Periode " + dateHelper.getFormatMonthPicker($scope.item.periodeFee) +" )",
+								value:"Logbook " + $scope.item.pegawai.namaLengkap  + " (Periode " + DateHelper.getPeriodFormat($scope.item.periodeFee) +")",
 								fontSize: 20,
 								textAlign: "center",
 								background:"#ffffff",

@@ -457,7 +457,7 @@ define(['Configuration'], function (config) {
                     var monthIndex = date.getMonth();
                     var year = date.getFullYear();
 
-                    var tanggalFormatted = monthNames[monthIndex] + '-' + year;
+                    var tanggalFormatted = monthNames[monthIndex] + ' ' + year;
 
                     return tanggalFormatted;
 
