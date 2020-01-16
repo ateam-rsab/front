@@ -87,16 +87,16 @@ define(['initialize'], function (initialize) {
                                 },
                                 excelExport: function (e) {
                                     var sheet = e.workbook.sheets[0];
-                                    sheet.frozenRows = 2;
-                                    sheet.mergedCells = ["A1:AK1"];
+                                    sheet.frozenRows = 3;
+                                    sheet.mergedCells = ["A1:AN1"];
                                     sheet.name = "Orders";
                                     var myHeaders = [{
                                         value: "Logbook " + $scope.item.pegawai.namaLengkap + "(Periode " + dateHelper.getPeriodFormat($scope.item.periode) + ") ",
-                                        fontSize: 20,
-                                        textAlign: "center",
+                                        fontSize: 14,
+                                        textAlign: "left",
                                         background: "#ffffff",// color:"#ffffff"
                                     }];
-                                    sheet.rows.splice(0, 0, { cells: myHeaders, type: "header", height: 70 });
+                                    sheet.rows.splice(0, 0, { cells: myHeaders, type: "header", height: 30 });
                                 },
                                 editable: false,
                                 scrollable: true,
