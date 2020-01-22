@@ -339,13 +339,13 @@ define(['initialize'], function(initialize) {
                     return;
                 }
                 
-                var dt = new Date().getFullYear();
-                if (dt!=dataItem.tahun){
-                    if (dataItem.tahun!="2018") {
-                        toastr.warning("Periode tahun pengajuan tidak sesuai dengan tahun saat ini");    
-                        return;
-                    }                    
-                }
+                // var dt = new Date().getFullYear();
+                // if (dt!=dataItem.tahun){
+                //     if (dataItem.tahun!="2018") {
+                //         toastr.warning("Periode tahun pengajuan tidak sesuai dengan tahun saat ini");    
+                //         return;
+                //     }                    
+                // }
                 if (dataItem.komponenIndexId==21){
 
                     toastr.warning("Cuti Bersama tidak dapat ditangguhkan");    
