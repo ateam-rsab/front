@@ -195,6 +195,10 @@ define(['initialize'], function(initialize) {
 					// delete $scope.item;
 					// $scope.item = {};
 					// init();
+				}, (error) => {
+					$scope.isRouteLoading = false;
+					init();
+					toastr.info("Jabatan " + data.namaJabatan + " sudah diinput!", "Informasi!");
 				});
 			};
 			function categoryDropDownEditor(container, options) {
