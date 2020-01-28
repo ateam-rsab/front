@@ -103,10 +103,6 @@
                 "link": "#/PendidikanSdm"
             },
             {
-                "name": "Master Jabatan",
-                "link": "#/JabatanSdm"
-            },
-            {
                 "name": "Master Status Perkawinan",
                 "link": "#/StatusPerkawinanSdm"
             },
