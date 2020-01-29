@@ -1,27 +1,33 @@
 <div>
 	<!-- <div ng-show="dataVOloaded"> -->
-		<c-panel item="item" header="'Master Jabatan'"disabled>
-			<div class="panel panel-default container_12">
-				<div class="panel-body">
-					<div class="grid_2">
-						<label c-label c-label-text="Jenis Jabatan" real></label>
-						<input kendo-combo-box style="width:100%" k-ng-model="item.jenisJabatan" k-data-text-field="'jenisJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisJabatan" />
-					</div>
-					<div class="grid_4">
-						<label c-label item="item" c-label-text="Nama Jabatan"></label>
-						<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaJabatan" />
-					</div>
-					<div class="grid_2">
-						<label c-label c-label-text="Eselon" real></label>
-						<input kendo-combo-box style="width:100%" k-ng-model="item.eselon" k-data-text-field="'eselon'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listEselon" />
-					</div>
-					<div class="grid_1">
-						<label c-label c-label-text=""></label>
-						<em style="margin-top:6px;" ng-click='resetFilter()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
-					</div>
+	<c-panel item="item" header="'Master Jabatan'" disabled>
+		<div class="panel panel-default container_12">
+			<div class="panel-body">
+				<div class="grid_2">
+					<label c-label c-label-text="Jenis Jabatan" real></label>
+					<input kendo-combo-box style="width:100%" k-ng-model="item.jenisJabatan"
+						k-data-text-field="'jenisJabatan'" k-data-value-field="'id'" k-filter="'contains'"
+						k-auto-bind="false" k-data-source="listJenisJabatan" />
+				</div>
+				<div class="grid_4">
+					<label c-label item="item" c-label-text="Nama Jabatan"></label>
+					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaJabatan" />
+				</div>
+				<div class="grid_2">
+					<label c-label c-label-text="Eselon" real></label>
+					<input kendo-combo-box style="width:100%" k-ng-model="item.eselon" k-data-text-field="'eselon'"
+						k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
+						k-data-source="listEselon" />
+				</div>
+				<div class="grid_1">
+					<label c-label c-label-text=""></label>
+					<em style="margin-top:6px;" ng-click='resetFilter()' id="iconButton" data-role="button"
+						class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span
+							class="k-sprite k-icon k-i-cancel">Refresh</span></em>
 				</div>
 			</div>
-			<!-- <div class="grid_6">
+		</div>
+		<!-- <div class="grid_6">
 				<div class="panel panel-default container_12">
 					<div class="grid_12">
 						<div class="grid_4" style="margin: 10px 0 0 0;">
@@ -72,11 +78,11 @@
 					</div>
 				</div>
 			</div> -->
-		</c-panel>
-		
-		<div class="grid_12"  style="margin: 5px 5px 5px 5px;">
-			<div id="gridJabatan" kendo-grid k-data-source="daftarJabatan" options="daftarJabatanOpt" ></div>
-			<!-- 
+	</c-panel>
+
+	<div class="grid_12" style="margin: 5px 5px 5px 5px;">
+		<div id="gridJabatan" kendo-grid k-data-source="daftarJabatan" options="daftarJabatanOpt"></div>
+		<!-- 
 			<div class="grid_12">
 				<kendo-grid  id="grid"  ng-click="clickItem(item)" k-data-source="daftarBahanLinen" k-pageable="true" k-selectable="'row'" k-columns="daftarPegawaiOpt"  style="font-size: small;">
 				</kendo-grid>
@@ -107,6 +113,6 @@
 				</div>
 			</div>
 			-->
-		</div>
+	</div>
 	<!-- </div> -->
 </div>

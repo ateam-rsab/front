@@ -14,8 +14,8 @@ define(['initialize'], function (initialize) {
 					{ field: "id", title: "Kode", width: 120 },
 					{ field: "jenisJabatanId", title: "Jenis Jabatan ", editor: categoryDropDownEditor, "template": "# if (jenisJabatanId === 1) {# #= 'Fungsional' # #} else if (jenisJabatanId === 3){# #= 'Internal' # #} else if (jenisJabatanId === 5){# #= 'Struktural' # #} else {# #= '-' # #}#" },
 					{ field: "namaJabatan", title: "Nama Jabatan" },
-					{ field: "eselonId", title: "Eselon ", editor: categoryDropDownEditorEselon, "template": "# if (eselonId === 3) {# #= 'II.a' # #} else if (eselonId === 4){# #= 'II.b' # #} else if (eselonId === 5){# #= 'III.a' # #} else if (eselonId === 7){# #= 'IV.a' # #} else {# #= '-' # #}#" },
-					{ field: "levelJabatan", title: "Level Jabatan" },
+					{ field: "eselonId", title: "Eselon ", editor: categoryDropDownEditorEselon, "template": "# if (eselonId === 1) {# #= 'I.a' # #} else if (eselonId === 2){# #= 'I.b' # #} else if (eselonId === 3){# #= 'II.a' # #} else if (eselonId === 4){# #= 'II.b' # #} else if (eselonId === 5){# #= 'III.a' # #} else if (eselonId === 6){# #= 'III.b' # #} else if (eselonId === 7){# #= 'IV.a' # #} else if (eselonId === 8){# #= 'IV.b' # #} else if (eselonId === 9){# #= 'V.a' # #} else if (eselonId === 10){# #= 'V.b' # #} else {# #= '-' # #}#" },
+					// { field: "levelJabatan", title: "Level Jabatan" },
 					{ field: "usiaPensiun", title: "Usia Pensiun", width: 120, attributes: { style: "text-align:right; padding-right: 15px;" } },
 					{ command: [{ name: "destroy", text: "Hapus" }, { name: "edit", text: "Edit" }], title: "&nbsp;", width: 160 }
 				],
@@ -46,9 +46,9 @@ define(['initialize'], function (initialize) {
 			function init() {
 				$scope.item = {}; // set defined object
 				$q.all([
-					ManageSdm.getOrderList("service/list-generic/?view=Jabatan&select=id,namaJabatan,kdJabatan,usiaPensiun,jenisJabatanId,levelJabatan,eselonId&criteria=statusEnabled&values=true&order=namaJabatan:asc", true),
-					ManageSdm.getOrderList("service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled&values=true&order=jenisJabatan:asc", true),
-					ManageSdm.getOrderList("service/list-generic/?view=Eselon&select=id,eselon&criteria=statusEnabled&values=true&order=eselon:asc", true),
+					ManageSdmNew.getListData("service/list-generic/?view=Jabatan&select=id,namaJabatan,kdJabatan,usiaPensiun,jenisJabatanId,eselonId&criteria=statusEnabled&values=true&order=namaJabatan:asc", true),
+					ManageSdmNew.getListData("service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled&values=true&order=jenisJabatan:asc", true),
+					ManageSdmNew.getListData("service/list-generic/?view=Eselon&select=id,eselon&criteria=statusEnabled&values=true&order=eselon:asc", true),
 				]).then(function (res) {
 					if (res[0].statResponse) {
 						$scope.daftarJabatan = new kendo.data.DataSource({
@@ -159,20 +159,20 @@ define(['initialize'], function (initialize) {
 					},
 					namaJabatan: data.namaJabatan,
 					eselon: {
-						id: data.eselonId
+						id: data.eselonId ? data.eselonId : 0
 					},
 					reportDisplay: data.namaJabatan,
 					namaExternal: data.namaJabatan,
 					usiaPensiun: parseInt(data.usiaPensiun),
-					kdJabatan: data.kdJabatan,
-					kodeExternal: data.kdJabatan,
-					levelJabatan: data.levelJabatan
+					kdJabatan: data.id,
+					kodeExternal: data.namaJabatan
+					// levelJabatan: data.levelJabatan
 				}
 				if (data.action && data.action === "remove") item.statusEnabled = false;
 				// console.log(JSON.stringify(item));
 				// $scope.item.jenisJabatan={"id":3};	
 				// $scope.item.usiaPensiun = parseInt($scope.item.usiaPensiun);
-				ManageSdm.saveMasterJabatan(item).then(function (e) {
+				ManageSdmNew.saveData(item, "jabatan/save-jabatan-internal/").then(function (e) {
 					// delete $scope.item;
 					// $scope.item = {};
 					// init();
@@ -188,36 +188,50 @@ define(['initialize'], function (initialize) {
 					},
 					namaJabatan: data.namaJabatan,
 					eselon: {
-						id: data.eselonId
+						id: data.eselonId ? data.eselonId : 0
 					},
 					reportDisplay: data.namaJabatan,
 					namaExternal: data.namaJabatan,
 					usiaPensiun: parseInt(data.usiaPensiun),
-					kdJabatan: data.kdJabatan,
-					kodeExternal: data.kdJabatan,
-					levelJabatan: data.levelJabatan
+					kdJabatan: data.id,
+					kodeExternal: data.namaJabatan
+					// levelJabatan: data.levelJabatan
 				}
 
-				//validasi nama jabatan
-				ManageSdmNew.getListData("jabatan/validate-nama-jabatan/?namaJabatan=" + data.namaJabatan + "&idJenisJabatan=" + data.jenisJabatanId, true).then(function (dat) {
-					if (dat.data.data.msg) {
-						toastr.warning(dat.data.data.msg);
+				if (data.id === "") {
+					//validasi nama jabatan
+					ManageSdmNew.getListData("jabatan/validate-nama-jabatan/?namaJabatan=" + data.namaJabatan + "&idJenisJabatan=" + data.jenisJabatanId, true).then(function (dat) {
+						if (dat.data.data.msg) {
+							toastr.warning(dat.data.data.msg);
+							init();
+						} else {
+							if (data.action && data.action === "remove") item.statusEnabled = false;
+							// console.log(JSON.stringify(item));
+							// $scope.item.jenisJabatan={"id":3};	
+							// $scope.item.usiaPensiun = parseInt($scope.item.usiaPensiun);
+							ManageSdmNew.saveData(item, "jabatan/save-jabatan-internal/").then(function (e) {
+								// delete $scope.item;
+								// $scope.item = {};
+								init();
+							}, (error) => {
+								init();
+							});
+						}
+					});
+				} else {
+					if (data.action && data.action === "remove") item.statusEnabled = false;
+					// console.log(JSON.stringify(item));
+					// $scope.item.jenisJabatan={"id":3};	
+					// $scope.item.usiaPensiun = parseInt($scope.item.usiaPensiun);
+					ManageSdmNew.saveData(item, "jabatan/save-jabatan-internal/").then(function (e) {
+						// delete $scope.item;
+						// $scope.item = {};
 						init();
-						return;
-					} else {
-						if (data.action && data.action === "remove") item.statusEnabled = false;
-						// console.log(JSON.stringify(item));
-						// $scope.item.jenisJabatan={"id":3};	
-						// $scope.item.usiaPensiun = parseInt($scope.item.usiaPensiun);
-						ManageSdm.saveMasterJabatan(item).then(function (e) {
-							// delete $scope.item;
-							// $scope.item = {};
-							// init();
-						}, (error) => {
+					}, (error) => {
+						init();
+					});
 
-						});
-					}
-				});
+				}
 			};
 			function categoryDropDownEditor(container, options) {
 				$('<input required name="' + options.field + '"/>')
