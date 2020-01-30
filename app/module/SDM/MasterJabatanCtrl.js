@@ -164,7 +164,7 @@ define(['initialize'], function (initialize) {
 					reportDisplay: data.namaJabatan,
 					namaExternal: data.namaJabatan,
 					usiaPensiun: parseInt(data.usiaPensiun),
-					kdJabatan: data.id,
+					kdJabatan: data.namaJabatan,
 					kodeExternal: data.namaJabatan
 					// levelJabatan: data.levelJabatan
 				}
@@ -193,7 +193,7 @@ define(['initialize'], function (initialize) {
 					reportDisplay: data.namaJabatan,
 					namaExternal: data.namaJabatan,
 					usiaPensiun: parseInt(data.usiaPensiun),
-					kdJabatan: data.id,
+					kdJabatan: data.namaJabatan,
 					kodeExternal: data.namaJabatan
 					// levelJabatan: data.levelJabatan
 				}
