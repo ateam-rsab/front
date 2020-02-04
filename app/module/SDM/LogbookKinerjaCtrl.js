@@ -313,7 +313,7 @@ define(['initialize'], function (initialize) {
 
             $scope.generateGridColumn = function () {
                 var year = $scope.item.periode.getYear();
-                var month = $scope.item.periode.getMonth() + 1;
+                var month = $scope.item.periode.getMonth();
                 var dateInMonth = new Date(year, month + 1, 0);
                 var listDay = [];
                 for (var i = 0; i < dateInMonth.getDate(); i++) {
