@@ -23,6 +23,16 @@ define(['initialize'], function (initialize) {
                     pageable: true,
                     columns: [
                         {
+                            field: "unitKerjaPegawai",
+                            title: "<h3 class='small-font'>Unit Kerja</h3>", width: "150px",
+                            template: "#if(unitKerjaPegawai) { # #= unitKerjaPegawai.name # #} else { #-# } #",
+                        },
+                        {
+                            field: "subUnitKerjaPegawai",
+                            title: "<h3 class='small-font'>Sub<br>Unit Kerja</h3>", width: "150px",
+                            template: "#if(subUnitKerjaPegawai) { # #= subUnitKerjaPegawai.name # #} else { #-# } #",
+                        },
+                        {
                             field: "pegawai",
                             title: "<h3 class='small-font'>Pegawai</h3>", width: "155px",
                             template: "#if(pegawai) { # #= pegawai.namaLengkap # #} else { #-# } #",
@@ -38,14 +48,9 @@ define(['initialize'], function (initialize) {
                             template: "#if(jabatan) { # #= jabatan.namaJabatan # #} else { #-# } #",
                         },
                         {
-                            field: "unitKerjaPegawai",
-                            title: "<h3 class='small-font'>Unit Kerja</h3>", width: "150px",
-                            template: "#if(unitKerjaPegawai) { # #= unitKerjaPegawai.name # #} else { #-# } #",
-                        },
-                        {
-                            field: "subUnitKerjaPegawai",
-                            title: "<h3 class='small-font'>Sub<br>Unit Kerja</h3>", width: "150px",
-                            template: "#if(subUnitKerjaPegawai) { # #= subUnitKerjaPegawai.name # #} else { #-# } #",
+                            field: "pegawai",
+                            title: "<h3 class='small-font'>Pegawai</h3>", width: "155px",
+                            template: "#if(pegawai) { # #= pegawai.namaLengkap # #} else { #-# } #",
                         },
                         {
                             field: "atasanLangsung",
@@ -142,8 +147,9 @@ define(['initialize'], function (initialize) {
                             pageSize: 10,
                             sort: [
                                 { field: "unitKerjaPegawai.name", dir: "asc" },
-								{ field: "pegawai.namaLengkap", dir: "asc" }
-							]
+                                { field: "subUnitKerjaPegawai.name", dir: "asc"},
+                                { field: "pegawai.namaLengkap", dir: "asc" }
+                            ]
                         });
                         $scope.isRouteLoading = false;
                     });

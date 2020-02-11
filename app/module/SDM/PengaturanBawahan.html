@@ -4,15 +4,15 @@
             <div class="panel panel-default container_12">
                 <div class="panel-body">
                     <div class="grid_4">
-                        <label c-label item="item" c-label-text="Nama Pegawai"></label>
-                        <input c-text-box type="input" filter="'varchar'" class="k-textbox"
-                            ng-model="item.namaLengkap" />
-                    </div>
-                    <div class="grid_4">
                         <label c-label item="item" c-label-text="Unit Kerja"></label>
                         <input style="width: 100%;" kendo-combo-box k-ng-model="item.unitKerja"
                             k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'"
                             k-auto-bind="false" k-data-source="listUnitKerja" />
+                    </div>
+                    <div class="grid_4">
+                        <label c-label item="item" c-label-text="Nama Pegawai"></label>
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox"
+                            ng-model="item.namaLengkap" />
                     </div>
                     <div class="grid_1">
                         <label c-label c-label-text=""></label>
