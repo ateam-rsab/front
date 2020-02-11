@@ -4077,6 +4077,10 @@
       "urlDep": "module/SDM/RekamDataPegawaiCtrl"
     },
     {
+      "nameDep": "PengaturanBawahanCtrl",
+      "urlDep": "module/SDM/PengaturanBawahanCtrl"
+    },
+    {
       "nameDep": "RekamDataPegawaiMitraCtrl",
       "urlDep": "module/SDM/RekamDataPegawaiMitraCtrl"
     },
