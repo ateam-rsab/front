@@ -48,11 +48,6 @@ define(['initialize'], function (initialize) {
                             template: "#if(jabatan) { # #= jabatan.namaJabatan # #} else { #-# } #",
                         },
                         {
-                            field: "pegawai",
-                            title: "<h3 class='small-font'>Pegawai</h3>", width: "155px",
-                            template: "#if(pegawai) { # #= pegawai.namaLengkap # #} else { #-# } #",
-                        },
-                        {
                             field: "atasanLangsung",
                             title: "<h3 class='small-font'>Atasan<br>Langsung</h3>", width: "155px",
                             template: "#if(!atasanLangsungDireksi) { # #= atasanLangsung.namaLengkap # #} else { # #=atasanLangsungDireksi# # } #"
@@ -88,7 +83,7 @@ define(['initialize'], function (initialize) {
                                 style: "text-align:center;valign=middle"
                             },
                         }
-                    ],
+                    ]
                 };
             };
 
@@ -149,7 +144,8 @@ define(['initialize'], function (initialize) {
                                 { field: "unitKerjaPegawai.name", dir: "asc" },
                                 { field: "subUnitKerjaPegawai.name", dir: "asc"},
                                 { field: "pegawai.namaLengkap", dir: "asc" }
-                            ]
+                            ],
+                            sortable: true
                         });
                         $scope.isRouteLoading = false;
                     });
