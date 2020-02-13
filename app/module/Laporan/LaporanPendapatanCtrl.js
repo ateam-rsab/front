@@ -471,7 +471,7 @@ define(['initialize'], function (initialize) {
           });
       }
       $scope.CetakRekapPendapatan = function () {
-        var personKa = prompt("Pilih Kepala Instalasi :                                                                       1. dr. Endah Citraresmi, Sp.A                                                                                                                                   2. dr. Gde Suardana, Sp.OG", "1");
+        var personKa = prompt("Pilih Kepala Instalasi :                                                                       1. Wastati, S.Kep, Ners                                                                                                                                   2. dr. Gde Suardana, Sp.OG", "1");
         var dokter = ''
         if ($scope.item.namaPegawai != undefined) {
           dokter = $scope.item.namaPegawai.id
@@ -607,7 +607,7 @@ define(['initialize'], function (initialize) {
       }
       $scope.CetakLaporanFFSRI = function () {
         var person = prompt("Masukan tgl libur", "");
-        var personKa = prompt("Pilih Kepala Instalasi :                                                                       1. dr. Endah Citraresmi, Sp.A(K),MARS                                                                                                                    2. dr. Retno Widyaningsih, SpA (K)", "1");
+        var personKa = prompt("Pilih Kepala Instalasi :                                                                       1. dr. Endah Citraresmi, Sp.A(K),MARS                                                                                                                    2. Wastati, S.Kep, Ners", "1");
 
         // if (person == null) {
         //     alert('')
@@ -652,7 +652,7 @@ define(['initialize'], function (initialize) {
       }
       $scope.CetakRekapLaporanFFSRI = function () {
         var person = prompt("Masukan tgl libur", "");
-        var personKa = prompt("Pilih Kepala Instalasi :                                                                       1. dr. Endah Citraresmi, Sp.A(K),MARS                                                                                                                    2. dr. Retno Widyaningsih, SpA (K)", "1");
+        var personKa = prompt("Pilih Kepala Instalasi :                                                                       1. dr. Endah Citraresmi, Sp.A(K),MARS                                                                                                                    2. Wastati, S.Kep, Ners", "1");
 
         // if (person == null) {
         //     alert('')
