@@ -195,6 +195,10 @@
                         "link": "#/DataPegawai"
                     },
                     {
+                        "name": "Pengaturan Jabatan",
+                        "link": "#/PengaturanBawahan/"
+                    },
+                    {
                         "name": "Daftar Pegawai Pensiun Meninggal",
                         "link": "#/DaftarPegawaiPensiunMeninggal"
                     },

@@ -3,7 +3,6 @@ define(['initialize'], function (initialize) {
     initialize.controller('PengaturanBawahanCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'DateHelper', 'FindPegawai', 'FindSdm', '$timeout', '$mdDialog',
         function ($q, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, dateHelper, FindPegawai, FindSdm, $timeout, $mdDialog) {
 
-            $scope.dataLogin = JSON.parse(window.localStorage.getItem('pegawai'));
             $scope.isSimpan = true;
             $scope.isAtasan = false;
             $scope.isDirut = false;
@@ -11,6 +10,7 @@ define(['initialize'], function (initialize) {
             $scope.isDireksi = false;
             $scope.isStaff = true;
             $scope.isEdit = false;
+            $scope.isStatePegawai = true;
             $scope.dataVOloaded = true;
             $scope.enableBtnSimpanJabatanInternal = true;
             $scope.item = {};
@@ -113,9 +113,13 @@ define(['initialize'], function (initialize) {
                     $scope.listJenisJabatan = res[4].data;
                     $scope.listUnitKerja = res[5].data;
 
-                    $scope.loadDataGridJabatanInternal();
+                    if ($state.params.idPegawai) {
+                        $scope.loadDataGridJabatanInternal();
+                    } else {
+                        $scope.loadDataGridJabatan();
+                        $scope.isStatePegawai = false;
+                    }
                     initPengaturanBawahan();
-
                 });
                 $scope.monthSelectorOptions = {
                     start: "year",
@@ -145,8 +149,29 @@ define(['initialize'], function (initialize) {
                             ]
                         });
                         $scope.isRouteLoading = false;
+                    }, (error) => {
+                        $scope.isRouteLoading = false;
                     });
                 }
+            };
+
+            $scope.loadDataGridJabatan = function () {
+                $scope.isRouteLoading = true;
+
+                ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-undefined-bawahan").then(function (data) {
+                    $scope.dataSourceJabatanInternal = new kendo.data.DataSource({
+                        data: data.data.data,
+                        pageSize: 10,
+                        sort: [
+                            { field: "unitKerjaPegawai.name", dir: "asc" },
+                            { field: "subUnitKerjaPegawai.name", dir: "asc"},
+                            { field: "pegawai.namaLengkap", dir: "asc" }
+                        ]
+                    });
+                    $scope.isRouteLoading = false;
+                }, (error) => {
+                    $scope.isRouteLoading = false;
+                });
             };
 
             $scope.simpanJabatanInternal = function () {
