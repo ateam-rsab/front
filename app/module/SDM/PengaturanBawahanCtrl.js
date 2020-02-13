@@ -17,8 +17,6 @@ define(['initialize'], function (initialize) {
             $scope.ji = {};
 
             var initPengaturanBawahan = function () {
-                $scope.listIdKedudukan = [3, 4, 5, 24, 25];
-                $scope.isRouteLoading = true;
                 $scope.gridJabatanInternal = {
                     pageable: true,
                     columns: [
@@ -115,8 +113,8 @@ define(['initialize'], function (initialize) {
                     $scope.listJenisJabatan = res[4].data;
                     $scope.listUnitKerja = res[5].data;
 
-                    initPengaturanBawahan();
                     $scope.loadDataGridJabatanInternal();
+                    initPengaturanBawahan();
 
                 });
                 $scope.monthSelectorOptions = {
@@ -144,8 +142,7 @@ define(['initialize'], function (initialize) {
                                 { field: "unitKerjaPegawai.name", dir: "asc" },
                                 { field: "subUnitKerjaPegawai.name", dir: "asc"},
                                 { field: "pegawai.namaLengkap", dir: "asc" }
-                            ],
-                            sortable: true
+                            ]
                         });
                         $scope.isRouteLoading = false;
                     });
