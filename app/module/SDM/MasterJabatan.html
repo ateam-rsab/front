@@ -9,7 +9,7 @@
 						k-data-text-field="'jenisJabatan'" k-data-value-field="'id'" k-filter="'contains'"
 						k-auto-bind="false" k-data-source="listJenisJabatan" />
 				</div>
-				<div class="grid_4">
+				<div class="grid_3">
 					<label c-label item="item" c-label-text="Nama Jabatan"></label>
 					<input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.namaJabatan" />
 				</div>
@@ -18,6 +18,18 @@
 					<input kendo-combo-box style="width:100%" k-ng-model="item.eselon" k-data-text-field="'eselon'"
 						k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
 						k-data-source="listEselon" />
+				</div>
+				<div class="grid_2">
+					<label c-label c-label-text="Level Jabatan" real></label>
+					<input kendo-combo-box style="width:100%" k-ng-model="item.levelJabatan" k-data-text-field="'name'"
+						k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
+						k-data-source="levelJabatan" />
+				</div>
+				<div class="grid_2">
+					<label c-label c-label-text="Level Direksi" real></label>
+					<input kendo-combo-box style="width:100%" k-ng-model="item.levelDireksi" k-data-text-field="'name'"
+						k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
+						k-data-source="levelDireksi" />
 				</div>
 				<div class="grid_1">
 					<label c-label c-label-text=""></label>

@@ -3,6 +3,19 @@ define(['initialize'], function (initialize) {
 	initialize.controller('MasterJabatanCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'NamaAsuransi', 'ManageSdm', 'ManageSdmNew', '$timeout',
 		function ($q, $rootScope, $scope, ModelItem, $state, NamaAsuransi, ManageSdm, ManageSdmNew, $timeout) {
 			$scope.isRouteLoading = true;
+			$scope.levelJabatan = [
+				{ name: 'Direktur Utama', id: 1 },
+				{ name: 'Direktur', id: 2 },
+				{ name: 'Ketua/ Kepala Komite/ Satuan/ Instalasi/ Unit/ Bagian/ KSM/ Bidang', id: 3 },
+				{ name: 'Kepala Ruangan/ Kepala Seksi/ Kepala Subbagian/ Pengelola Urusan', id: 4 },
+				{ name: 'Staf/ Ketua Tim', id: 5 }
+			];
+			$scope.levelDireksi = [
+				{ name: 'Direktorat Medik dan Keperawatan', id: 1 },
+				{ name: 'Direktorat Umum dan Operasional', id: 2 },
+				{ name: 'Direktorat SDM dan Pendidikan', id: 3 },
+				{ name: 'Direktorat Keuangan', id: 4 }
+			];
 			$scope.daftarJabatanOpt = {
 				toolbar: [{
 					name: "create", text: "Input Baru"
@@ -15,7 +28,8 @@ define(['initialize'], function (initialize) {
 					{ field: "jenisJabatanId", title: "Jenis Jabatan ", editor: categoryDropDownEditor, "template": "# if (jenisJabatanId === 1) {# #= 'Fungsional' # #} else if (jenisJabatanId === 3){# #= 'Internal' # #} else if (jenisJabatanId === 5){# #= 'Struktural' # #} else {# #= '-' # #}#" },
 					{ field: "namaJabatan", title: "Nama Jabatan" },
 					{ field: "eselonId", title: "Eselon ", editor: categoryDropDownEditorEselon, "template": "# if (eselonId === 1) {# #= 'I.a' # #} else if (eselonId === 2){# #= 'I.b' # #} else if (eselonId === 3){# #= 'II.a' # #} else if (eselonId === 4){# #= 'II.b' # #} else if (eselonId === 5){# #= 'III.a' # #} else if (eselonId === 6){# #= 'III.b' # #} else if (eselonId === 7){# #= 'IV.a' # #} else if (eselonId === 8){# #= 'IV.b' # #} else if (eselonId === 9){# #= 'V.a' # #} else if (eselonId === 10){# #= 'V.b' # #} else {# #= '-' # #}#" },
-					// { field: "levelJabatan", title: "Level Jabatan" },
+					{ field: "levelJabatan", title: "Level Jabatan ", editor: categoryDropDownEditorLevelJabatan, "template": "# if (levelJabatan === 1) {# #= 'Direktur Utama' # #} else if (levelJabatan === 2){# #= 'Direktur' # #} else if (levelJabatan === 3){# #= 'Ketua/ Kepala Komite/ Satuan/ Instalasi/ Unit/ Bagian/ KSM/ Bidang' # #} else if (levelJabatan === 4){# #= 'Kepala Ruangan/ Kepala Seksi/ Kepala Subbagian/ Pengelola Urusan' # #} else if (levelJabatan === 5){# #= 'Staf/ Ketua Tim' # #} else {# #= '-' # #}#" },
+					{ field: "subLevelJabatan", title: "Level Direksi ", editor: categoryDropDownEditorLevelDireksi, "template": "# if (subLevelJabatan === 1) {# #= 'Direktorat Medik dan Keperawatan' # #} else if (subLevelJabatan === 2){# #= 'Direktorat Umum dan Operasional' # #} else if (subLevelJabatan === 3){# #= 'Direktorat SDM dan Pendidikan' # #} else if (subLevelJabatan === 4){# #= 'Direktorat Keuangan' # #} else {# #= '-' # #}#" },
 					{ field: "usiaPensiun", title: "Usia Pensiun", width: 120, attributes: { style: "text-align:right; padding-right: 15px;" } },
 					{ command: [{ name: "destroy", text: "Hapus" }, { name: "edit", text: "Edit" }], title: "&nbsp;", width: 160 }
 				],
@@ -46,7 +60,7 @@ define(['initialize'], function (initialize) {
 			function init() {
 				$scope.item = {}; // set defined object
 				$q.all([
-					ManageSdmNew.getListData("service/list-generic/?view=Jabatan&select=id,namaJabatan,kdJabatan,usiaPensiun,jenisJabatanId,eselonId&criteria=statusEnabled&values=true&order=namaJabatan:asc", true),
+					ManageSdmNew.getListData("service/list-generic/?view=Jabatan&select=id,namaJabatan,kdJabatan,usiaPensiun,jenisJabatanId,eselonId,levelJabatan,subLevelJabatan&criteria=statusEnabled&values=true&order=namaJabatan:asc", true),
 					ManageSdmNew.getListData("service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled&values=true&order=jenisJabatan:asc", true),
 					ManageSdmNew.getListData("service/list-generic/?view=Eselon&select=id,eselon&criteria=statusEnabled&values=true&order=eselon:asc", true),
 				]).then(function (res) {
@@ -94,7 +108,9 @@ define(['initialize'], function (initialize) {
 													return true;
 												}
 											}
-										}
+										},
+										levelJabatan: { editable: true },
+										subLevelJabatan: { editable: true }
 									}
 								}
 							},
@@ -165,8 +181,9 @@ define(['initialize'], function (initialize) {
 					namaExternal: data.namaJabatan,
 					usiaPensiun: parseInt(data.usiaPensiun),
 					kdJabatan: data.namaJabatan,
-					kodeExternal: data.namaJabatan
-					// levelJabatan: data.levelJabatan
+					kodeExternal: data.namaJabatan,
+					levelJabatan: data.levelJabatan ? data.levelJabatan.id : null,
+					subLevelJabatan: data.subLevelJabatan ? data.subLevelJabatan.id : null
 				}
 				if (data.action && data.action === "remove") item.statusEnabled = false;
 				// console.log(JSON.stringify(item));
@@ -180,6 +197,50 @@ define(['initialize'], function (initialize) {
 			};
 
 			$scope.Save = function (data) {
+				if (data.levelJabatan) {
+					if (data.levelJabatan.id) {
+						if ((data.levelJabatan.id == 2 || data.levelJabatan.id == 3 || data.levelJabatan.id == 4) && !data.subLevelJabatan) {
+							toastr.warning('Level Direksi harus diisi!');
+							return;
+						}
+					} else {
+						if ((data.levelJabatan == 2 || data.levelJabatan == 3 || data.levelJabatan == 4) && !data.subLevelJabatan) {
+							toastr.warning('Level Direksi harus diisi!');
+							return;
+						}
+					}
+				} else {
+					if (data.levelJabatan.id) {
+						if ((data.levelJabatan.id == 2 || data.levelJabatan.id == 3 || data.levelJabatan.id == 4) && !data.subLevelJabatan) {
+							toastr.warning('Level Direksi harus diisi!');
+							return;
+						}
+					} else {
+						if ((data.levelJabatan == 2 || data.levelJabatan == 3 || data.levelJabatan == 4) && !data.subLevelJabatan) {
+							toastr.warning('Level Direksi harus diisi!');
+							return;
+						}
+					}
+				}
+
+				var levelJabatan = null;
+				if (data.levelJabatan.id) {
+					levelJabatan = data.levelJabatan.id;
+				} else if (data.levelJabatan) {
+					levelJabatan = data.levelJabatan;
+				} else {
+					levelJabatan = null;
+				}
+
+				var levelDireksi = null;
+				if (data.subLevelJabatan.id) {
+					levelDireksi = data.subLevelJabatan.id;
+				} else if (data.subLevelJabatan) {
+					levelDireksi = data.subLevelJabatan;
+				} else {
+					levelDireksi = null;
+				}
+
 				var item = {
 					id: data.id,
 					statusEnabled: true,
@@ -194,8 +255,9 @@ define(['initialize'], function (initialize) {
 					namaExternal: data.namaJabatan,
 					usiaPensiun: parseInt(data.usiaPensiun),
 					kdJabatan: data.namaJabatan,
-					kodeExternal: data.namaJabatan
-					// levelJabatan: data.levelJabatan
+					kodeExternal: data.namaJabatan,
+					levelJabatan: levelJabatan,
+					subLevelJabatan: levelDireksi
 				}
 
 				if (data.id === "") {
@@ -251,6 +313,24 @@ define(['initialize'], function (initialize) {
 						dataSource: $scope.listEselon
 					});
 			}
+			function categoryDropDownEditorLevelJabatan(container, options) {
+				$('<input name="' + options.field + '"/>')
+					.appendTo(container)
+					.kendoDropDownList({
+						dataTextField: "name",
+						dataValueField: "id",
+						dataSource: $scope.levelJabatan
+					});
+			}
+			function categoryDropDownEditorLevelDireksi(container, options) {
+				$('<input name="' + options.field + '"/>')
+					.appendTo(container)
+					.kendoDropDownList({
+						dataTextField: "name",
+						dataValueField: "id",
+						dataSource: $scope.levelDireksi
+					});
+			}
 			var timeoutPromise;
 			$scope.$watch('item.jenisJabatan', function (newVal, oldVal) {
 				if (newVal && newVal.id && newVal !== oldVal) {
@@ -260,6 +340,16 @@ define(['initialize'], function (initialize) {
 			$scope.$watch('item.eselon', function (newVal, oldVal) {
 				if (newVal && newVal.id && newVal !== oldVal) {
 					applyFilter("eselonId", newVal)
+				}
+			})
+			$scope.$watch('item.levelJabatan', function (newVal, oldVal) {
+				if (newVal && newVal.id && newVal !== oldVal) {
+					applyFilter("levelJabatan", newVal)
+				}
+			})
+			$scope.$watch('item.levelDireksi', function (newVal, oldVal) {
+				if (newVal && newVal.id && newVal !== oldVal) {
+					applyFilter("subLevelJabatan", newVal)
 				}
 			})
 			$scope.$watch('item.namaJabatan', function (newVal, oldVal) {
