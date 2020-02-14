@@ -197,7 +197,7 @@ define(['initialize'], function (initialize) {
                     },
                     {
                         field: "kategoriPegawai",
-                        title: "<h3>Status</h3>",
+                        title: "<h3>Kategori</h3>",
                         width: "15%",
                         attributes: {
                             style: "text-align:center;valign=middle"
