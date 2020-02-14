@@ -1,6 +1,6 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('PengaturanBawahanCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'DateHelper', 'FindPegawai', 'FindSdm', '$timeout', '$mdDialog',
+    initialize.controller('PengaturanJabatanCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'DateHelper', 'FindPegawai', 'FindSdm', '$timeout', '$mdDialog',
         function ($q, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, dateHelper, FindPegawai, FindSdm, $timeout, $mdDialog) {
 
             $scope.isSimpan = true;
@@ -15,7 +15,7 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             $scope.ji = {};
 
-            var initPengaturanBawahan = function () {
+            var initPengaturanJabatan = function () {
                 $scope.gridJabatanInternal = {
                     pageable: true,
                     columns: [
@@ -38,6 +38,12 @@ define(['initialize'], function (initialize) {
                             field: "jenisJabatan",
                             title: "<h3 class='small-font'>Jenis<br>Jabatan</h3>", width: "100px",
                             template: "#if(jenisJabatan) { # #= jenisJabatan.jenisJabatan # #} else { #-# } #",
+                            hidden: true
+                        },
+                        {
+                            field: "kategoryPegawai",
+                            title: "<h3 class='small-font'>Kategori<br>Pegawai</h3>", width: "100px",
+                            template: "#if(kategoryPegawai) { # #= kategoryPegawai.kategoryPegawai # #} else { #-# } #",
                         },
                         {
                             field: "jabatan",
@@ -91,6 +97,7 @@ define(['initialize'], function (initialize) {
                     ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true&order=namaLengkap:asc", true),
                     ManageSdm.getOrderList("service/list-generic/?view=Jabatan&select=id,namaJabatan&criteria=statusEnabled&values=true&order=namaJabatan:asc", true),
                     ManageSdm.getOrderList("service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled&values=true&order=jenisJabatan:asc", true),
+                    ManageSdm.getOrderList("service/list-generic/?view=KategoryPegawai&select=id,kategoryPegawai&criteria=statusEnabled&values=true&order=kategoryPegawai:asc", true),
                     ManageSdm.getOrderList("service/list-generic/?view=UnitKerjaPegawai&select=id,name&criteria=statusEnabled&values=true&order=name:asc", true),
                 ]).then(function (res) {
                     $scope.ListUnitKerja = res[0].data.data;
@@ -110,10 +117,11 @@ define(['initialize'], function (initialize) {
                     })
                     $scope.ListJabatan = res[3].data;
                     $scope.listJenisJabatan = res[4].data;
-                    $scope.listUnitKerja = res[5].data;
+                    $scope.listKategoryPegawai = res[4].data;
+                    $scope.listUnitKerja = res[6].data;
 
-                    $scope.loadDataGridJabatanInternal();
-                    initPengaturanBawahan();
+                    $scope.loadDataGridJabatan();
+                    initPengaturanJabatan();
                 });
                 $scope.monthSelectorOptions = {
                     start: "year",
@@ -128,25 +136,23 @@ define(['initialize'], function (initialize) {
 
             $scope.init();
 
-            $scope.loadDataGridJabatanInternal = function () {
+            $scope.loadDataGridJabatan = function () {
                 $scope.isRouteLoading = true;
 
-                if ($state.params.idPegawai) {
-                    ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-bawahan-level-jabatan?idPegawai=" + $state.params.idPegawai).then(function (data) {
-                        $scope.dataSourceJabatanInternal = new kendo.data.DataSource({
-                            data: data.data.data,
-                            pageSize: 10,
-                            sort: [
-                                { field: "unitKerjaPegawai.name", dir: "asc" },
-                                { field: "subUnitKerjaPegawai.name", dir: "asc" },
-                                { field: "pegawai.namaLengkap", dir: "asc" }
-                            ]
-                        });
-                        $scope.isRouteLoading = false;
-                    }, (error) => {
-                        $scope.isRouteLoading = false;
+                ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-undefined-bawahan").then(function (data) {
+                    $scope.dataSourceJabatanInternal = new kendo.data.DataSource({
+                        data: data.data.data,
+                        pageSize: 10,
+                        sort: [
+                            { field: "unitKerjaPegawai.name", dir: "asc" },
+                            { field: "subUnitKerjaPegawai.name", dir: "asc" },
+                            { field: "pegawai.namaLengkap", dir: "asc" }
+                        ]
                     });
-                }
+                    $scope.isRouteLoading = false;
+                }, (error) => {
+                    $scope.isRouteLoading = false;
+                });
             };
 
             $scope.simpanJabatanInternal = function () {
@@ -196,7 +202,7 @@ define(['initialize'], function (initialize) {
                     $scope.isRouteLoading = true;
                     $scope.idGridInternalJabatan = null;
                     $scope.popUpJabatan.close();
-                    $scope.loadDataGridJabatanInternal();
+                    $scope.loadDataGridJabatan();
                     $scope.enableBtnSimpanJabatanInternal = true;
                 }, (error) => {
                     $scope.enableBtnSimpanJabatanInternal = true;
@@ -261,6 +267,10 @@ define(['initialize'], function (initialize) {
                     namaLengkap: dataItem.pegawai ? dataItem.pegawai.namaLengkap : '',
                     id: dataItem.pegawai ? dataItem.pegawai.id : ''
                 }
+                $scope.ji.kategoryPegawai = {
+                    kategoryPegawai: dataItem.kategoryPegawai.kategoryPegawai,
+                    id: dataItem.kategoryPegawai.id
+                }
                 $scope.ji.jenisJabatan = {
                     jenisJabatan: dataItem.jenisJabatan.jenisJabatan,
                     id: dataItem.jenisJabatan.id
@@ -297,6 +307,7 @@ define(['initialize'], function (initialize) {
                 $scope.isDireksi = false;
                 $scope.isStaff = true;
                 $scope.ji.jabatan = "";
+                $scope.ji.kategeryPegawai = '';
                 $scope.ji.jenisJabatan = '';
                 $scope.ji.pejabatPenilai = '';
                 $scope.ji.pejabatPenilaiDireksi = "";

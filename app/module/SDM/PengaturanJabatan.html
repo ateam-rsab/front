@@ -1,6 +1,6 @@
 <div>
     <div ng-show="dataVOloaded">
-        <c-panel item="item" header="'Pengaturan Bawahan'" disabled>
+        <c-panel item="item" header="'Pengaturan Jabatan'" disabled>
             <div class="panel panel-default container_12">
                 <div class="panel-body">
                     <div class="grid_4">
@@ -26,14 +26,6 @@
                 <div id="grid" kendo-grid options="gridJabatanInternal" data-source="dataSourceJabatanInternal"></div>
             </div>
         </c-panel>
-    </div>
-    <div class="grid_12" style="float:left;" ng-show=true>
-        <div ng-show='true' class="grid_3" style="float:left;">
-            <md-button class="md-raised md-primary" ng-show="true" is-back>
-                <span style="margin-right: 5px;">Kembali</span>
-                <i class="fa fa-arrow-left"></i>
-            </md-button>
-        </div>
     </div>
 </div>
 <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
