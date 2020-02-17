@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
 	'use strict';
-	initialize.controller('LaporanKecelakaanKerjaCtrl', ['$rootScope', '$scope', 'ModelItem', 'DateHelper', '$document', 'R', 'ManageSarpras',
-		function ($rootScope, $scope, ModelItem, DateHelper, $document, r, ManageSarpras) {
+	initialize.controller('LaporanKecelakaanKerjaCtrl', ['$rootScope', '$scope', 'ModelItem', 'DateHelper', '$document', 'R', 'ManageSarpras', 'ManageKKKL',
+		function ($rootScope, $scope, ModelItem, DateHelper, $document, r, ManageSarpras, manageKKKL) {
 			$scope.now = new Date();
 			$scope.dataVOloaded = true;
 			$scope.showRawatInap = false;
@@ -316,16 +316,16 @@ define(['initialize'], function (initialize) {
 				$scope.item.isBiayaPemulihan = "";
 			}
 
-			ManageSarpras.getOrderList("k3-laporan-kecelakaan-kerja/get-unit-ruangan").then(function (dat) {
+			baseUrlK3KL.getOrderList("k3-laporan-kecelakaan-kerja/get-unit-ruangan").then(function (dat) {
 				// debugger;
 				$scope.listUnitRuangan = dat.data.data.unitRuangan;
 			});
 
-			ManageSarpras.getOrderList('jasamedika-k3kl/k3-laporan-kecelakaan-kerja/get-unit-ruangan').then(function (dat) {
+			baseUrlK3KL.getOrderList('k3-laporan-kecelakaan-kerja/get-unit-ruangan').then(function (dat) {
 				$scope.listDdlRuangan = dat.data.unitRuangan;
 			});
 
-			ManageSarpras.getOrderList("k3-laporan-kecelakaan-kerja/get-login-pelapor").then(function (dat) {
+			baseUrlK3KL.getOrderList("k3-laporan-kecelakaan-kerja/get-login-pelapor").then(function (dat) {
 				// debugger;
 				$scope.pelapor = dat.data.data;
 			});
@@ -665,11 +665,11 @@ define(['initialize'], function (initialize) {
 					toastr.warning('Belum Menambahkan Korban');
 				} else {
 					console.log(arrKorban2)
-					// ManageSarpras.saveDataSarPras(data, "k3-laporan-kecelakaan-kerja/save-data-lkk").then(function (e) {
-					// 	$timeout(function () {
-					// 		$window.location.reload();
-					// 	}, 5500);
-					// });
+					manageKKKL.saveDataSarPras(data, "k3-laporan-kecelakaan-kerja/save-data-lkk").then(function (e) {
+						$timeout(function () {
+							$window.location.reload();
+						}, 5500);
+					});
 				}
 				
 				debugger;
