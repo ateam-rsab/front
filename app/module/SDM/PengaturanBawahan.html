@@ -3,22 +3,44 @@
         <c-panel item="item" header="'Pengaturan Bawahan'" disabled>
             <div class="panel panel-default container_12">
                 <div class="panel-body">
-                    <div class="grid_4">
-                        <label c-label item="item" c-label-text="Unit Kerja"></label>
-                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.unitKerja"
-                            k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'"
-                            k-auto-bind="false" k-data-source="listUnitKerja" />
+                    <div class="grid_12">
+                        <div class="grid_2">
+                            <div class="grid_12">
+                                <label c-label item="item">NIP</label>
+                            </div>
+                            <div class="clear"></div> 
+                            <div class="grid_12">
+                                <input c-text-box type="input" filter="'varchar'" readonly="true" class="k-textbox" ng-model="item.nipAtasan" ng-disabled="true"/>
+                            </div>
+                        </div>
+                        <div class="grid_4">
+                            <div class="grid_12">
+                                <label c-label item="item">Nama Atasan</label>
+                            </div>
+                            <div class="clear"></div> 
+                            <div class="grid_12">
+                                <input c-text-box type="input" filter="'varchar'" readonly="true" class="k-textbox" ng-model="item.namaAtasan" ng-disabled="true"/>
+                            </div>
+                        </div>
                     </div>
-                    <div class="grid_4">
-                        <label c-label item="item" c-label-text="Nama Pegawai"></label>
-                        <input c-text-box type="input" filter="'varchar'" class="k-textbox"
-                            ng-model="item.namaLengkap" />
-                    </div>
-                    <div class="grid_1">
-                        <label c-label c-label-text=""></label>
-                        <em style="margin-top:6px;" ng-click='resetFilter()' id="iconButton" data-role="button"
-                            class="k-button k-button-icon k-primary" role="button" aria-disabled="false"
-                            tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+                    <div class="grid_12">
+                        <div class="grid_4">
+                            <label c-label item="item" c-label-text="Unit Kerja"></label>
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.unitKerja"
+                                k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'"
+                                k-auto-bind="false" k-data-source="listUnitKerja" />
+                        </div>
+                        <div class="grid_4">
+                            <label c-label item="item" c-label-text="Nama Pegawai"></label>
+                            <input c-text-box type="input" filter="'varchar'" class="k-textbox"
+                                ng-model="item.namaLengkap" />
+                        </div>
+                        <div class="grid_1">
+                            <label c-label c-label-text=""></label>
+                            <em style="margin-top:6px;" ng-click='resetFilter()' id="iconButton" data-role="button"
+                                class="k-button k-button-icon k-primary" role="button" aria-disabled="false"
+                                tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+                        </div>
                     </div>
                 </div>
             </div>

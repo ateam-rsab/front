@@ -3,8 +3,6 @@ define(['initialize'], function (initialize) {
     initialize.controller('PengaturanJabatanCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'DateHelper', 'FindPegawai', 'FindSdm', '$timeout', '$mdDialog',
         function ($q, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, dateHelper, FindPegawai, FindSdm, $timeout, $mdDialog) {
 
-            $scope.isSimpan = true;
-            $scope.isAtasan = false;
             $scope.isDirut = false;
             $scope.isNotDirut = true;
             $scope.isDireksi = false;
@@ -127,11 +125,6 @@ define(['initialize'], function (initialize) {
                     start: "year",
                     depth: "year"
                 };
-                if ($state.params.idPegawai === "") {
-                    $scope.isSimpan = false;
-                } else {
-                    $scope.isAtasan = true;
-                }
             };
 
             $scope.init();

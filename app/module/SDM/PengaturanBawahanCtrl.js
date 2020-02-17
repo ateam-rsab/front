@@ -3,8 +3,6 @@ define(['initialize'], function (initialize) {
     initialize.controller('PengaturanBawahanCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'DateHelper', 'FindPegawai', 'FindSdm', '$timeout', '$mdDialog',
         function ($q, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, dateHelper, FindPegawai, FindSdm, $timeout, $mdDialog) {
 
-            $scope.isSimpan = true;
-            $scope.isAtasan = false;
             $scope.isDirut = false;
             $scope.isNotDirut = true;
             $scope.isDireksi = false;
@@ -88,7 +86,7 @@ define(['initialize'], function (initialize) {
                 $q.all([
                     ManageSdmNew.getListData("sdm/get-all-unit-kerja"),
                     ManageSdmNew.getListData("sdm/get-all-sub-unit-kerja"),
-                    ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true&order=namaLengkap:asc", true),
+                    ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap,nipPns,nip,nikIntern&criteria=statusEnabled&values=true&order=namaLengkap:asc", true),
                     ManageSdm.getOrderList("service/list-generic/?view=Jabatan&select=id,namaJabatan&criteria=statusEnabled&values=true&order=namaJabatan:asc", true),
                     ManageSdm.getOrderList("service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled&values=true&order=jenisJabatan:asc", true),
                     ManageSdm.getOrderList("service/list-generic/?view=UnitKerjaPegawai&select=id,name&criteria=statusEnabled&values=true&order=name:asc", true),
@@ -107,6 +105,10 @@ define(['initialize'], function (initialize) {
                             }
                             $scope.listPegawai.push(dataTemp);
                         }
+                        if (el.id == $state.params.idPegawai) {
+                            $scope.item.namaAtasan = el.namaLengkap;
+                            $scope.item.nipAtasan = el.nipPns ? el.nipPns : el.nip ? el.nip : el.nikIntern ? el.nikIntern : "";
+                        }
                     })
                     $scope.ListJabatan = res[3].data;
                     $scope.listJenisJabatan = res[4].data;
@@ -119,11 +121,6 @@ define(['initialize'], function (initialize) {
                     start: "year",
                     depth: "year"
                 };
-                if ($state.params.idPegawai === "") {
-                    $scope.isSimpan = false;
-                } else {
-                    $scope.isAtasan = true;
-                }
             };
 
             $scope.init();
@@ -437,7 +434,12 @@ define(['initialize'], function (initialize) {
             $scope.resetFilter = function () {
                 var gridData = $("#grid").data("kendoGrid");
                 gridData.dataSource.filter({});
+
+                var tempNipAtasan = $scope.item.nipAtasan;
+                var tempNamaAtasan = $scope.item.namaAtasan;
                 $scope.item = {};
+                $scope.item.nipAtasan = tempNipAtasan;
+                $scope.item.namaAtasan = tempNamaAtasan;
             };
         }
     ]);
