@@ -8,27 +8,35 @@
                             <div class="grid_12">
                                 <label c-label item="item">NIP</label>
                             </div>
-                            <div class="clear"></div> 
+                            <div class="clear"></div>
                             <div class="grid_12">
-                                <input c-text-box type="input" filter="'varchar'" readonly="true" class="k-textbox" ng-model="item.nipAtasan" ng-disabled="true"/>
+                                <input c-text-box type="input" filter="'varchar'" readonly="true" class="k-textbox"
+                                    ng-model="item.nipAtasan" ng-disabled="true" />
                             </div>
                         </div>
                         <div class="grid_4">
                             <div class="grid_12">
                                 <label c-label item="item">Nama Atasan</label>
                             </div>
-                            <div class="clear"></div> 
+                            <div class="clear"></div>
                             <div class="grid_12">
-                                <input c-text-box type="input" filter="'varchar'" readonly="true" class="k-textbox" ng-model="item.namaAtasan" ng-disabled="true"/>
+                                <input c-text-box type="input" filter="'varchar'" readonly="true" class="k-textbox"
+                                    ng-model="item.namaAtasan" ng-disabled="true" />
                             </div>
                         </div>
                     </div>
                     <div class="grid_12">
-                        <div class="grid_4">
+                        <div class="grid_3">
                             <label c-label item="item" c-label-text="Unit Kerja"></label>
-                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.unitKerja"
-                                k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'"
-                                k-auto-bind="false" k-data-source="listUnitKerja" />
+                            <input kendo-combo-box k-ng-model="item.unitKerja" k-data-text-field="'name'"
+                                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
+                                k-data-source="ListUnitKerjaFilter" />
+                        </div>
+                        <div class="grid_3">
+                            <label c-label item="item" c-label-text="Subunit Kerja"></label>
+                            <input kendo-combo-box k-ng-model="item.subunitKerja" k-data-text-field="'name'"
+                                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
+                                k-data-source="ListSubUnitKerjaById" />
                         </div>
                         <div class="grid_4">
                             <label c-label item="item" c-label-text="Nama Pegawai"></label>
@@ -71,7 +79,7 @@
         <div class="grid_8">
             <input required style="width: 100%;" kendo-combo-box k-ng-model="ji.pegawai"
                 k-data-text-field="'namaLengkap'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'"
-                k-data-source="listPegawai" ng-disabled="true" />
+                k-data-source="ListPegawai" ng-disabled="true" />
         </div>
         <div class="clearfix"></div>
         <div class="grid_12">
@@ -82,7 +90,7 @@
             <div class="clear"></div>
             <div class="grid_8">
                 <input kendo-combo-box k-ng-model="ji.jenisJabatan" k-data-text-field="'jenisJabatan'"
-                    k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisJabatan"
+                    k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListJenisJabatan"
                     k-on-change="getDataJabatan(ji.jenisJabatan.id)" ng-disabled="true" />
             </div>
             <!-- Jabatan -->
@@ -127,7 +135,7 @@
         <div class="grid_8">
             <input required style="width: 100%;" kendo-combo-box k-ng-model="ji.atasanLangsung"
                 k-data-text-field="'namaLengkap'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'"
-                k-data-source="listPegawai" ng-show="isNotDirut" />
+                k-data-source="ListPegawai" ng-show="isNotDirut" />
             <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="ji.atasanLangsungDireksi"
                 k-data-text-field="'namaLengkap'" ng-show="isDirut" />
         </div>
@@ -139,7 +147,7 @@
         <div class="grid_8">
             <input required style="width: 100%;" kendo-combo-box k-ng-model="ji.pejabatPenilai"
                 k-data-text-field="'namaLengkap'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'"
-                k-data-source="listPegawai" ng-show="isStaff" />
+                k-data-source="ListPegawai" ng-show="isStaff" />
             <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="ji.pejabatPenilaiDireksi"
                 k-data-text-field="'namaLengkap'" ng-show="isDireksi" />
         </div>

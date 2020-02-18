@@ -85,34 +85,30 @@ define(['initialize'], function (initialize) {
             $scope.init = function () {
                 $q.all([
                     ManageSdmNew.getListData("sdm/get-all-unit-kerja"),
-                    ManageSdmNew.getListData("sdm/get-all-sub-unit-kerja"),
                     ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap,nipPns,nip,nikIntern&criteria=statusEnabled&values=true&order=namaLengkap:asc", true),
                     ManageSdm.getOrderList("service/list-generic/?view=Jabatan&select=id,namaJabatan&criteria=statusEnabled&values=true&order=namaJabatan:asc", true),
                     ManageSdm.getOrderList("service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled&values=true&order=jenisJabatan:asc", true),
-                    ManageSdm.getOrderList("service/list-generic/?view=UnitKerjaPegawai&select=id,name&criteria=statusEnabled&values=true&order=name:asc", true),
                 ]).then(function (res) {
                     $scope.ListUnitKerja = res[0].data.data;
                     $scope.ListUnitKerjaPop = res[0].data.data;
-                    $scope.ListSubUnitKerja = res[1].data.data;
-                    $scope.ListSubUnitKerjaPop = res[1].data.data;
-                    var tempDataPegawai = res[2].data;
-                    $scope.listPegawai = [];
+                    $scope.ListUnitKerjaFilter = [];
+                    var tempDataPegawai = res[1].data;
+                    $scope.ListPegawai = [];
                     tempDataPegawai.forEach(function (el) {
                         if (el.id !== 320272) {
                             var dataTemp = {
                                 namaLengkap: el.namaLengkap,
                                 id: el.id
                             }
-                            $scope.listPegawai.push(dataTemp);
+                            $scope.ListPegawai.push(dataTemp);
                         }
                         if (el.id == $state.params.idPegawai) {
                             $scope.item.namaAtasan = el.namaLengkap;
                             $scope.item.nipAtasan = el.nipPns ? el.nipPns : el.nip ? el.nip : el.nikIntern ? el.nikIntern : "";
                         }
                     })
-                    $scope.ListJabatan = res[3].data;
-                    $scope.listJenisJabatan = res[4].data;
-                    $scope.listUnitKerja = res[5].data;
+                    $scope.ListJabatan = res[2].data;
+                    $scope.ListJenisJabatan = res[3].data;
 
                     $scope.loadDataGridJabatanInternal();
                     initPengaturanBawahan();
@@ -139,6 +135,22 @@ define(['initialize'], function (initialize) {
                                 { field: "pegawai.namaLengkap", dir: "asc" }
                             ]
                         });
+
+                        var listIdUnitKerja = [];
+                        var tempListUnitKerja = $scope.ListUnitKerja;
+                        tempListUnitKerja.forEach(function (el) {
+                            data.data.data.forEach(function (dat) {
+                                if (el.id == dat.unitKerjaPegawai.id && !listIdUnitKerja.includes(dat.unitKerjaPegawai.id)) {
+                                    var dataTemp = {
+                                        name: dat.unitKerjaPegawai.name,
+                                        id: dat.unitKerjaPegawai.id
+                                    };
+                                    listIdUnitKerja.push(dat.unitKerjaPegawai.id);
+                                    $scope.ListUnitKerjaFilter.push(dataTemp);
+                                };
+                            })
+                        })
+
                         $scope.isRouteLoading = false;
                     }, (error) => {
                         $scope.isRouteLoading = false;
@@ -393,6 +405,15 @@ define(['initialize'], function (initialize) {
                 if (newVal && newVal !== oldVal) {
                     applyFilter("unitKerjaPegawai.id", newVal)
                 }
+
+                $scope.getDataSubUnitKerjaById($scope.item.unitKerja.id, $scope.item.unitKerja);
+            });
+
+            $scope.$watch('item.subunitKerja', function (newVal, oldVal) {
+                if (!newVal) return;
+                if (newVal && newVal !== oldVal) {
+                    applyFilter("subUnitKerjaPegawai.id", newVal)
+                }
             });
 
             function applyFilter(filterField, filterValue) {
@@ -425,6 +446,14 @@ define(['initialize'], function (initialize) {
                     });
                 }
 
+                if (filterField === "subUnitKerjaPegawai.id") {
+                    currentFilters.push({
+                        field: filterField,
+                        operator: "eq",
+                        value: filterValue.id
+                    });
+                }
+
                 dataGrid.dataSource.filter({
                     logic: "and",
                     filters: currentFilters
@@ -434,6 +463,7 @@ define(['initialize'], function (initialize) {
             $scope.resetFilter = function () {
                 var gridData = $("#grid").data("kendoGrid");
                 gridData.dataSource.filter({});
+                $scope.ListSubUnitKerjaById = {};
 
                 var tempNipAtasan = $scope.item.nipAtasan;
                 var tempNamaAtasan = $scope.item.namaAtasan;
