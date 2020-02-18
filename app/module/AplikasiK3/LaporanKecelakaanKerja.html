@@ -1,6 +1,9 @@
 <div ng-controller="LaporanKecelakaanKerjaCtrl">
 	<div class="panel panel-default container_12">
-		<div class="panel-heading" c-translate>Laporan Kecelakaan Kerja</div>
+		<!-- <div class="panel-heading" c-translate>Laporan Kecelakaan Kerja</div> -->
+		<md-toolbar md-scroll-shrink="" class="shadow _md _md-toolbar-transitions">
+			<div class="md-toolbar-tools">Laporan Kecelakaan Kerja</div>
+		</md-toolbar>
 		<div class="panel-body">
 			<div class="panel panel-default container_12" style="margin-top: 5px">
 				<div class="panel-heading" c-translate>Identitas Korban</div>
@@ -11,7 +14,7 @@
 								<label c-label item="item" c-label-text="namaKorban"></label>
 							</div>
 							<div class="grid_8">
-								<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaKorban" />
+								<input c-text-box type="input" class="k-textbox" ng-model="item.namaKorban" />
 							</div>
 						</div>
 
@@ -20,7 +23,7 @@
 								<label c-label item="item" c-label-text="lahirDi"></label>
 							</div>
 							<div class="grid_8">
-								<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.tempatLahir" />
+								<input c-text-box type="input" class="k-textbox" ng-model="item.tempatLahir" />
 							</div>
 						</div>
 
@@ -603,10 +606,15 @@
 						<div class="grid_1"></div>
 					</div>
 					<div class="grid_12">
-						<div class="grid_8"></div>
-						<div class="grid_4" style="margin-top: 25px; font-size: 24px;">
-							<button class="c-button" ng-show="!isLoading" item="item" ng-click="tambahKorban()">
-								<span class="title">+ Tambah</span></button>
+						<div class="grid_10"></div>
+						<div class="grid_2" style="margin-top: 25px; font-size: 24px;">
+							<md-button class="md-raised md-primary medium-button"
+								ng-click="tambahKorban()">
+								<span style="margin-right: 5px;">Tambah</span>
+								<i class="fa fa-plus"></i>
+							</md-button>
+							<!-- <button class="c-button" ng-show="!isLoading" item="item" ng-click="tambahKorban()">
+								<span class="title">+ Tambah</span></button> -->
 						</div>
 					</div>
 					<div class="grid_12" style="margin-top: 20px">
@@ -620,35 +628,39 @@
 			</div> -->
 					<div class="grid_12" style="float:left;" ng-hide="isHide">
 						<div ng-hide='isNext' class="grid_3" style="float:right">
-							<c-button class="success" style="width: 100%; font-size: 24px; padding:0px, margin:0px;"
+							<!-- <c-button class="success" style="width: 100%; font-size: 24px; padding:0px; margin:0px;"
 							 item="item" size="36" position=" 'right'" is-validate click="Save">
 								<span class="title">Simpan</span>
-							</c-button>
+							</c-button> -->
+							<md-button class="md-raised md-primary medium-button"
+								ng-click="Save()">
+								<span style="margin-right: 5px;">Simpan</span>
+								<i class="fa fa-save"></i>
+							</md-button>
 						</div>
-						<div ng-show='isNext' class="grid_3" style="float:right;">
-							<c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36"
+						<div class="grid_3" style="float:right;">
+							<!-- <c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px;margin:0px;" item="item" size="36"
 							 position=" 'right'" click="Next">
 								<span class="title">Selanjutnya</span>
-							</c-button>
+							</c-button> -->
+							<md-button class="md-raised md-warn medium-button"
+								ng-click="Save()">
+								<span style="margin-right: 5px;">Batal</span>
+								<i class="fa fa-close"></i>
+							</md-button>
 						</div>
-						<div ng-show='isNext' class="grid_3" style="float:right;">
-							<c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36"
-							 position=" 'right'" is-back>
-								<span class="title">Kembali</span>
-							</c-button>
+						<div class="grid_3" style="float:right;">
+							<md-button class="md-raised md-default medium-button" is-back>
+								<span style="margin-right: 5px;">Kembali</span>
+								<i class="fa fa-arrow-left" style="color:black"></i>
+							</md-button>
 						</div>
-						<div ng-hide='isNext' class="grid_3" style="float:right">
-							<c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36"
-							 position=" 'right'" class="cancel" click="Back">
-								<span class="title">Batal</span>
-							</c-button>
-						</div>
-						<div ng-show='isReport' class="grid_3" style="float:right;">
-							<c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36"
+						<!-- <div ng-show='isReport' class="grid_3" style="float:right;">
+							<c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px;margin:0px;" item="item" size="36"
 							 position="'right'" is-validate click="cetak">
 								<span class="title">Cetak</span>
 							</c-button>
-						</div>
+						</div> -->
 						<!-- <div ng-show='showButtonInputJadwalDinas' class="grid_3" style="float:right;">
 					<c-button ng-show="!isLoading" style="width: 100%; font-size: 24px; padding:0px, margin:0px;" item="item" size="36" position="'right'" is-validate ng-click="klikInputJadwalDinas()">
 						<span class="title">Input Jadwal Dinas</span>

@@ -46,7 +46,7 @@ define(['initialize'], function (initialize) {
                         { text: "Edit", click: editData },
                         // { name: "Verifikasi", text: "Hasil Konsul", click: hasilKonsult },
                         { name: "Detail", text: "Detail", click: showDetail },
-                        { name: "Edit", text: "Cetak", click: cetakReport },
+                        { name: "Cetak", text: "Cetak", click: cetakReport },
                     ], title: "&nbsp;", width: 140, 
                         attributes: {
                             style: "text-align:center;valign=middle"

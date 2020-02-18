@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
 	'use strict';
-	initialize.controller('LaporanKecelakaanKerjaCtrl', ['$rootScope', '$scope', 'ModelItem', 'DateHelper', '$document', 'R', 'ManageSarpras',
-		function ($rootScope, $scope, ModelItem, DateHelper, $document, r, ManageSarpras) {
+	initialize.controller('LaporanKecelakaanKerjaCtrl', ['$rootScope', '$scope', 'ModelItem', 'DateHelper', '$document', 'R', 'ManageSarpras', 'ManageKKKL',
+		function ($rootScope, $scope, ModelItem, DateHelper, $document, r, ManageSarpras, ManageKKKL) {
 			$scope.now = new Date();
 			$scope.dataVOloaded = true;
 			$scope.showRawatInap = false;
@@ -13,7 +13,6 @@ define(['initialize'], function (initialize) {
 			var arrKorban = [];
 
 			// ModelItem.get("K3/LaporanKecelakaanKerja").then(function (data) {
-			// 	debugger;
 			// 	$scope.item = data;
 			// 	$scope.item.tglKejadian = now;
 
@@ -182,7 +181,12 @@ define(['initialize'], function (initialize) {
 			};
 
 			$scope.tambahKorban = function () {
-				debugger;
+				
+				if(!$scope.item.jenisKelamin && !$scope.item.namaKorban && !$scope.item.tglLahir) {
+					toastr.warning('Anda belum memasukan identitas korban');
+					return;
+				}
+
 				var lkkKerugian = {};
 				if ($scope.item.lamaTidakBekerja == undefined || $scope.item.lamaTidakBekerja == '') {
 					lkkKerugian = {
@@ -251,7 +255,7 @@ define(['initialize'], function (initialize) {
 					"niKependudukan": $scope.item.niKependudukan,
 					"tempatLahir": $scope.item.tempatLahir,
 					"tglLahir": $scope.item.tglLahir,
-					"jenisKelamin": $scope.item.jenisKelamin.jenisKelamin,
+					"jenisKelamin": $scope.item.jenisKelamin ? $scope.item.jenisKelamin.jenisKelamin: null,
 					"statusPekerjaan": $scope.item.statusPekerjaan.statusPekerjaan,
 					"statusJabatan": $scope.item.statusJabatan.statusJabatan,
 					"namaRuangan": $scope.item.unitRuangan.namaRuangan,
@@ -279,7 +283,7 @@ define(['initialize'], function (initialize) {
 
 
 				}
-				debugger;
+				
 				arrKorban.push(lkkIdentifikasiKorban);
 				$scope.listKorban.add(lkkIdentifikasiKorban);
 				$scope.item.namaKorban = "";
@@ -317,7 +321,7 @@ define(['initialize'], function (initialize) {
 			}
 
 			ManageSarpras.getOrderList("k3-laporan-kecelakaan-kerja/get-unit-ruangan").then(function (dat) {
-				// debugger;
+				
 				$scope.listUnitRuangan = dat.data.data.unitRuangan;
 			});
 
@@ -326,7 +330,7 @@ define(['initialize'], function (initialize) {
 			});
 
 			ManageSarpras.getOrderList("k3-laporan-kecelakaan-kerja/get-login-pelapor").then(function (dat) {
-				// debugger;
+				
 				$scope.pelapor = dat.data.data;
 			});
 
@@ -632,7 +636,6 @@ define(['initialize'], function (initialize) {
 			];
 
 			$scope.Save = function () {
-				debugger
 				var arrKorban2 = [];
 				arrKorban.forEach(function (datas) {
 					if (datas.namaRuangan == "")
@@ -665,14 +668,14 @@ define(['initialize'], function (initialize) {
 					toastr.warning('Belum Menambahkan Korban');
 				} else {
 					console.log(arrKorban2)
-					// ManageSarpras.saveDataSarPras(data, "k3-laporan-kecelakaan-kerja/save-data-lkk").then(function (e) {
-					// 	$timeout(function () {
-					// 		$window.location.reload();
-					// 	}, 5500);
-					// });
+					ManageKKKL.saveDataSarPras(data, "k3-laporan-kecelakaan-kerja/save-data-lkk").then(function (e) {
+						$timeout(function () {
+							$window.location.reload();
+						}, 5500);
+					});
 				}
 				
-				debugger;
+				
 				console.log("asd")
 			};
 

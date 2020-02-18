@@ -57,229 +57,393 @@
         white-space: pre-wrap;
     }
 </style>
-<div ng-show="dataVOloaded">
-    <div class="grid_12">
-        <div class="container-bedah">
-            <!-- <button class="btn-bedah k-button" ng-click="showInput(21, 1)">Laporan
-                Pembedahan dan Instruksi Pasca Bedah</button> -->
-            <!--  ng-show="showData"  -->
-            <div style="padding-top:10px;transition: all 0.5s;">
-                <!-- grid -->
-                <div class="grid_12 borderBox">
-                    <kendo-grid id="kGrid" data-source="dataDaftar"
-                        options="columnDaftar"
-                        k-selectable="'row'"
-                        k-sortable="'true'"
-                        k-resizable="'true'"
-                        k-ng-model="dataSelected"
-                        ng-click="klikGrid(dataSelected)">
-                    </kendo-grid>
+<div class="grid_12">
+
+    <div kendo-window="showModalInputJadwal" k-title="'Input Jadwal Bedah'"
+        k-width="1200"
+        k-visible="false"
+        k-on-open="win2visible= true" k-on-close="win2visible= false">
+        <div class="panel panel-default container_12"
+            style="padding: 0px 10px;">
+
+            <div class="grid_12">
+                <div class="grid_12">
+                    <div class="grid_3">
+                        <input type="radio" name="jenisKonsul" id="joe" class="k-radio" ng-model="item.jenisBedah" value="Jenis Operasi Elektif">
+                        <label class="k-radio-label" for="joe">Jenis Operasi Elektif</label>
+                    </div>
+                    <div class="grid_3">
+                        <input type="radio" name="jenisKonsul" id="cito" class="k-radio" ng-model="item.jenisBedah" value="CITO">
+                        <label class="k-radio-label" for="cito">CITO</label>
+                    </div>
+                </div>
+                <div class="grid_4">
+                    <label><b>Tanggal Pembedahan</b></label>
+                    <input style="width: 100%"
+                        kendo-date-time-picker
+                        k-ng-model="item.tglJadwalPembedahan"
+                        placeholer="Hari-Bln-Thn"
+                        k-format="'dd-MM-yyyy HH:mm'"
+                        ng-disabled="isSuster" />
                 </div>
 
-                <div ng-show="showInputan" class="grid_12">
-                    <!-- <div class="grid_12">
+                <div class="grid_4">
+                    <label><b>Lama Operasi</b></label>
+                    <input c-text-box type="input"
+                        placeholder="Jam" filter="'varchar'"
+                        class="k-textbox"
+                        ng-model="item.lamaOperasi"/>
+                </div>
+
+                <div class="grid_4">
+                    <label><b>Dokter Bedah</b></label>
+                    <input style="width: 100%;"
+                        kendo-combo-box
+                        k-ng-model="item.dokterJadwalBedah"
+                        k-data-text-field="'namaLengkap'"
+                        k-data-value-field="'id'"
+                        k-filter="'contains'"
+                        k-auto-bind="false"
+                        k-data-source="dataMasterPetugas"
+                        ng-disabled="isSuster" />
+                </div>
+
+                <div class="grid_6">
+                    <label>
+                        <strong>
+                            Diagnosa
+                        </strong>
+                    </label>
+                    <textarea
+                        ng-model="item.diagnosaJadwalBedah"
+                        maxlength="500"
+                        ng-disabled="isSuster"
+                        style="height:100px"></textarea>
+                    <p class="length-textarea">500/{{item.diagnosaJadwalBedah ?
+                        item.diagnosaJadwalBedah.length : 0}}</p>
+                </div>
+
+                <div class="grid_6">
+                    <label>
+                        <strong>
+                            Tindakan
+                        </strong>
+                    </label>
+                    <textarea
+                        ng-model="item.tindakanJadwalBedah"
+                        maxlength="500"
+                        ng-disabled="isSuster"
+                        style="height:100px"></textarea>
+                    <p class="length-textarea">500/{{item.tindakanJadwalBedah ?
+                        item.tindakanJadwalBedah.length : 0}}</p>
+                </div>
+
+                <div class="grid_6">
+                    <label>
+                        <strong>
+                            Posisi Khusus/Peralatan khusus
+                        </strong>
+                    </label>
+                    <textarea
+                        ng-model="item.posisiKhusus"
+                        maxlength="500"
+                        ng-disabled="isSuster"
+                        style="height:100px"></textarea>
+                    <p class="length-textarea">500/{{item.posisiKhusus ?
+                        item.posisiKhusus.length : 0}}</p>
+                </div>
+
+                <div class="grid_6">
+                    <label>
+                        <strong>
+                            Macam Anastesi
+                        </strong>
+                    </label>
+                    <textarea
+                        ng-model="item.macamAnastesi"
+                        maxlength="500"
+                        ng-disabled="isSuster"
+                        style="height:100px"></textarea>
+                    <p class="length-textarea">500/{{item.macamAnastesi ?
+                        item.macamAnastesi.length : 0}}</p>
+                </div>
+            </div>
+
+
+            <div class="k-edit-buttons k-state-default"
+                style="margin-top:10px">
+                <div class="grid_8"></div>
+                <div class="grid_2">
+                    <md-button class="md-raised md-warn medium-button"
+                        ng-click="closeModalJadwalBedah()">
+                        <span style="margin-right: 5px;">Batal</span>
+                        <i class="fa fa-close"></i>
+                    </md-button>
+                </div>
+                <div class="grid_2">
+                    <md-button class="md-raised md-primary medium-button"
+                        ng-click="Save()">
+                        <span style="margin-right: 5px;">Simpan</span>
+                        <i class="fa fa-save"></i>
+                    </md-button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="Order Jadwal Bedah">
+            <div class="grid_12">
+                <kendo-grid data-source="dataDaftarJadwalBedah"
+                    options="columnDaftarJadwalBedah"
+                    k-selectable="'row'"
+                    k-sortable="'true'"
+                    k-resizable="'true'"
+                    k-ng-model="dataSelected">
+                </kendo-grid>
+            </div>
+        </md-tab>
+        <md-tab label="Laporan Jadwal Bedah">
+            <div class="container-bedah">
+                <!-- <button class="btn-bedah k-button" ng-click="showInput(21, 1)">Laporan
+                Pembedahan dan Instruksi Pasca Bedah</button> -->
+                <!--  ng-show="showData"  -->
+                <div style="padding-top:10px;transition: all 0.5s;">
+                    <!-- grid -->
+                    <div class="grid_12">
+                        <kendo-grid id="kGrid" data-source="dataDaftar"
+                            options="columnDaftar"
+                            k-selectable="'row'"
+                            k-sortable="'true'"
+                            k-resizable="'true'"
+                            k-ng-model="dataSelected"
+                            ng-click="klikGrid(dataSelected)">
+                        </kendo-grid>
+                    </div>
+
+                    <div ng-show="showInputan" class="grid_12">
+                        <!-- <div class="grid_12">
                         <span style="font-size: 18px; color: white; padding:
                             5px;">Laporan Pembedahan dan Instruksi Pasca Bedah</span>                            
                     </div> -->
-                    <md-toolbar md-scroll-shrink class="shadow"
-                        style="margin-top: 10px;">
-                        <div class="md-toolbar-tools">Laporan Pembedahan dan
-                            Instruksi Pasca Bedah</div>
-                    </md-toolbar>
-                </div>
+                        <md-toolbar md-scroll-shrink class="shadow"
+                            style="margin-top: 10px;">
+                            <div class="md-toolbar-tools">Laporan Pembedahan dan
+                                Instruksi Pasca Bedah</div>
+                        </md-toolbar>
+                    </div>
 
-                <div ng-show="showInputan" class="grid_12 borderBox"
-                    style="margin-top:10px;margin-bottom: 15px">
-                    <div class="container-bedah">
+                    <div ng-show="showInputan" class="grid_12 borderBox"
+                        style="margin-top:10px;margin-bottom: 15px">
+                        <div class="container-bedah">
 
-                        <!-- input pegawai terkait -->
-                        <div class="grid_12">
-                            <!-- Anestesiologis -->
-                            <div class="grid_4">
-                                <div class="grid_4" style="margin: 10px 0 0 0;">
-                                    <label><b>Anestesiologis</b></label>
+                            <!-- input pegawai terkait -->
+                            <div class="grid_12">
+                                <!-- Anestesiologis -->
+                                <div class="grid_4">
+                                    <div class="grid_4" style="margin: 10px 0 0
+                                        0;">
+                                        <label><b>Anestesiologis</b></label>
+                                    </div>
+                                    <div class="grid_8">
+                                        <input style="width: 100%;"
+                                            kendo-combo-box
+                                            k-ng-model="item.selectedAnestesiologis"
+                                            k-data-text-field="'namaLengkap'"
+                                            k-data-value-field="'id'"
+                                            k-filter="'contains'"
+                                            k-auto-bind="false"
+                                            k-data-source="dataMasterPetugas"
+                                            ng-disabled="isSuster" />
+                                    </div>
                                 </div>
-                                <div class="grid_8">
-                                    <input style="width: 100%;" kendo-combo-box
-                                        k-ng-model="item.selectedAnestesiologis"
-                                        k-data-text-field="'namaLengkap'"
-                                        k-data-value-field="'id'"
-                                        k-filter="'contains'"
-                                        k-auto-bind="false"
-                                        k-data-source="dataMasterPetugas"
-                                        ng-disabled="isSuster" />
+                                <!-- Penata Anestesi  -->
+                                <div class="grid_4">
+                                    <div class="grid_4" style="margin: 10px 0 0
+                                        0;">
+                                        <label><b>Penata Anestesi</b></label>
+                                    </div>
+                                    <div class="grid_8">
+                                        <input style="width: 100%;"
+                                            kendo-combo-box
+                                            k-ng-model="item.selectedPenataAnest"
+                                            k-data-text-field="'namaLengkap'"
+                                            k-data-value-field="'id'"
+                                            k-filter="'contains'"
+                                            k-auto-bind="false"
+                                            k-data-source="dataMasterPetugas"
+                                            ng-disabled="isSuster" />
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- Penata Anestesi  -->
-                            <div class="grid_4">
-                                <div class="grid_4" style="margin: 10px 0 0 0;">
-                                    <label><b>Penata Anestesi</b></label>
-                                </div>
-                                <div class="grid_8">
-                                    <input style="width: 100%;" kendo-combo-box
-                                        k-ng-model="item.selectedPenataAnest"
-                                        k-data-text-field="'namaLengkap'"
-                                        k-data-value-field="'id'"
-                                        k-filter="'contains'"
-                                        k-auto-bind="false"
-                                        k-data-source="dataMasterPetugas"
-                                        ng-disabled="isSuster" />
-                                </div>
-                            </div>
-                            <!-- Perawat Instrumen -->
-                            <div class="grid_4">
-                                <div class="grid_4" style="margin: 10px 0 0 0;">
-                                    <label><b>Perawat Instrumen</b></label>
-                                </div>
-                                <div class="grid_8">
-                                    <input style="width: 100%;" kendo-combo-box
-                                        k-ng-model="item.selectedPerawatInstrumen"
-                                        k-data-text-field="'namaLengkap'"
-                                        k-data-value-field="'id'"
-                                        k-filter="'contains'"
-                                        k-auto-bind="false"
-                                        k-data-source="dataMasterPetugas"
-                                        ng-disabled="isSuster" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid_12">
-                            <!-- Operator -->
-                            <div class="grid_4">
-                                <div class="grid_4" style="margin: 10px 0 0 0;">
-                                    <label><b>Operator</b></label>
-                                </div>
-                                <div class="grid_8">
-                                    <!-- <input c-text-box type="input" placeholder="Nama" filter="'varchar'" class="k-textbox" ng-model="item.nama" ng-disabled="isSimpan"/> -->
-                                    <input style="width: 100%;" kendo-combo-box
-                                        k-ng-model="item.selectedDataOperator"
-                                        k-data-text-field="'namaLengkap'"
-                                        k-data-value-field="'id'"
-                                        k-filter="'contains'"
-                                        k-auto-bind="false"
-                                        k-data-source="dataMasterPetugas"
-                                        ng-disabled="isSuster" />
+                                <!-- Perawat Instrumen -->
+                                <div class="grid_4">
+                                    <div class="grid_4" style="margin: 10px 0 0
+                                        0;">
+                                        <label><b>Perawat Instrumen</b></label>
+                                    </div>
+                                    <div class="grid_8">
+                                        <input style="width: 100%;"
+                                            kendo-combo-box
+                                            k-ng-model="item.selectedPerawatInstrumen"
+                                            k-data-text-field="'namaLengkap'"
+                                            k-data-value-field="'id'"
+                                            k-filter="'contains'"
+                                            k-auto-bind="false"
+                                            k-data-source="dataMasterPetugas"
+                                            ng-disabled="isSuster" />
+                                    </div>
                                 </div>
                             </div>
-                            <!-- Asisten Operator -->
-                            <div class="grid_4">
-                                <div class="grid_4" style="margin: 10px 0 0 0;">
-                                    <label><b>Asisten Operator</b></label>
+                            <div class="grid_12">
+                                <!-- Operator -->
+                                <div class="grid_4">
+                                    <div class="grid_4" style="margin: 10px 0 0
+                                        0;">
+                                        <label><b>Operator</b></label>
+                                    </div>
+                                    <div class="grid_8">
+                                        <!-- <input c-text-box type="input" placeholder="Nama" filter="'varchar'" class="k-textbox" ng-model="item.nama" ng-disabled="isSimpan"/> -->
+                                        <input style="width: 100%;"
+                                            kendo-combo-box
+                                            k-ng-model="item.selectedDataOperator"
+                                            k-data-text-field="'namaLengkap'"
+                                            k-data-value-field="'id'"
+                                            k-filter="'contains'"
+                                            k-auto-bind="false"
+                                            k-data-source="dataMasterPetugas"
+                                            ng-disabled="isSuster" />
+                                    </div>
                                 </div>
-                                <div class="grid_8">
-                                    <input style="width: 100%;" kendo-combo-box
-                                        k-ng-model="item.selectedAsistenOperator"
-                                        k-data-text-field="'namaLengkap'"
-                                        k-data-value-field="'id'"
-                                        k-filter="'contains'"
-                                        k-auto-bind="false"
-                                        k-data-source="dataMasterPetugas"
-                                        ng-disabled="isSuster" />
+                                <!-- Asisten Operator -->
+                                <div class="grid_4">
+                                    <div class="grid_4" style="margin: 10px 0 0
+                                        0;">
+                                        <label><b>Asisten Operator</b></label>
+                                    </div>
+                                    <div class="grid_8">
+                                        <input style="width: 100%;"
+                                            kendo-combo-box
+                                            k-ng-model="item.selectedAsistenOperator"
+                                            k-data-text-field="'namaLengkap'"
+                                            k-data-value-field="'id'"
+                                            k-filter="'contains'"
+                                            k-auto-bind="false"
+                                            k-data-source="dataMasterPetugas"
+                                            ng-disabled="isSuster" />
+                                    </div>
                                 </div>
+
+                                <!-- Tanggal Pembedahan -->
+                                <div class="grid_4">
+                                    <div class="grid_4" style="margin: 10px 0 0
+                                        0;">
+                                        <label><b>Tanggal Pembedahan</b></label>
+                                    </div>
+                                    <div class="grid_8">
+                                        <input style="width: 100%"
+                                            kendo-date-picker
+                                            k-ng-model="item.tglPembedahan"
+                                            placeholer="Hari-Bln-Thn"
+                                            k-format="'dd-MM-yyyy'"
+                                            ng-disabled="isSuster" />
+                                    </div>
+                                </div>
+
                             </div>
 
-                            <!-- Tanggal Pembedahan -->
-                            <div class="grid_4">
-                                <div class="grid_4" style="margin: 10px 0 0 0;">
-                                    <label><b>Tanggal Pembedahan</b></label>
-                                </div>
-                                <div class="grid_8">
-                                    <input style="width: 100%" kendo-date-picker
-                                        k-ng-model="item.tglPembedahan"
-                                        placeholer="Hari-Bln-Thn"
-                                        k-format="'dd-MM-yyyy'"
-                                        ng-disabled="isSuster" />
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="grid_12">
-                            <!-- Jam Mulai -->
-                            <div class="grid_2">
-                                <div class="grid_4" style="margin: 10px 0 0 0;">
-                                    <label><b>Jam Mulai</b></label>
-                                </div>
-                                <div class="grid_8">
-                                    <input style="width: 100%" kendo-time-picker
-                                        k-ng-model="item.jamMulai"
-                                        placeholer="HH:mm"
-                                        k-format="'HH:mm'"
-                                        k-on-change="setLamaPembedahan()"
-                                        ng-disabled="isSuster" />
-                                    <!-- <input style="width: 100%" kendo-time-picker
+                            <div class="grid_12">
+                                <!-- Jam Mulai -->
+                                <div class="grid_2">
+                                    <div class="grid_4" style="margin: 10px 0 0
+                                        0;">
+                                        <label><b>Jam Mulai</b></label>
+                                    </div>
+                                    <div class="grid_8">
+                                        <input style="width: 100%"
+                                            kendo-time-picker
+                                            k-ng-model="item.jamMulai"
+                                            placeholer="HH:mm"
+                                            k-format="'HH:mm'"
+                                            k-on-change="setLamaPembedahan()"
+                                            ng-disabled="isSuster" />
+                                        <!-- <input style="width: 100%" kendo-time-picker
                                         k-ng-model="item.jamMulai" 
                                         ng-change="setLamaPembedahan()"
                                         k-format="'HH:mm'" /> -->
+                                    </div>
                                 </div>
-                            </div>
 
-                            <!-- Selesai Jam -->
-                            <div class="grid_2">
-                                <div class="grid_4" style="margin: 10px 0 0 0;">
-                                    <label><b>Jam Selesai</b></label>
-                                </div>
-                                <div class="grid_8">
-                                    <input style="width: 100%" kendo-time-picker
-                                        k-ng-model="item.jamSelesai"
-                                        placeholer="HH:mm"
-                                        k-format="'HH:mm'"
-                                        k-on-change="setLamaPembedahan()"
-                                        ng-disabled="isSuster" />
-                                    <!-- <input style="width: 100%" kendo-time-picker 
+                                <!-- Selesai Jam -->
+                                <div class="grid_2">
+                                    <div class="grid_4" style="margin: 10px 0 0
+                                        0;">
+                                        <label><b>Jam Selesai</b></label>
+                                    </div>
+                                    <div class="grid_8">
+                                        <input style="width: 100%"
+                                            kendo-time-picker
+                                            k-ng-model="item.jamSelesai"
+                                            placeholer="HH:mm"
+                                            k-format="'HH:mm'"
+                                            k-on-change="setLamaPembedahan()"
+                                            ng-disabled="isSuster" />
+                                        <!-- <input style="width: 100%" kendo-time-picker 
                                         ng-change="setLamaPembedahan()"
                                         k-ng-model="item.jamSelesai"
                                         k-format="'HH:mm'" /> -->
+                                    </div>
                                 </div>
-                            </div>
 
-                            <!-- Lama Pembedahan -->
-                            <div class="grid_4">
-                                <div class="grid_4" style="margin: 10px 0 0 0;">
-                                    <label><b>Lama Pembedahan</b></label>
-                                </div>
-                                <div class="grid_8">
-                                    <input c-text-box type="input"
-                                        placeholder="Jam" filter="'varchar'"
-                                        class="k-textbox"
-                                        ng-model="item.lamaPembedahan"
-                                        disabled/>
-                                </div>
-                                <!-- <div class="grid_1" style="margin-top: 13px;">
+                                <!-- Lama Pembedahan -->
+                                <div class="grid_4">
+                                    <div class="grid_4" style="margin: 10px 0 0
+                                        0;">
+                                        <label><b>Lama Pembedahan</b></label>
+                                    </div>
+                                    <div class="grid_8">
+                                        <input c-text-box type="input"
+                                            placeholder="Jam" filter="'varchar'"
+                                            class="k-textbox"
+                                            ng-model="item.lamaPembedahan"
+                                            disabled/>
+                                    </div>
+                                    <!-- <div class="grid_1" style="margin-top: 13px;">
                                     <label>Jam</label>
                                 </div> -->
+                                </div>
+
+                                <div class="grid_4">
+                                    <div class="grid_4" style="margin: 10px 0 0
+                                        0;">
+                                        <label>
+                                            <strong>
+                                                Jumlah Pendarahan
+                                            </strong>
+                                        </label>
+                                    </div>
+                                    <div class="grid_6">
+                                        <input c-text-box type="input"
+                                            placeholder="Jumlah Pendarahan
+                                            *Kosongkan jika tidak ada"
+                                            class="k-textbox"
+                                            ng-model="item.jmlPendarahan"
+                                            ng-disabled="isSuster" />
+                                    </div>
+                                    <div class="grid_2" style="margin: 10px 0 0
+                                        0;">
+                                        <label>
+                                            <strong>
+                                                ml
+                                            </strong>
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="grid_4">
-                                <div class="grid_4" style="margin: 10px 0 0 0;">
-                                    <label>
-                                        <strong>
-                                            Jumlah Pendarahan
-                                        </strong>
-                                    </label>
-                                </div>
-                                <div class="grid_6">
-                                    <input c-text-box type="input"
-                                        placeholder="Jumlah Pendarahan
-                                        *Kosongkan jika tidak ada"
-                                        class="k-textbox"
-                                        ng-model="item.jmlPendarahan"
-                                        ng-disabled="isSuster" />
-                                </div>
-                                <div class="grid_2" style="margin: 10px 0 0 0;">
-                                    <label>
-                                        <strong>
-                                            ml
-                                        </strong>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="grid_12">
-                            <!-- Label Pasien -->
-                            <div class="grid_4">
-                                <!-- <div class="grid_4" style="margin: 10px 0 0 0;">
+                            <div class="grid_12">
+                                <!-- Label Pasien -->
+                                <div class="grid_4">
+                                    <!-- <div class="grid_4" style="margin: 10px 0 0 0;">
                                     <label><b>Label Pasien</b></label>
                                 </div>
                                 <div class="grid_8">
@@ -291,32 +455,33 @@
                                         k-auto-bind="false"
                                         k-data-source="listOfLabelPasien" />
                                 </div> -->
-                                <label><b>Label Pasien</b></label>
-                                <ul class="fieldlist">
-                                    <li>
-                                        <input type="radio"
-                                            name="selectedLabelPasien"
-                                            ng-model="item.selectedLabelPasien"
-                                            value="Sudah" ng-disabled="isSuster"
-                                            id="makanBiasa" class="k-radio">
-                                        <label class="k-radio-label"
-                                            for="makanBiasa">Sudah</label>
-                                    </li>
-                                    <li>
-                                        <input type="radio"
-                                            name="selectedLabelPasien"
-                                            ng-model="item.selectedLabelPasien"
-                                            value="Belum dipasang"
-                                            ng-disabled="isSuster"
-                                            id="belum" class="k-radio">
-                                        <label class="k-radio-label"
-                                            for="belum">Belum dipasang</label>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- Status -->
-                            <div class="grid_4">
-                                <!-- <div class="grid_4" style="margin: 10px 0 0 0;">
+                                    <label><b>Label Pasien</b></label>
+                                    <ul class="fieldlist">
+                                        <li>
+                                            <input type="radio"
+                                                name="selectedLabelPasien"
+                                                ng-model="item.selectedLabelPasien"
+                                                value="Sudah"
+                                                ng-disabled="isSuster"
+                                                id="makanBiasa" class="k-radio">
+                                            <label class="k-radio-label"
+                                                for="makanBiasa">Sudah</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio"
+                                                name="selectedLabelPasien"
+                                                ng-model="item.selectedLabelPasien"
+                                                value="Belum dipasang"
+                                                ng-disabled="isSuster"
+                                                id="belum" class="k-radio">
+                                            <label class="k-radio-label"
+                                                for="belum">Belum dipasang</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- Status -->
+                                <div class="grid_4">
+                                    <!-- <div class="grid_4" style="margin: 10px 0 0 0;">
                                     <label><b>Status</b></label>
                                 </div>
                                 <div class="grid_8">
@@ -328,75 +493,77 @@
                                         k-auto-bind="false"
                                         k-data-source="listOfStatus" />
                                 </div> -->
-                                <label><b>Status</b></label>
-                                <ul class="fieldlist">
-                                    <li>
-                                        <input type="radio"
-                                            name="selectedStatus"
-                                            ng-model="item.selectedStatus"
-                                            value="Emergency"
-                                            ng-disabled="isSuster"
-                                            id="emergency" class="k-radio">
-                                        <label class="k-radio-label"
-                                            for="emergency">Emergency</label>
-                                    </li>
-                                    <li>
-                                        <input type="radio"
-                                            name="selectedStatus"
-                                            ng-model="item.selectedStatus"
-                                            value="Elektif"
-                                            ng-disabled="isSuster"
-                                            id="elektif" class="k-radio">
-                                        <label class="k-radio-label"
-                                            for="elektif">Elektif</label>
-                                    </li>
-                                </ul>
-                            </div>
+                                    <label><b>Status</b></label>
+                                    <ul class="fieldlist">
+                                        <li>
+                                            <input type="radio"
+                                                name="selectedStatus"
+                                                ng-model="item.selectedStatus"
+                                                value="Emergency"
+                                                ng-disabled="isSuster"
+                                                id="emergency" class="k-radio">
+                                            <label class="k-radio-label"
+                                                for="emergency">Emergency</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio"
+                                                name="selectedStatus"
+                                                ng-model="item.selectedStatus"
+                                                value="Elektif"
+                                                ng-disabled="isSuster"
+                                                id="elektif" class="k-radio">
+                                            <label class="k-radio-label"
+                                                for="elektif">Elektif</label>
+                                        </li>
+                                    </ul>
+                                </div>
 
-                            <!-- kondisi Penanganan -->
-                            <div class="grid_4">
-                                <label><b>Kondisi Penanganan</b></label>
-                                <ul class="fieldlist">
-                                    <li class="grid_6">
-                                        <input type="radio"
-                                            name="selectedPenangananKhusus"
-                                            ng-model="item.selectedPenangananKhusus"
-                                            value="Minor" ng-disabled="isSuster"
-                                            id="minor" class="k-radio">
-                                        <label class="k-radio-label"
-                                            for="minor">Minor</label>
-                                    </li>
-                                    <li class="grid_6">
-                                        <input type="radio"
-                                            name="selectedPenangananKhusus"
-                                            ng-model="item.selectedPenangananKhusus"
-                                            value="Medium"
-                                            ng-disabled="isSuster"
-                                            id="medium" class="k-radio">
-                                        <label class="k-radio-label"
-                                            for="medium">Medium</label>
-                                    </li>
-                                    <li class="grid_6">
-                                        <input type="radio"
-                                            name="selectedPenangananKhusus"
-                                            ng-model="item.selectedPenangananKhusus"
-                                            value="Mayor" ng-disabled="isSuster"
-                                            id="mayor" class="k-radio">
-                                        <label class="k-radio-label"
-                                            for="mayor">Mayor</label>
-                                    </li>
-                                    <li class="grid_6">
-                                        <input type="radio"
-                                            name="selectedPenangananKhusus"
-                                            ng-model="item.selectedPenangananKhusus"
-                                            value="Khusus"
-                                            ng-disabled="isSuster"
-                                            id="khusus" class="k-radio">
-                                        <label class="k-radio-label"
-                                            for="khusus">Khusus</label>
-                                    </li>
-                                </ul>
-                                <!-- <div class="grid_4" style="margin: 10px 0 0 0;">
+                                <!-- kondisi Penanganan -->
+                                <div class="grid_4">
+                                    <label><b>Kondisi Penanganan</b></label>
+                                    <ul class="fieldlist">
+                                        <li class="grid_6">
+                                            <input type="radio"
+                                                name="selectedPenangananKhusus"
+                                                ng-model="item.selectedPenangananKhusus"
+                                                value="Minor"
+                                                ng-disabled="isSuster"
+                                                id="minor" class="k-radio">
+                                            <label class="k-radio-label"
+                                                for="minor">Minor</label>
+                                        </li>
+                                        <li class="grid_6">
+                                            <input type="radio"
+                                                name="selectedPenangananKhusus"
+                                                ng-model="item.selectedPenangananKhusus"
+                                                value="Medium"
+                                                ng-disabled="isSuster"
+                                                id="medium" class="k-radio">
+                                            <label class="k-radio-label"
+                                                for="medium">Medium</label>
+                                        </li>
+                                        <li class="grid_6">
+                                            <input type="radio"
+                                                name="selectedPenangananKhusus"
+                                                ng-model="item.selectedPenangananKhusus"
+                                                value="Mayor"
+                                                ng-disabled="isSuster"
+                                                id="mayor" class="k-radio">
+                                            <label class="k-radio-label"
+                                                for="mayor">Mayor</label>
+                                        </li>
+                                        <li class="grid_6">
+                                            <input type="radio"
+                                                name="selectedPenangananKhusus"
+                                                ng-model="item.selectedPenangananKhusus"
+                                                value="Khusus"
+                                                ng-disabled="isSuster"
+                                                id="khusus" class="k-radio">
+                                            <label class="k-radio-label"
+                                                for="khusus">Khusus</label>
+                                        </li>
+                                    </ul>
+                                    <!-- <div class="grid_4" style="margin: 10px 0 0 0;">
                                         <label><b>Kondisi Penanganan</b></label>
                                     </div>
                                     <div class="grid_8">
@@ -408,234 +575,250 @@
                                             k-auto-bind="false"
                                             k-data-source="listOfPenanganKhusus" />
                                     </div> -->
+                                </div>
+
                             </div>
 
-                        </div>
-
-                        <div class="grid_12">
-                            <div class="grid_6">
-                                <div class="grid_2" style="margin: 10px 0 0 0;">
-                                    <label>
-                                        <strong>
-                                            Komplikasi
-                                        </strong>
-                                    </label>
-                                </div>
-                                <div class="grid_10">
-                                    <!-- <input c-text-box type="input"
+                            <div class="grid_12">
+                                <div class="grid_6">
+                                    <div class="grid_2" style="margin: 10px 0 0
+                                        0;">
+                                        <label>
+                                            <strong>
+                                                Komplikasi
+                                            </strong>
+                                        </label>
+                                    </div>
+                                    <div class="grid_10">
+                                        <!-- <input c-text-box type="input"
                                         placeholder="Komplikasi *Kosongkan jika tidak ada" 
                                         filter="'varchar'"
                                         class="k-textbox"
                                         ng-model="item.komplikasi" /> -->
-                                    <textarea ng-model="item.komplikasi"
-                                        ng-keyup="countLengthKomplikasi()"
-                                        maxlength="300" ng-disabled="isSuster"
-                                        style="height:100px"></textarea>
-                                    <p class="length-textarea">300/{{lengthKomplikasi}}</p>
+                                        <textarea ng-model="item.komplikasi"
+                                            ng-keyup="countLengthKomplikasi()"
+                                            maxlength="300"
+                                            ng-disabled="isSuster"
+                                            style="height:100px"></textarea>
+                                        <p class="length-textarea">300/{{lengthKomplikasi}}</p>
+                                    </div>
+                                </div>
+                                <div class="grid_6">
+                                    <div class="grid_2" style="margin: 10px 0 0
+                                        0;">
+                                        <label>
+                                            <strong>
+                                                Macam Jaringan
+                                            </strong>
+                                        </label>
+                                    </div>
+                                    <div class="grid_10">
+                                        <textarea ng-model="item.macamJaringan"
+                                            ng-keyup="countLengthKMacamJaringan()"
+                                            maxlength="300"
+                                            ng-disabled="isSuster"
+                                            style="height:100px"></textarea>
+                                        <p class="length-textarea">300/{{lengthMacamJaringan}}</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="grid_6">
-                                <div class="grid_2" style="margin: 10px 0 0 0;">
-                                    <label>
-                                        <strong>
-                                            Macam Jaringan
-                                        </strong>
-                                    </label>
-                                </div>
-                                <div class="grid_10">
-                                    <textarea ng-model="item.macamJaringan"
-                                        ng-keyup="countLengthKMacamJaringan()"
-                                        maxlength="300" ng-disabled="isSuster"
-                                        style="height:100px"></textarea>
-                                    <p class="length-textarea">300/{{lengthMacamJaringan}}</p>
-                                </div>
-                            </div>
-                        </div>
 
 
-                        <div class="grid_12">
-                            <div class="grid_5">
-                                <fieldset class="borderBox">
-                                    <legend>
-                                        <strong>Tindakan Pembedahan</strong>
-                                    </legend>
-                                    <ul class="fieldlist">
-                                        <li>
-                                            <label>I</label>
-                                            <!-- <input c-text-box type="input"
+                            <div class="grid_12">
+                                <div class="grid_5">
+                                    <fieldset class="borderBox">
+                                        <legend>
+                                            <strong>Tindakan Pembedahan</strong>
+                                        </legend>
+                                        <ul class="fieldlist">
+                                            <li>
+                                                <label>I</label>
+                                                <!-- <input c-text-box type="input"
                                                 filter="'varchar'"
                                                 class="k-textbox"
                                                 ng-model="item.tindakanPembedahanSatu"/> -->
-                                            <textarea
-                                                ng-model="item.tindakanPembedahanSatu"
-                                                ng-keyup="countTindakanPembedahan(1)"
-                                                maxlength="500"
-                                                ng-disabled="isSuster"
-                                                style="height:105px"></textarea>
-                                            <p class="length-textarea">500/{{lengthTindakanPembedahanSatu}}</p>
-                                        </li>
-                                        <li>
-                                            <label>II</label>
-                                            <!-- <input c-text-box type="input"
+                                                <textarea
+                                                    ng-model="item.tindakanPembedahanSatu"
+                                                    ng-keyup="countTindakanPembedahan(1)"
+                                                    maxlength="500"
+                                                    ng-disabled="isSuster"
+                                                    style="height:105px"></textarea>
+                                                <p class="length-textarea">500/{{lengthTindakanPembedahanSatu}}</p>
+                                            </li>
+                                            <li>
+                                                <label>II</label>
+                                                <!-- <input c-text-box type="input"
                                                 filter="'varchar'"
                                                 class="k-textbox"
                                                 ng-model="item.tindakanPembedahanDua" /> -->
-                                            <textarea
-                                                ng-model="item.tindakanPembedahanDua"
-                                                ng-keyup="countTindakanPembedahan(2)"
-                                                maxlength="500"
-                                                ng-disabled="isSuster"
-                                                style="height:105px"></textarea>
-                                            <p class="length-textarea">500/{{lengthTindakanPembedahanDua}}</p>
-                                        </li>
-                                        <li>
-                                            <label>III</label>
-                                            <!-- <input c-text-box type="input"
+                                                <textarea
+                                                    ng-model="item.tindakanPembedahanDua"
+                                                    ng-keyup="countTindakanPembedahan(2)"
+                                                    maxlength="500"
+                                                    ng-disabled="isSuster"
+                                                    style="height:105px"></textarea>
+                                                <p class="length-textarea">500/{{lengthTindakanPembedahanDua}}</p>
+                                            </li>
+                                            <li>
+                                                <label>III</label>
+                                                <!-- <input c-text-box type="input"
                                                 filter="'varchar'"
                                                 class="k-textbox"
                                                 ng-model="item.tindakanPembedahanTiga"/> -->
-                                            <textarea
-                                                ng-model="item.tindakanPembedahanTiga"
-                                                ng-keyup="countTindakanPembedahan(3)"
-                                                maxlength="500"
-                                                ng-disabled="isSuster"
-                                                style="height:105px"></textarea>
-                                            <p class="length-textarea">500/{{lengthTindakanPembedahanTiga}}</p>
-                                        </li>
-                                        <li>
-                                            <label>IV</label>
-                                            <!-- <input c-text-box type="input"
+                                                <textarea
+                                                    ng-model="item.tindakanPembedahanTiga"
+                                                    ng-keyup="countTindakanPembedahan(3)"
+                                                    maxlength="500"
+                                                    ng-disabled="isSuster"
+                                                    style="height:105px"></textarea>
+                                                <p class="length-textarea">500/{{lengthTindakanPembedahanTiga}}</p>
+                                            </li>
+                                            <li>
+                                                <label>IV</label>
+                                                <!-- <input c-text-box type="input"
                                                 filter="'varchar'"
                                                 class="k-textbox"
                                                 ng-model="item.tindakanPembedahanEmpat"/> -->
-                                            <textarea
-                                                ng-model="item.tindakanPembedahanEmpat"
-                                                ng-keyup="countTindakanPembedahan(4)"
-                                                maxlength="500"
-                                                ng-disabled="isSuster"
-                                                style="height:105px"></textarea>
-                                            <p class="length-textarea">500/{{lengthTindakanPembedahanEmpat}}</p>
-                                        </li>
-                                        <!-- <li>
+                                                <textarea
+                                                    ng-model="item.tindakanPembedahanEmpat"
+                                                    ng-keyup="countTindakanPembedahan(4)"
+                                                    maxlength="500"
+                                                    ng-disabled="isSuster"
+                                                    style="height:105px"></textarea>
+                                                <p class="length-textarea">500/{{lengthTindakanPembedahanEmpat}}</p>
+                                            </li>
+                                            <!-- <li>
                                             <input type="radio" name="keadaan" id="khusus" class="k-radio" checked="checked">
                                             <label class="k-radio-label" for="khusus">Khusus</label>
                                         </li> -->
-                                    </ul>
-                                </fieldset>
-                            </div>
-                            <div class="grid_7">
+                                        </ul>
+                                    </fieldset>
+                                </div>
+                                <div class="grid_7">
 
-                                <div class="grid_4" style="margin-top: 80px;">
-                                    <label>
-                                        <strong>
-                                            Uraian Pembedahan-sesuai dengan
-                                            Instruksi kerja
-                                        </strong>
-                                    </label>
-                                </div>
-                                <div class="grid_8">
-                                    <textarea ng-model="item.uraianPembedahan"
-                                        ng-keyup="countLengthUraianPembedahan()"
-                                        maxlength="1000" ng-disabled="isSuster"
-                                        style="height:180px"></textarea>
-                                    <p class="length-textarea">1000/{{lengthUraianPemebedahan}}</p>
-                                </div>
+                                    <div class="grid_4" style="margin-top:
+                                        80px;">
+                                        <label>
+                                            <strong>
+                                                Uraian Pembedahan-sesuai dengan
+                                                Instruksi kerja
+                                            </strong>
+                                        </label>
+                                    </div>
+                                    <div class="grid_8">
+                                        <textarea
+                                            ng-model="item.uraianPembedahan"
+                                            ng-keyup="countLengthUraianPembedahan()"
+                                            maxlength="1000"
+                                            ng-disabled="isSuster"
+                                            style="height:180px"></textarea>
+                                        <p class="length-textarea">1000/{{lengthUraianPemebedahan}}</p>
+                                    </div>
 
-                                <div class="grid_4">
-                                    <label>
-                                        <strong>
-                                            Jaringan Patologi
-                                        </strong>
-                                    </label>
-                                </div>
-                                <div class="grid_8">
-                                    <textarea ng-model="item.jaringanPatologi"
-                                        ng-keyup="countLengthPatologi()"
-                                        maxlength="500" ng-disabled="isSuster"
-                                        style="height:100px"></textarea>
-                                    <p class="length-textarea">500/{{lengthPatologi}}</p>
-                                    <!-- <input c-text-box type="input"
+                                    <div class="grid_4">
+                                        <label>
+                                            <strong>
+                                                Jaringan Patologi
+                                            </strong>
+                                        </label>
+                                    </div>
+                                    <div class="grid_8">
+                                        <textarea
+                                            ng-model="item.jaringanPatologi"
+                                            ng-keyup="countLengthPatologi()"
+                                            maxlength="500"
+                                            ng-disabled="isSuster"
+                                            style="height:100px"></textarea>
+                                        <p class="length-textarea">500/{{lengthPatologi}}</p>
+                                        <!-- <input c-text-box type="input"
                                         placeholder="Jaringan Patologi"
                                         filter="'varchar'"
                                         class="k-textbox"
                                         ng-model="item.jaringanPatologi" /> -->
-                                </div>
+                                    </div>
 
-                                <div class="grid_4">
-                                    <label>
-                                        <strong>
-                                            Diagnosa Pra Bedah
-                                        </strong>
-                                    </label>
-                                </div>
-                                <div class="grid_8">
-                                    <textarea ng-model="item.diagnosaPraBedah"
-                                        ng-keyup="countLengthDiagnosaPraBedah()"
-                                        maxlength="500" ng-disabled="isSuster"
-                                        style="height:100px"></textarea>
-                                    <p class="length-textarea">500/{{lengthDiagnosaPraBedah}}</p>
-                                </div>
+                                    <div class="grid_4">
+                                        <label>
+                                            <strong>
+                                                Diagnosa Pra Bedah
+                                            </strong>
+                                        </label>
+                                    </div>
+                                    <div class="grid_8">
+                                        <textarea
+                                            ng-model="item.diagnosaPraBedah"
+                                            ng-keyup="countLengthDiagnosaPraBedah()"
+                                            maxlength="500"
+                                            ng-disabled="isSuster"
+                                            style="height:100px"></textarea>
+                                        <p class="length-textarea">500/{{lengthDiagnosaPraBedah}}</p>
+                                    </div>
 
-                                <div class="grid_4">
-                                    <label>
-                                        <strong>
-                                            Diagnosa Pasca Bedah
-                                        </strong>
-                                    </label>
-                                </div>
-                                <div class="grid_8">
-                                    <textarea ng-model="item.diagnosaPascaBedah"
-                                        ng-keyup="countLengthDiagnosaPascaBedah()"
-                                        maxlength="500" ng-disabled="isSuster"
-                                        style="height:100px"></textarea>
-                                    <p class="length-textarea">500/{{lengthDiagnosaPascaBedah}}</p>
-                                </div>
+                                    <div class="grid_4">
+                                        <label>
+                                            <strong>
+                                                Diagnosa Pasca Bedah
+                                            </strong>
+                                        </label>
+                                    </div>
+                                    <div class="grid_8">
+                                        <textarea
+                                            ng-model="item.diagnosaPascaBedah"
+                                            ng-keyup="countLengthDiagnosaPascaBedah()"
+                                            maxlength="500"
+                                            ng-disabled="isSuster"
+                                            style="height:100px"></textarea>
+                                        <p class="length-textarea">500/{{lengthDiagnosaPascaBedah}}</p>
+                                    </div>
 
-                                <div class="grid_4">
-                                    <label>
-                                        <strong>
-                                            Kesesuaian Diagnosa Pra dan Pasca
-                                            Bedah
-                                        </strong>
-                                    </label>
-                                </div>
-                                <div class="grid_8">
-                                    <!-- <input style="width: 100%;" kendo-combo-box
+                                    <div class="grid_4">
+                                        <label>
+                                            <strong>
+                                                Kesesuaian Diagnosa Pra dan
+                                                Pasca
+                                                Bedah
+                                            </strong>
+                                        </label>
+                                    </div>
+                                    <div class="grid_8">
+                                        <!-- <input style="width: 100%;" kendo-combo-box
                                         k-ng-model="item.kesuaianDiagnosa"
                                         k-data-text-field="'name'"
                                         k-data-value-field="'id'"
                                         k-filter="'contains'"
                                         k-auto-bind="false"
                                         k-data-source="listSesuaiOrNot" /> -->
-                                    <ul style="display: flex;justify-content:
-                                        space-around;">
-                                        <li>
-                                            <input type="radio"
-                                                name="kesuaianDiagnosa"
-                                                ng-model="item.kesuaianDiagnosa"
-                                                value="Sesuai"
-                                                ng-disabled="isSuster"
-                                                id="sesuai" class="k-radio">
-                                            <label class="k-radio-label"
-                                                for="sesuai">Sesuai</label>
-                                        </li>
-                                        <li>
-                                            <input type="radio"
-                                                name="kesuaianDiagnosa"
-                                                ng-model="item.kesuaianDiagnosa"
-                                                value="Tidak Sesuai"
-                                                id="tidakSesuai"
-                                                ng-disabled="isSuster"
-                                                class="k-radio">
-                                            <label class="k-radio-label"
-                                                for="tidakSesuai">Tidak Sesuai</label>
-                                        </li>
-                                    </ul>
+                                        <ul style="display:
+                                            flex;justify-content:
+                                            space-around;">
+                                            <li>
+                                                <input type="radio"
+                                                    name="kesuaianDiagnosa"
+                                                    ng-model="item.kesuaianDiagnosa"
+                                                    value="Sesuai"
+                                                    ng-disabled="isSuster"
+                                                    id="sesuai" class="k-radio">
+                                                <label class="k-radio-label"
+                                                    for="sesuai">Sesuai</label>
+                                            </li>
+                                            <li>
+                                                <input type="radio"
+                                                    name="kesuaianDiagnosa"
+                                                    ng-model="item.kesuaianDiagnosa"
+                                                    value="Tidak Sesuai"
+                                                    id="tidakSesuai"
+                                                    ng-disabled="isSuster"
+                                                    class="k-radio">
+                                                <label class="k-radio-label"
+                                                    for="tidakSesuai">Tidak
+                                                    Sesuai</label>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- <div class="grid_12">
+                            <!-- <div class="grid_12">
                             <div class="grid_4">
                                 <div class="grid_4" style="margin: 10px 0 0 0;">
                                     <label><b>Diagnosa Pra Bedah</b></label>
@@ -675,175 +858,169 @@
                                         k-data-source="listSesuaiOrNot" />
                                 </div>
                             </div>
-
+    
                         </div> -->
-                    </div>
-                </div>
-                <fieldset ng-show="showInputan" class="borderBox"
-                    style="margin-top:10px">
-                    <legend>
-                        <span style="font-size:18px">
-                            <strong> Instruksi Pasca Bedah </strong>
-                        </span>
-                    </legend>
-                    <div class="grid_12">
-                        <div class="grid_3">
-                            <fieldset class="borderBox">
-                                <legend>
-                                    <strong>1. Periksa</strong>
-                                </legend>
-                                <!-- <label>1. Periksa</label> -->
-                                <ul class="fieldlist">
-                                    <li>
-                                        <label>Tekanan Darah Setiap</label>
-                                        <input c-text-box type="input"
-                                            ng-disabled="isSuster"
-                                            filter="'varchar'" class="k-textbox"
-                                            ng-model="item.tekananDarah"
-                                            required/>
-                                    </li>
-                                    <li>
-                                        <label>Nadi Setiap</label>
-                                        <input c-text-box type="input"
-                                            ng-disabled="isSuster"
-                                            filter="'varchar'" class="k-textbox"
-                                            ng-model="item.nadi" />
-                                    </li>
-                                    <li>
-                                        <label>Suhu Setiap</label>
-                                        <input c-text-box type="input"
-                                            ng-disabled="isSuster"
-                                            filter="'varchar'" class="k-textbox"
-                                            ng-model="item.suhu" />
-                                    </li>
-                                    <li>
-                                        <label>Pernafasan Setiap</label>
-                                        <input c-text-box type="input"
-                                            ng-disabled="isSuster"
-                                            filter="'varchar'" class="k-textbox"
-                                            ng-model="item.pernafasan" />
-                                    </li>
-                                </ul>
-                            </fieldset>
-                        </div>
-                        <div class="grid_3">
-                            <fieldset class="borderBox">
-                                <legend>
-                                    <strong>2. Makan / Minum</strong>
-                                </legend>
-                                <!-- <label>1. Periksa</label> -->
-                                <ul class="fieldlist">
-                                    <li>
-                                        <label>Makan</label>
-                                        <textarea
-                                            ng-model="item.selectedAvailMakan"
-                                            ng-keyup="countLengthMakan()"
-                                            maxlength="200"
-                                            ng-disabled="isSuster"
-                                            style="height:90px"></textarea>
-                                        <p class="length-textarea">200/{{lengthMakan}}</p>
-                                    </li>
-                                    <li>
-                                        <label>Minum</label>
-                                        <textarea
-                                            ng-model="item.selectedAvailMinum"
-                                            ng-keyup="countLengthMinum()"
-                                            maxlength="200"
-                                            ng-disabled="isSuster"
-                                            style="height:90px"></textarea>
-                                        <p class="length-textarea">200/{{lengthMinum}}</p>
-                                    </li>
-                                </ul>
-                            </fieldset>
-                        </div>
-                        <div class="grid_3">
-                            <fieldset class="borderBox">
-                                <legend>
-                                    <strong>3. Infus</strong>
-                                </legend>
-                                <ul style="padding: 5px 0">
-                                    <li>
-                                        <label>Macam</label>
-                                        <textarea ng-model="item.macam"
-                                            ng-keyup="countInfus(1)"
-                                            maxlength="100"
-                                            ng-disabled="isSuster"
-                                            style="height:50px"></textarea>
-                                        <p class="length-textarea">100/{{lengthMacam}}</p>
-                                    </li>
-                                    <li>
-                                        <label>Jumlah</label>
-                                        <textarea ng-model="item.jumlah"
-                                            ng-keyup="countInfus(2)"
-                                            maxlength="100"
-                                            ng-disabled="isSuster"
-                                            style="height:50px"></textarea>
-                                        <p class="length-textarea">100/{{lengthJumlah}}</p>
-                                    </li>
-                                    <li>
-                                        <label>Tetesan</label>
-                                        <textarea ng-model="item.tetesan"
-                                            ng-keyup="countInfus(3)"
-                                            maxlength="100"
-                                            ng-disabled="isSuster"
-                                            style="height:50px"></textarea>
-                                        <p class="length-textarea">100/{{lengthTetesan}}</p>
-                                    </li>
-                                </ul>
-                            </fieldset>
-                        </div>
-                        <div class="grid_3">
-                            <fieldset class="borderBox"
-                                style="margin-bottom:10px">
-                                <legend>
-                                    <strong>4. Obat - obat</strong>
-                                </legend>
-                                <textarea ng-model="item.obatObatan"
-                                    ng-disabled="isSuster"
-                                    ng-keyup="countObat()" maxlength="300"
-                                    style="height:90px"></textarea>
-                                <p class="length-textarea">300/{{lengthObat}}</p>
-                            </fieldset>
-                            <fieldset class="borderBox">
-                                <legend>
-                                    <strong>5. Instruksi Khusus</strong>
-                                </legend>
-                                <textarea ng-model="item.instruksiKhusus"
-                                    ng-disabled="isSuster"
-                                    ng-keyup="countLengthKInstruksiKhusus()"
-                                    maxlength="300"
-                                    style="height:90px"></textarea>
-                                <p class="length-textarea">300/{{lengthInstruksiKhusus}}</p>
-                            </fieldset>
                         </div>
                     </div>
+                    <fieldset ng-show="showInputan" class="borderBox"
+                        style="margin-top:10px">
+                        <legend>
+                            <span style="font-size:18px">
+                                <strong> Instruksi Pasca Bedah </strong>
+                            </span>
+                        </legend>
+                        <div class="grid_12">
+                            <div class="grid_3">
+                                <fieldset class="borderBox">
+                                    <legend>
+                                        <strong>1. Periksa</strong>
+                                    </legend>
+                                    <!-- <label>1. Periksa</label> -->
+                                    <ul class="fieldlist">
+                                        <li>
+                                            <label>Tekanan Darah Setiap</label>
+                                            <input c-text-box type="input"
+                                                ng-disabled="isSuster"
+                                                filter="'varchar'"
+                                                class="k-textbox"
+                                                ng-model="item.tekananDarah"
+                                                required/>
+                                        </li>
+                                        <li>
+                                            <label>Nadi Setiap</label>
+                                            <input c-text-box type="input"
+                                                ng-disabled="isSuster"
+                                                filter="'varchar'"
+                                                class="k-textbox"
+                                                ng-model="item.nadi" />
+                                        </li>
+                                        <li>
+                                            <label>Suhu Setiap</label>
+                                            <input c-text-box type="input"
+                                                ng-disabled="isSuster"
+                                                filter="'varchar'"
+                                                class="k-textbox"
+                                                ng-model="item.suhu" />
+                                        </li>
+                                        <li>
+                                            <label>Pernafasan Setiap</label>
+                                            <input c-text-box type="input"
+                                                ng-disabled="isSuster"
+                                                filter="'varchar'"
+                                                class="k-textbox"
+                                                ng-model="item.pernafasan" />
+                                        </li>
+                                    </ul>
+                                </fieldset>
+                            </div>
+                            <div class="grid_3">
+                                <fieldset class="borderBox">
+                                    <legend>
+                                        <strong>2. Makan / Minum</strong>
+                                    </legend>
+                                    <!-- <label>1. Periksa</label> -->
+                                    <ul class="fieldlist">
+                                        <li>
+                                            <label>Makan</label>
+                                            <textarea
+                                                ng-model="item.selectedAvailMakan"
+                                                ng-keyup="countLengthMakan()"
+                                                maxlength="200"
+                                                ng-disabled="isSuster"
+                                                style="height:90px"></textarea>
+                                            <p class="length-textarea">200/{{lengthMakan}}</p>
+                                        </li>
+                                        <li>
+                                            <label>Minum</label>
+                                            <textarea
+                                                ng-model="item.selectedAvailMinum"
+                                                ng-keyup="countLengthMinum()"
+                                                maxlength="200"
+                                                ng-disabled="isSuster"
+                                                style="height:90px"></textarea>
+                                            <p class="length-textarea">200/{{lengthMinum}}</p>
+                                        </li>
+                                    </ul>
+                                </fieldset>
+                            </div>
+                            <div class="grid_3">
+                                <fieldset class="borderBox">
+                                    <legend>
+                                        <strong>3. Infus</strong>
+                                    </legend>
+                                    <ul style="padding: 5px 0">
+                                        <li>
+                                            <label>Macam</label>
+                                            <textarea ng-model="item.macam"
+                                                ng-keyup="countInfus(1)"
+                                                maxlength="100"
+                                                ng-disabled="isSuster"
+                                                style="height:50px"></textarea>
+                                            <p class="length-textarea">100/{{lengthMacam}}</p>
+                                        </li>
+                                        <li>
+                                            <label>Jumlah</label>
+                                            <textarea ng-model="item.jumlah"
+                                                ng-keyup="countInfus(2)"
+                                                maxlength="100"
+                                                ng-disabled="isSuster"
+                                                style="height:50px"></textarea>
+                                            <p class="length-textarea">100/{{lengthJumlah}}</p>
+                                        </li>
+                                        <li>
+                                            <label>Tetesan</label>
+                                            <textarea ng-model="item.tetesan"
+                                                ng-keyup="countInfus(3)"
+                                                maxlength="100"
+                                                ng-disabled="isSuster"
+                                                style="height:50px"></textarea>
+                                            <p class="length-textarea">100/{{lengthTetesan}}</p>
+                                        </li>
+                                    </ul>
+                                </fieldset>
+                            </div>
+                            <div class="grid_3">
+                                <fieldset class="borderBox"
+                                    style="margin-bottom:10px">
+                                    <legend>
+                                        <strong>4. Obat - obat</strong>
+                                    </legend>
+                                    <textarea ng-model="item.obatObatan"
+                                        ng-disabled="isSuster"
+                                        ng-keyup="countObat()" maxlength="300"
+                                        style="height:90px"></textarea>
+                                    <p class="length-textarea">300/{{lengthObat}}</p>
+                                </fieldset>
+                                <fieldset class="borderBox">
+                                    <legend>
+                                        <strong>5. Instruksi Khusus</strong>
+                                    </legend>
+                                    <textarea ng-model="item.instruksiKhusus"
+                                        ng-disabled="isSuster"
+                                        ng-keyup="countLengthKInstruksiKhusus()"
+                                        maxlength="300"
+                                        style="height:90px"></textarea>
+                                    <p class="length-textarea">300/{{lengthInstruksiKhusus}}</p>
+                                </fieldset>
+                            </div>
+                        </div>
 
-                </fieldset>
-                <div class="grid_6"></div>
-                <div class="grid_6" ng-show="showInputan">
-                    <div class="grid_8"></div>
-                    <div class="grid_2">
-                        <md-button class="md-raised md-primary"
-                            ng-click="Simpan()">Simpan</md-button>
+                    </fieldset>
+                    <div class="grid_6"></div>
+                    <div class="grid_6" ng-show="showInputan">
+                        <div class="grid_8"></div>
+                        <div class="grid_2">
+                            <md-button class="md-raised md-primary"
+                                ng-click="Simpan()">Simpan</md-button>
+                        </div>
+                        <div class="grid_2">
+                            <md-button class="md-raised md-warn"
+                                ng-click="Batal()">Batal</md-button>
+                        </div>
                     </div>
-                    <div class="grid_2">
-                        <md-button class="md-raised md-warn"
-                            ng-click="Batal()">Batal</md-button>
-                    </div>
-                    <!-- <div class="grid_8">
-                    </div>
-                    <div class="grid_2" style="margin-top: 22px">
-                        <button class="c-button" ng-click="Simpan()"
-                            ng-disabled="isSuster">Simpan</button>
-                    </div>
-                    <div class="grid_2" style="margin-top: 22px">
-                        <button class="c-button" ng-click="Batal()">Batal</button>
-                    </div> -->
-                    <!-- <div class="grid_2" style="margin-top: 22px">
-                <button class="c-button" ng-click="kembali()">Kembali</button>
-            </div> -->
                 </div>
             </div>
-        </div>
-    </div>
+        </md-tab>
+    </md-tabs>
+
 </div>

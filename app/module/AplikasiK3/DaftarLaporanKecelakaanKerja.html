@@ -41,21 +41,35 @@
 <div ng-controller="DaftarLaporanKecelakaanKerjaCtrl">
 	<div ng-show="dataVOloaded">
 		<c-panel item="item" header="'Daftar Laporan Kecelakaan Kerja'">
-			<div class="grid_12 ">
-				<div kendo-grid="gridKejadian" id="gridLaporanKecelakaanKerja" k-data-source="listLaporanKecelakaan " k-selectable=" 'row' "
-				 k-ng-model="selectedData" k-options="optionGridKecelakaanKerja " style="margin-bottom: 10px "></div>
+			<div class="grid_12">
+				<div kendo-grid="gridKejadian" id="gridLaporanKecelakaanKerja"
+					k-data-source="listLaporanKecelakaan" k-selectable="'row'"
+					k-ng-model="selectedData"
+					k-options="optionGridKecelakaanKerja" style="margin-bottom: 10px"></div>
 			</div>
 			<!-- btn grid -->
-			<div class="grid_12 " style="margin-top: 25px; float: right; font-size: 24px; ">
+			<div class="grid_12" style="margin-top: 10px; float: right; font-size:
+				24px;">
 				<div class="grid_2">
-					<button class="c-button" item="item" ng-click="cetak(selectedData) ">
+					<md-button class="md-raised md-primary medium-button"
+						ng-click="cetak(selectedData)">
+						<span style="margin-right: 5px;">Cetak Laporan</span>
+						<i class="fa fa-print"></i>
+					</md-button>
+					<!-- <button class="c-button" item="item" ng-click="cetak(selectedData) ">
 						<span class="title ">Cetak Laporan</span>
-					</button>
+					</button> -->
 				</div>
 				<div class="grid_2">
-					<button class="c-button " ng-show="!isLoading " item="item" ng-click="edit(selectedData)">
-						<span class="title ">Edit</span>
-					</button>
+					<!-- <button class="c-button"ng-show="!isLoading"item="item"
+						ng-click="edit(selectedData)">
+						<span class="title">Edit</span>
+					</button> -->
+					<md-button class="md-raised md-primary medium-button"
+						ng-click="edit(selectedData)">
+						<span style="margin-right: 5px;">Edit</span>
+						<i class="fa fa-edit"></i>
+					</md-button>
 				</div>
 				<!-- <div class="grid_2">
 					<button class="c-button " ng-show="!isLoading " item="item " ng-click="detailLaporan(selectedData) ">
@@ -71,15 +85,30 @@
 						<span class="title ">Verifikasi</span></button>
 				</div> -->
 			</div>
-			<div class="grid_12 ">
-				<div class="grid_6 " ng-show="isPelapor"></div>
-				<div class="grid_10 " ng-hide="isPelapor"></div>
-				<div class="grid_2 " style="margin-top: 25px; font-size: 24px; " ng-show="isPelapor">
-					<button class="c-button " ng-show="!isLoading " item="item " ng-click="edit(selectedData)">
-						<span class="title ">Edit</span></button></div>
-				<div class="grid_2 " style="margin-top: 25px; font-size: 24px; " ng-show="isPelapor">
-					<button class="c-button " ng-show="!isLoading " item="item " ng-click="hapusKejadian(selectedData)">
-						<span class="title ">Hapus</span></button>
+			<div class="grid_12">
+				<div class="grid_6" ng-show="isPelapor"></div>
+				<div class="grid_10" ng-hide="isPelapor"></div>
+				<div class="grid_2" style="margin-top: 25px; font-size: 24px;"
+					ng-show="isPelapor">
+					<md-button class="md-raised md-primary medium-button"
+						ng-click="edit(selectedData)">
+						<span style="margin-right: 5px;">Edit</span>
+						<i class="fa fa-edit"></i>
+					</md-button>
+					<!-- <button class="c-button" ng-show="!isLoading" item="item"
+						ng-click="edit(selectedData)">
+						<span class="title">Edit</span></button> -->
+				</div>
+				<div class="grid_2" style="margin-top: 25px; font-size: 24px;"
+					ng-show="isPelapor">
+					<md-button class="md-raised md-warn medium-button"
+						ng-click="hapusKejadian(selectedData)">
+						<span style="margin-right: 5px;">Hapus</span>
+						<i class="fa fa-erase"></i>
+					</md-button>
+					<!-- <button class="c-button" ng-show="!isLoading" item="item"
+						ng-click="hapusKejadian(selectedData)">
+						<span class="title">Hapus</span></button> -->
 				</div>
 				<!-- <div class="grid_12 " style="margin-top: 25px; float: right; font-size: 24px; ">
 					<button class="c-button " ng-show="!isLoading " item="item " ng-click="detailLaporan(selectedData) ">
@@ -87,11 +116,11 @@
 					</button>
 				</div> -->
 			</div>
-	</div>
+		</div>
 	</c-panel>
-	<div ng-show="showDetailLaporan ">
-		<c-panel item="item " header=" 'Detail Laporan Kecelakaan Kerja' ">
-			<div class="panel panel-default container_12 ">
+	<div ng-show="showDetailLaporan">
+		<c-panel item="item" header="'Detail Laporan Kecelakaan Kerja'">
+			<div class="panel panel-default container_12">
 				<!-- detail kejadian -->
 				<div class="grid_6">
 					<div class="grid_12">
@@ -99,7 +128,8 @@
 							<label c-label item="item" c-label-text="tempatKejadian"></label>
 						</div>
 						<div class="grid_8">
-							<input c-text-box type="input" filter="" class="k-textbox" ng-model="kejadian.tempatKejadian" ng-disabled="isDisabled" />
+							<input c-text-box type="input" filter="" class="k-textbox"
+								ng-model="kejadian.tempatKejadian" ng-disabled="isDisabled" />
 						</div>
 					</div>
 					<div class="grid_12">
@@ -107,8 +137,9 @@
 							<label c-label item="item" c-label-text="tanggal"></label>
 						</div>
 						<div class="grid_8">
-							<input style="width: 100%" kendo-date-picker k-max="now" k-value="now" k-ng-model="kejadian.tanggal" placeholder="dd-mm-yyyy"
-							 k-format="'dd-MM-yyyy'" ng-disabled="isDisabled" />
+							<input style="width: 100%" kendo-date-picker k-max="now" k-value="now"
+								k-ng-model="kejadian.tanggal" placeholder="dd-mm-yyyy"
+								k-format="'dd-MM-yyyy'" ng-disabled="isDisabled" />
 						</div>
 					</div>
 					<div class="grid_12">
@@ -116,8 +147,10 @@
 							<label c-label item="item" c-label-text="waktu"></label>
 						</div>
 						<div class="grid_8">
-							<input style="width: 100%" kendo-time-picker k-ng-model="kejadian.jamKejadian" placeholder="'HH:mm'" k-format="'HH:mm'"
-							 ng-disabled="isDisabled" />
+							<input style="width: 100%" kendo-time-picker
+								k-ng-model="kejadian.jamKejadian" placeholder="'HH:mm'"
+								k-format="'HH:mm'"
+								ng-disabled="isDisabled" />
 						</div>
 					</div>
 					<div class="grid_12">
@@ -125,8 +158,9 @@
 							<label c-label item="item" c-label-text="awalKejadian"></label>
 						</div>
 						<div class="grid_8">
-							<textarea c-text-box type="input" class="k-textbox" ng-model="kejadian.awalKejadian" style="width: 100%; height: 80px;"
-							 ng-disabled="isDisabled"></textarea>
+							<textarea c-text-box type="input" class="k-textbox"
+								ng-model="kejadian.awalKejadian" style="width: 100%; height: 80px;"
+								ng-disabled="isDisabled"></textarea>
 						</div>
 					</div>
 					<div class="grid_12">
@@ -134,20 +168,23 @@
 							<label c-label item="item" c-label-text="penolongPertama"></label>
 						</div>
 						<div class="grid_8">
-							<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="kejadian.penolongPertama"
-							 ng-disabled="isDisabled" />
+							<input c-text-box type="input" filter="'string'" class="k-textbox"
+								ng-model="kejadian.penolongPertama"
+								ng-disabled="isDisabled" />
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="grid_6">
 					<div class="grid_12">
 						<div class="grid_4" style="margin-top:11px">
 							<label c-label item="item" c-label-text="kondisiSaatKejadian"></label>
 						</div>
 						<div class="grid_8">
-							<textarea c-text-box type="input" class="k-textbox" ng-model="kejadian.kondisiSaatKejadian" style="width: 100%; height: 80px;"
-							 ng-disabled="isDisabled"></textarea>
+							<textarea c-text-box type="input" class="k-textbox"
+								ng-model="kejadian.kondisiSaatKejadian" style="width: 100%; height:
+								80px;"
+								ng-disabled="isDisabled"></textarea>
 						</div>
 					</div>
 					<div class="grid_12">
@@ -155,8 +192,9 @@
 							<label c-label item="item" c-label-text="tindakanPertolongan"></label>
 						</div>
 						<div class="grid_8">
-							<textarea c-text-box type="input" class="k-textbox" ng-model="kejadian.tindakanPenolong" style="width: 100%; height: 80px;"
-							 ng-disabled="isDisabled"></textarea>
+							<textarea c-text-box type="input" class="k-textbox"
+								ng-model="kejadian.tindakanPenolong" style="width: 100%; height: 80px;"
+								ng-disabled="isDisabled"></textarea>
 						</div>
 					</div>
 					<div class="grid_12">
@@ -164,13 +202,14 @@
 							<label c-label item="item" c-label-text="tindakanLanjutan"></label>
 						</div>
 						<div class="grid_8">
-							<textarea c-text-box type="input" class="k-textbox" ng-model="kejadian.tindakanLanjutan" style="width: 100%; height: 80px;"
-							 ng-disabled="verifiedData"></textarea>
+							<textarea c-text-box type="input" class="k-textbox"
+								ng-model="kejadian.tindakanLanjutan" style="width: 100%; height: 80px;"
+								ng-disabled="verifiedData"></textarea>
 						</div>
 					</div>
 				</div>
 				<!-- detail kejadian sampe sini -->
-				
+
 				<!-- btn simpan kejadian -->
 				<div class="grid_12">
 					<div class="grid_8"></div>
@@ -178,21 +217,35 @@
 						<button class="c-button " ng-show="!isLoading " item="item " ng-click="verifikasi(1) ">
 							<span class="title ">Unverifikasi</span></button>
 					</div> -->
-					<div class="grid_2" style="margin-top: 25px; font-size: 24px; ">
-						<button class="c-button " ng-show="!isLoading " item="item " ng-click="verifikasi(2) ">
-							<span class="title ">Verifikasi</span></button>
+					<div class="grid_2" style="margin-top: 25px; font-size: 24px;">
+						<md-button class="md-raised md-info medium-button"
+							ng-click="verifikasi(2)">
+							<span style="margin-right: 5px;">Verifikasi</span>
+							<i class="fa fa-check"></i>
+						</md-button>
+						<!-- <button class="c-button" ng-show="!isLoading" item="item"
+							ng-click="verifikasi(2)">
+							<span class="title">Verifikasi</span>
+						</button> -->
 					</div>
-					<div class="grid_2 " style="margin-top: 25px; font-size: 24px; " ng-show="isEdit">
-						<button class="c-button " ng-show="!isLoading " item="item " ng-click="simpanKejadian() ">
-							<span class="title ">Simpan</span></button>
+					<div class="grid_2" style="margin-top: 25px; font-size: 24px;"
+						ng-show="isEdit">
+						<md-button class="md-raised md-primary medium-button" ng-click="simpanKejadian()">
+							<span style="margin-right: 5px;">Simpan</span>
+							<i class="fa fa-save"></i>
+						</md-button>
+						<!-- <button class="c-button" ng-show="!isLoading" item="item"
+							ng-click="simpanKejadian()">
+							<span class="title">Simpan</span></button> -->
 					</div>
 				</div>
 				<hr class="divider-dotted1">
 				<!-- grid List Saksi -->
-				<div class="grid_12 " ng-show="isEdit">
-					<div kendo-grid="gridSaksi" k-data-source="listSaksi" id="gridSaksi" ng-model="selectedDataSaksi" k-columns="columnSaksi"
-					 k-selectable=" 'row' " style="margin-bottom: 10px "></div>
-				</div>				
+				<div class="grid_12" ng-show="isEdit">
+					<div kendo-grid="gridSaksi" k-data-source="listSaksi" id="gridSaksi"
+						ng-model="selectedDataSaksi" k-columns="columnSaksi"
+						k-selectable="'row'" style="margin-bottom: 10px"></div>
+				</div>
 
 				<!-- detail Saksi -->
 				<!-- detail saksi untuk saat ini blm perlu -->
@@ -230,8 +283,10 @@
 				<!-- saksi sampai sini -->
 				<!-- grid korban -->
 				<div class="grid_12" style="margin-top:40px">
-					<div kendo-grid k-data-source="listKorban" k-selectable=" 'row' " k-on-change="selectKorban(data)" k-ng-model="selectedKorban"
-					 k-columns="columnKorban" style="margin-bottom: 10px "></div>
+					<div kendo-grid k-data-source="listKorban" k-selectable="'row'"
+						k-on-change="selectKorban(data)"
+						k-ng-model="selectedKorban"
+						k-columns="columnKorban" style="margin-bottom: 10px"></div>
 				</div>
 				<hr class="divider-dotted1">
 				<!-- detail korban -->
@@ -243,7 +298,8 @@
 									<label c-label item="item" c-label-text="namaKorban"></label>
 								</div>
 								<div class="grid_8">
-									<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.namaKorban" ng-disabled="isDisabled" />
+									<input c-text-box type="input" filter="'string'" class="k-textbox"
+										ng-model="item.namaKorban" ng-disabled="isDisabled" />
 								</div>
 							</div>
 
@@ -252,7 +308,8 @@
 									<label c-label item="item" c-label-text="lahirDi"></label>
 								</div>
 								<div class="grid_8">
-									<input c-text-box type="input" filter="'string'" class="k-textbox" ng-model="item.tempatLahir" ng-disabled="isDisabled" />
+									<input c-text-box type="input" filter="'string'" class="k-textbox"
+										ng-model="item.tempatLahir" ng-disabled="isDisabled" />
 								</div>
 							</div>
 
@@ -261,27 +318,29 @@
 									<label c-label item="item" c-label-text="jenisKelamin"></label>
 								</div>
 								<div class="grid_8">
-									<input style="width: 100%;" kendo-combo-box k-ng-model="item.jk" k-on-change=test() k-data-text-field="'jenisKelamin'"
-									 k-data-value-field="'jenisKelamin'" placeholder="jk" k-filter="'contains'" k-data-source="listJenisKelamin"
-									 ng-disabled="isDisabled" />
+									<input style="width: 100%;" kendo-combo-box k-ng-model="item.jk"
+										k-on-change=test() k-data-text-field="'jenisKelamin'"
+										k-data-value-field="'jenisKelamin'" placeholder="jk"
+										k-filter="'contains'" k-data-source="listJenisKelamin"
+										ng-disabled="isDisabled" />
 								</div>
 							</div>
-							<div class="grid_12">
+							<!-- <div class="grid_12">
 								<div class="grid_4" style="margin-top:11px; ">
 									<label c-label item="item" c-label-text="statusPekerjaan"></label>
 								</div>
 								<div class="grid_8">
-									<input style="width: 100%;" kendo-combo-box k-ng-model="item.sp" k-data-text-field="'statusPekerjaan'"
-									 placeholder="sp" k-data-value-field="'idPekerjaan'" k-filter="'contains'" k-auto-bind="false" k-on-change="changePekerjaan()"
+									<input style="width: 100%;" kendo-combo-box k-ng-model="item.sp" k-data-text-field="'statusPekerjaan'" k-data-value-field="'idPekerjaan'" k-filter="'contains'" k-auto-bind="false" k-on-change="changePekerjaan()"
 									 k-data-source="listStatusPekerjaan" ng-disabled="isDisabled" />
 								</div>
-							</div>
+							</div> -->
 							<div class="grid_12" ng-if="statusPekerjaan.idPekerjaan == 7">
-								<div class="grid_4" style="margin-top:11px; ">
+								<div class="grid_4" style="margin-top:11px;">
 									<label c-label item="item" c-label-text="penjelasan"></label>
 								</div>
 								<div class="grid_8">
-									<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.keteranganPekerjaan" ng-disabled="isDisabled" />
+									<input c-text-box type="input" filter="" class="k-textbox"
+										ng-model="item.keteranganPekerjaan" ng-disabled="isDisabled" />
 								</div>
 							</div>
 						</div>
@@ -291,7 +350,8 @@
 									<label c-label item="item">N.I.Kependudukan</label>
 								</div>
 								<div class="grid_8">
-									<input c-text-box type="input" filter="'numeric'" class="k-textbox" ng-model="item.niKependudukan" ng-disabled="isDisabled" />
+									<input c-text-box type="input" filter="'numeric'" class="k-textbox"
+										ng-model="item.niKependudukan" ng-disabled="isDisabled" />
 								</div>
 							</div>
 							<div class="grid_12">
@@ -299,8 +359,11 @@
 									<label c-label item="item" c-label-text="tanggalLahir"></label>
 								</div>
 								<div class="grid_8">
-									<input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tglLahir" placeholder="dd-mm-yyyy"
-									 k-format="'dd-MM-yyyy'" ng-disabled="isDisabled" />
+									<!-- <input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tglLahir" placeholder="dd-mm-yyyy"
+									 k-format="'dd-MM-yyyy'" ng-disabled="isDisabled" /> -->
+									<input kendo-date-picker k-ng-model="item.tglLahir"
+										k-format="'dd-MM-yyyy'" style="width: 100%" ng-disabled="isDisabled"
+										/>
 								</div>
 							</div>
 							<div class="grid_12">
@@ -309,9 +372,11 @@
 								</div>
 								<div class="grid_8">
 									<!--<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.ruangan" />-->
-									<input style="width: 100%;" kendo-combo-box k-ng-model="item.ru" k-data-text-field="'namaRuangan'" placeholder="ru"
-									 k-data-value-field="'ruanganId'" k-filter="'contains'" k-auto-bind="false" k-on-change="" k-data-source="listUnitRuangan"
-									 ng-disabled="isDisabled" />
+									<input style="width: 100%;" kendo-combo-box k-ng-model="item.ru"
+										k-data-text-field="'namaRuangan'" placeholder="ru"
+										k-data-value-field="'ruanganId'" k-filter="'contains'"
+										k-auto-bind="false" k-on-change="" k-data-source="listUnitRuangan"
+										ng-disabled="isDisabled" />
 								</div>
 							</div>
 							<div class="grid_12">
@@ -319,17 +384,21 @@
 									<label c-label item="item" c-label-text="statusJabatan"></label>
 								</div>
 								<div class="grid_8">
-									<input style="width: 100%;" kendo-combo-box k-ng-model="item.sj" k-data-text-field="'statusJabatan'"
-									 placeholder="sj" k-data-value-field="'idJabatan'" k-filter="'contains'" k-auto-bind="false" k-on-change="findPegawai()"
-									 k-data-source="listStatusJabatan" ng-disabled="isDisabled" />
+									<input style="width: 100%;" kendo-combo-box
+										k-ng-model="item.statusJabatanInput"
+										k-data-text-field="'statusJabatan'"
+										k-data-value-field="'idJabatan'" k-filter="'contains'"
+										k-on-change="findPegawai()"
+										k-data-source="listStatusJabatan" ng-disabled="isDisabled" />
 								</div>
 							</div>
 							<div class="grid_12" ng-if="statusJabatan.idJabatan == 15">
-								<div class="grid_4" style="margin-top:11px; ">
+								<div class="grid_4" style="margin-top:11px;">
 									<label c-label item="item" c-label-text="penjelasan"></label>
 								</div>
 								<div class="grid_8">
-									<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.keteranganJabatan" ng-disabled="isDisabled" />
+									<input c-text-box type="input" filter="" class="k-textbox"
+										ng-model="item.keteranganJabatan" ng-disabled="isDisabled" />
 								</div>
 							</div>
 						</div>
@@ -339,37 +408,41 @@
 						<div class="grid_12">
 
 							<label c-label item="item" c-label-text="bagianTubuhYangCedera"></label>
-
 							<div class="grid_12">
-								<textarea c-text-box type="input" class="k-textbox" ng-model="item.bagianTubuh" style="width: 100%; height: 80px;"
-								 ng-disabled="isDisabled"></textarea>
+								<textarea c-text-box type="input" class="k-textbox"
+									ng-model="item.bagianTubuh" style="width: 100%; height: 80px;"
+									ng-disabled="isDisabled"></textarea>
 							</div>
 						</div>
 						<div class="grid_12">
 
 							<label c-label item="item" c-label-text="pengobatanYangDiterima"></label>
-
 							<div class="grid_12">
-								<textarea c-text-box type="input" class="k-textbox" ng-model="item.jenisPengobatan" style="width: 100%; height: 80px;"
-								 ng-disabled="isDisabled"></textarea>
+								<textarea c-text-box type="input" class="k-textbox"
+									ng-model="item.jenisPengobatan" style="width: 100%; height: 80px;"
+									ng-disabled="isDisabled"></textarea>
 							</div>
 						</div>
 						<div class="grid_12">
 
-							<label c-label item="item" c-label-text="tindakanYangDilakukanDiRawatJalan"></label>
+							<label c-label item="item"
+								c-label-text="tindakanYangDilakukanDiRawatJalan"></label>
 
 							<div class="grid_12">
-								<textarea c-text-box type="input" class="k-textbox" ng-model="item.tindakanRawatJalan" style="width: 100%; height: 80px;"
-								 ng-disabled="isDisabled"></textarea>
+								<textarea c-text-box type="input" class="k-textbox"
+									ng-model="item.tindakanRawatJalan" style="width: 100%; height: 80px;"
+									ng-disabled="isDisabled"></textarea>
 							</div>
 						</div>
 
 						<div class="grid_12" style="margin-top: 40px">
 
-							<label c-label item="item">Lama Waktu Tidak Bekerja Sesaat Setelah Kecelakaan</label>
+							<label c-label item="item">Lama Waktu Tidak Bekerja Sesaat Setelah
+								Kecelakaan</label>
 
 							<div class="grid_12">
-								<input c-text-box type="input" class="k-textbox" ng-model="item.lamaTidakKerjaPerJam" ng-disabled="isDisabled" />
+								<input c-text-box type="input" class="k-textbox"
+									ng-model="item.lamaTidakKerjaPerJam" ng-disabled="isDisabled" />
 							</div>
 							<!--<div class="grid_6">
 								<input style="width: 100%;" kendo-combo-box k-ng-model="item.satuan" k-data-text-field="'satuan'" k-data-value-field="'id'"
@@ -379,32 +452,39 @@
 
 						<div class="grid_12" style="margin-top: 5px">
 							<label c-label item="item">Hal Lain Terkait Masalah Kerugian Waktu</label>
-							<textarea c-text-box type="input" class="k-textbox" ng-model="item.ketKerugianWaktu" style="width: 100%; height: 80px;"
-							 ng-disabled="isDisabled"></textarea>
+							<textarea c-text-box type="input" class="k-textbox"
+								ng-model="item.ketKerugianWaktu" style="width: 100%; height: 80px;"
+								ng-disabled="isDisabled"></textarea>
 						</div>
 
 						<div class="grid_12" style="margin-top: 40px">
-							<label c-label item="item">Biaya yang dikeluarkan sesaat setelah kecelakaan kerja (Rp)</label>
+							<label c-label item="item">Biaya yang dikeluarkan sesaat setelah
+								kecelakaan kerja (Rp)</label>
 
 							<div class="grid_12">
-								<input c-text-box type="number" min=1 class="k-textbox" ng-model="item.biayaPostKecelakaan" ng-disabled="isDisabled" />
+								<input c-text-box type="number" min=1 class="k-textbox"
+									ng-model="item.biayaPostKecelakaan" ng-disabled="isDisabled" />
 							</div>
 
 						</div>
 						<div class="grid_12" style="margin-top:5px">
-							<label c-label item="item">Biaya pengobatan yang dikeluarkan sampai saat ini (diluar biaya sesaat setelah
+							<label c-label item="item">Biaya pengobatan yang dikeluarkan sampai saat
+								ini (diluar biaya sesaat setelah
 								kecelakaan) (Rp)</label>
 
 							<div class="grid_12">
-								<input c-text-box type="number" min=1 class="k-textbox" ng-model="item.biayaPengobatan" ng-disabled="isDisabled" />
+								<input c-text-box type="number" min=1 class="k-textbox"
+									ng-model="item.biayaPengobatan" ng-disabled="isDisabled" />
 							</div>
 
 						</div>
 						<div class="grid_12" style="margin-top:5px">
-							<label c-label item="item">Biaya pengobatan yang diperkirakan masih dibutuhkan dalam rencana tindak lanjut
+							<label c-label item="item">Biaya pengobatan yang diperkirakan masih
+								dibutuhkan dalam rencana tindak lanjut
 								pemulihan oleh dokter (Rp)</label>
 							<div class="grid_12">
-								<input c-text-box type="number" min=1 class="k-textbox" ng-model="item.biayaPemulihan" ng-disabled="isDisabled" />
+								<input c-text-box type="number" min=1 class="k-textbox"
+									ng-model="item.biayaPemulihan" ng-disabled="isDisabled" />
 							</div>
 
 						</div>
@@ -414,15 +494,18 @@
 						<div class="grid_12">
 							<label c-label item="item" c-label-text="jenisCederaYangDiderita"></label>
 							<div class="grid_12">
-								<textarea c-text-box type="input" class="k-textbox" ng-model="item.jenisCedera" style="width: 100%; height: 80px;"
-								 ng-disabled="isDisabled"></textarea>
+								<textarea c-text-box type="input" class="k-textbox"
+									ng-model="item.jenisCedera" style="width: 100%; height: 80px;"
+									ng-disabled="isDisabled"></textarea>
 							</div>
 						</div>
 						<div class="grid_12">
-							<label c-label item="item" c-label-text="tindakanYangDilakukanDiRawatInap"></label>
+							<label c-label item="item"
+								c-label-text="tindakanYangDilakukanDiRawatInap"></label>
 							<div class="grid_12">
-								<textarea c-text-box type="input" class="k-textbox" ng-model="item.tindakanRawatInap" style="width: 100%; height: 80px;"
-								 ng-disabled="isDisabled"></textarea>
+								<textarea c-text-box type="input" class="k-textbox"
+									ng-model="item.tindakanRawatInap" style="width: 100%; height: 80px;"
+									ng-disabled="isDisabled"></textarea>
 							</div>
 						</div>
 						<div class="grid_12">
@@ -430,29 +513,33 @@
 							<label c-label item="item">Pengobatan di luar RSAB-HK</label>
 
 							<div class="grid_12">
-								<textarea c-text-box type="input" class="k-textbox" ng-model="item.tindakanDiLuarRsab" style="width: 100%; height: 80px;"
-								 ng-disabled="isDisabled"></textarea>
+								<textarea c-text-box type="input" class="k-textbox"
+									ng-model="item.tindakanDiLuarRsab" style="width: 100%; height: 80px;"
+									ng-disabled="isDisabled"></textarea>
 							</div>
 						</div>
 						<div class="grid_12" style="margin-top:40px">
 
-							<label c-label item="item">Lama Waktu Istirahat yang Diberikan Dokter untuk Beristirahat</label>
+							<label c-label item="item">Lama Waktu Istirahat yang Diberikan Dokter
+								untuk Beristirahat</label>
 							<!--<div class="grid_6">
 								<input style="width: 100%;" kendo-combo-box k-ng-model="item.isIstirahat" k-data-text-field="'statusAda'" k-data-value-field="'id'"
 									k-filter="'contains'" k-auto-bind="false" k-data-source="listStatusAda" />
 							</div>-->
 							<div class="grid_12">
-								<input c-text-box type="input" class="k-textbox" ng-model="item.lamaIstirahatPerJam" ng-disabled="isDisabled" />
+								<input c-text-box type="input" class="k-textbox"
+									ng-model="item.lamaIstirahatPerJam" ng-disabled="isDisabled" />
 							</div>
 							<!--<div class="grid_1" style="margin-top:12px" ng-if="item.isIstirahat.id == 1">
 								<label c-label item="item">hari</label>
 							</div>-->
-
 						</div>
 						<div class="grid_12" style="margin-top: 5px">
-							<label c-label item="item">Lama Waktu Anjuran Dokter untuk Pengobatan / Pemulihan </label>
+							<label c-label item="item">Lama Waktu Anjuran Dokter untuk Pengobatan /
+								Pemulihan </label>
 							<div class="grid_12">
-								<input c-text-box type="input" class="k-textbox" ng-model="item.lamaPemulihanPerHari" ng-disabled="isDisabled" />
+								<input c-text-box type="input" class="k-textbox"
+									ng-model="item.lamaPemulihanPerHari" ng-disabled="isDisabled" />
 							</div>
 							<!--<div class="grid_6">
 								<input style="width: 100%;" kendo-combo-box k-ng-model="item.satuanPemulihan" k-data-text-field="'satuanPemulihan'" k-data-value-field="'id'"
@@ -461,8 +548,9 @@
 						</div>
 						<div class="grid_12" style="margin-top: 90px">
 							<label c-label item="item">Kerugian Kesehatan</label>
-							<textarea c-text-box type="input" class="k-textbox" ng-model="item.ketKerugianKesehatan" style="width: 100%; height: 80px;"
-							 ng-disabled="isDisabled"></textarea>
+							<textarea c-text-box type="input" class="k-textbox"
+								ng-model="item.ketKerugianKesehatan" style="width: 100%; height: 80px;"
+								ng-disabled="isDisabled"></textarea>
 						</div>
 						<!-- <div class="grid_12">
 							<label c-label item="item">Tindak Lanjut</label>
@@ -472,17 +560,25 @@
 					<div>
 						<div class="grid_8" ng-show="isEdit"></div>
 						<!-- <div class="grid_6" ng-hide="isEdit"></div> -->
-						<div class="grid_2" style="margin-top: 25px; font-size: 24px; ">
-							<button class="c-button " ng-show="!isLoading " item="item " ng-click="batalEditKorban() ">
-								<span class="title ">Batal</span></button>
+						<div class="grid_2" style="margin-top: 25px; font-size: 24px;">
+							<md-button class="md-raised md-warn medium-button" is-back>
+								<span style="margin-right: 5px;">Batal</span>
+								<i class="fa fa-close"></i>
+							</md-button>
 						</div>
 						<!-- <div class="grid_2 " style="margin-top: 25px; font-size: 24px; " ng-show="isEdit">
 								<button class="c-button " ng-show="!isLoading " item="item " ng-click="hapusKorban() ">
 									<span class="title ">Hapus</span></button>
 							</div> -->
-						<div class="grid_2 " style="margin-top: 25px; font-size: 24px; " ng-show="isEdit">
-							<button class="c-button " ng-show="!isLoading " item="item " ng-click="simpanKorban() ">
-								<span class="title ">Simpan</span></button>
+						<div class="grid_2" style="margin-top: 25px; font-size: 24px;"
+							ng-show="isEdit">
+							<!-- <button class="c-button" ng-show="!isLoading" item="item"
+								ng-click="simpanKorban()">
+								<span class="title">Simpan</span></button> -->
+								<md-button class="md-raised md-primary medium-button" ng-click="simpanKorban()">
+									<span style="margin-right: 5px;">Simpan</span>
+									<i class="fa fa-save"></i>
+								</md-button>
 						</div>
 						<!-- <div class="grid_2 " style="margin-top: 25px; font-size: 24px; ">
 								<button class="c-button " ng-show="!isLoading " item="item " ng-click="cetak() ">
@@ -498,13 +594,18 @@
 	<!-- ini popUp -->
 	<div class="grid_12">
 		<div class="popUp" ng-show="isShowPopUp">
-			<div kendo-window="win1" id="winPopUp" k-title="'List Data Korban Kecelakaan'" k-draggable="true" k-height="200"
-			 k-position="{ 'top': '20%'}" k-on-close="closeWindowLinen()" k-visible="isShowPopUp">
+			<div kendo-window="win1" id="winPopUp" k-title="'List Data Korban
+				Kecelakaan'" k-draggable="true" k-height="200"
+				k-position="{ 'top': '20%'}" k-on-close="closeWindowLinen()"
+				k-visible="isShowPopUp">
 				<div class="grid_12">
 					<!-- <kendo-grid id="grid" options="columnKorban" k-ng-model="selectedDataKecelakaan">
 					</kendo-grid> -->
-					<div kendo-grid k-data-source="listKorbanPopUp" k-selectable=" 'row' " k-on-change="selectKorban(data)" k-ng-model="selectedKorban"
-					 style="width:1000px" k-columns="columnPopUpKorban" style="margin-bottom: 10px "></div>
+					<div kendo-grid k-data-source="listKorbanPopUp" k-selectable="'row'"
+						k-on-change="selectKorban(data)"
+						k-ng-model="selectedKorban"
+						style="width:1000px" k-columns="columnPopUpKorban" style="margin-bottom:
+						10px"></div>
 				</div>
 
 			</div>

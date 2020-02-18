@@ -1461,12 +1461,12 @@ h6 {
   margin: 0 auto;
   height: 100vh;
   /* background-image: linear-gradient(rgba(255, 0, 0, 0.45), rgba(255, 0, 0, 0.45)), url(../../../assets/bg-login.jpg); */
-  background-position: center;
+  background-position: 10% 90%;
   background-repeat: no-repeat;
   background-size: cover;
   /* background-image: url(../resources/images/welcomeScreenNew.jpg); */
   /* background-image:linear-gradient(to right, rgba(161, 255, 206, 0.2), rgba(250, 255, 209, 0.2)), url(../stylesheets/bg4.jpg); */
-  background-image: url(../stylesheets/bg.jpg);
+  background-image: url(../images/bg-feb-blue.jpg);
 }
 
 .c-login .panel {
