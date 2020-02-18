@@ -325,7 +325,7 @@ define(['initialize'], function (initialize) {
 				$scope.listUnitRuangan = dat.data.data.unitRuangan;
 			});
 
-			ManageSarpras.getOrderList('jasamedika-k3kl/k3-laporan-kecelakaan-kerja/get-unit-ruangan').then(function (dat) {
+			baseUrlK3KL.getOrderList('k3-laporan-kecelakaan-kerja/get-unit-ruangan').then(function (dat) {
 				$scope.listDdlRuangan = dat.data.unitRuangan;
 			});
 

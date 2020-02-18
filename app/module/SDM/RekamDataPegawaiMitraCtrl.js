@@ -188,7 +188,20 @@ define(['initialize'], function (initialize) {
                     // $scope.listPegawaiRiwayat = res[15].data;
                     
                     $scope.ListJabatan = res[8].data;
-                    $scope.ListJenisPegawai = res[9].data;
+
+                    var tempJenisPegawai = res[9].data;
+                    var toInclude = [10];
+                    $scope.ListJenisPegawai = [];
+                    tempJenisPegawai.forEach(function (el) {
+                        if (toInclude.includes(el.id)) {
+                            var dataTemp = {
+                                jenisPegawai: el.jenisPegawai,
+                                id: el.id
+                            }
+                            $scope.ListJenisPegawai.push(dataTemp);
+                        }
+                    })
+
                     // $scope.ListDetailKelompokJabatan = res[13].data;
 
                     // $scope.ListKualifikasiJurusan = res[20].data;

@@ -308,6 +308,10 @@ define(['initialize'], function (initialize) {
                 console.log(e);
             }
 
+            $scope.pengaturanBawahan = function () {
+                $state.go("PengaturanBawahan", { idPegawai: $state.params.idPegawai });
+            };
+
             // #region Rekam Data Pegawai
             var initRekamDataPegawai = function () {
                 $scope.listIdKedudukan = [3, 4, 5, 24, 25]; // input kedudukan pegawai yang dijadikan parameter untuk set statusEnabled pegawai = false
@@ -318,6 +322,11 @@ define(['initialize'], function (initialize) {
                         name: "create",
                         text: "Buat Jabatan Internal Baru",
                         template: '<button ng-click="createNewJabatanInternal()" id="btnCreateNewJabatan" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah Jabatan</button>'
+                    },
+                    { 
+                        name: "pengaturanBawahan", 
+                        text: "Pengaturan Bawahan", 
+                        template: '<button ng-click="pengaturanBawahan()" class="k-button k-button-icontext"><span class="k-icon k-i-gear"></span>Pengaturan Bawahan</button>' 
                     }],
                     pageable: true,
                     // scrollable: true,

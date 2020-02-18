@@ -164,14 +164,14 @@ define(['initialize'], function (initialize) {
                 scrollable: true,
                 columns: [
                     {
-                        field: "nipPns",
-                        title: "<h3>N.I.P</h3>",
-                        width: "17%",
-                    },
-                    {
                         field: "namaLengkap",
                         title: "<h3>Nama<br>Lengkap</h3>",
                         width: "25%"
+                    },
+                    {
+                        field: "jabatanInternal",
+                        title: "<h3>Jabatan</h3>",
+                        width: "17%",
                     },
                     {
                         field: "NamaUser",
