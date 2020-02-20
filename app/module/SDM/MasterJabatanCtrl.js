@@ -224,7 +224,9 @@ define(['initialize'], function (initialize) {
 				}
 
 				var levelJabatan = null;
-				if (data.levelJabatan.id) {
+				if (data.levelJabatan == null) {
+					levelJabatan = null;
+				} else if (data.levelJabatan.id) {
 					levelJabatan = data.levelJabatan.id;
 				} else if (data.levelJabatan) {
 					levelJabatan = data.levelJabatan;
@@ -233,7 +235,9 @@ define(['initialize'], function (initialize) {
 				}
 
 				var levelDireksi = null;
-				if (data.subLevelJabatan.id) {
+				if (data.subLevelJabatan == null) {
+					levelDireksi = null;
+				} else if (data.subLevelJabatan.id) {
 					levelDireksi = data.subLevelJabatan.id;
 				} else if (data.subLevelJabatan) {
 					levelDireksi = data.subLevelJabatan;
