@@ -5,7 +5,9 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             $scope.dataVOloaded = true;
             $scope.now = new Date();
-            $scope.pegawaiLogin = JSON.parse(localStorage.getItem('pegawai'))
+            $scope.isSaveLoad = false;
+            $scope.pegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
+            $scope.dataPasien = JSON.parse(localStorage.getItem('cacheHelper'));
             let jenisPegawai = $scope.pegawaiLogin.jenisPegawai.jenispegawai;
             let idPegawaiLogin = $scope.pegawaiLogin;
             $scope.item.tglOperasi = new Date();
@@ -18,6 +20,8 @@ define(['initialize'], function (initialize) {
             $scope.CmdOrderPelayanan = true;
             $scope.OrderPelayanan = false;
             $scope.showTombol = false;
+
+            $scope.isEdit = false;
             $scope.header.DataNoregis = '';
             var myVar = 0;
             var detail = '';
@@ -47,20 +51,20 @@ define(['initialize'], function (initialize) {
             LoadCache();
             function LoadCache() {
                 var chacePeriode = cacheHelper.get('cacheCPPT');
-                if (chacePeriode != undefined) {
-                    $scope.item.noMr = chacePeriode[0]
-                    $scope.item.namaPasien = chacePeriode[1]
-                    $scope.item.jenisKelamin = chacePeriode[2]
-                    $scope.item.noregistrasi = chacePeriode[3]
-                    $scope.item.umur = chacePeriode[4]
-                    $scope.item.kelompokPasien = chacePeriode[5]
-                    $scope.item.tglRegistrasi = chacePeriode[6]
-                    norec_apd = chacePeriode[7]
-                    norec_pd = chacePeriode[8]
-                    $scope.item.idKelas = chacePeriode[9]
-                    $scope.item.kelas = chacePeriode[10]
-                    $scope.item.idRuangan = chacePeriode[11]
-                    $scope.item.namaRuangan = chacePeriode[12]
+                if (!chacePeriode) {
+                    $scope.item.noMr = chacePeriode[0];
+                    $scope.item.namaPasien = chacePeriode[1];
+                    $scope.item.jenisKelamin = chacePeriode[2];
+                    $scope.item.noregistrasi = chacePeriode[3];
+                    $scope.item.umur = chacePeriode[4];
+                    $scope.item.kelompokPasien = chacePeriode[5];
+                    $scope.item.tglRegistrasi = chacePeriode[6];
+                    norec_apd = chacePeriode[7];
+                    norec_pd = chacePeriode[8];
+                    $scope.item.idKelas = chacePeriode[9];
+                    $scope.item.kelas = chacePeriode[10];
+                    $scope.item.idRuangan = chacePeriode[11];
+                    $scope.item.namaRuangan = chacePeriode[12];
                     if ($scope.item.namaRuangan.substr($scope.item.namaRuangan.length - 1) == '`') {
                         $scope.showTombol = true
                     }
@@ -102,9 +106,7 @@ define(['initialize'], function (initialize) {
                     if ($scope.header.DataNoregis == undefined) {
                         $scope.header.DataNoregis = false;
                     }
-                    // if ($scope.item.namaRuangan.substr($scope.item.namaRuangan.length - 1) == '`') {
-                    //     $scope.showTombol = true
-                    // }
+
                     managePhp.getData("tatarekening/get-sudah-verif?noregistrasi=" +
                         $scope.item.noregistrasi, true).then(function (dat) {
                             $scope.item.statusVerif = dat.data.status;
@@ -129,8 +131,8 @@ define(['initialize'], function (initialize) {
                 });
             };
 
-
             function init() {
+                getDataOrderJadwalBedah();
                 getLapPascaBedah();
                 $scope.listOfPenanganKhusus = [
                     { id: 1, name: 'Minor' },
@@ -232,6 +234,136 @@ define(['initialize'], function (initialize) {
 
 
 
+            };
+
+            $scope.columnDaftarJadwalBedah = {
+                toolbar: [{
+                    name: "create", text: "Input Baru",
+                    template: '<button ng-click="inputBaruJadwalBedah()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Buat Baru</button>'
+                }],
+                selectable: 'row',
+                pageable: true,
+                columns: [
+                    {
+                        "field": "noregistrasi",
+                        "title": "<h3>No. Registrasi</h3>",
+                        "width": "80px"
+                    },                    
+                    {
+                        "field": "namaDokterTujuan",
+                        "title": "<h3>Dokter yang<br> mengerjakan</h3>",
+                        "width": "80px"
+                    },
+                    {
+                        "field": "namaRuanganTujuan",
+                        "title": "<h3>Ruangan Tujuan</h3>",
+                        "width": "150px"
+                    },
+                    {
+                        "field": "namaruangan",
+                        "title": "<h3>Nama Ruangan</h3>",
+                        "width": "150px",
+                        // "template": "<span class='style-left'>#: if(!namaruangan) { namaruangan = '' } #</span>"
+                    },
+                    {
+                        "field": "tgloperasi",
+                        "title": "<h3>Tanggal Bedah</h3>",
+                        "width": "80px",
+                        "template": "<span class='style-left'>#: tgloperasi ? tgloperasi : '-' #</span>"
+                    },
+                    {
+                        "field": "tglverifikasi",
+                        "title": "<h3>Tanggal Verifikasi</h3>",
+                        "width": "80px",
+                        "template": "<span class='style-left'>#: tglverifikasi ? tglverifikasi : '-' #</span>"
+                    },
+                    {
+                        command: [
+                            { text: "Detail", click: detailJadwalBedah, imageClass: "k-icon k-i-pencil" },
+                        ], title: "", width: "60px"
+                    }
+                ]
+            };
+
+            function clearJadwal() {
+                $scope.item.tglJadwalPembedahan = "";
+                $scope.item.lamaOperasi = null;
+                $scope.item.dokterJadwalBedah = null;
+
+                $scope.item.diagnosaJadwalBedah = "";
+                $scope.item.tindakanJadwalBedah = "";
+                $scope.item.posisiKhusus = "";
+                $scope.item.macamAnastesi = "";
+                $scope.norecJadwalBedah = "";
+            }
+
+            function detailJadwalBedah(e) {
+                e.preventDefault();
+                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                console.log(dataItem);
+
+                // $scop.isDetail = true;
+                $scope.isEdit = true;
+                $scope.isVerif = dataItem.tglverifikasi ? true : false;
+                
+                $scope.item.tglJadwalPembedahan = new Date(dataItem.tgloperasi);
+                $scope.item.lamaOperasi = dataItem.lamaoperasi
+                $scope.item.dokterJadwalBedah = {
+                    namaLengkap: dataItem.namaDokterTujuan,
+                    id: dataItem.doktertujuanfk
+                };
+                $scope.norecJadwalBedah = dataItem.norec;
+                $scope.item.diagnosaJadwalBedah = dataItem.diagnosa;
+                $scope.item.tindakanJadwalBedah = dataItem.tindakan;
+                $scope.item.posisiKhusus = dataItem.posisikhusus;
+                $scope.item.macamAnastesi = dataItem.macamanestesi;
+                $scope.showModalInputJadwal.open().center();
+            }
+
+            function getDataOrderJadwalBedah() {
+                
+                managePhp.getData("rekam-medis/get-jadwal-operasi?nocm=" + $scope.item.noMr, true).then(function (data) {
+                    console.log(data.data.data);
+                    $scope.dataDaftarJadwalBedah = new kendo.data.DataSource({
+                        data: data.data.data
+                    })
+                    
+                });
+            }
+
+            $scope.closeModalJadwalBedah = function () {
+                $scope.showModalInputJadwal.close();
+                clearJadwal();
+            }
+
+            $scope.saveOrderBedah = function () {
+                $scope.isSaveLoad = true;
+                $scope.isRouteLoading = true;
+                let data = {
+                    "norec": $scope.norecJadwalBedah,
+                    "pasienfk": $scope.item.noMr,
+                    "dokterfk": $scope.pegawaiLogin.id,
+                    "doktertujuanfk": $scope.item.dokterJadwalBedah.id,
+                    "noregistrasifk": norec_apd,
+                    "ruanganfk": $scope.item.idRuangan,
+                    "ruangantujuanfk": 44,
+                    "tglinput": DateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm'),
+                    "tgloperasi": DateHelper.formatDate($scope.item.tglJadwalPembedahan, 'YYYY-MM-DD HH:mm'),
+                    "diagnosa": $scope.item.diagnosaJadwalBedah,
+                    "tindakan": $scope.item.tindakanJadwalBedah,
+                    "posisikhusus": $scope.item.posisiKhusus,
+                    "macamanestesi": $scope.item.macamAnastesi,
+                    "lamaoperasi": $scope.item.lamaOperasi
+                }
+                
+                managePhp.postData(data, 'rekam-medis/save-jadwal-operasi/save').then(function (e) {
+                    console.log(e);
+                    init();
+                    clearJadwal();
+                    $scope.isSaveLoad = false;
+                    $scope.closeModalJadwalBedah();
+                    $scope.isRouteLoading = false;
+                });
             }
 
             $scope.countLengthKomplikasi = function () {
@@ -337,17 +469,15 @@ define(['initialize'], function (initialize) {
             };
 
             $scope.inputBaruJadwalBedah = function () {
+                $scope.isEdit = false;
                 if (jenisPegawai != "DOKTER") {
                     toastr.info("Anda tidak bisa menambahkan Laporan Bedah");
                     $scope.isSuster = true;
                     return;
                 }
                 $scope.isSuster = false;
+                clearJadwal();
                 $scope.showModalInputJadwal.open().center();
-            }
-
-            $scope.closeModalJadwalBedah = function() {
-                $scope.showModalInputJadwal.close();
             }
 
             /** method utk auto scroll ketika input baru */
@@ -371,48 +501,6 @@ define(['initialize'], function (initialize) {
                 }
 
             });
-
-            $scope.columnDaftarJadwalBedah = {
-                toolbar: [{
-                    name: "create", text: "Input Baru",
-                    template: '<button ng-click="inputBaruJadwalBedah()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Buat Baru</button>'
-                }],
-                selectable: 'row',
-                pageable: true,
-                columns: [
-                    {
-                        "field": "tglbedah",
-                        "title": "<h3>Tanggal Bedah</h3>",
-                        "width": "80px",
-                        "template": "<span class='style-left'>{{formatTanggal('#: tglbedah #')}}</span>"
-                    },
-                    {
-                        "field": "noemr",
-                        "title": "<h3>No. EMR</h3>",
-                        "width": "80px"
-                    },
-                    {
-                        "field": "noregistrasi",
-                        "title": "<h3>No. Registrasi</h3>",
-                        "width": "150px",
-                        "template": "<span class='style-left'>#: noregistrasi #</span>"
-                    },
-                    {
-                        "field": "namaruangan",
-                        "title": "<h3>Nama Ruangan</h3>",
-                        "width": "150px",
-                        // "template": "<span class='style-left'>#: if(!namaruangan) { namaruangan = '' } #</span>"
-                    },
-                    {
-                        command: [
-                            { text: "Edit", click: editData, imageClass: "k-icon k-i-pencil" },
-                            { text: "Detail", click: detailData, imageClass: "k-icon k-detail" },
-                            { text: "Hapus", click: hapusData, imageClass: "k-icon k-i-cancel" },
-                            { text: "Cetak", click: cetakBedah, imageClass: "k-icon k-print" }
-                        ], title: "", width: 160
-                    }
-                ]
-            };
 
             $scope.columnDaftar = {
                 toolbar: [{
@@ -469,10 +557,6 @@ define(['initialize'], function (initialize) {
                 var tglAkhir = new moment(new Date()).format('YYYY-MM-DD');
                 var JamAwal = new moment(new Date($scope.item.jamMulai)).format('HH:mm');
                 var JamAkhir = new moment(new Date($scope.item.jamSelesai)).format('HH:mm');
-                // if($scope.item.tglPembedahan) {
-                //     $scope.item.tglPembedahan = new Date();
-                //     // toastr.info('Tanggal Pembedahan ');
-                // }
                 if (JamAwal == 'Invalid date') {
                     var jam = $scope.item.jamMulai.split(":");
                     var setJam = new Date($scope.item.jamSelesai).setHours(jam[0]);
@@ -862,7 +946,7 @@ define(['initialize'], function (initialize) {
                 return currency + " " + parseFloat(value).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
             };
 
-          
+
             function onSelect(e) {
                 var data3 = e.sender.dataSource._data
                 // var itm = findObjectByKey(data3, 'uid', "245421fd-68db-4d25-8afc-dbe1d20a2056");
@@ -913,7 +997,7 @@ define(['initialize'], function (initialize) {
 
 
             }
-          
+
         }
     ]);
 });

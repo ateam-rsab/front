@@ -83,6 +83,7 @@
                         kendo-date-time-picker
                         k-ng-model="item.tglJadwalPembedahan"
                         placeholer="Hari-Bln-Thn"
+                        ng-disabled="isVerif"
                         k-format="'dd-MM-yyyy HH:mm'"
                         ng-disabled="isSuster" />
                 </div>
@@ -92,6 +93,7 @@
                     <input c-text-box type="input"
                         placeholder="Jam" filter="'varchar'"
                         class="k-textbox"
+                        ng-disabled="isVerif"
                         ng-model="item.lamaOperasi"/>
                 </div>
 
@@ -103,6 +105,7 @@
                         k-data-text-field="'namaLengkap'"
                         k-data-value-field="'id'"
                         k-filter="'contains'"
+                        ng-disabled="isVerif"
                         k-auto-bind="false"
                         k-data-source="dataMasterPetugas"
                         ng-disabled="isSuster" />
@@ -117,10 +120,10 @@
                     <textarea
                         ng-model="item.diagnosaJadwalBedah"
                         maxlength="500"
-                        ng-disabled="isSuster"
+                        ng-disabled="isVerif"
                         style="height:100px"></textarea>
-                    <p class="length-textarea">500/{{item.diagnosaJadwalBedah ?
-                        item.diagnosaJadwalBedah.length : 0}}</p>
+                    <p class="length-textarea">
+                        500/{{item.diagnosaJadwalBedah ? item.diagnosaJadwalBedah.length : 0}}</p>
                 </div>
 
                 <div class="grid_6">
@@ -132,10 +135,11 @@
                     <textarea
                         ng-model="item.tindakanJadwalBedah"
                         maxlength="500"
-                        ng-disabled="isSuster"
+                        ng-disabled="isVerif"
                         style="height:100px"></textarea>
-                    <p class="length-textarea">500/{{item.tindakanJadwalBedah ?
-                        item.tindakanJadwalBedah.length : 0}}</p>
+                    <p class="length-textarea">
+                        500/{{item.tindakanJadwalBedah ? item.tindakanJadwalBedah.length : 0}}
+                    </p>
                 </div>
 
                 <div class="grid_6">
@@ -147,10 +151,11 @@
                     <textarea
                         ng-model="item.posisiKhusus"
                         maxlength="500"
-                        ng-disabled="isSuster"
+                        ng-disabled="isVerif"
                         style="height:100px"></textarea>
-                    <p class="length-textarea">500/{{item.posisiKhusus ?
-                        item.posisiKhusus.length : 0}}</p>
+                    <p class="length-textarea">
+                        500/{{item.posisiKhusus ? item.posisiKhusus.length : 0}}
+                    </p>
                 </div>
 
                 <div class="grid_6">
@@ -162,10 +167,11 @@
                     <textarea
                         ng-model="item.macamAnastesi"
                         maxlength="500"
-                        ng-disabled="isSuster"
+                        ng-disabled="isVerif"
                         style="height:100px"></textarea>
-                    <p class="length-textarea">500/{{item.macamAnastesi ?
-                        item.macamAnastesi.length : 0}}</p>
+                    <p class="length-textarea">
+                        500/{{item.macamAnastesi ? item.macamAnastesi.length : 0}}
+                    </p>
                 </div>
             </div>
 
@@ -181,9 +187,9 @@
                     </md-button>
                 </div>
                 <div class="grid_2">
-                    <md-button class="md-raised md-primary medium-button"
-                        ng-click="Save()">
-                        <span style="margin-right: 5px;">Simpan</span>
+                    <md-button class="md-raised md-primary medium-button" ng-hide="isDetail" ng-disabled="isSaveLoad"
+                        ng-click="saveOrderBedah()">
+                        <span style="margin-right: 5px;">{{isEdit ? 'Edit':'Simpan'}}</span>
                         <i class="fa fa-save"></i>
                     </md-button>
                 </div>
@@ -203,7 +209,7 @@
                 </kendo-grid>
             </div>
         </md-tab>
-        <md-tab label="Laporan Jadwal Bedah">
+        <md-tab label="Laporan Bedah">
             <div class="container-bedah">
                 <!-- <button class="btn-bedah k-button" ng-click="showInput(21, 1)">Laporan
                 Pembedahan dan Instruksi Pasca Bedah</button> -->

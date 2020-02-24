@@ -12,18 +12,8 @@ define(['initialize'], function (initialize) {
 			};
 			var arrKorban = [];
 
-			// ModelItem.get("K3/LaporanKecelakaanKerja").then(function (data) {
-			// 	$scope.item = data;
-			// 	$scope.item.tglKejadian = now;
-
-			// 	// $scope.item.tglKejadian = new Date();
-			// 	$scope.dataVOloaded = true;
-			// }, function errorCallBack(err) { });
-
 			$scope.listSaksi = new kendo.data.DataSource({
-				data: [
-
-				],
+				data: [],
 				schema: {
 					model: {
 						id: "namaSaksi",
@@ -37,7 +27,6 @@ define(['initialize'], function (initialize) {
 						}
 					}
 				}
-
 			});
 
 			$scope.columnSaksi = [
@@ -127,12 +116,12 @@ define(['initialize'], function (initialize) {
 					width: "100px"
 
 				},
-				{
-					"field": "statusPekerjaan",
-					"title": "<h3 align='center'>Status<br>Pekerjaan</h3>",
-					width: "100px"
+				// {
+				// 	"field": "statusPekerjaan",
+				// 	"title": "<h3 align='center'>Status<br>Pekerjaan</h3>",
+				// 	width: "100px"
 
-				},
+				// },
 				{
 					"field": "statusJabatan",
 					"title": "<h3 align='center'>Status Jabatan</h3>",
@@ -178,154 +167,14 @@ define(['initialize'], function (initialize) {
 				},
 				columns: $scope.columnKorban,
 
-			};
-
-			$scope.tambahKorban = function () {
-				
-				if(!$scope.item.jenisKelamin && !$scope.item.namaKorban && !$scope.item.tglLahir) {
-					toastr.warning('Anda belum memasukan identitas korban');
-					return;
-				}
-
-				var lkkKerugian = {};
-				if ($scope.item.lamaTidakBekerja == undefined || $scope.item.lamaTidakBekerja == '') {
-					lkkKerugian = {
-						// "lamaIstirahatPerJam": $scope.item.lamaIstirahat + " hari",
-						// "lamaTidakKerjaPerJam": $scope.item.lamaTidakBekerja + " " + $scope.item.satuan.satuan,
-						// "lamaPemulihanPerHari": $scope.item.lamaPemulihan + " " + $scope.item.satuanPemulihan.satuanPemulihan,
-						// "ketKerugianWaktu": $scope.item.ketKerugianWaktu,
-						"biayaPostKecelakaan": $scope.item.biayaSesaat,
-						"biayaPengobatan": $scope.item.biayaPengobatan,
-						"biayaPemulihan": $scope.item.biayaPemulihan,
-						"ketKerugianKesehatan": $scope.item.kerugianKesehatan
-					}
-				} else if ($scope.item.kerugianKesehatan == undefined || $scope.item.kerugianKesehatan == '') {
-					lkkKerugian = {
-						"lamaIstirahatPerJam": $scope.item.lamaIstirahat + " hari",
-						"lamaTidakKerjaPerJam": $scope.item.lamaTidakBekerja + " " + $scope.item.satuan.satuan,
-						"lamaPemulihanPerHari": $scope.item.lamaPemulihan + " " + $scope.item.satuanPemulihan.satuanPemulihan,
-						"ketKerugianWaktu": $scope.item.ketKerugianWaktu,
-						"biayaPostKecelakaan": $scope.item.biayaSesaat,
-						"biayaPengobatan": $scope.item.biayaPengobatan,
-						"biayaPemulihan": $scope.item.biayaPemulihan,
-						// "ketKerugianKesehatan": $scope.item.kerugianKesehatan
-					}
-				} else {
-					lkkKerugian = {
-						"lamaIstirahatPerJam": $scope.item.lamaIstirahat + " hari",
-						"lamaTidakKerjaPerJam": $scope.item.lamaTidakBekerja + " " + $scope.item.satuan.satuan,
-						"lamaPemulihanPerHari": $scope.item.lamaPemulihan + " " + $scope.item.satuanPemulihan.satuanPemulihan,
-						"ketKerugianWaktu": $scope.item.ketKerugianWaktu,
-						"biayaPostKecelakaan": $scope.item.biayaSesaat,
-						"biayaPengobatan": $scope.item.biayaPengobatan,
-						"biayaPemulihan": $scope.item.biayaPemulihan,
-						"ketKerugianKesehatan": $scope.item.kerugianKesehatan
-					}
-				}
-				if ($scope.item.statusPekerjaan != undefined) {
-					if ($scope.item.statusPekerjaan.id == 7) {
-						$scope.item.statusPekerjaan.statusPekerjaan = $scope.item.keteranganPekerjaan
-					}
-				} else {
-					$scope.item.statusPekerjaan = {
-						"statusPekerjaan": ""
-					}
-				}
-
-				if ($scope.item.statusJabatan != undefined) {
-					if ($scope.item.statusJabatan.id == 15) {
-						$scope.item.statusJabatan.statusJabatan = $scope.item.keteranganJabatan
-					}
-				} else {
-					$scope.item.statusJabatan = {
-						"statusJabatan": ""
-					}
-				}
-
-				if ($scope.item.unitRuangan == undefined) {
-					$scope.item.unitRuangan = {
-						"namaRuangan": "",
-						"ruanganId": ""
-					}
-				}
-
-
-				var lkkIdentifikasiKorban = {
-					"namaKorban": $scope.item.namaKorban,
-					"niKependudukan": $scope.item.niKependudukan,
-					"tempatLahir": $scope.item.tempatLahir,
-					"tglLahir": $scope.item.tglLahir,
-					"jenisKelamin": $scope.item.jenisKelamin ? $scope.item.jenisKelamin.jenisKelamin: null,
-					"statusPekerjaan": $scope.item.statusPekerjaan.statusPekerjaan,
-					"statusJabatan": $scope.item.statusJabatan.statusJabatan,
-					"namaRuangan": $scope.item.unitRuangan.namaRuangan,
-					"unitRuangan": {
-						"id": $scope.item.unitRuangan.ruanganId
-					},
-					"lkkRencanaTindakLanjut": {
-						"bagianTubuh": $scope.item.bagianTubuhYangCedera,
-						"jenisCedera": $scope.item.jenisCederaYangDiderita,
-						"jenisPengobatan": $scope.item.pengobatanYangDiterima,
-						"tindakanRawatInap": $scope.item.tindakanRawatInap,
-						"tindakanRawatJalan": $scope.item.tindakanRawatJalan,
-						"tindakanDiLuarRsab": $scope.item.tindakanPengobatanDiLuar
-					},
-					"lkkPerkiraanKerugian": lkkKerugian
-					// "lkkPerkiraanKerugian": {
-					// 	"lamaIstirahatPerJam": $scope.item.lamaIstirahat + " hari",
-					// 	"lamaTidakKerjaPerJam": $scope.item.lamaTidakBekerja + " " + $scope.item.satuan.satuan,
-					// 	"lamaPemulihanPerHari": $scope.item.lamaPemulihan + " " + $scope.item.satuanPemulihan.satuanPemulihan,
-					// 	"ketKerugianWaktu": $scope.item.ketKerugianWaktu,
-					// 	"biayaPostKecelakaan": $scope.item.biayaSesaat,
-					// 	"biayaPengobatan": $scope.item.biayaPengobatan,
-					// 	"biayaPemulihan": $scope.item.biayaPemulihan,
-					// 	"ketKerugianKesehatan": $scope.item.kerugianKesehatan
-
-
-				}
-				
-				arrKorban.push(lkkIdentifikasiKorban);
-				$scope.listKorban.add(lkkIdentifikasiKorban);
-				$scope.item.namaKorban = "";
-				$scope.item.niKependudukan = "";
-				$scope.item.tempatLahir = "";
-				$scope.item.tglLahir = "";
-				$scope.item.jenisKelamin = "";
-				$scope.item.statusPekerjaan = "";
-				$scope.item.statusJabatan = "";
-				$scope.item.unitRuangan = "";
-				$scope.item.unitRuangan = "";
-				$scope.item.bagianTubuhYangCedera = "";
-				$scope.item.jenisCederaYangDiderita = "";
-				$scope.item.pengobatanYangDiterima = "";
-				$scope.item.tindakanRawatInap = "";
-				$scope.item.tindakanRawatJalan = "";
-				$scope.item.tindakanPengobatanDiLuar = "";
-				$scope.item.lamaIstirahat = "";
-				$scope.item.lamaTidakBekerja = "";
-				$scope.item.satuan = "";
-				$scope.item.lamaPemulihan = "";
-				$scope.item.satuanPemulihan = "";
-				$scope.item.ketKerugianWaktu = "";
-				$scope.item.biayaSesaat = "";
-				$scope.item.biayaPengobatan = "";
-				$scope.item.biayaPemulihan = "";
-				$scope.item.kerugianKesehatan = "";
-				$scope.item.rawatInap = "";
-				$scope.item.rawatJalan = "";
-				$scope.item.pengobatanDiLuar = "";
-				$scope.item.isIstirahat = "";
-				$scope.item.isBiayaSesaat = "";
-				$scope.item.isBiayaPengobatan = "";
-				$scope.item.isBiayaPemulihan = "";
-			}
+			};			
 
 			ManageSarpras.getOrderList("k3-laporan-kecelakaan-kerja/get-unit-ruangan").then(function (dat) {
 				
 				$scope.listUnitRuangan = dat.data.data.unitRuangan;
 			});
 
-			baseUrlK3KL.getOrderList('k3-laporan-kecelakaan-kerja/get-unit-ruangan').then(function (dat) {
+			ManageKKKL.getOrderList('k3-laporan-kecelakaan-kerja/get-unit-ruangan').then(function (dat) {
 				$scope.listDdlRuangan = dat.data.unitRuangan;
 			});
 
@@ -355,6 +204,7 @@ define(['initialize'], function (initialize) {
 					"rawatInap": "Ya"
 				}
 			]
+
 			$('#ddlRawatInap').kendoDropDownList({
 				dataSource: $scope.listRawatInap,
 				dataTextField: "rawatInap",
@@ -368,6 +218,7 @@ define(['initialize'], function (initialize) {
 					}
 				}
 			});
+
 			var ddlRawatInap = $("#ddlRawatInap").data('kendoDropDownList');
 			ddlRawatInap.select(0);
 
@@ -616,24 +467,113 @@ define(['initialize'], function (initialize) {
 				}
 			]
 
-			var arrPegawai = [
-				{
-					"name": "ani",
-					"id": 5
-				},
-				{
-					"name": "budi",
-					"id": 2
-				},
-				{
-					"name": "carli",
-					"id": 3
-				},
-				{
-					"name": "Dani",
-					"id": 4
+			$scope.tambahKorban = function () {
+				
+				if(!$scope.item.jenisKelamin && !$scope.item.namaKorban && !$scope.item.tglLahir) {
+					toastr.warning('Anda belum memasukan identitas korban');
+					return;
 				}
-			];
+
+				var lkkKerugian = {
+					"lamaIstirahatPerJam": $scope.item.lamaIstirahat + " hari",
+					"lamaTidakKerjaPerJam": $scope.item.lamaTidakBekerja ? + " " + $scope.item.satuan.satuan : null,
+					"lamaPemulihanPerHari": $scope.item.lamaPemulihan + " " + $scope.item.satuanPemulihan.satuanPemulihan,
+					"ketKerugianWaktu": $scope.item.ketKerugianWaktu,
+					"biayaPostKecelakaan": $scope.item.biayaSesaat,
+					"biayaPengobatan": $scope.item.biayaPengobatan,
+					"biayaPemulihan": $scope.item.biayaPemulihan,
+					"ketKerugianKesehatan": $scope.item.kerugianKesehatan ? $scope.item.kerugianKesehatan : '',
+					"tindakanPertolongan": $scope.item.tindakanPertolongan
+				}
+				// if ($scope.item.lamaTidakBekerja == undefined || $scope.item.lamaTidakBekerja == '') {
+				// 	lkkKerugian = {
+				// 		"biayaPostKecelakaan": $scope.item.biayaSesaat,
+				// 		"biayaPengobatan": $scope.item.biayaPengobatan,
+				// 		"biayaPemulihan": $scope.item.biayaPemulihan,
+				// 		"ketKerugianKesehatan": $scope.item.kerugianKesehatan
+				// 	}
+				// } else if ($scope.item.kerugianKesehatan == undefined || $scope.item.kerugianKesehatan == '') {
+				// 	lkkKerugian = {
+				// 		"lamaIstirahatPerJam": $scope.item.lamaIstirahat + " hari",
+				// 		"lamaTidakKerjaPerJam": $scope.item.lamaTidakBekerja + " " + $scope.item.satuan.satuan,
+				// 		"lamaPemulihanPerHari": $scope.item.lamaPemulihan + " " + $scope.item.satuanPemulihan.satuanPemulihan,
+				// 		"ketKerugianWaktu": $scope.item.ketKerugianWaktu,
+				// 		"biayaPostKecelakaan": $scope.item.biayaSesaat,
+				// 		"biayaPengobatan": $scope.item.biayaPengobatan,
+				// 		"biayaPemulihan": $scope.item.biayaPemulihan,
+				// 		// "ketKerugianKesehatan": $scope.item.kerugianKesehatan
+				// 	}
+				// } else {
+				// 	lkkKerugian = {
+				// 		"lamaIstirahatPerJam": $scope.item.lamaIstirahat + " hari",
+				// 		"lamaTidakKerjaPerJam": $scope.item.lamaTidakBekerja + " " + $scope.item.satuan.satuan,
+				// 		"lamaPemulihanPerHari": $scope.item.lamaPemulihan + " " + $scope.item.satuanPemulihan.satuanPemulihan,
+				// 		"ketKerugianWaktu": $scope.item.ketKerugianWaktu,
+				// 		"biayaPostKecelakaan": $scope.item.biayaSesaat,
+				// 		"biayaPengobatan": $scope.item.biayaPengobatan,
+				// 		"biayaPemulihan": $scope.item.biayaPemulihan,
+				// 		"ketKerugianKesehatan": $scope.item.kerugianKesehatan,
+				// 		"tindakanPertolongan": $scope.item.tindakanPertolongan
+				// 	}
+				// }
+
+				if ($scope.item.statusPekerjaan != undefined) {
+					if ($scope.item.statusPekerjaan.id == 7) {
+						$scope.item.statusPekerjaan.statusPekerjaan = $scope.item.keteranganPekerjaan
+					}
+				} else {
+					$scope.item.statusPekerjaan = {
+						"statusPekerjaan": ""
+					}
+				}
+
+				if ($scope.item.statusJabatan != undefined) {
+					if ($scope.item.statusJabatan.id == 15) {
+						$scope.item.statusJabatan.statusJabatan = $scope.item.keteranganJabatan
+					}
+				} else {
+					$scope.item.statusJabatan = {
+						"statusJabatan": ""
+					}
+				}
+
+				if ($scope.item.unitRuangan == undefined) {
+					$scope.item.unitRuangan = {
+						"namaRuangan": "",
+						"ruanganId": ""
+					}
+				}
+
+
+				var lkkIdentifikasiKorban = {
+					"namaKorban": $scope.item.namaKorban,
+					"niKependudukan": $scope.item.niKependudukan,
+					"tempatLahir": $scope.item.tempatLahir,
+					"tglLahir": $scope.item.tglLahir,
+					"jenisKelamin": $scope.item.jenisKelamin ? $scope.item.jenisKelamin.jenisKelamin: null,
+					"statusPekerjaan": $scope.item.statusPekerjaan.statusPekerjaan,
+					"statusJabatan": $scope.item.statusJabatan.statusJabatan,
+					"namaRuangan": $scope.item.unitRuangan.namaRuangan,
+					"unitRuangan": {
+						"id": $scope.item.unitRuangan.ruanganId
+					},
+					"lkkRencanaTindakLanjut": {
+						"bagianTubuh": $scope.item.bagianTubuhYangCedera,
+						"jenisCedera": $scope.item.jenisCederaYangDiderita,
+						"jenisPengobatan": $scope.item.pengobatanYangDiterima,
+						"tindakanRawatInap": $scope.item.tindakanRawatInap,
+						"tindakanRawatJalan": $scope.item.tindakanRawatJalan,
+						"tindakanDiLuarRsab": $scope.item.tindakanPengobatanDiLuar
+					},
+					"lkkPerkiraanKerugian": lkkKerugian
+
+
+				}
+				
+				arrKorban.push(lkkIdentifikasiKorban);				
+				$scope.listKorban.add(lkkIdentifikasiKorban);
+				clearKorban();				
+			}
 
 			$scope.Save = function () {
 				var arrKorban2 = [];
@@ -664,20 +604,82 @@ define(['initialize'], function (initialize) {
 						"tindakanLanjutan": $scope.item.tindakanLanjutan
 					}
 				}
+
+				
 				if(arrKorban2.length == 0) {
 					toastr.warning('Belum Menambahkan Korban');
 				} else {
 					console.log(arrKorban2)
 					ManageKKKL.saveDataSarPras(data, "k3-laporan-kecelakaan-kerja/save-data-lkk").then(function (e) {
-						$timeout(function () {
-							$window.location.reload();
-						}, 5500);
+						clear();						
 					});
 				}
-				
-				
-				console.log("asd")
 			};
+			
+
+			var clearGrid = function () {
+				$scope.listSaksi = new kendo.data.DataSource({
+					data:[]
+				});
+
+				$scope.listKorban = new kendo.data.DataSource({
+					data:[]
+				});
+			}
+
+			var clearKorban = function () {
+				$scope.item.namaKorban = '';
+				$scope.item.niKependudukan = '';
+				$scope.item.tempatLahir = '';
+				$scope.item.tglLahir = null;
+				$scope.item.jenisKelamin = null;
+				$scope.item.statusPekerjaan = '';
+				$scope.item.statusJabatan = '';
+				$scope.item.unitRuangan = null;
+				// $scope.item.tindakanPertolongan = '';
+				// $scope.item.kondisiSaatKejadian = '';
+			}
+
+			var clear = function () {
+				$scope.item.tempatKejadian = '';
+				$scope.item.tglKejadian = new Date();
+				$scope.item.waktu = '';
+				$scope.item.awalKejadian = '';
+				$scope.item.penolongPertama = '';
+				$scope.item.kondisiSaatKejadian = '';
+				
+				
+				
+				$scope.item.bagianTubuhYangCedera = '';
+				$scope.item.jenisCederaYangDiderita = '';
+				$scope.item.pengobatanYangDiterima = '';
+				$scope.item.tindakanRawatInap = '';
+				$scope.item.tindakanRawatJalan = '';
+				$scope.item.tindakanPengobatanDiLuar
+				
+				$scope.item.lamaIstirahat = '';
+				$scope.item.lamaTidakBekerja = '';
+				$scope.item.lamaPemulihan = '';
+				$scope.item.ketKerugianWaktu = '';
+				$scope.item.biayaSesaat = '';
+				$scope.item.biayaPengobatan = '';
+				$scope.item.biayaPemulihan = '';
+				$scope.item.kerugianKesehatan = '';
+				$scope.item.satuan = "";
+				$scope.item.satuanPemulihan = "";
+				
+				$scope.item.rawatInap = "";
+				$scope.item.rawatJalan = "";
+				$scope.item.pengobatanDiLuar = "";
+				$scope.item.isIstirahat = "";
+				$scope.item.isBiayaSesaat = "";
+				$scope.item.isBiayaPengobatan = "";
+				$scope.item.isBiayaPemulihan = "";
+
+				
+			}
+
+			
 
 		}
 	]);

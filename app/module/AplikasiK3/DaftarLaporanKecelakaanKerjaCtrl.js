@@ -7,7 +7,7 @@ define(['initialize'], function (initialize) {
                 $scope.item = data;
                 $scope.isEditKejadian = false;
                 $scope.isShowPopUp = false;
-                // $scope.verifiedData = true;
+                $scope.verifiedData = true;
                 $scope.dataKorban = {};
                 $scope.item.periodeAwal = new Date();
                 $scope.item.periodeAkhir = new Date();
@@ -322,6 +322,7 @@ define(['initialize'], function (initialize) {
 
                                 ManageSarpras.getOrderList("k3-laporan-kecelakaan-kerja/get-lkk-by-norec?noRec=" + item.noRec).then(function (res) {
                                     $scope.listKorbanPopUp = res.data.data.lkkIdentifikasiKorban;
+                                    
                                     res.data.data.lkkIdentifikasiKorban.forEach(function (datas) {
                                         datas.tglLahir = new Date(datas.tglLahir)
                                         var namaHari = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
@@ -339,24 +340,7 @@ define(['initialize'], function (initialize) {
                                 popUp.data('kendoWindow').open();
                                 popUp.data('kendoWindow').center();
                             }
-                        },
-                        // {
-                        //     text: 'Edit',
-                        //     name: 'edit',
-                        //     click: function (e) {
-                        //         e.preventDefault();
-                        //         var grid = $('#gridLaporanKecelakaanKerja').data('kendoGrid');
-                        //         var item = grid.dataItem($(e.target).closest('tr'));
-                        //         if(item.verifikasi == "Belum di Verifikasi") {
-                        //             $scope.verifiedData = true;
-                        //         } else if (item.verifikasi == "Sudah di Verifikasi") {
-                        //             $scope.verifiedData = false;
-                        //         }
-                        //         $scope.edit(item)
-                        //         // $scope.showDetailLaporan = true;
-                        //     }
-                        // }
-
+                        }
                     ]
                 },
                 {
@@ -461,11 +445,13 @@ define(['initialize'], function (initialize) {
                         if (dat.data.data.lkkSaksiKejadian != undefined) {
                             dat.data.data.lkkSaksiKejadian.forEach(function (data) {
                                 $scope.listSaksi.add(data)
-                            });
+                            });                           
                         }
 
-                        for(let i = 0; i < dat.data.data.lkkSaksiKejadian.length; i++) {
-                            dat.data.data.lkkIdentifikasiKorban[i].tglLahirFormatted = DateHelper.formatDate(dat.data.data.lkkIdentifikasiKorban[i].tglLahir, 'DD MMMM YYYY');
+                        if(dat.data.data.lkkIdentifikasiKorban) {
+                            for(let i = 0; i < dat.data.data.lkkIdentifikasiKorban.length; i++) {
+                                dat.data.data.lkkIdentifikasiKorban[i].tglLahirFormatted = DateHelper.formatDate(dat.data.data.lkkIdentifikasiKorban[i].tglLahir, 'DD MMMM YYYY');
+                            }
                         }
 
                         $scope.listKorban = dat.data.data.lkkIdentifikasiKorban;
@@ -586,6 +572,7 @@ define(['initialize'], function (initialize) {
                 // },
                 {
                     "field": "action",
+                    "width": "100px",
                     "title": "<h3 align='center'>Action</h3>",
                     attributes: {
                         style: "text-align:center;valign=middle"
@@ -733,7 +720,7 @@ define(['initialize'], function (initialize) {
                 }
 
                 ManageKKKL.saveDataSarPras(data, "k3-laporan-kecelakaan-kerja/update-identifikasi-kejadian").then(function (e) {
-                    console.log(JSON.stringify(e.data));
+                    // console.log(JSON.stringify(e.data));
                     getList();
                 });
 
@@ -749,7 +736,7 @@ define(['initialize'], function (initialize) {
                 }
 
                 ManageSarpras.saveDataSarPras(data, "k3-laporan-kecelakaan-kerja/update-saksi-kejadian").then(function (e) {
-                    console.log(JSON.stringify(e.data));
+                    $scope.verifiedData = true;
                     showDetail(selKej);
                 });
             }

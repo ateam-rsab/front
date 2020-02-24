@@ -11,46 +11,52 @@ define(['initialize'], function (initialize) {
             $scope.dataVOloaded = true;
             $scope.enableBtnSimpanJabatanInternal = true;
             $scope.item = {};
-            $scope.ji = {};
-
-            var initPengaturanBawahan = function () {
-                $scope.gridJabatanInternal = {
+            $scope.ji = {};            
+            
+            var initPengaturanBawahan = function () {                                
+                $scope.columnPengaturanBawahan = {
+                    // sortable: true,
                     pageable: true,
+                    sortable: {
+                        mode: "multiple",
+                        allowUnsort: true,
+                        showIndexes: true
+                    },                
                     columns: [
                         {
                             field: "unitKerjaPegawai",
                             title: "<h3 class='small-font'>Unit Kerja</h3>", width: "150px",
-                            template: "#if(unitKerjaPegawai) { # #= unitKerjaPegawai.name # #} else { #-# } #",
+                            // template: "#if(unitKerjaPegawai) { # #= unitKerjaPegawai.name # #} else { #-# } #",
                         },
                         {
                             field: "subUnitKerjaPegawai",
                             title: "<h3 class='small-font'>Sub<br>Unit Kerja</h3>", width: "150px",
-                            template: "#if(subUnitKerjaPegawai) { # #= subUnitKerjaPegawai.name # #} else { #-# } #",
+                            // template: "#if(subUnitKerjaPegawai) { # #= subUnitKerjaPegawai.name # #} else { #-# } #",
                         },
                         {
                             field: "pegawai",
                             title: "<h3 class='small-font'>Pegawai</h3>", width: "155px",
-                            template: "#if(pegawai) { # #= pegawai.namaLengkap # #} else { #-# } #",
+                            // template: "#if(pegawai) { # #= pegawai.namaLengkap # #} else { #-# } #",
                         },
                         {
                             field: "jenisJabatan",
                             title: "<h3 class='small-font'>Jenis<br>Jabatan</h3>", width: "100px",
-                            template: "#if(jenisJabatan) { # #= jenisJabatan.jenisJabatan # #} else { #-# } #",
+                            // template: "#if(jenisJabatan) { # #= jenisJabatan.jenisJabatan # #} else { #-# } #",
                         },
                         {
                             field: "jabatan",
                             title: "<h3 class='small-font'>Jabatan</h3>", width: "150px",
-                            template: "#if(jabatan) { # #= jabatan.namaJabatan # #} else { #-# } #",
+                            // template: "#if(jabatan) { # #= jabatan.namaJabatan # #} else { #-# } #",
                         },
                         {
                             field: "atasanLangsung",
                             title: "<h3 class='small-font'>Atasan<br>Langsung</h3>", width: "155px",
-                            template: "#if(!atasanLangsungDireksi) { # #= atasanLangsung.namaLengkap # #} else { # #=atasanLangsungDireksi# # } #"
+                            // template: "#if(!atasanLangsungDireksi) { # #= atasanLangsung.namaLengkap # #} else { # #=atasanLangsungDireksi# # } #"
                         },
                         {
                             field: "pejabatPenilai",
                             title: "<h3 class='small-font'>Atasan<br>Pejabat Penilai</h3>", width: "155px",
-                            template: "#if(!pejabatPenilaiDireksi) { # #= pejabatPenilai.namaLengkap # #} else { # #=pejabatPenilaiDireksi# # } #"
+                            // template: "#if(!pejabatPenilaiDireksi) { # #= pejabatPenilai.namaLengkap # #} else { # #=pejabatPenilaiDireksi# # } #"
                         },
                         {
                             field: "atasanLangsungDireksi",
@@ -82,6 +88,54 @@ define(['initialize'], function (initialize) {
                 };
             };
 
+            initPengaturanBawahan();
+
+            $scope.loadDataPengaturanBawahan = function () {
+                $scope.isRouteLoading = true;
+                let dataTemp = [];
+                if ($state.params.idPegawai) {
+                    ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-bawahan-level-jabatan?idPegawai=" + $state.params.idPegawai).then(function (data) {
+                        let dataResult = data.data.data;
+                        for(let i = 0; i < dataResult.length; i++) {
+                            dataTemp.push({
+                                unitKerjaPegawai: dataResult[i].unitKerjaPegawai.name,
+                                subUnitKerjaPegawai: dataResult[i].subUnitKerjaPegawai.name,
+                                pegawai: dataResult[i].pegawai.namaLengkap,
+                                jenisJabatan: dataResult[i].jenisJabatan.jenisJabatan,
+                                jabatan: dataResult[i].jabatan.namaJabatan,
+                                atasanLangsung: dataResult[i].atasanLangsungDireksi ? dataResult[i].atasanLangsungDireksi: dataResult[i].atasanLangsung.namaLengkap,
+                                pejabatPenilai: dataResult[i].pejabatPenilaiDireksi ? dataResult[i].pejabatPenilaiDireksi: dataResult[i].pejabatPenilai.namaLengkap,
+                            })
+                        }
+
+                        
+                        $scope.dataSourcePengaturanBawahan = new kendo.data.DataSource({
+                            data: dataTemp,
+                            pageSize: 10
+                        });
+
+                        var listIdUnitKerja = [];
+                        var tempListUnitKerja = $scope.ListUnitKerja;
+                        tempListUnitKerja.forEach(function (el) {
+                            data.data.data.forEach(function (dat) {
+                                if (el.id == dat.unitKerjaPegawai.id && !listIdUnitKerja.includes(dat.unitKerjaPegawai.id)) {
+                                    var dataTemp = {
+                                        name: dat.unitKerjaPegawai.name,
+                                        id: dat.unitKerjaPegawai.id
+                                    };
+                                    listIdUnitKerja.push(dat.unitKerjaPegawai.id);
+                                    $scope.ListUnitKerjaFilter.push(dataTemp);
+                                };
+                            })
+                        })
+
+                        $scope.isRouteLoading = false;
+                    }, (error) => {
+                        $scope.isRouteLoading = false;
+                    });
+                }
+            };
+
             $scope.init = function () {
                 $q.all([
                     ManageSdmNew.getListData("sdm/get-all-unit-kerja"),
@@ -110,53 +164,20 @@ define(['initialize'], function (initialize) {
                     $scope.ListJabatan = res[2].data;
                     $scope.ListJenisJabatan = res[3].data;
 
-                    $scope.loadDataGridJabatanInternal();
-                    initPengaturanBawahan();
+                    
+                    
                 });
+                
                 $scope.monthSelectorOptions = {
                     start: "year",
                     depth: "year"
                 };
+
+                
             };
 
             $scope.init();
-
-            $scope.loadDataGridJabatanInternal = function () {
-                $scope.isRouteLoading = true;
-
-                if ($state.params.idPegawai) {
-                    ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-bawahan-level-jabatan?idPegawai=" + $state.params.idPegawai).then(function (data) {
-                        $scope.dataSourceJabatanInternal = new kendo.data.DataSource({
-                            data: data.data.data,
-                            pageSize: 10,
-                            sort: [
-                                { field: "unitKerjaPegawai.name", dir: "asc" },
-                                { field: "subUnitKerjaPegawai.name", dir: "asc" },
-                                { field: "pegawai.namaLengkap", dir: "asc" }
-                            ]
-                        });
-
-                        var listIdUnitKerja = [];
-                        var tempListUnitKerja = $scope.ListUnitKerja;
-                        tempListUnitKerja.forEach(function (el) {
-                            data.data.data.forEach(function (dat) {
-                                if (el.id == dat.unitKerjaPegawai.id && !listIdUnitKerja.includes(dat.unitKerjaPegawai.id)) {
-                                    var dataTemp = {
-                                        name: dat.unitKerjaPegawai.name,
-                                        id: dat.unitKerjaPegawai.id
-                                    };
-                                    listIdUnitKerja.push(dat.unitKerjaPegawai.id);
-                                    $scope.ListUnitKerjaFilter.push(dataTemp);
-                                };
-                            })
-                        })
-
-                        $scope.isRouteLoading = false;
-                    }, (error) => {
-                        $scope.isRouteLoading = false;
-                    });
-                }
-            };
+            $scope.loadDataPengaturanBawahan();
 
             $scope.simpanJabatanInternal = function () {
                 $scope.enableBtnSimpanJabatanInternal = false;
@@ -205,7 +226,7 @@ define(['initialize'], function (initialize) {
                     $scope.isRouteLoading = true;
                     $scope.idGridInternalJabatan = null;
                     $scope.popUpJabatan.close();
-                    $scope.loadDataGridJabatanInternal();
+                    $scope.loadDataPengaturanBawahan();
                     $scope.enableBtnSimpanJabatanInternal = true;
                 }, (error) => {
                     $scope.enableBtnSimpanJabatanInternal = true;

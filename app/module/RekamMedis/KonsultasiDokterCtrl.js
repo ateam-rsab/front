@@ -76,7 +76,11 @@ define(['initialize'], function (initialize) {
                 $scope.popUpDetail.center().open();
             }
 
-            $scope.inputBaru = function () {
+            $scope.inputBaru = function () {                
+                if($scope.dataLogin.jenisPegawai.jenispegawai !== "DOKTER") {
+                    toastr.info('Anda tidak memiliki akses menambahkan konsultasi');
+                    return;
+                }
                 $scope.isVerifikasi = false;
                 $scope.item = {};
                 var getCache = cacheHelper.get('cacheRekamMedis');
@@ -157,21 +161,30 @@ define(['initialize'], function (initialize) {
                 });
             }
             function editData(e) {
+                if($scope.dataLogin.jenisPegawai.jenispegawai !== "DOKTER") { 
+                    toastr.warning('Anda tidak memiliki akses bisa edit data konsultasi');
+                    return;
+                }
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                if(dataItem.pegawaifk !== $scope.dataLogin.id) { 
+                    toastr.warning('Anda tidak memiliki akses bisa edit data konsultasi');
+                    return;
+                }
                 if(dataItem.keterangankeperluan !== null || dataItem.keterangankeperluan == "Belum ada Konsultasi") {
                     $scope.isVerifikasi = true;
                     toastr.info('Konsultasi sudah di verifikasi');
                 } else {
                     $scope.isVerifikasi = false;
                 }
+                
                 var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
                 var dateNow = new Date();
                 var dateOrder = new Date(dataItem.tglorder);
                 var diffDays = Math.round(Math.abs((dateNow.getTime() - dateOrder.getTime())/(oneDay)))
                 if (diffDays >= 1){
                     toastr.warning('data tidak bisa di edit')
-                    return
+                    return;
                 }
                 $scope.item.masalah = dataItem.masalah;
                 $scope.item.jenisKonsultasi = dataItem.jeniskonsultasi;
@@ -191,7 +204,7 @@ define(['initialize'], function (initialize) {
                 ManagePhp.getData("rekam-medis/get-combo").then(function (e) {
                     $scope.listDokter = e.data.dokter
                     $scope.listRuangan = e.data.ruangankonsul
-                })
+                });
 
                 $q.all([
                     ManagePhp.getData("rekam-medis/get-order-konsul?norecpd=" + $scope.norecPd)

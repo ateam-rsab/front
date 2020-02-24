@@ -30,6 +30,10 @@
                 "name": "Stok Barang",
                 "children": [
                     {
+                        "name": "Master Produk",
+                        "link": "#/Produk2"
+                    },
+                    {
                         "name": "Data Stok Ruangan",
                         "link": "#/Logistik/StokRuangan"
                     },
