@@ -4403,6 +4403,30 @@
       ]
     },
     {
+      "name": "CapaianTargetPelayananCtrl",
+      "url": "/CapaianTargetPelayanan",
+      "templateurl": "module/SDM/Remunerasi/CapaianTargetPelayanan.html",
+      "controller": "CapaianTargetPelayananCtrl",
+      "deps": [
+        {
+          "module": "Services",
+          "define": "Service"
+        },
+        {
+          "module": "LoginServices",
+          "define": "LoginService"
+        },
+        {
+          "module": "SdmService",
+          "define": "SdmService"
+        },
+        {
+          "module": "PegawaiService",
+          "define": "PegawaiService"
+        }
+      ]
+    },
+    {
       "name": "MonitoringPoinDokterCtrl",
       "url": "/MonitoringPoinDokter",
       "templateurl": "module/SDM/MonitoringPoinDokter.html",

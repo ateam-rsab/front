@@ -781,6 +781,10 @@
       "urlDep": "module/SDM/Remunerasi/IndeksKinerjaIndividuCtrl"
     },
     {
+      "nameDep": "CapaianTargetPelayananCtrl",
+      "urlDep": "module/SDM/Remunerasi/CapaianTargetPelayananCtrl"
+    },
+    {
       "nameDep": "MonitoringPoinDokterCtrl",
       "urlDep": "module/SDM/MonitoringPoinDokterCtrl"
     },
