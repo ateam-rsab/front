@@ -85,7 +85,6 @@ define(['initialize'], function (initialize) {
 			});
 
 			$scope.columnKorban = [
-
 				{
 					"field": "namaKorban",
 					"title": "<h3 align='center'>Nama Korban</h3>",
@@ -475,15 +474,15 @@ define(['initialize'], function (initialize) {
 				}
 
 				var lkkKerugian = {
-					"lamaIstirahatPerJam": $scope.item.lamaIstirahat + " hari",
+					"lamaIstirahatPerJam": $scope.item.lamaIstirahat ? $scope.item.lamaIstirahat + " hari": "-",
 					"lamaTidakKerjaPerJam": $scope.item.lamaTidakBekerja ? + " " + $scope.item.satuan.satuan : null,
-					"lamaPemulihanPerHari": $scope.item.lamaPemulihan + " " + $scope.item.satuanPemulihan.satuanPemulihan,
-					"ketKerugianWaktu": $scope.item.ketKerugianWaktu,
-					"biayaPostKecelakaan": $scope.item.biayaSesaat,
-					"biayaPengobatan": $scope.item.biayaPengobatan,
-					"biayaPemulihan": $scope.item.biayaPemulihan,
-					"ketKerugianKesehatan": $scope.item.kerugianKesehatan ? $scope.item.kerugianKesehatan : '',
-					"tindakanPertolongan": $scope.item.tindakanPertolongan
+					"lamaPemulihanPerHari": $scope.item.lamaPemulihan ? $scope.item.lamaPemulihan + " " + $scope.item.satuanPemulihan.satuanPemulihan : '-',
+					"ketKerugianWaktu": $scope.item.ketKerugianWaktu ? $scope.item.ketKerugianWaktu : '-',
+					"biayaPostKecelakaan": $scope.item.biayaSesaat ? $scope.item.biayaSesaat : 0,
+					"biayaPengobatan": $scope.item.biayaPengobatan ? $scope.item.biayaPengobatan : 0,
+					"biayaPemulihan": $scope.item.biayaPemulihan ? $scope.item.biayaPemulihan :0,
+					"ketKerugianKesehatan": $scope.item.kerugianKesehatan ? $scope.item.kerugianKesehatan : '-',
+					"tindakanPertolongan": $scope.item.tindakanPertolongan ? $scope.item.tindakanPertolongan : '-'
 				}
 				// if ($scope.item.lamaTidakBekerja == undefined || $scope.item.lamaTidakBekerja == '') {
 				// 	lkkKerugian = {
@@ -544,46 +543,43 @@ define(['initialize'], function (initialize) {
 					}
 				}
 
-
 				var lkkIdentifikasiKorban = {
 					"namaKorban": $scope.item.namaKorban,
-					"niKependudukan": $scope.item.niKependudukan,
-					"tempatLahir": $scope.item.tempatLahir,
-					"tglLahir": $scope.item.tglLahir,
-					"jenisKelamin": $scope.item.jenisKelamin ? $scope.item.jenisKelamin.jenisKelamin: null,
-					"statusPekerjaan": $scope.item.statusPekerjaan.statusPekerjaan,
-					"statusJabatan": $scope.item.statusJabatan.statusJabatan,
-					"namaRuangan": $scope.item.unitRuangan.namaRuangan,
-					"unitRuangan": {
-						"id": $scope.item.unitRuangan.ruanganId
-					},
+					"niKependudukan": $scope.item.niKependudukan ? $scope.item.niKependudukan : '-',
+					"tempatLahir": $scope.item.tempatLahir ? $scope.item.tempatLahir : '-',
+					"tglLahir": $scope.item.tglLahir ? $scope.item.tglLahir : '-',
+					"jenisKelamin": $scope.item.jenisKelamin ? $scope.item.jenisKelamin.jenisKelamin: "",
+					"statusPekerjaan": $scope.item.statusPekerjaan ? $scope.item.statusPekerjaan.statusPekerjaan : "",
+					"statusJabatan": $scope.item.statusJabatan ? $scope.item.statusJabatan.statusJabatan : "",
+					"namaRuangan": $scope.item.unitRuangan ? $scope.item.unitRuangan.namaRuangan : "",
+					"unitRuangan": $scope.item.unitRuangan ? { "id": $scope.item.unitRuangan.ruanganId } : "",
 					"lkkRencanaTindakLanjut": {
-						"bagianTubuh": $scope.item.bagianTubuhYangCedera,
-						"jenisCedera": $scope.item.jenisCederaYangDiderita,
-						"jenisPengobatan": $scope.item.pengobatanYangDiterima,
-						"tindakanRawatInap": $scope.item.tindakanRawatInap,
-						"tindakanRawatJalan": $scope.item.tindakanRawatJalan,
-						"tindakanDiLuarRsab": $scope.item.tindakanPengobatanDiLuar
+						"bagianTubuh": $scope.item.bagianTubuhYangCedera ? $scope.item.bagianTubuhYangCedera : '-',
+						"jenisCedera": $scope.item.jenisCederaYangDiderita ? $scope.item.jenisCederaYangDiderita : "-",
+						"jenisPengobatan": $scope.item.pengobatanYangDiterima ? $scope.item.pengobatanYangDiterima : "-",
+						"tindakanRawatInap": $scope.item.tindakanRawatInap ? $scope.item.tindakanRawatInap : "-",
+						"tindakanRawatJalan": $scope.item.tindakanRawatJalan ? $scope.item.tindakanRawatJalan : "-",
+						"tindakanDiLuarRsab": $scope.item.tindakanPengobatanDiLuar ? $scope.item.tindakanPengobatanDiLuar : "-",
 					},
 					"lkkPerkiraanKerugian": lkkKerugian
-
-
 				}
-				
-				arrKorban.push(lkkIdentifikasiKorban);				
+				arrKorban.push(lkkIdentifikasiKorban);
 				$scope.listKorban.add(lkkIdentifikasiKorban);
-				clearKorban();				
+				clearKorban();
 			}
 
 			$scope.Save = function () {
 				var arrKorban2 = [];
 				arrKorban.forEach(function (datas) {
-					if (datas.namaRuangan == "")
-						datas.namaRuangan = 0;
-					if (datas.statusJabatan == "")
-						datas.statusJabatan = 0;
-					if (datas.unitRuangan.id == "")
-						datas.unitRuangan.id = 0;
+					datas.namaRuangan = datas.namaRuangan === "" ? 0: datas.namaRuangan;
+					datas.statusJabatan = datas.statusJabatan === "" ? 0 : datas.statusJabatan;
+					datas.unitRuangan.id = datas.unitRuangan.id === "" ? 0 : datas.unitRuangan.id;
+					// if (datas.namaRuangan == "")
+					// 	datas.namaRuangan = 0;
+					// if (datas.statusJabatan == "")
+					// 	datas.statusJabatan = 0;
+					// if (datas.unitRuangan.id == "")
+					// 	datas.unitRuangan.id = 0;
 					arrKorban2.push(datas);
 				})
 				var data = {
@@ -592,26 +588,25 @@ define(['initialize'], function (initialize) {
 						"id": $scope.pelapor.idPegawai
 					},
 					"lkkIdentifikasiKejadian": {
-						"tempatKejadian": $scope.item.tempatKejadian,
-						"awalKejadian": $scope.item.awalKejadian,
-						"tanggal": $scope.item.tglKejadian,
-						"kondisiSaatKejadian": $scope.item.kondisiSaatKejadian,
-						"tindakanPenolong": $scope.item.tindakanPertolongan,
-						"jamKejadian": $scope.item.waktu,
-						"penolongPertama": $scope.item.penolongPertama,
+						"tempatKejadian": $scope.item.tempatKejadian ? $scope.item.tempatKejadian : "-",
+						"awalKejadian": $scope.item.awalKejadian ? $scope.item.awalKejadian : "-",
+						"tanggal": $scope.item.tglKejadian ? $scope.item.tglKejadian : "-",
+						"kondisiSaatKejadian": $scope.item.kondisiSaatKejadian ? $scope.item.kondisiSaatKejadian : "-",
+						"tindakanPenolong": $scope.item.tindakanPertolongan ? $scope.item.tindakanPertolongan : "-",
+						"jamKejadian": $scope.item.waktu ? $scope.item.waktu : "-",
+						"penolongPertama": $scope.item.penolongPertama ? $scope.item.penolongPertama : "-",
 						"lkkIdentifikasiKorban": arrKorban2,
 						"lkkSaksiKejadian": $scope.listSaksi._data,
-						"tindakanLanjutan": $scope.item.tindakanLanjutan
+						"tindakanLanjutan": $scope.item.tindakanLanjutan ? $scope.item.tindakanLanjutan : "-"
 					}
 				}
 
-				
 				if(arrKorban2.length == 0) {
 					toastr.warning('Belum Menambahkan Korban');
 				} else {
 					console.log(arrKorban2)
 					ManageKKKL.saveDataSarPras(data, "k3-laporan-kecelakaan-kerja/save-data-lkk").then(function (e) {
-						clear();						
+						clear();
 					});
 				}
 			};
@@ -675,12 +670,7 @@ define(['initialize'], function (initialize) {
 				$scope.item.isBiayaSesaat = "";
 				$scope.item.isBiayaPengobatan = "";
 				$scope.item.isBiayaPemulihan = "";
-
-				
 			}
-
-			
-
 		}
 	]);
 });

@@ -200,13 +200,11 @@
     <md-tabs md-dynamic-height md-border-bottom>
         <md-tab label="Order Jadwal Bedah">
             <div class="grid_12">
-                <kendo-grid data-source="dataDaftarJadwalBedah"
-                    options="columnDaftarJadwalBedah"
-                    k-selectable="'row'"
+                <div kendo-grid k-ng-model="item"
+                    k-data-source="dataDaftarJadwalBedah" k-selectable="'row'"
                     k-sortable="'true'"
-                    k-resizable="'true'"
-                    k-ng-model="dataSelected">
-                </kendo-grid>
+                    k-options="columnDaftarJadwalBedah">
+                </div>
             </div>
         </md-tab>
         <md-tab label="Laporan Bedah">
@@ -602,11 +600,10 @@
                                         class="k-textbox"
                                         ng-model="item.komplikasi" /> -->
                                         <textarea ng-model="item.komplikasi"
-                                            ng-keyup="countLengthKomplikasi()"
                                             maxlength="300"
                                             ng-disabled="isSuster"
                                             style="height:100px"></textarea>
-                                        <p class="length-textarea">300/{{lengthKomplikasi}}</p>
+                                        <p class="length-textarea">300/{{item.komplikasi ? item.komplikasi.length : 0}}</p>
                                     </div>
                                 </div>
                                 <div class="grid_6">
@@ -620,11 +617,10 @@
                                     </div>
                                     <div class="grid_10">
                                         <textarea ng-model="item.macamJaringan"
-                                            ng-keyup="countLengthKMacamJaringan()"
                                             maxlength="300"
                                             ng-disabled="isSuster"
                                             style="height:100px"></textarea>
-                                        <p class="length-textarea">300/{{lengthMacamJaringan}}</p>
+                                        <p class="length-textarea">300/{{item.macamJaringan ? item.macamJaringan.length : 0}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -645,11 +641,10 @@
                                                 ng-model="item.tindakanPembedahanSatu"/> -->
                                                 <textarea
                                                     ng-model="item.tindakanPembedahanSatu"
-                                                    ng-keyup="countTindakanPembedahan(1)"
                                                     maxlength="500"
                                                     ng-disabled="isSuster"
                                                     style="height:105px"></textarea>
-                                                <p class="length-textarea">500/{{lengthTindakanPembedahanSatu}}</p>
+                                                <p class="length-textarea">500/{{item.tindakanPembedahanSatu ? item.tindakanPembedahanSatu.length : 0}}</p>
                                             </li>
                                             <li>
                                                 <label>II</label>
@@ -659,11 +654,10 @@
                                                 ng-model="item.tindakanPembedahanDua" /> -->
                                                 <textarea
                                                     ng-model="item.tindakanPembedahanDua"
-                                                    ng-keyup="countTindakanPembedahan(2)"
                                                     maxlength="500"
                                                     ng-disabled="isSuster"
                                                     style="height:105px"></textarea>
-                                                <p class="length-textarea">500/{{lengthTindakanPembedahanDua}}</p>
+                                                <p class="length-textarea">500/{{item.tindakanPembedahanDua ? item.tindakanPembedahanDua.length : 0 }}</p>
                                             </li>
                                             <li>
                                                 <label>III</label>
@@ -673,11 +667,10 @@
                                                 ng-model="item.tindakanPembedahanTiga"/> -->
                                                 <textarea
                                                     ng-model="item.tindakanPembedahanTiga"
-                                                    ng-keyup="countTindakanPembedahan(3)"
                                                     maxlength="500"
                                                     ng-disabled="isSuster"
                                                     style="height:105px"></textarea>
-                                                <p class="length-textarea">500/{{lengthTindakanPembedahanTiga}}</p>
+                                                <p class="length-textarea">500/{{item.tindakanPembedahanTiga ? item.tindakanPembedahanTiga.length : 0 }}</p>
                                             </li>
                                             <li>
                                                 <label>IV</label>
@@ -687,11 +680,10 @@
                                                 ng-model="item.tindakanPembedahanEmpat"/> -->
                                                 <textarea
                                                     ng-model="item.tindakanPembedahanEmpat"
-                                                    ng-keyup="countTindakanPembedahan(4)"
                                                     maxlength="500"
                                                     ng-disabled="isSuster"
                                                     style="height:105px"></textarea>
-                                                <p class="length-textarea">500/{{lengthTindakanPembedahanEmpat}}</p>
+                                                <p class="length-textarea">500/{{item.tindakanPembedahanEmpat ? item.tindakanPembedahanEmpat.length : 0}}</p>
                                             </li>
                                             <!-- <li>
                                             <input type="radio" name="keadaan" id="khusus" class="k-radio" checked="checked">
@@ -714,11 +706,10 @@
                                     <div class="grid_8">
                                         <textarea
                                             ng-model="item.uraianPembedahan"
-                                            ng-keyup="countLengthUraianPembedahan()"
                                             maxlength="1000"
                                             ng-disabled="isSuster"
                                             style="height:180px"></textarea>
-                                        <p class="length-textarea">1000/{{lengthUraianPemebedahan}}</p>
+                                        <p class="length-textarea">1000/{{item.uraianPembedahan ? item.uraianPembedahan.length : 0}}</p>
                                     </div>
 
                                     <div class="grid_4">
@@ -731,11 +722,10 @@
                                     <div class="grid_8">
                                         <textarea
                                             ng-model="item.jaringanPatologi"
-                                            ng-keyup="countLengthPatologi()"
                                             maxlength="500"
                                             ng-disabled="isSuster"
                                             style="height:100px"></textarea>
-                                        <p class="length-textarea">500/{{lengthPatologi}}</p>
+                                        <p class="length-textarea">500/{{item.jaringanPatologi ? item.jaringanPatologi.length : 0}}</p>
                                         <!-- <input c-text-box type="input"
                                         placeholder="Jaringan Patologi"
                                         filter="'varchar'"
@@ -753,11 +743,10 @@
                                     <div class="grid_8">
                                         <textarea
                                             ng-model="item.diagnosaPraBedah"
-                                            ng-keyup="countLengthDiagnosaPraBedah()"
                                             maxlength="500"
                                             ng-disabled="isSuster"
                                             style="height:100px"></textarea>
-                                        <p class="length-textarea">500/{{lengthDiagnosaPraBedah}}</p>
+                                        <p class="length-textarea">500/{{item.diagnosaPraBedah ? item.diagnosaPraBedah.length : 0}}</p>
                                     </div>
 
                                     <div class="grid_4">
@@ -770,11 +759,10 @@
                                     <div class="grid_8">
                                         <textarea
                                             ng-model="item.diagnosaPascaBedah"
-                                            ng-keyup="countLengthDiagnosaPascaBedah()"
                                             maxlength="500"
                                             ng-disabled="isSuster"
                                             style="height:100px"></textarea>
-                                        <p class="length-textarea">500/{{lengthDiagnosaPascaBedah}}</p>
+                                        <p class="length-textarea">500/{{item.diagnosaPascaBedah ? item.diagnosaPascaBedah.length : 0}}</p>
                                     </div>
 
                                     <div class="grid_4">
@@ -930,21 +918,19 @@
                                             <label>Makan</label>
                                             <textarea
                                                 ng-model="item.selectedAvailMakan"
-                                                ng-keyup="countLengthMakan()"
                                                 maxlength="200"
                                                 ng-disabled="isSuster"
                                                 style="height:90px"></textarea>
-                                            <p class="length-textarea">200/{{lengthMakan}}</p>
+                                            <p class="length-textarea">200/{{item.selectedAvailMakan ? item.selectedAvailMakan.length: 0}}</p>
                                         </li>
                                         <li>
                                             <label>Minum</label>
                                             <textarea
                                                 ng-model="item.selectedAvailMinum"
-                                                ng-keyup="countLengthMinum()"
                                                 maxlength="200"
                                                 ng-disabled="isSuster"
                                                 style="height:90px"></textarea>
-                                            <p class="length-textarea">200/{{lengthMinum}}</p>
+                                            <p class="length-textarea">200/{{item.selectedAvailMinum ? item.selectedAvailMinum.length : 0}}</p>
                                         </li>
                                     </ul>
                                 </fieldset>
@@ -958,29 +944,26 @@
                                         <li>
                                             <label>Macam</label>
                                             <textarea ng-model="item.macam"
-                                                ng-keyup="countInfus(1)"
                                                 maxlength="100"
                                                 ng-disabled="isSuster"
                                                 style="height:50px"></textarea>
-                                            <p class="length-textarea">100/{{lengthMacam}}</p>
+                                            <p class="length-textarea">100/{{item.macam.length ? item.macam.length : 0}}</p>
                                         </li>
                                         <li>
                                             <label>Jumlah</label>
                                             <textarea ng-model="item.jumlah"
-                                                ng-keyup="countInfus(2)"
                                                 maxlength="100"
                                                 ng-disabled="isSuster"
                                                 style="height:50px"></textarea>
-                                            <p class="length-textarea">100/{{lengthJumlah}}</p>
+                                            <p class="length-textarea">100/{{item.jumlah ? item.jumlah.length : 0}}</p>
                                         </li>
                                         <li>
                                             <label>Tetesan</label>
                                             <textarea ng-model="item.tetesan"
-                                                ng-keyup="countInfus(3)"
                                                 maxlength="100"
                                                 ng-disabled="isSuster"
                                                 style="height:50px"></textarea>
-                                            <p class="length-textarea">100/{{lengthTetesan}}</p>
+                                            <p class="length-textarea">100/{{item.tetesan ? item.tetesan.length : 0}}</p>
                                         </li>
                                     </ul>
                                 </fieldset>
@@ -992,10 +975,9 @@
                                         <strong>4. Obat - obat</strong>
                                     </legend>
                                     <textarea ng-model="item.obatObatan"
-                                        ng-disabled="isSuster"
-                                        ng-keyup="countObat()" maxlength="300"
+                                        ng-disabled="isSuster" maxlength="300"
                                         style="height:90px"></textarea>
-                                    <p class="length-textarea">300/{{lengthObat}}</p>
+                                    <p class="length-textarea">300/{{item.obatObatan ? item.obatObatan.length : 0}}</p>
                                 </fieldset>
                                 <fieldset class="borderBox">
                                     <legend>
@@ -1003,10 +985,9 @@
                                     </legend>
                                     <textarea ng-model="item.instruksiKhusus"
                                         ng-disabled="isSuster"
-                                        ng-keyup="countLengthKInstruksiKhusus()"
                                         maxlength="300"
                                         style="height:90px"></textarea>
-                                    <p class="length-textarea">300/{{lengthInstruksiKhusus}}</p>
+                                    <p class="length-textarea">300/{{item.instruksiKhusus ? item.instruksiKhusus.length : 0}}</p>
                                 </fieldset>
                             </div>
                         </div>

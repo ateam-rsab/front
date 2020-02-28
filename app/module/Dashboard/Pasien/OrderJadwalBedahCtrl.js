@@ -26,24 +26,6 @@ define(['initialize'], function (initialize) {
             var myVar = 0;
             var detail = '';
 
-            $scope.lengthKomplikasi = 0;
-            $scope.lengthMacamJaringan = 0;
-            $scope.lengthUraianPemebedahan = 0;
-            $scope.lengthMakan = 0;
-            $scope.lengthMinum = 0;
-            $scope.lengthObat = 0;
-            $scope.lengthInstruksiKhusus = 0;
-            $scope.lengthTindakanPembedahanSatu = 0;
-            $scope.lengthTindakanPembedahanDua = 0;
-            $scope.lengthTindakanPembedahanTiga = 0;
-            $scope.lengthTindakanPembedahanEmpat = 0;
-            $scope.lengthDiagnosaPascaBedah = 0;
-            $scope.lengthDiagnosaPraBedah = 0;
-            $scope.lengthPatologi = 0;
-            $scope.lengthMacam = 0;
-            $scope.lengthJumlah = 0;
-            $scope.lengthTetesan = 0;
-
             $scope.dataDaftarJadwalBedah = [];
             $scope.showModalInputJadwal = false;
             $scope.showInputan = false;
@@ -112,7 +94,6 @@ define(['initialize'], function (initialize) {
                             $scope.item.statusVerif = dat.data.status;
                         });
                 }
-                init();
             }
 
             function getLapPascaBedah() {
@@ -134,29 +115,35 @@ define(['initialize'], function (initialize) {
             function init() {
                 getDataOrderJadwalBedah();
                 getLapPascaBedah();
+
                 $scope.listOfPenanganKhusus = [
                     { id: 1, name: 'Minor' },
                     { id: 2, name: 'Medium' },
                     { id: 3, name: 'Mayor' },
                     { id: 4, name: 'Khusus' },
                 ];
+
                 $scope.listOfLabelPasien = [
                     { id: 1, name: 'Sudah dipasang' },
                     { id: 3, name: 'Belum dipasang' },
                 ];
+
                 $scope.listOfStatus = [
                     { id: 11, name: 'Emergency' },
                     { id: 33, name: 'Elektif' },
                     { id: 34, name: 'Poliklinik' },
                 ];
+
                 $scope.listYesOrNo = [
                     { id: 1, name: 'Ya' },
                     { id: 2, name: 'Tidak' },
                 ];
+
                 $scope.listSesuaiOrNot = [
                     { id: 1, name: 'Sesuai' },
                     { id: 2, name: 'Tidak Sesuai' },
                 ];
+
                 managePhp.getData("pelayanan/get-order-penunjang?departemenfk=25&nocm=" + nocm_str + '&norec_apd=' + norec_apd, true).then(function (dat) {
                     $scope.item.ruanganAsal = dat.data.data[0].namaruangan;
                     $scope.listRuanganTujuan = dat.data.ruangantujuan;
@@ -168,20 +155,7 @@ define(['initialize'], function (initialize) {
                     namaRuanganFk = dat.data.data[0].objectruanganfk;
                     norec_pd = dat.data.data[0].noregistrasifk;
                 });
-                //managePhp.getData("rekam-medis/get-emr-transaksi?norec_apd="+norec_apd, true).then(function(dat)
-                // managePhp.getData("rekam-medis/get-lap-pasca-bedah?noregistrasifk=" + norec_apd, true).then(function(dat) {
-                //     $scope.dataDaftar = new kendo.data.DataSource({
-                //         data: dat.data.data,
-                //         pageSize: 10,
-                //         serverPaging: false,
-                //         schema: {
-                //             model: {
-                //                 fields: {
-                //                 }
-                //             }
-                //         }
-                //     });
-                // });
+
                 managePhp.getData("get-detail-login", true).then(function (dat) {
                     $scope.PegawaiLogin2 = dat.data;
                 });
@@ -231,56 +205,68 @@ define(['initialize'], function (initialize) {
                     // var treeview = $("#treeview").data("kendoTreeView");
                     // .expandPath([2, 5])
                 });
-
-
-
             };
+
+            init();
 
             $scope.columnDaftarJadwalBedah = {
                 toolbar: [{
                     name: "create", text: "Input Baru",
                     template: '<button ng-click="inputBaruJadwalBedah()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Buat Baru</button>'
                 }],
+                scrollable: true,
                 selectable: 'row',
                 pageable: true,
                 columns: [
                     {
                         "field": "noregistrasi",
-                        "title": "<h3>No. Registrasi</h3>",
-                        "width": "80px"
-                    },                    
+                        "title": "<h3>No.<br> Registrasi</h3>",
+                        "width": 100
+                    },
                     {
                         "field": "namaDokterTujuan",
                         "title": "<h3>Dokter yang<br> mengerjakan</h3>",
-                        "width": "80px"
+                        "width": 200
                     },
                     {
                         "field": "namaRuanganTujuan",
                         "title": "<h3>Ruangan Tujuan</h3>",
-                        "width": "150px"
+                        "width": 200
                     },
                     {
                         "field": "namaruangan",
                         "title": "<h3>Nama Ruangan</h3>",
-                        "width": "150px",
+                        "width": 200
+                        // "template": "<span class='style-left'>#: if(!namaruangan) { namaruangan = '' } #</span>"
+                    },
+                    {
+                        "field": "ruangoperasiFormatted",
+                        "title": "<h3>Nama<br> Ruangan Bedah</h3>",
+                        "width": 200
                         // "template": "<span class='style-left'>#: if(!namaruangan) { namaruangan = '' } #</span>"
                     },
                     {
                         "field": "tgloperasi",
                         "title": "<h3>Tanggal Bedah</h3>",
-                        "width": "80px",
+                        "width": 200,
                         "template": "<span class='style-left'>#: tgloperasi ? tgloperasi : '-' #</span>"
                     },
                     {
                         "field": "tglverifikasi",
                         "title": "<h3>Tanggal Verifikasi</h3>",
-                        "width": "80px",
+                        "width": 200,
                         "template": "<span class='style-left'>#: tglverifikasi ? tglverifikasi : '-' #</span>"
+                    },
+                    {
+                        "field": "statusBedah",
+                        "title": "<h3>Sifat Bedah</h3>",
+                        "width": 200,
+                        // "template": "<span class='style-left'>#: iscito ? 'CITO' : 'Jenis Operasi Elektif' #</span>"
                     },
                     {
                         command: [
                             { text: "Detail", click: detailJadwalBedah, imageClass: "k-icon k-i-pencil" },
-                        ], title: "", width: "60px"
+                        ], title: "", width: 100
                     }
                 ]
             };
@@ -302,12 +288,11 @@ define(['initialize'], function (initialize) {
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                 console.log(dataItem);
 
-                // $scop.isDetail = true;
                 $scope.isEdit = true;
+                $scope.item.jenisBedah = dataItem.iscito ? "CITO" : "Jenis Operasi Elektif";
                 $scope.isVerif = dataItem.tglverifikasi ? true : false;
-                
                 $scope.item.tglJadwalPembedahan = new Date(dataItem.tgloperasi);
-                $scope.item.lamaOperasi = dataItem.lamaoperasi
+                $scope.item.lamaOperasi = dataItem.lamaoperasi;
                 $scope.item.dokterJadwalBedah = {
                     namaLengkap: dataItem.namaDokterTujuan,
                     id: dataItem.doktertujuanfk
@@ -321,11 +306,15 @@ define(['initialize'], function (initialize) {
             }
 
             function getDataOrderJadwalBedah() {
-                
                 managePhp.getData("rekam-medis/get-jadwal-operasi?nocm=" + $scope.item.noMr, true).then(function (data) {
-                    console.log(data.data.data);
+                    for(let i = 0; i < data.data.data.length; i++) {
+                        data.data.data[i].ruangoperasiFormatted = data.data.data[i].ruangoperasi ? data.data.data[i].ruangoperasi : '-';
+                        data.data.data[i].statusBedah = data.data.data[i].iscito ? 'CITO' : "Jenis Operasi Elektif";
+                    };
+
                     $scope.dataDaftarJadwalBedah = new kendo.data.DataSource({
-                        data: data.data.data
+                        data: data.data.data,
+                        pageSize: 20
                     })
                     
                 });
@@ -347,6 +336,7 @@ define(['initialize'], function (initialize) {
                     "noregistrasifk": norec_apd,
                     "ruanganfk": $scope.item.idRuangan,
                     "ruangantujuanfk": 44,
+                    "iscito": $scope.item.jenisBedah === "CITO" ? true : false,
                     "tglinput": DateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm'),
                     "tgloperasi": DateHelper.formatDate($scope.item.tglJadwalPembedahan, 'YYYY-MM-DD HH:mm'),
                     "diagnosa": $scope.item.diagnosaJadwalBedah,
@@ -357,87 +347,14 @@ define(['initialize'], function (initialize) {
                 }
                 
                 managePhp.postData(data, 'rekam-medis/save-jadwal-operasi/save').then(function (e) {
-                    console.log(e);
-                    init();
+                    // init();
+                    getDataOrderJadwalBedah();
                     clearJadwal();
                     $scope.isSaveLoad = false;
                     $scope.closeModalJadwalBedah();
                     $scope.isRouteLoading = false;
                 });
             }
-
-            $scope.countLengthKomplikasi = function () {
-                $scope.lengthKomplikasi = $scope.item.komplikasi.length;
-            }
-
-            $scope.countLengthKMacamJaringan = function () {
-                $scope.lengthMacamJaringan = $scope.item.macamJaringan.length;
-            }
-
-            $scope.countLengthUraianPembedahan = function () {
-                $scope.lengthUraianPemebedahan = $scope.item.uraianPembedahan.length;
-            }
-
-            $scope.countLengthMinum = function () {
-                $scope.lengthMinum = $scope.item.selectedAvailMinum.length;
-            }
-
-            $scope.countLengthMakan = function () {
-                $scope.lengthMakan = $scope.item.selectedAvailMakan.length;
-            }
-
-            $scope.countObat = function () {
-                $scope.lengthObat = $scope.item.obatObatan.length;
-            }
-
-            $scope.countLengthKInstruksiKhusus = function () {
-                $scope.lengthInstruksiKhusus = $scope.item.instruksiKhusus.length;
-            }
-
-            $scope.countLengthPatologi = function () {
-                $scope.lengthPatologi = $scope.item.jaringanPatologi.length;
-            }
-
-            $scope.countTindakanPembedahan = function (key) {
-                switch (key) {
-                    case 1:
-                        $scope.lengthTindakanPembedahanSatu = $scope.item.tindakanPembedahanSatu.length;
-                        break;
-                    case 2:
-                        $scope.lengthTindakanPembedahanDua = $scope.item.tindakanPembedahanDua.length;
-                        break;
-                    case 3:
-                        $scope.lengthTindakanPembedahanTiga = $scope.item.tindakanPembedahanTiga.length;
-                        break;
-                    case 4:
-                        $scope.lengthTindakanPembedahanEmpat = $scope.item.tindakanPembedahanEmpat.length;
-                        break;
-                };
-            }
-
-            $scope.countInfus = function (key) {
-                switch (key) {
-                    case 1:
-                        $scope.lengthMacam = $scope.item.macam.length;
-                        break;
-                    case 2:
-                        $scope.lengthJumlah = $scope.item.jumlah.length;
-                        break;
-                    case 3:
-                        $scope.lengthTetesan = $scope.item.tetesan.length;
-                        break;
-
-                };
-            }
-
-            $scope.countLengthDiagnosaPraBedah = function () {
-                $scope.lengthDiagnosaPraBedah = $scope.item.diagnosaPraBedah.length;
-            }
-
-            $scope.countLengthDiagnosaPascaBedah = function () {
-                $scope.lengthDiagnosaPascaBedah = $scope.item.diagnosaPascaBedah.length;
-            }
-
 
             $scope.Batal = function () {
                 $scope.showInputan = false;
@@ -464,7 +381,7 @@ define(['initialize'], function (initialize) {
                 }
                 $scope.isSuster = false;
                 $scope.showInputan = true;
-                $scope.item = {};
+                // $scope.item = {};
                 // window.scrollBy(0, 50);
             };
 
@@ -593,7 +510,6 @@ define(['initialize'], function (initialize) {
                 } else {
                     $scope.isSuster = false;
                 }
-
                 console.log(dataItem);
                 $scope.item.selectedAsistenOperator = {
                     namaLengkap: dataItem.asistenoperator,
@@ -761,11 +677,6 @@ define(['initialize'], function (initialize) {
                 }, function () {
                     console.error('Tidak jadi hapus pak eko');
                 });
-
-
-
-
-
             }
             $scope.detailGridOptions = function (dataItem) {
                 return {
@@ -818,7 +729,6 @@ define(['initialize'], function (initialize) {
                 //     // } else if(($scope.item.jamMulai == '' || $scope.item.jamMulai == undefined) || ($scope.item.jamMulai == '' || $scope.item.jamMulai == undefined)) {
                 //     //     toastr.warning('Jam tidak boleh kosong')
                 // }
-
                 if ($scope.item.jamMulai > $scope.item.jamSelesai) {
                     toastr.warning('Jam Mulai tidak boleh kurang dari Jam Selesai');
                     return;
@@ -830,7 +740,8 @@ define(['initialize'], function (initialize) {
                 }
                 var tglDimulai = '';
                 var tglSelesai = '';
-                if ($scope.item.idRuangan === undefined) {
+                console.log($scope.item.noMr);
+                if (!$scope.item.idRuangan || !$scope.item.noMr) {
                     LoadCache();
                 }
 
@@ -898,10 +809,11 @@ define(['initialize'], function (initialize) {
                     kesesuiandiagnosa: $scope.item.kesuaianDiagnosa ? $scope.item.kesuaianDiagnosa : '',
                 };
 
-                // console.log(dataSave);
+                console.log(dataSave);
                 managePhp.postData(dataSave, 'rekam-medis/post-lap-pasca-bedah/save').then(function (e) {
                     if (e.data.message != 'Error') {
-                        init();
+                        // init();
+                        getLapPascaBedah();
                         $scope.item = {};
                         $scope.showInputan = false;
                     }
@@ -946,7 +858,6 @@ define(['initialize'], function (initialize) {
                 return currency + " " + parseFloat(value).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
             };
 
-
             function onSelect(e) {
                 var data3 = e.sender.dataSource._data
                 // var itm = findObjectByKey(data3, 'uid', "245421fd-68db-4d25-8afc-dbe1d20a2056");
@@ -975,10 +886,8 @@ define(['initialize'], function (initialize) {
                                     }
                                 }
                             }
-
                         }
                     }
-
                 }
                 var noemr = '-'
                 if ($scope.dataSelected != undefined) {
@@ -992,12 +901,7 @@ define(['initialize'], function (initialize) {
                 } else {
                     $state.go(urlTrue);
                 }
-
-
-
-
             }
-
         }
     ]);
 });

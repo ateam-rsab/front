@@ -18,31 +18,6 @@
         k-ng-model="dataSelected">
     </kendo-grid>
 
-    <!-- <div kendo-window="verifikasiJadwalBedah" 
-        k-title="'Verifikasi Jadwal Bedah'" k-visible="false"
-        k-width="900">
-        <div class="panel panel-default container_12">
-            <div class="grid_4">
-                <label c-label item="item" c-label-text="Tanggal Operasi"></label>
-                <input style="width: 100%" k-ng-model="item.tglOperasi"
-                    kendo-datetimepicker
-                    placeholer="yyyy-MM-dd HH:mm" 
-                    k-format="'yyyy-MM-dd HH:mm'"/>
-            </div>
-            <div class="grid_4">
-                <label c-label item="item" c-label-text="Dokter Periksa"></label>
-                <input c-text-box type="input" filter="" class="k-textbox"
-                    ng-model="item.namaDokter" ng-disabled="true" />
-            </div>
-            
-            <div class="grid_4">
-                <label c-label item="item" c-label-text="Dokter Bedah"></label>
-                <input c-text-box type="input" filter="" class="k-textbox"
-                    ng-model="item.namaDokterTujuan" ng-disabled="true" />
-            </div>
-        </div>
-
-    </div> -->
     <div kendo-window="verifikasiJadwalBedah" k-title="'Input Jadwal Bedah'"
         k-width="1200"
         k-visible="false"
@@ -59,31 +34,29 @@
                     ng-disabled="isVerif"
                     k-format="'dd-MM-yyyy HH:mm'" />
             </div>
+            <div class="grid_2">
+                <label><b>Tanggal Pembedahan</b></label>
+                <input style="width: 100%"
+                    kendo-date-time-picker
+                    k-ng-model="item.tglOperasi"
+                    ng-disabled="isVerif"
+                    placeholer="Hari-Bln-Thn"
+                    k-format="'dd-MM-yyyy HH:mm'" />
+            </div>
+            <div class="grid_2">
+                <label><b>Lama Operasi</b></label>
+                <div style="display: flex;">
+                    <input c-text-box type="input"
+                        placeholder="Jam" filter="'varchar'"
+                        class="k-textbox" disabled
+                        ng-model="item.lamaOperasi" />
+                    <label style="margin-top:10px">
+                        <b>Jam</b>
+                    </label>
+                </div>
+            </div>
 
             <div class="grid_12">
-                <div class="grid_2">
-                    <label><b>Tanggal Pembedahan</b></label>
-                    <input style="width: 100%"
-                        kendo-date-time-picker
-                        k-ng-model="item.tglOperasi"
-                        ng-disabled="isVerif"
-                        placeholer="Hari-Bln-Thn"
-                        k-format="'dd-MM-yyyy HH:mm'" />
-                </div>
-
-                <div class="grid_2">
-                    <label><b>Lama Operasi</b></label>
-                    <div style="display: flex;">
-                        <input c-text-box type="input"
-                            placeholder="Jam" filter="'varchar'"
-                            class="k-textbox" disabled
-                            ng-model="item.lamaOperasi" />
-                        <label style="margin-top:10px">
-                            <b>Jam</b>
-                        </label>
-                    </div>
-                </div>
-
                 <div class="grid_3">
                     <label><b>Dokter Periksa</b></label>
                     <input style="width: 100%;"
@@ -106,8 +79,20 @@
                         k-filter="'contains'"
                         k-auto-bind="false"
                         k-data-source="listDokter"
+                        ng-disabled="isVerif" />
+                </div>
+
+                <div class="grid_3">
+                    <label><b>Dokter Anastesi</b></label>
+                    <input style="width: 100%;"
+                        kendo-combo-box
+                        k-ng-model="item.namaDokterAnastesi"
+                        k-data-text-field="'namalengkap'"
+                        k-data-value-field="'id'"
+                        k-filter="'contains'"
+                        k-auto-bind="false"
                         ng-disabled="isVerif"
-                        ng-disabled="isSuster" />
+                        k-data-source="listDokter"/>
                 </div>
 
                 <div class="grid_2">
