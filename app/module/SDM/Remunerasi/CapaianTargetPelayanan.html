@@ -6,7 +6,7 @@
                     <div>
                         <div class="grid_2">
                             <label><b>Periode</b></label>
-                            <input kendo-date-picker k-max ="now" k-ng-model="item.periode" style="width: 100%" k-options="yearSelected" />
+                            <input kendo-date-picker k-max ="now" k-ng-model="item.periode" k-on-change="getBulanCapaian()" style="width: 100%" k-options="yearSelected" />
                         </div>
                         <div class="grid_1" style="margin-top:5px">
                             <label c-label c-label-text=""></label>
