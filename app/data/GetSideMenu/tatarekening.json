@@ -47,6 +47,10 @@
                 "link": "#/DaftarPasienDalamPerawatan"
             },
             {
+                "name": "Daftar Konsultasi Kosong",
+                "link": "#/DaftarKonsultasiKosong"
+            },
+            {
                 "name": "IKI Dirut",
                 "link": "#/IkiDirutCapaian"
             }
