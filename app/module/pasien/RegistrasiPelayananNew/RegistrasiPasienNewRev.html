@@ -40,12 +40,12 @@
                                         ng-model="item.tempatLahir" />
                                 </div>
 
-                                <div class="grid_4" style="margin-bottom: 2px;" ng-hide="isBayi">
+                                <div class="grid_4" style="margin-bottom: 2px;" ng-hide="true">
                                     <label c-label item="item">Tgl Lahir</label>
                                     <input required style="width: 100%" kendo-date-picker k-max="now"
                                         k-ng-model="item.tglLahir" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
                                 </div>
-                                <div class="grid_4" style="margin-bottom: 2px;" ng-show="isBayi">
+                                <div class="grid_4" style="margin-bottom: 2px;" ng-show="true">
                                     <label c-label item="item">Tgl Jam Lahir</label>
                                     <input required style="width: 100%" kendo-datetimepicker k-ng-model="item.tglLahir"
                                         placeholer="dd-mm-yyyy HH:mm" k-format="'dd-MM-yyyy HH:mm'" />
