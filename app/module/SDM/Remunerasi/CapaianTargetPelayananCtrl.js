@@ -2,236 +2,289 @@ define(['initialize'], function (initialize) {
     'use strict';
     initialize.controller('CapaianTargetPelayananCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'DateHelper', 'FindPegawai', 'FindSdm', '$timeout', '$mdDialog',
         function ($q, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, dateHelper, FindPegawai, FindSdm, $timeout, $mdDialog) {
-
+            $scope.item = {};
             $scope.dataVOloaded = true;
             $scope.isGridShowed = false;
             $scope.now = new Date();
-            $scope.item = {
-				periode: $scope.now
-			};
+            $scope.item.periode = new Date();
             $scope.yearSelected = {
 				start: "year",
 				depth: "year",
 				format: "MMMM yyyy"
             };
 
-            var getGridTargetLayanan = function () {
-                $scope.gridTargetLayanan = {
-                    pageable: true,
+            let listBulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+
+            $scope.labelBulan1 = 'N-3';
+            $scope.labelBulan2 = 'N-2';
+            $scope.labelBulan3 = 'N-1';
+            $scope.labelBulan4 = 'N';
+
+            let columnGrid = [
+                {
+                    field: "unitKerjaPegawai",
+                    title: "<h3 class='small-font'>Unit Kerja</h3>", width: "150px",
+                    template: "#if(unitKerjaPegawai) { # #= unitKerjaPegawai.name # #} else { #-# } #",
+                    sortable: true
+                },
+                {
+                    field: "subUnitKerjaPegawai",
+                    title: "<h3 class='small-font'>Sub<br>Unit Kerja</h3>", width: "150px",
+                    template: "#if(subUnitKerjaPegawai) { # #= subUnitKerjaPegawai.name # #} else { #-# } #",
+                    sortable: true
+                },
+                {
+                    "title": "<h3 align='center'>{{labelBulan1}}</h3>",
                     columns: [
                         {
-                            field: "unitKerjaPegawai",
-                            title: "<h3 class='small-font'>Unit Kerja</h3>", width: "150px",
-                            template: "#if(unitKerjaPegawai) { # #= unitKerjaPegawai.name # #} else { #-# } #",
-                        },
-                        {
-                            field: "subUnitKerjaPegawai",
-                            title: "<h3 class='small-font'>Sub<br>Unit Kerja</h3>", width: "150px",
-                            template: "#if(subUnitKerjaPegawai) { # #= subUnitKerjaPegawai.name # #} else { #-# } #",
-                        },
-                        {
-                            "title": "<h3 align='center'>N-3</h3>",
+                            "title": "<h3 align='center'>Target</h3>",
                             columns: [
                                 {
-                                    "title": "<h3 align='center'>Target</h3>",
-                                    columns: [
-                                        {
-                                            field: "targetOperasiBulan3",
-                                            title: "<h3 class='small-font'>O</h3>", width: "60px",
-                                        },
-                                        {
-                                            field: "targetNonoperasiBulan3",
-                                            title: "<h3 class='small-font'>N</h3>", width: "60px",
-                                        },
-                                        {
-                                            field: "targetVisitBulan3",
-                                            title: "<h3 class='small-font'>V</h3>", width: "60px",
-                                        },
-                                        {
-                                            field: "targetKonsulBulan3",
-                                            title: "<h3 class='small-font'>K</h3>", width: "60px",
-                                        }
-                                    ]
+                                    field: "targetOperasiBulan3",
+                                    title: "<h3 class='small-font'>O</h3>", width: "60px",
                                 },
                                 {
-                                    "title": "<h3 align='center'>Capaian</h3>",
-                                    columns: [
-                                        {
-                                            field: "capaianOperasiBulan3",
-                                            title: "<h3 class='small-font'>O</h3>", width: "60px",
-                                        },
-                                        {
-                                            field: "capaianNonoperasiBulan3",
-                                            title: "<h3 class='small-font'>N</h3>", width: "60px",
-                                        },
-                                        {
-                                            field: "capaianVisitBulan3",
-                                            title: "<h3 class='small-font'>V</h3>", width: "60px",
-                                        },
-                                        {
-                                            field: "capaianKonsulBulan3",
-                                            title: "<h3 class='small-font'>K</h3>", width: "60px",
-                                        }
-                                    ]
+                                    field: "targetNonoperasiBulan3",
+                                    title: "<h3 class='small-font'>N</h3>", width: "60px",
+                                },
+                                {
+                                    field: "targetVisitBulan3",
+                                    title: "<h3 class='small-font'>V</h3>", width: "60px",
+                                },
+                                {
+                                    field: "targetKonsulBulan3",
+                                    title: "<h3 class='small-font'>K</h3>", width: "60px",
                                 }
                             ]
                         },
                         {
-                            "title": "<h3 align='center'>N-2</h3>",
+                            "title": "<h3 align='center'>Capaian</h3>",
                             columns: [
                                 {
-                                    "title": "<h3 align='center'>Target</h3>",
-                                    columns: [
-                                        {
-                                            field: "targetOperasiBulan2",
-                                            title: "<h3 class='small-font'>O</h3>", width: "60px",
-                                        },
-                                        {
-                                            field: "targetNonoperasiBulan2",
-                                            title: "<h3 class='small-font'>N</h3>", width: "60px",
-                                        },
-                                        {
-                                            field: "targetVisitBulan2",
-                                            title: "<h3 class='small-font'>V</h3>", width: "60px",
-                                        },
-                                        {
-                                            field: "targetKonsulBulan2",
-                                            title: "<h3 class='small-font'>K</h3>", width: "60px",
-                                        }
-                                    ]
+                                    field: "capaianOperasiBulan3",
+                                    title: "<h3 class='small-font'>O</h3>", width: "60px",
                                 },
                                 {
-                                    "title": "<h3 align='center'>Capaian</h3>",
-                                    columns: [
-                                        {
-                                            field: "capaianOperasiBulan2",
-                                            title: "<h3 class='small-font'>O</h3>", width: "60px",
-                                        },
-                                        {
-                                            field: "capaianNonoperasiBulan2",
-                                            title: "<h3 class='small-font'>N</h3>", width: "60px",
-                                        },
-                                        {
-                                            field: "capaianVisitBulan2",
-                                            title: "<h3 class='small-font'>V</h3>", width: "60px",
-                                        },
-                                        {
-                                            field: "capaianKonsulBulan2",
-                                            title: "<h3 class='small-font'>K</h3>", width: "60px",
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "title": "<h3 align='center'>N-1</h3>",
-                            columns: [
-                                {
-                                    "title": "<h3 align='center'>Target</h3>",
-                                    columns: [
-                                        {
-                                            field: "targetOperasiBulan1",
-                                            title: "<h3 class='small-font'>O</h3>", width: "60px",
-                                        },
-                                        {
-                                            field: "targetNonoperasiBulan1",
-                                            title: "<h3 class='small-font'>N</h3>", width: "60px",
-                                        },
-                                        {
-                                            field: "targetVisitBulan1",
-                                            title: "<h3 class='small-font'>V</h3>", width: "60px",
-                                        },
-                                        {
-                                            field: "targetKonsulBulan1",
-                                            title: "<h3 class='small-font'>K</h3>", width: "60px",
-                                        }
-                                    ]
+                                    field: "capaianNonoperasiBulan3",
+                                    title: "<h3 class='small-font'>N</h3>", width: "60px",
                                 },
                                 {
-                                    "title": "<h3 align='center'>Capaian</h3>",
-                                    columns: [
-                                        {
-                                            field: "capaianOperasiBulan1",
-                                            title: "<h3 class='small-font'>O</h3>", width: "60px",
-                                        },
-                                        {
-                                            field: "capaianNonoperasiBulan1",
-                                            title: "<h3 class='small-font'>N</h3>", width: "60px",
-                                        },
-                                        {
-                                            field: "capaianVisitBulan1",
-                                            title: "<h3 class='small-font'>V</h3>", width: "60px",
-                                        },
-                                        {
-                                            field: "capaianKonsulBulan1",
-                                            title: "<h3 class='small-font'>K</h3>", width: "60px",
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            title: "<h3 align='center'>N</h3>",
-                            columns: [
-                                {
-                                    title: "<h3 align='center'>Target</h3>",
-                                    columns: [
-                                        {
-                                            field: "targetOperasiBulan",
-                                            title: "<h3 class='small-font'>O</h3>", width: "60px",
-                                        },
-                                        {
-                                            field: "targetNonoperasiBulan",
-                                            title: "<h3 class='small-font'>N</h3>", width: "60px",
-                                        },
-                                        {
-                                            field: "targetVisitBulan",
-                                            title: "<h3 class='small-font'>V</h3>", width: "60px",
-                                        },
-                                        {
-                                            field: "targetKonsulBulan",
-                                            title: "<h3 class='small-font'>K</h3>", width: "60px",
-                                        }
-                                    ]
+                                    field: "capaianVisitBulan3",
+                                    title: "<h3 class='small-font'>V</h3>", width: "60px",
                                 },
                                 {
-                                    title: "<h3 align='center'>Capaian</h3>",
-                                    columns: [
-                                        {
-                                            field: "capaianOperasiBulan",
-                                            title: "<h3 class='small-font'>O</h3>", width: "60px",
-                                        },
-                                        {
-                                            field: "capaianNonoperasiBulan",
-                                            title: "<h3 class='small-font'>N</h3>", width: "60px",
-                                        },
-                                        {
-                                            field: "capaianVisitBulan",
-                                            title: "<h3 class='small-font'>V</h3>", width: "60px",
-                                        },
-                                        {
-                                            field: "capaianKonsulBulan",
-                                            title: "<h3 class='small-font'>K</h3>", width: "60px",
-                                        }
-                                    ]
+                                    field: "capaianKonsulBulan3",
+                                    title: "<h3 class='small-font'>K</h3>", width: "60px",
                                 }
                             ]
                         }
                     ]
-                };
+                },
+                {
+                    "title": "<h3 align='center'>{{labelBulan2}}</h3>",
+                    columns: [
+                        {
+                            "title": "<h3 align='center'>Target</h3>",
+                            columns: [
+                                {
+                                    field: "targetOperasiBulan2",
+                                    title: "<h3 class='small-font'>O</h3>", width: "60px",
+                                },
+                                {
+                                    field: "targetNonoperasiBulan2",
+                                    title: "<h3 class='small-font'>N</h3>", width: "60px",
+                                },
+                                {
+                                    field: "targetVisitBulan2",
+                                    title: "<h3 class='small-font'>V</h3>", width: "60px",
+                                },
+                                {
+                                    field: "targetKonsulBulan2",
+                                    title: "<h3 class='small-font'>K</h3>", width: "60px",
+                                }
+                            ]
+                        },
+                        {
+                            "title": "<h3 align='center'>Capaian</h3>",
+                            columns: [
+                                {
+                                    field: "capaianOperasiBulan2",
+                                    title: "<h3 class='small-font'>O</h3>", width: "60px",
+                                },
+                                {
+                                    field: "capaianNonoperasiBulan2",
+                                    title: "<h3 class='small-font'>N</h3>", width: "60px",
+                                },
+                                {
+                                    field: "capaianVisitBulan2",
+                                    title: "<h3 class='small-font'>V</h3>", width: "60px",
+                                },
+                                {
+                                    field: "capaianKonsulBulan2",
+                                    title: "<h3 class='small-font'>K</h3>", width: "60px",
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "<h3 align='center'>{{labelBulan3}}</h3>",
+                    columns: [
+                        {
+                            "title": "<h3 align='center'>Target</h3>",
+                            columns: [
+                                {
+                                    field: "targetOperasiBulan1",
+                                    title: "<h3 class='small-font'>O</h3>", width: "60px",
+                                },
+                                {
+                                    field: "targetNonoperasiBulan1",
+                                    title: "<h3 class='small-font'>N</h3>", width: "60px",
+                                },
+                                {
+                                    field: "targetVisitBulan1",
+                                    title: "<h3 class='small-font'>V</h3>", width: "60px",
+                                },
+                                {
+                                    field: "targetKonsulBulan1",
+                                    title: "<h3 class='small-font'>K</h3>", width: "60px",
+                                }
+                            ]
+                        },
+                        {
+                            "title": "<h3 align='center'>Capaian</h3>",
+                            columns: [
+                                {
+                                    field: "capaianOperasiBulan1",
+                                    title: "<h3 class='small-font'>O</h3>", width: "60px",
+                                },
+                                {
+                                    field: "capaianNonoperasiBulan1",
+                                    title: "<h3 class='small-font'>N</h3>", width: "60px",
+                                },
+                                {
+                                    field: "capaianVisitBulan1",
+                                    title: "<h3 class='small-font'>V</h3>", width: "60px",
+                                },
+                                {
+                                    field: "capaianKonsulBulan1",
+                                    title: "<h3 class='small-font'>K</h3>", width: "60px",
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    title: "<h3 align='center'>{{labelBulan4}}</h3>",
+                    columns: [
+                        {
+                            title: "<h3 align='center'>Target</h3>",
+                            columns: [
+                                {
+                                    field: "targetOperasiBulan",
+                                    title: "<h3 class='small-font'>O</h3>", width: "60px",
+                                },
+                                {
+                                    field: "targetNonoperasiBulan",
+                                    title: "<h3 class='small-font'>N</h3>", width: "60px",
+                                },
+                                {
+                                    field: "targetVisitBulan",
+                                    title: "<h3 class='small-font'>V</h3>", width: "60px",
+                                },
+                                {
+                                    field: "targetKonsulBulan",
+                                    title: "<h3 class='small-font'>K</h3>", width: "60px",
+                                }
+                            ]
+                        },
+                        {
+                            title: "<h3 align='center'>Capaian</h3>",
+                            columns: [
+                                {
+                                    field: "capaianOperasiBulan",
+                                    title: "<h3 class='small-font'>O</h3>", width: "60px",
+                                },
+                                {
+                                    field: "capaianNonoperasiBulan",
+                                    title: "<h3 class='small-font'>N</h3>", width: "60px",
+                                },
+                                {
+                                    field: "capaianVisitBulan",
+                                    title: "<h3 class='small-font'>V</h3>", width: "60px",
+                                },
+                                {
+                                    field: "capaianKonsulBulan",
+                                    title: "<h3 class='small-font'>K</h3>", width: "60px",
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+
+            $scope.dataSourceTargetLayanan = new kendo.data.DataSource({
+                data:[],
+                pageSize: 10,
+                // columns:columnGrid
+            });
+
+            $scope.gridTargetLayanan = {
+                pageable: true,
+                columns:columnGrid
+            };
+            
+            $scope.getBulanCapaian = function() {
+                // let grid = $("#grid").data("kendoGrid");
+                // grid.refresh();
+                let tahun1 = ($scope.item.periode.getMonth() - 3) < 0 ? $scope.item.periode.getFullYear() - 1 : $scope.item.periode.getFullYear(),
+                    tahun2 = ($scope.item.periode.getMonth() - 2) < 0 ? $scope.item.periode.getFullYear() - 1 : $scope.item.periode.getFullYear(),
+                    tahun3 = ($scope.item.periode.getMonth() - 1) < 0 ? $scope.item.periode.getFullYear() - 1 : $scope.item.periode.getFullYear(),
+                    tahun4 = $scope.item.periode.getFullYear();
+                /** Jika bulan kurang dari 0 tambah 12 */
+                let bulan1 = ($scope.item.periode.getMonth() - 3) < 0 ? ($scope.item.periode.getMonth() - 3) + 12 : $scope.item.periode.getMonth() - 3,
+                    bulan2 = ($scope.item.periode.getMonth() - 2) < 0 ? ($scope.item.periode.getMonth() - 2) + 12 : $scope.item.periode.getMonth() - 2,
+                    bulan3 = ($scope.item.periode.getMonth() - 1) < 0 ? ($scope.item.periode.getMonth() - 1) + 12 : $scope.item.periode.getMonth() - 1,
+                    bulan4 = $scope.item.periode.getMonth();
+                    
+                $scope.labelBulan1 = `${listBulan[bulan1]} ${tahun1}`;
+                $scope.labelBulan2 = `${listBulan[bulan2]} ${tahun2}`;
+                $scope.labelBulan3 = `${listBulan[bulan3]} ${tahun3}`;
+                $scope.labelBulan4 = `${listBulan[bulan4]} ${tahun4}`;
+                
+                // hitungTarget();
+                // console.log(tahun1);
+                // console.log(tahun2);
+                // console.log(tahun3);
+                // console.log(tahun4);
+
+                // console.log(bulan1);
+                // console.log(bulan2);
+                // console.log(bulan3);
+                // console.log(bulan4);
+                // console.log(listBulan[bulan1]);
+                // console.log(listBulan[bulan2]);
+                // console.log(listBulan[bulan3]);
+                // console.log(listBulan[bulan4]);
+
             };
 
-            $scope.hitungTarget = function () {
-                $scope.isRouteLoading = true;
+            // var getGridTargetLayanan = function () {
+            //     $scope.gridTargetLayanan = {
+            //         pageable: true
+            //     };
+            // };
 
+            // getGridTargetLayanan();
+
+            $scope.hitungTarget = function () {
+                $scope.getBulanCapaian();
+                $scope.isRouteLoading = true;
                 ManageSdmNew.getListData("iki-remunerasi/get-all-target-dan-capaian-layanan?periode=" + dateHelper.getFormatMonthPicker($scope.item.periode)).then(function (data) {
                     $scope.dataSourceTargetLayanan = new kendo.data.DataSource({
                         data: data.data.data,
                         pageSize: 10,
-                        sort: [
-                            { field: "unitKerjaPegawai.name", dir: "asc" },
-                            { field: "subUnitKerjaPegawai.name", dir: "asc" }
-                        ]
+                        columns:columnGrid
                     });
 
                     var listIdUnitKerja = [];
@@ -254,9 +307,13 @@ define(['initialize'], function (initialize) {
                     $scope.isRouteLoading = false;
                 });
 
-                getGridTargetLayanan();
+                
                 $scope.isGridShowed = true;
             };
+
+            // $scope.tesF = function() {
+            //     getBulanCapaian();
+            // }
 
             $scope.init = function () {
                 $q.all([
