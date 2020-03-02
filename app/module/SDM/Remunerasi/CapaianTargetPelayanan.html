@@ -6,11 +6,12 @@
                     <div>
                         <div class="grid_2">
                             <label><b>Periode</b></label>
-                            <input kendo-date-picker k-max ="now" k-ng-model="item.periode" k-on-change="getBulanCapaian()" style="width: 100%" k-options="yearSelected" />
+                            <input kendo-date-picker k-max="now" k-ng-model="item.periode"
+                                k-on-change="getBulanCapaian()" style="width: 100%" k-options="yearSelected" />
                         </div>
                         <div class="grid_1" style="margin-top:5px">
                             <label c-label c-label-text=""></label>
-                            <button class="c-button"  ng-click="hitungTarget()">Hitung</button>
+                            <button class="c-button" ng-click="hitungTarget()">Hitung Target</button>
                         </div>
                         <div class="grid_3" ng-show="isGridShowed">
                             <label c-label item="item" c-label-text="Unit Kerja"></label>
@@ -33,7 +34,7 @@
                     </div>
                 </div>
             </div>
-            <div class="grid_12 containerBorderBox">
+            <div class="grid_12 containerBorderBox" ng-show="isGridShowed">
                 <div id="grid" kendo-grid options="gridTargetLayanan" data-source="dataSourceTargetLayanan"></div>
             </div>
             <div ng-include='"../app/module/Shared/TemplateButtonSimpanNotFixed"' ng-show="isGridShowed"></div>
