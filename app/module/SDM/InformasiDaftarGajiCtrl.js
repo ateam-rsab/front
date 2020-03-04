@@ -1,7 +1,7 @@
 define(['initialize'], function(initialize) {
     'use strict';
-    initialize.controller('InformasiDaftarGajiCtrl', ['$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm',
-        function($rootScope, $scope, ModelItem, $state, manageSdm) {
+    initialize.controller('InformasiDaftarGajiCtrl', ['$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew',
+        function($rootScope, $scope, ModelItem, $state, manageSdm, manageSdmNew) {
             $scope.item = {};
             $scope.now = new Date();
             $scope.dataVOloaded = true;
@@ -9,7 +9,7 @@ define(['initialize'], function(initialize) {
             
 
             var init = function() {
-                manageSdm.getOrderList("sdm/get-daftar-gaji-pns?periode=", true).then(function(dat) {
+                manageSdmNew.getOrderList("sdm/get-daftar-gaji-pns?periode=", true).then(function(dat) {
                 $scope.listDataGajiPns = dat.data.data.listData;
                 
                 var data = [];
@@ -64,7 +64,7 @@ define(['initialize'], function(initialize) {
                     noRec: $scope.item.noRec
                 });
             };
-            manageSdm.getOrderList("sdm/get-list-periode-golongan", true).then(function(dat) {
+            manageSdmNew.getOrderList("sdm/get-list-periode-golongan", true).then(function(dat) {
                 $scope.listPilihan = dat.data.data.listGolongan;
             });
             $scope.mainGridOptions = {
