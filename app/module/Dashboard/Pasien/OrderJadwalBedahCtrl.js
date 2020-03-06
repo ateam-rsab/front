@@ -5,6 +5,7 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             $scope.dataVOloaded = true;
             $scope.now = new Date();
+            $scope.isRouteLoading = false;
             $scope.isSaveLoad = false;
             $scope.pegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
             $scope.dataPasien = JSON.parse(localStorage.getItem('cacheHelper'));
@@ -33,6 +34,7 @@ define(['initialize'], function (initialize) {
             LoadCache();
             function LoadCache() {
                 var chacePeriode = cacheHelper.get('cacheCPPT');
+                console.log(chacePeriode)
                 if (!chacePeriode) {
                     $scope.item.noMr = chacePeriode[0];
                     $scope.item.namaPasien = chacePeriode[1];
@@ -113,6 +115,10 @@ define(['initialize'], function (initialize) {
             };
 
             function init() {
+                $scope.item.dokterJadwalBedah = {
+                    namaLengkap:$scope.pegawaiLogin.namaLengkap,
+                    id:$scope.pegawaiLogin.id
+                }
                 getDataOrderJadwalBedah();
                 getLapPascaBedah();
 
@@ -210,14 +216,31 @@ define(['initialize'], function (initialize) {
             init();
 
             $scope.columnDaftarJadwalBedah = {
-                toolbar: [{
-                    name: "create", text: "Input Baru",
-                    template: '<button ng-click="inputBaruJadwalBedah()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Buat Baru</button>'
-                }],
+                toolbar: [
+                    {
+                        name: "create", text: "Input Baru",
+                        template: '<button ng-click="inputBaruJadwalBedah()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Buat Baru</button>'
+                    },
+                    {
+                        template: '<button ng-click="gotToDashboard()" class="k-button k-button-icontext k-grid-upload">Dashboard Bedah</button>'
+                    }
+                ],
                 scrollable: true,
                 selectable: 'row',
                 pageable: true,
                 columns: [
+                    {
+                        "field": "tgloperasi",
+                        "title": "<h3>Tanggal<br> Permintaan Bedah</h3>",
+                        "width": 200,
+                        "template": "<span class='style-left'>#: tgloperasi ? tgloperasi : '-' #</span>"
+                    },
+                    {
+                        "field": "tglverifikasi",
+                        "title": "<h3>Tanggal Bedah</h3>",
+                        "width": 200,
+                        "template": "<span class='style-left'>#: tglverifikasi ? tglverifikasi : '-' #</span>"
+                    },
                     {
                         "field": "noregistrasi",
                         "title": "<h3>No.<br> Registrasi</h3>",
@@ -246,16 +269,10 @@ define(['initialize'], function (initialize) {
                         // "template": "<span class='style-left'>#: if(!namaruangan) { namaruangan = '' } #</span>"
                     },
                     {
-                        "field": "tgloperasi",
-                        "title": "<h3>Tanggal Bedah</h3>",
+                        "field": "telp",
+                        "title": "<h3>No. Telepon</h3>",
                         "width": 200,
-                        "template": "<span class='style-left'>#: tgloperasi ? tgloperasi : '-' #</span>"
-                    },
-                    {
-                        "field": "tglverifikasi",
-                        "title": "<h3>Tanggal Verifikasi</h3>",
-                        "width": 200,
-                        "template": "<span class='style-left'>#: tglverifikasi ? tglverifikasi : '-' #</span>"
+                        // "template": "<span class='style-left'>#: notelp ? notelp : '-' #</span>"
                     },
                     {
                         "field": "statusBedah",
@@ -271,10 +288,14 @@ define(['initialize'], function (initialize) {
                 ]
             };
 
+            $scope.gotToDashboard = function() {
+                $state.go('DashboardRuanganBedah')
+            }
+
             function clearJadwal() {
                 $scope.item.tglJadwalPembedahan = "";
                 $scope.item.lamaOperasi = null;
-                $scope.item.dokterJadwalBedah = null;
+                // $scope.item.dokterJadwalBedah = null;
 
                 $scope.item.diagnosaJadwalBedah = "";
                 $scope.item.tindakanJadwalBedah = "";
@@ -286,7 +307,7 @@ define(['initialize'], function (initialize) {
             function detailJadwalBedah(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-                console.log(dataItem);
+                // console.log(dataItem);
 
                 $scope.isEdit = true;
                 $scope.item.jenisBedah = dataItem.iscito ? "CITO" : "Jenis Operasi Elektif";
@@ -302,6 +323,7 @@ define(['initialize'], function (initialize) {
                 $scope.item.tindakanJadwalBedah = dataItem.tindakan;
                 $scope.item.posisiKhusus = dataItem.posisikhusus;
                 $scope.item.macamAnastesi = dataItem.macamanestesi;
+                $scope.item.notelp = dataItem.telp;
                 $scope.showModalInputJadwal.open().center();
             }
 
@@ -326,6 +348,15 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.saveOrderBedah = function () {
+                let nocm = $("#idNoCM").val();
+                // console.log(nocm);
+                // bugs, kadang no cm hilang
+                if(!$scope.item.noMr) {
+                    // LoadCache();
+                    console.log('no cm kosong');
+                    $scope.item.noMr = nocm;
+                    // return;
+                }
                 $scope.isSaveLoad = true;
                 $scope.isRouteLoading = true;
                 let data = {
@@ -343,13 +374,18 @@ define(['initialize'], function (initialize) {
                     "tindakan": $scope.item.tindakanJadwalBedah,
                     "posisikhusus": $scope.item.posisiKhusus,
                     "macamanestesi": $scope.item.macamAnastesi,
-                    "lamaoperasi": $scope.item.lamaOperasi
-                }
+                    "lamaoperasi": $scope.item.lamaOperasi,
+                    "telp":$scope.item.notelp
+                };
+                console.log($scope.item.noMr);
+
+                
                 
                 managePhp.postData(data, 'rekam-medis/save-jadwal-operasi/save').then(function (e) {
                     // init();
                     getDataOrderJadwalBedah();
                     clearJadwal();
+                    LoadCache();
                     $scope.isSaveLoad = false;
                     $scope.closeModalJadwalBedah();
                     $scope.isRouteLoading = false;
@@ -386,6 +422,11 @@ define(['initialize'], function (initialize) {
             };
 
             $scope.inputBaruJadwalBedah = function () {
+                $scope.item.dokterJadwalBedah = {
+                    namaLengkap:$scope.pegawaiLogin.namaLengkap,
+                    id:$scope.pegawaiLogin.id
+                }
+                console.log($scope.pegawaiLogin.namaLengkap)
                 $scope.isEdit = false;
                 if (jenisPegawai != "DOKTER") {
                     toastr.info("Anda tidak bisa menambahkan Laporan Bedah");
@@ -510,7 +551,7 @@ define(['initialize'], function (initialize) {
                 } else {
                     $scope.isSuster = false;
                 }
-                console.log(dataItem);
+                // console.log(dataItem);
                 $scope.item.selectedAsistenOperator = {
                     namaLengkap: dataItem.asistenoperator,
                     id: dataItem.asistenoperatorfk
@@ -582,7 +623,7 @@ define(['initialize'], function (initialize) {
                 $scope.isSuster = true;
                 // }
 
-                console.log(dataItem);
+                // console.log(dataItem);
                 $scope.item.selectedAsistenOperator = {
                     namaLengkap: dataItem.asistenoperator,
                     id: dataItem.asistenoperatorfk
@@ -814,7 +855,7 @@ define(['initialize'], function (initialize) {
                     if (e.data.message != 'Error') {
                         // init();
                         getLapPascaBedah();
-                        $scope.item = {};
+                        // $scope.item = {};
                         $scope.showInputan = false;
                     }
                     //ManagePhp.postLogging('POC', 'Norec planofcare_t',e.data.norec, 'POC').then(function (res) {

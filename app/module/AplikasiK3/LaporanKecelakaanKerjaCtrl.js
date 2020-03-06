@@ -18,7 +18,6 @@ define(['initialize'], function (initialize) {
 					model: {
 						id: "namaSaksi",
 						fields: {
-
 							namaSaksi: { editable: true, nullable: false, validation: { required: true } },
 							pekerjaan: { editable: true, nullable: false, validation: { required: true } },
 							noKontak: {
@@ -30,7 +29,6 @@ define(['initialize'], function (initialize) {
 			});
 
 			$scope.columnSaksi = [
-
 				{
 					"field": "namaSaksi",
 					"title": "Nama Saksi",
@@ -76,12 +74,9 @@ define(['initialize'], function (initialize) {
 							statusJabatan: { editable: false, nullable: false, validation: { required: true } },
 							namaRuangan: { editable: false, nullable: false, validation: { required: true } },
 							tindakanPenolong: { editable: false, nullable: false, validation: { required: true } },
-
-
 						}
 					}
 				}
-
 			});
 
 			$scope.columnKorban = [

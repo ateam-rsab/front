@@ -1,3 +1,10 @@
+<style>
+	.length-textarea {
+		margin: 2px;
+		font-size: smaller;
+		text-align: end;
+	}
+</style>
 <div ng-controller="LaporanKecelakaanKerjaCtrl">
 	<div class="panel panel-default container_12">
 		<!-- <div class="panel-heading" c-translate>Laporan Kecelakaan Kerja</div> -->
@@ -14,8 +21,7 @@
 								<label c-label item="item" c-label-text="namaKorban"></label>
 							</div>
 							<div class="grid_8">
-								<input c-text-box type="input" class="k-textbox"
-									ng-model="item.namaKorban" />
+								<input c-text-box type="input" class="k-textbox" ng-model="item.namaKorban" />
 							</div>
 						</div>
 
@@ -24,8 +30,7 @@
 								<label c-label item="item" c-label-text="lahirDi"></label>
 							</div>
 							<div class="grid_8">
-								<input c-text-box type="input" class="k-textbox"
-									ng-model="item.tempatLahir" />
+								<input c-text-box type="input" class="k-textbox" ng-model="item.tempatLahir" />
 							</div>
 						</div>
 
@@ -34,10 +39,9 @@
 								<label c-label item="item" c-label-text="jenisKelamin"></label>
 							</div>
 							<div class="grid_8">
-								<input style="width: 100%;" kendo-combo-box
-									k-ng-model="item.jenisKelamin" k-data-text-field="'jenisKelamin'"
-									k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
-									k-data-source="listJenisKelamin" />
+								<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisKelamin"
+									k-data-text-field="'jenisKelamin'" k-data-value-field="'id'" k-filter="'contains'"
+									k-auto-bind="false" k-data-source="listJenisKelamin" />
 							</div>
 						</div>
 					</div>
@@ -56,9 +60,8 @@
 								<label c-label item="item" c-label-text="tanggalLahir"></label>
 							</div>
 							<div class="grid_8">
-								<input style="width: 100%" kendo-date-picker k-max="now"
-									k-ng-model="item.tglLahir" placeholer="dd-mm-yyyy"
-									k-format="'dd-MM-yyyy'" />
+								<input style="width: 100%" kendo-date-picker k-max="now" k-ng-model="item.tglLahir"
+									placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
 							</div>
 						</div>
 						<div class="grid_12">
@@ -66,10 +69,10 @@
 								<label c-label item="item" c-label-text="unitRuanganKerja"></label>
 							</div>
 							<div class="grid_8">
-								<input style="width: 100%;" kendo-combo-box
-									k-ng-model="item.unitRuangan" k-data-text-field="'namaRuangan'"
-									k-data-value-field="'ruanganId'" k-filter="'contains'"
-									k-auto-bind="false" k-on-change="" k-data-source="listUnitRuangan" />
+								<input style="width: 100%;" kendo-combo-box k-ng-model="item.unitRuangan"
+									k-data-text-field="'namaRuangan'" k-data-value-field="'ruanganId'"
+									k-filter="'contains'" k-auto-bind="false" k-on-change=""
+									k-data-source="listUnitRuangan" />
 							</div>
 						</div>
 						<div class="grid_12">
@@ -77,10 +80,9 @@
 								<label c-label item="item" c-label-text="statusJabatan"></label>
 							</div>
 							<div class="grid_8">
-								<input style="width: 100%;" kendo-combo-box
-									k-ng-model="item.statusJabatan" k-data-text-field="'statusJabatan'"
-									k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
-									k-on-change="findPegawai()" k-data-source="listStatusJabatan" />
+								<input style="width: 100%;" kendo-combo-box k-ng-model="item.statusJabatan"
+									k-data-text-field="'statusJabatan'" k-data-value-field="'id'" k-filter="'contains'"
+									k-auto-bind="false" k-on-change="findPegawai()" k-data-source="listStatusJabatan" />
 							</div>
 						</div>
 						<!-- <div class="grid_12" ng-hide="item.statusPekerjaan.id != 4">
@@ -175,8 +177,7 @@
 							</div>
 							<div class="grid_8">
 								<input style="width: 100%" kendo-date-picker k-max="now" k-value="now"
-									k-ng-model="item.tglKejadian" placeholer="dd-mm-yyyy"
-									k-format="'dd-MM-yyyy'" />
+									k-ng-model="item.tglKejadian" placeholer="dd-mm-yyyy" k-format="'dd-MM-yyyy'" />
 							</div>
 						</div>
 						<div class="grid_12">
@@ -184,8 +185,8 @@
 								<label c-label item="item" c-label-text="waktu"></label>
 							</div>
 							<div class="grid_8">
-								<input style="width: 100%" kendo-time-picker k-ng-model="item.waktu"
-									placeholer="HH:mm" k-format="'HH:mm'" />
+								<input style="width: 100%" kendo-time-picker k-ng-model="item.waktu" placeholer="HH:mm"
+									k-format="'HH:mm'" />
 
 							</div>
 						</div>
@@ -194,8 +195,10 @@
 								<label c-label item="item" c-label-text="awalKejadian"></label>
 							</div>
 							<div class="grid_8">
-								<textarea c-text-box type="input" class="k-textbox"
-									ng-model="item.awalKejadian" style="width: 100%; height: 80px;"></textarea>
+								<textarea c-text-box type="input" class="k-textbox" ng-model="item.awalKejadian"
+									style="width: 100%; height: 80px;"></textarea>
+								<p class="length-textarea">
+									500/{{item.awalKejadian ? item.awalKejadian.length : 0}}</p>
 							</div>
 						</div>
 						<div class="grid_12">
@@ -203,8 +206,7 @@
 								<label c-label item="item" c-label-text="penolongPertama"></label>
 							</div>
 							<div class="grid_8">
-								<input c-text-box type="input" class="k-textbox"
-									ng-model="item.penolongPertama" />
+								<input c-text-box type="input" class="k-textbox" ng-model="item.penolongPertama" />
 							</div>
 						</div>
 
@@ -217,8 +219,10 @@
 								<label c-label item="item" c-label-text="kondisiSaatKejadian"></label>
 							</div>
 							<div class="grid_8">
-								<textarea c-text-box type="input" class="k-textbox"
-									ng-model="item.kondisiSaatKejadian" style="width: 100%; height: 80px;"></textarea>
+								<textarea c-text-box type="input" class="k-textbox" ng-model="item.kondisiSaatKejadian"
+									style="width: 100%; height: 80px;"></textarea>
+								<p class="length-textarea">
+									500/{{item.kondisiSaatKejadian ? item.kondisiSaatKejadian.length : 0}}</p>
 							</div>
 						</div>
 						<div class="grid_12">
@@ -226,8 +230,10 @@
 								<label c-label item="item" c-label-text="tindakanPertolongan"></label>
 							</div>
 							<div class="grid_8">
-								<textarea c-text-box type="input" class="k-textbox"
-									ng-model="item.tindakanPertolongan" style="width: 100%; height: 80px;"></textarea>
+								<textarea c-text-box type="input" class="k-textbox" ng-model="item.tindakanPertolongan"
+									style="width: 100%; height: 80px;"></textarea>
+								<p class="length-textarea">
+									500/{{item.tindakanPertolongan ? item.tindakanPertolongan.length : 0}}</p>
 							</div>
 						</div>
 
@@ -235,8 +241,8 @@
 
 
 					<div class="grid_12" style="margin-top: 20px">
-						<div kendo-grid k-data-source="listSaksi" k-selectable="'row'"
-							k-columns="columnSaksi" k-options="optionsSaksi">
+						<div kendo-grid k-data-source="listSaksi" k-selectable="'row'" k-columns="columnSaksi"
+							k-options="optionsSaksi">
 						</div>
 
 					</div>
@@ -257,6 +263,8 @@
 								<textarea c-text-box type="input" class="k-textbox"
 									ng-model="item.bagianTubuhYangCedera" style="width: 100%; height:
 									80px;"></textarea>
+								<p class="length-textarea">
+									500/{{item.bagianTubuhYangCedera ? item.bagianTubuhYangCedera.length : 0}}</p>
 							</div>
 						</div>
 						<div class="grid_12">
@@ -267,6 +275,8 @@
 								<textarea c-text-box type="input" class="k-textbox"
 									ng-model="item.pengobatanYangDiterima" style="width: 100%; height:
 									80px;"></textarea>
+								<p class="length-textarea">
+									500/{{item.pengobatanYangDiterima ? item.pengobatanYangDiterima.length : 0}}</p>
 							</div>
 						</div>
 						<!--<div class="grid_12" style="margin-top:30px">
@@ -313,6 +323,8 @@
 								<textarea c-text-box type="input" class="k-textbox"
 									ng-model="item.jenisCederaYangDiderita" style="width: 100%; height:
 									80px;"></textarea>
+								<p class="length-textarea">
+									500/{{item.jenisCederaYangDiderita ? item.jenisCederaYangDiderita.length : 0}}</p>
 							</div>
 						</div>
 						<!--<div class="grid_12">
@@ -344,7 +356,7 @@
 							<div class="grid_8"></div>
 							<div class="grid_4" style="margin-top: 25px; font-size: 24px;">
 								<button class="c-button" ng-show="!isLoading" item="item" ng-click="tambahKorban()">
-       						 <span class="title">+ Tambah</span></button>
+								<span class="title">+ Tambah</span></button>
 							</div>
 						</div>-->
 					</div>
@@ -364,19 +376,20 @@
 								<label c-label item="item" c-label-text="rawatInap"></label>
 							</div>
 							<div class="grid_8">
-								<input style="width: 100%;" id="ddlRawatInap"
-									k-ng-model="item.rawatInap" k-filter="'contains'" k-auto-bind="false"
-									k-data-value-field="'value'" k-data-text-field="'rawatInap'">
+								<input style="width: 100%;" id="ddlRawatInap" k-ng-model="item.rawatInap"
+									k-filter="'contains'" k-auto-bind="false" k-data-value-field="'value'"
+									k-data-text-field="'rawatInap'">
 							</div>
 						</div>
 						<div class="grid_12" id="idTindakanRawatInap" style="display:none">
 							<div class="grid_4" style="margin-top:11px;">
-								<label c-label item="item"
-									c-label-text="tindakanYangDilakukanDiRawatInap"></label>
+								<label c-label item="item" c-label-text="tindakanYangDilakukanDiRawatInap"></label>
 							</div>
 							<div class="grid_8">
-								<textarea c-text-box type="input" class="k-textbox"
-									ng-model="item.tindakanRawatInap" style="width: 100%; height: 80px;"></textarea>
+								<textarea c-text-box type="input" class="k-textbox" ng-model="item.tindakanRawatInap"
+									style="width: 100%; height: 80px;"></textarea>
+								<p class="length-textarea">
+									500/{{item.tindakanRawatInap ? item.tindakanRawatInap.length : 0}}</p>
 							</div>
 						</div>
 						<div class="grid_12">
@@ -384,19 +397,20 @@
 								<label c-label item="item" c-label-text="rawatJalan"></label>
 							</div>
 							<div class="grid_8">
-								<input style="width: 100%;" id="ddlRawatJalan"
-									k-ng-model="item.rawatJalan" k-data-text-field="'rawatJalan'"
-									k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" />
+								<input style="width: 100%;" id="ddlRawatJalan" k-ng-model="item.rawatJalan"
+									k-data-text-field="'rawatJalan'" k-data-value-field="'id'" k-filter="'contains'"
+									k-auto-bind="false" />
 							</div>
 						</div>
 						<div class="grid_12" id="idRawatJalan" style="display:none">
 							<div class="grid_4" style="margin-top:11px;">
-								<label c-label item="item"
-									c-label-text="tindakanYangDilakukanDiRawatJalan"></label>
+								<label c-label item="item" c-label-text="tindakanYangDilakukanDiRawatJalan"></label>
 							</div>
 							<div class="grid_8">
-								<textarea c-text-box type="input" class="k-textbox"
-									ng-model="item.tindakanRawatJalan" style="width: 100%; height: 80px;"></textarea>
+								<textarea c-text-box type="input" class="k-textbox" ng-model="item.tindakanRawatJalan"
+									style="width: 100%; height: 80px;"></textarea>
+								<p class="length-textarea">
+									500/{{item.tindakanRawatJalan ? item.tindakanRawatJalan.length : 0}}</p>
 							</div>
 						</div>
 
@@ -409,10 +423,9 @@
 							<div class="grid_8">
 								<!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.pengobatanDiLuar" k-data-text-field="'pengobatanDiLuar'"
 								 k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPengobatanDiLuar" /> -->
-								<input id="pengobatanDiLuar" style="width: 100%;"
-									k-ng-model="item.pengobatanDiLuar"
-									k-data-text-field="'pengobatanDiLuar'"
-									k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false">
+								<input id="pengobatanDiLuar" style="width: 100%;" k-ng-model="item.pengobatanDiLuar"
+									k-data-text-field="'pengobatanDiLuar'" k-data-value-field="'id'"
+									k-filter="'contains'" k-auto-bind="false">
 							</div>
 						</div>
 						<!-- <div class="grid_12" ng-if="item.pengobatanDiLuar.id == 1"> -->
@@ -424,6 +437,8 @@
 								<textarea c-text-box type="input" class="k-textbox"
 									ng-model="item.tindakanPengobatanDiLuar" style="width: 100%; height:
 									80px;"></textarea>
+								<p class="length-textarea">
+									500/{{item.tindakanPengobatanDiLuar ? item.tindakanPengobatanDiLuar.length : 0}}</p>
 							</div>
 						</div>
 
@@ -455,9 +470,8 @@
 							</div>
 							<div class="grid_6">
 								<input style="width: 100%;" kendo-combo-box k-ng-model="item.satuan"
-									k-data-text-field="'satuan'"
-									k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
-									k-data-source="listSatuan" />
+									k-data-text-field="'satuan'" k-data-value-field="'id'" k-filter="'contains'"
+									k-auto-bind="false" k-data-source="listSatuan" />
 
 							</div>
 						</div>
@@ -469,9 +483,9 @@
 							<div class="grid_6">
 								<!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.isIstirahat" k-data-text-field="'statusAda'"
 								 k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listStatusAda" /> -->
-								<input style="width: 100%;" id="ddlLamaIstirahat"
-									k-ng-model="item.isIstirahat" k-data-text-field="'statusAda'"
-									k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" />
+								<input style="width: 100%;" id="ddlLamaIstirahat" k-ng-model="item.isIstirahat"
+									k-data-text-field="'statusAda'" k-data-value-field="'id'" k-filter="'contains'"
+									k-auto-bind="false" />
 							</div>
 							<div id="lamaIstirahat" style="display: none">
 								<div class="grid_5">
@@ -487,22 +501,22 @@
 							<label c-label item="item">Lama Waktu Anjuran Dokter untuk Pengobatan /
 								Pemulihan </label>
 							<div class="grid_6">
-								<input c-text-box type="number" min=1 class="k-textbox"
-									ng-model="item.lamaPemulihan" />
+								<input c-text-box type="number" min=1 class="k-textbox" ng-model="item.lamaPemulihan" />
 							</div>
 							<div class="grid_6">
-								<input style="width: 100%;" kendo-combo-box
-									k-ng-model="item.satuanPemulihan" k-data-text-field="'satuanPemulihan'"
-									k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
-									k-data-source="listSatuanPemulihan" />
+								<input style="width: 100%;" kendo-combo-box k-ng-model="item.satuanPemulihan"
+									k-data-text-field="'satuanPemulihan'" k-data-value-field="'id'"
+									k-filter="'contains'" k-auto-bind="false" k-data-source="listSatuanPemulihan" />
 							</div>
 						</div>
 					</div>
 					<div class="grid_6">
 						<div class="grid_12">
 							<label c-label item="item">Hal Lain Terkait Masalah Kerugian Waktu</label>
-							<textarea c-text-box type="input" class="k-textbox"
-								ng-model="item.ketKerugianWaktu" style="width: 100%; height: 80px;"></textarea>
+							<textarea c-text-box type="input" class="k-textbox" ng-model="item.ketKerugianWaktu"
+								style="width: 100%; height: 80px;"></textarea>
+							<p class="length-textarea">
+								500/{{item.ketKerugianWaktu ? item.ketKerugianWaktu.length : 0}}</p>
 						</div>
 					</div>
 				</div>
@@ -515,9 +529,9 @@
 							<label c-label item="item">Biaya yang dikeluarkan sesaat setelah
 								kecelakaan kerja</label>
 							<div class="grid_6">
-								<input style="width: 100%;" id="ddlBiayaYgDikeluarkan"
-									k-ng-model="item.isBiayaSesaat" k-data-text-field="'statusAda'"
-									k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" />
+								<input style="width: 100%;" id="ddlBiayaYgDikeluarkan" k-ng-model="item.isBiayaSesaat"
+									k-data-text-field="'statusAda'" k-data-value-field="'id'" k-filter="'contains'"
+									k-auto-bind="false" />
 							</div>
 							<div id="idBiayaSesaat" style="display:none">
 								<div class="grid_5">
@@ -535,9 +549,9 @@
 								ini (diluar biaya sesaat setelah
 								kecelakaan)</label>
 							<div class="grid_6">
-								<input style="width: 100%;" id="ddlBiayaPengobatan"
-									k-ng-model="item.isBiayaPengobatan" k-data-text-field="'statusAda'"
-									k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" />
+								<input style="width: 100%;" id="ddlBiayaPengobatan" k-ng-model="item.isBiayaPengobatan"
+									k-data-text-field="'statusAda'" k-data-value-field="'id'" k-filter="'contains'"
+									k-auto-bind="false" />
 							</div>
 							<div style="display:none" id="idBiayaPengobatan">
 								<div class="grid_5">
@@ -581,16 +595,17 @@
 						<div class="grid_1"></div>
 						<div class="grid_10">
 							<label c-label item="item">Kerugian Kesehatan</label>
-							<textarea c-text-box type="input" class="k-textbox"
-								ng-model="item.kerugianKesehatan" style="width: 100%; height: 80px;"></textarea>
+							<textarea c-text-box type="input" class="k-textbox" ng-model="item.kerugianKesehatan"
+								style="width: 100%; height: 80px;"></textarea>
+							<p class="length-textarea">
+								500/{{item.ketKerugianWaktu ? item.ketKerugianWaktu.length : 0}}</p>
 						</div>
 						<div class="grid_1"></div>
 					</div>
 					<div class="grid_12">
 						<div class="grid_10"></div>
 						<div class="grid_2" style="margin-top: 25px; font-size: 24px;">
-							<md-button class="md-raised md-primary medium-button"
-								ng-click="tambahKorban()">
+							<md-button class="md-raised md-primary medium-button" ng-click="tambahKorban()">
 								<span style="margin-right: 5px;">Tambah Korban</span>
 								<i class="fa fa-plus"></i>
 							</md-button>
@@ -599,9 +614,8 @@
 						</div>
 					</div>
 					<div class="grid_12" style="margin-top: 20px">
-						<div kendo-grid k-data-source="listKorban" k-options="optionsKorban"
-							k-scrollabe=true k-selectable="'row'"
-							k-columns="columnKorban">
+						<div kendo-grid k-data-source="listKorban" k-options="optionsKorban" k-scrollabe=true
+							k-selectable="'row'" k-columns="columnKorban">
 						</div>
 					</div>
 				</div>
@@ -610,8 +624,7 @@
 			</div> -->
 					<div class="grid_12" style="float:left;" ng-hide="isHide">
 						<div ng-hide='isNext' class="grid_2" style="float:right">
-							<md-button class="md-raised md-primary"
-								ng-click="Save()">
+							<md-button class="md-raised md-primary" ng-click="Save()">
 								<span style="margin-right: 5px;">Simpan</span>
 								<i class="fa fa-save"></i>
 							</md-button>

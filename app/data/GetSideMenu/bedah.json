@@ -52,6 +52,10 @@
         "link": "#/Bedah/RevDaftar"
       },
       {
+        "name": "Dashboard Jadwal Bedah",
+        "link": "#/DashboardRuanganBedah"
+      },
+      {
         "name": "Daftar Permintaan Operasi",
         "link": "#/DaftarPermintaanOperasi"
       },

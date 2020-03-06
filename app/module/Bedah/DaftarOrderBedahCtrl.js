@@ -3,6 +3,8 @@ define(['initialize'], function (initialize) {
     initialize.controller('DaftarOrderBedahCtrl', ['$q', '$rootScope','$scope', 'ManageServicePhp', '$state', 'CacheHelper', 'DateHelper', '$window','ModelItemAkuntansi',
         function ($q, $rootScope, $scope, ManageServicePhp, $state, cacheHelper, dateHelper, $window, modelItemAkuntansi) {
             $scope.item = {};
+            $scope.tglBedah = new Date();
+            
             $scope.isRouteLoading = false;
             $scope.isVerif = false;
             $scope.now = new Date();
@@ -18,15 +20,31 @@ define(['initialize'], function (initialize) {
 
             var init = function () {
                 $scope.columnDaftarJadwalBedah = {
-                    toolbar: [{
-                        text: "export",
-                        name: "Export detail",
-                        template: '<button ng-click="exportDetail()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
-                    }],
+                    toolbar: [
+                        {
+                            text: "export",
+                            name: "Export detail",
+                            template: '<button ng-click="exportDetail()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
+                        },
+                        {
+                            template: '<button ng-click="gotToDashboard()" class="k-button k-button-icontext k-grid-upload">Dashboard Bedah</button>'
+                        }
+                    ],
                     selectable: 'row',
                     pageable: true,
                     scrollable: true,
                     columns: [
+                        {
+                            "field": "tgloperasi",
+                            "title": "<h3>Tanggal<br> Permintaan Bedah</h3>",
+                            "width": 200
+                        },
+                        {
+                            "field": "tglverifikasi",
+                            "title": "<h3>Tanggal<br> Bedah</h3>",
+                            "width": 200,
+                            // "template": "<span class='style-left'>#: tglverifikasi = tglverifikasi ? tglverifikasi : '-' #</span>"
+                        },
                         {
                             "field": "nocm",
                             "title": "<h3>No.<br> Rekam Medis</h3>",
@@ -58,15 +76,9 @@ define(['initialize'], function (initialize) {
                             "width": 200
                         },
                         {
-                            "field": "tgloperasi",
-                            "title": "<h3>Tanggal<br> Bedah</h3>",
-                            "width": 200
-                        },
-                        {
-                            "field": "tglverifikasi",
-                            "title": "<h3>Tanggal<br> Verifikasi</h3>",
-                            "width": 200,
-                            // "template": "<span class='style-left'>#: tglverifikasi = tglverifikasi ? tglverifikasi : '-' #</span>"
+                            "field": "telp",
+                            "title": "<h3>No.Telp</h3>",
+                            "width": 150
                         },
                         {
                             "field": "statusBedah",
@@ -84,8 +96,12 @@ define(['initialize'], function (initialize) {
                 ManageServicePhp.getDataTableTransaksi("rekam-medis/get-combo").then(function (e) {
                     $scope.listDokter = e.data.dokter;
                 });
+                $scope.getDataJadwalBedah();
+            }
 
-                ManageServicePhp.getDataTableTransaksi("rekam-medis/get-jadwal-operasi", true).then(function (data) {
+            $scope.getDataJadwalBedah = function() {
+                $scope.isRouteLoading = true;
+                ManageServicePhp.getDataTableTransaksi("rekam-medis/get-jadwal-operasi?tglbedah=" + ($scope.tglBedah ? dateHelper.formatDate($scope.tglBedah, 'YYYY-MM-DD') : "") + "&namaruangan=" + ($scope.ruanganOperasi ? $scope.ruanganOperasi.nama : ""), true).then(function (data) {
                     for(let i = 0; i < data.data.data.length; i++) {
                         data.data.data[i].tglverifikasi = data.data.data[i].tglverifikasi ? data.data.data[i].tglverifikasi : '-';
                         data.data.data[i].ruangoperasiFormatted = data.data.data[i].ruangoperasi ? data.data.data[i].ruangoperasi : '-';
@@ -95,6 +111,7 @@ define(['initialize'], function (initialize) {
                         data: data.data.data,
                         pageSize: 20,
                     });
+                    $scope.isRouteLoading = false;
                 });
             }
 
@@ -194,8 +211,12 @@ define(['initialize'], function (initialize) {
                 });
             };
 
+            $scope.gotToDashboard = function() {
+                $state.go('DashboardRuanganBedah')
+            }
+
             $scope.closeModalJadwalBedah = function () {
-                $scope.verifikasiJadwalBedah.close();
+                $scope.modalVerifikasiJadwalBedah.close();
                 $scope.isVerif = false;
             }
 
@@ -210,7 +231,7 @@ define(['initialize'], function (initialize) {
                     id: dataItem.dokteranestesifk,
                     namalengkap: dataItem.namaDokterAnestesi
                 }
-                $scope.item.tglOperasi = new Date(dataItem.tgloperasi);
+                
                 $scope.item.namaDokter = {
                     namalengkap:dataItem.namaDokter,
                     id:dataItem.dokterfk
@@ -220,13 +241,15 @@ define(['initialize'], function (initialize) {
                     namalengkap: dataItem.namaDokterTujuan,
                     id: dataItem.doktertujuanfk
                 };
+
                 $scope.item.ruanganOperasi ={
                     nama:dataItem.ruangoperasi,
                     key:dataItem.ruangoperasi
-                }
+                };
                 
-                $scope.item.tglVerifikasi = dataItem.tglverifikasi !== '-' ? new Date(dataItem.tglverifikasi): dateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm');
-
+                $scope.item.tglVerifikasi = dataItem.tgloperasi !== '-' ? new Date(dataItem.tgloperasi): dateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm');
+                $scope.item.tglOperasi = new Date(dataItem.tgloperasi);
+                $scope.item.notelp = dataItem.telp;
                 $scope.item.norec = dataItem.norec;
                 $scope.item.namaRuangan = dataItem.namaruangan;
                 $scope.item.namaRuanganTujuan = dataItem.namaRuanganTujuan;
@@ -241,30 +264,37 @@ define(['initialize'], function (initialize) {
                 $scope.item.lamaOperasi = dataItem.lamaoperasi
 
                 
-                $scope.verifikasiJadwalBedah.open().center();
+                $scope.modalVerifikasiJadwalBedah.open().center();
             }
 
             init();
 
             $scope.verifikasiData = function () {
+                // if(!(dateHelper.formatDate($scope.item.tglOperasi, 'YYYY-MM-DD') > dateHelper.formatDate(new Date(), 'YYYY-MM-DD'))) {
+                //     toastr.info('Tanggal sudah melebihi tanggal permintaan.');
+                //     return;
+                // }
+                $scope.isRouteLoading = true;
                 if(!$scope.item.ruanganOperasi) {
                     toastr.error('Anda belum memasukan Nama Ruangan Operasi');
                     return;
                 }
+                
                 let dataSave = {
                     "norec": $scope.item.norec,
                     "pegawaiverifikasifk":$scope.pegawai.id,
-                    "tglverifikasi": $scope.tglVerifikasi ? dateHelper.formatDate($scope.tglVerifikasi, 'YYYY-MM-DD HH:mm') :dateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm'),
+                    "tglverifikasi": $scope.item.tglVerifikasi ? dateHelper.formatDate($scope.item.tglVerifikasi, 'YYYY-MM-DD HH:mm') :dateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm'),
                     "tgloperasi": dateHelper.formatDate($scope.item.tglOperasi, 'YYYY-MM-DD HH:mm'),
                     "doktertujuanfk":$scope.item.namaDokterTujuan ? $scope.item.namaDokterTujuan.id : null,
                     "dokteranestesifk": $scope.item.namaDokterAnastesi ? $scope.item.namaDokterAnastesi.id : null,
                     "ruangoperasi" : $scope.item.ruanganOperasi.nama
                 }
+
                 ManageServicePhp.saveDataTransaksi('rekam-medis/save-jadwal-operasi/verifikasi', dataSave).then(e => {
                     init();
                     $scope.closeModalJadwalBedah();
-                    console.log(e);
-                })
+                    $scope.isRouteLoading = false;
+                });
             }
 
             function clear() {

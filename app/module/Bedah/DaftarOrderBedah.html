@@ -10,15 +10,47 @@
         <div class="md-toolbar-tools">Daftar Jadwal Bedah</div>
     </md-toolbar>
 
-    <kendo-grid data-source="dataDaftarJadwalBedah"
-        options="columnDaftarJadwalBedah"
-        k-selectable="'row'"
-        k-sortable="'true'"
-        k-resizable="'true'"
-        k-ng-model="dataSelected">
-    </kendo-grid>
+    <div class="grid_12">
+        <div class="grid_2">
+            <label><b>Tanggal Bedah</b></label>
+            <input style="width: 100%"
+                kendo-date-picker
+                k-ng-model="tglBedah"
+                placeholer="Hari-Bln-Thn"
+                k-format="'dd-MM-yyyy'"/>
+        </div>
 
-    <div kendo-window="verifikasiJadwalBedah" k-title="'Input Jadwal Bedah'"
+        <div class="grid_2">
+            <label><b>Ruang Bedah</b></label>
+            <input style="width: 100%;"
+                kendo-combo-box
+                k-ng-model="ruanganOperasi"
+                k-data-text-field="'nama'"
+                k-data-value-field="'key'"
+                k-filter="'contains'"
+                k-auto-bind="false"
+                k-data-source="listRuangOperasi" />
+        </div>
+
+        <div class="grid_1" style="margin-top:22px">
+            <md-button class="md-raised md-primary medium-button"
+                ng-click="getDataJadwalBedah()">
+                <span style="margin-right: 5px;">Cari</span>
+                <i class="fa fa-search"></i>
+            </md-button>
+        </div>
+    </div>
+
+    <div class="grid_12">
+        <kendo-grid data-source="dataDaftarJadwalBedah"
+            options="columnDaftarJadwalBedah"
+            k-selectable="'row'"
+            k-sortable="'true'"
+            k-resizable="'true'"
+            k-ng-model="dataSelected">
+        </kendo-grid>
+    </div>
+    <div kendo-window="modalVerifikasiJadwalBedah" k-title="'Input Jadwal Bedah'"
         k-width="1200"
         k-visible="false"
         k-on-open="win2visible= true" k-on-close="win2visible= false">
@@ -26,38 +58,45 @@
             style="padding: 0px 10px;">
 
             <div class="grid_2">
-                <label><b>Tanggal Verifikasi</b></label>
-                <input style="width: 100%"
-                    kendo-date-time-picker
-                    k-ng-model="item.tglVerifikasi"
-                    placeholer="Hari-Bln-Thn"
-                    ng-disabled="isVerif"
-                    k-format="'dd-MM-yyyy HH:mm'" />
-            </div>
-            <div class="grid_2">
-                <label><b>Tanggal Pembedahan</b></label>
+                <label><b>Tanggal Permintaan Bedah</b></label>
                 <input style="width: 100%"
                     kendo-date-time-picker
                     k-ng-model="item.tglOperasi"
-                    ng-disabled="isVerif"
+                    ng-disabled="'true'"
                     placeholer="Hari-Bln-Thn"
                     k-format="'dd-MM-yyyy HH:mm'" />
             </div>
+
             <div class="grid_2">
-                <label><b>Lama Operasi</b></label>
-                <div style="display: flex;">
-                    <input c-text-box type="input"
-                        placeholder="Jam" filter="'varchar'"
-                        class="k-textbox" disabled
-                        ng-model="item.lamaOperasi" />
-                    <label style="margin-top:10px">
-                        <b>Jam</b>
-                    </label>
-                </div>
+                <label><b>Tanggal Bedah</b></label>
+                <input style="width: 100%"
+                    kendo-date-picker
+                    k-ng-model="item.tglVerifikasi"
+                    placeholer="Hari-Bln-Thn"
+                    ng-disabled="'true'"
+                    k-format="'dd-MM-yyyy HH:mm'" />
+            </div>
+            <div class="grid_1">
+                <label><b>Waktu Bedah</b></label>
+                <input style="width: 100%"
+                    kendo-time-picker
+                    k-ng-model="item.tglVerifikasi"
+                    placeholer="Hari-Bln-Thn"
+                    ng-disabled="isVerif"
+                    k-format="'HH:mm'" />
+            </div>
+            
+            
+            <div class="grid_2">
+                <label><b>No. Telepon</b></label>
+                <input c-text-box type="input"
+                    placeholder="No. Telp" filter="'varchar'"
+                    class="k-textbox" disabled
+                    ng-model="item.notelp" />
             </div>
 
             <div class="grid_12">
-                <div class="grid_3">
+                <div class="grid_4">
                     <label><b>Dokter Periksa</b></label>
                     <input style="width: 100%;"
                         kendo-combo-box
@@ -69,7 +108,7 @@
                         k-data-source="listDokter" disabled/>
                 </div>
 
-                <div class="grid_3">
+                <div class="grid_4">
                     <label><b>Dokter Bedah</b></label>
                     <input style="width: 100%;"
                         kendo-combo-box
@@ -82,21 +121,21 @@
                         ng-disabled="isVerif" />
                 </div>
 
-                <div class="grid_3">
-                    <label><b>Dokter Anastesi</b></label>
-                    <input style="width: 100%;"
-                        kendo-combo-box
-                        k-ng-model="item.namaDokterAnastesi"
-                        k-data-text-field="'namalengkap'"
-                        k-data-value-field="'id'"
-                        k-filter="'contains'"
-                        k-auto-bind="false"
-                        ng-disabled="isVerif"
-                        k-data-source="listDokter"/>
+                <div class="grid_2">
+                    <label><b>Lama Bedah</b></label>
+                    <div style="display: flex;">
+                        <input c-text-box type="input"
+                            placeholder="Jam" filter="'varchar'"
+                            class="k-textbox" ng-disabled="isVerif"
+                            ng-model="item.lamaOperasi" />
+                        <label style="margin-top:10px">
+                            <b>Jam</b>
+                        </label>
+                    </div>
                 </div>
 
                 <div class="grid_2">
-                    <label><b>Ruang Operasi</b></label>
+                    <label><b>Ruang Bedah</b></label>
                     <input style="width: 100%;"
                         kendo-combo-box
                         k-ng-model="item.ruanganOperasi"
@@ -204,5 +243,8 @@
         k-width="900" k-height="500">
         <div class="panel panel-default container_12"></div>
 
+    </div>
+    <div class="grid_12" style="margin-top:60px">
+        <div ng-include='" ../app/module/Shared/TemplateLoading" '></div>
     </div>
 </div>

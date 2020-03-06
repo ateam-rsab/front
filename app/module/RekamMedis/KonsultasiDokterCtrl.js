@@ -66,17 +66,15 @@ define(['initialize'], function (initialize) {
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                 console.log(dataItem);
                 $scope.item = dataItem;
-                if($scope.item.keterangankeperluan === null || $scope.item.keterangankeperluan === '') {
-                    $scope.item.keterangankeperluan = 'Belum ada Konsultasi';
-                }
-                if($scope.item.pemeriksaandidapat === null || $scope.item.pemeriksaandidapat === '') {
-                    $scope.item.pemeriksaandidapat = "Belum ada Konsultasi"
-                }
-                console.log($scope.item.keterangankeperluan);
+                $scope.item.keterangankeperluan = $scope.item.keterangankeperluan ? $scope.item.keterangankeperluan : "-";
+                $scope.item.pemeriksaandidapat = $scope.item.pemeriksaandidapat ? $scope.item.pemeriksaandidapat : "-";
+                $scope.item.diagnosis = $scope.item.diagnosis ? $scope.item.diagnosis : "-";
+                $scope.item.saran = $scope.item.saran ? $scope.item.saran : "-";
+                // console.log($scope.item.keterangankeperluan);
                 $scope.popUpDetail.center().open();
             }
 
-            $scope.inputBaru = function () {                
+            $scope.inputBaru = function () {
                 if($scope.dataLogin.jenisPegawai.jenispegawai !== "DOKTER") {
                     toastr.info('Anda tidak memiliki akses menambahkan konsultasi');
                     return;
@@ -161,14 +159,15 @@ define(['initialize'], function (initialize) {
                 });
             }
             function editData(e) {
-                if($scope.dataLogin.jenisPegawai.jenispegawai !== "DOKTER") { 
-                    toastr.warning('Anda tidak memiliki akses bisa edit data konsultasi');
+                e.preventDefault();
+                if($scope.dataLogin.jenisPegawai.jenispegawai !== "DOKTER") {
+                    toastr.info('Anda tidak memiliki akses menambahkan konsultasi');
                     return;
                 }
-                e.preventDefault();
+                
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                 if(dataItem.pegawaifk !== $scope.dataLogin.id) { 
-                    toastr.warning('Anda tidak memiliki akses bisa edit data konsultasi');
+                    toastr.info('Anda tidak memiliki akses bisa edit data konsultasi');
                     return;
                 }
                 if(dataItem.keterangankeperluan !== null || dataItem.keterangankeperluan == "Belum ada Konsultasi") {

@@ -13816,6 +13816,34 @@
     ]
   },
   {
+    "name": "DashboardRuanganBedah",
+    "url": "/DashboardRuanganBedah",
+    "templateurl": "module/Bedah/DashboardRuanganBedah.html",
+    "controller": "DashboardRuanganBedahCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      },
+      {
+        "module": "PasienService",
+        "define": "PasienService"
+      },
+      {
+        "module": "PhpServices",
+        "define": "PhpServices"
+      }
+    ]
+  },
+  {
     "name": "InputKurikulumPelatihanRev",
     "url": "/InputKurikulumPelatihanRev",
     "templateurl": "module/SDM/InputKurikulumPelatihanRev.html",
