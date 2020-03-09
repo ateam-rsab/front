@@ -13,6 +13,19 @@ define(['initialize'], function (initialize) {
                         allPages: true,
                         fileName: "RSAB HK Export Daftar Konsultasi Kosong - " + dateHelper.formatDate(new Date(), 'DD-MMM-YYYY HH:mm:ss') +".xlsx"
                     },
+                    excelExport: function (e) {
+                        var sheet = e.workbook.sheets[0];
+                        sheet.frozenRows = 2;
+                        sheet.mergedCells = ["A1:I1"];
+                        sheet.name = dateHelper.formatDate($scope.item.tglAwal, 'DD MMM YYYY') + " - " + dateHelper.formatDate($scope.item.tglAkhir, 'DD MMM YYYY');
+                        var myHeaders = [{
+                            value: "Daftar Konsultasi Kosong Periode " + dateHelper.formatDate($scope.item.tglAwal, 'DD MMM YYYY') + " - " + dateHelper.formatDate($scope.item.tglAkhir, 'DD MMM YYYY'),
+                            fontSize: 14,
+                            textAlign: "center",
+                            background: "#ffffff",
+                        }];
+                        sheet.rows.splice(0, 0, { cells: myHeaders, type: "header", height: 30 });
+                    },
                     pageable: true,
                     columns: [
                         {
@@ -52,14 +65,7 @@ define(['initialize'], function (initialize) {
                             field: "namaRekanan",
                             title: "Penjamin", width: "150px"
                         }
-                    ],
-                    excelExport: function (e) {
-                        var columns = e.workbook.sheets[0].columns;
-                        columns.forEach(function (column) {
-                            delete column.width;
-                            column.autoWidth = true;
-                        });
-                    }
+                    ]
                 };
             };
 
@@ -95,7 +101,9 @@ define(['initialize'], function (initialize) {
                 $scope.item.tglAwal = tanggals + " 00:00";
                 $scope.item.tglAkhir = tanggals + " 23:59";
 
-                $scope.LoadData();
+                initDaftarKonsul();
+
+                $scope.isRouteLoading = false;
             };
 
             $scope.init();
