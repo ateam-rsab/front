@@ -8,7 +8,9 @@
             </div>
             <div class="clear"></div>
             <div class="grid_12">
-               <input style="width: 100%;" kendo-combo-box k-ng-model="item.hariLibur" k-data-text-field="'namaHariLibur'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listharilibur" />
+               <input style="width: 100%;" kendo-combo-box k-ng-model="item.hariLibur"
+                  k-data-text-field="'namaHariLibur'" k-data-value-field="'id'" k-filter="'contains'"
+                  k-auto-bind="false" k-data-source="listharilibur" />
             </div>
          </div>
          <!-- hariLiburId -->
@@ -53,16 +55,6 @@
                <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
             </div>
          </div>
-         <!--no sk-->
-         <!-- <div class="grid_4">
-            <div class="grid_12">
-               <label c-label item="item" c-label-text="No SK"></label>
-            </div>
-            <div class="clear"></div>
-            <div class="grid_12">
-               <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noSk" />
-            </div>
-         </div -->
          <!-- MapKalenderToHariLibur -->
          <div class="grid_12">
             <div class="grid_12 headerBox">
@@ -71,7 +63,8 @@
             <div class="clear"></div>
             <!-- grid table -->
             <div class="grid_12 borderBox">
-               <kendo-grid options="mainGridOptions"  k-data-source="dataSource" k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+               <kendo-grid options="mainGridOptions" k-data-source="dataSource" k-ng-model="current"
+                  ng-click="klik(current)"></kendo-grid>
             </div>
             <div class="clear"></div>
          </div>
