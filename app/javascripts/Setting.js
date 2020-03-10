@@ -1,7 +1,7 @@
 define([], function () {
     'use strict';
-    var baseURLFrontend = 'http://192.168.12.3',
-        portFrontend = '5555',
+    var baseURLFrontend = window.location.hostname === "192.168.12.3" ? "http://192.168.12.3" : "http://localhost",
+        portFrontend = window.location.hostname === "192.168.12.3" ? '4444' :'5555',
         
         baseURLPhp = 'http://192.168.12.3',
         portPhp = '5555',
