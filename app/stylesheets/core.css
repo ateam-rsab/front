@@ -1460,13 +1460,13 @@ h6 {
   align-items: center;
   margin: 0 auto;
   height: 100vh;
-  /* background-image: linear-gradient(rgba(255, 0, 0, 0.45), rgba(255, 0, 0, 0.45)), url(../../../assets/bg-login.jpg); */
-  background-position: 10% 90%;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.45), #10c4b247), url(../images/bg-login-min.JPG);
+  background-position: 10% 10%;
   background-repeat: no-repeat;
   background-size: cover;
   /* background-image: url(../resources/images/welcomeScreenNew.jpg); */
   /* background-image:linear-gradient(to right, rgba(161, 255, 206, 0.2), rgba(250, 255, 209, 0.2)), url(../stylesheets/bg4.jpg); */
-  background-image: url(../images/bg-feb-blue.jpg);
+  /* background-image: url(../images/bg-maret.JPG); */
 }
 
 .c-login .panel {

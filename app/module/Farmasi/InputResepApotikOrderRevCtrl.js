@@ -2,6 +2,7 @@ define(['initialize'], function (initialize) {
     'use strict';
     initialize.controller('InputResepApotikOrderRevCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper',
         function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper) {
+            $scope.dataLogin = JSON.parse(localStorage.getItem('pegawai'));
             $scope.dataResepDokter = new kendo.data.DataSource({
                 data: []
             });
@@ -301,6 +302,12 @@ define(['initialize'], function (initialize) {
 
             // simpan ke temporary resep
             $scope.simpan = function (data) {
+
+                if($scope.dataLogin.jenisPegawai.jenispegawai !== "DOKTER") {
+                    toastr.info('Anda tidak memiliki akses menambahkan Resep Elektronik');
+                    return;
+                }
+
                 var keteranganPenggunaan = '', intruksiPenggunaan = '', jumlah = '', isRacikan = false, pcs = 0;
 
                 if (data === 2) {
@@ -415,6 +422,11 @@ define(['initialize'], function (initialize) {
 
             // method untuk kirim resep ke farmasi
             $scope.kirimKeFarmasi = function () {
+                if($scope.dataLogin.jenisPegawai.jenispegawai !== "DOKTER") {
+                    toastr.info('Anda tidak memiliki akses menambahkan Resep Elektronik');
+                    return;
+                }
+                
                 $scope.isRouteLoading = true;
 
                 if (!$scope.resep.riwayatAlergi) {

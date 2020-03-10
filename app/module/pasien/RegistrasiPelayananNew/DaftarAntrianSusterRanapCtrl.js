@@ -162,12 +162,22 @@ define(['initialize'], function (initialize) {
 
             }
 
+            $scope.tutup = function (data) {
+                if (data == 1) {
+                    $scope.popUpHasilKonsul.close();
+                }
+            }
+
             function edit(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                 
                 $scope.edit = dataItem;
-                console.log($scope.edit);
+                $scope.item.dokter ={
+                    namalengkap:dataItem.namalengkap,
+                    id:dataItem.pegawaifk
+                }
+                console.log($scope.item.dokter);
 
                 $scope.popupEdit.open().center();
             }

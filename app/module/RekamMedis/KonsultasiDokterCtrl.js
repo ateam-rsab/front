@@ -160,17 +160,19 @@ define(['initialize'], function (initialize) {
             }
             function editData(e) {
                 e.preventDefault();
-                if($scope.dataLogin.jenisPegawai.jenispegawai !== "DOKTER") {
-                    toastr.info('Anda tidak memiliki akses menambahkan konsultasi');
-                    return;
-                }
-                
+
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-                if(dataItem.pegawaifk !== $scope.dataLogin.id) { 
+                // ($scope.dataLogin.jenisPegawai.jenispegawai !== "PELAKSANA")
+                //  toastr.info('Anda tidak memiliki akses bisa edit data konsultasi');
+                // if(dataItem.pengonsul !== $scope.dataLogin.namaLengkap) {
+                
+                if(dataItem.pengonsul !== $scope.dataLogin.namaLengkap) {
                     toastr.info('Anda tidak memiliki akses bisa edit data konsultasi');
                     return;
                 }
-                if(dataItem.keterangankeperluan !== null || dataItem.keterangankeperluan == "Belum ada Konsultasi") {
+
+                // validasi ketika sudah di verifikasi
+                if(dataItem.keterangankeperluan !== "-") {
                     $scope.isVerifikasi = true;
                     toastr.info('Konsultasi sudah di verifikasi');
                 } else {
@@ -180,11 +182,13 @@ define(['initialize'], function (initialize) {
                 var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
                 var dateNow = new Date();
                 var dateOrder = new Date(dataItem.tglorder);
-                var diffDays = Math.round(Math.abs((dateNow.getTime() - dateOrder.getTime())/(oneDay)))
-                if (diffDays >= 1){
-                    toastr.warning('data tidak bisa di edit')
-                    return;
-                }
+                var diffDays = Math.round(Math.abs((dateNow.getTime() - dateOrder.getTime())/(oneDay)));
+
+                // if (diffDays >= 1){
+                //     toastr.warning('data tidak bisa di edit')
+                //     return;
+                // }
+
                 $scope.item.masalah = dataItem.masalah;
                 $scope.item.jenisKonsultasi = dataItem.jeniskonsultasi;
                 $scope.item.pasienDiagnosaKerja = dataItem.diagnosakerja;
@@ -254,7 +258,7 @@ define(['initialize'], function (initialize) {
                     terapi: $scope.item.terapiDanTindakan ? $scope.item.terapiDanTindakan : '',
                     masalah:$scope.item.masalah ? $scope.item.masalah : ''
                 }
-                // console.log(objSave);
+                
                 ManagePhp.postData(objSave, 'rekam-medis/post-konsultasi').then(function (e) {
                     clear()
                     init();
