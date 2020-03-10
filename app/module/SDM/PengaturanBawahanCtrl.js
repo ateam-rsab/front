@@ -11,9 +11,9 @@ define(['initialize'], function (initialize) {
             $scope.dataVOloaded = true;
             $scope.enableBtnSimpanJabatanInternal = true;
             $scope.item = {};
-            $scope.ji = {};            
+            $scope.ji = {};
             
-            var initPengaturanBawahan = function () {                                
+            var initPengaturanBawahan = function () {
                 $scope.columnPengaturanBawahan = {
                     // sortable: true,
                     pageable: true,

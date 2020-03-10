@@ -33,8 +33,8 @@
                     </div>
                     <div class="grid_12">
                         <div class="grid_3">
-                            <label c-label item="item" c-label-text="Unit
-                                Kerja"></label>
+                            <label c-label item="item" 
+                                c-label-text="Unit Kerja"></label>
                             <input kendo-combo-box k-ng-model="item.unitKerja"
                                 k-data-text-field="'name'"
                                 k-data-value-field="'id'" k-filter="'contains'"
@@ -71,7 +71,7 @@
                 </div>
             </div>
             <div class="grid_12 containerBorderBox">
-                <div kendo-grid k-ng-model="item"
+                <div id="grid" kendo-grid k-ng-model="item"
                     k-data-source="dataSourcePengaturanBawahan" k-selectable="'row'"
                     k-sortable="'true'"
                     k-options="columnPengaturanBawahan"></div>
