@@ -11,7 +11,7 @@
   "license": "ISC",
   "private": true,
   "scripts": {
-    "start": "concurrently \"npm run run-app\" \"npm run watch-css\"",
+    "start": "concurrently \"npm run run-app\" \"npm run watch-css\" && forever start --minUptime 1000 --spinSleepTime 1000 ./bin/www ",
     "run-app": "nodemon ./bin/www",
     "watch-css": "gulp watch"
   },
