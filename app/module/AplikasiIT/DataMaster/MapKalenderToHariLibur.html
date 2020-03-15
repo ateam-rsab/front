@@ -1,10 +1,10 @@
 <div ng-controller="MapKalenderToHariLiburCtrl">
    <div ng-show="dataVOloaded">
-      <c-panel item="item" header="'Map Kalender To Hari Libur'" disabled>
+      <c-panel item="item" header="'Pengaturan Hari Libur'" disabled>
          <!-- hariLibur -->
-         <div class="grid_4">
+         <div class="grid_3">
             <div class="grid_12">
-               <label c-label item="item" c-label-text="hariLibur"></label>
+               <label c-label item="item" c-label-text="KategoriLibur"></label>
             </div>
             <div class="clear"></div>
             <div class="grid_12">
@@ -15,7 +15,7 @@
          </div>
          <!-- hariLiburId -->
          <!-- tanggal -->
-         <div class="grid_4">
+         <div class="grid_2">
             <div class="grid_12">
                <label c-label item="item" c-label-text="tanggal"></label>
             </div>
@@ -26,7 +26,7 @@
          </div>
          <!-- tanggalId -->
          <!-- reportDisplay -->
-         <div class="grid_4">
+         <div class="grid_4" ng-hide="true">
             <div class="grid_12">
                <label c-label item="item" c-label-text="reportDisplay"></label>
             </div>
@@ -36,9 +36,9 @@
             </div>
          </div>
          <!-- kodeExternal -->
-         <div class="grid_4">
+         <div class="grid_2">
             <div class="grid_12">
-               <label c-label item="item" c-label-text="kodeExternal"></label>
+               <label c-label item="item" c-label-text="kode"></label>
             </div>
             <div class="clear"></div>
             <div class="grid_12">
@@ -48,7 +48,7 @@
          <!-- namaExternal -->
          <div class="grid_4">
             <div class="grid_12">
-               <label c-label item="item" c-label-text="namaExternal"></label>
+               <label c-label item="item" c-label-text="KeteranganLibur"></label>
             </div>
             <div class="clear"></div>
             <div class="grid_12">
@@ -58,7 +58,7 @@
          <!-- MapKalenderToHariLibur -->
          <div class="grid_12">
             <div class="grid_12 headerBox">
-               <p>MapKalenderToHariLibur</p>
+               <p>Daftar Hari Libur</p>
             </div>
             <div class="clear"></div>
             <!-- grid table -->

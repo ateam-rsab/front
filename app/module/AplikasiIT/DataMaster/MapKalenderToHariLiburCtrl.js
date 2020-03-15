@@ -22,7 +22,7 @@ define(['initialize'], function (initialize) {
 
 			$scope.columnMapKalenderToHariLibur = [
 				{
-					"field": "tanggalId",
+					"field": "tanggal",
 					"title": "Tanggal"
 				},
 				{
@@ -31,7 +31,7 @@ define(['initialize'], function (initialize) {
 				},
 				{
 					"field": "namaExternal",
-					"title": "nama External"
+					"title": "Keterangan Libur"
 				},
 				{
 					command: [
@@ -56,7 +56,7 @@ define(['initialize'], function (initialize) {
 				$scope.current = current;
 				$scope.item.hariLibur = current.hariLibur;
 				$scope.item.hariLiburId = current.hariLiburId;
-				$scope.item.tanggal = current.tanggal;
+				$scope.item.tanggal = current.tanggalId;
 				$scope.item.tanggalId = current.tanggalId;
 				$scope.item.id = current.id;
 				$scope.item.noRec = current.noRec;
@@ -95,7 +95,7 @@ define(['initialize'], function (initialize) {
 							},
 
 							"id": $scope.item.id,
-							"reportDisplay": $scope.item.reportDisplay,
+							"reportDisplay": $scope.item.namaExternal,
 							"kodeExternal": $scope.item.kodeExternal,
 							"namaExternal": $scope.item.namaExternal,
 						}
@@ -109,25 +109,30 @@ define(['initialize'], function (initialize) {
 			}
 
 			$scope.edit = function () {
-				var data = {
-					"class": "MapKalenderToHariLibur",
-					"listField": {
-						"hariLibur": $scope.item.hariLibur,
-
-						"tanggal": $scope.item.tanggal,
-
-						"id": $scope.item.id,
-						"noRec": $scope.item.noRec,
-						"reportDisplay": $scope.item.reportDisplay,
-						"kodeExternal": $scope.item.kodeExternal,
-						"namaExternal": $scope.item.namaExternal,
-						"statusEnabled": $scope.item.statusEnabled
+				var idTgl = 0;
+				var tglStr = moment($scope.item.tanggal).format('YYYY-MM-DD');
+				ManageSdmNew.getListData("sdm/get-id-kalender?tanggal=" + tglStr).then(function (e) {
+					idTgl = e.data.data[0].idKalender;
+					var data = {
+						"class": "MapKalenderToHariLibur",
+						"listField": {
+							"hariLibur": $scope.item.hariLibur,
+							"tanggal": {
+								"id": idTgl
+							},
+							"id": $scope.item.id,
+							"noRec": $scope.item.noRec,
+							"reportDisplay": $scope.item.namaExternal,
+							"kodeExternal": $scope.item.kodeExternal,
+							"namaExternal": $scope.item.namaExternal,
+							"statusEnabled": $scope.item.statusEnabled
+						}
 					}
-				}
-				IPSRSService.saveDataMaster(data, "update-master-table").then(function (e) {
-					// console.log(JSON.stringify(e.data));
-					init();
-				});
+					IPSRSService.saveDataMaster(data, "update-master-table").then(function (e) {
+						// console.log(JSON.stringify(e.data));
+						init();
+					});
+				})
 			}
 
 			$scope.batal = function () {

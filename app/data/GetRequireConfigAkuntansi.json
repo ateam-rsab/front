@@ -489,6 +489,10 @@
       "urlDep": "module/Laporan/LaporanPendapatanRuanganCtrl"
     },
     {
+      "nameDep": "RekapPendapatanRuanganCtrl",
+      "urlDep": "module/Laporan/RekapPendapatanRuanganCtrl"
+    },
+    {
       "nameDep": "LaporanPasienDaftarCtrl",
       "urlDep": "module/Laporan/LaporanPasienDaftarCtrl"
     },

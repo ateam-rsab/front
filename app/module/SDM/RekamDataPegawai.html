@@ -461,15 +461,6 @@
                         <div class="grid_8">
                             <input style="width: 100%;" kendo-combo-box k-ng-model="item.kedudukan" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListKedudukanPegawai" ng-disabled="isSimpan"/>
                         </div>
-                        <!-- Jabatan Fungsional -->
-                        <!-- <div class="grid_12">
-                            <div class="grid_4" style="margin: 10px 0 0 0;">
-                                <label c-label item="item" >Jabatan Fungsional / Struktural</label>
-                            </div>
-                            <div class="grid_8">
-                                <input style="width: 100%;" kendo-combo-box k-ng-model="item.jabatanFungsional" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListJabatan" ng-disabled="isSimpan"/>
-                            </div>
-                        </div> -->
                         <!-- Kelompok Jabatan -->
                         <div class="grid_12">
                             <div class="grid_4" style="margin: 10px 0 0 0;">
@@ -479,15 +470,6 @@
                                 <input style="width: 100%;" kendo-combo-box k-ng-model="item.detailKelompokJabatan" k-data-text-field="'detailKelompokJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListDetilKelompokJabatan" k-on-change="getGradeJabatan(item.detailKelompokJabatan)" ng-disabled="isSimpan"/>
                             </div>
                         </div>
-                        <!-- Type Pegawai -->
-                        <!-- <div class="grid_12">
-                            <div class="grid_4" style="margin: 10px 0 0 0;">
-                                <label c-label item="item" c-label-text="Tipe Pegawai"></label>
-                            </div>
-                            <div class="grid_8">
-                                <input style="width: 100%;" kendo-combo-box k-ng-model="item.typePegawai" k-data-text-field="'typePegawai'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListTypePegawai" ng-disabled="isSimpan"/>
-                            </div>
-                        </div> -->
                         <!-- Pangkat dan Golongan-->
                         <div class="grid_12">
                             <div class="grid_4" style="margin: 10px 0 0 0;">
@@ -511,15 +493,6 @@
                         <div class="grid_8">
                             <input style="width: 100%;" kendo-combo-box k-ng-model="item.golonganPegawai" k-data-text-field="'name'" k-data-value-field="'id'" k-auto-bind="true" k-data-source="ListGolonganPegawai" ng-disabled="isSimpan"/>
                         </div> -->
-                        <!-- Jabatan yg dilamar -->
-                        <!-- <div class="grid_12">
-                            <div class="grid_4" style="margin: 10px 0 0 0;">
-                                <label c-label item="item" c-label-text="JabatanDiLamar"></label>
-                            </div>
-                            <div class="grid_8">
-                                <input style="width: 100%;" kendo-combo-box k-ng-model="jabatanDiLamar" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListJabatanFungsional" ng-disabled="isSimpan"/>
-                            </div>
-                        </div> -->
                         <!-- Eselon -->
                         <div class="grid_12">
                             <div class="grid_4" style="margin: 10px 0 0 0;">
@@ -529,13 +502,6 @@
                                 <input style="width: 100%;" kendo-combo-box k-ng-model="item.eselon" k-data-text-field="'eselon'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListEselon" ng-disabled="isSimpan"/>
                             </div>
                         </div>
-                        <!-- Jenis Pegawai  -->
-                        <!-- <div class="grid_4" style="margin: 10px 0 0 0;">
-                            <label c-label item="item" c-label-text="JenisPegawai"></label>
-                        </div>
-                        <div class="grid_8">
-                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPegawai" k-data-text-field="'jenisPegawai'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" ng-disabled="isSimpan" k-data-source="ListJenisPegawai"/>
-                        </div> --> 
                         <fieldset class="borderBox">
                             <legend style="font-size:20px">
                                 <strong>Data Absensi Pegawai</strong>
@@ -559,7 +525,29 @@
                                 </div>
                             </div>   
                         </fieldset>
-                        
+                        <fieldset class="borderBox" ng-show="isAdmin">
+                            <legend style="font-size:20px">
+                                <strong>Pelayanan</strong>
+                            </legend>
+                            <!-- Jenis Pegawai  -->
+                            <div class="grid_12">
+                                <div class="grid_4" style="margin: 10px 0 0 0;">
+                                    <label c-label item="item" c-label-text="JenisPegawai"></label>
+                                </div>
+                                <div class="grid_8">
+                                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPegawai" k-data-text-field="'jenisPegawai'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" ng-disabled="isSimpan" k-data-source="ListJenisPegawai"/>
+                                </div>
+                            </div>
+                            <!-- Type Pegawai -->
+                            <div class="grid_12">
+                                <div class="grid_4" style="margin: 10px 0 0 0;">
+                                    <label c-label item="item" c-label-text="Tipe Pegawai"></label>
+                                </div>
+                                <div class="grid_8">
+                                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.typePegawai" k-data-text-field="'typePegawai'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListTypePegawai" ng-disabled="isSimpan"/>
+                                </div>
+                            </div>
+                        </fieldset>
                     </div>
                     <div class="grid_6">
                         <!-- Tanggal Masuk -->
@@ -669,6 +657,47 @@
                                 </div>
                             </div>
                         </div>
+                        <fieldset class="borderBox" ng-show="isAdmin">
+                            <legend style="font-size:20px">
+                                <strong>Data Jabatan Tertanda</strong>
+                            </legend>
+                            <!-- Jabatan yg dilamar -->
+                            <div class="grid_12">
+                                <div class="grid_4" style="margin: 10px 0 0 0;">
+                                    <label c-label item="item">Jabatan Lamar</label>
+                                </div>
+                                <div class="grid_8">
+                                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.jabatanLamar" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListJabatan" ng-disabled="isSimpan"/>
+                                </div>
+                            </div>
+                            <!-- Jabatan Internal -->
+                            <div class="grid_12">
+                                <div class="grid_4" style="margin: 10px 0 0 0;">
+                                    <label c-label item="item" >Jabatan Internal</label>
+                                </div>
+                                <div class="grid_8">
+                                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.jabatanInternal" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListJabatan" ng-disabled="isSimpan"/>
+                                </div>
+                            </div>
+                            <!-- Jabatan Fungsional -->
+                            <div class="grid_12">
+                                <div class="grid_4" style="margin: 10px 0 0 0;">
+                                    <label c-label item="item" >Jabatan Fungsional</label>
+                                </div>
+                                <div class="grid_8">
+                                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.jabatanFungsional" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListJabatan" ng-disabled="isSimpan"/>
+                                </div>
+                            </div>
+                            <!-- Jabatan Struktural -->
+                            <div class="grid_12">
+                                <div class="grid_4" style="margin: 10px 0 0 0;">
+                                    <label c-label item="item" >Jabatan Struktural</label>
+                                </div>
+                                <div class="grid_8">
+                                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.jabatanStruktural" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListJabatan" ng-disabled="isSimpan"/>
+                                </div>
+                            </div>
+                        </fieldset>
                     </div>
                     
                     <fieldset class="borderBox containerBorderBox" ng-show="isAtasan">

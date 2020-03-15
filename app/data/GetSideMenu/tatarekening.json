@@ -92,6 +92,10 @@
                 "link": "#/LaporanPendapatanRuangan"
             },
             {
+                "name": "Rekapitulasi Pendapatan Ruangan",
+                "link": "#/RekapPendapatanRuangan"
+            },
+            {
                 "name": "Laporan Pasien Pulang",
                 "link": "#/LaporanPasienPulang"
             },

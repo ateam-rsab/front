@@ -43,7 +43,7 @@
                 "link": "#/HariLibur"
             },
             {
-                "name": "Map Kalender To Hari Libur ",
+                "name": "Pengaturan Hari Libur",
                 "link": "#/MapKalenderToHariLibur"
             },
             {
@@ -193,6 +193,10 @@
                     {
                         "name": "Data Pegawai",
                         "link": "#/DataPegawai"
+                    },
+                    {
+                        "name": "Data Formasi Jabatan",
+                        "link": "#/DataFormasiJabatan"
                     },
                     {
                         "name": "Pengaturan Jabatan",

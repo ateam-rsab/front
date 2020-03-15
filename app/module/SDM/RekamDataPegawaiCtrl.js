@@ -6,6 +6,12 @@ define(['initialize'], function (initialize) {
             // if (!$scope.dataLogin.ruangan.namaruangan == 'Inst.Teknologi & Informasi') {
             //     $state.go('UnderMaintenance', { namaForm: 'RekamDataPegawai' });
             // }
+            if ($scope.dataLogin.id == 320263) {
+                $scope.isAdmin = true;
+            } else {
+                $scope.isAdmin = false;
+            }
+
             let acTtdSk = $('#autoCompleteAtasanTtd').data("kendoAutoComplete");
             let acJabatan = $('#autoCompleteAtasanJabatan').data("kendoAutoComplete");
             

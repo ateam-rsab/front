@@ -1,0 +1,58 @@
+<div>
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Data Formasi Jabatan'" disabled>
+            <div class="panel panel-default container_12">
+                <div class="panel-body">
+                    <div class="grid_3">
+                        <label c-label item="item" c-label-text="Jabatan"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.jabatan"
+                            k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'"
+                            k-auto-bind="false" k-data-source="ListJabatan" />
+                    </div>
+                    <div class="grid_3">
+                        <label c-label item="item" c-label-text="Unit Kerja"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.unitKerja"
+                            k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'"
+                            k-auto-bind="false" k-data-source="ListUnitKerja" />
+                    </div>
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="Kategori"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.kategoriPegawai"
+                            k-data-text-field="'kategoryPegawai'" k-data-value-field="'id'" k-filter="'contains'"
+                            k-auto-bind="false" k-data-source="ListKategoryPegawai" />
+                    </div>
+                    <div class="grid_3">
+                        <label c-label item="item" c-label-text="Pegawai"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai"
+                            k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'"
+                            k-auto-bind="false" k-data-source="ListPegawai" />
+                    </div>
+                    <div class="grid_1">
+                        <label c-label c-label-text=""></label>
+                        <em style="margin-top:6px;" ng-click='resetFilter()' id="iconButton" data-role="button"
+                            class="k-button k-button-icon k-primary" role="button" aria-disabled="false"
+                            tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12 containerBorderBox">
+                <div id="grid" kendo-grid options="gridDataFormasi" data-source="dataSourceFormasi"></div>
+            </div>
+        </c-panel>
+    </div>
+</div>
+<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+
+<style>
+    .k-grid .k-grid-header .k-header .k-link {
+        height: auto;
+    }
+
+    .k-grid .k-grid-header .k-header {
+        white-space: normal;
+    }
+
+    .k-grid .k-grid-header .k-header {
+        text-align: center;
+    }
+</style>
