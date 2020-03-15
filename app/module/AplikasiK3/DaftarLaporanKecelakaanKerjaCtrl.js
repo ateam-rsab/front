@@ -7,7 +7,7 @@ define(['initialize'], function (initialize) {
                 $scope.item = data;
                 $scope.isEditKejadian = false;
                 $scope.isShowPopUp = false;
-                // $scope.verifiedData = true;
+                $scope.verifiedData = true;
                 $scope.dataKorban = {};
                 $scope.item.periodeAwal = new Date();
                 $scope.item.periodeAkhir = new Date();
@@ -213,7 +213,7 @@ define(['initialize'], function (initialize) {
             ]
 
             ManageSarpras.getOrderList("k3-laporan-kecelakaan-kerja/get-unit-ruangan").then(function (dat) {
-                // debugger;
+
                 $scope.listUnitRuangan = dat.data.data.unitRuangan;
             });
 
@@ -322,6 +322,7 @@ define(['initialize'], function (initialize) {
 
                                 ManageSarpras.getOrderList("k3-laporan-kecelakaan-kerja/get-lkk-by-norec?noRec=" + item.noRec).then(function (res) {
                                     $scope.listKorbanPopUp = res.data.data.lkkIdentifikasiKorban;
+                                    
                                     res.data.data.lkkIdentifikasiKorban.forEach(function (datas) {
                                         datas.tglLahir = new Date(datas.tglLahir)
                                         var namaHari = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
@@ -339,24 +340,7 @@ define(['initialize'], function (initialize) {
                                 popUp.data('kendoWindow').open();
                                 popUp.data('kendoWindow').center();
                             }
-                        },
-                        // {
-                        //     text: 'Edit',
-                        //     name: 'edit',
-                        //     click: function (e) {
-                        //         e.preventDefault();
-                        //         var grid = $('#gridLaporanKecelakaanKerja').data('kendoGrid');
-                        //         var item = grid.dataItem($(e.target).closest('tr'));
-                        //         if(item.verifikasi == "Belum di Verifikasi") {
-                        //             $scope.verifiedData = true;
-                        //         } else if (item.verifikasi == "Sudah di Verifikasi") {
-                        //             $scope.verifiedData = false;
-                        //         }
-                        //         $scope.edit(item)
-                        //         // $scope.showDetailLaporan = true;
-                        //     }
-                        // }
-
+                        }
                     ]
                 },
                 {
@@ -419,19 +403,18 @@ define(['initialize'], function (initialize) {
                     "width": "150px"
                 },
             ];
-            console.log($scope.columnLaporanKecelakaan)
-            // $scope.listKorbanPopUp = new kendo.data.DataSource({
-            //     data: []
-            // });
 
 
             var showDetail = function (selectedDataKecelakaan) {
+                if(!selectedDataKecelakaan) {
+                    toastr.warning('Anda belum memilih data');
+                }
                 // localStorage.noVerifikasi = selectedDataKecelakaan.noRec_verifikasi;
-                // sessionStorage.noVerifikasi = selectedDataKecelakaan.noRec_verifikasi;
+                sessionStorage.noVerifikasi = selectedDataKecelakaan.noRec_verifikasi;
                 noRec = selectedDataKecelakaan.noRec;
                 selectedNoRec = selectedDataKecelakaan.noRec;
                 verifikasi = selectedDataKecelakaan.verifikasi;
-                debugger;
+
                 $scope.kejadian = selectedDataKecelakaan;
 
                 if (selectedDataKecelakaan != undefined) {
@@ -446,8 +429,7 @@ define(['initialize'], function (initialize) {
                     ManageKKKL.getOrderList("k3-laporan-kecelakaan-kerja/get-lkk-by-norec?noRec=" + selectedDataKecelakaan.noRec).then(function (dat) {
                         $scope.kejadian.tindakanLanjutan = dat.data.data.lkkIdentifikasiKorban[0].tindakanLanjutan
                         $scope.listSaksi = new kendo.data.DataSource({
-                            data: [
-                            ],
+                            data: [],
                             schema: {
                                 model: {
                                     id: "namaSaksi",
@@ -463,10 +445,18 @@ define(['initialize'], function (initialize) {
                         if (dat.data.data.lkkSaksiKejadian != undefined) {
                             dat.data.data.lkkSaksiKejadian.forEach(function (data) {
                                 $scope.listSaksi.add(data)
-                            });
+                            });                           
+                        }
+
+                        if(dat.data.data.lkkIdentifikasiKorban) {
+                            for(let i = 0; i < dat.data.data.lkkIdentifikasiKorban.length; i++) {
+                                dat.data.data.lkkIdentifikasiKorban[i].tglLahirFormatted = DateHelper.formatDate(dat.data.data.lkkIdentifikasiKorban[i].tglLahir, 'DD MMMM YYYY');
+                            }
                         }
 
                         $scope.listKorban = dat.data.data.lkkIdentifikasiKorban;
+                        
+                        console.log($scope.listKorban);
                     });
                 }
             }
@@ -502,13 +492,13 @@ define(['initialize'], function (initialize) {
                 },
                 {
                     "field": "tglLahir",
-                    "title": "<h5 align='center'>Tangal Lahir</h5>",
+                    "title": "<h5 align='center'>Tanggal Lahir</h5>",
                     "width": "150px",
                     attributes: {
                         style: "text-align:center;valign=middle"
                     },
-                    headerAttributes: { style: "text-align : center" }
-                    // template: '#= kendo.toString(tglLahir, "dd/MMM/yyyy") #'
+                    headerAttributes: { style: "text-align : center" },
+                    template: '#= kendo.toString(tglLahir, "dd/MMM/yyyy") #'
                 },
                 {
                     "field": "jenisKelamin",
@@ -547,10 +537,10 @@ define(['initialize'], function (initialize) {
                     headerAttributes: { style: "text-align : center" }
                 },
                 {
-                    "field": "tglLahir",
-                    "title": "<h3 align='center'>Tangal Lahir</h3>",
+                    "field": "tglLahirFormatted",
+                    "title": "<h3 align='center'>Tanggal Lahir</h3>",
                     "width": "150px",
-                    template: '#= kendo.toString(tglLahir, "dd MMMM yyyy") #'
+                    // template: '#= kendo.toString(tglLahir, "dd MMMM yyyy") #'
                 },
                 {
                     "field": "jenisKelamin",
@@ -561,11 +551,11 @@ define(['initialize'], function (initialize) {
                     },
                     headerAttributes: { style: "text-align : center" }
                 },
-                {
-                    "field": "statusPekerjaan",
-                    "title": "<h3 align='center'>Status Pekerjaan <br> di RSAB-HK</h3>",
-                    "width": "150px"
-                },
+                // {
+                //     "field": "statusPekerjaan",
+                //     "title": "<h3 align='center'>Status Pekerjaan <br> di RSAB-HK</h3>",
+                //     "width": "150px"
+                // },
                 {
                     "field": "statusJabatan",
                     "title": "<h3 align='center'>Status Jabatan <br> di RSAB-HK</h3>",
@@ -574,7 +564,7 @@ define(['initialize'], function (initialize) {
                 {
                     "field": "namaRuangan",
                     "title": "<h3 align='center'>Ruangan Kerja <br> di RSAB-HK</h3>",
-                    "width": "150px"
+                    "width": "250px"
                 },
                 // {
                 //     "field": "noRec_korban",
@@ -582,6 +572,7 @@ define(['initialize'], function (initialize) {
                 // },
                 {
                     "field": "action",
+                    "width": "100px",
                     "title": "<h3 align='center'>Action</h3>",
                     attributes: {
                         style: "text-align:center;valign=middle"
@@ -622,7 +613,7 @@ define(['initialize'], function (initialize) {
                     headerAttributes: { style: "text-align : center" }
                 },
                 {
-                    field:"<h3 align='center'>Action</h3>",
+                    field: "<h3 align='center'>Action</h3>",
                     width: "50px",
                     attributes: { style: "text-align:center;valign=middle" },
                     headerAttributes: { style: "text-align : center" },
@@ -643,7 +634,7 @@ define(['initialize'], function (initialize) {
 
 
             $scope.edit = function (data) {
-                // debugger;
+
                 showDetail(data)
                 if (data == undefined) {
                     toastr.warning('Anda Belum Memilih Data untuk di Edit')
@@ -675,9 +666,14 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.selectKorban = function (data) {
-                debugger;
+
                 $scope.detailKorban = true;
                 $scope.item = data;
+                $scope.item.statusJabatanInput = {
+                    statusJabatan: data.statusJabatan
+                }
+                console.log($scope.item.tglLahir);
+                $scope.item.tglLahir = new Date($scope.item.tglLahir);
                 noRecKorban = data.noRec_korban;
                 noRecKerugian = data.noRec_kerugian;
                 noRecTindakLanjut = data.noRec_tindakLanjut;
@@ -697,11 +693,6 @@ define(['initialize'], function (initialize) {
                 // $scope.ruangan = {
                 //     "namaRuangan": data.namaRuangan
                 // }
-            }
-
-            $scope.test = function () {
-                debugger;
-                $scope.item.jk;
             }
 
             $scope.simpanKejadian = function () {
@@ -729,14 +720,13 @@ define(['initialize'], function (initialize) {
                 }
 
                 ManageKKKL.saveDataSarPras(data, "k3-laporan-kecelakaan-kerja/update-identifikasi-kejadian").then(function (e) {
-                    console.log(JSON.stringify(e.data));
+                    // console.log(JSON.stringify(e.data));
                     getList();
                 });
 
             }
 
             $scope.simpanSaksi = function () {
-                debugger;
                 var data = {
                     "noRec": $scope.saksi.noRec,
                     "namaSaksi": $scope.saksi.namaSaksi,
@@ -746,14 +736,13 @@ define(['initialize'], function (initialize) {
                 }
 
                 ManageSarpras.saveDataSarPras(data, "k3-laporan-kecelakaan-kerja/update-saksi-kejadian").then(function (e) {
-                    console.log(JSON.stringify(e.data));
+                    $scope.verifiedData = true;
                     showDetail(selKej);
                 });
-
             }
 
             $scope.simpanKorban = function () {
-                debugger;
+
                 if ($scope.item.ru == undefined) {
                     $scope.item.ru = {
                         "ruanganId": $scope.item.idRuangan
@@ -808,19 +797,17 @@ define(['initialize'], function (initialize) {
                     }
                 }
 
-                ManageSarpras.saveDataSarPras(data, "k3-laporan-kecelakaan-kerja/update-identifikasi-korban").then(function (e) {
-                    console.log(JSON.stringify(e.data));
+                ManageKKKL.saveDataSarPras(data, "k3-laporan-kecelakaan-kerja/update-identifikasi-korban").then(function (e) {
                     showDetail(selKej);
                 });
 
             }
 
             $scope.hapusKejadian = function (data) {
-                debugger;
-                ManageSarpras.getOrderList("k3-laporan-kecelakaan-kerja/delete-identifikasi-kejadian?noRec=" + data.noRec_verifikasi).then(
+                ManageKKKL.getOrderList("k3-laporan-kecelakaan-kerja/delete-identifikasi-kejadian?noRec=" + data.noRec_verifikasi).then(
 
                     function (e) {
-                        debugger;
+
                         // toastr.success('Data Kejadian Telah Berhasil di Hapus')
                         console.log(JSON.stringify(e));
                         $timeout(function () {
@@ -893,15 +880,15 @@ define(['initialize'], function (initialize) {
                 // console.log(status);
                 // showDetail();
                 var grid = $('#gridLaporanKecelakaanKerja').data('kendoGrid');
-                verifikasi = status
+                // verifikasi = status
 
                 var data = {
-                    "verifikasi": verifikasi,
+                    "verifikasi": status,
                     "noRec": sessionStorage.noVerifikasi
                 }
 
 
-                ManageSarpras.saveDataSarPras(ModelItem.beforePost(data), "k3-laporan-kecelakaan-kerja/verifikasi-lkk").then(function (e) {
+                ManageKKKL.saveDataSarPras(ModelItem.beforePost(data), "k3-laporan-kecelakaan-kerja/verifikasi-lkk").then(function (e) {
                     console.log(JSON.stringify(e.data));
                     $scope.showDetailLaporan = true;
                     grid.refresh();

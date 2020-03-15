@@ -253,6 +253,10 @@ define(['initialize'], function (initialize) {
                 
                 $scope.edit = dataItem;
                 console.log($scope.edit);
+                $scope.item.dokter ={
+                    namalengkap:dataItem.namalengkap,
+                    id:dataItem.pegawaifk
+                }
                 // $scope.edit.diagnosakerja = dataItem.diagnosakerja;
                 // $scope.edit.jenisKonsultasi = dataItem.jeniskonsultasi;
                 // $scope.edit.keterangankeperluan = dataItem.keterangankeperluan;

@@ -99,7 +99,7 @@ define(['initialize'], function (initialize) {
                 });
 
                 if ($scope.header.DataNoregis == false) {
-                    manageLogistikPhp.getDataTableTransaksi('laporan/get-order-lab?noregistrasi=' + $scope.item.noregistrasi).then(function (e) {
+                    manageLogistikPhp.getDataTableTransaksi('laporan/get-order-lab?NoCM=' + $scope.item.noMr).then(function (e) {
                         for (var i = e.data.daftar.length - 1; i >= 0; i--) {
                             e.data.daftar[i].no = i + 1
                         }
@@ -121,13 +121,10 @@ define(['initialize'], function (initialize) {
 
                     });
                 }
-
-
-
             }
             $rootScope.getRekamMedisCheck = function (bool) {
                 if (bool) {
-                    manageLogistikPhp.getDataTableTransaksi('laporan/get-order-lab?noregistrasi=' + $scope.item.noregistrasi).then(function (e) {
+                    manageLogistikPhp.getDataTableTransaksi('laporan/get-order-lab?NoCM' + $scope.item.noMr).then(function (e) {
                         //debugger;
                         for (var i = e.data.daftar.length - 1; i >= 0; i--) {
                             e.data.daftar[i].no = i + 1

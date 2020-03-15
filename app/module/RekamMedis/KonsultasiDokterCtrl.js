@@ -46,7 +46,7 @@ define(['initialize'], function (initialize) {
                         { text: "Edit", click: editData },
                         // { name: "Verifikasi", text: "Hasil Konsul", click: hasilKonsult },
                         { name: "Detail", text: "Detail", click: showDetail },
-                        { name: "Edit", text: "Cetak", click: cetakReport },
+                        { name: "Cetak", text: "Cetak", click: cetakReport },
                     ], title: "&nbsp;", width: 140, 
                         attributes: {
                             style: "text-align:center;valign=middle"
@@ -66,17 +66,19 @@ define(['initialize'], function (initialize) {
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                 console.log(dataItem);
                 $scope.item = dataItem;
-                if($scope.item.keterangankeperluan === null || $scope.item.keterangankeperluan === '') {
-                    $scope.item.keterangankeperluan = 'Belum ada Konsultasi';
-                }
-                if($scope.item.pemeriksaandidapat === null || $scope.item.pemeriksaandidapat === '') {
-                    $scope.item.pemeriksaandidapat = "Belum ada Konsultasi"
-                }
-                console.log($scope.item.keterangankeperluan);
+                $scope.item.keterangankeperluan = $scope.item.keterangankeperluan ? $scope.item.keterangankeperluan : "-";
+                $scope.item.pemeriksaandidapat = $scope.item.pemeriksaandidapat ? $scope.item.pemeriksaandidapat : "-";
+                $scope.item.diagnosis = $scope.item.diagnosis ? $scope.item.diagnosis : "-";
+                $scope.item.saran = $scope.item.saran ? $scope.item.saran : "-";
+                // console.log($scope.item.keterangankeperluan);
                 $scope.popUpDetail.center().open();
             }
 
             $scope.inputBaru = function () {
+                if($scope.dataLogin.jenisPegawai.jenispegawai !== "DOKTER") {
+                    toastr.info('Anda tidak memiliki akses menambahkan konsultasi');
+                    return;
+                }
                 $scope.isVerifikasi = false;
                 $scope.item = {};
                 var getCache = cacheHelper.get('cacheRekamMedis');
@@ -158,21 +160,35 @@ define(['initialize'], function (initialize) {
             }
             function editData(e) {
                 e.preventDefault();
+
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-                if(dataItem.keterangankeperluan !== null || dataItem.keterangankeperluan == "Belum ada Konsultasi") {
+                // ($scope.dataLogin.jenisPegawai.jenispegawai !== "PELAKSANA")
+                //  toastr.info('Anda tidak memiliki akses bisa edit data konsultasi');
+                // if(dataItem.pengonsul !== $scope.dataLogin.namaLengkap) {
+                
+                if(dataItem.pengonsul !== $scope.dataLogin.namaLengkap) {
+                    toastr.info('Anda tidak memiliki akses bisa edit data konsultasi');
+                    return;
+                }
+
+                // validasi ketika sudah di verifikasi
+                if(dataItem.keterangankeperluan !== "-") {
                     $scope.isVerifikasi = true;
                     toastr.info('Konsultasi sudah di verifikasi');
                 } else {
                     $scope.isVerifikasi = false;
                 }
+                
                 var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
                 var dateNow = new Date();
                 var dateOrder = new Date(dataItem.tglorder);
-                var diffDays = Math.round(Math.abs((dateNow.getTime() - dateOrder.getTime())/(oneDay)))
-                if (diffDays >= 1){
-                    toastr.warning('data tidak bisa di edit')
-                    return
-                }
+                var diffDays = Math.round(Math.abs((dateNow.getTime() - dateOrder.getTime())/(oneDay)));
+
+                // if (diffDays >= 1){
+                //     toastr.warning('data tidak bisa di edit')
+                //     return;
+                // }
+
                 $scope.item.masalah = dataItem.masalah;
                 $scope.item.jenisKonsultasi = dataItem.jeniskonsultasi;
                 $scope.item.pasienDiagnosaKerja = dataItem.diagnosakerja;
@@ -191,7 +207,7 @@ define(['initialize'], function (initialize) {
                 ManagePhp.getData("rekam-medis/get-combo").then(function (e) {
                     $scope.listDokter = e.data.dokter
                     $scope.listRuangan = e.data.ruangankonsul
-                })
+                });
 
                 $q.all([
                     ManagePhp.getData("rekam-medis/get-order-konsul?norecpd=" + $scope.norecPd)
@@ -242,7 +258,7 @@ define(['initialize'], function (initialize) {
                     terapi: $scope.item.terapiDanTindakan ? $scope.item.terapiDanTindakan : '',
                     masalah:$scope.item.masalah ? $scope.item.masalah : ''
                 }
-                // console.log(objSave);
+                
                 ManagePhp.postData(objSave, 'rekam-medis/post-konsultasi').then(function (e) {
                     clear()
                     init();

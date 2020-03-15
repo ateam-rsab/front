@@ -173,18 +173,25 @@ define(['initialize'], function(initialize) {
                 });
             }
             $scope.Cetak = function(){
-                var stt = 'false'
-                if (confirm('View Bukti UPK? ')) {
-                    // Save it!
-                    stt='true';
-                } else {
-                    // Do nothing!
-                    stt='false'
+                // var stt = 'false'
+                // if (confirm('View Bukti UPK? ')) {
+                //     // Save it!
+                //     stt='true';
+                // } else {
+                //     // Do nothing!
+                //     stt='false'
+                // }
+                // var client = new HttpClient();
+                // client.get('http://127.0.0.1:1237/printvb/logistik?cetak-usulanpelaksanaankegiatan=1&nores='+$scope.dataSelected.norec+'&view='+stt, function(response) {
+                //     //aadc=response;
+                // });
+
+                if(!$scope.dataSelected) {
+                    toastr.info('Anda belum memilih data untuk di cetak');
+                    return;
                 }
-                var client = new HttpClient();
-                client.get('http://127.0.0.1:1237/printvb/logistik?cetak-usulanpelaksanaankegiatan=1&nores='+$scope.dataSelected.norec+'&view='+stt, function(response) {
-                    //aadc=response;
-                });
+
+                window.open('http://192.168.12.4:7777/service-reporting/lap-upk/nores=' + $scope.dataSelected.norec);
             }
 
             $scope.pph = function(){

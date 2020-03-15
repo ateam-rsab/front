@@ -2137,6 +2137,10 @@
       "urlDep": "module/Bedah/DaftarOrderBedahCtrl"
     },
     {
+      "nameDep": "DashboardRuanganBedahCtrl",
+      "urlDep": "module/Bedah/DashboardRuanganBedahCtrl"
+    },
+    {
       "nameDep": "InputKurikulumPelatihanRevCtrl",
       "urlDep": "module/SDM/InputKurikulumPelatihanRevCtrl"
     },

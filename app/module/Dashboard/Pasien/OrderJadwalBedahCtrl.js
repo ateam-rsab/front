@@ -5,7 +5,10 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             $scope.dataVOloaded = true;
             $scope.now = new Date();
-            $scope.pegawaiLogin = JSON.parse(localStorage.getItem('pegawai'))
+            $scope.isRouteLoading = false;
+            $scope.isSaveLoad = false;
+            $scope.pegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
+            $scope.dataPasien = JSON.parse(localStorage.getItem('cacheHelper'));
             let jenisPegawai = $scope.pegawaiLogin.jenisPegawai.jenispegawai;
             let idPegawaiLogin = $scope.pegawaiLogin;
             $scope.item.tglOperasi = new Date();
@@ -18,47 +21,34 @@ define(['initialize'], function (initialize) {
             $scope.CmdOrderPelayanan = true;
             $scope.OrderPelayanan = false;
             $scope.showTombol = false;
+
+            $scope.isEdit = false;
             $scope.header.DataNoregis = '';
-            var myVar = 0
-            var detail = ''
+            var myVar = 0;
+            var detail = '';
 
-            $scope.lengthKomplikasi = 0;
-            $scope.lengthMacamJaringan = 0;
-            $scope.lengthUraianPemebedahan = 0;
-            $scope.lengthMakan = 0;
-            $scope.lengthMinum = 0;
-            $scope.lengthObat = 0;
-            $scope.lengthInstruksiKhusus = 0;
-            $scope.lengthTindakanPembedahanSatu = 0;
-            $scope.lengthTindakanPembedahanDua = 0;
-            $scope.lengthTindakanPembedahanTiga = 0;
-            $scope.lengthTindakanPembedahanEmpat = 0;
-            $scope.lengthDiagnosaPascaBedah = 0;
-            $scope.lengthDiagnosaPraBedah = 0;
-            $scope.lengthPatologi = 0;
-            $scope.lengthMacam = 0;
-            $scope.lengthJumlah = 0;
-            $scope.lengthTetesan = 0;
-
-
+            $scope.dataDaftarJadwalBedah = [];
+            $scope.showModalInputJadwal = false;
             $scope.showInputan = false;
+
             LoadCache();
             function LoadCache() {
                 var chacePeriode = cacheHelper.get('cacheCPPT');
-                if (chacePeriode != undefined) {
-                    $scope.item.noMr = chacePeriode[0]
-                    $scope.item.namaPasien = chacePeriode[1]
-                    $scope.item.jenisKelamin = chacePeriode[2]
-                    $scope.item.noregistrasi = chacePeriode[3]
-                    $scope.item.umur = chacePeriode[4]
-                    $scope.item.kelompokPasien = chacePeriode[5]
-                    $scope.item.tglRegistrasi = chacePeriode[6]
-                    norec_apd = chacePeriode[7]
-                    norec_pd = chacePeriode[8]
-                    $scope.item.idKelas = chacePeriode[9]
-                    $scope.item.kelas = chacePeriode[10]
-                    $scope.item.idRuangan = chacePeriode[11]
-                    $scope.item.namaRuangan = chacePeriode[12]
+                console.log(chacePeriode)
+                if (!chacePeriode) {
+                    $scope.item.noMr = chacePeriode[0];
+                    $scope.item.namaPasien = chacePeriode[1];
+                    $scope.item.jenisKelamin = chacePeriode[2];
+                    $scope.item.noregistrasi = chacePeriode[3];
+                    $scope.item.umur = chacePeriode[4];
+                    $scope.item.kelompokPasien = chacePeriode[5];
+                    $scope.item.tglRegistrasi = chacePeriode[6];
+                    norec_apd = chacePeriode[7];
+                    norec_pd = chacePeriode[8];
+                    $scope.item.idKelas = chacePeriode[9];
+                    $scope.item.kelas = chacePeriode[10];
+                    $scope.item.idRuangan = chacePeriode[11];
+                    $scope.item.namaRuangan = chacePeriode[12];
                     if ($scope.item.namaRuangan.substr($scope.item.namaRuangan.length - 1) == '`') {
                         $scope.showTombol = true
                     }
@@ -100,15 +90,12 @@ define(['initialize'], function (initialize) {
                     if ($scope.header.DataNoregis == undefined) {
                         $scope.header.DataNoregis = false;
                     }
-                    // if ($scope.item.namaRuangan.substr($scope.item.namaRuangan.length - 1) == '`') {
-                    //     $scope.showTombol = true
-                    // }
+
                     managePhp.getData("tatarekening/get-sudah-verif?noregistrasi=" +
                         $scope.item.noregistrasi, true).then(function (dat) {
                             $scope.item.statusVerif = dat.data.status;
                         });
                 }
-                init();
             }
 
             function getLapPascaBedah() {
@@ -127,32 +114,42 @@ define(['initialize'], function (initialize) {
                 });
             };
 
-
             function init() {
+                $scope.item.dokterJadwalBedah = {
+                    namaLengkap:$scope.pegawaiLogin.namaLengkap,
+                    id:$scope.pegawaiLogin.id
+                }
+                getDataOrderJadwalBedah();
                 getLapPascaBedah();
+
                 $scope.listOfPenanganKhusus = [
                     { id: 1, name: 'Minor' },
                     { id: 2, name: 'Medium' },
                     { id: 3, name: 'Mayor' },
                     { id: 4, name: 'Khusus' },
                 ];
+
                 $scope.listOfLabelPasien = [
                     { id: 1, name: 'Sudah dipasang' },
                     { id: 3, name: 'Belum dipasang' },
                 ];
+
                 $scope.listOfStatus = [
                     { id: 11, name: 'Emergency' },
                     { id: 33, name: 'Elektif' },
                     { id: 34, name: 'Poliklinik' },
                 ];
+
                 $scope.listYesOrNo = [
                     { id: 1, name: 'Ya' },
                     { id: 2, name: 'Tidak' },
                 ];
+
                 $scope.listSesuaiOrNot = [
                     { id: 1, name: 'Sesuai' },
                     { id: 2, name: 'Tidak Sesuai' },
                 ];
+
                 managePhp.getData("pelayanan/get-order-penunjang?departemenfk=25&nocm=" + nocm_str + '&norec_apd=' + norec_apd, true).then(function (dat) {
                     $scope.item.ruanganAsal = dat.data.data[0].namaruangan;
                     $scope.listRuanganTujuan = dat.data.ruangantujuan;
@@ -164,20 +161,7 @@ define(['initialize'], function (initialize) {
                     namaRuanganFk = dat.data.data[0].objectruanganfk;
                     norec_pd = dat.data.data[0].noregistrasifk;
                 });
-                //managePhp.getData("rekam-medis/get-emr-transaksi?norec_apd="+norec_apd, true).then(function(dat)
-                // managePhp.getData("rekam-medis/get-lap-pasca-bedah?noregistrasifk=" + norec_apd, true).then(function(dat) {
-                //     $scope.dataDaftar = new kendo.data.DataSource({
-                //         data: dat.data.data,
-                //         pageSize: 10,
-                //         serverPaging: false,
-                //         schema: {
-                //             model: {
-                //                 fields: {
-                //                 }
-                //             }
-                //         }
-                //     });
-                // });
+
                 managePhp.getData("get-detail-login", true).then(function (dat) {
                     $scope.PegawaiLogin2 = dat.data;
                 });
@@ -227,83 +211,186 @@ define(['initialize'], function (initialize) {
                     // var treeview = $("#treeview").data("kendoTreeView");
                     // .expandPath([2, 5])
                 });
+            };
 
+            init();
 
+            $scope.columnDaftarJadwalBedah = {
+                toolbar: [
+                    {
+                        name: "create", text: "Input Baru",
+                        template: '<button ng-click="inputBaruJadwalBedah()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Buat Baru</button>'
+                    },
+                    {
+                        template: '<button ng-click="gotToDashboard()" class="k-button k-button-icontext k-grid-upload">Dashboard Bedah</button>'
+                    }
+                ],
+                scrollable: true,
+                selectable: 'row',
+                pageable: true,
+                columns: [
+                    {
+                        "field": "tgloperasi",
+                        "title": "<h3>Tanggal<br> Permintaan Bedah</h3>",
+                        "width": 200,
+                        "template": "<span class='style-left'>#: tgloperasi ? tgloperasi : '-' #</span>"
+                    },
+                    {
+                        "field": "tglverifikasi",
+                        "title": "<h3>Tanggal Bedah</h3>",
+                        "width": 200,
+                        "template": "<span class='style-left'>#: tglverifikasi ? tglverifikasi : '-' #</span>"
+                    },
+                    {
+                        "field": "noregistrasi",
+                        "title": "<h3>No.<br> Registrasi</h3>",
+                        "width": 100
+                    },
+                    {
+                        "field": "namaDokterTujuan",
+                        "title": "<h3>Dokter yang<br> mengerjakan</h3>",
+                        "width": 200
+                    },
+                    {
+                        "field": "namaRuanganTujuan",
+                        "title": "<h3>Ruangan Tujuan</h3>",
+                        "width": 200
+                    },
+                    {
+                        "field": "namaruangan",
+                        "title": "<h3>Nama Ruangan</h3>",
+                        "width": 200
+                        // "template": "<span class='style-left'>#: if(!namaruangan) { namaruangan = '' } #</span>"
+                    },
+                    {
+                        "field": "ruangoperasiFormatted",
+                        "title": "<h3>Nama<br> Ruangan Bedah</h3>",
+                        "width": 200
+                        // "template": "<span class='style-left'>#: if(!namaruangan) { namaruangan = '' } #</span>"
+                    },
+                    {
+                        "field": "telp",
+                        "title": "<h3>No. Telepon</h3>",
+                        "width": 200,
+                        // "template": "<span class='style-left'>#: notelp ? notelp : '-' #</span>"
+                    },
+                    {
+                        "field": "statusBedah",
+                        "title": "<h3>Sifat Bedah</h3>",
+                        "width": 200,
+                        // "template": "<span class='style-left'>#: iscito ? 'CITO' : 'Jenis Operasi Elektif' #</span>"
+                    },
+                    {
+                        command: [
+                            { text: "Detail", click: detailJadwalBedah, imageClass: "k-icon k-i-pencil" },
+                        ], title: "", width: 100
+                    }
+                ]
+            };
 
+            $scope.gotToDashboard = function() {
+                $state.go('DashboardRuanganBedah')
             }
 
-            $scope.countLengthKomplikasi = function () {
-                $scope.lengthKomplikasi = $scope.item.komplikasi.length;
+            function clearJadwal() {
+                $scope.item.tglJadwalPembedahan = "";
+                $scope.item.lamaOperasi = null;
+                // $scope.item.dokterJadwalBedah = null;
+
+                $scope.item.diagnosaJadwalBedah = "";
+                $scope.item.tindakanJadwalBedah = "";
+                $scope.item.posisiKhusus = "";
+                $scope.item.macamAnastesi = "";
+                $scope.norecJadwalBedah = "";
             }
 
-            $scope.countLengthKMacamJaringan = function () {
-                $scope.lengthMacamJaringan = $scope.item.macamJaringan.length;
-            }
+            function detailJadwalBedah(e) {
+                e.preventDefault();
+                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                // console.log(dataItem);
 
-            $scope.countLengthUraianPembedahan = function () {
-                $scope.lengthUraianPemebedahan = $scope.item.uraianPembedahan.length;
-            }
-
-            $scope.countLengthMinum = function () {
-                $scope.lengthMinum = $scope.item.selectedAvailMinum.length;
-            }
-
-            $scope.countLengthMakan = function () {
-                $scope.lengthMakan = $scope.item.selectedAvailMakan.length;
-            }
-
-            $scope.countObat = function () {
-                $scope.lengthObat = $scope.item.obatObatan.length;
-            }
-
-            $scope.countLengthKInstruksiKhusus = function () {
-                $scope.lengthInstruksiKhusus = $scope.item.instruksiKhusus.length;
-            }
-
-            $scope.countLengthPatologi = function () {
-                $scope.lengthPatologi = $scope.item.jaringanPatologi.length;
-            }
-
-            $scope.countTindakanPembedahan = function (key) {
-                switch (key) {
-                    case 1:
-                        $scope.lengthTindakanPembedahanSatu = $scope.item.tindakanPembedahanSatu.length;
-                        break;
-                    case 2:
-                        $scope.lengthTindakanPembedahanDua = $scope.item.tindakanPembedahanDua.length;
-                        break;
-                    case 3:
-                        $scope.lengthTindakanPembedahanTiga = $scope.item.tindakanPembedahanTiga.length;
-                        break;
-                    case 4:
-                        $scope.lengthTindakanPembedahanEmpat = $scope.item.tindakanPembedahanEmpat.length;
-                        break;
+                $scope.isEdit = true;
+                $scope.item.jenisBedah = dataItem.iscito ? "CITO" : "Jenis Operasi Elektif";
+                $scope.isVerif = dataItem.tglverifikasi ? true : false;
+                $scope.item.tglJadwalPembedahan = new Date(dataItem.tgloperasi);
+                $scope.item.lamaOperasi = dataItem.lamaoperasi;
+                $scope.item.dokterJadwalBedah = {
+                    namaLengkap: dataItem.namaDokterTujuan,
+                    id: dataItem.doktertujuanfk
                 };
+                $scope.norecJadwalBedah = dataItem.norec;
+                $scope.item.diagnosaJadwalBedah = dataItem.diagnosa;
+                $scope.item.tindakanJadwalBedah = dataItem.tindakan;
+                $scope.item.posisiKhusus = dataItem.posisikhusus;
+                $scope.item.macamAnastesi = dataItem.macamanestesi;
+                $scope.item.notelp = dataItem.telp;
+                $scope.showModalInputJadwal.open().center();
             }
 
-            $scope.countInfus = function (key) {
-                switch (key) {
-                    case 1:
-                        $scope.lengthMacam = $scope.item.macam.length;
-                        break;
-                    case 2:
-                        $scope.lengthJumlah = $scope.item.jumlah.length;
-                        break;
-                    case 3:
-                        $scope.lengthTetesan = $scope.item.tetesan.length;
-                        break;
+            function getDataOrderJadwalBedah() {
+                managePhp.getData("rekam-medis/get-jadwal-operasi?nocm=" + $scope.item.noMr, true).then(function (data) {
+                    for(let i = 0; i < data.data.data.length; i++) {
+                        data.data.data[i].ruangoperasiFormatted = data.data.data[i].ruangoperasi ? data.data.data[i].ruangoperasi : '-';
+                        data.data.data[i].statusBedah = data.data.data[i].iscito ? 'CITO' : "Jenis Operasi Elektif";
+                    };
 
+                    $scope.dataDaftarJadwalBedah = new kendo.data.DataSource({
+                        data: data.data.data,
+                        pageSize: 20
+                    })
+                    
+                });
+            }
+
+            $scope.closeModalJadwalBedah = function () {
+                $scope.showModalInputJadwal.close();
+                clearJadwal();
+            }
+
+            $scope.saveOrderBedah = function () {
+                let nocm = $("#idNoCM").val();
+                // console.log(nocm);
+                // bugs, kadang no cm hilang
+                if(!$scope.item.noMr) {
+                    // LoadCache();
+                    console.log('no cm kosong');
+                    $scope.item.noMr = nocm;
+                    // return;
+                }
+                $scope.isSaveLoad = true;
+                $scope.isRouteLoading = true;
+                let data = {
+                    "norec": $scope.norecJadwalBedah,
+                    "pasienfk": $scope.item.noMr,
+                    "dokterfk": $scope.pegawaiLogin.id,
+                    "doktertujuanfk": $scope.item.dokterJadwalBedah.id,
+                    "noregistrasifk": norec_apd,
+                    "ruanganfk": $scope.item.idRuangan,
+                    "ruangantujuanfk": 44,
+                    "iscito": $scope.item.jenisBedah === "CITO" ? true : false,
+                    "tglinput": DateHelper.formatDate(new Date(), 'YYYY-MM-DD HH:mm'),
+                    "tgloperasi": DateHelper.formatDate($scope.item.tglJadwalPembedahan, 'YYYY-MM-DD HH:mm'),
+                    "diagnosa": $scope.item.diagnosaJadwalBedah,
+                    "tindakan": $scope.item.tindakanJadwalBedah,
+                    "posisikhusus": $scope.item.posisiKhusus,
+                    "macamanestesi": $scope.item.macamAnastesi,
+                    "lamaoperasi": $scope.item.lamaOperasi,
+                    "telp":$scope.item.notelp
                 };
-            }
+                console.log($scope.item.noMr);
 
-            $scope.countLengthDiagnosaPraBedah = function () {
-                $scope.lengthDiagnosaPraBedah = $scope.item.diagnosaPraBedah.length;
+                
+                
+                managePhp.postData(data, 'rekam-medis/save-jadwal-operasi/save').then(function (e) {
+                    // init();
+                    getDataOrderJadwalBedah();
+                    clearJadwal();
+                    LoadCache();
+                    $scope.isSaveLoad = false;
+                    $scope.closeModalJadwalBedah();
+                    $scope.isRouteLoading = false;
+                });
             }
-
-            $scope.countLengthDiagnosaPascaBedah = function () {
-                $scope.lengthDiagnosaPascaBedah = $scope.item.diagnosaPascaBedah.length;
-            }
-
 
             $scope.Batal = function () {
                 $scope.showInputan = false;
@@ -330,9 +417,26 @@ define(['initialize'], function (initialize) {
                 }
                 $scope.isSuster = false;
                 $scope.showInputan = true;
-                $scope.item = {};
+                // $scope.item = {};
                 // window.scrollBy(0, 50);
             };
+
+            $scope.inputBaruJadwalBedah = function () {
+                $scope.item.dokterJadwalBedah = {
+                    namaLengkap:$scope.pegawaiLogin.namaLengkap,
+                    id:$scope.pegawaiLogin.id
+                }
+                console.log($scope.pegawaiLogin.namaLengkap)
+                $scope.isEdit = false;
+                if (jenisPegawai != "DOKTER") {
+                    toastr.info("Anda tidak bisa menambahkan Laporan Bedah");
+                    $scope.isSuster = true;
+                    return;
+                }
+                $scope.isSuster = false;
+                clearJadwal();
+                $scope.showModalInputJadwal.open().center();
+            }
 
             /** method utk auto scroll ketika input baru */
             $scope.$watch('showInputan', function (newVal) {
@@ -355,6 +459,7 @@ define(['initialize'], function (initialize) {
                 }
 
             });
+
             $scope.columnDaftar = {
                 toolbar: [{
                     name: "create", text: "Input Baru",
@@ -410,10 +515,6 @@ define(['initialize'], function (initialize) {
                 var tglAkhir = new moment(new Date()).format('YYYY-MM-DD');
                 var JamAwal = new moment(new Date($scope.item.jamMulai)).format('HH:mm');
                 var JamAkhir = new moment(new Date($scope.item.jamSelesai)).format('HH:mm');
-                // if($scope.item.tglPembedahan) {
-                //     $scope.item.tglPembedahan = new Date();
-                //     // toastr.info('Tanggal Pembedahan ');
-                // }
                 if (JamAwal == 'Invalid date') {
                     var jam = $scope.item.jamMulai.split(":");
                     var setJam = new Date($scope.item.jamSelesai).setHours(jam[0]);
@@ -450,8 +551,7 @@ define(['initialize'], function (initialize) {
                 } else {
                     $scope.isSuster = false;
                 }
-
-                console.log(dataItem);
+                // console.log(dataItem);
                 $scope.item.selectedAsistenOperator = {
                     namaLengkap: dataItem.asistenoperator,
                     id: dataItem.asistenoperatorfk
@@ -523,7 +623,7 @@ define(['initialize'], function (initialize) {
                 $scope.isSuster = true;
                 // }
 
-                console.log(dataItem);
+                // console.log(dataItem);
                 $scope.item.selectedAsistenOperator = {
                     namaLengkap: dataItem.asistenoperator,
                     id: dataItem.asistenoperatorfk
@@ -618,11 +718,6 @@ define(['initialize'], function (initialize) {
                 }, function () {
                     console.error('Tidak jadi hapus pak eko');
                 });
-
-
-
-
-
             }
             $scope.detailGridOptions = function (dataItem) {
                 return {
@@ -675,7 +770,6 @@ define(['initialize'], function (initialize) {
                 //     // } else if(($scope.item.jamMulai == '' || $scope.item.jamMulai == undefined) || ($scope.item.jamMulai == '' || $scope.item.jamMulai == undefined)) {
                 //     //     toastr.warning('Jam tidak boleh kosong')
                 // }
-
                 if ($scope.item.jamMulai > $scope.item.jamSelesai) {
                     toastr.warning('Jam Mulai tidak boleh kurang dari Jam Selesai');
                     return;
@@ -687,7 +781,8 @@ define(['initialize'], function (initialize) {
                 }
                 var tglDimulai = '';
                 var tglSelesai = '';
-                if ($scope.item.idRuangan === undefined) {
+                console.log($scope.item.noMr);
+                if (!$scope.item.idRuangan || !$scope.item.noMr) {
                     LoadCache();
                 }
 
@@ -755,11 +850,12 @@ define(['initialize'], function (initialize) {
                     kesesuiandiagnosa: $scope.item.kesuaianDiagnosa ? $scope.item.kesuaianDiagnosa : '',
                 };
 
-                // console.log(dataSave);
+                console.log(dataSave);
                 managePhp.postData(dataSave, 'rekam-medis/post-lap-pasca-bedah/save').then(function (e) {
                     if (e.data.message != 'Error') {
-                        init();
-                        $scope.item = {};
+                        // init();
+                        getLapPascaBedah();
+                        // $scope.item = {};
                         $scope.showInputan = false;
                     }
                     //ManagePhp.postLogging('POC', 'Norec planofcare_t',e.data.norec, 'POC').then(function (res) {
@@ -803,584 +899,6 @@ define(['initialize'], function (initialize) {
                 return currency + " " + parseFloat(value).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
             };
 
-            /** NP:
-             * varible dibawah itu dari form design sebelumnya yg dinamis, utk sekarang masih blm kepake 
-             */
-
-            // $scope.cetakResep = function(){
-            //     if ($scope.dataSelected == undefined) {
-            //         alert('Pilih resep yg akan di cetak')
-            //         return;
-            //     }
-            //     var stt = 'false';
-            //     if (confirm('View resep? ')) {
-            //         // Save it!
-            //         stt='true';
-            //     } else {
-            //         // Do nothing!
-            //         stt='false'
-            //     }
-            //     var client = new HttpClient();
-            //     client.get('http://127.0.0.1:1237/printvb/farmasiApotik?cetak-strukresep=1&nores='+$scope.dataSelected.norec_resep+'&view='+stt+'&user='+$scope.dataSelected.detail.userData.namauser, function(response) {
-            //         // aadc=response;
-            //     });
-            // };
-
-            // var HttpClient = function() {
-            //     this.get = function(aUrl, aCallback) {
-            //         var anHttpRequest = new XMLHttpRequest();
-            //         anHttpRequest.onreadystatechange = function() { 
-            //             if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
-            //                 aCallback(anHttpRequest.responseText);
-            //         }
-
-            //         anHttpRequest.open( "GET", aUrl, true );            
-            //         anHttpRequest.send( null );
-            //     }
-            // };
-
-
-            // $scope.resep = function() {
-            //     var arrStr = cacheHelper.get('TransaksiPelayananLaboratoriumDokterRevCtrl');
-            //     cacheHelper.set('InputResepApotikOrderRevCtrl', arrStr);
-            //     $state.go('InputResepApotikOrderRev')
-            // }
-
-
-
-            // $scope.hapusOrder = function(){
-            //     if ($scope.dataSelectedRiwayat== undefined){
-            //         toastr.error('Pilih data yang mau dihapus')
-            //         return
-            //     }
-            //     if ($scope.dataSelectedRiwayat.statusorder!= 'PENDING'){
-            //         toastr.error('Tidak bisa dihapus')
-            //         return
-            //     }
-            //     var data= {
-            //         norec_order:$scope.dataSelectedRiwayat.norec
-            //     }
-            //     // managePhp.saveDataProduk2(data,"lab-radiologi/delete-orderlabrad")
-            //     //     .then(function(e){
-            //     //         init()
-
-            //     //     })
-            // }
-
-            // $scope.showInputDiagnosaDokter = function(){
-            //     var arrStr =cacheHelper.get('TransaksiPelayananLaboratoriumDokterRevCtrl');
-            //     cacheHelper.set('CacheInputDiagnosaDokter', arrStr);
-            //     $state.go('InputDiagnosaDokter')
-            // }
-            // $scope.columnGrid = [
-            // {
-            //     "field": "no",
-            //     "title": "No",
-            //     "width" : "10px",
-            // },
-            // {
-            //     "field": "tglorder",
-            //     "title": "Tgl Order",
-            //     "width" : "90px",
-            // },
-            // {
-            //     "field": "ruangan",
-            //     "title": "Nama Ruangan",
-            //     "width" : "140px"
-            // },
-            // {
-            //     "field": "produkfk",
-            //     "title": "Kode",
-            //     "width" : "40px",
-            // },
-            // {
-            //     "field": "namaproduk",
-            //     "title": "Layanan",
-            //     "width" : "160px",
-            // },
-            // {
-            //     "field": "jumlah",
-            //     "title": "Qty",
-            //     "width" : "40px",
-            // },
-            // {
-            //     "field": "hargasatuan",
-            //     "title": "Harga Satuan",
-            //     "width" : "80px",
-            //     "template": "<span class='style-right'>{{formatRupiah('#: hargasatuan #', '')}}</span>"
-            // },
-            // {
-            //     "field": "hargadiscount",
-            //     "title": "Diskon",
-            //     "width" : "80px",
-            //     "template": "<span class='style-right'>{{formatRupiah('#: hargadiscount #', '')}}</span>"
-            // },
-            // {
-            //     "field": "total",
-            //     "title": "Total",
-            //     "width" : "80px",
-            //     "template": "<span class='style-right'>{{formatRupiah('#: total #', '')}}</span>"
-            // },
-            // {
-            //     "field": "nostruk",
-            //     "title": "No Struk",
-            //     "width" : "80px"
-            // }
-            // ];
-
-            // $scope.columnGridOrder = [
-            //     {
-            //         "field": "no",
-            //         "title": "No",
-            //         "width" : "10px",
-            //     },
-            //     {
-            //         "field": "namaproduk",
-            //         "title": "Layanan",
-            //         "width" : "160px",
-            //     },
-            //     {
-            //         "field": "qtyproduk",
-            //         "title": "Qty",
-            //         "width" : "40px",
-            //     }
-            // ];
-
-            // $scope.columnGridRiwayat = [
-            //     {
-            //         "field": "no",
-            //         "title": "No",
-            //         "width" : "20px",
-            //     },
-            //     {
-            //         "field": "tglorder",
-            //         "title": "Tgl Order",
-            //         "width" : "50px",
-            //     },
-            //     {
-            //         "field": "noorder",
-            //         "title": "No Order",
-            //         "width" : "60px",
-            //     },
-            //     {
-            //         "field": "dokter",
-            //         "title": "Dokter",
-            //         "width" : "100px"
-            //     },
-            //     {
-            //         "field": "namaruangantujuan",
-            //         "title": "Ruangan",
-            //         "width" : "100px",
-            //     },
-            //     {
-            //         "field": "statusorder",
-            //         "title": "Status",
-            //         "width" : "70px",
-            //     }
-            //     ];
-
-            // $scope.mainGridOptions = {
-            //     pageable: true,
-            //     columns: [{
-            //         "field": "kdpap",
-            //         "title": "Kode PAP",
-            //         "width": "15%"
-            //     }, {
-            //         "field": "tglinput",
-            //         "title": "Tgl Pengkajian Awal",
-            //         "width": "20%",
-            //         template: "#= new moment(tglinput).format(\'DD-MM-YYYY HH:mm\') #",
-            //     }, {
-            //         "field": "noregistrasi",
-            //         "title": "No Registrasi",
-            //         "width": "15%"
-            //     },
-            //     {
-            //         "field": "namaruangan",
-            //         "title": "Ruangan",
-            //         "width": "25%"
-            //     },
-            //     {
-            //         "field": "namalengkap",
-            //         "title": "Petugas",
-            //         "width": "25%"
-            //     },
-            //     {
-            //         "command": [{
-            //             text: "Hapus",
-            //             click: hapusData,
-            //             imageClass: "k-icon k-delete"
-            //         }],
-            //         title: "",
-            //         width: "100px",
-            //     }]
-            // };
-
-
-            // $scope.klikBedah = function(tree){
-            //     $state.go("RekamMedis.OrderJadwalBedah.PersetujuanTindakanAnestesiA");
-            // }
-            // $scope.item.tglAwal = $scope.now;
-            // $scope.item.tglAkhir = $scope.now;
-            //  LoadCache();
-            //  function LoadCache(){
-            //      var chacePeriode = cacheHelper.get('TransaksiPelayananLaboratoriumDokterCtrl');
-            //      if(chacePeriode != undefined){
-            //          norec_apd = chacePeriode[0]
-            //          nocm_str = chacePeriode[1]
-            //          // $scope.item.ruanganAsal = namaRuangan;
-            //          // manageSarprasPhp.getDataTableTransaksi("logistik/get_detailPD?norec_apd="+norec_apd, true).then(function(data_ih){
-            //          //     $scope.item.jenisPenjamin = data_ih.data.detailPD[0].namarekanan
-            //          //     $scope.item.kelompokPasien = data_ih.data.detailPD[0].kelompokpasien
-            //          //     $scope.item.beratBadan = data_ih.data.detailPD[0].beratbadan
-            //          // });
-            //          init()
-            //     }else{
-
-            //     }
-
-            // }
-            // $scope.Lihat = function(){
-            //     $scope.myVar = 2
-
-            //     var noemr2 = '-'
-            //     if ($scope.dataSelected != undefined) {
-            //         noemr2 = $scope.dataSelected.noemr
-            //     }
-            //     $state.go("RekamMedis.OrderJadwalBedah.ProsedurKeselamatan", {
-            //         namaEMR : 1,
-            //         nomorEMR : noemr2
-            //     });
-
-            //     var arrStr = {
-            //             0: noemr2
-            //         }
-            //     cacheHelper.set('cacheNomorEMR', arrStr);
-            // }
-            // $scope.create = function(){
-            //     $scope.myVar = 2
-
-            //     var noemr2 = '-'
-            //     $state.go("RekamMedis.OrderJadwalBedah.ProsedurKeselamatan", {
-            //         namaEMR : 1,
-            //         nomorEMR : noemr2
-            //     });
-            //     var arrStr = {
-            //             0: noemr2
-            //         }
-            //     cacheHelper.set('cacheNomorEMR', arrStr);
-            // }
-            // $scope.LihatHasil = function(data) {
-            //     //debugger;
-            //     if ($scope.dataSelectedRiwayat==undefined){
-            //         toastr.error('Pilih data dulu');
-            //         return;
-            //     }
-            //     var arrStr =cacheHelper.get('TransaksiPelayananLaboratoriumDokterRevCtrl');
-            //     cacheHelper.set('cacheHasilLaboratorium', arrStr);
-            //     $state.go('HasilLaboratorium', {
-            //         norecPd:$scope.dataSelectedRiwayat.norecpd,
-            //         noOrder:  $scope.dataSelectedRiwayat.noorder,
-            //         norecApd:$scope.dataSelectedRiwayat.norecapd,
-            //     })
-            //         // $state.go(data ? data : 'DashboardLaboratoriumCtrlInputHasil', {
-            //         //     noRegistrasi: $scope.dataSelectedRiwayat.norecpd,
-            //         //     noOrder: $scope.dataSelectedRiwayat.noorder,
-            //         //     noAntrianPasien: $scope.dataSelectedRiwayat.norecapd,
-            //         //     status : "hasil"
-            //         // })
-            // }
-
-
-
-
-
-
-
-
-            // $scope.order = function(){
-            //     $scope.CmdOrderPelayanan = false;
-            //     $scope.OrderPelayanan = true;
-            // }
-
-            // $scope.Batal = function(){
-
-            // }
-
-            // $scope.add = function(){
-            //    if ($scope.item.statusVerif == true) {
-            //           toastr.error("Data Sudah Diclosing, Hubungi Tatarekening!");
-            //           return;
-            //       }
-            //     if ($scope.item.qty == 0) {
-            //         alert("Qty harus di isi!")
-            //         return;
-            //     }
-            //     if ($scope.item.ruangantujuan == undefined) {
-            //         alert("Pilih Ruangan Tujuan terlebih dahulu!!")
-            //         return;
-            //     }
-            //     if ($scope.item.layanan == undefined) {
-            //         alert("Pilih Layanan terlebih dahulu!!")
-            //         return;
-            //     }
-            //     var nomor =0
-            //     if ($scope.dataGridOrder == undefined) {
-            //         nomor = 1
-            //     }else{
-            //         nomor = data2.length+1
-            //     }
-            //     var data ={};
-            //     if ($scope.item.no != undefined){
-            //         for (var i = data2.length - 1; i >= 0; i--) {
-            //             if (data2[i].no ==  $scope.item.no){
-            //                 data.no = $scope.item.no
-
-            //                 data.produkfk = $scope.item.layanan.id
-            //                 data.namaproduk = $scope.item.layanan.namaproduk
-            //                 data.qtyproduk =parseFloat($scope.item.qty)
-            //                 data.objectruanganfk = namaRuanganFk
-            //                 data.objectruangantujuanfk = $scope.item.ruangantujuan.id
-            //                 data.pemeriksaanluar =   $scope.item.pemeriksaanKeluar === true ? 1 : 0,
-            //                 data.objectkelasfk = $scope.item.idKelas
-
-            //                 data2[i] = data;
-            //                 $scope.dataGridOrder = new kendo.data.DataSource({
-            //                     data: data2
-            //                 });
-            //             }
-            //         }
-
-            //     }else{
-            //         data={
-            //                 no:nomor,
-            //                 produkfk:$scope.item.layanan.id,
-            //                 namaproduk:$scope.item.layanan.namaproduk,
-            //                 qtyproduk:parseFloat($scope.item.qty),
-            //                 objectruanganfk:namaRuanganFk,
-            //                 objectruangantujuanfk:$scope.item.ruangantujuan.id,
-            //                 pemeriksaanluar:$scope.item.pemeriksaanKeluar === true ? 1 : 0,
-            //                 objectkelasfk :  $scope.item.idKelas
-            //             }
-            //         data2.push(data)
-            //         // $scope.dataGrid.add($scope.dataSelected)
-            //         $scope.dataGridOrder = new kendo.data.DataSource({
-            //             data: data2
-            //         });
-            //     }
-            //     $scope.batal();
-            // }
-
-
-
-
-
-            // $scope.hapus = function(){
-            //     if ($scope.item.qty == 0) {
-            //         alert("Qty harus di isi!")
-            //         return;
-            //     }
-            //     if ($scope.item.ruangantujuan == undefined) {
-            //         alert("Pilih Ruangan Tujuan terlebih dahulu!!")
-            //         return;
-            //     }
-            //     if ($scope.item.layanan == undefined) {
-            //         alert("Pilih Layanan terlebih dahulu!!")
-            //         return;
-            //     }
-            //     var nomor =0
-            //     if ($scope.dataGrid == undefined) {
-            //         nomor = 1
-            //     }else{
-            //         nomor = data2.length+1
-            //     }
-            //     var data ={};
-            //     if ($scope.item.no != undefined){
-            //         for (var i = data2.length - 1; i >= 0; i--) {
-            //             if (data2[i].no ==  $scope.item.no){
-            //                 data2.splice(i, 1); 
-            //                 for (var i = data2.length - 1; i >= 0; i--) {
-            //                     data2[i].no = i+1
-            //                 }
-            //                 // data2[i] = data;
-            //                 $scope.dataGridOrder = new kendo.data.DataSource({
-            //                     data: data2
-            //                 });
-            //             }
-            //         }
-
-            //     }
-            //     $scope.batal();
-            // }
-            // $scope.batal = function(){
-            //     $scope.item.layanan =''
-            //     $scope.item.qty =1
-            //     $scope.item.no=undefined
-            // }
-            // $scope.BatalOrder= function(){
-            //     data2=[]
-            //     $scope.dataGridOrder = new kendo.data.DataSource({
-            //         data: data2
-            //     });
-            //     $scope.CmdOrderPelayanan = true;
-            //     $scope.OrderPelayanan = false;
-            // }
-            // $scope.riwayat = function(){
-            //         $scope.riwayatForm =true
-            //         $scope.inputOrder = false;
-            // }
-            // $scope.newOrder = function(){
-            //     $scope.riwayatForm =false
-            //     $scope.inputOrder = true;
-            // }
-
-            // $scope.back=function(){
-            //     //$state.go("DaftarPasienApotik")
-            //     window.history.back();
-            // }
-            // $scope.TambahObat =function(){
-            //      ////debugger;
-            //     var arrStr ={ 0 : $scope.item.noMr ,
-            //         1 : $scope.item.namaPasien,
-            //         2 : $scope.item.jenisKelamin,
-            //         3 : $scope.item.noregistrasi, 
-            //         4 : $scope.item.umur,
-            //         5 : $scope.item.kelas.id,
-            //         6 : $scope.item.kelas.namakelas,
-            //         7 : $scope.item.tglRegistrasi,
-            //         8 : norec_apd,
-            //         9 : '',
-            //         10 : $scope.item.jenisPenjamin,
-            //         11 : $scope.item.kelompokPasien,
-            //         12 : $scope.item.beratBadan,
-            //         13 : $scope.item.AlergiYa
-            //     }
-            //     cacheHelper.set('InputResepApotikCtrl', arrStr);
-            //     $state.go('InputResepApotik')
-            // }
-            // $scope.EditResep =function(){
-            //      ////debugger;
-            //     var arrStr ={ 0 : $scope.item.noMr ,
-            //         1 : $scope.item.namaPasien,
-            //         2 : $scope.item.jenisKelamin,
-            //         3 : $scope.item.noregistrasi, 
-            //         4 : $scope.item.umur,
-            //         5 : $scope.item.kelas.id,
-            //         6 : $scope.item.kelas.namakelas,
-            //         7 : $scope.item.tglRegistrasi,
-            //         8 : norec_apd,
-            //         9 : 'EditResep',
-            //         10 : $scope.item.jenisPenjamin,
-            //         11 : $scope.item.kelompokPasien,
-            //         12 : $scope.item.beratBadan,
-            //         13 : $scope.item.AlergiYa,
-            //         14 : $scope.dataSelected.norec_resep
-            //     }
-            //     cacheHelper.set('InputResepApotikCtrl', arrStr);
-            //     $state.go('InputResepApotik')
-            // }
-
-            // $scope.orderApotik =function(){
-            //     $state.go("InputResepApotikOrder")
-            // }
-            // $scope.HapusResep = function(){
-            //     var objDelete = {norec:$scope.dataSelected.norec_resep}
-            //     manageSarprasPhp.posthapuspelayananapotik(objDelete).then(function(e) {
-            //         init();
-            //     })
-            // }
-            // $scope.cetakEtiket = function(){
-            //     var client = new HttpClient();
-            //     client.get('http://127.0.0.1:1237/printvb/farmasiApotik?cetak-label-etiket=1&norec='+$scope.dataSelected.norec_resep+'&cetak=1', function(response) {
-            //         // aadc=response;
-            //     });
-            // }
-
-            // ,
-            //                     "child": [
-            //                         {
-            //                             "id": "RekamMedis.OrderJadwalBedah.PersetujuanTindakanAnestesiB",
-            //                             "title": "Informasi Anestesi"
-            //                         },
-            //                         {
-            //                             "id": "RekamMedis.OrderJadwalBedah.PersetujuanTindakanAnestesiC",
-            //                             "title": "Persetujuan Tindakan Anestesi"
-            //                         },
-            //                         {
-            //                             "id": "RekamMedis.OrderJadwalBedah.PersetujuanTindakanAnestesiD",
-            //                             "title": "Persetujuan Transfusi Darah"
-            //                         }
-            //                     ]
-
-
-            // manageSarprasPhp.getDataTableTransaksi("pegawai/data-map-login-usertoruangan?jenis=departemenruangan", true).then(function(dat){
-            // $scope.listInstalasi = dat.data
-            // var inlineDefault = new kendo.data.HierarchicalDataSource({
-            //     data: [
-            //             {
-            //                 "id": "d1",
-            //                 "title": "Catatan Anestesi"
-            //             },
-            //             {
-            //                 "id": "RekamMedis.OrderJadwalBedah.PersetujuanTindakanAnestesiA",
-            //                 "title": "Persetujuan Tindakan Anestesi"
-            //             },
-            //             {
-            //                 "id": "RekamMedis.OrderJadwalBedah.ProsedurKeselamatan",
-            //                 "title": "Checklist Prosedur Keselamatan Pasien di Kamar Operasi",
-            //                 "child":[
-            //                     {
-            //                         "id": 1,
-            //                         "title": "Check In",
-            //                     },
-            //                     {
-            //                         "id": "PKPSignIn",
-            //                         "title": "Sign In",
-            //                     },
-            //                     {
-            //                         "id": "PKPTimeOut",
-            //                         "title": "Time Out",
-            //                     },
-            //                     {
-            //                         "id": "PKPSignOut",
-            //                         "title": "Sign Out",
-            //                     },
-            //                     {
-            //                         "id": "PKPCheckOut",
-            //                         "title": "Check Out",
-            //                     }
-            //                 ]
-            //             },
-            //             {
-            //                 "id": "d4",
-            //                 "title": "Laporan Perhitungan Kassa dan Alat Operasi",
-            //             },
-            //             {
-            //                 "id": "d5",
-            //                 "title": "Formulir Pra-Anestesi/Sedasi",
-            //             },
-            //             {
-            //                 "id": "d6",
-            //                 "title": "Asuhan Keperawatan Peri Operatif di Kamar Operasi"
-            //             }
-            //         ],
-            //     // check: onCheck,
-            //     schema: {
-            //         model: {
-            //             children: "child"
-            //         }
-            //     }
-            // });
-            // $scope.treeSourceBedah = inlineDefault
-            // $scope.mainTreeViewBedahOption = {
-            //     dataTextField: ["title"],
-            //     datakKeyField: ["id"],
-            //     select: onSelect,
-            //     dragAndDrop: true,
-            //     checkboxes: false
-            // }
-
-            // });
             function onSelect(e) {
                 var data3 = e.sender.dataSource._data
                 // var itm = findObjectByKey(data3, 'uid', "245421fd-68db-4d25-8afc-dbe1d20a2056");
@@ -1409,10 +927,8 @@ define(['initialize'], function (initialize) {
                                     }
                                 }
                             }
-
                         }
                     }
-
                 }
                 var noemr = '-'
                 if ($scope.dataSelected != undefined) {
@@ -1426,15 +942,7 @@ define(['initialize'], function (initialize) {
                 } else {
                     $state.go(urlTrue);
                 }
-
-
-
-
             }
-            //***********************************
-
         }
     ]);
 });
-
-// http://127.0.0.1:1237/printvb/farmasiApotik?cetak-label-etiket=1&norec=6a287c10-8cce-11e7-943b-2f7b4944&cetak=1
