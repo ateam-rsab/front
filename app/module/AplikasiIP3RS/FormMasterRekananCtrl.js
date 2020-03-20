@@ -145,4 +145,4 @@ define(['initialize'], function (initialize) {
 
 		}
 	]);
-});;
+});

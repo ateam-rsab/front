@@ -268,7 +268,7 @@ define(['initialize'], function (initialize) {
 					noMr = $scope.item.noRm
 				}
 				var tglAwal = moment($scope.item.periodeAwal).format('YYYY-MM-DD HH:mm:ss');
-				var tglAkhir = moment($scope.item.periodeAkhir).format('YYYY-MM-DD HH:mm:ss');;
+				var tglAkhir = moment($scope.item.periodeAkhir).format('YYYY-MM-DD HH:mm:ss');
 				var client = new HttpClient();
 				client.get('http://127.0.0.1:1237/printvb/kasir?cetak-penerimaan-deposit-pasienpulang=' + tglAwal + '&tglAkhir=' + tglAkhir
 					+ '&idRuangan=' + ruanganId + '&idKelompok=' + kelompokPasien

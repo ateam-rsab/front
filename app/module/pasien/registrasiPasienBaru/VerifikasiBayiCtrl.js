@@ -45,7 +45,7 @@ define(['initialize', 'Configuration'], function(initialize, configuration) {
             modelItem.getDataDummyGeneric("KelompokPasien", false, undefined, 10).then(function(data) {
                 $scope.asuransiPasiens = _.filter(data, function(item) {
                     return item.kelompokPasien !== 'UMUM';
-                });;
+                });
             });
             modelItem.getDataDummyGeneric("JenisKelamin", false, undefined, 10).then(function(data) {
                 $scope.jenisKelamins = data;

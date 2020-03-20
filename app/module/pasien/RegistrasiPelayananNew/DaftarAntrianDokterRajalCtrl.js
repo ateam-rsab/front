@@ -9,7 +9,7 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             // $scope.dataPasienSelected = {};
             // $scope.item.periodeAwal =  new Date();
-            $scope.item.periodeAwal = new Date();;
+            $scope.item.periodeAwal = new Date();
             $scope.item.periodeAkhir = new Date();
             $scope.item.periodeAwal = dateHelper.setJamAwal(new Date());
             $scope.item.periodeAkhir = new Date();

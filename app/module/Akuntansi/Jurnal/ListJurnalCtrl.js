@@ -26,7 +26,7 @@ define(['initialize'], function(initialize) {
 				//http://192.168.0.74:8000/service/transaksi/akuntansi/verifikasi-jurnal?tglAwal=2016-12-30&tglAkhir=2016-12-30
 
 				var tglAwal = moment($scope.item.tanggalAwal).format('YYYY-MM-DD');
-				var tglAkhir = moment($scope.item.tanggalAkhir).format('YYYY-MM-DD');;
+				var tglAkhir = moment($scope.item.tanggalAkhir).format('YYYY-MM-DD');
 
 				modelItemAkuntansi.getDataTableTransaksi("akuntansi/verifikasi-jurnal?tglAwal="+tglAwal+"&tglAkhir="+tglAkhir+"&is_verified="+$scope.item.status.is_verified+"&noReferensi="+$scope.item.noReferensi).then(function(data) {
 	                $scope.mainGridOptions = new kendo.data.DataSource({

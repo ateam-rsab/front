@@ -46,7 +46,7 @@ define(['initialize'], function(initialize) {
             ruanganId=$scope.item.ruangan.id
         }
         var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD 00:00:00');
-        var tglAkhir = moment($scope.item.tglawal).format('YYYY-MM-DD 23:59:59');;
+        var tglAkhir = moment($scope.item.tglawal).format('YYYY-MM-DD 23:59:59');
         var client = new HttpClient();
         client.get('http://127.0.0.1:1237/printvb/akuntansi?cetak-jurnal=1'+//$scope.item.namaKasir.id+
             '&tglAwal='+tglAwal+'&tglAkhir='+tglAkhir+'&Iddepartement='+departement+'&idRuangan='+ruanganId+'&namaKasir='+$scope.dataLogin.namaLengkap+'&view=true', function(response) {
@@ -67,7 +67,7 @@ define(['initialize'], function(initialize) {
             ruanganId=$scope.item.ruangan.id
         }
         var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD 00:00:00');
-        var tglAkhir = moment($scope.item.tglawal).format('YYYY-MM-DD 23:59:59');;
+        var tglAkhir = moment($scope.item.tglawal).format('YYYY-MM-DD 23:59:59');
         var client = new HttpClient();
         client.get('http://127.0.0.1:1237/printvb/akuntansi?cetak-jurnal-detail=1'+//$scope.item.namaKasir.id+
             '&tglAwal='+tglAwal+'&tglAkhir='+tglAkhir+'&Iddepartement='+departement+'&idRuangan='+ruanganId+'&namaKasir='+$scope.dataLogin.namaLengkap+'&view=true', function(response) {
@@ -88,7 +88,7 @@ define(['initialize'], function(initialize) {
             ruanganId=$scope.item.ruangan.id
         }
         var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD 00:00:00');
-        var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD 23:59:59');;
+        var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD 23:59:59');
         var client = new HttpClient();
         client.get('http://127.0.0.1:1237/printvb/akuntansi?cetak-jurnal-balik=1'+//$scope.item.namaKasir.id+
             '&tglAwal='+tglAwal+'&tglAkhir='+tglAkhir+'&Iddepartement='+departement+'&idRuangan='+ruanganId+'&namaKasir='+$scope.dataLogin.namaLengkap+'&view=true', function(response) {
@@ -109,7 +109,7 @@ define(['initialize'], function(initialize) {
             ruanganId=$scope.item.ruangan.id
         }
         var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD 00:00:00');
-        var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD 23:59:59');;
+        var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD 23:59:59');
         var client = new HttpClient();
         client.get('http://127.0.0.1:1237/printvb/akuntansi?cetak-jurnal-balik-detail=1'+//$scope.item.namaKasir.id+
             '&tglAwal='+tglAwal+'&tglAkhir='+tglAkhir+'&Iddepartement='+departement+'&idRuangan='+ruanganId+'&namaKasir='+$scope.dataLogin.namaLengkap+'&view=true', function(response) {
@@ -130,7 +130,7 @@ define(['initialize'], function(initialize) {
             ruanganId=$scope.item.ruangan.id
         }
         var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD 00:00:00');
-        var tglAkhir = moment($scope.item.tglawal).format('YYYY-MM-DD 23:59:59');;
+        var tglAkhir = moment($scope.item.tglawal).format('YYYY-MM-DD 23:59:59');
         var client = new HttpClient();
         client.get('http://127.0.0.1:1237/printvb/akuntansi?cetak-jurnal-administrasi=1'+//$scope.item.namaKasir.id+
             '&tglAwal='+tglAwal+'&tglAkhir='+tglAkhir+'&Iddepartement='+departement+'&idRuangan='+ruanganId+'&namaKasir='+$scope.dataLogin.namaLengkap+'&view=true', function(response) {
@@ -151,7 +151,7 @@ define(['initialize'], function(initialize) {
             ruanganId=$scope.item.ruangan.id
         }
         var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD 00:00:00');
-        var tglAkhir = moment($scope.item.tglawal).format('YYYY-MM-DD 23:59:59');;
+        var tglAkhir = moment($scope.item.tglawal).format('YYYY-MM-DD 23:59:59');
         var client = new HttpClient();
         client.get('http://127.0.0.1:1237/printvb/akuntansi?cetak-jurnal-administrasi-detail=1'+//$scope.item.namaKasir.id+
             '&tglAwal='+tglAwal+'&tglAkhir='+tglAkhir+'&Iddepartement='+departement+'&idRuangan='+ruanganId+'&namaKasir='+$scope.dataLogin.namaLengkap+'&view=true', function(response) {

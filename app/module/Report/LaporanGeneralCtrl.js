@@ -16,7 +16,7 @@ define(['initialize'], function(initialize) {
 
 			$scope.ShowLaporan = function(){
 				var periodeAwal = moment($scope.item.periodeAwal).format('YYYY-MM-DD');
-				var periodeAkhir = moment($scope.item.periodeAkhir).format('YYYY-MM-DD');;
+				var periodeAkhir = moment($scope.item.periodeAkhir).format('YYYY-MM-DD');
 				var urlNamaLaporan = "";
 				switch($state.params.NamaLaporan) {
 				    case "LaporanBukuRegisterMasukRi":

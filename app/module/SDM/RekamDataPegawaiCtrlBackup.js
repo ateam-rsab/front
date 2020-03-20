@@ -587,7 +587,7 @@ define(['initialize'], function(initialize) {
             });
 
             $scope.hapusPegawai = function() {
-                $scope.confirmDialog.center().open();;
+                $scope.confirmDialog.center().open();
             };
 
             $scope.lanjutHapus = function() {

@@ -32,7 +32,7 @@ define(['initialize'], function(initialize) {
 				//http://192.168.0.74:8000/service/transaksi/akuntansi/verifikasi-jurnal?tglAwal=2016-12-30&tglAkhir=2016-12-30
 				$scope.isRouteLoading=true;
 				var tglAwal = moment($scope.item.tanggalAwal).format('YYYY-MM-DD HH:mm');
-				var tglAkhir = moment($scope.item.tanggalAkhir).format('YYYY-MM-DD HH:mm');;
+				var tglAkhir = moment($scope.item.tanggalAkhir).format('YYYY-MM-DD HH:mm');
 
 				modelItemAkuntansi.getDataTableTransaksi("akuntansi/get-data-posting?tglAwal="+tglAwal+"&tglAkhir="+tglAkhir+"&is_posting="+$scope.item.status.is_posting+"&noregistrasi="+$scope.item.noRegistrasi).then(function(data) {
 	                $scope.isRouteLoading=false;

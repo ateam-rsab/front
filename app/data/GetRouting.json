@@ -1940,7 +1940,7 @@
   {
     "name": "home",
     "url": "/home",
-    "templateurl": "Welcome.html",
+    "templateurl": "welcome.html",
     "controller": "WelcomeCtrl",
     "deps": [
       {

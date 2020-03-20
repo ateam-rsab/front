@@ -139,7 +139,7 @@ define(['initialize'], function(initialize) {
 						teknisi: { id: $scope.item.pilihTeknisi2.id}
 					}
 
-	            	$scope.listTeknisi.push(tempTeknisi);;
+	            	$scope.listTeknisi.push(tempTeknisi);
 					$scope.showTambah3 = true;
 					$scope.showPilihTeknisi3 = true;
 					$scope.showTambah2 = false;

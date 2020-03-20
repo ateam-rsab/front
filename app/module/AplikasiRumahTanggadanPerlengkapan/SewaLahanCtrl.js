@@ -120,7 +120,7 @@ define(['initialize'], function (initialize) {
 				console.log(countBulan);
 				if ($scope.item.lahan != undefined && $scope.item.satuan.id != undefined) {
 					if ($scope.item.satuan.id == 3) {
-						$scope.item.totalHargaSatuan = $scope.item.lahan.hargaSatuan * ($scope.item.lamaSewa * countBulan);;
+						$scope.item.totalHargaSatuan = $scope.item.lahan.hargaSatuan * ($scope.item.lamaSewa * countBulan);
 					} else if ($scope.item.satuan.id == 4) {
 						$scope.item.totalHargaSatuan = $scope.item.lahan.hargaSatuan * ($scope.item.lamaSewa * 12);
 					} else if ($scope.item.satuan.id == 2) {

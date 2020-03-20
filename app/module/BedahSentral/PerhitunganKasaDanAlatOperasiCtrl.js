@@ -37,7 +37,7 @@ define(['initialize'], function(initialize) {
             if (cacheHelper !== undefined) {
                 $scope.dataJenisKasa = new kendo.data.DataSource({
                     data: cacheHelper.get('Kasa' + $state.params.noRegister)
-                });;
+                });
             } else
                 $scope.dataJenisKasa = new kendo.data.DataSource({
                     data: []

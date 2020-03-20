@@ -231,7 +231,7 @@ define(['initialize'], function(initialize) {
 
             $scope.cetakPostingJurnal = function(){
                 var tglAwal = moment($scope.item.tglAwal).format('YYYY-MM-DD hh:mm');
-                var tglAkhir = moment($scope.item.tglAkhir).format('YYYY-MM-DD hh:mm');;
+                var tglAkhir = moment($scope.item.tglAkhir).format('YYYY-MM-DD hh:mm');
                 var client = new HttpClient();
                 client.get('http://127.0.0.1:1237/printvb/akuntansi?cetak-jurnal-rev='+$scope.dataSelected.nojurnal+
                     '&tglAwal='+tglAwal+'&tglAkhir='+tglAkhir+'&Iddepartement='+$scope.item.deskripsi+'&idRuangan='+$scope.item.posted+'&namaKasir='+'&view=true', function(response) {
@@ -241,7 +241,7 @@ define(['initialize'], function(initialize) {
 
             $scope.cetakPostingJurnalDetail = function(){
                 var tglAwal = moment($scope.item.tglAwal).format('YYYY-MM-DD hh:mm');
-                var tglAkhir = moment($scope.item.tglAkhir).format('YYYY-MM-DD hh:mm');;
+                var tglAkhir = moment($scope.item.tglAkhir).format('YYYY-MM-DD hh:mm');
                 var client = new HttpClient();
                 client.get('http://127.0.0.1:1237/printvb/akuntansi?cetak-jurnal-detail-rev='+$scope.dataSelected.nojurnal+
                     '&tglAwal='+tglAwal+'&tglAkhir='+tglAkhir+'&typeDetail='+'&idRuangan='+$scope.item.posted+'&namaKasir='+'&view=true', function(response) {
@@ -251,7 +251,7 @@ define(['initialize'], function(initialize) {
 
             $scope.cetakPostingJurnalDetailSelisih = function(){
                 var tglAwal = moment($scope.item.tglAwal).format('YYYY-MM-DD hh:mm');
-                var tglAkhir = moment($scope.item.tglAkhir).format('YYYY-MM-DD hh:mm');;
+                var tglAkhir = moment($scope.item.tglAkhir).format('YYYY-MM-DD hh:mm');
                 var client = new HttpClient();
                 client.get('http://127.0.0.1:1237/printvb/akuntansi?cetak-jurnal-detail-rev='+$scope.dataSelected.nojurnal+
                     '&tglAwal='+tglAwal+'&tglAkhir='+tglAkhir+'&typeDetail=BEDAHARGA'+'&idRuangan='+$scope.item.posted+'&namaKasir='+'&view=true', function(response) {

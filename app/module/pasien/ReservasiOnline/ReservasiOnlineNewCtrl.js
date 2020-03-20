@@ -140,7 +140,7 @@ define(['initialize', 'Configuration'], function(initialize, configuration) {
                         });
                     }
                     $scope.$apply();
-                });;
+                });
             })
             // modelItem.get("ReservasiPasien").then(function(data) {
             //     $scope.item = data;

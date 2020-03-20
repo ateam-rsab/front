@@ -254,7 +254,7 @@ define(['initialize'], function (initialize) {
         }
 
         // var tglAwal = moment($scope.item.tanggalRegistrasiAwal).format('YYYY-MM-DD HH:mm');
-        // var tglAkhir = moment($scope.item.tanggalRegistrasiAkhir).format('YYYY-MM-DD HH:mm');;
+        // var tglAkhir = moment($scope.item.tanggalRegistrasiAkhir).format('YYYY-MM-DD HH:mm');
 
         //  $scope.changePage("VerifikasiTagihan");
 
@@ -308,7 +308,7 @@ define(['initialize'], function (initialize) {
       $scope.Detail = function () {
 
         var tglAwal = moment($scope.item.tanggalRegistrasiAwal).format('YYYY-MM-DD HH:mm');
-        var tglAkhir = moment($scope.item.tanggalRegistrasiAkhir).format('YYYY-MM-DD HH:mm');;
+        var tglAkhir = moment($scope.item.tanggalRegistrasiAkhir).format('YYYY-MM-DD HH:mm');
         //POSTING JURNAL
         var objSave = {
           tglAwal: tglAwal,
@@ -396,7 +396,7 @@ define(['initialize'], function (initialize) {
 
         $scope.isRouteLoading = true;
         var tglAwal = moment($scope.item.tanggalRegistrasiAwal).format('YYYY-MM-DD HH:mm');
-        var tglAkhir = moment($scope.item.tanggalRegistrasiAkhir).format('YYYY-MM-DD HH:mm');;
+        var tglAkhir = moment($scope.item.tanggalRegistrasiAkhir).format('YYYY-MM-DD HH:mm');
         
 
         var tempNamaOrReg = "";
@@ -477,7 +477,7 @@ define(['initialize'], function (initialize) {
 
         //POSTING JURNAL
         var tglAwal = moment($scope.item.tanggalRegistrasiAwal).format('YYYY-MM-DD HH:mm');
-        var tglAkhir = moment($scope.item.tanggalRegistrasiAkhir).format('YYYY-MM-DD HH:mm');;
+        var tglAkhir = moment($scope.item.tanggalRegistrasiAkhir).format('YYYY-MM-DD HH:mm');
         // var objSave ={
         //   tglAwal:tglAwal,
         //   tglAkhir:tglAkhir

@@ -32,7 +32,7 @@ define(['initialize'], function(initialize) {
         function LoadDataRekap() {
             $scope.isRouteLoading = true;
             var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm');
-            var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm');;
+            var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm');
             var tempRuanganId = "";
             if ($scope.item.ruangan != undefined) {
                 tempRuanganId = "&idRuangan=" + $scope.item.ruangan.id;
@@ -80,7 +80,7 @@ define(['initialize'], function(initialize) {
         function LoadDataNonRekap() {
             $scope.isRouteLoading = true;
             var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm');
-            var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm');;
+            var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm');
             var tempRuanganId = "";
             if ($scope.item.ruangan != undefined) {
                 tempRuanganId = "&idRuangan=" + $scope.item.ruangan.id;
@@ -121,7 +121,7 @@ define(['initialize'], function(initialize) {
         function LoadDataPencapaian() {
             $scope.isRouteLoading = true;
             var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm');
-            var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm');;
+            var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm');
             var tempRuanganId = "";
             if ($scope.item.ruangan != undefined) {
                 tempRuanganId = "&idRuangan=" + $scope.item.ruangan.id;

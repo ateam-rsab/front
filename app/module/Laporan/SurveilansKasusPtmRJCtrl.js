@@ -18,7 +18,7 @@ define(['initialize'], function(initialize) {
           
           function LoadData() {  
               var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm');
-              var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm');;
+              var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm');
               var chacePeriode = {
                   0: tglAwal,
                   1: tglAkhir
