@@ -4,6 +4,7 @@ define(['initialize'], function (initialize) {
         '$state', 'ManageSarprasPhp', '$timeout',
         function ($q, $rootScope, $scope, ModelItem, ManageSdm, ManageSdmNew, DateHelper, $mdDialog, cetakHelper, $state, manageSarprasPhp, $timeout) {
             var cekLokal = localStorage.getItem('DataPerubahanStatus');
+            // $("#idTglAkhirCutiMelahirkan").kendoDatePicker();
             $scope.pegawai = JSON.parse(localStorage.getItem('pegawai'));
             if (cekLokal) {
                 localStorage.removeItem('DataPerubahanStatus');
@@ -12,6 +13,10 @@ define(['initialize'], function (initialize) {
             var urlDaftarPermohonan;
             var listPegawaiAdminSDM = [];
             $scope.now = new Date();
+            let dateNow = new Date();
+            // $scope.maxDateCutiMelahirkan = null;
+            $scope.isCutiMelahirkan = false;
+            $scope.disabledTglAkhir = true;
             $scope.titlePelimpahan = '';
             function twoDaysAfter(date) {
                 var newDate = date;
@@ -36,10 +41,6 @@ define(['initialize'], function (initialize) {
             $scope.datePickerOptionsCutiLuar = {
                 format: 'dd-MM-yyyy',
                 change: onChangeDate,
-                // min: twoDaysAfter($scope.now)
-                // min: $scope.item.isCutiLuarNegeri ? $scope.item.isCutiLuarNegeri === 1 ? getNextMonth($scope.now) : $scope.now : $scope.now
-                // min: getNextMonth($scope.now)
-                // min: $scope.now
                 min: new Date(new Date().getFullYear(), new Date().getMonth() + 1, getNextMonth($scope.now))
             }
 
@@ -592,6 +593,13 @@ define(['initialize'], function (initialize) {
             $scope.hideJumlahCuti = false;
 
             $scope.showJumlahCuti = function () {
+                if($scope.item.statusPegawai.id === 25) {
+                    $scope.isCutiMelahirkan = true;
+                    return;
+                } else {
+                    $scope.isCutiMelahirkan = false;
+                }
+
                 for (var i = 0; i < $scope.tanggalPermohonan.length; i++) {
                     if ($scope.tanggalPermohonan.length != 1) {
                         $scope.tanggalPermohonan.splice(i, 1);
@@ -657,6 +665,18 @@ define(['initialize'], function (initialize) {
                         $scope.showTglAkhir = false;
                     }
                 }
+            }
+
+            $scope.onChangeDateCutiMelahirkan = () => {
+                // $("#idTglAkhirCutiMelahirkan").kendoDatePicker();
+                $("#idTglAkhirCutiMelahirkan").data('kendoDatePicker').destroy();
+                // $("#idTglAkhirCutiMelahirkan").kendoDatePicker();
+                $scope.disabledTglAkhir = $scope.item.tglAwalCutiMelahirkan ? false : true;
+                $scope.item.tglAkhirCutiMelahirkan = null;
+
+                $scope.maxDateCutiMelahirkan = new Date($scope.item.tglAwalCutiMelahirkan.setDate($scope.item.tglAwalCutiMelahirkan.getDay() + 90));
+                $scope.item.tglAkhirCutiMelahirkan = $scope.maxDateCutiMelahirkan;
+                console.log($scope.maxDateCutiMelahirkan);
             }
 
             // $scope.showJumlahSakit = function() {
@@ -903,7 +923,6 @@ define(['initialize'], function (initialize) {
                 //     $scope.checkTanggalCuti();
                 // }
 
-                console.log('masuk sini');
                 if ($scope.item.statusPegawai == undefined) {
                     toastr.error('Status kehadiran harus di isi')
                     return
