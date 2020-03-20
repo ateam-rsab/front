@@ -1331,6 +1331,10 @@
                 "link": "#/MapProdukMenuToBahan"
             },
             {
+                "name": "Map Ruangan To Akomodasi ",
+                "link": "#/MapRuanganToAkomodasi"
+            },
+            {
                 "name": "Map Ruangan To Detail Jenis Produk ",
                 "link": "#/MapRuanganToDetailJenisProduk"
             },

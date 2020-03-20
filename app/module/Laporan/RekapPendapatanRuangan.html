@@ -1,0 +1,39 @@
+<div>
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Rekapitulasi Pendapatan Ruangan (Harian)'" disabled>
+            <div class="panel panel-default container_12">
+                <div class="panel-body">
+                    <div class="grid_2">
+                        <label><b>Tanggal</b></label>
+                        <input kendo-date-picker k-ng-model="item.tanggal" k-max="now" k-format="'MMMM dd, yyyy'"
+                            style="width: 100%" />
+                    </div>
+                    <div class="grid_1" style="margin-top: 22px;">
+                        <md-button class="md-raised md-primary medium-button" ng-click="LoadData()">
+                            <span style="margin-right: 5px;">Cari</span>
+                            <i class="fa fa-search"></i>
+                        </md-button>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12 containerBorderBox">
+                <div id="grid" kendo-grid options="gridData" data-source="dataSourceRekap"></div>
+            </div>
+        </c-panel>
+    </div>
+</div>
+<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+
+<style>
+    .k-grid .k-grid-header .k-header .k-link {
+        height: auto;
+    }
+
+    .k-grid .k-grid-header .k-header {
+        white-space: normal;
+    }
+
+    .k-grid .k-grid-header .k-header {
+        text-align: center;
+    }
+</style>

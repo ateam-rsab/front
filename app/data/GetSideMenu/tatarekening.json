@@ -47,6 +47,10 @@
                 "link": "#/DaftarPasienDalamPerawatan"
             },
             {
+                "name": "Daftar Konsultasi Kosong",
+                "link": "#/DaftarKonsultasiKosong"
+            },
+            {
                 "name": "IKI Dirut",
                 "link": "#/IkiDirutCapaian"
             }
@@ -86,6 +90,10 @@
             {
                 "name": "Laporan Pendapatan Ruangan",
                 "link": "#/LaporanPendapatanRuangan"
+            },
+            {
+                "name": "Rekapitulasi Pendapatan Ruangan",
+                "link": "#/RekapPendapatanRuangan"
             },
             {
                 "name": "Laporan Pasien Pulang",

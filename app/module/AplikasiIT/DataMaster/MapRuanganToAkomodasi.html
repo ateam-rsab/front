@@ -1,0 +1,104 @@
+<div ng-show="dataVOloaded">
+    <c-panel item="item" header="'Map Ruangan To Akomodasi'" disabled>
+        <div class="panel panel-default container_12">
+            <div class="panel-body">
+                <div class="grid_3">
+                    <label c-label item="item" c-label-text="Ruangan"></label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan"
+                        k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'"
+                        k-auto-bind="false" k-data-source="ListRuanganFilter" />
+                </div>
+                <div class="grid_1">
+                    <label c-label c-label-text=""></label>
+                    <em style="margin-top:6px;" ng-click='resetFilter()' id="iconButton" data-role="button"
+                        class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span
+                            class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+                </div>
+            </div>
+        </div>
+        <div class="grid_12 containerBorderBox">
+            <div id="grid" kendo-grid options="gridAkomodasi" data-source="dataSourceAkomodasi"></div>
+        </div>
+    </c-panel>
+</div>
+<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+
+<!-- Popup Jabatan -->
+<div kendo-window="popUpAkomodasi" k-title="'Input/Edit Mapping Akomodasi'" k-width="550" k-visible="false"
+    k-on-open="win2visible = true" k-on-close="ma.idGridAkomodasi = null">
+    <div class="panel panel-default container_12" style="padding: 0px 10px;">
+        <!-- Ruangan -->
+        <div class="grid_12">
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="Ruangan"></label>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_8">
+                <input style="width: 100%;" kendo-combo-box k-ng-model="ma.ruangan" k-data-text-field="'namaRuangan'"
+                    k-data-value-field="'id'" k-filter="'contains'" k-data-source="ListRuanganPop"
+                    k-on-change="getDataKamarById(ma.ruangan.id)" />
+            </div>
+        </div>
+        <!-- Kamar -->
+        <div class="grid_12">
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="Kamar"></label>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_8">
+                <input style="width: 100%;" id="idComboKamar" kendo-combo-box k-ng-model="ma.kamar"
+                    k-data-text-field="'namaKamar'" k-data-value-field="'id'" k-filter="'contains'"
+                    k-data-source="ListKamarById" />
+            </div>
+        </div>
+        <!-- Produk -->
+        <div class="grid_12">
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="Produk"></label>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_8">
+                <input style="width: 100%;" kendo-combo-box k-ng-model="ma.produk" k-data-text-field="'namaProduk'"
+                    k-data-value-field="'id'" k-filter="'contains'" k-data-source="ListProdukFilter" />
+            </div>
+        </div>
+        <!-- Status Rawat Gabung -->
+        <div class="grid_12">
+            <div class="grid_4">
+                <label c-label item="item" c-label-text="StatusRawatGabung"></label>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_8">
+                <input style="width: 100%;" kendo-combo-box k-ng-model="ma.isRawatGabung" k-data-text-field="'name'"
+                    k-data-value-field="'id'" k-filter="'contains'" k-data-source="ListBoolean" />
+            </div>
+        </div>
+        <!-- Action Button -->
+        <div class="grid_12">
+            <div class="k-edit-buttons  k-state-default pull-right" style="margin-top:10px">
+                <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="simpanAkomodasi()"
+                    ng-show="enableBtnSimpanAkomodasi"><span class="k-icon k-update"></span>Simpan</button>
+                <button class="k-button  k-button-icontext" ng-click="batal()"><span
+                        class="k-icon k-cancel"></span>Batal</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .k-grid .k-grid-header .k-header .k-link {
+        height: auto;
+    }
+
+    .k-grid .k-grid-header .k-header {
+        white-space: normal;
+    }
+
+    .k-grid .k-grid-header .k-header {
+        text-align: center;
+    }
+
+    button:disabled {
+        background: #B5B2B1;
+    }
+</style>

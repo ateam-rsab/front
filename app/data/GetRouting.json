@@ -37881,6 +37881,30 @@
     ]
   },
   {
+    "name": "MapRuanganToAkomodasi",
+    "url": "/MapRuanganToAkomodasi",
+    "templateurl": "module/AplikasiIT/DataMaster/MapRuanganToAkomodasi.html",
+    "controller": "MapRuanganToAkomodasiCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
     "name": "MapTindakanMedisToKualitasHasil",
     "url": "/MapTindakanMedisToKualitasHasil",
     "templateurl": "module/AplikasiIT/DataMaster/MapTindakanMedisToKualitasHasil.html",
@@ -47927,6 +47951,30 @@
       {
           "module": "TataRekeningService",
           "define": "TataRekeningService"
+      }
+    ]
+  },
+  {
+    "name": "DaftarKonsultasiKosong",
+    "url": "/DaftarKonsultasiKosong",
+    "templateurl": "module/Akuntansi/TataRekening/DaftarKonsultasiKosong.html",
+    "controller": "DaftarKonsultasiKosongCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
       }
     ]
   },

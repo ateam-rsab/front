@@ -1,11 +1,11 @@
 define(['initialize'], function(initialize) {
     'use strict';
-    initialize.controller('ImportFileGajiCtrl', ['$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'DateHelper', '$mdDialog', '$timeout',
-        function($rootScope, $scope, ModelItem, $state, ManageSdm, dateHelper, $mdDialog, $timeout) {
+    initialize.controller('ImportFileGajiCtrl', ['$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'DateHelper', '$mdDialog', '$timeout',
+        function($rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, dateHelper, $mdDialog, $timeout) {
             $scope.item = {};
             $scope.now = new Date();
             $scope.dataVOloaded = true;
-            ManageSdm.getOrderList("sdm/jenis-gaji", true).then(function(dat) {
+            ManageSdmNew.getOrderList("sdm/jenis-gaji", true).then(function(dat) {
 
                 var dataJenisGaji = dat;
                 dataJenisGaji.data;
@@ -210,7 +210,7 @@ define(['initialize'], function(initialize) {
                     .placeholder('ImportFileGajiPNS')
                     .ok('Okay!')
                 $mdDialog.show(confirm);
-                ManageSdm.saveDataUji(data, "struk-histori/import-gaji-pns").then(function(e) {
+                ManageSdmNew.saveDataUji(data, "struk-histori/import-gaji-pns").then(function(e) {
                     window.messageContainer.log("Data Import File Gaji PNS");
                     console.log(JSON.stringify(e.data));
                     setTimeout(function() {

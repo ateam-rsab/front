@@ -11,10 +11,10 @@ define(['initialize'], function (initialize) {
 				{ name: 'Staf/ Ketua Tim', id: 5 }
 			];
 			$scope.levelDireksi = [
-				{ name: 'Direktorat Medik dan Keperawatan', id: 1 },
-				{ name: 'Direktorat Umum dan Operasional', id: 2 },
-				{ name: 'Direktorat SDM dan Pendidikan', id: 3 },
-				{ name: 'Direktorat Keuangan', id: 4 }
+				{ name: 'Direktorat Pelayanan Medik, Keperawatan, dan Penunjang', id: 1 },
+				{ name: 'Direktorat Perencanaan, Organisasi, dan Umum', id: 2 },
+				{ name: 'Direktorat Sumber Daya Manusia, Pendidikan, dan Penelitian', id: 3 },
+				{ name: 'Direktorat Keuangan dan Barang Milik Negara', id: 4 }
 			];
 			$scope.daftarJabatanOpt = {
 				toolbar: [{
@@ -29,7 +29,7 @@ define(['initialize'], function (initialize) {
 					{ field: "namaJabatan", title: "Nama Jabatan" },
 					{ field: "eselonId", title: "Eselon ", editor: categoryDropDownEditorEselon, "template": "# if (eselonId === 1) {# #= 'I.a' # #} else if (eselonId === 2){# #= 'I.b' # #} else if (eselonId === 3){# #= 'II.a' # #} else if (eselonId === 4){# #= 'II.b' # #} else if (eselonId === 5){# #= 'III.a' # #} else if (eselonId === 6){# #= 'III.b' # #} else if (eselonId === 7){# #= 'IV.a' # #} else if (eselonId === 8){# #= 'IV.b' # #} else if (eselonId === 9){# #= 'V.a' # #} else if (eselonId === 10){# #= 'V.b' # #} else {# #= '-' # #}#" },
 					{ field: "levelJabatan", title: "Level Jabatan ", editor: categoryDropDownEditorLevelJabatan, "template": "# if (levelJabatan === 1) {# #= 'Direktur Utama' # #} else if (levelJabatan === 2){# #= 'Direktur' # #} else if (levelJabatan === 3){# #= 'Ketua/ Kepala Komite/ Satuan/ Instalasi/ Unit/ Bagian/ KSM/ Bidang' # #} else if (levelJabatan === 4){# #= 'Kepala Ruangan/ Kepala Seksi/ Kepala Subbagian/ Pengelola Urusan' # #} else if (levelJabatan === 5){# #= 'Staf/ Ketua Tim' # #} else {# #= '-' # #}#" },
-					{ field: "subLevelJabatan", title: "Level Direksi ", editor: categoryDropDownEditorLevelDireksi, "template": "# if (subLevelJabatan === 1) {# #= 'Direktorat Medik dan Keperawatan' # #} else if (subLevelJabatan === 2){# #= 'Direktorat Umum dan Operasional' # #} else if (subLevelJabatan === 3){# #= 'Direktorat SDM dan Pendidikan' # #} else if (subLevelJabatan === 4){# #= 'Direktorat Keuangan' # #} else {# #= '-' # #}#" },
+					{ field: "subLevelJabatan", title: "Level Direksi ", editor: categoryDropDownEditorLevelDireksi, "template": "# if (subLevelJabatan === 1) {# #= 'Direktorat Pelayanan Medik, Keperawatan, dan Penunjang' # #} else if (subLevelJabatan === 2){# #= 'Direktorat Perencanaan, Organisasi, dan Umum' # #} else if (subLevelJabatan === 3){# #= 'Direktorat Sumber Daya Manusia, Pendidikan, dan Penelitian' # #} else if (subLevelJabatan === 4){# #= 'Direktorat Keuangan dan Barang Milik Negara' # #} else {# #= '-' # #}#" },
 					{ field: "usiaPensiun", title: "Usia Pensiun", width: 120, attributes: { style: "text-align:right; padding-right: 15px;" } },
 					{ command: [{ name: "destroy", text: "Hapus" }, { name: "edit", text: "Edit" }], title: "&nbsp;", width: 160 }
 				],
@@ -224,7 +224,9 @@ define(['initialize'], function (initialize) {
 				}
 
 				var levelJabatan = null;
-				if (data.levelJabatan.id) {
+				if (data.levelJabatan == null) {
+					levelJabatan = null;
+				} else if (data.levelJabatan.id) {
 					levelJabatan = data.levelJabatan.id;
 				} else if (data.levelJabatan) {
 					levelJabatan = data.levelJabatan;
@@ -233,7 +235,9 @@ define(['initialize'], function (initialize) {
 				}
 
 				var levelDireksi = null;
-				if (data.subLevelJabatan.id) {
+				if (data.subLevelJabatan == null) {
+					levelDireksi = null;
+				} else if (data.subLevelJabatan.id) {
 					levelDireksi = data.subLevelJabatan.id;
 				} else if (data.subLevelJabatan) {
 					levelDireksi = data.subLevelJabatan;

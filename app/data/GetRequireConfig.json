@@ -6494,6 +6494,10 @@
       "urlDep": "module/AplikasiIT/DataMaster/MapRuanganToProdukCtrl"
     },
     {
+      "nameDep": "MapRuanganToAkomodasiCtrl",
+      "urlDep": "module/AplikasiIT/DataMaster/MapRuanganToAkomodasiCtrl"
+    },
+    {
       "nameDep": "MapTindakanMedisToKualitasHasilCtrl",
       "urlDep": "module/AplikasiIT/DataMaster/MapTindakanMedisToKualitasHasilCtrl"
     },
@@ -8180,6 +8184,10 @@
     {
       "nameDep": "DaftarRegistrasiPasienCtrl",
       "urlDep": "module/Akuntansi/TataRekening/DaftarRegistrasiPasienCtrl"
+    },
+    {
+      "nameDep": "DaftarKonsultasiKosongCtrl",
+      "urlDep": "module/Akuntansi/TataRekening/DaftarKonsultasiKosongCtrl"
     },
     {
       "nameDep": "MenuRehabilitasiCtrl",

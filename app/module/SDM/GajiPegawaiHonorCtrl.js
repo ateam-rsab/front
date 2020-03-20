@@ -1,7 +1,7 @@
 define(['initialize'], function(initialize) {
     'use strict';
-    initialize.controller('GajiPegawaiHonorCtrl', ['$rootScope', '$scope', 'ModelItem', '$state', 'NamaAsuransi', 'ManageSdm', 'DateHelper',
-        function($rootScope, $scope, ModelItem, $state, NamaAsuransi, ManageSdm, dateHelper) {
+    initialize.controller('GajiPegawaiHonorCtrl', ['$rootScope', '$scope', 'ModelItem', '$state', 'NamaAsuransi', 'ManageSdm', 'ManageSdmNew', 'DateHelper',
+        function($rootScope, $scope, ModelItem, $state, NamaAsuransi, ManageSdm, ManageSdmNew, dateHelper) {
             $scope.now = new Date();
             $scope.dataVOloaded = true;
             $scope.item = {};
@@ -13,7 +13,7 @@ define(['initialize'], function(initialize) {
 
                 }
              
-            ManageSdm.getOrderList("pay-roll/find-status-pegawai-blu-pkwt", true).then(function(dat) {
+            ManageSdmNew.getOrderList("pay-roll/find-status-pegawai-blu-pkwt", true).then(function(dat) {
 				
 				$scope.listpegawai=dat.data.data;
            
@@ -25,7 +25,7 @@ define(['initialize'], function(initialize) {
 			
 		
 			
-			 ManageSdm.getOrderList("pay-roll/find-jenis-gaji", true).then(function(dat) {
+			 ManageSdmNew.getOrderList("pay-roll/find-jenis-gaji", true).then(function(dat) {
 				
 				$scope.listgaji=dat.data.data;
            
@@ -150,7 +150,7 @@ define(['initialize'], function(initialize) {
 			 var period =  moment($scope.item.Periode).format("MM-YYYY");
 			 
 			//debugger;	
-			ManageSdm.getOrderList("pay-roll/get-pegawai-blu-pkwt?idKategoryPegawai="+kerja+"&idJenisGaji="+gaji+"&periode="+period ).then(function(dat){
+			ManageSdmNew.getOrderList("pay-roll/get-pegawai-blu-pkwt?idKategoryPegawai="+kerja+"&idJenisGaji="+gaji+"&periode="+period ).then(function(dat){
 			//debugger;
 			$scope.sourceOrder = new kendo.data.DataSource({
 				data: dat.data.data
@@ -420,7 +420,7 @@ define(['initialize'], function(initialize) {
                  }
          
 			 	
-             ManageSdm.saveGajiPegawaiHonor($scope.dataPost,"pay-roll/save-pegawai-blu-pkwt").then(function (e) {
+             ManageSdmNew.saveGajiPegawaiHonor($scope.dataPost,"pay-roll/save-pegawai-blu-pkwt").then(function (e) {
 				 //debugger;
                 //  $scope.item= {};
                  // init();  

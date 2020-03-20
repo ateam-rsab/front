@@ -619,6 +619,30 @@
       ]
     },
     {
+      "name": "DataFormasiJabatan",
+      "url": "/DataFormasiJabatan",
+      "templateurl": "module/SDM/DataFormasiJabatan.html",
+      "controller": "DataFormasiJabatanCtrl",
+      "deps": [
+        {
+          "module": "Services",
+          "define": "Service"
+        },
+        {
+          "module": "LoginServices",
+          "define": "LoginService"
+        },
+        {
+          "module": "SdmService",
+          "define": "SdmService"
+        },
+        {
+          "module": "PegawaiService",
+          "define": "PegawaiService"
+        }
+      ]
+    },
+    {
       "name": "DataPegawaiMitra",
       "url": "/DataPegawaiMitra",
       "templateurl": "module/SDM/DataPegawaiMitra.html",
@@ -4383,6 +4407,30 @@
       "url": "/IndexKerjaIndividu",
       "templateurl": "module/SDM/Remunerasi/IndeksKinerjaIndividu.html",
       "controller": "IndeksKinerjaIndividuCtrl",
+      "deps": [
+        {
+          "module": "Services",
+          "define": "Service"
+        },
+        {
+          "module": "LoginServices",
+          "define": "LoginService"
+        },
+        {
+          "module": "SdmService",
+          "define": "SdmService"
+        },
+        {
+          "module": "PegawaiService",
+          "define": "PegawaiService"
+        }
+      ]
+    },
+    {
+      "name": "CapaianTargetPelayananCtrl",
+      "url": "/CapaianTargetPelayanan",
+      "templateurl": "module/SDM/Remunerasi/CapaianTargetPelayanan.html",
+      "controller": "CapaianTargetPelayananCtrl",
       "deps": [
         {
           "module": "Services",

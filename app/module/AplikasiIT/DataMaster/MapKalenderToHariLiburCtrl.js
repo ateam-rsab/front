@@ -7,7 +7,7 @@ define(['initialize'], function (initialize) {
 			$scope.now = new Date();
 
 			var init = function () {
-				ManageSdmNew.getListData("sdm/get-mapping-hari-libur?tahun="+moment($scope.now).format('YYYY'), true).then(function (dat) {
+				ManageSdmNew.getListData("sdm/get-mapping-hari-libur?tahun=" + moment($scope.now).format('YYYY'), true).then(function (dat) {
 					$scope.listDataMaster = dat.data.data;
 
 					$scope.dataSource = new kendo.data.DataSource({
@@ -15,67 +15,31 @@ define(['initialize'], function (initialize) {
 						data: $scope.listDataMaster,
 						autoSync: true
 					});
-
 				});
 			}
 
 			init();
 
 			$scope.columnMapKalenderToHariLibur = [
-				// {
-				// 	"field": "No",
-				// 	"title": "No"
-				// },
-				// {
-				// 	"field": "hariLibur",
-				// 	"title": "hari Libur"
-				// },
-				// {
-				// 	"field": "hariLiburId",
-				// 	"title": "hari Libur Id"
-				// },
-				// {
-				// 	"field": "tanggal",
-				// 	"title": "tanggal"
-				// },
 				{
-					"field": "tanggalId",
+					"field": "tanggal",
 					"title": "Tanggal"
 				},
-				// {
-				// 	"field": "id",
-				// 	"title": "id"
-				// },
-				// {
-				// 	"field": "reportDisplay",
-				// 	"title": "report Display"
-				// },
 				{
 					"field": "kodeExternal",
 					"title": "Kode"
 				},
 				{
 					"field": "namaExternal",
-					"title": "nama External"
+					"title": "Keterangan Libur"
 				},
-				// {
-				// 	"field": "statusEnabled",
-				// 	"title": "status Enabled"
-				// },
-				{ 
-                	command: [ 
-		                	{  text: "Hapus", click: disableData }
-                		], 
-                	title: "Action",
-                	width: "200px"
-                }
-
-				// {
-				// 	"title": "Action",
-				// 	"width": "200px",
-				// 	"template": "<button class='btnEdit' ng-click='enableData()'>Enable</button>" +
-				// 		"<button class='btnHapus' ng-click='disableData()'>Disable</button>"
-				// }
+				{
+					command: [
+						{ text: "Hapus", click: disableData }
+					],
+					title: "Action",
+					width: "200px"
+				}
 			];
 
 			$scope.mainGridOptions = {
@@ -92,7 +56,7 @@ define(['initialize'], function (initialize) {
 				$scope.current = current;
 				$scope.item.hariLibur = current.hariLibur;
 				$scope.item.hariLiburId = current.hariLiburId;
-				$scope.item.tanggal = current.tanggal;
+				$scope.item.tanggal = current.tanggalId;
 				$scope.item.tanggalId = current.tanggalId;
 				$scope.item.id = current.id;
 				$scope.item.noRec = current.noRec;
@@ -100,78 +64,44 @@ define(['initialize'], function (initialize) {
 				$scope.item.kodeExternal = current.kodeExternal;
 				$scope.item.namaExternal = current.namaExternal;
 				$scope.item.statusEnabled = current.statusEnabled;
-
 			};
 
-    //         function enableData(e) {
-    //         	// body...
-    //         	 e.preventDefault();
-    //             var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+			function disableData(e) {
+				e.preventDefault();
 
-    //             if (!dataItem) {
-    //                 toastr.error("Data Tidak Ditemukan");
-    //                 return
-    //             }
-    //             IPSRSService.getClassMaster("delete-master-table?className=MapKalenderToHariLibur&&id=" + dataItem.id + "&&statusEnabled=true").then(function (dat) {
-				// 	init();
-
-				// });
-
-    //         }
-
-
-            function disableData(e) {
-            	// body...
-            	 e.preventDefault();
-                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-
-                if (!dataItem) {
-                    toastr.error("Data Tidak Ditemukan");
-                    return
-                }
-                IPSRSService.getClassMaster("delete-master-table?className=MapKalenderToHariLibur&&id=" + dataItem.id + "&&statusEnabled=false").then(function (dat) {
+				var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+				if (!dataItem) {
+					toastr.error("Data Tidak Ditemukan");
+					return
+				}
+				IPSRSService.getClassMaster("delete-master-table?className=MapKalenderToHariLibur&&id=" + dataItem.id + "&&statusEnabled=false").then(function (dat) {
 					init();
 
 				});
-
-            }
-
-			// $scope.disableData = function () {
-			// 	IPSRSService.getClassMaster("delete-master-table?className=MapKalenderToHariLibur&&id=" + $scope.item.id + "&&statusEnabled=false").then(function (dat) {
-			// 		init();
-			// 	});
-			// };
-
-			// $scope.enableData = function () {
-				// IPSRSService.getClassMaster("delete-master-table?className=MapKalenderToHariLibur&&id=" + $scope.item.id + "&&statusEnabled=true").then(function (dat) {
-				// 	init();
-
-				// });
-			// };
+			}
 
 			$scope.tambah = function () {
 				var idTgl = 0;
 				var tglStr = moment($scope.item.tanggal).format('YYYY-MM-DD');
-				ManageSdmNew.getListData("sdm/get-id-kalender?tanggal="+tglStr).then(function(e){
+				ManageSdmNew.getListData("sdm/get-id-kalender?tanggal=" + tglStr).then(function (e) {
 					idTgl = e.data.data[0].idKalender;
-
 					var data = {
 						"class": "MapKalenderToHariLibur",
 						"listField": {
 							"hariLibur": $scope.item.hariLibur,
 
 							"tanggal": {
-								"id":idTgl
+								"id": idTgl
 							},
 
 							"id": $scope.item.id,
-							"reportDisplay": $scope.item.reportDisplay,
+							"reportDisplay": $scope.item.namaExternal,
 							"kodeExternal": $scope.item.kodeExternal,
 							"namaExternal": $scope.item.namaExternal,
 						}
 					}
 					IPSRSService.saveDataMaster(data, "save-master-table").then(function (e) {
-						console.log(JSON.stringify(e.data));
+						// console.log(JSON.stringify(e.data));
 						init();
 						$scope.item = {};
 					});
@@ -179,25 +109,30 @@ define(['initialize'], function (initialize) {
 			}
 
 			$scope.edit = function () {
-				var data = {
-					"class": "MapKalenderToHariLibur",
-					"listField": {
-						"hariLibur": $scope.item.hariLibur,
-
-						"tanggal": $scope.item.tanggal,
-
-						"id": $scope.item.id,
-						"noRec": $scope.item.noRec,
-						"reportDisplay": $scope.item.reportDisplay,
-						"kodeExternal": $scope.item.kodeExternal,
-						"namaExternal": $scope.item.namaExternal,
-						"statusEnabled": $scope.item.statusEnabled
+				var idTgl = 0;
+				var tglStr = moment($scope.item.tanggal).format('YYYY-MM-DD');
+				ManageSdmNew.getListData("sdm/get-id-kalender?tanggal=" + tglStr).then(function (e) {
+					idTgl = e.data.data[0].idKalender;
+					var data = {
+						"class": "MapKalenderToHariLibur",
+						"listField": {
+							"hariLibur": $scope.item.hariLibur,
+							"tanggal": {
+								"id": idTgl
+							},
+							"id": $scope.item.id,
+							"noRec": $scope.item.noRec,
+							"reportDisplay": $scope.item.namaExternal,
+							"kodeExternal": $scope.item.kodeExternal,
+							"namaExternal": $scope.item.namaExternal,
+							"statusEnabled": $scope.item.statusEnabled
+						}
 					}
-				}
-				IPSRSService.saveDataMaster(data, "update-master-table").then(function (e) {
-					console.log(JSON.stringify(e.data));
-					init();
-				});
+					IPSRSService.saveDataMaster(data, "update-master-table").then(function (e) {
+						// console.log(JSON.stringify(e.data));
+						init();
+					});
+				})
 			}
 
 			$scope.batal = function () {
@@ -212,7 +147,6 @@ define(['initialize'], function (initialize) {
 			IPSRSService.getFieldListData("Kalender&select=id,tanggal", true).then(function (dat) {
 				$scope.listtanggal = dat.data;
 			});
-
 		}
 	]);
 });

@@ -97,6 +97,10 @@
       "urlDep": "module/SDM/DataPegawaiCtrl"
     },
     {
+      "nameDep": "DataFormasiJabatanCtrl",
+      "urlDep": "module/SDM/DataFormasiJabatanCtrl"
+    },
+    {
       "nameDep": "ProfilePegawaiCtrl",
       "urlDep": "module/SDM/ProfilePegawaiCtrl"
     },
@@ -779,6 +783,10 @@
     {
       "nameDep": "IndeksKinerjaIndividuCtrl",
       "urlDep": "module/SDM/Remunerasi/IndeksKinerjaIndividuCtrl"
+    },
+    {
+      "nameDep": "CapaianTargetPelayananCtrl",
+      "urlDep": "module/SDM/Remunerasi/CapaianTargetPelayananCtrl"
     },
     {
       "nameDep": "MonitoringPoinDokterCtrl",

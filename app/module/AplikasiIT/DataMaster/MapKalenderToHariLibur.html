@@ -1,19 +1,21 @@
 <div ng-controller="MapKalenderToHariLiburCtrl">
    <div ng-show="dataVOloaded">
-      <c-panel item="item" header="'Map Kalender To Hari Libur'" disabled>
+      <c-panel item="item" header="'Pengaturan Hari Libur'" disabled>
          <!-- hariLibur -->
-         <div class="grid_4">
+         <div class="grid_3">
             <div class="grid_12">
-               <label c-label item="item" c-label-text="hariLibur"></label>
+               <label c-label item="item" c-label-text="KategoriLibur"></label>
             </div>
             <div class="clear"></div>
             <div class="grid_12">
-               <input style="width: 100%;" kendo-combo-box k-ng-model="item.hariLibur" k-data-text-field="'namaHariLibur'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listharilibur" />
+               <input style="width: 100%;" kendo-combo-box k-ng-model="item.hariLibur"
+                  k-data-text-field="'namaHariLibur'" k-data-value-field="'id'" k-filter="'contains'"
+                  k-auto-bind="false" k-data-source="listharilibur" />
             </div>
          </div>
          <!-- hariLiburId -->
          <!-- tanggal -->
-         <div class="grid_4">
+         <div class="grid_2">
             <div class="grid_12">
                <label c-label item="item" c-label-text="tanggal"></label>
             </div>
@@ -24,7 +26,7 @@
          </div>
          <!-- tanggalId -->
          <!-- reportDisplay -->
-         <div class="grid_4">
+         <div class="grid_4" ng-hide="true">
             <div class="grid_12">
                <label c-label item="item" c-label-text="reportDisplay"></label>
             </div>
@@ -34,9 +36,9 @@
             </div>
          </div>
          <!-- kodeExternal -->
-         <div class="grid_4">
+         <div class="grid_2">
             <div class="grid_12">
-               <label c-label item="item" c-label-text="kodeExternal"></label>
+               <label c-label item="item" c-label-text="kode"></label>
             </div>
             <div class="clear"></div>
             <div class="grid_12">
@@ -46,32 +48,23 @@
          <!-- namaExternal -->
          <div class="grid_4">
             <div class="grid_12">
-               <label c-label item="item" c-label-text="namaExternal"></label>
+               <label c-label item="item" c-label-text="KeteranganLibur"></label>
             </div>
             <div class="clear"></div>
             <div class="grid_12">
                <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaExternal" />
             </div>
          </div>
-         <!--no sk-->
-         <!-- <div class="grid_4">
-            <div class="grid_12">
-               <label c-label item="item" c-label-text="No SK"></label>
-            </div>
-            <div class="clear"></div>
-            <div class="grid_12">
-               <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noSk" />
-            </div>
-         </div -->
          <!-- MapKalenderToHariLibur -->
          <div class="grid_12">
             <div class="grid_12 headerBox">
-               <p>MapKalenderToHariLibur</p>
+               <p>Daftar Hari Libur</p>
             </div>
             <div class="clear"></div>
             <!-- grid table -->
             <div class="grid_12 borderBox">
-               <kendo-grid options="mainGridOptions"  k-data-source="dataSource" k-ng-model="current" ng-click="klik(current)"></kendo-grid>
+               <kendo-grid options="mainGridOptions" k-data-source="dataSource" k-ng-model="current"
+                  ng-click="klik(current)"></kendo-grid>
             </div>
             <div class="clear"></div>
          </div>
