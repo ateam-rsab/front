@@ -27,7 +27,7 @@ define(['initialize'], function (initialize) {
                         }];
                         sheet.rows.splice(0, 0, { cells: myHeaders, type: "header", height: 30 });
                     },
-                    pageable: true,
+                    pageable: false,
                     columns: [
                         {
                             field: "departemen.namaDepartemen",
@@ -185,6 +185,7 @@ define(['initialize'], function (initialize) {
                                 }
                             }
                         },
+                        // pageSize: data.data.data.length,
                         group: {
                             field: "departemen.namaDepartemen"
                         },
