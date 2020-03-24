@@ -1,4 +1,31 @@
 <style>
+    .information {
+        padding: 20px;
+        background-color: #26edff;
+        color: rgb(66, 66, 66);
+    }
+
+    a.link {
+        font-style: italic;
+        text-decoration: underline;
+        font-weight: bolder;
+        cursor: pointer;
+    }
+
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .closebtn:hover {
+        color: black;
+    }
     .smart-container-home {
         display: flex;
         flex-direction: column;
@@ -40,7 +67,10 @@
     }
 </style>
 <div ng-controller="WelcomeCtrl">
-
+    <div class="information">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+        <strong>Perhatian!</strong> Terkati Virus yang sedang menjadi Pandemic. Kemenkes Mengeluarkan Pedoman Pencegahan Pengendalian <strong>CORONA VIRUS DISEASE (COVID-19). </strong><a class="link" href="/app/#/informasi/covid-19"> Lihat disini</a>
+    </div>
     <!-- <button ng-show="listMenu.length!==1" ng-click='Back()'>Back</button> -->
     <!-- <div class="home-animation">
         <div class="mainmenu">
@@ -69,7 +99,7 @@
     </div>
     <div class="smart-container-home">
         <!-- <img src="../app/images/logo/rsabhk-logo.png" style="margin: 0 auto;"> -->
-        <img class="shadowed" src="../app/images/bg-home.jpg" style="margin: 0 auto;width: 40%;">
+        <img class="shadowed" src="../app/images/novel-corona.png" style="margin: 0 auto;width: 40%;">
         <!-- <div class="smart-container-content">
             <div class="label-welcome">Visi</div>
             <hr style="margin: 10px 0;">
@@ -161,8 +191,7 @@
                     <div class="tile-body" style="overflow: initial">
                         <i style="font-style: normal;"></i>
                     </div>
-                    <div class="tile-object" style=";top:0
-                        !important;bottom:auto !important;">
+                    <div class="tile-object" style="top:0!important;bottom:auto !important;">
                         <div class="icon-panel main">
 
                         </div>

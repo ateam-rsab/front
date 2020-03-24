@@ -42169,6 +42169,35 @@
     ]
   },
   {
+    "name": "Covid19",
+    "url": "/informasi/covid-19",
+    "templateurl": "module/Informasi/Covid19.html",
+    "controller": "Covid19Ctrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "define": "DashboarPasienCtrl"
+      },
+      {
+        "module": "PasienService",
+        "define": "PasienService"
+      },
+      {
+        "define": "BillingDetailCtrl"
+      },
+      {
+        "define": "PasienPulangCtrl"
+      }
+    ]
+  },
+  {
     "name": "FormulirObservasiHarianTerintegrasiIntensiveCareUnit",
     "url": "/FormulirObservasiHarianTerintegrasiIntensiveCareUnit/:noCM/:tanggal/:noRec/:ruangana/:noRegistrasi/:noRecDaftar",
     "templateurl": "module/ICU/FormulirObservasiHarianTerintegrasiIntensiveCareUnit.html",

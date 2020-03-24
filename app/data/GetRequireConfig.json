@@ -7382,6 +7382,10 @@
       "urlDep": "module/ICU/FormulirObservasiHarianTerintegrasiIntensiveCareUnitCtrl"
     },
     {
+      "nameDep": "Covid19Ctrl",
+      "urlDep": "module/Informasi/Covid19Ctrl"
+    },
+    {
       "nameDep": "DetailTagihanRekananCtrl",
       "urlDep": "module/Anggaran/DetailTagihanRekananCtrl"
     },
