@@ -226,14 +226,14 @@ define(['initialize'], function(initialize) {
 			// 	"template" : "<button class='btnEdit' ng-click='enableData()'>Enable</button>"+
 			// 	"<button class='btnHapus' ng-click='disableData()'>Disable</button>"
 			// }
-			{
-	            "command": [
-	                { text: "Enabled", click: enableData, imageClass: "k-icon k-update" },
-	                { text: "Disabled", click: disableData, imageClass: "k-icon k-i-close" }
-	            ],
-	            title: "",
-	            width: "150px",
-	        }        
+			// {
+	        //     "command": [
+	        //         { text: "Enabled", click: enableData, imageClass: "k-icon k-update" },
+	        //         { text: "Disabled", click: disableData, imageClass: "k-icon k-i-close" }
+	        //     ],
+	        //     title: "",
+	        //     width: "150px",
+	        // }
 		];
 		$scope.mainGridOptions = { 
 			pageable: true,

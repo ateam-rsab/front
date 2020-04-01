@@ -201,7 +201,7 @@
                     </div>
             </div>
         </div>
-<div class="grid_12  containerBorderBox" style="overflow-y; height:510px;">
+<div class="grid_12  containerBorderBox" style="height:510px;">
         <div class="grid_12"  ng-show='showInputObat'>
         <div class="grid_12 headerBox">
             <p>Detail Barang</p>
@@ -310,15 +310,30 @@
             </div>
         </div>
         <div class="grid_2">
-            <div class="grid_12" style="margin-top: 10px">
+            <div class="grid_12" style="margin-top: 18px">
                 <div class="grid_4">
-                    <button class="btnTemplate1" ng-click="tambah()">Tambah</button>
+                    <md-button class="md-raised md-primary medium-button"
+                        ng-click="tambah()">
+                        <span style="margin-right: 5px;">Tambah</span>
+                        <i class="fa fa-plus"></i>
+                    </md-button>
+                    <!-- <button class="btnTemplate1" ng-click="tambah()">Tambah</button> -->
                 </div>
                 <div class="grid_4">
-                    <button class="btnTemplate1" ng-click="hapus()">Hapus</button>
+                    <md-button class="md-raised md-danger medium-button"
+                        ng-click="hapus()">
+                        <span style="margin-right: 5px;">Hapus</span>
+                        <i class="fa fa-trash"></i>
+                    </md-button>
+                    <!-- <button class="btnTemplate1" ng-click="hapus()">Hapus</button> -->
                 </div>
                 <div class="grid_4">
-                    <button class="btnTemplate1" ng-click="batal()">Batal</button>
+                    <md-button class="md-raised md-default medium-button"
+                        ng-click="batal()">
+                        <span style="margin-right: 5px;">Reset</span>
+                        <i class="fa fa-refresh" style="color: black;"></i>
+                    </md-button>
+                    <!-- <button class="btnTemplate1" ng-click="batal()">Reset</button> -->
                 </div>
             </div>
         </div>
@@ -350,14 +365,14 @@
                     <!-- <div class="grid_4">
                         <button class="btnTemplate1" ng-click="hapus()">Hapus</button>
                     </div> -->
-                    <<!-- div class="grid_4">
+                    <!-- div class="grid_4">
                         <button class="btnTemplate1" ng-click="batal()">Batal</button>
                     </div>
                 </div>
             </div> -->
         </div>
         <div class="grid_12" >
-             <div class="grid_12 borderBox">
+             <div class="grid_12">
                 <div id="kGrid" 
                 kendo-grid k-data-source="dataGrid" 
                 k-selectable="'row'" 
@@ -432,20 +447,32 @@
             <div class="grid_6">
             </div>
             <div class="grid_6">
-                <div class="grid_6">
+                <div class="grid_8">
                 </div>
                 <div class="grid_2" style="margin-top: 22px">
-                    <button class="c-button" ng-click="simpan()" ng-show='saveShow'>Simpan</button>
+                    <md-button class="md-raised md-default"
+                        ng-click="kembali()">
+                        <i class="fa fa-arrow-left" style="color: black;"></i>
+                        <span style="margin-right: 5px;">Kembali</span>
+                        
+                    </md-button>
+                    <!-- <button class="c-button" ng-click="kembali()">Kembali</button> -->
+                </div>
+                <div class="grid_2" style="margin-top: 22px">
+                    <!-- <button class="c-button" ng-click="simpan()" ng-show='saveShow'>Simpan</button> -->
+                    <md-button class="md-raised md-primary"
+                        ng-click="simpan()">
+                        <span style="margin-right: 5px;">Simpan</span>
+                        <i class="fa fa-save"></i>
+                    </md-button>
                 </div>
                 <!--  <div class="grid_2" style="margin-top: 22px">
                     <button class="c-button" ng-click="Cetak()">Cetak</button>
                 </div> -->
-                <div class="grid_2" style="margin-top: 22px">
+                <!-- <div class="grid_2" style="margin-top: 22px">
                     <button class="c-button" ng-click="Batal()">Batal</button>
-                </div>
-                <div class="grid_2" style="margin-top: 22px">
-                    <button class="c-button" ng-click="kembali()">Kembali</button>
-                </div>
+                </div> -->
+                
             </div>
         </div>
 

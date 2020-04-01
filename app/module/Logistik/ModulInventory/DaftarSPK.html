@@ -37,7 +37,7 @@
             <h1 style="color: white;"><b>Daftar Surat Perintah Kerja (SPK)</b></h1>
         </div>
         <div class="grid_12">
-                 <div class="grid_3">
+                 <div class="grid_2">
                     <div class="grid_12">
                         <label c-label class="label-aja" item="item" c-label-text="Kode Barang"></label>
                     </div>
@@ -53,10 +53,27 @@
                         <input style="width: 100%;" kendo-combo-box k-ng-model="item.namaBarang" k-data-text-field="'namaproduk'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listNamaBarang" />
                     </div>
                  </div>
+                
                 <div class="grid_2">
+                    <div class="grid_12">
+                        <label c-label item="item" >No. Kontrak SPK</label>
+                    </div>
+
+                    <div class="grid_12">
+                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nousulan" />
+                    </div>
                 </div>
-                <!-- <div class="grid_1"></div> -->
-                <div class="grid_4">
+                <div class="grid_2">
+                    <div class="grid_12">
+                        <label c-label item="item" c-label-text="Jenis Usulan"></label>
+                    </div>
+
+                    <div class="grid_12">
+                        <input c-text-box type="input"  filter="" class="k-textbox" ng-model="item.jenisusulan" />
+                    </div>
+                </div>
+
+                <div class="grid_3">
                     <div class="grid_12">
                         <label c-label item="item" c-label-text="Periode Tanggal"></label>
                     </div>
@@ -82,7 +99,7 @@
             </div>
             <div class="grid_12">
                 <!-- k-columns="columnGrid"  -->
-                     <div class="grid_12 borderBox">
+                     <div class="grid_12">
                         <div id="kGrid" 
                         kendo-grid k-data-source="dataGrid" 
                         k-selectable="'row'" 
@@ -111,16 +128,7 @@
             </div>
             <!-- NamaKegiatan -->
             <div class="grid_12">
-                <!-- <div class="grid_1">
-                    <div class="grid_12">
-                        <label c-label item="item">No Registrasi</label>
-                    </div>
-
-                    <div class="grid_12">
-                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noReg" />
-                    </div>
-                </div> -->
-                <div class="grid_2">
+                <!-- <div class="grid_2">
                     <div class="grid_12">
                         <label c-label item="item" >No. Kontrak SPK</label>
                     </div>
@@ -137,29 +145,29 @@
                     <div class="grid_12">
                         <input c-text-box type="input"  filter="" class="k-textbox" ng-model="item.jenisusulan" />
                     </div>
-                </div>
+                </div> -->
                 <!-- <div class="grid_2"></div> -->
-                        <div class="grid_2" style="margin-top: 22px">
+                        <!-- <div class="grid_2" style="margin-top: 22px">
                             <button class="c-button" ng-click="TambahSPK()">Buat SPK</button>
-                        </div> 
-                        <div class="grid_2" style="margin-top: 22px">
+                        </div>  -->
+                        <!-- <div class="grid_2" style="margin-top: 22px">
                             <button class="c-button" ng-click="EditTerima()">Edit SPK</button>
-                        </div>
-                        <div class="grid_2" style="margin-top: 22px">
+                        </div> -->
+                        <!-- <div class="grid_2" style="margin-top: 22px">
                             <button class="c-button" ng-click="HapusSPK()">Hapus SPK</button>
-                        </div>
+                        </div> -->
                         <!-- <div class="grid_2" style="margin-top: 22px">
                             <button class="c-button" ng-click="newSPPB()">Buat SPPB</button>
                         </div> -->
                      <!--    <div class="grid_2" style="margin-top: 22px">
                             <button class="c-button" ng-click="Verifikasi()">Verifikasi</button>
                         </div> -->
-                         <div class="grid_2" style="margin-top: 22px">
+                         <!-- <div class="grid_2" style="margin-top: 22px">
                             <button class="c-button" ng-click="Cetak()">Cetak</button>
-                        </div>
-                         <div class="grid_2" style="margin-top: 22px">
+                        </div> -->
+                         <!-- <div class="grid_2" style="margin-top: 22px">
                             <button class="c-button" ng-click="PenerimaanSPK()">Penerimaan</button>
-                        </div>
+                        </div> -->
                        
                         <!-- <div class="grid_2" style="margin-top: 22px">
                             <button class="c-button" ng-click="CetakBuktiLayanan()">Cetak Bukti Layanan</button>

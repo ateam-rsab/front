@@ -20,18 +20,18 @@
 <div ng-controller="VerifikasiTagihanSupplierCtrl">
 	<div ng-show="dataVOloaded">
 		<!-- <c-panel item="item" header="'Daftar Tagihan Rekanan'" disabled> -->
-		<div class="grid_12 headerBox">
+		<div class="headerBox">
 			<h1 style="color: white;"><b>Verifikasi Tagihan Rekanan</b></h1>
 		</div>
 
 		<div class="grid_12">
-			<div class="grid_2">
+			<!-- <div class="grid_2">
 				<label c-label item="item" c-label-text="NoFaktur"></label>
 				<input placeholder="No Faktur" c-text-box type="input"  class="k-textbox" ng-model="item.noFaktur" />
-			</div>
+			</div> -->
 			<div class="grid_2">
 				<label c-label item="item" c-label-text="NamaSupplier"></label>
-				<input placeholder="Nama Supplier" c-text-box type="input"  class="k-textbox" ng-model="item.NamaSupplier" />
+				<input placeholder="Nama Supplier" c-text-box type="input"  class="k-textbox" ng-model="item.namaSupplier" />
 			</div>
 
 			<div class="grid_2">
@@ -42,12 +42,15 @@
 				<label c-label item="item" c-label-text="Periode Akhir"></label>
 				<input style="width: 100%" k-ng-model="item.tanggalAkhir"  kendo-date-picker  placeholer="yyyy-MM-dd" k-format="'yyyy-MM-dd'"/>
 			</div>
-			<div class="grid_2">
+			<div class="grid_1">
 				<label c-label item="item" c-label-text="Status"></label>
-				<input style="width: 100%;"  kendo-combo-box k-data-source="listStatus" k-ng-model="item.status" k-data-text-field="'namaStatus'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="" />
+				<input style="width: 100%;"  kendo-combo-box k-data-source="listStatus" k-ng-model="item.status" k-data-text-field="'namaStatus'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false"/>
 			</div>
 			<div class="grid_1" style="margin-top:22px;">
-				<button class="c-button" style="width: 150px" ng-click="cariData()">Cari</button>
+				<md-button class="md-raised md-primary medium-button" ng-click="cariData()">
+					<span style="margin-right: 5px;">Cari</span>
+					<i class="fa fa-search"></i>
+				</md-button>
 			</div>
 		</div>
 		<div class="grid_6">
@@ -59,13 +62,13 @@
 		<br/>
 
 		<div class="grid_12">
-			<div class="grid_12 headerBox">
-				<p>Tagihan Rekanan</p>
+			<div class="headerBox">
+				<p>Verifikasi Tagihan Rekanan</p>
 			</div>
 			<div class="clear"></div>
 
 
-			<div class="grid_12 borderBox">
+			<div class="grid_12">
 				<div id="kGrid" kendo-grid 
 				k-data-source="dataGrid" 
 				k-selectable="'row'"
@@ -74,7 +77,7 @@
 				k-columns="columnGrid"
 				k-ng-model="dataSelected">
 			</div>
-		</div>
+			</div>
 
 		<div class="clear"></div>
 		<!-- </div> -->
@@ -83,15 +86,15 @@
 		<br/>
 
 	</div>
-	<div class="grid_12" style="margin-top:10px;">
-		<!-- <div class="grid_5"></div> -->
+	<!-- <div class="grid_12" style="margin-top:10px;">
+		
 		<div class="grid_2" style="float:right;">
 			<button class="c-button" ng-click="Verifikasi()">Verifikasi</button>
 		</div>
 		<div class="grid_2" style="float:right;">
 			<button class="c-button" ng-click="Detail()">Detail Tagihan</button>
 		</div>
-	</div>
+	</div> -->
 
 		<!-- <div class="grid_12" style="margin-top:30px">
 			<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>

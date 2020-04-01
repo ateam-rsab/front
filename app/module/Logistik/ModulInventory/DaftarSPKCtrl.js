@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('DaftarSPKCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper', 'DateHelper', 'ModelItemAkuntansi',
-        function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, dateHelper, modelItemAkuntansi) {
+    initialize.controller('DaftarSPKCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper', 'DateHelper', 'ModelItemAkuntansi', '$mdDialog',
+        function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, dateHelper, modelItemAkuntansi, $mdDialog) {
             $scope.item = {};
             $scope.dataSPKExport = [];
             $scope.dataVOloaded = true;
@@ -380,6 +380,42 @@ define(['initialize'], function (initialize) {
                     "title": "Unit Peminta",
                     "width": "120px",
                 },
+                {
+                    command: [
+                        {
+                            text: "Edit",
+                            align: "center",
+                            attributes: {
+                                align: "center"
+                            },
+                            click: editSPK,
+                            imageClass: "k-icon k-i-pencil"
+                        },
+                        {
+                            text: "Hapus",
+                            align: "center",
+                            attributes: {
+                                align: "center"
+                            },
+                            click: confirmHapusSPK,
+                            imageClass: "k-icon k-delete"
+                        },
+                        {
+                            text: "Penerimaan",
+                            align: "center",
+                            attributes: {
+                                align: "center"
+                            },
+                            click: penerimaanSPK,
+                            imageClass: "k-icon k-i-checkmark"
+                        }
+                    ],
+                    title: "",
+                    width: "170px",
+                    attributes: {
+                        style: "text-align:center;valign=middle"
+                    },
+                }
                 // {
                 //     "field": "tglkontrak",
                 //     "title": "Tgl Kontrak",
@@ -393,11 +429,53 @@ define(['initialize'], function (initialize) {
                 // }
             ];
 
+            function penerimaanSPK(e) {
+                e.preventDefault();
+                var tr = $(e.target).closest("tr");
+                var dataItem = this.dataItem(tr);
+                $scope.dataSelected = dataItem;
+
+                $scope.PenerimaanSPK();
+            }
+
+            function editSPK(e) {
+                e.preventDefault();
+                var tr = $(e.target).closest("tr");
+                var dataItem = this.dataItem(tr);
+
+                $scope.dataSelected = dataItem;
+                $scope.EditTerima();
+            }
+
+            function confirmHapusSPK(e) {
+                e.preventDefault();
+                var tr = $(e.target).closest("tr");
+                var dataItem = this.dataItem(tr);
+
+                var confirm = $mdDialog.confirm()
+                    .title('Apakah anda yakin akan menghapus data Surat Perintah Kerja (SPK) ?')
+                    .textContent(`Anda akan menghapus data Surat Perintah Kerja (SPK) secara permanen`)
+                    .ariaLabel('Lucky day')
+                    .targetEvent(e)
+                    .ok('Ya')
+                    .cancel('Tidak');
+                $mdDialog.show(confirm).then(function () {
+                    $scope.HapusSPK();
+                }, function () {
+                    toastr.info('Hapus SPK dibatalkan');
+                });
+
+                $scope.dataSelected = dataItem;
+
+
+            }
 
             $scope.opsiGridSip = {
                 toolbar: [
                     // "excel", 
-                    { text: "export", name: "Export detail", template: '<button ng-click="exportSPK()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>' }
+                    { text: "export", name: "Export detail", template: '<button ng-click="exportSPK()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>' },
+                    { text: "export", name: "Export detail", template: '<button ng-click="TambahSPK()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-plus"></span>Buat SPK</button>' },
+                    { text: "export", name: "Export detail", template: '<button ng-click="Cetak()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-print"></span>Cetak</button>' }
                 ],
                 filterable: {
                     extra: false,

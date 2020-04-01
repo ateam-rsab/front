@@ -1,0 +1,51 @@
+<style>
+    fieldset.verifikasi-info {
+        display: flex;
+        flex-direction: column;
+    }
+    fieldset.verifikasi-info * {
+        margin: 10px 0px;
+    }
+    .info-content {
+
+    }
+    .info-content label {
+        font-size: 13px;
+        font-weight: bolder;
+    }
+</style>
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Tambah Verifikasi Tagihan Rekanan</div>
+</md-toolbar>
+
+<div class="grid_4">
+    <fieldset class="borderBox verifikasi-info">
+        <div class="info-content">
+            <label>No. Verifikasi:</label>
+            <input type="text" c-text-box class="k-textbox" ng-model="item.noVerifikasi">
+        </div>
+        <div class="info-content">
+            <label>Supplier:</label>
+            <input type="text" c-text-box class="k-textbox" ng-model="item.supplier">
+        </div>
+        <div class="info-content">
+            <label>Tanggal Verifikasi:</label>
+            <input type="text" c-text-box class="k-textbox" ng-model="item.tglVerifikasi">
+        </div>
+        <div class="info-content">
+            <label>Keterangan:</label>
+            <input type="text" c-text-box class="k-textbox" ng-model="item.keterangan">
+        </div>
+    </fieldset>
+</div>
+
+<div class="grid_12">
+    <div id="kGrid" kendo-grid 
+        k-data-source="dataGrid" 
+        k-selectable="'row'"
+        k-pageable="'true'"
+        k-sortable="'true'" 
+        k-columns="columnGrid"
+        k-ng-model="dataSelected">
+    </div>
+</div>

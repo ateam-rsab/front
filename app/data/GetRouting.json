@@ -43154,6 +43154,30 @@
         "define": "SarprasService"
       },
       {
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
+      }
+    ]
+  },
+  {
+    "name": "VerifikasiTagihanRekananRev",
+    "url": "/VerifikasiTagihanRekananRev",
+    "templateurl": "module/Akuntansi/BendaharaPengeluaran/VerifikasiTagihanRekananRev.html",
+    "controller": "VerifikasiTagihanRekananRevCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SarprasService",
+        "define": "SarprasService"
+      },
+      {
         "module": "SdmService",
         "define": "SdmService"
       }

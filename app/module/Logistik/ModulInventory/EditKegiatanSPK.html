@@ -30,9 +30,12 @@
 
     <div ng-show="dataVOloaded">
         <div class="grid_12">
-        <div class="grid_12 headerBox">
+            <md-toolbar md-scroll-shrink class="shadow">
+                <div class="md-toolbar-tools">Surat Perintah Kerja (SPK)</div>
+            </md-toolbar>
+        <!-- <div class="headerBox">
             <h1 style="color: white;"><b>Surat Perintah Kerja (SPK)</b></h1>
-        </div>
+        </div> -->
         <div class="grid_4">
             <div class="grid_12 borderBox containerBorderBox" style="overflow-y: scroll; height:210px;">
                 <div class="grid_12" style="margin-left: 3px">
@@ -301,15 +304,27 @@
             </div>
         </div>
         <div class="grid_2">
-            <div class="grid_12" style="margin-top: 10px">
+            <div class="grid_12" style="margin-top: 18px">
                 <div class="grid_4">
-                    <button class="btnTemplate1" ng-click="tambah()">Tambah</button>
+                    <!-- <button class="btnTemplate1" ng-click="tambah()">Tambah</button> -->
+                    <md-button class="md-raised md-primary medium-button" ng-click="tambah()">
+                        <span style="margin-right: 5px;">Tambah</span>
+                        <i class="fa fa-plus"></i>
+                    </md-button>
                 </div>
                 <div class="grid_4">
-                    <button class="btnTemplate1" ng-click="hapus()">Hapus</button>
+                    <!-- <button class="btnTemplate1" ng-click="hapus()">Hapus</button> -->
+                    <md-button class="md-raised md-danger medium-button" ng-click="hapus()">
+                        <span style="margin-right: 5px;">Hapus</span>
+                        <i class="fa fa-trash"></i>
+                    </md-button>
                 </div>
                 <div class="grid_4">
-                    <button class="btnTemplate1" ng-click="batal()">Batal</button>
+                    <!-- <button class="btnTemplate1" ng-click="batal()">Reset</button> -->
+                    <md-button class="md-raised md-default medium-button" ng-click="batal()">
+                        <span style="margin-right: 5px;">Reset</span>
+                        <i class="fa fa-refresh" style="color: black;"></i>
+                    </md-button>
                 </div>
             </div>
         </div>
@@ -380,17 +395,27 @@
             <div class="grid_6">
             </div>
             <div class="grid_6">
-                <div class="grid_6">
+                <div class="grid_8">
                 </div>
                 <div class="grid_2" style="margin-top: 22px">
-                    <button class="c-button" ng-click="simpan()" ng-show='saveShow'>Simpan</button>
-                </div>
+                    <md-button class="md-raised md-default medium-button" ng-click="kembali()" >
+                        <i class="fa fa-arrow-left" style="color: black;"></i>
+                        <span style="margin-right: 5px;">Kembali</span>
+                    </md-button>
+                </div> 
                 <div class="grid_2" style="margin-top: 22px">
+                    <!-- <button class="c-button" ng-click="simpan()" ng-show='saveShow'>Simpan</button> -->
+                    <md-button class="md-raised md-primary medium-button" ng-click="simpan()" ng-show='saveShow'>
+                        <span style="margin-right: 5px;">Simpan</span>
+                        <i class="fa fa-save"></i>
+                    </md-button>
+                </div>
+                <!-- <div class="grid_2" style="margin-top: 22px">
                     <button class="c-button" ng-click="Batal()">Batal</button>
-                </div>
-                <div class="grid_2" style="margin-top: 22px">
+                </div> -->
+                <!-- <div class="grid_2" style="margin-top: 22px">
                     <button class="c-button" ng-click="kembali()">Kembali</button>
-                </div>
+                </div> -->
             </div>
         </div>
 
