@@ -39,10 +39,10 @@ define(['initialize'], function (initialize) {
         $scope.item.status = $scope.listStatus[parseInt(arrPeriode[2])];
         $scope.item.noFaktur = arrPeriode[3];
         $scope.item.NamaSupplier = arrPeriode[4];
-        loadData();
+        $scope.loadData();
       }
 
-      function loadData() {
+      $scope.loadData = function() {
         ManageAkuntansi.getDataTableTransaksi("transaksi/bendahara-pengeluaran/get-data-verifikasi-tagihan-suplier?tglAwal=" +  $scope.item.tanggalAwal + "&tglAkhir=" + $scope.item.tanggalAkhir + "&Supplier=" + $scope.item.namaSupplier + "&status=" + $scope.item.status.namaStatus).then(function (data) {
           // if (data.statResponse) {
           //   var result = data.data.result;
@@ -176,7 +176,7 @@ define(['initialize'], function (initialize) {
         // }
         dataObjPost = {}
         ManageAkuntansi.postData("tagihan-rekanan/save-verifikasi-tagihan-rekanan?noRec=" + $scope.dataSelected.noRecStrukVerifikasi, dataObjPost).then(function (e) {})
-        loadData();
+        $scope.loadData()
       };
 
       $scope.Detail = function () {
