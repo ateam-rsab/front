@@ -42,7 +42,7 @@ define(['initialize'], function (initialize) {
         loadData();
       }
 
-      function loadData() {        
+      function loadData() {
         ManageAkuntansi.getDataTableTransaksi("transaksi/bendahara-pengeluaran/get-data-verifikasi-tagihan-suplier?tglAwal=" +  $scope.item.tanggalAwal + "&tglAkhir=" + $scope.item.tanggalAkhir + "&Supplier=" + $scope.item.namaSupplier + "&status=" + $scope.item.status.namaStatus).then(function (data) {
           // if (data.statResponse) {
           //   var result = data.data.result;
