@@ -669,7 +669,7 @@ define(['initialize'], function (initialize) {
 
             $scope.onChangeDateCutiMelahirkan = () => {
                 // $("#idTglAkhirCutiMelahirkan").kendoDatePicker();
-                $("#idTglAkhirCutiMelahirkan").data('kendoDatePicker').destroy();
+                
                 // $("#idTglAkhirCutiMelahirkan").kendoDatePicker();
                 $scope.disabledTglAkhir = $scope.item.tglAwalCutiMelahirkan ? false : true;
                 $scope.item.tglAkhirCutiMelahirkan = null;
