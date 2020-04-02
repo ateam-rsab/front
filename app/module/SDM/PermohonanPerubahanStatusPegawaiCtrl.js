@@ -668,15 +668,22 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.onChangeDateCutiMelahirkan = () => {
-                // $("#idTglAkhirCutiMelahirkan").kendoDatePicker();
                 
-                // $("#idTglAkhirCutiMelahirkan").kendoDatePicker();
+                // $("#idTglAkhirCutiMelahirkan").attr('k-max','maxDateCutiMelahirkan');
+               
                 $scope.disabledTglAkhir = $scope.item.tglAwalCutiMelahirkan ? false : true;
                 $scope.item.tglAkhirCutiMelahirkan = null;
 
-                $scope.maxDateCutiMelahirkan = new Date($scope.item.tglAwalCutiMelahirkan.setDate($scope.item.tglAwalCutiMelahirkan.getDay() + 90));
-                $scope.item.tglAkhirCutiMelahirkan = $scope.maxDateCutiMelahirkan;
+                // console.log(Math.floor($scope.item.tglAwalCutiMelahirkan.getTime()/1000) + 7689600);
+
+                // $scope.maxDateCutiMelahirkan = new Date($scope.item.tglAwalCutiMelahirkan.setDate($scope.item.tglAwalCutiMelahirkan.getDay() + 90));
+                // Math.floor($scope.item.tglAwalCutiMelahirkan.getTime()/1000) + 7689600
+                $scope.maxDateCutiMelahirkan = new Date(Math.floor(Math.floor($scope.item.tglAwalCutiMelahirkan.getTime()/1000) + 7689600)*1000);
                 console.log($scope.maxDateCutiMelahirkan);
+                $scope.item.tglAkhirCutiMelahirkan = $scope.maxDateCutiMelahirkan;
+
+                console.log('2', $scope.maxDateCutiMelahirkan);
+                
             }
 
             // $scope.showJumlahSakit = function() {

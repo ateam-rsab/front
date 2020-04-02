@@ -6,9 +6,12 @@ define(['initialize'], function (initialize) {
       //catatan : PENTING
       //cek tabel maploginusertoruangan_s
 
+      $scope.listAnggaran = [];
+
       $scope.dataVOloaded = true;
       $scope.now = new Date();
       $scope.item = {};
+      $scope.verif = {};
       //$scope.dataSelectedPiutang = {};
       $scope.item.tanggalAwal = $scope.now;
       $scope.item.tanggalAkhir = $scope.now;
@@ -29,42 +32,28 @@ define(['initialize'], function (initialize) {
       //ON LOAD with Params
       $scope.item.tanggalAwal = $scope.now;
       $scope.item.tanggalAkhir = $scope.now;
-      var chacePeriode = cacheHelper.get('filterDataParams');
-
-      if (chacePeriode != undefined) {
-        
-        var arrPeriode = chacePeriode.split('~');
-        $scope.item.tanggalAwal = new Date(arrPeriode[0]);
-        $scope.item.tanggalAkhir = new Date(arrPeriode[1]);
-        $scope.item.status = $scope.listStatus[parseInt(arrPeriode[2])];
-        $scope.item.noFaktur = arrPeriode[3];
-        $scope.item.NamaSupplier = arrPeriode[4];
-        $scope.loadData();
-      }
-
       $scope.loadData = function() {
-        ManageAkuntansi.getDataTableTransaksi("transaksi/bendahara-pengeluaran/get-data-verifikasi-tagihan-suplier?tglAwal=" +  $scope.item.tanggalAwal + "&tglAkhir=" + $scope.item.tanggalAkhir + "&Supplier=" + $scope.item.namaSupplier + "&status=" + $scope.item.status.namaStatus).then(function (data) {
-          // if (data.statResponse) {
-          //   var result = data.data.result;
-          //   for (var x = 0; x < result.length; x++) {
-          //     var element = result[x];
-          //     element.tglTerimaKiriman = moment(result[x].tglTerimaKiriman).format('YYYY-MM-DD');
-          //     element.status2 = vStatus2
-          //     element.tglEksekusi = moment(result[x].tglEksekusi).format('YYYY-MM-DD');
-          //   }
-          //   $scope.dataGrid = new kendo.data.DataSource({
-          //     data: result,
-          //     pageSize: 10,
-          //     total: result.length,
-          //     serverPaging: false,
+        $scope.isRouteLoading = true;
+        ManageAkuntansi.getDataTableTransaksi("bendahara-pengeluaran/get-data-verifikasi-tagihan-suplier?tglAwal=2020-01-01&tglAkhir=2020-03-31&Supplier=" + $scope.item.namaSupplier + "&status=" + $scope.item.status.namaStatus).then((res) => {
+          for(let i = 0; i < res.data.daftar.length; i++) {
+            // new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR'}).format(
+            res.data.daftar[i].totalFormatted = new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR'}).format(res.data.daftar[i].total);
+            res.data.daftar[i].totalppnFormatted = new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR'}).format(res.data.daftar[i].totalppn);
+            res.data.daftar[i].totaldiskonFormatted = new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR'}).format(res.data.daftar[i].totaldiskon);
+            res.data.daftar[i].subtotalFormatted = new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR'}).format(res.data.daftar[i].subtotal);
+            res.data.daftar[i].sisautangFormatted = new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR'}).format(res.data.daftar[i].sisautang);
+          }
 
-          //   });
-
-          // }
-          //$scope.dataGrid=data.data.result;
+          console.log(res.data.daftar);
+          $scope.dataGrid = new kendo.data.DataSource({
+            data:res.data.daftar,
+            pageSize:25
+          });
+          $scope.isRouteLoading = false;
         });
-        /////END
       };
+
+      $scope.loadData();
 
       $scope.formatRupiah = function (value, currency) {
         return currency + " " + parseFloat(value).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1.");
@@ -73,46 +62,101 @@ define(['initialize'], function (initialize) {
         return dateHelper.formatDate(value, "YYYY-MM-DD");
       }
 
-      $scope.columnGrid = [{
-          "field": "tglTerimaKiriman",
-          "title": "Tgl Terima",
-          "template": "<span class='style-center'>{{'#: tglTerimaKiriman #'}}</span>",
-          "width": "70px"
-        },
+      $scope.columnGrid = [
         {
-          "field": "noFaktur",
-          "title": "No Faktur",
-          "template": "<span class='style-center'>{{'#: noFaktur #'}}</span>",
-          "width": "80px"
-        },
-        {
-          "field": "namaRekanan",
-          "title": "Nama Rekanan",
+          "field": "namarekanan",
+          "title": "<h3>Nama Rekanan</h3>",
           "width": "200px"
         },
         {
-          "field": "totalHarusDibayar",
-          "title": "Total Tagihan",
-          "template": "<span class='style-right'>{{formatRupiah('#: totalHarusDibayar #', 'Rp.')}}</span>",
-          "width": "100px"
+          "field": "noverifikasi",
+          "title": "<h3>No. Verifikasi</h3>",
+          "template": "<span class='style-center'>{{'#: noverifikasi #'}}</span>",
+          "width": "150px"
+        },
+        {
+          "field": "tglstruk",
+          "title": "<h3>Tanggal <br>Struk</h3>",
+          "template": "<span class='style-center'>{{'#: tglstruk #'}}</span>",
+          "width": "150px"
+        },
+        {
+          "field": "tgldokumen",
+          "title": "<h3>Tanggal Dokumen</h3>",
+          "template": "<span class='style-center'>{{'#: tgldokumen #'}}</span>",
+          "width": "150px"
+        },
+        {
+          "field": "nostruk",
+          "title": "<h3>No. Struk</h3>",
+          "template": "<span class='style-center'>{{'#: nostruk #'}}</span>",
+          "width": "150px"
+        },
+        {
+          "field": "nodokumen",
+          "title": "<h3>No. Dokumen</h3>",
+          "template": "<span class='style-center'>{{'#: nodokumen #'}}</span>",
+          "width": "200px"
+        },
+        // {
+        //   "field": "nopo",
+        //   "title": "<h3>No. PO</h3>",
+        //   "template": "<span class='style-center'>{{'#: nopo #'}}</span>",
+        //   "width": "200px"
+        // }, 
+        // {
+        //   "field": "nosbk",
+        //   "title": "<h3>No. SBK</h3>",
+        //   "template": "<span class='style-center'>{{'#: nosbk #'}}</span>",
+        //   "width": "150px"
+        // },
+        {
+          "field": "totalFormatted",
+          "title": "<h3>Total</h3>",
+          "template": "<span class='style-center'>{{'#: totalFormatted #'}}</span>",
+          "width": "150px"
+        },
+        {
+          "field": "totalppnFormatted",
+          "title": "<h3>PPN</h3>",
+          "template": "<span class='style-center'>{{'#: totalppnFormatted #'}}</span>",
+          "width": "150px"
+        },
+        {
+          "field": "totaldiskonFormatted",
+          "title": "<h3>Diskon</h3>",
+          "template": "<span class='style-center'>{{'#: totaldiskonFormatted #'}}</span>",
+          "width": "150px"
+        },
+        {
+          "field": "subtotalFormatted",
+          "title": "<h3>Sub Total</h3>",
+          "template": "<span class='style-center'>{{'#: subtotalFormatted #'}}</span>",
+          "width": "150px"
+        },
+        {
+          "field": "sisautangFormatted",
+          "title": "<h3>Sisa Hutang</h3>",
+          "template": "<span class='style-center'>{{'#: sisautangFormatted #'}}</span>",
+          "width": "150px"
+        },
+        {
+          "field": "statusbayar",
+          "title": "<h3>Status Bayar</h3>",
+          "template": "<span class='style-center'>{{'#: statusbayar #'}}</span>",
+          "width": "150px"
         },
         {
           "field": "status",
-          "title": "Status Pembayaran",
+          "title": "<h3>Status</h3>",
           "template": "<span class='style-center'>{{'#: status #'}}</span>",
-          "width": "80px"
+          "width": "150px"
         },
         {
-          "field": "status2",
-          "title": "Status",
-          "template": "<span class='style-center'>{{'#: status2 #'}}</span>",
-          "width": "80px"
-        },
-        {
-          "field": "tglEksekusi",
-          "title": "Tgl Verifikasi",
-          "template": "<span class='style-center'>{{'#: tglEksekusi #'}}</span>",
-          "width": "70px"
+          "field": "totaldiskon",
+          "title": "<h3>Diskon</h3>",
+          "template": "<span class='style-center'>{{'#: totaldiskon #'}}</span>",
+          "width": "150px"
         },
         {
           command: [
@@ -136,7 +180,7 @@ define(['initialize'], function (initialize) {
             }
           ],
           title: "",
-          width: "170px",
+          width: "300px",
           attributes: {
               style: "text-align:center;valign=middle"
           },
@@ -147,6 +191,9 @@ define(['initialize'], function (initialize) {
         var tr = $(e.target).closest("tr");
         var dataItem = this.dataItem(tr);
         console.log(dataItem);
+        $scope.dataSelected = dataItem;
+
+        $scope.verifkasiRekanan.open().center();
       }
 
       function detailTagihan(e) {
@@ -163,11 +210,11 @@ define(['initialize'], function (initialize) {
         // $scope.item.periodeAkhir = dateHelper.formatDate(ModelItem.beforePost($scope.item.tglAkhir),"YYYY-MM-DD"); 
         // $scope.item.status = $scope.item.status.Status
 
-        //
-        if (!$scope.dataSelected) {
-          toastr.warning('Data Verifikasi belum dipilih');
-          return;
-        }
+        
+        // if (!$scope.dataSelected) {
+        //   toastr.warning('Data Verifikasi belum dipilih');
+        //   return;
+        // }
 
         var dataObjPost = {};
         var arrObjPembayaran = [];
@@ -175,8 +222,8 @@ define(['initialize'], function (initialize) {
         //   arrObjPembayaran.push($scope.dataSource._data[i].noRec)
         // }
         dataObjPost = {}
-        ManageAkuntansi.postData("tagihan-rekanan/save-verifikasi-tagihan-rekanan?noRec=" + $scope.dataSelected.noRecStrukVerifikasi, dataObjPost).then(function (e) {})
-        $scope.loadData()
+        // ManageAkuntansi.postData("tagihan-rekanan/save-verifikasi-tagihan-rekanan?noRec=" + $scope.dataSelected.noRecStrukVerifikasi, dataObjPost).then(function (e) {})
+        // $scope.loadData()
       };
 
       $scope.Detail = function () {

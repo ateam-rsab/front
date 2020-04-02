@@ -19,16 +19,11 @@
 </style>
 <div ng-controller="VerifikasiTagihanSupplierCtrl">
 	<div ng-show="dataVOloaded">
-		<!-- <c-panel item="item" header="'Daftar Tagihan Rekanan'" disabled> -->
 		<div class="headerBox">
 			<h1 style="color: white;"><b>Verifikasi Tagihan Rekanan</b></h1>
 		</div>
 
 		<div class="grid_12">
-			<!-- <div class="grid_2">
-				<label c-label item="item" c-label-text="NoFaktur"></label>
-				<input placeholder="No Faktur" c-text-box type="input"  class="k-textbox" ng-model="item.noFaktur" />
-			</div> -->
 			<div class="grid_2">
 				<label c-label item="item" c-label-text="NamaSupplier"></label>
 				<input placeholder="Nama Supplier" c-text-box type="input"  class="k-textbox" ng-model="item.namaSupplier" />
@@ -42,7 +37,7 @@
 				<label c-label item="item" c-label-text="Periode Akhir"></label>
 				<input style="width: 100%" k-ng-model="item.tanggalAkhir"  kendo-date-picker  placeholer="yyyy-MM-dd" k-format="'yyyy-MM-dd'"/>
 			</div>
-			<div class="grid_1">
+			<div class="grid_2">
 				<label c-label item="item" c-label-text="Status"></label>
 				<input style="width: 100%;"  kendo-combo-box k-data-source="listStatus" k-ng-model="item.status" k-data-text-field="'namaStatus'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false"/>
 			</div>
@@ -79,25 +74,59 @@
 			</div>
 			</div>
 
-		<div class="clear"></div>
-		<!-- </div> -->
-		<div class="clear"></div>
-
 		<br/>
 
 	</div>
-	<!-- <div class="grid_12" style="margin-top:10px;">
-		
-		<div class="grid_2" style="float:right;">
-			<button class="c-button" ng-click="Verifikasi()">Verifikasi</button>
-		</div>
-		<div class="grid_2" style="float:right;">
-			<button class="c-button" ng-click="Detail()">Detail Tagihan</button>
-		</div>
-	</div> -->
+	<div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
+	</div>
 
-		<!-- <div class="grid_12" style="margin-top:30px">
-			<div ng-include='"../app/module/Shared/templateButtonSimpan"'></div>
-		</div> -->
+	<div kendo-window="verifkasiRekanan" k-title="'Verifikasi Tagihan Rekanan'" k-width="1200" k-visible="false">
+		<div class="panel panel-default container_12" style="padding: 0px 10px;">
+			<md-card>
+				<md-card-content>
+					<div class="grid_3">
+						<label style="font-weight: bolder;">No. Faktur</label>
+						<input  c-text-box type="input" style="text-align: right;"  class="k-textbox" ng-model="verif.noFakturVerifikasi" disabled/>
+					</div>
+					<div class="grid_12">
+						<div class="grid_3">
+							<label style="font-weight: bolder;">Total Bayar</label>
+							<input  c-text-box type="input" style="text-align: right;"  class="k-textbox" />
+						</div>
+						<div class="grid_3">
+							<label style="font-weight: bolder;">Potongan</label>
+							<input  c-text-box type="input" style="text-align: right;"  class="k-textbox" />
+						</div>
+					</div>
+					<div class="grid_4">
+						<label style="font-weight: bolder;">Sumber Dana</label>
+						<input style="width: 100%;" kendo-combo-box k-ng-model="verif.sumberDana" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-data-source="listAnggaran" k-on-change="showPagu($event)" />
+					</div>
+
+					<div class="grid_4">
+						<label style="font-weight: bolder;">Anggaran</label>
+						<input style="width: 100%;" kendo-combo-box k-ng-model="verif.anggaran" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-data-source="listAnggaran" k-on-change="showPagu($event)" />
+
+					</div>
+				</md-card-content>
+			</md-card>
+		</div>
+		<!-- <md-card>
+
+			<div class="grid_6">
+				<label>No. Faktur</label>
+				<input  c-text-box type="input" style="text-align: right;"  class="k-textbox" ng-model="item.noFakturVerifikasi" />
+			</div>
+			<div class="grid_6">
+				<label>Total Bayar</label>
+				<input  c-text-box type="input" style="text-align: right;"  class="k-textbox" ng-model="item.noFakturVerifikasi" />
+			</div>
+
+		</md-card>
+		 -->
+		<div class="grid_12">
+			<!-- <button class='k-button btnHapus pull-right' ng-click='cancelData()'>Batal</button>
+			<button class='k-button btnEdit pull-right' ng-click='cetakPermohonan(currentData)'>Verifikasi</button> -->
+		</div>
 	</div>
 </div>
