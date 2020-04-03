@@ -6,25 +6,34 @@ define(['initialize'], function (initialize) {
 			$scope.filter = {};
 			$scope.now = new Date();
 			$scope.dataVOloaded = true;
-			$scope.filter.tglPermohonan = $scope.now;
 			$scope.monthSelectorOptions = {
 				start: "year",
 				depth: "year"
 			};
-			$scope.yearSelected = {
-				start: "year",
-				depth: "year",
-				format: "MMMM yyyy"
-			};
+
 			// $scope.listStatusPermohonan = [
 			// 	{id:0, name: "Belum diputuskan"},
 			// 	// {id:1, name: "Disetujui"},
 			// 	{id:2, name: "Ditolak"},
 			// 	{id:3, name: "Ditangguhkan"},
 			// ]
+
 			$scope.mainGridOptions = {
 				// pageable: true,
-
+				toolbar: [
+					{ text: "export", name: "Export detail", template: '<button ng-click="exportDetail()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>' }
+				],
+				excel: {
+					allPages: true,
+					fileName: "RSAB HK Export Daftar Penangguhan Cuti - " + DateHelper.formatDate(new Date(), 'DD-MMM-YYYY HH:mm:ss') + ".xlsx"
+				},
+				excelExport: function (e) {
+					var columns = e.workbook.sheets[0].columns;
+					columns.forEach(function (column) {
+						delete column.width;
+						column.autoWidth = true;
+					});
+				},
 				selectable: true,
 				columns: [
 					{ "field": "noPlanning", "title": "No Usulan", width: 100 },
@@ -56,6 +65,73 @@ define(['initialize'], function (initialize) {
 				],
 				scrollable: true
 			};
+
+			$scope.exportDetail = function (e) {
+				var tempDataExport = [];
+				var rows = [{
+					cells: [
+						{ value: "Nama Pegawai" },
+						{ value: "NIP" },
+						{ value: "No Usulan" },
+						{ value: "Deskripsi Usulan" },
+						{ value: "Tanggal Usulan" },
+						{ value: "Status Usulan" },
+						{ value: "Tanggal Permohonan" },
+						{ value: "Keterangan" }
+					]
+				}];
+				tempDataExport = $scope.dataSource;
+				tempDataExport.fetch(function () {
+					var data = this.data();
+					for (var i = 0; i < data.length; i++) {
+						var listTglPengajuan = "";
+						for (var j = 0; j < data[i].lisTanggal.length; j++) {
+							if (j === data[i].lisTanggal.length - 1) {
+								listTglPengajuan = listTglPengajuan + DateHelper.formatDate(data[i].lisTanggal[j].tgl, 'DD-MM-YYYY')
+							} else {
+								listTglPengajuan = listTglPengajuan + DateHelper.formatDate(data[i].lisTanggal[j].tgl, 'DD-MM-YYYY') + ", "
+							}
+						};
+						rows.push({
+							cells: [
+								{ value: data[i].namaPegawai },
+								{ value: data[i].nipPns },
+								{ value: data[i].noPlanning },
+								{ value: data[i].deskripsiStatusPegawaiPlan },
+								{ value: DateHelper.formatDate(data[i].tglPengajuan, 'DD-MM-YYYY') },
+								{ value: data[i].statusPegawai },
+								{ value: listTglPengajuan },
+								{ value: data[i].keteranganLainyaPlan }
+							]
+						})
+					};
+					var workbook = new kendo.ooxml.Workbook({
+						sheets: [
+							{
+								freezePane: {
+									rowSplit: 1
+								},
+								frozenRows: 1,
+								filter: { from: 0, to: 7 },
+								columns: [
+									{ autoWidth: true },
+									{ autoWidth: true },
+									{ autoWidth: true },
+									{ autoWidth: true },
+									{ autoWidth: true },
+									{ autoWidth: true },
+									{ autoWidth: true },
+									{ autoWidth: true }
+								],
+								title: "Daftar Pengajuan",
+								rows: rows
+							}
+						]
+					});
+					kendo.saveAs({ dataURI: workbook.toDataURL(), fileName: "RSAB HK Export Daftar Pengajuan Disetujui - " + DateHelper.formatDate(new Date(), 'DD-MMM-YYYY HH:mm:ss') + ".xlsx" });
+				})
+			}
+
 			$q.all([
 				ManageSdmNew.getListData("sdm/get-login-user-permohonan-status"),
 				ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true"),
@@ -76,41 +152,24 @@ define(['initialize'], function (initialize) {
 
 			$scope.loadGrid = function (page) {
 				$scope.isRouteLoading = true;
-
 				var rows;
 				var nama;
-				var tglPermohonan;
 				$scope.statusRowsFilterChanged;
-
 
 				if ($scope.filter.rows == undefined) {
 					$scope.rows = 5;
 					$scope.statusRowsFilterChanged = true;
 				} else {
-
-
 					if ($scope.rows != $scope.filter.rows) {
 						$scope.statusRowsFilterChanged = true;
-
 					} else {
 						$scope.statusRowsFilterChanged = false;
 					}
-
 					$scope.rows = $scope.filter.rows;
-
 				}
-
 
 				if (page == undefined) {
 					page = 1;
-				}
-
-				if ($scope.filter.tglPermohonan) {
-					tglPermohonan = DateHelper.formatDate($scope.filter.tglPermohonan, "YYYY-MM");
-					rows = "";
-				} else {
-					tglPermohonan = "";
-					rows = $scope.rows;
 				}
 
 				if ($scope.filter.namaPegawai == undefined) {
@@ -132,17 +191,13 @@ define(['initialize'], function (initialize) {
 				// }
 
 				ManageSdmNew.getListData("sdm/get-list-permohonan-status-cuti-paging/?idPegawai=" + "&isSdm=" + $scope.isLoginKesja
-					+ "&take=" + rows + "&page=" + page + "&sort=tglPengajuan&dir=desc" + "&nama=" + nama
+					+ "&take=" + $scope.rows + "&page=" + page + "&sort=tglPengajuan&dir=desc" + "&nama=" + nama
 					+ "&jenisPermohonan=" + $scope.jenisPermohonan
 					+ "&statusPermohonan=" //+ $scope.statusPermohonan
-					+ "&tglPermohonan=" + tglPermohonan
 				).then(function (result) {
-
 
 					//Data yang masuk kesini sudah dipaging di server	
 					if (result.data.data.listData != undefined && $scope.statusRowsFilterChanged == true) {
-
-
 						$scope.pages = []
 
 						//Untuk tombol halaman
@@ -155,30 +210,20 @@ define(['initialize'], function (initialize) {
 									value: i
 								})
 							}
-
 						}
-
 					}
-
-					$scope.filter.rows = result.data.data.listData.length;
-
 
 					$scope.dataSource = new kendo.data.DataSource({
 						// pageSize: 6,
 						data: result.data.data.listData,
 						autoSync: true
 					});
+
 					$scope.isRouteLoading = false;
 				})
-
 			}
 
-			if ($scope.filter.tglPermohonan) {
-				$scope.filter.rows = "";
-			} else {
-				$scope.filter.rows = 5;
-			}
-			
+			$scope.filter.rows = 5;
 			$scope.totalPages = 0;
 
 			// $scope.pages = [
@@ -187,7 +232,6 @@ define(['initialize'], function (initialize) {
 			// 			    {pageNumber:3, value:3},
 			// 			    {pageNumber:4, value:4},
 			// 			    {pageNumber:5, value:5},
-
 			// 						];
 
 			// 		$scope.next=function(){		
@@ -199,7 +243,6 @@ define(['initialize'], function (initialize) {
 
 			// $scope.back=function(){		
 			// 			var i=0;	
-
 			// 			for (i = 0; i < $scope.pages.length; i++) { 
 			// 				if($scope.pages[i].pageNumber==1){
 			// 					return;
@@ -208,29 +251,22 @@ define(['initialize'], function (initialize) {
 			// 	}		
 			// }
 
-
 			$scope.next = function () {
 				var i = 0;
 				var pageNumberInLastIndex;
 				pageNumberInLastIndex = $scope.pages[$scope.pages.length - 1].pageNumber;
 
-
 				if (pageNumberInLastIndex < $scope.totalPages) {
 					$scope.pages = [];
 					for (i = pageNumberInLastIndex + 1; i < pageNumberInLastIndex + 6; i++) {
 						if (i <= $scope.totalPages) {
-
-
 							$scope.pages.push({
 								pageNumber: i,
 								value: i
 							})
-
 						}
-
 					}
 				}
-
 			}
 
 			$scope.back = function () {
@@ -238,22 +274,16 @@ define(['initialize'], function (initialize) {
 				var pageNumberInFirstIndex;
 				pageNumberInFirstIndex = $scope.pages[0].pageNumber;
 
-
 				if (pageNumberInFirstIndex > 1) {
 					$scope.pages = [];
-
 					for (i = (pageNumberInFirstIndex - 1) - 4; i <= pageNumberInFirstIndex - 1; i++) {
 						if (i > 0) {
-
 							$scope.pages.push({
 								pageNumber: i,
 								value: i
 							})
-
 						}
-
 					}
-
 				}
 			}
 
@@ -263,17 +293,20 @@ define(['initialize'], function (initialize) {
 					$scope.item.jabatan = dat.data.data.jabatan;
 				});
 			}
+
 			$scope.getDataPegawai2 = function () {
 				$scope.pegawaiId2 = $scope.item.pegawai2.id;
 				ManageSdmNew.getListData("sdm/get-data-pegawai?pegawaiId=" + $scope.pegawaiId2).then(function (dat) {
 					$scope.item.jabatan2 = dat.data.data.jabatan;
 				});
 			}
+
 			$scope.disKeputusan = true;
 			$scope.disUnverif = true;
 			$scope.click = function (current) {
 				$scope.currentData = current;
 			}
+
 			// $scope.tangguhkan=function(){
 			// 	if(!$scope.currentData) {
 			// 		messageContainer.error('Data belum dipilih');
@@ -285,16 +318,17 @@ define(['initialize'], function (initialize) {
 			//           .ariaLabel('Lucky day')
 			//           .ok('Ya')
 			//           .cancel('Tidak')
-
 			//     $mdDialog.show(confirm).then(function() {
 			//         $scope.Simpan();
 			//     })
 			// };
+
 			$scope.cancelData = function () {
 				var myWindow = $("#winPopUp");
 				myWindow.data("kendoWindow").close();
 				//isi codingan buat cancel data yang di edit
 			}
+
 			// $scope.Simpan = function () {
 			// 	if($scope.currentData){
 			// 		var data = {
@@ -304,9 +338,9 @@ define(['initialize'], function (initialize) {
 			// 			// console.log(JSON.stringify(e.data));
 			// 			$scope.loadGrid();
 			// 		});
-
 			// 	}
 			// }
+
 			$scope.isShowPopUp = false;
 			$scope.openWindow = function () {
 				if ($scope.item.noRec == undefined) {
@@ -317,6 +351,7 @@ define(['initialize'], function (initialize) {
 					$scope.isShowPopUp = true;
 				}
 			}
+
 			$scope.Cetak = function () {
 				var atasan1 = $scope.item.pegawai1.id;
 				var atasan2 = $scope.item.pegawai2.id;
@@ -324,6 +359,7 @@ define(['initialize'], function (initialize) {
 				var urlLaporan = CetakHelper.openURLReporting("reporting/lapPermohonanCuti?noRecPlanning=" + $scope.item.noRec + "&idAtasan1=" + $scope.item.pegawai1.id + "&idAtasan2=" + $scope.item.pegawai2.id + "&periode=" + periode);
 				window.open(urlLaporan, "SKCutiPegawai", "width:800, height:600");
 			};
+
 			$scope.cetak2 = function (data) {
 				if (!$scope.currentData && !data) {
 					messageContainer.error("Data tidak dapat diproses");
@@ -333,6 +369,7 @@ define(['initialize'], function (initialize) {
 					window.open(urlLaporan, '', 'width:600, height:500');
 				}
 			};
+
 			$scope.cetakSuratIzin = function () {
 				if (!$scope.currentData) {
 					messageContainer.error('Data belum di pilih');
@@ -341,6 +378,7 @@ define(['initialize'], function (initialize) {
 					$scope.pilihPejabat.center().open();
 				}
 			}
+
 			$scope.tangguhkan = function (current) {
 				if (!current) return;
 				localStorage.setItem('tempPenangguhanCutiPegawai', JSON.stringify(current));
@@ -350,17 +388,8 @@ define(['initialize'], function (initialize) {
 					nip: current.nip
 				});
 			};
+
 			var timeoutPromise;
-			$scope.$watch('filter.tglPermohonan', function (newVal, oldVal) {
-				if (!newVal) return;
-				$timeout.cancel(timeoutPromise);
-				timeoutPromise = $timeout(function () {
-					if (newVal && newVal !== oldVal) {
-						// applyFilter("namaPegawai", newVal)
-						$scope.loadGrid();
-					}
-				}, 1000);
-			});
 			$scope.$watch('filter.namaPegawai', function (newVal, oldVal) {
 				if (!newVal) return;
 				$timeout.cancel(timeoutPromise);
@@ -371,6 +400,7 @@ define(['initialize'], function (initialize) {
 					}
 				}, 1000);
 			});
+
 			$scope.$watch('filter.statusPegawai', function (newVal, oldVal) {
 				if (!newVal) return;
 				$timeout.cancel(timeoutPromise);
@@ -381,6 +411,7 @@ define(['initialize'], function (initialize) {
 					}
 				}, 1000);
 			});
+
 			// $scope.$watch('filter.status', function(newVal, oldVal){
 			// 	if(!newVal) return;
 			// 	if (newVal && newVal !== oldVal){
@@ -388,6 +419,7 @@ define(['initialize'], function (initialize) {
 			// 		$scope.loadGrid();
 			// 	}
 			// })
+
 			function applyFilter(filterField, filterValue) {
 				var dataGrid = $("#gridPerubahanStatus").data("kendoGrid");
 				var currFilterObject = dataGrid.dataSource.filter();
@@ -401,6 +433,7 @@ define(['initialize'], function (initialize) {
 						}
 					}
 				}
+
 				currentFilters.push({
 					field: filterField,
 					operator: "contains",
@@ -412,16 +445,14 @@ define(['initialize'], function (initialize) {
 					filters: currentFilters
 				});
 			}
-			$scope.resetFilters = function () {
 
+			$scope.resetFilters = function () {
 				$scope.isRouteLoading = true;
 				var dataGrid = $("#gridPerubahanStatus").data("kendoGrid");
 				dataGrid.dataSource.filter({});
 				$scope.filter = {};
-
 				$scope.isRouteLoading = false;
 			}
-
 		}
 	]);
 });

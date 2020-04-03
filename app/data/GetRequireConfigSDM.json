@@ -445,6 +445,10 @@
       "urlDep": "module/SDM/MasterLevelTingkatCtrl"
     },
     {
+      "nameDep": "MasterDokumenCtrl",
+      "urlDep": "module/SDM/MasterDokumenCtrl"
+    },    
+    {
       "nameDep": "LaporanPesertaDidikCtrl",
       "urlDep": "module/SDM/LaporanPesertaDidikCtrl"
     },

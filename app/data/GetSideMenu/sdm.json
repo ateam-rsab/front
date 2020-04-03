@@ -35,10 +35,6 @@
                 "link": "#/StatusPegawaiSdm"
             },
             {
-                "name": "Mapping Atasan",
-                "link": "#/MappingAtasanPegawai//"
-            },
-            {
                 "name": "Hari Libur ",
                 "link": "#/HariLibur"
             },
@@ -139,22 +135,6 @@
                 "link": "#/MasterLevelTingkat"
             },
             {
-                "name": "Master Tes",
-                "link": "#/MasterTes"
-            },
-            {
-                "name": "Master Tes1",
-                "link": "#/MasterTes1"
-            },
-            {
-                "name": "Master Teko",
-                "link": "#/MasterTeko"
-            },
-            {
-                "name": "Master Urutan Test",
-                "link": "#/MasterUrutanTest"
-            },
-            {
                 "name": "Master Dokumen",
                 "link": "#/MasterDokumen"
             },
@@ -215,10 +195,6 @@
                         "link": "#/MasaBerlakuSipStr"
                     }
                 ]
-            },
-            {
-                "name": "Data Non Pegawai",
-                "link": "#/DataNonPegawai"
             },
             {
                 "name": "Mutasi, Resign dan Sanksi Pegawai",

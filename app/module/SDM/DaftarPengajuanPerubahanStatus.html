@@ -1,16 +1,14 @@
-<style>
-	button:disabled {
-    background: #B5B2B1;
-}
-</style>
 <div ng-show="dataVOloaded">
 	<div ng-include="'../app/module/Shared/TemplateLoading'" style="position:absolute;z-index:3;"></div>
 	<c-panel item="item" header="'Daftar Pengajuan Perubahan Status Kehadiran Pegawai'" disabled>
-		
 		<div class="panel panel-default container_12">
 			<div class="panel-body">
 				<!-- pencarianNamaPegawai -->
 				<div class="grid_12">
+					<!-- <div class="grid_2">
+						<label><b>Periode</b></label>
+						<input kendo-date-picker k-max ="now" k-ng-model="filter.tglPengajuan" style="width: 100%" k-options="yearSelected"/>
+					</div> -->
 					<div class="grid_3">
 						<label c-label item="item" c-label-text="namaPegawai"></label>
 						<input c-text-box type="input" filter="" class="k-textbox" ng-model="filter.namaPegawai" />
@@ -21,54 +19,46 @@
 					</div>
 					<div class="grid_2">
 						<label c-label item="item" c-label-text="statusPermohonan"></label>
-						<input style="width: 100%;" kendo-combo-box k-ng-model="filter.status" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listStatusPermohonan" />
+						<input style="width: 100%;" kendo-combo-box k-ng-model="filter.status"
+							k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'"
+							k-auto-bind="false" k-data-source="listStatusPermohonan" />
 					</div>
 					<div class="grid_1">
 						<label c-label c-label-text=""></label>
-						<em style="margin-top:6px;" ng-click='resetFilters()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+						<em style="margin-top:6px;" ng-click='resetFilters()' id="iconButton" data-role="button"
+							class="k-button k-button-icon k-primary" role="button" aria-disabled="false"
+							tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
 					</div>
 				</div>
 				<!-- DaftarPengajuan -->
 				<div class="grid_12">
 					<div id="gridPerubahanStatus" kendo-grid options="mainGridOptions"></div>
 				</div>
-
-				 <div class="grid_12">
-
-	                    <div class="grid_1">
-	                        <button class="c-button" ng-click="back()" style="margin-top:5px">Back</button>
-	                    </div>
-
-	                    <div class="grid_3">
-	                        <div class="grid_2" ng-repeat="page in pages">
-	                            <button class="c-button" ng-click="loadGrid(page.pageNumber)">{{page.pageNumber}}</button>
-	                        </div>
-	                    </div>
-
-	                    <div class="grid_1" style="margin-left:-50px;margin-top:5px">
-	                        <button class="c-button" ng-click="next()">Next</button>
-	                    </div>
-
-	                    <div class="grid_4">
-                                <div class="grid_6">
-                                    <label c-label item="item" >Rows</label>    
-                                </div>
-
-                                <div class="grid_6" style="margin-left:-180px;margin-top:-5px;">
-                                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="filter.rows" />     
-                                </div>
-
-                                
-                                
-                            </div>
-
-                </div>    
-
+				<div class="grid_12">
+					<div class="grid_1">
+						<button class="c-button" ng-click="back()" style="margin-top:5px">Back</button>
+					</div>
+					<div class="grid_3">
+						<div class="grid_2" ng-repeat="page in pages">
+							<button class="c-button" ng-click="loadGrid(page.pageNumber)">{{page.pageNumber}}</button>
+						</div>
+					</div>
+					<div class="grid_1" style="margin-left:-50px;margin-top:5px">
+						<button class="c-button" ng-click="next()">Next</button>
+					</div>
+					<div class="grid_4">
+						<div class="grid_6">
+							<label c-label item="item">Rows</label>
+						</div>
+						<div class="grid_6" style="margin-left:-180px;margin-top:-5px;">
+							<input c-text-box type="input" filter="" class="k-textbox" ng-model="filter.rows" />
+						</div>
+					</div>
+				</div>
 			</div>
-
 		</div>
 	</c-panel>
-	
+
 	<!-- button action (remove to grid cell) -->
 	<!-- <div class="grid_12">
 		<div class="grid_6 pull-right">
@@ -79,16 +69,20 @@
 	</div> -->
 
 	<!-- <div ng-include='"../app/module/Shared/TemplateButtonSimpan"'></div> -->
-<!-- 
-	<div ng-controller="VerifikasiPengajuanPerubahanStatusCtrl">
-		<div ng-include='"../app/module/SDM/VerifikasiPengajuanPerubahanStatus"'></div>
-	</div>
- -->	<!-- D:\Ecep\Harkit\Harkit\FrontEnd\app\module\SDM\VerifikasiPengajuanPerubahanStatus.html -->
+	<!-- <div ng-controller="VerifikasiPengajuanPerubahanStatusCtrl">
+			<div ng-include='"../app/module/SDM/VerifikasiPengajuanPerubahanStatus"'></div>
+		</div> -->
+
+	<!-- D:\Ecep\Harkit\Harkit\FrontEnd\app\module\SDM\VerifikasiPengajuanPerubahanStatus.html -->
 </div>
 <style>
-a.k-button.k-button-icontext {
-	background-color: #e0360b;
-	border: none;
-	margin: .1em;
-}
+	/* a.k-button.k-button-icontext {
+		background-color: #e0360b;
+		border: none;
+		margin: .1em;
+	}
+
+	button:disabled {
+		background: #B5B2B1;
+	} */
 </style>
