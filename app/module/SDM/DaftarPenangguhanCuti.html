@@ -31,6 +31,10 @@
             <div class="panel-body">
                 <!-- pencarianNamaPegawai -->
                 <div class="grid_10">
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="bulanPermohonan"></label>
+                        <input kendo-date-picker k-max ="now" k-ng-model="filter.tglPermohonan" style="width: 100%" k-options="yearSelected"/>
+                    </div>
                     <div class="grid_3">
                         <label c-label item="item" c-label-text="namaPegawai"></label>
                         <input c-text-box type="input" filter="" class="k-textbox" ng-model="filter.namaPegawai" />

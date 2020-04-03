@@ -6,9 +6,15 @@ define(['initialize'], function (initialize) {
 			$scope.filter = {};
 			$scope.now = new Date();
 			$scope.dataVOloaded = true;
+			$scope.filter.tglPermohonan = $scope.now;
 			$scope.monthSelectorOptions = {
 				start: "year",
 				depth: "year"
+			};
+			$scope.yearSelected = {
+				start: "year",
+				depth: "year",
+				format: "MMMM yyyy"
 			};
 			// $scope.listStatusPermohonan = [
 			// 	{id:0, name: "Belum diputuskan"},
@@ -73,6 +79,7 @@ define(['initialize'], function (initialize) {
 
 				var rows;
 				var nama;
+				var tglPermohonan;
 				$scope.statusRowsFilterChanged;
 
 
@@ -98,6 +105,13 @@ define(['initialize'], function (initialize) {
 					page = 1;
 				}
 
+				if ($scope.filter.tglPermohonan) {
+					tglPermohonan = DateHelper.formatDate($scope.filter.tglPermohonan, "YYYY-MM");
+					rows = "";
+				} else {
+					tglPermohonan = "";
+					rows = $scope.rows;
+				}
 
 				if ($scope.filter.namaPegawai == undefined) {
 					nama = "";
@@ -118,9 +132,10 @@ define(['initialize'], function (initialize) {
 				// }
 
 				ManageSdmNew.getListData("sdm/get-list-permohonan-status-cuti-paging/?idPegawai=" + "&isSdm=" + $scope.isLoginKesja
-					+ "&take=" + $scope.rows + "&page=" + page + "&sort=tglPengajuan&dir=desc" + "&nama=" + nama
+					+ "&take=" + rows + "&page=" + page + "&sort=tglPengajuan&dir=desc" + "&nama=" + nama
 					+ "&jenisPermohonan=" + $scope.jenisPermohonan
 					+ "&statusPermohonan=" //+ $scope.statusPermohonan
+					+ "&tglPermohonan=" + tglPermohonan
 				).then(function (result) {
 
 
@@ -145,7 +160,7 @@ define(['initialize'], function (initialize) {
 
 					}
 
-
+					$scope.filter.rows = result.data.data.listData.length;
 
 
 					$scope.dataSource = new kendo.data.DataSource({
@@ -156,10 +171,14 @@ define(['initialize'], function (initialize) {
 					$scope.isRouteLoading = false;
 				})
 
-
 			}
 
-			$scope.filter.rows = 5;
+			if ($scope.filter.tglPermohonan) {
+				$scope.filter.rows = "";
+			} else {
+				$scope.filter.rows = 5;
+			}
+			
 			$scope.totalPages = 0;
 
 			// $scope.pages = [
@@ -332,6 +351,16 @@ define(['initialize'], function (initialize) {
 				});
 			};
 			var timeoutPromise;
+			$scope.$watch('filter.tglPermohonan', function (newVal, oldVal) {
+				if (!newVal) return;
+				$timeout.cancel(timeoutPromise);
+				timeoutPromise = $timeout(function () {
+					if (newVal && newVal !== oldVal) {
+						// applyFilter("namaPegawai", newVal)
+						$scope.loadGrid();
+					}
+				}, 1000);
+			});
 			$scope.$watch('filter.namaPegawai', function (newVal, oldVal) {
 				if (!newVal) return;
 				$timeout.cancel(timeoutPromise);
