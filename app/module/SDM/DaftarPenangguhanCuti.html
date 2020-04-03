@@ -1,13 +1,13 @@
 <style>
-	button:disabled {
-    background: #B5B2B1;
-}
+    button:disabled {
+        background: #B5B2B1;
+    }
 </style>
 <div>
-	<div ng-show="dataVOloaded">
+    <div ng-show="dataVOloaded">
         <div ng-include="'../app/module/Shared/TemplateLoading'" style="position:absolute;z-index:3;"></div>
-		<c-panel item="item" header="'Daftar Ketidakhadiran Pegawai yang Disetujui'" disabled>
-			<!-- <div class="grid_8">
+        <c-panel item="item" header="'Daftar Ketidakhadiran Pegawai yang Disetujui'" disabled>
+            <!-- <div class="grid_8">
 				<div class="grid_5">
 					<label c-label item="item" c-label-text="PegawaiLogin"></label>
 					<input c-text-box type="input" filter="" class="k-textbox" ng-model="pegawai.namaLengkap" disabled="true"/>
@@ -27,10 +27,10 @@
                     <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaJabatan" disabled="true"/>
                 </div>
             </div> -->
-			
+
             <div class="panel-body">
                 <!-- pencarianNamaPegawai -->
-				<div class="grid_10">
+                <div class="grid_10">
                     <div class="grid_3">
                         <label c-label item="item" c-label-text="namaPegawai"></label>
                         <input c-text-box type="input" filter="" class="k-textbox" ng-model="filter.namaPegawai" />
@@ -45,50 +45,56 @@
                     </div> -->
                     <div class="grid_1">
                         <label c-label c-label-text=""></label>
-                        <em style="margin-top:6px;" ng-click='resetFilters()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+                        <em style="margin-top:6px;" ng-click='resetFilters()' id="iconButton" data-role="button"
+                            class="k-button k-button-icon k-primary" role="button" aria-disabled="false"
+                            tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
                     </div>
                 </div>
                 <!-- DaftarPengajuanMutasiSanksiResign -->
-			    <div class="grid_12">
-                    <div id="gridPerubahanStatus" kendo-grid options="mainGridOptions" k-data-source="dataSource" k-selectable="'row'" k-ng-model="current" ng-click="click(current)"></div>
-                </div>
-                <div class="grid_12 headerBox"><p>Filter Data</p></div>
                 <div class="grid_12">
-                    
+                    <div id="gridPerubahanStatus" kendo-grid options="mainGridOptions" k-data-source="dataSource"
+                        k-selectable="'row'" k-ng-model="current" ng-click="click(current)"></div>
+                </div>
+                <div class="grid_12 headerBox">
+                    <p>Filter Data</p>
+                </div>
+                <div class="grid_12">
 
-                        <div class="grid_12">
 
-                            <div class="grid_1">
-                                <button class="c-button" ng-click="back()" style="margin-top:5px">Back</button>
+                    <div class="grid_12">
+
+                        <div class="grid_1">
+                            <button class="c-button" ng-click="back()" style="margin-top:5px">Back</button>
+                        </div>
+
+                        <div class="grid_3">
+                            <div class="grid_2" ng-repeat="page in pages">
+                                <button class="c-button"
+                                    ng-click="loadGrid(page.pageNumber)">{{page.pageNumber}}</button>
+                            </div>
+                        </div>
+
+                        <div class="grid_1" style="margin-left:-50px;margin-top:5px">
+                            <button class="c-button" ng-click="next()">Next</button>
+                        </div>
+
+                        <div class="grid_4">
+                            <div class="grid_6">
+                                <label c-label item="item">Rows</label>
                             </div>
 
-                            <div class="grid_3">
-                                <div class="grid_2" ng-repeat="page in pages">
-                                    <button class="c-button" ng-click="loadGrid(page.pageNumber)">{{page.pageNumber}}</button>
-                                </div>
+                            <div class="grid_6" style="margin-left:-180px;margin-top:-5px;">
+                                <input c-text-box type="input" filter="" class="k-textbox" ng-model="filter.rows" />
                             </div>
 
-                            <div class="grid_1" style="margin-left:-50px;margin-top:5px">
-                                <button class="c-button" ng-click="next()">Next</button>
-                            </div>
 
-                            <div class="grid_4">
-                                <div class="grid_6">
-                                    <label c-label item="item" >Rows</label>    
-                                </div>
 
-                                <div class="grid_6" style="margin-left:-180px;margin-top:-5px;">
-                                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="filter.rows" />     
-                                </div>
+                        </div>
+                    </div>
 
-                                
-                                
-                            </div>
-                        </div>    
 
-                        
-                        
-                        <!-- <div class="grid_12">
+
+                    <!-- <div class="grid_12">
                             <label c-label item="item" c-label-text="namaPegawai"></label>
                         </div>
                         
@@ -97,28 +103,31 @@
                         </div> 
 
                         <em style="margin-top:10px;" ng-click='resetFilters()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>     -->
-                            
-                        
-                    
-                            
-                                
-                               
-                        
-                       
+
+
+
+
+
+
+
+
                 </div>
 
             </div>
-            
+
             <div class="grid_4 pull-right">
-                <div class="grid_6"><button class="c-button" ng-click="tangguhkan(currentData)" ng-disabled="!isLoginKesja">Tangguhkan</button></div>
+                <div class="grid_6"><button class="c-button" ng-click="tangguhkan(currentData)"
+                        ng-disabled="!isLoginKesja">Tangguhkan</button></div>
                 <!-- <div class="grid_4"><button class="c-button" ng-click="openWindow()">Cetak Permohonan Cuti</button></div> -->
-                <div class="grid_6"><button class="c-button" ng-click="cetakSuratIzin()">Cetak Surat Izin Cuti</button></div>
+                <div class="grid_6"><button class="c-button" ng-click="cetakSuratIzin()">Cetak Surat Izin Cuti</button>
+                </div>
             </div>
         </c-panel>
         <!-- popup window -->
         <div class="grid_12">
             <div class="popUp" ng-show="isShowPopUp">
-                <div kendo-window="win1" id="winPopUp" k-title="'Cetak Daftar Cuti'" k-width="'55%'" k-draggable="false" k-position="{ 'top': '30%', 'left':'20%' }" k-on-close="closeWindow()" k-visible="isShowPopUp">
+                <div kendo-window="win1" id="winPopUp" k-title="'Cetak Daftar Cuti'" k-width="'55%'" k-draggable="false"
+                    k-position="{ 'top': '30%', 'left':'20%' }" k-on-close="closeWindow()" k-visible="isShowPopUp">
                     <div class="grid_12">
                         <div class="grid_12">
                             <label c-label item="item" c-label-text="Bulan"></label>
@@ -126,7 +135,8 @@
                         <div class="clear"></div>
 
                         <div class="grid_12">
-                        <input kendo-date-picker k-ng-model="item.until" k-format="'MMM-yyyy'" k-options="monthSelectorOptions" style="width: 100%; ">
+                            <input kendo-date-picker k-ng-model="item.until" k-format="'MMM-yyyy'"
+                                k-options="monthSelectorOptions" style="width: 100%; ">
                         </div>
                     </div>
                     <div class="grid_12">
@@ -136,7 +146,9 @@
                         <div class="clear"></div>
 
                         <div class="grid_12">
-                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai1" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" k-on-change="getDataPegawai()"/>
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai1"
+                                k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'"
+                                k-auto-bind="false" k-data-source="listPegawai" k-on-change="getDataPegawai()" />
                         </div>
 
                     </div>
@@ -147,7 +159,8 @@
                         <div class="clear"></div>
 
                         <div class="grid_12">
-                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jabatan" disabled="true"/>
+                            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jabatan"
+                                disabled="true" />
                         </div>
 
                     </div>
@@ -158,7 +171,9 @@
                         <div class="clear"></div>
 
                         <div class="grid_12">
-                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai2" k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" k-on-change="getDataPegawai2()"/>
+                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai2"
+                                k-data-text-field="'namaLengkap'" k-data-value-field="'id'" k-filter="'contains'"
+                                k-auto-bind="false" k-data-source="listPegawai" k-on-change="getDataPegawai2()" />
                         </div>
                     </div>
                     <div class="grid_12">
@@ -168,7 +183,8 @@
                         <div class="clear"></div>
 
                         <div class="grid_12">
-                        <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jabatan2" disabled="true"/>
+                            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.jabatan2"
+                                disabled="true" />
                         </div>
                     </div>
                     <div class="grid_12">
@@ -183,11 +199,15 @@
             </div>
         </div>
         <!-- popup konfirmasi jumlah cetak label -->
-        <div kendo-window="pilihPejabat" k-title="'Pilih Pejabat Penandatangan'" k-width="400" k-height="120" k-visible="false">
+        <div kendo-window="pilihPejabat" k-title="'Pilih Pejabat Penandatangan'" k-width="400" k-height="120"
+            k-visible="false">
             <label c-label c-label-text="pejabatPenandaTangan"></label>
-            <input style="width: 100%;" kendo-combo-box k-ng-model="items.pejabatPenandaTangan" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-auto-bind="false" k-data-source="listPejabat"/>
+            <input style="width: 100%;" kendo-combo-box k-ng-model="items.pejabatPenandaTangan"
+                k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-auto-bind="false"
+                k-data-source="listPejabat" />
             <div class="clear">
-            <button class="k-button" ng-click="cetak2(items.pejabatPenandaTangan)" style="float:right;margin-top:4%">Cetak</button>
+                <button class="k-button" ng-click="cetak2(items.pejabatPenandaTangan)"
+                    style="float:right;margin-top:4%">Cetak</button>
+            </div>
         </div>
-	</div>
-</div>
+    </div>
