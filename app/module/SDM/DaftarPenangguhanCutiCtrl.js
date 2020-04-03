@@ -10,7 +10,12 @@ define(['initialize'], function (initialize) {
 				start: "year",
 				depth: "year"
 			};
-
+			$scope.yearSelected = {
+				start: "year",
+				depth: "year",
+				format: "MMMM yyyy"
+			};
+			$scope.filter.tglPermohonan = $scope.now;
 			// $scope.listStatusPermohonan = [
 			// 	{id:0, name: "Belum diputuskan"},
 			// 	// {id:1, name: "Disetujui"},
@@ -154,6 +159,7 @@ define(['initialize'], function (initialize) {
 				$scope.isRouteLoading = true;
 				var rows;
 				var nama;
+				var tglPermohonan;
 				$scope.statusRowsFilterChanged;
 
 				if ($scope.filter.rows == undefined) {
@@ -170,6 +176,12 @@ define(['initialize'], function (initialize) {
 
 				if (page == undefined) {
 					page = 1;
+				}
+
+				if ($scope.filter.tglPermohonan == undefined) {
+					tglPermohonan = "";
+				} else {
+					tglPermohonan = DateHelper.formatDate($scope.filter.tglPermohonan, "YYYY-MM");
 				}
 
 				if ($scope.filter.namaPegawai == undefined) {
@@ -194,6 +206,7 @@ define(['initialize'], function (initialize) {
 					+ "&take=" + $scope.rows + "&page=" + page + "&sort=tglPengajuan&dir=desc" + "&nama=" + nama
 					+ "&jenisPermohonan=" + $scope.jenisPermohonan
 					+ "&statusPermohonan=" //+ $scope.statusPermohonan
+					+ "&tglPermohonan=" + tglPermohonan
 				).then(function (result) {
 
 					//Data yang masuk kesini sudah dipaging di server	
@@ -212,6 +225,8 @@ define(['initialize'], function (initialize) {
 							}
 						}
 					}
+
+					$scope.filter.rows = result.data.data.listData.length;
 
 					$scope.dataSource = new kendo.data.DataSource({
 						// pageSize: 6,
@@ -407,6 +422,17 @@ define(['initialize'], function (initialize) {
 				timeoutPromise = $timeout(function () {
 					if (newVal && newVal !== oldVal) {
 						// applyFilter("statusPegawai", newVal)
+						$scope.loadGrid();
+					}
+				}, 1000);
+			});
+
+			$scope.$watch('filter.tglPermohonan', function (newVal, oldVal) {
+				if (!newVal) return;
+				$timeout.cancel(timeoutPromise);
+				timeoutPromise = $timeout(function () {
+					if (newVal && newVal !== oldVal) {
+						// applyFilter("namaPegawai", newVal)
 						$scope.loadGrid();
 					}
 				}, 1000);

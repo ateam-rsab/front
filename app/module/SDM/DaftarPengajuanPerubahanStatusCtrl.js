@@ -137,6 +137,7 @@ define(['initialize'], function (initialize) {
 
 				$scope.rows;
 				$scope.namaPegawai;
+				$scope.tglPermohonan;
 				$scope.jenisPermohonan;
 				$scope.statusPermohonan;
 				$scope.page;
@@ -159,6 +160,12 @@ define(['initialize'], function (initialize) {
 					$scope.page = 1;
 				} else {
 					$scope.page = page;
+				}
+
+				if ($scope.filter.tglPermohonan == undefined) {
+					$scope.tglPermohonan = "";
+				} else {
+					$scope.tglPermohonan = DateHelper.formatDate($scope.filter.tglPermohonan, "YYYY-MM");
 				}
 
 				if ($scope.filter.namaPegawai == undefined) {
@@ -210,7 +217,7 @@ define(['initialize'], function (initialize) {
 						$scope.isLoginKesja = true; // login bukan sdm, button verif & unverif disable
 
 						// ManageSdmNew.getListData("sdm/get-list-approval-status?idPegawai=").then(function(e){ // get all permohonan status
-						ManageSdmNew.getListData("sdm/get-list-approval-status-paging?idPegawai=" + "&take=" + $scope.rows + "&page=" + $scope.page + "&nama=" + $scope.namaPegawai + "&jenisPermohonan=" + $scope.jenisPermohonan + "&statusPermohonan=" + $scope.statusPermohonan).then(function (e) {
+						ManageSdmNew.getListData("sdm/get-list-approval-status-paging?idPegawai=" + "&take=" + $scope.rows + "&page=" + $scope.page + "&nama=" + $scope.namaPegawai + "&jenisPermohonan=" + $scope.jenisPermohonan + "&statusPermohonan=" + $scope.statusPermohonan + "&tglPermohonan=" + $scope.tglPermohonan).then(function (e) {
 							//Data yang masuk kesini sudah dipaging di server
 							if (e.data.data.listData != undefined) {
 								filteredData = e.data.data.listData.filter(filterByStatus);
@@ -230,6 +237,8 @@ define(['initialize'], function (initialize) {
 									}
 								}
 							}
+							
+							$scope.filter.rows = e.data.data.listData.length;
 
 							$scope.daftarPengajuan = new kendo.data.DataSource({
 								pageSize: 20,
@@ -442,6 +451,17 @@ define(['initialize'], function (initialize) {
 				timeoutPromise = $timeout(function () {
 					if (newVal && newVal !== oldVal) {
 						// applyFilter("statusPegawai", newVal)
+						$scope.loadGrid();
+					}
+				}, 1000);
+			});
+
+			$scope.$watch('filter.tglPermohonan', function (newVal, oldVal) {
+				if (!newVal) return;
+				$timeout.cancel(timeoutPromise);
+				timeoutPromise = $timeout(function () {
+					if (newVal && newVal !== oldVal) {
+						// applyFilter("namaPegawai", newVal)
 						$scope.loadGrid();
 					}
 				}, 1000);
