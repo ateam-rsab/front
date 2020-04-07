@@ -216,7 +216,7 @@ define(['initialize'], function(initialize) {
                     "field": "tglstruk",
                     "title": "Tanggal",
                     "width" : "50px",
-                                "template": "<span class='style-right'>{{formatTanggal('#: tglstruk #', '')}}</span>"
+                    "template": "<span class='style-right'>{{formatTanggal('#: tglstruk #', '')}}</span>"
                 },
                 {
                     "field": "nostruk",
@@ -245,6 +245,77 @@ define(['initialize'], function(initialize) {
                     "template": "<span class='style-right'>{{formatRupiah('#: total #', '')}}</span>"
                 }
             ];
+
+            $scope.gridOpt = {
+                toolbar: [
+                    { text: "export", name: "Export detail", template: '<button ng-click="exportExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>' }
+
+                ],
+                pageable: true,
+                scrollable: true,
+                columns:$scope.columnGrid
+            };
+
+            $scope.exportExcel = function () {
+                var tempDataExport = [];
+                var rows = [
+                    {
+                        cells: [
+                            { value: "Tanggal" },
+                            { value: "No. Pemakaian" },
+                            { value: "Keterangan" },
+                            { value: "Ruangan" },
+                            { value: "Pegawai" },
+                            { value: "Total" },
+                            
+                        ]
+                    }
+                ];
+
+                tempDataExport = $scope.dataGrid;
+                tempDataExport.fetch(function () {
+                    var data = this.data();
+                    console.log(data);
+                    for (var i = 0; i < data.length; i++) {
+                        //push single row for every record
+                        rows.push({
+                            cells: [
+                                { value: data[i].tglstruk },
+                                { value: data[i].nostruk },
+                                { value: data[i].keterangan },
+                                { value: data[i].namaruangan },
+                                { value: data[i].namapegawai },
+                                { value: data[i].total },
+                            ]
+                        })
+                    }
+                    var workbook = new kendo.ooxml.Workbook({
+                        sheets: [
+                            {
+                                freezePane: {
+                                    rowSplit: 1
+                                },
+                                columns: [
+                                    // Column settings (width)
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true }
+                                ],
+                                // Title of the sheet
+                                title: "Daftar Pemakaian Stok Ruangan",
+                                // Rows of the sheet
+                                rows: rows
+                            }
+                        ]
+                    });
+                    //save the file as Excel file with extension xlsx
+                    kendo.saveAs({ dataURI: workbook.toDataURL(), fileName: "daftar_pemakaian_stok_ruangan.xlsx" });
+                });
+            };
+
             $scope.data2 = function(dataItem) {
                 return {
                     dataSource: new kendo.data.DataSource({

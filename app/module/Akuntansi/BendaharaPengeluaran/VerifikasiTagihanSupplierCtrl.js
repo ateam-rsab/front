@@ -1,17 +1,21 @@
 define(['initialize'], function (initialize) {
   'use strict';
-  initialize.controller('VerifikasiTagihanSupplierCtrl', ['CacheHelper', '$timeout', '$q', '$rootScope', '$scope', 'ManageAkuntansi', '$state', 'DateHelper', 'ManageSarpras',
-    function (cacheHelper, $timeout, $q, $rootScope, $scope, ManageAkuntansi, $state, dateHelper, ManageSarpras) {
+  initialize.controller('VerifikasiTagihanSupplierCtrl', ['CacheHelper', '$timeout', '$q', '$rootScope', '$scope', 'ManageAkuntansi', '$state', 'DateHelper', 'ManageSarpras', 'ModelItemAkuntansi', '$mdDialog',
+    function (cacheHelper, $timeout, $q, $rootScope, $scope, ManageAkuntansi, $state, dateHelper, ManageSarpras, modelItemAkuntansi, $mdDialog) {
 
       //catatan : PENTING
       //cek tabel maploginusertoruangan_s
 
       $scope.listAnggaran = [];
+      $scope.listSumberDana = [];
+
+      $scope.isPagu = false;
 
       $scope.dataVOloaded = true;
       $scope.now = new Date();
       $scope.item = {};
       $scope.verif = {};
+      $scope.item.tanggalVerifikasi = new Date();
       //$scope.dataSelectedPiutang = {};
       $scope.item.tanggalAwal = $scope.now;
       $scope.item.tanggalAkhir = $scope.now;
@@ -32,23 +36,59 @@ define(['initialize'], function (initialize) {
       //ON LOAD with Params
       $scope.item.tanggalAwal = $scope.now;
       $scope.item.tanggalAkhir = $scope.now;
-      $scope.loadData = function() {
-        $scope.isRouteLoading = true;
-        ManageAkuntansi.getDataTableTransaksi("bendahara-pengeluaran/get-data-verifikasi-tagihan-suplier?tglAwal=2020-01-01&tglAkhir=2020-03-31&Supplier=" + $scope.item.namaSupplier + "&status=" + $scope.item.status.namaStatus).then((res) => {
-          for(let i = 0; i < res.data.daftar.length; i++) {
-            // new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR'}).format(
-            res.data.daftar[i].totalFormatted = new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR'}).format(res.data.daftar[i].total);
-            res.data.daftar[i].totalppnFormatted = new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR'}).format(res.data.daftar[i].totalppn);
-            res.data.daftar[i].totaldiskonFormatted = new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR'}).format(res.data.daftar[i].totaldiskon);
-            res.data.daftar[i].subtotalFormatted = new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR'}).format(res.data.daftar[i].subtotal);
-            res.data.daftar[i].sisautangFormatted = new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR'}).format(res.data.daftar[i].sisautang);
-          }
 
-          console.log(res.data.daftar);
+      let init = function () {
+        // serive get sumber dana
+        ManageAkuntansi.getDataTableTransaksi('bendahara-pengeluaran/get-sumber-dana').then(res => {
+          $scope.listSumberDana = res.data;
+        })
+
+        // service get list anggaran
+        ManageAkuntansi.getDataTableTransaksi('bendahara-pengeluaran/get-penggunaan-anggaran?tahun=' + new Date().getFullYear()).then(res => {
+          for (let i = 0; i < res.data.data.length; i++) {
+            res.data.data[i].anggaranFormatted = new Intl.NumberFormat('id-ID', {
+              style: 'currency',
+              currency: 'IDR'
+            }).format(res.data.data[i].anggaran);
+          }
+          $scope.listAnggaran = res.data.data;
+        });
+      }
+
+      init();
+
+      $scope.loadData = function () {
+        $scope.isRouteLoading = true;
+        // YYYY-MM-DD
+        ManageAkuntansi.getDataTableTransaksi("bendahara-pengeluaran/get-data-verifikasi-tagihan-suplier?tglAwal=" + dateHelper.formatDate($scope.item.tanggalAwal, 'YYYY-MM-DD') + "&tglAkhir=" + dateHelper.formatDate($scope.item.tanggalAkhir, 'YYYY-MM-DD') + "&Supplier=" + $scope.item.namaSupplier + "&status=" + $scope.item.status.namaStatus).then((res) => {
+          for (let i = 0; i < res.data.daftar.length; i++) {
+            res.data.daftar[i].totalFormatted = new Intl.NumberFormat('id-ID', {
+              style: 'currency',
+              currency: 'IDR'
+            }).format(res.data.daftar[i].total);
+            res.data.daftar[i].totalppnFormatted = new Intl.NumberFormat('id-ID', {
+              style: 'currency',
+              currency: 'IDR'
+            }).format(res.data.daftar[i].totalppn);
+            res.data.daftar[i].totaldiskonFormatted = new Intl.NumberFormat('id-ID', {
+              style: 'currency',
+              currency: 'IDR'
+            }).format(res.data.daftar[i].totaldiskon);
+            res.data.daftar[i].subtotalFormatted = new Intl.NumberFormat('id-ID', {
+              style: 'currency',
+              currency: 'IDR'
+            }).format(res.data.daftar[i].subtotal);
+            res.data.daftar[i].sisautangFormatted = new Intl.NumberFormat('id-ID', {
+              style: 'currency',
+              currency: 'IDR'
+            }).format(res.data.daftar[i].sisautang);
+          }
           $scope.dataGrid = new kendo.data.DataSource({
-            data:res.data.daftar,
-            pageSize:25
+            data: res.data.daftar,
+            pageSize: 25
           });
+          $scope.isRouteLoading = false;
+        }, err => {
           $scope.isRouteLoading = false;
         });
       };
@@ -62,8 +102,7 @@ define(['initialize'], function (initialize) {
         return dateHelper.formatDate(value, "YYYY-MM-DD");
       }
 
-      $scope.columnGrid = [
-        {
+      $scope.columnGrid = [{
           "field": "namarekanan",
           "title": "<h3>Nama Rekanan</h3>",
           "width": "200px"
@@ -153,18 +192,11 @@ define(['initialize'], function (initialize) {
           "width": "150px"
         },
         {
-          "field": "totaldiskon",
-          "title": "<h3>Diskon</h3>",
-          "template": "<span class='style-center'>{{'#: totaldiskon #'}}</span>",
-          "width": "150px"
-        },
-        {
-          command: [
-            {
+          command: [{
               text: "Verifikasi",
               align: "center",
               attributes: {
-                  align: "center"
+                align: "center"
               },
               click: verifikasiData,
               imageClass: "k-icon k-i-pencil"
@@ -173,7 +205,7 @@ define(['initialize'], function (initialize) {
               text: "Detail Tagihan",
               align: "center",
               attributes: {
-                  align: "center"
+                align: "center"
               },
               click: detailTagihan,
               imageClass: "k-icon k-i-pencil"
@@ -182,72 +214,275 @@ define(['initialize'], function (initialize) {
           title: "",
           width: "300px",
           attributes: {
-              style: "text-align:center;valign=middle"
+            style: "text-align:center;valign=middle"
           },
-      }];
+        }
+      ];
+
+      $scope.getTerbilang = function (data, model) {
+        modelItemAkuntansi.getDataGlobal('valet/terbilang/' + data).then(res => {
+          $scope.verif[`${model}`] = res.terbilang;
+        });
+      }
+
+      $scope.clearVerifikasi = function () {
+        $scope.verif = null;
+      }
+
+      $scope.gridOpt = {
+        toolbar: [{
+            text: "export",
+            name: "Export detail",
+            template: '<button ng-click="exportExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
+          }
+
+        ],
+        pageable: true,
+        scrollable: true,
+        columns: $scope.columnGrid
+      };
+
+      $scope.exportExcel = function () {
+        var tempDataExport = [];
+        var rows = [{
+          cells: [{
+              value: "Nama Rekanan"
+            },
+            {
+              value: "No. Verifikasi"
+            },
+            {
+              value: "Tanggal Struk"
+            },
+            {
+              value: "Tanggal Dokumen"
+            },
+            {
+              value: "No. Struk"
+            },
+            {
+              value: "No. Dokumen"
+            },
+            {
+              value: "Total"
+            },
+            {
+              value: "PPN"
+            },
+            {
+              value: "Diskon"
+            },
+            {
+              value: "Sub Total"
+            },
+            {
+              value: "Sisa Hutang"
+            },
+            {
+              value: "Status Bayar"
+            },
+            {
+              value: "Status"
+            },
+            {
+              value: "Diskon"
+            }
+          ]
+        }];
+
+        tempDataExport = $scope.dataGrid;
+        tempDataExport.fetch(function () {
+          var data = this.data();
+          console.log(data);
+          for (var i = 0; i < data.length; i++) {
+            //push single row for every record
+            rows.push({
+              cells: [{
+                  value: data[i].namarekanan
+                },
+                {
+                  value: data[i].noverifikasi
+                },
+                {
+                  value: data[i].tglstruk
+                },
+                {
+                  value: data[i].tgldokumen
+                },
+                {
+                  value: data[i].nostruk
+                },
+                {
+                  value: data[i].total
+                },
+                {
+                  value: data[i].totalppn
+                },
+                {
+                  value: data[i].totaldiskon
+                },
+                {
+                  value: data[i].subtotal
+                },
+                {
+                  value: data[i].sisautang
+                },
+                {
+                  value: data[i].statusbayar
+                },
+                {
+                  value: data[i].status
+                },
+                {
+                  value: data[i].totaldiskon
+                }
+              ]
+            })
+          }
+          var workbook = new kendo.ooxml.Workbook({
+            sheets: [{
+              freezePane: {
+                rowSplit: 1
+              },
+              columns: [
+                // Column settings (width)
+                {
+                  autoWidth: true
+                },
+                {
+                  autoWidth: true
+                },
+                {
+                  autoWidth: true
+                },
+                {
+                  autoWidth: true
+                },
+                {
+                  autoWidth: true
+                },
+                {
+                  autoWidth: true
+                },
+                {
+                  autoWidth: true
+                },
+                {
+                  autoWidth: true
+                },
+                {
+                  autoWidth: true
+                },
+                {
+                  autoWidth: true
+                },
+                {
+                  autoWidth: true
+                },
+                {
+                  autoWidth: true
+                },
+                {
+                  autoWidth: true
+                }
+              ],
+              // Title of the sheet
+              title: "Daftar Verifikasi Tagihan Rekanan",
+              // Rows of the sheet
+              rows: rows
+            }]
+          });
+          //save the file as Excel file with extension xlsx
+          kendo.saveAs({
+            dataURI: workbook.toDataURL(),
+            fileName: "daftar-verifikasi-tagihan-rekanan.xlsx"
+          });
+        });
+      };
 
       function verifikasiData(e) {
         e.preventDefault();
-        var tr = $(e.target).closest("tr");
-        var dataItem = this.dataItem(tr);
+        let tr = $(e.target).closest("tr");
+        let dataItem = this.dataItem(tr);
         console.log(dataItem);
         $scope.dataSelected = dataItem;
-
+        // $scope.item.noFakturVerifikasi = null;
+        $scope.item.noDokumen = dataItem.nodokumen;
+        $scope.clearVerifikasi();
         $scope.verifkasiRekanan.open().center();
       }
 
       function detailTagihan(e) {
         e.preventDefault();
-        var tr = $(e.target).closest("tr");
-        var dataItem = this.dataItem(tr);
-        console.log(dataItem);
-      }
-     
+        let tr = $(e.target).closest("tr");
+        let dataItem = this.dataItem(tr);
+        $scope.dataSelected = dataItem;
+        let tglTerima = moment($scope.dataSelected.tglstruk).format('YYYY-MM-DD');
+        let tglfaktur = moment($scope.dataSelected.tgldokumen).format('YYYY-MM-DD');
+        let tglJatuhTempo = moment($scope.dataSelected.tgljatuhtempo).format('YYYY-MM-DD');
 
-      $scope.Verifikasi = function () {
-        // $scope.item.idPenjamin = $scope.item.tahun.FieldTahun
-        // $scope.item.periodeAwal = dateHelper.formatDate(ModelItem.beforePost($scope.item.tglAwal),"YYYY-MM-DD"); 
-        // $scope.item.periodeAkhir = dateHelper.formatDate(ModelItem.beforePost($scope.item.tglAkhir),"YYYY-MM-DD"); 
-        // $scope.item.status = $scope.item.status.Status
-
-        
-        // if (!$scope.dataSelected) {
-        //   toastr.warning('Data Verifikasi belum dipilih');
-        //   return;
-        // }
-
-        var dataObjPost = {};
-        var arrObjPembayaran = [];
-        // for(var i=0; i<$scope.dataSource._data.length; i++){
-        //   arrObjPembayaran.push($scope.dataSource._data[i].noRec)
-        // }
-        dataObjPost = {}
-        // ManageAkuntansi.postData("tagihan-rekanan/save-verifikasi-tagihan-rekanan?noRec=" + $scope.dataSelected.noRecStrukVerifikasi, dataObjPost).then(function (e) {})
-        // $scope.loadData()
-      };
-
-      $scope.Detail = function () {
-        if ($scope.dataSelected.noTerima == undefined) {
-          alert("Silahkan Pilih Tagihan Rekanan");
-          return;
-        }
-        var tglJatuhTempo = moment($scope.dataSelected.tglJatuhTempo).format('YYYY-MM-DD');
-        var tglTerima = moment($scope.dataSelected.tglTerima).format('YYYY-MM-DD');
-        var tglfaktur = moment($scope.dataSelected.tglfaktur).format('YYYY-MM-DD')
-        // $state.go("RekamDataPegawai",{idPegawai: $scope.idPegawai});
-        var tempData = tglTerima + "#" +
-          $scope.dataSelected.namaRekanan + "#" +
-          $scope.dataSelected.noFaktur + "#" +
-          tglJatuhTempo + "#" +
-          tglfaktur + "#" +
-          $scope.dataSelected.noRec +
-          "#VerifikasiTagihanSupplier#" +
-          $scope.dataSelected.noTerima;
-        //setting caching
+        var tempData = tglTerima + "#" + $scope.dataSelected.namarekanan + "#" + $scope.dataSelected.nodokumen + "#" + tglJatuhTempo + "#" + tglfaktur + "#" + $scope.dataSelected.norec + "#DaftarTagihanSupplier#" + $scope.dataSelected.nostruk;
         cacheHelper.set('DetailTagihanRekanan', tempData);
         $state.go('DetailTagihanRekanan', {
-          noTerima: "0308"
+          noTerima: '0308'
         })
+      }
+
+
+      $scope.verifikasiTagihan = function () {
+        let dataSave = {
+          "norec": $scope.dataSelected.norec,
+          "tglVerifikasi": dateHelper.formatDate($scope.item.tanggalVerifikasi, "YYYY-DD-MM")
+          // "2020-04-02"
+        };
+        $scope.verifkasiRekanan.close();
+
+        var confirm = $mdDialog.confirm()
+          .title('Apakah anda yakin akan Verifikasi Tagihan Rekanan (' + $scope.dataSelected.namarekanan + ')')
+          .ok('Ya')
+          .cancel('Batal');
+
+        $mdDialog.show(confirm).then(function () {
+          // yes
+          ManageAkuntansi.postpost(dataSave, 'bendahara-pengeluaran/save-verifikasi-tagihan-suplier').then(res => {
+            $scope.verifkasiRekanan.close();
+            $scope.loadData();
+          });
+        }, function () {
+          // no
+          $scope.closePopUpVerifikasi();
+          $scope.verifkasiRekanan.open().center();
+        });
+
+      };
+
+      $scope.showPagu = function (data) {
+        $scope.verif.kodeDana = data.kode_dana;
+        $scope.verif.tahunDana = data.tahun;
+        $scope.verif.namaAnggaran = data.nama_anggaran;
+        $scope.verif.sisaPagu = new Intl.NumberFormat('id-ID', {
+          style: 'currency',
+          currency: 'IDR'
+        }).format((data.anggaran - data.penggunaan));
+        $scope.verif.pagu = data.anggaranFormatted;
+        $scope.verif.rawSisaPagu = (data.anggaran - data.penggunaan);
+        $scope.getTerbilang((data.anggaran - data.penggunaan), 'sisaPaguTerbilang');
+        $scope.getTerbilang(data.anggaran, 'paguTerbilang');
+        $scope.isPagu = true;
+      }
+
+      $scope.closePopUpVerifikasi = function () {
+        $scope.clearVerifikasi();
+        $scope.isPagu = false;
+        $scope.verifkasiRekanan.close();
+      }
+
+      $scope.validasiTotalBayar = function () {
+        if (parseInt($scope.verif.totalBayar) > $scope.verif.rawSisaPagu) {
+          toastr.warning('Total bayar tidak bisa lebih dari sisa pagu');
+          $scope.verif.totalBayar = '';
+          $scope.getTerbilang(0, 'totalBayarTerbilang');
+        }
       }
     }
   ]);

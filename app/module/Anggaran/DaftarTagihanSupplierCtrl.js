@@ -209,14 +209,11 @@ define(['initialize'], function(initialize) {
              var tglTerima= moment($scope.dataSelected.tglstruk).format('YYYY-MM-DD');
              var tglfaktur = moment($scope.dataSelected.tgldokumen).format('YYYY-MM-DD')
               // $state.go("RekamDataPegawai",{idPegawai: $scope.idPegawai});
-              var tempData=tglTerima+"#"+
-                           $scope.dataSelected.namarekanan+"#"+
-                           $scope.dataSelected.nodokumen+"#"+
-                           tglJatuhTempo+"#"+
-                           tglfaktur+"#"+
-                           $scope.dataSelected.norec
-                           +"#DaftarTagihanSupplier#"
-                           +$scope.dataSelected.nostruk;
+              var tempData = tglTerima + "#" +
+                           $scope.dataSelected.namarekanan + "#" +
+                           $scope.dataSelected.nodokumen + "#" +
+                           tglJatuhTempo + "#" +
+                           tglfaktur + "#" + $scope.dataSelected.norec + "#DaftarTagihanSupplier#" + $scope.dataSelected.nostruk;
               //setting caching
               cacheHelper.set('DetailTagihanRekanan', tempData);
               $state.go('DetailTagihanRekanan',{noTerima: '0308'})
