@@ -82,21 +82,25 @@
 		<div class="panel panel-default container_12" style="padding: 0px 10px;">
 			<md-card>
 				<md-card-content>
-					<div class="grid_3">
-						<label style="font-weight: bolder;">No. Faktur</label>
+					<!-- <div class="grid_3">
+						<label style="font-weight: bolder;">No. Faktur/No. Dokumen</label>
 						<p>{{item.noDokumen}}</p>
-						<!-- <input c-text-box type="input" class="k-textbox" ng-model="item.noDokumen" disabled/> -->
+					</div> -->
+					<div class="grid_3">
+						<label style="font-weight: bolder;">Nama Supplier</label>
+						<p>{{dataSelected.namarekanan}}</p>
 					</div>
-					
-					<div class="grid_12">
-						<!-- <div class="grid_6">
-							<label style="font-weight: bolder;">Terbilang</label>
-							<input c-text-box type="input" style="text-align: right;" class="k-textbox" ng-model="verif.totalBayarTerbilang" disabled/>
-						</div> -->
-						<!-- <div class="grid_6">
-							<label style="font-weight: bolder;">Terbilang</label>
-							<input c-text-box type="input" style="text-align: right;" class="k-textbox" ng-model="verif.potonganTerbilang" disabled/>
-						</div> -->
+					<div class="grid_3">
+						<label style="font-weight: bolder;">Tanggal Dokumen</label>
+						<p>{{dataSelected.tgldokumen}}</p>
+					</div>
+					<div class="grid_3">
+						<label style="font-weight: bolder;">No. Struk</label>
+						<p>{{dataSelected.nostruk}}</p>
+					</div>
+					<div class="grid_3">
+						<label style="font-weight: bolder;">No. Dokumen</label>
+						<p>{{dataSelected.nodokumen}}</p>
 					</div>
 					<hr>
 
@@ -130,40 +134,45 @@
 							<input c-text-box type="input" class="k-textbox" disabled ng-model="verif.tahunDana"/>
 						</div>
 
-						<div class="grid_6">
+						<div class="grid_4">
 							<label style="font-weight: bolder;">Sisa Pagu</label>
 							<input c-text-box type="input" style="text-align: right;" class="k-textbox" disabled ng-model="verif.sisaPagu"/>
 						</div>
-						<div class="grid_6">
+						<!-- <div class="grid_6">
 							<label style="font-weight: bolder;">Terbilang</label>
 							<input c-text-box type="input" style="text-align: right;" class="k-textbox" ng-model="verif.sisaPaguTerbilang" disabled/>
-						</div>
+						</div> -->
 
-						<div class="grid_6">
+						<div class="grid_4">
 							<label style="font-weight: bolder;">Pagu</label>
-							<input c-text-box type="input" style="text-align: right;" filter="number" class="k-textbox" ng-model="verif.pagu" ng-change="getTerbilang(verif.pagu, 'paguTerbilang')" disabled/>
+							<!-- ng-change="getTerbilang(verif.pagu, 'paguTerbilang')"  -->
+							<input c-text-box type="input" style="text-align: right;" filter="number" class="k-textbox" ng-model="verif.pagu" disabled/>
 						</div>
-						<div class="grid_6">
+						<div class="grid_4">
+							<label style="font-weight: bolder;">Total Bayar</label>
+							<input c-text-box type="input" style="text-align: right;" class="k-textbox" ng-model="verif.totalBayar" ng-keyup="validasiTotalBayar()"/>
+						</div>
+						<!-- <div class="grid_6">
 							<label style="font-weight: bolder;">Terbilang</label>
 							<input c-text-box type="input" style="text-align: right;" class="k-textbox" ng-model="verif.paguTerbilang" disabled/>
-						</div>
+						</div> -->
 					</div>
 					<hr>
 
-					<div class="grid_12">
-						<div class="grid_6">
+					<!-- <div class="grid_12"> -->
+						<!-- <div class="grid_6">
 							<label style="font-weight: bolder;">Total Bayar</label>
-							<input c-text-box type="input" style="text-align: right;" class="k-textbox" ng-model="verif.totalBayar" ng-change="getTerbilang(verif.totalBayar, 'totalBayarTerbilang')" ng-keyup="validasiTotalBayar()"/>
-						</div>
-						<div class="grid_6">
+							<input c-text-box type="input" style="text-align: right;" class="k-textbox" ng-model="verif.totalBayar" ng-keyup="validasiTotalBayar()"/>
+						</div> -->
+						<!-- <div class="grid_6">
 							<label style="font-weight: bolder;">Terbilang</label>
 							<input c-text-box type="input" style="text-align: right;" class="k-textbox" ng-model="verif.totalBayarTerbilang" disabled/>
-						</div>
+						</div> -->
 						<!-- <div class="grid_6">
 							<label style="font-weight: bolder;">Potongan</label>
 							<input c-text-box type="input" style="text-align: right;" class="k-textbox" ng-model="verif.potongan" ng-change="getTerbilang(verif.potongan, 'potonganTerbilang')"/>
 						</div> -->
-					</div>
+					<!-- </div> -->
 				</md-card-content>
 			</md-card>
 		</div>

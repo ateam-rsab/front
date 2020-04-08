@@ -15,6 +15,7 @@ define(['initialize'], function (initialize) {
       $scope.now = new Date();
       $scope.item = {};
       $scope.verif = {};
+      $scope.dataSelected = {};
       $scope.item.tanggalVerifikasi = new Date();
       //$scope.dataSelectedPiutang = {};
       $scope.item.tanggalAwal = $scope.now;
@@ -60,7 +61,7 @@ define(['initialize'], function (initialize) {
       $scope.loadData = function () {
         $scope.isRouteLoading = true;
         // YYYY-MM-DD
-        ManageAkuntansi.getDataTableTransaksi("bendahara-pengeluaran/get-data-verifikasi-tagihan-suplier?tglAwal=" + dateHelper.formatDate($scope.item.tanggalAwal, 'YYYY-MM-DD') + "&tglAkhir=" + dateHelper.formatDate($scope.item.tanggalAkhir, 'YYYY-MM-DD') + "&Supplier=" + $scope.item.namaSupplier + "&status=" + $scope.item.status.namaStatus).then((res) => {
+        ManageAkuntansi.getDataTableTransaksi("bendahara-pengeluaran/get-data-verifikasi-tagihan-suplier?tglAwal=" + dateHelper.formatDate($scope.item.tanggalAwal, 'YYYY-MM-DD') + "&tglAkhir=" + dateHelper.formatDate($scope.item.tanggalAkhir, 'YYYY-MM-DD') + "&Supplier=" + ($scope.item.namaSupplier ? $scope.item.namaSupplier :"")+ "&status=" + ($scope.item.status.namaStatus ? $scope.item.status.namaStatus :"")).then((res) => {
           for (let i = 0; i < res.data.daftar.length; i++) {
             res.data.daftar[i].totalFormatted = new Intl.NumberFormat('id-ID', {
               style: 'currency',
@@ -198,7 +199,7 @@ define(['initialize'], function (initialize) {
               attributes: {
                 align: "center"
               },
-              click: verifikasiData,
+              click: showDataVerifikasi,
               imageClass: "k-icon k-i-pencil"
             },
             {
@@ -226,6 +227,7 @@ define(['initialize'], function (initialize) {
       }
 
       $scope.clearVerifikasi = function () {
+        $scope.dataSelected = null;
         $scope.verif = null;
       }
 
@@ -400,15 +402,15 @@ define(['initialize'], function (initialize) {
         });
       };
 
-      function verifikasiData(e) {
+      function showDataVerifikasi(e) {
         e.preventDefault();
         let tr = $(e.target).closest("tr");
         let dataItem = this.dataItem(tr);
         console.log(dataItem);
         $scope.dataSelected = dataItem;
+        $scope.verif.totalBayar = dataItem.sisautang;
         // $scope.item.noFakturVerifikasi = null;
-        $scope.item.noDokumen = dataItem.nodokumen;
-        $scope.clearVerifikasi();
+        // $scope.clearVerifikasi();
         $scope.verifkasiRekanan.open().center();
       }
 

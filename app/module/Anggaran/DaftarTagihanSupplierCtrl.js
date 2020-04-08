@@ -46,7 +46,7 @@ define(['initialize'], function(initialize) {
           function init() {
               $scope.isRouteLoading=true;
               var tglAwal = moment($scope.item.periodeAwal).format('YYYY-MM-DD 00:00');
-              var tglAkhir = moment($scope.item.periodeAkhir).format('YYYY-MM-DD 23:59');            
+              var tglAkhir = moment($scope.item.periodeAkhir).format('YYYY-MM-DD 23:59');
               var noFaktur = "";
               if($scope.item.noFaktur != undefined){
                  noFaktur = "&NoFaktur=" + $scope.item.noFaktur;
@@ -186,7 +186,7 @@ define(['initialize'], function(initialize) {
             {
               "field": "status",
               "title": "Status",
-               "width" : "100px",              
+               "width" : "100px",
             }
           ];
 
