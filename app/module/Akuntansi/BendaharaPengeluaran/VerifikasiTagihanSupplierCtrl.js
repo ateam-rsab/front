@@ -227,8 +227,8 @@ define(['initialize'], function (initialize) {
       }
 
       $scope.clearVerifikasi = function () {
-        $scope.dataSelected = null;
-        $scope.verif = null;
+        $scope.dataSelected = {};
+        $scope.verif = {};
       }
 
       $scope.gridOpt = {
