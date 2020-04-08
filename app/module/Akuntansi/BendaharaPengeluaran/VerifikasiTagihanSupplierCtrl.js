@@ -5,6 +5,7 @@ define(['initialize'], function (initialize) {
 
       //catatan : PENTING
       //cek tabel maploginusertoruangan_s
+      $scope.dataPegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
 
       $scope.listAnggaran = [];
       $scope.listSumberDana = [];
@@ -45,7 +46,15 @@ define(['initialize'], function (initialize) {
         })
 
         // service get list anggaran
-        ManageAkuntansi.getDataTableTransaksi('bendahara-pengeluaran/get-penggunaan-anggaran?tahun=' + new Date().getFullYear()).then(res => {
+        
+      }
+
+      init();
+
+      $scope.getListAnggaran = function() {
+        $scope.verif.anggaran = null;
+        $scope.isPagu = false;
+        ManageAkuntansi.getDataTableTransaksi('bendahara-pengeluaran/get-penggunaan-anggaran?tahun=' + new Date().getFullYear() + "&kodeAnggaran=" + $scope.verif.sumberDana.kodeanggaran).then(res => {
           for (let i = 0; i < res.data.data.length; i++) {
             res.data.data[i].anggaranFormatted = new Intl.NumberFormat('id-ID', {
               style: 'currency',
@@ -55,8 +64,6 @@ define(['initialize'], function (initialize) {
           $scope.listAnggaran = res.data.data;
         });
       }
-
-      init();
 
       $scope.loadData = function () {
         $scope.isRouteLoading = true;
@@ -457,10 +464,12 @@ define(['initialize'], function (initialize) {
         };
         let dataSave = {
           "norec": $scope.dataSelected.norec,
-          "tglVerifikasi": dateHelper.formatDate($scope.item.tanggalVerifikasi, "YYYY-DD-MM")
-          // "2020-04-02"
+          "tglVerifikasi": dateHelper.formatDate($scope.item.tanggalVerifikasi, "YYYY-DD-MM"),
+          "pegawaifk":$scope.dataPegawaiLogin.id
         };
+        // console.log(dataSave);
         $scope.verifkasiRekanan.close();
+        
 
         var confirm = $mdDialog.confirm()
           .title('Apakah anda yakin akan Verifikasi Tagihan Rekanan (' + $scope.dataSelected.namarekanan + ')')

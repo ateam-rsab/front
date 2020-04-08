@@ -110,7 +110,7 @@
 					</div>
 					<div class="grid_3">
 						<label style="font-weight: bolder;">Sumber Dana</label>
-						<input style="width: 100%;" kendo-combo-box k-ng-model="verif.sumberDana" k-data-text-field="'asalproduk'" k-data-value-field="'id'" k-filter="'contains'" k-data-source="listSumberDana" />
+						<input style="width: 100%;" kendo-combo-box k-ng-model="verif.sumberDana" k-data-text-field="'asalproduk'" k-data-value-field="'id'" k-filter="'contains'" k-data-source="listSumberDana" k-on-change="getListAnggaran()"/>
 					</div>
 
 					<div class="grid_6">
