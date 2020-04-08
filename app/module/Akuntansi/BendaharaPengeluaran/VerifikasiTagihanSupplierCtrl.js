@@ -407,6 +407,16 @@ define(['initialize'], function (initialize) {
         let tr = $(e.target).closest("tr");
         let dataItem = this.dataItem(tr);
         console.log(dataItem);
+        if(dataItem.statusbayar !== 'BELUM LUNAS') {
+          toastr.info('Data Tagihan SUDAH LUNAS');
+          return;
+        }
+
+        // status
+        if(dataItem.status !== 'Belum Verifikasi') {
+          toastr.info('Data Tagihan Sudah Verifikasi');
+          return;
+        }
         $scope.dataSelected = dataItem;
         $scope.verif.totalBayar = dataItem.sisautang;
         // $scope.item.noFakturVerifikasi = null;
@@ -432,6 +442,19 @@ define(['initialize'], function (initialize) {
 
 
       $scope.verifikasiTagihan = function () {
+        if(!$scope.verif.sumberDana) { 
+          toastr.warning("Harap isi Sumber Dana");
+          return;
+        };
+        if(!$scope.verif.anggaran) {
+          toastr.warning("Harap isi Anggaran");
+          return;
+        }
+
+        if(!$scope.verif.totalBayar) {
+          toastr.warning("Harap isi Total yang akan dibayarkan");
+          return;
+        };
         let dataSave = {
           "norec": $scope.dataSelected.norec,
           "tglVerifikasi": dateHelper.formatDate($scope.item.tanggalVerifikasi, "YYYY-DD-MM")
