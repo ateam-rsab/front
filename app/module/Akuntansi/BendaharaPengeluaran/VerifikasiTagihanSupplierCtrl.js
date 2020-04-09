@@ -54,7 +54,7 @@ define(['initialize'], function (initialize) {
       $scope.getListAnggaran = function() {
         $scope.verif.anggaran = null;
         $scope.isPagu = false;
-        ManageAkuntansi.getDataTableTransaksi('bendahara-pengeluaran/get-penggunaan-anggaran?tahun=' + new Date().getFullYear() + "&kodeAnggaran=" + $scope.verif.sumberDana.kodeanggaran).then(res => {
+        ManageAkuntansi.getDataTableTransaksi('bendahara-pengeluaran/get-penggunaan-anggaran?tahun=' + new Date().getFullYear() + "&kodeDana=" + $scope.verif.sumberDana.kodeanggaran).then(res => {
           for (let i = 0; i < res.data.data.length; i++) {
             res.data.data[i].anggaranFormatted = new Intl.NumberFormat('id-ID', {
               style: 'currency',
@@ -463,9 +463,11 @@ define(['initialize'], function (initialize) {
           return;
         };
         let dataSave = {
-          "norec": $scope.dataSelected.norec,
-          "tglVerifikasi": dateHelper.formatDate($scope.item.tanggalVerifikasi, "YYYY-DD-MM"),
-          "pegawaifk":$scope.dataPegawaiLogin.id
+          norec: $scope.dataSelected.norec,
+          tglVerifikasi: dateHelper.formatDate($scope.item.tanggalVerifikasi, "YYYY-DD-MM"),
+          pegawaifk:$scope.dataPegawaiLogin.id,
+          kodeAnggaran:$scope.verif.anggaran.kode_anggaran,
+          noverifikasifk:$scope.dataSelected.noverifikasifk ? $scope.dataSelected.noverifikasifk : null
         };
         // console.log(dataSave);
         $scope.verifkasiRekanan.close();
@@ -494,6 +496,7 @@ define(['initialize'], function (initialize) {
         $scope.verif.kodeDana = data.kode_dana;
         $scope.verif.tahunDana = data.tahun;
         $scope.verif.namaAnggaran = data.nama_anggaran;
+        console.log($scope.verif.anggaran);
         $scope.verif.sisaPagu = new Intl.NumberFormat('id-ID', {
           style: 'currency',
           currency: 'IDR'

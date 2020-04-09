@@ -8,6 +8,7 @@ define(['initialize'], function(initialize) {
             var norec_apd = ''
             var norec_pd = ''
             var nocm_str = ''
+            $scope.data = {};
             $scope.item.qty =1
             $scope.riwayatForm = false
             $scope.inputOrder = true
@@ -229,6 +230,21 @@ define(['initialize'], function(initialize) {
                 "width" : "40px",
             }
         ];
+
+        $scope.gridOrderOption = {
+            toolbar: [{
+                name: "create",
+                template: '<button ng-click="showPopUpOrder()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Buat Baru</button>'
+            }],
+            pageable: true,
+            scrollable: true,
+            columns:$scope.columnGridOrder
+        }
+
+        $scope.showPopUpOrder = function() {
+            $scope.popupAddLayanan.open().center();
+        }
+
         $scope.columnGridRiwayat = [
             {
                 "field": "no",
