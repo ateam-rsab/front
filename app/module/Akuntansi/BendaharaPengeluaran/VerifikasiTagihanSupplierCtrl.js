@@ -413,7 +413,6 @@ define(['initialize'], function (initialize) {
         e.preventDefault();
         let tr = $(e.target).closest("tr");
         let dataItem = this.dataItem(tr);
-        console.log(dataItem);
         if(dataItem.statusbayar !== 'BELUM LUNAS') {
           toastr.info('Data Tagihan SUDAH LUNAS');
           return;
@@ -464,10 +463,10 @@ define(['initialize'], function (initialize) {
         };
         let dataSave = {
           norec: $scope.dataSelected.norec,
-          tglVerifikasi: dateHelper.formatDate($scope.item.tanggalVerifikasi, "YYYY-DD-MM"),
+          tglVerifikasi: dateHelper.formatDate($scope.item.tanggalVerifikasi, "YYYY-MM-DD"),
           pegawaifk:$scope.dataPegawaiLogin.id,
           kodeAnggaran:$scope.verif.anggaran.kode_anggaran,
-          noverifikasifk:$scope.dataSelected.noverifikasifk ? $scope.dataSelected.noverifikasifk : null
+          noverifikasifk:$scope.dataSelected.noverifikasifk ? $scope.dataSelected.noverifikasifk : ""
         };
         // console.log(dataSave);
         $scope.verifkasiRekanan.close();
