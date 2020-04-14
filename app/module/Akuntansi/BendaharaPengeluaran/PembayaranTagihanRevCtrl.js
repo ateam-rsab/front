@@ -119,6 +119,7 @@ define(['initialize'], function (initialize) {
           .cancel('Batal');
 
         $mdDialog.show(confirm).then(function () {
+          var namaBankRkn = "";
           if ($scope.item.namaBankRkn != undefined) {
             namaBankRkn = $scope.item.namaBankRkn
           }
