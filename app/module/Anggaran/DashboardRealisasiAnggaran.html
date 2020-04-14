@@ -1,0 +1,24 @@
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Dashboard Realisasai Anggaran</div>
+</md-toolbar>
+
+<div class="grid_12">
+    <div class="grid_2">
+        <label c-label item="item">Sumber Dana</label>
+        <input style="width: 100%;" kendo-combo-box k-ng-model="item.sumberDana" k-data-text-field="'asalproduk'" k-data-value-field="'id'" k-filter="'contains'" k-data-source="listSumberDana" k-on-change="getListAnggaran()"/>
+    </div>
+    <div class="grid_1" style="margin-top:23px;">
+        <md-button class="md-raised md-primary medium-button" ng-click="SearchData()">
+            <span style="margin-right: 5px;">Cari</span>
+            <i class="fa fa-search"></i>
+        </md-button>
+    </div>
+</div>
+
+<div class="grid_12">
+    <div kendo-grid k-data-source="dataGrid" k-selectable="'row'" k-pageable="true" k-scrollable="'true'"
+        k-sortable="'true'" k-columns="columnGrid" k-ng-model="dataSelected">
+    </div>
+</div>
+
+<div ng-include=' "../app/module/Shared/TemplateLoading" '></div>

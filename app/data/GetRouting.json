@@ -42089,6 +42089,38 @@
     ]
   },
   {
+    "name": "DashboardRealisasiAnggaran",
+    "url": "/DashboardRealisasiAnggaran",
+    "templateurl": "module/Anggaran/DashboardRealisasiAnggaran.html",
+    "controller": "DashboardRealisasiAnggaranCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SarprasService",
+        "define": "SarprasService"
+      },
+      {
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+         "module": "PhpServices",
+         "define": "PhpServices"
+      }
+    ]
+  },
+  {
     "name": "DaftarPasien",
     "url": "/DaftarPasien",
     "templateurl": "module/Dashboard/Pasien/DaftarPasien.html",

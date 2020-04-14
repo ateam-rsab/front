@@ -7362,6 +7362,10 @@
       "urlDep": "module/Anggaran/DaftarTagihanSupplierCtrl"
     },
     {
+      "nameDep": "DashboardRealisasiAnggaranCtrl",
+      "urlDep": "module/Anggaran/DashboardRealisasiAnggaranCtrl"
+    },
+    {
       "nameDep": "DaftarPasienCtrl",
       "urlDep": "module/Dashboard/Pasien/DaftarPasienCtrl"
     },
