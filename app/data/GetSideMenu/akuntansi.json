@@ -44,6 +44,10 @@
         "link": "#/LaporanBarangBulanan"
     },
     {
+      "name": "Dashboard Realisasi Anggaran",
+      "link": "#/DashboardRealisasiAnggaran"
+    },
+    {
       "name": "Data Transaksi",
       "children": [
         {
@@ -77,11 +81,7 @@
         {
           "name": "Saldo Penerimaan Dan Pengeluaran Barang",
           "link": "#/SaldoBarangDetail"
-        },
-        {
-          "name": "Dashboard Realisasi Anggaran",
-          "link": "#/DashboardRealisasiAnggaran"
-        },
+        },        
         {
           "name": "Transaksi Jurnal Detail",
           "children": [
@@ -112,10 +112,6 @@
     {
       "name": "Verifikasi Pembayaran",
       "children": [
-        {
-          "name": "Dashboard Realisasi Anggaran",
-          "link": "#/VerifikasiTagihanSupplier"
-        },
         {
           "name": "Tagihan Suplier",
           "link": "#/VerifikasiTagihanSupplier"
