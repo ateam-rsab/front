@@ -109,6 +109,10 @@
       "name": "Verifikasi Pembayaran",
       "children": [
         {
+          "name": "Dashboard Realisasi Anggaran",
+          "link": "#/VerifikasiTagihanSupplier"
+        },
+        {
           "name": "Tagihan Suplier",
           "link": "#/VerifikasiTagihanSupplier"
         },
