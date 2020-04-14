@@ -113,8 +113,8 @@ define(['initialize'], function (initialize) {
 
         var confirm = $mdDialog.confirm()
           .title('Apakah anda yakin akan membayar Tagihan?')
-          .textContent(`Tagihan akan dibayarkan kepada ${$scope.item.deskripsiTransaksi} dengan total ${$scope.item.totalBayar}`)
-          .targetEvent(e)
+          // new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR'}).format(dat.data.data[i].penggunaan);
+          .textContent(`Tagihan akan dibayarkan kepada ${$scope.item.deskripsiTransaksi} dengan total ${new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR'}).format($scope.item.totalBayar)}`)
           .ok('Ya')
           .cancel('Batal');
 
