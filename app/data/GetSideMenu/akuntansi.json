@@ -80,7 +80,7 @@
         },
         {
           "name": "Dashboard Realisasi Anggaran",
-          "link": "#/VerifikasiTagihanSupplier"
+          "link": "#/DashboardRealisasiAnggaran"
         },
         {
           "name": "Transaksi Jurnal Detail",

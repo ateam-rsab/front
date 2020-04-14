@@ -172,7 +172,10 @@ define(['initialize'], function (initialize) {
             sbk: sbk
           }
   
-          manageServicePhp.savepembayarantagihansupplier(objSave).then(function (e) {})
+          manageServicePhp.savepembayarantagihansupplier(objSave).then(function (e) {
+            window.location.replace('#/DaftarTagihanSupplier');
+            // $state.go('#/DaftarTagihanSupplier');
+          })
         }, function () {
           toastr.info('Pembayaran dibatalkan');
         });
