@@ -26,6 +26,7 @@
     .closebtn:hover {
         color: black;
     }
+
     .smart-container-home {
         display: flex;
         flex-direction: column;
@@ -33,7 +34,7 @@
         align-content: center;
         align-items: center;
         margin: 10px;
-        
+
         /* background-image: linear-gradient(rgba(255, 0, 0, 0.45), rgba(255, 0, 0, 0.45)), url(../../../assets/bg-login.jpg); */
         /* background-position: center; */
         /* background-repeat: no-repeat; */
@@ -42,7 +43,7 @@
     }
 
     .smart-container-home .shadowed {
-        box-shadow: 5px 7px 10px 0px rgba(0,0,0,.26)
+        box-shadow: 5px 7px 10px 0px rgba(0, 0, 0, .26)
     }
 
     .smart-container-content {
@@ -50,27 +51,32 @@
         min-width: 700px;
         max-width: 700px;
     }
+
     .label-welcome {
         font-size: 20px;
         font-weight: 700;
         letter-spacing: 5px;
         text-align: center;
     }
-    .list-visi-misi {
 
-    }
-    .list-visi-misi  li {
+    .list-visi-misi {}
+
+    .list-visi-misi li {
         /* margin: 10px 0px; */
     }
-    .list-visi-misi  li p {
+
+    .list-visi-misi li p {
         font-weight: 700;
     }
 </style>
 <div ng-controller="WelcomeCtrl">
     <div class="information">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-        <strong>Perhatian!</strong> Terkati Virus yang sedang menjadi Pandemic. Kemenkes Mengeluarkan Pedoman Pencegahan Pengendalian <strong>CORONA VIRUS DISEASE (COVID-19). </strong> <a class="link" href="/app/#/informasi/covid-19"> Lihat disini</a> | <a class="link" href="data/pedoman-covid19.pdf" download> Download disini</a>
-        
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <strong>Perhatian!</strong> Terkati Virus yang sedang menjadi Pandemic. Kemenkes Mengeluarkan Pedoman Pencegahan
+        Pengendalian <strong>CORONA VIRUS DISEASE (COVID-19). </strong> <a class="link"
+            href="/app/#/informasi/covid-19"> Lihat disini</a> | <a class="link" href="data/pedoman-covid19.pdf"
+            download> Download disini</a>
+
     </div>
     <!-- <button ng-show="listMenu.length!==1" ng-click='Back()'>Back</button> -->
     <!-- <div class="home-animation">
@@ -84,23 +90,56 @@
             <a href="/app/#/Menejemen"><img class="menu06 anime06" src="images/logo/cover06.png"></a>
         </div>
     </div> -->
-    <div kendo-window="notificationSIP" k-title="'Pemberitahuan'"
-        k-width="550" k-visible="false" k-on-open="win2visible= true"
-        k-on-close="ji.idGridInternalJabatan= null">
+    <div kendo-window="notificationSIP" k-title="'Pemberitahuan'" k-width="550" k-visible="false"
+        k-on-open="win2visible= true" k-on-close="ji.idGridInternalJabatan= null">
         <div class="panel panel-default container_12" style="padding:
             0px 10px;">
             <label>{{messageNotif}}</label>
         </div>
     </div>
-    
-    <div kendo-window="notification" id="winNotif" k-title="'Pemberitahuan'" k-width="550" k-visible="false" k-on-open="win2visible = true" k-on-close="goToLink('/app/Logout')">
+
+    <div kendo-window="notification" id="winNotif" k-title="'Pemberitahuan'" k-width="550" k-visible="false"
+        k-on-open="win2visible = true" k-on-close="goToLink('/app/Logout')">
         <div class="panel panel-default container_12" style="padding: 0px 10px;">
             <label>{{pesanPemberitahuan}}</label>
         </div>
     </div>
     <div class="smart-container-home">
-        <!-- <img src="../app/images/logo/rsabhk-logo.png" style="margin: 0 auto;"> -->
-        <img class="shadowed" src="../app/images/novel-corona.png" style="margin: 0 auto;width: 40%;">
+
+        <!-- #region slide -->
+
+        <div class="slider-wrapper">
+
+            <div class="slider-container">
+                <div class="slider-content">
+                    <img src="/app/images/suit-level-img/suit-lv1.jpg">
+                </div>
+                <div class="slider-content">
+                    <img src="/app/images/suit-level-img/suit-lv2.jpg">
+                </div>
+                <div class="slider-content">
+                    <img src="/app/images/suit-level-img/suit-lv3.jpg">
+                </div>
+                <div class="slider-content">
+                    <img src="/app/images/suit-level-img/suit-lv4.jpg">
+                </div>
+                <div class="slider-content">
+                    <img src="/app/images/suit-level-img/suit-lv5.jpg">
+                </div>
+            </div>
+
+            <div class="slider-controls">
+                <span class="control prev">&larr;</span>
+                <span class="control next">&rarr;</span>
+            </div>
+
+        </div>
+
+        <!-- #endregion slide -->
+
+        <!-- <img src="/app/images/suit-level-img/suit-lv1.jpg" width="350"> -->
+
+        <!-- <img class="shadowed" src="../app/images/novel-corona.png" style="margin: 0 auto;width: 40%;"> -->
         <!-- <div class="smart-container-content">
             <div class="label-welcome">Visi</div>
             <hr style="margin: 10px 0;">
@@ -160,8 +199,7 @@
         <div class="grid_6">
             <h1>FRONT OFFICE</h1>
             <div class="grid_12" ng-repeat="menu in menus">
-                <div class="tile bg-yellow-saffron primary"
-                    style="height:200px;" ng-click="changeMenu(menu)">
+                <div class="tile bg-yellow-saffron primary" style="height:200px;" ng-click="changeMenu(menu)">
                     <div class="corner" style="float: left; font-weight:
                         bold; padding: 0 5px;"><span></span></div>
                     <div class="check"></div>
@@ -173,8 +211,7 @@
                             <img height='150px' src='' />
                         </div>
                         <div class="text_panel main">
-                            <span class="title"><label c-label
-                                    c-label-text="{{menu.title}}"
+                            <span class="title"><label c-label c-label-text="{{menu.title}}"
                                     class="title"></label></span>
                         </div>
                     </div>
@@ -184,8 +221,7 @@
         <div class="grid_6">
             <h1>BACK OFFICE</h1>
             <div class="grid_12" ng-repeat="menu in menuBackOffices">
-                <div class="tile bg-yellow-saffron primary"
-                    style="height:200px;" ng-click="changeMenu(menu)">
+                <div class="tile bg-yellow-saffron primary" style="height:200px;" ng-click="changeMenu(menu)">
                     <div class="corner" style="float: left; font-weight:
                         bold; padding: 0 5px;"><span></span></div>
                     <div class="check"></div>
@@ -197,8 +233,7 @@
 
                         </div>
                         <div class="text_panel main">
-                            <span class="title"><label c-label
-                                    c-label-text="{{menu.title}}"
+                            <span class="title"><label c-label c-label-text="{{menu.title}}"
                                     class="title"></label></span>
                         </div>
                     </div>

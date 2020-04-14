@@ -242,6 +242,10 @@ define(['initialize'], function (initialize) {
         e.preventDefault();
         let tr = $(e.target).closest("tr");
         let dataItem = this.dataItem(tr);
+        if(dataItem.status === 'LUNAS') {
+          toastr.info('Pembayaran sudah LUNAS');
+          return;
+        }
         $scope.dataSelected = dataItem;
 
         $scope.Bayar();
