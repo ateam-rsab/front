@@ -79,6 +79,10 @@
           "link": "#/SaldoBarangDetail"
         },
         {
+          "name": "Dashboard Realisasi Anggaran",
+          "link": "#/VerifikasiTagihanSupplier"
+        },
+        {
           "name": "Transaksi Jurnal Detail",
           "children": [
             {
