@@ -6,7 +6,8 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
 
             $scope.getDataRealisasiAnggaran = function () {
-                manageServicePhp.getDataTableTransaksi("bendahara-pengeluaran/get-penggunaan-anggaran?tahun=" + (new Date().getFullYear()) + "&kodeDana=" + ($scope.item.sumberDana ? $scope.item.sumberDana : ""), true).then(function (dat) {
+                $scope.isRouteLoading = true;
+                manageServicePhp.getDataTableTransaksi("bendahara-pengeluaran/get-penggunaan-anggaran?tahun=" + (new Date().getFullYear()) + "&kodeDana=" + ($scope.item.sumberDana ? $scope.item.sumberDana.kodeanggaran : ""), true).then(function (dat) {
                     $scope.isRouteLoading = false;
                     console.log(dat.data.data);
 
