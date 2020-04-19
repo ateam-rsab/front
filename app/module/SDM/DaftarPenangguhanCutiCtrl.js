@@ -15,7 +15,7 @@ define(['initialize'], function (initialize) {
 				depth: "year",
 				format: "MMMM yyyy"
 			};
-			$scope.filter.tglPermohonan = $scope.now;
+			// $scope.filter.tglPermohonan = $scope.now;
 			// $scope.listStatusPermohonan = [
 			// 	{id:0, name: "Belum diputuskan"},
 			// 	// {id:1, name: "Disetujui"},
@@ -180,8 +180,10 @@ define(['initialize'], function (initialize) {
 
 				if ($scope.filter.tglPermohonan == undefined) {
 					tglPermohonan = "";
+					$scope.rows = $scope.filter.rows;
 				} else {
 					tglPermohonan = DateHelper.formatDate($scope.filter.tglPermohonan, "YYYY-MM");
+					$scope.rows = "";
 				}
 
 				if ($scope.filter.namaPegawai == undefined) {
@@ -210,13 +212,13 @@ define(['initialize'], function (initialize) {
 				).then(function (result) {
 
 					//Data yang masuk kesini sudah dipaging di server	
-					if (result.data.data.listData != undefined && $scope.statusRowsFilterChanged == true) {
+					if (result.data.data.listData != undefined) {
 						$scope.pages = []
 
 						//Untuk tombol halaman
 						var i;
 						$scope.totalPages = result.data.data.totalPages;
-						for (i = 1; i <= 5; i++) {
+						for (i = page; i <= page+4; i++) {
 							if (i <= $scope.totalPages) {
 								$scope.pages.push({
 									pageNumber: i,
@@ -224,10 +226,9 @@ define(['initialize'], function (initialize) {
 								})
 							}
 						}
+
+						$scope.filter.rows = result.data.data.listData.length;
 					}
-
-					$scope.filter.rows = result.data.data.listData.length;
-
 					$scope.dataSource = new kendo.data.DataSource({
 						// pageSize: 6,
 						data: result.data.data.listData,
@@ -477,6 +478,7 @@ define(['initialize'], function (initialize) {
 				var dataGrid = $("#gridPerubahanStatus").data("kendoGrid");
 				dataGrid.dataSource.filter({});
 				$scope.filter = {};
+				$scope.filter.rows = 5;
 				$scope.isRouteLoading = false;
 			}
 		}

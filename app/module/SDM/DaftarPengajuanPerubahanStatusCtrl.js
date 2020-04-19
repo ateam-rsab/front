@@ -223,23 +223,21 @@ define(['initialize'], function (initialize) {
 								filteredData = e.data.data.listData.filter(filterByStatus);
 
 								//Untuk tombol halaman
-								if ($scope.statusRowsFilterChanged == true) {
-									$scope.pages = []
-									var i;
-									$scope.totalPages = e.data.data.totalPages;
-									for (i = 1; i <= 5; i++) {
-										if (i <= $scope.totalPages) {
-											$scope.pages.push({
-												pageNumber: i,
-												value: i
-											})
-										}
+								// if ($scope.statusRowsFilterChanged == true) {
+								$scope.pages = []
+								var i;
+								$scope.totalPages = e.data.data.totalPages;
+								for (i = $scope.page; i <= $scope.page+4; i++) {
+									if (i <= $scope.totalPages) {
+										$scope.pages.push({
+											pageNumber: i,
+											value: i
+										})
 									}
 								}
+								// }
+								$scope.filter.rows = e.data.data.listData.length;
 							}
-							
-							$scope.filter.rows = e.data.data.listData.length;
-
 							$scope.daftarPengajuan = new kendo.data.DataSource({
 								pageSize: 20,
 								data: filteredData,
@@ -259,20 +257,22 @@ define(['initialize'], function (initialize) {
 							if (e.data.data.listData != undefined) {
 								filteredData = e.data.data.listData.filter(filterByStatus);
 
-								if ($scope.statusRowsFilterChanged == true) {
-									$scope.pages = []
-									//Untuk tombol halaman
-									var i;
-									$scope.totalPages = e.data.data.totalPages;
-									for (i = 1; i <= 5; i++) {
-										if (i <= $scope.totalPages) {
-											$scope.pages.push({
-												pageNumber: i,
-												value: i
-											})
-										}
+								// if ($scope.statusRowsFilterChanged == true) {
+								$scope.pages = []
+								//Untuk tombol halaman
+								var i;
+								$scope.totalPages = e.data.data.totalPages;
+								for (i = $scope.page; i <= $scope.page+4; i++) {
+									if (i <= $scope.totalPages) {
+										$scope.pages.push({
+											pageNumber: i,
+											value: i
+										})
 									}
 								}
+								// }
+
+								$scope.filter.rows = e.data.data.listData.length;
 							}
 							$scope.daftarPengajuan = new kendo.data.DataSource({
 								pageSize: 20,
@@ -511,6 +511,7 @@ define(['initialize'], function (initialize) {
 				var dataGrid = $("#gridPerubahanStatus").data("kendoGrid");
 				dataGrid.dataSource.filter({});
 				$scope.filter = {};
+				$scope.filter.rows = 5;
 			}
 
 			function setUnverifikasi(e) {
