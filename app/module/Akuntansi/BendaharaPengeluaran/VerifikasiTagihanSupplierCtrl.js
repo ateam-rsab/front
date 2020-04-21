@@ -100,7 +100,7 @@ define(['initialize'], function (initialize) {
 
           for (let i = 0; i < res.data.daftar.length; i++) {
 
-            if (res.data.daftar[i].status === "Belum Verifikasi") dataTempUnverified.push(res.data.daftar[i])
+            if (res.data.daftar[i].status === "BLM VERIFIKASI") dataTempUnverified.push(res.data.daftar[i])
             else dataTempVerified.push(res.data.daftar[i])
           }
           $scope.dataGridVerified = new kendo.data.DataSource({
@@ -708,16 +708,6 @@ define(['initialize'], function (initialize) {
           $scope.konfirmasiAnggaran.open().center();
           toastr.info('Konfirmasi dibatalkan');
         });
-        // if(state)
-        // if (state === 'kabag') {
-        //   ManageAkuntansi.postpost(data, 'bendahara-pengeluaran/save-confirm-verifikasi-tagihan-suplier').then(res => {
-        //     $scope.loadData();
-        //   });
-        // } else {
-        //   ManageAkuntansi.postpost(data, 'bendahara-pengeluaran/save-confirm-anggaran-verifikasi-tagihan-suplier').then(res => {
-        //     $scope.loadData();
-        //   });
-        // }
       }
 
       $scope.verifikasiTagihan = function () {
@@ -750,13 +740,13 @@ define(['initialize'], function (initialize) {
           .ok('Ya')
           .cancel('Batal');
 
-        $mdDialog.show(confirm).then(function () {
+        $mdDialog.show(confirm).then(() => {
           // yes
           ManageAkuntansi.postpost(dataSave, 'bendahara-pengeluaran/save-verifikasi-tagihan-suplier').then(res => {
             $scope.verifkasiRekanan.close();
             $scope.loadData();
           });
-        }, function () {
+        }, () => {
           // no
           $scope.closePopUpVerifikasi();
           $scope.verifkasiRekanan.open().center();
