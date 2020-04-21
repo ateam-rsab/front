@@ -599,7 +599,7 @@ define(['initialize'], function (initialize) {
         }
 
         // status
-        if (dataItem.status !== 'Belum Verifikasi') {
+        if (dataItem.status !== 'BLM VERIFIKASI') {
           toastr.info('Data Tagihan Sudah Verifikasi');
           return;
         }
