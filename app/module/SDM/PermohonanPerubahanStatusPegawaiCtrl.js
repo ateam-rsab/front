@@ -668,23 +668,21 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.onChangeDateCutiMelahirkan = () => {
-                
-                // $("#idTglAkhirCutiMelahirkan").attr('k-max','maxDateCutiMelahirkan');
-               
                 $scope.disabledTglAkhir = $scope.item.tglAwalCutiMelahirkan ? false : true;
                 $scope.item.tglAkhirCutiMelahirkan = null;
 
-                // console.log(Math.floor($scope.item.tglAwalCutiMelahirkan.getTime()/1000) + 7689600);
-
-                // $scope.maxDateCutiMelahirkan = new Date($scope.item.tglAwalCutiMelahirkan.setDate($scope.item.tglAwalCutiMelahirkan.getDay() + 90));
-                // Math.floor($scope.item.tglAwalCutiMelahirkan.getTime()/1000) + 7689600
-                $scope.maxDateCutiMelahirkan = new Date(Math.floor(Math.floor($scope.item.tglAwalCutiMelahirkan.getTime()/1000) + 7689600)*1000);
-                console.log($scope.maxDateCutiMelahirkan);
-                $scope.item.tglAkhirCutiMelahirkan = $scope.maxDateCutiMelahirkan;
-
-                console.log('2', $scope.maxDateCutiMelahirkan);
                 
+                $scope.maxDateCutiMelahirkan = new Date(Math.floor(Math.floor($scope.item.tglAwalCutiMelahirkan.getTime()/1000) + 7689600)*1000);
+                $scope.item.tglAkhirCutiMelahirkan = $scope.maxDateCutiMelahirkan;
             }
+
+            // $scope.cekValidasi = function() {
+            //     console.log($scope.item.tglAkhirCutiMelahirkan)
+            //     if($scope.item.tglAkhirCutiMelahirkan > $scope.maxDateCutiMelahirkan) {
+            //         toastr.error('Cuti Melahirkan anda lebih dari 30 hari');
+            //         return;
+            //     }
+            // }
 
             // $scope.showJumlahSakit = function() {
             //     if ($scope.item.sakit.id == 1) {
@@ -921,6 +919,15 @@ define(['initialize'], function (initialize) {
             // }
 
             $scope.Save = function () {
+                let tempTanggalCutiMelahirkan = [];
+                if($scope.isCutiMelahirkan) {
+                    tempTanggalCutiMelahirkan = [DateHelper.formatDate($scope.item.tglAwalCutiMelahirkan, 'YYYY-MM-DD'), DateHelper.formatDate($scope.item.tglAkhirCutiMelahirkan, 'YYYY-MM-DD')];
+
+                    if($scope.item.tglAkhirCutiMelahirkan > $scope.maxDateCutiMelahirkan) {
+                        toastr.error('Cuti Melahirkan anda lebih dari 90 hari');
+                        return;
+                    }
+                }
                 // $scope.checkTanggalCuti();
                 // if(!bisaCuti) {
                 //     $scope.checkTanggalCuti();
@@ -1020,7 +1027,7 @@ define(['initialize'], function (initialize) {
                 //     } 
                 // }
 
-                if (($scope.item.statusPegawai.id == 24 || $scope.item.statusPegawai.id == 25) && $scope.tanggalPermohonan.length === 1) {
+                if (($scope.item.statusPegawai.id == 24 || $scope.item.statusPegawai.id == 25) && ($scope.tanggalPermohonan.length === 1 || tempTanggalCutiMelahirkan.length === 1)) {
                     // if (!listPegawaiAdminSDM.includes($scope.pegawai.id)) {
                     messageContainer.error('Tanggal harus terdiri dari tanggal awal dan tanggal akhir (periode)')
                     // }
@@ -1034,7 +1041,7 @@ define(['initialize'], function (initialize) {
                         }
                         if (!isPegawaiSDM) {
                             messageContainer.error('Tanggal harus terdiri dari tanggal awal dan tanggal akhir (periode)')
-                            return
+                            return;
                         }
                     }
                     var isValid = ModelItem.setValidation($scope, listRawRequired);
@@ -1085,7 +1092,7 @@ define(['initialize'], function (initialize) {
                             "deskripsiStatusPegawaiPlan": $scope.item.deskripsiUsulan,
                             "keteranganLainyaPlan": $scope.item.keterangan,
                             "tglPengajuan": DateHelper.getDateTimeFormatted3($scope.item.tglPengajuan),
-                            "listTanggal": listDate,
+                            "listTanggal": $scope.isCutiMelahirkan ? tempTanggalCutiMelahirkan : listDate,
                             "noSuratTugas": $scope.item.noSuratTugas,
                             "noNotaDinas": $scope.item.noNotaDinas,
                             "tglNotaDinas": $scope.item.tglNotaDinas != undefined ? DateHelper.getDateTimeFormatted3($scope.item.tglNotaDinas) : null,
@@ -1097,10 +1104,11 @@ define(['initialize'], function (initialize) {
                             "isCutiLuarNegeri": statusCutiLuarNegeri
                         }
 
-                        if (listDate.length == 0) {
+                        if (listDate.length == 0 && !$scope.isCutiMelahirkan) {
                             toastr.warning('Tanggal permohonan belum di isi', 'Peringatan');
                             return;
                         }
+                        console.log(dataSend);
                         ManageSdmNew.saveData(dataSend, "sdm/save-pegawai-status").then(function (e) {
                             // console.log(JSON.stringify(e.data));
                             if (e.data.data.bisaCuti == false) {
