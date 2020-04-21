@@ -1,17 +1,17 @@
 <style>
-	.style-center{
+	.style-center {
 		display: inline-block;
 		text-align: center;
 		width: 100%;
 	}
 
-	.style-right{
+	.style-right {
 		display: inline-block;
 		text-align: right;
 		width: 100%;
 	}
 
-	.style-left{
+	.style-left {
 		display: inline-block;
 		text-align: left;
 		width: 100%;
@@ -26,21 +26,24 @@
 		<div class="grid_12">
 			<div class="grid_2">
 				<label c-label item="item" c-label-text="NamaSupplier"></label>
-				<input placeholder="Nama Supplier" c-text-box type="input" class="k-textbox" ng-model="item.namaSupplier" />
+				<input placeholder="Nama Supplier" c-text-box type="input" class="k-textbox"
+					ng-model="item.namaSupplier" />
 			</div>
 
 			<div class="grid_2">
 				<label c-label item="item" c-label-text="Periode Awal"></label>
-				<input style="width: 100%" k-ng-model="item.tanggalAwal" kendo-date-picker k-max="now" placeholer="yyyy-MM-dd" k-format="'yyyy-MM-dd'"/>
+				<input style="width: 100%" k-ng-model="item.tanggalAwal" kendo-date-picker k-max="now"
+					placeholer="yyyy-MM-dd" k-format="'yyyy-MM-dd'" />
 			</div>
 			<div class="grid_2">
 				<label c-label item="item" c-label-text="Periode Akhir"></label>
-				<input style="width: 100%" k-ng-model="item.tanggalAkhir" kendo-date-picker placeholer="yyyy-MM-dd" k-format="'yyyy-MM-dd'"/>
+				<input style="width: 100%" k-ng-model="item.tanggalAkhir" kendo-date-picker placeholer="yyyy-MM-dd"
+					k-format="'yyyy-MM-dd'" />
 			</div>
-			<div class="grid_2">
+			<!-- <div class="grid_2">
 				<label c-label item="item" c-label-text="Status"></label>
 				<input style="width: 100%;" kendo-combo-box k-data-source="listStatus" k-ng-model="item.status" k-data-text-field="'namaStatus'" k-filter="'contains'" k-data-value-field="'id'" k-auto-bind="false"/>
-			</div>
+			</div> -->
 			<div class="grid_1" style="margin-top:23px;">
 				<md-button class="md-raised md-primary medium-button" ng-click="loadData()">
 					<span style="margin-right: 5px;">Cari</span>
@@ -48,118 +51,172 @@
 				</md-button>
 			</div>
 		</div>
-		<div class="grid_6">
-			<div class="grid_12">
-			</div>
-		</div>
-		<div class="clear"></div>
 
-		<br/>
 
 		<div class="grid_12">
 			<div class="headerBox">
-				<p>Daftar Verifikasi Tagihan Rekanan</p>
+				<p>Daftar Verifikasi Tagihan Rekanan Verified</p>
 			</div>
 
 			<div class="grid_12">
-				<div id="kGrid" kendo-grid 
-				k-data-source="dataGrid" 
-				k-selectable="'row'"
-				k-pageable="'true'"
-				k-sortable="'true'"
-				options="gridOpt"
-				k-ng-model="dataSelected">
-			</div>
+				<div id="kGrid" kendo-grid k-data-source="dataGridVerified" k-selectable="'row'" k-pageable="'true'"
+					k-sortable="'true'" options="gridOptVerified" k-ng-model="dataSelected">
+				</div>
+
 			</div>
 
-		<br/>
+			
+			
+		</div>
+		<div class="grid_12">
+			<div class="grid_1"></div>
+			<div class="grid_10">
+				<hr style="margin: 0 5px;">
+			</div>
+			<div class="grid_1"></div>
+			
+		</div>
+		
+		<div class="grid_12">
+			<div class="headerBox">
+				<p>Daftar Verifikasi Tagihan Rekanan Unverified</p>
+			</div>
 
-	</div>
-	<div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
-	</div>
+			<div class="grid_12">
+				<div id="kGrid" kendo-grid k-data-source="dataGridVerifiedUnverified" k-selectable="'row'" k-pageable="'true'"
+					k-sortable="'true'" options="gridOptUnverified" k-ng-model="dataSelected">
+				</div>
 
-	<div kendo-window="verifkasiRekanan" k-title="'Verifikasi Tagihan Rekanan'" k-width="1000" k-visible="false">
-		<div class="panel panel-default container_12" style="padding: 0px 10px;">
-			<md-card>
-				<md-card-content>
-					<!-- <div class="grid_3">
+			</div>
+		</div>
+		<div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
+
+		<div kendo-window="verifkasiRekanan" k-title="'Verifikasi Tagihan Rekanan'" k-width="1000" k-visible="false">
+			<div class="panel panel-default container_12" style="padding: 0px 10px;">
+				<md-card>
+					<md-card-content>
+						<!-- <div class="grid_3">
 						<label style="font-weight: bolder;">No. Faktur/No. Dokumen</label>
 						<p>{{item.noDokumen}}</p>
 					</div> -->
-					<div class="grid_3">
-						<label style="font-weight: bolder;">Nama Supplier</label>
-						<p>{{dataSelected.namarekanan}}</p>
-					</div>
-					<div class="grid_3">
-						<label style="font-weight: bolder;">Tanggal Dokumen</label>
-						<p>{{dataSelected.tgldokumen}}</p>
-					</div>
-					<div class="grid_3">
-						<label style="font-weight: bolder;">No. Struk</label>
-						<p>{{dataSelected.nostruk}}</p>
-					</div>
-					<div class="grid_3">
-						<label style="font-weight: bolder;">No. Dokumen</label>
-						<p>{{dataSelected.nodokumen}}</p>
-					</div>
-					<hr>
-
-					<div class="grid_3">
-						<label style="font-weight: bolder;">Tanggal Verifikasi</label>
-						<input style="width: 100%" k-ng-model="item.tanggalVerifikasi" kendo-date-picker k-max="now" placeholer="yyyy-MM-dd" k-format="'yyyy-MM-dd'"/>
-					</div>
-					<div class="grid_3">
-						<label style="font-weight: bolder;">Sumber Dana</label>
-						<input style="width: 100%;" kendo-combo-box k-ng-model="verif.sumberDana" k-data-text-field="'asalproduk'" k-data-value-field="'id'" k-filter="'contains'" k-data-source="listSumberDana" k-on-change="getListAnggaran()"/>
-					</div>
-
-					<div class="grid_6">
-						<label style="font-weight: bolder;">Anggaran</label>
-						<input style="width: 100%;" kendo-combo-box k-ng-model="verif.anggaran" k-data-text-field="'nama_anggaran'" k-data-value-field="'kode_anggaran'" k-filter="'contains'" k-data-source="listAnggaran" k-on-change="showPagu(verif.anggaran)"/>
-					</div>
-					
-
-					<div class="grid_12" ng-show="isPagu">
+						<div class="grid_3">
+							<label style="font-weight: bolder;">Nama Supplier</label>
+							<p>{{dataSelected.namarekanan}}</p>
+						</div>
+						<div class="grid_3">
+							<label style="font-weight: bolder;">Tanggal Dokumen</label>
+							<p>{{dataSelected.tgldokumen}}</p>
+						</div>
+						<div class="grid_3">
+							<label style="font-weight: bolder;">No. Struk</label>
+							<p>{{dataSelected.nostruk}}</p>
+						</div>
+						<div class="grid_3">
+							<label style="font-weight: bolder;">No. Dokumen</label>
+							<p>{{dataSelected.nodokumen}}</p>
+						</div>
 						<hr>
-						<div class="grid_6">
-							<label style="font-weight: bolder;">Nama Anggaran</label>
-							<input c-text-box type="input" class="k-textbox" disabled ng-model="verif.namaAnggaran"/>
+
+						<div class="grid_3">
+							<label style="font-weight: bolder;">Tanggal Verifikasi</label>
+							<input style="width: 100%" k-ng-model="item.tanggalVerifikasi" kendo-date-picker k-max="now"
+								placeholer="yyyy-MM-dd" k-format="'yyyy-MM-dd'" />
 						</div>
-						<div class="grid_4">
-							<label style="font-weight: bolder;">Kode Dana</label>
-							<input c-text-box type="input" class="k-textbox" disabled ng-model="verif.kodeDana"/>
-						</div>
-						<div class="grid_2">
-							<label style="font-weight: bolder;">Tahun Anggaran</label>
-							<input c-text-box type="input" class="k-textbox" disabled ng-model="verif.tahunDana"/>
+						<div class="grid_3">
+							<label style="font-weight: bolder;">Sumber Dana</label>
+							<input style="width: 100%;" kendo-combo-box k-ng-model="verif.sumberDana"
+								k-data-text-field="'asalproduk'" k-data-value-field="'id'" k-filter="'contains'"
+								k-data-source="listSumberDana" k-on-change="getListAnggaran()" />
 						</div>
 
-						<div class="grid_4">
-							<label style="font-weight: bolder;">Sisa Pagu</label>
-							<input c-text-box type="input" style="text-align: right;" class="k-textbox" disabled ng-model="verif.sisaPagu"/>
+						<div class="grid_6">
+							<label style="font-weight: bolder;">Anggaran</label>
+							<input style="width: 100%;" kendo-combo-box k-ng-model="verif.anggaran"
+								k-data-text-field="'nama_anggaran'" k-data-value-field="'kode_anggaran'"
+								k-filter="'contains'" k-data-source="listAnggaran"
+								k-on-change="showPagu(verif.anggaran)" />
 						</div>
-						<!-- <div class="grid_6">
+
+						<hr>
+						<div class="grid_12">
+							<label style="font-weight: bolder;">Bukti Pendukung</label>
+						</div>
+						
+						<div class="grid_12">
+							
+							<div class="grid_3" style="margin: 10px 0 0 0;">
+                                <input type="checkbox" class="k-checkbox" name="kwintansi" id="kwintansi" ng-checked="" ng-click="toogleClick($event)">
+                                <label c-label item="item" class="k-checkbox-label" for="kwintansi">Kwitansi</label>
+							</div>
+							
+							<div class="grid_3" style="margin: 10px 0 0 0;">
+                                <input type="checkbox" class="k-checkbox" name="noSpk" id="noSpk" ng-checked="" ng-click="toogleClick($event)">
+                                <label c-label item="item" class="k-checkbox-label" for="noSpk">No. SPK</label>
+							</div>
+							
+							<div class="grid_3" style="margin: 10px 0 0 0;">
+                                <input type="checkbox" class="k-checkbox" name="permohonanPembayaran" id="permohonanPembayaran" ng-checked="" ng-click="toogleClick($event)">
+                                <label c-label item="item" class="k-checkbox-label" for="permohonanPembayaran">Permohonan Pembayaran</label>
+							</div>
+							
+							<div class="grid_3" style="margin: 10px 0 0 0;">
+                                <input type="checkbox" class="k-checkbox" name="noFaktur" id="noFaktur" ng-checked="" n>
+                                <label c-label item="item" class="k-checkbox-label" for="noFaktur">No. Faktur</label>
+                            </div>
+						</div>
+
+
+						<div class="grid_12" ng-show="isPagu">
+							<hr>
+							<div class="grid_6">
+								<label style="font-weight: bolder;">Nama Anggaran</label>
+								<input c-text-box type="input" class="k-textbox" disabled
+									ng-model="verif.namaAnggaran" />
+							</div>
+							<div class="grid_4">
+								<label style="font-weight: bolder;">Kode Dana</label>
+								<input c-text-box type="input" class="k-textbox" disabled ng-model="verif.kodeDana" />
+							</div>
+							<div class="grid_2">
+								<label style="font-weight: bolder;">Tahun Anggaran</label>
+								<input c-text-box type="input" class="k-textbox" disabled ng-model="verif.tahunDana" />
+							</div>
+
+							<div class="grid_4">
+								<label style="font-weight: bolder;">Sisa Pagu</label>
+								<input c-text-box type="input" style="text-align: right;" class="k-textbox" disabled
+									ng-model="verif.sisaPagu" />
+							</div>
+							<!-- <div class="grid_6">
 							<label style="font-weight: bolder;">Terbilang</label>
 							<input c-text-box type="input" style="text-align: right;" class="k-textbox" ng-model="verif.sisaPaguTerbilang" disabled/>
 						</div> -->
 
-						<div class="grid_4">
-							<label style="font-weight: bolder;">Pagu</label>
-							<!-- ng-change="getTerbilang(verif.pagu, 'paguTerbilang')"  -->
-							<input c-text-box type="input" style="text-align: right;" filter="number" class="k-textbox" ng-model="verif.pagu" disabled/>
-						</div>
-						<div class="grid_4">
-							<label style="font-weight: bolder;">Total Bayar</label>
-							<input c-text-box type="input" style="text-align: right;" class="k-textbox" ng-model="verif.totalBayar" ng-keyup="validasiTotalBayar()"/>
-						</div>
-						<!-- <div class="grid_6">
+							<div class="grid_4">
+								<label style="font-weight: bolder;">Pagu</label>
+								<!-- ng-change="getTerbilang(verif.pagu, 'paguTerbilang')"  -->
+								<input c-text-box type="input" style="text-align: right;" filter="number"
+									class="k-textbox" ng-model="verif.pagu" disabled />
+							</div>
+							<div class="grid_4">
+								<label style="font-weight: bolder;">Total Bayar</label>
+								<input c-text-box type="input" style="text-align: right;" class="k-textbox"
+									ng-model="verif.totalBayar" ng-keyup="validasiTotalBayar()" />
+							</div>
+							<div class="grid_12">
+								<label style="font-weight: bolder;">Keperluan</label>
+									<textarea c-text-box type="input" style="text-align: right;" class="k-textbox"
+										ng-model="verif.keperluan"></textarea>
+							</div>
+							<!-- <div class="grid_6">
 							<label style="font-weight: bolder;">Terbilang</label>
 							<input c-text-box type="input" style="text-align: right;" class="k-textbox" ng-model="verif.paguTerbilang" disabled/>
 						</div> -->
-					</div>
-					<hr>
+						</div>
+					
+						<hr>
 
-					<!-- <div class="grid_12"> -->
+						<!-- <div class="grid_12"> -->
 						<!-- <div class="grid_6">
 							<label style="font-weight: bolder;">Total Bayar</label>
 							<input c-text-box type="input" style="text-align: right;" class="k-textbox" ng-model="verif.totalBayar" ng-keyup="validasiTotalBayar()"/>
@@ -172,21 +229,23 @@
 							<label style="font-weight: bolder;">Potongan</label>
 							<input c-text-box type="input" style="text-align: right;" class="k-textbox" ng-model="verif.potongan" ng-change="getTerbilang(verif.potongan, 'potonganTerbilang')"/>
 						</div> -->
-					<!-- </div> -->
-				</md-card-content>
-			</md-card>
-		</div>
-		<div class="dialog_buttons pull-right" style="margin-top:5%;">
-			<div class="grid_4">
-				<md-button class="md-raised md-danger medium-button" style="width: 100%;" ng-click="closePopUpVerifikasi()">
-					Batal
-				</md-button>
+						<!-- </div> -->
+					</md-card-content>
+				</md-card>
 			</div>
-			<div class="grid_4">
-				<md-button class="md-raised md-primary medium-button" style="width: 100%;" ng-click="verifikasiTagihan()">
-					Verifikasi
-				</md-button>
+			<div class="dialog_buttons pull-right" style="margin-top:5%;">
+				<div class="grid_4">
+					<md-button class="md-raised md-danger medium-button" style="width: 100%;"
+						ng-click="closePopUpVerifikasi()">
+						Batal
+					</md-button>
+				</div>
+				<div class="grid_4">
+					<md-button class="md-raised md-primary medium-button" style="width: 100%;"
+						ng-click="verifikasiTagihan()">
+						Verifikasi
+					</md-button>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>

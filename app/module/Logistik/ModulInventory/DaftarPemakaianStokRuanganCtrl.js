@@ -258,7 +258,7 @@ define(['initialize'], function (initialize) {
                         },
                     ],
                     title: "",
-                    width: "300px",
+                    width: "100px",
                     attributes: {
                         style: "text-align:center;valign=middle"
                     },
@@ -266,48 +266,52 @@ define(['initialize'], function (initialize) {
             ];
 
             function exportDetail(e) {
-                console.log(e);
+                e.preventDefault();
+
+                var tr = $(e.target).closest("tr");
+                var dataItem = this.dataItem(tr);
+                $scope.exportExcel(dataItem.details)
             }
 
             $scope.gridOpt = {
-                toolbar: [{
-                        text: "export",
-                        name: "Export detail",
-                        template: '<button ng-click="exportExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
-                    }
+                // toolbar: [{
+                //         text: "export",
+                //         name: "Export detail",
+                //         template: '<button ng-click="exportExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
+                //     }
 
-                ],
+                // ],
                 pageable: true,
                 scrollable: true,
                 columns: $scope.columnGrid
             };
 
-            $scope.exportExcel = function () {
+            $scope.exportExcel = function (data) {
+                let dataSourceDetail = new kendo.data.DataSource({
+                    data: data
+                });
+
                 var tempDataExport = [];
                 var rows = [{
                     cells: [{
-                            value: "Tanggal"
+                            value: "Nama Produk"
                         },
                         {
-                            value: "No. Pemakaian"
+                            value: "Satuan Standar"
                         },
                         {
-                            value: "Keterangan"
+                            value: "Harga Satuan"
                         },
                         {
-                            value: "Ruangan"
-                        },
-                        {
-                            value: "Pegawai"
+                            value: "Qty Produk"
                         },
                         {
                             value: "Total"
-                        },
-
+                        }
                     ]
                 }];
 
-                tempDataExport = $scope.dataGrid;
+                tempDataExport = dataSourceDetail;
                 tempDataExport.fetch(function () {
                     var data = this.data();
                     console.log(data);
@@ -315,23 +319,20 @@ define(['initialize'], function (initialize) {
                         //push single row for every record
                         rows.push({
                             cells: [{
-                                    value: data[i].tglstruk
+                                    value: data[i].namaproduk
                                 },
                                 {
-                                    value: data[i].nostruk
+                                    value: data[i].satuanstandar
                                 },
                                 {
-                                    value: data[i].keterangan
+                                    value: data[i].hargasatuan
                                 },
                                 {
-                                    value: data[i].namaruangan
-                                },
-                                {
-                                    value: data[i].namapegawai
+                                    value: data[i].qtyproduk
                                 },
                                 {
                                     value: data[i].total
-                                },
+                                }
                             ]
                         })
                     }
@@ -341,10 +342,6 @@ define(['initialize'], function (initialize) {
                                 rowSplit: 1
                             },
                             columns: [
-                                // Column settings (width)
-                                {
-                                    autoWidth: true
-                                },
                                 {
                                     autoWidth: true
                                 },
@@ -362,7 +359,7 @@ define(['initialize'], function (initialize) {
                                 }
                             ],
                             // Title of the sheet
-                            title: "Daftar Pemakaian Stok Ruangan",
+                            title: "Detail Pemakaian Stok Ruangan",
                             // Rows of the sheet
                             rows: rows
                         }]
@@ -370,12 +367,13 @@ define(['initialize'], function (initialize) {
                     //save the file as Excel file with extension xlsx
                     kendo.saveAs({
                         dataURI: workbook.toDataURL(),
-                        fileName: "daftar_pemakaian_stok_ruangan.xlsx"
+                        fileName: "detail_pemakaian_stok_ruangan.xlsx"
                     });
                 });
             };
 
             $scope.data2 = function (dataItem) {
+                console.log(dataItem);
                 return {
                     dataSource: new kendo.data.DataSource({
                         data: dataItem.details
@@ -407,6 +405,7 @@ define(['initialize'], function (initialize) {
                             "width": "50px",
                             "template": "<span class='style-right'>{{formatRupiah('#: total #', '')}}</span>"
                         }
+                        
                     ]
                 }
             };
