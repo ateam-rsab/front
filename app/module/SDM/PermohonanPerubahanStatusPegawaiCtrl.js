@@ -921,7 +921,14 @@ define(['initialize'], function (initialize) {
             $scope.Save = function () {
                 let tempTanggalCutiMelahirkan = [];
                 if($scope.isCutiMelahirkan) {
-                    tempTanggalCutiMelahirkan = [DateHelper.formatDate($scope.item.tglAwalCutiMelahirkan, 'YYYY-MM-DD'), DateHelper.formatDate($scope.item.tglAkhirCutiMelahirkan, 'YYYY-MM-DD')];
+                    tempTanggalCutiMelahirkan = [
+                        {
+                            tgl:DateHelper.formatDate($scope.item.tglAwalCutiMelahirkan, 'YYYY-MM-DD')
+                        }, {
+                            tgl:DateHelper.formatDate($scope.item.tglAkhirCutiMelahirkan, 'YYYY-MM-DD')
+                        }
+                        
+                    ];
 
                     if($scope.item.tglAkhirCutiMelahirkan > $scope.maxDateCutiMelahirkan) {
                         toastr.error('Cuti Melahirkan anda lebih dari 90 hari');
@@ -1028,7 +1035,7 @@ define(['initialize'], function (initialize) {
                 //     } 
                 // }
 
-                if(tempTanggalCutiMelahirkan.length <= 1) {
+                if($scope.isCutiMelahirkan && tempTanggalCutiMelahirkan.length <= 1) {
                     messageContainer.error('Tanggal harus terdiri dari tanggal awal dan tanggal akhir (periode)')
                     return;
                 }
