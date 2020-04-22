@@ -139,20 +139,30 @@ define(['initialize'], function (initialize) {
           "width": "35px",
         },
         {
-          "field": "nostruk",
-          "title": "<h3>No. Terima</h3>",
+          "field": "noSPK",
+          "title": "<h3>No. SPK</h3>",
           "width": "160px",
         },
+        {
+          "field": "tglSPK",
+          "title": "<h3>Tanggal SPK</h3>",
+          "width": "160px",
+        },
+        // {
+        //   "field": "nostruk",
+        //   "title": "<h3>No. Terima</h3>",
+        //   "width": "160px",
+        // },
         {
           "field": "noverifikasi",
           "title": "<h3>No. Verifikasi</h3>",
           "width": "160px",
         },
-        {
-          "field": "tglstruk",
-          "title": "<h3>Tanggal Terima</h3>",
-          "width": "150px",
-        },
+        // {
+        //   "field": "tglstruk",
+        //   "title": "<h3>Tanggal Terima</h3>",
+        //   "width": "150px",
+        // },
         {
           "field": "namarekanan",
           "title": "<h3>Nama Rekanan</h3>",
@@ -301,6 +311,7 @@ define(['initialize'], function (initialize) {
       //   $state.go('PembayaranTagihan')
       // }
       $scope.Bayar = function () {
+        console.log($scope.dataSelected);
         if ($scope.dataSelected.nostruk == undefined) {
           alert("Silahkan Pilih Tagihan Rekanan");
           return;
@@ -311,7 +322,7 @@ define(['initialize'], function (initialize) {
         var tglfaktur = moment($scope.dataSelected.tgldokumen).format('YYYY-MM-DD')
         // $state.go("RekamDataPegawai",{idPegawai: $scope.idPegawai});
         var tempData = tglTerima +
-          "#Pembayaran Suplier a/n " + $scope.dataSelected.namarekanan +
+          "#Pembayaran Suplier a/n " + $scope.dataSelected.namarekanan + ' dengan No. SPK ' + $scope.dataSelected.noSPK +
           "#" + $scope.dataSelected.nodokumen +
           "#" + tglJatuhTempo +
           "#" + tglfaktur +

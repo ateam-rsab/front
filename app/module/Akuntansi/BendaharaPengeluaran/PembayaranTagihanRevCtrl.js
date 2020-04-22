@@ -31,6 +31,7 @@ define(['initialize'], function (initialize) {
         var chacePeriode = cacheHelper.get('PembayaranTagihanRev');
         if (chacePeriode != undefined) {
           var arrPeriode = chacePeriode.split('#');
+          console.log(arrPeriode[6]);
 
           $scope.item.deskripsiTransaksi = arrPeriode[1];
           noRECC = arrPeriode[5];

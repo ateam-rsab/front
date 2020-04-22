@@ -172,15 +172,15 @@ define(['initialize'], function (initialize) {
           "width": "170px"
         },
         {
-          "field": "tgldokumen",
-          "title": "<h3>Tanggal Dokumen</h3>",
-          "template": "<span class='style-center'>{{'#: tgldokumen #'}}</span>",
-          "width": "150px"
-        },
-        {
           "field": "noSPK",
           "title": "<h3>No. SPK</h3>",
           "template": "<span class='style-center'>{{'#: noSPK ? noSPK : '-' #'}}</span>",
+          "width": "150px"
+        },
+        {
+          "field": "tgldokumen",
+          "title": "<h3>Tanggal Dokumen</h3>",
+          "template": "<span class='style-center'>{{'#: tgldokumen #'}}</span>",
           "width": "150px"
         },
         {
@@ -287,12 +287,6 @@ define(['initialize'], function (initialize) {
           "title": "<h3>Nama Rekanan</h3>",
           "width": "200px"
         },
-        // {
-        //   "field": "noverifikasi",
-        //   "title": "<h3>No. Verifikasi</h3>",
-        //   "template": "<span class='style-center'>{{'#: noverifikasi #'}}</span>",
-        //   "width": "150px"
-        // },
         {
           "field": "tglSPK",
           "title": "<h3>Tanggal <br>SPK</h3>",
@@ -300,15 +294,15 @@ define(['initialize'], function (initialize) {
           "width": "170px"
         },
         {
-          "field": "tgldokumen",
-          "title": "<h3>Tanggal Dokumen</h3>",
-          "template": "<span class='style-center'>{{'#: tgldokumen #'}}</span>",
-          "width": "150px"
-        },
-        {
           "field": "noSPK",
           "title": "<h3>No. SPK</h3>",
           "template": "<span class='style-center'>{{'#: noSPK #'}}</span>",
+          "width": "150px"
+        },
+        {
+          "field": "tgldokumen",
+          "title": "<h3>Tanggal Dokumen</h3>",
+          "template": "<span class='style-center'>{{'#: tgldokumen #'}}</span>",
           "width": "150px"
         },
         {
@@ -604,7 +598,7 @@ define(['initialize'], function (initialize) {
           return;
         }
 
-        $scope.keperluan = 'Untuk Pembayaran No.SPK = ' + $scope.dataSelected.noSPK
+        $scope.keperluan = 'Untuk Pembayaran Supplier ' + $scope.dataSelected.namarekanan + ' No.SPK = ' + $scope.dataSelected.noSPK
         $scope.loadData();
         $scope.verif.totalBayar = dataItem.sisautang;
         $scope.verifkasiRekanan.open().center();

@@ -779,7 +779,7 @@ define(['initialize'], function (initialize) {
         var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
         var client = new HttpClient();
         client.get('http://127.0.0.1:1237/printvb/kasir?cetak-laporan-ffs-penunjangRad=' +kelompokPasienId+//$scope.item.namaKasir.id+
-          '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '&idDokter=' + dokter + '&tgllibut=' + person + '&view='+ruanganId+'&personKa='+personKa, function (response) {
+          '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '&idDokter=' + dokter + '&tgllibut=' + person + '&view='+ruanganId+'&personKa='+personKa + '&tipeDokter=' + $scope.item.TipeDokter ? $scope.item.TipeDokter.id : '', function (response) {
 
           });
       }
