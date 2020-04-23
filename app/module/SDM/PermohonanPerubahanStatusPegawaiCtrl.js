@@ -102,7 +102,6 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.addNewTgl = function () {
-                // debugger
                 var listRawRequired = [
                     "item.namaPegawai|k-ng-model|Nama pegawai",
                     "item.statusPegawai|k-ng-model|Status kehadiran"
@@ -593,7 +592,7 @@ define(['initialize'], function (initialize) {
             $scope.hideJumlahCuti = false;
 
             $scope.showJumlahCuti = function () {
-                if($scope.item.statusPegawai.id === 25) {
+                if($scope.item.statusPegawai.id === 25 || $scope.item.statusPegawai.id === 24) {
                     $scope.isCutiMelahirkan = true;
                     return;
                 } else {
