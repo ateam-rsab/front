@@ -949,6 +949,10 @@
       "urlDep": "module/SDM/PermohonanPerubahanStatusPegawaiCtrl"
     },
     {
+      "nameDep": "PresensiPegawaiCtrl",
+      "urlDep": "module/SDM/PresensiPegawaiCtrl"
+    },
+    {
       "nameDep": "DaftarPengajuanPerubahanStatusCtrl",
       "urlDep": "module/SDM/DaftarPengajuanPerubahanStatusCtrl"
     },

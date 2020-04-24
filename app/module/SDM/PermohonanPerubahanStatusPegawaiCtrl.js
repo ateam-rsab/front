@@ -930,7 +930,7 @@ define(['initialize'], function (initialize) {
                     ];
 
                     if($scope.item.tglAkhirCutiMelahirkan > $scope.maxDateCutiMelahirkan) {
-                        toastr.error('Cuti Melahirkan anda lebih dari 90 hari');
+                        toastr.warning('Cuti tidak bisa lebih dari 90 hari');
                         return;
                     }
                 }

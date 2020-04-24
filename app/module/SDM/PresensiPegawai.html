@@ -1,0 +1,79 @@
+<style>
+    .container-presensi {
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .label-name {
+        font-size: 1em;
+        font-weight: 800;
+    }
+
+    .label-content {
+        font-size: 1.2em;
+        text-decoration: underline;
+        font-weight: bolder;
+    }
+
+    md-card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    md-card-content div {
+        margin: 10px 0;
+    }
+</style>
+
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Presensi Pegawai</div>
+</md-toolbar>
+
+<div class="container-presensi">
+    <md-card style="width: 50%;">
+        <md-card-content>
+            <div>
+                <label class="label-name">Nama Lengkap Pegawai : </label>
+                <label class="label-content">{{data.namaLengkap}}</label>
+            </div>
+
+            <div>
+                <label class="label-name">ID Finger : </label>
+                <label class="label-content">{{data.idFinger}}</label>
+            </div>
+
+            <div>
+                <label class="label-name">Jadwal : </label>
+                <label class="label-content">{{data.jadwal}}</label>
+            </div>
+
+            <div>
+                <div class="grid_4">
+                    <input kendo-time-picker ng-model="str" k-ng-model="tanggalPresensi" k-format="'HH:mm'" style="width: 100%;" disabled>
+                </div>
+                <div class="grid_2" style="margin-top: 17px;">
+                    <md-button class="md-raised md-primary medium-button" ng-click="findData()">
+                        <span style="margin-right: 5px;">Simpan</span>
+                        <i class="fa fa-save"></i>
+                    </md-button>
+                </div>
+
+            </div>
+
+            <div>
+                <fieldset>
+                    <legend>History Jam Presensi</legend>
+
+                    <div ng-repeat="item in dataHistoriPresensi">
+                        <label class="label-content">{{item}}</label>
+                    </div>
+                    
+
+                </fieldset>
+            </div>
+
+        </md-card-content>
+    </md-card>
+</div>
