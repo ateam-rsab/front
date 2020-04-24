@@ -48,7 +48,7 @@ define(['initialize'], function (initialize) {
 					{ "field": "nip", "title": "NIP" },
 					// {"field": "namaJabatan","title": "Jabatan"},
 					// {"field": "unitKerja","title": "Ruangan Bekerja"},
-					{ "field": "keteranganLainyaPlan", "title": "Deskripsi Usulan" },
+					{ "field": "deskripsiStatusPegawaiPlan", "title": "Deskripsi Usulan" },
 					{ "title": "Usulan", "columns": [{ "field": "tglPengajuan", "title": "Tanggal", "template": "#= kendo.toString(kendo.parseDate(new Date(tglPengajuan)),'dd-MM-yyyy') #", width: 100 }, { "field": "statusPegawai", "title": "Status", width: 100 }] },
 					{ "field": "lisTanggal", "title": "Tanggal Permohonan", "template": "# for(var i=0; i < lisTanggal.length;i++){# <button class=\"k-button custom-button\" style=\"margin:0 0 5px\">#= kendo.toString(new Date(lisTanggal[i].tgl), \"dd-MM-yyyy\") #</button> #}#" },
 					// {"field": "tglAwalPlan","title": "Tanggal Awal","template": "#= kendo.toString(kendo.parseDate(new Date(tglAwalPlan)),'dd-MM-yyyy') #"},
