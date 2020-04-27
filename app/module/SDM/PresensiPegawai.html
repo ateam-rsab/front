@@ -51,7 +51,12 @@
 
             <div>
                 <div class="grid_4">
-                    <input kendo-time-picker ng-model="str" k-ng-model="tanggalPresensi" k-format="'HH:mm'" style="width: 100%;" disabled>
+                    <input kendo-time-picker ng-model="str" k-ng-model="tanggalPresensi" k-format="'HH:mm'"
+                        style="width: 100%;" disabled>
+                </div>
+                <div class="grid_4" style="margin-top: 20px;">
+                    <input type="checkbox" class="k-checkbox" name="wfh" id="wfh" ng-model="isWFH">
+                    <label c-label item="item" class="k-checkbox-label" for="wfh">Work From Home (WFH)</label>
                 </div>
                 <div class="grid_2" style="margin-top: 17px;">
                     <md-button class="md-raised md-primary medium-button" ng-click="savePresensi()">

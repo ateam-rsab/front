@@ -7,6 +7,7 @@ define(['initialize'], function (initialize) {
             $scope.now = new Date();
             $scope.time = "";
             $scope.isRouteLoading = false;
+            $scope.isWFH = false;
             let dataPegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
 
             let getDataHistory = function () {
@@ -42,7 +43,7 @@ define(['initialize'], function (initialize) {
                     "field": "jam",
                     "title": "<h3>Jam</h3>",
                     "width": "150px"
-                },
+                },  
 
             ];
 
@@ -58,7 +59,7 @@ define(['initialize'], function (initialize) {
                     tr_date: DateHelper.toTimeStamp(new Date()),
                     tr_time: DateHelper.toTimeStamp($scope.tanggalPresensi),
                     empl_code: $scope.data.idFinger,
-                    processtatus: 0
+                    processtatus: $scope.isWFH ? 1 : 0
                 }
                 console.log(data);
                 ManageSdmNew.saveData(data, 'sdm/save-presensi-pegawai/').then((res) => {
