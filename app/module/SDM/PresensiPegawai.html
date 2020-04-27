@@ -54,7 +54,7 @@
                     <input kendo-time-picker ng-model="str" k-ng-model="tanggalPresensi" k-format="'HH:mm'" style="width: 100%;" disabled>
                 </div>
                 <div class="grid_2" style="margin-top: 17px;">
-                    <md-button class="md-raised md-primary medium-button" ng-click="findData()">
+                    <md-button class="md-raised md-primary medium-button" ng-click="savePresensi()">
                         <span style="margin-right: 5px;">Simpan</span>
                         <i class="fa fa-save"></i>
                     </md-button>
@@ -62,18 +62,17 @@
 
             </div>
 
-            <div>
-                <fieldset>
+            <div class="grid_12">
+                <fieldset class="borderBox">
                     <legend>History Jam Presensi</legend>
-
-                    <div ng-repeat="item in dataHistoriPresensi">
-                        <label class="label-content">{{item}}</label>
+                    <div kendo-grid k-data-source="dataHistoriPresensi" k-selectable="'row'" k-pageable="'true'"
+                        k-sortable="'true'" options="optHistoryPresensi" k-ng-model="dataSelected">
                     </div>
-                    
-
                 </fieldset>
             </div>
 
         </md-card-content>
     </md-card>
 </div>
+
+<div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
