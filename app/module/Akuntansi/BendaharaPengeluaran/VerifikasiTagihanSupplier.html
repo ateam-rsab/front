@@ -64,27 +64,25 @@
 				</div>
 
 			</div>
-
-			
-			
 		</div>
+
 		<div class="grid_12">
 			<div class="grid_1"></div>
 			<div class="grid_10">
 				<hr style="margin: 0 5px;">
 			</div>
 			<div class="grid_1"></div>
-			
+
 		</div>
-		
+
 		<div class="grid_12">
 			<div class="headerBox">
 				<p>Daftar Verifikasi Tagihan Rekanan Unverified</p>
 			</div>
 
 			<div class="grid_12">
-				<div id="kGrid" kendo-grid k-data-source="dataGridVerifiedUnverified" k-selectable="'row'" k-pageable="'true'"
-					k-sortable="'true'" options="gridOptUnverified" k-ng-model="dataSelected">
+				<div id="kGrid" kendo-grid k-data-source="dataGridUnverified" k-selectable="'row'"
+					k-pageable="'true'" k-sortable="'true'" options="gridOptUnverified" k-ng-model="dataSelected">
 				</div>
 
 			</div>
@@ -138,36 +136,39 @@
 						</div>
 						<div class="grid_12">
 							<label style="font-weight: bolder;">Keterangan Keperluan</label>
-								<textarea c-text-box type="input" class="k-textbox"
-									ng-model="keperluan"></textarea>
+							<textarea c-text-box type="input" class="k-textbox" ng-model="keperluan"></textarea>
 						</div>
 
 						<hr>
 						<div class="grid_12">
 							<label style="font-weight: bolder;">Bukti Pendukung</label>
 						</div>
-						
+
 						<div class="grid_12">
-							
+
 							<div class="grid_3" style="margin: 10px 0 0 0;">
-                                <input type="checkbox" class="k-checkbox" name="kwintansi" id="kwintansi" ng-checked="" ng-click="toogleClick($event)">
-                                <label c-label item="item" class="k-checkbox-label" for="kwintansi">Kwitansi</label>
+								<input type="checkbox" class="k-checkbox" name="kwintansi" id="kwintansi" ng-checked=""
+									ng-click="toogleClick($event)">
+								<label c-label item="item" class="k-checkbox-label" for="kwintansi">Kwitansi</label>
 							</div>
-							
+
 							<div class="grid_3" style="margin: 10px 0 0 0;">
-                                <input type="checkbox" class="k-checkbox" name="noSpk" id="noSpk" ng-checked="" ng-click="toogleClick($event)">
-                                <label c-label item="item" class="k-checkbox-label" for="noSpk">No. SPK</label>
+								<input type="checkbox" class="k-checkbox" name="noSpk" id="noSpk" ng-checked=""
+									ng-click="toogleClick($event)">
+								<label c-label item="item" class="k-checkbox-label" for="noSpk">No. SPK</label>
 							</div>
-							
+
 							<div class="grid_3" style="margin: 10px 0 0 0;">
-                                <input type="checkbox" class="k-checkbox" name="permohonanPembayaran" id="permohonanPembayaran" ng-checked="" ng-click="toogleClick($event)">
-                                <label c-label item="item" class="k-checkbox-label" for="permohonanPembayaran">Permohonan Pembayaran</label>
+								<input type="checkbox" class="k-checkbox" name="permohonanPembayaran"
+									id="permohonanPembayaran" ng-checked="" ng-click="toogleClick($event)">
+								<label c-label item="item" class="k-checkbox-label"
+									for="permohonanPembayaran">Permohonan Pembayaran</label>
 							</div>
-							
+
 							<div class="grid_3" style="margin: 10px 0 0 0;">
-                                <input type="checkbox" class="k-checkbox" name="noFaktur" id="noFaktur" ng-checked="" n>
-                                <label c-label item="item" class="k-checkbox-label" for="noFaktur">No. Faktur</label>
-                            </div>
+								<input type="checkbox" class="k-checkbox" name="noFaktur" id="noFaktur" ng-checked="" n>
+								<label c-label item="item" class="k-checkbox-label" for="noFaktur">No. Faktur</label>
+							</div>
 						</div>
 
 
@@ -218,7 +219,7 @@
 							<input c-text-box type="input" style="text-align: right;" class="k-textbox" ng-model="verif.paguTerbilang" disabled/>
 						</div> -->
 						</div>
-					
+
 						<hr>
 
 						<!-- <div class="grid_12"> -->
@@ -312,10 +313,11 @@
 						</div>
 						<hr>
 						<div class="grid_12">
-							<div id="kGrid" kendo-grid k-data-source="dataGridPenggunaanAnggaran" k-selectable="'row'" k-pageable="'true'"
-								k-sortable="'true'" options="gridOptPenggunaanAnggaran" k-ng-model="dataSelectedAnggaran">
+							<div id="kGrid" kendo-grid k-data-source="dataGridPenggunaanAnggaran" k-selectable="'row'"
+								k-pageable="'true'" k-sortable="'true'" options="gridOptPenggunaanAnggaran"
+								k-ng-model="dataSelectedAnggaran">
 							</div>
-			
+
 						</div>
 					</md-card-content>
 				</md-card>
@@ -336,3 +338,4 @@
 			</div>
 		</div>
 	</div>
+</div>

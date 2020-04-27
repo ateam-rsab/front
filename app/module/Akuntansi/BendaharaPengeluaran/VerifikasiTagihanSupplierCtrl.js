@@ -108,7 +108,7 @@ define(['initialize'], function (initialize) {
             pageSize: 5
           });
 
-          $scope.dataGridVerifiedUnverified = new kendo.data.DataSource({
+          $scope.dataGridUnverified = new kendo.data.DataSource({
             data: dataTempUnverified,
             pageSize: 5
           })
@@ -638,8 +638,8 @@ define(['initialize'], function (initialize) {
           toastr.warning('Harap Konfirmasi Ka. Bag Terlebih dahulu')
           return;
         }
-
-        ManageAkuntansi.getDataTableTransaksi('bendahara-pengeluaran/get-penggunaan-anggaran?tahun=' + new Date().getFullYear() + "&kodeDana=" + "&noverifikasifk=" + dataItem.noverifikasifk).then(res => {
+      //  + "&noverifikasifk=" + dataItem.noverifikasifk
+        ManageAkuntansi.getDataTableTransaksi('bendahara-pengeluaran/get-penggunaan-anggaran?tahun=' + new Date().getFullYear() + "&kodeAnggaran=" + dataItem.kodeanggaran).then(res => {
 
           for (let i = 0; i < res.data.data.length; i++) {
             res.data.data[i].anggaranFormatted = new Intl.NumberFormat('id-ID', {

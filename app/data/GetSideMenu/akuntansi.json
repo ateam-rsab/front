@@ -117,8 +117,8 @@
           "link": "#/VerifikasiTagihanSupplier"
         },
         {
-          "name": "Pembayaran Gaji",
-          "link": "#/VerifikasiPembayaranGaji"
+          "name": "Pembayaran Umum",
+          "link": "#/PembayaranUmum"
         }
       ]
     },

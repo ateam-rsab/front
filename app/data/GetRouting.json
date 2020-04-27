@@ -43192,10 +43192,10 @@
     ]
   },
   {
-    "name": "VerifikasiTagihanRekananRev",
-    "url": "/VerifikasiTagihanRekananRev",
-    "templateurl": "module/Akuntansi/BendaharaPengeluaran/VerifikasiTagihanRekananRev.html",
-    "controller": "VerifikasiTagihanRekananRevCtrl",
+    "name": "PembayaranUmumCtrl",
+    "url": "/PembayaranUmum",
+    "templateurl": "module/Akuntansi/BendaharaPengeluaran/PembayaranUmum.html",
+    "controller": "PembayaranUmumCtrl",
     "deps": [
       {
         "module": "Services",
@@ -43210,8 +43210,8 @@
         "define": "SarprasService"
       },
       {
-        "module": "SdmService",
-        "define": "SdmService"
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
       }
     ]
   },

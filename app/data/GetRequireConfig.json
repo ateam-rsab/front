@@ -7566,8 +7566,8 @@
       "urlDep": "module/Akuntansi/BendaharaPengeluaran/VerifikasiTagihanSupplierCtrl"
     },
     {
-      "nameDep": "VerifikasiTagihanRekananRevCtrl",
-      "urlDep": "module/Akuntansi/BendaharaPengeluaran/VerifikasiTagihanRekananRevCtrl"
+      "nameDep": "PembayaranUmumCtrl",
+      "urlDep": "module/Akuntansi/BendaharaPengeluaran/PembayaranUmumCtrl"
     },
     {
       "nameDep": "LaboratoriumPemeriksaanOrderCtrl",
