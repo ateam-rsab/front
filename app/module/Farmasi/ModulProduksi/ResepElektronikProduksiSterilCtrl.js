@@ -235,7 +235,7 @@ define(['initialize'], function(initialize) {
                     //managePasien.updateStatusOrder($scope.item.strukOrder.noOrder, 2).then(function(e) {
                         managePasien.updateStatusOrder($scope.item.noorder, 2).then(function(e) {
                             $scope.refresh();
-                        });;
+                        });
                     }else{
                         alert('Status harus Produksi!!')
                     }
@@ -245,7 +245,7 @@ define(['initialize'], function(initialize) {
                     //managePasien.updateStatusOrder($scope.item.strukOrder.noOrder, 3).then(function(e) {
                         managePasien.updateStatusOrder($scope.item.noorder, 3).then(function(e) {
                             $scope.refresh();
-                        });;
+                        });
                     }else{
                         alert('Status harus Packaging!!')
                     }

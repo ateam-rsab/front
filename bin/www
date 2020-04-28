@@ -29,9 +29,9 @@ var server = app.listen(4444, function() {
     console.log('Express Server for HTTPS Server & Notification Server, listening on port ' + server.address().port);
 });
 
-//server.listen(2222, function() {
+// var server = app.listen(2222, function() {
 //    console.log('Express Server for HTTPS Server & Notification Server, listening on port ' + server.address().port);
-//});
+// });
 
 var io = require('socket.io').listen(server);
 

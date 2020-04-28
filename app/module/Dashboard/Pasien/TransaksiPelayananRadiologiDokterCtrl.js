@@ -408,7 +408,7 @@ define(['initialize'], function(initialize) {
                             aCallback(anHttpRequest.responseText);
                     }
 
-                    anHttpRequest.open( "GET", aUrl, true );            
+                    anHttpRequest.open( "GET", aUrl, true );
                     anHttpRequest.send( null );
                 }
             }

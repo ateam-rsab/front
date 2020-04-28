@@ -936,75 +936,90 @@ define(['initialize'], function(initialize) {
             }
 
             $scope.simpan = function(){
-                if ($scope.item.noSPK == undefined) {
-                    alert("Nomor Kontrak Masih Kosong!!")
-                    return
+                if(!$scope.item.ruanganTujuan) {
+                    toastr.warning("Anda belum memilih Unit Tujuan");
+                    return;
                 }
-                if ($scope.item.koordinator == undefined) {
-                    alert("Pilih Koordinator!!")
-                    return
+
+                if($scope.item.ruanganTujuan.namaruangan === "Belum Pilih Ruangan") {
+                    toastr.warning("Anda belum memilih Unit Tujuan");
+                    return;
                 }
-                if ($scope.item.penanggungjawab == undefined) {
-                    alert("Pilih Pegawai penanggung jawab!!")
-                    return
+
+                if (!$scope.item.noSPK) {
+                    toastr.warning("Nomor Kontrak Masih Kosong!");
+                    return;
                 }
-                if ($scope.item.mengetahui == undefined) {
-                    alert("Pilih Pegawai yang mengetahui!!")
-                    return
+                if (!$scope.item.koordinator) {
+                    toastr.warning("Anda belum memilih koordinator!");
+                    return;
                 }
-                 if ($scope.item.pegawaiConfirm == undefined) {
-                    alert("Pilih Pegawai yang Mengkonfirmasi!!")
-                    return
+                if (!$scope.item.penanggungjawab) {
+                    toastr.warning('Anda belum memilih penanggung jawab');
+                    return;
+                }
+                if (!$scope.item.mengetahui) {
+                    toastr.warning("Anda belum memilih Pegawai yang Mengetahui");
+                    return;
+                }
+
+                if (!$scope.item.pegawaiConfirm) {
+                    toastr.warning('Anda belum memilih Pegawai yang Mengkonfirmasi');
+                    return;
                 }
                     
-                if ($scope.item.ruanganTujuan == undefined) {
-                    alert("Pilih ruangan tujuan!!")
-                    return
+                if (!$scope.item.ruanganTujuan) {
+                    toastr.warning('Anda belum memilih Ruang Tujuan');
+                    return;
                 }
-                if ($scope.item.ruanganPengusul == undefined) {
-                    alert("Pilih Unit Pengusul!!")
-                    return
+                if (!$scope.item.ruanganPengusul) {
+                    toastr.warning('Anda belum memilih Unit Pengusul');
+                    return;
                 }
-                if ($scope.item.keteranganUsulan == undefined) {
-                    alert("Isi Jenis Usulan!!")
-                    return
+                if (!$scope.item.keteranganUsulan) {
+                    toastr.warning('Anda belum memilih Jenis Usulan');
+                    return;
                 }
-                if ($scope.item.tglUsulan == undefined) {
-                    alert("Pilih Tgl Usulan!!")
-                    return
+                if (!$scope.item.tglUsulan) {
+                    toastr.warning('Anda belum memasukkan Tanggal Usulan');
+                    return;
                 }
-                if ($scope.item.tglDibutuhkan == undefined) {
-                    alert("Isi tgl Dibutuhkan!!")
-                    return
+                if (!$scope.item.tglDibutuhkan) {
+                    toastr.warning('Anda belum memasukan Tanggal Dibutuhkan');
+                    return;
                 }
-                if ($scope.item.BiayaKirim == undefined) {
-                    alert("Biaya Kirim Kosong")
-                    return
+                if (!$scope.item.BiayaKirim) {
+                    toastr.warning('Biaya Kirim Kosong');
+                    return;
                 }
-                var strAlamat ='';
-                if ($scope.item.alamatSupl != undefined) {
-                    strAlamat=$scope.item.alamatSupl
-                }
-                var qtyHari = 0;
-                if ($scope.item.jmlHari != undefined) {
-                    qtyHari=$scope.item.jmlHari
-                }
+                var strAlamat = $scope.item.alamatSupl ? $scope.item.alamatSupl : '';
+                
+                // if ($scope.item.alamatSupl != undefined) {
+                //     strAlamat=$scope.item.alamatSupl
+                // }
+                var qtyHari = $scope.item.jmlHari ? $scope.item.jmlHari : 0;
+
+                // if ($scope.item.jmlHari != undefined) {
+                //     qtyHari = $scope.item.jmlHari
+                // }
                 if (data2.length == 0) {
-                    alert("Pilih Produk terlebih dahulu!!")
-                    return
+                    toastr.warning("Harap pilih Produk terlebih dahulu!");
+                    // alert("Pilih Produk terlebih dahulu!!")
+                    return;
                 }
-                var mataanggaran = null;
-                if($scope.item.mataAnggaran != undefined){
-                    mataanggaran = $scope.item.mataAnggaran.norec
-                }
-                var noUsulan = '-';
-                if($scope.item.noUsulan != undefined){
-                    noUsulan = $scope.item.noUsulan
-                }
-                var kontrak ='-'
-                if($scope.item.noKontrak != undefined){
-                    kontrak = $scope.item.noKontrak
-                }
+
+                var mataanggaran = $scope.item.mataAnggaran ? $scope.item.mataAnggaran.norec : null;
+                // if($scope.item.mataAnggaran != undefined){
+                //     mataanggaran = $scope.item.mataAnggaran.norec
+                // }
+                var noUsulan = $scope.item.noUsulan ? $scope.item.noUsulan : '-';
+                // if($scope.item.noUsulan != undefined){
+                //     noUsulan = $scope.item.noUsulan
+                // }
+                var kontrak = $scope.item.noKontrak ? $scope.item.noKontrak: '-';
+                // if($scope.item.noKontrak != undefined){
+                //     kontrak = $scope.item.noKontrak
+                // }
 
                 // init()
                 var strukorder = {
@@ -1048,7 +1063,7 @@ define(['initialize'], function(initialize) {
                     if (confirm('View Cetak SPK? ')) {
                         // Save it!
                         stt='true';
-                    } else {                                       
+                    } else {
                         stt='false'
                     }
                     
@@ -1075,7 +1090,7 @@ define(['initialize'], function(initialize) {
                             aCallback(anHttpRequest.responseText);
                     }
 
-                    anHttpRequest.open( "GET", aUrl, true );            
+                    anHttpRequest.open( "GET", aUrl, true );
                     anHttpRequest.send( null );
                 }
             }

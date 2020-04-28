@@ -1,25 +1,150 @@
 define(['initialize'], function (initialize) {
     initialize.controller('WelcomeCtrl', ['$scope', 'R', '$rootScope', 'MenuService', 'LoginHelper', '$mdDialog', 'DateHelper',
         function ($scope, r, $rootScope, MenuService, LoginHelper, $mdDialog, DateHelper) {
+            //#region slide
+
+            const _C = document.querySelector(".slider-container"),
+                N = _C.children.length;
+
+            _C.style.setProperty("--n", N);
+
+            // detect the direction of the motion between "touchstart" (or "mousedown") event
+            // and the "touched" (or "mouseup") event
+            // and then update --i (current slide) accordingly
+            // and move the container so that the next image in the desired direction moves into the viewport
+
+            // on "mousedown"/"touchstart", lock x-coordiate
+            // and store it into an initial coordinate variable x0:
+            let x0 = null;
+            let locked = false;
+
+            function lock(e) {
+                x0 = unify(e).clientX;
+                // remove .smooth class
+                _C.classList.toggle("smooth", !(locked = true));
+            }
+
+            // next, make the images move when the user swipes:
+            // was the lock action performed aka is x0 set?
+            // if so, read current x coordiante and compare it to x0
+            // from the difference between these two determine what to do next
+
+            let i = 0; // counter
+            let w; //image width
+
+            // update image width w on resive
+            function size() {
+                w = window.innerWidth;
+            }
+
+            function move(e) {
+                if (locked) {
+                    // set threshold of 20% (if less, do not drag to the next image)
+                    // dx = number of pixels the user dragged
+                    let dx = unify(e).clientX - x0,
+                        s = Math.sign(dx),
+                        f = +(s * dx / w).toFixed(2);
+
+                    // Math.sign(dx) returns 1 or -1
+                    // depending on this, the slider goes backwards or forwards
+
+                    if ((i > 0 || s < 0) && (i < N - 1 || s > 0) && f > 0.2) {
+                        _C.style.setProperty("--i", (i -= s));
+                        f = 1 - f;
+                    }
+
+                    _C.style.setProperty("--tx", "0px");
+                    _C.style.setProperty("--f", f);
+                    _C.classList.toggle("smooth", !(locked = false));
+                    x0 = null;
+                }
+            }
+
+            size();
+
+            addEventListener("resize", size, false);
+
+            // ===============
+            // drag-animation for the slider when it reaches the end
+            // ===============
+
+            function drag(e) {
+                e.preventDefault();
+
+                if (locked) {
+                    _C.style.setProperty("--tx", `${Math.round(unify(e).clientX - x0)}px`);
+                }
+            }
+
+            // ===============
+            // prev, next
+            // ===============
+            let prev = document.querySelector(".prev");
+            let next = document.querySelector(".next");
+
+            prev.addEventListener("click", () => {
+                if (i == 0) {
+                    console.log("start reached");
+                } else if (i > 0) {
+                    // decrease i as long as it is bigger than the number of slides
+                    _C.style.setProperty("--i", i--);
+                }
+            });
+
+            next.addEventListener("click", () => {
+                if (i < N) {
+                    // increase i as long as it's smaller than the number of slides
+                    _C.style.setProperty("--i", i++);
+                }
+            });
+
+            // ===============
+            // slider event listeners for mouse and touch (start, move, end)
+            // ===============
+
+            _C.addEventListener("mousemove", drag, false);
+            _C.addEventListener("touchmove", drag, false);
+
+            _C.addEventListener("mousedown", lock, false);
+            _C.addEventListener("touchstart", lock, false);
+
+            _C.addEventListener("mouseup", move, false);
+            _C.addEventListener("touchend", move, false);
+
+            // override Edge swipe behaviour
+            _C.addEventListener(
+                "touchmove",
+                e => {
+                    e.preventDefault();
+                },
+                false
+            );
+
+            // unify touch and click cases:
+            function unify(e) {
+                return e.changedTouches ? e.changedTouches[0] : e;
+            }
+
+            //#endregion slide
 
             $scope.now = new Date();
             $rootScope.isOpen = true;
 
-            $scope.goToLink = function(url){
-                if (url.toLowerCase().indexOf('logout') <0 ){
-                    if (url.toLowerCase().indexOf('bi-') > -1 ){
-                        window.open($window.location.origin + url,'_blank')
-                    } else{
+            $scope.goToLink = function (url) {
+                if (url.toLowerCase().indexOf('logout') < 0) {
+                    if (url.toLowerCase().indexOf('bi-') > -1) {
+                        window.open($window.location.origin + url, '_blank')
+                    } else {
                         $window.location.href = url;
                         if (!$rootScope.$$phase) $rootScope.$apply();
                     }
-                 
+
                 } else {
                     $rootScope.doLogout();
                 }
             };
 
-            var getNotif = function() {
+            var getNotif = function () {
                 MenuService.getNotification('sdm/get-sip-str-expired-pegawai').then(res => {
                     $scope.messageNotif = '';
                     let data = res.data.data;
@@ -69,18 +194,20 @@ define(['initialize'], function (initialize) {
             getNotif();
 
             var checkAndSetPPDSLogin = function () {
-                MenuService.getServiceSdm('pegawai/reset-login-pegawai-keluar').then(res =>{
+                MenuService.getServiceSdm('pegawai/reset-login-pegawai-keluar').then(res => {
                     $scope.pesanPemberitahuan = '';
 
                     if (res.data.data.message == 'SUKSES') {
                         $scope.pesanPemberitahuan = `Program Pendidikan Dokter Spesialis Anda di RSAB Harapan Kita telah selesai!`;
                         var popUp = $('#winNotif').data('kendoWindow');
                         popUp.open().center();
-                        setTimeout(function() { popUp.close(); }, 3000);
+                        setTimeout(function () {
+                            popUp.close();
+                        }, 3000);
                     }
                 })
-            }       
-            
+            }
+
             checkAndSetPPDSLogin();
 
             $rootScope.hideMenuUp = false;
@@ -157,7 +284,7 @@ define(['initialize'], function (initialize) {
                 r({
                     method: 'GET',
                     url: '/app/data/GetRequireConfig'
-                }).then(function (data) { }, function (error) { });
+                }).then(function (data) {}, function (error) {});
             }
             $scope.data = [{
                 link: '#/Pasien',
@@ -197,79 +324,215 @@ define(['initialize'], function (initialize) {
                 switch (showMenuLayanan) {
                     case "showMenuManajemen":
                         $scope.titleMenu = "Manajemen";
-                        $scope.DaftarMenu = [
-                            { "title": "eis", "url_image": "menu-manajemen/eis.jpg" },
-                            { "title": "komite-etik-hukum", "url_image": "menu-manajemen/komite-etik-hukum.jpg" },
-                            { "title": "komite-keperawatan", "url_image": "menu-manajemen/komite-keperawatan.jpg" },
-                            { "title": "komite-medis", "url_image": "menu-manajemen/komite-medis.jpg" },
-                            { "title": "spi", "url_image": "menu-manajemen/spi.jpg" },
-                            { "title": "sysadmin", "url_image": "menu-manajemen/sysadmin.jpg" }
+                        $scope.DaftarMenu = [{
+                                "title": "eis",
+                                "url_image": "menu-manajemen/eis.jpg"
+                            },
+                            {
+                                "title": "komite-etik-hukum",
+                                "url_image": "menu-manajemen/komite-etik-hukum.jpg"
+                            },
+                            {
+                                "title": "komite-keperawatan",
+                                "url_image": "menu-manajemen/komite-keperawatan.jpg"
+                            },
+                            {
+                                "title": "komite-medis",
+                                "url_image": "menu-manajemen/komite-medis.jpg"
+                            },
+                            {
+                                "title": "spi",
+                                "url_image": "menu-manajemen/spi.jpg"
+                            },
+                            {
+                                "title": "sysadmin",
+                                "url_image": "menu-manajemen/sysadmin.jpg"
+                            }
                         ];
 
                         break;
 
                     case "showMenuSDM":
                         $scope.titleMenu = "Sumber Daya Manusia";
-                        $scope.DaftarMenu = [
-                            { "title": "sdm", "url_image": "menu-sdm/sdm.jpg" },
-                            { "title": "pendidikan", "url_image": "menu-sdm/pendidikan.jpg" },
-                            { "title": "pelatihan", "url_image": "menu-sdm/pelatihan.jpg" },
-                            { "title": "sysadmin", "url_image": "menu-sdm/sysadmin.jpg" }
+                        $scope.DaftarMenu = [{
+                                "title": "sdm",
+                                "url_image": "menu-sdm/sdm.jpg"
+                            },
+                            {
+                                "title": "pendidikan",
+                                "url_image": "menu-sdm/pendidikan.jpg"
+                            },
+                            {
+                                "title": "pelatihan",
+                                "url_image": "menu-sdm/pelatihan.jpg"
+                            },
+                            {
+                                "title": "sysadmin",
+                                "url_image": "menu-sdm/sysadmin.jpg"
+                            }
                         ];
                         break;
 
                     case "showMenuKeuangan":
                         $scope.titleMenu = "Keuangan";
-                        $scope.DaftarMenu = [
-                            { "title": "akuntansi", "url_image": "menu-keuangan/akuntansi.jpg" },
-                            { "title": "bendahara-penerimaan", "url_image": "menu-keuangan/bendahara-penerimaan.jpg" },
-                            { "title": "bendahara-pengeluaran", "url_image": "menu-keuangan/bendahara-pengeluaran.jpg" },
-                            { "title": "hutang-piutang", "url_image": "menu-keuangan/hutang-piutang.jpg" },
-                            { "title": "kasir-penerimaan", "url_image": "menu-keuangan/kasir-penerimaan.jpg" },
-                            { "title": "kasir-pengeluaran", "url_image": "menu-keuangan/kasir-pengeluaran.jpg" },
-                            { "title": "perencanaan-anggaran", "url_image": "menu-keuangan/perencanaan-anggaran.jpg" },
-                            { "title": "sysadmin", "url_image": "menu-keuangan/sysadmin.jpg" }
+                        $scope.DaftarMenu = [{
+                                "title": "akuntansi",
+                                "url_image": "menu-keuangan/akuntansi.jpg"
+                            },
+                            {
+                                "title": "bendahara-penerimaan",
+                                "url_image": "menu-keuangan/bendahara-penerimaan.jpg"
+                            },
+                            {
+                                "title": "bendahara-pengeluaran",
+                                "url_image": "menu-keuangan/bendahara-pengeluaran.jpg"
+                            },
+                            {
+                                "title": "hutang-piutang",
+                                "url_image": "menu-keuangan/hutang-piutang.jpg"
+                            },
+                            {
+                                "title": "kasir-penerimaan",
+                                "url_image": "menu-keuangan/kasir-penerimaan.jpg"
+                            },
+                            {
+                                "title": "kasir-pengeluaran",
+                                "url_image": "menu-keuangan/kasir-pengeluaran.jpg"
+                            },
+                            {
+                                "title": "perencanaan-anggaran",
+                                "url_image": "menu-keuangan/perencanaan-anggaran.jpg"
+                            },
+                            {
+                                "title": "sysadmin",
+                                "url_image": "menu-keuangan/sysadmin.jpg"
+                            }
                         ];
                         break;
 
                     case "showMenuRmPelayanan":
                         $scope.titleMenu = "Rekam Medis & Pelayanan";
-                        $scope.DaftarMenu = [
-                            { "title": "bedah-sentral", "url_image": "menu-rm-pelayanan/bedah-sentral.jpg" },
-                            { "title": "depo-farmasi", "url_image": "menu-rm-pelayanan/depo-farmasi.jpg" },
-                            { "title": "gawat-darurat", "url_image": "menu-rm-pelayanan/gawat-darurat.jpg" },
-                            { "title": "gizi-kantin", "url_image": "menu-rm-pelayanan/gizi-kantin.jpg" },
-                            { "title": "gudang-farmasi", "url_image": "menu-rm-pelayanan/gudang-farmasi.jpg" },
-                            { "title": "lab", "url_image": "menu-rm-pelayanan/lab.jpg" },
-                            { "title": "radiology", "url_image": "menu-rm-pelayanan/radiology.jpg" },
-                            { "title": "rawat-inap", "url_image": "menu-rm-pelayanan/rawat-inap.jpg" },
-                            { "title": "rawat-jalan", "url_image": "menu-rm-pelayanan/rawat-jalan.jpg" },
-                            { "title": "regis-pasien", "url_image": "menu-rm-pelayanan/regis-pasien.jpg" },
-                            { "title": "rehab-medik", "url_image": "menu-rm-pelayanan/rehab-medik.jpg" },
-                            { "title": "rekam-medis", "url_image": "menu-rm-pelayanan/rekam-medis.jpg" },
-                            { "title": "sistem-informasi-rs", "url_image": "menu-rm-pelayanan/sistem-informasi-rs.jpg" },
-                            { "title": "sysadmin", "url_image": "menu-rm-pelayanan/sysadmin.jpg" }
+                        $scope.DaftarMenu = [{
+                                "title": "bedah-sentral",
+                                "url_image": "menu-rm-pelayanan/bedah-sentral.jpg"
+                            },
+                            {
+                                "title": "depo-farmasi",
+                                "url_image": "menu-rm-pelayanan/depo-farmasi.jpg"
+                            },
+                            {
+                                "title": "gawat-darurat",
+                                "url_image": "menu-rm-pelayanan/gawat-darurat.jpg"
+                            },
+                            {
+                                "title": "gizi-kantin",
+                                "url_image": "menu-rm-pelayanan/gizi-kantin.jpg"
+                            },
+                            {
+                                "title": "gudang-farmasi",
+                                "url_image": "menu-rm-pelayanan/gudang-farmasi.jpg"
+                            },
+                            {
+                                "title": "lab",
+                                "url_image": "menu-rm-pelayanan/lab.jpg"
+                            },
+                            {
+                                "title": "radiology",
+                                "url_image": "menu-rm-pelayanan/radiology.jpg"
+                            },
+                            {
+                                "title": "rawat-inap",
+                                "url_image": "menu-rm-pelayanan/rawat-inap.jpg"
+                            },
+                            {
+                                "title": "rawat-jalan",
+                                "url_image": "menu-rm-pelayanan/rawat-jalan.jpg"
+                            },
+                            {
+                                "title": "regis-pasien",
+                                "url_image": "menu-rm-pelayanan/regis-pasien.jpg"
+                            },
+                            {
+                                "title": "rehab-medik",
+                                "url_image": "menu-rm-pelayanan/rehab-medik.jpg"
+                            },
+                            {
+                                "title": "rekam-medis",
+                                "url_image": "menu-rm-pelayanan/rekam-medis.jpg"
+                            },
+                            {
+                                "title": "sistem-informasi-rs",
+                                "url_image": "menu-rm-pelayanan/sistem-informasi-rs.jpg"
+                            },
+                            {
+                                "title": "sysadmin",
+                                "url_image": "menu-rm-pelayanan/sysadmin.jpg"
+                            }
                         ];
                         break;
 
                     case "showMenuSarpras":
                         $scope.titleMenu = "Sarana dan Prasarana";
-                        $scope.DaftarMenu = [
-                            { "title": "adm-tatausaha", "url_image": "menu-sarpras/adm-tatausaha.jpg" },
-                            { "title": "ambulance", "url_image": "menu-sarpras/ambulance.jpg" },
-                            { "title": "binatu-laundry", "url_image": "menu-sarpras/binatu-laundry.jpg" },
-                            { "title": "cssd", "url_image": "menu-sarpras/cssd.jpg" },
-                            { "title": "gudang-gizi", "url_image": "menu-sarpras/gudang-gizi.jpg" },
-                            { "title": "gudang-terminal", "url_image": "menu-sarpras/gudang-terminal.jpg" },
-                            { "title": "gudang-umum", "url_image": "menu-sarpras/gudang-umum.jpg" },
-                            { "title": "hukum-organisasi", "url_image": "menu-sarpras/hukum-organisasi.jpg" },
-                            { "title": "humas-pemasaran", "url_image": "menu-sarpras/humas-pemasaran.jpg" },
-                            { "title": "informasi-rs", "url_image": "menu-sarpras/informasi-rs.jpg" },
-                            { "title": "kesehatan-keselamatan-kerja", "url_image": "menu-sarpras/kesehatan-keselamatan-kerja.jpg" },
-                            { "title": "psrs", "url_image": "menu-sarpras/psrs.jpg" },
-                            { "title": "rumah-tangga", "url_image": "menu-sarpras/rumah-tangga.jpg" },
-                            { "title": "ulp", "url_image": "menu-sarpras/ulp.jpg" },
-                            { "title": "sysadmin", "url_image": "menu-sarpras/sysadmin.jpg" }
+                        $scope.DaftarMenu = [{
+                                "title": "adm-tatausaha",
+                                "url_image": "menu-sarpras/adm-tatausaha.jpg"
+                            },
+                            {
+                                "title": "ambulance",
+                                "url_image": "menu-sarpras/ambulance.jpg"
+                            },
+                            {
+                                "title": "binatu-laundry",
+                                "url_image": "menu-sarpras/binatu-laundry.jpg"
+                            },
+                            {
+                                "title": "cssd",
+                                "url_image": "menu-sarpras/cssd.jpg"
+                            },
+                            {
+                                "title": "gudang-gizi",
+                                "url_image": "menu-sarpras/gudang-gizi.jpg"
+                            },
+                            {
+                                "title": "gudang-terminal",
+                                "url_image": "menu-sarpras/gudang-terminal.jpg"
+                            },
+                            {
+                                "title": "gudang-umum",
+                                "url_image": "menu-sarpras/gudang-umum.jpg"
+                            },
+                            {
+                                "title": "hukum-organisasi",
+                                "url_image": "menu-sarpras/hukum-organisasi.jpg"
+                            },
+                            {
+                                "title": "humas-pemasaran",
+                                "url_image": "menu-sarpras/humas-pemasaran.jpg"
+                            },
+                            {
+                                "title": "informasi-rs",
+                                "url_image": "menu-sarpras/informasi-rs.jpg"
+                            },
+                            {
+                                "title": "kesehatan-keselamatan-kerja",
+                                "url_image": "menu-sarpras/kesehatan-keselamatan-kerja.jpg"
+                            },
+                            {
+                                "title": "psrs",
+                                "url_image": "menu-sarpras/psrs.jpg"
+                            },
+                            {
+                                "title": "rumah-tangga",
+                                "url_image": "menu-sarpras/rumah-tangga.jpg"
+                            },
+                            {
+                                "title": "ulp",
+                                "url_image": "menu-sarpras/ulp.jpg"
+                            },
+                            {
+                                "title": "sysadmin",
+                                "url_image": "menu-sarpras/sysadmin.jpg"
+                            }
                         ];
                         break;
                 };

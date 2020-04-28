@@ -16,6 +16,10 @@
         "link": "#/MonitorSkorGizi"
     },
     {
+        "name": "Daftar Pengajuan Usulan Barang dan Jasa",
+        "link": "#/DaftarPengajuanPengadaanBarangPengendali"
+    },
+    {
         "name": "Usulan",
         "children": [
             {

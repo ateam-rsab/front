@@ -6,7 +6,7 @@ define(['initialize'], function (initialize) {
             $scope.dataVOloaded = true;
             $scope.now = new Date();
             $scope.item = {};
-            $scope.item.periodeAwal = new Date();;
+            $scope.item.periodeAwal = new Date();
             $scope.item.periodeAkhir = new Date();
             $scope.item.periodeAwal = dateHelper.setJamAwal(new Date());
             $scope.item.periodeAkhir = new Date();

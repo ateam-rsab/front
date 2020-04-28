@@ -226,7 +226,7 @@ define(['initialize'], function (initialize) {
 
       //   $scope.isRouteLoading = true;
       //   var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm');
-      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm');;
+      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm');
       //   debugger;
 
       //   var tempRuanganId = "";
@@ -622,7 +622,7 @@ define(['initialize'], function (initialize) {
       //     kelompokPasien = $scope.item.kelompokPasien.id
       //   }
       //   var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
-      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
+      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
       //   var client = new HttpClient();
       //   client.get('http://127.0.0.1:1237/printvb/kasir?cetak-laporan-pendapatan=1' +//$scope.item.namaKasir.id+
       //     '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&idDepartemen=' + departemen + '&idRuangan=' + ruanganId + '&idDokter=' + dokter + '&idKelompok=' + kelompokPasien + '&namaKasir=' + $scope.dataLogin.namaLengkap + '&view=true', function (response) {
@@ -643,7 +643,7 @@ define(['initialize'], function (initialize) {
       //     kelompokPasien = $scope.item.kelompokPasien.id
       //   }
       //   var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
-      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
+      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
       //   var client = new HttpClient();
       //   client.get('http://127.0.0.1:1237/printvb/kasir?cetak-laporan-pendapatan-perdokter=1' +//$scope.item.namaKasir.id+
       //     '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&idRuangan=' + ruanganId + '&idDokter=' + dokter + '&idKelompok=' + kelompokPasien + '&namaKasir=' + $scope.dataLogin.namaLengkap + '&view=true', function (response) {
@@ -669,7 +669,7 @@ define(['initialize'], function (initialize) {
       //     kelompokPasien = $scope.item.kelompokPasien.id
       //   }
       //   var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
-      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
+      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
       //   var client = new HttpClient();
       //   client.get('http://127.0.0.1:1237/printvb/kasir?cetak-rekap-pendapatan=1' +//$scope.item.namaKasir.id+
       //     '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&idDepartemen=' + departemen + '&idRuangan=' + ruanganId + '&idDokter=' + dokter + '&PrinteDBY2=' + personKa + '&idKelompok=' + kelompokPasien + '&namaKasir=' + $scope.dataLogin.namaLengkap + '&view=true', function (response) {
@@ -686,7 +686,7 @@ define(['initialize'], function (initialize) {
       //     kelompokPasien = $scope.item.kelompokPasien.id
       //   }
       //   var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
-      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
+      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
       //   var client = new HttpClient();
       //   client.get('http://127.0.0.1:1237/printvb/kasir?cetak-rekap-pendapatan-keuangan=1' +//$scope.item.namaKasir.id+
       //     '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&idRuangan=' + ruanganId + '&idKelompok=' + kelompokPasien + '&namaKasir=' + $scope.dataLogin.namaLengkap + '&view=true', function (response) {
@@ -703,7 +703,7 @@ define(['initialize'], function (initialize) {
       //     ruanganId = $scope.item.ruangan.id
       //   }
       //   var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
-      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
+      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
       //   var client = new HttpClient();
       //   client.get('http://127.0.0.1:1237/printvb/kasir?cetak-laporan-pendapatan-ffs=1' +//$scope.item.namaKasir.id+
       //     '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&idRuangan=' + ruanganId + '&idDokter=' + dokter + '&namaKasir=' + $scope.dataLogin.namalengkap + '&view=true', function (response) {
@@ -730,7 +730,7 @@ define(['initialize'], function (initialize) {
       //     kelompokPasienId = $scope.item.kelompokPasien.id
       //   }
       //   var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
-      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
+      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
       //   var client = new HttpClient();
       //   client.get('http://127.0.0.1:1237/printvb/kasir?cetak-laporan-ffs-gawatdarurat=1' +//$scope.item.namaKasir.id+
       //     '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '&idDokter=' + dokter + '&tgllibut=' + person + '&kdRuangan=' + ruanganId + '&kpid=' + kelompokPasienId, function (response) {
@@ -757,7 +757,7 @@ define(['initialize'], function (initialize) {
       //     kelompokPasienId = $scope.item.kelompokPasien.id
       //   }
       //   var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
-      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
+      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
       //   var client = new HttpClient();
       //   client.get('http://127.0.0.1:1237/printvb/kasir?cetak-rekap-ffs-gawatdarurat=1' +//$scope.item.namaKasir.id+
       //     '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '&idDokter=' + dokter + '&tgllibut=' + person + '&view=' + ruanganId + '&kpid=' + kelompokPasienId, function (response) {
@@ -774,7 +774,7 @@ define(['initialize'], function (initialize) {
       //     ruanganId = $scope.item.ruangan.id
       //   }
       //   var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
-      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
+      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
       //   var client = new HttpClient();
       //   client.get('http://127.0.0.1:1237/printvb/kasir?cetak-laporan-pendapatan-remun=1' +//$scope.item.namaKasir.id+
       //     '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&idRuangan=' + ruanganId + '&idDokter=' + dokter + '&namaKasir=' + $scope.dataLogin.namalengkap + '&view=true', function (response) {
@@ -819,7 +819,7 @@ define(['initialize'], function (initialize) {
       //     tipeDokter = $scope.item.TipeDokter.id
       //   }
       //   var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
-      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
+      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
       //   var client = new HttpClient();
       //   client.get('http://127.0.0.1:1237/printvb/kasir?cetak-laporan-ffs-ranap=1' +//$scope.item.namaKasir.id+
       //     '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '~' + personKa + '&idDokter=' + dokter + '&tgllibut=' + person + '&view=' + ruanganId + '&kpid=' + kelompokPasienId + '&tipeDokter=' + tipeDokter, function (response) {
@@ -847,7 +847,7 @@ define(['initialize'], function (initialize) {
       //     kelompokPasienId = $scope.item.kelompokPasien.id
       //   }
       //   var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
-      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
+      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
       //   var client = new HttpClient();
       //   client.get('http://127.0.0.1:1237/printvb/kasir?cetak-rekap-ffs-ranap=1' +//$scope.item.namaKasir.id+
       //     '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '~' + personKa + '&idDokter=' + dokter + '&tgllibut=' + person + '&view=' + ruanganId + '&kpid=' + kelompokPasienId, function (response) {
@@ -886,7 +886,7 @@ define(['initialize'], function (initialize) {
       //     tipeDokter = $scope.item.TipeDokter.id
       //   }
       //   var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
-      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
+      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
       //   var client = new HttpClient();
       //   client.get('http://127.0.0.1:1237/printvb/kasir?cetak-laporan-ffs-bedah=' + kelompokPasienId +//$scope.item.namaKasir.id+
       //     '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '&idDokter=' + dokter + '&tgllibut=' + person + '&jasa=' + personKa + '&view=' + ruanganId + '&kpid=' + kelompokPasienId + '&tipeDokter=' + tipeDokter, function (response) {
@@ -911,7 +911,7 @@ define(['initialize'], function (initialize) {
       //     kelompokPasienId = $scope.item.kelompokPasien.id
       //   }
       //   var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
-      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
+      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
       //   var client = new HttpClient();
       //   client.get('http://127.0.0.1:1237/printvb/kasir?cetak-rekap-ffs-bedah=' + kelompokPasienId +//$scope.item.namaKasir.id+
       //     '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '&idDokter=' + dokter + '&tgllibut=' + person + '&idJasa=' + personKa + '&view=' + ruanganId, function (response) {
@@ -938,7 +938,7 @@ define(['initialize'], function (initialize) {
       //     kelompokPasienId = $scope.item.kelompokPasien.id
       //   }
       //   var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
-      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
+      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
       //   var client = new HttpClient();
       //   client.get('http://127.0.0.1:1237/printvb/kasir?cetak-laporan-ffs-penunjangRad=' + kelompokPasienId +//$scope.item.namaKasir.id+
       //     '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '&idDokter=' + dokter + '&tgllibut=' + person + '&view=' + ruanganId + '&personKa=' + personKa, function (response) {
@@ -962,7 +962,7 @@ define(['initialize'], function (initialize) {
       //     kelompokPasienId = $scope.item.kelompokPasien.id
       //   }
       //   var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
-      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
+      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
       //   var client = new HttpClient();
       //   client.get('http://127.0.0.1:1237/printvb/kasir?cetak-rekap-ffs-penunjangRad=' + kelompokPasienId +//$scope.item.namaKasir.id+
       //     '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '&idDokter=' + dokter + '&tgllibut=' + person + '&view=' + ruanganId + '&personKa=' + personKa, function (response) {
@@ -989,7 +989,7 @@ define(['initialize'], function (initialize) {
       //     kelompokPasienId = $scope.item.kelompokPasien.id
       //   }
       //   var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
-      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
+      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
       //   var client = new HttpClient();
       //   client.get('http://127.0.0.1:1237/printvb/kasir?cetak-laporan-ffs-penunjang=' + kelompokPasienId +//$scope.item.namaKasir.id+
       //     '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '~' + personKa + '&idDokter=' + dokter + '&tgllibut=' + person + '&view=' + ruanganId, function (response) {
@@ -1014,7 +1014,7 @@ define(['initialize'], function (initialize) {
       //     kelompokPasienId = $scope.item.kelompokPasien.id
       //   }
       //   var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
-      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
+      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
       //   var client = new HttpClient();
       //   client.get('http://127.0.0.1:1237/printvb/kasir?cetak-rekap-ffs-penunjang=' + kelompokPasienId +//$scope.item.namaKasir.id+
       //     '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '~' + personKa + '&idDokter=' + dokter + '&tgllibut=' + person + '&view=' + ruanganId, function (response) {
@@ -1035,7 +1035,7 @@ define(['initialize'], function (initialize) {
       //     kelompokPasien = $scope.item.kelompokPasien.id
       //   }
       //   var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
-      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
+      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
       //   var client = new HttpClient();
       //   client.get('http://127.0.0.1:1237/printvb/laporanPelayanan?cetak-LaporanPendapatanksm=1' +
       //     '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&idDepartemen=' + departemen + '&idRuangan=' + ruanganId + '&idKelompok=' + kelompokPasien + '&idKsm=' + '&namaKasir=' + $scope.dataLogin.namaLengkap + '&view=true', function (response) {
@@ -1063,7 +1063,7 @@ define(['initialize'], function (initialize) {
       //     TipeDokter = $scope.item.TipeDokter.id
       //   }
       //   var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
-      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
+      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
       //   var client = new HttpClient();
       //   client.get('http://127.0.0.1:1237/printvb/kasir?cetak-laporan-ffs-jalan=1' +//$scope.item.namaKasir.id+
       //     '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '&personKa=' + personKa + '&idDokter=' + dokter + '&tgllibut=' + person + '&kdRuangan=' + ruanganId + '&kpid=' + kelompokPasienId + '&TipeDokter=' + TipeDokter, function (response) {
@@ -1091,7 +1091,7 @@ define(['initialize'], function (initialize) {
       //     TipeDokter = $scope.item.TipeDokter.id
       //   }
       //   var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
-      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
+      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
       //   var client = new HttpClient();
       //   client.get('http://127.0.0.1:1237/printvb/kasir?cetak-rekap-ffs-jalan=1' +//$scope.item.namaKasir.id+
       //     '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '&personKa=' + personKa + '&idDokter=' + dokter + '&tgllibut=' + person + '&view=' + ruanganId + '&kpid=' + kelompokPasienId + '&TipeDokter=' + TipeDokter, function (response) {
@@ -1119,7 +1119,7 @@ define(['initialize'], function (initialize) {
       //     TipeDokter = $scope.item.TipeDokter.id
       //   }
       //   var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
-      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
+      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
       //   var client = new HttpClient();
       //   client.get('http://127.0.0.1:1237/printvb/kasir?cetak-laporan-ffs-edelweis=1' +//$scope.item.namaKasir.id+
       //     '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '&personKa=' + personKa + '&idDokter=' + dokter + '&tgllibut=' + person + '&kdRuangan=' + ruanganId + '&kpid=' + kelompokPasienId + '&TipeDokter=' + TipeDokter, function (response) {
@@ -1147,7 +1147,7 @@ define(['initialize'], function (initialize) {
       //     TipeDokter = $scope.item.TipeDokter.id
       //   }
       //   var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
-      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
+      //   var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
       //   var client = new HttpClient();
       //   client.get('http://127.0.0.1:1237/printvb/kasir?cetak-rekap-ffs-edelweis=1' +//$scope.item.namaKasir.id+
       //     '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&PrinteDBY=' + $scope.dataLogin.namaLengkap + '&personKa=' + personKa + '&idDokter=' + dokter + '&tgllibut=' + person + '&view=' + ruanganId + '&kpid=' + kelompokPasienId + '&TipeDokter=' + TipeDokter, function (response) {

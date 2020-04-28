@@ -32,7 +32,7 @@ define(['initialize'], function(initialize) {
        			ru = $scope.item.unitLayanan.id
        		}
        		var tglAwal = moment($scope.item.periodeAwal).format('YYYY-MM-DD');
-			var tglAkhir = moment($scope.item.periodeAkhir).format('YYYY-MM-DD');;
+			var tglAkhir = moment($scope.item.periodeAkhir).format('YYYY-MM-DD');
 			manageLogistikPhp.getDataTableTransaksi("sasaranmutu/get-data-grid?tglAwal="+tglAwal+'&tglAkhir='+tglAkhir+'&ruanganfk='+ru, false).then(function(data) {
 				$scope.dataGrid = data.data.data;
 			})

@@ -16,7 +16,7 @@ define(['initialize'], function(initialize) {
         function LoadData() {
 
             var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm');
-            var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm');;
+            var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm');
             var tempDepartemenId = "";
             if ($scope.item.departement != undefined) {
                 tempDepartemenId = "&idDept=" + $scope.item.departement.id;

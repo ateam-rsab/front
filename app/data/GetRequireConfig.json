@@ -7362,6 +7362,10 @@
       "urlDep": "module/Anggaran/DaftarTagihanSupplierCtrl"
     },
     {
+      "nameDep": "DashboardRealisasiAnggaranCtrl",
+      "urlDep": "module/Anggaran/DashboardRealisasiAnggaranCtrl"
+    },
+    {
       "nameDep": "DaftarPasienCtrl",
       "urlDep": "module/Dashboard/Pasien/DaftarPasienCtrl"
     },
@@ -7380,6 +7384,10 @@
     {
       "nameDep": "FormulirObservasiHarianTerintegrasiIntensiveCareUnitCtrl",
       "urlDep": "module/ICU/FormulirObservasiHarianTerintegrasiIntensiveCareUnitCtrl"
+    },
+    {
+      "nameDep": "Covid19Ctrl",
+      "urlDep": "module/Informasi/Covid19Ctrl"
     },
     {
       "nameDep": "DetailTagihanRekananCtrl",
@@ -7556,6 +7564,10 @@
     {
       "nameDep": "VerifikasiTagihanSupplierCtrl",
       "urlDep": "module/Akuntansi/BendaharaPengeluaran/VerifikasiTagihanSupplierCtrl"
+    },
+    {
+      "nameDep": "PembayaranUmumCtrl",
+      "urlDep": "module/Akuntansi/BendaharaPengeluaran/PembayaranUmumCtrl"
     },
     {
       "nameDep": "LaboratoriumPemeriksaanOrderCtrl",

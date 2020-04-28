@@ -332,7 +332,7 @@ initialize.controller('LaporanPembedahanInstruksiPascaCtrl', ['$rootScope', '$sc
             if (cacheHelper !== undefined) {
                 $scope.dataLaporanPembedahan = new kendo.data.DataSource({
                     data: cacheHelper.get('Kasa' + $state.params.noRegister)
-                });;
+                });
             } else
                 $scope.dataLaporanPembedahan = new kendo.data.DataSource({
                     data: []

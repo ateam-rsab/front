@@ -76,7 +76,7 @@ define(['initialize'], function(initialize) {
                         $scope.dokters = this._data;
                     }
                     $scope.$apply();
-                });;
+                });
             })
             modelItem.get("ReservasiPasien").then(function(data) {
                 $scope.item = data;
@@ -90,7 +90,7 @@ define(['initialize'], function(initialize) {
             modelItem.getDataDummyGeneric("KelompokPasien", false, undefined, 10).then(function(data) {
                 $scope.asuransiPasiens = _.filter(data, function(item) {
                     return item.kelompokPasien !== 'UMUM';
-                });;
+                });
             });
             modelItem.getDataDummyGeneric("JenisKelamin", false, undefined, 10).then(function(data) {
                 $scope.jenisKelamins = data;

@@ -326,7 +326,7 @@ define(['initialize'], function (initialize) {
 
 
 				var tglAwal = moment($scope.item.tglMasukAwal).format('YYYY-MM-DD HH:mm:ss');
-				var tglAkhir = moment($scope.item.tglMasukAkhir).format('YYYY-MM-DD HH:mm:ss');;
+				var tglAkhir = moment($scope.item.tglMasukAkhir).format('YYYY-MM-DD HH:mm:ss');
 				var client = new HttpClient();
 				client.get('http://127.0.0.1:1237/printvb/gawatdarurat?cetak-hasil-triase=1' +
 					'&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&view=true', function (response) {

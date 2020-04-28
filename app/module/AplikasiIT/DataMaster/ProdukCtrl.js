@@ -269,7 +269,7 @@ define(['initialize'], function(initialize) {
 	     		return
          	}  
 
-         	if ($scope.item.jenisProduk == undefined) {
+         	if (!$scope.item.jenisProduk == undefined) {
          		alert("Jenis Produk Kosong!!!")
          		return
          	}         	       
@@ -279,10 +279,10 @@ define(['initialize'], function(initialize) {
          		return
          	}
 
-         	if ($scope.item.satuanStandar == undefined) {
-         		alert("Satuan Standar Kosong!!!")
-         		return
-         	}
+         	// if ($scope.item.satuanStandar == undefined) {
+         	// 	alert("Satuan Standar Kosong!!!")
+         	// 	return
+         	// }
         	var kdproduk = ''
         	if ($scope.item.kdProduk != undefined) {
         		kdproduk = $scope.item.kdProduk

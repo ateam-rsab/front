@@ -517,15 +517,6 @@ define(['initialize'], function(initialize) {
         }
 
         $scope.columnGrid = [
-            // { 
-            //     "title": "<input type='checkbox' class='checkbox' ng-click='selectUnselectAllRow()' />",
-            //     template: "# if (statCheckbox) { #"+
-            //     "<input type='checkbox' class='checkbox' ng-click='selectRow(dataItem)' checked />"+
-            //     "# } else { #"+
-            //     "<input type='checkbox' class='checkbox' ng-click='selectRow(dataItem)' />"+
-            //     "# } #",
-            //     width:"50px"
-            // },
             {
                 "field": "no",
                 "title": "No",
@@ -533,9 +524,8 @@ define(['initialize'], function(initialize) {
             },
             {
                 "field": "tglkebutuhan",
-                "title": "Tgl Kebutuhan",
-                "width" : "100px",
-                "template": "<span class='style-left'>{{formatTanggal('#: tglkebutuhan #')}}</span>"
+                "title": "Tanggal Kebutuhan",
+                "width" : "100px"
             },
             {
                 "field": "produkfk",
@@ -547,11 +537,6 @@ define(['initialize'], function(initialize) {
                 "title": "Produk",
                 "width" : "200px",
             },
-            // {
-            //     "field": "namarekanan",
-            //     "title": "Supplier",
-            //     "width" : "200px",
-            // },
             {
                 "field": "satuanstandar",
                 "title": "Satuan",
@@ -573,13 +558,7 @@ define(['initialize'], function(initialize) {
                 "title": "SubTotal",
                 "width" : "100px",
                 "template": "<span class='style-right'>{{formatRupiah('#: total #', '')}}</span>"
-            },
-            // {
-            //     "field": "statusbarang",
-            //     "title": "Stat Barang",
-            //     "width" : "100px",
-            //     // "template": "<span class='style-right'>{{formatRupiah('#: total #', '')}}</span>"
-            // }
+            }
         ];
             $scope.formatRupiah = function(value, currency) {
                 return currency + " " + parseFloat(value).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
@@ -726,7 +705,7 @@ define(['initialize'], function(initialize) {
                             aCallback(anHttpRequest.responseText);
                     }
 
-                    anHttpRequest.open( "GET", aUrl, true );            
+                    anHttpRequest.open( "GET", aUrl, true );
                     anHttpRequest.send( null );
                 }
             }

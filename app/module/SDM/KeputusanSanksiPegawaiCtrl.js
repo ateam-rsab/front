@@ -52,7 +52,7 @@ define(['initialize'], function(initialize) {
 				var tglSkSpmt = DateHelper.getTanggalFormattedNew($scope.item.tanggalSk);
 				var tglTmtSpmt = DateHelper.getTanggalFormattedNew($scope.item.tanggalTmt);
 				var tglKeputusan = DateHelper.getTanggalFormattedNew($scope.item.tanggalUsulan);
-				var tglBerlakuAkhir = DateHelper.getTanggalFormattedNew($scope.item.tanggalBerlakuAkhir);;
+				var tglBerlakuAkhir = DateHelper.getTanggalFormattedNew($scope.item.tanggalBerlakuAkhir);
 
 				var data = {
 					"noRec":$scope.item.noRec,

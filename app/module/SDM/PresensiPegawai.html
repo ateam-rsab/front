@@ -1,0 +1,104 @@
+<style>
+    .container-presensi {
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .label-name {
+        display: block;
+        font-size: .8em;
+        font-weight: 800;
+    }
+
+    .label-content {
+        font-size: 1.2em;
+        text-decoration: underline;
+        font-weight: bolder;
+    }
+
+    md-card {
+        width: 50%;
+    }
+
+    md-card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    md-card-content div {
+        margin: 10px 0;
+    }
+
+    #time-part {
+        font-size: 15px;
+        font-weight: bolder;
+    }
+
+    @media only screen and (max-width: 300px) {
+        md-toolbar {
+            font-size: 1em;
+        }
+        md-card {
+            width: 100%;
+        }
+    }
+</style>
+
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Presensi Pegawai</div>
+</md-toolbar>
+
+<div class="container-presensi">
+    
+    <md-card>
+        <md-card-content>
+            <div>
+                <label class="label-name">Nama Lengkap Pegawai : </label>
+                <label class="label-content">{{data.namaLengkap}}</label>
+            </div>
+
+            <div>
+                <label class="label-name">ID Finger : </label>
+                <label class="label-content">{{data.idFinger}}</label>
+            </div>
+
+            <div>
+                <label class="label-name">Jadwal : </label>
+                <label class="label-content">{{data.jadwal}}</label>
+            </div>
+
+            <div>
+                <div class="grid_4">
+                    <div id="time-part"></div>
+                    <!-- <input kendo-time-picker ng-model="str" k-ng-model="tanggalPresensi" k-format="'HH:mm'"
+                        style="width: 100%;" disabled> -->
+                </div>
+                <div class="grid_4" style="margin-top: 20px;">
+                    <input type="checkbox" class="k-checkbox" name="wfh" id="wfh" ng-model="isWFH">
+                    <label c-label item="item" class="k-checkbox-label" for="wfh">Work From Home (WFH)</label>
+                </div>
+                <div class="grid_2" style="margin-top: 17px;">
+                    <md-button class="md-raised md-primary medium-button" ng-click="savePresensi()">
+                        <span style="margin-right: 5px;">Simpan</span>
+                        <i class="fa fa-save"></i>
+                    </md-button>
+                </div>
+
+            </div>
+
+            <div class="grid_12">
+                <fieldset class="borderBox">
+                    <legend>History Jam Presensi</legend>
+                    <div kendo-grid k-data-source="dataHistoriPresensi" k-selectable="'row'" k-pageable="'true'"
+                        k-sortable="'true'" options="optHistoryPresensi" k-ng-model="dataSelected">
+                    </div>
+                </fieldset>
+            </div>
+
+        </md-card-content>
+    </md-card>
+</div>
+
+<div ng-include=' "../app/module/Shared/TemplateLoading" '></div>

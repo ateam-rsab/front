@@ -929,7 +929,7 @@ define(['initialize', 'Configuration'], function (initialize, configuration) {
                 if ($scope.model.tglSEP == undefined) {
                     tanggalsep = null;
                 } else
-                    tanggalsep = new moment($scope.model.tglSEP).format('YYYY-MM-DD HH:mm:ss');;
+                    tanggalsep = new moment($scope.model.tglSEP).format('YYYY-MM-DD HH:mm:ss');
 
                 var tglRujukan = "";
                 if ($scope.model.tglRujukan == undefined) {

@@ -251,8 +251,8 @@ define(['initialize'], function(initialize) {
 				$scope.item.Keluhan = "";
 				$scope.item.Saran = "";
 				$scope.item.umur = "";
-				$scope.item.tglkeluhan = new moment($scope.now).format('YYYY-MM-DD HH:mm');;
-				$scope.item.tglorder = new moment($scope.now).format('YYYY-MM-DD HH:mm');;
+				$scope.item.tglkeluhan = new moment($scope.now).format('YYYY-MM-DD HH:mm');
+				$scope.item.tglorder = new moment($scope.now).format('YYYY-MM-DD HH:mm');
 			 }
 
 			$scope.Simpan = function () {

@@ -1,0 +1,250 @@
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Pembayaran Umum</div>
+</md-toolbar>
+
+<div class="grid_12">
+    <div class="grid_2">
+        <label c-label item="item" c-label-text="NamaSupplier"></label>
+        <input placeholder="Nama Supplier" c-text-box type="input" class="k-textbox"
+            ng-model="item.namaSupplier" />
+    </div>
+
+    <div class="grid_2">
+        <label c-label item="item" c-label-text="Periode Awal"></label>
+        <input style="width: 100%" k-ng-model="item.tanggalAwal" kendo-date-picker k-max="now"
+            placeholer="yyyy-MM-dd" k-format="'yyyy-MM-dd'" />
+    </div>
+    <div class="grid_2">
+        <label c-label item="item" c-label-text="Periode Akhir"></label>
+        <input style="width: 100%" k-ng-model="item.tanggalAkhir" kendo-date-picker placeholer="yyyy-MM-dd"
+            k-format="'yyyy-MM-dd'" />
+    </div>
+    <div class="grid_1" style="margin-top:23px;">
+        <md-button class="md-raised md-primary medium-button" ng-click="loadData()">
+            <span style="margin-right: 5px;">Cari</span>
+            <i class="fa fa-search"></i>
+        </md-button>
+    </div>
+</div>
+
+<div class="grid_12">
+    <div class="headerBox">
+        <p>Daftar Pembayaran Umum Verified</p>
+    </div>
+
+    <div class="grid_12">
+        <div id="kGrid" kendo-grid k-data-source="dataGridVerified" k-selectable="'row'" k-pageable="'true'"
+            k-sortable="'true'" options="gridOptVerified" k-ng-model="dataSelected">
+        </div>
+
+    </div>
+</div>
+
+<div class="grid_12">
+    <div class="headerBox">
+        <p>Daftar Pembayaran Umum Unverified</p>
+    </div>
+
+    <div class="grid_12">
+        <div id="kGrid" kendo-grid k-data-source="dataGridUnverified" k-selectable="'row'" k-pageable="'true'"
+            k-sortable="'true'" options="gridOptUnverified" k-ng-model="dataSelected">
+        </div>
+
+    </div>
+</div>
+
+<div kendo-window="verifkasiRekanan" k-title="'Verifikasi Tagihan Rekanan'" k-width="1000" k-visible="false">
+    <div class="panel panel-default container_12" style="padding: 0px 10px;">
+        <md-card>
+            <md-card-content>
+
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">Tanggal Verifikasi</label>
+                    <input style="width: 100%" k-ng-model="item.tanggalVerifikasi" kendo-date-picker k-max="now"
+                        placeholer="yyyy-MM-dd" k-format="'yyyy-MM-dd'" />
+                </div>
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">Sumber Dana</label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="verif.sumberDana"
+                        k-data-text-field="'asalproduk'" k-data-value-field="'id'" k-filter="'contains'"
+                        k-data-source="listSumberDana" k-on-change="getListAnggaran()" />
+                </div>
+
+                <div class="grid_6">
+                    <label style="font-weight: bolder;">Anggaran</label>
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="verif.anggaran"
+                        k-data-text-field="'nama_anggaran'" k-data-value-field="'kode_anggaran'"
+                        k-filter="'contains'" k-data-source="listAnggaran"
+                        k-on-change="showPagu(verif.anggaran)" />
+                </div>
+                <div class="grid_12">
+                    <label style="font-weight: bolder;">Keterangan Keperluan</label>
+                    <textarea c-text-box type="input" class="k-textbox" ng-model="keperluan"></textarea>
+                </div>
+
+                <div class="grid_12" ng-show="isPagu">
+                    <hr>
+                    <div class="grid_6">
+                        <label style="font-weight: bolder;">Nama Anggaran</label>
+                        <input c-text-box type="input" class="k-textbox" disabled
+                            ng-model="verif.namaAnggaran" />
+                    </div>
+                    <div class="grid_4">
+                        <label style="font-weight: bolder;">Kode Dana</label>
+                        <input c-text-box type="input" class="k-textbox" disabled ng-model="verif.kodeDana" />
+                    </div>
+                    <div class="grid_2">
+                        <label style="font-weight: bolder;">Tahun Anggaran</label>
+                        <input c-text-box type="input" class="k-textbox" disabled ng-model="verif.tahunDana" />
+                    </div>
+
+                    <div class="grid_4">
+                        <label style="font-weight: bolder;">Sisa Pagu</label>
+                        <input c-text-box type="input" style="text-align: right;" class="k-textbox" disabled
+                            ng-model="verif.sisaPagu" />
+                    </div>
+                    <!-- <div class="grid_6">
+                    <label style="font-weight: bolder;">Terbilang</label>
+                    <input c-text-box type="input" style="text-align: right;" class="k-textbox" ng-model="verif.sisaPaguTerbilang" disabled/>
+                </div> -->
+
+                    <div class="grid_4">
+                        <label style="font-weight: bolder;">Pagu</label>
+                        <!-- ng-change="getTerbilang(verif.pagu, 'paguTerbilang')"  -->
+                        <input c-text-box type="input" style="text-align: right;" filter="number"
+                            class="k-textbox" ng-model="verif.pagu" disabled />
+                    </div>
+                    <div class="grid_4">
+                        <label style="font-weight: bolder;">Total Bayar</label>
+                        <input c-text-box type="input" style="text-align: right;" class="k-textbox"
+                            ng-model="verif.totalBayar" ng-keyup="validasiTotalBayar()" />
+                    </div>
+                    <!-- <div class="grid_12">
+                        <label style="font-weight: bolder;">Keperluan</label>
+                            <textarea c-text-box type="input" style="text-align: right;" class="k-textbox"
+                                ng-model="verif.keperluan"></textarea>
+                    </div> -->
+                    <!-- <div class="grid_6">
+                    <label style="font-weight: bolder;">Terbilang</label>
+                    <input c-text-box type="input" style="text-align: right;" class="k-textbox" ng-model="verif.paguTerbilang" disabled/>
+                </div> -->
+                </div>
+
+                <hr>
+
+                <!-- <div class="grid_12"> -->
+                <!-- <div class="grid_6">
+                    <label style="font-weight: bolder;">Total Bayar</label>
+                    <input c-text-box type="input" style="text-align: right;" class="k-textbox" ng-model="verif.totalBayar" ng-keyup="validasiTotalBayar()"/>
+                </div> -->
+                <!-- <div class="grid_6">
+                    <label style="font-weight: bolder;">Terbilang</label>
+                    <input c-text-box type="input" style="text-align: right;" class="k-textbox" ng-model="verif.totalBayarTerbilang" disabled/>
+                </div> -->
+                <!-- <div class="grid_6">
+                    <label style="font-weight: bolder;">Potongan</label>
+                    <input c-text-box type="input" style="text-align: right;" class="k-textbox" ng-model="verif.potongan" ng-change="getTerbilang(verif.potongan, 'potonganTerbilang')"/>
+                </div> -->
+                <!-- </div> -->
+            </md-card-content>
+        </md-card>
+    </div>
+    <div class="dialog_buttons pull-right" style="margin-top:5%;">
+        <div class="grid_4">
+            <md-button class="md-raised md-danger medium-button" style="width: 100%;"
+                ng-click="closePopUpVerifikasi()">
+                Batal
+            </md-button>
+        </div>
+        <div class="grid_4">
+            <md-button class="md-raised md-primary medium-button" style="width: 100%;"
+                ng-click="verifikasiTagihan()">
+                Verifikasi
+            </md-button>
+        </div>
+    </div>
+</div>
+
+<div kendo-window="konfirmasiAnggaran" k-title="'Verifikasi Tagihan Rekanan'" k-width="1000" k-visible="false">
+    <div class="panel panel-default container_12" style="padding: 0px 10px;">
+        <md-card>
+            <md-card-content>
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">Nama Supplier</label>
+                    <p>{{confirm.namarekanan}}</p>
+                </div>
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">No. Verifikasi</label>
+                    <p>{{confirm.noverifikasi}}</p>
+                </div>
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">Tanggal Dokumen</label>
+                    <p>{{confirm.tgldokumen}}</p>
+                </div>
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">No. Dokumen</label>
+                    <p>{{confirm.nodokumen}}</p>
+                </div>
+                <hr>
+
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">Status</label>
+                    <p>{{confirm.status}}</p>
+                </div>
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">Status Konfirmasi Ka. Bag</label>
+                    <p>{{confirm.statusConfirmKabag}}</p>
+                </div>
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">Status Konfirmasi Anggaran</label>
+                    <p>{{confirm.statusConfirmAnggaran}}</p>
+                </div>
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">Status Bayar</label>
+                    <p>{{confirm.statusbayar}}</p>
+                </div>
+                <hr>
+
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">Sisa Hutang</label>
+                    <p>{{confirm.sisautangFormatted}}</p>
+                </div>
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">Sub Total</label>
+                    <p>{{confirm.subtotalFormatted}}</p>
+                </div>
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">Total</label>
+                    <p>{{confirm.totalFormatted}}</p>
+                </div>
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">Diskon</label>
+                    <p>{{confirm.totaldiskonFormatted}}</p>
+                </div>
+                <hr>
+                <div class="grid_12">
+                    <div id="kGrid" kendo-grid k-data-source="dataGridPenggunaanAnggaran" k-selectable="'row'" k-pageable="'true'"
+                        k-sortable="'true'" options="gridOptPenggunaanAnggaran" k-ng-model="dataSelectedAnggaran">
+                    </div>
+    
+                </div>
+            </md-card-content>
+        </md-card>
+    </div>
+    <div class="dialog_buttons pull-right" style="margin-top:5%;">
+        <div class="grid_4">
+            <md-button class="md-raised md-danger medium-button" style="width: 100%;"
+                ng-click="closePopUpKonfirmasi()">
+                Batal
+            </md-button>
+        </div>
+        <div class="grid_4">
+            <md-button class="md-raised md-primary medium-button" style="width: 100%;"
+                ng-click="konfirmasiData(isBagAnggaran)">
+                Verifikasi
+            </md-button>
+        </div>
+    </div>
+</div>
+
+<div ng-include=' "../app/module/Shared/TemplateLoading" '></div>

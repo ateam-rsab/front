@@ -13,7 +13,7 @@ define(['initialize'], function(initialize) {
 
 			$scope.ShowLaporan = function(){
 				var periodeAwal = moment($scope.item.periodeAwal).format('YYYY-MM-DD');
-				var periodeAkhir = moment($scope.item.periodeAkhir).format('YYYY-MM-DD');;
+				var periodeAkhir = moment($scope.item.periodeAkhir).format('YYYY-MM-DD');
 				$scope.urlLaporan = reportHelper.open("reporting/lapObatAntibiotika?startDate="+periodeAwal+"&endDate="+periodeAkhir);
 			
 				$scope.isLoadingData = true;

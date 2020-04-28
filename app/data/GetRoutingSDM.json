@@ -5055,6 +5055,30 @@
       ]
     },
     {
+      "name": "PresensiPegawai",
+      "url": "/PresensiPegawai",
+      "templateurl": "module/SDM/PresensiPegawai.html",
+      "controller": "PresensiPegawaiCtrl",
+      "deps": [
+        {
+          "module": "Services",
+          "define": "Service"
+        },
+        {
+          "module": "LoginServices",
+          "define": "LoginService"
+        },
+        {
+          "module": "SdmService",
+          "define": "SdmService"
+        },
+        {
+          "module": "PhpService",
+          "define": "PhpService"
+        }
+      ]
+    },
+    {
       "name": "DaftarPengajuanPerubahanStatus",
       "url": "/DaftarPengajuanPerubahanStatus",
       "templateurl": "module/SDM/DaftarPengajuanPerubahanStatus.html",

@@ -1940,7 +1940,7 @@
   {
     "name": "home",
     "url": "/home",
-    "templateurl": "Welcome.html",
+    "templateurl": "welcome.html",
     "controller": "WelcomeCtrl",
     "deps": [
       {
@@ -42089,6 +42089,38 @@
     ]
   },
   {
+    "name": "DashboardRealisasiAnggaran",
+    "url": "/DashboardRealisasiAnggaran",
+    "templateurl": "module/Anggaran/DashboardRealisasiAnggaran.html",
+    "controller": "DashboardRealisasiAnggaranCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SarprasService",
+        "define": "SarprasService"
+      },
+      {
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+         "module": "PhpServices",
+         "define": "PhpServices"
+      }
+    ]
+  },
+  {
     "name": "DaftarPasien",
     "url": "/DaftarPasien",
     "templateurl": "module/Dashboard/Pasien/DaftarPasien.html",
@@ -42165,6 +42197,35 @@
       {
         "module": "PasienService",
         "define": "PasienService"
+      }
+    ]
+  },
+  {
+    "name": "Covid19",
+    "url": "/informasi/covid-19",
+    "templateurl": "module/Informasi/Covid19.html",
+    "controller": "Covid19Ctrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "define": "DashboarPasienCtrl"
+      },
+      {
+        "module": "PasienService",
+        "define": "PasienService"
+      },
+      {
+        "define": "BillingDetailCtrl"
+      },
+      {
+        "define": "PasienPulangCtrl"
       }
     ]
   },
@@ -43125,8 +43186,32 @@
         "define": "SarprasService"
       },
       {
-        "module": "SdmService",
-        "define": "SdmService"
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
+      }
+    ]
+  },
+  {
+    "name": "PembayaranUmumCtrl",
+    "url": "/PembayaranUmum",
+    "templateurl": "module/Akuntansi/BendaharaPengeluaran/PembayaranUmum.html",
+    "controller": "PembayaranUmumCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SarprasService",
+        "define": "SarprasService"
+      },
+      {
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
       }
     ]
   },

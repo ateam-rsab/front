@@ -77,7 +77,7 @@ define(['initialize'], function (initialize) {
 
                 $scope.isRouteLoading = true;
                 var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm');
-                var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm');;
+                var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm');
                 debugger;
 
                 var tempKasirId = "";
@@ -444,7 +444,7 @@ define(['initialize'], function (initialize) {
                     idPegawai = $scope.item.namaKasir.id
                 }
                 var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
-                var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
+                var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
                 var client = new HttpClient();
                 client.get('http://127.0.0.1:1237/printvb/kasir?cetak-laporan-penerimaan=' + idPegawai +
                     '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&idRuangan=' + ruanganId + '&idDokter=' + dokter + '&namaKasir=' + $scope.dataLogin.namalengkap + '&view=true', function (response) {
@@ -466,7 +466,7 @@ define(['initialize'], function (initialize) {
                     ruanganId = $scope.item.ruangan.id
                 }
                 var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
-                var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
+                var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
                 var client = new HttpClient();
                 client.get('http://127.0.0.1:1237/printvb/kasir?cetak-rekap-penerimaan=' + $scope.item.namaKasir.id +
                     '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&idRuangan=' + ruanganId + '&idDokter=' + dokter + '&namaKasir=' + $scope.dataLogin.namalengkap + '&view=true', function (response) {
@@ -483,7 +483,7 @@ define(['initialize'], function (initialize) {
                     ruanganId = $scope.item.ruangan.id
                 }
                 var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
-                var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
+                var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
                 var client = new HttpClient();
                 client.get('http://127.0.0.1:1237/printvb/kasir?cetak-laporan-penerimaan-ffs=' + $scope.item.namaKasir.id +
                     '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&idRuangan=' + ruanganId + '&idDokter=' + dokter + '&namaKasir=' + $scope.dataLogin.namalengkap + '&view=true', function (response) {
@@ -500,7 +500,7 @@ define(['initialize'], function (initialize) {
                     ruanganId = $scope.item.ruangan.id
                 }
                 var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
-                var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
+                var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
                 var client = new HttpClient();
                 client.get('http://127.0.0.1:1237/printvb/kasir?cetak-laporan-penerimaan-remun=' + $scope.item.namaKasir.id +
                     '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&idRuangan=' + ruanganId + '&idDokter=' + dokter + '&namaKasir=' + $scope.dataLogin.namalengkap + '&view=true', function (response) {
@@ -523,7 +523,7 @@ define(['initialize'], function (initialize) {
             //         kasirId = $scope.item.namaKasir.id
             //     }
             //     var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
-            //     var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
+            //     var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
             //     var client = new HttpClient();
             //     client.get('http://127.0.0.1:1237/printvb/kasir?cetak-laporan-penerimaan-pertransaksi=' + kasirId+
             //         '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&idRuangan=' + ruanganId + '&idDokter=' + dokter + '&strIdPegawai=' + $scope.dataLogin.namaLengkap + '&view=true', function (response) {
@@ -545,7 +545,7 @@ define(['initialize'], function (initialize) {
                         kasirId = $scope.item.namaKasir.id
                     }
                     var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm:ss');
-                    var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');;
+                    var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm:ss');
                     var client = new HttpClient();
                     client.get('http://127.0.0.1:1237/printvb/kasir?cetak-lapporan-detailkasir-pertransaksi=' + kasirId+
                         '&tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + '&idRuangan=' + ruanganId + '&idDokter=' + dokter + '&strIdPegawai=' + $scope.dataLogin.namaLengkap + '&view=true', function (response) {

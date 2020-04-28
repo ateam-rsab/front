@@ -21,7 +21,7 @@ define(['initialize'], function(initialize) {
                 $scope.listJenisBarang = [{id:1,namaJenis:'Obat-obatan'},{id:2,namaJenis:'Non Obat'}]
                 // var tanggals = DateHelper.getDateTimeFormatted3($scope.date);
                 $scope.item.tglawal = moment( $scope.now).format('YYYY-MM-DD 00:00');
-                $scope.item.tglakhir= moment( $scope.now).format('YYYY-MM-DD 23:59');;
+                $scope.item.tglakhir= moment( $scope.now).format('YYYY-MM-DD 23:59');
                 // manageSarpras.getOrderList("anggaran/get-ruangan", true).then(function(dat){
                 //     $scope.item.ruangan = dat.data.data;
                 // });
@@ -159,7 +159,7 @@ define(['initialize'], function(initialize) {
             $scope.cari = function(){
                 $scope.isRouteLoading=true;
                 var tglAwal = moment($scope.item.tglawal).format('YYYY-MM-DD HH:mm');
-                var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm');;
+                var tglAkhir = moment($scope.item.tglakhir).format('YYYY-MM-DD HH:mm');
                 var kelBarang, jenBarang, ruanganId, barangId, noTerima, asalProdukId, namabarang;
                 kelBarang = "";
                 if ($scope.item.kelompokBarang != undefined) {

@@ -263,7 +263,6 @@
 							<label c-label item="item" style="margin-top: 10px">Tanggal Permohonan</label>
 					</div>
 					<div class="grid_3" ng-show="showTglAwal">
-
 						<label c-label item="item" style="margin-top: 10px">Tanggal Awal</label>
 					</div>
 					<div class="grid_3" ng-show="showTglAkhir">
@@ -274,7 +273,7 @@
 					<div class="grid_12" ng-show="cutiHabis">
 						<span class="errorCuti">Hak Anda telah habis untuk mengajukan jenis permohonan ini !</b></span>
 					</div>
-					<div class="grid_4" data-ng-repeat="tanggal in tanggalPermohonan" ng-hide="cutiHabis">
+					<div class="grid_4" data-ng-repeat="tanggal in tanggalPermohonan" ng-if="!isCutiMelahirkan" ng-hide="cutiHabis">
 						<div class="grid_8" ng-show="cutiLuar">
 							<input style="width:100%" kendo-date-picker k-ng-model="tanggal.tgl" k-options="datePickerOptionsCutiLuar"/>
 						</div>
@@ -289,6 +288,19 @@
 						<div class="grid_12" ng-show="{{tanggal.isDuplicate}}">
 							<label class="duplicateDate">tanggal yang diajukan tidak boleh sama</label>
 						</div>
+					</div>
+
+					<div class="grid_8" ng-show="isCutiMelahirkan">
+						<div class="grid_6">
+							<label c-label item="item" style="margin-top: 10px">Tanggal Awal</label>
+							<input style="width:100%" kendo-date-picker k-ng-model="item.tglAwalCutiMelahirkan" k-on-change="onChangeDateCutiMelahirkan()"/>
+						</div>
+
+						<div class="grid_6">
+							<label c-label item="item" style="margin-top: 10px">Tanggal Akhir</label>
+							<input style="width:100%" kendo-date-picker k-ng-model="item.tglAkhirCutiMelahirkan" ng-disabled="disabledTglAkhir"/>
+						</div>
+						<!-- <div class="grid_2 pull-right"><button class="c-button" ng-click="cekValidasi()" ng-disabled="cutiHabis">cek</button></div> -->
 					</div>
 					<!-- <div class="grid_3">
 						<label c-label item="item" style="margin-top: 10px">Tanggal Permohonan</label>

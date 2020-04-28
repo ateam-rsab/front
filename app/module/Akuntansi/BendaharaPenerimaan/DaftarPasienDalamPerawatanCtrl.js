@@ -148,7 +148,7 @@ define(['initialize'], function(initialize) {
           noMr = $scope.item.noMr
       }
       var tglAwal = moment($scope.item.tglAwal).format('YYYY-MM-DD HH:mm:ss');
-      var tglAkhir = moment($scope.item.tglAkhir).format('YYYY-MM-DD HH:mm:ss');;
+      var tglAkhir = moment($scope.item.tglAkhir).format('YYYY-MM-DD HH:mm:ss');
       var client = new HttpClient();
       client.get('http://127.0.0.1:1237/printvb/kasir?cetak-lap-pasien-dalam-perawatan=' + tglAwal + '&tglAkhir=' + tglAkhir 
           +'&idRuangan=' + ruanganId + '&idKelompok=' + kelompokPasien 

@@ -33,12 +33,12 @@
         <!-- <c-panel item="item" header="'Produk'" disabled> -->
         <div class="grid_12">
             
-        <div class="grid_12 headerBox">
-            <h1 style="color: white;"><b>Daftar Pemakaian Stok Ruangan</b></h1>
-        </div>
+        <md-toolbar md-scroll-shrink class="shadow">
+            <div class="md-toolbar-tools">Daftar Pemakaian Stok Ruangan</div>
+        </md-toolbar>
         <div class="grid_12">
-            <div class="grid_4">
-            </div>
+            <!-- <div class="grid_4">
+            </div> -->
             <!-- Departemen -->
             <!-- <div class="grid_2">
                 <div class="grid_12">
@@ -71,8 +71,26 @@
                     <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisRacikan" k-data-text-field="'jenisracikan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJenisRacikan" />
                 </div>
             </div> -->
-            <div class="grid_2">
+            <!-- <div class="grid_2">
 
+            </div> -->
+            <div class="grid_2">
+                <div class="grid_12">
+                    <label c-label item="item" >No Pemakaian</label>
+                </div>
+
+                <div class="grid_12">
+                    <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nostruk" />
+                </div>
+            </div>
+            <div class="grid_2">
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="Keterangan"></label>
+                </div>
+
+                <div class="grid_12">
+                    <input c-text-box type="input"  filter="" class="k-textbox" ng-model="item.keterangan" />
+                </div>
             </div>
             <div class="grid_2">
                 <div class="grid_12">
@@ -103,23 +121,26 @@
                             <input style="width: 100%" k-ng-model="item.tglAkhir"  kendo-datetimepicker  placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" />
                         </div>
                     </div>
-                    <div class="grid_2">
-                        <button class="c-button"  ng-click="cariFilter()">Cari</button>
+                    <div class="grid_2" style="margin-top: 2px;">
+                        <!-- <button class="c-button"  ng-click="cariFilter()">Cari</button> -->
+                        <md-button class="md-raised md-primary medium-button" 
+                            ng-click="cariFilter()">
+                            <span style="margin-right: 5px;">Cari</span>
+                            <i class="fa fa-search"></i>
+                        </md-button>
                     </div>
                 </div>
-
-                
             </div>
             <div class="grid_12">
-                    <div class="grid_12 headerBox">
+                    <div class="headerBox">
                         <p>Data Pemakaian</p>
                     </div>
                     <!-- grid table -->
-                     <div class="grid_12 borderBox">
+                     <div class="grid_12">
                         <div id="kGrid" 
                         kendo-grid k-data-source="dataGrid" 
                         k-selectable="'row'" 
-                        k-columns="columnGrid" 
+                        options="gridOpt"
                         k-pageable="'true'" 
                         k-sortable="'true'" 
                         k-ng-model="dataSelected">
@@ -137,10 +158,7 @@
                             </div>
                         </div>
                     </div>
-                    
                 </div>
-                
-                
             </div>
             <!-- NamaKegiatan -->
             <div class="grid_12">
@@ -153,7 +171,7 @@
                         <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noReg" />
                     </div>
                 </div> -->
-                <div class="grid_2">
+                <!-- <div class="grid_2">
                     <div class="grid_12">
                         <label c-label item="item" >No Pemakaian</label>
                     </div>
@@ -170,8 +188,8 @@
                     <div class="grid_12">
                         <input c-text-box type="input"  filter="" class="k-textbox" ng-model="item.keterangan" />
                     </div>
-                </div>
-                <div class="grid_5"></div>
+                </div> -->
+                <div class="grid_9"></div>
              <!--    <div class="grid_2" style="margin-top: 22px">
                     <button class="c-button" ng-click="Tambah()">Usulan Baru</button>
                 </div> -->
@@ -186,8 +204,7 @@
                 </div>
               <!--   <div class="grid_2" style="margin-top: 22px">
                     <button class="c-button" ng-click="newSPK()">Buat SPK</button>
-                </div>
- -->
+                </div> -->
                 <!-- <div class="grid_2" style="margin-top: 22px">
                     <button class="c-button" ng-click="CetakRincian()">Cetak Rincian</button>
                 </div> -->

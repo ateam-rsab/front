@@ -582,7 +582,7 @@ define(['initialize', 'Configuration'], function(initialize, configuration) {
                 var tglkeluar =null;
                 if (items.statusKendaliDokumen.name != "SELESAI") {
 
-                    tglkeluar=moment(items.tglKembali).format('YYYY-MM-DD HH:mm');;
+                    tglkeluar=moment(items.tglKembali).format('YYYY-MM-DD HH:mm');
                 }
 
                 var tglkembali=null;
