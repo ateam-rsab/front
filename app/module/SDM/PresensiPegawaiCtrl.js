@@ -61,8 +61,8 @@ define(['initialize'], function (initialize) {
 
             $scope.savePresensi = function () {
                 let data = {
-                    tr_date: DateHelper.toTimeStamp(new Date()),
-                    tr_time: DateHelper.toTimeStamp(new Date()),
+                    // tr_date: DateHelper.toTimeStamp(new Date()),
+                    // tr_time: DateHelper.toTimeStamp(new Date()),
                     empl_code: $scope.data.idFinger,
                     processtatus: $scope.isWFH ? 1 : 0
                 }
