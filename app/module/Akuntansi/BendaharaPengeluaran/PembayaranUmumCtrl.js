@@ -54,35 +54,24 @@ define(['initialize'], function (initialize) {
                 let dataTempVerified = [],
                     dataTempUnverified = [];
                 $scope.isRouteLoading = true;
-                ManageAkuntansi.getDataTableTransaksi("bendahara-pengeluaran/get-data-verifikasi-tagihan-suplier?tglAwal=" + dateHelper.formatDate($scope.item.tanggalAwal, 'YYYY-MM-DD') + "&tglAkhir=" + dateHelper.formatDate($scope.item.tanggalAkhir, 'YYYY-MM-DD') + "&Supplier=" + ($scope.item.namaSupplier ? $scope.item.namaSupplier : "") + "&status=").then((res) => {
+                ManageAkuntansi.getDataTableTransaksi("bendahara-pengeluaran/get-data-verifikasi-pembayaran-umum?tglAwal=" + dateHelper.formatDate($scope.item.tanggalAwal, 'YYYY-MM-DD') + "&tglAkhir=" + dateHelper.formatDate($scope.item.tanggalAkhir, 'YYYY-MM-DD')).then((res) => {
+                    console.log(res.data.daftar);
                     for (let i = 0; i < res.data.daftar.length; i++) {
-                        res.data.daftar[i].totalFormatted = new Intl.NumberFormat('id-ID', {
+                        res.data.daftar[i].totalTagihanFormatted = new Intl.NumberFormat('id-ID', {
                             style: 'currency',
                             currency: 'IDR'
-                        }).format(res.data.daftar[i].total);
-                        res.data.daftar[i].totalppnFormatted = new Intl.NumberFormat('id-ID', {
+                        }).format(res.data.daftar[i].totaltagihan);
+                        res.data.daftar[i].totalBayarFormatted = new Intl.NumberFormat('id-ID', {
                             style: 'currency',
                             currency: 'IDR'
-                        }).format(res.data.daftar[i].totalppn);
-                        res.data.daftar[i].totaldiskonFormatted = new Intl.NumberFormat('id-ID', {
-                            style: 'currency',
-                            currency: 'IDR'
-                        }).format(res.data.daftar[i].totaldiskon);
-                        res.data.daftar[i].subtotalFormatted = new Intl.NumberFormat('id-ID', {
-                            style: 'currency',
-                            currency: 'IDR'
-                        }).format(res.data.daftar[i].subtotal);
-                        res.data.daftar[i].sisautangFormatted = new Intl.NumberFormat('id-ID', {
-                            style: 'currency',
-                            currency: 'IDR'
-                        }).format(res.data.daftar[i].sisautang);
+                        }).format(res.data.daftar[i].totalbayar);
+                        res.data.daftar[i].tglTransaksiFormatted = dateHelper.formatDate(res.data.daftar[i].tgltransaksi, 'DD-MM-YYYY');
+                        res.data.daftar[i].tglVerifikasiFormatted = dateHelper.formatDate(res.data.daftar[i].tglverifikasi, 'DD-MM-YYYY');
+
+                        if (res.data.daftar[i].status === "VERIFIKASI") dataTempVerified.push(res.data.daftar[i])
+                        else dataTempUnverified.push(res.data.daftar[i])
                     }
 
-                    for (let i = 0; i < res.data.daftar.length; i++) {
-
-                        if (res.data.daftar[i].status === "BLM VERIFIKASI") dataTempUnverified.push(res.data.daftar[i])
-                        else dataTempVerified.push(res.data.daftar[i])
-                    }
                     $scope.dataGridVerified = new kendo.data.DataSource({
                         data: dataTempVerified,
                         pageSize: 5
@@ -101,9 +90,14 @@ define(['initialize'], function (initialize) {
             $scope.loadData();
 
             $scope.columnGridVerified = [{
-                    "field": "namarekanan",
-                    "title": "<h3>Nama Rekanan</h3>",
-                    "width": "200px"
+                    "field": "tglTransaksiFormatted",
+                    "title": "<h3>Tanggal Transaksi</h3>",
+                    "width": "150px"
+                },
+                {
+                    "field": "tglVerifikasiFormatted",
+                    "title": "<h3>Tanggal Verifikasi</h3>",
+                    "width": "150px"
                 },
                 {
                     "field": "noverifikasi",
@@ -112,83 +106,38 @@ define(['initialize'], function (initialize) {
                     "width": "150px"
                 },
                 {
-                    "field": "tglSPK",
-                    "title": "<h3>Tanggal <br>SPK</h3>",
-                    "template": "<span class='style-center'>{{'#: tglSPK ? tglSPK : '-' #'}}</span>",
+                    "field": "kodeanggaran",
+                    "title": "<h3>Kode Anggaran</h3>",
                     "width": "170px"
                 },
                 {
-                    "field": "noSPK",
-                    "title": "<h3>No. SPK</h3>",
-                    "template": "<span class='style-center'>{{'#: noSPK ? noSPK : '-' #'}}</span>",
-                    "width": "150px"
-                },
-                {
-                    "field": "tgldokumen",
-                    "title": "<h3>Tanggal Dokumen</h3>",
-                    "template": "<span class='style-center'>{{'#: tgldokumen #'}}</span>",
-                    "width": "150px"
-                },
-                {
-                    "field": "nodokumen",
-                    "title": "<h3>No. Dokumen</h3>",
-                    "template": "<span class='style-center'>{{'#: nodokumen #'}}</span>",
-                    "width": "200px"
-                },
-                {
-                    "field": "totalFormatted",
-                    "title": "<h3>Total</h3>",
-                    "template": "<span class='style-center'>{{'#: totalFormatted #'}}</span>",
-                    "width": "150px"
-                },
-                {
-                    "field": "totalppnFormatted",
-                    "title": "<h3>PPN</h3>",
-                    "template": "<span class='style-center'>{{'#: totalppnFormatted #'}}</span>",
-                    "width": "150px"
-                },
-                {
-                    "field": "totaldiskonFormatted",
-                    "title": "<h3>Diskon</h3>",
-                    "template": "<span class='style-center'>{{'#: totaldiskonFormatted #'}}</span>",
-                    "width": "150px"
-                },
-                {
-                    "field": "subtotalFormatted",
-                    "title": "<h3>Sub Total</h3>",
-                    "template": "<span class='style-center'>{{'#: subtotalFormatted #'}}</span>",
-                    "width": "150px"
-                },
-                {
-                    "field": "sisautangFormatted",
-                    "title": "<h3>Sisa Hutang</h3>",
-                    "template": "<span class='style-center'>{{'#: sisautangFormatted #'}}</span>",
+                    "field": "status",
+                    "title": "<h3>Status</h3>",
                     "width": "150px"
                 },
                 {
                     "field": "statusbayar",
                     "title": "<h3>Status Bayar</h3>",
-                    "template": "<span class='style-center'>{{'#: statusbayar #'}}</span>",
                     "width": "150px"
                 },
                 {
-                    "field": "status",
-                    "title": "<h3>Status</h3>",
-                    "template": "<span class='style-center'>{{'#: status #'}}</span>",
+                    "field": "statusconfirmanggaran",
+                    "title": "<h3>Status Konfirmasi<br> Bagian Anggaran</h3>",
+                    "width": "200px"
+                },
+                {
+                    "field": "statusconfirmkabag",
+                    "title": "<h3>Status Konfirmasi<br> Ka. Bag</h3>",
                     "width": "150px"
                 },
-
                 {
-                    "field": "statusConfirmKabag",
-                    "title": "<h3>Ka. Bag</h3>",
-                    // "template": "<span class='style-center'>{{'#: status #'}}</span>",
+                    "field": "totalTagihanFormatted",
+                    "title": "<h3>Total Tagihan</h3>",
                     "width": "150px"
                 },
-
                 {
-                    "field": "statusConfirmAnggaran",
-                    "title": "<h3>Bagian Anggaran</h3>",
-                    // "template": "<span class='style-center'>{{'#: status #'}}</span>",
+                    "field": "totalBayarFormatted",
+                    "title": "<h3>Total Bayar</h3>",
                     "width": "150px"
                 },
                 {
@@ -461,11 +410,11 @@ define(['initialize'], function (initialize) {
                     return;
                 };
                 let dataSave = {
-                    norec: $scope.dataSelected.norec,
-                    tglVerifikasi: dateHelper.formatDate($scope.item.tanggalVerifikasi, "YYYY-MM-DD"),
-                    pegawaifk: $scope.dataPegawaiLogin.id,
-                    kodeAnggaran: $scope.verif.anggaran.kode_anggaran,
-                    noverifikasifk: $scope.dataSelected.noverifikasifk ? $scope.dataSelected.noverifikasifk : ""
+                    "kodeAnggaran":$scope.verif.anggaran.kode_anggaran,
+                    "pegawaifk": $scope.dataPegawaiLogin.id,
+                    "tglVerifikasi": dateHelper.formatDate($scope.item.tanggalVerifikasi, "YYYY-MM-DD"),
+                    "keperluan": "untuk pembayaran pembelian ATK",
+                    "totalTagihan": "5000000",
                 };
                 // console.log(dataSave);
                 $scope.verifkasiRekanan.close();
@@ -478,7 +427,7 @@ define(['initialize'], function (initialize) {
 
                 $mdDialog.show(confirm).then(() => {
                     // yes
-                    ManageAkuntansi.postpost(dataSave, 'bendahara-pengeluaran/save-verifikasi-tagihan-suplier').then(res => {
+                    ManageAkuntansi.postpost(dataSave, 'bendahara-pengeluaran/save-verifikasi-pembayaran-umum').then(res => {
                         $scope.verifkasiRekanan.close();
                         $scope.loadData();
                     });

@@ -16,6 +16,10 @@
         font-weight: bolder;
     }
 
+    md-card {
+        width: 50%;
+    }
+
     md-card-content {
         display: flex;
         flex-direction: column;
@@ -25,6 +29,15 @@
     md-card-content div {
         margin: 10px 0;
     }
+
+    @media only screen and (max-width: 300px) {
+        md-toolbar {
+            font-size: 1em;
+        }
+        md-card {
+            width: 100%;
+        }
+    }
 </style>
 
 <md-toolbar md-scroll-shrink class="shadow">
@@ -32,7 +45,7 @@
 </md-toolbar>
 
 <div class="container-presensi">
-    <md-card style="width: 50%;">
+    <md-card>
         <md-card-content>
             <div>
                 <label class="label-name">Nama Lengkap Pegawai : </label>
