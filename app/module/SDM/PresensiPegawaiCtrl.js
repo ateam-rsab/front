@@ -29,6 +29,11 @@ define(['initialize'], function (initialize) {
             }
 
             let init = function () {
+                var interval = setInterval(function() {
+                    var momentNow = moment();
+                    $('#date-part').html(momentNow.format('YYYY MMMM DD') + ' ' + momentNow.format('dddd').substring(0,3).toUpperCase());
+                    $('#time-part').html(momentNow.format('HH:mm:ss'));
+                }, 100);
                 $scope.tanggalPresensi = new Date();
                 getDataHistory();
                 ManageSdmNew.getListData('sdm/get-jadwal-pegawai').then((res) => {
@@ -57,7 +62,7 @@ define(['initialize'], function (initialize) {
             $scope.savePresensi = function () {
                 let data = {
                     tr_date: DateHelper.toTimeStamp(new Date()),
-                    tr_time: DateHelper.toTimeStamp($scope.tanggalPresensi),
+                    tr_time: DateHelper.toTimeStamp(new Date()),
                     empl_code: $scope.data.idFinger,
                     processtatus: $scope.isWFH ? 1 : 0
                 }

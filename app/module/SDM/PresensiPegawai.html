@@ -30,6 +30,11 @@
         margin: 10px 0;
     }
 
+    #time-part {
+        font-size: 15px;
+        font-weight: bolder;
+    }
+
     @media only screen and (max-width: 300px) {
         md-toolbar {
             font-size: 1em;
@@ -45,6 +50,7 @@
 </md-toolbar>
 
 <div class="container-presensi">
+    
     <md-card>
         <md-card-content>
             <div>
@@ -64,8 +70,9 @@
 
             <div>
                 <div class="grid_4">
-                    <input kendo-time-picker ng-model="str" k-ng-model="tanggalPresensi" k-format="'HH:mm'"
-                        style="width: 100%;" disabled>
+                    <div id="time-part"></div>
+                    <!-- <input kendo-time-picker ng-model="str" k-ng-model="tanggalPresensi" k-format="'HH:mm'"
+                        style="width: 100%;" disabled> -->
                 </div>
                 <div class="grid_4" style="margin-top: 20px;">
                     <input type="checkbox" class="k-checkbox" name="wfh" id="wfh" ng-model="isWFH">
