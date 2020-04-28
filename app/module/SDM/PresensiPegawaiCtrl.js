@@ -14,11 +14,12 @@ define(['initialize'], function (initialize) {
                 $scope.isRouteLoading = true;
                 let tempData = [];
                 ManageSdmNew.getListData('sdm/get-histori-presensi-pegawai').then((res) => {
-                    // console.log(res.data.data.data)
-                    for (let i = 0; i < res.data.data.data.length; i++) {
-                        tempData.push({
-                            jam: res.data.data.data[i]
-                        });
+                    if (res.data.data.data) {
+                        for (let i = 0; i < res.data.data.data.length; i++) {
+                            tempData.push({
+                                jam: res.data.data.data[i]
+                            });
+                        }
                     }
                     $scope.dataHistoriPresensi = new kendo.data.DataSource({
                         data: tempData
@@ -43,7 +44,7 @@ define(['initialize'], function (initialize) {
                     "field": "jam",
                     "title": "<h3>Jam</h3>",
                     "width": "150px"
-                },  
+                },
 
             ];
 
@@ -54,7 +55,6 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.savePresensi = function () {
-                // sdm/save-presensi-pegawai/
                 let data = {
                     tr_date: DateHelper.toTimeStamp(new Date()),
                     tr_time: DateHelper.toTimeStamp($scope.tanggalPresensi),
