@@ -53,7 +53,7 @@
     </div>
 </div>
 
-<div kendo-window="verifkasiRekanan" k-title="'Verifikasi Tagihan Rekanan'" k-width="1000" k-visible="false">
+<div kendo-window="popupTambahBaru" k-title="'Verifikasi Tagihan Rekanan'" k-width="1000" k-visible="false">
     <div class="panel panel-default container_12" style="padding: 0px 10px;">
         <md-card>
             <md-card-content>
@@ -152,13 +152,13 @@
     <div class="dialog_buttons pull-right" style="margin-top:5%;">
         <div class="grid_4">
             <md-button class="md-raised md-danger medium-button" style="width: 100%;"
-                ng-click="closePopUpVerifikasi()">
+                ng-click="closePopupAdd()">
                 Batal
             </md-button>
         </div>
         <div class="grid_4">
             <md-button class="md-raised md-primary medium-button" style="width: 100%;"
-                ng-click="verifikasiTagihan()">
+                ng-click="simpanDataPembayaranUmum()">
                 Verifikasi
             </md-button>
         </div>
