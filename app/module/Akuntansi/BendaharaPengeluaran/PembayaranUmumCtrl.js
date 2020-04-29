@@ -122,14 +122,14 @@ define(['initialize'], function (initialize) {
                     "width": "150px"
                 },
                 {
-                    "field": "statusconfirmanggaran",
-                    "title": "<h3>Status Konfirmasi<br> Bagian Anggaran</h3>",
-                    "width": "200px"
-                },
-                {
                     "field": "statusconfirmkabag",
                     "title": "<h3>Status Konfirmasi<br> Ka. Bag</h3>",
                     "width": "150px"
+                },
+                {
+                    "field": "statusconfirmanggaran",
+                    "title": "<h3>Status Konfirmasi<br> Bagian Anggaran</h3>",
+                    "width": "200px"
                 },
                 {
                     "field": "totalTagihanFormatted",
@@ -139,6 +139,11 @@ define(['initialize'], function (initialize) {
                 {
                     "field": "totalBayarFormatted",
                     "title": "<h3>Total Bayar</h3>",
+                    "width": "150px"
+                },
+                {
+                    "field": "keperluan",
+                    "title": "<h3>Keterangan Keperluan</h3>",
                     "width": "150px"
                 },
                 {
@@ -210,14 +215,14 @@ define(['initialize'], function (initialize) {
                     "width": "150px"
                 },
                 {
-                    "field": "statusconfirmanggaran",
-                    "title": "<h3>Status Konfirmasi<br> Bagian Anggaran</h3>",
-                    "width": "200px"
-                },
-                {
                     "field": "statusconfirmkabag",
                     "title": "<h3>Status Konfirmasi<br> Ka. Bag</h3>",
                     "width": "150px"
+                },
+                {
+                    "field": "statusconfirmanggaran",
+                    "title": "<h3>Status Konfirmasi<br> Bagian Anggaran</h3>",
+                    "width": "200px"
                 },
                 {
                     "field": "totalTagihanFormatted",
@@ -229,6 +234,11 @@ define(['initialize'], function (initialize) {
                     "title": "<h3>Total Bayar</h3>",
                     "width": "150px"
                 },
+                {
+                    "field": "keperluan",
+                    "title": "<h3>Keterangan Keperluan</h3>",
+                    "width": "250px"
+                }
                 // {
                 //     command: [{
                 //             text: "Verifikasi",
@@ -281,7 +291,8 @@ define(['initialize'], function (initialize) {
                     "field": "penggunaanFormatted",
                     "title": "<h3>Penggunaan</h3>",
                     "width": "150px"
-                }
+                },
+                
             ];
 
             $scope.gridOptVerified = {
@@ -330,8 +341,7 @@ define(['initialize'], function (initialize) {
                 let dataItem = this.dataItem(tr);
 
                 $scope.confirm = dataItem;
-                console.log(e);
-
+                console.log(dataItem);
                 $scope.isBagAnggaran = e.data.commandName === "Konfirmasi Bagian Anggaran" ? true : false;
                 if ($scope.isBagAnggaran && !$scope.confirm.confirmfk) {
                     toastr.warning('Harap Konfirmasi Ka. Bag Terlebih dahulu')
@@ -406,15 +416,31 @@ define(['initialize'], function (initialize) {
                     "totalTagihan": $scope.verif.totalBayar,
                 };
                 console.log(dataSave);
-                // $scope.popupTambahBaru.close();
 
                 ManageAkuntansi.postpost(dataSave, 'bendahara-pengeluaran/save-verifikasi-pembayaran-umum').then(res => {
+                    $scope.clear();
                     $scope.popupTambahBaru.close();
                     $scope.loadData();
                 });
             };
 
-            $scope.clear = function() {
+            $scope.confirmSave = function () {
+                var confirm = $mdDialog.confirm()
+                    .title(`Apakah Anda yakin akan Menyimpan Data`)
+                    // .textContent(`Anda akan konfirmasi Verifikasi Tagihan dengan Supplier ${$scope.confirm.namarekanan} dengan No. SPK ${$scope.confirm.noSPK}`)
+                    .ok('Ya')
+                    .cancel('Batal');
+
+                $mdDialog.show(confirm).then(function () {
+                    // yes
+                    $scope.simpanDataPembayaranUmum()
+                }, function () {
+                    // $scope.konfirmasiAnggaran.open().center();
+                    toastr.info('Konfirmasi dibatalkan');
+                });
+            }
+
+            $scope.clear = function () {
                 $scope.keperluan = "";
                 $scope.verif = {};
                 $scope.item = {};
@@ -422,9 +448,52 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.closePopupAdd = function () {
-                $scope.clearVerifikasi();
+                // $scope.clear();
                 $scope.isPagu = false;
-                $scope.popupTambahBaru.close();
+                $scope.konfirmasiAnggaran.close();
+            }
+
+            $scope.konfirmasiData = (state) => {
+
+                $scope.closePopupAdd();
+
+                var confirm = $mdDialog.confirm()
+                    .title(`Apakah Anda yakin akan mengkonfirmasi Pembayaran Umum`)
+                    .textContent(`Anda akan konfirmasi Verifikasi Tagihan dengan No. Verifikasi ${$scope.confirm.noverifikasi} dan Kode Anggaran ${$scope.confirm.kodeanggaran}`)
+                    .ok('Ya')
+                    .cancel('Batal');
+
+                $mdDialog.show(confirm).then(function () {
+                    // yes
+                    if (state) {
+                        if (!$scope.confirm.confirmfk) {
+                            toastr.warning('Harap Konfirmasi Kabag terlebih dahulu', 'Perhatian!');
+                            return;
+                        }
+                        let data = {
+                            noverifikasifk: $scope.confirm.noverifikasifk,
+                            confirmfk: $scope.confirm.confirmfk,
+                            confirm1fk: $scope.dataPegawaiLogin.id,
+                            tglconfirm: dateHelper.formatDate(new Date, 'YYYY-MM-DD')
+                        }
+                        ManageAkuntansi.postpost(data, 'bendahara-pengeluaran/save-confirm-anggaran-verifikasi-tagihan-suplier').then(res => {
+                            $scope.loadData();
+                        });
+                    } else {
+                        let data = {
+                            noverifikasifk: $scope.confirm.noverifikasifk,
+                            confirmfk: $scope.dataPegawaiLogin.id,
+                            tglconfirm: dateHelper.formatDate(new Date, 'YYYY-MM-DD')
+                        }
+                        ManageAkuntansi.postpost(data, 'bendahara-pengeluaran/save-confirm-verifikasi-tagihan-suplier').then(res => {
+                            $scope.loadData();
+                        });
+
+                    }
+                }, function () {
+                    $scope.konfirmasiAnggaran.open().center();
+                    toastr.info('Konfirmasi dibatalkan');
+                });
             }
 
             $scope.getTerbilang = function (data, model) {
@@ -432,6 +501,10 @@ define(['initialize'], function (initialize) {
                     $scope.verif[`${model}`] = res.terbilang;
                 });
             }
+
+            $scope.closePopUpKonfirmasi = function () {
+                $scope.konfirmasiAnggaran.close();
+              }
         }
     ]);
 });

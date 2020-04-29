@@ -165,29 +165,45 @@
     </div>
 </div>
 
-<div kendo-window="konfirmasiAnggaran" k-title="'Verifikasi Tagihan Rekanan'" k-width="1000" k-visible="false">
+<div kendo-window="konfirmasiAnggaran" k-title="'Konfirmasi'" k-width="1000" k-visible="false">
     <div class="panel panel-default container_12" style="padding: 0px 10px;">
         <md-card>
             <md-card-content>
                 <div class="grid_3">
-                    <label style="font-weight: bolder;">Nama Supplier</label>
-                    <p>{{confirm.namarekanan}}</p>
+                    <label style="font-weight: bolder;">Tanggal Transaksi</label>
+                    <p>{{confirm.tglTransaksiFormatted}}</p>
+                </div>
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">Tanggal Verifikasi</label>
+                    <p>{{confirm.tglVerifikasiFormatted}}</p>
+                </div>
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">Kode Anggaran</label>
+                    <p>{{confirm.kodeanggaran}}</p>
                 </div>
                 <div class="grid_3">
                     <label style="font-weight: bolder;">No. Verifikasi</label>
                     <p>{{confirm.noverifikasi}}</p>
                 </div>
-                <div class="grid_3">
-                    <label style="font-weight: bolder;">Tanggal Dokumen</label>
-                    <p>{{confirm.tgldokumen}}</p>
-                </div>
-                <div class="grid_3">
-                    <label style="font-weight: bolder;">No. Dokumen</label>
-                    <p>{{confirm.nodokumen}}</p>
-                </div>
                 <hr>
 
+                <div class="grid_1"></div>
                 <div class="grid_3">
+                    <label style="font-weight: bolder;">Keterangan Keperluan</label>
+                    <p>{{confirm.keperluan}}</p>
+                </div>
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">Total Tagihan</label>
+                    <p>{{confirm.totalTagihanFormatted}}</p>
+                </div>
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">Total Bayar</label>
+                    <p>{{confirm.totalBayarFormatted}}</p>
+                </div>
+                <div class="grid_1"></div>
+                <hr>
+
+                <!-- <div class="grid_3">
                     <label style="font-weight: bolder;">Status</label>
                     <p>{{confirm.status}}</p>
                 </div>
@@ -221,7 +237,7 @@
                     <label style="font-weight: bolder;">Diskon</label>
                     <p>{{confirm.totaldiskonFormatted}}</p>
                 </div>
-                <hr>
+                <hr> -->
                 <div class="grid_12">
                     <div id="kGrid" kendo-grid k-data-source="dataGridPenggunaanAnggaran" k-selectable="'row'" k-pageable="'true'"
                         k-sortable="'true'" options="gridOptPenggunaanAnggaran" k-ng-model="dataSelectedAnggaran">
@@ -241,7 +257,7 @@
         <div class="grid_4">
             <md-button class="md-raised md-primary medium-button" style="width: 100%;"
                 ng-click="konfirmasiData(isBagAnggaran)">
-                Verifikasi
+                Konfirmasi
             </md-button>
         </div>
     </div>
