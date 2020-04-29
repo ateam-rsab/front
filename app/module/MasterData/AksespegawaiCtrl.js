@@ -270,10 +270,14 @@ define(['initialize'], function(initialize) {
 					      id:$scope.item.loginUser.objectpegawaifk
 						}
                     }
-                manageSarprasPhp.saveDataTransaksi('admin/ubah-password',objSave).then(function(e) {
-                // manageSarpras.saveLoginUser(objSave).then(function(e) {
+				//save to php passcode column
+				manageSarprasPhp.saveDataTransaksi('admin/ubah-password', objSave).then(function (e) {
 
-                })
+				})
+				//save to java katasandi column
+				manageSarpras.saveLoginUser(objSave).then(function (e) {
+
+				})
 			}
 
 			function onCheck() {
