@@ -395,6 +395,8 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.simpanDataPembayaranUmum = function () {
+                
+
                 if (!$scope.verif.sumberDana) {
                     toastr.warning("Harap isi Sumber Dana");
                     return;
@@ -425,6 +427,7 @@ define(['initialize'], function (initialize) {
             };
 
             $scope.confirmSave = function () {
+                $scope.popupTambahBaru.close();
                 var confirm = $mdDialog.confirm()
                     .title(`Apakah Anda yakin akan Menyimpan Data`)
                     // .textContent(`Anda akan konfirmasi Verifikasi Tagihan dengan Supplier ${$scope.confirm.namarekanan} dengan No. SPK ${$scope.confirm.noSPK}`)
@@ -435,7 +438,7 @@ define(['initialize'], function (initialize) {
                     // yes
                     $scope.simpanDataPembayaranUmum()
                 }, function () {
-                    // $scope.konfirmasiAnggaran.open().center();
+                    $scope.popupTambahBaru.open().center();
                     toastr.info('Konfirmasi dibatalkan');
                 });
             }
@@ -443,7 +446,7 @@ define(['initialize'], function (initialize) {
             $scope.clear = function () {
                 $scope.keperluan = "";
                 $scope.verif = {};
-                $scope.item = {};
+                $scope.item.tanggalVerifikasi = new Date();
                 $scope.isPagu = false;
             }
 
