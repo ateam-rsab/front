@@ -56,23 +56,23 @@
         <md-card-content>
             <div>
                 <label class="label-name">Nama Lengkap Pegawai : </label>
-                <label class="label-content">{{data.namaLengkap}}</label>
+                <label class="label-content">{{data.namaLengkap ? data.namaLengkap : "-"}}</label>
             </div>
 
             <div>
                 <label class="label-name">ID Finger : </label>
-                <label class="label-content">{{data.idFinger}}</label>
+                <label class="label-content">{{data.idFinger ? data.idFinger : "-"}}</label>
             </div>
 
             <div>
                 <label class="label-name">Jadwal : </label>
-                <label class="label-content">{{data.jadwal}}</label>
+                <label class="label-content">{{data.jadwal ? data.jadwal : "-"}}</label>
             </div>
-
+<!-- 
             <div>
                 <label class="label-name">Work From Home (WFH) : </label>
                 <label class="label-content">{{data.isWFH ? 'Ya' : 'Tidak'}}</label>
-            </div>
+            </div> -->
 
             <div>
                 <div class="grid_4">
@@ -81,7 +81,7 @@
                         style="width: 100%;" disabled> -->
                 </div>
                 <div class="grid_4" style="margin-top: 20px;">
-                    <input type="checkbox" class="k-checkbox" name="wfh" id="wfh" ng-model="isWFH">
+                    <input type="checkbox" class="k-checkbox" name="wfh" id="wfh" ng-model="data.isWFH">
                     <label c-label item="item" class="k-checkbox-label" for="wfh">Work From Home (WFH)</label>
                 </div>
                 <div class="grid_2" style="margin-top: 17px;">

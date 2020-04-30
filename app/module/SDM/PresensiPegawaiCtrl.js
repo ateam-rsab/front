@@ -7,7 +7,7 @@ define(['initialize'], function (initialize) {
             $scope.now = new Date();
             $scope.time = "";
             $scope.isRouteLoading = false;
-            $scope.isWFH = false;
+            $scope.isWFH = true;
             let dataPegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
 
             let getDataHistory = function () {
