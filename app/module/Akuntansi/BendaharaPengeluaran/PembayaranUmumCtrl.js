@@ -411,11 +411,11 @@ define(['initialize'], function (initialize) {
                     return;
                 };
                 let dataSave = {
-                    "kodeAnggaran": $scope.verif.anggaran.kode_anggaran,
-                    "pegawaifk": $scope.dataPegawaiLogin.id,
-                    "tglVerifikasi": dateHelper.formatDate($scope.item.tanggalVerifikasi, "YYYY-MM-DD"),
-                    "keperluan": $scope.keperluan,
-                    "totalTagihan": $scope.verif.totalBayar,
+                    kodeAnggaran: $scope.verif.anggaran.kode_anggaran,
+                    pegawaifk: $scope.dataPegawaiLogin.id,
+                    tglVerifikasi: dateHelper.formatDate($scope.item.tanggalVerifikasi, "YYYY-MM-DD"),
+                    keperluan: $scope.keperluan,
+                    totalTagihan: $scope.verif.totalBayar,
                 };
                 console.log(dataSave);
 
@@ -427,7 +427,7 @@ define(['initialize'], function (initialize) {
             };
 
             $scope.confirmSave = function () {
-                $scope.popupTambahBaru.close();
+                $scope.popupTambahBaru.close();w
                 var confirm = $mdDialog.confirm()
                     .title(`Apakah Anda yakin akan Menyimpan Data`)
                     // .textContent(`Anda akan konfirmasi Verifikasi Tagihan dengan Supplier ${$scope.confirm.namarekanan} dengan No. SPK ${$scope.confirm.noSPK}`)
