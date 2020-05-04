@@ -7,7 +7,7 @@ define(['initialize'], function (initialize) {
             $scope.now = new Date();
             $scope.time = "";
             $scope.isRouteLoading = false;
-            $scope.isWFH = true;
+            $scope.data.isWFH = true;
             let dataPegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
 
             let getDataHistory = function () {
@@ -64,7 +64,7 @@ define(['initialize'], function (initialize) {
                     // tr_date: DateHelper.toTimeStamp(new Date()),
                     // tr_time: DateHelper.toTimeStamp(new Date()),
                     empl_code: $scope.data.idFinger,
-                    processtatus: $scope.isWFH ? 1 : 0
+                    processtatus: $scope.data.isWFH ? 1 : 0
                 }
                 console.log(data);
                 ManageSdmNew.saveData(data, 'sdm/save-presensi-pegawai/').then((res) => {
