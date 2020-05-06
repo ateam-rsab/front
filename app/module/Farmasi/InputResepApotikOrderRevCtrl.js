@@ -545,6 +545,8 @@ define(['initialize'], function (initialize) {
             function showDetail(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                console.log(dataItem);
+                $scope.item.norec_so = dataItem.norec;
                 $scope.popDetailResep.center().open();
                 manageLogistikPhp.getDataTableTransaksi('rekam-medis/get-resep-dokter-detail?strukorder=' + dataItem.norec).then(res => {
                     $scope.dataDetailResep = res.data.data;
