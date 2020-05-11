@@ -54,6 +54,9 @@ define(['initialize'], function (initialize) {
 					}
 				}
 
+				//save to java katasandi column
+				manageSarpras.saveLoginUser(objSave).then(function (je) {});
+
 				//save to php passcode column
 				manageSarprasPhp.saveDataTransaksi('admin/ubah-password', objSave).then(function (pe) {
 					if (pe.data.messages == 'Sukses') {
@@ -72,8 +75,6 @@ define(['initialize'], function (initialize) {
 						// });
 					}
 				});
-
-				//save to java katasandi column
 
 
 				// doLogout();
