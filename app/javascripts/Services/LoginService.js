@@ -53,6 +53,9 @@ define(['Configuration'], function(setting) {
                 authentication: function(obj) {
                     return $http.post(setting.baseUrlLogin, obj);
                 },
+                javaAuthentication: function(obj) {
+                    return $http.post(setting.baseUrlJavaLogin, obj);
+                },
                 getHistory: function(start, until) {
                     return r.get({
                         url: baseUrlApiAction + "auth/history/?dateStart=" + moment(start).format('YYYY-MM-DD 00:00:00') + "&dateEnd=" + moment(until).format('YYYY-MM-DD 23:59:59')
