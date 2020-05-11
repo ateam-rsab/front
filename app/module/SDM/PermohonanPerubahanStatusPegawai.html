@@ -104,7 +104,7 @@
 						<label c-label item="item" style="margin-top: 10px">Status Kehadiran Pegawai</label>
 					</div>
 					<div class="grid_9">
-						<input style="width: 100%;" kendo-combo-box k-ng-model="item.statusPegawai" k-data-text-field="'statusPegawai'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listStatusPegawai" ng-disabled="tugasLuar" k-on-change="showJumlahCuti()"/>
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.statusPegawai" k-data-text-field="'statusPegawai'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listStatusPegawai" ng-enabled="tugasLuar" k-on-change="showJumlahCuti()"/>
 					</div>
 				</div>
 				<div class="grid_12" ng-show="item.statusPegawai.id==28">
