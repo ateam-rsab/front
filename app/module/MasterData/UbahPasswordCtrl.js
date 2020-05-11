@@ -55,14 +55,28 @@ define(['initialize'], function (initialize) {
 				}
 
 				//save to php passcode column
-				manageSarprasPhp.saveDataTransaksi('admin/ubah-password', objSave).then(function (e) {
-
-				})
+				manageSarprasPhp.saveDataTransaksi('admin/ubah-password', objSave).then(function (pe) {
+					if (pe.data.messages == 'Sukses') {
+						// jika sukses save to java 
+						// manageSarpras.saveLoginUser(objSave).then(function (je) {
+							// if (je.data.messages['label-success'] === "SUKSES") {
+								toastr.info('Silahkan login ulang');
+								$timeout(function() {
+									// localStorage.clear();
+									// $window.location.replace('Logout');
+									$rootScope.doLogout();
+								}, 5000);
+								
+							// }
+							// $scope.isLogout = e.data.messages['label-success'] === "SUKSES" ? true : false;
+						// });
+					}
+				});
 
 				//save to java katasandi column
-				manageSarpras.saveLoginUser(objSave).then(function (e) {
 
-				})
+
+				// doLogout();
 			}
 
 			$scope.batal2 = function () {
