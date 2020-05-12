@@ -22,7 +22,9 @@ define(['initialize'], function (initialize) {
                         }
                     }
                     $scope.dataHistoriPresensi = new kendo.data.DataSource({
-                        data: tempData
+                        data: tempData,
+                        pageSize: 1,
+                        total: tempData.length
                     });
                     $scope.isRouteLoading = false;
                 });
