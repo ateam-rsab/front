@@ -292,7 +292,7 @@ define(['initialize'], function(initialize) {
                     },
                     {
                         field: "alasan",
-                        title: "Alasan",
+                        title: "Keterangan",
                         width: "120px",
                         headerAttributes: { style: "text-align : center" },
                     }
