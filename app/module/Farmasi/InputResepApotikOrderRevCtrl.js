@@ -7,8 +7,7 @@ define(['initialize'], function (initialize) {
                 data: []
             });
 
-            $scope.listTipeResep = [
-                {
+            $scope.listTipeResep = [{
                     name: "Cito",
                     id: 1
                 },
@@ -29,8 +28,7 @@ define(['initialize'], function (initialize) {
             $scope.listObat = [];
             $scope.tempListResep = [];
             $scope.listResep = [];
-            $scope.listQuestion = [
-                {
+            $scope.listQuestion = [{
                     name: 'Ya',
                     id: 1
                 },
@@ -50,8 +48,7 @@ define(['initialize'], function (initialize) {
             let hrg1 = 0;
             let hrgsdk = 0;
             let diffDays = 1;
-            $scope.listOfJenisResep = [
-                {
+            $scope.listOfJenisResep = [{
                     name: "Racikan",
                     id: 1
                 },
@@ -62,6 +59,7 @@ define(['initialize'], function (initialize) {
             ]
 
             LoadCacheHelper();
+
             function LoadCacheHelper() {
                 manageLogistikPhp.getDataTableTransaksi("akutansi/get-tgl-posting", true).then(function (dat) {
                     var tgltgltgltgl = dat.data.mindate[0].max
@@ -98,8 +96,8 @@ define(['initialize'], function (initialize) {
                     $scope.item.namaRuangan = chacePeriode[12]
                     manageLogistikPhp.getDataTableTransaksi("tatarekening/get-sudah-verif?noregistrasi=" +
                         $scope.item.noregistrasi, true).then(function (dat) {
-                            $scope.item.statusVerif = dat.data.status;
-                        });
+                        $scope.item.statusVerif = dat.data.status;
+                    });
                     if ($scope.item.namaRuangan.substr($scope.item.namaRuangan.length - 1) == '`') {
                         $scope.showTombol = true;
                     }
@@ -123,7 +121,9 @@ define(['initialize'], function (initialize) {
                     $scope.listOfProduk = dat.data.produk;
                     for (let i = 0; i < dat.data.produk.length; i++) {
                         $scope.dataTempObat.push(dat.data.produk[i].namaproduk);
-                        listTempObat.push({ name: dat.data.produk[i].namaproduk });
+                        listTempObat.push({
+                            name: dat.data.produk[i].namaproduk
+                        });
                     }
                     $scope.listOfProdukArray = $scope.dataTempObat;
                     $scope.listOfProdukArrayRacikan = new kendo.data.DataSource({
@@ -148,15 +148,13 @@ define(['initialize'], function (initialize) {
             var init = function () {
                 getNamaObat();
                 $scope.item.idLogin = JSON.parse(localStorage.getItem('pegawai'));
-                $scope.listObat = [
-                    {
-                        key: 1 + $scope.listObat.length,
-                        namaObatRacikan: "",
-                        satuan: "",
-                        jumlah: ""
+                $scope.listObat = [{
+                    key: 1 + $scope.listObat.length,
+                    namaObatRacikan: "",
+                    satuan: "",
+                    jumlah: ""
 
-                    }
-                ];
+                }];
                 if ($scope.tempListResep.length > 0) {
                     $scope.isResepEmpty = false;
                 } else {
@@ -202,7 +200,7 @@ define(['initialize'], function (initialize) {
                 //     $scope.resep.satuanObat = {};
                 // }
                 $scope.getHargaSatuan(data.id);
-                manageLogistikPhp.getDataTableTransaksi("logistik/get-info-stok?produkfk=" + data.id, true).then(function (e) { })
+                manageLogistikPhp.getDataTableTransaksi("logistik/get-info-stok?produkfk=" + data.id, true).then(function (e) {})
             }
 
             $scope.getSatuanNonRacikan = function (data) {
@@ -217,7 +215,7 @@ define(['initialize'], function (initialize) {
                 // }
                 $scope.getHargaSatuan(data.id);
                 manageLogistikPhp.getDataTableTransaksi("logistik/get-info-stok?produkfk=" + data.id, true)
-                    .then(function (e) { })
+                    .then(function (e) {})
             }
 
             $scope.getRiwayatAlergi = function (id) {
@@ -273,7 +271,8 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.getHargaSatuanNew = function (id) {
-                let harga = 0, data;
+                let harga = 0,
+                    data;
 
                 manageLogistikPhp.getDataTableTransaksi("logistik/get-produkdetail?produkfk=" + id + "&ruanganfk=94", true).then((res) => {
                     data = res.data.detail;
@@ -303,12 +302,16 @@ define(['initialize'], function (initialize) {
             // simpan ke temporary resep
             $scope.simpan = function (data) {
 
-                if($scope.dataLogin.jenisPegawai.jenispegawai !== "DOKTER") {
+                if ($scope.dataLogin.jenisPegawai.jenispegawai !== "DOKTER") {
                     toastr.info('Anda tidak memiliki akses menambahkan Resep Elektronik');
                     return;
                 }
 
-                var keteranganPenggunaan = '', intruksiPenggunaan = '', jumlah = '', isRacikan = false, pcs = 0;
+                var keteranganPenggunaan = '',
+                    intruksiPenggunaan = '',
+                    jumlah = '',
+                    isRacikan = false,
+                    pcs = 0;
 
                 if (data === 2) {
                     if ($scope.item.intruksiPenggunaanRacikan == undefined || $scope.item.intruksiPenggunaanRacikan == '') {
@@ -380,7 +383,7 @@ define(['initialize'], function (initialize) {
                         console.error("Nama Obat => ", dataResep.resep[i].namaObat, "is not allowed");
                         console.dir("sengaja dibuat error 😨");
                         // sengaja dibuat error
-                        console.error(el.namaObat); 
+                        console.error(el.namaObat);
                         continue;
                     }
                 }
@@ -394,7 +397,10 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.cetakResep = function () {
-                window.open("https://192.168.12.4:7777/service-reporting/resep-pasien/" + $scope.item.norec_so);
+                window.open("http://192.168.12.4:7777/service-reporting/resep-pasien/" + $scope.item.norec_so);
+                $.get('http://www.geoplugin.net/json.gp', function (data) {
+                    console.log(data)
+                })
             }
 
             // clear out variable
@@ -422,11 +428,11 @@ define(['initialize'], function (initialize) {
 
             // method untuk kirim resep ke farmasi
             $scope.kirimKeFarmasi = function () {
-                if($scope.dataLogin.jenisPegawai.jenispegawai !== "DOKTER") {
+                if ($scope.dataLogin.jenisPegawai.jenispegawai !== "DOKTER") {
                     toastr.info('Anda tidak memiliki akses menambahkan Resep Elektronik');
                     return;
                 }
-                
+
                 $scope.isRouteLoading = true;
 
                 if (!$scope.resep.riwayatAlergi) {
@@ -478,16 +484,14 @@ define(['initialize'], function (initialize) {
                         //     "rke": gridResep[i].resep[ii].resepKe
                         // };
                         // dataTemp[0]['orderfarmasi'].push(dataTempResep);
-                        dataTemp[0]["resepdokter"].push(
-                            {
-                                "rke": gridResep[i].resep[ii].resepKe,
-                                "namaobat": gridResep[i].resep[ii].namaObat,
-                                "jumlah": gridResep[i].resep[ii].jumlah,
-                                "jeniskemasanfk": gridResep[i].resep[ii].jenisKemasan ? 1 : 2,
-                                "keteranganlainnya": gridResep[i].intruksi ? gridResep[i].intruksi : "-",
-                                "keteranganpakai": gridResep[i].keterangan
-                            }
-                        );
+                        dataTemp[0]["resepdokter"].push({
+                            "rke": gridResep[i].resep[ii].resepKe,
+                            "namaobat": gridResep[i].resep[ii].namaObat,
+                            "jumlah": gridResep[i].resep[ii].jumlah,
+                            "jeniskemasanfk": gridResep[i].resep[ii].jenisKemasan ? 1 : 2,
+                            "keteranganlainnya": gridResep[i].intruksi ? gridResep[i].intruksi : "-",
+                            "keteranganpakai": gridResep[i].keterangan
+                        });
                     }
                 }
                 dataResep.push(dataTemp[0]);
@@ -513,14 +517,15 @@ define(['initialize'], function (initialize) {
 
             $scope.columnHistoryResep = {
                 pageable: true,
-                columns: [
-                    {
+                columns: [{
                         field: "tglorder",
-                        title: "<h3>Tanggal</h3>", width: "100px",
+                        title: "<h3>Tanggal</h3>",
+                        width: "100px",
                     },
                     {
                         field: "namalengkap",
-                        title: "<h3>Dokter</h3>", width: "100px",
+                        title: "<h3>Dokter</h3>",
+                        width: "100px",
                     },
                     {
                         command: [{
@@ -610,4 +615,3 @@ define(['initialize'], function (initialize) {
         }
     ]);
 });
-

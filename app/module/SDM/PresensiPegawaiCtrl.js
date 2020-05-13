@@ -5,6 +5,7 @@ define(['initialize'], function (initialize) {
         function ($q, $rootScope, $scope, ModelItem, ManageSdm, ManageSdmNew, DateHelper, $mdDialog, cetakHelper, $state, manageSarprasPhp, $timeout) {
             $scope.data = {};
             $scope.now = new Date();
+            $scope.dataDevice = {};
             $scope.time = "";
             $scope.isRouteLoading = false;
             $scope.data.isWFH = true;
@@ -29,11 +30,16 @@ define(['initialize'], function (initialize) {
             }
 
             let init = function () {
-                var interval = setInterval(function() {
+                var interval = setInterval(function () {
                     var momentNow = moment();
-                    $('#date-part').html(momentNow.format('YYYY MMMM DD') + ' ' + momentNow.format('dddd').substring(0,3).toUpperCase());
+                    $('#date-part').html(momentNow.format('YYYY MMMM DD') + ' ' + momentNow.format('dddd').substring(0, 3).toUpperCase());
                     $('#time-part').html(momentNow.format('HH:mm:ss'));
                 }, 100);
+
+                $.get('http://www.geoplugin.net/json.gp', function (data) {
+                    $scope.dataDevice = JSON.parse(data);
+                });
+
                 $scope.tanggalPresensi = new Date();
                 getDataHistory();
                 ManageSdmNew.getListData('sdm/get-jadwal-pegawai').then((res) => {
@@ -64,7 +70,8 @@ define(['initialize'], function (initialize) {
                     // tr_date: DateHelper.toTimeStamp(new Date()),
                     // tr_time: DateHelper.toTimeStamp(new Date()),
                     empl_code: $scope.data.idFinger,
-                    processtatus: $scope.data.isWFH ? 1 : 0
+                    processtatus: $scope.data.isWFH ? 1 : 0,
+                    ip_addr: $scope.dataDevice.geoplugin_request
                 }
                 console.log(data);
                 ManageSdmNew.saveData(data, 'sdm/save-presensi-pegawai/').then((res) => {
