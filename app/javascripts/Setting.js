@@ -27,8 +27,8 @@ define([], function () {
             baseApiPostData: "http://smart.rsabhk.co.id:2222/jasamedika-web/",
             baseUrlData: "http://smart.rsabhk.co.id:2222/app/data/",
             baseUrlAction: "http://smart.rsabhk.co.id:2222/jasamedika-web/",
-            baseUrlLogin: "http://smart.rsabhk.co.id:2222/jasamedika-web/auth/sign-in",
-            baseUrlLogout: "http://smart.rsabhk.co.id:2222/jasamedika-web/auth/sign-out",
+            //baseUrlLogin: "http://smart.rsabhk.co.id:2222/jasamedika-web/auth/sign-in",
+            //baseUrlLogout: "http://smart.rsabhk.co.id:2222/jasamedika-web/auth/sign-out",
             baseBridiging: "http://smart.rsabhk.co.id/Bridging/",
             urlRoute: 'http://smart.rsabhk.co.id:2222/app/data/GetRouting',
 
@@ -76,7 +76,7 @@ define([], function () {
             baseUrlAction: "https://smart.rsabhk.co.id:2222/jasamedika-web/",
             baseUrlLogin: "https://smart.rsabhk.co.id:2222/simrs_harkit/service/auth/sign-in",
             baseUrlLogout: "https://smart.rsabhk.co.id:2222/simrs_harkit/service/auth/sign-out",
-            // baseUrlLogin: "https://smart.rsabhk.co.id:2222/jasamedika-web/auth/sign-in",
+            //baseUrlLogin: "https://smart.rsabhk.co.id:2222/jasamedika-web/auth/sign-in",
             //baseUrlLogout: "https://smart.rsabhk.co.id:2222/jasamedika-web/auth/sign-out",
             baseBridiging: "http://smart.rsabhk.co.id/Bridging/",
             urlRoute: 'https://smart.rsabhk.co.id:2222/app/data/GetRouting',
@@ -106,8 +106,8 @@ define([], function () {
             baseApiPostData_Akuntansi: `${baseURLPhp}:${portPhp}/simrs_harkit/service/`,
 
             /**Login Java */
-            // baseUrlLogin: `${baseURLJava}:${portJava}/jasamedika-web/auth/sign-in`,
-            // baseUrlLogout: `${baseURLJava}:${portJava}/jasamedika-web/auth/sign-out`,
+            baseUrlJavaLogin: `${baseURLJava}:${portJava}/jasamedika-web/auth/sign-in`,
+            baseUrlJavaLogout: `${baseURLJava}:${portJava}/jasamedika-web/auth/sign-out`,
 
             baseUrlAction: `${baseURLJava}:${portJava}/jasamedika-web/`,
             baseApiUrlData: `${baseURLJava}:${portJava}/jasamedika-web/`,
