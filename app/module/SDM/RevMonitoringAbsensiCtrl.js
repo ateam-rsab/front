@@ -248,9 +248,19 @@ define(['initialize'], function(initialize) {
                         width: "50px"
                     },
                     {
+                        field: "validMasuk",
+                        title: "V",
+                        width: "18px"
+                    },
+                    {
                         field: "absensiPulang",
                         title: "Pulang",
                         width: "50px"
+                    },
+                    {
+                        field: "validPulang",
+                        title: "V",
+                        width: "18px"
                     }
                     ],
                 },
