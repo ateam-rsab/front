@@ -788,7 +788,7 @@ define(['initialize'], function(initialize) {
                 if (!newVal) return;
                 if ((newVal && oldVal) && newVal.id == oldVal.id || $scope.isSingle === true ) return;
                 // manageSarprasPhp.getDataTableMaster("monitoringabsensi/get-drop-down-subunit?id=" + ModelItem.getPegawai().id + "&idUnit=" + newVal.id + "&isMonitoring=" + $scope.isMonitoring).then(function(data) {
-                ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-drop-down-subunit?id=" + ModelItem.getPegawai().id + "&idUnit=" + newVal.id + "&isMonitoring=" + $scope.isMonitoring).then(function(data) {
+                ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-drop-down-subunit?id=" + ModelItem.getPegawai().id + "&idUnit=" + newVal.id).then(function(data) {
                     $scope.item.subUnitKerja = "";
                     $scope.listSubUnitKerja = data.data.data;
                 });
