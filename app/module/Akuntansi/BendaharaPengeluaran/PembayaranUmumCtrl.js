@@ -5,6 +5,7 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             $scope.confirm = {};
             $scope.verif = {};
+            $scope.dataPegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
             $scope.now = new Date();
             $scope.item.tanggalAwal = $scope.now;
             $scope.item.tanggalAkhir = $scope.now;
@@ -121,14 +122,14 @@ define(['initialize'], function (initialize) {
                     "width": "150px"
                 },
                 {
-                    "field": "statusconfirmanggaran",
-                    "title": "<h3>Status Konfirmasi<br> Bagian Anggaran</h3>",
-                    "width": "200px"
-                },
-                {
                     "field": "statusconfirmkabag",
                     "title": "<h3>Status Konfirmasi<br> Ka. Bag</h3>",
                     "width": "150px"
+                },
+                {
+                    "field": "statusconfirmanggaran",
+                    "title": "<h3>Status Konfirmasi<br> Bagian Anggaran</h3>",
+                    "width": "200px"
                 },
                 {
                     "field": "totalTagihanFormatted",
@@ -138,6 +139,11 @@ define(['initialize'], function (initialize) {
                 {
                     "field": "totalBayarFormatted",
                     "title": "<h3>Total Bayar</h3>",
+                    "width": "150px"
+                },
+                {
+                    "field": "keperluan",
+                    "title": "<h3>Keterangan Keperluan</h3>",
                     "width": "150px"
                 },
                 {
@@ -178,102 +184,87 @@ define(['initialize'], function (initialize) {
             ];
 
             $scope.columnGridUnverified = [{
-                    "field": "namarekanan",
-                    "title": "<h3>Nama Rekanan</h3>",
-                    "width": "200px"
+                    "field": "tglTransaksiFormatted",
+                    "title": "<h3>Tanggal Transaksi</h3>",
+                    "width": "150px"
                 },
                 {
-                    "field": "tglSPK",
-                    "title": "<h3>Tanggal <br>SPK</h3>",
-                    "template": "<span class='style-center'>{{'#: tglSPK ? tglSPK : '-' #'}}</span>",
+                    "field": "tglVerifikasiFormatted",
+                    "title": "<h3>Tanggal Verifikasi</h3>",
+                    "width": "150px"
+                },
+                {
+                    "field": "noverifikasi",
+                    "title": "<h3>No. Verifikasi</h3>",
+                    "template": "<span class='style-center'>{{'#: noverifikasi #'}}</span>",
+                    "width": "150px"
+                },
+                {
+                    "field": "kodeanggaran",
+                    "title": "<h3>Kode Anggaran</h3>",
                     "width": "170px"
                 },
                 {
-                    "field": "noSPK",
-                    "title": "<h3>No. SPK</h3>",
-                    "template": "<span class='style-center'>{{'#: noSPK #'}}</span>",
-                    "width": "150px"
-                },
-                {
-                    "field": "tgldokumen",
-                    "title": "<h3>Tanggal Dokumen</h3>",
-                    "template": "<span class='style-center'>{{'#: tgldokumen #'}}</span>",
-                    "width": "150px"
-                },
-                {
-                    "field": "nodokumen",
-                    "title": "<h3>No. Dokumen</h3>",
-                    "template": "<span class='style-center'>{{'#: nodokumen #'}}</span>",
-                    "width": "200px"
-                },
-                {
-                    "field": "totalFormatted",
-                    "title": "<h3>Total</h3>",
-                    "template": "<span class='style-center'>{{'#: totalFormatted #'}}</span>",
-                    "width": "150px"
-                },
-                {
-                    "field": "totalppnFormatted",
-                    "title": "<h3>PPN</h3>",
-                    "template": "<span class='style-center'>{{'#: totalppnFormatted #'}}</span>",
-                    "width": "150px"
-                },
-                {
-                    "field": "totaldiskonFormatted",
-                    "title": "<h3>Diskon</h3>",
-                    "template": "<span class='style-center'>{{'#: totaldiskonFormatted #'}}</span>",
-                    "width": "150px"
-                },
-                {
-                    "field": "subtotalFormatted",
-                    "title": "<h3>Sub Total</h3>",
-                    "template": "<span class='style-center'>{{'#: subtotalFormatted #'}}</span>",
-                    "width": "150px"
-                },
-                {
-                    "field": "sisautangFormatted",
-                    "title": "<h3>Sisa Hutang</h3>",
-                    "template": "<span class='style-center'>{{'#: sisautangFormatted #'}}</span>",
+                    "field": "status",
+                    "title": "<h3>Status</h3>",
                     "width": "150px"
                 },
                 {
                     "field": "statusbayar",
                     "title": "<h3>Status Bayar</h3>",
-                    "template": "<span class='style-center'>{{'#: statusbayar #'}}</span>",
                     "width": "150px"
                 },
                 {
-                    "field": "status",
-                    "title": "<h3>Status</h3>",
-                    "template": "<span class='style-center'>{{'#: status #'}}</span>",
+                    "field": "statusconfirmkabag",
+                    "title": "<h3>Status Konfirmasi<br> Ka. Bag</h3>",
                     "width": "150px"
                 },
                 {
-                    command: [{
-                            text: "Verifikasi",
-                            align: "center",
-                            attributes: {
-                                align: "center"
-                            },
-                            click: showDataVerifikasi,
-                            imageClass: "k-icon k-i-pencil"
-                        },
-                        {
-                            text: "Detail Tagihan",
-                            align: "center",
-                            attributes: {
-                                align: "center"
-                            },
-                            click: detailTagihan,
-                            imageClass: "k-icon k-i-pencil"
-                        }
-                    ],
-                    title: "",
-                    width: "300px",
-                    attributes: {
-                        style: "text-align:center;valign=middle"
-                    },
+                    "field": "statusconfirmanggaran",
+                    "title": "<h3>Status Konfirmasi<br> Bagian Anggaran</h3>",
+                    "width": "200px"
+                },
+                {
+                    "field": "totalTagihanFormatted",
+                    "title": "<h3>Total Tagihan</h3>",
+                    "width": "150px"
+                },
+                {
+                    "field": "totalBayarFormatted",
+                    "title": "<h3>Total Bayar</h3>",
+                    "width": "150px"
+                },
+                {
+                    "field": "keperluan",
+                    "title": "<h3>Keterangan Keperluan</h3>",
+                    "width": "250px"
                 }
+                // {
+                //     command: [{
+                //             text: "Verifikasi",
+                //             align: "center",
+                //             attributes: {
+                //                 align: "center"
+                //             },
+                //             click: showDataVerifikasi,
+                //             imageClass: "k-icon k-i-pencil"
+                //         },
+                //         {
+                //             text: "Detail Tagihan",
+                //             align: "center",
+                //             attributes: {
+                //                 align: "center"
+                //             },
+                //             click: detailTagihan,
+                //             imageClass: "k-icon k-i-pencil"
+                //         }
+                //     ],
+                //     title: "",
+                //     width: "300px",
+                //     attributes: {
+                //         style: "text-align:center;valign=middle"
+                //     },
+                // }
             ];
 
             $scope.columnGridAnggaran = [{
@@ -300,7 +291,8 @@ define(['initialize'], function (initialize) {
                     "field": "penggunaanFormatted",
                     "title": "<h3>Penggunaan</h3>",
                     "width": "150px"
-                }
+                },
+                
             ];
 
             $scope.gridOptVerified = {
@@ -321,8 +313,11 @@ define(['initialize'], function (initialize) {
                         text: "export",
                         name: "Export detail",
                         template: '<button ng-click="exportExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
+                    },
+                    {
+                        name: "Tambah Baru",
+                        template: '<button ng-click="tambahBaru()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-plus"></span>Tambah Baru</button>'
                     }
-
                 ],
                 pageable: true,
                 scrollable: true,
@@ -335,14 +330,18 @@ define(['initialize'], function (initialize) {
                 columns: $scope.columnGridAnggaran
             }
 
+            $scope.tambahBaru = function () {
+                $scope.popupTambahBaru.open().center();
+
+            }
+
             function showWindowKonfirmasi(e) {
                 e.preventDefault();
                 let tr = $(e.target).closest("tr");
                 let dataItem = this.dataItem(tr);
 
                 $scope.confirm = dataItem;
-                console.log(e);
-
+                console.log(dataItem);
                 $scope.isBagAnggaran = e.data.commandName === "Konfirmasi Bagian Anggaran" ? true : false;
                 if ($scope.isBagAnggaran && !$scope.confirm.confirmfk) {
                     toastr.warning('Harap Konfirmasi Ka. Bag Terlebih dahulu')
@@ -391,11 +390,13 @@ define(['initialize'], function (initialize) {
 
                 $scope.loadData();
                 $scope.verif.totalBayar = dataItem.sisautang;
-                $scope.verifkasiRekanan.open().center();
+                $scope.popupTambahBaru.open().center();
 
             }
 
-            $scope.verifikasiTagihan = function () {
+            $scope.simpanDataPembayaranUmum = function () {
+                
+
                 if (!$scope.verif.sumberDana) {
                     toastr.warning("Harap isi Sumber Dana");
                     return;
@@ -410,39 +411,92 @@ define(['initialize'], function (initialize) {
                     return;
                 };
                 let dataSave = {
-                    "kodeAnggaran":$scope.verif.anggaran.kode_anggaran,
-                    "pegawaifk": $scope.dataPegawaiLogin.id,
-                    "tglVerifikasi": dateHelper.formatDate($scope.item.tanggalVerifikasi, "YYYY-MM-DD"),
-                    "keperluan": "untuk pembayaran pembelian ATK",
-                    "totalTagihan": "5000000",
+                    kodeAnggaran: $scope.verif.anggaran.kode_anggaran,
+                    pegawaifk: $scope.dataPegawaiLogin.id,
+                    tglVerifikasi: dateHelper.formatDate($scope.item.tanggalVerifikasi, "YYYY-MM-DD"),
+                    keperluan: $scope.keperluan,
+                    totalTagihan: $scope.verif.totalBayar,
                 };
-                // console.log(dataSave);
-                $scope.verifkasiRekanan.close();
+                console.log(dataSave);
 
+                ManageAkuntansi.postpost(dataSave, 'bendahara-pengeluaran/save-verifikasi-pembayaran-umum').then(res => {
+                    $scope.clear();
+                    $scope.popupTambahBaru.close();
+                    $scope.loadData();
+                });
+            };
 
+            $scope.confirmSave = function () {
+                $scope.popupTambahBaru.close();w
                 var confirm = $mdDialog.confirm()
-                    .title('Apakah anda yakin akan Verifikasi Tagihan Rekanan (' + $scope.dataSelected.namarekanan + ')')
+                    .title(`Apakah Anda yakin akan Menyimpan Data`)
+                    // .textContent(`Anda akan konfirmasi Verifikasi Tagihan dengan Supplier ${$scope.confirm.namarekanan} dengan No. SPK ${$scope.confirm.noSPK}`)
                     .ok('Ya')
                     .cancel('Batal');
 
-                $mdDialog.show(confirm).then(() => {
+                $mdDialog.show(confirm).then(function () {
                     // yes
-                    ManageAkuntansi.postpost(dataSave, 'bendahara-pengeluaran/save-verifikasi-pembayaran-umum').then(res => {
-                        $scope.verifkasiRekanan.close();
-                        $scope.loadData();
-                    });
-                }, () => {
-                    // no
-                    $scope.closePopUpVerifikasi();
-                    $scope.verifkasiRekanan.open().center();
+                    $scope.simpanDataPembayaranUmum()
+                }, function () {
+                    $scope.popupTambahBaru.open().center();
+                    toastr.info('Konfirmasi dibatalkan');
                 });
+            }
 
-            };
-
-            $scope.closePopUpVerifikasi = function () {
-                $scope.clearVerifikasi();
+            $scope.clear = function () {
+                $scope.keperluan = "";
+                $scope.verif = {};
+                $scope.item.tanggalVerifikasi = new Date();
                 $scope.isPagu = false;
-                $scope.verifkasiRekanan.close();
+            }
+
+            $scope.closePopupAdd = function () {
+                // $scope.clear();
+                $scope.isPagu = false;
+                $scope.konfirmasiAnggaran.close();
+            }
+
+            $scope.konfirmasiData = (state) => {
+
+                $scope.closePopupAdd();
+
+                var confirm = $mdDialog.confirm()
+                    .title(`Apakah Anda yakin akan mengkonfirmasi Pembayaran Umum`)
+                    .textContent(`Anda akan konfirmasi Verifikasi Tagihan dengan No. Verifikasi ${$scope.confirm.noverifikasi} dan Kode Anggaran ${$scope.confirm.kodeanggaran}`)
+                    .ok('Ya')
+                    .cancel('Batal');
+
+                $mdDialog.show(confirm).then(function () {
+                    // yes
+                    if (state) {
+                        if (!$scope.confirm.confirmfk) {
+                            toastr.warning('Harap Konfirmasi Kabag terlebih dahulu', 'Perhatian!');
+                            return;
+                        }
+                        let data = {
+                            noverifikasifk: $scope.confirm.noverifikasifk,
+                            confirmfk: $scope.confirm.confirmfk,
+                            confirm1fk: $scope.dataPegawaiLogin.id,
+                            tglconfirm: dateHelper.formatDate(new Date, 'YYYY-MM-DD')
+                        }
+                        ManageAkuntansi.postpost(data, 'bendahara-pengeluaran/save-confirm-anggaran-verifikasi-tagihan-suplier').then(res => {
+                            $scope.loadData();
+                        });
+                    } else {
+                        let data = {
+                            noverifikasifk: $scope.confirm.noverifikasifk,
+                            confirmfk: $scope.dataPegawaiLogin.id,
+                            tglconfirm: dateHelper.formatDate(new Date, 'YYYY-MM-DD')
+                        }
+                        ManageAkuntansi.postpost(data, 'bendahara-pengeluaran/save-confirm-verifikasi-tagihan-suplier').then(res => {
+                            $scope.loadData();
+                        });
+
+                    }
+                }, function () {
+                    $scope.konfirmasiAnggaran.open().center();
+                    toastr.info('Konfirmasi dibatalkan');
+                });
             }
 
             $scope.getTerbilang = function (data, model) {
@@ -450,6 +504,10 @@ define(['initialize'], function (initialize) {
                     $scope.verif[`${model}`] = res.terbilang;
                 });
             }
+
+            $scope.closePopUpKonfirmasi = function () {
+                $scope.konfirmasiAnggaran.close();
+              }
         }
     ]);
 });

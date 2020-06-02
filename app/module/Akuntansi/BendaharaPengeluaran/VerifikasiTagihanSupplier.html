@@ -81,8 +81,8 @@
 			</div>
 
 			<div class="grid_12">
-				<div id="kGrid" kendo-grid k-data-source="dataGridUnverified" k-selectable="'row'"
-					k-pageable="'true'" k-sortable="'true'" options="gridOptUnverified" k-ng-model="dataSelected">
+				<div id="kGrid" kendo-grid k-data-source="dataGridUnverified" k-selectable="'row'" k-pageable="'true'"
+					k-sortable="'true'" options="gridOptUnverified" k-ng-model="dataSelected">
 				</div>
 
 			</div>
@@ -193,10 +193,7 @@
 								<input c-text-box type="input" style="text-align: right;" class="k-textbox" disabled
 									ng-model="verif.sisaPagu" />
 							</div>
-							<!-- <div class="grid_6">
-							<label style="font-weight: bolder;">Terbilang</label>
-							<input c-text-box type="input" style="text-align: right;" class="k-textbox" ng-model="verif.sisaPaguTerbilang" disabled/>
-						</div> -->
+
 
 							<div class="grid_4">
 								<label style="font-weight: bolder;">Pagu</label>
@@ -209,15 +206,21 @@
 								<input c-text-box type="input" style="text-align: right;" class="k-textbox"
 									ng-model="verif.totalBayar" ng-keyup="validasiTotalBayar()" />
 							</div>
-							<!-- <div class="grid_12">
-								<label style="font-weight: bolder;">Keperluan</label>
-									<textarea c-text-box type="input" style="text-align: right;" class="k-textbox"
-										ng-model="verif.keperluan"></textarea>
-							</div> -->
-							<!-- <div class="grid_6">
-							<label style="font-weight: bolder;">Terbilang</label>
-							<input c-text-box type="input" style="text-align: right;" class="k-textbox" ng-model="verif.paguTerbilang" disabled/>
-						</div> -->
+							<div class="grid_4">
+								<label style="font-weight: bolder;">Terbilang</label>
+								<input c-text-box type="input" style="text-align: right;" class="k-textbox"
+									ng-model="verif.sisaPaguTerbilang" disabled />
+							</div>
+							<div class="grid_4">
+								<label style="font-weight: bolder;">Terbilang</label>
+								<input c-text-box type="input" style="text-align: right;" class="k-textbox"
+									ng-model="verif.paguTerbilang" disabled />
+							</div>
+							<div class="grid_4">
+								<label style="font-weight: bolder;">Terbilang</label>
+								<input c-text-box type="input" style="text-align: right;" class="k-textbox"
+									ng-model="verif.totalBayarTerbilang" disabled  ng-change="getTerbilang(verif.totalBayar, 'totalBayarTerbilang')"/>
+							</div>
 						</div>
 
 						<hr>

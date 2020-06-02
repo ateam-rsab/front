@@ -1,113 +1,100 @@
-define(['initialize'], function(initialize) {
+define(['initialize'], function (initialize) {
     'use strict';
     initialize.controller('KartuStokRevCtrl', ['FindProduk', '$rootScope', '$scope', 'ModelItem', 'DateHelper', 'ManageLogistikPhp', 'ModelItemAkuntansi',
-        function(findProduk, $rootScope, $scope, ModelItem, DateHelper,manageLogistikPhp, modelItemAkuntansi) {
+        function (findProduk, $rootScope, $scope, ModelItem, DateHelper, manageLogistikPhp, modelItemAkuntansi) {
+            $scope.isRouteLoading = false;
             $scope.now = new Date();
             // ModelItem.getDataDummyGeneric("AsalProduk", true).then(function(data) {
             //     $scope.listAsalBarang = data;
             // });
             init();
-            modelItemAkuntansi.getDataDummyPHP("aset/get-data-barang", true, true, 20).then(function(data) {
-                    $scope.listNamaBarang = data;
-            }); 
-           
+            modelItemAkuntansi.getDataDummyPHP("aset/get-data-barang", true, true, 20).then(function (data) {
+                $scope.listNamaBarang = data;
+            });
+
             function init() {
-                 $scope.item = {
+                $scope.item = {
                     kelUser: document.cookie.split(';')[0].split('=')[1],
                     from: $scope.now,
                     until: $scope.now
                 }
-                findProduk.getKomponen("anggaran/get-ruangan", true).then(function(dat){
+                findProduk.getKomponen("anggaran/get-ruangan", true).then(function (dat) {
                     $scope.item.ruangan = dat.data.data;
                 });
                 if ($scope.item.kelUser !== "logistik")
-                    $scope.isUnit =  true;
-                
+                    $scope.isUnit = true;
+
                 $scope.daftarKartuStok = new kendo.data.DataSource({
                     data: []
                 });
 
-                manageLogistikPhp.getDataTableTransaksi('get-detail-login').then(function(data){
-                    $scope.listRuangan =data.data.ruangan
-                    $scope.item.ruangan = {id:$scope.listRuangan[0].id,namaruangan:$scope.listRuangan[0].namaruangan}
+                manageLogistikPhp.getDataTableTransaksi('get-detail-login').then(function (data) {
+                    $scope.listRuangan = data.data.ruangan
+                    $scope.item.ruangan = {
+                        id: $scope.listRuangan[0].id,
+                        namaruangan: $scope.listRuangan[0].namaruangan
+                    }
                     $scope.listKelompokBarang = data.data.kelompokproduk
-                    $scope.item.kelompokBarang = {id:24,kelompokproduk:'Barang Persediaan'}
+                    $scope.item.kelompokBarang = {
+                        id: 24,
+                        kelompokproduk: 'Barang Persediaan'
+                    }
                 });
-                manageLogistikPhp.getDataTableTransaksi('kartu-stok/getpass').then(function(data){
+                manageLogistikPhp.getDataTableTransaksi('kartu-stok/getpass').then(function (data) {
                     $scope.item.passwordSo = data.data
                 });
             }
 
-            // $scope.getDataCombo = function (){
-
-            // }
-            
-            // $scope.$watch('item.kelompokBarang', function(e) {
-            //     if (e === undefined) return;
-            //     if (e.id === undefined) return;
-            //     $rootScope.addData = { content: 'ada data baru ' + e.kelompokProduk };
-            //     $scope.listNamaBarang = ModelItem.kendoHttpSource('product/find-barang-by-kelompok?id=' + e.id, true);
-            // })
-            // $scope.listKelompokBarang = ModelItem.kendoHttpSource('/product/kelompok-produk-have-stok', true);
-            // $scope.item.kelompokBarang = {id:$scope.listKelompokBarang[0].id,kelompokProduk:$scope.listKelompokBarang[0].kelompokProduk}
-            // findProduk.getListRuangan("Ruangan&select=id,namaRuangan").then(function(data) {
-            //     $scope.sourceRuangan = data;
-            //     // debugger;
-            // });
-            // findProduk.getListRuangan("Produk&select=id,namaProduk").then(function(data) {
-            //     $scope.listNamaBarang = data;
-            //     // debugger;
-            // });
-
-            $scope.ProsesCari = function(){
+            $scope.cari = function () {
                 loadData()
             }
+
             function loadData() {
-                // $scope.isRouteLoading=true;
+                $scope.isRouteLoading = true;
                 var tglAwal = moment($scope.item.from).format('YYYY-MM-DD 00:00:00');
                 var tglAkhir = moment($scope.item.until).format('YYYY-MM-DD 23:59:59');
-                var ruanganId="";
+                var ruanganId = "";
                 if ($scope.item.ruangan !== undefined) {
-                    ruanganId ="&ruanganfk=" +$scope.item.ruangan.id
+                    ruanganId = "&ruanganfk=" + $scope.item.ruangan.id
                 }
-                var kdproduk="";
+                var kdproduk = "";
                 if ($scope.item.namaBarang !== undefined) {
-                    kdproduk = "&produkfk=" +$scope.item.namaBarang.id;
+                    kdproduk = "&produkfk=" + $scope.item.namaBarang.id;
                 }
 
-                manageLogistikPhp.getDataTableTransaksi("logistik-stok/get-data-kartu-stok?"
-                    + "tglAwal=" + tglAwal
-                    + "&tglAkhir=" + tglAkhir
-                    +ruanganId+kdproduk, true).then(function(data){
+                manageLogistikPhp.getDataTableTransaksi("logistik-stok/get-data-kartu-stok?" +
+                    "tglAwal=" + tglAwal +
+                    "&tglAkhir=" + tglAkhir +
+                    ruanganId + kdproduk, true).then(function (data) {
                     var datas = data.data;
                     var saldoawal = 0.0;
                     var saldoakhir = 0.0;
                     var saldomasuk = 0.0;
                     var saldokeluar = 0.0;
                     for (var i = 0; i < datas.length; i++) {
-                         datas[i].no = i+1;
-                         saldoakhir = parseFloat(datas[i].saldoakhir);
-                         datas[i].saldoakhir=saldoakhir
-                      // if(datas[i].status != ""){
-                        if(datas[i].status == true){
+                        datas[i].no = i + 1;
+                        saldoakhir = parseFloat(datas[i].saldoakhir);
+                        datas[i].saldoakhir = saldoakhir
+                        // if(datas[i].status != ""){
+                        if (datas[i].status == true) {
                             saldomasuk = parseFloat(datas[i].jumlah);
                             datas[i].saldomasuk = saldomasuk;
-                            datas[i].saldokeluar=parseFloat(saldokeluar);
-                            saldoawal = (parseFloat(datas[i].saldoakhir)-parseFloat(datas[i].jumlah));
+                            datas[i].saldokeluar = parseFloat(saldokeluar);
+                            saldoawal = (parseFloat(datas[i].saldoakhir) - parseFloat(datas[i].jumlah));
                             datas[i].saldoawal = saldoawal;
-                        }else{
-                            datas[i].saldomasuk=parseFloat(0);
-                            datas[i].saldokeluar=parseFloat(datas[i].jumlah);     
-                            datas[i].saldoawal= (parseFloat(datas[i].saldoakhir)+parseFloat(datas[i].jumlah));                          
+                        } else {
+                            datas[i].saldomasuk = parseFloat(0);
+                            datas[i].saldokeluar = parseFloat(datas[i].jumlah);
+                            datas[i].saldoawal = (parseFloat(datas[i].saldoakhir) + parseFloat(datas[i].jumlah));
                         }
                     }
                     // }
 
-                    for (var i in datas){
-                        datas[i].saldomasuk=   parseFloat(datas[i].saldomasuk.toFixed(2));
-                        datas[i].saldokeluar= parseFloat(datas[i].saldokeluar.toFixed(2)); 
-                        datas[i].saldoawal= parseFloat(datas[i].saldoawal.toFixed(2)); 
-                        datas[i].saldoakhir= parseFloat(datas[i].saldoakhir.toFixed(2)); 
+                    for (var i in datas) {
+                        datas[i].saldomasuk = parseFloat(datas[i].saldomasuk.toFixed(2));
+                        datas[i].saldokeluar = parseFloat(datas[i].saldokeluar.toFixed(2));
+                        datas[i].saldoawal = parseFloat(datas[i].saldoawal.toFixed(2));
+                        datas[i].saldoakhir = parseFloat(datas[i].saldoakhir.toFixed(2));
                     }
                     // for (var i in datas){
                     //     datas[i].saldomasuk=   parseFloat(datas[i].saldomasuk);
@@ -117,56 +104,58 @@ define(['initialize'], function(initialize) {
                     // }
                     $scope.daftarKartuStok = new kendo.data.DataSource({
                         data: datas,
-                        // pageSize: 20,
+                        pageSize: 500,
                         total: datas.length,
                         serverPaging: false,
-                       
+
                     });
+
+                    $scope.isRouteLoading = false;
                 });
 
 
             }
-            
-            $scope.BatalStokOpname = function(){
-                $scope.item.kataKunciPass="";
-                $scope.item.kataKunciConfirm="";
+
+            $scope.BatalStokOpname = function () {
+                $scope.item.kataKunciPass = "";
+                $scope.item.kataKunciConfirm = "";
                 $scope.popUp.close();
             }
-            $scope.perbaikiData = function(){
+            $scope.perbaikiData = function () {
                 $scope.popUp.center().open();
             }
-            $scope.lanjutkan = function(){
-                var ruanganId="";
+            $scope.lanjutkan = function () {
+                var ruanganId = "";
                 if ($scope.item.ruangan !== undefined) {
-                    ruanganId =$scope.item.ruangan.id
+                    ruanganId = $scope.item.ruangan.id
                 }
-                var kdproduk="";
+                var kdproduk = "";
                 if ($scope.item.namaBarang !== undefined) {
                     kdproduk = $scope.item.namaBarang.id;
                 }
 
-                 if ($scope.item.kataKunciPass != $scope.item.passwordSo) {
+                if ($scope.item.kataKunciPass != $scope.item.passwordSo) {
                     alert('Kata kunci / password salah')
-                    $scope.isRouteLoading=false;
+                    $scope.isRouteLoading = false;
                     $scope.popUp.close();
                     return
                 }
 
-                $scope.item.kataKunciPass="";
-                $scope.item.kataKunciConfirm="";
+                $scope.item.kataKunciPass = "";
+                $scope.item.kataKunciConfirm = "";
                 $scope.popUp.close();
 
                 var objSave = {
-                        "ruanganfk":ruanganId,
-                        "produkfk":kdproduk,
-                        "tglawal":  moment($scope.item.from).format('YYYY-MM-DD 00:00:00')
-                    }
-                    manageLogistikPhp.postperbaikikartustok(objSave).then(function(e) {
-                        loadData()
-                    })
+                    "ruanganfk": ruanganId,
+                    "produkfk": kdproduk,
+                    "tglawal": moment($scope.item.from).format('YYYY-MM-DD 00:00:00')
+                }
+                manageLogistikPhp.postperbaikikartustok(objSave).then(function (e) {
+                    loadData()
+                })
             }
 
-            $scope.Proses = function() {
+            $scope.Proses = function () {
                 var listRawRequired = [
                     "item.ruangan|k-ng-model|Ruangan",
                     "item.from|k-ng-model|Periode awal",
@@ -177,13 +166,13 @@ define(['initialize'], function(initialize) {
                 ];
 
                 var isValid = ModelItem.setValidation($scope, listRawRequired);
-                    
-                if(isValid.status){
 
-                // if (!$scope.item.ruangan || !$scope.item.namaBarang) {
-                //     window.alert("Silahkan pilih ruangan dan produk terlebih dahulu");
-                //     return;
-                // }
+                if (isValid.status) {
+
+                    // if (!$scope.item.ruangan || !$scope.item.namaBarang) {
+                    //     window.alert("Silahkan pilih ruangan dan produk terlebih dahulu");
+                    //     return;
+                    // }
                     var from, until, ruanganId, produkId;
 
                     if (!$scope.item.from && !$scope.item.until) {
@@ -206,15 +195,13 @@ define(['initialize'], function(initialize) {
                         produkId = $scope.item.namaBarang.id
                     }
 
-                    findProduk.getKartuStokSRO(from, until, ruanganId, produkId).then(function(e) {
+                    findProduk.getKartuStokSRO(from, until, ruanganId, produkId).then(function (e) {
                         // console.log(JSON.stringify(e.data));
                         e.data.tanggalKejadian = DateHelper.getPeriodeFormatted(new Date(e.data.tanggalKejadian));
 
                         $scope.daftarKartuStok = new kendo.data.DataSource({
                             data: e.data
                         });
-
-                        debugger;
                     })
                 } else {
                     ModelItem.showMessages(isValid.messages);
@@ -226,55 +213,51 @@ define(['initialize'], function(initialize) {
             //     data: []
             // });
             $scope.columnKartuStok = [
-                // {
-                //     "field": "ruangan",
-                //     "title": "Ruangan",
-                //     "width": "10%"
-                // },
-                 {
+
+                {
                     "field": "no",
-                    "title": "No",
+                    "title": "<h3>No</h3>",
                     "width": "5%"
-                }, 
+                },
                 {
                     "field": "tglkejadian",
-                    "title": "Tgl Transaksi",
+                    "title": "<h3>Tanggal Transaksi</h3>",
                     "width": 200,
                     type: "date",
                     format: "{0:dd/MM/yyyy}"
                 },
                 {
                     "field": "namaproduk",
-                    "title": "Nama Barang",
+                    "title": "<h3>Nama Barang</h3>",
                     "width": "25%"
                 },
                 {
                     "field": "keterangan",
-                    "title": "Keterangan",
+                    "title": "<h3>Keterangan</h3>",
                     "width": "25%"
                 }, {
                     "field": "saldoawal",
-                    "title": "Saldo Awal",
+                    "title": "<h3>Saldo Awal</h3>",
                     "width": "10%",
                     type: "number",
                     // format: "{0:n0}"
                 }, {
                     "field": "saldomasuk",
-                    "title": "Saldo Masuk",
+                    "title": "<h3>Saldo Masuk</h3>",
                     "width": "10%",
                     type: "number",
                     // format: "{0:n0}"
                     // template: '<span ng-show="dataItem.status">{{dataItem.jumlah}}</span><span ng-show="!dataItem.status">0</span>'
                 }, {
                     "field": "saldokeluar",
-                    "title": "Saldo Keluar",
+                    "title": "<h3>Saldo Keluar</h3>",
                     "width": "10%",
                     type: "number",
                     // format: "{0:n0}"
                     // template: '<span ng-hide="dataItem.status">{{dataItem.jumlah}}</span><span ng-hide="!dataItem.status">0</span>'
                 }, {
                     "field": "saldoakhir",
-                    "title": "Saldo Akhir",
+                    "title": "<h3>Saldo Akhir</h3>",
                     "width": "10%",
                     type: "number",
                     // format: "{0:n0}"
@@ -282,7 +265,121 @@ define(['initialize'], function(initialize) {
                 }
             ];
 
-            $scope.batal = function(){
+            $scope.gridOptKartuStok = {
+                toolbar: [{
+                        text: "export",
+                        name: "Export detail",
+                        template: '<button ng-click="exportExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
+                    }
+
+                ],
+                pageable: true,
+                scrollable: true,
+                columns: $scope.columnKartuStok
+            }
+
+            $scope.exportExcel = function () {
+                var tempDataExport = [];
+                var rows = [{
+                    cells: [{
+                            value: "Tanggal Transaksi"
+                        },
+                        {
+                            value: "Nama Barang"
+                        },
+                        {
+                            value: "Keterangan"
+                        },
+                        {
+                            value: "Saldo Awal"
+                        },
+                        {
+                            value: "Saldo Masuk"
+                        },
+                        {
+                            value: "Saldo Keluar"
+                        },
+                        {
+                            value: "Saldo Akhir"
+                        }
+                    ]
+                }];
+
+                tempDataExport = $scope.daftarKartuStok;
+                tempDataExport.fetch(function () {
+                    var data = this.data();
+                    console.log(data);
+                    for (var i = 0; i < data.length; i++) {
+                        //push single row for every record
+                        rows.push({
+                            cells: [{
+                                    value: data[i].tglkejadian
+                                },
+                                {
+                                    value: data[i].namaproduk
+                                },
+                                {
+                                    value: data[i].keterangan
+                                },
+                                {
+                                    value: data[i].saldoawal
+                                },
+                                {
+                                    value: data[i].saldomasuk
+                                },
+                                {
+                                    value: data[i].saldokeluar
+                                },
+                                {
+                                    value: data[i].saldoakhir
+                                }
+                            ]
+                        })
+                    }
+                    var workbook = new kendo.ooxml.Workbook({
+                        sheets: [{
+                            freezePane: {
+                                rowSplit: 1
+                            },
+                            columns: [
+                                // Column settings (width)
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                }
+                            ],
+                            // Title of the sheet
+                            title: "Kartu Stok",
+                            // Rows of the sheet
+                            rows: rows
+                        }]
+                    });
+                    //save the file as Excel file with extension xlsx
+                    kendo.saveAs({
+                        dataURI: workbook.toDataURL(),
+                        fileName: "kartu-stok.xlsx"
+                    });
+                });
+            };
+
+            $scope.batal = function () {
                 init();
             }
         }

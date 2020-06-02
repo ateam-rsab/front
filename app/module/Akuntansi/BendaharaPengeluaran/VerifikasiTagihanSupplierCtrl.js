@@ -601,6 +601,7 @@ define(['initialize'], function (initialize) {
         $scope.keperluan = 'Untuk Pembayaran Supplier ' + $scope.dataSelected.namarekanan + ' No.SPK = ' + $scope.dataSelected.noSPK
         $scope.loadData();
         $scope.verif.totalBayar = dataItem.sisautang;
+        $scope.getTerbilang($scope.verif.totalBayar, 'totalBayarTerbilang');
         $scope.verifkasiRekanan.open().center();
 
       }
@@ -634,11 +635,11 @@ define(['initialize'], function (initialize) {
         console.log(e);
 
         $scope.isBagAnggaran = e.data.commandName === "Konfirmasi Bagian Anggaran" ? true : false;
-        if($scope.isBagAnggaran && !$scope.confirm.confirmfk) {
+        if ($scope.isBagAnggaran && !$scope.confirm.confirmfk) {
           toastr.warning('Harap Konfirmasi Ka. Bag Terlebih dahulu')
           return;
         }
-      //  + "&noverifikasifk=" + dataItem.noverifikasifk
+        //  + "&noverifikasifk=" + dataItem.noverifikasifk
         ManageAkuntansi.getDataTableTransaksi('bendahara-pengeluaran/get-penggunaan-anggaran?tahun=' + new Date().getFullYear() + "&kodeAnggaran=" + dataItem.kodeanggaran).then(res => {
 
           for (let i = 0; i < res.data.data.length; i++) {
@@ -662,9 +663,9 @@ define(['initialize'], function (initialize) {
       }
 
       $scope.konfirmasiData = (state) => {
-        
+
         $scope.closePopUpKonfirmasi();
-        
+
         var confirm = $mdDialog.confirm()
           .title(`Apakah Anda yakin akan mengkonfirmasi Verifikasi Tagihan`)
           .textContent(`Anda akan konfirmasi Verifikasi Tagihan dengan Supplier ${$scope.confirm.namarekanan} dengan No. SPK ${$scope.confirm.noSPK}`)
@@ -696,7 +697,7 @@ define(['initialize'], function (initialize) {
             ManageAkuntansi.postpost(data, 'bendahara-pengeluaran/save-confirm-verifikasi-tagihan-suplier').then(res => {
               $scope.loadData();
             });
-            
+
           }
         }, function () {
           $scope.konfirmasiAnggaran.open().center();
@@ -723,7 +724,8 @@ define(['initialize'], function (initialize) {
           tglVerifikasi: dateHelper.formatDate($scope.item.tanggalVerifikasi, "YYYY-MM-DD"),
           pegawaifk: $scope.dataPegawaiLogin.id,
           kodeAnggaran: $scope.verif.anggaran.kode_anggaran,
-          noverifikasifk: $scope.dataSelected.noverifikasifk ? $scope.dataSelected.noverifikasifk : ""
+          noverifikasifk: $scope.dataSelected.noverifikasifk ? $scope.dataSelected.noverifikasifk : "",
+          keperluan: $scope.keperluan
         };
         // console.log(dataSave);
         $scope.verifkasiRekanan.close();
