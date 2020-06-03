@@ -6019,6 +6019,26 @@
       ]
     },
     {
+      "name": "DaftarPegawaiPensiunMeninggalNonsdm",
+      "url": "/DaftarPegawaiPensiunMeninggalNonsdm",
+      "templateurl": "module/SDM/DaftarPegawaiPensiunMeninggalNonsdm.html",
+      "controller": "DaftarPegawaiPensiunMeninggalNonsdmCtrl",
+      "deps": [
+        {
+          "module": "Services",
+          "define": "Service"
+        },
+        {
+          "module": "LoginServices",
+          "define": "LoginService"
+        },
+        {
+          "module": "SdmService",
+          "define": "SdmService"
+        }
+      ]
+    },
+    {
       "name": "DaftarInputJatahCuti",
       "url": "/DaftarInputJatahCuti",
       "templateurl": "module/SDM/DaftarInputJatahCuti.html",

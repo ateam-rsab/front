@@ -1,0 +1,420 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span class="title" c-translate>{{title}}</span>
+        <div class="panel-place panel-place-custom" ng-show="klikRiwayat"><i style="cursor:pointer;" ng-click='closeHistory()' class="fa fa-times-circle fa-2x" aria-hidden="true"></i></div>
+    </div>
+    <div class="panel-body" ng-hide="klikRiwayat">
+        <!-- <div class="grid_6">
+            <div class="panel panel-default container_12">
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 6px 0 0 0;">
+                        <label><b>NIP</b></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dataItem.nipPns" readonly="true" />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 6px 0 0 0;">
+                        <label c-label item="item" c-label-text="NamaPegawai"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dataItem.namaLengkap" readonly="true" />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 6px 0 0 0;">
+                        <label c-label item="item" c-label-text="StatusPegawai"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dataItem.kategoriPegawai" readonly="true" />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 6px 0 0 0;">
+                        <label c-label item="item" c-label-text="TempatLahir"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dataItem.tempatLahir" readonly="true" />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4" style="margin: 6px 0 0 0;">
+                        <label c-label item="item" c-label-text="TanggalLahir"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dataItem.tglLahir" readonly="true" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_6">
+            <div class="grid_12">
+                <div class="grid_4" style="margin: 6px 0 0 0;">
+                    <label c-label item="item" c-label-text="Golongan"></label>
+                </div>
+                <div class="grid_8">
+                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dataItem.namaGolongan" readonly="true" />
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_4" style="margin: 6px 0 0 0;">
+                    <label c-label item="item" c-label-text="StatusKawin"></label>
+                </div>
+                <div class="grid_8">
+                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dataItem.statusPerkawinanPegawai" readonly="true" />
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_4" style="margin: 6px 0 0 0;">
+                    <label c-label item="item" c-label-text="Jabatan Fungsional"></label>
+                </div>
+                <div class="grid_8">
+                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dataItem.namaJabatan" readonly="true" />
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_4" style="margin: 6px 0 0 0;">
+                    <label c-label item="item" c-label-text="Jabatan Internal"></label>
+                </div>
+                <div class="grid_8">
+                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dataItem.jabatanInternal" readonly="true" />
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_4" style="margin: 6px 0 0 0;">
+                    <label c-label item="item" c-label-text="Unit Kerja"></label>
+                </div>
+                <div class="grid_8">
+                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dataItem.unitKerja" readonly="true" />
+                </div>
+            </div>
+        </div> -->
+        <div class="panel panel-default">
+            <!-- Filter Data -->
+            <div class="panel-body">
+                <div class="grid_12">
+                    <!-- Nama -->
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="Nama"></label>
+                        <input id="category" c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.qnamaPegawai" />
+                    </div>
+                    <!-- unitKerja -->
+                    <div class="grid_2" ng-disabled="true">
+                        <label c-label item="item" c-label-text="Unit Kerja"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.qunitKerja" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listUnitKerja" />
+                    </div>
+                    <!-- Jabatan -->
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="Jabatan"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.qjabatanInternal" k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListJabatanInternal" />
+                    </div>
+                    <!-- Kedudukan pegawai -->
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="KedudukanPegawai"></label>
+                        <input style="width: 100%;" kendo-combo-box k-ng-model="item.qkedudukanPegawai" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="ListKedudukanPegawai" />
+                    </div>
+                    <div class="grid_1">
+                        <label c-label c-label-text=""></label>
+                        <em style="margin-top:6px;" ng-click='resetFilters()' id="iconButton" data-role="button" class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_12">
+            <kendo-grid id="gridDataPegawai" k-data-source="daftarPegawai" options="daftarpegawaiOpt" k-ng-model="dataItem"></kendo-grid>
+        </div>
+    </div>
+    <div class="panel-body" ng-show="klikRiwayat">
+        <div class="grid_12">
+            <div kendo-grid id="gridHistoriPegawai" k-data-source="dataHistoriPegawai" options="optHistoriPegawai"></div>
+        </div>
+    </div>
+    <div kendo-window="popupHistory" k-visible="false">
+        <div class="panel panel-default container_12">
+            <div class="grid_6">
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label class="label-aja" item="item">NIP / ID Finger</label>
+                    </div>
+                    <div class="grid_6">
+                        <input c-text-box type="input" placeholder="NIP" filter="'varchar'" class="k-textbox" ng-model="dataDetil.nipPns" disabled />
+                    </div>
+                    <div class="grid_2">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dataDetil.idFinger" disabled />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label class="label-aja" item="item">Nama Lengkap/Jenis Kelamin</label>
+                    </div>
+                    <div class="grid_6">
+                        <input c-text-box type="input" placeholder="Nama" class="k-textbox" ng-model="dataDetil.namaLengkap" disabled/>
+                    </div>
+                    <div class="grid_2">
+                        <input c-text-box type="input" class="k-textbox" ng-model="dataDetil.jenisKelamin" disabled />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label class="label-aja" item="item">Tempat/Tanggal Lahir</label>
+                    </div>
+                    <div class="grid_4">
+                        <input c-text-box type="input" class="k-textbox" ng-model="dataDetil.tempatLahir" disabled />
+                    </div>
+                    <div class="grid_4">
+                        <input kendo-date-picker k-ng-model="dataDetil.tglLahir" k-format="'dd-MM-yyyy'" style="width: 100%" disabled />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label class="label-aja" item="item">Golongan / Status Pegawai</label>
+                    </div>
+                    <div class="grid_4">
+                        <input c-text-box type="input" class="k-textbox" ng-model="dataDetil.golongan" disabled />
+                    </div>
+                    <div class="grid_4">
+                        <input c-text-box type="input" class="k-textbox" ng-model="dataDetil.detailKategoryPegawai" disabled />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label class="label-aja" item="item" c-label-text="KedudukanPegawai"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" class="k-textbox" ng-model="dataDetil.kedudukan" disabled />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label class="label-aja" item="item" c-label-text="Tanggal Masuk"></label>
+                    </div>
+                    <div class="grid_4">
+                        <input kendo-date-picker k-ng-model="dataDetil.tglMasuk" k-format="'dd-MM-yyyy'" style="width: 100%" disabled />
+                    </div>
+                </div>
+    
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label class="label-aja" item="item" c-label-text="Tanggal Keluar"></label>
+                    </div>
+                    <div class="grid_4">
+                        <input kendo-date-picker k-ng-model="dataDetil.tglkeluar" k-format="'dd-MM-yyyy'" style="width: 100%" disabled />
+                    </div>
+                </div>
+    
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label class="label-aja" item="item">Jabatan Struktural/Fungsional</label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" class="k-textbox" ng-model="dataDetil.jabatanFungsional" disabled />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label class="label-aja" item="item" c-label-text="Pendidikan"></label>
+                    </div>
+                    <div class="grid_2">
+                        <input c-text-box type="input" class="k-textbox" ng-model="dataDetil.pendidikan" disabled />
+                    </div>
+                    <div class="grid_4">
+                        <input c-text-box type="input" class="k-textbox" ng-model="dataDetil.kualifikasiJurusan" disabled />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label class="label-aja" item="item" c-label-text="Pensiun"></label>
+                    </div>
+                    <div class="grid_4">
+                        <input kendo-date-picker k-ng-model="dataDetil.tglPensiun" k-format="'dd-MM-yyyy'" style="width: 100%" disabled/>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label class="label-aja" item="item" c-label-text="Jabatan Internal"></label>
+                    </div>
+    
+                    <div class="grid_8">
+                        <input c-text-box type="input" class="k-textbox" ng-model="dataDetil.jabatanInternal" disabled />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label class="label-aja" item="item" c-label-text="Kelompok Jabatan"></label>
+                    </div>
+    
+                    <div class="grid_8">
+                        <input c-text-box type="input" class="k-textbox" ng-model="dataDetil.detailKelompokJabatan" disabled />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label class="label-aja" item="item">Nomor SIP</label>
+                    </div>
+                    <div class="grid_8">
+                        <div class="grid_12">
+                            <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dataDetil.noSip" disabled />
+                        </div>
+                        <div class="grid_4">
+                            <label c-label item="item">Terbit</label>
+                            <input kendo-date-picker k-ng-model="dataDetil.tglTerbitSip" k-format="'dd-MM-yyyy'" style="width: 100%" disabled />
+                        </div>
+                        <div class="grid_4">
+                            <label c-label item="item">Berakhir</label>
+                            <input kendo-date-picker k-ng-model="dataDetil.tglBerakhirSip" k-format="'dd-MM-yyyy'" style="width: 100%" disabled/>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label class="label-aja" item="item">Nomor STR</label>
+                    </div>
+                    <div class="grid_8">
+                        <div class="grid_12">
+                            <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dataDetil.noStr" style="margin-top:11px" disabled />
+                        </div>
+                        <div class="grid_4">
+                            <label c-label item="item">Terbit</label>
+                            <input kendo-date-picker k-ng-model="dataDetil.tglTerbitStr" k-format="'dd-MM-yyyy'" style="width: 100%" disabled />
+                        </div>
+                        <div class="grid_4">
+                            <label c-label item="item">Berakhir</label>
+                            <input kendo-date-picker k-ng-model="dataDetil.tglBerakhirStr" k-format="'dd-MM-yyyy'" style="width: 100%" disabled />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_6">
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label class="label-aja" item="item">Status Kawin</label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dataDetil.statusPerkawinanPegawai" disabled />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label class="label-aja" item="item" c-label-text="NomorRekening"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dataDetil.bankRekeningNomor" disabled />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label class="label-aja" item="item" c-label-text="NamaRekening"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dataDetil.bankRekeningAtasNama" disabled />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label class="label-aja" item="item" c-label-text="KodeBank"></label>
+                    </div>
+    
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dataDetil.bankRekeningNama" disabled />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label class="label-aja" item="item">NPWP</label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dataDetil.npwp" disabled />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label class="label-aja" item="item" c-label-text="Alamat"></label>
+                    </div>
+                    <div class="grid_8">
+                        <textarea ng-model="dataDetil.alamat" placeholder="Alamat" style="width: 99%; height: 80px;" disabled></textarea>
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label class="label-aja" item="item" c-label-text="KodePos"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dataDetil.kodePos" disabled />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label class="label-aja" item="item" c-label-text="Agama"></label>
+                    </div>
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dataDetil.agama" disabled />
+                    </div>
+                </div>
+    
+                <!-- <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label class="label-aja" item="item" c-label-text="Unit Kerja"></label>
+                    </div>
+    
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dataDetil.subUnitKerja" disabled />
+                    </div>
+                </div> -->
+    
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label class="label-aja" item="item">Sub Unit Kerja</label>
+                    </div>
+    
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dataDetil.unitKerja" disabled />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label class="label-aja" item="item" c-label-text="Eselon"></label>
+                    </div>
+    
+                    <div class="grid_4">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dataDetil.eselon" disabled />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label class="label-aja" item="item" c-label-text="Pola Kerja Shift"></label>
+                    </div>
+    
+                    <div class="grid_8">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dataDetil.shiftKerja" disabled />
+                    </div>
+                </div>
+                <div class="grid_12">
+                    <div class="grid_4">
+                        <label c-label class="label-aja" item="item" c-label-text="NilaiJabatan"></label>
+                    </div>
+                    <div class="grid_2">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dataDetil.nilaiJabatan" disabled />
+                    </div>
+                    <div class="grid_2">&nbsp;</div>
+                    <div class="grid_2">
+                        <label c-label class="label-aja" item="item" c-label-text="Grade"></label>
+                    </div>
+                    <div class="grid_2">
+                        <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="dataDetil.grade" disabled />
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="grid_4 pull-right">
+                    <div class="grid_4">
+                        <label c-label>Tanggal:<br/><span class="footer-note">{{dataDetil.tglPerubahan}}</span></label>
+                    </div>
+                    <div class="grid_8">
+                        <label c-label>Petugas:<br/><span class="footer-note">{{dataDetil.namaPetugas}}</span></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

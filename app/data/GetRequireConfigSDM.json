@@ -1149,6 +1149,10 @@
       "urlDep": "module/SDM/DaftarPegawaiPensiunMeninggalCtrl"
     },
     {
+      "nameDep": "DaftarPegawaiPensiunMeninggalNonsdmCtrl",
+      "urlDep": "module/SDM/DaftarPegawaiPensiunMeninggalNonsdmCtrl"
+    },
+    {
       "nameDep": "DaftarInputJatahCutiCtrl",
       "urlDep": "module/SDM/DaftarInputJatahCutiCtrl"
     },
