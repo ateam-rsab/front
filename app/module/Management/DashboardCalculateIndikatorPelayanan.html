@@ -1,0 +1,24 @@
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Perhitungan Indikator Pelayanan</div>
+</md-toolbar>
+
+<div class="grid_12">
+    <div class="grid_2">
+        <label c-label item="item"></label>
+        <input style="width: 100%;" kendo-combo-box k-ng-model="selectedYear" k-data-text-field="'tahun'"
+            k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listOfYear" />
+    </div>
+
+    <div class="grid_1" style="margin-top: 8px;">
+        <md-button class="md-raised md-primary medium-button" ng-click="getData()">
+            <span style="margin-right: 5px;">Hitung</span>
+            <i class="fa fa-search"></i>
+        </md-button>
+    </div>
+</div>
+
+<div class="grid_12">
+    <div kendo-grid id="grid" data-source="dataSource" options="mainGridOptions" k-pageable="'true'" k-sortable="'true'" k-selectable="'row'" k-ng-model="dataPasienSelected">
+    </div>
+</div>
+<div ng-include=' "../app/module/Shared/TemplateLoading" '></div>

@@ -505,7 +505,7 @@ define(['initialize'], function (initialize) {
             function cetakBedah(e) {
                 e.preventDefault();
                 var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
-                window.open("http://192.168.12.4:7777/service-reporting/lap-bedah/" + dataItem.noregistrasi);
+                window.open("http://192.168.12.4:7777/service-reporting/lap-bedah/" + dataItem.noverifikasifk);
             }
 
             $scope.setLamaPembedahan = function () {

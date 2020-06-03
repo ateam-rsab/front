@@ -11,6 +11,10 @@
                 "link": "#/Management/Dashboard2/Rekammedis"
             },
             {
+                "name": "Indikator Pelayanan",
+                "link": "#/DashboardCalculateIndikatorPelayanan"
+            },
+            {
                 "name": "Penerimaan",
                 "link": "#/dashboardPenerimaan"
             },

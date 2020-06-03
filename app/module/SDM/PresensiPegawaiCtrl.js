@@ -36,8 +36,9 @@ define(['initialize'], function (initialize) {
                     $('#time-part').html(momentNow.format('HH:mm:ss'));
                 }, 100);
 
-                $.get('http://www.geoplugin.net/json.gp', function (data) {
-                    $scope.dataDevice = JSON.parse(data);
+                $.get('https://api.ipify.org', function (data) {
+                    // console.lo
+                    $scope.dataDevice = data;
                 });
 
                 $scope.tanggalPresensi = new Date();

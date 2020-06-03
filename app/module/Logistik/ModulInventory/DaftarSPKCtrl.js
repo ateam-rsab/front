@@ -527,6 +527,7 @@ define(['initialize'], function (initialize) {
                     for (let ii = 0; ii < dataGridSPK[i].details.length; ii++) {
                         let dataTemp2 = {
                             noPO: dataGridSPK[i].nospk,
+                            noUsulan: dataGridSPK[i].nousulan,
                             supplier: dataGridSPK[i].supplier,
                             namaproduk: dataGridSPK[i].details[ii].namaproduk,
                             satuanstandar: dataGridSPK[i].details[ii].satuanstandar,
@@ -559,6 +560,7 @@ define(['initialize'], function (initialize) {
                     {
                         cells: [
                             { value: "No. PO" },
+                            { value: "No. Usulan" },
                             { value: "Supplier" },
                             { value: "Tanggal Kebutuhan" },
                             { value: "Kode Produk" },
@@ -582,13 +584,14 @@ define(['initialize'], function (initialize) {
                         rows.push({
                             cells: [
                                 { value: data[i].noPO },
+                                { value: data[i].noUsulan },
                                 { value: data[i].supplier },
                                 { value: data[i].tglkebutuhan },
                                 { value: data[i].prid },
                                 { value: data[i].namaproduk },
-                                { value: data[i].spesifikasi },                                
+                                { value: data[i].spesifikasi },
                                 { value: data[i].satuanstandar },
-                                { value: data[i].qtyproduk },                                
+                                { value: data[i].qtyproduk },
                                 { value: data[i].qtyterimalast },
                                 { value: data[i].hargasatuan },
                                 { value: data[i].total },
@@ -609,6 +612,13 @@ define(['initialize'], function (initialize) {
                                 },
                                 columns: [
                                     // Column settings (width)
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
                                     { autoWidth: true },
                                     { autoWidth: true },
                                     { autoWidth: true },

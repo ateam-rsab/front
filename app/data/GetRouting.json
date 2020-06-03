@@ -47996,6 +47996,30 @@
     ]
   },
   {
+    "name": "DashboardCalculateIndikatorPelayanan",
+    "url": "/DashboardCalculateIndikatorPelayanan",
+    "templateurl": "module/Management/DashboardCalculateIndikatorPelayanan.html",
+    "controller": "DashboardCalculateIndikatorPelayananCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "ManagementService",
+        "define": "ManagementService"
+      },
+      {
+          "module": "LogistikServicePhp",
+          "define": "LogistikServicePhp"
+      }
+    ]
+  },
+  {
     "name": "dashboardPenerimaan",
     "url": "/dashboardPenerimaan",
     "templateurl": "module/Management/dashboardPenerimaan.html",

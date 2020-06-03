@@ -24,6 +24,11 @@ define(['initialize'], function (initialize) {
       $scope.item.tanggalAwal = $scope.now;
       $scope.item.tanggalAkhir = $scope.now;
 
+      $scope.showInputNoSpk = false;
+      $scope.showInputNoFaktur = false;
+      $scope.showInputBa = false;
+      $scope.showInputSppb = false;
+
       // $scope.listStatus = [{
       //   "id": 0,
       //   "namaStatus": "Verifikasi"
@@ -46,8 +51,6 @@ define(['initialize'], function (initialize) {
         ManageAkuntansi.getDataTableTransaksi('bendahara-pengeluaran/get-sumber-dana').then(res => {
           $scope.listSumberDana = res.data;
         })
-
-        // service get list anggaran
 
       }
 
@@ -271,6 +274,15 @@ define(['initialize'], function (initialize) {
                 align: "center"
               },
               click: detailTagihan,
+              imageClass: "k-icon k-i-pencil"
+            },
+            {
+              text: "Cetak",
+              align: "center",
+              attributes: {
+                align: "center"
+              },
+              click: cetakTagihan,
               imageClass: "k-icon k-i-pencil"
             }
           ],
@@ -587,6 +599,16 @@ define(['initialize'], function (initialize) {
         let tr = $(e.target).closest("tr");
         let dataItem = this.dataItem(tr);
         $scope.dataSelected = dataItem;
+
+        $scope.showInputNoSpk = false;
+        $scope.showInputNoFaktur = false;
+        $scope.showInputBa = false;
+        $scope.showInputSppb = false;
+
+        $scope.item.ba = '';
+        $scope.item.sppb = '';
+        $scope.item.noFaktur = '';
+
         if (dataItem.statusbayar !== 'BELUM LUNAS') {
           toastr.info('Data Tagihan SUDAH LUNAS');
           return;
@@ -624,6 +646,15 @@ define(['initialize'], function (initialize) {
         $state.go('DetailTagihanRekanan', {
           noTerima: '0308'
         })
+      }
+
+      function cetakTagihan(e) {
+        e.preventDefault();
+        let tr = $(e.target).closest("tr");
+        let dataItem = this.dataItem(tr);
+
+        console.log(dataItem.norec);
+        window.open('http://192.168.12.4:7777/service-reporting/lap-verifikasi-tagihan-supplier/' + dataItem.noverifikasifk)
       }
 
       function showWindowKonfirmasi(e) {
@@ -714,6 +745,11 @@ define(['initialize'], function (initialize) {
           toastr.warning("Harap isi Anggaran");
           return;
         }
+        if (!$scope.verif.pph) { 
+          toastr.warning("Harap isi Pph");
+          return;
+        }
+        
 
         if (!$scope.verif.totalBayar) {
           toastr.warning("Harap isi Total yang akan dibayarkan");
@@ -725,7 +761,11 @@ define(['initialize'], function (initialize) {
           pegawaifk: $scope.dataPegawaiLogin.id,
           kodeAnggaran: $scope.verif.anggaran.kode_anggaran,
           noverifikasifk: $scope.dataSelected.noverifikasifk ? $scope.dataSelected.noverifikasifk : "",
-          keperluan: $scope.keperluan
+          keperluan: $scope.keperluan,
+          ba: $scope.item.isBa ? $scope.item.ba : "",
+          sppb: $scope.item.isSppb ? $scope.item.sppb : "",
+          faktur: $scope.item.isNoFaktur ? $scope.item.noFaktur : "",
+          pph: JSON.parse($scope.verif.pph)
         };
         // console.log(dataSave);
         $scope.verifkasiRekanan.close();
@@ -740,6 +780,7 @@ define(['initialize'], function (initialize) {
           // yes
           ManageAkuntansi.postpost(dataSave, 'bendahara-pengeluaran/save-verifikasi-tagihan-suplier').then(res => {
             $scope.verifkasiRekanan.close();
+            window.open('http://192.168.12.4:7777/service-reporting/lap-verifikasi-tagihan-supplier/' + res.data.noverifikasifk);
             $scope.loadData();
           });
         }, () => {
@@ -778,6 +819,13 @@ define(['initialize'], function (initialize) {
           $scope.verif.totalBayar = '';
           $scope.getTerbilang(0, 'totalBayarTerbilang');
         }
+      }
+
+      $scope.toogleClick = () => {
+        $scope.showInputNoSpk = $scope.item.isNoSpk ? true : false;
+        $scope.showInputNoFaktur = $scope.item.isNoFaktur ? true : false;
+        $scope.showInputBa = $scope.item.isBa ? true : false;
+        $scope.showInputSppb = $scope.item.isSppb ? true : false;
       }
     }
   ]);

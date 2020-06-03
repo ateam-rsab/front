@@ -156,6 +156,10 @@
         "name": "Pemakaian Barang",
         "children": [
             {
+                "name": "Saldo Penerimaan Dan Pengeluaran Barang V2",
+                "link": "#/SaldoBarangDetailv2"
+            },
+            {
                 "name": "Pemakaian Barang Habis Pakai",
                 "link": "#/Logistik/PemakaianBahandanAlat"
             },

@@ -5,6 +5,7 @@
      var baseUrlApiAction = config.baseApiPostData;
      var baseApiPostData = config.baseApiPostData;
      var baseUrlListData = config.baseUrlListData;
+     var baseUrlSDM = config.baseUrlActionSDM;
      var SdmService = angular.module('ManagementService', ['ngResource', 'HttpServices', 'Services']);
      SdmService.service('ManageManegement', ['ModelItem', 'R', 'DateHelper', function(modelItem, r, dateHelper) {
          return {
@@ -27,6 +28,11 @@
                  return r.post({
                      url: baseUrlApiAction + "management/save-management-dashboard"
                  }, e);
+             },
+             getSDMService: (url) => {
+                return r.get({
+                    url: baseUrlSDM + url
+                })
              }
          }
      }]);

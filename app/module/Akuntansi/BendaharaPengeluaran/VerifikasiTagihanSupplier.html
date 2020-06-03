@@ -145,32 +145,50 @@
 						</div>
 
 						<div class="grid_12">
-
-							<div class="grid_3" style="margin: 10px 0 0 0;">
-								<input type="checkbox" class="k-checkbox" name="kwintansi" id="kwintansi" ng-checked=""
-									ng-click="toogleClick($event)">
-								<label c-label item="item" class="k-checkbox-label" for="kwintansi">Kwitansi</label>
-							</div>
-
-							<div class="grid_3" style="margin: 10px 0 0 0;">
-								<input type="checkbox" class="k-checkbox" name="noSpk" id="noSpk" ng-checked=""
-									ng-click="toogleClick($event)">
+							<!-- <div class="grid_3" style="margin: 10px 0 0 0;">
+								<input type="checkbox" class="k-checkbox" name="noSpk" id="noSpk"
+									ng-model="item.isNoSpk" ng-click="toogleClick($event)">
 								<label c-label item="item" class="k-checkbox-label" for="noSpk">No. SPK</label>
+
+								<input c-text-box type="input" class="k-textbox" style="margin-top: 2px;" placeholder="No. SPK" ng-show="showInputNoSpk"/>
+							</div> -->
+							<div class="grid_2" style="margin: 10px 0 0 0;">
+								<input type="checkbox" class="k-checkbox" name="ba" id="ba"
+									ng-model="item.isBa" ng-click="toogleClick($event)">
+								<label c-label item="item" class="k-checkbox-label" for="ba">BA</label>
+
+								<input c-text-box type="input" ng-model="item.ba" class="k-textbox" style="margin-top: 10px;" placeholder="BA" ng-show="showInputBa"/>
 							</div>
 
 							<div class="grid_3" style="margin: 10px 0 0 0;">
+								<input type="checkbox" class="k-checkbox" name="sppb" id="sppb"
+									ng-model="item.isSppb" ng-click="toogleClick($event)">
+								<label c-label item="item" class="k-checkbox-label" for="sppb">SPPB</label>
+
+								<input c-text-box type="input" class="k-textbox" ng-model="item.sppb" style="margin-top: 10px;" placeholder="Sppb" ng-show="showInputSppb"/>
+							</div>							
+
+							<div class="grid_2" style="margin: 10px 0 0 0;">
 								<input type="checkbox" class="k-checkbox" name="permohonanPembayaran"
-									id="permohonanPembayaran" ng-checked="" ng-click="toogleClick($event)">
+									id="permohonanPembayaran" ng-model="item.permohonanPembayaran">
 								<label c-label item="item" class="k-checkbox-label"
 									for="permohonanPembayaran">Permohonan Pembayaran</label>
 							</div>
 
+							<div class="grid_2" style="margin: 10px 0 0 0;">
+								<input type="checkbox" class="k-checkbox" name="kwintansi" id="kwintansi"
+									ng-model="item.isKwitansi">
+								<label c-label item="item" class="k-checkbox-label" for="kwintansi">Kwitansi</label>
+							</div>
+
 							<div class="grid_3" style="margin: 10px 0 0 0;">
-								<input type="checkbox" class="k-checkbox" name="noFaktur" id="noFaktur" ng-checked="" n>
+								<input type="checkbox" class="k-checkbox" name="noFaktur" id="noFaktur"
+									ng-model="item.isNoFaktur" ng-click="toogleClick($event)">
 								<label c-label item="item" class="k-checkbox-label" for="noFaktur">No. Faktur</label>
+
+								<input c-text-box type="input" class="k-textbox" style="margin-top: 10px;" ng-model="item.noFaktur" placeholder="No. Faktur" ng-show="showInputNoFaktur"/>
 							</div>
 						</div>
-
 
 						<div class="grid_12" ng-show="isPagu">
 							<hr>
@@ -188,38 +206,51 @@
 								<input c-text-box type="input" class="k-textbox" disabled ng-model="verif.tahunDana" />
 							</div>
 
-							<div class="grid_4">
+							<div class="grid_6">
 								<label style="font-weight: bolder;">Sisa Pagu</label>
 								<input c-text-box type="input" style="text-align: right;" class="k-textbox" disabled
 									ng-model="verif.sisaPagu" />
 							</div>
+							<div class="grid_6">
+								<label style="font-weight: bolder;">Terbilang</label>
+								<input c-text-box type="input" style="text-align: right;" class="k-textbox"
+									ng-model="verif.sisaPaguTerbilang" disabled />
+							</div>
 
-
-							<div class="grid_4">
+							<div class="grid_6">
 								<label style="font-weight: bolder;">Pagu</label>
 								<!-- ng-change="getTerbilang(verif.pagu, 'paguTerbilang')"  -->
 								<input c-text-box type="input" style="text-align: right;" filter="number"
 									class="k-textbox" ng-model="verif.pagu" disabled />
 							</div>
-							<div class="grid_4">
-								<label style="font-weight: bolder;">Total Bayar</label>
-								<input c-text-box type="input" style="text-align: right;" class="k-textbox"
-									ng-model="verif.totalBayar" ng-keyup="validasiTotalBayar()" />
-							</div>
-							<div class="grid_4">
-								<label style="font-weight: bolder;">Terbilang</label>
-								<input c-text-box type="input" style="text-align: right;" class="k-textbox"
-									ng-model="verif.sisaPaguTerbilang" disabled />
-							</div>
-							<div class="grid_4">
+							<div class="grid_6">
 								<label style="font-weight: bolder;">Terbilang</label>
 								<input c-text-box type="input" style="text-align: right;" class="k-textbox"
 									ng-model="verif.paguTerbilang" disabled />
 							</div>
-							<div class="grid_4">
+
+							<div class="grid_6">
+								<label style="font-weight: bolder;">Total Bayar</label>
+								<input c-text-box type="input" style="text-align: right;" class="k-textbox"
+									ng-model="verif.totalBayar" ng-keyup="validasiTotalBayar()" />
+							</div>
+							<div class="grid_6">
 								<label style="font-weight: bolder;">Terbilang</label>
 								<input c-text-box type="input" style="text-align: right;" class="k-textbox"
-									ng-model="verif.totalBayarTerbilang" disabled  ng-change="getTerbilang(verif.totalBayar, 'totalBayarTerbilang')"/>
+									ng-model="verif.totalBayarTerbilang" disabled
+									ng-change="getTerbilang(verif.totalBayar, 'totalBayarTerbilang')" />
+							</div>
+
+							<div class="grid_6">
+								<label style="font-weight: bolder;">Pph</label>
+								<input c-text-box type="input" style="text-align: right;" class="k-textbox"
+									ng-model="verif.pph" ng-change="getTerbilang(verif.pph, 'pphTerbilang')" />
+							</div>
+
+							<div class="grid_6">
+								<label style="font-weight: bolder;">Terbilang</label>
+								<input c-text-box type="input" style="text-align: right;" class="k-textbox"
+									ng-model="verif.pphTerbilang" disabled />
 							</div>
 						</div>
 

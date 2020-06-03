@@ -8190,6 +8190,10 @@
       "urlDep": "module/Bedah/AsuhanKeperawatanPeriOperatifCtrl"
     },
     {
+      "nameDep": "DashboardCalculateIndikatorPelayananCtrl",
+      "urlDep": "module/Management/DashboardCalculateIndikatorPelayananCtrl"
+    },
+    {
       "nameDep": "DashboardPenerimaanCtrl",
       "urlDep": "module/Management/DashboardPenerimaanCtrl"
     },
