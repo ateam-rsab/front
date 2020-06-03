@@ -44,6 +44,18 @@ define(['initialize'], function (initialize) {
                         "title": "<h3>TOI(hari)</h3>",
                         "template": "<p style='text-align:right'>{{ '#: toi #' }}</p>",
                         "width": "40px",
+                    },
+                    {
+                        "field": "toi",
+                        "title": "<h3>GDR(%)</h3>",
+                        "template": "<p style='text-align:right'>{{ '#: gdr #' }}</p>",
+                        "width": "40px",
+                    },
+                    {
+                        "field": "toi",
+                        "title": "<h3>NDR(%)</h3>",
+                        "template": "<p style='text-align:right'>{{ '#: ndr #' }}</p>",
+                        "width": "40px",
                     }
                 ]
             }
@@ -53,10 +65,12 @@ define(['initialize'], function (initialize) {
                 $scope.isRouteLoading = true;
                 ManageManegement.getSDMService('pelayanan/calculate-indikator-pelayanan?tahun=' + ($scope.selectedYear ? $scope.selectedYear.tahun : new Date().getFullYear())).then((e) => {
                     $scope.isRouteLoading = false;
+
                     for (let i = 0; i < e.data.data.length; i++) {
                         e.data.data[i].no = i + 1;
                         $scope.totalBTO += parseFloat(e.data.data[i].bto)
                     }
+
                     $scope.totalBTO = parseFloat($scope.totalBTO).toFixed(2);
                     console.log($scope.totalBTO);
                     $scope.dataSource = new kendo.data.DataSource({
