@@ -60,9 +60,9 @@ define(['initialize'], function (initialize) {
 			function init() {
 				$scope.item = {}; // set defined object
 				$q.all([
-					ManageSdmNew.getListData("service/list-generic/?view=Jabatan&select=id,namaJabatan,kdJabatan,usiaPensiun,jenisJabatanId,eselonId,levelJabatan,subLevelJabatan&criteria=statusEnabled&values=true&order=namaJabatan:asc", true),
-					ManageSdmNew.getListData("service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled&values=true&order=jenisJabatan:asc", true),
-					ManageSdmNew.getListData("service/list-generic/?view=Eselon&select=id,eselon&criteria=statusEnabled&values=true&order=eselon:asc", true),
+					ManageSdmNew.getListData("service/list-generic/?view=Jabatan&select=id,namaJabatan,kdJabatan,usiaPensiun,jenisJabatanId,eselonId,levelJabatan,subLevelJabatan&criteria=statusEnabled,id&values=true,!0&order=namaJabatan:asc", true),
+					ManageSdmNew.getListData("service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled,id&values=true,!0&order=jenisJabatan:asc", true),
+					ManageSdmNew.getListData("service/list-generic/?view=Eselon&select=id,eselon&criteria=statusEnabled,id&values=true,!0&order=eselon:asc", true),
 				]).then(function (res) {
 					if (res[0].statResponse) {
 						$scope.daftarJabatan = new kendo.data.DataSource({
