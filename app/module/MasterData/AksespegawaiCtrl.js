@@ -79,7 +79,7 @@ define(['initialize'], function(initialize) {
 				});
 			}
 
-			$scope.CariPegawai =function(){
+			$scope.CariPegawai = function(){
 				manageSarprasPhp.getDataTableTransaksi("pegawai/svc-modul?get=pegawai&nama="+$scope.item.namaPegawai).then(function(datapegawai){
 					// debugger;
 					// $scope.listdatapegawai = datapegawai.data.pegawai;

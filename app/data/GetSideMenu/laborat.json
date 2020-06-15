@@ -144,8 +144,26 @@
                 "name": "Daftar Pemakaian Stok Ruangan",
                 "link": "#/DaftarPemakaianStokRuangan"
             }
+
         ]
     },
+    {
+        "name": "Penerimaan Barang Suplier",
+        "children": [
+           {
+              "name": "Daftar Penerimaan Barang Supplier",
+              "link": "#/DaftarPenerimaanBarangSuplier"
+           },
+           {
+              "name": "Penerimaan Barang",
+              "link": "#/PenerimaanBarangSuplier"
+           },
+           {
+              "name": "Daftar Pemesanan Barang",
+              "link": "#/DaftarPemesananBarang"
+           }
+        ]
+     },
     {
         "name": "SDM",
         "children": [

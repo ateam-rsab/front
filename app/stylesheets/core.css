@@ -208,7 +208,7 @@ input#img-6:checked ~ .nav-dots label#img-dot-6 {
 /* #endregion */
 
 .md-button.md-info.md-raised {
-  background-color: #3675db!important;  
+  background-color: #3675db!important;
   color: white;
 }
 
@@ -1225,7 +1225,7 @@ textarea {
   width: 100%; }
 
 .pageLoader {
-  background: white;
+  background: rgb(240, 255, 236);
   left: 0;
   right: 0;
   top: 0;
@@ -1233,18 +1233,25 @@ textarea {
   position: fixed;
   z-index: 2000;
   opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   -webkit-transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1); }
+  transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1); 
+}
 
 .pageLoader img {
-  /*background-image: url('Flat/loading-image.gif');*/
   width: 48px;
   height: 48px;
-  left: 50%;
+  z-index: 2000;
+  position: absolute;
+  /* left: 50%;
   right: 50%;
   position: fixed;
   top: 50%;
-  bottom: 50%; }
+  bottom: 50%;  */
+}
 
 a {
   color: black;

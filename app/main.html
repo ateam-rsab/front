@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <!-- <html manifest="example.appcache"> -->
 <html>
+
 <head>
 
     <title>.:: Smart RSAB Harapan Kita ::.</title>
-    
+
     <link href="../app/stylesheets/kendo.flat.css" rel="stylesheet">
     <link href="../app/stylesheets/kendo.common.css" rel="stylesheet">
     <link href="../app/stylesheets/kendo.rtl.css" rel="stylesheet">
@@ -14,18 +15,80 @@
 
     <link href="../bower_components/animate.css/animate.css" rel="stylesheet">
     <link href="../bower_components/font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="../bower_components/freewall/freewall.css" rel="stylesheet"></link>
+    <link href="../bower_components/freewall/freewall.css" rel="stylesheet">
+    </link>
     <link href="../bower_components/toastr/toastr.css" rel="stylesheet">
-    <link href="../bower_components/angular-material/angular-material.min.css" rel="stylesheet"></link>
+    <link href="../bower_components/angular-material/angular-material.min.css" rel="stylesheet">
+    </link>
     <script src="../app/javascripts/Kendo/jquery.js"></script>
     <script src="../app/javascripts/angular.min.js" type="text/javascript"></script>
     <script src="../app/javascripts/jszip.min.js"></script>
+    <style>
+        /* #10c4b2; */
+        /* 2 */
+        .spinner {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            margin: 100px auto;
+        }
+
+        .double-bounce1,
+        .double-bounce2 {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #10c4b2c5;
+            opacity: 0.6;
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+            animation: sk-bounce 2.0s infinite ease-in-out;
+        }
+
+        .double-bounce2 {
+            -webkit-animation-delay: -1.0s;
+            animation-delay: -1.0s;
+        }
+
+        @-webkit-keyframes sk-bounce {
+
+            0%,
+            100% {
+                -webkit-transform: scale(0.0)
+            }
+
+            50% {
+                -webkit-transform: scale(1.0)
+            }
+        }
+
+        @keyframes sk-bounce {
+
+            0%,
+            100% {
+                transform: scale(0.0);
+                -webkit-transform: scale(0.0);
+            }
+
+            50% {
+                transform: scale(1.0);
+                -webkit-transform: scale(1.0);
+            }
+        }
+    </style>
 
 </head>
 
 <body ng-controller="Controller" id="body">
     <div class="pageLoader animated" ng-class={slideOutUp:hasLoad}>
-        <img src="../app/stylesheets/Flat/loading-image.gif"/>        
+        <img src="../app/images/logo-RSAB-2.png" />
+        <div class="spinner">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
     </div>
     <div id="header">
         <div ng-include='"../app/module/header/header"'></div>
@@ -86,7 +149,7 @@
     <script src="../app/javascripts/require.js" type="text/javascript" charset="utf-8"></script>
 
     <script>
-        String.prototype.replaceAll = function(search, replacement) {
+        String.prototype.replaceAll = function (search, replacement) {
             var target = this;
             var temp = "";
             for (var i in target) {
@@ -98,11 +161,11 @@
             return temp;
         };
         window.root = "../app/";
-        $(document).ready(function() {
-            (function() {
+        $(document).ready(function () {
+            (function () {
                 require([
                     '../app/javascripts/main.js',
-                    function() {
+                    function () {
 
                     }
                 ]);
@@ -135,8 +198,8 @@
                 break;
         };
         // Check if a new cache is available on page load.
-        window.addEventListener('load', function(e) {
-            window.applicationCache.addEventListener('updateready', function(e) {
+        window.addEventListener('load', function (e) {
+            window.applicationCache.addEventListener('updateready', function (e) {
                 if (appCache.status == window.applicationCache.UPDATEREADY) {
                     appCache.swapCache(); // The fetch was successful, swap in the new cache.
                 }
@@ -145,40 +208,40 @@
         }, false);
     </script>
     <script>
-        jQuery(document).bind("keyup keydown", function(e) {
+        jQuery(document).bind("keyup keydown", function (e) {
             console.log('press ' + e.keyCode + ' & Control : ' + e.ctrlKey)
             if (e.ctrlKey && e.keyCode == 66) {
                 window.history.back();
             } else
-            if (e.ctrlKey && e.keyCode == 80) {
-                toastr.info('Printing...');
-                var ctrl = $("#content");
-                var paperSize = "a4";
-                if ($("#paperSize").html() !== undefined)
-                    paperSize = $("#paperSize").html().split(',');
-                kendo.drawing.drawDOM(ctrl)
-                    .then(function(group) {
-                        return kendo.drawing.exportPDF(group, {
-                            paperSize: paperSize,
-                            margin: {
-                                left: "1cm ",
-                                top: "1cm ",
-                                right: "1cm ",
-                                bottom: "1cm "
-                            }
+                if (e.ctrlKey && e.keyCode == 80) {
+                    toastr.info('Printing...');
+                    var ctrl = $("#content");
+                    var paperSize = "a4";
+                    if ($("#paperSize").html() !== undefined)
+                        paperSize = $("#paperSize").html().split(',');
+                    kendo.drawing.drawDOM(ctrl)
+                        .then(function (group) {
+                            return kendo.drawing.exportPDF(group, {
+                                paperSize: paperSize,
+                                margin: {
+                                    left: "1cm ",
+                                    top: "1cm ",
+                                    right: "1cm ",
+                                    bottom: "1cm "
+                                }
+                            });
+                        })
+                        .done(function (data) {
+                            console.log('print save as');
+                            // Save the PDF file
+                            kendo.saveAs({
+                                dataURI: data,
+                                fileName: new Date().getTime() + ".pdf"
+                            });
                         });
-                    })
-                    .done(function(data) {
-                        console.log('print save as');
-                        // Save the PDF file
-                        kendo.saveAs({
-                            dataURI: data,
-                            fileName: new Date().getTime() + ".pdf"
-                        });
-                    });
 
-                return false;
-            }
+                    return false;
+                }
         });
     </script>
 

@@ -3,6 +3,10 @@ define(['initialize'], function (initialize) {
     initialize.controller('DashboardCalculateIndikatorPelayananCtrl', ['socket', 'ManageManegement', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageLogistikPhp',
         function (socket, ManageManegement, $rootScope, $scope, ModelItem, $state, manageLogistikPhp) {
             $scope.isRouteLoading = false;
+            $scope.selectedYear = {
+                tahun: new Date().getFullYear(),
+                id: 1
+            }
             $scope.mainGridOptions = {
                 scrollable: true,
                 columns: [{
@@ -34,7 +38,8 @@ define(['initialize'], function (initialize) {
                         "template": "<p style='text-align:right'>{{ '#: bto #' }}</p>",
                         "width": "40px",
                         "aggregates": ["sum"],
-                        "footerTemplate": "Total: <span>{{totalBTO}}</span>", footerAttributes: {
+                        "footerTemplate": "Total: <span>{{totalBTO}}</span>",
+                        "footerAttributes": {
                             "class": "table-footer-cell",
                             "style": "text-align: right;"
                         }
@@ -47,13 +52,13 @@ define(['initialize'], function (initialize) {
                     },
                     {
                         "field": "toi",
-                        "title": "<h3>GDR(%)</h3>",
+                        "title": "<h3>GDR(‰)</h3>",
                         "template": "<p style='text-align:right'>{{ '#: gdr #' }}</p>",
                         "width": "40px",
                     },
                     {
                         "field": "toi",
-                        "title": "<h3>NDR(%)</h3>",
+                        "title": "<h3>NDR(‰)</h3>",
                         "template": "<p style='text-align:right'>{{ '#: ndr #' }}</p>",
                         "width": "40px",
                     }
@@ -72,13 +77,13 @@ define(['initialize'], function (initialize) {
                     }
 
                     $scope.totalBTO = parseFloat($scope.totalBTO).toFixed(2);
-                    console.log($scope.totalBTO);
                     $scope.dataSource = new kendo.data.DataSource({
                         data: e.data.data,
                         pageSize: 12,
-                        aggregates: [
-                            { field: 'bto', aggregate: 'sum'}
-                        ]
+                        aggregates: [{
+                            field: 'bto',
+                            aggregate: 'sum'
+                        }]
                     })
                 })
             }
@@ -90,7 +95,7 @@ define(['initialize'], function (initialize) {
                 for (let i = startYear; i <= currentYear; i++) {
                     $scope.listOfYear.push({
                         tahun: startYear++,
-                        id: i
+                        id: i + 1
                     })
                 }
 

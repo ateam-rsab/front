@@ -154,6 +154,10 @@
          {
             "name": "Penerimaan Barang",
             "link": "#/PenerimaanBarangSuplier"
+         },
+         {
+            "name": "Daftar Pemesanan Barang",
+            "link": "#/DaftarPemesananBarang"
          }
       ]
    },

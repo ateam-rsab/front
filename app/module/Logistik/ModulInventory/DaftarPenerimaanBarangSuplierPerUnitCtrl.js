@@ -364,6 +364,11 @@ define(['initialize'], function (initialize) {
                         "title": "Tanggal Expire",
                         "width": "80px",
                         "template": "<span class='style-right'>{{formatTanggal('#: tglkadaluarsa #', '')}}</span>"
+                    },
+                    {
+                        "field": "namaruangan",
+                        "title": "Unit Penerima",
+                        "width": "100px"
                     }
                 ]
             }

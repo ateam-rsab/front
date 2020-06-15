@@ -11,7 +11,7 @@ define(['initialize'], function (initialize) {
       $scope.listSumberDana = [];
 
       $scope.isPagu = false;
-      $scope.isBagAnggaran = false;
+      $scope.isKasubag = false;
 
       $scope.dataVOloaded = true;
       $scope.now = new Date();
@@ -169,6 +169,16 @@ define(['initialize'], function (initialize) {
           "width": "150px"
         },
         {
+          "field": "namaAnggaran",
+          "title": "<h3>Nama Anggaran</h3>",
+          "width": "150px"
+        },
+        {
+          "field": "kodeanggaran",
+          "title": "<h3>Kode Anggaran</h3>",
+          "width": "150px"
+        },
+        {
           "field": "tglSPK",
           "title": "<h3>Tanggal <br>SPK</h3>",
           "template": "<span class='style-center'>{{'#: tglSPK ? tglSPK : '-' #'}}</span>",
@@ -237,20 +247,22 @@ define(['initialize'], function (initialize) {
 
         {
           "field": "statusConfirmKabag",
-          "title": "<h3>Ka. Bag</h3>",
+          "title": "<h3>Ka. Subag</h3>",
           // "template": "<span class='style-center'>{{'#: status #'}}</span>",
           "width": "150px"
         },
 
         {
           "field": "statusConfirmAnggaran",
-          "title": "<h3>Bagian Anggaran</h3>",
+          "title": "<h3>Ka. Bag</h3>",
           // "template": "<span class='style-center'>{{'#: status #'}}</span>",
           "width": "150px"
         },
         {
-          command: [{
-              text: "Konfirmasi Kabag",
+          command: [
+            {
+              text: "Konfirmasi Kasubag",
+              // name:"Konfirmasi",
               align: "center",
               attributes: {
                 align: "center"
@@ -259,7 +271,8 @@ define(['initialize'], function (initialize) {
               imageClass: "k-icon k-i-pencil"
             },
             {
-              text: "Konfirmasi Bagian Anggaran",
+              text: "Konfirmasi Kabag",
+              // name:"Konfirmasi",
               align: "center",
               attributes: {
                 align: "center"
@@ -408,7 +421,7 @@ define(['initialize'], function (initialize) {
         toolbar: [{
             text: "export",
             name: "Export detail",
-            template: '<button ng-click="exportExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
+            template: '<button ng-click="exportExcel(true)" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
           }
 
         ],
@@ -427,7 +440,7 @@ define(['initialize'], function (initialize) {
         toolbar: [{
             text: "export",
             name: "Export detail",
-            template: '<button ng-click="exportExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
+            template: '<button ng-click="exportExcel(false)" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
           }
 
         ],
@@ -436,7 +449,7 @@ define(['initialize'], function (initialize) {
         columns: $scope.columnGridUnverified
       };
 
-      $scope.exportExcel = function () {
+      $scope.exportExcel = (isVerified) => {
         var tempDataExport = [];
         var rows = [{
           cells: [{
@@ -446,14 +459,23 @@ define(['initialize'], function (initialize) {
               value: "No. Verifikasi"
             },
             {
+              value: "Nama Anggaran"
+            },
+            {
+              value: "Kode Anggaran"
+            },
+            {
+              value: "No. SPK"
+            },
+            {
               value: "Tanggal Struk"
             },
             {
               value: "Tanggal Dokumen"
             },
-            {
-              value: "No. Struk"
-            },
+            // {
+            //   value: "No. Struk"
+            // },
             {
               value: "No. Dokumen"
             },
@@ -484,10 +506,9 @@ define(['initialize'], function (initialize) {
           ]
         }];
 
-        tempDataExport = $scope.dataGrid;
-        tempDataExport.fetch(function () {
-          var data = this.data();
-          console.log(data);
+        tempDataExport = isVerified ? $scope.dataGridVerified : $scope.dataGridUnverified;
+        tempDataExport.fetch(() => {
+          var data = tempDataExport._data;
           for (var i = 0; i < data.length; i++) {
             //push single row for every record
             rows.push({
@@ -498,6 +519,15 @@ define(['initialize'], function (initialize) {
                   value: data[i].noverifikasi
                 },
                 {
+                  value: data[i].namaAnggaran
+                },
+                {
+                  value: data[i].kodeanggaran
+                },
+                {
+                  value: data[i].noSPK
+                },
+                {
                   value: data[i].tglstruk
                 },
                 {
@@ -506,6 +536,9 @@ define(['initialize'], function (initialize) {
                 {
                   value: data[i].nostruk
                 },
+                // {
+                //   value:
+                // },
                 {
                   value: data[i].total
                 },
@@ -578,6 +611,15 @@ define(['initialize'], function (initialize) {
                 },
                 {
                   autoWidth: true
+                },
+                {
+                  autoWidth: true
+                },
+                {
+                  autoWidth: true
+                },
+                {
+                  autoWidth: true
                 }
               ],
               // Title of the sheet
@@ -589,7 +631,7 @@ define(['initialize'], function (initialize) {
           //save the file as Excel file with extension xlsx
           kendo.saveAs({
             dataURI: workbook.toDataURL(),
-            fileName: "daftar-verifikasi-tagihan-rekanan.xlsx"
+            fileName: "daftar-verifikasi-tagihan-rekanan-" + (isVerified ? "verified" : "unverified") + ".xlsx"
           });
         });
       };
@@ -619,7 +661,7 @@ define(['initialize'], function (initialize) {
           toastr.info('Data Tagihan Sudah Verifikasi');
           return;
         }
-
+        // $scope.keperluan = 'Untuk Pembayaran ' + ($scope.verif.anggaran ? $scope.verif.anggaran.nama_anggaran : '') + ' a/n Supplier ' + $scope.dataSelected.namarekanan + ' No.SPK = ' + $scope.dataSelected.noSPK
         $scope.keperluan = 'Untuk Pembayaran Supplier ' + $scope.dataSelected.namarekanan + ' No.SPK = ' + $scope.dataSelected.noSPK
         $scope.loadData();
         $scope.verif.totalBayar = dataItem.sisautang;
@@ -665,9 +707,9 @@ define(['initialize'], function (initialize) {
         $scope.confirm = dataItem;
         console.log(e);
 
-        $scope.isBagAnggaran = e.data.commandName === "Konfirmasi Bagian Anggaran" ? true : false;
-        if ($scope.isBagAnggaran && !$scope.confirm.confirmfk) {
-          toastr.warning('Harap Konfirmasi Ka. Bag Terlebih dahulu')
+        $scope.isKasubag = e.data.commandName === "Konfirmasi Kasubag" ? true : false;
+        if (!$scope.isKasubag && !$scope.confirm.confirmfk) {
+          toastr.warning('Harap Konfirmasi Ka. Subag Terlebih dahulu')
           return;
         }
         //  + "&noverifikasifk=" + dataItem.noverifikasifk
@@ -706,26 +748,30 @@ define(['initialize'], function (initialize) {
         $mdDialog.show(confirm).then(function () {
           // yes
           if (state) {
-            if (!$scope.confirm.confirmfk) {
-              toastr.warning('Harap Konfirmasi Kabag terlebih dahulu', 'Perhatian!');
-              return;
+            // if (!$scope.confirm.confirmfk) {
+            //   toastr.warning('Harap Konfirmasi Ka. Subag terlebih dahulu', 'Perhatian!');
+            //   return;
+            // }
+            let data = {
+              noverifikasifk: $scope.confirm.noverifikasifk,
+              confirmfk: $scope.dataPegawaiLogin.id,
+              tglconfirm: dateHelper.formatDate(new Date, 'YYYY-MM-DD')
             }
+            
+            ManageAkuntansi.postpost(data, 'bendahara-pengeluaran/save-confirm-verifikasi-tagihan-suplier').then(res => {
+              $scope.loadData();
+            });
+            
+          } else {
+            
             let data = {
               noverifikasifk: $scope.confirm.noverifikasifk,
               confirmfk: $scope.confirm.confirmfk,
               confirm1fk: $scope.dataPegawaiLogin.id,
               tglconfirm: dateHelper.formatDate(new Date, 'YYYY-MM-DD')
             }
+
             ManageAkuntansi.postpost(data, 'bendahara-pengeluaran/save-confirm-anggaran-verifikasi-tagihan-suplier').then(res => {
-              $scope.loadData();
-            });
-          } else {
-            let data = {
-              noverifikasifk: $scope.confirm.noverifikasifk,
-              confirmfk: $scope.dataPegawaiLogin.id,
-              tglconfirm: dateHelper.formatDate(new Date, 'YYYY-MM-DD')
-            }
-            ManageAkuntansi.postpost(data, 'bendahara-pengeluaran/save-confirm-verifikasi-tagihan-suplier').then(res => {
               $scope.loadData();
             });
 
@@ -741,20 +787,22 @@ define(['initialize'], function (initialize) {
           toastr.warning("Harap isi Sumber Dana");
           return;
         };
+
         if (!$scope.verif.anggaran) {
           toastr.warning("Harap isi Anggaran");
           return;
-        }
-        if (!$scope.verif.pph) { 
+        };
+
+        if (!$scope.verif.pph) {
           toastr.warning("Harap isi Pph");
           return;
-        }
-        
+        };
 
         if (!$scope.verif.totalBayar) {
           toastr.warning("Harap isi Total yang akan dibayarkan");
           return;
         };
+
         let dataSave = {
           norec: $scope.dataSelected.norec,
           tglVerifikasi: dateHelper.formatDate($scope.item.tanggalVerifikasi, "YYYY-MM-DD"),
@@ -767,7 +815,7 @@ define(['initialize'], function (initialize) {
           faktur: $scope.item.isNoFaktur ? $scope.item.noFaktur : "",
           pph: JSON.parse($scope.verif.pph)
         };
-        // console.log(dataSave);
+        
         $scope.verifkasiRekanan.close();
 
 
@@ -792,6 +840,7 @@ define(['initialize'], function (initialize) {
       };
 
       $scope.showPagu = function (data) {
+        $scope.keperluan = 'Untuk Pembayaran ' + ($scope.verif.anggaran ? $scope.verif.anggaran.nama_anggaran : '') + ' a/n Supplier ' + $scope.dataSelected.namarekanan + ' No.SPK = ' + $scope.dataSelected.noSPK
         $scope.verif.kodeDana = data.kode_dana;
         $scope.verif.tahunDana = data.tahun;
         $scope.verif.namaAnggaran = data.nama_anggaran;

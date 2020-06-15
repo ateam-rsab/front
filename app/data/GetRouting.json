@@ -47805,6 +47805,10 @@
       {
         "module": "SarprasService",
         "define": "SarprasService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
       }
     ]
   },
@@ -48000,6 +48004,30 @@
     "url": "/DashboardCalculateIndikatorPelayanan",
     "templateurl": "module/Management/DashboardCalculateIndikatorPelayanan.html",
     "controller": "DashboardCalculateIndikatorPelayananCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "ManagementService",
+        "define": "ManagementService"
+      },
+      {
+          "module": "LogistikServicePhp",
+          "define": "LogistikServicePhp"
+      }
+    ]
+  },
+  {
+    "name": "SimulasiRemunerasi",
+    "url": "/SimulasiRemunerasi",
+    "templateurl": "module/Management/SimulasiRemunerasi.html",
+    "controller": "SimulasiRemunerasiCtrl",
     "deps": [
       {
         "module": "Services",

@@ -1,0 +1,35 @@
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Simulasi Remunerasi dengan Prinsip FEE FOR SERVICE</div>
+</md-toolbar>
+
+<div class="grid_12">
+   
+    <div class="grid_4">
+        <label c-label item="item">Periode</label>
+        <div class="grid_6 padDatePicker">
+            <input style="width: 100%" k-ng-model="item.periodeAwal" kendo-datetimepicker
+                placeholer="yyyy-MM-dd HH:mm:ss" k-format="'yyyy-MM-dd HH:mm:ss'" parsedate="yyyy-MM-dd HH:mm:ss" />
+        </div>
+        <div class="grid_6 padDatePicker">
+            <input style="width: 100%" k-ng-model="item.periodeAkhir" kendo-datetimepicker 
+                placeholer="yyyy-MM-dd HH:mm:ss" k-format="'yyyy-MM-dd HH:mm:ss'" />
+        </div>
+    </div>
+    <div class="grid_1" style="margin-top: 22px;">
+        <md-button class="md-raised md-primary medium-button" ng-click="getData()">
+            <span>Hitung</span>
+        </md-button>
+    </div>
+    <!-- <div class="grid_2">
+        <label c-label item="item">Nama Pegawai</label>
+        <input style="width: 100%;" kendo-combo-box k-ng-model="selectedYear" k-data-text-field="'tahun'"
+            k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listOfYear" />
+    </div> -->
+</div>
+
+<div class="grid_12">
+    <div kendo-grid id="grid" data-source="dataSource" options="mainGridOptions" k-pageable="'true'" k-sortable="'true'"
+        k-selectable="'row'" k-ng-model="dataPasienSelected">
+    </div>
+</div>
+<div ng-include=' "../app/module/Shared/TemplateLoading" '></div>

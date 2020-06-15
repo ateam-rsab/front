@@ -6,6 +6,7 @@
      var baseApiPostData = config.baseApiPostData;
      var baseUrlListData = config.baseUrlListData;
      var baseUrlSDM = config.baseUrlActionSDM;
+     var baseUrlReporting = config.urlReporting;
      var SdmService = angular.module('ManagementService', ['ngResource', 'HttpServices', 'Services']);
      SdmService.service('ManageManegement', ['ModelItem', 'R', 'DateHelper', function(modelItem, r, dateHelper) {
          return {
@@ -33,6 +34,11 @@
                 return r.get({
                     url: baseUrlSDM + url
                 })
+             },
+             getSDMServiceReporting: (url) => {
+                 return r.get({
+                     url: baseUrlReporting + url
+                 })
              }
          }
      }]);
