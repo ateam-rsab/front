@@ -230,6 +230,7 @@ define(['initialize'], function (initialize) {
 					$scope.dataItem = currentEdit;
 
 					$scope.item.isCutiLuarNegeri = $scope.dataItem.isCutiLuarNegeri;
+					$scope.item.isCutiLuarKota = $scope.dataItem.isCutiLuarKota;
 					// $scope.item.isCutiLuarNegeri="1";
 					$scope.isRouteLoading = false;
 				}
@@ -460,6 +461,9 @@ define(['initialize'], function (initialize) {
 			$scope.radioIsCutiLuarNegeri = [
 				{ "id": 1, "nama": "Ya" }, { "id": 2, "nama": "Tidak" }]
 
+			$scope.radioIsCutiLuarKota = [
+				{ "idStatus": 1, "namaStatus": "Ya " }, { "idStatus": 2, "namaStatus": "Tidak " }]
+
 			$scope.setMinDate = function () {
 				// alert($scope.item.isCutiLuarNegeri);
 				if ($scope.item.isCutiLuarNegeri === "1") {
@@ -644,7 +648,7 @@ define(['initialize'], function (initialize) {
 
 					var statusCutiLuarNegeri = "";
 					if ($scope.item.isCutiLuarNegeri == undefined) {
-						toastr.warning('Status cuti belum diisi', 'Peringatan');
+						toastr.warning('Status cuti luar negeri belum diisi', 'Peringatan');
 						return;
 					} else {
 						if ($scope.item.isCutiLuarNegeri == 1) {
@@ -655,6 +659,18 @@ define(['initialize'], function (initialize) {
 						}
 					}
 
+					var statusCutiLuarKota = "";
+					if ($scope.item.isCutiLuarKota == undefined) {
+						toastr.warning('Status cuti luar kota belum diisi', 'Peringatan');
+						return;
+					} else {
+						if ($scope.item.isCutiLuarKota == 1) {
+							statusCutiLuarKota = "true";
+						}
+						else {
+							statusCutiLuarKota = "false";
+						}
+					}
 
 					dataSend = {
 						"noRec": $scope.dataItem.noRec,
@@ -682,7 +698,8 @@ define(['initialize'], function (initialize) {
 						"jabatanPemberiNotaDinas": {
 							"id": $scope.dataItem.jabatanPemberiNotaDinas.id != null ? $scope.dataItem.jabatanPemberiNotaDinas.id : 14
 						},
-						"isCutiLuarNegeri": statusCutiLuarNegeri
+						"isCutiLuarNegeri": statusCutiLuarNegeri,
+						"isCutiLuarKota": statusCutiLuarKota
 					}
 					// ManageSdm.editPermohonanUbhStsHadirPgw(dataSend).then(function(e) {
 					ManageSdmNew.saveData(dataSend, "sdm/update-pegawai-status").then(function (e) {

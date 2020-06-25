@@ -28,6 +28,18 @@
 							k-auto-bind="false" k-data-source="listStatusPermohonan" />
 					</div>
 					<div class="grid_1">
+						<label c-label item="item" c-label-text="cutiLuarNegeri"></label>
+						<input style="width: 100%;" kendo-combo-box k-ng-model="filter.cutiLuarNegeri"
+							k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'"
+							k-auto-bind="false" k-data-source="listStatusCutiLuarNegeri" />
+					</div>
+					<div class="grid_1">
+						<label c-label item="item" c-label-text="cutiLuarKota"></label>
+						<input style="width: 100%;" kendo-combo-box k-ng-model="filter.cutiLuarKota"
+							k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'"
+							k-auto-bind="false" k-data-source="listStatusCutiLuarKota" />
+					</div>
+					<div class="grid_1">
 						<label c-label c-label-text=""></label>
 						<em style="margin-top:6px;" ng-click='resetFilters()' id="iconButton" data-role="button"
 							class="k-button k-button-icon k-primary" role="button" aria-disabled="false"

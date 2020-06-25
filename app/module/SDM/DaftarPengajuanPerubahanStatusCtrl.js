@@ -12,6 +12,14 @@ define(['initialize'], function (initialize) {
 				{ id: 2, name: "Ditolak" },
 				{ id: 3, name: "Ditangguhkan" },
 			]
+			$scope.listStatusCutiLuarNegeri = [
+				{ id: 1, name: "Ya" },
+				{ id: 0, name: "Tidak" },
+			]
+			$scope.listStatusCutiLuarKota = [
+				{ id: 1, name: "Ya" },
+				{ id: 0, name: "Tidak" },
+			]
 			$scope.item = {};
 			$scope.filter = {};
 			$scope.now = new Date();
@@ -57,6 +65,8 @@ define(['initialize'], function (initialize) {
 						"title": "Keputusan", "columns": [{ "field": "tglKeputusan", "title": "Tanggal", "template": "# if(tglKeputusan===null){# - #} else {# #: kendo.toString(kendo.parseDate(new Date(tglKeputusan)),'dd-MM-yyyy') # #}#", width: 100 },
 						{ "field": "approvalStatus", "title": "Status", "template": "#if(approvalStatus===0){# Belum diputuskan #} else if(approvalStatus===1) {# Disetujui #} else if(approvalStatus===2) {# Ditolak #} else {# Ditangguhkan #}#", width: 100 }]
 					},
+					{ "field": "isCutiLuarNegeri", "title": "Cuti<br/>Luar<br/>Negeri", "template": "#if(isCutiLuarNegeri==false){# Tidak #} else if(isCutiLuarNegeri==true) {# Ya #} else {# Tidak #}#", width: 75 },
+					{ "field": "isCutiLuarKota", "title": "Cuti<br/>Luar Kota", "template": "#if(isCutiLuarKota==false){# Tidak #} else if(isCutiLuarKota==true) {# Ya #} else {# Tidak #}#", width: 75 },
 					{ command: [{ text: "Keputusan", click: setKeputusan, imageClass: "k-icon k-i-pencil" }, { text: "Unverif", click: setUnverifikasi, imageClass: "k-icon k-i-cancel" }, { text: "Delete", click: confirmDelete, imageClass: "k-icon k-i-close" }], width: 180 }
 				],
 				scrollable: true
@@ -140,6 +150,8 @@ define(['initialize'], function (initialize) {
 				$scope.tglPermohonan;
 				$scope.jenisPermohonan;
 				$scope.statusPermohonan;
+				$scope.isCutiLuarNegeri;
+				$scope.isCutiLuarKota;
 				$scope.page;
 				$scope.statusRowsFilterChanged;
 
@@ -186,6 +198,18 @@ define(['initialize'], function (initialize) {
 					$scope.statusPermohonan = $scope.filter.status.id;
 				}
 
+				if ($scope.filter.cutiLuarNegeri == undefined) {
+					$scope.isCutiLuarNegeri = "";
+				} else {
+					$scope.isCutiLuarNegeri = $scope.filter.cutiLuarNegeri.id == 1 ? true : false;
+				}
+
+				if ($scope.filter.cutiLuarKota == undefined) {
+					$scope.isCutiLuarKota = "";
+				} else {
+					$scope.isCutiLuarKota = $scope.filter.cutiLuarKota.id == 1 ? true : false;
+				}
+
 				// if (localStorage.getItem('isBack')=="Y"){
 				// 	var permohonanCutiPegawai = JSON.parse(localStorage.getItem('permohonanCutiPegawai'));
 				// 	var noRec=permohonanCutiPegawai.noRec;
@@ -217,7 +241,7 @@ define(['initialize'], function (initialize) {
 						$scope.isLoginKesja = true; // login bukan sdm, button verif & unverif disable
 
 						// ManageSdmNew.getListData("sdm/get-list-approval-status?idPegawai=").then(function(e){ // get all permohonan status
-						ManageSdmNew.getListData("sdm/get-list-approval-status-paging?idPegawai=" + "&take=" + $scope.rows + "&page=" + $scope.page + "&nama=" + $scope.namaPegawai + "&jenisPermohonan=" + $scope.jenisPermohonan + "&statusPermohonan=" + $scope.statusPermohonan + "&tglPermohonan=" + $scope.tglPermohonan).then(function (e) {
+						ManageSdmNew.getListData("sdm/get-list-approval-status-paging?idPegawai=" + "&take=" + $scope.rows + "&page=" + $scope.page + "&nama=" + $scope.namaPegawai + "&jenisPermohonan=" + $scope.jenisPermohonan + "&statusPermohonan=" + $scope.statusPermohonan + "&tglPermohonan=" + $scope.tglPermohonan + "&isCutiLuarNegeri=" + $scope.isCutiLuarNegeri  + "&isCutiLuarKota=" + $scope.isCutiLuarKota).then(function (e) {
 							//Data yang masuk kesini sudah dipaging di server
 							if (e.data.data.listData != undefined) {
 								filteredData = e.data.data.listData.filter(filterByStatus);
@@ -252,7 +276,7 @@ define(['initialize'], function (initialize) {
 						$scope.isLoginKesja = false; // login sdm, button verif & unverif enable
 
 						// ManageSdmNew.getListData("sdm/get-list-approval-status?idPegawai=" + pegawaiLogin.idPegawai).then(function(e){ // get permohonan status by user login
-						ManageSdmNew.getListData("sdm/get-list-approval-status-paging?idPegawai=" + pegawaiLogin.idPegawai + "&take=" + $scope.rows + "&page=" + $scope.page + "&nama=" + $scope.namaPegawai + "&jenisPermohonan=" + $scope.jenisPermohonan + "&statusPermohonan=" + $scope.statusPermohonan).then(function (e) {
+						ManageSdmNew.getListData("sdm/get-list-approval-status-paging?idPegawai=" + pegawaiLogin.idPegawai + "&take=" + $scope.rows + "&page=" + $scope.page + "&nama=" + $scope.namaPegawai + "&jenisPermohonan=" + $scope.jenisPermohonan + "&statusPermohonan=" + $scope.statusPermohonan + "&isCutiLuarNegeri=" + $scope.isCutiLuarNegeri + "&isCutiLuarKota=" + $scope.isCutiLuarKota).then(function (e) {
 							//Data yang masuk kesini sudah dipaging di server
 							if (e.data.data.listData != undefined) {
 								filteredData = e.data.data.listData.filter(filterByStatus);
@@ -468,6 +492,22 @@ define(['initialize'], function (initialize) {
 			});
 
 			$scope.$watch('filter.status', function (newVal, oldVal) {
+				if (!newVal) return;
+				if (newVal && newVal !== oldVal) {
+					// applyFilter("approvalStatus", newVal.id)
+					$scope.loadGrid();
+				}
+			})
+
+			$scope.$watch('filter.cutiLuarNegeri', function (newVal, oldVal) {
+				if (!newVal) return;
+				if (newVal && newVal !== oldVal) {
+					// applyFilter("approvalStatus", newVal.id)
+					$scope.loadGrid();
+				}
+			})
+
+			$scope.$watch('filter.cutiLuarKota', function (newVal, oldVal) {
 				if (!newVal) return;
 				if (newVal && newVal !== oldVal) {
 					// applyFilter("approvalStatus", newVal.id)
