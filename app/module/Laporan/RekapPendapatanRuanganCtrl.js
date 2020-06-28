@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('RekapPendapatanRuanganCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'DateHelper', 'FindPegawai', 'FindSdm', '$timeout', '$mdDialog',
-        function ($q, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, dateHelper, FindPegawai, FindSdm, $timeout, $mdDialog) {
+    initialize.controller('RekapPendapatanRuanganCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'CetakHelper', 'DateHelper', 'FindPegawai', 'FindSdm', '$timeout', '$mdDialog',
+        function ($q, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, CetakHelper, dateHelper, FindPegawai, FindSdm, $timeout, $mdDialog) {
             $scope.dataVOloaded = true;
             $scope.item = {};
             $scope.now = new Date();
@@ -166,7 +166,7 @@ define(['initialize'], function (initialize) {
                 var tglAwal = dateHelper.getDateTimeFormatted3($scope.item.tglAwal) + " 00:00:00";
                 var tglAkhir = dateHelper.getDateTimeFormatted3($scope.item.tglAkhir) + " 23:59:59";
 
-                ManageSdmNew.getListData("reporting/rekapitulasi-laporan-pendapatan-ruangan?tglAwal=" + dateHelper.formatDate(tglAwal, 'YYYY-MM-DD HH:mm:ss') + "&tglAkhir=" + dateHelper.formatDate(tglAkhir, 'YYYY-MM-DD HH:mm:ss')).then(function (data) {
+                ManageSdmNew.getListData("pelayanan/rekapitulasi-laporan-pendapatan-ruangan?tglAwal=" + dateHelper.formatDate(tglAwal, 'YYYY-MM-DD HH:mm:ss') + "&tglAkhir=" + dateHelper.formatDate(tglAkhir, 'YYYY-MM-DD HH:mm:ss')).then(function (data) {
                     $scope.dataSourceRekap = new kendo.data.DataSource({
                         data: data.data.data,
                         schema: {
