@@ -5,7 +5,8 @@ define(['initialize'], function (initialize) {
             $scope.dataVOloaded = true;
             $scope.item = {};
             $scope.now = new Date();
-            $scope.item.tanggal = new Date();
+            $scope.item.tglAwal = new Date();
+            $scope.item.tglAkhir = new Date();
 
             var initLoadData = function () {
                 $scope.gridData = {
@@ -18,9 +19,9 @@ define(['initialize'], function (initialize) {
                         var sheet = e.workbook.sheets[0];
                         sheet.frozenRows = 2;
                         sheet.mergedCells = ["A1:K1"];
-                        sheet.name = dateHelper.formatDate($scope.item.tanggal, 'DD MMM YYYY');
+                        sheet.name = dateHelper.formatDate($scope.item.tglAwal, 'DD MMM YYYY') + " - " + dateHelper.formatDate($scope.item.tglAkhir, 'DD MMM YYYY');
                         var myHeaders = [{
-                            value: "Rekapitulasi Pendapatan Ruangan (Harian)" + " Periode " + dateHelper.formatDate($scope.item.tanggal, 'DD MMM YYYY'),
+                            value: "Rekapitulasi Pendapatan Ruangan Periode " + dateHelper.formatDate($scope.item.tglAwal, 'DD MMM YYYY') + " - " + dateHelper.formatDate($scope.item.tglAkhir, 'DD MMM YYYY'),
                             fontSize: 14,
                             textAlign: "center",
                             background: "#ffffff",
@@ -162,10 +163,10 @@ define(['initialize'], function (initialize) {
             $scope.loadDataGridRekap = function () {
                 $scope.isRouteLoading = true;
 
-                var tglAwal = dateHelper.getDateTimeFormatted3($scope.item.tanggal) + " 00:00";
-                var tglAkhir = dateHelper.getDateTimeFormatted3($scope.item.tanggal) + " 23:59";
+                var tglAwal = dateHelper.getDateTimeFormatted3($scope.item.tglAwal) + " 00:00:00";
+                var tglAkhir = dateHelper.getDateTimeFormatted3($scope.item.tglAkhir) + " 23:59:59";
 
-                ManageSdmNew.getListData("pelayanan/rekapitulasi-laporan-pendapatan-ruangan?tglAwal=" + dateHelper.formatDate(tglAwal, 'YYYY-MM-DD HH:mm') + "&tglAkhir=" + dateHelper.formatDate(tglAkhir, 'YYYY-MM-DD HH:mm')).then(function (data) {
+                ManageSdmNew.getListData("reporting/rekapitulasi-laporan-pendapatan-ruangan?tglAwal=" + dateHelper.formatDate(tglAwal, 'YYYY-MM-DD HH:mm:ss') + "&tglAkhir=" + dateHelper.formatDate(tglAkhir, 'YYYY-MM-DD HH:mm:ss')).then(function (data) {
                     $scope.dataSourceRekap = new kendo.data.DataSource({
                         data: data.data.data,
                         schema: {

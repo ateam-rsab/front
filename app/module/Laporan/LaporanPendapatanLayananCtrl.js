@@ -179,12 +179,12 @@ define(['initialize'], function (initialize) {
 
         if ($scope.item.pegawai) {
           if (idJenisCetakan == 1) {
-            var fixUrlLaporan = cetakHelper.openURLReporting("reporting/laporanFeeForServiceDokterGroup?periode=" + periode + "&idPegawai=" + $scope.item.pegawai.id
+            var fixUrlLaporan = cetakHelper.openURLReporting("reporting/laporanFeeForServiceDokterGroup?format=" + formatCetakan + "&periode=" + periode + "&idPegawai=" + $scope.item.pegawai.id
               + "&idDepartemen=" + idDepartemen + "&idRuangan=" + idRuangan + "&idUnitKerja=" + idUnitKerja
               + "&idJabatan=" + $scope.item.jabatanCetak.id + "&idAtasan=" + $scope.item.atasanCetak.id + "&idJabatanAtasan=" + $scope.item.jabatanAtasanCetak.id);
             window.open(fixUrlLaporan, '', 'width=800,height=600');
           } else if (idJenisCetakan == 2) {
-            var fixUrlLaporan = cetakHelper.openURLReporting("reporting/laporanRemunerasiDokterGroup?periode=" + periode + "&idPegawai=" + $scope.item.pegawai.id
+            var fixUrlLaporan = cetakHelper.openURLReporting("reporting/laporanRemunerasiDokterGroup?format=" + formatCetakan + "&periode=" + periode + "&idPegawai=" + $scope.item.pegawai.id
               + "&idDepartemen=" + idDepartemen + "&idRuangan=" + idRuangan + "&idUnitKerja=" + idUnitKerja
               + "&idJabatan=" + $scope.item.jabatanCetak.id + "&idAtasan=" + $scope.item.atasanCetak.id + "&idJabatanAtasan=" + $scope.item.jabatanAtasanCetak.id);
             window.open(fixUrlLaporan, '', 'width=800,height=600');
@@ -196,12 +196,12 @@ define(['initialize'], function (initialize) {
           }
         } else {
           if (idJenisCetakan == 1) {
-            var fixUrlLaporan = cetakHelper.openURLReporting("reporting/laporanFeeForServiceDokterGroup?periode=" + periode
+            var fixUrlLaporan = cetakHelper.openURLReporting("reporting/laporanFeeForServiceDokterGroup?format=" + formatCetakan + "&periode=" + periode
               + "&idPegawai=&idDepartemen=" + idDepartemen + "&idRuangan=" + idRuangan + "&idUnitKerja=" + idUnitKerja
               + "&idJabatan=&idAtasan=&idJabatanAtasan=");
             window.open(fixUrlLaporan, '', 'width=800,height=600');
           } else if (idJenisCetakan == 2) {
-            var fixUrlLaporan = cetakHelper.openURLReporting("reporting/laporanRemunerasiDokterGroup?periode=" + periode
+            var fixUrlLaporan = cetakHelper.openURLReporting("reporting/laporanRemunerasiDokterGroup?format=" + formatCetakan + "&periode=" + periode
               + "&idPegawai=&idDepartemen=" + idDepartemen + "&idRuangan=" + idRuangan + "&idUnitKerja=" + idUnitKerja
               + "&idJabatan=&idAtasan=&idJabatanAtasan=");
             window.open(fixUrlLaporan, '', 'width=800,height=600');
