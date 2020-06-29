@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('JadwalAbsensiCtrl', ['$q', 'ManagePegawai', 'FindPegawai', 'DateHelper', 'FindSdm', 'ModelItem', 'ManageSdm', 'ManageSdmNew', '$state', '$rootScope', '$scope', '$mdDialog', '$timeout', 'ManagePhp',
-        function ($q, managePegawai, findPegawai, dateHelper, findSdm, modelItem, manageSdm, manageSdmNew, $state, $rootScope, $scope, $mdDialog, $timeout, managePhp) {
+    initialize.controller('JadwalAbsensiCtrl', ['$q', 'ManagePegawai', 'FindPegawai', 'DateHelper', 'FindSdm', 'ModelItem', 'ManageSdm', 'ManageSdmNew', 'CetakHelper', '$state', '$rootScope', '$scope', '$mdDialog', '$timeout', 'ManagePhp',
+        function ($q, managePegawai, findPegawai, dateHelper, findSdm, modelItem, manageSdm, manageSdmNew, cetakHelper, $state, $rootScope, $scope, $mdDialog, $timeout, managePhp) {
             $scope.isRouteLoading = true;
             $scope.ruanganKerja = [213, 217, 362, 57, 106, 105]; // daftar ruangan dengan otoritas penuh
             $scope.dataShiftPegawai = [] /* temp array data shift pegawai yang akan di simpan ke backend */
@@ -681,7 +681,6 @@ define(['initialize'], function (initialize) {
                                     $scope.jsonSave = [];
                                     // Here is your object
                                     var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
-                                    // var json_object = JSON.stringify(XL_row_object);
                                     for (var i = 1; i < XL_row_object.length; i++) {
                                         XL_row_object[i].kdshift = Object.values(XL_row_object[i]);
                                         XL_row_object[i].idtanggal = Object.keys(XL_row_object[i]);
@@ -698,11 +697,9 @@ define(['initialize'], function (initialize) {
                                             $scope.jsonSave.push(data);
                                         }
                                     }
-                                    // console.log(JSON.stringify($scope.jsonSave));
                                 })
                             };
                             reader.onerror = function (ex) {
-                                // console.log(ex);
                             };
                             reader.readAsBinaryString(file);
                         }
@@ -722,7 +719,44 @@ define(['initialize'], function (initialize) {
                 if (isValid.status) {
                     manageSdmNew.getListData("sdm/generate-excel?bulan=" + dateHelper.getFormatMonthPicker(new Date($scope.item.selectedTahun.id, $scope.item.selectedBulan.id)) + "&idUnitKerja=" + $scope.item.unitKerja.id + "&idSubunitKerja=" + $scope.item.subUnitKerja.id).then(function (e) {
                         var path = "//tmp//Jadwal_Dinas_Pegawai_" + $scope.item.unitKerja.name.replace(/ /g,"_") + "_" + $scope.item.subUnitKerja.name.replace(/ /g,"_") + ".xls";
+                        // var path = "D:\\eclipse\\Jadwal_Dinas_Pegawai_" + $scope.item.unitKerja.name.replace(/ /g,"_") + "_" + $scope.item.subUnitKerja.name.replace(/ /g,"_") + ".xls";
+                        var urlDownload = cetakHelper.downloadFile("sdm/download-jadwal?filename=" + path);
+				        window.open(urlDownload, '_blank');
                     });
+                } else {
+                    $scope.isRouteLoading = false;
+                    modelItem.showMessages(isValid.messages);
+                }
+            }
+
+            $scope.unggah = function () {
+                var listRawRequired = [
+                    "item.selectedBulan|k-ng-model|Bulan",
+                    "item.selectedTahun|k-ng-model|Tahun",
+                    "item.unitKerja|k-ng-model|unit Kerja",
+                    "item.subUnitKerja|k-ng-model|sub unit kerja"
+                ];
+                var isValid = modelItem.setValidation($scope, listRawRequired);
+                if (isValid.status) {
+                    $scope.isRouteLoading = true;
+                    if ($scope.jsonSave != null) {
+                        manageSdmNew.saveData($scope.jsonSave, "pegawai/unggah-simpan-jadwal-pegawai/").then(function (e) {
+                            var msg = e.data.messages;
+                            if (msg['label-success'] === "SUKSES") {
+                                window.messageContainer.log(msg['label-success']);
+                                $scope.dataShiftPegawai = [];
+                                $scope.simpan = true;
+                                $scope.refresh();
+                            }
+                        }, (err) => {
+                            $scope.isRouteLoading = false;
+                            $scope.simpan = true;
+                            throw err;
+                        });
+                    } else {
+                        toastr.warning('Mohon Masukkan File Excel (.xls)');
+                        return;
+                    }
                 } else {
                     $scope.isRouteLoading = false;
                     modelItem.showMessages(isValid.messages);

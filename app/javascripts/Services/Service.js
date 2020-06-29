@@ -8,6 +8,8 @@ define(['Configuration'], function (config) {
 
     var ulrReportingPhp = config.urlDataTableMaster_Akuntansi;
 
+    var urlDownload = config.baseUrlActionSDM;
+
     genericServices.factory('socket', function ($rootScope) {
 
         var socket = null;
@@ -92,7 +94,17 @@ define(['Configuration'], function (config) {
                     // var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJvcGVyYXRvciJ9.eNEJVKwi8thRx0ruZxlk377mgpgkkLGtraRKwBjmb3Y4yT_nxfWUCeT-DrJ93_U0ZNJZrc-TM2rO4cxe5LjL5A";
                     return urlReporting + urlLaporan + '&X-AUTH-TOKEN=' + result['authorization'];
                 },
-            
+                downloadFile: function (urlfile) {
+                    var str = document.cookie;
+                    str = str.split('; ');
+                    var result = {};
+                    for (var i = 0; i < str.length; i++) {
+                        var cur = str[i].split('=');
+                        result[cur[0]] = cur[1];
+                    }
+                    // var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJvcGVyYXRvciJ9.eNEJVKwi8thRx0ruZxlk377mgpgkkLGtraRKwBjmb3Y4yT_nxfWUCeT-DrJ93_U0ZNJZrc-TM2rO4cxe5LjL5A";
+                    return urlDownload + urlfile + '&X-AUTH-TOKEN=' + result['authorization'];
+                },
             };
 
         }
