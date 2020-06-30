@@ -747,6 +747,7 @@ define(['initialize'], function (initialize) {
                                 $scope.dataShiftPegawai = [];
                                 $scope.simpan = true;
                                 $scope.refresh();
+                                toastr.info('Mohon cek kembali jadwal yang telah diunggah!')
                             }
                         }, (err) => {
                             $scope.isRouteLoading = false;
