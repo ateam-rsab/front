@@ -50,7 +50,7 @@ define(['initialize'], function (initialize) {
 
 			$scope.cetakLaporan = () => {
 				let url = '';
-				// 2019-01-01
+				
 				if (!$scope.item.ruangan) url = document.location.protocol + "//" + '192.168.12.4' + ":7777/" + 'service-reporting/lap-rekap-harian-by-dept/' + $scope.item.instalasi.id + '/' + dateHelper.formatDate($scope.item.periodeAwal, 'YYYY-MM-DD') + '/' + dateHelper.formatDate($scope.item.periodeAkhir, 'YYYY-MM-DD')
 				else  url = document.location.protocol + "//" + '192.168.12.4' + ":7777/" + 'service-reporting/lap-rekap-harian-by-ruangan/' + $scope.item.instalasi.id + '/' + $scope.item.ruangan.id +'/' + dateHelper.formatDate($scope.item.periodeAwal, 'YYYY-MM-DD') + '/' + dateHelper.formatDate($scope.item.periodeAkhir, 'YYYY-MM-DD')
 					window.open(url, '_blank')
