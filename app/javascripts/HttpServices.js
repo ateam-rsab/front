@@ -991,7 +991,7 @@
                     }
 
                     for(var i=0; i<listFixRequired.length; i++){
-                        if(listFixRequired[i].ngModel === undefined || listFixRequired[i].ngModel === "" || || listFixRequired[i].ngModel === null){
+                        if(listFixRequired[i].ngModel === undefined || listFixRequired[i].ngModel === "" || listFixRequired[i].ngModel === null){
                             this.cekValidation(listFixRequired[i].type, listFixRequired[i].ngModelText, false);
                             msg += listFixRequired[i].label + " tidak boleh kosong|";
                         }

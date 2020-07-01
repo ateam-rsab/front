@@ -1,0 +1,126 @@
+<md-toolbar md-scroll-shrink class="shadow">
+    <div class="md-toolbar-tools">Aktivitas Verifikasi Harian</div>
+</md-toolbar>
+
+<div ng-include=' "../app/module/Shared/TemplateLoading" '></div>
+
+<div class="grid_12">
+    <div class="grid_2">
+        <label c-label item="item" c-label-text="JenisPembayaran"></label>
+        <input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPembayaran" k-data-text-field="'name'"
+            k-data-value-field="'id'" k-filter="'contains'" k-data-source="listJenisPembayaran" />
+    </div>
+
+    <div class="grid_2">
+        <label c-label item="item" c-label-text="Periode Awal"></label>
+        <input style="width: 100%" k-ng-model="item.tanggalAwal" kendo-date-picker k-max="now" placeholer="yyyy-MM-dd"
+            k-format="'yyyy-MM-dd'" />
+    </div>
+    <div class="grid_2">
+        <label c-label item="item" c-label-text="Periode Akhir"></label>
+        <input style="width: 100%" k-ng-model="item.tanggalAkhir" kendo-date-picker placeholer="yyyy-MM-dd"
+            k-format="'yyyy-MM-dd'" />
+    </div>
+    <div class="grid_1" style="margin-top:23px;">
+        <md-button class="md-raised md-primary medium-button" ng-click="loadAllData()">
+            <span style="margin-right: 5px;">Cari</span>
+            <i class="fa fa-search"></i>
+        </md-button>
+    </div>
+</div>
+
+<div kendo-window="konfirmasiAnggaran" k-title="'Verifikasi Tagihan Rekanan'" k-width="1000" k-visible="false">
+    <div class="panel panel-default container_12" style="padding: 0px 10px;">
+        <md-card>
+            <md-card-content>
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">Nama Supplier</label>
+                    <p>{{confirm.namarekanan}}</p>
+                </div>
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">No. Verifikasi</label>
+                    <p>{{confirm.noverifikasi}}</p>
+                </div>
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">Tanggal Dokumen</label>
+                    <p>{{confirm.tgldokumen}}</p>
+                </div>
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">No. Dokumen</label>
+                    <p>{{confirm.nodokumen}}</p>
+                </div>
+                <hr>
+
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">Status</label>
+                    <p>{{confirm.status}}</p>
+                </div>
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">Status Konfirmasi Ka. Bag</label>
+                    <p>{{confirm.statusConfirmKabag}}</p>
+                </div>
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">Status Konfirmasi Anggaran</label>
+                    <p>{{confirm.statusConfirmAnggaran}}</p>
+                </div>
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">Status Bayar</label>
+                    <p>{{confirm.statusbayar}}</p>
+                </div>
+                <hr>
+
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">Sisa Hutang</label>
+                    <p>{{confirm.sisautangFormatted}}</p>
+                </div>
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">Sub Total</label>
+                    <p>{{confirm.subtotalFormatted}}</p>
+                </div>
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">Total</label>
+                    <p>{{confirm.totalFormatted}}</p>
+                </div>
+                <div class="grid_3">
+                    <label style="font-weight: bolder;">Diskon</label>
+                    <p>{{confirm.totaldiskonFormatted}}</p>
+                </div>
+                <hr>
+                <div class="grid_12">
+                    <div id="kGrid" kendo-grid k-data-source="dataGridPenggunaanAnggaran" k-selectable="'row'"
+                        k-pageable="'true'" k-sortable="'true'" options="gridOptPenggunaanAnggaran"
+                        k-ng-model="dataSelectedAnggaran">
+                    </div>
+
+                </div>
+            </md-card-content>
+        </md-card>
+    </div>
+    <div class="dialog_buttons pull-right" style="margin-top:5%;">
+        <div class="grid_4">
+            <md-button class="md-raised md-danger medium-button" style="width: 100%;" ng-click="closePopUpKonfirmasi()">
+                Batal
+            </md-button>
+        </div>
+        <div class="grid_4">
+            <md-button class="md-raised md-primary medium-button" style="width: 100%;"
+                ng-click="konfirmasiData(isKasubag)">
+                Verifikasi
+            </md-button>
+        </div>
+    </div>
+</div>
+
+<div class="grid_12">
+    <div class="headerBox">
+        <p>Daftar Aktivitas Verifikasi Harian</p>
+    </div>
+    <div class="grid_12">
+        <div class="grid_12">
+            <div id="kGrid" kendo-grid k-data-source="dataGridVerified" k-selectable="'row'" k-pageable="'true'"
+                k-sortable="'true'" options="gridOpt" k-ng-model="dataSelected">
+            </div>
+
+        </div>
+    </div>
+</div>

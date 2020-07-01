@@ -104,6 +104,23 @@
         ]
     },
     {
+        "name": "Layanan Medik",
+        "children": [
+            {
+                "name": "Jadwal Dokter",
+                "link": "#/Pegawai/JadwalDokter"
+            },
+            {
+                "name": "Jadwal Dokter DPJP",
+                "link": "#/Pegawai/JadwalDokterDpjp"
+            },
+            {
+                "name": "Jadwal Dokter Beta",
+                "link": "#/MasterJadwalDokter"
+            }
+        ]
+    },
+    {
         "name": "Rujukan",
         "children": [
             {

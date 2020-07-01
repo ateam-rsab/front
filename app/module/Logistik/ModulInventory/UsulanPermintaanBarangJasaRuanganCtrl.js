@@ -117,9 +117,9 @@ define(['initialize'], function(initialize) {
 
            function init() {
                 $scope.isRouteLoading=true;
-                // debugger;
+                
                 modelItemAkuntansi.getDataDummyPHP("usulan-permintaan/ruangan/get-data-combo-saeutik", true, true, 20).then(function(data) {
-                    $scope.listProduk= data;
+                    $scope.listProduk = data;
                 })
                 
                 modelItemAkuntansi.getDataDummyPHP("usulan-permintaan/ruangan/get-data-combo-pegawai-part", true, true, 20).then(function(data) {
@@ -148,8 +148,9 @@ define(['initialize'], function(initialize) {
                                                 {id:4,kelompokbarang:'Alat Medis'},
                                                 {id:5,kelompokbarang:'Barang Umum'},
                                                 {id:6,kelompokbarang:'Pekerjaan'},
+                                                {id:7,kelompokbarang:'Barang IT'},
                                             ]
-                    BulanRomawi = $scope.listUnitPengusul[0].bulanromawi                                            
+                    BulanRomawi = $scope.listUnitPengusul[0].bulanromawi
                     // $scope.item.noUsulan = $scope.listUnitPengusul[0].kodeUsulan
 
                     // $scope.listAsalProduk =dat.data.ruanganall;
@@ -180,7 +181,7 @@ define(['initialize'], function(initialize) {
                 
                     if (noOrder != '') {
                         if (noOrder == 'EditTerima') {
-                            debugger;
+                            
                             manageLogistikPhp.getDataTableTransaksi("sppb/get-detail-SPPB?norecOrder="+norecResep, true).then(function(data_ih){
                                 $scope.item.noOrder=data_ih.data.detail.noorder
                                 $scope.item.tglAwal=data_ih.data.detail.tglorder
@@ -277,7 +278,7 @@ define(['initialize'], function(initialize) {
                                
                             });
                         }else if (noOrder == 'AjukanKembali') {
-                            debugger;
+                            
                             manageLogistikPhp.getDataTableTransaksi("sppb/get-detail-SPPB?norecOrder="+norecResep, true).then(function(data_ih){
                                 // $scope.item.noOrder=data_ih.data.detail.noorder
                                 $scope.item.tglAwal=data_ih.data.detail.tglorder
@@ -375,7 +376,7 @@ define(['initialize'], function(initialize) {
                             });
                         }if (noOrder == 'UsulanDariRencana') {
                             manageLogistikPhp.getDataTableTransaksi("usulan-permintaan/ruangan/get-detail-rencana-usulan-permintaan?norecOrder="+norecResep, true).then(function(data_ih){
-                                debugger;
+                                
                                 norecResep='';
                                 norecRealisasi='';
                                 $scope.item.noOrder=data_ih.data.detail.noorder
@@ -813,8 +814,7 @@ define(['initialize'], function(initialize) {
         }
 
         $scope.klikGrid = function(dataSelected){
-            var dataProduk =[];
-            //no:no,
+            var dataProduk = [];
             $scope.item.no = dataSelected.no
             // for (var i = $scope.listProduk.length - 1; i >= 0; i--) {
             //     if ($scope.listProduk[i].id == dataSelected.produkfk){
@@ -822,8 +822,9 @@ define(['initialize'], function(initialize) {
             //         break;
             //     }
             // }
-            manageLogistikPhp.getDataTableTransaksi("usulan-permintaan/ruangan/get-data-combo-saeutik?namaproduk="+dataSelected.namaproduk, true, true, 20).then(function(data) {
-                $scope.listProduk.add(data.data[0])
+            manageLogistikPhp.getDataTableTransaksi("usulan-permintaan/ruangan/get-data-combo-saeutik?namaproduk="+ dataSelected.namaproduk, true, true, 20).then(function(data) {
+                // $scope.listProduk.add(data.data[0])
+                $scope.listProduk = data.data;
                 $scope.item.produk = data.data[0];
 
                 $scope.item.jumlah = 0
@@ -853,21 +854,22 @@ define(['initialize'], function(initialize) {
             
         }
         function Kosongkan(){
-            $scope.item.produk =''
-            $scope.item.spesifikasi =''
-            $scope.item.asal =''
-            $scope.item.satuan=''
-            $scope.item.nilaiKonversi=0
-            $scope.item.stok=0
-            $scope.item.jumlah=0
-            $scope.item.hargadiskon=0
-            $scope.item.no=undefined
-            $scope.item.total=0
-            $scope.item.hargaSatuan=0
-            $scope.item.ppn=0
-            $scope.item.hargaDiskon=0
-            $scope.item.ppnpersen=0
-            $scope.item.hargaDiskonPersen=0
+            $scope.item.produk ='';
+            $scope.item.spesifikasi ='';
+            $scope.item.asal ='';
+            $scope.item.satuan = '';
+            $scope.item.nilaiKonversi = 0;
+            $scope.item.stok = 0;
+            $scope.item.jumlah = 0;
+            $scope.item.hargadiskon = 0;
+            $scope.item.no = undefined;
+            $scope.item.total = 0;
+            $scope.item.hargaSatuan = 0;
+            $scope.item.ppn = 0;
+            $scope.item.hargaDiskon = 0;
+            $scope.item.ppnpersen = 0;
+            $scope.item.hargaDiskonPersen = 0;
+            init();
         }
         $scope.batal = function(){
             Kosongkan()

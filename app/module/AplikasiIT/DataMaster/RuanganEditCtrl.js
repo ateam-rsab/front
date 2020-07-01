@@ -17,9 +17,7 @@ define(['initialize'], function (initialize) {
 
 			load()
 
-			debugger
 			function load() {
-				debugger
 				if ($state.params.idx != "") {
 					$scope.item.id = $state.params.idx;
 					ManageSarprasPhp.getDataTableTransaksi("ruangan/get-ruanganbyid/" + $scope.item.id, true).then(function (e) {

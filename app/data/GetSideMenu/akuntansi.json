@@ -123,6 +123,10 @@
         {
           "name": "Pembayaran Umum",
           "link": "#/PembayaranUmum"
+        },
+        {
+          "name": "Aktivitas Verifikasi Harian",
+          "link": "#/AktivitasVerifikasiHarian"
         }
       ]
     },

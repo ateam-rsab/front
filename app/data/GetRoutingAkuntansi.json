@@ -3447,6 +3447,30 @@
     ]
   },
   {
+    "name": "MasterDepartmen",
+    "url": "/MasterDepartemenIT",
+    "templateurl": "module/AplikasiIT/DataMaster/MasterDepartemenIT.html",
+    "controller": "MasterDepartemenITCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      },
+      {
+        "module": "PhpService",
+        "define": "PhpService"
+      }
+    ]
+  },
+  {
     "name": "RuanganEdit",
     "url": "/RuanganEdit/:idx",
     "templateurl": "module/AplikasiIT/DataMaster/RuanganEdit.html",

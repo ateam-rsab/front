@@ -224,27 +224,36 @@
 					k-filter="'contains'" k-auto-bind="false" k-data-source="listDokter" />
 			</div>
 		</div>
-		<div class="grid_1" style="margin-top: 16px" ng-show='cboDokter'>
-			<button class="btnTemplate1" style="margin-left: 0;" ng-click="simpan()">Simpan</button>
+		<div class="grid_1" style="margin-top: 22px" ng-show='cboDokter'>
+			<md-button class="md-raised md-primary medium-button"
+				ng-click="simpan()">
+				<span>Simpan</span>
+			</md-button>
+			<!-- <button class="btnTemplate1" style="margin-left: 0;" ng-click="simpan()">Simpan</button> -->
 		</div>
-		<div class="grid_1" style="margin-top: 16px" ng-show='cboDokter'>
-			<button class="btnTemplate1" style="margin-left: 0;" ng-click="batal()">Batal</button>
+		<div class="grid_1" style="margin-top: 22px" ng-show='cboDokter'>
+			<md-button class="md-raised md-danger medium-button"
+				ng-click="batal()">
+				<span>Batal</span>
+			</md-button>
 		</div>
 
 
 
 
-		<div class="grid_2" ng-show='cboUbahDokter'>
+		<div class="grid_2" ng-show='cboUbahDokter' style="margin-top: 20px" >
+			<md-button class="md-raised md-primary medium-button"
+				ng-click="cetakLaporan()">
+				<span>Cetak</span>
+			</md-button>
 		</div>
-		<div class="grid_2" style="margin-top: 16px" ng-show='cboUbahDokter'>
+		<div class="grid_2" style="margin-top: 20px" ng-show='cboUbahDokter'>
 			<md-button class="md-raised md-primary medium-button"
 				ng-click="DaftarRuangan()">
 				<span>Detail Registrasi</span>
 			</md-button>
-			<!-- <button class="btnTemplate1" style="margin-left: 0;"
-				ng-click="DaftarRuangan()">Detail Registrasi</button> -->
 		</div>
-		<div class="grid_2" style="margin-top: 16px" ng-show='cboUbahDokter'>
+		<div class="grid_2" style="margin-top: 20px" ng-show='cboUbahDokter'>
 			<!-- <button class="btnTemplate1" style="margin-left: 0;" ng-click="Detail()">Detail
 				Tagihan</button> -->
 			<md-button class="md-raised md-primary medium-button"
@@ -252,7 +261,7 @@
 				<span>Detail Tagihan</span>
 			</md-button>
 		</div>
-		<div class="grid_2" style="margin-top: 16px" ng-show='cboUbahDokter'>
+		<div class="grid_2" style="margin-top: 20px" ng-show='cboUbahDokter'>
 			<md-button class="md-raised md-primary medium-button"
 				ng-click="UbahDokter()">
 				<span>Ubah Dokter</span>

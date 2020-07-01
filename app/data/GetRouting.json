@@ -43192,6 +43192,54 @@
     ]
   },
   {
+    "name": "AktivitasVerifikasiHarian",
+    "url": "/AktivitasVerifikasiHarian",
+    "templateurl": "module/Akuntansi/BendaharaPengeluaran/AktivitasVerifikasiHarian.html",
+    "controller": "AktivitasVerifikasiHarianCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SarprasService",
+        "define": "SarprasService"
+      },
+      {
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
+      }
+    ]
+  },
+  {
+    "name": "PelunasanPembayaranUmum",
+    "url": "/PelunasanPembayaranUmum",
+    "templateurl": "module/Akuntansi/BendaharaPengeluaran/PelunasanPembayaranUmum.html",
+    "controller": "PelunasanPembayaranUmumCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SarprasService",
+        "define": "SarprasService"
+      },
+      {
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
+      }
+    ]
+  },
+  {
     "name": "PembayaranUmumCtrl",
     "url": "/PembayaranUmum",
     "templateurl": "module/Akuntansi/BendaharaPengeluaran/PembayaranUmum.html",

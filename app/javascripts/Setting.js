@@ -1,6 +1,6 @@
 define([], function () {
     'use strict';
-    var baseURLFrontend = window.location.hostname === "192.168.12.3" ? "http://192.168.12.3" : "http://172.16.99.39",
+    var baseURLFrontend = window.location.hostname === "192.168.12.3" ? "http://192.168.12.3" : "http://172.16.99.54",
         portFrontend = window.location.hostname === "192.168.12.3" ? '4444' :'4444',
         
         baseURLPhp = 'http://192.168.12.3',
@@ -106,8 +106,8 @@ define([], function () {
             baseApiPostData_Akuntansi: `${baseURLPhp}:${portPhp}/simrs_harkit/service/`,
 
             /**Login Java */
-            baseUrlJavaLogin: `${baseURLJava}:${portJava}/jasamedika-web/auth/sign-in`,
-            baseUrlJavaLogout: `${baseURLJava}:${portJava}/jasamedika-web/auth/sign-out`,
+            // baseUrlJavaLogin: `${baseURLJava}:${portJava}/jasamedika-web/auth/sign-in`,
+            // baseUrlJavaLogout: `${baseURLJava}:${portJava}/jasamedika-web/auth/sign-out`,
 
             baseUrlAction: `${baseURLJava}:${portJava}/jasamedika-web/`,
             baseApiUrlData: `${baseURLJava}:${portJava}/jasamedika-web/`,

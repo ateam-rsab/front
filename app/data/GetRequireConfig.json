@@ -489,7 +489,7 @@
       "urlDep": "module/AplikasiIT/DataMaster/PangkatBaruCtrl"
     },
     {
-      "nameDep":"DashboardPerbaikanITCtrl",
+      "nameDep": "DashboardPerbaikanITCtrl",
       "urlDep": "module/AplikasiIT/DashboardPerbaikanITCtrl"
     },
     {
@@ -3996,7 +3996,7 @@
       "nameDep": "RevPermintaanPerbaikandariRuanganITCtrl",
       "urlDep": "module/AplikasiIT/RevPermintaanPerbaikandariRuanganITCtrl"
     },
-     {
+    {
       "nameDep": "NewRevPermintaanPerbaikandariRuanganITCtrl",
       "urlDep": "module/AplikasiIT/NewRevPermintaanPerbaikandariRuanganITCtrl"
     },
@@ -4859,7 +4859,7 @@
     {
       "nameDep": "MonitoringTestMesinEthylenOxideCtrl",
       "urlDep": "module/AplikasiCSSD/MonitoringTestMesinEthylenOxideCtrl"
-    },    
+    },
     {
       "nameDep": "MonitoringTestMesinAutoclaveCtrl",
       "urlDep": "module/AplikasiCSSD/MonitoringTestMesinAutoclaveCtrl"
@@ -5696,7 +5696,6 @@
       "nameDep": "JadwalPraktekCtrl",
       "urlDep": "module/AplikasiIT/DataMaster/JadwalPraktekCtrl"
     },
-    
     {
       "nameDep": "JaringanTubuhCtrl",
       "urlDep": "module/AplikasiIT/DataMaster/JaringanTubuhCtrl"
@@ -6950,6 +6949,10 @@
       "urlDep": "module/AplikasiIT/DataMaster/Ruangan2Ctrl"
     },
     {
+      "nameDep": "MasterDepartemenITCtrl",
+      "urlDep": "module/AplikasiIT/DataMaster/MasterDepartemenITCtrl"
+    },
+    {
       "nameDep": "RuanganPosisiCurrentCtrl",
       "urlDep": "module/AplikasiIT/DataMaster/RuanganPosisiCurrentCtrl"
     },
@@ -7564,6 +7567,14 @@
     {
       "nameDep": "VerifikasiTagihanSupplierCtrl",
       "urlDep": "module/Akuntansi/BendaharaPengeluaran/VerifikasiTagihanSupplierCtrl"
+    },
+    {
+      "nameDep": "AktivitasVerifikasiHarianCtrl",
+      "urlDep": "module/Akuntansi/BendaharaPengeluaran/AktivitasVerifikasiHarianCtrl"
+    },
+    {
+      "nameDep": "PelunasanPembayaranUmumCtrl",
+      "urlDep": "module/Akuntansi/BendaharaPengeluaran/PelunasanPembayaranUmumCtrl"
     },
     {
       "nameDep": "PembayaranUmumCtrl",
@@ -8507,32 +8518,27 @@
     },
     {
       "nameDep": "MasalahKeperawatanRevCtrl",
-      "urlDep": "module/RekamMedis/MasalahKeperawatanRevCtrl"    
+      "urlDep": "module/RekamMedis/MasalahKeperawatanRevCtrl"
     },
     {
       "nameDep": "AsuransiPasienEditCtrl",
       "urlDep": "module/AplikasiIT/DataMaster/AsuransiPasienEditCtrl"
     },
-
     {
       "nameDep": "DaftarHasilTriaseCtrl",
       "urlDep": "module/pasien/RegistrasiPelayanan/DaftarHasilTriaseCtrl"
     },
-    
     {
       "nameDep": "KelompokKerjaCtrl",
       "urlDep": "module/AplikasiIT/DataMaster/KelompokKerjaCtrl"
     },
-    
     {
       "nameDep": "KelompokKerjaHeadCtrl",
       "urlDep": "module/AplikasiIT/DataMaster/KelompokKerjaHeadCtrl"
     },
-	{
-	  "nameDep": "DaftarPasienBaruCtrl",
-	  "urlDep": "module/IwanKasan/PendaftaranPasienBaru/ListDataPaseinBaruCtrl"
-	}
-	
-    
+    {
+      "nameDep": "DaftarPasienBaruCtrl",
+      "urlDep": "module/IwanKasan/PendaftaranPasienBaru/ListDataPaseinBaruCtrl"
+    }
   ]
 }

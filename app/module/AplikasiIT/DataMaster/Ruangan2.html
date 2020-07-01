@@ -1,105 +1,118 @@
-<div ng-controller="Ruangan2Ctrl">
-	<div ng-show="dataVOloaded">
-		<c-panel item="item" header="Ruangan">
-			<div class="grid_12">
+<div ng-show="dataVOloaded">
 
-				<div class="grid_12 headerBox">
-					<h1 style="color: white;">
-						<b>Daftar Ruangan</b>
-					</h1>
-				</div>
+	<div class="grid_12">
+		<md-toolbar md-scroll-shrink class="shadow">
+			<div class="md-toolbar-tools">Daftar Ruangan</div>
+		</md-toolbar>
+
+		<div class="grid_12">
+			<div class="grid_2">
 				<div class="grid_12">
-					<div class="grid_2">
-						<div class="grid_12">
-							<label c-label item="item" c-label-text="ID"></label>
-						</div>
+					<label c-label item="item" c-label-text="ID"></label>
+				</div>
 
 
-						<div class="grid_12">
-							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.idSrc" />
-						</div>
-					</div>
-					<div class="grid_3">
-						<div class="grid_12">
-							<label c-label item="item" c-label-text="Nama Ruangan"></label>
-						</div>
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.idSrc" />
+				</div>
+			</div>
+			<div class="grid_3">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Nama Ruangan"></label>
+				</div>
 
 
-						<div class="grid_12">
-							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaRuanganSrc" />
-						</div>
-					</div>
-					<!--  -->
-					<div class="grid_3">
-						<div class="grid_12">
-							<label c-label item="item" c-label-text="Departemen"></label>
-						</div>
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.namaRuanganSrc" />
+				</div>
+			</div>
+			<!--  -->
+			<div class="grid_3">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Departemen"></label>
+				</div>
 
 
-						<div class="grid_12">
-							<input style="width: 100%;" kendo-combo-box ng-model="item.departemen"
-							 k-data-text-field="'departemen'" k-data-value-field="'id'"
-							 k-filter="'contains'" k-auto-bind="false" k-data-source="listDepartemen" />
-						</div>
-					</div>
-					<!-- <div class="grid_3">
+				<div class="grid_12">
+					<input kendo-combo-box k-ng-model="item.departemen"
+						k-data-text-field="'departemen'" k-data-value-field="'id'" k-filter="'contains'"
+						k-auto-bind="false" k-data-source="listDepartemen" />
+				</div>
+			</div>
+			<!-- <div class="grid_3">
 						<label c-label item="item" c-label-text="Departemen"></label>
 						<input style="width: 100%;" kendo-combo-box ng-model="item.departement" 
 						k-data-text-field="'departemen'" k-data-value-field="'id'"
 						 k-filter="'contains'" k-auto-bind="false" k-data-source="listDepartemen" />
 					</div> -->
-					<div class="grid_2">
-						<div class="grid_12">
-							<label c-label item="item" c-label-text="Kode External"></label>
-						</div>
-
-
-						<div class="grid_12">
-							<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kdExternalSrc" />
-						</div>
-					</div>
-
-					<div class="grid_1">
-						<button class="success c-button" style="margin-top: 22px" ng-click="cariFilter()">Cari</button>
-					</div>
-					<div class="grid_1">
-						<button class="cancel c-button" style="margin-top: 22px" ng-click="clearSearch()">Clear </button>
-					</div>
-
-					<div class="grid_12">
-						    <div class="grid_12 headerBox">
-									<p>Data Ruangan</p>
-								</div>
-								<div class="clear"></div>
-						
-						<div class="grid_12 borderBox">
-							<kendo-grid options="mainGridOptions" k-columns="columnRuangan" k-pageable="'true'" k-data-source="dataSourceRuangan" k-ng-model="current"
-							 ng-click="klik(current)"></kendo-grid>
-						</div>
-
-					</div>
+			<div class="grid_2">
+				<div class="grid_12">
+					<label c-label item="item" c-label-text="Kode External"></label>
 				</div>
-				<div class="grid_12"> 
 
-					<div class="grid_8"></div>
 
-					<div class="grid_2">
-						<button class="c-button" ng-click="edit()">Ubah</button>
-					</div>
-					<div class="grid_2">
-						<button class="c-button" ng-click="tambah()">Tambah</button>
-					</div>
-
+				<div class="grid_12">
+					<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.kdExternalSrc" />
 				</div>
-				<!-- <div class="loading" style="position: relative; margin:25px 0px 20px;" class="animated" ng-show="isLoadingData">
+			</div>
+
+			<div class="grid_1" style="margin-top: 22px;">
+				<md-button class="md-raised md-primary medium-button" ng-click="cariFilter()">
+					<span style="margin-right: 5px;">Cari</span>
+					<i class="fa fa-search"></i>
+				</md-button>
+				<!-- <button class="success c-button" style="margin-top: 22px" ng-click="cariFilter()">Cari</button> -->
+			</div>
+			<div class="grid_1" style="margin-top: 22px;">
+				<md-button class="md-raised md-danger medium-button" ng-click="clearSearch()">
+					<span style="margin-right: 5px;">Clear</span>
+					<i class="fa fa-close"></i>
+				</md-button>
+				<!-- <button class="cancel c-button" style="margin-top: 22px" ng-click="clearSearch()">Clear</button> -->
+			</div>
+
+			<div class="grid_12">
+				<div class="grid_12 headerBox">
+					<p>Data Ruangan</p>
+				</div>
+				<div class="clear"></div>
+
+				<div class="grid_12 borderBox">
+					<kendo-grid options="mainGridOptions" k-columns="columnRuangan" k-pageable="'true'"
+						k-data-source="dataSourceRuangan" k-ng-model="current" ng-click="klik(current)">
+					</kendo-grid>
+				</div>
+
+			</div>
+		</div>
+		<div class="grid_12">
+
+			<div class="grid_8"></div>
+
+			<div class="grid_2">
+				<!-- <button class="c-button" ng-click="edit()">Ubah</button> -->
+				<md-button class="md-raised md-primary medium-button" ng-click="edit()">
+					<span style="margin-right: 5px;">Edit</span>
+					<i class="fa fa-edit"></i>
+				</md-button>
+			</div>
+			<div class="grid_2">
+				<md-button class="md-raised md-primary medium-button" ng-click="tambah()">
+					<span style="margin-right: 5px;">Tambah</span>
+					<i class="fa fa-plus"></i>
+				</md-button>
+				<!-- <button class="c-button" ng-click="tambah()">Tambah</button> -->
+			</div>
+
+		</div>
+		<!-- <div class="loading" style="position: relative; margin:25px 0px 20px;" class="animated" ng-show="isLoadingData">
 				<img height="250" src="../app/stylesheets/Flat/loading4.gif" />
 				<br/>
 				<span style="font-weight: bold;">Mohon tunggu...</span>
 			</div> -->
-				<div class="grid_12" style="margin-top:60px" >
-					<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
-				</div>
-		</c-panel>
+		<div class="grid_12" style="margin-top:60px">
+			<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
 		</div>
 
 	</div>
+</div>

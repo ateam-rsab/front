@@ -28,6 +28,23 @@
         "link": "#/DaftarPenjualanApotekKasir/keluarUmum"
     },
     {
+        "name": "Verifikasi Pembayaran",
+        "children": [
+            {
+                "name": "Tagihan Suplier",
+                "link": "#/VerifikasiTagihanSupplier"
+            },
+            {
+                "name": "Pembayaran Umum",
+                "link": "#/PembayaranUmum"
+            },
+            {
+                "name": "Pelunasan Pembayaran Umum",
+                "link": "#/PelunasanPembayaranUmum"
+            }
+        ]
+    },
+    {
         "name": "Alur UYHD",
         "children": [
             {

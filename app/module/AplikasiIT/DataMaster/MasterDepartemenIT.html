@@ -1,0 +1,100 @@
+<md-toolbar md-scroll-shrink class="shadow">
+	<div class="md-toolbar-tools">Master Departemen/Instalasi</div>
+</md-toolbar>
+
+<kendo-grid options="mainGridOptions" k-columns="columnGrid" k-pageable="'true'" k-data-source="dataSource"
+	k-ng-model="current">
+</kendo-grid>
+
+<div kendo-window="popUpTambahBaru" k-title="'Tambah Departemen'" k-width="1200" k-visible="false">
+	<div class="panel panel-default container_12" style="padding: 0px 10px;">
+
+		<div class="grid_12">
+			<div class="grid_4">
+				<label style="font-weight: bolder;">Alamat Email</label>
+				<input c-text-box type="input" class="k-textbox" ng-model="item.alamatEmail" />
+			</div>
+			<div class="grid_4">
+				<label style="font-weight: bolder;">Faksimile</label>
+				<input c-text-box type="input" class="k-textbox" ng-model="item.faksimile" />
+			</div>
+			<div class="grid_4">
+				<label style="font-weight: bolder;">Fixed Phone</label>
+				<input c-text-box type="input" class="k-textbox" ng-model="item.fixedPhone" />
+			</div>
+		</div>
+
+		<div class="grid_12">
+			<div class="grid_4">
+				<label style="font-weight: bolder;">Kode Departemen/Instalasi</label>
+				<input c-text-box type="input" class="k-textbox" ng-model="item.kdDepartemen" />
+			</div>
+			<div class="grid_4">
+				<label style="font-weight: bolder;">Jenis Perawatan</label>
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.jenisPerawatan"
+					k-data-text-field="'jenisPerawatan'" k-data-value-field="'id'" k-filter="'contains'"
+					k-auto-bind="false" k-data-source="listjenisPerawatan" />
+			</div>
+			<div class="grid_4">
+				<label style="font-weight: bolder;">Kepala Departemen/Instalasi</label>
+				<input style="width: 100%;" kendo-combo-box k-ng-model="item.kepalaDepartemen"
+					k-data-text-field="'namaPegawai'" k-data-value-field="'id'" k-filter="'contains'"
+					k-auto-bind="false" k-data-source="listKepalaDepartemen" />
+			</div>
+		</div>
+
+		<div class="grid_12">
+			<div class="grid_4">
+				<label style="font-weight: bolder;">Mobile Phone</label>
+				<input c-text-box type="input" class="k-textbox" ng-model="item.mobilePhone" />
+			</div>
+			<div class="grid_4">
+				<label style="font-weight: bolder;">Nama Departemen</label>
+				<input c-text-box type="input" class="k-textbox" ng-model="item.namaDepartemen" />
+			</div>
+			<div class="grid_4">
+				<label style="font-weight: bolder;">Prefix No. Antrian</label>
+				<input c-text-box type="input" class="k-textbox" ng-model="item.prefixNoAntrian" />
+			</div>
+		</div>
+
+		<div class="grid_12">
+			<div class="grid_4">
+				<label style="font-weight: bolder;">Q Departemen</label>
+				<input c-text-box type="input" class="k-textbox" ng-model="item.qDepartemen" />
+			</div>
+			<div class="grid_4">
+				<label style="font-weight: bolder;">Website</label>
+				<input c-text-box type="input" class="k-textbox" ng-model="item.website" />
+			</div>
+			<div class="grid_4">
+				<label style="font-weight: bolder;">Report Display</label>
+				<input c-text-box type="input" class="k-textbox" ng-model="item.reportDisplay" />
+			</div>
+		</div>
+
+		<div class="grid_12">
+			<div class="grid_4">
+				<label style="font-weight: bolder;">Kode External</label>
+				<input c-text-box type="input" class="k-textbox" ng-model="item.kodeExternal" />
+			</div>
+			<div class="grid_4">
+				<label style="font-weight: bolder;">Nama External</label>
+				<input c-text-box type="input" class="k-textbox" ng-model="item.namaExternal" />
+			</div>
+		</div>
+	</div>
+
+	<div class="dialog_buttons pull-right" style="margin-top:5%;">
+		<div class="grid_4">
+			<md-button class="md-raised md-danger medium-button" style="width: 100%;" ng-click="closePopup()">
+				Tutup
+			</md-button>
+		</div>
+		<div class="grid_4">
+			<md-button class="md-raised md-primary medium-button" style="width: 100%;" ng-click="simpanDepartemen()">
+				Simpan
+			</md-button>
+		</div>
+	</div>
+</div>

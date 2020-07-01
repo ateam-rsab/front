@@ -36,7 +36,7 @@ define(['initialize'], function (initialize) {
             $scope.arrColumnGridResepElektronik = {
                 toolbar: [
                     { text: "export", name: "Export detail", template: '<button ng-click="refresh()" class="k-button k-button-icontext k-grid-refresh"><span class="k-icon k-i-refresh"></span>Refresh</button>' },
-                    // { text: "export", name: "Export detail", template: '<button ng-click="toDashboard()" class="k-button k-button-icontext k-grid-left"><span class="k-icon k-i-left"></span>Dashboard Antrian</button>' },
+                    { text: "export", template: '<button ng-click="toDashboard()" class="k-button k-button-icontext k-grid-left"><span class="fa fa-list" style="margin-right:"2px""></span>Dashboard Antrian</button>' },
                 ],
 
                 pageable: false,
