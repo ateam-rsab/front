@@ -317,6 +317,9 @@ define(['initialize'], function (initialize) {
                 }
                 $scope.ji.atasanLangsungDireksi = dataItem.atasanLangsungDireksi;
                 $scope.ji.pejabatPenilaiDireksi = dataItem.pejabatPenilaiDireksi;
+                $scope.ji.isPrimary = dataItem.isPrimary;
+                $scope.ji.isMonitoring = dataItem.isMonitoring;
+                $scope.ji.isCanCreateJadwal = dataItem.isCanCreateJadwal;
                 $scope.popUpJabatan.center().open();
             }
 
@@ -333,6 +336,9 @@ define(['initialize'], function (initialize) {
                 $scope.ji.atasanLangsung = '';
                 $scope.ji.unitKerjaPegawai = "";
                 $scope.ji.subUnitKerjaPegawai = null;
+                $scope.ji.isPrimary = false;
+                $scope.ji.isMonitoring = false;
+                $scope.ji.isCanCreateJadwal = false;
             }
 
             $scope.batal = function () {

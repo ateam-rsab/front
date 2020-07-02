@@ -197,7 +197,7 @@ define(['initialize'], function(initialize) {
                     // FindSdm.getSubUnitKerja(),
                     ManageSdmNew.getListData("sdm/get-all-sub-unit-kerja"),
                     ManageSdmNew.getListData("sdm/get-all-kedudukan"),
-                    ManageSdm.getOrderList("service/list-generic/?view=JenisSk&select=*", true),
+                    ManageSdm.getOrderList("service/list-generic/?view=JenisSk&select=id,kode,name", true),
                     ManageSdm.getOrderList("service/list-generic/?view=Jabatan&select=id,namaJabatan&criteria=jenisJabatanId,statusEnabled&values=1,true", true),
                     ManageSdm.getOrderList("service/list-generic/?view=JenisHukuman&select=id,jenisHukuman&criteria=statusEnabled&values=true", true),
                     ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true", true)

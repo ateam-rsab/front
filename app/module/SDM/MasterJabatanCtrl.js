@@ -2,6 +2,8 @@ define(['initialize'], function (initialize) {
 	'use strict';
 	initialize.controller('MasterJabatanCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'NamaAsuransi', 'ManageSdm', 'ManageSdmNew', '$timeout',
 		function ($q, $rootScope, $scope, ModelItem, $state, NamaAsuransi, ManageSdm, ManageSdmNew, $timeout) {
+			var pegawai = JSON.parse(localStorage.getItem('pegawai'));
+			$scope.namaPegawai = pegawai.namaLengkap;
 			$scope.isRouteLoading = true;
 			$scope.levelJabatan = [
 				{ name: 'Direktur Utama', id: 1 },
@@ -31,7 +33,8 @@ define(['initialize'], function (initialize) {
 					{ field: "levelJabatan", title: "Level Jabatan ", editor: categoryDropDownEditorLevelJabatan, "template": "# if (levelJabatan === 1) {# #= 'Direktur Utama' # #} else if (levelJabatan === 2){# #= 'Direktur' # #} else if (levelJabatan === 3){# #= 'Ketua/ Kepala Komite/ Satuan/ Instalasi/ Unit/ Bagian/ KSM/ Bidang' # #} else if (levelJabatan === 4){# #= 'Kepala Ruangan/ Kepala Seksi/ Kepala Subbagian/ Pengelola Urusan' # #} else if (levelJabatan === 5){# #= 'Staf/ Ketua Tim' # #} else {# #= '-' # #}#" },
 					{ field: "subLevelJabatan", title: "Level Direksi ", editor: categoryDropDownEditorLevelDireksi, "template": "# if (subLevelJabatan === 1) {# #= 'Direktorat Pelayanan Medik, Keperawatan, dan Penunjang' # #} else if (subLevelJabatan === 2){# #= 'Direktorat Perencanaan, Organisasi, dan Umum' # #} else if (subLevelJabatan === 3){# #= 'Direktorat Sumber Daya Manusia, Pendidikan, dan Penelitian' # #} else if (subLevelJabatan === 4){# #= 'Direktorat Keuangan dan Barang Milik Negara' # #} else {# #= '-' # #}#" },
 					{ field: "usiaPensiun", title: "Usia Pensiun", width: 120, attributes: { style: "text-align:right; padding-right: 15px;" } },
-					{ command: [{ name: "destroy", text: "Hapus" }, { name: "edit", text: "Edit" }], title: "&nbsp;", width: 160 }
+					{ command: [{ name: "destroy", text: "Hapus" }, { name: "edit", text: "Edit" }], title: "&nbsp;", width: 160 },
+					{ command: [{ name: "edit", text: "Edit" }], title: "&nbsp;", width: 160 }
 				],
 				editable: "popup",
 				save: function (e) {
@@ -60,9 +63,9 @@ define(['initialize'], function (initialize) {
 			function init() {
 				$scope.item = {}; // set defined object
 				$q.all([
-					ManageSdmNew.getListData("service/list-generic/?view=Jabatan&select=id,namaJabatan,kdJabatan,usiaPensiun,jenisJabatanId,eselonId,levelJabatan,subLevelJabatan&criteria=statusEnabled&values=true&order=namaJabatan:asc", true),
-					ManageSdmNew.getListData("service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled&values=true&order=jenisJabatan:asc", true),
-					ManageSdmNew.getListData("service/list-generic/?view=Eselon&select=id,eselon&criteria=statusEnabled&values=true&order=eselon:asc", true),
+					ManageSdmNew.getListData("service/list-generic/?view=Jabatan&select=id,namaJabatan,kdJabatan,usiaPensiun,jenisJabatanId,eselonId,levelJabatan,subLevelJabatan&criteria=statusEnabled,id&values=true,!0&order=namaJabatan:asc", true),
+					ManageSdmNew.getListData("service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled,id&values=true,!0&order=jenisJabatan:asc", true),
+					ManageSdmNew.getListData("service/list-generic/?view=Eselon&select=id,eselon&criteria=statusEnabled,id&values=true,!0&order=eselon:asc", true),
 				]).then(function (res) {
 					if (res[0].statResponse) {
 						$scope.daftarJabatan = new kendo.data.DataSource({
@@ -146,6 +149,12 @@ define(['initialize'], function (initialize) {
 								{ field: "jenisJabatanId", dir: "asc" }
 							]
 						});
+						var dataGrid = $("#gridJabatan").data("kendoGrid");
+						if ($scope.namaPegawai == "Administrator") {
+							dataGrid.hideColumn(dataGrid.columns[8]);	
+						} else {
+							dataGrid.hideColumn(dataGrid.columns[7]);
+						}
 					}
 					if (res[1].statResponse) {
 						$scope.listJenisJabatan = res[1].data;

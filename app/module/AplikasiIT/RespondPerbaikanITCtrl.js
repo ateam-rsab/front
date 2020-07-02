@@ -183,7 +183,7 @@ define(['initialize'], function (initialize) {
           $scope.ListRuangan = dat.data.data.ruanganAset
         })
 
-        IPSRSService.getItem('service/list-generic/?view=StatusPekerjaan&select=*', true).then(function (dat) {
+        IPSRSService.getItem('service/list-generic/?view=StatusPekerjaan&select=id,namaExternal', true).then(function (dat) {
           $scope.dataStatusPekerjaan = dat.data
           // $('#ddlStatusPekerjaan').kendoDropDownList({
           //   dataSource: $scope.dataStatusPekerjaan,

@@ -118,6 +118,14 @@
                 k-filter="'contains'" k-auto-bind="false"
                 k-data-source="listJenisCetakan" />
         </div>
+        <div class="grid_2">
+            <label c-label item="item" c-label-text="Format Cetakan"></label>
+            <input style="width: 100%;" kendo-combo-box
+                k-ng-model="item.formatCetakan"
+                k-data-text-field="'formatCetakan'" k-data-value-field="'id'"
+                k-filter="'contains'" k-auto-bind="false"
+                k-data-source="listFormatCetakan" />
+        </div>
         <div class="grid_2" style="margin-top: 23px">
             <md-button class="md-raised md-primary medium-button"
                 ng-show="!isLoading"

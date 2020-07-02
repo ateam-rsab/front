@@ -89,6 +89,20 @@
 	            		</div>
 					</div>
 				</div>
+				<div class="grid_12">
+					<div class="grid_6">
+						<label c-label item="item">Cuti Luar Kota ?</label>
+					</div>
+					<!-- <div class="clear"></div> -->
+					<div class="grid_6" >
+						<div ng-repeat="pilihan in radioIsCutiLuarKota | orderBy:'idStatus'" style="margin-left: -150px; margin-top: -8px">
+	                		<div class="grid_2">
+		                    	<input type="radio" name="{{pilihan.namaStatus}}" id="{{pilihan.namaStatus}}" class="k-radio" ng-model="item.isCutiLuarKota" value="{{pilihan.idStatus}}">
+		                    	<label class="k-radio-label" for="{{pilihan.namaStatus}}">{{pilihan.namaStatus}}</label>
+	                		</div>
+	            		</div>
+					</div>
+				</div>
 			</div>
 			<div class="grid_6">
 				<div class="grid_12">
@@ -104,7 +118,7 @@
 						<label c-label item="item" style="margin-top: 10px">Status Kehadiran Pegawai</label>
 					</div>
 					<div class="grid_9">
-						<input style="width: 100%;" kendo-combo-box k-ng-model="item.statusPegawai" k-data-text-field="'statusPegawai'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listStatusPegawai" ng-disabled="tugasLuar" k-on-change="showJumlahCuti()"/>
+						<input style="width: 100%;" kendo-combo-box k-ng-model="item.statusPegawai" k-data-text-field="'statusPegawai'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listStatusPegawai" ng-enabled="tugasLuar" k-on-change="showJumlahCuti()"/>
 					</div>
 				</div>
 				<div class="grid_12" ng-show="item.statusPegawai.id==28">

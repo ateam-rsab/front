@@ -39,7 +39,7 @@ define(['initialize'], function(initialize) {
 			};
 			function init(){
 				$scope.isRouteLoading = true;
-				FindPegawai.getListData("service/list-generic/?view=KategoryPegawai&select=*&criteria=statusEnabled&values=true").then(function(dat){
+				FindPegawai.getListData("service/list-generic/?view=KategoryPegawai&select=id,noRec,kdKategoryPegawai,qKategoryPegawai,kategoryPegawai&criteria=statusEnabled&values=true").then(function(dat){
 					var result = dat.data;
 					result.forEach(function(item, index){
 						item.rowNumber = ++index;

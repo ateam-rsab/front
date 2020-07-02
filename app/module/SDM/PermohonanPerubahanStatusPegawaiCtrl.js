@@ -287,6 +287,11 @@ define(['initialize'], function (initialize) {
                         "title": "Status Cuti Luar Negeri",
                         "hidden": "true"
                     },
+                    {
+                        "field": "isCutiLuarKota",
+                        "title": "Status Cuti Luar Kota",
+                        "hidden": "true"
+                    },
                     // {template: '<button class="k-button" ng-click="cetakSuratPengajuan(dataItem)">Cetak</button>' }
                     {
                         "command": [
@@ -371,7 +376,7 @@ define(['initialize'], function (initialize) {
                     $scope.item.noUsulan = dat.data.data.noUsulan;
                     $scope.listStatusPegawai = dat.data.data.listStatusPegawai;
                 }).then(function () {
-                    if ($scope.loginUser.idJabatan == 412 || $scope.loginUser.idJabatan == 1139) {
+                    if ($scope.loginUser.idJabatan == 633 || $scope.loginUser.idJabatan == 1139) {
                         $scope.item.statusPegawai = _.find($scope.listStatusPegawai, function (e) {
                             $scope.tugasLuar = true;
                             return e.id == 28;
@@ -386,7 +391,7 @@ define(['initialize'], function (initialize) {
 
                         $scope.bukanLoginSdm = false;
 
-                    } else if ($scope.loginUser.idJabatan == 412 || $scope.loginUser.idJabatan == 1139) {
+                    } else if ($scope.loginUser.idJabatan == 633 || $scope.loginUser.idJabatan == 1139) {
 
                         $scope.tugasLuar = true;
                         $scope.bukanLoginSdm = false;
@@ -407,7 +412,7 @@ define(['initialize'], function (initialize) {
                 if (e.id == $scope.loginUser.idPegawai) {
                     $scope.tugasLuar = false;
                     $scope.getDataPegawai(e);
-                } else if (e.id != $scope.loginUser.idPegawai && ($scope.loginUser.idJabatan == 412 || $scope.loginUser.idJabatan == 1139)) {
+                } else if (e.id != $scope.loginUser.idPegawai && ($scope.loginUser.idJabatan == 633 || $scope.loginUser.idJabatan == 1139)) {
                     $scope.item.statusPegawai = _.find($scope.listStatusPegawai, function (ed) {
                         $scope.tugasLuar = true;
                         return ed.id == 28;
@@ -831,6 +836,9 @@ define(['initialize'], function (initialize) {
             $scope.radioIsCutiLuarNegeri = [
                 { "id": 1, "nama": "Ya" }, { "id": 2, "nama": "Tidak" }];
 
+            $scope.radioIsCutiLuarKota = [
+                { "idStatus": 1, "namaStatus": "Ya " }, { "idStatus": 2, "namaStatus": "Tidak " }];
+
             $scope.alertTgl = function (ev) {
                 $mdDialog.show(
                     $mdDialog.alert()
@@ -1090,6 +1098,18 @@ define(['initialize'], function (initialize) {
                         }
                     }
 
+                    var statusCutiLuarKota = "";
+                    if ($scope.item.isCutiLuarKota == undefined) {
+                        toastr.warning('Status cuti luar negeri / dalam negeri belum dipilih', 'Peringatan');
+                        return;
+                    } else {
+                        if ($scope.item.isCutiLuarKota == 1) {
+                            statusCutiLuarKota = "true";
+                        }
+                        else {
+                            statusCutiLuarKota = "false";
+                        }
+                    }
 
                     dataSend = {
                         "noPlanning": $scope.item.noUsulan,
@@ -1116,7 +1136,8 @@ define(['initialize'], function (initialize) {
                         "jabatanPemberiNotaDinas": {
                             "id": $scope.item.jabatanNotaDinas != undefined ? $scope.item.jabatanNotaDinas.id : 14
                         },
-                        "isCutiLuarNegeri": statusCutiLuarNegeri
+                        "isCutiLuarNegeri": statusCutiLuarNegeri,
+                        "isCutiLuarKota": statusCutiLuarKota
                     }
 
                     if (listDate.length == 0 && !$scope.isCutiMelahirkan) {
@@ -1525,7 +1546,8 @@ define(['initialize'], function (initialize) {
                         },
                         "jumlahCuti": dataItem.jumlahCuti,
                         "sisaCuti": dataItem.sisaCuti,
-                        "isCutiLuarNegeri": dataItem.isCutiLuarNegeri ? "1" : "2"
+                        "isCutiLuarNegeri": dataItem.isCutiLuarNegeri ? "1" : "2",
+                        "isCutiLuarKota": dataItem.isCutiLuarKota ? "1" : "2"
                     }
                     localStorage.setItem('DataPerubahanStatus', JSON.stringify(setCurrentData));
                     $state.go('EditPermohonanPerubahanStatusPegawai', {

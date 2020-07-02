@@ -6,7 +6,7 @@ define(['Configuration'], function (config) {
     var baseUrlK3KL = config.baseUrlActionK3KL;
     var baseApiPostK3Kl = config.baseApiPostDataK3KL;
 
-    var baseApiIT = config.baseUrlIT;
+    var baseApiIT = config.baseUrlAction;
 
     var baseUrlIPSRS = config.baseUrlActionIPSRS;
     var baseApiPostDataIPSRS = config.baseApiPostDataIPSRS;
