@@ -1,21 +1,21 @@
 <style>
-.style-center{
-	display: inline-block;
-	text-align: center;
-	width: 100%;
-}
+	.style-center {
+		display: inline-block;
+		text-align: center;
+		width: 100%;
+	}
 
-.style-right{
-	display: inline-block;
-	text-align: right;
-	width: 100%;
-}
+	.style-right {
+		display: inline-block;
+		text-align: right;
+		width: 100%;
+	}
 
-.style-left{
-	display: inline-block;
-	text-align: left;
-	width: 100%;
-}
+	.style-left {
+		display: inline-block;
+		text-align: left;
+		width: 100%;
+	}
 </style>
 <!-- <div ng-controller="DaftarPasienPulangKasirCtrl"> -->
 <div ng-show="dataVOloaded">
@@ -44,8 +44,8 @@
 
 				<div class="grid_12">
 					<input style="width: 100%;" kendo-combo-box k-ng-model="item.dokter"
-						k-data-text-field="'namalengkap'" k-data-value-field="'id'"
-						k-filter="'contains'" k-auto-bind="false" k-data-source="listDokter2" />
+						k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'"
+						k-auto-bind="false" k-data-source="listDokter2" />
 				</div>
 			</div>
 			<div class="grid_2">
@@ -56,9 +56,8 @@
 
 				<div class="grid_12">
 					<input style="width: 100%;" kendo-combo-box k-ng-model="item.instalasi"
-						k-data-text-field="'departemen'" k-data-value-field="'id'"
-						k-filter="'contains'" k-auto-bind="false" k-data-source="listDepartemen"
-						k-on-change='getIsiComboRuangan()'/>
+						k-data-text-field="'departemen'" k-data-value-field="'id'" k-filter="'contains'"
+						k-auto-bind="false" k-data-source="listDepartemen" k-on-change='getIsiComboRuangan()' />
 				</div>
 			</div>
 
@@ -69,9 +68,9 @@
 				<div class="clear"></div>
 
 				<div class="grid_12">
-					<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan"
-						k-data-text-field="'ruangan'" k-data-value-field="'id'"
-						k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'ruangan'"
+						k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
+						k-data-source="listRuangan" />
 				</div>
 			</div>
 
@@ -82,10 +81,9 @@
 				<div class="clear"></div>
 
 				<div class="grid_12">
-					<input style="width: 100%;" kendo-combo-box
-						k-ng-model="item.kelompokpasien" k-data-text-field="'kelompokpasien'"
-						k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
-						k-data-source="listKelompokPasien" />
+					<input style="width: 100%;" kendo-combo-box k-ng-model="item.kelompokpasien"
+						k-data-text-field="'kelompokpasien'" k-data-value-field="'id'" k-filter="'contains'"
+						k-auto-bind="false" k-data-source="listKelompokPasien" />
 				</div>
 			</div>
 
@@ -99,15 +97,14 @@
 				<div class="grid_12">
 					<!-- AwalPeriode -->
 					<div class="grid_6 padDatePicker">
-						<input style="width: 100%" k-ng-model="item.periodeAwal"
-							kendo-datetimepicker k-max="now" placeholer="yyyy-MM-dd HH:mm"
-							k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
+						<input style="width: 100%" k-ng-model="item.periodeAwal" kendo-datetimepicker k-max="now"
+							placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd HH:mm'" parsedate="yyyy-MM-dd HH:mm" />
 					</div>
 
 					<!-- AkhirPeriode -->
 					<div class="grid_6 padDatePicker">
-						<input style="width: 100%" k-ng-model="item.periodeAkhir"
-							kendo-datetimepicker placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd
+						<input style="width: 100%" k-ng-model="item.periodeAkhir" kendo-datetimepicker
+							placeholer="yyyy-MM-dd HH:mm" k-format="'yyyy-MM-dd
 							HH:mm'" />
 					</div>
 					<div class="clear"></div>
@@ -124,8 +121,7 @@
 				<div class="clear"></div>
 
 				<div class="grid_12">
-					<md-button class="md-raised md-primary medium-button"
-						ng-click="SearchData()">
+					<md-button class="md-raised md-primary medium-button" ng-click="SearchData()">
 						<span style="margin-right: 5px;">Cari</span>
 						<i class="fa fa-search"></i>
 					</md-button>
@@ -156,15 +152,9 @@
 				k-ng-model="dataPasienSelected"
             	ng-click="klikGrid(dataPasienSelected)">
 				</div> -->
-			<kendo-grid id="kGrid"
-				data-source="dataDaftarPasienPulang"
-				options="columnDaftarPasienPulang"
-				k-selectable="'row'"
-				k-pageable="'true'"
-				k-sortable="'true'"
-				k-resizable="'true'"
-				k-ng-model="dataPasienSelected"
-				ng-click="klikGrid(dataPasienSelected)">
+			<kendo-grid id="kGrid" data-source="dataDaftarPasienPulang" options="columnDaftarPasienPulang"
+				k-selectable="'row'" k-pageable="'true'" k-sortable="'true'" k-resizable="'true'"
+				k-ng-model="dataPasienSelected" ng-click="klikGrid(dataPasienSelected)">
 
 			</kendo-grid>
 
@@ -182,8 +172,7 @@
 			<div class="clear"></div>
 
 			<div class="grid_12">
-				<input c-text-box type="input" filter="" class="k-textbox"
-					ng-model="item.noReg" />
+				<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noReg" />
 			</div>
 		</div>
 		<div class="grid_1">
@@ -193,8 +182,7 @@
 			<div class="clear"></div>
 
 			<div class="grid_12">
-				<input c-text-box type="input" filter="" class="k-textbox"
-					ng-model="item.noRm" />
+				<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noRm" />
 			</div>
 		</div>
 		<!-- Nama -->
@@ -205,8 +193,7 @@
 			<div class="clear"></div>
 
 			<div class="grid_12">
-				<input c-text-box type="input" filter="" class="k-textbox"
-					ng-model="item.nama" />
+				<input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nama" />
 			</div>
 		</div>
 
@@ -220,20 +207,18 @@
 
 			<div class="grid_12">
 				<input style="width: 100%;" kendo-combo-box k-ng-model="item.namaDokter"
-					k-data-text-field="'namalengkap'" k-data-value-field="'id'"
-					k-filter="'contains'" k-auto-bind="false" k-data-source="listDokter" />
+					k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'"
+					k-auto-bind="false" k-data-source="listDokter" />
 			</div>
 		</div>
 		<div class="grid_1" style="margin-top: 22px" ng-show='cboDokter'>
-			<md-button class="md-raised md-primary medium-button"
-				ng-click="simpan()">
+			<md-button class="md-raised md-primary medium-button" ng-click="simpan()">
 				<span>Simpan</span>
 			</md-button>
 			<!-- <button class="btnTemplate1" style="margin-left: 0;" ng-click="simpan()">Simpan</button> -->
 		</div>
 		<div class="grid_1" style="margin-top: 22px" ng-show='cboDokter'>
-			<md-button class="md-raised md-danger medium-button"
-				ng-click="batal()">
+			<md-button class="md-raised md-danger medium-button" ng-click="batal()">
 				<span>Batal</span>
 			</md-button>
 		</div>
@@ -241,29 +226,25 @@
 
 
 
-		<div class="grid_2" ng-show='cboUbahDokter' style="margin-top: 20px" >
-			<md-button class="md-raised md-primary medium-button"
-				ng-click="cetakLaporan()">
+		<div class="grid_2" ng-show='cboUbahDokter' style="margin-top: 20px">
+			<md-button class="md-raised md-primary medium-button" ng-click="cetakLaporan()">
 				<span>Cetak</span>
 			</md-button>
 		</div>
 		<div class="grid_2" style="margin-top: 20px" ng-show='cboUbahDokter'>
-			<md-button class="md-raised md-primary medium-button"
-				ng-click="DaftarRuangan()">
+			<md-button class="md-raised md-primary medium-button" ng-click="DaftarRuangan()">
 				<span>Detail Registrasi</span>
 			</md-button>
 		</div>
 		<div class="grid_2" style="margin-top: 20px" ng-show='cboUbahDokter'>
 			<!-- <button class="btnTemplate1" style="margin-left: 0;" ng-click="Detail()">Detail
 				Tagihan</button> -->
-			<md-button class="md-raised md-primary medium-button"
-				ng-click="Detail()">
+			<md-button class="md-raised md-primary medium-button" ng-click="Detail()">
 				<span>Detail Tagihan</span>
 			</md-button>
 		</div>
 		<div class="grid_2" style="margin-top: 20px" ng-show='cboUbahDokter'>
-			<md-button class="md-raised md-primary medium-button"
-				ng-click="UbahDokter()">
+			<md-button class="md-raised md-primary medium-button" ng-click="UbahDokter()">
 				<span>Ubah Dokter</span>
 			</md-button>
 			<!-- <button class="btnTemplate1" style="margin-left: 0;"
@@ -286,5 +267,3 @@
 		</div>
 	</div> -->
 </div>
-
-<!-- </div> -->
