@@ -191,6 +191,34 @@
                 ng-model="ji.pejabatPenilaiDireksi"
                 k-data-text-field="'namaLengkap'" ng-show="isDireksi" />
         </div>
+        <fieldset class="borderBox" ng-show="false">
+            <legend>
+                <strong>Status</strong>
+            </legend>
+            <div class="grid_12">
+                <div class="grid_4">
+                    <div class="clear"></div>
+                    <div class="grid_12">
+                        <input type="checkbox" class="k-checkbox" ng-model='ji.isPrimary' id="cb" ng-checked="vals" ng-click="changeCB()" ng-click="isPrimary(ji.isPrimary)">
+                        <label class="k-checkbox-label" for="cb">Jabatan Utama</label>
+                    </div>
+                </div>
+                <div class="grid_3">
+                    <div class="clear"></div>
+                    <div class="grid_12">
+                        <input type="checkbox" class="k-checkbox" ng-model='ji.isMonitoring' id="cb1" ng-checked="vals1" ng-click="isMonitoring(ji.isMonitoring)">
+                        <label class="k-checkbox-label" for="cb1">Monitoring</label>
+                    </div>
+                </div>
+                <div class="grid_5">
+                    <div class="clear">
+                    <div class="grid_12">
+                        <input type="checkbox" class="k-checkbox" ng-model='ji.isCanCreateJadwal' id="cb2" ng-checked="vals2" ng-click="isCanCreateJadwal(ji.isCanCreateJadwal)">
+                        <label class="k-checkbox-label" for="cb2">Membuat Jadwal Kerja</label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
         <!-- Action Button -->
         <div class="grid_12">
             <div class="k-edit-buttons k-state-default pull-right"

@@ -7,7 +7,7 @@ define(['initialize'], function (initialize) {
       // $scope.item.tglAkhir = new Date()
 
       var onInit = function () {
-        IPSRSService.getItem('service/list-generic/?view=Ruangan&select=*', true).then(function (dat) {
+        IPSRSService.getItem('service/list-generic/?view=Ruangan&select=id,namaRuangan', true).then(function (dat) {
           $scope.listRuangan = dat
         })
         $scope.dataStatusPekerjaan = [

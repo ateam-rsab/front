@@ -2899,6 +2899,26 @@
       ]
     },
     {
+      "name": "MasterDokumen",
+      "url": "/MasterDokumen",
+      "templateurl": "module/SDM/MasterDokumen.html",
+      "controller": "MasterDokumenCtrl",
+      "deps": [
+        {
+          "module": "Services",
+          "define": "Service"
+        },
+        {
+          "module": "LoginServices",
+          "define": "LoginService"
+        },
+        {
+          "module": "SdmService",
+          "define": "SdmService"
+        }
+      ]
+    },    
+    {
       "name": "LaporanPesertaDidik",
       "url": "/LaporanPesertaDidik",
       "templateurl": "module/SDM/LaporanPesertaDidik.html",
@@ -5983,6 +6003,26 @@
       "url": "/DaftarPegawaiPensiunMeninggal",
       "templateurl": "module/SDM/DaftarPegawaiPensiunMeninggal.html",
       "controller": "DaftarPegawaiPensiunMeninggalCtrl",
+      "deps": [
+        {
+          "module": "Services",
+          "define": "Service"
+        },
+        {
+          "module": "LoginServices",
+          "define": "LoginService"
+        },
+        {
+          "module": "SdmService",
+          "define": "SdmService"
+        }
+      ]
+    },
+    {
+      "name": "DaftarPegawaiPensiunMeninggalNonsdm",
+      "url": "/DaftarPegawaiPensiunMeninggalNonsdm",
+      "templateurl": "module/SDM/DaftarPegawaiPensiunMeninggalNonsdm.html",
+      "controller": "DaftarPegawaiPensiunMeninggalNonsdmCtrl",
       "deps": [
         {
           "module": "Services",

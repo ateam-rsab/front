@@ -39,69 +39,69 @@ require(['LoginService', 'core', "kendo.angular", 'Configuration', 'Helper', 'jQ
                             kataSandi: password
                         }).then(function(data) {
                                 
-                                if (data.data.messages.message) {
-                                    window.messageContainer.error(data.data.messages.message);
-                                    $scope.isBusy = false;
-                                    return;
-                                }
-                                var cookieStr = "statusCode=" + data.data.data.kelompokUser.kelompokUser + ';';
-                                document.cookie = cookieStr;
-                                document.cookie = 'authorization=' + data.data.messages['X-AUTH-TOKEN'] + ";";
-                                
-                                var dataUserLogin = {
-                                    id: data.data.data.id,
-                                    // Start Syamsu
-                                    kdUser : data.data.data.namaUser,
-                                    // End Syamsu
-                                    waktuLogin : new Date(),
-                                    // endWaktuLogin : new Date(new Date().getTime() + ( 2 * 60 * 1000))
-                                    endWaktuLogin : new Date(new Date().getTime() + (1 * 24 * 60 * 60 * 1000))
-                                };
-
-                                window.localStorage.setItem('datauserlogin', JSON.stringify(dataUserLogin));
-                                window.localStorage.setItem('pegawai', JSON.stringify(data.data.data.pegawai));
-                                var dataUrlRoute = [];
-                                var dataUrlRouteAkuntansi = [];
-                                $.when(
-                                    $.getJSON(conf.urlRoute, function(data) {
-                                        dataUrlRoute = data;
-                                    }),
-                                    $.getJSON(conf.urlRoute_Akuntansi, function(data) {
-                                        dataUrlRouteAkuntansi = data;
-                                    }),
-                                    $.getJSON(conf.urlRoute_SDM, function(data) {
-                                        dataUrlRouteSDM = data;
-                                    })
-                                ).then(function() {
-                                    var msgError = "";
-                                    var arrDataConfig = [dataUrlRoute, dataUrlRouteAkuntansi, dataUrlRouteSDM];
-                                    var dataConfig = [];
-                                    dataConfig.push({
-                                        "nameDep": "jQuery",
-                                        "urlDep": "../jquery"
-                                    });
-                                    for (var i = 0; i < arrDataConfig.length; i++) {
-                                        for (var k = 0; k < arrDataConfig[i].length; k++) {
-                                            dataConfig.push(arrDataConfig[i][k]);
-                                        }
-                                    }
-
-                                    if (msgError == "") {
-                                        socket.emit('login', data.data.data.pegawai);
-                                        window.localStorage.setItem('urlBind', JSON.stringify(dataConfig));
-                                        setTimeout(function(){                                                                                        
-                                            window.location = "/app/#/home";
-                                            $scope.isBusy = false;
-                                        }, 1000);
-                                    }
-                                });                            
-                            },
-                            function(error) {
-                                if(error.data.messages)
-                                    window.messageContainer.error(error.data.messages)
+                            if (data.data.messages.message) {
+                                window.messageContainer.error(data.data.messages.message);
                                 $scope.isBusy = false;
-                                // window.messageContainer.error('Gagal masuk ke dalam system')
-                            });
+                                return;
+                            }
+                            var cookieStr = "statusCode=" + data.data.data.kelompokUser.kelompokUser + ';';
+                            document.cookie = cookieStr;
+                            document.cookie = 'authorization=' + data.data.messages['X-AUTH-TOKEN'] + ";";
+                            
+                            var dataUserLogin = {
+                                id: data.data.data.id,
+                                // Start Syamsu
+                                kdUser : data.data.data.namaUser,
+                                // End Syamsu
+                                waktuLogin : new Date(),
+                                // endWaktuLogin : new Date(new Date().getTime() + ( 2 * 60 * 1000))
+                                endWaktuLogin : new Date(new Date().getTime() + (1 * 24 * 60 * 60 * 1000))
+                            };
+
+                            window.localStorage.setItem('datauserlogin', JSON.stringify(dataUserLogin));
+                            window.localStorage.setItem('pegawai', JSON.stringify(data.data.data.pegawai));
+                            var dataUrlRoute = [];
+                            var dataUrlRouteAkuntansi = [];
+                            $.when(
+                                $.getJSON(conf.urlRoute, function(data) {
+                                    dataUrlRoute = data;
+                                }),
+                                $.getJSON(conf.urlRoute_Akuntansi, function(data) {
+                                    dataUrlRouteAkuntansi = data;
+                                }),
+                                $.getJSON(conf.urlRoute_SDM, function(data) {
+                                    dataUrlRouteSDM = data;
+                                })
+                            ).then(function() {
+                                var msgError = "";
+                                var arrDataConfig = [dataUrlRoute, dataUrlRouteAkuntansi, dataUrlRouteSDM];
+                                var dataConfig = [];
+                                dataConfig.push({
+                                    "nameDep": "jQuery",
+                                    "urlDep": "../jquery"
+                                });
+                                for (var i = 0; i < arrDataConfig.length; i++) {
+                                    for (var k = 0; k < arrDataConfig[i].length; k++) {
+                                        dataConfig.push(arrDataConfig[i][k]);
+                                    }
+                                }
+
+                                if (msgError == "") {
+                                    socket.emit('login', data.data.data.pegawai);
+                                    window.localStorage.setItem('urlBind', JSON.stringify(dataConfig));
+                                    setTimeout(function(){                                                                                        
+                                        window.location = "/app/#/home";
+                                        $scope.isBusy = false;
+                                    }, 1000);
+                                }
+                            });                            
+                        },
+                        function(error) {
+                            if(error.data.messages)
+                                window.messageContainer.error(error.data.messages)
+                            $scope.isBusy = false;
+                            // window.messageContainer.error('Gagal masuk ke dalam system')
+                        });
 
                         loginService.javaAuthentication({
                             namaUser: userName,
@@ -171,7 +171,6 @@ require(['LoginService', 'core', "kendo.angular", 'Configuration', 'Helper', 'jQ
                             $scope.isBusy = false;
                             // window.messageContainer.error('Gagal masuk ke dalam system')
                         });
-
                     };
 
 

@@ -95,19 +95,27 @@ define(['initialize'], function(initialize) {
                         var single = res[0].data.data.dataSingle[0];
                         $scope.isSingle = true;
                         $scope.listUnitKerja =[{id:single.idUnit,name:single.nameUnit}];
-                        $scope.listSubUnitKerja = [{id:single.idSub,name:single.nameSub}];
+                        // $scope.listSubUnitKerja = [{id:single.idSub,name:single.nameSub}];
+                        ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-drop-down-subunit?id=" + single.idPgw + "&idUnit=" + single.idUnit).then(function(data) {
+                            $scope.item.subUnitKerja = {id:single.idSub,name:single.nameSub};
+                            $scope.listSubUnitKerja = data.data.data;
+                        });
                         $scope.listPegawai = [{id:single.idPgw,namalengkap:single.namalengkap}];
                         $scope.item.unitKerja  = {id:single.idUnit,name:single.nameUnit};
-                        $scope.item.subUnitKerja = {id:single.idSub,name:single.nameSub};
+                        // $scope.item.subUnitKerja = {id:single.idSub,name:single.nameSub};
                         $scope.item.pegawai = {id:single.idPgw,namalengkap:single.namalengkap}; 
                     } else if ($scope.listUnitKerja.length == 1 && $scope.isMonitoring) {
                         var single = res[0].data.data.dataSingle[0];
                         $scope.isSingle = true;
                         $scope.listUnitKerja =[{id:single.idUnit,name:single.nameUnit}];
-                        $scope.listSubUnitKerja = [{id:single.idSub,name:single.nameSub}];
+                        // $scope.listSubUnitKerja = [{id:single.idSub,name:single.nameSub}];
+                        ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-drop-down-subunit?id=" + single.idPgw + "&idUnit=" + single.idUnit).then(function(data) {
+                            $scope.item.subUnitKerja = {id:single.idSub,name:single.nameSub};
+                            $scope.listSubUnitKerja = data.data.data;
+                        });
                         // $scope.listPegawai = [{id:single.idPgw,namalengkap:single.namalengkap}];
                         $scope.item.unitKerja  = {id:single.idUnit,name:single.nameUnit};
-                        $scope.item.subUnitKerja = {id:single.idSub,name:single.nameSub};
+                        // $scope.item.subUnitKerja = {id:single.idSub,name:single.nameSub};
                         // $scope.item.pegawai = {id:single.idPgw,namalengkap:single.namalengkap}; 
                     }
                     $scope.isRouteLoading = false;
@@ -248,9 +256,19 @@ define(['initialize'], function(initialize) {
                         width: "50px"
                     },
                     {
+                        field: "validMasuk",
+                        title: "V",
+                        width: "18px"
+                    },
+                    {
                         field: "absensiPulang",
                         title: "Pulang",
                         width: "50px"
+                    },
+                    {
+                        field: "validPulang",
+                        title: "V",
+                        width: "18px"
                     }
                     ],
                 },
@@ -292,7 +310,7 @@ define(['initialize'], function(initialize) {
                     },
                     {
                         field: "alasan",
-                        title: "Alasan",
+                        title: "Keterangan",
                         width: "120px",
                         headerAttributes: { style: "text-align : center" },
                     }
@@ -788,7 +806,7 @@ define(['initialize'], function(initialize) {
                 if (!newVal) return;
                 if ((newVal && oldVal) && newVal.id == oldVal.id || $scope.isSingle === true ) return;
                 // manageSarprasPhp.getDataTableMaster("monitoringabsensi/get-drop-down-subunit?id=" + ModelItem.getPegawai().id + "&idUnit=" + newVal.id + "&isMonitoring=" + $scope.isMonitoring).then(function(data) {
-                ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-drop-down-subunit?id=" + ModelItem.getPegawai().id + "&idUnit=" + newVal.id + "&isMonitoring=" + $scope.isMonitoring).then(function(data) {
+                ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-drop-down-subunit?id=" + ModelItem.getPegawai().id + "&idUnit=" + newVal.id).then(function(data) {
                     $scope.item.subUnitKerja = "";
                     $scope.listSubUnitKerja = data.data.data;
                 });

@@ -10,11 +10,11 @@
                 <span c-label c-label-text="Tahun" />
                 <input required style="width: 100%;" kendo-combo-box k-ng-model="item.selectedTahun" k-data-text-field="'id'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listTahun" />
             </div>
-            <div class="grid_3">
+            <div class="grid_2">
                 <label c-label item="item" c-label-text="unitKerja"></label>
                 <input style="width: 100%;" kendo-combo-box k-ng-model="item.unitKerja" k-data-text-field="'name'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listUnitKerja" />
             </div>
-            <div class="grid_3">
+            <div class="grid_2">
                 <label c-label item="item" c-label-text="subUnitKerja"></label>
                 <input style="width: 100%;" kendo-combo-box k-ng-model="item.subUnitKerja" k-data-text-field="'name'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listSubUnitKerja" />
             </div>
@@ -22,9 +22,15 @@
                 <label c-label c-label-text=""></label>
                 <em style="margin-top:6px;" ng-click='refresh()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
             </div>
-
-            <!-- <div  class="grid_3" style="margin-top:22px"> -->
-        <div class="grid_2" style="margin-left:-50px">
+            <div class="grid_2" style="margin-left:-75px;">
+                <label c-label c-label-text=""></label>
+                <button style="margin-top:6px;" class="c-button success" ng-click="unduh()">Unduh Template Excel</button>
+            </div>
+            <div class="grid_1">
+                <label c-label c-label-text=""></label>
+                <label style="margin-top:10px;" c-label c-label-text="Atau"></label>
+            </div>
+            <div class="grid_2" style="margin-left:-75px">
                 <input id="upload"
                         type="file"
                         kendo-upload
@@ -33,7 +39,10 @@
                         k-select="onUploadExcel"
                         />
             </div>
-
+            <div class="grid_1" style="margin-left:0px;">
+                <label c-label c-label-text=""></label>
+                <button style="margin-top:6px;" class="c-button success" ng-click="unggah()">Unggah</button>
+            </div>
         </div>
         <div class="grid_12">
             <table id="tabelJadwal" class="table">
@@ -67,10 +76,6 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-
-        <div class="grid_2">
-            <button class="c-button success" ng-click="Export ke Excel('tabelJadwal')">Export Table Data To Excel File</button>
         </div>
 
         <div class="grid_12" ng-show="dataFound">

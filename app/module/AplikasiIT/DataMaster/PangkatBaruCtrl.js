@@ -23,7 +23,7 @@ define(['initialize'], function(initialize) {
 				});
 			};
 
-			 MasterPantauParameter.getOrderList("service/list-generic/?view=Golongan&select=*", true).then(function(dat){
+			 MasterPantauParameter.getOrderList("service/list-generic/?view=Golongan&select=id,name", true).then(function(dat){
 	         $scope.listGolongan = dat;	
 	      	});
               var init = function () {

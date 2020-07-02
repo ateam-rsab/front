@@ -1,11 +1,13 @@
 define(['initialize'], function(initialize) {
 	'use strict';
-	initialize.controller('MasterUnitKerjaSDMCtrl', ['$rootScope', '$scope', '$timeout', 'ModelItem','$state','ManageSdm', 'FindSdm',
-		function($rootScope, $scope, $timeout, ModelItem, $state, ManageSdm, FindSdm) {
+	initialize.controller('MasterUnitKerjaSDMCtrl', ['$rootScope','$scope','$timeout','ModelItem','$state','ManageSdm','ManageSdmNew','FindSdm',
+		function($rootScope, $scope, $timeout, ModelItem, $state, ManageSdm, ManageSdmNew, FindSdm) {
+            var pegawai = JSON.parse(localStorage.getItem('pegawai'));
+			$scope.namaPegawai = pegawai.namaLengkap;
             $scope.loadUnitKerja = function(){
                 $scope.item = {};
                 $scope.isRouteLoading = true;
-                FindSdm.getUnitKerja().then(function(el){
+                ManageSdmNew.getListData("sdm/get-all-unit-kerja").then(function(el){
                     $scope.listUnitKerja = el.data.data;
                     $scope.daftarUnitKerja = new kendo.data.DataSource({
                         data: el.data.data,
@@ -38,6 +40,12 @@ define(['initialize'], function(initialize) {
 							}
                         }
                     });
+                    var dataGrid = $("#gridUnitKerja").data("kendoGrid");
+                    if ($scope.namaPegawai == "Administrator") {
+                        dataGrid.hideColumn(dataGrid.columns[3]);	
+                    } else {
+                        dataGrid.hideColumn(dataGrid.columns[2]);
+                    }
                     $scope.isRouteLoading = false;
                 }, (err) => {
                     $scope.isRouteLoading = false;
@@ -48,7 +56,7 @@ define(['initialize'], function(initialize) {
             $scope.loadSubUnitKerja = function(){
                 $scope.item = {};
                 $scope.isRouteLoading = true;
-                FindSdm.getSubUnitKerja().then(function(subEl){
+                ManageSdmNew.getListData("sdm/get-all-sub-unit-kerja").then(function(subEl){
                     $scope.daftarSubUnitKerja = new kendo.data.DataSource({
                         data: subEl.data.data,
                         schema: {
@@ -98,6 +106,12 @@ define(['initialize'], function(initialize) {
 							}
                         }
                     });
+                    var dataGrid = $("#gridSubUnitKerja").data("kendoGrid");
+                    if ($scope.namaPegawai == "Administrator") {
+                        dataGrid.hideColumn(dataGrid.columns[4]);	
+                    } else {
+                        dataGrid.hideColumn(dataGrid.columns[3]);
+                    }
                     $scope.isRouteLoading = false;
                 }, (error) => {
                     $scope.isRouteLoading = false;
@@ -134,7 +148,8 @@ define(['initialize'], function(initialize) {
                 columns: [
                     { field: "kodeExternal", title: "Kode ", "width": 180}, 
                     { field: "name", title: "Nama Unit Kerja", editor: textareaNameEditor },
-                    {command: [{name: "destroy", text: "Hapus"},{name: "edit", text: "Edit"}], title: "&nbsp;", width: 160 }
+                    {command: [{name: "destroy", text: "Hapus"},{name: "edit", text: "Edit"}], title: "&nbsp;", width: 160 },
+                    {command: [{name: "edit", text: "Edit"}], title: "&nbsp;", width: 160 }
                 ],
                 editable: "popup",
 				save: function(e){
@@ -155,7 +170,8 @@ define(['initialize'], function(initialize) {
                         { "field": "kodeExternal", "title": "Kode", "width": 180 }, 
                         { "field": "name", "title": "Nama", editor: textareaNameEditor }
                     ]},
-                    {command: [{name: "destroy", text: "Hapus"},{name: "edit", text: "Edit"}], title: "&nbsp;", width: 160 }
+                    {command: [{name: "destroy", text: "Hapus"},{name: "edit", text: "Edit"}], title: "&nbsp;", width: 160 },
+                    {command: [{name: "edit", text: "Edit"}], title: "&nbsp;", width: 160 }
                 ],
                 editable: "popup",
 				edit: function(e){
@@ -183,7 +199,7 @@ define(['initialize'], function(initialize) {
                     "reportDisplay":  items.name,
                 }
                 $scope.reloadGrid = item.statusEnabled;
-                ManageSdm.saveUnitKerja(item).then(function(e){
+                ManageSdmNew.saveData(item,"sdm/save-unit-kerja").then(function(e){
                     if($scope.reloadGrid) $scope.loadUnitKerja();
                 }, function(error){
                     throw error;
@@ -204,7 +220,7 @@ define(['initialize'], function(initialize) {
                     }
                 }
                 $scope.reloadGridSub = item.statusEnabled;
-                ManageSdm.saveSubUnitKerja(item).then(function(e){
+                ManageSdmNew.saveData(item,"sdm/save-sub-unit-kerja").then(function(e){
                     if ($scope.reloadGridSub) $scope.loadSubUnitKerja();
                 })
             };

@@ -7,6 +7,7 @@ define(['Configuration'], function(config) {
      var baseUrlActionSDM = config.baseUrlActionSDM;
      var baseApiPostDataSDM = config.baseApiPostDataSDM;
      var e = config.baseUrlListData;
+     var baseUrlReport = config.urlReporting;
      var SdmService = angular.module('SdmService', ['ngResource', 'HttpServices', 'Services']);
      SdmService.service('ManageSdmNew', ['ModelItem', 'R', 'DateHelper', function(modelItem, r, dateHelper) {
         return {
@@ -33,6 +34,16 @@ define(['Configuration'], function(config) {
             deleteData: function(urlGet){
                 return r.get({
                     url: baseUrlActionSDM + urlGet
+                });
+            }
+        }
+     }]);
+
+     SdmService.service('ReportService', ['ModelItem', 'R', 'DateHelper', function(modelItem, r, dateHelper) {
+        return {
+            getListData: function(urlGet) {
+                return r.get({
+                    url: baseUrlReport + urlGet
                 });
             }
         }
