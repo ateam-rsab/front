@@ -1011,7 +1011,9 @@ define(['initialize'], function(initialize) {
                 if ($scope.item.mataAnggaran != undefined) {
                     mataanggaran=$scope.item.mataAnggaran.norec
                 }
+                
                 var asalproduk = null;
+
                 if ($scope.item.asalproduk != undefined) {
                     asalproduk=parseFloat($scope.item.asalproduk.id)
                 }

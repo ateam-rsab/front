@@ -15,7 +15,7 @@ define(['initialize'], function(initialize) {
             $scope.item.tglKebutuhan=new Date();
             $scope.item.tglConfirm=new Date();
             $scope.supplier=true;
-            var pegawaiUser = {}        
+            var pegawaiUser = {}
             var norec_Realisasi='';
             var norecRR='';
             var keltrans='';

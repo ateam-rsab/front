@@ -951,7 +951,11 @@
     {
       "nameDep": "UsulanPermintaanBarangJasaRuanganCtrl",
       "urlDep": "module/Logistik/ModulInventory/UsulanPermintaanBarangJasaRuanganCtrl"
-    },   
+    },
+    {
+      "nameDep": "UsulanPermintaanBarangJasaRuanganRevCtrl",
+      "urlDep": "module/Logistik/ModulInventory/UsulanPermintaanBarangJasaRuanganRevCtrl"
+    },  
     {
       "nameDep": "DaftarUsulanPermintaanBarangCtrl",
       "urlDep": "module/Logistik/ModulInventory/DaftarUsulanPermintaanBarangCtrl"
@@ -1038,7 +1042,11 @@
     {
       "nameDep": "UsulanPelaksanaanKegiatanCtrl",
       "urlDep": "module/Logistik/ModulInventory/UsulanPelaksanaanKegiatanCtrl"
-    },   
+    },
+    {
+      "nameDep": "UsulanPelaksanaanKegiatanRevCtrl",
+      "urlDep": "module/Logistik/ModulInventory/UsulanPelaksanaanKegiatanRevCtrl"
+    },
     {
       "nameDep": "DaftarUsulanPelaksanaanKegiatanCtrl",
       "urlDep": "module/Logistik/ModulInventory/DaftarUsulanPelaksanaanKegiatanCtrl"
@@ -1694,6 +1702,10 @@
       "urlDep": "module/Logistik/ModulInventory/DaftarMonitoringUsulanCtrl"
     },
     {
+      "nameDep": "DaftarMonitoringUsulanRuanganCtrl",
+      "urlDep": "module/Logistik/ModulInventory/DaftarMonitoringUsulanRuanganCtrl"
+    },
+    {
       "nameDep": "DaftarPengajuanPengadaanBarangCtrl",
       "urlDep": "module/Logistik/ModulInventory/DaftarPengajuanPengadaanBarangCtrl"
     },
@@ -2036,6 +2048,10 @@
       "urlDep": "module/Logistik/ModulInventory/DaftarPengajuanPengadaanBarangPengendaliCtrl"
     },
     {
+      "nameDep": "DaftarPengajuanPengadaanBarangPengendaliRevCtrl",
+      "urlDep": "module/Logistik/ModulInventory/DaftarPengajuanPengadaanBarangPengendaliRevCtrl"
+    },
+    {
       "nameDep": "KonsultasiDokterCtrl",
       "urlDep": "module/RekamMedis/KonsultasiDokterCtrl"
     },
@@ -2234,7 +2250,11 @@
     },
     {
       "nameDep": "LaporanKunjunganPasienCtrl",
-      "urlDep": "module/pasien/DaftarPasienOperator/LaporanKunjunganPasienCtrl"    
+      "urlDep": "module/pasien/DaftarPasienOperator/LaporanKunjunganPasienCtrl"
+    },
+    {
+      "nameDep": "RekapKunjunganPasienPerHariCtrl",
+      "urlDep": "module/pasien/DaftarPasienOperator/RekapKunjunganPasienPerHariCtrl"
     },
     {
       "nameDep": "DaftarEvaluasiPenyelenggaraCtrl",

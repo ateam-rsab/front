@@ -1,6 +1,6 @@
 define([], function () {
     'use strict';
-    var baseURLFrontend = window.location.hostname === "192.168.12.3" ? "http://192.168.12.3" : "http://172.16.99.54",
+    var baseURLFrontend = window.location.hostname === "192.168.12.3" ? "http://192.168.12.3" : "http://172.16.99.57",
         portFrontend = window.location.hostname === "192.168.12.3" ? '4444' :'4444',
         
         baseURLPhp = 'http://192.168.12.3',
@@ -116,7 +116,7 @@ define([], function () {
 
             urlDataMaster: `${baseURLJava}:${portJava}/jasamedika-web/generated_master/`,
 
-            baseUrlListData: `${baseURLJava}:${portJava}/jasamedika-web/simrs_harkit/service/list-generic/?view=`,
+            baseUrlListData: `${baseURLJava}:${portJava}/jasamedika-web/service/list-generic/?view=`,
 
             // URL BARU
             // K3KL

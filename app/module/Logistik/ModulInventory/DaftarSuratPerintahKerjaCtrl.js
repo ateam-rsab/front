@@ -43,27 +43,16 @@ define(['initialize'], function (initialize) {
 
             function init() {
                 $scope.isRouteLoading = true;
-                var ins = ""
-                if ($scope.item.instalasi != undefined) {
-                    var ins = "&dpid=" + $scope.item.instalasi.id
-                }
-                var rg = ""
-                if ($scope.item.ruangan != undefined) {
-                    var rg = "&ruid=" + $scope.item.ruangan.id
-                }
-                var produkfk = ""
-                if ($scope.item.namaBarang != undefined) {
-                    var produkfk = "&produkfk=" + $scope.item.namaBarang.id
-                }
+
                 var tglAwal = moment($scope.item.tglAwal).format('YYYY-MM-DD HH:mm:ss');
                 var tglAkhir = moment($scope.item.tglAkhir).format('YYYY-MM-DD HH:mm:ss');
                 manageLogistikPhp.getDataTableTransaksi("upk/get-daftar-usulan-terupk?" +
                     "tglAwal=" + tglAwal +
                     "&tglAkhir=" + tglAkhir +
-                    "&nostruk=" + $scope.item.struk +
-                    "&nofaktur=" + $scope.item.nofaktur +
-                    "&namarekanan=" + $scope.item.namarekanan +
-                    produkfk, true).then(function (dat) {
+                    "&nostruk=" + ($scope.item.struk ? $scope.item.struk : "") +
+                    "&nofaktur=" + ($scope.item.nofaktur ? $scope.item.nofaktur : "") +
+                    "&namarekanan=" + ($scope.item.namarekanan ? $scope.item.namarekanan : "") +
+                    "&produkfk=" + ($scope.item.namaBarang ? $scope.item.namaBarang.id : ""), true).then(function (dat) {
                     $scope.isRouteLoading = false;
                     for (var i = 0; i < dat.data.daftar.length; i++) {
                         dat.data.daftar[i].no = i + 1
@@ -74,7 +63,7 @@ define(['initialize'], function (initialize) {
                         //itungUsia(dat.data[i].tgllahir)
                     }
                     $scope.dataGrid = new kendo.data.DataSource({
-                        data:dat.data.daftar
+                        data: dat.data.daftar
                     })
                     pegawaiUser = dat.data.datalogin
                 });

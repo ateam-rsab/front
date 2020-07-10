@@ -5771,6 +5771,30 @@
     ]
   },
   {
+    "name": "UsulanPermintaanBarangJasaRuanganRev",
+    "url": "/UsulanPermintaanBarangJasaRuanganRev",
+    "templateurl": "module/Logistik/ModulInventory/UsulanPermintaanBarangJasaRuanganRev.html",
+    "controller": "UsulanPermintaanBarangJasaRuanganRevCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      }
+    ]
+  },
+  {
     "name": "MapKelompokLaporanToProduk",
     "url": "/MapKelompokLaporanToProduk",
     "templateurl": "module/Laporan/LaporanRekamMedis/Mapping/MapKelompokLaporanToProduk.html",
@@ -10273,6 +10297,30 @@
     ]
   },
   {
+    "name": "DaftarMonitoringUsulanRuanganCtrl",
+    "url": "/DaftarMonitoringUsulanRuangan",
+    "templateurl": "module/Logistik/ModulInventory/DaftarMonitoringUsulanRuangan.html",
+    "controller": "DaftarMonitoringUsulanRuanganCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      },
+      {
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
+      }
+    ]
+  },
+  {
     "name": "DaftarPengajuanPengadaanBarang",
     "url": "/DaftarPengajuanPengadaanBarang",
     "templateurl": "module/Logistik/ModulInventory/DaftarPengajuanPengadaanBarang.html",
@@ -13185,10 +13233,66 @@
     ]
   },
   {
+    "name": "UsulanPelaksanaanKegiatanRev",
+    "url": "/UsulanPelaksanaanKegiatanRev",
+    "templateurl": "module/Logistik/ModulInventory/UsulanPelaksanaanKegiatanRev.html",
+    "controller": "UsulanPelaksanaanKegiatanRevCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      },
+      {
+        "module": "PhpServices",
+        "define": "PhpServices"
+      },
+      {
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
+      }
+    ]
+  },
+  {
     "name": "DaftarPengajuanPengadaanBarangPengendali",
     "url": "/DaftarPengajuanPengadaanBarangPengendali",
     "templateurl": "module/Logistik/ModulInventory/DaftarPengajuanPengadaanBarangPengendali.html",
     "controller": "DaftarPengajuanPengadaanBarangPengendaliCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      },
+      {
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
+      }
+    ]
+  },
+  {
+    "name": "DaftarPengajuanPengadaanBarangPengendaliRev",
+    "url": "/DaftarPengajuanPengadaanBarangPengendaliRev",
+    "templateurl": "module/Logistik/ModulInventory/DaftarPengajuanPengadaanBarangPengendaliRev.html",
+    "controller": "DaftarPengajuanPengadaanBarangPengendaliRevCtrl",
     "deps": [
       {
         "module": "Services",
@@ -14492,6 +14596,26 @@
       {
         "module": "TataRekeningService",
         "define": "TataRekeningService"
+      }
+    ]
+  },
+  {
+    "name": "RekapKunjunganPasienPerHari",
+    "url": "/RekapKunjunganPasienPerHari",
+    "templateurl": "module/pasien/DaftarPasienOperator/RekapKunjunganPasienPerHari.html",
+    "controller": "RekapKunjunganPasienPerHariCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
       }
     ]
   },

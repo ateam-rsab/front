@@ -5,7 +5,7 @@ define(['initialize'], function (initialize) {
             $("#header").hide();
             $scope.item = {};
             $scope.dataPasienAntrian = [];
-            $scope.showLoader = true;
+            $scope.showLoader = false;
 
             var tglAwal = moment(new Date()).format('YYYY-MM-DD');
             var tglAkhir = moment(new Date()).format('YYYY-MM-DD');
@@ -82,31 +82,31 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.init = function () {
+                // manageLogistikPhp.getDataTableTransaksi('logistik/get-daftar-order-resep-elektronik?tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + "&dep_id=" + ($scope.item.namaDept ? $scope.item.namaDept.id : "") + "&kelompok_id=" + ($scope.item.kelompokPasien ? $scope.item.kelompokPasien.id : "")).then(function (e) {
+                // manageLogistikPhp.getDataTableTransaksi('logistik/get-daftar-order-resep-elektronik?tglAwal=2020-05-01&tglAkhir=2020-07-08&nocm=&dep_id=18&kelompok_id=').then(function (e) {
+                //     $scope.showLoader = false;
+                //     let data = [];
+                //     if (e.data.length > 0) {
+                //         for (var i = 0; i < e.data.length; i++) {
+                //             e.data[i].no = i + 1
+                //             var tanggal = $scope.now;
+                //             var tanggalLahir = new Date(e.data[i].tgllahir);
+                //             var umur = DateHelper.CountAge(tanggalLahir, tanggal);
+                //             e.data[i].umur = umur.year + ' thn ' + umur.month + ' bln ' + umur.day + ' hari';
+                //             e.data[i].isVerifikasi = e.data[i].statusorder == "Verifikasi" ? true : false;
+                //             data.push(e.data[i]);
+                //             // if (e.data[i].statusorder == "Sudah Bayar" || e.data[i].statusorder == "Verifikasi") {
+                //             //     data.push(e.data[i]);
+                //             // }
 
-                manageLogistikPhp.getDataTableTransaksi('logistik/get-daftar-order-resep-elektronik?tglAwal=' + tglAwal + '&tglAkhir=' + tglAkhir + "&dep_id=" + ($scope.item.namaDept ? $scope.item.namaDept.id : "") + "&kelompok_id=" + ($scope.item.kelompokPasien ? $scope.item.kelompokPasien.id : "")).then(function (e) {
-                    $scope.showLoader = false;
-                    let data = [];
-                    if (e.data.length > 0) {
-                        for (var i = 0; i < e.data.length; i++) {
-                            e.data[i].no = i + 1
-                            var tanggal = $scope.now;
-                            var tanggalLahir = new Date(e.data[i].tgllahir);
-                            var umur = DateHelper.CountAge(tanggalLahir, tanggal);
-                            e.data[i].umur = umur.year + ' thn ' + umur.month + ' bln ' + umur.day + ' hari';
-                            e.data[i].isVerifikasi = e.data[i].statusorder == "Verifikasi" ? true : false;
-                            data.push(e.data[i]);
-                            // if (e.data[i].statusorder == "Sudah Bayar" || e.data[i].statusorder == "Verifikasi") {
-                            //     data.push(e.data[i]);
-                            // }
-
-                        }
-                    }
-                    $scope.dataPasienAntrian = ModelItem.beforePost(data, true);
-                    console.log(ModelItem.beforePost(data, true));
-                    // $scope.patienGrids = new kendo.data.DataSource({
-                    //     data: ModelItem.beforePost(data, true),
-                    // });
-                });
+                //         }
+                //     }
+                //     $scope.dataPasienAntrian = ModelItem.beforePost(data, true);
+                //     console.log(ModelItem.beforePost(data, true));
+                //     // $scope.patienGrids = new kendo.data.DataSource({
+                //     //     data: ModelItem.beforePost(data, true),
+                //     // });
+                // });
             }
 
             // $scope.intervalFunction = function () {

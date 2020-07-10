@@ -1,5 +1,4 @@
 <style>
-
     .card-antrian-success {
         background-color: #95f0ff;
     }
@@ -18,13 +17,12 @@
     }
 
     .label-name {
-        display: block;
-        font-size: 1.8em;
+        font-size: 1em;
         font-weight: 800;
     }
 
     .label-content {
-        font-size: 2.2em;
+        font-size: 1.5em;
         text-decoration: underline;
         font-weight: bolder;
     }
@@ -87,11 +85,18 @@
         color: #fff;
         font-weight: bold;
     }
+
+    .vl {
+        border-left: solid #c3c3c3 thin;
+        height: 100%;
+    }
 </style>
 <md-card>
     <md-card-title>
-        <md-card-title-text style="text-align: center;font-size: 50px;font-weight: bolder;">
-            Antrian Resep
+        <md-card-title-text style="text-align: center;font-size: 50px;font-weight: bolder;letter-spacing: .5em;">
+            <marquee scrollamount="20" truespeed="truespeed">
+                💊 Antrian Resep Farmasi 💊 
+            </marquee>
         </md-card-title-text>
     </md-card-title>
     <md-card-content ng-show="showLoader">
@@ -101,34 +106,148 @@
     </md-card-content>
     <md-card-content ng-show="!showLoader">
 
-        <div class="grid_4" ng-repeat="item in dataPasienAntrian">
-            <md-card class="card-antrian" ng-class="{'card-antrian-success': item.isVerifikasi, 'card-antrian-queue': !item.isVerifikasi}">
-                <!-- <md-card-header>
-                    <md-card-header-text>
-                        <span class="md-title">{{item.noorder}}r</span>
-                        <span class="md-subhead">{{item.noorder}}</span>
-                    </md-card-header-text>
-                </md-card-header> -->
+        <div class="grid_6">
+            <md-card style="background-color: #D6FDEA">
+                <h1>Dalam Proses Produksi</h1>
                 <md-card-content>
+                    <div class="grid_4">
+                        <md-card class="card-antrian">
+                            <md-card-content>
+                                <div class="container-antrian">
+                                    <div class="grid_12">
+                                        <span class="label-name">00012313</span> / <span
+                                            class="label-content">Karina</span>
+                                    </div>
 
+                                </div>
+
+                            </md-card-content>
+                        </md-card>
+                    </div>
+
+                    <div class="grid_4">
+                        <md-card class="card-antrian">
+                            <md-card-content>
+                                <div class="container-antrian">
+                                    <div class="grid_12">
+                                        <span class="label-name">00012313</span> / <span
+                                            class="label-content">Karina</span>
+                                    </div>
+
+                                </div>
+
+                            </md-card-content>
+                        </md-card>
+                    </div>
+
+                    <div class="grid_4">
+                        <md-card class="card-antrian">
+                            <md-card-content>
+                                <div class="container-antrian">
+                                    <div class="grid_12">
+                                        <span class="label-name">00012313</span> / <span
+                                            class="label-content">Karina</span>
+                                    </div>
+
+                                </div>
+
+                            </md-card-content>
+                        </md-card>
+                    </div>
+                </md-card-content>
+            </md-card>
+        </div>
+
+        <div class="grid_6">
+            <md-card style="background-color: #B6E8FF">
+                <h1>Selesai Produksi</h1>
+                <md-card-content>
+                    <div class="grid_4">
+                        <md-card class="card-antrian">
+                            <md-card-content>
+                                <div class="container-antrian">
+                                    <div class="grid_12">
+                                        <span class="label-name">00012313</span> / <span
+                                            class="label-content">Karina</span>
+                                    </div>
+
+                                </div>
+
+                            </md-card-content>
+                        </md-card>
+                    </div>
+                    <div class="grid_4">
+                        <md-card class="card-antrian">
+                            <md-card-content>
+                                <div class="container-antrian">
+                                    <div class="grid_12">
+                                        <span class="label-name">00012313</span> / <span
+                                            class="label-content">Karina</span>
+                                    </div>
+
+                                </div>
+
+                            </md-card-content>
+                        </md-card>
+                    </div>
+                    <div class="grid_4">
+                        <md-card class="card-antrian">
+                            <md-card-content>
+                                <div class="container-antrian">
+                                    <div class="grid_12">
+                                        <span class="label-name">00012313</span> / <span
+                                            class="label-content">Karina</span>
+                                    </div>
+
+                                </div>
+
+                            </md-card-content>
+                        </md-card>
+                    </div>
+                    <div class="grid_4">
+                        <md-card class="card-antrian">
+                            <md-card-content>
+                                <div class="container-antrian">
+                                    <div class="grid_12">
+                                        <span class="label-name">00012313</span> / <span
+                                            class="label-content">Karina</span>
+                                    </div>
+
+                                </div>
+
+                            </md-card-content>
+                        </md-card>
+                    </div>
+                    <div class="grid_4">
+                        <md-card class="card-antrian">
+                            <md-card-content>
+                                <div class="container-antrian">
+                                    <div class="grid_12">
+                                        <span class="label-name">00012313</span> / <span
+                                            class="label-content">Karina</span>
+                                    </div>
+
+                                </div>
+
+                            </md-card-content>
+                        </md-card>
+                    </div>
+                </md-card-content>
+            </md-card>
+        </div>
+        <!-- <div class="grid_4" ng-repeat="item in dataPasienAntrian">
+            <md-card class="card-antrian" ng-class="{'card-antrian-success': item.isVerifikasi, 'card-antrian-queue': !item.isVerifikasi}">
+                <md-card-content>
                     <div class="container-antrian">
                         <div class="grid_12">
-                            <label class="label-name">{{item.noorder}}</label>
-                            <label class="label-content">{{item.namapasien}}</label>
+                            <span class="label-name">{{item.namapasien}}</span> / <span class="label-content">{{item.noorder}}</span>
                         </div>
-                        <!-- <div class="grid_8">
-                            <label class="label-name">Nama Pasien</label>
-                            <label class="label-content">{{item.namapasien}}</label>
-                        </div> -->
+                        
                     </div>
 
                 </md-card-content>
-                <md-card-footer style="background-color: #00000021;">
-                    <label class="label-name">Status</label>
-                    <label class="label-content">{{item.statusorder}}</label>
-                </md-card-footer>
             </md-card>
-        </div>
+        </div> -->
 
     </md-card-content>
 </md-card>
