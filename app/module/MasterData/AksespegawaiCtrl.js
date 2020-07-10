@@ -277,6 +277,8 @@ define(['initialize'], function (initialize) {
 				//save to java katasandi column
 				manageSarpras.saveLoginUser(objSave).then(function (e) {
 
+				},error => {
+					alert('Nama user sudah digunakan!')
 				})
 			}
 
