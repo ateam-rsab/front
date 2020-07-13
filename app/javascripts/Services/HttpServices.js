@@ -1,4 +1,4 @@
- define(['Configuration'], function(config) {
+ define(['Configuration'], function (config) {
 
      var baseUrlSerelize = config.baseUrlSerelize;
      var baseUrlListData = config.baseUrlListData;
@@ -6,9 +6,215 @@
      var httpServices = angular.module('HttpServices', []);
 
      // Start Syamsu
-     httpServices.service('R', ['$rootScope', '$q', '$http', '$location', function($rootScope, $q, $http, $location) {
+     httpServices.service('R', ['$rootScope', '$q', '$http', '$location', function ($rootScope, $q, $http, $location) {
+         let browser = navigator.appName;
+
+         if (navigator.userAgent.indexOf('Safari') !== -1) {
+             var arr = document.cookie.split(';');
+             var authorization;
+             for (var i = 0; i < arr.length; i++) {
+                 var element = arr[i].split('=');
+                 if (element[0].indexOf('authorization') != -1) {
+                     authorization = element[1];
+                 }
+             }
+
+              return {
+                  get: function (obj) {
+                      var deffer = $q.defer();
+                      if (obj.method === undefined)
+                          obj.method = "GET";
+                      var authorization = "";
+                      var arr = document.cookie.split(';')
+                      for (var i = 0; i < arr.length; i++) {
+                          var element = arr[i].split('=');
+                          if (element[0].indexOf('authorization') != -1) {
+                              authorization = element[1];
+                          }
+                      }
+                      var url = "";
+                      if (obj.url.indexOf("?") >= 0) {
+                          url = obj.url + "&X-AUTH-TOKEN=" + authorization;
+                      } else
+                          url = obj.url + "?X-AUTH-TOKEN=" + authorization;
+
+                      $http.get(url, {
+                          headers: {
+                              'Content-Type': 'application/json',
+                              'X-AUTH-TOKEN': authorization
+                          }
+                      }).then(function successCallback(response) {
+                          response.statResponse = true;
+                          deffer.resolve(response);
+                      }, function errorCallback(response, err, da) {
+                          response.statResponse = false;
+                          deffer.reject(response);
+                      });
+                      return deffer.promise;
+                  },
+                  post: function (obj, data) {
+                      console.log(JSON.stringify(data));
+                      var deffer = $q.defer();
+                      if (obj.method === undefined)
+                          obj.method = "GET";
+                      var authorization = "";
+                      var arr = document.cookie.split(';')
+                      for (var i = 0; i < arr.length; i++) {
+                          var element = arr[i].split('=');
+                          if (element[0].indexOf('authorization') > 0) {
+                              authorization = element[1];
+                          }
+                      }
+
+                      if (({}).hasOwnProperty.call(data, 'supervisorToken')) { // Syamsu
+                          if (data.supervisorToken !== undefined) {
+                              authorization = data.supervisorToken;
+                          }
+                      }
+                      var urlPath = "#" + $location.path();
+                      var lDataRuangan = window.localStorage.getItem('dataRuangan');
+                      var dataRuangan = {};
+                      if (lDataRuangan === undefined || lDataRuangan === null) {
+                          dataRuangan = {
+                              ruanganId: 0
+                          };
+                      } else {
+                          dataRuangan = JSON.parse(lDataRuangan);
+                      }
+                      var dataUserLogin = JSON.parse(window.localStorage.getItem('datauserlogin'));
+
+                      var Supervising = window.localStorage.getItem('Supervising');
+
+                      if (Supervising === undefined || Supervising === null) {
+                          Supervising = false;
+                      }
+
+                      if (dataRuangan === undefined || dataRuangan === null) {
+                          dataRuangan = {
+                              ruanganId: 0
+                          };
+                      }
+
+                      if (dataUserLogin == undefined || dataUserLogin == null) {
+                          dataUserLogin = {
+                              kdUser: ""
+                          };
+                      }
+
+                      var url = "";
+                      var req = {};
+                      if (obj.url === undefined) {
+
+                          if (obj.indexOf("?") >= 0) {
+                              url = obj + "&X-AUTH-TOKEN=" + authorization;
+                          } else
+                              url = obj + "?X-AUTH-TOKEN=" + authorization;
+                          req = {
+                              method: 'POST',
+                              url: url,
+                              headers: {
+                                  'Content-Type': 'application/json',
+                                  'X-AUTH-TOKEN': authorization,
+                                  'Module': "",
+                                  'Form': "",
+                                  'Action': "",
+                                  "AlamatUrlForm": urlPath,
+                                  "KdUser": dataUserLogin.kdUser,
+                                  'Supervising': Supervising,
+                                  "kdRuangan": dataRuangan.ruanganId
+                              },
+                              data: data
+                          }
+                      } else {
+
+                          if (Supervising === undefined || Supervising === null) {
+                              Supervising = false;
+                          }
+
+                          if (dataRuangan === undefined || dataRuangan === null) {
+                              dataRuangan = {
+                                  ruanganId: 0
+                              };
+                          }
+
+                          if (dataUserLogin == undefined || dataUserLogin == null) {
+                              dataUserLogin = {
+                                  kdUser: ""
+                              };
+                          }
+
+                          var url = "";
+                          if (obj.url.indexOf("?") >= 0) {
+                              url = obj.url + "&X-AUTH-TOKEN=" + authorization;
+                          } else {
+                              url = obj.url + "?X-AUTH-TOKEN=" + authorization;
+                          }
+                          req = {
+                              method: 'POST',
+                              url: url,
+                              headers: {
+                                  'Content-Type': 'application/json',
+                                  'X-AUTH-TOKEN': authorization,
+                                  'Module': "",
+                                  'Form': "",
+                                  'Action': "",
+                                  "AlamatUrlForm": urlPath,
+                                  "KdUser": dataUserLogin.kdUser,
+                                  'Supervising': Supervising,
+                                  "kdRuangan": dataRuangan.ruanganId
+                              },
+                              data: data
+                          }
+                      }
+                      $http(req).then(function successCallback(response) {
+                          if (response.data.data !== null) {
+                              if (response.data.data.message != undefined) {
+                                  var msg = response.data.data.message;
+                                  window.messageContainer.log(msg);
+                              } else if (response.data.messages) {
+                                  var msg = response.data.messages;
+                                  if (msg['label-success'] === "SUKSES") {
+                                      window.messageContainer.log(msg['label-success']);
+                                  } else {
+                                      window.messageContainer.error(msg['label-success']);
+                                  }
+                              } else if (response.data.messages != undefined) {
+                                  var msg = response.data.messages;
+                                  window.messageContainer.log(msg['label-success']);
+                              }
+                          }
+                          deffer.resolve(response);
+                      }, function errorCallback(response, a, b, c, d) {
+                          var msgError = "";
+                          if (response.status === 401) {
+                              if (response.headers('requiresupervisor') == "true") {
+                                  $rootScope.dataObjectForSupervisor = data;
+                                  $rootScope.dataUrlForSupervisor = obj.url;
+                                  $rootScope.showRootFormlogin = true;
+                              }
+                              window.messageContainer.error(response.headers('error_message'));
+                          } else if (response.status === 403) {
+                              window.location = "/app/Login";
+                          } else {
+                              if (response.data.fieldErrors != undefined) {
+
+                                  for (var i = 0; i < response.data.fieldErrors.length; i++) {
+                                      msgError = response.data.fieldErrors[i].message;
+                                      window.messageContainer.error(msgError);
+                                  }
+                              } else {
+                                  msgError = response.statusText;
+                                  window.messageContainer.error(msgError);
+                              }
+                          }
+                          deffer.reject(response);
+                      });
+                      return deffer.promise;
+                  }
+              }
+         }
          return {
-             get: function(obj) {
+             get: function (obj) {
                  var deffer = $q.defer();
                  if (obj.method === undefined)
                      obj.method = "GET";
@@ -40,7 +246,7 @@
                  });
                  return deffer.promise;
              },
-             post: function(obj, data) {
+             post: function (obj, data) {
                  console.log(JSON.stringify(data));
                  var deffer = $q.defer();
                  if (obj.method === undefined)
@@ -54,105 +260,105 @@
                      }
                  }
 
-                 if (({}).hasOwnProperty.call(data, 'supervisorToken')){ // Syamsu
-                    if (data.supervisorToken !== undefined) {
-                        authorization = data.supervisorToken;
-                    }
-                 }  
-                 var urlPath = "#"+ $location.path();
+                 if (({}).hasOwnProperty.call(data, 'supervisorToken')) { // Syamsu
+                     if (data.supervisorToken !== undefined) {
+                         authorization = data.supervisorToken;
+                     }
+                 }
+                 var urlPath = "#" + $location.path();
                  var lDataRuangan = window.localStorage.getItem('dataRuangan');
                  var dataRuangan = {};
-                 if (lDataRuangan === undefined || lDataRuangan === null){
-                    dataRuangan = {
-                        ruanganId : 0
-                    };
+                 if (lDataRuangan === undefined || lDataRuangan === null) {
+                     dataRuangan = {
+                         ruanganId: 0
+                     };
                  } else {
-                    dataRuangan = JSON.parse(lDataRuangan);
-                 } 
+                     dataRuangan = JSON.parse(lDataRuangan);
+                 }
                  var dataUserLogin = JSON.parse(window.localStorage.getItem('datauserlogin'));
 
-                 var Supervising =  window.localStorage.getItem('Supervising');
-                 
-                 if (Supervising === undefined || Supervising === null){
-                    Supervising = false;
-                 }   
+                 var Supervising = window.localStorage.getItem('Supervising');
 
-                 if (dataRuangan === undefined || dataRuangan === null){
-                    dataRuangan = {
-                        ruanganId : 0
-                    };
+                 if (Supervising === undefined || Supervising === null) {
+                     Supervising = false;
                  }
 
-                 if (dataUserLogin == undefined || dataUserLogin == null){
-                    dataUserLogin = {
-                        kdUser : ""
-                    };
-                 }                 
+                 if (dataRuangan === undefined || dataRuangan === null) {
+                     dataRuangan = {
+                         ruanganId: 0
+                     };
+                 }
+
+                 if (dataUserLogin == undefined || dataUserLogin == null) {
+                     dataUserLogin = {
+                         kdUser: ""
+                     };
+                 }
 
                  var url = "";
                  var req = {};
                  if (obj.url === undefined) {
-                     
+
                      if (obj.indexOf("?") >= 0) {
-                        url = obj + "&X-AUTH-TOKEN=" + authorization;
-                    } else
-                        url = obj + "?X-AUTH-TOKEN=" + authorization;
-                    req = {
-                        method: 'POST',
-                        url: url,
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-AUTH-TOKEN': authorization,
-                            'Module': "",
-                            'Form': "",
-                            'Action': "",
-                            "AlamatUrlForm" : urlPath,
-                            "KdUser" : dataUserLogin.kdUser,
-                            'Supervising': Supervising,
-                            "kdRuangan" : dataRuangan.ruanganId
-                        },
-                        data: data
-                    }
+                         url = obj + "&X-AUTH-TOKEN=" + authorization;
+                     } else
+                         url = obj + "?X-AUTH-TOKEN=" + authorization;
+                     req = {
+                         method: 'POST',
+                         url: url,
+                         headers: {
+                             'Content-Type': 'application/json',
+                             'X-AUTH-TOKEN': authorization,
+                             'Module': "",
+                             'Form': "",
+                             'Action': "",
+                             "AlamatUrlForm": urlPath,
+                             "KdUser": dataUserLogin.kdUser,
+                             'Supervising': Supervising,
+                             "kdRuangan": dataRuangan.ruanganId
+                         },
+                         data: data
+                     }
                  } else {
 
-                     if (Supervising === undefined || Supervising === null){
-                        Supervising = false;
-                     }   
-
-                     if (dataRuangan === undefined || dataRuangan === null){
-                        dataRuangan = {
-                            ruanganId : 0
-                        };
+                     if (Supervising === undefined || Supervising === null) {
+                         Supervising = false;
                      }
 
-                     if (dataUserLogin == undefined || dataUserLogin == null){
-                        dataUserLogin = {
-                            kdUser : ""
-                        };
-                    }                
-                     
-                    var url = "";
-                    if (obj.url.indexOf("?") >= 0) {
-                        url = obj.url + "&X-AUTH-TOKEN=" + authorization;
-                    } else {
-                        url = obj.url + "?X-AUTH-TOKEN=" + authorization;
-                    }
-                    req = {
-                        method: 'POST',
-                        url: url,
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-AUTH-TOKEN': authorization,
-                            'Module': "",
-                            'Form': "",
-                            'Action': "",
-                            "AlamatUrlForm" : urlPath,
-                            "KdUser" : dataUserLogin.kdUser,
-                            'Supervising': Supervising,
-                            "kdRuangan" : dataRuangan.ruanganId
-                        },
-                        data: data
-                    }
+                     if (dataRuangan === undefined || dataRuangan === null) {
+                         dataRuangan = {
+                             ruanganId: 0
+                         };
+                     }
+
+                     if (dataUserLogin == undefined || dataUserLogin == null) {
+                         dataUserLogin = {
+                             kdUser: ""
+                         };
+                     }
+
+                     var url = "";
+                     if (obj.url.indexOf("?") >= 0) {
+                         url = obj.url + "&X-AUTH-TOKEN=" + authorization;
+                     } else {
+                         url = obj.url + "?X-AUTH-TOKEN=" + authorization;
+                     }
+                     req = {
+                         method: 'POST',
+                         url: url,
+                         headers: {
+                             'Content-Type': 'application/json',
+                             'X-AUTH-TOKEN': authorization,
+                             'Module': "",
+                             'Form': "",
+                             'Action': "",
+                             "AlamatUrlForm": urlPath,
+                             "KdUser": dataUserLogin.kdUser,
+                             'Supervising': Supervising,
+                             "kdRuangan": dataRuangan.ruanganId
+                         },
+                         data: data
+                     }
                  }
                  $http(req).then(function successCallback(response) {
                      if (response.data.data !== null) {
@@ -160,46 +366,40 @@
                              var msg = response.data.data.message;
                              window.messageContainer.log(msg);
                          } else if (response.data.messages) {
-                            var msg = response.data.messages;
-                            if (msg['label-success'] === "SUKSES") {
-                                window.messageContainer.log(msg['label-success']);
-                            }
-                            else {
-                                window.messageContainer.error(msg['label-success']);
-                            }
+                             var msg = response.data.messages;
+                             if (msg['label-success'] === "SUKSES") {
+                                 window.messageContainer.log(msg['label-success']);
+                             } else {
+                                 window.messageContainer.error(msg['label-success']);
+                             }
                          } else if (response.data.messages != undefined) {
                              var msg = response.data.messages;
                              window.messageContainer.log(msg['label-success']);
                          }
                      }
                      deffer.resolve(response);
-                 }, function errorCallback(response,a,b,c,d) {
+                 }, function errorCallback(response, a, b, c, d) {
                      var msgError = "";
-                     if(response.status === 401)
-                     {
-                        if(response.headers('requiresupervisor') == "true"){
-                           $rootScope.dataObjectForSupervisor = data;
-                           $rootScope.dataUrlForSupervisor = obj.url;
-                           $rootScope.showRootFormlogin = true;
-                        }                        
-                        window.messageContainer.error(response.headers('error_message'));
-                     }
-                     else if(response.status === 403)
-                     {
-                        window.location = "/app/Login";
-                     }
-                     else {
+                     if (response.status === 401) {
+                         if (response.headers('requiresupervisor') == "true") {
+                             $rootScope.dataObjectForSupervisor = data;
+                             $rootScope.dataUrlForSupervisor = obj.url;
+                             $rootScope.showRootFormlogin = true;
+                         }
+                         window.messageContainer.error(response.headers('error_message'));
+                     } else if (response.status === 403) {
+                         window.location = "/app/Login";
+                     } else {
                          if (response.data.fieldErrors != undefined) {
 
-                            for (var i = 0; i < response.data.fieldErrors.length; i++) {
-                                msgError = response.data.fieldErrors[i].message;
-                                window.messageContainer.error(msgError);
-                            }
-                        } 
-                        else {
-                            msgError = response.statusText;
-                            window.messageContainer.error(msgError);
-                        }
+                             for (var i = 0; i < response.data.fieldErrors.length; i++) {
+                                 msgError = response.data.fieldErrors[i].message;
+                                 window.messageContainer.error(msgError);
+                             }
+                         } else {
+                             msgError = response.statusText;
+                             window.messageContainer.error(msgError);
+                         }
                      }
                      deffer.reject(response);
                  });
@@ -207,12 +407,12 @@
              }
          }
      }]);
-    // End Syamsu
+     // End Syamsu
 
      httpServices.service('ModelItem', ['$q', '$http', '$resource', 'TextHelper', 'R',
-         function($q, $http, $resource, textHelper, r) {
+         function ($q, $http, $resource, textHelper, r) {
              var beforeSubmit =
-                 function(data, back) {
+                 function (data, back) {
                      var item = {};
                      if ($.isFunction(data)) return;
                      if (data instanceof Array)
@@ -279,7 +479,7 @@
              var items = [];
              return {
 
-                 CopyObject: function(obj, source) {
+                 CopyObject: function (obj, source) {
                      for (var key in source) {
                          if (source.hasOwnProperty(key)) {
                              var element = source[key];
@@ -288,7 +488,7 @@
                      }
                      return obj;
                  },
-                 getAuthorize: function() {
+                 getAuthorize: function () {
 
                      var authorization = "";
                      var arr = document.cookie.split(';')
@@ -300,18 +500,18 @@
                      }
                      return authorization;
                  },
-                 getSettingDataFixed: function(prefix) {
+                 getSettingDataFixed: function (prefix) {
                      return r.get({
                          url: baseUrlApiData + "service/get-setting/?prefix=" + prefix
                      });
                  },
-                 getPegawai: function() {
+                 getPegawai: function () {
                      return JSON.parse(window.localStorage.getItem('pegawai'));
                  },
-                 getRuangans: function() {
+                 getRuangans: function () {
                      return null;
                  },
-                 getStatusUser: function() {
+                 getStatusUser: function () {
                      var arr = document.cookie.split(';')
                      for (var i = 0; i < arr.length; i++) {
                          var element = arr[i].split('=');
@@ -321,13 +521,13 @@
                      }
                      return null;
                  },
-                 translate: function(keyword, i) {
+                 translate: function (keyword, i) {
                      return textHelper.convertToStatement(keyword, i);
                  },
-                 beforePost: function(data, back) {
+                 beforePost: function (data, back) {
                      return beforeSubmit(data, back);
                  },
-                 post: function(urlDetail, dataVO) {
+                 post: function (urlDetail, dataVO) {
 
                      /*var authorization = "";
                      var arr = document.cookie.split(';')
@@ -345,7 +545,7 @@
                          headers: {
                              'Content-Type': 'application/json',
                              'Content-Length': Buffer.byteLength(dataVO)
-                                 //'Authorization': 'Basic ' + authorization
+                             //'Authorization': 'Basic ' + authorization
                          },
                          data: JSON.stringify(dataVO)
                      }).then(function successCallback(response) {
@@ -357,7 +557,7 @@
                      });
                      return deffer.promise;
                  },
-                 get: function(name) {
+                 get: function (name) {
                      var deffer = $q.defer();
                      var item = _.filter(items, {
                          name: name
@@ -369,9 +569,9 @@
                          $http({
                              method: 'GET',
                              url: baseUrlSerelize + name
-                                 /*headers: {
-                                     'Authorization': 'Basic ' + authorization
-                                 }*/
+                             /*headers: {
+                                 'Authorization': 'Basic ' + authorization
+                             }*/
 
                          }).then(function successCallback(response) {
 
@@ -414,7 +614,7 @@
                      return deffer.promise;
                  },
 
-                 set: function(name, model) {
+                 set: function (name, model) {
                      var valid = false;
                      for (var i in items) {
                          if (items[i].name === name) {
@@ -431,7 +631,7 @@
                              data: model
                          });
                  },
-                 getGridOption: function(dataOrUrl, arrColumn, isInputMode) {
+                 getGridOption: function (dataOrUrl, arrColumn, isInputMode) {
                      var deffer = $q.defer();
                      var gridOption = {
                          height: 400,
@@ -466,7 +666,7 @@
                      deffer.resolve(gridOption);
                      return deffer.promise;
                  },
-                 genericService: function() {
+                 genericService: function () {
                      return $resource(baseUrlListData + ':table&select=*&value=:value&Select=:select', {}, {
                          query: {
                              method: 'GET',
@@ -475,7 +675,7 @@
                          }
                      });
                  },
-                 kendoHttpSource: function(url, serverFiltering) {
+                 kendoHttpSource: function (url, serverFiltering) {
                      var authorization = "";
                      var arr = document.cookie.split(';')
                      for (var i = 0; i < arr.length; i++) {
@@ -497,7 +697,7 @@
                              read: {
                                  type: 'GET',
                                  url: tempurl,
-                                 beforeSend: function(req) {
+                                 beforeSend: function (req) {
                                      req.setRequestHeader('X-AUTH-TOKEN', authorization);
                                  },
                                  dataType: "json" // "jsonp" is required for cross-domain requests; use "json" for same-domain requests
@@ -509,7 +709,7 @@
                              model: {
                                  id: "id"
                              },
-                             data: function(a, e, r, t) {
+                             data: function (a, e, r, t) {
                                  if (a.data !== undefined) {
                                      if (a.data.data !== undefined)
                                          return a.data.data;
@@ -518,12 +718,12 @@
                                  kendoSourceData.total(50);
                                  return a;
                              },
-                             total: function(e) {
+                             total: function (e) {
                                  if (e.messages !== undefined && e.messages["Total-Count"] !== undefined)
                                      return e.messages["Total-Count"];
                                  return undefined;
                              },
-                             totalPages: function(e) {}
+                             totalPages: function (e) {}
                          }
 
                      });
@@ -531,7 +731,7 @@
                      return kendoSourceData;
 
                  },
-                 kendoSource: function(nameVO, arrFieldSelect, isServerFiltering, take, skip, page, pageSize) {
+                 kendoSource: function (nameVO, arrFieldSelect, isServerFiltering, take, skip, page, pageSize) {
                      var strFieldSelect = "";
                      var strTakeOption = "";
                      if (take === undefined) {
@@ -577,7 +777,7 @@
                      return kendoSourceData;
 
                  },
-                 getKendoSource: function(nameVO, arrFieldSelect, isServerFiltering, take, skip, page, pageSize) {
+                 getKendoSource: function (nameVO, arrFieldSelect, isServerFiltering, take, skip, page, pageSize) {
                      var strFieldSelect = "";
                      var strTakeOption = "";
                      var authorization = "";
@@ -626,7 +826,7 @@
 
                  },
 
-                 getDataDummyGeneric: function(nameGeneric, kendoSource, isServerFiltering, top, filter, select) {
+                 getDataDummyGeneric: function (nameGeneric, kendoSource, isServerFiltering, top, filter, select) {
 
                      var deffer = $q.defer();
                      if (isServerFiltering === undefined)
@@ -740,14 +940,14 @@
                  },
 
 
-                 convertObjectLoadData: function(list, idItem) {
-                     var data = _.filter(list, function(e) {
+                 convertObjectLoadData: function (list, idItem) {
+                     var data = _.filter(list, function (e) {
                          return e.id === idItem
                      })[0];
 
                      return data;
                  },
-                 getDataNotGeneric: function(nameGeneric, kendoSource, isServerFiltering, top, filter, select) {
+                 getDataNotGeneric: function (nameGeneric, kendoSource, isServerFiltering, top, filter, select) {
 
                      var deffer = $q.defer();
                      if (isServerFiltering === undefined)
@@ -859,7 +1059,7 @@
                      return deffer.promise;
 
                  },
-                 setObjCollectionForCheckbox: function(listGeneric, listTickGeneric, nameObjCollection) {
+                 setObjCollectionForCheckbox: function (listGeneric, listTickGeneric, nameObjCollection) {
 
                      var arrResult = [];
 
@@ -878,7 +1078,7 @@
                      }
 
                      for (var i = 0; i < listTickGeneric.length; i++) {
-                         var currentData = _.find(arrResult, function(arr) {
+                         var currentData = _.find(arrResult, function (arr) {
                              return arr[nameObjCollection].id == listTickGeneric[i].id;
                          });
                          var indexArray = _.indexOf(arrResult, currentData);
@@ -891,7 +1091,7 @@
                      return arrResult;
                  },
 
-                 setCheckedForListCheckbox: function(listCurrentData, listMaster, arrTick, nameObjCollection) {
+                 setCheckedForListCheckbox: function (listCurrentData, listMaster, arrTick, nameObjCollection) {
                      for (var i = 0; i < listCurrentData.length; i++) {
                          for (var j = 0; j < listMaster.length; j++) {
                              if (listMaster[j].id == listCurrentData[i][nameObjCollection].id) {
@@ -906,8 +1106,8 @@
                      }
                  },
 
-                 tickUntickCheckbox: function(data, currentArray) {
-                     var isExist = _.find(currentArray, function(dataExist) {
+                 tickUntickCheckbox: function (data, currentArray) {
+                     var isExist = _.find(currentArray, function (dataExist) {
                          return dataExist == data;
                      });
 
@@ -920,7 +1120,7 @@
                      return currentArray;
                  },
 
-                 addCheckedAtribute: function(data, currentList) {
+                 addCheckedAtribute: function (data, currentList) {
                      for (var i = 0; i < data.length; i++) {
                          currentList = data;
                          data[i].isChecked = false;
@@ -929,7 +1129,7 @@
                      return data;
                  },
 
-                 setTandaVitalCurrentData: function(listDataTandaVital, arrTandaVital) {
+                 setTandaVitalCurrentData: function (listDataTandaVital, arrTandaVital) {
                      for (var i = 0; i < listDataTandaVital.length; i++) {
                          for (var j = 0; j < arrTandaVital.length; j++) {
                              if (listDataTandaVital[i].dataTandaVital.name == arrTandaVital[j].name) {
@@ -942,7 +1142,7 @@
                      return arrTandaVital;
                  },
 
-                 setTandaVitalForSend: function(masterTandaVital, arrTandaVital) {
+                 setTandaVitalForSend: function (masterTandaVital, arrTandaVital) {
                      var listDataTandaVital = [];
                      for (var i = 0; i < masterTandaVital.length; i++) {
 
@@ -972,7 +1172,7 @@
                      return listDataTandaVital;
                  },
 
-                 initActiveMenu: function(data, role, noRecSoap, disableInput) {
+                 initActiveMenu: function (data, role, noRecSoap, disableInput) {
                      /*helper list menu
                      [0] KeluhanUtama 
                      [1] Alergi
@@ -1042,94 +1242,84 @@
 
                  },
 
-                 setActiveMenu: function(data, namePage) {
+                 setActiveMenu: function (data, namePage) {
                      data[namePage] = false;
                  },
-                 setValidation:function(scope, listRawRequired){
-                    var listFixRequired = [];
-                    var msg = "";
+                 setValidation: function (scope, listRawRequired) {
+                     var listFixRequired = [];
+                     var msg = "";
 
-                    for(var i=0; i<listRawRequired.length; i++){
-                        var arr = listRawRequired[i].split("|");
-                        var arrModel = arr[0].split(".");
-                        var obj = {
-                            ngModel : scope[arrModel[0]][arrModel[1]],
-                            ngModelText : arr[0],
-                            type : arr[1],
-                            label : arr[2]
-                        };
+                     for (var i = 0; i < listRawRequired.length; i++) {
+                         var arr = listRawRequired[i].split("|");
+                         var arrModel = arr[0].split(".");
+                         var obj = {
+                             ngModel: scope[arrModel[0]][arrModel[1]],
+                             ngModelText: arr[0],
+                             type: arr[1],
+                             label: arr[2]
+                         };
 
-                        listFixRequired.push(obj);
-                    }
+                         listFixRequired.push(obj);
+                     }
 
-                    for(var i=0; i<listFixRequired.length; i++){
-                        if(listFixRequired[i].ngModel === undefined || listFixRequired[i].ngModel === "" || listFixRequired[i].ngModel === null){
-                            this.cekValidation(listFixRequired[i].type, listFixRequired[i].ngModelText, false);
-                            msg += listFixRequired[i].label + " tidak boleh kosong|";
-                        }
-                        else
-                        {
-                            this.cekValidation(listFixRequired[i].type, listFixRequired[i].ngModelText, true);
-                        }
-                    }
+                     for (var i = 0; i < listFixRequired.length; i++) {
+                         if (listFixRequired[i].ngModel === undefined || listFixRequired[i].ngModel === "" || listFixRequired[i].ngModel === null) {
+                             this.cekValidation(listFixRequired[i].type, listFixRequired[i].ngModelText, false);
+                             msg += listFixRequired[i].label + " tidak boleh kosong|";
+                         } else {
+                             this.cekValidation(listFixRequired[i].type, listFixRequired[i].ngModelText, true);
+                         }
+                     }
 
-                    var result = {};
-                    if(msg == ""){
-                        result = {
-                            status : true
-                        };
-                    }
-                    else
-                    {
-                        result = {
-                            status : false,
-                            messages : msg
-                        };
-                    }
+                     var result = {};
+                     if (msg == "") {
+                         result = {
+                             status: true
+                         };
+                     } else {
+                         result = {
+                             status: false,
+                             messages: msg
+                         };
+                     }
 
-                    return result;
+                     return result;
                  },
 
-                 cekEnableDisableButton: function(buttonDisabled) {
+                 cekEnableDisableButton: function (buttonDisabled) {
 
-                     if(!buttonDisabled)
-                     {
-                        var element = angular.element('[class="btnTemplate1"]');
-                        element.addClass("button-disabled");
-                     }
-                     else
-                     {
-                        var element = angular.element('[class="btnTemplate1 button-disabled"]');
-                        element.removeClass("button-disabled")
+                     if (!buttonDisabled) {
+                         var element = angular.element('[class="btnTemplate1"]');
+                         element.addClass("button-disabled");
+                     } else {
+                         var element = angular.element('[class="btnTemplate1 button-disabled"]');
+                         element.removeClass("button-disabled")
                      }
                  },
 
-                 cekValidation: function(ngModelType, ngModelName, statusValidation) {
-                     var element = angular.element('['+ngModelType+'="'+ngModelName+'"]');
+                 cekValidation: function (ngModelType, ngModelName, statusValidation) {
+                     var element = angular.element('[' + ngModelType + '="' + ngModelName + '"]');
 
-                     if(!statusValidation)
-                     {
-                        element.addClass("validation-error");
-                     }
-                     else
-                     {
-                        element.removeClass("validation-error")
+                     if (!statusValidation) {
+                         element.addClass("validation-error");
+                     } else {
+                         element.removeClass("validation-error")
                      }
                  },
 
-                 showMessages: function(messages){
-                    var arrMsgError = messages.split("|");
-                    for(var i=0; i<arrMsgError.length-1; i++){
-                        window.messageContainer.error(arrMsgError[i]);
-                    }
+                 showMessages: function (messages) {
+                     var arrMsgError = messages.split("|");
+                     for (var i = 0; i < arrMsgError.length - 1; i++) {
+                         window.messageContainer.error(arrMsgError[i]);
+                     }
                  }
              };
          }
      ]);
 
      httpServices.service('GenericRequest', [
-         function() {
-             return function(fields, data, isServer, url, model) {
+         function () {
+             return function (fields, data, isServer, url, model) {
                  if (isServer === undefined)
                      isServer = false;
                  if (!isServer)
@@ -1160,7 +1350,7 @@
                                  type: 'GET',
                                  url: "Super/ListTable/?view=" + model + "&select=" + select,
                                  dataType: 'json',
-                                 beforeSend: function(req) {
+                                 beforeSend: function (req) {
 
                                  }
                              },
@@ -1192,147 +1382,147 @@
  /// INI YANG LAMAAA
 
 
-      // httpServices.service('R', ['$q', '$http', function($q, $http) {
-     //     return {
-     //         get: function(obj) {
-     //             var deffer = $q.defer();
-     //             if (obj.method === undefined)
-     //                 obj.method = "GET";
-     //             var authorization = "";
-     //             var arr = document.cookie.split(';')
-     //             for (var i = 0; i < arr.length; i++) {
-     //                 var element = arr[i].split('=');
-     //                 if (element[0].indexOf('authorization') > 0) {
-     //                     authorization = element[1];
-     //                 }
-     //             }
-     //             var url = "";
-     //             if (obj.url.indexOf("?") >= 0) {
-     //                 url = obj.url + "&X-AUTH-TOKEN=" + authorization;
-     //             } else
-     //                 url = obj.url + "?X-AUTH-TOKEN=" + authorization;
+ // httpServices.service('R', ['$q', '$http', function($q, $http) {
+ //     return {
+ //         get: function(obj) {
+ //             var deffer = $q.defer();
+ //             if (obj.method === undefined)
+ //                 obj.method = "GET";
+ //             var authorization = "";
+ //             var arr = document.cookie.split(';')
+ //             for (var i = 0; i < arr.length; i++) {
+ //                 var element = arr[i].split('=');
+ //                 if (element[0].indexOf('authorization') > 0) {
+ //                     authorization = element[1];
+ //                 }
+ //             }
+ //             var url = "";
+ //             if (obj.url.indexOf("?") >= 0) {
+ //                 url = obj.url + "&X-AUTH-TOKEN=" + authorization;
+ //             } else
+ //                 url = obj.url + "?X-AUTH-TOKEN=" + authorization;
 
-     //             $http.get(url, {
-     //                 headers: {
-     //                     'Content-Type': 'application/json',
-     //                     'X-AUTH-TOKEN': authorization
-     //                 }
-     //             }).then(function successCallback(response) {
-     //                 response.statResponse = true;
-     //                 deffer.resolve(response);
-     //             }, function errorCallback(response, err, da) {
-     //                 response.statResponse = false;
-     //                 deffer.reject(response);
-     //             });
-     //             return deffer.promise;
-     //         },
-     //         post: function(obj, data) {
-     //             console.log(JSON.stringify(data));
-     //             var deffer = $q.defer();
-     //             if (obj.method === undefined)
-     //                 obj.method = "GET";
-     //             var authorization = "";
-     //             var arr = document.cookie.split(';')
-     //             for (var i = 0; i < arr.length; i++) {
-     //                 var element = arr[i].split('=');
-     //                 if (element[0].indexOf('authorization') > 0) {
-     //                     authorization = element[1];
-     //                 }
-     //             }
+ //             $http.get(url, {
+ //                 headers: {
+ //                     'Content-Type': 'application/json',
+ //                     'X-AUTH-TOKEN': authorization
+ //                 }
+ //             }).then(function successCallback(response) {
+ //                 response.statResponse = true;
+ //                 deffer.resolve(response);
+ //             }, function errorCallback(response, err, da) {
+ //                 response.statResponse = false;
+ //                 deffer.reject(response);
+ //             });
+ //             return deffer.promise;
+ //         },
+ //         post: function(obj, data) {
+ //             console.log(JSON.stringify(data));
+ //             var deffer = $q.defer();
+ //             if (obj.method === undefined)
+ //                 obj.method = "GET";
+ //             var authorization = "";
+ //             var arr = document.cookie.split(';')
+ //             for (var i = 0; i < arr.length; i++) {
+ //                 var element = arr[i].split('=');
+ //                 if (element[0].indexOf('authorization') > 0) {
+ //                     authorization = element[1];
+ //                 }
+ //             }
 
-     //             if (data.supervisorToken !== undefined) {
-     //                 authorization = data.supervisorToken;
-     //             }
+ //             if (data.supervisorToken !== undefined) {
+ //                 authorization = data.supervisorToken;
+ //             }
 
-     //             var req = {};
-     //             if (obj.url === undefined) {
-     //                 var url = "";
-     //                 if (obj.indexOf("?") >= 0) {
-     //                    url = obj + "&X-AUTH-TOKEN=" + authorization;
-     //                } else
-     //                    url = obj + "?X-AUTH-TOKEN=" + authorization;
-     //                req = {
-     //                    method: 'POST',
-     //                    url: url,
-     //                    headers: {
-     //                        'Content-Type': 'application/json',
-     //                        'X-AUTH-TOKEN': authorization,
-     //                        'Module': data.module,
-     //                        'Form': data.form,
-     //                        'Action': data.action
-     //                    },
-     //                    data: data
-     //                }
-     //             } else {
-     //                var url = "";
-     //                if (obj.url.indexOf("?") >= 0) {
-     //                    url = obj.url + "&X-AUTH-TOKEN=" + authorization;
-     //                } else {
-     //                    url = obj.url + "?X-AUTH-TOKEN=" + authorization;
-     //                }
-     //                req = {
-     //                    method: 'POST',
-     //                    url: url,
-     //                    headers: {
-     //                        'Content-Type': 'application/json',
-     //                        'X-AUTH-TOKEN': authorization,
-     //                        'Module': data.module,
-     //                        'Form': data.form,
-     //                        'Action': data.action
-     //                    },
-     //                    data: data
-     //                }
-     //             }
-     //             $http(req).then(function successCallback(response) {
-     //                 if (response.data.data !== null) {
-     //                     if (response.data.data.message != undefined) {
-     //                         var msg = response.data.data.message;
-     //                         window.messageContainer.log(msg);
-     //                     } else if (response.data.messages) {
-     //                        var msg = response.data.messages;
-     //                        if (msg['label-success'] === "SUKSES") {
-     //                            window.messageContainer.log(msg['label-success']);
-     //                        }
-     //                        else {
-     //                            window.messageContainer.error(msg['label-success']);
-     //                        }
-                             
-                             
-     //                     } else if (response.data.messages != undefined) {
-     //                         var msg = response.data.messages;
-     //                         window.messageContainer.log(msg['label-success']);
-     //                     }
-     //                 }
-     //                 deffer.resolve(response);
-     //             }, function errorCallback(response) {
-     //                 //disini yah pak handlenya 
-     //                  var msgError = "";
-
-     //                 if(response.status === 403)
-     //                 {
-     //                     response["hak_akses"] = false;
-     //                 }
-     //                 else {
-     //                     if (response.data.fieldErrors != undefined) {
-
-     //                        for (var i = 0; i < response.data.fieldErrors.length; i++) {
-     //                            msgError = response.data.fieldErrors[i].message;
-     //                            window.messageContainer.error(msgError);
-     //                        }
-     //                    } 
-     //                    else {
-     //                        msgError = response.statusText;
-     //                        window.messageContainer.error(msgError);
-     //                    }
-     //                 }
+ //             var req = {};
+ //             if (obj.url === undefined) {
+ //                 var url = "";
+ //                 if (obj.indexOf("?") >= 0) {
+ //                    url = obj + "&X-AUTH-TOKEN=" + authorization;
+ //                } else
+ //                    url = obj + "?X-AUTH-TOKEN=" + authorization;
+ //                req = {
+ //                    method: 'POST',
+ //                    url: url,
+ //                    headers: {
+ //                        'Content-Type': 'application/json',
+ //                        'X-AUTH-TOKEN': authorization,
+ //                        'Module': data.module,
+ //                        'Form': data.form,
+ //                        'Action': data.action
+ //                    },
+ //                    data: data
+ //                }
+ //             } else {
+ //                var url = "";
+ //                if (obj.url.indexOf("?") >= 0) {
+ //                    url = obj.url + "&X-AUTH-TOKEN=" + authorization;
+ //                } else {
+ //                    url = obj.url + "?X-AUTH-TOKEN=" + authorization;
+ //                }
+ //                req = {
+ //                    method: 'POST',
+ //                    url: url,
+ //                    headers: {
+ //                        'Content-Type': 'application/json',
+ //                        'X-AUTH-TOKEN': authorization,
+ //                        'Module': data.module,
+ //                        'Form': data.form,
+ //                        'Action': data.action
+ //                    },
+ //                    data: data
+ //                }
+ //             }
+ //             $http(req).then(function successCallback(response) {
+ //                 if (response.data.data !== null) {
+ //                     if (response.data.data.message != undefined) {
+ //                         var msg = response.data.data.message;
+ //                         window.messageContainer.log(msg);
+ //                     } else if (response.data.messages) {
+ //                        var msg = response.data.messages;
+ //                        if (msg['label-success'] === "SUKSES") {
+ //                            window.messageContainer.log(msg['label-success']);
+ //                        }
+ //                        else {
+ //                            window.messageContainer.error(msg['label-success']);
+ //                        }
 
 
-     //                 deffer.reject(response);
-     //             });
-     //             return deffer.promise;
-     //         }
-     //     }
-     // }]);
+ //                     } else if (response.data.messages != undefined) {
+ //                         var msg = response.data.messages;
+ //                         window.messageContainer.log(msg['label-success']);
+ //                     }
+ //                 }
+ //                 deffer.resolve(response);
+ //             }, function errorCallback(response) {
+ //                 //disini yah pak handlenya 
+ //                  var msgError = "";
+
+ //                 if(response.status === 403)
+ //                 {
+ //                     response["hak_akses"] = false;
+ //                 }
+ //                 else {
+ //                     if (response.data.fieldErrors != undefined) {
+
+ //                        for (var i = 0; i < response.data.fieldErrors.length; i++) {
+ //                            msgError = response.data.fieldErrors[i].message;
+ //                            window.messageContainer.error(msgError);
+ //                        }
+ //                    } 
+ //                    else {
+ //                        msgError = response.statusText;
+ //                        window.messageContainer.error(msgError);
+ //                    }
+ //                 }
 
 
-     ///
+ //                 deffer.reject(response);
+ //             });
+ //             return deffer.promise;
+ //         }
+ //     }
+ // }]);
+
+
+ ///

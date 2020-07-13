@@ -758,9 +758,10 @@ define(['initialize'], function (initialize) {
             }
 
             function BaruLagi() {
+                $scope.item.nocm = Math.floor(Math.random() * 100000000000) + 0;
                 // $scope.item.resep = ''
                 // $scope.item.penulisResep =[]
-                $scope.item.nocm = ''
+                // $scope.item.nocm = '';
                 $scope.item.namapasien = ''
                 $scope.item.tglLahir = ''
                 $scope.item.noTelepon = ''
@@ -922,7 +923,9 @@ define(['initialize'], function (initialize) {
                     counterid: confirm
                 }
 
-                manageLogistikPhp.saveconsisobatbebas(objSave).then(function (e) {})
+                manageLogistikPhp.saveconsisobatbebas(objSave).then(function (e) {
+                    // $state.go()
+                })
             }
 
             $scope.simpan = function () {

@@ -17,11 +17,12 @@
     }
 
     .label-name {
-        font-size: 1em;
+        font-size: 10px;
         font-weight: 800;
     }
 
     .label-content {
+        display: block;
         font-size: 1.5em;
         text-decoration: underline;
         font-weight: bolder;
@@ -95,7 +96,7 @@
     <md-card-title>
         <md-card-title-text style="text-align: center;font-size: 50px;font-weight: bolder;letter-spacing: .5em;">
             <marquee scrollamount="20" truespeed="truespeed">
-                💊 Antrian Resep Farmasi 💊 
+                💊 Antrian Resep Farmasi 💊
             </marquee>
         </md-card-title-text>
     </md-card-title>
@@ -108,15 +109,16 @@
 
         <div class="grid_6">
             <md-card style="background-color: #D6FDEA">
-                <h1>Dalam Proses Produksi</h1>
+                <h1 style="font-weight: bolder;">Dalam Proses Produksi</h1>
                 <md-card-content>
-                    <div class="grid_4">
+
+                    <div class="grid_4" ng-repeat="item in dataObatProsesProduksi">
                         <md-card class="card-antrian">
                             <md-card-content>
                                 <div class="container-antrian">
                                     <div class="grid_12">
-                                        <span class="label-name">00012313</span> / <span
-                                            class="label-content">Karina</span>
+                                        <span class="label-content">{{item.noorder}}</span>
+                                        <span class="label-name">{{item.namapasien}}</span>
                                     </div>
 
                                 </div>
@@ -125,50 +127,22 @@
                         </md-card>
                     </div>
 
-                    <div class="grid_4">
-                        <md-card class="card-antrian">
-                            <md-card-content>
-                                <div class="container-antrian">
-                                    <div class="grid_12">
-                                        <span class="label-name">00012313</span> / <span
-                                            class="label-content">Karina</span>
-                                    </div>
-
-                                </div>
-
-                            </md-card-content>
-                        </md-card>
-                    </div>
-
-                    <div class="grid_4">
-                        <md-card class="card-antrian">
-                            <md-card-content>
-                                <div class="container-antrian">
-                                    <div class="grid_12">
-                                        <span class="label-name">00012313</span> / <span
-                                            class="label-content">Karina</span>
-                                    </div>
-
-                                </div>
-
-                            </md-card-content>
-                        </md-card>
-                    </div>
                 </md-card-content>
             </md-card>
         </div>
 
         <div class="grid_6">
             <md-card style="background-color: #B6E8FF">
-                <h1>Selesai Produksi</h1>
+                <h1 style="font-weight: bolder;">Selesai Produksi</h1>
                 <md-card-content>
-                    <div class="grid_4">
+
+                    <div class="grid_4" ng-repeat="item in dataObatObatProduksi">
                         <md-card class="card-antrian">
                             <md-card-content>
                                 <div class="container-antrian">
                                     <div class="grid_12">
-                                        <span class="label-name">00012313</span> / <span
-                                            class="label-content">Karina</span>
+                                        <span class="label-content">{{item.noorder}}</span>
+                                        <span class="label-name">{{item.namapasien}}</span>
                                     </div>
 
                                 </div>
@@ -176,62 +150,7 @@
                             </md-card-content>
                         </md-card>
                     </div>
-                    <div class="grid_4">
-                        <md-card class="card-antrian">
-                            <md-card-content>
-                                <div class="container-antrian">
-                                    <div class="grid_12">
-                                        <span class="label-name">00012313</span> / <span
-                                            class="label-content">Karina</span>
-                                    </div>
 
-                                </div>
-
-                            </md-card-content>
-                        </md-card>
-                    </div>
-                    <div class="grid_4">
-                        <md-card class="card-antrian">
-                            <md-card-content>
-                                <div class="container-antrian">
-                                    <div class="grid_12">
-                                        <span class="label-name">00012313</span> / <span
-                                            class="label-content">Karina</span>
-                                    </div>
-
-                                </div>
-
-                            </md-card-content>
-                        </md-card>
-                    </div>
-                    <div class="grid_4">
-                        <md-card class="card-antrian">
-                            <md-card-content>
-                                <div class="container-antrian">
-                                    <div class="grid_12">
-                                        <span class="label-name">00012313</span> / <span
-                                            class="label-content">Karina</span>
-                                    </div>
-
-                                </div>
-
-                            </md-card-content>
-                        </md-card>
-                    </div>
-                    <div class="grid_4">
-                        <md-card class="card-antrian">
-                            <md-card-content>
-                                <div class="container-antrian">
-                                    <div class="grid_12">
-                                        <span class="label-name">00012313</span> / <span
-                                            class="label-content">Karina</span>
-                                    </div>
-
-                                </div>
-
-                            </md-card-content>
-                        </md-card>
-                    </div>
                 </md-card-content>
             </md-card>
         </div>

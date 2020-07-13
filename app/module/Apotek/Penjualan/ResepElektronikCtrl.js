@@ -259,6 +259,23 @@ define(['initialize'], function (initialize) {
                 }
             }
 
+            $scope.serahkanObat = function () {
+                if (!$scope.item.statusorder == 'Selesai' && $scope.item.dep_id === 16) {
+                    toastr.info('Obat belum siap di serahkan');
+
+                    return;
+                }
+
+                let data = {
+                    norec_so: $scope.item.norec_so
+                }
+
+                manageLogistikPhp.postpost('logistik/post-resep-elektronik-penyerahan-resep-norec', data).then(res => {
+                    $scope.refresh();
+                })
+
+            }
+
             $scope.verifikasi = function () {
                 if ($scope.item.statusorder == 'Blm Verifikasi') {
                     var arrStr = {
