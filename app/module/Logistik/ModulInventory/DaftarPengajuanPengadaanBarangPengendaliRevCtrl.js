@@ -109,7 +109,7 @@ define(['initialize'], function (initialize) {
 
                 if($scope.dataSelected.noverifikasi) {
                     toastr.info('Tidak bisa membuat UPK', 'UPK sudah disetujui');
-                    return;
+                    // return;
                 }
                 
                 localStorage.setItem('dataUPK', JSON.stringify($scope.dataSelected));

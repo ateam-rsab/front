@@ -139,8 +139,8 @@ define(['initialize'], function (initialize) {
                 $scope.item.tglDibutuhkan = dataUpk.tglkebutuhan;
                 $scope.item.koordinator = dataUpk.koordinator;
                 $scope.item.keteranganUsulan = dataUpk.keterangan;
-                $scope.item.ruanganPengusul = dataUpk.ruangan;
-                $scope.item.ruanganTujuan = dataUpk.ruangantujuan;
+                // $scope.item.ruanganPengusul = dataUpk.ruangan;
+                // $scope.item.ruanganTujuan = dataUpk.ruangantujuan;
                 $scope.item.penanggungjawab = dataUpk.penanggungjawab;
                 norecResep = dataUpk.norec;
                 $scope.item.mengetahui = dataUpk.mengetahui;
@@ -281,6 +281,8 @@ define(['initialize'], function (initialize) {
                         id: data_ih.data.detail.pengendaliid,
                         pengendali: data_ih.data.detail.pengendali
                     }
+
+                    $scope.GetOtherHead1();
                     if (data_ih.data.detail.idpegpengendali != undefined || data_ih.data.detail.idpegpengendali != null) {
                         $scope.item.pegawaiConfirm = {
                             id: data_ih.data.detail.idpegpengendali,

@@ -42,7 +42,8 @@
                             <label c-label item="item">No. Usulan</label>
                         </div>
                         <div class="grid_12">
-                            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noUsulan" disabled/>
+                            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.noUsulan"
+                                disabled />
                         </div>
                     </div>
                     <div class="grid_6">
@@ -51,7 +52,7 @@
                         </div>
                         <div class="grid_12 padDatePicker">
                             <input style="width: 100%" k-ng-model="item.tglUsulan" kendo-date-picker k-max="now"
-                                placeholer="dd-MM-yyyy" k-format="'dd-MM-yyyy'" disabled/>
+                                placeholer="dd-MM-yyyy" k-format="'dd-MM-yyyy'" disabled />
                         </div>
                     </div>
                 </div>
@@ -62,7 +63,7 @@
                         </div>
                         <div class="grid_12 padDatePicker">
                             <input style="width: 100%" k-ng-model="item.tglDibutuhkan" kendo-date-picker
-                                placeholer="dd-MM-yyyy" k-format="'dd-MM-yyyy'" disabled/>
+                                placeholer="dd-MM-yyyy" k-format="'dd-MM-yyyy'" disabled />
                         </div>
                     </div>
                     <div class="grid_6">
@@ -82,8 +83,8 @@
                             <label c-label item="item">Jenis Usulan</label>
                         </div>
                         <div class="grid_12">
-                            <input c-text-box type="input" filter="" class="k-textbox"
-                                ng-model="item.keteranganUsulan" disabled/>
+                            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.keteranganUsulan"
+                                disabled />
                         </div>
                     </div>
                 </div>
@@ -97,9 +98,11 @@
                             <label c-label item="item">Unit Pengusul</label>
                         </div>
                         <div class="grid_12">
-                            <input kendo-combo-box k-ng-model="item.ruanganPengusul" k-data-text-field="'namaruangan'"
+                            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.ruanganPengusul.namaruangan"
+                                disabled />
+                            <!-- <input kendo-combo-box k-ng-model="item.ruanganPengusul" k-data-text-field="'namaruangan'"
                                 k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
-                                k-data-source="listUnitPengusul" />
+                                k-data-source="listUnitPengusul" /> -->
                         </div>
                     </div>
                     <div class="grid_6">
@@ -107,9 +110,11 @@
                             <label c-label item="item">Unit Tujuan</label>
                         </div>
                         <div class="grid_12">
-                            <input kendo-combo-box k-ng-model="item.ruanganTujuan" k-data-text-field="'namaruangan'"
+                            <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.ruanganTujuan.namaruangan"
+                                disabled />
+                            <!-- <input kendo-combo-box k-ng-model="item.ruanganTujuan" k-data-text-field="'namaruangan'"
                                 k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
-                                k-data-source="listUnitTujuan" />
+                                k-data-source="listUnitTujuan" /> -->
                         </div>
                     </div>
                     <div class="grid_12" style="margin-top: 7px;margin-left: 4px">
@@ -120,7 +125,7 @@
                             <div class="grid_12">
                                 <input kendo-combo-box k-ng-model="item.penanggungjawab"
                                     k-data-text-field="'namalengkap'" k-data-value-field="'id'" k-filter="'contains'"
-                                    k-auto-bind="false" k-data-source="listPegawai" />
+                                    k-auto-bind="false" k-data-source="listPegawai" disabled/>
                             </div>
                         </div>
                         <div class="grid_6">
@@ -134,24 +139,24 @@
                             </div>
                         </div>
                     </div>
-                    <div class="grid_6" style="margin-top: 7px;">
+                    <div class="grid_12" style="margin-top: 7px;">
                         <div class="grid_12">
                             <label c-label item="item">Mengetahui</label>
                         </div>
                         <div class="grid_12">
                             <input kendo-combo-box k-ng-model="item.mengetahui" k-data-text-field="'namalengkap'"
                                 k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
-                                k-data-source="listPegawai" k-on-change='getNip_pns()' />
+                                k-data-source="listPegawai" disabled/>
                         </div>
                     </div>
-                    <div class="grid_6" style="margin-top: 7px">
+                    <!-- <div class="grid_6" style="margin-top: 7px">
                         <div class="grid_12">
                             <label c-label item="item">NIP</label>
                         </div>
                         <div class="grid_12">
                             <input c-text-box type="input" filter="" class="k-textbox" ng-model="item.nip" />
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
