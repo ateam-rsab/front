@@ -106,6 +106,11 @@ define(['initialize'], function (initialize) {
                     alert("Data Belum Dipilih!")
                     return;
                 }
+
+                if($scope.dataSelected.noverifikasi) {
+                    toastr.info('Tidak bisa membuat UPK', 'UPK sudah disetujui');
+                    return;
+                }
                 
                 localStorage.setItem('dataUPK', JSON.stringify($scope.dataSelected));
                 $state.go('UsulanPelaksanaanKegiatanRev')
@@ -154,37 +159,6 @@ define(['initialize'], function (initialize) {
                 });
             }
             
-            $scope.LihatUsulan = function () {
-
-                if (!$scope.dataSelected) {
-                    alert("Data Belum Dipilih!")
-                    return;
-                }
-
-                manageLogistikPhp.getDataTableTransaksi("upk/get-rincian-verifikasi?" + "noKonfirmasi=" + $scope.dataSelected.nokonfirmasi, true).then(function (dat) {
-                    var datas = dat.data.data[0];
-                    $scope.item.tglVerifikasi = moment(datas.tglkonfirmasi).format('DD-MM-YYYY HH:mm');
-                    $scope.item.PegawaiMenyetujui = {
-                        id: datas.objectpegawaifk,
-                        namalengkap: datas.namalengkap
-                    };
-                    if (datas.status == 2) {
-                        $scope.item.Status = {
-                            id: 2,
-                            status: 'Tidak Disetujui'
-                        };
-                    } else if (datas.status == 1) {
-                        $scope.item.Status = {
-                            id: 1,
-                            status: 'Disetujui'
-                        };
-                    }
-                    $scope.item.Keterangan = datas.keterangan;
-                    norecAjukan = $scope.dataSelected.norec
-                    $scope.PopUpVerifikasi.center().open();
-                });
-            }
-
             $scope.AjukanLagi = function () {
                 if ($scope.item.Status.id == 1) {
                     alert("Data Sudah Disetujui!!!")
@@ -321,6 +295,16 @@ define(['initialize'], function (initialize) {
                 {
                     "field": "mengetahui",
                     "title": "<h3>Mengetahui</h3>",
+                    "width": "200px",
+                },
+                {
+                    "field": "noverifikasi",
+                    "title": "<h3>No. Verifikasi</h3>",
+                    "width": "200px",
+                },
+                {
+                    "field": "keteranganverifikasi",
+                    "title": "<h3>Keterangan Verifikasi</h3>",
                     "width": "200px",
                 },
             ];
