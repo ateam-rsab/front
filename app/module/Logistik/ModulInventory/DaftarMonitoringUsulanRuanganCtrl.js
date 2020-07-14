@@ -154,6 +154,12 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.EditTerima = function () {
+
+                if(!$scope.dataSelected) {
+                    toastr.info('Harap pilih data terlebih dahulu');
+                    return;
+                }
+
                 if ($scope.dataSelected.noverifikasi) {
                     alert("Data Sudah Diverifikasi!!")
                     return;

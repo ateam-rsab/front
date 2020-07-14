@@ -132,7 +132,7 @@ define(['initialize'], function (initialize) {
                     $state.go('DaftarPengajuanPengadaanBarangPengendaliRev');
                 }
 
-                console.log(dataUpk);
+                
 
                 $scope.item.noUsulan = dataUpk.nousulan;
                 $scope.item.tglUsulan = dataUpk.tglusulan;
@@ -142,11 +142,11 @@ define(['initialize'], function (initialize) {
                 $scope.item.ruanganPengusul = dataUpk.ruangan;
                 $scope.item.ruanganTujuan = dataUpk.ruangantujuan;
                 $scope.item.penanggungjawab = dataUpk.penanggungjawab;
-
+                norecResep = dataUpk.norec;
                 $scope.item.mengetahui = dataUpk.mengetahui;
 
 
-                $scope.item.tglConfirm = dataUpk.tglverifikasi;
+                // $scope.item.tglConfirm = dataUpk.tglverifikasi;
 
                 $scope.dataGrid = new kendo.data.DataSource({
                     data: dataUpk.details,
@@ -200,7 +200,7 @@ define(['initialize'], function (initialize) {
                     $scope.listPegawai = data;
                 })
                 manageLogistikPhp.getDataTableTransaksi("upk/ruangan/get-data-combo?produk=0", true).then(function (dat) {
-
+                    $scope.listKoordinator = dat.data.jenisusulan;
                     $scope.item.koordinator = {
                         id: 1,
                         jenisusulan: 'Medis'
@@ -218,6 +218,113 @@ define(['initialize'], function (initialize) {
 
                     $scope.isRouteLoading = false;
 
+                });
+
+                manageLogistikPhp.getDataTableTransaksi("upk/get-detail-usulan-to-upk?norecOrder=" + norecResep, true).then(function (data_ih) {
+                    $scope.item.noOrder = data_ih.data.detail.noorder
+                    $scope.item.tglUsulan = data_ih.data.detail.tglorder
+                    $scope.item.keterangan = data_ih.data.detail.keterangan
+                    $scope.item.pegawaiPembuat = {
+                        id: data_ih.data.detail.petugasid,
+                        namalengkap: data_ih.data.detail.petugas
+                    }
+                    $scope.item.koordinator = {
+                        id: 1,
+                        jenisusulan: 'Medis'
+                    }
+                    $scope.item.tglDibutuhkan = data_ih.data.detail.tglusulan
+                    $scope.item.noUsulan = data_ih.data.detail.nousulan
+                    $scope.item.namaPengadaan = data_ih.data.detail.namapengadaan
+                    $scope.item.noKontrak = data_ih.data.detail.nokontrak
+                    $scope.item.tahun = data_ih.data.detail.tahunusulan
+                    $scope.item.alamatSupl = data_ih.data.detail.alamat
+                    $scope.item.telpSupl = data_ih.data.detail.telp
+                    $scope.item.suplier = {
+                        id: data_ih.data.detail.namarekananid,
+                        namarekanan: data_ih.data.detail.namarekanan
+                    }
+                    $scope.item.keteranganUsulan = data_ih.data.detail.keterangan
+                    $scope.item.nip = data_ih.data.detail.nippns
+                    $scope.item.penanggungjawab = {
+                        id: data_ih.data.detail.penanggungjawabid,
+                        namalengkap: data_ih.data.detail.penanggungjawab
+                    }
+                    $scope.item.mengetahui = {
+                        id: data_ih.data.detail.pegawaimengetahuiid,
+                        namalengkap: data_ih.data.detail.pegawaimengetahui
+                    }
+                    $scope.item.asalproduk = {
+                        id: data_ih.data.details[0].asalprodukfk,
+                        asalproduk: data_ih.data.details[0].asalproduk
+                    }
+                    norec_Realisasi = data_ih.data.detail.norecrealisasi;
+                    norecRR = data_ih.data.detail.norecrr;
+                    keltrans = data_ih.data.detail.keltransaksi;
+                    verifikasifk = data_ih.data.detail.objectsrukverifikasifk
+                    $scope.item.mataAnggaran = {
+                        norec: data_ih.data.detail.mataanggaranid,
+                        mataanggaran: data_ih.data.detail.mataanggaran,
+                        saldoawalblu: data_ih.data.detail.saldoawalblu,
+                        saldoawalrm: data_ih.data.detail.saldoawalrm
+                    }
+                    $scope.item.SaldoBlu = parseFloat(data_ih.data.detail.saldoawalblu).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+                    $scope.item.SaldoRm = parseFloat(data_ih.data.detail.saldoawalrm).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+                    $scope.item.ruanganPengusul = {
+                        id: data_ih.data.detail.idunitpengusul,
+                        namaruangan: data_ih.data.detail.unitpengusul
+                    }
+                    $scope.item.ruanganTujuan = {
+                        id: data_ih.data.detail.idunittujuan,
+                        namaruangan: data_ih.data.detail.unittujuan
+                    }
+                    $scope.item.Pengendali = {
+                        id: data_ih.data.detail.pengendaliid,
+                        pengendali: data_ih.data.detail.pengendali
+                    }
+                    if (data_ih.data.detail.idpegpengendali != undefined || data_ih.data.detail.idpegpengendali != null) {
+                        $scope.item.pegawaiConfirm = {
+                            id: data_ih.data.detail.idpegpengendali,
+                            namalengkap: data_ih.data.detail.namapengendali
+                        }
+                    } else {
+                        $scope.item.pegawaiConfirm = {
+                            id: user.id,
+                            namalengkap: user.namalengkap
+                        };
+                    }
+                    data2 = data_ih.data.details
+                    loadTreeview();
+                    // $scope.item.ruanganPenerima = {id:data_ih.data.detailterima.id,namaruangan:data_ih.data.detailterima.namaruangan} 
+                    // $scope.item.pegawaiPenerima = {id:data_ih.data.detailterima.pgid,namalengkap:data_ih.data.detailterima.namalengkap} 
+                    // $scope.item.tglFaktur = data_ih.data.detailterima.tglfaktur
+                    // $scope.item.noFaktur = data_ih.data.detailterima.nofaktur
+                    // $scope.item.namaRekanan = {id:data_ih.data.detailterima.objectrekananfk,namarekanan:data_ih.data.detailterima.namarekanan} 
+
+                    // $scope.item.ruangan = {id:data_ih.data.detailresep.id,namaruangan:data_ih.data.detailresep.namaruangan}
+                    // $scope.item.penulisResep = {id:data_ih.data.detailresep.pgid,namalengkap:data_ih.data.detailresep.namalengkap}
+                    // $scope.item.nocm = data_ih.data.detailresep.nocm
+                    // $scope.item.namapasien = data_ih.data.detailresep.nama
+                    // $scope.item.tglLahir = data_ih.data.detailresep.tgllahir
+                    // $scope.item.noTelepon = data_ih.data.detailresep.notlp
+                    // $scope.item.alamat = data_ih.data.detailresep.alamat
+
+                    // data2 = data_ih.data.details
+                    // $scope.dataGrid = new kendo.data.DataSource({
+                    //     data: data2
+                    // });
+
+                    var subTotal = 0;
+                    for (var i = data2.length - 1; i >= 0; i--) {
+                        subTotal = subTotal + parseFloat(data2[i].hargasatuan * data2[i].jumlah)
+                    }
+                    $scope.item.totalSubTotal = parseFloat(subTotal).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")
+                    $scope.item.totalPpn = 0 //(parseFloat(subTotal*10)/100).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")
+                    $scope.item.totalIniLoh = parseFloat(subTotal).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,") //parseFloat(subTotal+((subTotal*10)/100)).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")
+                    $scope.item.terbilang = terbilang(parseFloat(subTotal))
+                    TotTotal = parseFloat(subTotal)
+                    // item.totalPpn
+                    // item.totalIniLoh
+                    // item.totalSubTotal
                 });
 
             }
@@ -850,9 +957,9 @@ define(['initialize'], function (initialize) {
                 $scope.dataGrid._data.forEach((el, i) => {
                     dataBarangUsulan.push({
                         no: i + 1,
-                        hargasatuan: el.hargaupk,
-                        norec_op: el.norecitem,
-                        qtyprodukkonfirmasi: el.qtyupk,
+                        hargaupk: parseInt(el.hargaupk),
+                        norecitem: el.norecitem,
+                        qtyprodukkonfirmasi: parseInt(el.qtyupk),
                         // hargaupk: el.hargaupk
                     })
                 });
@@ -932,10 +1039,10 @@ define(['initialize'], function (initialize) {
                     ruanganfkTujuan: $scope.item.ruanganTujuan.id,
                     penanggungjawabfk: $scope.item.penanggungjawab.id,
                     mengetahuifk: $scope.item.mengetahui.id,
-                    nipPns: $scope.item.nip,
-                    total: TotTotal,
+                    // nipPns: $scope.item.nip,
+                    // total: TotTotal,
                     norec: norecResep,
-                    ppn: TotPpn,
+                    // ppn: TotPpn,
                     norecrealisasi: norec_Realisasi,
                     norecriwayatrealisasi: norecRR,
                     objectkelompoktransaksifk: keltrans,

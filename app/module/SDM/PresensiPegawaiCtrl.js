@@ -43,6 +43,10 @@ define(['initialize'], function (initialize) {
                     $scope.dataDevice = data;
                 });
 
+                $.get('https://json.rsabhk.co.id/local.php', function (data) {
+                    console.log(data);
+                });
+
                 $scope.tanggalPresensi = new Date();
                 getDataHistory();
                 ManageSdmNew.getListData('sdm/get-jadwal-pegawai').then((res) => {
