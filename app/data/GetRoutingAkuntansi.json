@@ -6435,6 +6435,30 @@
     ]
   },
   {
+    "name": "DaftarSPKRev",
+    "url": "/DaftarSPKRev",
+    "templateurl": "module/Logistik/ModulInventory/DaftarSPKRev.html",
+    "controller": "DaftarSPKRevCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      },
+      {
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
+      }
+    ]
+  },
+  {
     "name": "KegiatanSPK",
     "url": "/KegiatanSPK/:norec/:noOrder",
     "templateurl": "module/Logistik/ModulInventory/KegiatanSPK.html",

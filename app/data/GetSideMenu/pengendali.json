@@ -8,10 +8,6 @@
         "link": "#/DaftarPengajuanPengadaanBarangPengendaliRev"
     },
     {
-        "name": "Verifikasi Pengajuan Usulan Anggaran",
-        "link": "#/DaftarUsulanPengajuanAnggaranPengendali"
-    },
-    {
         "name": "Proses RUP",
         "link": "#/dataRup"
     },
