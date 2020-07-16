@@ -8,25 +8,9 @@ define(['initialize'], function (initialize) {
             $scope.now = new Date();
             $scope.isRouteLoading = false;
             var pegawaiUser = {}
-            // $scope.item.tglAwal = $scope.now;
-            // $scope.item.tglAkhir = $scope.now;
-            LoadCache();
+            $scope.item.tglAwal = $scope.now;
+            $scope.item.tglAkhir = $scope.now;
             loadCombo();
-
-            function LoadCache() {
-                var chacePeriode = cacheHelper.get('DaftarSPKCtrl');
-                if (chacePeriode != undefined) {
-                    //var arrPeriode = chacePeriode.split(':');
-                    $scope.item.tglAwal = new Date(chacePeriode[0]);
-                    $scope.item.tglAkhir = new Date(chacePeriode[1]);
-
-                    init();
-                } else {
-                    $scope.item.tglAwal = $scope.now;
-                    $scope.item.tglAkhir = $scope.now;
-                    init();
-                }
-            }
 
             function loadCombo() {
                 modelItemAkuntansi.getDataDummyPHP("aset/get-data-barang", true, true, 20).then(function (data) {
@@ -279,8 +263,13 @@ define(['initialize'], function (initialize) {
                     });
             }
 
-            $scope.TambahSPK = function () {
-                $state.go('InputSPKBaru');
+            function tambahSPK(e) {
+                e.preventDefault();
+                var tr = $(e.target).closest("tr");
+                var dataItem = this.dataItem(tr);
+
+                localStorage.setItem('dataSPK', JSON.stringify(dataItem));
+                $state.go('SuratPerintahKerja');
             }
 
             $scope.HapusPenerimaan = function () {
@@ -360,41 +349,41 @@ define(['initialize'], function (initialize) {
                     "title": "Unit Peminta",
                     "width": "200px",
                 },
-                // {
-                //     command: [{
-                //             text: "Edit",
-                //             align: "center",
-                //             attributes: {
-                //                 align: "center"
-                //             },
-                //             click: editSPK,
-                //             imageClass: "k-icon k-i-pencil"
-                //         },
-                //         {
-                //             text: "Hapus",
-                //             align: "center",
-                //             attributes: {
-                //                 align: "center"
-                //             },
-                //             click: confirmHapusSPK,
-                //             imageClass: "k-icon k-delete"
-                //         },
-                //         // {
-                //         //     text: "Penerimaan",
-                //         //     align: "center",
-                //         //     attributes: {
-                //         //         align: "center"
-                //         //     },
-                //         //     click: penerimaanSPK,
-                //         //     imageClass: "k-icon k-i-check"
-                //         // }
-                //     ],
-                //     title: "",
-                //     width: "200px",
-                //     attributes: {
-                //         style: "text-align:center;valign=middle"
-                //     },
-                // }
+                {
+                    command: [{
+                            text: "Buat SPK",
+                            align: "center",
+                            attributes: {
+                                align: "center"
+                            },
+                            click: tambahSPK,
+                            imageClass: "k-icon k-i-plus"
+                        },
+                        // {
+                        //     text: "Hapus",
+                        //     align: "center",
+                        //     attributes: {
+                        //         align: "center"
+                        //     },
+                        //     click: confirmHapusSPK,
+                        //     imageClass: "k-icon k-delete"
+                        // },
+                        // {
+                        //     text: "Penerimaan",
+                        //     align: "center",
+                        //     attributes: {
+                        //         align: "center"
+                        //     },
+                        //     click: penerimaanSPK,
+                        //     imageClass: "k-icon k-i-check"
+                        // }
+                    ],
+                    title: "",
+                    width: "120px",
+                    attributes: {
+                        style: "text-align:center;valign=middle"
+                    },
+                }
                 // {
                 //     "field": "tglkontrak",
                 //     "title": "Tgl Kontrak",
@@ -457,11 +446,11 @@ define(['initialize'], function (initialize) {
                         name: "Export detail",
                         template: '<button ng-click="exportSPK()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
                     },
-                    {
-                        text: "export",
-                        name: "Export detail",
-                        template: '<button ng-click="TambahSPK()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-plus"></span>Buat SPK</button>'
-                    },
+                    // {
+                    //     text: "export",
+                    //     name: "Export detail",
+                    //     template: '<button ng-click="TambahSPK()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-plus"></span>Buat SPK</button>'
+                    // },
                     {
                         text: "export",
                         name: "Export detail",
@@ -738,20 +727,21 @@ define(['initialize'], function (initialize) {
                             "width": "30px",
                         },
                         {
-                            "field": "qtyblmrealisasi",
-                            "title": "Qty",
+                            "field": "qtyupk",
+                            "title": "Qty UPK",
                             "width": "50px",
                         },
-                        // {
-                        //     "field": "qtyterimalast",
-                        //     "title": "Sdh Terima",
-                        //     "width": "65px",
-                        // },
                         {
                             "field": "hargaupk",
                             "title": "Harga UPK",
                             "width": "50px",
                             "template": "<span class='style-right'>{{formatRupiah('#: hargaupk #', '')}}</span>"
+                        },
+                        {
+                            "field": "qtyblmrealisasi",
+                            "title": "Qty Belum Realisasi",
+                            "width": "50px",
+                            "template": "<span>{{qtyblmrealisasi ? qtyblmrealisasi : '-'}}</span>"
                         },
                         // {
                         //     "field": "total",

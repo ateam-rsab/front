@@ -1,8 +1,20 @@
 [
-    
     {
-        "name": "Daftar Monitoring Usulan",
-        "link": "#/DaftarMonitoringUsulanRuangan"
+        "name": "Pemesanan Barang Baru",
+        "children": [
+            {
+                "name": "Usulan Permintaan Kegiatan",
+                "link": "#/DaftarMonitoringUsulanRuangan"
+            },
+            {
+                "name": "Usulan Pelaksanaan Kegiatan",
+                "link": "#/DaftarPengajuanPengadaanBarangPengendaliRev"
+            },
+            {
+                "name": "Surat Perintah Kerja",
+                "link": "#/DaftarSPKRev"
+            }
+        ]
     },
     {
         "name": "Rencana Usulan Barang",

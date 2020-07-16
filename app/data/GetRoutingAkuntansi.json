@@ -13289,6 +13289,38 @@
     ]
   },
   {
+    "name": "SuratPerintahKerja",
+    "url": "/SuratPerintahKerja",
+    "templateurl": "module/Logistik/ModulInventory/SuratPerintahKerja.html",
+    "controller": "SuratPerintahKerjaCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      },
+      {
+        "module": "PhpServices",
+        "define": "PhpServices"
+      },
+      {
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
+      }
+    ]
+  },
+  {
     "name": "DaftarPengajuanPengadaanBarangPengendali",
     "url": "/DaftarPengajuanPengadaanBarangPengendali",
     "templateurl": "module/Logistik/ModulInventory/DaftarPengajuanPengadaanBarangPengendali.html",

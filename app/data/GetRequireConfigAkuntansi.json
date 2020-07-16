@@ -1048,6 +1048,10 @@
       "urlDep": "module/Logistik/ModulInventory/UsulanPelaksanaanKegiatanRevCtrl"
     },
     {
+      "nameDep": "SuratPerintahKerjaCtrl",
+      "urlDep": "module/Logistik/ModulInventory/SuratPerintahKerjaCtrl"
+    },
+    {
       "nameDep": "DaftarUsulanPelaksanaanKegiatanCtrl",
       "urlDep": "module/Logistik/ModulInventory/DaftarUsulanPelaksanaanKegiatanCtrl"
     },

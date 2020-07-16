@@ -3,6 +3,10 @@
         "name": "Information",
         "children": [
             {
+                "name": "Jadwal Dokter Beta",
+                "link": "#/MasterJadwalDokter"
+            },
+            {
                 "name": "Daftar Registrasi Pasien",
                 "link": "#/DaftarRegistrasiPasien"
             },
