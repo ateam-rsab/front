@@ -17,6 +17,7 @@ define(['initialize'], function (initialize) {
             $scope.supplier = true;
             var norecResep = '';
 
+            $scope.isEdit = false;
             var data2 = [];
 
             var TotTotal = 0;
@@ -171,7 +172,7 @@ define(['initialize'], function (initialize) {
                 //         $scope.item.hargaSatuan = dat.data.detail[0].harga
                 // });
             }
-            
+
             $scope.getNilaiKonversi = function () {
                 $scope.item.nilaiKonversi = $scope.item.satuan.nilaikonversi
                 manageLogistikPhp.getDataTableTransaksi("logistik/get-harga?" +
@@ -315,13 +316,14 @@ define(['initialize'], function (initialize) {
 
             $scope.klikGrid = function (dataSelected) {
                 var dataProduk = [];
+                $scope.isEdit = true;
                 $scope.item.nilaiKonversi = dataSelected.nilaikonversi;
                 $scope.item.satuan = {
                     ssid: dataSelected.satuanstandarfk,
                     satuanstandar: dataSelected.satuanstandar
                 }
-                $scope.item.jumlah = dataSelected.jumlah;
-                $scope.item.hargaSatuan = dataSelected.hargasatuan;
+                $scope.item.jumlah = dataSelected.qtyblmteralisasi;
+                $scope.item.hargaSatuan = dataSelected.hargaspk;
                 $scope.item.ppnpersen = dataSelected.persenppn;
                 $scope.item.ppn = dataSelected.ppn;
                 $scope.item.hargaDiskon = dataSelected.hargadiscount;
@@ -335,8 +337,8 @@ define(['initialize'], function (initialize) {
                     $scope.listProduk.add(data.data[0])
                     $scope.item.produk = data.data[0];
 
-                    $scope.item.jumlah = 0;
-                    GETKONVERSI(dataSelected.jumlah);
+                    // $scope.item.jumlah = 0;
+                    // GETKONVERSI(dataSelected.qtyblmteralisasi);
 
                 });
             }
@@ -364,7 +366,10 @@ define(['initialize'], function (initialize) {
                     satuanview: $scope.item.satuan.satuanstandar,
                     jmlstok: null,
                     jumlah: $scope.item.jumlah,
+
+                    qtyblmteralisasi: $scope.item.jumlah,
                     hargasatuan: $scope.item.hargaSatuan,
+                    hargaspk: $scope.item.hargaSatuan,
                     hargadiscount: String($scope.item.hargaDiskon),
                     ppn: String($scope.item.ppn),
                     persenppn: String($scope.item.ppnpersen),
@@ -374,6 +379,7 @@ define(['initialize'], function (initialize) {
                     spesifikasi: $scope.item.spesifikasi.spesifikasi,
                     norec_op: null
                 }
+
                 data2.push(data)
                 // $scope.dataGrid.add($scope.dataSelected)
                 $scope.dataGrid = new kendo.data.DataSource({
@@ -396,7 +402,7 @@ define(['initialize'], function (initialize) {
 
                 grandTotal = ttlTotal + ttlPpn
                 $scope.item.totalIniLoh = parseFloat(grandTotal).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")
-
+                $scope.isEdit = false;
                 Kosongkan();
             }
 
@@ -444,21 +450,22 @@ define(['initialize'], function (initialize) {
                     "width": "80px",
                 },
                 {
-                    "field": "qtyupk",
-                    "title": "Qty UPK",
+                    "field": "qtyblmteralisasi",
+                    "title": "Qty",
                     "width": "70px",
                 },
                 {
-                    "field": "hargaupk",
-                    "title": "Harga UPK",
+                    "field": "qtyteralisasi",
+                    "title": "Qty Terealisasi",
                     "width": "70px",
+                    "template": "<span >{{qtyteralisasi ? qtyteralisasi : 0}}</span>"
                 },
                 {
-                    "field": "qtyblmrealisasi",
-                    "title": "Harga Belum Realisasi",
-                    "width": "100px",
-                    // "template": "<span class='style-right'>{{formatRupiah('#: hargasatuan #', '')}}</span>"
-                },
+                    "field": "hargaspk",
+                    "title": "Harga SPK",
+                    "width": "70px",
+                    // "template": "<span class='style-right'>{{formatRupiah('#: hargaspk #', '')}}</span>"
+                }
                 // {
                 //     "field": "statusbarang",
                 //     "title": "Stat Barang",

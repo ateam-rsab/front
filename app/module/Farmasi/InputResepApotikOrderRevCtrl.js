@@ -302,7 +302,9 @@ define(['initialize'], function (initialize) {
             // simpan ke temporary resep
             $scope.simpan = function (data) {
 
-                if ($scope.dataLogin.jenisPegawai.jenispegawai !== "DOKTER") {
+                let getJenisPegawai = $scope.dataLogin.jenisPegawai.jenispegawai ? $scope.dataLogin.jenisPegawai.jenispegawai : $scope.dataLogin.jenisPegawai.jenisPegawai;
+
+                if (getJenisPegawai !== "DOKTER") {
                     toastr.info('Anda tidak memiliki akses menambahkan Resep Elektronik');
                     return;
                 }
