@@ -41349,6 +41349,30 @@
     ]
   },
   {
+    "name": "MasterIndikatorBIOS",
+    "url": "/MasterIndikatorBIOS",
+    "templateurl": "module/AplikasiIT/DataMaster/MasterIndikatorBIOS.html",
+    "controller": "MasterIndikatorBIOSCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
     "name": "TempatLahirBayi",
     "url": "/TempatLahirBayi",
     "templateurl": "module/AplikasiIT/DataMaster/TempatLahirBayi.html",

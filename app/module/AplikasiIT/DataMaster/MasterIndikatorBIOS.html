@@ -1,0 +1,84 @@
+<div ng-show="dataVOloaded">
+    <c-panel item="item" header="'Indikator BIOS'" disabled>
+        <div class="panel panel-default container_12">
+            <div class="panel-body">
+                <div class="grid_3">
+                    <label c-label item="item" c-label-text="Kode"></label>
+                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.indikator"
+                        k-data-text-field="'indikator'" />
+                </div>
+                <div class="grid_4">
+                    <label c-label item="item" c-label-text="Indikator"></label>
+                    <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="item.uraian"
+                        k-data-text-field="'uraian'" />
+                </div>
+                <div class="grid_1">
+                    <label c-label c-label-text=""></label>
+                    <em style="margin-top:6px;" ng-click='resetFilter()' id="iconButton" data-role="button"
+                        class="k-button k-button-icon k-primary" role="button" aria-disabled="false" tabindex="0"><span
+                            class="k-sprite k-icon k-i-cancel">Refresh</span></em>
+                </div>
+            </div>
+        </div>
+        <div class="grid_12 containerBorderBox">
+            <div id="grid" kendo-grid options="gridIndikatorBIOS" data-source="dataSourceIndikatorBIOS"></div>
+        </div>
+    </c-panel>
+</div>
+<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+
+<!-- Popup -->
+<div kendo-window="popUpIndikatorBIOS" k-title="'Input/Edit Master Indikator BIOS'" k-width="550" k-visible="false"
+    k-on-open="win2visible = true" k-on-close="ma.idGridIndikatorBIOS = null">
+    <div class="panel panel-default container_12" style="padding: 0px 10px;">
+        <!-- Kode Indikator -->
+        <div class="grid_12">
+            <div class="grid_4" style="margin: 2% 0 0 0;">
+                <label c-label item="item" c-label-text="Kode Indikator"></label>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_8">
+                <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="ma.indikator"
+                    k-data-text-field="'indikator'" />
+            </div>
+        </div>
+        <!-- Nama Indikator -->
+        <div class="grid_12">
+            <div class="grid_4" style="margin: 2% 0 0 0;">
+                <label c-label item="item" c-label-text="Nama Indikator"></label>
+            </div>
+            <div class="clear"></div>
+            <div class="grid_8">
+                <input c-text-box type="input" filter="'varchar'" class="k-textbox" ng-model="ma.uraian"
+                    k-data-text-field="'uraian'" />
+            </div>
+        </div>
+        <!-- Action Button -->
+        <div class="grid_12">
+            <div class="k-edit-buttons  k-state-default pull-right" style="margin-top:10px">
+                <button class="k-button k-button-icontext k-primary k-grid-update" ng-click="simpanIndikatorBIOS()"
+                    ng-show="enableBtnSimpanIndikatorBIOS"><span class="k-icon k-update"></span>Simpan</button>
+                <button class="k-button  k-button-icontext" ng-click="batal()"><span
+                        class="k-icon k-cancel"></span>Batal</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .k-grid .k-grid-header .k-header .k-link {
+        height: auto;
+    }
+
+    .k-grid .k-grid-header .k-header {
+        white-space: normal;
+    }
+
+    .k-grid .k-grid-header .k-header {
+        text-align: center;
+    }
+
+    button:disabled {
+        background: #B5B2B1;
+    }
+</style>
