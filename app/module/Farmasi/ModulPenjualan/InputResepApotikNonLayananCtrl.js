@@ -917,7 +917,7 @@ define(['initialize'], function (initialize) {
                 //     alert("Harus Non Racikan!!")
                 //     return
                 // }
-                var confirm = prompt("Input Counter ID", "1");
+                var confirm = prompt("Isi Nomor sesuai Jenis Pasien : BPJS, Umum dan Ranap", "3");
                 var objSave = {
                     strukresep: $scope.norecObat,
                     counterid: confirm
@@ -1016,7 +1016,6 @@ define(['initialize'], function (initialize) {
                     strukresep: strukresep,
                     details: data2
                 }
-                //
                 manageLogistikPhp.postpelayananapotikbebas(objSave).then(function (e) {
                     $scope.item.resep = e.data.data.nostruk;
                     $scope.isConsisDisabled = false;

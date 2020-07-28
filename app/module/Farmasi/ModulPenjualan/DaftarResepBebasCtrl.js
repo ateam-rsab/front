@@ -369,10 +369,10 @@ define(['initialize'], function (initialize) {
                     alert("Pilih Resep terlebih dahulu!!")
                     return
                 } //
-                if ($scope.dataSelected.jeniskemasan != 'Racikan/Puyer') {
-                    alert("Harus Racikan puyer!!")
-                    return
-                }
+                // if ($scope.dataSelected.jeniskemasan != 'Racikan/Puyer') {
+                //     alert("Harus Racikan puyer!!")
+                //     return
+                // }
                 var objSave = {
                     strukresep: $scope.dataSelected.norec_resep,
                     rke: $scope.dataSelected.rke

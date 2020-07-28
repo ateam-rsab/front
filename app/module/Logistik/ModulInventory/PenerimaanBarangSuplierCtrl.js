@@ -1817,8 +1817,14 @@ function GETKONVERSI(jml){
         }
 
         $scope.simpan = function(){
-            if ($scope.item.noTerima == undefined) {
-                alert("No Terima Tidak Boleh Kosong!!")
+            // let re = new RegExp(/[`~,.<>;':"/[\]|{}()=_+-\s]/)
+            // debugger;
+            if (!$scope.item.noTerima) {
+                toastr.error("No Terima Tidak Boleh Kosong!!")
+                return;
+            }
+            if (!$scope.item.noTerima.match(/^\S.*/g) || !$scope.item.noTerima.match(/.\-/g)) {
+                toastr.error("No Terima Tidak Valid!!");
                 return
             }
             if ($scope.item.asalproduk == undefined) {

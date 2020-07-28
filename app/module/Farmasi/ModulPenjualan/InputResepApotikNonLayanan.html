@@ -16,6 +16,13 @@
         text-align: left;
         width: 100%;
     }
+
+    md-dialog .md-actions,
+    md-dialog md-dialog-actions {
+        display: flex;
+        flex-direction: row-reverse;
+        
+    }
 </style>
 
 <!-- <div ng-controller="InputResepApotikCtrl"> -->
@@ -392,13 +399,16 @@
                     <div class="grid_2">
                     </div>
                     <div class="grid_2" style="margin-top: 10px">
-                        <md-button class="md-raised md-primary" ng-click="simpan()" ng-disabled="isSimpanDisabled">Simpan</md-button>
+                        <md-button class="md-raised md-primary" ng-click="simpan()" ng-disabled="isSimpanDisabled">
+                            Simpan</md-button>
                     </div>
                     <div class="grid_2" style="margin-top: 10px">
-                        <md-button class="md-raised md-primary" ng-click="BridgingConsisD()" ng-disabled="isConsisDisabled">Consis-D</md-button>
+                        <md-button class="md-raised md-primary" ng-click="BridgingConsisD()"
+                            ng-disabled="isConsisDisabled">Consis-D</md-button>
                     </div>
                     <div class="grid_2" style="margin-top: 10px">
-                        <md-button class="md-raised md-primary" ng-click="BridgingMiniR45()" ng-disabled="isConsisDisabled">Mini R-45</md-button>
+                        <md-button class="md-raised md-primary" ng-click="BridgingMiniR45()"
+                            ng-disabled="isConsisDisabled">Mini R-45</md-button>
                     </div>
                     <div class="grid_2" style="margin-top: 10px">
                         <md-button class="md-raised md-primary" ng-click="BatalInput()">Input Baru</md-button>
