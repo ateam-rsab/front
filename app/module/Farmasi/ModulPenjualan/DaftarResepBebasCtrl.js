@@ -378,7 +378,7 @@ define(['initialize'], function (initialize) {
                     rke: $scope.dataSelected.rke
                 }
 
-                manageLogistikPhp.postpost("bridging/save-mini-r45-rev-1", objSave).then(function (e) {
+                manageLogistikPhp.postpost("bridging/save-mini-r45", objSave).then(function (e) {
 
                 })
             }
