@@ -164,7 +164,7 @@ define(['initialize'], function (initialize) {
         },
         {
           "field": "noverifikasi",
-          "title": "<h3>No. Verifikasi</h3>",
+          "title": "<h3>No. Voucher</h3>",
           "template": "<span class='style-center'>{{'#: noverifikasi #'}}</span>",
           "width": "150px"
         },
@@ -259,8 +259,7 @@ define(['initialize'], function (initialize) {
           "width": "150px"
         },
         {
-          command: [
-            {
+          command: [{
               text: "Konfirmasi Kasubag",
               // name:"Konfirmasi",
               align: "center",
@@ -425,6 +424,16 @@ define(['initialize'], function (initialize) {
           }
 
         ],
+        filterable: {
+          extra: false,
+          operators: {
+            string: {
+              startswith: "Dimulai dengan",
+              contains: "mengandung kata",
+              neq: "Tidak mengandung kata"
+            }
+          }
+        },
         pageable: true,
         scrollable: true,
         columns: $scope.columnGridVerified
@@ -444,6 +453,16 @@ define(['initialize'], function (initialize) {
           }
 
         ],
+        filterable: {
+          extra: false,
+          operators: {
+            string: {
+              startswith: "Dimulai dengan",
+              contains: "mengandung kata",
+              neq: "Tidak mengandung kata"
+            }
+          }
+        },
         pageable: true,
         scrollable: true,
         columns: $scope.columnGridUnverified
@@ -456,7 +475,7 @@ define(['initialize'], function (initialize) {
               value: "Nama Rekanan"
             },
             {
-              value: "No. Verifikasi"
+              value: "No. Voucher"
             },
             {
               value: "Nama Anggaran"
@@ -473,9 +492,6 @@ define(['initialize'], function (initialize) {
             {
               value: "Tanggal Dokumen"
             },
-            // {
-            //   value: "No. Struk"
-            // },
             {
               value: "No. Dokumen"
             },
@@ -506,7 +522,7 @@ define(['initialize'], function (initialize) {
           ]
         }];
 
-        tempDataExport = isVerified ? $scope.dataGridVerified : $scope.dataGridUnverified;
+        tempDataExport = isVeriverif.totalBayarfied ? $scope.dataGridVerified : $scope.dataGridUnverified;
         tempDataExport.fetch(() => {
           var data = tempDataExport._data;
           for (var i = 0; i < data.length; i++) {
@@ -757,13 +773,13 @@ define(['initialize'], function (initialize) {
               confirmfk: $scope.dataPegawaiLogin.id,
               tglconfirm: dateHelper.formatDate(new Date, 'YYYY-MM-DD')
             }
-            
+
             ManageAkuntansi.postpost(data, 'bendahara-pengeluaran/save-confirm-verifikasi-tagihan-suplier').then(res => {
               $scope.loadData();
             });
-            
+
           } else {
-            
+
             let data = {
               noverifikasifk: $scope.confirm.noverifikasifk,
               confirmfk: $scope.confirm.confirmfk,
@@ -815,7 +831,7 @@ define(['initialize'], function (initialize) {
           faktur: $scope.item.isNoFaktur ? $scope.item.noFaktur : "",
           pph: JSON.parse($scope.verif.pph)
         };
-        
+
         $scope.verifkasiRekanan.close();
 
 

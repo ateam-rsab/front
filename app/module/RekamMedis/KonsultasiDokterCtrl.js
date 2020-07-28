@@ -75,7 +75,8 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.inputBaru = function () {
-                if($scope.dataLogin.jenisPegawai.jenispegawai !== "DOKTER") {
+                let getJenisPegawai = $scope.dataLogin.jenisPegawai.jenispegawai ? $scope.dataLogin.jenisPegawai.jenispegawai : $scope.dataLogin.jenisPegawai.jenisPegawai;
+                if(getJenisPegawai !== "DOKTER") {
                     toastr.info('Anda tidak memiliki akses menambahkan konsultasi');
                     return;
                 }

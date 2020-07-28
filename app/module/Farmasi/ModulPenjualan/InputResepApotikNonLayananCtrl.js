@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('InputResepApotikNonLayananCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper',
-        function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper) {
+    initialize.controller('InputResepApotikNonLayananCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper', '$mdDialog',
+        function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, $mdDialog) {
             $scope.item = {};
             $scope.isConsisDisabled = true;
             $scope.norecObat = null;
@@ -543,7 +543,7 @@ define(['initialize'], function (initialize) {
                     return;
                 }
 
-                if(!$scope.item.route) {
+                if (!$scope.item.route) {
                     alert("Harap isi Route!")
                     return;
                 }
@@ -759,14 +759,14 @@ define(['initialize'], function (initialize) {
 
             function BaruLagi() {
                 $scope.item.nocm = Math.floor(Math.random() * 100000000000) + 0;
-                // $scope.item.resep = ''
+                $scope.item.resep = '';
                 // $scope.item.penulisResep =[]
                 // $scope.item.nocm = '';
-                $scope.item.namapasien = ''
-                $scope.item.tglLahir = ''
-                $scope.item.noTelepon = ''
-                $scope.item.alamat = ''
-                $scope.item.rke = 1
+                $scope.item.namapasien = '';
+                $scope.item.tglLahir = '';
+                $scope.item.noTelepon = '';
+                $scope.item.alamat = '';
+                $scope.item.rke = 1;
                 $scope.dataGrid = [];
                 data2 = [];
                 $scope.isConsisDisabled = true;
@@ -912,7 +912,7 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.BridgingConsisD = function () {
-                
+
                 // if ($scope.dataSelected.jeniskemasan != 'Non Racikan') {
                 //     alert("Harus Non Racikan!!")
                 //     return
@@ -928,9 +928,29 @@ define(['initialize'], function (initialize) {
                 })
             }
 
+            $scope.BridgingMiniR45 = function () {
+                if ($scope.dataSelected == undefined) {
+                    alert("Pilih Resep terlebih dahulu!!")
+                    return
+                } //
+                if ($scope.dataSelected.jeniskemasan != 'Racikan/Puyer') {
+                    alert("Harus Racikan puyer!!")
+                    return
+                }
+                var objSave = {
+                    strukresep: $scope.dataSelected.norec_resep,
+                    rke: $scope.dataSelected.rke
+                }
+
+                manageLogistikPhp.postbridgingminir45(objSave).then(function (e) {
+
+                })
+            }
+
             $scope.simpan = function () {
                 $scope.isSimpanDisabled = true;
-                var penulis = null;
+                let isConfirm = $scope.item.ruangan.namaruangan === 'Farmasi 1',
+                    penulis = null;
 
                 if (!$scope.item.nocm) {
                     toastr.warning("No tidak boleh kosong");
@@ -1014,6 +1034,20 @@ define(['initialize'], function (initialize) {
                     client.get('http://127.0.0.1:1237/printvb/farmasiApotik?cetak-strukresep=1&nores=NonLayanan' + e.data.data.norec + '&view=' + stt + '&user=' + pegawaiUser.namalengkap, function (response) {
                         //aadc=response;
                     });
+
+                    var confirmDialog = $mdDialog.confirm()
+                        .title(`Apakah Obat akan dikeluarkan melalui "ROBOTIK" ?`)
+                        .ok('Ya')
+                        .cancel('Batal');
+
+                    if (isConfirm) {
+                        $mdDialog.show(confirmDialog).then(function () {
+                            // yes
+                            $scope.BridgingConsisD();
+                        }, function () {
+                            console.info('Cancel');
+                        });
+                    }
                     // BaruLagi()
                     // if (noOrder == 'EditResep') {
                     //     var objDelete = {norec:norecResep}
