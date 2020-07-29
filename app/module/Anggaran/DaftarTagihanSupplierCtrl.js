@@ -70,7 +70,7 @@ define(['initialize'], function (initialize) {
           }
         }
 
-        manageServicePhp.getDataTableTransaksi("bendahara-pengeluaran/get-data-tagihan-suplier?" +
+        manageServicePhp.getDataTableTransaksi("bendahara-pengeluaran/get-data-tagihan-suplier-rev-1?" +
           "tglAwal=" + tglAwal + "&tglAkhir=" + tglAkhir +
           tempStatus + noFaktur + NamaSupplier + noTerima, true).then(function (dat) {
           $scope.isRouteLoading = false;
