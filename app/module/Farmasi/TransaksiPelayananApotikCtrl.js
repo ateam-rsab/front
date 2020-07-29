@@ -243,10 +243,10 @@ define(['initialize'], function(initialize) {
                     alert("Pilih Resep terlebih dahulu!!")
                     return
                 }//
-                if ($scope.dataSelected.jeniskemasan != 'Racikan/Puyer') {
-                    alert("Harus Racikan puyer!!")
-                    return
-                }
+                // if ($scope.dataSelected.jeniskemasan != 'Racikan/Puyer') {
+                //     alert("Harus Racikan puyer!!")
+                //     return
+                // }
                 var objSave = 
                     {
                         strukresep:$scope.dataSelected.norec_resep,
@@ -262,10 +262,10 @@ define(['initialize'], function(initialize) {
                     alert("Pilih Resep terlebih dahulu!!")
                     return
                 }
-                if ($scope.dataSelected.jeniskemasan != 'Non Racikan') {
-                    alert("Harus Non Racikan!!")
-                    return
-                }
+                // if ($scope.dataSelected.jeniskemasan != 'Non Racikan') {
+                //     alert("Harus Non Racikan!!")
+                //     return
+                // }
                 var kampret = prompt("Input Counter ID", "3");
                 var objSave = 
                     {
