@@ -148,11 +148,11 @@ define(['initialize'], function (initialize) {
           "title": "<h3>Tanggal SPK</h3>",
           "width": "160px",
         },
-        // {
-        //   "field": "nostruk",
-        //   "title": "<h3>No. Terima</h3>",
-        //   "width": "160px",
-        // },
+        {
+          "field": "nosbk",
+          "title": "<h3>No. SBK</h3>",
+          "width": "160px",
+        },
         {
           "field": "noverifikasi",
           "title": "<h3>No. Verifikasi</h3>",
@@ -196,23 +196,23 @@ define(['initialize'], function (initialize) {
           "template": "<span class='style-right'>{{formatRupiah('#: totaldiskon #', '')}}</span>",
           "width": "150px",
         },
-        {
-          "field": "subtotal",
-          "title": "<h3>Sub Total</h3>",
-          "template": "<span class='style-right'>{{formatRupiah('#: subtotal #', '')}}</span>",
-          "width": "150px",
-        },
-        {
-          "field": "sisautang",
-          "title": "<h3>Sisa Hutang</h3>",
-          "template": "<span class='style-right'>{{formatRupiah('#: sisautang #', '')}}</span>",
-          "width": "150px",
-        },
-        {
-          "field": "status",
-          "title": "<h3>Status</h3>",
-          "width": "150px",
-        },
+        // {
+        //   "field": "subtotal",
+        //   "title": "<h3>Sub Total</h3>",
+        //   "template": "<span class='style-right'>{{formatRupiah('#: subtotal #', '')}}</span>",
+        //   "width": "150px",
+        // },
+        // {
+        //   "field": "sisautang",
+        //   "title": "<h3>Sisa Hutang</h3>",
+        //   "template": "<span class='style-right'>{{formatRupiah('#: sisautang #', '')}}</span>",
+        //   "width": "150px",
+        // },
+        // {
+        //   "field": "status",
+        //   "title": "<h3>Status</h3>",
+        //   "width": "150px",
+        // },
         {
           command: [{
               text: "Bayar Tagihan",
