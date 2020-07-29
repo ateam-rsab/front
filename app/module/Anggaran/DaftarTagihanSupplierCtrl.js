@@ -196,12 +196,12 @@ define(['initialize'], function (initialize) {
           "template": "<span class='style-right'>{{formatRupiah('#: totaldiskon #', '')}}</span>",
           "width": "150px",
         },
-        // {
-        //   "field": "subtotal",
-        //   "title": "<h3>Sub Total</h3>",
-        //   "template": "<span class='style-right'>{{formatRupiah('#: subtotal #', '')}}</span>",
-        //   "width": "150px",
-        // },
+        {
+          "field": "subtotal",
+          "title": "<h3>Sub Total</h3>",
+          "template": "<span class='style-right'>{{formatRupiah('#: subtotal #', '')}}</span>",
+          "width": "150px",
+        },
         // {
         //   "field": "sisautang",
         //   "title": "<h3>Sisa Hutang</h3>",
