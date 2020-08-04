@@ -9,12 +9,12 @@ define(['initialize'], function (initialize) {
             $scope.time = "";
             $scope.isRouteLoading = false;
             $scope.data.isWFH = true;
-            let dataPegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
+            $scope.dataPegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
 
             let getDataHistory = function () {
                 $scope.isRouteLoading = true;
                 let tempData = [];
-                ManageSdmNew.getListData('sdm/get-histori-presensi-pegawai').then((res) => {
+                ManageSdmNew.getListData('sdm/get-histori-presensi-pegawai?idPegawai=' + $scope.dataPegawaiLogin.id).then((res) => {
                     if (res.data.data.data) {
                         for (let i = 0; i < res.data.data.data.length; i++) {
                             tempData.push({
@@ -44,7 +44,7 @@ define(['initialize'], function (initialize) {
 
                 $scope.tanggalPresensi = new Date();
                 getDataHistory();
-                ManageSdmNew.getListData('sdm/get-jadwal-pegawai').then((res) => {
+                ManageSdmNew.getListData('sdm/get-jadwal-pegawai?idPegawai=' + $scope.dataPegawaiLogin.id).then((res) => {
                     $scope.data = res.data.data;
                 });
 
@@ -71,11 +71,14 @@ define(['initialize'], function (initialize) {
                 let data = {
                     // tr_date: DateHelper.toTimeStamp(new Date()),
                     // tr_time: DateHelper.toTimeStamp(new Date()),
-                    empl_code: $scope.data.idFinger,
+                    pegawai: {
+                        id: $scope.dataPegawaiLogin.id
+                    },
+                    // empl_code: $scope.data.idFinger,
                     processtatus: $scope.data.isWFH ? 1 : 0,
                     ip_addr: $scope.dataDevice.geoplugin_request
                 }
-                console.log(data);
+                // console.log(data);
                 ManageSdmNew.saveData(data, 'sdm/save-presensi-pegawai/').then((res) => {
                     getDataHistory();
                 })

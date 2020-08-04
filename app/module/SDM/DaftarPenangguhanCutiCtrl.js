@@ -2,6 +2,7 @@ define(['initialize'], function (initialize) {
 	'use strict';
 	initialize.controller('DaftarPenangguhanCutiCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', 'ManageSdm', 'ManageSdmNew', 'DateHelper', '$state', '$mdDialog', 'CetakHelper', '$timeout',
 		function ($q, $rootScope, $scope, ModelItem, ManageSdm, ManageSdmNew, DateHelper, $state, $mdDialog, CetakHelper, $timeout) {
+			$scope.dataPegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
 			$scope.item = {};
 			$scope.filter = {};
 			$scope.now = new Date();
@@ -148,7 +149,7 @@ define(['initialize'], function (initialize) {
 			}
 
 			$q.all([
-				ManageSdmNew.getListData("sdm/get-login-user-permohonan-status"),
+				ManageSdmNew.getListData("sdm/get-login-user-permohonan-status?idPegawai=" + $scope.dataPegawaiLogin.id),
 				ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true"),
 				// ModelItem.getPegawai()
 				ManageSdmNew.getListData("pegawai/find-pegawai-by-id-custom/" + ModelItem.getPegawai().id),
