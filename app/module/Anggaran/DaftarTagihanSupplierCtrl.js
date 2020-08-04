@@ -114,19 +114,18 @@ define(['initialize'], function (initialize) {
         var tglTerima = moment($scope.dataSelected.tglTerima).format('YYYY-MM-DD');
         var tglfaktur = moment($scope.dataSelected.tglfaktur).format('YYYY-MM-DD')
         $scope.listStatus = [{
-            id: 1,
-            namaExternal: "SEMUA"
-          }, {
-            id: 2,
-            namaExternal: "LUNAS"
-          }, {
-            id: 3,
-            namaExternal: "BELUM BAYAR"
-          }, {
-            id: 4,
-            namaExternal: "SELISIH BAYAR"
-          }
-        ];
+          id: 1,
+          namaExternal: "SEMUA"
+        }, {
+          id: 2,
+          namaExternal: "LUNAS"
+        }, {
+          id: 3,
+          namaExternal: "BELUM BAYAR"
+        }, {
+          id: 4,
+          namaExternal: "SELISIH BAYAR"
+        }];
 
         $scope.item.status = $scope.listStatus[0];
       }
@@ -135,18 +134,15 @@ define(['initialize'], function (initialize) {
           "field": "no",
           "title": "<h3>No</h3>",
           "width": "35px",
-        },
-        {
+        }, {
           "field": "noSPK",
           "title": "<h3>No. SPK</h3>",
           "width": "160px",
-        },
-        {
+        }, {
           "field": "tglSPK",
           "title": "<h3>Tanggal SPK</h3>",
           "width": "160px",
-        },
-        {
+        }, {
           "field": "nosbk",
           "title": "<h3>No. SBK</h3>",
           "width": "160px",
@@ -155,58 +151,48 @@ define(['initialize'], function (initialize) {
           "field": "noverifikasi",
           "title": "<h3>No. Verifikasi</h3>",
           "width": "160px",
-        },
-        {
+        }, {
           "field": "namarekanan",
           "title": "<h3>Nama Rekanan</h3>",
           "width": "200px",
-        },
-        {
+        }, {
           "field": "nodokumen",
           "title": "<h3>No. Dokumen</h3>",
           "width": "150px",
-        },
-        {
+        }, {
           "field": "tgljatuhtempo",
           "title": "<h3>Tanggal<br> Jatuh Tempo</h3>",
           "width": "150px",
-        },
-        {
-          "field": "total",
-          "title": "<h3>Total</h3>",
-          "template": "<span class='style-right'>{{formatRupiah('#: total #', '')}}</span>",
-          "width": "150px",
-        },
-        {
+        }, {
           "field": "totalppn",
           "title": "<h3>Total PPN</h3>",
           "template": "<span class='style-right'>{{formatRupiah('#: totalppn #', '')}}</span>",
           "width": "150px",
-        },
-        {
+        }, {
           "field": "totaldiskon",
           "title": "<h3>Total Diskon</h3>",
           "template": "<span class='style-right'>{{formatRupiah('#: totaldiskon #', '')}}</span>",
           "width": "150px",
-        },
-        {
-          "field": "status",
-          "title": "<h3>Status</h3>",
-          "width": "150px",
-        },
-        {
-          "field": "selisihbayar",
-          "title": "<h3>Selisih Bayar</h3>",
-          "template": "<span class='style-right'>{{ formatRupiah('#: selisihbayar #', '') }}</span>",
-          "width": "150px",
-        },
-        {
+        }, {
           "field": "subtotal",
           "title": "<h3>Sub Total</h3>",
           "template": "<span class='style-right'>{{formatRupiah('#: subtotal #', '')}}</span>",
           "width": "150px",
-        },
-        {
+        }, {
+          "field": "total",
+          "title": "<h3>Total</h3>",
+          "template": "<span class='style-right'>{{formatRupiah('#: total #', '')}}</span>",
+          "width": "150px",
+        }, {
+          "field": "selisihbayar",
+          "title": "<h3>Selisih Bayar</h3>",
+          "template": "<span class='style-right'>{{ formatRupiah('#: selisihbayar #', '') }}</span>",
+          "width": "150px",
+        }, {
+          "field": "status",
+          "title": "<h3>Status</h3>",
+          "width": "150px",
+        }, {
           command: [{
               text: "Bayar Tagihan",
               align: "center",
@@ -235,10 +221,136 @@ define(['initialize'], function (initialize) {
       ];
 
       $scope.gridOpt = {
+        toolbar: [{
+            text: "export",
+            name: "Export detail",
+            template: '<button ng-click="exportExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
+          }
+
+        ],
         pageable: true,
         pageSize: 10,
         scrollable: true,
         columns: $scope.columnGrid
+      };
+
+      $scope.exportExcel = () => {
+        var tempDataExport = [];
+        var rows = [{
+          cells: [{
+            value: "No."
+          }, {
+            value: "No. SPK"
+          }, {
+            value: "Tanggal SPK"
+          }, {
+            value: "No. SBK"
+          }, {
+            value: "No. Verifikasi"
+          }, {
+            value: "Nama Rekanan"
+          }, {
+            value: "No. Dokumen"
+          }, {
+            value: "Tanggal Jatuh Tempo"
+          }, {
+            value: "Total PPN"
+          }, {
+            value: "Total Diskon"
+          }, {
+            value: "Sub Total"
+          }, {
+            value: "Total"
+          }, {
+            value: "Selisih Bayar"
+          }, {
+            value: "Status"
+          }]
+        }];
+
+        tempDataExport = $scope.dataGrid;
+        tempDataExport.fetch(() => {
+          var data = tempDataExport._data;
+          for (var i = 0; i < data.length; i++) {
+            //push single row for every record
+            rows.push({
+              cells: [{
+                value: data[i].no
+              }, {
+                value: data[i].noSPK
+              }, {
+                value: data[i].tglSPK
+              }, {
+                value: data[i].nosbk
+              }, {
+                value: data[i].noverifikasi
+              }, {
+                value: data[i].namarekanan
+              }, {
+                value: data[i].nodokumen
+              }, {
+                value: data[i].tgljatuhtempo
+              }, {
+                value: data[i].totalppn
+              }, {
+                value: data[i].totaldiskon
+              }, {
+                value: data[i].subtotal
+              }, {
+                value: data[i].total
+              }, {
+                value: data[i].selisihbayar
+              }, {
+                value: data[i].status
+              }]
+            })
+          }
+          var workbook = new kendo.ooxml.Workbook({
+            sheets: [{
+              freezePane: {
+                rowSplit: 1
+              },
+              columns: [{
+                autoWidth: true
+              }, {
+                autoWidth: true
+              }, {
+                autoWidth: true
+              }, {
+                autoWidth: true
+              }, {
+                autoWidth: true
+              }, {
+                autoWidth: true
+              }, {
+                autoWidth: true
+              }, {
+                autoWidth: true
+              }, {
+                autoWidth: true
+              }, {
+                autoWidth: true
+              }, {
+                autoWidth: true
+              }, {
+                autoWidth: true
+              }, {
+                autoWidth: true
+              }, {
+                autoWidth: true
+              }],
+              // Title of the sheet
+              title: "Daftar Tagihan Rekanan",
+              // Rows of the sheet
+              rows: rows
+            }]
+          });
+          //save the file as Excel file with extension xlsx
+          kendo.saveAs({
+            dataURI: workbook.toDataURL(),
+            fileName: "daftar-tagihan-rekanan.xlsx"
+          });
+        });
       };
 
       function bayarTagihan(e) {

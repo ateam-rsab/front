@@ -1823,10 +1823,10 @@ function GETKONVERSI(jml){
                 toastr.error("No Terima Tidak Boleh Kosong!!")
                 return;
             }
-            if (!$scope.item.noTerima.match(/^\S.*/g) || !$scope.item.noTerima.match(/.\-/g)) {
-                toastr.error("No Terima Tidak Valid!!");
-                return
-            }
+            // if (!) {
+            //     toastr.error("No Terima Tidak Valid!!");
+            //     return
+            // }
             if ($scope.item.asalproduk == undefined) {
                 alert("Pilih Asal Produk!!")
                 return
