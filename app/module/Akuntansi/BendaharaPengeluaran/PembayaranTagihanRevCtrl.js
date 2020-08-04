@@ -31,16 +31,16 @@ define(['initialize'], function (initialize) {
         var chacePeriode = cacheHelper.get('PembayaranTagihanRev');
         if (chacePeriode != undefined) {
           var arrPeriode = chacePeriode.split('#');
-          console.log(arrPeriode[6]);
+          console.log(arrPeriode[8]);
 
           $scope.item.deskripsiTransaksi = arrPeriode[1];
           noRECC = arrPeriode[5];
-          $scope.totalTagihan = arrPeriode[6];
-          $scope.item.subTotal = "Rp. " + parseFloat(arrPeriode[6]).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,"); //arrPeriode[6];
-          modelItemAkuntansi.getDataGlobal("valet/terbilang/" + arrPeriode[6]).then(function (data) {
+          $scope.totalTagihan = arrPeriode[8];
+          $scope.item.subTotal = "Rp. " + parseFloat(arrPeriode[8]).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,"); //arrPeriode[8];
+          modelItemAkuntansi.getDataGlobal("valet/terbilang/" + arrPeriode[8]).then(function (data) {
             $scope.item.terbilang = data.terbilang;
           })
-          sisautang = parseFloat(arrPeriode[6]);
+          sisautang = parseFloat(arrPeriode[8]);
           judul = arrPeriode[7]
           dariSini = arrPeriode[8]
         }

@@ -76,7 +76,8 @@ define(['initialize'], function (initialize) {
           $scope.isRouteLoading = false;
           var datas = dat.data.daftar;
           for (var i = 0; i < datas.length; i++) {
-            datas[i].no = i + 1
+            datas[i].no = i + 1;
+            datas[i].selisihbayar = datas[i].selisihbayar ? datas[i].selisihbayar : 0
           }
           $scope.dataGrid = new kendo.data.DataSource({
             data: datas,
@@ -113,20 +114,17 @@ define(['initialize'], function (initialize) {
         var tglTerima = moment($scope.dataSelected.tglTerima).format('YYYY-MM-DD');
         var tglfaktur = moment($scope.dataSelected.tglfaktur).format('YYYY-MM-DD')
         $scope.listStatus = [{
-            id: 3,
-            namaExternal: "SEMUA"
-          },
-          {
             id: 1,
+            namaExternal: "SEMUA"
+          }, {
+            id: 2,
             namaExternal: "LUNAS"
-          },
-          {
-            id: 2,
-            namaExternal: "BELUM LUNAS"
-          },
-          {
-            id: 2,
-            namaExternal: "KREDIT"
+          }, {
+            id: 3,
+            namaExternal: "BELUM BAYAR"
+          }, {
+            id: 4,
+            namaExternal: "SELISIH BAYAR"
           }
         ];
 
@@ -202,15 +200,21 @@ define(['initialize'], function (initialize) {
           "template": "<span class='style-right'>{{formatRupiah('#: subtotal #', '')}}</span>",
           "width": "150px",
         },
+        {
+          "field": "status",
+          "title": "<h3>Status</h3>",
+          "width": "150px",
+        },
+        {
+          "field": "selisihbayar",
+          "title": "<h3>Selisih Bayar</h3>",
+          "template": "<span class='style-right'>{{ formatRupiah('#: selisihbayar #', '') }}</span>",
+          "width": "150px",
+        },
         // {
-        //   "field": "sisautang",
-        //   "title": "<h3>Sisa Hutang</h3>",
-        //   "template": "<span class='style-right'>{{formatRupiah('#: sisautang #', '')}}</span>",
-        //   "width": "150px",
-        // },
-        // {
-        //   "field": "status",
+        //   "field": "subtotal",
         //   "title": "<h3>Status</h3>",
+        //   "template": "<span class='style-right'>{{formatRupiah('#: subtotal #', '')}}</span>",
         //   "width": "150px",
         // },
         {
@@ -246,13 +250,13 @@ define(['initialize'], function (initialize) {
         pageSize: 10,
         scrollable: true,
         columns: $scope.columnGrid
-    };
+      };
 
-      function bayarTagihan (e) {
+      function bayarTagihan(e) {
         e.preventDefault();
         let tr = $(e.target).closest("tr");
         let dataItem = this.dataItem(tr);
-        if(dataItem.status === 'LUNAS') {
+        if (dataItem.status === 'LUNAS') {
           toastr.info('Pembayaran sudah LUNAS');
           return;
         }
@@ -329,8 +333,12 @@ define(['initialize'], function (initialize) {
           "#" + $scope.dataSelected.norec +
           "#" + $scope.dataSelected.sisautang +
           "#" + judul +
-          "#DaftarTagihanSupplier"
-        //setting caching
+          "#" + $scope.dataSelected.total +
+          "#DaftarTagihanSupplier" +
+
+          //setting caching
+
+          console.log(tempData);
         cacheHelper.set('PembayaranTagihanRev', tempData);
         $state.go('PembayaranTagihanRev')
       }
