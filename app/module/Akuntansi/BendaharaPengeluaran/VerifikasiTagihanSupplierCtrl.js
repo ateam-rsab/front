@@ -77,7 +77,7 @@ define(['initialize'], function (initialize) {
         // YYYY-MM-DD
         // filtering status
         // + ($scope.item.status.namaStatus ? $scope.item.status.namaStatus : "")
-        ManageAkuntansi.getDataTableTransaksi("bendahara-pengeluaran/get-data-verifikasi-tagihan-suplier?tglAwal=" + dateHelper.formatDate($scope.item.tanggalAwal, 'YYYY-MM-DD') + "&tglAkhir=" + dateHelper.formatDate($scope.item.tanggalAkhir, 'YYYY-MM-DD') + "&Supplier=" + ($scope.item.namaSupplier ? $scope.item.namaSupplier : "") + "&status=").then((res) => {
+        ManageAkuntansi.getDataTableTransaksi("bendahara-pengeluaran/get-data-verifikasi-tagihan-suplier-rev-1?tglAwal=" + dateHelper.formatDate($scope.item.tanggalAwal, 'YYYY-MM-DD') + "&tglAkhir=" + dateHelper.formatDate($scope.item.tanggalAkhir, 'YYYY-MM-DD') + "&Supplier=" + ($scope.item.namaSupplier ? $scope.item.namaSupplier : "") + "&status=").then((res) => {
           for (let i = 0; i < res.data.daftar.length; i++) {
             res.data.daftar[i].totalFormatted = new Intl.NumberFormat('id-ID', {
               style: 'currency',
