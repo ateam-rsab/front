@@ -202,7 +202,7 @@ define(['initialize'], function (initialize) {
         },
         {
           "field": "subtotal",
-          "title": "<h3>Status</h3>",
+          "title": "<h3>Sub Total</h3>",
           "template": "<span class='style-right'>{{formatRupiah('#: subtotal #', '')}}</span>",
           "width": "150px",
         },
