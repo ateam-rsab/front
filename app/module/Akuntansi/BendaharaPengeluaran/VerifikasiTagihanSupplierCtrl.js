@@ -679,7 +679,7 @@ define(['initialize'], function (initialize) {
         // $scope.keperluan = 'Untuk Pembayaran ' + ($scope.verif.anggaran ? $scope.verif.anggaran.nama_anggaran : '') + ' a/n Supplier ' + $scope.dataSelected.namarekanan + ' No.SPK = ' + $scope.dataSelected.noSPK
         $scope.keperluan = 'Untuk Pembayaran Supplier ' + $scope.dataSelected.namarekanan + ' No.SPK = ' + $scope.dataSelected.noSPK
         $scope.loadData();
-        $scope.verif.totalBayar = dataItem.sisautang;
+        $scope.verif.totalBayar = dataItem.subtotal;
         $scope.getTerbilang($scope.verif.totalBayar, 'totalBayarTerbilang');
         $scope.verifkasiRekanan.open().center();
 
