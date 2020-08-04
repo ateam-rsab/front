@@ -226,12 +226,12 @@ define(['initialize'], function (initialize) {
           "template": "<span class='style-center'>{{'#: subtotalFormatted #'}}</span>",
           "width": "150px"
         },
-        {
-          "field": "sisautangFormatted",
-          "title": "<h3>Sisa Hutang</h3>",
-          "template": "<span class='style-center'>{{'#: sisautangFormatted #'}}</span>",
-          "width": "150px"
-        },
+        // {
+        //   "field": "sisautangFormatted",
+        //   "title": "<h3>Sisa Hutang</h3>",
+        //   "template": "<span class='style-center'>{{'#: sisautangFormatted #'}}</span>",
+        //   "width": "150px"
+        // },
         // {
         //   "field": "statusbayar",
         //   "title": "<h3>Status Bayar</h3>",
@@ -359,12 +359,12 @@ define(['initialize'], function (initialize) {
           "template": "<span class='style-center'>{{'#: subtotalFormatted #'}}</span>",
           "width": "150px"
         },
-        {
-          "field": "sisautangFormatted",
-          "title": "<h3>Sisa Hutang</h3>",
-          "template": "<span class='style-center'>{{'#: sisautangFormatted #'}}</span>",
-          "width": "150px"
-        },
+        // {
+        //   "field": "sisautangFormatted",
+        //   "title": "<h3>Sisa Hutang</h3>",
+        //   "template": "<span class='style-center'>{{'#: sisautangFormatted #'}}</span>",
+        //   "width": "150px"
+        // },
         // {
         //   "field": "statusbayar",
         //   "title": "<h3>Status Bayar</h3>",
@@ -567,9 +567,9 @@ define(['initialize'], function (initialize) {
                 {
                   value: data[i].subtotal
                 },
-                {
-                  value: data[i].sisautang
-                },
+                // {
+                //   value: data[i].sisautang
+                // },
                 // {
                 //   value: data[i].statusbayar
                 // },
