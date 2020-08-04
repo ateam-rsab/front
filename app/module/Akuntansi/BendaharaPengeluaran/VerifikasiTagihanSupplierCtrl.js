@@ -232,12 +232,12 @@ define(['initialize'], function (initialize) {
           "template": "<span class='style-center'>{{'#: sisautangFormatted #'}}</span>",
           "width": "150px"
         },
-        {
-          "field": "statusbayar",
-          "title": "<h3>Status Bayar</h3>",
-          "template": "<span class='style-center'>{{'#: statusbayar #'}}</span>",
-          "width": "150px"
-        },
+        // {
+        //   "field": "statusbayar",
+        //   "title": "<h3>Status Bayar</h3>",
+        //   "template": "<span class='style-center'>{{'#: statusbayar #'}}</span>",
+        //   "width": "150px"
+        // },
         {
           "field": "status",
           "title": "<h3>Status</h3>",
@@ -365,12 +365,12 @@ define(['initialize'], function (initialize) {
           "template": "<span class='style-center'>{{'#: sisautangFormatted #'}}</span>",
           "width": "150px"
         },
-        {
-          "field": "statusbayar",
-          "title": "<h3>Status Bayar</h3>",
-          "template": "<span class='style-center'>{{'#: statusbayar #'}}</span>",
-          "width": "150px"
-        },
+        // {
+        //   "field": "statusbayar",
+        //   "title": "<h3>Status Bayar</h3>",
+        //   "template": "<span class='style-center'>{{'#: statusbayar #'}}</span>",
+        //   "width": "150px"
+        // },
         {
           "field": "status",
           "title": "<h3>Status</h3>",
@@ -570,9 +570,9 @@ define(['initialize'], function (initialize) {
                 {
                   value: data[i].sisautang
                 },
-                {
-                  value: data[i].statusbayar
-                },
+                // {
+                //   value: data[i].statusbayar
+                // },
                 {
                   value: data[i].status
                 },
@@ -667,10 +667,10 @@ define(['initialize'], function (initialize) {
         $scope.item.sppb = '';
         $scope.item.noFaktur = '';
 
-        if (dataItem.statusbayar !== 'BELUM LUNAS') {
-          toastr.info('Data Tagihan SUDAH LUNAS');
-          return;
-        }
+        // if (dataItem.statusbayar !== 'BELUM LUNAS') {
+        //   toastr.info('Data Tagihan SUDAH LUNAS');
+        //   return;
+        // }
 
         // status
         if (dataItem.status !== 'BLM VERIFIKASI') {

@@ -1817,16 +1817,10 @@ function GETKONVERSI(jml){
         }
 
         $scope.simpan = function(){
-            // let re = new RegExp(/[`~,.<>;':"/[\]|{}()=_+-\s]/)
-            // debugger;
             if (!$scope.item.noTerima) {
                 toastr.error("No Terima Tidak Boleh Kosong!!")
                 return;
             }
-            // if (!) {
-            //     toastr.error("No Terima Tidak Valid!!");
-            //     return
-            // }
             if ($scope.item.asalproduk == undefined) {
                 alert("Pilih Asal Produk!!")
                 return
