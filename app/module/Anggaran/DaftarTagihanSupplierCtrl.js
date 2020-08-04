@@ -156,11 +156,6 @@ define(['initialize'], function (initialize) {
           "title": "<h3>No. Verifikasi</h3>",
           "width": "160px",
         },
-        // {
-        //   "field": "tglstruk",
-        //   "title": "<h3>Tanggal Terima</h3>",
-        //   "width": "150px",
-        // },
         {
           "field": "namarekanan",
           "title": "<h3>Nama Rekanan</h3>",
@@ -195,12 +190,6 @@ define(['initialize'], function (initialize) {
           "width": "150px",
         },
         {
-          "field": "subtotal",
-          "title": "<h3>Sub Total</h3>",
-          "template": "<span class='style-right'>{{formatRupiah('#: subtotal #', '')}}</span>",
-          "width": "150px",
-        },
-        {
           "field": "status",
           "title": "<h3>Status</h3>",
           "width": "150px",
@@ -211,12 +200,12 @@ define(['initialize'], function (initialize) {
           "template": "<span class='style-right'>{{ formatRupiah('#: selisihbayar #', '') }}</span>",
           "width": "150px",
         },
-        // {
-        //   "field": "subtotal",
-        //   "title": "<h3>Status</h3>",
-        //   "template": "<span class='style-right'>{{formatRupiah('#: subtotal #', '')}}</span>",
-        //   "width": "150px",
-        // },
+        {
+          "field": "subtotal",
+          "title": "<h3>Status</h3>",
+          "template": "<span class='style-right'>{{formatRupiah('#: subtotal #', '')}}</span>",
+          "width": "150px",
+        },
         {
           command: [{
               text: "Bayar Tagihan",
