@@ -164,6 +164,11 @@ define(['initialize'], function (initialize) {
           "title": "<h3>Tanggal<br> Jatuh Tempo</h3>",
           "width": "150px",
         }, {
+          "field": "total",
+          "title": "<h3>Total</h3>",
+          "template": "<span class='style-right'>{{formatRupiah('#: total #', '')}}</span>",
+          "width": "150px",
+        }, {
           "field": "totalppn",
           "title": "<h3>Total PPN</h3>",
           "template": "<span class='style-right'>{{formatRupiah('#: totalppn #', '')}}</span>",
@@ -177,11 +182,6 @@ define(['initialize'], function (initialize) {
           "field": "subtotal",
           "title": "<h3>Sub Total</h3>",
           "template": "<span class='style-right'>{{formatRupiah('#: subtotal #', '')}}</span>",
-          "width": "150px",
-        }, {
-          "field": "total",
-          "title": "<h3>Total</h3>",
-          "template": "<span class='style-right'>{{formatRupiah('#: total #', '')}}</span>",
           "width": "150px",
         }, {
           "field": "selisihbayar",
@@ -254,13 +254,13 @@ define(['initialize'], function (initialize) {
           }, {
             value: "Tanggal Jatuh Tempo"
           }, {
+            value: "Total"
+          }, {
             value: "Total PPN"
           }, {
             value: "Total Diskon"
           }, {
             value: "Sub Total"
-          }, {
-            value: "Total"
           }, {
             value: "Selisih Bayar"
           }, {
@@ -291,13 +291,13 @@ define(['initialize'], function (initialize) {
               }, {
                 value: data[i].tgljatuhtempo
               }, {
+                value: data[i].total
+              }, {
                 value: data[i].totalppn
               }, {
                 value: data[i].totaldiskon
               }, {
                 value: data[i].subtotal
-              }, {
-                value: data[i].total
               }, {
                 value: data[i].selisihbayar
               }, {
@@ -435,6 +435,7 @@ define(['initialize'], function (initialize) {
           "#" + $scope.dataSelected.sisautang +
           "#" + judul +
           "#" + $scope.dataSelected.total +
+          "#" + $scope.dataSelected.subtotal +
           "#DaftarTagihanSupplier" +
 
           //setting caching

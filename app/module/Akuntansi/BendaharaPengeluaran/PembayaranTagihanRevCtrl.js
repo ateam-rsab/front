@@ -40,6 +40,7 @@ define(['initialize'], function (initialize) {
           modelItemAkuntansi.getDataGlobal("valet/terbilang/" + arrPeriode[8]).then(function (data) {
             $scope.item.terbilang = data.terbilang;
           })
+          console.log(arrPeriode);
           sisautang = parseFloat(arrPeriode[8]);
           judul = arrPeriode[7]
           dariSini = arrPeriode[8]
