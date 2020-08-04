@@ -245,19 +245,19 @@ define(['initialize'], function (initialize) {
           "width": "150px"
         },
 
-        {
-          "field": "statusConfirmKabag",
-          "title": "<h3>Ka. Subag</h3>",
-          // "template": "<span class='style-center'>{{'#: status #'}}</span>",
-          "width": "150px"
-        },
+        // {
+        //   "field": "statusConfirmKabag",
+        //   "title": "<h3>Ka. Subag</h3>",
+        //   // "template": "<span class='style-center'>{{'#: status #'}}</span>",
+        //   "width": "150px"
+        // },
 
-        {
-          "field": "statusConfirmAnggaran",
-          "title": "<h3>Ka. Bag</h3>",
-          // "template": "<span class='style-center'>{{'#: status #'}}</span>",
-          "width": "150px"
-        },
+        // {
+        //   "field": "statusConfirmAnggaran",
+        //   "title": "<h3>Ka. Bag</h3>",
+        //   // "template": "<span class='style-center'>{{'#: status #'}}</span>",
+        //   "width": "150px"
+        // },
         {
           command: [{
               text: "Konfirmasi Kasubag",
