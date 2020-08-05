@@ -323,7 +323,7 @@ define(['initialize'], function (initialize) {
             };
 
             $q.all([
-                ManageSdmNew.getListData("sdm/get-login-user-permohonan-status"),
+                ManageSdmNew.getListData("sdm/get-login-user-permohonan-status?idPegawai=" + $scope.pegawai.id),
                 ManageSdmNew.getListData("pegawai/get-all-jabatan"),
                 ManageSdmNew.getListData("pegawai/get-all-jabatan"),
                 ManageSdmNew.getListData("pegawai/get-pegawai-sdm-for-cred")

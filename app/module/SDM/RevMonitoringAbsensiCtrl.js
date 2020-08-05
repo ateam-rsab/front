@@ -2,6 +2,7 @@ define(['initialize'], function(initialize) {
     'use strict';
     initialize.controller('RevMonitoringAbsensiCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'DateHelper', 'ReportHelper', 'CetakHelper', 'FindSdm', '$timeout', 'ManageSarprasPhp',
         function($q, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, dateHelper, reportHelper, cetakHelper, FindSdm, $timeout, manageSarprasPhp) {
+            $scope.dataPegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
             $scope.pegawai = ModelItem.getPegawai();
             $scope.item = {};
             firstLoad();
@@ -49,7 +50,7 @@ define(['initialize'], function(initialize) {
                 // manageSarprasPhp.getDataTableMaster("monitoringabsensi/get-drop-down-unit?id=" + ModelItem.getPegawai().id),
                 ManageSdmNew.getListData("map-pegawai-jabatan-unitkerja/get-drop-down-unit?id=" + ModelItem.getPegawai().id),
                 ManageSdmNew.getListData("pegawai/get-pegawai-sdm-for-cred"),
-                ManageSdmNew.getListData("sdm/get-jabatan-login-user"),
+                ManageSdmNew.getListData("sdm/get-jabatan-login-user?idPegawai=" + $scope.dataPegawaiLogin.id),
                 ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true")
                 //ManageSdm.getOrderList("sdm/get-pegawai-bawahan/" + ModelItem.getPegawai().id),
                 ]).then(function(res) {
