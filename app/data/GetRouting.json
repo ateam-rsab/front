@@ -48088,6 +48088,30 @@
     ]
   },
   {
+    "name": "LayananKesehatan",
+    "url": "/LapBIOSLayananKesehatan",
+    "templateurl": "module/Akuntansi/TataRekening/LapBIOSLayananKesehatan.html",
+    "controller": "LapBIOSLayananKesehatanCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
     "name": "dashboardpasien.PengkajianMedis.PemeriksaanKhusus.MenuRehabilitasi",
     "url": "/MenuRehabilitasi",
     "templateurl": "module/PemeriksaanKhusus/MenuRehabilitasi.html",

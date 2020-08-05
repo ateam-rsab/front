@@ -8206,6 +8206,10 @@
       "urlDep": "module/Akuntansi/TataRekening/DaftarKonsultasiKosongCtrl"
     },
     {
+      "nameDep": "LapBIOSLayananKesehatanCtrl",
+      "urlDep": "module/Akuntansi/TataRekening/LapBIOSLayananKesehatanCtrl"
+    },
+    {
       "nameDep": "MenuRehabilitasiCtrl",
       "urlDep": "module/PemeriksaanKhusus/MenuRehabilitasiCtrl"
     },
