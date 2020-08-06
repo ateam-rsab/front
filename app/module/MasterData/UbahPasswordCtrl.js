@@ -55,10 +55,10 @@ define(['initialize'], function (initialize) {
 				}
 
 				//save to java katasandi column
-				// manageSarpras.saveLoginUser(objSave).then(function (je) {
-				// },error => {
-				// 	alert('Nama user sudah digunakan!')
-				// });
+				manageSarpras.saveLoginUser(objSave).then(function (je) {
+				},error => {
+					alert('Nama user sudah digunakan!')
+				});
 
 				//save to php passcode column
 				manageSarprasPhp.saveDataTransaksi('admin/ubah-password', objSave).then(function (pe) {

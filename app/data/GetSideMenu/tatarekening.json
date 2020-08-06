@@ -56,7 +56,11 @@
                     {
                         "name": "Layanan Kesehatan",
                         "link": "#/LapBIOSLayananKesehatan"
-                    }  
+                    },
+                    {
+                        "name": "Indikator Pelayanan",
+                        "link": "#/DashboardCalculateIndikatorPelayanan"
+                    }
                 ]
                 
             },

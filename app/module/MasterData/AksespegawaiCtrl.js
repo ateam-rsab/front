@@ -285,12 +285,12 @@ define(['initialize'], function (initialize) {
 				//save to php passcode column
 				manageSarprasPhp.saveDataTransaksi('admin/ubah-password', objSave).then(function (e) {
 
-				})
+				})	
 				//save to java katasandi column
-				// manageSarpras.saveLoginUser(objSave).then(function (e) {
-				// },error => {
-				// 	alert('Nama user sudah digunakan!')
-				// })
+				manageSarpras.saveLoginUser(objSave).then(function (e) {
+				},error => {
+					alert('Nama user sudah digunakan!')
+				})
 			}
 
 			function onCheck() {
