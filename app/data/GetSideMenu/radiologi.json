@@ -267,8 +267,8 @@
         "name": "Information",
         "children": [
             {
-                "name": "Tarif Layanan Ruangan",
-                "link": "#/TarifLayananByRuangan"
+                "name": "Informasi Tarif Layanan",
+                "link": "#/TarifLayanan"
             }
         ]
     },

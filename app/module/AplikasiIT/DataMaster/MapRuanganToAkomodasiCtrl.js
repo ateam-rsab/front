@@ -130,7 +130,7 @@ define(['initialize'], function (initialize) {
                 });
             };
 
-            var hapusAkomodasi = function (e) {
+            function hapusAkomodasi(e) {
                 e.preventDefault();
                 var tr = $(e.target).closest("tr");
                 var dataItem = this.dataItem(tr);

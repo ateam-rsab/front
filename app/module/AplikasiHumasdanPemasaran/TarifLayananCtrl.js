@@ -1,7 +1,7 @@
 define(['initialize'], function(initialize) {
 	'use strict';
-	 initialize.controller('TarifLayananCtrl', ['$rootScope', '$scope', 'ModelItem', 'DataTarif' ,'TampilDataTarif', 'ManageSarpras', '$state', 'ModelItemAkuntansi',
-        function($rootScope, $scope, ModelItem,DataTarif,TampilDataTarif, manageSarpras, $state, modelItemAkuntansi) {
+	 initialize.controller('TarifLayananCtrl', ['$rootScope', '$scope', 'ModelItem', 'DataTarif' ,'TampilDataTarif', 'ManageSarpras', '$state', 'ModelItemAkuntansi', 'CetakHelper',
+        function($rootScope, $scope, ModelItem,DataTarif,TampilDataTarif, manageSarpras, $state, modelItemAkuntansi, cetakHelper) {
 		$scope.isRouteLoading=false;
 		$scope.item = {};
 		
@@ -119,9 +119,33 @@ define(['initialize'], function(initialize) {
                 }
             };  
 
-			$scope.SearchData = function()
-			{
+			$scope.SearchData = function() {
 				LoadData();
+			}
+
+			$scope.PrintData = function() {
+				var produk="";
+				if($scope.item.produk != undefined){
+					produk = $scope.item.produk.kdproduk
+				}
+				var kelas="";
+				if($scope.item.kelas != undefined){
+					kelas = $scope.item.kelas.id
+				}
+
+				var listRawRequired = [
+					"item.ruangan|k-ng-model|Ruangan"
+				]
+				var isValid = ModelItem.setValidation($scope, listRawRequired);
+				if (isValid.status) {
+					var fixUrlLaporan = cetakHelper.openURLReporting("reporting/tarifLayananRuangan?"
+					+ "idRuangan=" + $scope.item.ruangan.id 
+					+ "&idKelas=" + kelas 
+					+ "&idProduk=" + produk);
+					window.open(fixUrlLaporan, '_blank')
+				} else {
+					ModelItem.showMessages(isValid.messages);
+				}
 			}
 		}
 	]);

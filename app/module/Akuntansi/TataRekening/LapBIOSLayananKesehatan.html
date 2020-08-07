@@ -1,0 +1,54 @@
+<div>
+    <div ng-show="dataVOloaded">
+        <c-panel item="item" header="'Hitung Data Layanan Kesehatan'" disabled>
+            <div class="panel panel-default container_12">
+                <div class="panel-body">
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="Tanggal awal"></label>
+                        <input style="width: 100%" k-ng-model="item.tglAwal" kendo-datetimepicker
+                            placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd HH:mm'" />
+                    </div>
+                    <div class="grid_2">
+                        <label c-label item="item" c-label-text="Tanggal Akhir"></label>
+                        <input style="width: 100%" k-ng-model="item.tglAkhir" kendo-datetimepicker
+                            placeholer="yyyy-mm-dd" k-format="'yyyy-MM-dd HH:mm'" />
+                    </div>
+                    <div class="grid_1" style="margin-top: 22px;">
+                        <md-button class="md-raised md-primary medium-button" ng-click="LoadData()">
+                            <span style="margin-right: 5px;">Hitung</span>
+                            <i class="fa fa-calculator"></i>
+                        </md-button>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12 containerBorderBox">
+                <div id="grid" kendo-grid options="gridIndikator" data-source="dataSourceIndikator"></div>
+            </div>
+        </c-panel>
+        <!-- Action Button -->
+        <div class="grid_12">
+            <div class="grid_3" style="float: right; margin-right: 1%;">
+                <md-button class="md-raised md-button md-primary" is-validate ng-click="Save()">
+                    <span style="margin-right: 5px;">Simpan</span>
+                    <i class="fa fa-save"></i>
+                </md-button>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-include='"../app/module/Shared/TemplateLoading"'></div>
+
+<style>
+    .k-grid .k-grid-header .k-header .k-link {
+        height: auto;
+    }
+    .k-grid .k-grid-header .k-header {
+        white-space: normal;
+    }
+    .k-grid .k-grid-header .k-header {
+        text-align: center;
+    }
+    button:disabled {
+        background: #B5B2B1;
+    }
+</style>

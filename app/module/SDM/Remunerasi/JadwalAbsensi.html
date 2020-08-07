@@ -3,34 +3,54 @@
     <div class="panel-body">
         <div class="grid_12">
             <div class="grid_1">
-                <span c-label c-label-text="Bulan" />
-                <input required style="width: 100%;" kendo-combo-box k-ng-model="item.selectedBulan" k-data-text-field="'name'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listMonth" />
+                <div class="grid_12">
+                    <span c-label c-label-text="Bulan" />
+                </div>
+                <div class="clear"></div>
+                <div class="grid_12">
+                    <input required style="width: 100%;" kendo-combo-box k-ng-model="item.selectedBulan" k-data-text-field="'name'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listMonth" />
+                </div>
             </div>
             <div class="grid_1">
-                <span c-label c-label-text="Tahun" />
-                <input required style="width: 100%;" kendo-combo-box k-ng-model="item.selectedTahun" k-data-text-field="'id'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listTahun" />
+                <div class="grid_12">
+                    <span c-label c-label-text="Tahun" />
+                </div>
+                <div class="clear"></div>
+                <div class="grid_12">
+                    <input required style="width: 100%;" kendo-combo-box k-ng-model="item.selectedTahun" k-data-text-field="'id'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listTahun" />
+                </div>
             </div>
             <div class="grid_2">
-                <label c-label item="item" c-label-text="unitKerja"></label>
-                <input style="width: 100%;" kendo-combo-box k-ng-model="item.unitKerja" k-data-text-field="'name'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listUnitKerja" />
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="unitKerja"></label>
+                </div>
+                <div class="clear"></div>
+                <div class="grid_12">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.unitKerja" k-data-text-field="'name'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listUnitKerja" />
+                </div>
             </div>
             <div class="grid_2">
-                <label c-label item="item" c-label-text="subUnitKerja"></label>
-                <input style="width: 100%;" kendo-combo-box k-ng-model="item.subUnitKerja" k-data-text-field="'name'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listSubUnitKerja" />
+                <div class="grid_12">
+                    <label c-label item="item" c-label-text="subUnitKerja"></label>
+                </div>
+                <div class="clear"></div>
+                <div class="grid_12">
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="item.subUnitKerja" k-data-text-field="'name'" k-filter="'contains'" k-minLength="'3'" k-data-value-field="'id'" k-data-source="listSubUnitKerja" />
+                </div>
             </div>
             <div class="grid_1">
                 <label c-label c-label-text=""></label>
-                <em style="margin-top:6px;" ng-click='refresh()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
+                <em style="margin-top:5%;" ng-click='refresh()' id="iconButton" data-role="button" class="k-button k-button-icon" role="button" aria-disabled="false" tabindex="0"><span class="k-sprite k-icon k-i-refresh">Refresh</span></em>
             </div>
-            <div class="grid_2" style="margin-left:-75px;">
+            <div class="grid_2" style="margin-left:-6%;">
                 <label c-label c-label-text=""></label>
-                <button style="margin-top:6px;" class="c-button success" ng-click="unduh()">Unduh Template Excel</button>
+                <button style="margin-top:2%;" class="c-button success" ng-click="unduh()">Unduh Template Excel</button>
             </div>
             <div class="grid_1">
                 <label c-label c-label-text=""></label>
-                <label style="margin-top:10px;" c-label c-label-text="Atau"></label>
+                <label style="margin-top:10%;" c-label c-label-text="Atau"></label>
             </div>
-            <div class="grid_2" style="margin-left:-75px">
+            <div class="grid_2" style="margin-left:-6%">
                 <input id="upload"
                         type="file"
                         kendo-upload
@@ -39,9 +59,9 @@
                         k-select="onUploadExcel"
                         />
             </div>
-            <div class="grid_1" style="margin-left:0px;">
+            <div class="grid_1">
                 <label c-label c-label-text=""></label>
-                <button style="margin-top:6px;" class="c-button success" ng-click="unggah()">Unggah</button>
+                <button style="margin-top:5%;" class="c-button success" ng-click="unggah()">Unggah</button>
             </div>
         </div>
         <div class="grid_12">

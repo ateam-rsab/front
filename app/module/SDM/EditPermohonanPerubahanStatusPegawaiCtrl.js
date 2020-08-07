@@ -3,6 +3,7 @@ define(['initialize'], function (initialize) {
 	initialize.controller('EditPermohonanPerubahanStatusPegawaiCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', 'ManageSdm', 'ManageSdmNew', 'DateHelper', '$mdDialog', 'CetakHelper', '$state',
 		function ($q, $rootScope, $scope, ModelItem, ManageSdm, ManageSdmNew, DateHelper, $mdDialog, cetakHelper, $state) {
 			var currentEdit = JSON.parse(localStorage.getItem('DataPerubahanStatus'));
+			$scope.pegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
 			$scope.item = {};
 			$scope.now = new Date();
 			$scope.monthSelectorOptions = {
@@ -151,7 +152,7 @@ define(['initialize'], function (initialize) {
 				}
 			};
 			$q.all([
-				ManageSdmNew.getListData("sdm/get-login-user-permohonan-status"),
+				ManageSdmNew.getListData("sdm/get-login-user-permohonan-status?idPegawai=" + $scope.pegawaiLogin.id),
 				ManageSdmNew.getListData("pegawai/get-all-pegawai-kepala-ruangan"),
 				ManageSdmNew.getListData("pegawai/get-all-jabatan"),
 				// ManageSdm.findPegawaiById(ModelItem.getPegawai().id)

@@ -719,6 +719,7 @@ define(['initialize'], function (initialize) {
                 if (isValid.status) {
                     manageSdmNew.getListData("sdm/generate-excel?bulan=" + dateHelper.getFormatMonthPicker(new Date($scope.item.selectedTahun.id, $scope.item.selectedBulan.id)) + "&idUnitKerja=" + $scope.item.unitKerja.id + "&idSubunitKerja=" + $scope.item.subUnitKerja.id).then(function (e) {
                         var path = "//tmp//Jadwal_Dinas_Pegawai_" + $scope.item.unitKerja.name.replace(/ /g,"_") + "_" + $scope.item.subUnitKerja.name.replace(/ /g,"_") + ".xls";
+                        // var path = "//usr//share//app/back//tomcat//bin//Jadwal_Dinas_Pegawai_" + $scope.item.unitKerja.name.replace(/ /g,"_") + "_" + $scope.item.subUnitKerja.name.replace(/ /g,"_") + ".xls";
                         // var path = "D:\\eclipse\\Jadwal_Dinas_Pegawai_" + $scope.item.unitKerja.name.replace(/ /g,"_") + "_" + $scope.item.subUnitKerja.name.replace(/ /g,"_") + ".xls";
                         var urlDownload = cetakHelper.downloadFile("sdm/download-jadwal?filename=" + path);
 				        window.open(urlDownload, '_blank');
