@@ -5,17 +5,16 @@ define(['initialize'], function (initialize) {
         function ($q, $rootScope, $scope, ModelItem, ManageSdm, ManageSdmNew, DateHelper, $mdDialog, cetakHelper, $state, manageSarprasPhp, $timeout) {
             $scope.data = {};
             $scope.now = new Date();
-            $scope.dataDevice = null;
+            $scope.dataDevice = {};
             $scope.time = "";
             $scope.isRouteLoading = false;
             $scope.data.isWFH = true;
-            $scope.isLocalNetwork = false;
-            let dataPegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
+            $scope.dataPegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
 
             let getDataHistory = function () {
                 $scope.isRouteLoading = true;
                 let tempData = [];
-                ManageSdmNew.getListData('sdm/get-histori-presensi-pegawai').then((res) => {
+                ManageSdmNew.getListData('sdm/get-histori-presensi-pegawai?idPegawai=' + $scope.dataPegawaiLogin.id).then((res) => {
                     if (res.data.data.data) {
                         for (let i = 0; i < res.data.data.data.length; i++) {
                             tempData.push({
@@ -39,20 +38,17 @@ define(['initialize'], function (initialize) {
                     $('#time-part').html(momentNow.format('HH:mm:ss'));
                 }, 100);
 
-                $.get('https://json.rsabhk.co.id/local.php', function (data) {
-                    // console.log(data);
-                    if (data) {
-                        $scope.isLocalNetwork = true;
-                    } else {
-                        $scope.isLocalNetwork = false;
-                    }
+                $.get('http://www.geoplugin.net/json.gp', function (data) {
+                    $scope.dataDevice = JSON.parse(data);
                 });
 
                 $scope.tanggalPresensi = new Date();
                 getDataHistory();
-                ManageSdmNew.getListData('sdm/get-jadwal-pegawai').then((res) => {
+                ManageSdmNew.getListData('sdm/get-jadwal-pegawai?idPegawai=' + $scope.dataPegawaiLogin.id).then((res) => {
                     $scope.data = res.data.data;
                 });
+
+
             }
 
             init();
@@ -72,35 +68,18 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.savePresensi = function () {
-                $.get('https://api.ipify.org', function (data) {
-                    $scope.dataDevice = data;
-
-                });
-
-                if (!$scope.isLocalNetwork && !$scope.data.isWFH) {
-                    $.get('https://api.ipify.org', function (data) {
-                        $scope.dataDevice = data;
-
-                    });
-                    
-                    toastr.info('Harap Gunakan Jaringan Lokal RSAB Harapan Kita');
-                    return;
-                } else {
-                    $.get('https://api.ipify.org', function (data) {
-                        $scope.dataDevice = data;
-
-                    });
-                }
-
-                let dataSave = {
+                let data = {
                     // tr_date: DateHelper.toTimeStamp(new Date()),
                     // tr_time: DateHelper.toTimeStamp(new Date()),
-                    empl_code: $scope.data.idFinger,
+                    pegawai: {
+                        id: $scope.dataPegawaiLogin.id
+                    },
+                    // empl_code: $scope.data.idFinger,
                     processtatus: $scope.data.isWFH ? 1 : 0,
-                    ip_addr: $scope.dataDevice
+                    ip_addr: $scope.dataDevice.geoplugin_request
                 }
-
-                ManageSdmNew.saveData(dataSave, 'sdm/save-presensi-pegawai/').then((res) => {
+                // console.log(data);
+                ManageSdmNew.saveData(data, 'sdm/save-presensi-pegawai/').then((res) => {
                     getDataHistory();
                 })
             }

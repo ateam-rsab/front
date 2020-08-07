@@ -17,6 +17,10 @@
         ]
     },
     {
+        "name": "Daftar Tagihan Rekanan",
+        "link": "#/DaftarTagihanSupplier"
+    },
+    {
         "name": "Rencana Usulan Barang",
         "link": "#/DaftarRencanaUsulanPermintaanBarang"
     },

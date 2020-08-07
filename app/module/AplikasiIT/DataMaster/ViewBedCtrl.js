@@ -26,8 +26,7 @@ define(['initialize'], function(initialize) {
 					$scope.listKamar = data;
 				});
 				modelItemAkuntansi.getDataTableMaster("tarif/list-master?jenis=kelas").then(function(data){
-					$scope.listKamar = data;
-					$scope.listKamar2 = data;
+					$scope.listkelas = data;
 				});
 
 			$scope.klik = function(current){

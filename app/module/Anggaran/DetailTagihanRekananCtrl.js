@@ -2,8 +2,6 @@ define(['initialize'], function (initialize) {
     'use strict';
     initialize.controller('DetailTagihanRekananCtrl', ['CacheHelper', '$q', '$rootScope', '$scope', 'ManageSdm', 'ManageAkuntansi', 'DateHelper', '$http', '$state', 'ManageServicePhp',
         function (cacheHelper, $q, $rootScope, $scope, manageSdm, manageAkuntansi, dateHelper, $http, $state, manageServicePhp) {
-
-            $scope.dataVOloaded = true;
             $scope.now = new Date();
             $scope.item = {};
             $scope.dataPasienSelected = {};

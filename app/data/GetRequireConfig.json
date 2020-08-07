@@ -7189,6 +7189,10 @@
       "urlDep": "module/AplikasiIT/DataMaster/TargetIndikatorCtrl"
     },
     {
+      "nameDep": "MasterIndikatorBIOSCtrl",
+      "urlDep": "module/AplikasiIT/DataMaster/MasterIndikatorBIOSCtrl"
+    },
+    {
       "nameDep": "TempatLahirBayiCtrl",
       "urlDep": "module/AplikasiIT/DataMaster/TempatLahirBayiCtrl"
     },
@@ -8219,6 +8223,10 @@
     {
       "nameDep": "DaftarKonsultasiKosongCtrl",
       "urlDep": "module/Akuntansi/TataRekening/DaftarKonsultasiKosongCtrl"
+    },
+    {
+      "nameDep": "LapBIOSLayananKesehatanCtrl",
+      "urlDep": "module/Akuntansi/TataRekening/LapBIOSLayananKesehatanCtrl"
     },
     {
       "nameDep": "MenuRehabilitasiCtrl",

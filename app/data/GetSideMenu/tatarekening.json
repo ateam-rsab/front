@@ -51,6 +51,16 @@
                 "link": "#/DaftarKonsultasiKosong"
             },
             {
+                "name": "Hitung/Input Indikator BIOS",
+                "children": [
+                    {
+                        "name": "Layanan Kesehatan",
+                        "link": "#/LapBIOSLayananKesehatan"
+                    }  
+                ]
+                
+            },
+            {
                 "name": "IKI Dirut",
                 "link": "#/IkiDirutCapaian"
             }
