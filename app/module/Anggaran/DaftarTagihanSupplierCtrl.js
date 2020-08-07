@@ -164,11 +164,6 @@ define(['initialize'], function (initialize) {
           "title": "<h3>Tanggal<br> Jatuh Tempo</h3>",
           "width": "150px",
         }, {
-          "field": "total",
-          "title": "<h3>Total</h3>",
-          "template": "<span class='style-right'>{{formatRupiah('#: total #', '')}}</span>",
-          "width": "150px",
-        }, {
           "field": "totalppn",
           "title": "<h3>Total PPN</h3>",
           "template": "<span class='style-right'>{{formatRupiah('#: totalppn #', '')}}</span>",
@@ -182,6 +177,11 @@ define(['initialize'], function (initialize) {
           "field": "subtotal",
           "title": "<h3>Sub Total</h3>",
           "template": "<span class='style-right'>{{formatRupiah('#: subtotal #', '')}}</span>",
+          "width": "150px",
+        }, {
+          "field": "total",
+          "title": "<h3>Total Bayar</h3>",
+          "template": "<span class='style-right'>{{formatRupiah('#: total #', '')}}</span>",
           "width": "150px",
         }, {
           "field": "selisihbayar",
@@ -226,8 +226,17 @@ define(['initialize'], function (initialize) {
             name: "Export detail",
             template: '<button ng-click="exportExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
           }
-
         ],
+        filterable: {
+          extra: false,
+          operators: {
+              string: {
+                  startswith: "Dimulai dengan",
+                  contains: "mengandung kata",
+                  neq: "Tidak mengandung kata"
+              }
+          }
+      },
         pageable: true,
         pageSize: 10,
         scrollable: true,
@@ -305,6 +314,7 @@ define(['initialize'], function (initialize) {
               }]
             })
           }
+
           var workbook = new kendo.ooxml.Workbook({
             sheets: [{
               freezePane: {

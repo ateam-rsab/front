@@ -521,7 +521,7 @@ define(['initialize'], function (initialize) {
           ]
         }];
 
-        tempDataExport = isVeriverif.totalBayarfied ? $scope.dataGridVerified : $scope.dataGridUnverified;
+        tempDataExport = isVerified ? $scope.dataGridVerified : $scope.dataGridUnverified;
         tempDataExport.fetch(() => {
           var data = tempDataExport._data;
           for (var i = 0; i < data.length; i++) {
@@ -720,7 +720,8 @@ define(['initialize'], function (initialize) {
         let dataItem = this.dataItem(tr);
 
         $scope.confirm = dataItem;
-        console.log(e);
+
+        console.log(dataItem);
 
         $scope.isKasubag = e.data.commandName === "Konfirmasi Kasubag" ? true : false;
         if (!$scope.isKasubag && !$scope.confirm.confirmfk) {
@@ -751,9 +752,18 @@ define(['initialize'], function (initialize) {
       }
 
       $scope.konfirmasiData = (state) => {
+        
+        if(state & $scope.confirm.statusConfirmAnggaran === "CONFIRM") {
+          toastr.info('Data Sudah di Konfirmasi Kasubag');
+          return;
+        }
+
+        if($scope.confirm.statusConfirmKabag === "CONFIRM") {
+          toastr.info('Data Sudah di Konfirmasi Kabag');
+          return;
+        }
 
         $scope.closePopUpKonfirmasi();
-
         var confirm = $mdDialog.confirm()
           .title(`Apakah Anda yakin akan mengkonfirmasi Verifikasi Tagihan`)
           .textContent(`Anda akan konfirmasi Verifikasi Tagihan dengan Supplier ${$scope.confirm.namarekanan} dengan No. SPK ${$scope.confirm.noSPK}`)

@@ -323,6 +323,16 @@ define(['initialize'], function (initialize) {
                     }
 
                 ],
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            startswith: "Dimulai dengan",
+                            contains: "mengandung kata",
+                            neq: "Tidak mengandung kata"
+                        }
+                    }
+                },
                 pageable: true,
                 scrollable: true,
                 columns: $scope.columnGridVerified
@@ -334,11 +344,22 @@ define(['initialize'], function (initialize) {
                         name: "Export detail",
                         template: '<button ng-click="exportExcel(false)" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
                     },
+                    
                     {
                         name: "Tambah Baru",
                         template: '<button ng-click="tambahBaru()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-plus"></span>Tambah Baru</button>'
                     }
                 ],
+                filterable: {
+                    extra: false,
+                    operators: {
+                        string: {
+                            startswith: "Dimulai dengan",
+                            contains: "mengandung kata",
+                            neq: "Tidak mengandung kata"
+                        }
+                    }
+                },
                 pageable: true,
                 scrollable: true,
                 columns: $scope.columnGridUnverified
@@ -701,7 +722,7 @@ define(['initialize'], function (initialize) {
                         //     toastr.warning('Harap Konfirmasi Kabag terlebih dahulu', 'Perhatian!');
                         //     return;
                         // }
-                       
+
                         let data = {
                             noverifikasifk: $scope.confirm.noverifikasifk,
                             confirmfk: $scope.dataPegawaiLogin.id,
