@@ -57,47 +57,47 @@ define(['initialize'], function (initialize) {
 				namaPegawai: 'Marini Dewi Hasianna, S.AB',
 				username: 'marini.dewi',
 				idPegawai: 1104,
-				password: "tionde"
+				password: "tespassword"
 			}, {
 				namaPegawai: 'Yulita, S.Kep, Ners',
 				username: 'yulita',
 				idPegawai: 969,
-				password: "cerabl"
+				password: "tespassword"
 			}, {
 				namaPegawai: 'Ni Nengah Kusumawati, S.Kep, Ners',
 				username: 'ni.nengah.kusumawati',
 				idPegawai: 536,
-				password: "onombo"
+				password: "tespassword"
 			}, {
 				namaPegawai: 'Azizud Dermawan, Amd.RS',
 				username: 'azizud',
 				idPegawai: 78,
-				password: "rsisdu"
+				password: "tespassword"
 			}, {
 				namaPegawai: 'Sari Asri, S.Kep, Ners',
 				username: 'sari.asri',
 				idPegawai: 704,
-				password: "fasoni"
+				password: "tespassword"
 			}, {
 				namaPegawai: 'Musirwan, S.Kep, Ners',
 				username: 'musirwan',
 				idPegawai: 502,
-				password: "liblet"
+				password: "tespassword"
 			}, {
 				namaPegawai: 'dr. Abdul Mun\'Im, Sp.AN',
 				username: 'abdul.munim',
 				idPegawai: 10,
-				password: "ogymat"
+				password: "tespassword"
 			}, {
 				namaPegawai: 'Nurhasanah, Amd.Keb, SST',
 				username: 'nurhasanah.04.06',
 				idPegawai: 566,
-				password: "gripto"
+				password: "tespassword"
 			}, {
 				namaPegawai: 'dr. Eva Fahmiah',
 				username: 'eva.fahmiah',
 				idPegawai: 234,
-				password: "roshwe"
+				password: "tespassword"
 			}]
 
 			function LoadData() {
@@ -1742,6 +1742,7 @@ define(['initialize'], function (initialize) {
 
 				if ($scope.item.passwordUserDiskon === validateUser.password) {
 					$scope.UpdateDiskon();
+					$scope.item.passwordUserDiskon = "";
 					$scope.popUpPassword.close();
 				} else {
 					$scope.item.passwordUserDiskon  = '';
