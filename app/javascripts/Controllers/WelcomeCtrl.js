@@ -1,6 +1,6 @@
 define(['initialize'], function (initialize) {
-    initialize.controller('WelcomeCtrl', ['$scope', 'R', '$rootScope', 'MenuService', 'LoginHelper', '$mdDialog', 'DateHelper',
-        function ($scope, r, $rootScope, MenuService, LoginHelper, $mdDialog, DateHelper) {
+    initialize.controller('WelcomeCtrl', ['$scope', '$state', 'R', '$rootScope', 'MenuService', 'LoginHelper', '$mdDialog', 'DateHelper',
+        function ($scope, $state, r, $rootScope, MenuService, LoginHelper, $mdDialog, DateHelper) {
             //#region slide
 
             const _C = document.querySelector(".slider-container"),
@@ -129,6 +129,27 @@ define(['initialize'], function (initialize) {
 
             $scope.now = new Date();
             $rootScope.isOpen = true;
+            $scope.showAlertChangePassword = function () {
+
+                let confirmChangePassword = $mdDialog.confirm()
+                    .title('Perhatian !')
+                    .textContent('Harap kepada pengguna SMART untuk mengganti Kata Kunci/Password pengguna anda')
+                    .ariaLabel('Alert Dialog 2')
+                    .ok('Ganti Password').cancel('Batal');
+
+                $mdDialog.show(confirmChangePassword).then((e) => {
+                    console.log(e);
+                    $scope.showAlert();
+                    $state.go('UbahPassword')
+                }, function(e) {
+                    console.log(e);
+                    if(!e) {
+                        $scope.showAlert();
+                    }
+                    // $scope.showAlert();
+                });
+            };
+            $scope.showAlertChangePassword();
 
             $scope.showAlert = function () {
                 // Appending dialog to document.body to cover sidenav in docs app
@@ -141,11 +162,12 @@ define(['initialize'], function (initialize) {
                     .ariaLabel('Alert Dialog')
                     .ok('Go To Link').cancel('Batal')
                 ).then((e) => {
+                    console.log(e);
+                    // $scope.showAlertChangePassword();
                     window.open('https://bit.ly/selfassessmentcovid19rsabhk', '_blank')
-                });
+                }, function() {});
             };
-
-            $scope.showAlert();
+            
 
             $scope.goToLink = function (url) {
                 if (url.toLowerCase().indexOf('logout') < 0) {
