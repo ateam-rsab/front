@@ -1,5 +1,9 @@
 [
     {
+        "name": "Daftar Monitoring Usulan",
+        "link": "#/DaftarMonitoringUsulan"
+    },
+    {
         "name": "Pemesanan Barang Baru",
         "children": [
             {

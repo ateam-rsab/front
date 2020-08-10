@@ -130,6 +130,23 @@ define(['initialize'], function (initialize) {
             $scope.now = new Date();
             $rootScope.isOpen = true;
 
+            $scope.showAlert = function () {
+                // Appending dialog to document.body to cover sidenav in docs app
+                // Modal dialogs should fully cover application
+                // to prevent interaction outside of dialog
+                $mdDialog.show(
+                    $mdDialog.confirm()
+                    .title('Perhatian !')
+                    .textContent('Kepada seluruh karyawan Rumah Sakit Harapan Kita. Harap mengisi form Instrumen Self Assessment Risiko COVID-19')
+                    .ariaLabel('Alert Dialog')
+                    .ok('Go To Link').cancel('Batal')
+                ).then((e) => {
+                    window.open('https://bit.ly/selfassessmentcovid19rsabhk', '_blank')
+                });
+            };
+
+            $scope.showAlert();
+
             $scope.goToLink = function (url) {
                 if (url.toLowerCase().indexOf('logout') < 0) {
                     if (url.toLowerCase().indexOf('bi-') > -1) {
