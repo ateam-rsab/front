@@ -94,6 +94,11 @@ define(['initialize'], function (initialize) {
                     alert("Data Belum Dipilih!")
                     return;
                 }
+
+                if(!$scope.dataSelected.noverifikasi) {
+                    toastr.warning('Data belum dikonfirmasi');
+                    return;
+                }
                 // if ($scope.dataSelected.noorderhps == undefined) {
                 //     alert("Data Belum Diverifikasi HPS!")
                 //     return;
@@ -215,6 +220,11 @@ define(['initialize'], function (initialize) {
             $scope.EditTerima = function () {
                 if ($scope.dataSelected == undefined) {
                     alert("Data Belum Dipilih!")
+                    return;
+                }
+
+                if(!$scope.dataSelected.noverifikasi) {
+                    toastr.warning('Data belum dikonfirmasi');
                     return;
                 }
                 // if ($scope.dataSelected.noorderhps == undefined) {

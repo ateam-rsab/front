@@ -1,7 +1,7 @@
 define(['initialize'], function(initialize) {
     'use strict';
-    initialize.controller('DetailDaftarPemesananBarangCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp','$state','CacheHelper','DateHelper', 'ModelItemAkuntansi',
-        function($q, $rootScope, $scope,manageLogistikPhp,$state,cacheHelper,dateHelper,modelItemAkuntansi) {
+    initialize.controller('DetailDaftarPemesananBarangCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp','$state','CacheHelper','DateHelper', 'ModelItemAkuntansi', '$mdDialog',
+        function($q, $rootScope, $scope,manageLogistikPhp,$state,cacheHelper,dateHelper,modelItemAkuntansi, $mdDialog) {
             $scope.item = {};
             $scope.dataVOloaded = true;
             $scope.now = new Date();
@@ -37,7 +37,13 @@ define(['initialize'], function(initialize) {
                 // $scope.listJenisRacikan = [{id:1,jenisracikan:'Puyer'}]
             }
             $scope.newOrder =  function(){
-                $state.go('OrderBarangSPPB')
+                var confirmDialog = $mdDialog.alert()
+                    .title(`Tidak bisa membuat SPPB`)
+                    .textContent('Harap hubungi pihak ITI')
+                    .ok('Ya')
+
+                $mdDialog.show(confirmDialog)
+                // $state.go('OrderBarangSPPB')
             }
             $scope.terimaBarang = function(){
                 var data = [];

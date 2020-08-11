@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('DaftarPenerimaanBarangSuplierCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper', 'DateHelper', 'ModelItemAkuntansi',
-        function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, dateHelper, modelItemAkuntansi) {
+    initialize.controller('DaftarPenerimaanBarangSuplierCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper', 'DateHelper', 'ModelItemAkuntansi', '$mdDialog',
+        function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, dateHelper, modelItemAkuntansi, $mdDialog) {
             $scope.item = {};
             $scope.dataVOloaded = true;
             $scope.now = new Date();
@@ -121,7 +121,13 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.Tambah = function () {
-                $state.go('PenerimaanBarangSuplier')
+                var confirmDialog = $mdDialog.alert()
+                    .title(`Tidak bisa membuat SPPB`)
+                    .textContent('Harap hubungi pihak ITI')
+                    .ok('Ya')
+
+                $mdDialog.show(confirmDialog);
+                // $state.go('PenerimaanBarangSuplier')
             }
             $scope.BatalTerima = function () {
                 if ($scope.dataSelected == undefined) {

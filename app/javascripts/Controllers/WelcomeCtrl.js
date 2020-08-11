@@ -167,7 +167,6 @@ define(['initialize'], function (initialize) {
                     window.open('https://bit.ly/selfassessmentcovid19rsabhk', '_blank')
                 }, function() {});
             };
-            
 
             $scope.goToLink = function (url) {
                 if (url.toLowerCase().indexOf('logout') < 0) {
