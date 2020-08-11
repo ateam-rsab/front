@@ -223,10 +223,10 @@ define(['initialize'], function (initialize) {
                     return;
                 }
 
-                if(!$scope.dataSelected.noverifikasi) {
-                    toastr.warning('Data belum dikonfirmasi');
-                    return;
-                }
+                // if(!$scope.dataSelected.noverifikasi) {
+                //     toastr.warning('Data belum dikonfirmasi');
+                //     return;
+                // }
                 // if ($scope.dataSelected.noorderhps == undefined) {
                 //     alert("Data Belum Diverifikasi HPS!")
                 //     return;

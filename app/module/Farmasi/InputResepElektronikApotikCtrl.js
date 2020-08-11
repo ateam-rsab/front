@@ -1410,7 +1410,7 @@ define(['initialize'], function (initialize) {
                     return
                 }
                 var objSave = {
-                    strukresep: $scope.dataSelected.norec_resep,
+                    strukresep: $scope.dataSelected.resep,
                     rke: $scope.dataSelected.rke
                 }
 
