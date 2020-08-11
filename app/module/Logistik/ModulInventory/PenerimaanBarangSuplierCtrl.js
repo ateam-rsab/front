@@ -238,7 +238,7 @@ define(['initialize'], function (initialize) {
             function init() {
                 // $scope.isRouteLoading=true;
                 // 
-                window.history.back();
+                // window.history.back();
                 manageLogistikPhp.getDataTableTransaksi("penerimaan-suplier/get-data-combo", true).then(function (dat) {
                     $scope.listKelompokProduk = dat.data.kelompokproduk;
                     $scope.item.kelompokproduk = {
