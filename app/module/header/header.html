@@ -81,26 +81,26 @@
                                 Logout
                             </md-button>
                         </md-menu-item>
-                        <md-menu-divider></md-menu-divider>
-                        <md-menu-item>
+                        <md-menu-divider ng-hide="isInactive"></md-menu-divider>
+                        <md-menu-item ng-hide="isInactive">
                             <md-button ng-click="goToLink('#/ProfilePegawai')">
                                 <i class="fa fa-address-book" style="color: black;"></i>
                                 Profile
                             </md-button>
                         </md-menu-item>
-                        <md-menu-item>
+                        <md-menu-item ng-hide="isInactive">
                             <md-button ng-click="goToLink('#/UbahPassword')">
                                 <i class="fa fa-shield" style="color: black;"></i>
                                 Ubah Password
                             </md-button>
                         </md-menu-item>
-                        <md-menu-item>
+                        <md-menu-item ng-hide="isInactive">
                             <md-button ng-click="goToLink('#/PresensiPegawai')">
                                 <i class="fa fa-user" style="color: black;"></i>
                                 Presensi Pegawai
                             </md-button>
                         </md-menu-item>
-                        <div ng-repeat="menu in listMenuHeader">
+                        <div ng-repeat="menu in listMenuHeader" ng-hide="isInactive">
                             <md-menu-item>
                                 <md-button ng-click="goToLink(menu.link)">
                                     <i class="fa fa-bars" 

@@ -6,6 +6,12 @@ define(['kendo.menu'], function(kendoMenu) {
         $scope.listMenuHeader = {};
         $scope.messages = [];
         $scope.pegawai = JSON.parse(window.localStorage.getItem('pegawai'));
+
+        if (LoginHelper.get() == "-") {
+            $scope.isInactive = true;
+        } else {
+            $scope.isInactive = false;
+        }
         
         $rootScope.$watch('addData', function(e) {
             $scope.messages.push(e);
