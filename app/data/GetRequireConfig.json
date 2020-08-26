@@ -8229,6 +8229,10 @@
       "urlDep": "module/Akuntansi/TataRekening/LapBIOSLayananKesehatanCtrl"
     },
     {
+      "nameDep": "LapBIOSJumlahPasienCtrl",
+      "urlDep": "module/Akuntansi/TataRekening/LapBIOSJumlahPasienCtrl"
+    },
+    {
       "nameDep": "MenuRehabilitasiCtrl",
       "urlDep": "module/PemeriksaanKhusus/MenuRehabilitasiCtrl"
     },

@@ -58,6 +58,10 @@
                         "link": "#/LapBIOSLayananKesehatan"
                     },
                     {
+                        "name": "Jumlah Pasien",
+                        "link": "#/LapBIOSJumlahPasien"
+                    },
+                    {
                         "name": "Indikator Pelayanan",
                         "link": "#/DashboardCalculateIndikatorPelayanan"
                     }
