@@ -53,10 +53,17 @@
 											</div>
 											<div class="clear"></div>
 											<div class="grid_12">
+												<input style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai"
+													k-data-text-field="'namaLengkap'" k-data-value-field="'id'"
+													k-filter="'contains'" k-auto-bind="false"
+													k-data-source="listPegawai"
+													ng-keypress="($event.which == 13)? CariPegawai():item.namaPegawai" />
+											</div>
+											<!-- <div class="grid_12">
 												<input c-text-box type="input" filter="" class="k-textbox"
 													ng-model="item.namaPegawai"
 													ng-keypress="($event.which == 13)? CariPegawai():item.namaPegawai" />
-											</div>
+											</div> -->
 										</div>
 									</div>
 									<div class="grid_2" style="margin-top: 22px;">
@@ -78,10 +85,21 @@
 												k-on-change="getDataUser(item.loginUser)" />
 										</div>
 									</div>
-
 								</div>
 							</div>
 							<div class="grid_6">
+								<!-- <div class="grid_12">
+									<div class="grid_3">
+										<label c-label item="item" c-label-text="Pegawai" real></label>
+									</div>
+									<div class="clear"></div>
+									<div class="grid_9">
+										<input style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai"
+											k-data-text-field="'namaLengkap'" k-data-value-field="'id'"
+											k-filter="'contains'" k-auto-bind="false"
+											k-data-source="listPegawai" />
+									</div>
+								</div> -->
 								<div class="grid_12">
 									<div class="grid_3">
 										<label c-label item="item" c-label-text="IdLogin" real></label>
@@ -89,7 +107,7 @@
 									<div class="clear"></div>
 									<div class="grid_9">
 										<input c-text-box type="input" filter="" class="k-textbox"
-											ng-model="item.idlogin" />
+											ng-model="item.idlogin" disabled />
 									</div>
 								</div>
 								<div class="grid_12">
@@ -136,7 +154,24 @@
 				k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listKelompokuser" />
 		</div>
 	</div>
-	<div class="grid_12" style="margin: 10px 0px;">
+	<div class="grid_12" style="margin: 10px 0px;" ng-show="isTambah">
+		<div class="grid_8">
+		</div>
+		<div class="grid_2">
+			<md-button class="md-raised md-primary medium-button" ng-click="tambahLogin()">
+				<span style="margin-right: 5px;">Tambah</span>
+				<i class="fa fa-plus"></i>
+			</md-button>
+		</div>
+		<div class="grid_2">
+			<md-button class="md-raised md-danger medium-button" ng-click="batal()">
+				<span style="margin-right: 5px;">Batal</span>
+				<i class="fa fa-close"></i>
+			</md-button>
+			<!-- <button class="c-button" ng-click="batal2()">Batal</button> -->
+		</div>
+	</div>
+	<div class="grid_12" style="margin: 10px 0px;" ng-hide="isTambah">
 		<div class="grid_8">
 		</div>
 		<div class="grid_2">
@@ -147,7 +182,7 @@
 			</md-button>
 		</div>
 		<div class="grid_2">
-			<md-button class="md-raised md-danger medium-button" ng-click="batal2()">
+			<md-button class="md-raised md-danger medium-button" ng-click="batal()">
 				<span style="margin-right: 5px;">Batal</span>
 				<i class="fa fa-close"></i>
 			</md-button>
@@ -176,20 +211,23 @@
 				k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listdataruangan" />
 		</div>
 	</div>
+	<div class="grid_12">
+		<div class="grid_8">
+		</div>
+		<div class="grid_2">
+			<md-button class="md-raised md-primary medium-button" ng-click="tambah()">
+				<span style="margin-right: 5px;">Tambah</span>
+				<i class="fa fa-plus"></i>
+			</md-button>
+		</div>
+		<div class="grid_2">
+			<md-button class="md-raised md-danger medium-button" ng-click="hapus()">
+				<span style="margin-right: 5px;">Hapus</span>
+				<i class="fa fa-remove"></i>
+			</md-button>
+		</div>
+	</div>
 
-	<div class="grid_2">
-		<md-button class="md-raised md-primary medium-button" ng-click="tambah()">
-			<span style="margin-right: 5px;">Tambah</span>
-			<i class="fa fa-plus"></i>
-		</md-button>
-	</div>
-	<div class="grid_2">
-		<md-button class="md-raised md-danger medium-button" ng-click="hapus()">
-			<span style="margin-right: 5px;">Hapus</span>
-			<i class="fa fa-remove"></i>
-		</md-button>
-	</div>
-	
 	<div class="grid_12">
 		<div class="grid_12 headerBox">
 			<p>Map Ruangan</p>
