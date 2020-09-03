@@ -284,15 +284,13 @@ define(['initialize'], function (initialize) {
 				}
 				//save to java katasandi column
 				manageSarpras.saveLoginUser(objSave).then(function (e) {
+					//save to php passcode column
+					manageSarprasPhp.saveDataTransaksi('admin/tambah-username', objSave).then(function (e) {
 
+					})
 				}, error => {
 					alert('Nama user sudah digunakan!')
-				})
-
-				//save to php passcode column
-				manageSarprasPhp.saveDataTransaksi('admin/tambah-username', objSave).then(function (e) {
-
-				})
+				})				
 			}
 
 			$scope.simpan = function () {

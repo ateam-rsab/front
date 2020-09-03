@@ -35,10 +35,6 @@
                 "link": "#/AntrianPasienDiperiksa/0"
             },
             {
-                "name": "Permintaan Label",
-                "link": "#/PermintaanLabel"
-            },
-            {
                 "name": "Daftar Deposit Pasien",
                 "link": "#/DaftarDepositPasien"
             },
@@ -51,7 +47,11 @@
                 "link": "#/DaftarKonsultasiKosong"
             },
             {
-                "name": "Hitung/Input Indikator BIOS",
+                "name": "IKI Dirut",
+                "link": "#/IkiDirutCapaian"
+            },
+            {
+                "name": "Integrasi BIOS G2",
                 "children": [
                     {
                         "name": "Layanan Kesehatan",
@@ -60,17 +60,13 @@
                     {
                         "name": "Jumlah Pasien",
                         "link": "#/LapBIOSJumlahPasien"
-                    },
-                    {
-                        "name": "Indikator Pelayanan",
-                        "link": "#/DashboardCalculateIndikatorPelayanan"
                     }
                 ]
                 
             },
             {
-                "name": "IKI Dirut",
-                "link": "#/IkiDirutCapaian"
+                "name": "Permintaan Label",
+                "link": "#/PermintaanLabel"
             }
         ]
     },

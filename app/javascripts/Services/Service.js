@@ -323,6 +323,7 @@ define(['Configuration'], function (config) {
                     return Date.parse(moment(date)._d);
                 },
                 toMonth: function (i) { return monthNames[i] },
+                toMonthNum: function (i) { return monthNumber[i] },
                 toDate: function (date) {
                     var arr = date.split('T')[0].split('/');
                     if (arr.length >= 3)

@@ -16,6 +16,11 @@ define(['Configuration'], function(config) {
                     url: baseApiPostDataSDM + urlSave
                 }, data);
             },
+            saveDataNoJson: function (urlSave) {
+                return r.post({
+                    url: baseApiPostDataSDM + urlSave
+                }, {});
+            },
             deleteTransactionData: function(urlPost, noRec){
                 return r.post({
                     url: baseApiPostDataSDM + urlPost + noRec

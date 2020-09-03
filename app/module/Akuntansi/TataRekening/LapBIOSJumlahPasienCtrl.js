@@ -81,7 +81,26 @@ define(['initialize'], function (initialize) {
             $scope.init();
 
             $scope.Save = function () {
-                // TODO
+                var objSave = [];
+                var dataSource = $scope.dataSourceIndikator.options.data;
+                for (let i = 0; i < dataSource.length; i++) {
+                    var objModel = {
+                        "indikatorBIOSVO" : {
+                            "id" : dataSource[i].idMasterBIOS
+                        },
+                        "bulan" : dateHelper.toMonthNum(new Date().getMonth()),
+                        "tahun" : new Date().getFullYear(),
+                        "jumlah" : dataSource[i].jumlah
+                    }
+                    if (dataSource[i].idMasterBIOS !== "-") {
+                        objSave.push(objModel);
+                    }
+                }
+                ManageSdmNew.saveData(objSave,"pelayanan/save-transaksi-indikator-bios").then(function (e) {
+                    $scope.isRouteLoading = false;
+                }, (error) => {
+                    $scope.isRouteLoading = false;
+                });
             }
         }
     ]);
