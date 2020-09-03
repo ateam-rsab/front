@@ -64,6 +64,11 @@ define(['initialize'], function (initialize) {
                             "template": "<p style='text-align:right'>{{ '#: tglTransaksi #' }}</p>"
                         },
                         {
+                            "field": "tglUpdate",
+                            "title": "Tanggal Update", "width": "150px",
+                            "template": "<p style='text-align:right'>{{ '#: tglUpdate #' }}</p>"
+                        },
+                        {
                             "field": "statusKirim",
                             "title": "Status Kirim", "width": "150px",
                             "template": "#if(statusKirim == 'Belum Terkirim'){# <p style='text-align:center'><button ng-click='sentToBIOSG2(dataItem)' class='k-button k-button-icontext k-grid-Cetak'><span class='k-icon k-i-upload'></span>Kirim</button></p> #} else {# <p style='text-align:center'>{{ '#: statusKirim #' }}</p> #}#"
@@ -87,7 +92,8 @@ define(['initialize'], function (initialize) {
                         data: data.data.data,
                         pageSize: 10,
                         sort: [
-                            { field: "tgl", dir: "asc" },
+                            { field: "tglT", dir: "asc" },
+                            { field: "tglU", dir: "desc" },
                             { field: "kdIndikator", dir: "asc" }
                         ]
                     });
