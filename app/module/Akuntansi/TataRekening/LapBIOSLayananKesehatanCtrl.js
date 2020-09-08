@@ -73,7 +73,8 @@ define(['initialize'], function (initialize) {
                             "title": "Status Kirim", "width": "150px",
                             "template": "#if(statusKirim == 'Belum Terkirim'){# <p style='text-align:center'><button ng-click='sentToBIOSG2(dataItem)' class='k-button k-button-icontext k-grid-Cetak'><span class='k-icon k-i-upload'></span>Kirim</button></p> #} else {# <p style='text-align:center'>{{ '#: statusKirim #' }}</p> #}#"
                         }
-                    ]
+                    ],
+                    height: 340
                 };
             };
 
@@ -90,7 +91,7 @@ define(['initialize'], function (initialize) {
                 ReportService.getListData("reporting/transaksi-bios-layanan-kesehatan?bulan=" + dateHelper.formatDate($scope.item.periode, 'YYYY-MM')).then(function (data) {
                     $scope.dataSourceIndikator = new kendo.data.DataSource({
                         data: data.data.data,
-                        pageSize: 10,
+                        pageSize: 5,
                         sort: [
                             { field: "tglT", dir: "asc" },
                             { field: "tglU", dir: "desc" },
@@ -122,10 +123,10 @@ define(['initialize'], function (initialize) {
                     kelas: data.kdIndikator,
                     jml_hari: data.jmlHari,
                     jml_pasien: data.jmlPasien,
-                    tglTransaksi: dateHelper.formatDate(data.tgl, "YYYY/MM/DD"),
+                    tglTransaksi: dateHelper.formatDate(data.tgl, "YYYY/MM/DD")
                 };
 
-                $.get('https://training-bios2.kemenkeu.go.id/api/token', function (request) {
+                $.post('https://training-bios2.kemenkeu.go.id/api/token', { satker: 520611, key: "SQs8eQV27oFf3czNRZqCloYyyjS8HkVI" }, function (request) {
                     if (request.status == "MSG20004") {
                         $scope.token = request.token;
                         $.ajax({
@@ -141,11 +142,47 @@ define(['initialize'], function (initialize) {
                             }
                         });
                     } else {
-                        messageContainer.error("Token Salah!");
+                        messageContainer.error(request.message);
                         return;
                     }
                 });
             };
+
+            $scope.sentAllToBIOSG2 = function () {
+                var dataSource = $scope.dataSourceIndikator.options.data;
+                if (dataSource != undefined) {
+                    $.post('https://training-bios2.kemenkeu.go.id/api/token', { satker: 520611, key: "SQs8eQV27oFf3czNRZqCloYyyjS8HkVI" }, function (request) {
+                        if (request.status == "MSG20004") {
+                            $scope.token = request.token;
+                            for (let i = 0; i < dataSource.length; i++) {
+                                if (dataSource.statusKirim == "Belum Terkirim") {
+                                    $scope.objSent = {
+                                        "kelas": dataSource[i].kdIndikator,
+                                        "jml_hari": dataSource[i].jmlHari,
+                                        "jml_pasien": dataSource[i].jmlPasien,
+                                        "tglTransaksi": dateHelper.formatDate(dataSource[i].tgl, "YYYY/MM/DD")
+                                    }
+                                    $.ajax({
+                                        url: 'https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/prod',
+                                        type: 'post',
+                                        data: $scope.objSent,
+                                        headers: {
+                                            token: $scope.token
+                                        },
+                                        dataType: 'json',
+                                        success: function (data) {
+                                            console.info(data);
+                                        }
+                                    });
+                                }
+                            }
+                        } else {
+                            messageContainer.error(request.message);
+                            return;
+                        }
+                    });
+                }
+            }
 
             $scope.createNewCalculate = function () {
                 clearPop();
