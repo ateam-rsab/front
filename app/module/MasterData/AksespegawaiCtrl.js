@@ -1,10 +1,11 @@
 define(['initialize'], function (initialize) {
 	'use strict';
-	initialize.controller('AksespegawaiCtrl', ['$q', '$rootScope', '$scope', 'ManageSarprasPhp', 'ModelItem', '$http', 'ManageSarpras',
-		function ($q, $rootScope, $scope, manageSarprasPhp, modelItem, $http, manageSarpras) {
+	initialize.controller('AksespegawaiCtrl', ['$q', '$rootScope', '$scope', 'ManageSarprasPhp', 'ModelItem', '$http', 'ManageSarpras', 'ManageSdm',
+		function ($q, $rootScope, $scope, manageSarprasPhp, modelItem, $http, manageSarpras, manageSdm) {
 			$scope.item = {};
 			$scope.dataVOloaded = true;
 			$scope.now = new Date();
+			$scope.isTambah = true;
 
 			init();
 			$scope.columnModulAplikasi = [{
@@ -76,6 +77,10 @@ define(['initialize'], function (initialize) {
 					$scope.listdataloginuser = datapegawai.data.loginuser;
 					// console.log($scope.listdatapegawai);
 				});
+
+				manageSdm.getItem("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true&order=namaLengkap:asc", true).then(function (dat) {
+					$scope.listPegawai = dat.data;
+				});
 			}
 
 			$scope.CariPegawai = function () {
@@ -93,11 +98,17 @@ define(['initialize'], function (initialize) {
 			}
 
 			$scope.SearchData = function () {
-				manageSarprasPhp.getDataTableTransaksi("pegawai/svc-modul?get=pegawai&nama=" + $scope.item.namaPegawai).then(function (datapegawai) {
+				manageSarprasPhp.getDataTableTransaksi("pegawai/svc-modul?get=pegawai&nama=" + $scope.item.pegawai.namaLengkap.toLowerCase()).then(function (datapegawai) {
 					// debugger;
 					// $scope.listdatapegawai = datapegawai.data.pegawai;
 					$scope.listdataloginuser = datapegawai.data.loginuser;
 					// console.log($scope.listdatapegawai);
+					if (datapegawai.data.pegawai[0]) {
+						$scope.item.pegawai = {
+							id: datapegawai.data.pegawai[0].pegawaiId,
+							namaLengkap: datapegawai.data.pegawai[0].Name
+						};
+					}
 				});
 			}
 
@@ -111,6 +122,7 @@ define(['initialize'], function (initialize) {
 
 
 			$scope.getDataUser = function () {
+				$scope.isTambah = false;
 				getdadata()
 			}
 
@@ -126,7 +138,6 @@ define(['initialize'], function (initialize) {
 						kelompokuser: data.data.loginuser[0].kelompokuser
 					};
 					$scope.dataGrid = data.data.loginuser[0].data;
-
 
 				})
 			}
@@ -169,32 +180,40 @@ define(['initialize'], function (initialize) {
 					})
 				})
 			}
+			$scope.batal = function () {
+				$scope.item.idlogin = "";
+				$scope.item.namaUser = "";
+				$scope.item.kataKunciPass = "";
+				$scope.item.kataKunciConfirm = "";
+				$scope.item.kelompokUserHakAkses = undefined;
+				$scope.isTambah = true;
+			}
 
 			$scope.columnGrid = [{
-					"field": "no",
-					"title": "No",
-					"width": "20px",
-				},
-				{
-					"field": "dpid",
-					"title": "Id Instalasi",
-					"width": "30px",
-				},
-				{
-					"field": "namadepartemen",
-					"title": "Instalasi",
-					"width": "100px",
-				},
-				{
-					"field": "ruid",
-					"title": "Id Ruangan",
-					"width": "30px",
-				},
-				{
-					"field": "namaruangan",
-					"title": "Nama Ruangan",
-					"width": "100px",
-				}
+				"field": "no",
+				"title": "No",
+				"width": "20px",
+			},
+			{
+				"field": "dpid",
+				"title": "Id Instalasi",
+				"width": "30px",
+			},
+			{
+				"field": "namadepartemen",
+				"title": "Instalasi",
+				"width": "100px",
+			},
+			{
+				"field": "ruid",
+				"title": "Id Ruangan",
+				"width": "30px",
+			},
+			{
+				"field": "namaruangan",
+				"title": "Nama Ruangan",
+				"width": "100px",
+			}
 			];
 
 
@@ -242,7 +261,37 @@ define(['initialize'], function (initialize) {
 				}
 			}
 
+			$scope.tambahLogin = function () {
+				if ($scope.item.pegawai == undefined) {
+					alert('Mohon pilih pegawai terlebih dahulu!')
+					return
+				}
+				if ($scope.item.kataKunciPass != $scope.item.kataKunciConfirm) {
+					alert('Kata kunci tidak sama')
+					return
+				}
+				var objSave = {
+					// id: $scope.item.idlogin,
+					kelompokUser: {
+						id: $scope.item.kelompokUserHakAkses.id
+					},
+					statusLogin: 0,
+					kataSandi: $scope.item.kataKunciPass,
+					namaUser: $scope.item.namaUser,
+					pegawai: {
+						id: $scope.item.pegawai.id
+					}
+				}
+				//save to java katasandi column
+				manageSarpras.saveLoginUser(objSave).then(function (e) {
+					//save to php passcode column
+					manageSarprasPhp.saveDataTransaksi('admin/tambah-username', objSave).then(function (e) {
 
+					})
+				}, error => {
+					alert('Nama user sudah digunakan!')
+				})				
+			}
 
 			$scope.simpan = function () {
 				for (var i = $scope.treeSourceRuangan._data.length - 1; i >= 0; i--) {
@@ -287,10 +336,10 @@ define(['initialize'], function (initialize) {
 
 				})
 				//save to java katasandi column
-				// manageSarpras.saveLoginUser(objSave).then(function (e) {
-				// },error => {
-				// 	alert('Nama user sudah digunakan!')
-				// })
+				manageSarpras.saveLoginUser(objSave).then(function (e) {
+				}, error => {
+					alert('Nama user sudah digunakan!')
+				})
 			}
 
 			function onCheck() {

@@ -272,6 +272,8 @@ define(['initialize'], function (initialize) {
                         { value: "Tempat Lahir" },
                         { value: "Tanggal Lahir" },
                         { value: "Jenis Kelamin" },
+                        { value: "Nomor Telepon" },
+                        { value: "Nomor Handphone" },
                         { value: "Status Pegawai" },
                         { value: "Kedudukan Pegawai" },
                         { value: "Tanggal Masuk" },
@@ -330,6 +332,8 @@ define(['initialize'], function (initialize) {
                                 { value: data[i].tempatLahir },
                                 { value: data[i].tglLahir },
                                 { value: data[i].jenisKelamin },
+                                { value: data[i].noTlp },
+                                { value: data[i].noHandphone },
                                 { value: data[i].kategoriPegawai },
                                 { value: data[i].kedudukan },
                                 { value: data[i].tglMasuk },
@@ -375,6 +379,8 @@ define(['initialize'], function (initialize) {
                                 filter: { from: 0, to: 1 },
                                 columns: [
                                     // Column settings (width)
+                                    { autoWidth: true },
+                                    { autoWidth: true },
                                     { autoWidth: true },
                                     { autoWidth: true },
                                     { autoWidth: true },
