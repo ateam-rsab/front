@@ -24,7 +24,7 @@ define(['initialize'], function (initialize) {
                     }
                     $scope.dataHistoriPresensi = new kendo.data.DataSource({
                         data: tempData,
-                        pageSize: 1,
+                        pageSize: 100,
                         total: tempData.length
                     });
                     $scope.isRouteLoading = false;
@@ -43,8 +43,6 @@ define(['initialize'], function (initialize) {
                 ManageSdmNew.getListData('sdm/get-jadwal-pegawai?idPegawai=' + $scope.dataPegawaiLogin.id).then((res) => {
                     $scope.data = res.data.data;
                 });
-
-
             }
 
             init();
@@ -53,9 +51,7 @@ define(['initialize'], function (initialize) {
                 "field": "jam",
                 "title": "<h3>Jam</h3>",
                 "width": "150px"
-            },
-
-            ];
+            }];
 
             $scope.optHistoryPresensi = {
                 pageable: true,
@@ -71,19 +67,15 @@ define(['initialize'], function (initialize) {
                 getLocation();
 
                 let data = {
-                    // tr_date: DateHelper.toTimeStamp(new Date()),
-                    // tr_time: DateHelper.toTimeStamp(new Date()),
                     pegawai: {
                         id: $scope.dataPegawaiLogin.id
                     },
-                    // empl_code: $scope.data.idFinger,
                     processtatus: $scope.data.isWFH ? 1 : 0,
                     ip_addr: $scope.dataDevice.geoplugin_request,
                     latitude: $scope.latitude,
                     longitude: $scope.longitude,
                     akurasi: $scope.akurasi
                 }
-                // console.log(data);
                 ManageSdmNew.saveData(data, 'sdm/save-presensi-pegawai/').then((res) => {
                     getDataHistory();
                 })
@@ -129,7 +121,6 @@ define(['initialize'], function (initialize) {
             function getDecimal(n) {
                 return (n - Math.floor(n));
             }
-
         }
     ]);
 });

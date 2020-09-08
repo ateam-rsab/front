@@ -155,7 +155,7 @@ define(['initialize'], function (initialize) {
                         if (request.status == "MSG20004") {
                             $scope.token = request.token;
                             for (let i = 0; i < dataSource.length; i++) {
-                                if (dataSource.statusKirim == "Belum Terkirim") {
+                                if (dataSource[i].statusKirim == "Belum Terkirim") {
                                     $scope.objSent = {
                                         "kelas": dataSource[i].kdIndikator,
                                         "jml_hari": dataSource[i].jmlHari,
