@@ -273,7 +273,7 @@ define(['initialize'], function(initialize) {
                         counterid:kampret
                     }
                 
-                manageLogistikPhp.postbridgingconsisd(objSave).then(function(e) {
+                manageLogistikPhp.saveconsisobatbebas(objSave).then(function(e) {
                     
                 })
             }

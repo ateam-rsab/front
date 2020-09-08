@@ -300,62 +300,61 @@ define(['initialize'], function (initialize) {
                                     jenisusulan: 'Medis'
                                 };
                             });
-                            manageLogistikPhp.getDataTableTransaksi("penerimaan-suplier/get-detail-terima-barang-suplier?norec=" + norecTerima, true).then(function (data_ih) {
-                                //
+                            manageLogistikPhp.getDataTableTransaksi("penerimaan-suplier/get-detail-terima-barang-suplier?norec=" + norecTerima, true).then(function (data) {
                                 $scope.isRouteLoading = false;
-                                NoOrderFk = data_ih.data.detailterima.noorderfk
-                                $scope.item.noTerima = data_ih.data.detailterima.nostruk
-                                $scope.item.noUsulan = data_ih.data.detailterima.nousulan
-                                $scope.item.noOrder = data_ih.data.detailterima.nosppb
-                                $scope.item.noKontrak = data_ih.data.detailterima.nokontrak
-                                $scope.item.tglTerima = data_ih.data.detailterima.tglstruk
-                                $scope.item.tglUsulan = data_ih.data.detailterima.tglrealisasi
-                                $scope.item.tglAwal = data_ih.data.detailterima.tgldokumen
-                                $scope.item.ketTerima = data_ih.data.detailterima.keteranganambil
-                                $scope.item.namaPengadaan = data_ih.data.detailterima.namapengadaan
-                                $scope.item.keterangan1 = data_ih.data.detailterima.keteranganlainnya
-                                $scope.item.tahun = moment(data_ih.data.detailterima.tglstruk).format('YYYY');
+                                NoOrderFk = data.data.detailterima.noorderfk
+                                $scope.item.noTerima = data.data.detailterima.nostruk
+                                $scope.item.noUsulan = data.data.detailterima.nousulan
+                                $scope.item.noOrder = data.data.detailterima.nosppb
+                                $scope.item.noKontrak = data.data.detailterima.nokontrak
+                                $scope.item.tglTerima = data.data.detailterima.tglstruk
+                                $scope.item.tglUsulan = data.data.detailterima.tglrealisasi
+                                $scope.item.tglAwal = data.data.detailterima.tgldokumen
+                                $scope.item.ketTerima = data.data.detailterima.keteranganambil
+                                $scope.item.namaPengadaan = data.data.detailterima.namapengadaan
+                                $scope.item.keterangan1 = data.data.detailterima.keteranganlainnya
+                                $scope.item.tahun = moment(data.data.detailterima.tglstruk).format('YYYY');
                                 $scope.item.kelompokproduk = {
-                                    id: data_ih.data.pelayananPasien[0].kpid,
-                                    kelompokproduk: data_ih.data.pelayananPasien[0].kelompokproduk
+                                    id: data.data.pelayananPasien[0].kpid,
+                                    kelompokproduk: data.data.pelayananPasien[0].kelompokproduk
                                 }
                                 $scope.item.asalproduk = {
-                                    id: data_ih.data.pelayananPasien[0].asalprodukfk,
-                                    asalproduk: data_ih.data.pelayananPasien[0].asalproduk
+                                    id: data.data.pelayananPasien[0].asalprodukfk,
+                                    asalproduk: data.data.pelayananPasien[0].asalproduk
                                 }
                                 $scope.item.ruanganPenerima = {
-                                    id: data_ih.data.detailterima.id,
-                                    namaruangan: data_ih.data.detailterima.namaruangan
+                                    id: data.data.detailterima.id,
+                                    namaruangan: data.data.detailterima.namaruangan
                                 }
                                 $scope.item.pegawaiPenerima = {
-                                    id: data_ih.data.detailterima.pgid,
-                                    namalengkap: data_ih.data.detailterima.namalengkap
+                                    id: data.data.detailterima.pgid,
+                                    namalengkap: data.data.detailterima.namalengkap
                                 }
                                 $scope.item.pegawaiPembuat = {
-                                    id: data_ih.data.detailterima.objectpegawaipenanggungjawabfk,
-                                    namalengkap: data_ih.data.detailterima.penanggungjawab
+                                    id: data.data.detailterima.objectpegawaipenanggungjawabfk,
+                                    namalengkap: data.data.detailterima.penanggungjawab
                                 }
-                                $scope.item.tglFaktur = data_ih.data.detailterima.tglfaktur
-                                $scope.item.noFaktur = data_ih.data.detailterima.nofaktur
+                                $scope.item.tglFaktur = data.data.detailterima.tglfaktur
+                                $scope.item.noFaktur = data.data.detailterima.nofaktur
                                 $scope.item.namaRekanan = {
-                                    id: data_ih.data.detailterima.objectrekananfk,
-                                    namarekanan: data_ih.data.detailterima.namarekanan
+                                    id: data.data.detailterima.objectrekananfk,
+                                    namarekanan: data.data.detailterima.namarekanan
                                 }
-                                norec_Realisasi = data_ih.data.detailterima.norecrealisasi;
+                                norec_Realisasi = data.data.detailterima.norecrealisasi;
                                 $scope.item.mataAnggaran = {
-                                    norec: data_ih.data.detailterima.mataanggranid,
-                                    mataanggaran: data_ih.data.detailterima.namamataanggaran
+                                    norec: data.data.detailterima.mataanggranid,
+                                    mataanggaran: data.data.detailterima.namamataanggaran
                                 }
                                 kelTrans = 35;
-                                // $scope.item.ruangan = {id:data_ih.data.detailresep.id,namaruangan:data_ih.data.detailresep.namaruangan}
-                                // $scope.item.penulisResep = {id:data_ih.data.detailresep.pgid,namalengkap:data_ih.data.detailresep.namalengkap}
-                                // $scope.item.nocm = data_ih.data.detailresep.nocm
-                                // $scope.item.namapasien = data_ih.data.detailresep.nama
-                                // $scope.item.tglLahir = data_ih.data.detailresep.tgllahir
-                                // $scope.item.noTelepon = data_ih.data.detailresep.notlp
-                                // $scope.item.alamat = data_ih.data.detailresep.alamat
+                                // $scope.item.ruangan = {id:data.data.detailresep.id,namaruangan:data.data.detailresep.namaruangan}
+                                // $scope.item.penulisResep = {id:data.data.detailresep.pgid,namalengkap:data.data.detailresep.namalengkap}
+                                // $scope.item.nocm = data.data.detailresep.nocm
+                                // $scope.item.namapasien = data.data.detailresep.nama
+                                // $scope.item.tglLahir = data.data.detailresep.tgllahir
+                                // $scope.item.noTelepon = data.data.detailresep.notlp
+                                // $scope.item.alamat = data.data.detailresep.alamat
 
-                                data2 = data_ih.data.pelayananPasien
+                                data2 = data.data.pelayananPasien
                                 $scope.dataGrid = new kendo.data.DataSource({
                                     data: data2
                                 });
@@ -376,6 +375,7 @@ define(['initialize'], function (initialize) {
                                 grandTotal = ttlTotal + ttlPpn - ttlDiskon
                                 $scope.item.grandTotal = parseFloat(grandTotal).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")
                             });
+
                             $scope.columnGrid = [{
                                     "field": "no",
                                     "title": "No",
@@ -507,83 +507,83 @@ define(['initialize'], function (initialize) {
                                     jenisusulan: 'Medis'
                                 };
                             });
-                            manageLogistikPhp.getDataTableTransaksi("sppb/get-detail-SPPB?norecOrder=" + norecSPPB, true).then(function (data_ih) {
+                            manageLogistikPhp.getDataTableTransaksi("sppb/get-detail-SPPB?norecOrder=" + norecSPPB, true).then(function (data) {
 
                                 $scope.isRouteLoading = false;
-                                sppb = data_ih.data.detail.norec;
-                                $scope.item.noOrder = data_ih.data.detail.noorder
-                                $scope.item.tglAwal = data_ih.data.detail.tglorder
-                                $scope.item.keterangan1 = data_ih.data.detail.keterangan
+                                sppb = data.data.detail.norec;
+                                $scope.item.noOrder = data.data.detail.noorder
+                                $scope.item.tglAwal = data.data.detail.tglorder
+                                $scope.item.keterangan1 = data.data.detail.keterangan
                                 $scope.listPegawaiPembuat = [{
-                                    id: data_ih.data.detail.petugasid,
-                                    namalengkap: data_ih.data.detail.petugas
+                                    id: data.data.detail.petugasid,
+                                    namalengkap: data.data.detail.petugas
                                 }]
                                 $scope.item.pegawaiPembuat = {
-                                    id: data_ih.data.detail.petugasid,
-                                    namalengkap: data_ih.data.detail.petugas
+                                    id: data.data.detail.petugasid,
+                                    namalengkap: data.data.detail.petugas
                                 }
                                 $scope.item.koordinator = {
-                                    id: data_ih.data.detail.jenisusulanfk,
-                                    jenisusulan: data_ih.data.detail.koordinator
+                                    id: data.data.detail.jenisusulanfk,
+                                    jenisusulan: data.data.detail.koordinator
                                 } //{id:1,jenisusulan:'Medis'} 
-                                $scope.item.tglUsulan = data_ih.data.detail.tglusulan
-                                $scope.item.noUsulan = data_ih.data.detail.nousulan
-                                $scope.item.namaPengadaan = data_ih.data.detail.namapengadaan
-                                $scope.item.noKontrak = data_ih.data.detail.nokontrak
-                                $scope.item.tahun = data_ih.data.detail.tahunusulan
+                                $scope.item.tglUsulan = data.data.detail.tglusulan
+                                $scope.item.noUsulan = data.data.detail.nousulan
+                                $scope.item.namaPengadaan = data.data.detail.namapengadaan
+                                $scope.item.noKontrak = data.data.detail.nokontrak
+                                $scope.item.tahun = data.data.detail.tahunusulan
                                 kelTrans = 35;
-                                noOrder = data_ih.data.detail.objectstrukfk;
-                                if (data_ih.data.detail.norecrealisasi != undefined) {
-                                    norec_Realisasi = data_ih.data.detail.norecrealisasi;
+                                noOrder = data.data.detail.objectstrukfk;
+                                if (data.data.detail.norecrealisasi != undefined) {
+                                    norec_Realisasi = data.data.detail.norecrealisasi;
                                 } else {
-                                    norec_Realisasi = data_ih.data.detail.norecrealisasisppb;
+                                    norec_Realisasi = data.data.detail.norecrealisasisppb;
                                 }
-                                // norec_Realisasi=data_ih.data.detail.norecrealisasi;
+                                // norec_Realisasi=data.data.detail.norecrealisasi;
                                 $scope.item.namaRekanan = {
-                                    id: data_ih.data.detail.rekanansalesfk,
-                                    namarekanan: data_ih.data.detail.namarekanansales
+                                    id: data.data.detail.rekanansalesfk,
+                                    namarekanan: data.data.detail.namarekanansales
                                 }
-                                if (data_ih.data.detail.mataanggranid != undefined) {
+                                if (data.data.detail.mataanggranid != undefined) {
                                     $scope.item.mataAnggaran = {
-                                        norec: data_ih.data.detail.mataanggranid,
-                                        mataanggaran: data_ih.data.detail.mataanggaran
+                                        norec: data.data.detail.mataanggranid,
+                                        mataanggaran: data.data.detail.mataanggaran
                                     }
                                 } else {
                                     $scope.item.mataAnggaran = {
-                                        norec: data_ih.data.detail.mataanggranfk,
-                                        mataanggaran: data_ih.data.detail.mataanggaransppb
+                                        norec: data.data.detail.mataanggranfk,
+                                        mataanggaran: data.data.detail.mataanggaransppb
                                     }
                                 }
 
                                 $scope.item.asalproduk = {
-                                    id: data_ih.data.details[0].asalprodukfk,
-                                    asalproduk: data_ih.data.details[0].asalproduk
+                                    id: data.data.details[0].asalprodukfk,
+                                    asalproduk: data.data.details[0].asalproduk
                                 }
 
                                 // $scope.item.mataAnggaran={id:,namamataanggaran:}
-                                // $scope.item.koordinator = data_ih.data.detailterima.nostruk
-                                // $scope.item.tglTerima = data_ih.data.detailterima.tglstruk
-                                // $scope.item.kelompokproduk ={id:data_ih.data.pelayananPasien[0].kpid,kelompokproduk:data_ih.data.pelayananPasien[0].kelompokproduk} 
+                                // $scope.item.koordinator = data.data.detailterima.nostruk
+                                // $scope.item.tglTerima = data.data.detailterima.tglstruk
+                                // $scope.item.kelompokproduk ={id:data.data.pelayananPasien[0].kpid,kelompokproduk:data.data.pelayananPasien[0].kelompokproduk} 
 
-                                // $scope.item.ruanganPenerima = {id:data_ih.data.detailterima.id,namaruangan:data_ih.data.detailterima.namaruangan} 
-                                // $scope.item.pegawaiPenerima = {id:data_ih.data.detailterima.pgid,namalengkap:data_ih.data.detailterima.namalengkap} 
-                                // $scope.item.tglFaktur = data_ih.data.detailterima.tglfaktur
-                                // $scope.item.noFaktur = data_ih.data.detailterima.nofaktur
-                                // $scope.item.namaRekanan = {id:data_ih.data.detailterima.objectrekananfk,namarekanan:data_ih.data.detailterima.namarekanan} 
+                                // $scope.item.ruanganPenerima = {id:data.data.detailterima.id,namaruangan:data.data.detailterima.namaruangan} 
+                                // $scope.item.pegawaiPenerima = {id:data.data.detailterima.pgid,namalengkap:data.data.detailterima.namalengkap} 
+                                // $scope.item.tglFaktur = data.data.detailterima.tglfaktur
+                                // $scope.item.noFaktur = data.data.detailterima.nofaktur
+                                // $scope.item.namaRekanan = {id:data.data.detailterima.objectrekananfk,namarekanan:data.data.detailterima.namarekanan} 
 
-                                // $scope.item.ruangan = {id:data_ih.data.detailresep.id,namaruangan:data_ih.data.detailresep.namaruangan}
-                                // $scope.item.penulisResep = {id:data_ih.data.detailresep.pgid,namalengkap:data_ih.data.detailresep.namalengkap}
-                                // $scope.item.nocm = data_ih.data.detailresep.nocm
-                                // $scope.item.namapasien = data_ih.data.detailresep.nama
-                                // $scope.item.tglLahir = data_ih.data.detailresep.tgllahir
-                                // $scope.item.noTelepon = data_ih.data.detailresep.notlp
-                                // $scope.item.alamat = data_ih.data.detailresep.alamat
+                                // $scope.item.ruangan = {id:data.data.detailresep.id,namaruangan:data.data.detailresep.namaruangan}
+                                // $scope.item.penulisResep = {id:data.data.detailresep.pgid,namalengkap:data.data.detailresep.namalengkap}
+                                // $scope.item.nocm = data.data.detailresep.nocm
+                                // $scope.item.namapasien = data.data.detailresep.nama
+                                // $scope.item.tglLahir = data.data.detailresep.tgllahir
+                                // $scope.item.noTelepon = data.data.detailresep.notlp
+                                // $scope.item.alamat = data.data.detailresep.alamat
 
-                                data2 = data_ih.data.details
+                                data2 = data.data.details
                                 if (data2 != undefined) {
                                     $scope.item.asalproduk = {
-                                        id: data_ih.data.details[0].asalprodukfk,
-                                        asalproduk: data_ih.data.details[0].asalproduk
+                                        id: data.data.details[0].asalprodukfk,
+                                        asalproduk: data.data.details[0].asalproduk
                                     }
                                 }
                                 var subnyaTotal = 0;
@@ -704,75 +704,75 @@ define(['initialize'], function (initialize) {
                                     jenisusulan: 'Medis'
                                 };
                             });
-                            manageLogistikPhp.getDataTableTransaksi("spk/get-detail-SPPB?norecOrder=" + norecSPPB, true).then(function (data_ih) {
+                            manageLogistikPhp.getDataTableTransaksi("spk/get-detail-SPPB?norecOrder=" + norecSPPB, true).then(function (data) {
                                 //
                                 $scope.isRouteLoading = false;
-                                $scope.item.noOrder = data_ih.data.detail.nokontrak
-                                $scope.item.tglAwal = data_ih.data.detail.tglorder
-                                $scope.item.keterangan1 = data_ih.data.detail.keterangan
+                                $scope.item.noOrder = data.data.detail.nokontrak
+                                $scope.item.tglAwal = data.data.detail.tglorder
+                                $scope.item.keterangan1 = data.data.detail.keterangan
                                 $scope.listPegawaiPembuat = [{
-                                    id: data_ih.data.detail.pegawaimengetahuiid,
-                                    namalengkap: data_ih.data.detail.pegawaimengetahui
+                                    id: data.data.detail.pegawaimengetahuiid,
+                                    namalengkap: data.data.detail.pegawaimengetahui
                                 }]
                                 $scope.item.pegawaiPembuat = {
-                                    id: data_ih.data.detail.penanggungjawabid,
-                                    namalengkap: data_ih.data.detail.penanggungjawab
+                                    id: data.data.detail.penanggungjawabid,
+                                    namalengkap: data.data.detail.penanggungjawab
                                 }
                                 // $scope.listKoordinator=[{id:1,namaKoordinator:'Medis'}]
                                 // $scope.item.koordinator={id:1,namaKoordinator:'Medis'} 
-                                $scope.item.noKontrak = data_ih.data.detail.kontrak
-                                $scope.item.tglUsulan = data_ih.data.detail.tglusulan
-                                $scope.item.noUsulan = data_ih.data.detail.nousulan
-                                // $scope.item.namaPengadaan=data_ih.data.detail.namapengadaan
-                                $scope.item.namaPengadaan = data_ih.data.detail.keteranganlainnya
-                                // $scope.item.noKontrak=data_ih.data.detail.nokontrak
-                                $scope.item.tahun = data_ih.data.detail.tahunusulan
+                                $scope.item.noKontrak = data.data.detail.kontrak
+                                $scope.item.tglUsulan = data.data.detail.tglusulan
+                                $scope.item.noUsulan = data.data.detail.nousulan
+                                // $scope.item.namaPengadaan=data.data.detail.namapengadaan
+                                $scope.item.namaPengadaan = data.data.detail.keteranganlainnya
+                                // $scope.item.noKontrak=data.data.detail.nokontrak
+                                $scope.item.tahun = data.data.detail.tahunusulan
                                 kelTrans = 35;
-                                noOrder = data_ih.data.detail.objectstrukfk;
-                                if (data_ih.data.detail.norecrealisasi != undefined) {
-                                    norec_Realisasi = data_ih.data.detail.norecrealisasi;
+                                noOrder = data.data.detail.objectstrukfk;
+                                if (data.data.detail.norecrealisasi != undefined) {
+                                    norec_Realisasi = data.data.detail.norecrealisasi;
                                 } else {
-                                    norec_Realisasi = data_ih.data.detail.norecrealisasikontrak;
+                                    norec_Realisasi = data.data.detail.norecrealisasikontrak;
                                 }
 
-                                if (data_ih.data.detail.mataanggranid != undefined) {
+                                if (data.data.detail.mataanggranid != undefined) {
                                     $scope.item.mataAnggaran = {
-                                        norec: data_ih.data.detail.mataanggranid,
-                                        mataanggaran: data_ih.data.detail.namamataanggaran
+                                        norec: data.data.detail.mataanggranid,
+                                        mataanggaran: data.data.detail.namamataanggaran
                                     }
                                 } else {
                                     $scope.item.mataAnggaran = $scope.item.mataAnggaran = {
-                                        norec: data_ih.data.detail.objectmataanggaranfk,
-                                        mataanggaran: data_ih.data.detail.objectmataanggaranfk
+                                        norec: data.data.detail.objectmataanggaranfk,
+                                        mataanggaran: data.data.detail.objectmataanggaranfk
                                     }
                                 }
 
                                 $scope.item.namaRekanan = {
-                                    id: data_ih.data.detail.rekananid,
-                                    namarekanan: data_ih.data.detail.namarekanan
+                                    id: data.data.detail.rekananid,
+                                    namarekanan: data.data.detail.namarekanan
                                 }
-                                // $scope.item.koordinator = data_ih.data.detailterima.nostruk
-                                // $scope.item.tglTerima = data_ih.data.detailterima.tglstruk
-                                // $scope.item.kelompokproduk ={id:data_ih.data.pelayananPasien[0].kpid,kelompokproduk:data_ih.data.pelayananPasien[0].kelompokproduk} 
+                                // $scope.item.koordinator = data.data.detailterima.nostruk
+                                // $scope.item.tglTerima = data.data.detailterima.tglstruk
+                                // $scope.item.kelompokproduk ={id:data.data.pelayananPasien[0].kpid,kelompokproduk:data.data.pelayananPasien[0].kelompokproduk} 
                                 $scope.item.asalproduk = {
-                                    id: data_ih.data.details[0].asalprodukfk,
-                                    asalproduk: data_ih.data.details[0].asalproduk
+                                    id: data.data.details[0].asalprodukfk,
+                                    asalproduk: data.data.details[0].asalproduk
                                 }
-                                // $scope.item.ruanganPenerima = {id:data_ih.data.detailterima.id,namaruangan:data_ih.data.detailterima.namaruangan} 
-                                // $scope.item.pegawaiPenerima = {id:data_ih.data.detailterima.pgid,namalengkap:data_ih.data.detailterima.namalengkap} 
-                                // $scope.item.tglFaktur = data_ih.data.detailterima.tglfaktur
-                                // $scope.item.noFaktur = data_ih.data.detailterima.nofaktur
-                                // $scope.item.namaRekanan = {id:data_ih.data.detailterima.objectrekananfk,namarekanan:data_ih.data.detailterima.namarekanan} 
+                                // $scope.item.ruanganPenerima = {id:data.data.detailterima.id,namaruangan:data.data.detailterima.namaruangan} 
+                                // $scope.item.pegawaiPenerima = {id:data.data.detailterima.pgid,namalengkap:data.data.detailterima.namalengkap} 
+                                // $scope.item.tglFaktur = data.data.detailterima.tglfaktur
+                                // $scope.item.noFaktur = data.data.detailterima.nofaktur
+                                // $scope.item.namaRekanan = {id:data.data.detailterima.objectrekananfk,namarekanan:data.data.detailterima.namarekanan} 
 
-                                // $scope.item.ruangan = {id:data_ih.data.detailresep.id,namaruangan:data_ih.data.detailresep.namaruangan}
-                                // $scope.item.penulisResep = {id:data_ih.data.detailresep.pgid,namalengkap:data_ih.data.detailresep.namalengkap}
-                                // $scope.item.nocm = data_ih.data.detailresep.nocm
-                                // $scope.item.namapasien = data_ih.data.detailresep.nama
-                                // $scope.item.tglLahir = data_ih.data.detailresep.tgllahir
-                                // $scope.item.noTelepon = data_ih.data.detailresep.notlp
-                                // $scope.item.alamat = data_ih.data.detailresep.alamat
+                                // $scope.item.ruangan = {id:data.data.detailresep.id,namaruangan:data.data.detailresep.namaruangan}
+                                // $scope.item.penulisResep = {id:data.data.detailresep.pgid,namalengkap:data.data.detailresep.namalengkap}
+                                // $scope.item.nocm = data.data.detailresep.nocm
+                                // $scope.item.namapasien = data.data.detailresep.nama
+                                // $scope.item.tglLahir = data.data.detailresep.tgllahir
+                                // $scope.item.noTelepon = data.data.detailresep.notlp
+                                // $scope.item.alamat = data.data.detailresep.alamat
                                 $scope.item.tahun = moment($scope.now).format('YYYY');
-                                data2 = data_ih.data.details
+                                data2 = data.data.details
                                 // $scope.dataGrid = new kendo.data.DataSource({
                                 //     data: data2
                                 // });
@@ -819,11 +819,13 @@ define(['initialize'], function (initialize) {
                                     // ttlTotal=ttlTotal+ (parseFloat(data2[i].hargasatuan)* parseFloat(data2[i].qtyprodukkonfirmasi))
                                     // ttlDiskon=ttlDiskon+ (parseFloat(data2[i].hargadiscount)* parseFloat(data2[i].qtyprodukkonfirmasi))
                                     // ttlPpn=ttlPpn+ (parseFloat(data2[i].ppn)* parseFloat(data2[i].qtyprodukkonfirmasi))
+                                    console.log('total => ', data2[i].total);
                                     ttlTotal = ttlTotal + parseFloat(data2[i].total)
-                                    ttlDiskon = ttlDiskon + (parseFloat(data2[i].hargadiscount) * parseFloat(data2[i].qtyprodukkonfirmasi))
-                                    ttlPpn = ttlPpn + ((parseFloat(data2[i].hargasatuan) * parseFloat(data2[i].qtyprodukkonfirmasi)) * (parseFloat(data2[i].ppn) / 100))
+                                    ttlDiskon = ttlDiskon + (parseFloat(data2[i].hargadiscount) * parseFloat(data2[i].qtyprodukkonfirmasi ? data2[i].qtyprodukkonfirmasi : 0))
+                                    ttlPpn = ttlPpn + ((parseFloat(data2[i].hargasatuan) * parseFloat(data2[i].qtyprodukkonfirmasi ? data2[i].qtyprodukkonfirmasi : 0)) * (parseFloat(data2[i].ppn) / 100))
 
                                 }
+                                
                                 $scope.item.total = parseFloat(ttlTotal).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")
                                 $scope.item.totalDiskon = parseFloat(ttlDiskon).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")
                                 $scope.item.totalPpn = parseFloat(ttlPpn).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")
@@ -905,82 +907,82 @@ define(['initialize'], function (initialize) {
                                     jenisusulan: 'Medis'
                                 };
                             });
-                            manageLogistikPhp.getDataTableTransaksi("sppb/get-detail-SPPB-new?norecOrder=" + norecSPPB + "&produkfk=" + dataIN, true).then(function (data_ih) {
+                            manageLogistikPhp.getDataTableTransaksi("sppb/get-detail-SPPB-new?norecOrder=" + norecSPPB + "&produkfk=" + dataIN, true).then(function (data) {
                                 //
                                 $scope.isRouteLoading = false;
-                                sppb = data_ih.data.detail.norec;
-                                $scope.item.noOrder = data_ih.data.detail.noorder
-                                $scope.item.tglAwal = data_ih.data.detail.tglorder
-                                $scope.item.keterangan1 = data_ih.data.detail.keterangan
-                                // $scope.listPegawaiPembuat=[{id:data_ih.data.detail.pgid,namalengkap:data_ih.data.detail.petugas}]
-                                // $scope.item.pegawaiPembuat={id:data_ih.data.detail.pgid,namalengkap:data_ih.data.detail.petugas} 
+                                sppb = data.data.detail.norec;
+                                $scope.item.noOrder = data.data.detail.noorder
+                                $scope.item.tglAwal = data.data.detail.tglorder
+                                $scope.item.keterangan1 = data.data.detail.keterangan
+                                // $scope.listPegawaiPembuat=[{id:data.data.detail.pgid,namalengkap:data.data.detail.petugas}]
+                                // $scope.item.pegawaiPembuat={id:data.data.detail.pgid,namalengkap:data.data.detail.petugas} 
                                 $scope.listPegawaiPembuat = [{
-                                    id: data_ih.data.detail.petugasid,
-                                    namalengkap: data_ih.data.detail.petugas
+                                    id: data.data.detail.petugasid,
+                                    namalengkap: data.data.detail.petugas
                                 }]
                                 $scope.item.pegawaiPembuat = {
-                                    id: data_ih.data.detail.petugasid,
-                                    namalengkap: data_ih.data.detail.petugas
+                                    id: data.data.detail.petugasid,
+                                    namalengkap: data.data.detail.petugas
                                 }
                                 // $scope.item.koordinator={id:1,namaKoordinator:'Medis'} 
-                                $scope.item.tglUsulan = data_ih.data.detail.tglusulan
-                                $scope.item.noUsulan = data_ih.data.detail.nousulan
-                                $scope.item.namaPengadaan = data_ih.data.detail.namapengadaan
-                                $scope.item.noKontrak = data_ih.data.detail.nokontrak
-                                $scope.item.tahun = data_ih.data.detail.tahunusulan
+                                $scope.item.tglUsulan = data.data.detail.tglusulan
+                                $scope.item.noUsulan = data.data.detail.nousulan
+                                $scope.item.namaPengadaan = data.data.detail.namapengadaan
+                                $scope.item.noKontrak = data.data.detail.nokontrak
+                                $scope.item.tahun = data.data.detail.tahunusulan
                                 kelTrans = 35;
-                                noOrder = data_ih.data.detail.objectstrukfk;
-                                if (data_ih.data.detail.norecrealisasi != undefined) {
-                                    norec_Realisasi = data_ih.data.detail.norecrealisasi;
+                                noOrder = data.data.detail.objectstrukfk;
+                                if (data.data.detail.norecrealisasi != undefined) {
+                                    norec_Realisasi = data.data.detail.norecrealisasi;
                                 } else {
-                                    norec_Realisasi = data_ih.data.detail.norecrealisasisppb;
+                                    norec_Realisasi = data.data.detail.norecrealisasisppb;
                                 }
-                                // norec_Realisasi=data_ih.data.detail.norecrealisasi;
+                                // norec_Realisasi=data.data.detail.norecrealisasi;
                                 $scope.item.namaRekanan = {
-                                    id: data_ih.data.detail.rekanansalesfk,
-                                    namarekanan: data_ih.data.detail.namarekanansales
+                                    id: data.data.detail.rekanansalesfk,
+                                    namarekanan: data.data.detail.namarekanansales
                                 }
-                                if (data_ih.data.detail.mataanggranid != undefined) {
+                                if (data.data.detail.mataanggranid != undefined) {
                                     $scope.item.mataAnggaran = {
-                                        norec: data_ih.data.detail.mataanggranid,
-                                        mataanggaran: data_ih.data.detail.mataanggaran
+                                        norec: data.data.detail.mataanggranid,
+                                        mataanggaran: data.data.detail.mataanggaran
                                     }
                                 } else {
                                     $scope.item.mataAnggaran = {
-                                        norec: data_ih.data.detail.mataanggranfk,
-                                        mataanggaran: data_ih.data.detail.mataanggaransppb
+                                        norec: data.data.detail.mataanggranfk,
+                                        mataanggaran: data.data.detail.mataanggaransppb
                                     }
                                 }
 
                                 $scope.item.asalproduk = {
-                                    id: data_ih.data.details[0].asalprodukfk,
-                                    asalproduk: data_ih.data.details[0].asalproduk
+                                    id: data.data.details[0].asalprodukfk,
+                                    asalproduk: data.data.details[0].asalproduk
                                 }
 
                                 // $scope.item.mataAnggaran={id:,namamataanggaran:}
-                                // $scope.item.koordinator = data_ih.data.detailterima.nostruk
-                                // $scope.item.tglTerima = data_ih.data.detailterima.tglstruk
-                                // $scope.item.kelompokproduk ={id:data_ih.data.pelayananPasien[0].kpid,kelompokproduk:data_ih.data.pelayananPasien[0].kelompokproduk} 
+                                // $scope.item.koordinator = data.data.detailterima.nostruk
+                                // $scope.item.tglTerima = data.data.detailterima.tglstruk
+                                // $scope.item.kelompokproduk ={id:data.data.pelayananPasien[0].kpid,kelompokproduk:data.data.pelayananPasien[0].kelompokproduk} 
 
-                                // $scope.item.ruanganPenerima = {id:data_ih.data.detailterima.id,namaruangan:data_ih.data.detailterima.namaruangan} 
-                                // $scope.item.pegawaiPenerima = {id:data_ih.data.detailterima.pgid,namalengkap:data_ih.data.detailterima.namalengkap} 
-                                // $scope.item.tglFaktur = data_ih.data.detailterima.tglfaktur
-                                // $scope.item.noFaktur = data_ih.data.detailterima.nofaktur
-                                // $scope.item.namaRekanan = {id:data_ih.data.detailterima.objectrekananfk,namarekanan:data_ih.data.detailterima.namarekanan} 
+                                // $scope.item.ruanganPenerima = {id:data.data.detailterima.id,namaruangan:data.data.detailterima.namaruangan} 
+                                // $scope.item.pegawaiPenerima = {id:data.data.detailterima.pgid,namalengkap:data.data.detailterima.namalengkap} 
+                                // $scope.item.tglFaktur = data.data.detailterima.tglfaktur
+                                // $scope.item.noFaktur = data.data.detailterima.nofaktur
+                                // $scope.item.namaRekanan = {id:data.data.detailterima.objectrekananfk,namarekanan:data.data.detailterima.namarekanan} 
 
-                                // $scope.item.ruangan = {id:data_ih.data.detailresep.id,namaruangan:data_ih.data.detailresep.namaruangan}
-                                // $scope.item.penulisResep = {id:data_ih.data.detailresep.pgid,namalengkap:data_ih.data.detailresep.namalengkap}
-                                // $scope.item.nocm = data_ih.data.detailresep.nocm
-                                // $scope.item.namapasien = data_ih.data.detailresep.nama
-                                // $scope.item.tglLahir = data_ih.data.detailresep.tgllahir
-                                // $scope.item.noTelepon = data_ih.data.detailresep.notlp
-                                // $scope.item.alamat = data_ih.data.detailresep.alamat
+                                // $scope.item.ruangan = {id:data.data.detailresep.id,namaruangan:data.data.detailresep.namaruangan}
+                                // $scope.item.penulisResep = {id:data.data.detailresep.pgid,namalengkap:data.data.detailresep.namalengkap}
+                                // $scope.item.nocm = data.data.detailresep.nocm
+                                // $scope.item.namapasien = data.data.detailresep.nama
+                                // $scope.item.tglLahir = data.data.detailresep.tgllahir
+                                // $scope.item.noTelepon = data.data.detailresep.notlp
+                                // $scope.item.alamat = data.data.detailresep.alamat
 
-                                data2 = data_ih.data.details
+                                data2 = data.data.details
                                 if (data2 != undefined) {
                                     $scope.item.asalproduk = {
-                                        id: data_ih.data.details[0].asalprodukfk,
-                                        asalproduk: data_ih.data.details[0].asalproduk
+                                        id: data.data.details[0].asalprodukfk,
+                                        asalproduk: data.data.details[0].asalproduk
                                     }
                                 }
                                 $scope.dataGrid = new kendo.data.DataSource({
@@ -1180,8 +1182,8 @@ define(['initialize'], function (initialize) {
             $scope.$watch('item.noTerima', function (newValue, oldValue) {
                 if (newValue != oldValue) {
 
-                    manageLogistikPhp.getDataTableTransaksi("penerimaan-suplier/get-nostruk?NoSPK=" + $scope.item.noTerima, true).then(function (data_ih) {
-                        var datas = data_ih.data;
+                    manageLogistikPhp.getDataTableTransaksi("penerimaan-suplier/get-nostruk?NoSPK=" + $scope.item.noTerima, true).then(function (data) {
+                        var datas = data.data;
                         for (var i = datas.length - 1; i >= 0; i--) {
                             if (datas[i].nostruk == $scope.item.noTerima && noOrder != 'EditTerima') {
                                 alert("No Terima Tidak Boleh Sama!")
@@ -1200,8 +1202,8 @@ define(['initialize'], function (initialize) {
             $scope.$watch('item.noFaktur', function (newValue, oldValue) {
                 if (newValue != oldValue) {
 
-                    manageLogistikPhp.getDataTableTransaksi("penerimaan-suplier/get-nofaktur?NoSPK=" + $scope.item.noFaktur, true).then(function (data_ih) {
-                        var datas = data_ih.data;
+                    manageLogistikPhp.getDataTableTransaksi("penerimaan-suplier/get-nofaktur?NoSPK=" + $scope.item.noFaktur, true).then(function (data) {
+                        var datas = data.data;
                         for (var i = datas.length - 1; i >= 0; i--) {
                             if (datas[i].nofaktur == $scope.item.noFaktur && noOrder != 'EditTerima') {
                                 alert("No Terima Tidak Boleh Sama!")
@@ -1737,7 +1739,7 @@ define(['initialize'], function (initialize) {
                         break;
                     }
                 }
-                $scope.item.produk = dataProduk //{id:dataSelected.produkfk,namaproduk:dataSelected.namaproduk}
+                $scope.item.produk = {id:dataSelected.produkfk,namaproduk:dataSelected.namaproduk}
                 $scope.listSatuan = [{
                     ssid: dataSelected.satuanstandarfk,
                     satuanstandar: dataSelected.satuanstandar

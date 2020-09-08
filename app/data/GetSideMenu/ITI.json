@@ -2135,6 +2135,10 @@
                 "link": "#/UnitPengelolaPrakarsaSurat"
             },
             {
+                "name": "User Diskon",
+                "link": "#/MasterUserDiskon"
+            },
+            {
                 "name": "Usia Aset ",
                 "link": "#/UsiaAset"
             },

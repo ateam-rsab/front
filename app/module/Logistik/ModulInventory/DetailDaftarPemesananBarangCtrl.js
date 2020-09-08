@@ -1,42 +1,43 @@
-define(['initialize'], function(initialize) {
+define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('DetailDaftarPemesananBarangCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp','$state','CacheHelper','DateHelper', 'ModelItemAkuntansi', '$mdDialog',
-        function($q, $rootScope, $scope,manageLogistikPhp,$state,cacheHelper,dateHelper,modelItemAkuntansi, $mdDialog) {
+    initialize.controller('DetailDaftarPemesananBarangCtrl', ['$q', '$rootScope', '$scope', 'ManageLogistikPhp', '$state', 'CacheHelper', 'DateHelper', 'ModelItemAkuntansi', '$mdDialog',
+        function ($q, $rootScope, $scope, manageLogistikPhp, $state, cacheHelper, dateHelper, modelItemAkuntansi, $mdDialog) {
             $scope.item = {};
             $scope.dataVOloaded = true;
             $scope.now = new Date();
-            $scope.isRouteLoading=false;
-            $scope.chkBool=true;
+            $scope.isRouteLoading = false;
+            $scope.chkBool = true;
             var pegawaiUser = {}
             // $scope.item.tglAwal = $scope.now;
             // $scope.item.tglAkhir = $scope.now;
             LoadCache();
             loadCombo();
-            function LoadCache(){
-              var chacePeriode = cacheHelper.get('DetailDaftarPemesananBarangCtrl');
-              if(chacePeriode != undefined){
-               //var arrPeriode = chacePeriode.split(':');
-                $scope.item.tglAwal = new Date(chacePeriode[0]);
-                $scope.item.tglAkhir = new Date(chacePeriode[1]);
-               
-                init();
-             }
-             else{
-               $scope.item.tglAwal = $scope.now;
-               $scope.item.tglAkhir = $scope.now;
-               init();
-             }
-           }
-            function loadCombo(){
-                 modelItemAkuntansi.getDataDummyPHP("aset/get-data-barang", true, true, 20).then(function(data) {
+
+            function LoadCache() {
+                var chacePeriode = cacheHelper.get('DetailDaftarPemesananBarangCtrl');
+                if (chacePeriode != undefined) {
+                    //var arrPeriode = chacePeriode.split(':');
+                    $scope.item.tglAwal = new Date(chacePeriode[0]);
+                    $scope.item.tglAkhir = new Date(chacePeriode[1]);
+
+                    init();
+                } else {
+                    $scope.item.tglAwal = $scope.now;
+                    $scope.item.tglAkhir = $scope.now;
+                    init();
+                }
+            }
+
+            function loadCombo() {
+                modelItemAkuntansi.getDataDummyPHP("aset/get-data-barang", true, true, 20).then(function (data) {
                     $scope.listNamaBarang = data;
-                }); 
+                });
                 // manageLogistikPhp.getDataTableTransaksi("logistik/get-datacombo_dp", true).then(function(dat){
                 //     pegawaiUser = dat.data.datalogin
                 // });
                 // $scope.listJenisRacikan = [{id:1,jenisracikan:'Puyer'}]
             }
-            $scope.newOrder =  function(){
+            $scope.newOrder = function () {
                 var confirmDialog = $mdDialog.alert()
                     .title(`Tidak bisa membuat SPPB`)
                     .textContent('Harap hubungi pihak ITI')
@@ -45,30 +46,30 @@ define(['initialize'], function(initialize) {
                 $mdDialog.show(confirmDialog)
                 // $state.go('OrderBarangSPPB')
             }
-            $scope.terimaBarang = function(){
+            $scope.terimaBarang = function () {
                 var data = [];
                 var dataIn = '';
                 var dataOn = '';
                 var norec = '';
-                for(var i=0; i<$scope.dataGrid._data.length; i++){
-                    if($scope.dataGrid._data[i].statCheckbox){
+                for (var i = 0; i < $scope.dataGrid._data.length; i++) {
+                    if ($scope.dataGrid._data[i].statCheckbox) {
                         if (dataOn == '') {
-                             dataOn = $scope.dataGrid._data[i].produkfk;
-                             dataIn = dataOn;
-                        }else{
+                            dataOn = $scope.dataGrid._data[i].produkfk;
+                            dataIn = dataOn;
+                        } else {
                             dataIn = $scope.dataGrid._data[i].produkfk
-                            dataOn =  dataOn + ',' + dataIn 
+                            dataOn = dataOn + ',' + dataIn
                         }
                         if (norec != '') {
                             if ($scope.dataGrid._data[i].norec != norec) {
-                                 alert('No SPPB tidak sama!')
-                                 return;
+                                alert('No SPPB tidak sama!')
+                                return;
                             }
                         }
-                        
+
 
                         norec = $scope.dataGrid._data[i].norec
-                        $scope.dataGrid._data[i]= dataOn
+                        $scope.dataGrid._data[i] = dataOn
                         // dataIn = dataIn +  $scope.dataGrid[i].produkfk 
                         // data.push({$scope.dataGrid._data[i]})
                         // data.push({
@@ -84,24 +85,26 @@ define(['initialize'], function(initialize) {
 
 
                 // if ($scope.dataSelected.status2 != 'Done'){
-                    $state.go('PenerimaanBarangSuplier')
-                    var chacePeriode ={ 0 : '' ,
-                        1 : 'SPPBDetail',
-                        2 : norec,
-                        3 : dataOn, 
-                        4 : '',
-                        5 : '',
-                        6 : ''
-                    }
-                    cacheHelper.set('PenerimaanBarangSuplierCtrl', chacePeriode);
-                    $state.go('PenerimaanBarangSuplier')
+                $state.go('PenerimaanBarangSuplier')
+                var chacePeriode = {
+                    0: '',
+                    1: 'SPPBDetail',
+                    2: norec,
+                    3: dataOn,
+                    4: '',
+                    5: '',
+                    6: ''
+                }
+                cacheHelper.set('PenerimaanBarangSuplierCtrl', chacePeriode);
+                $state.go('PenerimaanBarangSuplier')
                 // }else{
-                    // alert('Permintaan sudah di terima!!')
+                // alert('Permintaan sudah di terima!!')
                 // }
-                
+
             }
+
             function init() {
-                $scope.isRouteLoading=true;
+                $scope.isRouteLoading = true;
                 // var ins =""
                 // if ($scope.item.instalasi != undefined){
                 //     var ins ="&dpid=" +$scope.item.instalasi.id
@@ -116,97 +119,97 @@ define(['initialize'], function(initialize) {
                 // }
                 var tglAwal = moment($scope.item.tglAwal).format('YYYY-MM-DD HH:mm:ss');
                 var tglAkhir = moment($scope.item.tglAkhir).format('YYYY-MM-DD HH:mm:ss');
-                 var produkfk =""
-                if ($scope.item.namaBarang != undefined){
-                    var produkfk ="&produkfk=" + $scope.item.namaBarang.id
+                var produkfk = ""
+                if ($scope.item.namaBarang != undefined) {
+                    var produkfk = "&produkfk=" + $scope.item.namaBarang.id
                 }
-                manageLogistikPhp.getDataTableTransaksi("sppb/get-data-sppb-detail?"+
-                    "tglAwal=" + tglAwal + 
+                manageLogistikPhp.getDataTableTransaksi("sppb/get-data-sppb-detail?" +
+                    "tglAwal=" + tglAwal +
                     "&tglAkhir=" + tglAkhir +
                     "&noorder=" + $scope.item.noSPPB +
                     "&noKontrak=" + $scope.item.noKontrak +
                     "&keterangan=" + $scope.item.keterangan +
-                    "&rekanan=" + $scope.item.namaPerusahaan 
-                    + produkfk
-                    , true).then(function(dat){
-                        $scope.isRouteLoading=false;
+                    "&rekanan=" + $scope.item.namaPerusahaan +
+                    produkfk, true).then(function (dat) {
+                    $scope.isRouteLoading = false;
                     for (var i = 0; i < dat.data.daftar.length; i++) {
                         dat.data.daftar[i].statCheckbox = false;
-                        dat.data.daftar[i].no = i+1
+                        dat.data.daftar[i].no = i + 1
                     }
                     $scope.dataGrid = new kendo.data.DataSource({
-                        data:  dat.data.daftar,
+                        data: dat.data.daftar,
                         pageSize: 50,
-                        total:  dat.data.daftar.length,
+                        total: dat.data.daftar.length,
                         serverPaging: false,
                         schema: {
                             model: {
-                                fields: {
-                                }
+                                fields: {}
                             }
                         }
-                    });        
-                   pegawaiUser = dat.data.datalogin
+                    });
+                    pegawaiUser = dat.data.datalogin
                 });
 
-                var chacePeriode ={ 0 : tglAwal ,
-                    1 : tglAkhir,
-                    2 : '',
-                    3 : '', 
-                    4 : '',
-                    5 : '',
-                    6 : ''
+                var chacePeriode = {
+                    0: tglAwal,
+                    1: tglAkhir,
+                    2: '',
+                    3: '',
+                    4: '',
+                    5: '',
+                    6: ''
                 }
                 cacheHelper.set('DaftarPemesananBarangCtrl', chacePeriode);
 
-                
+
             }
-            $scope.getRuangan = function(){
+            $scope.getRuangan = function () {
                 $scope.listRuangan = $scope.item.instalasi.ruangan;
             }
-            $scope.cariFilter = function(){
+            $scope.cariFilter = function () {
 
                 init();
-            }           
+            }
 
-            $scope.Cetak = function(){
+            $scope.Cetak = function () {
                 var stt = 'false'
                 if (confirm('View resep? ')) {
                     // Save it!
-                    stt='true';
+                    stt = 'true';
                 } else {
                     // Do nothing!
-                    stt='false'
+                    stt = 'false'
                 }
                 var client = new HttpClient();
                 //client.get('http://127.0.0.1:1237/printvb/farmasiApotik?cetak-strukresep=1&nores=NonLayanan'+$scope.dataSelected.norec+'&view='+stt+'&user='+pegawaiUser.userData.namauser, function(response) {
-                client.get('http://127.0.0.1:1237/printvb/logistik?cetak-SPPB=1&norec='+$scope.dataSelected.norec+'&view=true', function(response) {
-                    
+                client.get('http://127.0.0.1:1237/printvb/logistik?cetak-SPPB=1&norec=' + $scope.dataSelected.norec + '&view=true', function (response) {
+
                     //aadc=response;
                 });
             }
-            $scope.editOrder = function(){
-                if ($scope.dataSelected.status2 != 'Done'){
+            $scope.editOrder = function () {
+                if ($scope.dataSelected.status2 != 'Done') {
                     // $state.go('OrderBarangSPPB')
-                    var chacePeriode ={ 0 : $scope.dataSelected.norec ,
-                        1 : 'EditOrder',
-                        2 : '',
-                        3 : '', 
-                        4 : '',
-                        5 : '',
-                        6 : ''
+                    var chacePeriode = {
+                        0: $scope.dataSelected.norec,
+                        1: 'EditOrder',
+                        2: '',
+                        3: '',
+                        4: '',
+                        5: '',
+                        6: ''
                     }
                     cacheHelper.set('EditBarangSPPBCtrl', chacePeriode);
                     $state.go('EditBarangSPPB', {
-                    norec: $scope.dataSelected.norec,
-                    noOrder:'EditOrder'
+                        norec: $scope.dataSelected.norec,
+                        noOrder: 'EditOrder'
                     });
                     // $state.go('OrderBarangSPPB')
-                }else{
+                } else {
                     alert('Permintaan sudah di terima!!')
                 }
             }
-            $scope.KirimBarang = function(){
+            $scope.KirimBarang = function () {
                 if ($scope.dataSelected.status != 'Terima Order Barang') {
                     alert('Tidak bisa mengirim ke ruangan Sendiri!')
                     return;
@@ -215,19 +218,20 @@ define(['initialize'], function(initialize) {
                     alert('Sudah Di Kirim!')
                     return;
                 }
-                var chacePeriode ={ 0 : '' ,
-                    1 : $scope.dataSelected.norec,
-                    2 : 'KirimBarang',
-                    3 : '', 
-                    4 : '',
-                    5 : '',
-                    6 : ''
+                var chacePeriode = {
+                    0: '',
+                    1: $scope.dataSelected.norec,
+                    2: 'KirimBarang',
+                    3: '',
+                    4: '',
+                    5: '',
+                    6: ''
                 }
                 cacheHelper.set('KirimBarangLogistikCtrl', chacePeriode);
                 $state.go('KirimBarangLogistik')
             }
 
-            $scope.HapusPenerimaan = function(){
+            $scope.HapusPenerimaan = function () {
                 if ($scope.dataSelected == undefined) {
                     alert("Pilih yg akan di hapus!!")
                     return;
@@ -239,12 +243,12 @@ define(['initialize'], function(initialize) {
                 var stt = 'false'
                 if (confirm('Hapus Penerimaan? ')) {
                     // Save it!
-                    stt='true';
-                }else{
+                    stt = 'true';
+                } else {
                     // Do nothing!
                     return;
                 }
-                manageLogistikPhp.getDataTableTransaksi("penerimaan-suplier/delete-terima-barang-suplier?"+"norec_sp=" + $scope.dataSelected.norec, true).then(function(dat){
+                manageLogistikPhp.getDataTableTransaksi("penerimaan-suplier/delete-terima-barang-suplier?" + "norec_sp=" + $scope.dataSelected.norec, true).then(function (dat) {
                     init()
                 });
             }
@@ -252,7 +256,7 @@ define(['initialize'], function(initialize) {
             // $scope.tambah = function(){
             //  $state.go('Produk')
             // }
-            $scope.formatTanggal = function(tanggal){
+            $scope.formatTanggal = function (tanggal) {
                 return moment(tanggal).format('DD-MMM-YYYY');
             }
 
@@ -275,112 +279,96 @@ define(['initialize'], function(initialize) {
             //     // },
             // };
 
-            function checkValue(obj, param){
-                var res="";
+            function checkValue(obj, param) {
+                var res = "";
                 var data = undefined;
 
-                if(param.length > 1){
-                    if(obj[param[0]] != undefined)
-                        data = obj[param[0]][param[1]]; 
-                }
-                else
-                {
+                if (param.length > 1) {
+                    if (obj[param[0]] != undefined)
+                        data = obj[param[0]][param[1]];
+                } else {
                     data = obj[param[0]];
                 }
 
-                if(data != undefined)
+                if (data != undefined)
                     var res = data;
-                
+
                 return res;
             }
 
 
-            $scope.selectRow = function(dataItem)
-            {
-               
-                var dataSelect = _.find($scope.dataGrid._data, function(data){
-                    return data.no == dataItem.no; 
-                });
-               
+            $scope.selectRow = function (dataItem) {
 
-                if(dataSelect.statCheckbox){
+                var dataSelect = _.find($scope.dataGrid._data, function (data) {
+                    return data.no == dataItem.no;
+                });
+
+
+                if (dataSelect.statCheckbox) {
                     dataSelect.statCheckbox = false;
-                }
-                else
-                {
+                } else {
                     dataSelect.statCheckbox = true;
                 }
-                
+
                 $scope.tempCheckbox = dataSelect.statCheckbox;
-                  var tempData = $scope.dataGrid._data;
+                var tempData = $scope.dataGrid._data;
                 // reloadDataGrid(tempData);
-              
+
             }
 
 
 
             var isCheckAll = false
-            $scope.selectUnselectAllRow = function()
-            {
+            $scope.selectUnselectAllRow = function () {
                 var tempData = $scope.dataGrid._data;
 
-                if(isCheckAll)
-                {
+                if (isCheckAll) {
                     isCheckAll = false;
-                    for(var i=0; i<tempData.length; i++)
-                    {
+                    for (var i = 0; i < tempData.length; i++) {
                         tempData[i].statCheckbox = false;
                     }
-                }
-                else{
+                } else {
                     isCheckAll = true;
-                    for(var i=0; i<tempData.length; i++)
-                    {
+                    for (var i = 0; i < tempData.length; i++) {
                         tempData[i].statCheckbox = true;
                     }
                 }
                 // reloadDataGrid(tempData);
             }
 
-            $scope.cekData = function()
-                {
+            $scope.cekData = function () {
                 var tempData = $scope.dataGrid._data;
 
-                if(isCheckAll)
-                {
+                if (isCheckAll) {
                     isCheckAll = false;
-                    for(var i=0; i<tempData.length; i++)
-                    {
+                    for (var i = 0; i < tempData.length; i++) {
                         tempData[i].statCheckbox = false;
                     }
-                }
-                else{
+                } else {
                     isCheckAll = true;
-                    for(var i=0; i<5; i++)
-                    {
+                    for (var i = 0; i < 5; i++) {
                         tempData[i].statCheckbox = true;
                     }
                 }
-                
+
                 // reloadDataGrid(tempData);
-                
+
             }
 
             function reloadDataGrid(ds) {
                 var newDs = new kendo.data.DataSource({
-                        data:  ds,
-                        _data:  ds,
-                        pageSize: 50,
-                        total:  ds.length,
-                        serverPaging: false,
-                        schema: {
-                            model: {
-                                fields: {
-                                }
-                            }
+                    data: ds,
+                    _data: ds,
+                    pageSize: 50,
+                    total: ds.length,
+                    serverPaging: false,
+                    schema: {
+                        model: {
+                            fields: {}
                         }
-                    });    
-               
+                    }
+                });
+
 
                 var grid = $('#kGrid').data("kendoGrid");
 
@@ -389,123 +377,246 @@ define(['initialize'], function(initialize) {
 
             }
 
-
-
             $scope.mainGridOptions = {
-                columns: [
-                 { 
-                    "title": "<input type='checkbox' class='checkbox' ng-click='selectUnselectAllRow()' />",
-                    template: "# if (statCheckbox) { #"+
-                    "<input type='checkbox' class='checkbox' ng-click='selectRow(dataItem)' checked />"+
-                    "# } else { #"+
-                    "<input type='checkbox' class='checkbox' ng-click='selectRow(dataItem)' />"+
-                    "# } #",
-                    width:"20px"
-                },
-                {
-                    "field": "no",
-                    "title": "No",
-                    "width" : "25px",
-                },
-                {
-                    "field": "tglorder",
-                    "title": "Tgl Order",
-                    "width" : "42px",
-                    "template": "<span class='style-right'>{{formatTanggal('#: tglorder #', '')}}</span>"
-                },
-                {
-                    "field": "noorder",
-                    "title": "No SPPB",
-                    "width" : "80px",
-                },
-                {
-                    "field": "produkfk",
-                    "title": "Kd Produk",
-                    "width" : "40px",
-                },
-                {
-                    "field": "namaproduk",
-                    "title": "Nama Produk",
-                    "width" : "110px",
-                },
-                {
-                    "field": "satuanstandar",
-                    "title": "Satuan",
-                    "width" : "45px",
-                },
-                {
-                    "field": "qtyproduk",
-                    "title": "Qty Produk",
-                    "width" : "35px",
-                },
-                {
-                    "field": "qtyterimalast",
-                    "title": "Qty Terima",
-                    "width" : "35px",
-                },
-                {
-                    "field": "hargasatuan",
-                    "title": "Harga",
-                    "width" : "60px",
-                    "template": "<span class='style-right'>{{formatRupiah('#: hargasatuan #', '')}}</span>"
-                },
-                {
-                    "field": "total",
-                    "title": "Total",
-                    "width" : "60px",
-                    "template": "<span class='style-right'>{{formatRupiah('#: total #', '')}}</span>"
-                },
-                {
-                    "field": "petugas",
-                    "title": "Petugas",
-                    "width" : "100px",
-                }
-            ]
-        }
-            $scope.data2 = function(dataItem) {
+                toolbar: [{
+                        text: "export",
+                        name: "Export detail",
+                        template: '<button ng-click="exportExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
+                    }
+
+                ],
+                pageable: true,
+                scrollable: true,
+                columns: [{
+                        "title": "<input type='checkbox' class='checkbox' ng-click='selectUnselectAllRow()' />",
+                        template: "# if (statCheckbox) { #" +
+                            "<input type='checkbox' class='checkbox' ng-click='selectRow(dataItem)' checked />" +
+                            "# } else { #" +
+                            "<input type='checkbox' class='checkbox' ng-click='selectRow(dataItem)' />" +
+                            "# } #",
+                        width: "40px"
+                    },
+                    {
+                        "field": "no",
+                        "title": "No",
+                        "width": "50px",
+                    },
+                    {
+                        "field": "tglorder",
+                        "title": "Tanggal<br> Order",
+                        "width": "100px",
+                        "template": "<span class='style-right'>{{formatTanggal('#: tglorder #', '')}}</span>"
+                    },
+                    {
+                        "field": "noorder",
+                        "title": "No. SPPB",
+                        "width": "150px",
+                    },
+                    {
+                        "field": "produkfk",
+                        "title": "Kode Produk",
+                        "width": "100px",
+                    },
+                    {
+                        "field": "namaproduk",
+                        "title": "Nama Produk",
+                        "width": "200px",
+                    },
+                    {
+                        "field": "satuanstandar",
+                        "title": "Satuan",
+                        "width": "100px",
+                    },
+                    {
+                        "field": "qtyproduk",
+                        "title": "Qty<br>Produk",
+                        "width": "80px",
+                    },
+                    {
+                        "field": "qtyterimalast",
+                        "title": "Qty<br>Terima",
+                        "width": "80px",
+                    },
+                    {
+                        "field": "hargasatuan",
+                        "title": "Harga",
+                        "width": "150px",
+                        "template": "<span class='style-right'>{{formatRupiah('#: hargasatuan #', '')}}</span>"
+                    },
+                    {
+                        "field": "total",
+                        "title": "Total",
+                        "width": "150px",
+                        "template": "<span class='style-right'>{{formatRupiah('#: total #', '')}}</span>"
+                    },
+                    {
+                        "field": "petugas",
+                        "title": "Petugas",
+                        "width": "200px",
+                    }
+                ]
+            }
+
+            $scope.exportExcel = function () {
+                var tempDataExport = [];
+                var rows = [{
+                    cells: [{
+                            value: "No."
+                        },
+                        {
+                            value: "Tanggal Order"
+                        },
+                        {
+                            value: "No. SPPB"
+                        },
+                        {
+                            value: "Kode Produk"
+                        },
+                        {
+                            value: "Nama Produk"
+                        },
+                        {
+                            value: "Satuan"
+                        },
+                        {
+                            value: "QTY Produk"
+                        },
+                        {
+                            value: "QTY Terima"
+                        },
+                        {
+                            value: "Harga"
+                        },
+                        {
+                            value: "Total"
+                        },
+                        {
+                            value: "Petugas"
+                        }
+                    ]
+                }];
+
+                tempDataExport = $scope.dataGrid;
+                tempDataExport.fetch(function () {
+                    var data = this.data();
+                    console.log(data);
+                    for (var i = 0; i < data.length; i++) {
+                        //push single row for every record
+                        rows.push({
+                            cells: [{
+                                    value: data[i].no
+                                }, {
+                                    value: data[i].tglorder
+                                }, {
+                                    value: data[i].noorder
+                                }, {
+                                    value: data[i].produkfk
+                                }, {
+                                    value: data[i].namaproduk
+                                }, {
+                                    value: data[i].satuanstandar
+                                }, {
+                                    value: data[i].qtyproduk
+                                }, {
+                                    value: data[i].qtyterimalast
+                                }, {
+                                    value: data[i].hargasatuan
+                                }, {
+                                    value: data[i].total
+                                }, {
+                                    value: data[i].petugas
+                                }
+                            ]
+                        })
+                    }
+                    var workbook = new kendo.ooxml.Workbook({
+                        sheets: [{
+                            freezePane: {
+                                rowSplit: 1
+                            },
+                            columns: [{
+                                    autoWidth: true
+                                }, {
+                                    autoWidth: true
+                                }, {
+                                    autoWidth: true
+                                }, {
+                                    autoWidth: true
+                                }, {
+                                    autoWidth: true
+                                }, {
+                                    autoWidth: true
+                                }, {
+                                    autoWidth: true
+                                }, {
+                                    autoWidth: true
+                                }, {
+                                    autoWidth: true
+                                }, {
+                                    autoWidth: true
+                                },{
+                                    autoWidth: true
+                                },{
+                                    autoWidth: true
+                                }
+                            ],
+                            // Title of the sheet
+                            title: "Detail Pemesanan Barang / SPPB ",
+                            // Rows of the sheet
+                            rows: rows
+                        }]
+                    });
+                    //save the file as Excel file with extension xlsx
+                    kendo.saveAs({
+                        dataURI: workbook.toDataURL(),
+                        fileName: "detail-pemesanan-barang.xlsx"
+                    });
+                });
+            };
+
+            $scope.data2 = function (dataItem) {
                 return {
                     dataSource: new kendo.data.DataSource({
                         data: dataItem.details
                     }),
-                    columns: [
-                        {
+                    columns: [{
                             "field": "namaproduk",
                             "title": "Nama Produk",
-                            "width" : "100px",
+                            "width": "100px",
                         },
                         {
                             "field": "satuanstandar",
                             "title": "Satuan",
-                            "width" : "30px",
+                            "width": "30px",
                         },
                         {
                             "field": "qtyproduk",
                             "title": "Qty",
-                            "width" : "30px",
+                            "width": "30px",
                             "template": "<span class='style-right'>{{formatRupiah('#: qtyproduk #', '')}}</span>"
                         },
                         {
                             "field": "qtyterimalast",
                             "title": "Sdh Terima",
-                            "width" : "30px",
+                            "width": "30px",
                             "template": "<span class='style-right'>{{formatRupiah('#: qtyterimalast #', '')}}</span>"
                         },
                         {
                             "field": "hargasatuan",
                             "title": "Harga Satuan",
-                            "width" : "30px",
+                            "width": "30px",
                             "template": "<span class='style-right'>{{formatRupiah('#: hargasatuan #', '')}}</span>"
                         },
                         {
                             "field": "hargadiscount",
                             "title": "Disc%",
-                            "width" : "30px",
+                            "width": "30px",
                             "template": "<span class='style-right'>{{formatRupiah('#: hargadiscount #', '')}}</span>"
                         },
                         {
                             "field": "hargappn",
                             "title": "Ppn%",
-                            "width" : "30px",
+                            "width": "30px",
                             "template": "<span class='style-right'>{{formatRupiah('#: hargappn #', '')}}</span>"
                         },
                         // {
@@ -517,12 +628,12 @@ define(['initialize'], function(initialize) {
                         {
                             "field": "total",
                             "title": "Total",
-                            "width" : "30px",
+                            "width": "30px",
                             "template": "<span class='style-right'>{{formatRupiah('#: total #', '')}}</span>"
                         }
                     ]
                 }
-            };  
+            };
             // $scope.mainGridOptions = { 
             //     pageable: true,
             //     columns: $scope.columnProduk,
@@ -530,13 +641,14 @@ define(['initialize'], function(initialize) {
             //     selectable: "row",
             //     scrollable: false
             // };
-            $scope.formatRupiah = function(value, currency) {
+            $scope.formatRupiah = function (value, currency) {
                 return currency + " " + parseFloat(value).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
             }
-            $scope.formatTanggal = function(tanggal){
-              return moment(tanggal).format('DD/MM/YYYY');
+            $scope.formatTanggal = function (tanggal) {
+                return moment(tanggal).format('DD/MM/YYYY');
             }
-            function itungUsia(tgl){
+
+            function itungUsia(tgl) {
                 debugger;
                 // var tg = parseInt(form.elements[0].value);
                 // var bl = parseInt(form.elements[1].value);
@@ -544,24 +656,24 @@ define(['initialize'], function(initialize) {
                 var tanggal = $scope.now;
                 var tglLahir = new Date(tgl);
                 var selisih = Date.parse(tanggal.toGMTString()) - Date.parse(tglLahir.toGMTString());
-                var thn = Math.round(selisih/(1000*60*60*24*365));
+                var thn = Math.round(selisih / (1000 * 60 * 60 * 24 * 365));
                 //var bln = Math.round((selisih % 365)/(1000*60*60*24));
-                return thn + ' thn '// + bln + ' bln'
+                return thn + ' thn ' // + bln + ' bln'
             }
-            var HttpClient = function() {
-                this.get = function(aUrl, aCallback) {
+            var HttpClient = function () {
+                this.get = function (aUrl, aCallback) {
                     var anHttpRequest = new XMLHttpRequest();
-                    anHttpRequest.onreadystatechange = function() { 
+                    anHttpRequest.onreadystatechange = function () {
                         if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
                             aCallback(anHttpRequest.responseText);
                     }
 
-                    anHttpRequest.open( "GET", aUrl, true );            
-                    anHttpRequest.send( null );
+                    anHttpRequest.open("GET", aUrl, true);
+                    anHttpRequest.send(null);
                 }
             }
-//***********************************
+            //***********************************
 
-}
-]);
+        }
+    ]);
 });

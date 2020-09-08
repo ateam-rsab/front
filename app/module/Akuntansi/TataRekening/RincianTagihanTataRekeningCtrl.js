@@ -9,6 +9,8 @@ define(['initialize'], function (initialize) {
 			$scope.showBilling = false;
 			//$scope.urlBilling = $sce.trustAsResourceUrl(manageTataRekening.openPageBilling($scope.dataParams.noRegistrasi));
 
+			$scope.isUserAud = false;
+			$scope.isAuthenticated = false;
 			$scope.dataUserLogin = JSON.parse(localStorage.getItem('datauserlogin'));
 			$scope.dataPegawai = JSON.parse(localStorage.getItem('pegawai'))
 			$scope.item = {};
@@ -98,10 +100,49 @@ define(['initialize'], function (initialize) {
 				username: 'eva.fahmiah',
 				idPegawai: 234,
 				password: "tespassword"
-			}]
+			}];
+
+			$scope.showPopupRubahPasswordDiskon = () => {
+				$scope.popupRubahPassword.open().center();
+			}
+
+			$scope.closePopupRubahPasswordDiskon = () => {
+				$scope.item.passwordBaru = '';
+				$scope.item.passwordLama = '';
+				$scope.item.confPasswordBaru = '';
+				$scope.popupRubahPassword.close();
+			}
+
+			$scope.checkAuthUser = () => {
+				let dataAuth = {
+					idPegawai: `${$scope.dataPegawai.id}`,
+					password: $scope.item.passwordLama
+				}
+				manageTataRekening.postDataExpress('aud/auth-aud', dataAuth).then((data) => {
+					$scope.isAuthenticated = data.data;
+				});
+			}
+
+			$scope.submitRubahPassword = () => {
+				if($scope.item.confPasswordBaru !== $scope.item.passwordBaru) {
+					toastr.error("Konfirmasi Password Salah");
+					return;
+				}
+
+				let dataChangePassword = {
+					"newPassword": $scope.item.passwordBaru,
+					"lastPassword": $scope.item.passwordLama
+				};
+				manageTataRekening.postDataExpress('aud/change-password?idPegawai=' + $scope.dataPegawai.id, dataChangePassword).then((data) => {
+					$scope.closePopupRubahPasswordDiskon();
+				});
+			}
 
 			function LoadData() {
 				$scope.isRouteLoading = true;
+				manageTataRekening.getItemExpress("aud/get-user-auth?idPegawai=" + $scope.dataPegawai.id).then((data) => {
+					$scope.isUserAud = data;
+				})
 				manageKasir.getDataTableTransaksi("akutansi/get-tgl-posting", true).then(function (dat) {
 					tgltgltgltgl = dat.data.mindate[0].max
 					tglkpnaja = dat.data.datedate
@@ -673,7 +714,7 @@ define(['initialize'], function (initialize) {
 					alert('Sudah di Verifikasi Tatarekening tidak bisa diskon!')
 					return
 				}
-				
+
 				if ($scope.item.diskonKomponen > hargasatuan) {
 					alert('Diskon tidak boleh lebih besar dari total jasa!!!')
 				} else {
@@ -704,7 +745,7 @@ define(['initialize'], function (initialize) {
 					}
 				}
 			}
-			
+
 			$scope.BatalDiskon = function () {
 				LoadData()
 				$scope.popupKomponen.center().close();
@@ -1745,7 +1786,7 @@ define(['initialize'], function (initialize) {
 					$scope.item.passwordUserDiskon = "";
 					$scope.popUpPassword.close();
 				} else {
-					$scope.item.passwordUserDiskon  = '';
+					$scope.item.passwordUserDiskon = '';
 					toastr.warning('Password yang anda masukkan salah');
 				}
 			}

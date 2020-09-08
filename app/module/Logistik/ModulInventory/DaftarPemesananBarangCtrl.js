@@ -37,12 +37,12 @@ define(['initialize'], function (initialize) {
                 // $scope.listJenisRacikan = [{id:1,jenisracikan:'Puyer'}]
             }
             $scope.newOrder = function () {
-                var confirmDialog = $mdDialog.alert()
-                    .title(`Tidak bisa membuat SPPB`)
-                    .textContent('Harap hubungi pihak ITI')
-                    .ok('Ya')
-                $mdDialog.show(confirmDialog)
-                // $state.go('OrderBarangSPPB')
+                // var confirmDialog = $mdDialog.alert()
+                //     .title(`Tidak bisa membuat SPPB`)
+                //     .textContent('Harap hubungi pihak ITI')
+                //     .ok('Ya')
+                // $mdDialog.show(confirmDialog)
+                $state.go('OrderBarangSPPB')
             }
             $scope.terimaBarang = function () {
                 if ($scope.dataSelected.status2 != 'Done') {
@@ -106,7 +106,10 @@ define(['initialize'], function (initialize) {
                         // dat.data.daftar[i].umur =umur.year + ' thn ' + umur.month + ' bln ' + umur.day + ' hari'
                         //itungUsia(dat.data[i].tgllahir)
                     }
-                    $scope.dataGrid = dat.data.daftar;
+                    $scope.dataGrid = new kendo.data.DataSource({
+                        data: dat.data.daftar,
+                        pageSize: 20
+                    });
                     pegawaiUser = dat.data.datalogin
                 });
 
@@ -242,7 +245,6 @@ define(['initialize'], function (initialize) {
                 return moment(tanggal).format('DD-MMM-YYYY');
             }
 
-
             $scope.columnGrid = [{
                     "field": "no",
                     "title": "No",
@@ -250,14 +252,20 @@ define(['initialize'], function (initialize) {
                 },
                 {
                     "field": "noorder",
-                    "title": "No SPPB",
+                    "title": "No. SPPB",
                     "width": "100px"
                 },
                 {
+                    "field": "nousulan",
+                    "title": "No. Usulan",
+                    "width": "100px"
+                },
+
+                {
                     "field": "tglorder",
                     "title": "Tanggal",
-                    "width": "35px",
-                    "template": "<span class='style-right'>{{formatTanggal('#: tglorder #', '')}}</span>"
+                    "width": "50px",
+                    "template": "<span>{{formatTanggal('#: tglorder #', '')}}</span>"
                 },
                 {
                     "field": "namarekanan",
@@ -268,7 +276,7 @@ define(['initialize'], function (initialize) {
                     "field": "jmlitem",
                     "title": "Item",
                     "width": "35px",
-                    "template": "<span class='style-right'>#= kendo.toString(jmlitem) #</span>",
+                    "template": "<span>#= kendo.toString(jmlitem) #</span>",
                 },
                 // {
                 //     "field": "keterangan",
@@ -302,6 +310,113 @@ define(['initialize'], function (initialize) {
                 //     "width" : "40px",
                 // }
             ];
+
+            $scope.gridOption = {
+                toolbar: [{
+                        text: "export",
+                        name: "Export detail",
+                        template: '<button ng-click="exportExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
+                    }
+
+                ],
+                pageable: true,
+                scrollable: true,
+                columns: $scope.columnGrid
+            }
+
+            $scope.exportExcel = function () {
+                var tempDataExport = [];
+                var rows = [{
+                    cells: [{
+                            value: "No."
+                        },
+                        {
+                            value: "No. SPPB"
+                        },
+                        {
+                            value: "No. Usulan"
+                        },
+                        {
+                            value: "Tanggal"
+                        },
+                        {
+                            value: "Suplier"
+                        },
+                        {
+                            value: "Item"
+                        },
+                        {
+                            value: "Pembuat PO"
+                        }
+                    ]
+                }];
+
+                tempDataExport = $scope.dataGrid;
+                tempDataExport.fetch(function () {
+                    var data = this.data();
+                    console.log(data);
+                    for (var i = 0; i < data.length; i++) {
+                        //push single row for every record
+                        rows.push({
+                            cells: [{
+                                    value: data[i].tglorder
+                                },
+                                {
+                                    value: data[i].noorder
+                                },
+                                {
+                                    value: data[i].nousulan
+                                },
+                                {
+                                    value: data[i].tglorder
+                                },
+                                {
+                                    value: data[i].namarekanan
+                                },
+                                {
+                                    value: data[i].jmlitem
+                                },
+                                {
+                                    value: data[i].petugas
+                                }
+                            ]
+                        })
+                    }
+                    var workbook = new kendo.ooxml.Workbook({
+                        sheets: [{
+                            freezePane: {
+                                rowSplit: 1
+                            },
+                            columns: [{
+                                    autoWidth: true
+                                }, {
+                                    autoWidth: true
+                                }, {
+                                    autoWidth: true
+                                }, {
+                                    autoWidth: true
+                                }, {
+                                    autoWidth: true
+                                }, {
+                                    autoWidth: true
+                                }, {
+                                    autoWidth: true
+                                }
+                            ],
+                            // Title of the sheet
+                            title: "Daftar Pemesanan Barang / SPPB ",
+                            // Rows of the sheet
+                            rows: rows
+                        }]
+                    });
+                    //save the file as Excel file with extension xlsx
+                    kendo.saveAs({
+                        dataURI: workbook.toDataURL(),
+                        fileName: "daftar-pemesanan-barang.xlsx"
+                    });
+                });
+            };
+
             $scope.data2 = function (dataItem) {
                 return {
                     dataSource: new kendo.data.DataSource({

@@ -132,13 +132,22 @@ define(['initialize'], function (initialize) {
                     { field: "rencana", title: "<h3>Rencana</h3>", widht: 190 },
                     { field: "edukasi", title: "<h3>Edukasi</h3>", widht: 190 },
                     {
-                        command: [{ text: "Edit", click: editData, imageClass: "k-icon k-i-pencil" },
-                        { text: "Hapus", click: deleteData, imageClass: "k-icon k-i-cancel" }
-                        ], title: "", width: 160, attributes: { style: "text-align:center;valign=middle" }
+                        command: [
+                            { text: "Edit", click: editData, imageClass: "k-icon k-i-pencil" },
+                            { text: "Hapus", click: deleteData, imageClass: "k-icon k-i-cancel" },
+                            { text: "Cetak", click: cetakData, imageClass: "k-icon k-i-print" },
+                        ], title: "", width: 250, attributes: { style: "text-align:center;valign=middle" }
                     }
                 ]
             };
 
+            function cetakData(e) {
+                e.preventDefault();
+                var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+
+                console.log(dataItem);
+                window.open('http://192.168.12.4:7777/service-reporting/lap-pengkajian-awal-by-nores/' + dataItem.norec, '_blank')
+            }
             $scope.gridRiwayatAnamnesis = {
                 pageable: true,
                 columns: [

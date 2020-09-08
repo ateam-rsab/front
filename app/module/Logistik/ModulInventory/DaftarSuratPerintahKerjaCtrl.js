@@ -55,7 +55,9 @@ define(['initialize'], function (initialize) {
                     "&produkfk=" + ($scope.item.namaBarang ? $scope.item.namaBarang.id : ""), true).then(function (dat) {
                     $scope.isRouteLoading = false;
                     for (var i = 0; i < dat.data.daftar.length; i++) {
-                        dat.data.daftar[i].no = i + 1
+                        dat.data.daftar[i].no = i + 1;
+                        dat.data.daftar[i].noverifikasi  = dat.data.daftar[i].noverifikasi ? dat.data.daftar[i].noverifikasi : "-";
+                        dat.data.daftar[i].noorderhps = dat.data.daftar[i].noorderhps ? dat.data.daftar[i].noorderhps : "-";
                         // var tanggal = $scope.now;
                         // var tanggalLahir = new Date(dat.data.daftar[i].tgllahir);
                         // var umur = dateHelper.CountAge(tanggalLahir, tanggal);
@@ -63,7 +65,8 @@ define(['initialize'], function (initialize) {
                         //itungUsia(dat.data[i].tgllahir)
                     }
                     $scope.dataGrid = new kendo.data.DataSource({
-                        data: dat.data.daftar
+                        data: dat.data.daftar,
+                        pageSize:10
                     })
                     pegawaiUser = dat.data.datalogin
                 });
@@ -103,7 +106,6 @@ define(['initialize'], function (initialize) {
                 //     alert("Data Belum Diverifikasi HPS!")
                 //     return;
                 // }
-                debugger;
                 var chacePeriode = {
                     0: $scope.dataSelected.norec,
                     1: 'EditOrder',
@@ -218,8 +220,13 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.EditTerima = function () {
-                if ($scope.dataSelected == undefined) {
-                    alert("Data Belum Dipilih!")
+                if (!$scope.dataSelected) {
+                    toastr.warning("Data Belum Dipilih!")
+                    return;
+                }
+
+                if($scope.dataSelected.noverifikasi === "-") {
+                    toastr.warning("Harap Konfirmasi Bagian UPK");
                     return;
                 }
 
@@ -247,18 +254,19 @@ define(['initialize'], function (initialize) {
                 // noOrder:'EditTerima'
                 // });
                 // $state.go('KegiatanSPK')
-                var chacePeriode = {
-                    0: $scope.dataSelected.norec,
-                    1: 'EditTerima',
-                    2: '',
-                    3: '',
-                    4: '',
-                    5: '',
-                    6: ''
-                }
-                // cacheHelper.set('UsulanPelaksanaanKegiatanCtrl', chacePeriode);
-                // $state.go('UsulanPelaksanaanKegiatan')
-                cacheHelper.set('KegiatanSPKCtrl', chacePeriode);
+                
+                // var chacePeriode = {
+                //     0: $scope.dataSelected.norec,
+                //     1: 'EditTerima',
+                //     2: '',
+                //     3: '',
+                //     4: '',
+                //     5: '',
+                //     6: ''
+                // }
+                // // cacheHelper.set('UsulanPelaksanaanKegiatanCtrl', chacePeriode);
+                // // $state.go('UsulanPelaksanaanKegiatan')
+                // cacheHelper.set('KegiatanSPKCtrl', chacePeriode);
                 $state.go('EditKegiatanSPK', {
                     norec: $scope.dataSelected.norec,
                     noOrder: 'EditTerima'
@@ -302,20 +310,20 @@ define(['initialize'], function (initialize) {
                 },
                 {
                     "field": "tglorder",
-                    "title": "Tgl Usulan",
-                    "width": "80px",
-                    "template": "<span class='style-right'>{{formatTanggal('#: tglorder #', '')}}</span>"
+                    "title": "Tanggal<br> Usulan",
+                    "width": "100px",
+                    "template": "<span>{{formatTanggal('#: tglorder #', '')}}</span>"
                 },
                 {
                     "field": "tglkebutuhan",
-                    "title": "Tgl Kebutuhan",
-                    "width": "80px",
-                    "template": "<span class='style-right'>{{formatTanggal('#: tglkebutuhan #', '')}}</span>"
+                    "title": "Tanggal Kebutuhan",
+                    "width": "100px",
+                    "template": "<span>{{formatTanggal('#: tglkebutuhan #', '')}}</span>"
                 },
                 {
                     "field": "noorder",
-                    "title": "No Usulan",
-                    "width": "100px",
+                    "title": "No. Usulan",
+                    "width": "150px",
                 },
                 {
                     "field": "keterangan",
@@ -325,45 +333,43 @@ define(['initialize'], function (initialize) {
                 {
                     "field": "koordinator",
                     "title": "Koordinator Barang",
-                    "width": "60px",
+                    "width": "100px",
                 },
                 {
                     "field": "ruangan",
                     "title": "Unit Pengusul",
-                    "width": "120px",
+                    "width": "200px",
                 },
                 {
                     "field": "ruangantujuan",
                     "title": "Unit Tujuan",
-                    "width": "120px",
+                    "width": "200px",
                 },
                 {
                     "field": "penanggungjawab",
                     "title": "Penanggung Jawab",
-                    "width": "100px",
+                    "width": "200px",
                 },
                 {
                     "field": "mengetahui",
                     "title": "Mengetahui",
-                    "width": "100px",
+                    "width": "200px",
                 },
                 {
                     "field": "noverifikasi",
-                    "title": "No Confirm",
-                    "width": "100px",
-                    // "template": '# if( noverifikasi==null) {#<span class="center">-<span># } #',
-
+                    "title": "No. Konfirmasi",
+                    "width": "120px",
+                    // "template": '<span>{{noverifikasi ? noverifikasi : "-"}}</span>',
                 },
                 {
                     "field": "noorderhps",
-                    "title": "No Confirm HPS",
-                    "width": "100px",
-                    // "template": '# if( noverifikasi==null) {#<span class="center">-<span># } #',
-
+                    "title": "No. SPPB",
+                    "width": "100px", 
+                    // "template": '# if( noorderhps==null) {#<span class="center">-<span># } #',
                 },
                 {
                     "field": "tglverifikasi",
-                    "title": "Tgl Verifikasi",
+                    "title": "Tanggal Verifikasi",
                     "width": "100px",
                     "template": '# if( tglverifikasi==null) {#<span class="center">-<span># } else {#<span>#= kendo.toString(new Date(tglverifikasi), "dd-MM-yyyy HH:mm") #<span>#} #',
                     // "template": "<span class='style-right'>{{formatTanggal('#: tglverifikasi #', '')}}</span>"
@@ -539,7 +545,7 @@ define(['initialize'], function (initialize) {
                     }),
                     columns: [{
                             "field": "tglkebutuhan",
-                            "title": " Kebutuhan",
+                            "title": "Tanggal Kebutuhan",
                             "width": "50px",
                             "template": "<span class='style-right'>{{formatTanggal('#: tglkebutuhan #', '')}}</span>"
                         },
@@ -564,14 +570,15 @@ define(['initialize'], function (initialize) {
                             "width": "30px",
                         },
                         {
-                            "field": "qtyproduk",
+                            "field": "qtyblmsppb",
                             "title": "Qty",
-                            "width": "20px",
+                            "width": "50px",
+                            // "template": "<span class='style-right'>{{qtyblmsppb ? qtyblmsppb : 0}}</span>"
                         },
                         {
                             "field": "qtyprodukkonfirmasi",
                             "title": "Qty Confirm",
-                            "width": "40px",
+                            "width": "50px",
                         },
                         {
                             "field": "hargasatuan",

@@ -1,5 +1,5 @@
  define(['Configuration'], function(config) {
-
+   var baseExpressService = config.baseUrlExpress;
    var baseUrlApiAction = config.baseApiPostData_Akuntansi;
    var baseUrlApiPostAction = config.baseApiPostData;
    var baseTransaksi = config.urlDataTableTransaksi_Akuntansi;
@@ -7,6 +7,16 @@
    var akuntansiService = angular.module('TataRekeningService', ['ngResource', 'HttpServicesAkuntansi', 'Services']);
    akuntansiService.service('ManageTataRekening', ['R_Akuntansi', function(r) {
        return {
+            getItemExpress: function(url) {
+              return r.get({
+                url: baseExpressService + url
+              })
+            },
+            postDataExpress: function(url, data) {
+              return r.post({
+                url:baseExpressService + url,
+              }, data)
+            },
             getItem : function(urlGet) {
                 return r.get({
                     url: baseUrlApiAction + urlGet

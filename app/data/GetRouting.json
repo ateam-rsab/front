@@ -10949,6 +10949,29 @@
     ]
   },
   {
+    "name": "UserDiskon",
+    "url": "/MasterUserDiskon",
+    "templateurl": "module/Master/UserDiskon.html",
+    "controller": "UserDiskonCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "TataRekeningService",
+        "define": "TataRekeningService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "define": "MasterCtrl"
+      }
+    ]
+  },
+  {
     "name": "Master.Departemen",
     "url": "/Departemen",
     "templateurl": "module/Master/Departemen.html",

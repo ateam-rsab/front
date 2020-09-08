@@ -9,7 +9,7 @@ define(['initialize'], function (initialize) {
             $scope.isSaveLoad = false;
             $scope.pegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
             $scope.dataPasien = JSON.parse(localStorage.getItem('cacheHelper'));
-            let jenisPegawai = $scope.pegawaiLogin.jenisPegawai.jenispegawai;
+            let jenisPegawai = $scope.pegawaiLogin.jenisPegawai.jenispegawai ? $scope.pegawaiLogin.jenisPegawai.jenispegawai : $scope.pegawaiLogin.jenisPegawai.jenisPegawai;
             let idPegawaiLogin = $scope.pegawaiLogin;
             $scope.item.tglOperasi = new Date();
             var norec_apd = '';

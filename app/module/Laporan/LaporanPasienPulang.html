@@ -1,4 +1,3 @@
-
 <!-- <div ng-controller="LaporanPasienPulangCtrl"> -->
 <div ng-show="dataVOloaded">
     <!-- <c-panel item="item" header="'Daftar Tagihan Rekanan'" disabled> -->
@@ -13,55 +12,44 @@
 
         <div class="grid_3">
             <label c-label item="item" c-label-text="Tanggal awal"></label>
-            <input style="width: 100%" k-ng-model="item.tglawal"
-                kendo-datetimepicker placeholer="yyyy-mm-dd"
+            <input style="width: 100%" k-ng-model="item.tglawal" kendo-datetimepicker placeholer="yyyy-mm-dd"
                 k-format="'yyyy-MM-dd HH:mm'" />
         </div>
 
         <div class="grid_3">
             <label c-label item="item" c-label-text="Tanggal Akhir"></label>
-            <input style="width: 100%" k-ng-model="item.tglakhir"
-                kendo-datetimepicker placeholer="yyyy-mm-dd"
+            <input style="width: 100%" k-ng-model="item.tglakhir" kendo-datetimepicker placeholer="yyyy-mm-dd"
                 k-format="'yyyy-MM-dd HH:mm'" />
         </div>
         <div class="grid_3">
             <label c-label item="item" c-label-text="Departement"></label>
-            <input style="width: 100%;" kendo-combo-box
-                k-ng-model="item.departement" k-data-text-field="'departemen'"
-                k-data-value-field="'id'" k-filter="'contains'"
-                k-auto-bind="false" k-data-source="listDepartemen"
+            <input style="width: 100%;" kendo-combo-box k-ng-model="item.departement" k-data-text-field="'departemen'"
+                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listDepartemen"
                 k-on-change="getIsiComboRuangan()" />
         </div>
         <div class="grid_3">
             <label c-label item="item" c-label-text="Ruangan"></label>
-            <input ng-disabled="isDisable" style="width: 100%;" kendo-combo-box
-                k-ng-model="item.ruangan" k-data-text-field="'ruangan'"
-                k-data-value-field="'id'" k-filter="'contains'"
-                k-auto-bind="false" k-data-source="listRuangan" />
+            <input ng-disabled="isDisable" style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan"
+                k-data-text-field="'ruangan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
+                k-data-source="listRuangan" />
         </div>
     </div>
     <div class="grid_12">
         <div class="grid_3">
             <label class="c-label">Nama Penjamin</label>
-            <input kendo-combo-box tyle="width:100%"
-                k-ng-model="item.namaPenjamin"
-                k-data-text-field="'kelompokPasien'" k-data-value-field="'id'"
-                k-filter="'contains'" k-auto-bind="false"
-                k-data-source="kelompokPasiens" />
+            <input kendo-combo-box tyle="width:100%" k-ng-model="item.namaPenjamin" k-data-text-field="'kelompokPasien'"
+                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="kelompokPasiens" />
         </div>
         <div class="grid_4" style="margin-top:5px" ng-show="Perusahaan">
             <label class="c-label">Institusi Asal Pasien</label>
-            <input kendo-combo-box tyle="width:100%"
-                k-ng-model="item.institusiAsalPasien"
-                k-data-text-field="'namaRekanan'" k-data-value-field="'id'"
-                k-filter="'contains'" k-auto-bind="false"
+            <input kendo-combo-box tyle="width:100%" k-ng-model="item.institusiAsalPasien"
+                k-data-text-field="'namaRekanan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
                 k-data-source="sourceDataRekanan" />
         </div>
 
         <div class="grid_1" style="margin-top: 22px;">
 
-            <md-button class="md-raised md-primary medium-button"
-                ng-show="! isLoading"
+            <md-button class="md-raised md-primary medium-button" ng-show="! isLoading"
                 ng-click="CariLapPasienPulang()">
                 <span style="margin-right: 5px;">Cari</span>
                 <i class="fa fa-search"></i>
@@ -70,8 +58,7 @@
                     isLoading" ng-click="CariLapPasienPulang()">Cari</button> -->
         </div>
         <div class="grid_1" style="margin-top: 22px;">
-            <md-button class="md-raised md-primary medium-button"
-                ng-click="ClearSearch()" ng-show="!isLoading">
+            <md-button class="md-raised md-primary medium-button" ng-click="ClearSearch()" ng-show="!isLoading">
                 <span style="margin-right: 5px;">Clear</span>
                 <i class="fa fa-eraser"></i>
             </md-button>
@@ -80,8 +67,7 @@
         </div>
 
         <div class="grid_1" style="margin-top: 22px;">
-            <md-button class="md-raised md-primary medium-button"
-                ng-click="Cetak()">
+            <md-button class="md-raised md-primary medium-button" ng-click="Cetak()">
                 <span style="margin-right: 5px;">Cetak</span>
                 <i class="fa fa-print"></i>
             </md-button>
@@ -96,11 +82,9 @@
         </div>
         <div class="clear"></div>
 
-        <div class="grid_12 borderBox">
-            <kendo-grid data-source="dataPasienPulang"
-                options="columnPasienPulang" k-ng-model="dataPasienSelected"
-                ng-click="click(dataPasienSelected)"
-                k-groupable="true"></kendo-grid>
+        <div class="grid_12">
+            <kendo-grid data-source="dataPasienPulang" options="columnPasienPulang" k-ng-model="dataPasienSelected"
+                ng-click="click(dataPasienSelected)" k-groupable="true"></kendo-grid>
             <!-- <div id="kGrid" kendo-grid k-data-source="dataPasienPulang" k-selectable="'row'" k-columns="columnPasienPulang" k-pageable="'true'"
                 k-sortable="'true'" k-ng-model="dataPasienSelected" ng-click="click(dataPasienSelected)">
             </div> -->
@@ -114,18 +98,25 @@
     <div class="clear"></div>
     <div class="grid_12">
         <div class="grid_12" style="float:right">
-            <div class="grid_3">
-                <!-- <md-button class="md-raised md-primary"
-                    ng-click="Cetak()">
+            <div class="grid_2">
+                <md-button class="md-raised md-primary" ng-click="Cetak()">
                     <span style="margin-right: 5px;">Cetak</span>
                     <i class="fa fa-print"></i>
-                </md-button> -->
-                <!-- <button class="c-button" ng-show="!isLoading" item="item" is-validate ng-click="Cetak()">
-                            <span class="title">Cetak</span>
-                        </button> -->
+                </md-button>
             </div>
-            <div class="grid_12" style="margin-top:60px"
-                ng-show="isRouteLoading()">
+            <div class="grid_4">
+                <md-button class="md-raised md-primary" ng-click="CetakRekapitukasiPenjamin()">
+                    <span style="margin-right: 5px;">Cetak Rekapitulasi Penjamin</span>
+                    <i class="fa fa-print"></i>
+                </md-button>
+            </div>
+            <div class="grid_4">
+                <!-- <md-button class="md-raised md-primary" ng-click="cetakRekapPenjaminRanap()">
+                    <span style="margin-right: 5px;">Cetak Rekapitulasi Rawat Inap</span>
+                    <i class="fa fa-print"></i>
+                </md-button> -->
+            </div>
+            <div class="grid_12" style="margin-top:60px" ng-show="isRouteLoading()">
                 <div ng-include='" ../app/module/Shared/TemplateLoading" '></div>
             </div>
             <!-- <div class="grid_4 " style="margin-top: 25px ">
@@ -135,6 +126,5 @@
                     </div> -->
         </div>
     </div>
-    <br/>
-    </div>
+    <br />
 </div>

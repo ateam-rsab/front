@@ -1047,6 +1047,10 @@
     {
       "nameDep": "AgamaCtrl",
       "urlDep": "module/Master/AgamaCtrl"
+    }, 
+    {
+      "nameDep": "UserDiskonCtrl",
+      "urlDep": "module/Master/UserDiskonCtrl"
     },
     {
       "nameDep": "DepartemenCtrl",

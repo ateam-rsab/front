@@ -1,6 +1,6 @@
 define([], function () {
     'use strict';
-    var baseURLFrontend = window.location.hostname === "192.168.12.3" ? "http://192.168.12.3" : "http://172.16.99.111",
+    var baseURLFrontend = window.location.hostname === "192.168.12.3" ? "http://192.168.12.3" : "http://172.16.99.155",
         portFrontend = window.location.hostname === "192.168.12.3" ? '4444' :'4444',
         
         baseURLPhp = 'http://192.168.12.3',
@@ -149,7 +149,8 @@ define([], function () {
             urlRoute_SDM: `${baseURLFrontend}:${portFrontend}/app/data/GetRoutingSDM`,
             urlRoute_Akuntansi: `${baseURLFrontend}:${portFrontend}/app/data/GetRoutingAkuntansi`,
 
-            UrlDataConfig: `${baseURLFrontend}:${portFrontend}/app/data/GetRequireConfig`
+            UrlDataConfig: `${baseURLFrontend}:${portFrontend}/app/data/GetRequireConfig`,
+            baseUrlExpress: "http://localhost:3000/api/"
         };
     }
 });

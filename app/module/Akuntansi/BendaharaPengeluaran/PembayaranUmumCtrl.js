@@ -344,7 +344,7 @@ define(['initialize'], function (initialize) {
                         name: "Export detail",
                         template: '<button ng-click="exportExcel(false)" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
                     },
-                    
+
                     {
                         name: "Tambah Baru",
                         template: '<button ng-click="tambahBaru()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-plus"></span>Tambah Baru</button>'
@@ -647,7 +647,7 @@ define(['initialize'], function (initialize) {
                     sppb: $scope.item.isSppb ? $scope.item.sppb : "",
                     faktur: $scope.item.isNoFaktur ? $scope.item.noFaktur : "",
 
-                    pph: $scope.item.pph ? $scope.item.pph : "",
+                    pph: $scope.item.pph ? $scope.item.pph : 0,
                     nospk: $scope.item.noSpk ? $scope.item.noSpk : "",
                     namarekanan: $scope.item.namaRekanan ? $scope.item.namaRekanan : "",
                     dana: $scope.verif.sumberDana ? $scope.verif.sumberDana.asalproduk : "",

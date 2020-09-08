@@ -1,0 +1,18 @@
+<div class="grid_12">
+    <div class="grid_6">
+        <label>Nama Pegawai</label>
+        <input required style="width: 100%;" kendo-combo-box k-ng-model="item.pegawai" k-data-text-field="'namaLengkap'" k-filter="'contains'"  k-data-value-field="'id'" k-data-source="listPegawai" />
+
+    </div>
+    <div class="grid_1" style="margin-top: 20px;">
+        <md-button class="md-raised md-primary medium-button" ng-click="tambahUserAUD()">
+            <i class="fa fa-plus"></i>
+        </md-button>
+    </div>
+</div>
+
+<div class="grid_12">
+    <div id="kGrid" kendo-grid k-data-source="dataGrid" k-selectable="'row'" k-options="gridOption" k-pageable="'true'"
+        k-sortable="'true'" k-ng-model="dataSelected">
+    </div>
+</div>

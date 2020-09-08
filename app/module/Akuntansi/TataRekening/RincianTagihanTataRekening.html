@@ -607,6 +607,12 @@
 			</md-button>
 			<!-- <button class="c-button" ng-click="Back()">Kembali</button> -->
 		</div>
+
+		<div class="grid_5" ng-if="isUserAud">
+			<md-button class="md-raised medium-button md-primary" ng-click="showPopupRubahPasswordDiskon()">
+				Rubah Password Diskon
+			</md-button>
+		</div>
 	</div>
 	<div class="grid_6">
 		<md-card style="height: 134px;">
@@ -882,6 +888,51 @@
         </div> -->
 	</div>
 	<!-- </script> -->
+</div>
+
+<!-- Popup rubah password -->
+<div kendo-window="popupRubahPassword" k-title="'Rubah Password Diskon'" k-width="500" k-visible="false"
+	k-on-open="win2visible= true" k-on-close="win2visible= false">
+	
+	<div class="panel panel-default container_12" style="padding: 0px 10px;">
+		<div class="grid_12">
+			<div class="grid_10">
+				<label>Password Lama</label>
+				<input c-text-box type="password" filter="" class="k-textbox" ng-model="item.passwordLama" />
+			</div>
+			<div class="grid_2" style="margin-top: 20px;">
+				<md-button class="md-raised md-primary medium-button" ng-click="checkAuthUser()">
+					<i class="fa fa-refresh"></i>
+				</md-button>
+				<!-- fa-refresh -->
+			</div>
+		</div>
+
+		<div class="grid_12" ng-if="isAuthenticated">
+			<label>Password Baru</label>
+			<input c-text-box type="password" filter="" class="k-textbox" ng-model="item.passwordBaru" />
+		</div>
+		<div class="grid_12" ng-if="isAuthenticated">
+			<label>Konfirmasi Password Baru</label>
+			<input c-text-box type="password" filter="" class="k-textbox" ng-model="item.confPasswordBaru" />
+		</div>
+	</div>
+
+	<div class="dialog_buttons pull-right" style="margin-top:5%;">
+		<div class="grid_4">
+			<md-button class="md-raised md-warn medium-button" ng-click="closePopupRubahPasswordDiskon()">
+				<span style="margin-right: 5px;">Tutup</span>
+				<i class="fa fa-close"></i>
+			</md-button>
+		</div>
+
+		<div class="grid_4">
+			<md-button class="md-raised md-primary medium-button" ng-click="submitRubahPassword()">
+				<span style="margin-right: 5px;">Submit</span>
+				<i class="fa fa-paper-plane"></i>
+			</md-button>
+		</div>
+	</div>
 </div>
 
 <!-- popup masukkan password -->

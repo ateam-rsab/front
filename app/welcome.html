@@ -1,336 +1,208 @@
 <style>
-    .information {
-        padding: 20px;
-        background-color: #26edff;
-        color: rgb(66, 66, 66);
-    }
-
-    a.link {
-        font-style: italic;
-        text-decoration: underline;
-        font-weight: bolder;
-        cursor: pointer;
-    }
-
-    .closebtn {
-        margin-left: 15px;
-        color: white;
-        font-weight: bold;
-        float: right;
-        font-size: 22px;
-        line-height: 20px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-
-    .closebtn:hover {
-        color: black;
-    }
-
     .smart-container-home {
         display: flex;
-        flex-direction: column;
-        justify-content: stretch;
-        align-content: center;
-        align-items: center;
-        margin: 10px;
-
-        /* background-image: linear-gradient(rgba(255, 0, 0, 0.45), rgba(255, 0, 0, 0.45)), url(../../../assets/bg-login.jpg); */
-        /* background-position: center; */
-        /* background-repeat: no-repeat; */
-        /* background-size: cover; */
-        /* background-image: linear-gradient(109.6deg, rgba(170, 255, 169, .5) 11.2%, rgba(17, 255, 189, .5) 91.1%), url(../app/stylesheets/banner-proceeding-book.jpg); */
+        font-family: ProximaNovaLight !important
     }
 
-    .smart-container-home .shadowed {
-        box-shadow: 5px 7px 10px 0px rgba(0, 0, 0, .26)
+    h4 {
+        font-size: 1rem;
+        margin: 2px 0
     }
 
-    .smart-container-content {
-        margin-top: 10px;
-        min-width: 700px;
-        max-width: 700px;
+    .card-list-notification {
+        border-top: solid #37d3d7
     }
 
-    .label-welcome {
-        font-size: 20px;
+    .card-list-dokumen {
+        border-top: solid #37d3d7;
+        width: 30%
+    }
+
+    .card-list-video {
+        border-top: solid #37d3d7;
+        width: 70%
+    }
+
+    .card-list-video video {
+        width: 70%;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 2px 1px -1px rgba(0, 0, 0, .12)
+    }
+
+    .list-video {
+        width: 30%;
+        margin: 5px
+    }
+
+    .card-list-video md-card-content {
+        display: flex;
+        justify-content: space-between
+    }
+
+    md-card md-card-header {
+        padding: 10px
+    }
+
+    ul {
+        padding-inline-start: 2px
+    }
+
+    .list-1 li {
+        display: flex;
+        margin: 0 5px 15px;
+        padding: 10px;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 2px 1px -1px rgba(0, 0, 0, .12)
+    }
+
+    .list-2 li {
+        padding: 10px;
+        border-bottom: solid #2b2b2b thin;
+        cursor: pointer
+    }
+
+    .doc-description {
+        width: 60%;
+        max-width: 60%;
+        font-weight: 400;
+        color: #303030
+    }
+
+    .doc-action {
+        width: 40%;
+        max-width: 40%;
+        display: flex;
+        justify-content: center
+    }
+
+    .doc-action a {
+        padding: 5px 20px;
+        cursor: pointer;
+        border-radius: 205px;
+        background-color: #f1f1f1;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 2px 1px -1px rgba(0, 0, 0, .12);
         font-weight: 700;
-        letter-spacing: 5px;
-        text-align: center;
+        margin: auto auto;
+        height: 15px;
+        font-size: 12px;
     }
 
-    .list-visi-misi {}
-
-    .list-visi-misi li {
-        /* margin: 10px 0px; */
+    .notify {
+        padding: 15px;
+        background-color: #beffff;
+        border-radius: 5px;
+        display: inline-block;
+        margin: 0 2px 5px
     }
 
-    .list-visi-misi li p {
-        font-weight: 700;
+    .notify strong {
+        margin-right: 10px;
+        font-size: 15px
+    }
+
+    .notify.notify-warn {
+        background-color: #ffcf77
     }
 </style>
-<div ng-controller="WelcomeCtrl">
-    <div class="information">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        <strong>Perhatian!</strong> Terkati Virus yang sedang menjadi Pandemic. Kemenkes Mengeluarkan Pedoman Pencegahan
-        Pengendalian <strong>CORONA VIRUS DISEASE (COVID-19). </strong> <a class="link"
-            href="/app/#/informasi/covid-19"> Lihat disini</a> | <a class="link" href="data/pedoman-covid19.pdf"
-            download> Download disini</a>
 
+<div ng-controller="WelcomeCtrl">
+    <md-card class="card-list-notification">
+        <md-card-header>
+            <h4>Pemberitahuan</h4>
+        </md-card-header>
+        <md-card-content>
+            <div class="notify" ng-if="isShowSIPExpired">
+                <strong>Info </strong> {{messageNotif}}
+            </div>
+
+            <div class="notify" ng-if="showPPDSNotif">
+                <strong>Info </strong> {{pesanPemberitahuan}}
+            </div>
+
+            <div class="notify notify-warn" ng-if="showNotifChangePassword">
+                <strong>Perhatian </strong> Harap kepada pengguna SMART untuk mengganti Kata Kunci/Password pengguna
+                anda
+            </div>
+
+            <div class="notify notify-warn" ng-if="showNotifChangePassword">
+                <strong>Perhatian </strong> Kepada seluruh karyawan Rumah Sakit Harapan Kita. Harap mengisi form
+                Instrumen Self Assessment Risiko COVID-19 <strong style="font-size:12px; font-style:italic">(<a
+                        href="https://bit.ly/selfassessmentcovid19rsabhk" target="_blank">Klik disini</a>)</strong>
+            </div>
+        </md-card-content>
+    </md-card>
+    <div class="smart-container-home">
+
+        <md-card class="card-list-dokumen">
+            <md-card-header>
+                <h4>Dokumen Terkait COVID-19</h4>
+            </md-card-header>
+            <md-card-content>
+                <ul class="list-1">
+                    <li>
+                        <div class="doc-description">
+                            Pedoman Pencegahan Pengendalian
+                            <strong>CORONA VIRUS DISEASE (COVID-19).</strong>
+                        </div>
+                        <div class="doc-action">
+                            <a href="data/dokumen/pedoman-covid19.pdf" download>Download PDF</a>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="doc-description">
+                            Standar APD (Alat Pelindung Diri) dalam Lingkungan Kerja RSAB Harapan Kita
+                        </div>
+                        <div class="doc-action">
+                            <a href="data/dokumen/suit-level.pdf" download>Download PDF</a>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="doc-description">
+                            Standar APD (Alat Pelindung Diri) dalam Manajemen Penanganan COVID-19
+                        </div>
+                        <div class="doc-action">
+                            <a href="data/dokumen/Standar_APD_dalam_Manajemen_Penanganan_Covid19.pdf.pdf"
+                                download>Download PDF</a>
+                        </div>
+                    </li>
+                </ul>
+            </md-card-content>
+        </md-card>
+
+        <md-card class="card-list-video">
+            <md-card-header>
+                <h4>{{videoPlayed.title}}</h4>
+            </md-card-header>
+            <md-card-content>
+                <div class="list-video">
+                    <ul class="list-2">
+                        <li
+                            ng-click="changeVideo('https://smart.rsabhk.co.id:2222/vid/masker.mp4', 'Maskerku Melindungi Kamu, Maskermu Melindungi Aku')">
+                            Maskerku Melindungi Kamu, Maskermu Melindungi Aku
+                        </li>
+                        <li
+                            ng-click="changeVideo('https://smart.rsabhk.co.id:2222/vid/cuci-tangan.mp4', '6 Langkah Cuci Tangan Pakai Sabun (CTPS)')">
+                            6 Langkah Cuci Tangan Pakai Sabun (CTPS)
+                        </li>
+                        <li ng-click="changeVideo('https://smart.rsabhk.co.id:2222/vid/jaga-jarak.mp4', 'Jaga Jarak')">
+                            Jaga Jarak
+                        </li>
+                    </ul>
+                </div>
+                <!-- <embed src="https://smart.rsabhk.co.id:2222/vid/jaga-jarak.mp4"width="500" height="500" > -->
+                <video name="media" id="video-kampanye" src="https://smart.rsabhk.co.id:2222/vid/masker.mp4" autoplay
+                    autobuffer loop controls>
+                    Your browser does not support HTML video.
+                </video>
+            </md-card-content>
+        </md-card>
     </div>
-    <!-- <button ng-show="listMenu.length!==1" ng-click='Back()'>Back</button> -->
-    <!-- <div class="home-animation">
-        <div class="mainmenu">
-            <a href="/app/#/RekamMedik"><img class="menu01 anime01" src="images/logo/cover01.png"></a>
-            <a href="/app/#/LayananMedik"><img class="menu02 anime02" src="images/logo/cover02.png"></a>
-            <a href="/app/#/Dashboard/SDM"><img class="menu03 anime03" src="images/logo/cover03.png"></a>
-            <img class="logotitle" src="images/logo/logotitle.png">
-            <a href="/app/#/Keuangan"><img class="menu04 anime04" src="images/logo/cover04.png"></a>
-            <a href="/app/#/Sarpras"><img class="menu05 anime05" src="images/logo/cover05.png"></a>
-            <a href="/app/#/Menejemen"><img class="menu06 anime06" src="images/logo/cover06.png"></a>
-        </div>
-    </div> -->
-    
-    <div kendo-window="notificationSIP" k-title="'Pemberitahuan'" k-width="550" k-visible="false"
+
+    <div kendo-window="popUp" id="winSipStr" k-title="'Pemberitahuan'" k-width="550" k-visible="false"
         k-on-open="win2visible= true" k-on-close="ji.idGridInternalJabatan= null">
         <div class="panel panel-default container_12" style="padding:
             0px 10px;">
             <label>{{messageNotif}}</label>
         </div>
-    </div>
-
-    <div kendo-window="notification" id="winNotif" k-title="'Pemberitahuan'" k-width="550" k-visible="false"
-        k-on-open="win2visible = true" k-on-close="goToLink('/app/Logout')">
-        <div class="panel panel-default container_12" style="padding: 0px 10px;">
-            <label>{{pesanPemberitahuan}}</label>
-        </div>
-    </div>
-    <div class="smart-container-home">
-
-        <!-- #region slide -->
-
-        <div class="slider-wrapper">
-
-            <div class="slider-container">
-                <div class="slider-content">
-                    <img src="/app/images/suit-level-img/suit-lv1.jpg">
-                </div>
-                <div class="slider-content">
-                    <img src="/app/images/suit-level-img/suit-lv2.jpg">
-                </div>
-                <div class="slider-content">
-                    <img src="/app/images/suit-level-img/suit-lv3.jpg">
-                </div>
-                <div class="slider-content">
-                    <img src="/app/images/suit-level-img/suit-lv4.jpg">
-                </div>
-                <div class="slider-content">
-                    <img src="/app/images/suit-level-img/suit-lv5.jpg">
-                </div>
-            </div>
-
-            <div class="slider-controls">
-                <span class="control prev">&larr;</span>
-                <span class="control next">&rarr;</span>
-            </div>
-
-        </div>
-
-
-
-        <!-- #endregion slide -->
-
-        <!-- <img src="/app/images/suit-level-img/suit-lv1.jpg" width="350"> -->
-
-        <!-- <img class="shadowed" src="../app/images/novel-corona.png" style="margin: 0 auto;width: 40%;"> -->
-        <!-- <div class="smart-container-content">
-            <div class="label-welcome">Visi</div>
-            <hr style="margin: 10px 0;">
-            <div class="smart-content">
-                <ul class="list-visi-misi">
-                    <li>
-                        <p>Terdepan Dalam Pelayanan Kesehatan Perempuan, Perinatal dan Anak</p>
-                    </li>
-                </ul>
-                
-            </div>
-        </div>
-
-        <div class="smart-container-content">
-            <div class="label-welcome">Misi</div>
-            <hr style="margin: 10px 0;">
-            <div class="smart-content">
-                <ul class="list-visi-misi">
-                    <li>
-                        <p>Menyelenggarakan pelayanan kesehatan perempuan, perinatal dan anak yang aman dan berkualitas </p>
-                    </li>
-                    <li>
-                        <p>Menyelenggarakan pendidikan tenaga kesehatan di bidang kesehatan perempuan, perinatal dan anak </p>
-                    </li>
-                    <li>
-                        <p>Menyelenggarakan pelatihan di bidang kesehatan perempuan, perinatal dan anak </p>
-                    </li>
-                    <li>
-                        <p>Menyelenggarakan penelitian di bidang kesehatan perempuan, perinatal dan anak </p>
-                    </li>
-                    <li>
-                        <p>Meningkatkan jejaring dan sistem rujukan di bidang kesehatan perempuan, perinatal dan anak </p>
-                    </li>
-                </ul>
-            </div>
-        </div> -->
-    </div>
-    <!-- <md-card>
-        <img src="../app/stylesheets/RSAB-Harapan-Kita.jpg"
-            class="md-card-image" alt="home">
-
-    </md-card> -->
-    <!-- <div loginService access="suster">
-      <h1>
-        Hello admin
-      </h1>
-      <p>
-        ini adalah admin
-      </p>
-    </div> -->
-    <!-- <img style="position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
-    background-size: cover;
-    height: 100%;" src="images/logo.svg" alt="Kiwi standing on oval"> -->
-    <div class="tiles" style="display:none">
-        <div class="grid_6">
-            <h1>FRONT OFFICE</h1>
-            <div class="grid_12" ng-repeat="menu in menus">
-                <div class="tile bg-yellow-saffron primary" style="height:200px;" ng-click="changeMenu(menu)">
-                    <div class="corner" style="float: left; font-weight:
-                        bold; padding: 0 5px;"><span></span></div>
-                    <div class="check"></div>
-                    <div class="tile-body" style="overflow: initial">
-                        <i style="font-style: normal;"></i>
-                    </div>
-                    <div class="tile-object" style="top:0!important;bottom:auto !important;">
-                        <div class="icon-panel main">
-                            <img height='150px' src='' />
-                        </div>
-                        <div class="text_panel main">
-                            <span class="title"><label c-label c-label-text="{{menu.title}}"
-                                    class="title"></label></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="grid_6">
-            <h1>BACK OFFICE</h1>
-            <div class="grid_12" ng-repeat="menu in menuBackOffices">
-                <div class="tile bg-yellow-saffron primary" style="height:200px;" ng-click="changeMenu(menu)">
-                    <div class="corner" style="float: left; font-weight:
-                        bold; padding: 0 5px;"><span></span></div>
-                    <div class="check"></div>
-                    <div class="tile-body" style="overflow: initial">
-                        <i style="font-style: normal;"></i>
-                    </div>
-                    <div class="tile-object" style="top:0!important;bottom:auto !important;">
-                        <div class="icon-panel main">
-
-                        </div>
-                        <div class="text_panel main">
-                            <span class="title"><label c-label c-label-text="{{menu.title}}"
-                                    class="title"></label></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--<div class="grid_4">
-            <div class="tile bg-yellow-saffron primary" style="height:200px;">
-                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
-                <div class="check"></div>
-                <div class="tile-body" style="overflow: initial">
-                    <i style="font-style: normal;"></i>
-                </div>
-                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
-                    <div class="icon-panel main">
-                        <img height='150px' src='stylesheets/pelayananMedik.png' />
-                    </div>
-                    <div class="text_panel main">
-                        <span class="title"><label c-label c-label-text="layananMedik" class="title"></label></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="grid_4">
-            <div class="tile bg-yellow-saffron primary" style="height:200px;">
-                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
-                <div class="check"></div>
-                <div class="tile-body" style="overflow: initial">
-                    <i style="font-style: normal;"></i>
-                </div>
-                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
-                    <div class="icon-panel main">
-                        <img height='150px' src='stylesheets/keuangan.png' />
-                    </div>
-                    <div class="text_panel main">
-                        <span class="title"><label c-label c-label-text="keuangan" class="title"></label></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="grid_4">
-            <div class="tile bg-yellow-saffron primary" style="height:200px;">
-                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
-                <div class="check"></div>
-                <div class="tile-body" style="overflow: initial">
-                    <i style="font-style: normal;"></i>
-                </div>
-                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
-                    <div class="icon-panel main">
-                        <img height='150px' src='stylesheets/sarpras.png' />
-                    </div>
-                    <div class="text_panel main">
-                        <span class="title"><label c-label c-label-text="sarana&Prasarana" class="title"></label></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="grid_4">
-            <div class="tile bg-yellow-saffron primary" style="height:200px;">
-                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
-                <div class="check"></div>
-                <div class="tile-body" style="overflow: initial">
-                    <i style="font-style: normal;"></i>
-                </div>
-                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
-                    <div class="icon-panel main">
-                        <img height='150px' src='stylesheets/hrd.png' />
-                    </div>
-                    <div class="text_panel main">
-                        <span class="title"><label c-label c-label-text="SDM" class="title"></label></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="grid_4">
-            <div class="tile bg-yellow-saffron primary" style="height:200px;">
-                <div class="corner" style="float: left; font-weight: bold; padding: 0 5px;"><span></span></div>
-                <div class="check"></div>
-                <div class="tile-body" style="overflow: initial">
-                    <i style="font-style: normal;"></i>
-                </div>
-                <div class="tile-object" style=";top:0 !important;bottom:auto !important;">
-                    <div class="icon-panel main">
-                        <img height='150px' src='stylesheets/management.png' />
-                    </div>
-                    <div class="text_panel main">
-                        <span class="title"><label c-label c-label-text="manajemen" class="title"></label></span>
-                    </div>
-                </div>
-            </div>
-        </div>-->
     </div>
 </div>

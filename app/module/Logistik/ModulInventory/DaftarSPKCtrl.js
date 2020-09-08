@@ -77,7 +77,7 @@ define(['initialize'], function (initialize) {
 
                         $scope.dataGrid = new kendo.data.DataSource({
                             data: dat.data.daftar,
-                            pageSize: 15,
+                            pageSize: 10,
                         });
 
 
@@ -315,23 +315,23 @@ define(['initialize'], function (initialize) {
                 {
                     "field": "no",
                     "title": "No",
-                    "width": "35px",
+                    "width": "50px",
                 },
                 {
                     "field": "nospk",
-                    "title": "No PO",
+                    "title": "No SPK",
                     "width": "120px"
                 },
-                // {
-                //     "field": "noorder",
-                //     "title": "No Usulan",
-                //     "width" : "100px",
-                // },
+                {
+                    "field": "nousulan",
+                    "title": "No. Usulan",
+                    "width" : "100px",
+                },
                 {
                     "field": "tglorder",
                     "title": "Tanggal",
-                    "width": "58px",
-                    "template": "<span class='style-right'>{{formatTanggal('#: tglorder #', '')}}</span>"
+                    "width": "100px",
+                    "template": "<span>{{formatTanggal('#: tglorder #', '')}}</span>"
                 },
                 {
                     "field": "supplier",
@@ -341,8 +341,8 @@ define(['initialize'], function (initialize) {
                 {
                     "field": "jmlitem",
                     "title": "Item",
-                    "width": "35px",
-                    "template": "<span class='style-right'>#= kendo.toString(jmlitem) #</span>",
+                    "width": "80px",
+                    "template": "<span style='text-align: center;'>#= kendo.toString(jmlitem) #</span>",
                 },
                 // {
                 //     "field": "tglkebutuhan",
@@ -363,17 +363,17 @@ define(['initialize'], function (initialize) {
                 {
                     "field": "ruangan",
                     "title": "Unit Pembuat",
-                    "width": "120px",
+                    "width": "200px",
                 },
                 {
                     "field": "penanggungjawab",
                     "title": "Pembuat PO",
-                    "width": "110px",
+                    "width": "200px",
                 },
                 {
                     "field": "mengetahui",
                     "title": "Mengetahui",
-                    "width": "110px",
+                    "width": "200px",
                 },
                 {
                     "field": "ruangantujuan",
@@ -411,7 +411,7 @@ define(['initialize'], function (initialize) {
                         }
                     ],
                     title: "",
-                    width: "170px",
+                    width: "300px",
                     attributes: {
                         style: "text-align:center;valign=middle"
                     },
