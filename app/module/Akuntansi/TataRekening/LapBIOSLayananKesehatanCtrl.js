@@ -73,8 +73,7 @@ define(['initialize'], function (initialize) {
                             "title": "Status Kirim", "width": "150px",
                             "template": "#if(statusKirim == 'Belum Terkirim'){# <p style='text-align:center'><button ng-click='sentToBIOSG2(dataItem)' class='k-button k-button-icontext k-grid-Cetak'><span class='k-icon k-i-upload'></span>Kirim</button></p> #} else {# <p style='text-align:center'>{{ '#: statusKirim #' }}</p> #}#"
                         }
-                    ],
-                    height: 340
+                    ]
                 };
             };
 
@@ -187,9 +186,21 @@ define(['initialize'], function (initialize) {
             $scope.createNewCalculate = function () {
                 clearPop();
 
+                $scope.startDateOptions = {
+                    disableDates: function (date) {
+                        return (date && date.getTime() > (new Date().getTime() - 1 * 24 * 60 * 60 * 1000));
+                    }
+                };
+
+                $scope.endDateOptions = {
+                    disableDates: function (date) {
+                        return (date && date.getTime() > (new Date().getTime() - 1 * 24 * 60 * 60 * 1000));
+                    }
+                };
+
                 $scope.idGridHitung = null;
-                $scope.lk.tglAwal = new Date();
-                $scope.lk.tglAkhir = new Date();
+                $scope.lk.tglAwal = new Date(new Date().getTime() - 1 * 24 * 60 * 60 * 1000);
+                $scope.lk.tglAkhir = new Date(new Date().getTime() - 1 * 24 * 60 * 60 * 1000);
 
                 $scope.popUpHitung.center().open();
                 var actions = $scope.popUpHitung.options.actions;

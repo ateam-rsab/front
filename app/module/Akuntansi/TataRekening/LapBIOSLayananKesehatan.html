@@ -33,7 +33,7 @@
     <div ng-include='"../app/module/Shared/TemplateLoading"' ng-hide="isPopup"></div>
 </div>
 
-<!-- Popup Jabatan -->
+<!-- Popup Hitung Simpan -->
 <div kendo-window="popUpHitung" k-title="'Hitung Layanan Kesehatan'" k-width="555" k-visible="false"
     k-on-open="win2visible = true" k-on-close="lk.idGridHitung = null">
     <div class="panel panel-default container_12" style="padding: 0px 10px;">
@@ -41,13 +41,13 @@
         <div class="grid_6">
             <label c-label item="item" c-label-text="Tanggal Awal"></label>
             <input style="width: 100%" k-ng-model="lk.tglAwal" kendo-datepicker placeholer="yyyy-mm-dd"
-                k-format="'yyyy-MM-dd'" />
+                k-format="'yyyy-MM-dd'" k-options="startDateOptions"/>
         </div>
         <!-- Tanggal Akhir -->
         <div class="grid_6">
             <label c-label item="item" c-label-text="Tanggal Akhir"></label>
             <input style="width: 100%" k-ng-model="lk.tglAkhir" kendo-datepicker placeholer="yyyy-mm-dd"
-                k-format="'yyyy-MM-dd'" />
+                k-format="'yyyy-MM-dd'" k-options="endDateOptions"/>
         </div>
         <!-- Action Button -->
         <div class="grid_12">
@@ -73,6 +73,10 @@
 
     .k-grid .k-grid-header .k-header {
         text-align: center;
+    }
+
+    .k-grid-content {
+        max-height: 235px;
     }
 
     button:disabled {
