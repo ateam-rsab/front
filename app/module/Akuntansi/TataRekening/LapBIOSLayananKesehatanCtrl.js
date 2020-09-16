@@ -18,7 +18,7 @@ define(['initialize'], function (initialize) {
                     toolbar: [{
                         name: "create",
                         text: "Hitung Data Layanan Kesehatan",
-                        template: '<button ng-click="createNewCalculate()" id="btnCreateNewJabatan" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Add Data</button>'
+                        template: '<button ng-click="createNewCalculate()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Add Data</button>'
                     }, "excel"],
                     excel: {
                         allPages: true,
@@ -89,7 +89,7 @@ define(['initialize'], function (initialize) {
 
                 ReportService.getListData("reporting/transaksi-bios-layanan-kesehatan?bulan=" + dateHelper.formatDate($scope.item.periode, 'YYYY-MM')).then(function (data) {
                     $scope.dataSourceIndikator = new kendo.data.DataSource({
-                        data: data.data.data,
+                        data: data.data.data.data,
                         pageSize: 5,
                         sort: [
                             { field: "tglT", dir: "asc" },
@@ -98,11 +98,7 @@ define(['initialize'], function (initialize) {
                         ]
                     });
 
-                    if (data.data.data.length == 0) {
-                        $scope.isSaldoAwal = true;
-                    } else {
-                        $scope.isSaldoAwal = false;
-                    }
+                    $scope.isSaldoAwal = data.data.data.isSaldoAwal;
 
                     $scope.isRouteLoading = false;
                 }, (error) => {
@@ -128,45 +124,11 @@ define(['initialize'], function (initialize) {
                 $scope.isPopup = false;
                 $scope.isRouteLoading = true;
 
-                $scope.selectedData = {
-                    kelas: data.kdIndikator,
-                    jml_hari: data.jmlHari,
-                    jml_pasien: data.jmlPasien,
-                    tglTransaksi: dateHelper.formatDate(data.tgl, "YYYY/MM/DD")
-                };
-
-                var dataUpdate = [];
-                var transactionData = {
-                    noRec: data.noRec
-                }
-                dataUpdate.push(transactionData);
-
-                $.post('https://training-bios2.kemenkeu.go.id/api/token', { satker: 520611, key: "SQs8eQV27oFf3czNRZqCloYyyjS8HkVI" }, function (request) {
-                    if (request.status == "MSG20004") {
-                        $scope.token = request.token;
-                        $.ajax({
-                            url: 'https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/prod',
-                            type: 'post',
-                            data: $scope.selectedData,
-                            headers: {
-                                token: $scope.token
-                            },
-                            dataType: 'json',
-                            success: function (data) {
-                                console.info(data);
-                            }
-                        });
-                        ManageSdmNew.saveData(dataUpdate, "pelayanan/save-transaksi-indikator-bios").then(function (e) {
-                            $scope.isRouteLoading = false;
-                            $scope.loadData();
-                        }, (error) => {
-                            $scope.isRouteLoading = false;
-                        });
-                    } else {
-                        $scope.isRouteLoading = false;
-                        messageContainer.error(request.message);
-                        return;
-                    }
+                ManageSdmNew.getListData("integrasi/send-to-bios?bulan=" + dateHelper.formatDate(data.tglT, "YYYY-MM") + "&noRec=" + data.noRec + "&jenisIndikator=1").then(function () {
+                    $scope.isRouteLoading = false;
+                    $scope.loadData();
+                }, (error) => {
+                    $scope.isRouteLoading = false;
                 });
             };
 
@@ -174,53 +136,17 @@ define(['initialize'], function (initialize) {
                 $scope.isPopup = false;
                 $scope.isRouteLoading = true;
 
-                var dataSource = $scope.dataSourceIndikator.options.data;
-                if (dataSource != undefined) {
-                    $.post('https://training-bios2.kemenkeu.go.id/api/token', { satker: 520611, key: "SQs8eQV27oFf3czNRZqCloYyyjS8HkVI" }, function (request) {
-                        if (request.status == "MSG20004") {
-                            $scope.token = request.token;
-                            var dataUpdate = []
-                            for (let i = 0; i < dataSource.length; i++) {
-                                if (dataSource[i].statusKirim == "Belum Terkirim") {
-                                    var transactionData = {}
-                                    transactionData = {
-                                        noRec: dataSource[i].noRec
-                                    }
-                                    dataUpdate.push(transactionData);
+                $scope.data = $scope.dataSourceIndikator.options.data;
 
-                                    $scope.objSent = {
-                                        "kelas": dataSource[i].kdIndikator,
-                                        "jml_hari": dataSource[i].jmlHari,
-                                        "jml_pasien": dataSource[i].jmlPasien,
-                                        "tglTransaksi": dateHelper.formatDate(dataSource[i].tgl, "YYYY/MM/DD")
-                                    }
-                                    $.ajax({
-                                        url: 'https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/prod',
-                                        type: 'post',
-                                        data: $scope.objSent,
-                                        headers: {
-                                            token: $scope.token
-                                        },
-                                        dataType: 'json',
-                                        success: function (data) {
-                                            console.info(data);
-                                        }
-                                    });
-                                }
-                            }
-                            ManageSdmNew.saveData(dataUpdate, "pelayanan/save-transaksi-indikator-bios").then(function (e) {
-                                $scope.isRouteLoading = false;
-                                $scope.loadData();
-                            }, (error) => {
-                                $scope.isRouteLoading = false;
-                            });
-                        } else {
-                            $scope.isRouteLoading = false;
-                            messageContainer.error(request.message);
-                            return;
-                        }
-                    });
-                }
+                ManageSdmNew.getListData("integrasi/send-to-bios?bulan=" + dateHelper.formatDate($scope.data[0].tglT, "YYYY-MM") + "&jenisIndikator=1").then(function (response) {
+                    $scope.isRouteLoading = false;
+                    if (response.data.data.length == 0) {
+                        toastr.info("Data transaksi bulan " + dateHelper.formatDate($scope.data[0].tglT, "MM/YYYY") + " sudah terkirim!")
+                    }
+                    $scope.loadData();
+                }, (error) => {
+                    $scope.isRouteLoading = false;
+                });
             }
 
             $scope.createNewCalculate = function () {
