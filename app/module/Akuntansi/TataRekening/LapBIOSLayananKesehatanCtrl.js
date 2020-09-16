@@ -128,6 +128,7 @@ define(['initialize'], function (initialize) {
                     $scope.isRouteLoading = false;
                     $scope.loadData();
                 }, (error) => {
+                    messageContainer.error(error.statusText);
                     $scope.isRouteLoading = false;
                 });
             };
@@ -145,6 +146,7 @@ define(['initialize'], function (initialize) {
                     }
                     $scope.loadData();
                 }, (error) => {
+                    messageContainer.error(error.statusText);
                     $scope.isRouteLoading = false;
                 });
             }
