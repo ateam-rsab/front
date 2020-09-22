@@ -139,6 +139,13 @@ define(['initialize'], function (initialize) {
                     if (response.data.data.length == 0) {
                         toastr.info("Data transaksi bulan " + dateHelper.formatDate($scope.data[0].tglT, "MM/YYYY") + " sudah terkirim!")
                     }
+                    for (let i = 0; i < response.data.data.length; i++) {
+                        if (!response.data.data[i].status) {
+                            toastr.error("Too many requests!")
+                            $scope.loadData();
+                            return        
+                        }
+                    }
                     $scope.loadData();
                 }, (error) => {
                     messageContainer.error(error.statusText);
