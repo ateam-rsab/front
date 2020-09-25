@@ -60,25 +60,25 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.savePresensi = function () {
-                $.get('http://www.geoplugin.net/json.gp', function (data) {
-                    $scope.dataDevice = JSON.parse(data);
-                });
-
                 getLocation();
 
-                let data = {
-                    pegawai: {
-                        id: $scope.dataPegawaiLogin.id
-                    },
-                    processtatus: $scope.data.isWFH ? 1 : 0,
-                    ip_addr: $scope.dataDevice.geoplugin_request,
-                    latitude: $scope.latitude,
-                    longitude: $scope.longitude,
-                    akurasi: $scope.akurasi
-                }
-                ManageSdmNew.saveData(data, 'sdm/save-presensi-pegawai/').then((res) => {
-                    getDataHistory();
-                })
+                $scope.isRouteLoading = true;
+                $.get('http://www.geoplugin.net/json.gp', function (req) {
+                    $scope.dataDevice = JSON.parse(req);
+                    let data = {
+                        pegawai: {
+                            id: $scope.dataPegawaiLogin.id
+                        },
+                        processtatus: $scope.data.isWFH ? 1 : 0,
+                        ip_addr: $scope.dataDevice.geoplugin_request,
+                        latitude: $scope.latitude,
+                        longitude: $scope.longitude,
+                        akurasi: $scope.akurasi
+                    }
+                    ManageSdmNew.saveData(data, 'sdm/save-presensi-pegawai/').then((res) => {
+                        getDataHistory();
+                    })
+                });
             }
 
             var x = document.getElementById("map");

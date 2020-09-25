@@ -27,7 +27,7 @@ define(['initialize'], function (initialize) {
                     excelExport: function (e) {
                         var sheet = e.workbook.sheets[0];
                         sheet.frozenRows = 2;
-                        sheet.mergedCells = ["A1:G1"];
+                        sheet.mergedCells = ["A1:F1"];
                         sheet.name = dateHelper.formatDate($scope.item.periode, 'MMM YYYY');
                         var myHeaders = [{
                             value: "Data Jumlah Pasien Periode " + dateHelper.formatDate($scope.periode, 'MMM YYYY'),
@@ -123,6 +123,7 @@ define(['initialize'], function (initialize) {
                     $scope.isRouteLoading = false;
                     $scope.loadData();
                 }, (error) => {
+                    messageContainer.error(error.statusText);
                     $scope.isRouteLoading = false;
                 });
             };
@@ -138,8 +139,16 @@ define(['initialize'], function (initialize) {
                     if (response.data.data.length == 0) {
                         toastr.info("Data transaksi bulan " + dateHelper.formatDate($scope.data[0].tglT, "MM/YYYY") + " sudah terkirim!")
                     }
+                    for (let i = 0; i < response.data.data.length; i++) {
+                        if (!response.data.data[i].status) {
+                            toastr.error("Too many requests!")
+                            $scope.loadData();
+                            return        
+                        }
+                    }
                     $scope.loadData();
                 }, (error) => {
+                    messageContainer.error(error.statusText);
                     $scope.isRouteLoading = false;
                 });
             }

@@ -71,7 +71,7 @@ define(['initialize'], function (initialize) {
 									// localStorage.clear();
 									// $window.location.replace('Logout');
 									$rootScope.doLogout();
-								}, 5000);
+								}, 500);
 								
 							// }
 							// $scope.isLogout = e.data.messages['label-success'] === "SUKSES" ? true : false;
