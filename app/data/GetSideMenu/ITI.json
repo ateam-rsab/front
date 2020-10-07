@@ -2420,6 +2420,10 @@
                     {
                         "name": "Data Peserta Didik",
                         "link": "#/DataPesertaDidik"
+                    },
+                    {
+                        "name": "Data Dokter Tamu",
+                        "link": "#/DataDokterTamu"
                     }
                 ]
             },
