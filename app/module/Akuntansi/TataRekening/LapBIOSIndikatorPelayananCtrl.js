@@ -1,6 +1,6 @@
 define(['initialize'], function (initialize) {
     'use strict';
-    initialize.controller('LapBIOSLayananKesehatanCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'ReportService', 'DateHelper', 'FindPegawai', 'FindSdm', '$timeout', '$mdDialog',
+    initialize.controller('LapBIOSIndikatorPelayananCtrl', ['$q', '$rootScope', '$scope', 'ModelItem', '$state', 'ManageSdm', 'ManageSdmNew', 'ReportService', 'DateHelper', 'FindPegawai', 'FindSdm', '$timeout', '$mdDialog',
         function ($q, $rootScope, $scope, ModelItem, $state, ManageSdm, ManageSdmNew, ReportService, dateHelper, FindPegawai, FindSdm, $timeout, $mdDialog) {
             $scope.dataVOloaded = true;
             $scope.enableBtnSimpanHitung = true;
@@ -19,20 +19,20 @@ define(['initialize'], function (initialize) {
                 $scope.gridIndikator = {
                     toolbar: [{
                         name: "create",
-                        text: "Hitung Data Layanan Kesehatan",
+                        text: "Hitung Data Indikator Pelayanan",
                         template: '<button ng-click="createNewCalculate()" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Add Data</button>'
                     }, "excel"],
                     excel: {
                         allPages: true,
-                        fileName: "RSAB HK Export Data Layanan Kesehatan - " + dateHelper.formatDate(new Date(), 'DD-MMM-YYYY HH:mm:ss') + ".xlsx"
+                        fileName: "RSAB HK Export Data Indikator Pelayanan - " + dateHelper.formatDate(new Date(), 'DD-MMM-YYYY HH:mm:ss') + ".xlsx"
                     },
                     excelExport: function (e) {
                         var sheet = e.workbook.sheets[0];
                         sheet.frozenRows = 2;
-                        sheet.mergedCells = ["A1:G1"];
+                        sheet.mergedCells = ["A1:F1"];
                         sheet.name = dateHelper.formatDate($scope.item.periode, 'MMM YYYY');
                         var myHeaders = [{
-                            value: "Data Layanan Kesehatan Periode " + dateHelper.formatDate($scope.periode, 'MMM YYYY'),
+                            value: "Data Indikator Pelayanan Periode " + dateHelper.formatDate($scope.periode, 'MMM YYYY'),
                             fontSize: 14,
                             textAlign: "center",
                             background: "#ffffff",
@@ -51,14 +51,9 @@ define(['initialize'], function (initialize) {
 
                         },
                         {
-                            "field": "jmlHari",
-                            "title": "Jumlah Hari Rawat", "width": "150px",
-                            "template": "<p style='text-align:right'>{{ '#: jmlHari #' }}</p>"
-                        },
-                        {
-                            "field": "jmlPasien",
-                            "title": "Jumlah Pasien", "width": "150px",
-                            "template": "<p style='text-align:right'>{{ '#: jmlPasien #' }}</p>"
+                            "field": "jumlah",
+                            "title": "Jumlah", "width": "150px",
+                            "template": "<p style='text-align:right'>{{ '#: jumlah #' }}</p>"
                         },
                         {
                             "field": "tglTransaksi",
@@ -89,7 +84,7 @@ define(['initialize'], function (initialize) {
                     $scope.periode = new Date();
                 }
 
-                ReportService.getListData("reporting/transaksi-bios-layanan-kesehatan?bulan=" + dateHelper.formatDate($scope.item.periode, 'YYYY-MM')).then(function (data) {
+                ReportService.getListData("reporting/transaksi-bios-indikator-lain?bulan=" + dateHelper.formatDate($scope.item.periode, 'YYYY-MM') + "&jenisIndikator=6").then(function (data) {
                     $scope.dataSourceIndikator = new kendo.data.DataSource({
                         data: data.data.data.data,
                         pageSize: 10,
@@ -126,7 +121,7 @@ define(['initialize'], function (initialize) {
                 $scope.isPopup = false;
                 $scope.isRouteLoading = true;
 
-                ManageSdmNew.getListData("integrasi/send-to-bios?bulan=" + dateHelper.formatDate(data.tglT, "YYYY-MM") + "&noRec=" + data.noRec + "&jenisIndikator=1").then(function () {
+                ManageSdmNew.getListData("integrasi/send-to-bios?bulan=" + dateHelper.formatDate(data.tglT, "YYYY-MM") + "&noRec=" + data.noRec + "&jenisIndikator=6").then(function () {
                     $scope.isRouteLoading = false;
                     $scope.loadData();
                 }, (error) => {
@@ -149,10 +144,17 @@ define(['initialize'], function (initialize) {
 
                     $scope.data = $scope.dataSourceIndikator.options.data;
 
-                    ManageSdmNew.getListData("integrasi/send-to-bios?bulan=" + dateHelper.formatDate($scope.data[0].tglT, "YYYY-MM") + "&jenisIndikator=1").then(function (response) {
+                    ManageSdmNew.getListData("integrasi/send-to-bios?bulan=" + dateHelper.formatDate($scope.data[0].tglT, "YYYY-MM") + "&jenisIndikator=6").then(function (response) {
                         $scope.isRouteLoading = false;
                         if (response.data.data.length == 0) {
                             toastr.info("Data transaksi bulan " + dateHelper.formatDate($scope.data[0].tglT, "MM/YYYY") + " sudah terkirim!")
+                        }
+                        for (let i = 0; i < response.data.data.length; i++) {
+                            if (!response.data.data[i].status) {
+                                toastr.error("Too many requests!")
+                                $scope.loadData();
+                                return
+                            }
                         }
                         $scope.loadData();
                     }, (error) => {
@@ -225,7 +227,7 @@ define(['initialize'], function (initialize) {
                             $scope.isPopup = false;
                             $scope.isRouteLoading = true;
 
-                            ManageSdmNew.saveDataNoJson("pelayanan/hitung-simpan-bios-layanan-kesehatan?tglAwal=" + tanggal1 + "&tglAkhir=" + tanggal2).then(function (e) {
+                            ManageSdmNew.saveDataNoJson("pelayanan/hitung-simpan-bios-indikator-pelayanan?tglAwal=" + tanggal1 + "&tglAkhir=" + tanggal2).then(function (e) {
                                 $scope.isRouteLoading = false;
                                 $scope.loadData();
                             }, (error) => {
@@ -235,7 +237,7 @@ define(['initialize'], function (initialize) {
                             // error function
                         });
                     } else {
-                        ManageSdmNew.saveDataNoJson("pelayanan/hitung-simpan-bios-layanan-kesehatan?tglAwal=" + tanggal1 + "&tglAkhir=" + tanggal2).then(function (e) {
+                        ManageSdmNew.saveDataNoJson("pelayanan/hitung-simpan-bios-indikator-pelayanan?tglAwal=" + tanggal1 + "&tglAkhir=" + tanggal2).then(function (e) {
                             if (e.data.data.data.length == 0) {
                                 messageContainer.error("Tidak diperkenankan untuk menghitung kembali saldo awal!");
                             }

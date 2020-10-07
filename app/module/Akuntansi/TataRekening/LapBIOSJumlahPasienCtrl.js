@@ -7,6 +7,8 @@ define(['initialize'], function (initialize) {
             $scope.item = {};
             $scope.lk = {};
             $scope.now = new Date();
+            $scope.max1 = new Date();
+            $scope.max1.setDate($scope.max1.getDate() - 1);
             $scope.yearSelected = {
                 start: "year",
                 depth: "year",
@@ -49,9 +51,9 @@ define(['initialize'], function (initialize) {
 
                         },
                         {
-                            "field": "jmlPasien",
+                            "field": "jumlah",
                             "title": "Jumlah", "width": "150px",
-                            "template": "<p style='text-align:right'>{{ '#: jmlPasien #' }}</p>"
+                            "template": "<p style='text-align:right'>{{ '#: jumlah #' }}</p>"
                         },
                         {
                             "field": "tglTransaksi",
@@ -82,10 +84,10 @@ define(['initialize'], function (initialize) {
                     $scope.periode = new Date();
                 }
 
-                ReportService.getListData("reporting/transaksi-bios-jumlah-pasien?bulan=" + dateHelper.formatDate($scope.item.periode, 'YYYY-MM')).then(function (data) {
+                ReportService.getListData("reporting/transaksi-bios-indikator-lain?bulan=" + dateHelper.formatDate($scope.item.periode, 'YYYY-MM') + "&jenisIndikator=5").then(function (data) {
                     $scope.dataSourceIndikator = new kendo.data.DataSource({
                         data: data.data.data.data,
-                        pageSize: 7,
+                        pageSize: 10,
                         sort: [
                             { field: "tglT", dir: "asc" },
                             { field: "tglU", dir: "desc" },
@@ -128,28 +130,39 @@ define(['initialize'], function (initialize) {
                 });
             };
 
-            $scope.sentAllToBIOSG2 = function () {
-                $scope.isPopup = false;
-                $scope.isRouteLoading = true;
+            $scope.sentAllToBIOSG2 = function (e) {
+                var confirm = $mdDialog.confirm()
+                    .title('Konfirmasi Batasan Pengiriman Data')
+                    .textContent('Pengiriman data hanya untuk 50 data pertama')
+                    .ariaLabel('Lucky day')
+                    .targetEvent(e)
+                    .ok('OK')
+                    .cancel('Cancel');
+                $mdDialog.show(confirm).then(function () {
+                    $scope.isPopup = false;
+                    $scope.isRouteLoading = true;
 
-                $scope.data = $scope.dataSourceIndikator.options.data;
+                    $scope.data = $scope.dataSourceIndikator.options.data;
 
-                ManageSdmNew.getListData("integrasi/send-to-bios?bulan=" + dateHelper.formatDate($scope.data[0].tglT, "YYYY-MM") + "&jenisIndikator=5").then(function (response) {
-                    $scope.isRouteLoading = false;
-                    if (response.data.data.length == 0) {
-                        toastr.info("Data transaksi bulan " + dateHelper.formatDate($scope.data[0].tglT, "MM/YYYY") + " sudah terkirim!")
-                    }
-                    for (let i = 0; i < response.data.data.length; i++) {
-                        if (!response.data.data[i].status) {
-                            toastr.error("Too many requests!")
-                            $scope.loadData();
-                            return        
+                    ManageSdmNew.getListData("integrasi/send-to-bios?bulan=" + dateHelper.formatDate($scope.data[0].tglT, "YYYY-MM") + "&jenisIndikator=5").then(function (response) {
+                        $scope.isRouteLoading = false;
+                        if (response.data.data.length == 0) {
+                            toastr.info("Data transaksi bulan " + dateHelper.formatDate($scope.data[0].tglT, "MM/YYYY") + " sudah terkirim!")
                         }
-                    }
-                    $scope.loadData();
-                }, (error) => {
-                    messageContainer.error(error.statusText);
-                    $scope.isRouteLoading = false;
+                        for (let i = 0; i < response.data.data.length; i++) {
+                            if (!response.data.data[i].status) {
+                                toastr.error("Too many requests!")
+                                $scope.loadData();
+                                return
+                            }
+                        }
+                        $scope.loadData();
+                    }, (error) => {
+                        messageContainer.error(error.statusText);
+                        $scope.isRouteLoading = false;
+                    });
+                }, function () {
+                    // error function
                 });
             }
 
@@ -157,20 +170,14 @@ define(['initialize'], function (initialize) {
                 clearPop();
 
                 $scope.startDateOptions = {
-                    disableDates: function (date) {
-                        return (date && date.getTime() > (new Date().getTime() - 1 * 24 * 60 * 60 * 1000));
-                    }
+                    max: $scope.max1
                 };
 
                 $scope.endDateOptions = {
-                    disableDates: function (date) {
-                        return (date && date.getTime() > (new Date().getTime() - 1 * 24 * 60 * 60 * 1000));
-                    }
+                    max: $scope.max1
                 };
 
                 $scope.idGridHitung = null;
-                $scope.lk.tglAwal = new Date(new Date().getTime() - 1 * 24 * 60 * 60 * 1000);
-                $scope.lk.tglAkhir = new Date(new Date().getTime() - 1 * 24 * 60 * 60 * 1000);
 
                 $scope.popUpHitung.center().open();
                 var actions = $scope.popUpHitung.options.actions;
@@ -182,8 +189,8 @@ define(['initialize'], function (initialize) {
 
             function clearPop() {
                 $scope.id = "";
-                $scope.lk.tglAwal = null;
-                $scope.lk.tglAkhir = null;
+                $scope.lk.tglAwal = undefined;
+                $scope.lk.tglAkhir = undefined;
             }
 
             $scope.batal = function () {
@@ -214,8 +221,8 @@ define(['initialize'], function (initialize) {
                             .textContent('Saldo awal terhitung dari ' + dateHelper.formatDate($scope.lk.tglAwal, "DD/MM/YYYY") + " 00:00:00 - " + dateHelper.formatDate($scope.lk.tglAkhir, "DD/MM/YYYY") + " 23:59:59")
                             .ariaLabel('Lucky day')
                             .targetEvent(e)
-                            .ok('Ya')
-                            .cancel('Tidak');
+                            .ok('OK')
+                            .cancel('Cancel');
                         $mdDialog.show(confirm).then(function () {
                             $scope.isPopup = false;
                             $scope.isRouteLoading = true;

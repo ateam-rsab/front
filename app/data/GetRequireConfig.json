@@ -1047,7 +1047,7 @@
     {
       "nameDep": "AgamaCtrl",
       "urlDep": "module/Master/AgamaCtrl"
-    }, 
+    },
     {
       "nameDep": "UserDiskonCtrl",
       "urlDep": "module/Master/UserDiskonCtrl"
@@ -4095,6 +4095,10 @@
     {
       "nameDep": "RekamDataPesertaDidikCtrl",
       "urlDep": "module/SDM/RekamDataPesertaDidikCtrl"
+    },
+    {
+      "nameDep": "RekamDataDokterTamuCtrl",
+      "urlDep": "module/SDM/RekamDataDokterTamuCtrl"
     },
     {
       "nameDep": "MutasiPegawaiCtrl",
@@ -8235,6 +8239,26 @@
     {
       "nameDep": "LapBIOSJumlahPasienCtrl",
       "urlDep": "module/Akuntansi/TataRekening/LapBIOSJumlahPasienCtrl"
+    },
+    {
+      "nameDep": "LapBIOSIndikatorPelayananCtrl",
+      "urlDep": "module/Akuntansi/TataRekening/LapBIOSIndikatorPelayananCtrl"
+    },
+    {
+      "nameDep": "LapBIOSIndikatorLainnyaCtrl",
+      "urlDep": "module/Akuntansi/TataRekening/LapBIOSIndikatorLainnyaCtrl"
+    },
+    {
+      "nameDep": "LapBIOSPenerimaanKeuanganCtrl",
+      "urlDep": "module/Akuntansi/TataRekening/LapBIOSPenerimaanKeuanganCtrl"
+    },
+    {
+      "nameDep": "LapBIOSPengeluaranKeuanganCtrl",
+      "urlDep": "module/Akuntansi/TataRekening/LapBIOSPengeluaranKeuanganCtrl"
+    },
+    {
+      "nameDep": "LapBIOSSaldoKeuanganCtrl",
+      "urlDep": "module/Akuntansi/TataRekening/LapBIOSSaldoKeuanganCtrl"
     },
     {
       "nameDep": "MenuRehabilitasiCtrl",
