@@ -37,8 +37,6 @@ define(['initialize'], function (initialize) {
                     ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true&order=namaLengkap:asc", true),
                     ManageSdm.getOrderList("service/list-generic/?view=Jabatan&select=id,namaJabatan&criteria=statusEnabled&values=true&order=namaJabatan:asc", true),
                     ManageSdm.getOrderList("service/list-generic/?view=JenisPegawai&select=id,jenisPegawai&criteria=statusEnabled&values=true&order=jenisPegawai:asc", true),
-                    ManageSdm.getOrderList("service/list-generic/?view=KualifikasiJurusan&select=id,kualifikasiJurusan&criteria=statusEnabled&values=true&order=kualifikasiJurusan:asc", true),
-                    ManageSdm.getOrderList("service/list-generic/?view=Pendidikan&select=id,namaPendidikan&criteria=statusEnabled&values=true&order=namaPendidikan:asc", true),
                     ManageSdm.getOrderList("service/list-generic/?view=Suku&select=id,suku&criteria=statusEnabled&values=true&order=suku:asc", true),
                     ManageSdm.getOrderList("service/list-generic/?view=GolonganDarah&select=id,golonganDarah&criteria=statusEnabled&values=true&order=golonganDarah:asc", true),
                     ManageSdm.getOrderList("service/list-generic/?view=JenisJabatan&select=id,jenisJabatan&criteria=statusEnabled&values=true&order=jenisJabatan:asc", true),
@@ -71,7 +69,7 @@ define(['initialize'], function (initialize) {
                     var tempKategoryPegawai = res[2].data;
                     $scope.ListKategoriPegawai = [];
                     tempKategoryPegawai.forEach(function (el) {
-                        if (el.id == '17') {
+                        if (el.id == '19') {
                             var dataTemp = {
                                 id: el.id,
                                 kategoryPegawai: el.kategoryPegawai
@@ -111,7 +109,7 @@ define(['initialize'], function (initialize) {
                     var tempJenisPegawai = res[9].data;
                     $scope.ListJenisPegawai = [];
                     tempJenisPegawai.forEach(function (el) {
-                        if (el.id == '2') {
+                        if (el.id == '1') {
                             var dataTemp = {
                                 id: el.id,
                                 jenisPegawai: el.jenisPegawai
@@ -120,17 +118,10 @@ define(['initialize'], function (initialize) {
                         }
                     });
 
-                    if ($state.params.idPegawai != "") {
-                        $scope.ListKualifikasiJurusan = res[10].data;
-                    } else {
-                        $scope.ListKualifikasiJurusan = [];
-                    }
-
-                    $scope.ListPendidikan = res[11].data;
-                    $scope.ListSuku = res[12].data.splice(1);
-                    $scope.ListGolDarah = res[13].data.splice(1);
-                    $scope.listJenisJabatan = res[14].data;
-                    $scope.listOfNegara = res[15].data;
+                    $scope.ListSuku = res[10].data.splice(1);
+                    $scope.ListGolDarah = res[11].data.splice(1);
+                    $scope.listJenisJabatan = res[12].data;
+                    $scope.listOfNegara = res[13].data;
 
                     getDataPegawai($state.params.idPegawai);
 
@@ -333,15 +324,6 @@ define(['initialize'], function (initialize) {
                             }
 
                             $scope.isRouteLoading = false;
-                            if ($scope.item.pendidikan) {
-                                ManageSdmNew.getListData("pegawai/get-list-jurusan-by-pendidikan?pendidikanId=" + $scope.item.pendidikan.id, true).then(function (res) {
-                                    if (res.data.data.dataFound) {
-                                        $scope.ListKualifikasiJurusan = res.data.data.data;
-                                    } else {
-                                        $scope.ListKualifikasiJurusan = [];
-                                    }
-                                });
-                            }
                         }
                     }, function (error) {
                         $scope.isRouteLoading = false;
@@ -1167,22 +1149,6 @@ define(['initialize'], function (initialize) {
                 });
             }
 
-            $scope.getListJurusan = function (id) {
-                $scope.item.kualifikasiJurusan = null;
-                $("#idComboDataJurusan").data("kendoComboBox").value("");
-                if (id == undefined) {
-                    $scope.ListKualifikasiJurusan = [];
-                } else {
-                    ManageSdmNew.getListData("pegawai/get-list-jurusan-by-pendidikan?pendidikanId=" + id, true).then(function (res) {
-                        if (res.data.data.dataFound) {
-                            $scope.ListKualifikasiJurusan = res.data.data.data;
-                        } else {
-                            $scope.ListKualifikasiJurusan = [];
-                        }
-                    });
-                }
-            };
-
             $scope.batalRiwayatJabatan = function () {
                 clearField();
                 $scope.popUpRiwayat.close();
@@ -1494,7 +1460,6 @@ define(['initialize'], function (initialize) {
             // #endregion Riwayat Pendidikan
 
             // #region History Perubahan Data
-
             var initRiwayatPerubahandData = function () {
                 $scope.dataHistoriPegawai = [];
                 $scope.optHistoriPegawai = {

@@ -317,26 +317,6 @@
                                 k-data-text-field="'jenisPegawai'" k-data-value-field="'id'" k-filter="'contains'"
                                 k-auto-bind="false" ng-disabled="isSimpan" k-data-source="ListJenisPegawai" />
                         </div>
-                        <!-- Pendidikan Terakhir  -->
-                        <div class="grid_4" style="margin: 10px 0 0 0;">
-                            <label c-label item="item" c-label-text="PendidikanTerakhir"></label>
-                        </div>
-                        <div class="grid_8">
-                            <input style="width: 100%;" kendo-combo-box k-ng-model="item.pendidikan"
-                                k-data-text-field="'namaPendidikan'" k-data-value-field="'id'" k-filter="'contains'"
-                                k-auto-bind="false" ng-disabled="isSimpan" k-data-source="ListPendidikan"
-                                k-on-change="getListJurusan(item.pendidikan.id)" />
-                        </div>
-                        <!-- Kualifikasi Jurusan  -->
-                        <div class="grid_4" style="margin: 10px 0 0 0;">
-                            <label c-label item="item" c-label-text="KualifikasiJurusan"></label>
-                        </div>
-                        <div class="grid_8">
-                            <input style="width: 100%;" kendo-combo-box id="idComboDataJurusan"
-                                k-ng-model="item.kualifikasiJurusan" k-data-text-field="'kualifikasiJurusan'"
-                                k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
-                                ng-disabled="isSimpan" k-data-source="ListKualifikasiJurusan" />
-                        </div>
                     </div>
                     <div class="grid_6">
                         <!-- Periode -->
@@ -411,7 +391,7 @@
                     <fieldset class="borderBox containerBorderBox" ng-show="isAtasan">
                         <legend>
                             <strong>
-                                <span style="font-size: 20px;">Dokter Penanggung Jawab</span>
+                                <span style="font-size: 20px;">Dokter Yang Digantikan</span>
                             </strong>
                         </legend>
                         <div id="grid" kendo-grid options="gridJabatanInternal" data-source="dataSourceJabatanInternal">
