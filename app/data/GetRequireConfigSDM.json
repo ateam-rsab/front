@@ -1,46 +1,46 @@
 {
   "path": [
     {
-        "nameDep": "DaftarJadwalSeleksiCtrl",
-        "urlDep": "module/SDM/DaftarJadwalSeleksiCtrl"
+      "nameDep": "DaftarJadwalSeleksiCtrl",
+      "urlDep": "module/SDM/DaftarJadwalSeleksiCtrl"
     },
     {
-        "nameDep": "UnitLaporanCtrl",
-        "urlDep": "module/SDM/UnitLaporanCtrl"
+      "nameDep": "UnitLaporanCtrl",
+      "urlDep": "module/SDM/UnitLaporanCtrl"
     },
-	{
+    {
       "nameDep": "TypeProfileCtrl",
       "urlDep": "module/SDM/TypeProfileCtrl"
     },
-	{
+    {
       "nameDep": "AlamatsCtrl",
       "urlDep": "module/SDM/AlamatsCtrl"
     },
-	{
+    {
       "nameDep": "AsalCtrl",
       "urlDep": "module/SDM/AsalCtrl"
     },
-	{
+    {
       "nameDep": "AwardsCtrl",
       "urlDep": "module/SDM/AwardsCtrl"
     },
-	{
+    {
       "nameDep": "BankAccountCtrl",
       "urlDep": "module/SDM/BankAccountCtrl"
     },
-	{
+    {
       "nameDep": "EventCtrl",
       "urlDep": "module/SDM/EventCtrl"
     },
-	{
+    {
       "nameDep": "ProfilHistoryCtrl",
       "urlDep": "module/SDM/ProfilHistoryCtrl"
     },
-	{
+    {
       "nameDep": "MasterTes1Ctrl",
       "urlDep": "module/SDM/MasterTes1Ctrl"
     },
-	{
+    {
       "nameDep": "MasterTekoCtrl",
       "urlDep": "module/SDM/MasterTekoCtrl"
     },
@@ -95,6 +95,10 @@
     {
       "nameDep": "DataPegawaiCtrl",
       "urlDep": "module/SDM/DataPegawaiCtrl"
+    },
+    {
+      "nameDep": "DataDokterTamuCtrl",
+      "urlDep": "module/SDM/DataDokterTamuCtrl"
     },
     {
       "nameDep": "DataFormasiJabatanCtrl",
@@ -447,7 +451,7 @@
     {
       "nameDep": "MasterDokumenCtrl",
       "urlDep": "module/SDM/MasterDokumenCtrl"
-    },    
+    },
     {
       "nameDep": "LaporanPesertaDidikCtrl",
       "urlDep": "module/SDM/LaporanPesertaDidikCtrl"
