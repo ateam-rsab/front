@@ -39742,6 +39742,10 @@
       {
         "module": "LogistikServicePhp",
         "define": "LogistikServicePhp"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
       }
     ]
   },
