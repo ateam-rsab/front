@@ -1,10 +1,10 @@
 define([], function () {
     'use strict';
-    var baseURLFrontend = window.location.hostname === "192.168.12.3" ? "http://192.168.12.3" : "http://172.16.99.155",
+    var baseURLFrontend = window.location.hostname === "192.168.12.3" ? "http://192.168.12.3" : "http://172.16.99.88",
         portFrontend = window.location.hostname === "192.168.12.3" ? '4444' :'4444',
         
         baseURLPhp = 'http://192.168.12.3',
-        portPhp = '2222',
+        portPhp = '5555',
 
         baseURLJava = 'http://192.168.12.3',
         portJava = '8080',

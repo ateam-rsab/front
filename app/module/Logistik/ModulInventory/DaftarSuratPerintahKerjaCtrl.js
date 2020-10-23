@@ -56,7 +56,7 @@ define(['initialize'], function (initialize) {
                     $scope.isRouteLoading = false;
                     for (var i = 0; i < dat.data.daftar.length; i++) {
                         dat.data.daftar[i].no = i + 1;
-                        dat.data.daftar[i].noverifikasi  = dat.data.daftar[i].noverifikasi ? dat.data.daftar[i].noverifikasi : "-";
+                        dat.data.daftar[i].noverifikasi = dat.data.daftar[i].noverifikasi ? dat.data.daftar[i].noverifikasi : "-";
                         dat.data.daftar[i].noorderhps = dat.data.daftar[i].noorderhps ? dat.data.daftar[i].noorderhps : "-";
                         // var tanggal = $scope.now;
                         // var tanggalLahir = new Date(dat.data.daftar[i].tgllahir);
@@ -66,7 +66,7 @@ define(['initialize'], function (initialize) {
                     }
                     $scope.dataGrid = new kendo.data.DataSource({
                         data: dat.data.daftar,
-                        pageSize:10
+                        pageSize: 10
                     })
                     pegawaiUser = dat.data.datalogin
                 });
@@ -98,8 +98,8 @@ define(['initialize'], function (initialize) {
                     return;
                 }
 
-                if(!$scope.dataSelected.noverifikasi) {
-                    toastr.warning('Data belum dikonfirmasi');
+                if ($scope.dataSelected.noverifikasi === "-") {
+                    toastr.warning("Harap Konfirmasi Bagian UPK");
                     return;
                 }
                 // if ($scope.dataSelected.noorderhps == undefined) {
@@ -192,7 +192,7 @@ define(['initialize'], function (initialize) {
                     return;
                 }
 
-                window.open('http://192.168.12.4:7777/service-reporting/lap-upk/nores=' + $scope.dataSelected.norec);
+                window.open('http://192.168.12.4:7777/service-reporting/lap-upk/' + $scope.dataSelected.norec);
             }
 
             $scope.pph = function () {
@@ -225,7 +225,7 @@ define(['initialize'], function (initialize) {
                     return;
                 }
 
-                if($scope.dataSelected.noverifikasi === "-") {
+                if ($scope.dataSelected.noverifikasi === "-") {
                     toastr.warning("Harap Konfirmasi Bagian UPK");
                     return;
                 }
@@ -254,7 +254,7 @@ define(['initialize'], function (initialize) {
                 // noOrder:'EditTerima'
                 // });
                 // $state.go('KegiatanSPK')
-                
+
                 // var chacePeriode = {
                 //     0: $scope.dataSelected.norec,
                 //     1: 'EditTerima',
@@ -364,7 +364,7 @@ define(['initialize'], function (initialize) {
                 {
                     "field": "noorderhps",
                     "title": "No. SPPB",
-                    "width": "100px", 
+                    "width": "100px",
                     // "template": '# if( noorderhps==null) {#<span class="center">-<span># } #',
                 },
                 {
@@ -543,6 +543,11 @@ define(['initialize'], function (initialize) {
                     dataSource: new kendo.data.DataSource({
                         data: dataItem.details
                     }),
+                    toolbar: [{
+                        text: "export",
+                        name: "Export detail",
+                        template: '<button ng-click="exportDetail(dataItem)" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
+                    }],
                     columns: [{
                             "field": "tglkebutuhan",
                             "title": "Tanggal Kebutuhan",
@@ -570,13 +575,13 @@ define(['initialize'], function (initialize) {
                             "width": "30px",
                         },
                         {
-                            "field": "qtyblmsppb",
+                            "field": "qtysppb",
                             "title": "Qty",
                             "width": "50px",
                             // "template": "<span class='style-right'>{{qtyblmsppb ? qtyblmsppb : 0}}</span>"
                         },
                         {
-                            "field": "qtyprodukkonfirmasi",
+                            "field": "qtyproduk",
                             "title": "Qty Confirm",
                             "width": "50px",
                         },
@@ -584,41 +589,174 @@ define(['initialize'], function (initialize) {
                             "field": "hargasatuan",
                             "title": "Harga Satuan",
                             "width": "40px",
-                            "template": "<span class='style-right'>{{formatRupiah('#: hargasatuan #', '')}}</span>"
+                            "template": "<span class='style-right'>{{formatRupiah('#: hargasatuan ? hargasatuan : 0 #', '')}}</span>"
                         },
                         {
                             "field": "total",
                             "title": "Total",
                             "width": "50px",
-                            "template": "<span class='style-right'>{{formatRupiah('#: total #', '')}}</span>"
+                            "template": "<span class='style-right'>{{formatRupiah('#: total ? total : 0 #', '')}}</span>"
                         },
                         {
                             "field": "hargasatuanquo",
                             "title": "Harga Konfirmasi",
                             "width": "40px",
-                            "template": "<span class='style-right'>{{formatRupiah('#: hargasatuanquo #', '')}}</span>"
+                            "template": "<span class='style-right'>{{formatRupiah('#: hargasatuanquo ? hargasatuanquo : 0 #', '')}}</span>"
                         },
                         {
                             "field": "hargappnquo",
                             "title": "ppn Konfirmasi",
                             "width": "40px",
-                            "template": "<span class='style-right'>{{formatRupiah('#: hargappnquo #', '')}}</span>"
+                            "template": "<span class='style-right'>{{formatRupiah('#: hargappnquo ? hargappnquo : 0 #', '')}}</span>"
                         },
                         {
                             "field": "hargadiscountquo",
                             "title": "Diskon Konfirmasi",
                             "width": "40px",
-                            "template": "<span class='style-right'>{{formatRupiah('#: hargadiscountquo #', '')}}</span>"
+                            "template": "<span class='style-right'>{{formatRupiah('#: hargadiscountquo ? hargadiscountquo : 0 #', '')}}</span>"
                         },
                         {
                             "field": "totalkonfirmasi",
                             "title": "Total Confirm",
                             "width": "50px",
-                            "template": "<span class='style-right'>{{formatRupiah('#: totalkonfirmasi #', '')}}</span>"
+                            "template": "<span class='style-right'>{{formatRupiah('#: totalkonfirmasi ? totalkonfirmasi : 0 #', '')}}</span>"
                         }
                     ]
                 }
             };
+
+            $scope.exportDetail = (dataItem) => {
+                console.log(dataItem.details);
+
+
+                let dataExport = new kendo.data.DataSource({
+                    data: dataItem.details
+                });
+
+                console.log($scope.dataSourceExportSPK);
+
+                var tempDataExport = [];
+                var rows = [{
+                    cells: [{
+                            value: "Kode Produk"
+                        },
+                        {
+                            value: "Nama Produk"
+                        },
+                        {
+                            value: "Spesifikasi"
+                        },
+                        {
+                            value: "Satuan"
+                        },
+                        {
+                            value: "QTY"
+                        },
+                        {
+                            value: "QTY Confirm"
+                        },
+                        {
+                            value: "Harga Satuan"
+                        },
+                        {
+                            value: "Harga Konfirmasi"
+                        },
+                        {
+                            value: "Total"
+                        },
+                        {
+                            value: "PPN Konfirmasi"
+                        },
+                        {
+                            value: "Total Konfirmasi"
+                        },
+                        {
+                            value: "Total Konfirmasi"
+                        }
+                    ]
+                }];
+
+                tempDataExport = dataExport;
+                tempDataExport.fetch(function () {
+                    var data = this.data();
+                    console.log(data);
+                    for (var i = 0; i < data.length; i++) {
+                        //push single row for every record
+                        rows.push({
+                            cells: [{
+                                    value: data[i].prid
+                                },
+                                {
+                                    value: data[i].namaproduk
+                                },
+                                {
+                                    value: data[i].spesifikasi
+                                },
+                                {
+                                    value: data[i].satuanstandar
+                                },
+                                {
+                                    value: data[i].qtysppb
+                                },
+                                {
+                                    value: data[i].qtyproduk
+                                },
+                                {
+                                    value: data[i].hargasatuan
+                                },
+                                {
+                                    value: data[i].total
+                                },
+                                {
+                                    value: data[i].hargasatuanquo
+                                },
+                                {
+                                    value: data[i].hargappnquo
+                                },
+                                {
+                                    value: data[i].hargadiscountquo
+                                },
+                                {
+                                    value: data[i].totalkonfirmasi
+                                }
+                            ]
+                        })
+                    }
+                    var workbook = new kendo.ooxml.Workbook({
+                        sheets: [{
+                            freezePane: {
+                                rowSplit: 1
+                            },
+                            columns: [
+                                // Column settings (width)
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true },
+                                { autoWidth: true }
+                            ],
+                            // Title of the sheet
+                            title: "Detail UPK",
+                            // Rows of the sheet
+                            rows: rows
+                        }]
+                    });
+                    //save the file as Excel file with extension xlsx
+                    kendo.saveAs({
+                        dataURI: workbook.toDataURL(),
+                        fileName: "detail-produk-upk-" + dataItem.nousulan + ".xlsx"
+                    });
+                });
+
+            }
+
             // $scope.mainGridOptions = { 
             //     pageable: true,
             //     columns: $scope.columnProduk,

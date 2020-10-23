@@ -213,6 +213,22 @@ define(['initialize'], function (initialize) {
                         {
                             id: 8,
                             kelompokbarang: 'Bahan Makanan'
+                        },
+                        {
+                            id: 9,
+                            kelompokbarang: 'Perkerjaan (IK3KL)'
+                        },
+                        {
+                            id: 10,
+                            kelompokbarang: 'IK3KL'
+                        },
+                        {
+                            id: 11,
+                            kelompokbarang: 'THR'
+                        },
+                        {
+                            id: 12,
+                            kelompokbarang: 'Tunjangan Lainnya'
                         }
                     ]
                     BulanRomawi = $scope.listUnitPengusul[0].bulanromawi

@@ -21,7 +21,7 @@
     md-dialog md-dialog-actions {
         display: flex;
         flex-direction: row-reverse;
-        
+
     }
 </style>
 
@@ -394,6 +394,10 @@
             <!-- NamaKegiatan -->
             <div class="grid_12">
                 <div class="grid_6">
+                    <div class="grid_4">
+                        <!-- <button class="c-button" ng-click="cetakLabelResep()">Cetak Label Resep</button> -->
+                        <md-button class="md-raised md-primary" ng-click="cetakLabelResep()" ng-disabled="isConsisDisabled">Cetak Label Resep</md-button>
+                    </div>
                 </div>
                 <div class="grid_6">
                     <div class="grid_2">

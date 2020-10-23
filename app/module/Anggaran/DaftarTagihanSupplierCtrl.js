@@ -179,7 +179,7 @@ define(['initialize'], function (initialize) {
           "template": "<span class='style-right'>{{formatRupiah('#: subtotal #', '')}}</span>",
           "width": "150px",
         }, {
-          "field": "total",
+          "field": "totalbayar",
           "title": "<h3>Total Bayar</h3>",
           "template": "<span class='style-right'>{{formatRupiah('#: total #', '')}}</span>",
           "width": "150px",

@@ -957,6 +957,10 @@
       "urlDep": "module/SDM/PresensiPegawaiCtrl"
     },
     {
+      "nameDep": "PresensiPegawaiNewCtrl",
+      "urlDep": "module/SDM/PresensiPegawaiNewCtrl"
+    },
+    {
       "nameDep": "DaftarPengajuanPerubahanStatusCtrl",
       "urlDep": "module/SDM/DaftarPengajuanPerubahanStatusCtrl"
     },

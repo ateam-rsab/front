@@ -222,10 +222,6 @@
         "name": "Master Produk Apotik",
         "children": [
           {
-            "name": "Master Produk",
-            "link": "#/Produk2"
-          },
-          {
             "name": "Konversi Satuan",
             "link": "#/KonversiSatuan"
           },

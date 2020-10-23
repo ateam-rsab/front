@@ -718,7 +718,8 @@ define(['initialize'], function (initialize) {
 
                 // manageLogistikPhp.postpermintaanpengirimanbarang(objSave).then(function(e) {
                 // manageLogistikPhp.postpermintaanpengirimanbarang(objSave).then(function (e) {
-                manageLogistikPhp.savesppbnewera(objSave).then(function (e) {
+                // manageLogistikPhp.savesppbnewera(objSave).then(function (e) {
+                manageLogistikPhp.postpost("sppb/save-sppb-langsung", objSave).then(function (e) {
                     $scope.item.noKirim = e.data.nokirim.nokirim
                     var stt = 'false'
                     if (confirm('View SPPB? ')) {

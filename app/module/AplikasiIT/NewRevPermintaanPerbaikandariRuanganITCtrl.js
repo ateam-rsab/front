@@ -9,6 +9,9 @@ define(['initialize'], function (initialize) {
         $scope.dataLogin = JSON.parse(localStorage.getItem('pegawai'));
 
         $scope.OnInit = function () {
+          IPSRSService.getItem('service/list-generic/?view=Ruangan&select=id,namaRuangan', true).then(function (dat) {
+            $scope.listRuangan = dat;
+          })
           $scope.dataStatus = [{
               name: "Close",
               id: 1
@@ -39,14 +42,17 @@ define(['initialize'], function (initialize) {
           })
 
           IPSRSService.getItem('psrsPermintaanPerbaikan/get-ruangan-by-user-login', true).then(function (dat) {
-            $scope.item.ruangan = dat.data.namaRuangan
-            
+            $scope.item.ruangan = {
+              namaRuangan: dat.data.namaRuangan,
+              id: dat.data.id
+            }
+
           })
         }
         $scope.OnInit();
 
         $scope.getDataPerbaikanRuangan = function () {
-          ManageIT.getItem('/permintaanperbaikan-service/get-keluhan-by-ruangan?ruanganfk=' + $scope.dataLogin.ruangan.id + '&statusKeluhan=' + ($scope.item.searchStatus ? $scope.item.searchStatus : ""), true).then(function (dat) {
+          ManageIT.getItemNew('permintaanperbaikan-service/get-keluhan-by-ruangan?ruanganfk=' + $scope.dataLogin.ruangan.id + '&statusKeluhan=' + ($scope.item.searchStatus ? $scope.item.searchStatus : ""), true).then(function (dat) {
             console.log(dat);
             $scope.dataSource = dat.data;
             $scope.daftarPermintaanPerbaikanIT = new kendo.data.DataSource({
@@ -61,7 +67,7 @@ define(['initialize'], function (initialize) {
           })
         }
         $scope.getDataPerbaikanRuangan();
-        
+
         $scope.listJenisPekerjaan = [{
             'id': 1,
             'name': 'Hardware'
@@ -181,16 +187,26 @@ define(['initialize'], function (initialize) {
                 title: '<h3 align=center>Keluhan<h3>'
               },
               {
-                field: 'keluhan',
-                width: '200px',
-                title: '<h3 align=center>Keterangan<h3>'
-              },
-              {
                 field: 'statusKeluhan',
                 width: '80px',
                 title: '<h3 align=center>Status<h3>'
               },
-
+              {
+                command: [{
+                  text: "Detail Keluhan",
+                  align: "center",
+                  attributes: {
+                    align: "center"
+                  },
+                  click: detailKeluhan,
+                  imageClass: "k-icon k-edit"
+                }],
+                title: "",
+                width: "100px",
+                attributes: {
+                  style: "text-align:center;valign=middle"
+                },
+              }
             ]
           }],
           editable: false
@@ -209,9 +225,22 @@ define(['initialize'], function (initialize) {
           ManageIT.saveDataIT(dataSave, '/permintaanperbaikan-service/open-tiket').then(function (e) {
             $scope.OnInit()
             // $scope.isRouteLoading = true
-            toastr.success('Permintaan berhasil dikirim','Sukses');
+            toastr.success('Permintaan berhasil dikirim', 'Sukses');
             // window.location.href = '#/home'
           })
+        }
+
+        function detailKeluhan(e) {
+          e.preventDefault();
+          let tr = $(e.target).closest("tr");
+          let dataItem = this.dataItem(tr);
+          console.log(dataItem);
+          // permintaanperbaikan-service/get-keluhan-by-idkeluhan?idKeluhan=006d57d6-f009-4ab1-a2c0-d4d142055f43&X-AUTH-TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsZ3RrIn0.qr5KyYOkkDPnUkmXUOVUGmgxKqa-UfH4WgTz2A0DV5NhJ7_s3Y8UyTI06ehpMIiNuhji6jswMrbxhBs1AUQaQQ&ruanganfk=102&statusKeluhan=Close
+          ManageIT.getItem('permintaanperbaikan-service/get-keluhan-by-idkeluhan?idKeluhan=' + dataItem.keluhanId + 'ruanganfk=' + $scope.dataLogin.ruangan.id + '&statusKeluhan=' + (dataItem.statusKeluhan ? dataItem.statusKeluhan : "")).then(data => {
+            $scope.dataDetailPerbaikan = data.perbaikan;
+            $scope.popupDetail.open().close();
+          })
+          // /permintaanperbaikan-service/get-keluhan-by-idkeluhan
         }
 
         $scope.batal = function () {

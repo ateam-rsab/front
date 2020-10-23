@@ -3,6 +3,10 @@
       "name": "Master Data",
       "children": [
          {
+            "name": "Master Produk",
+            "link": "#/Produk2"
+         },
+         {
             "name": "Master Barang Non Medis",
             "link": "#/MasterBarangNonMedis"
          },
@@ -94,8 +98,8 @@
             "name": "Pemesanan Barang",
             "children": [
                {
-                   "name": "Rencana Usulan Barang",
-                   "link": "#/DaftarRencanaUsulanPermintaanBarang"
+                  "name": "Rencana Usulan Barang",
+                  "link": "#/DaftarRencanaUsulanPermintaanBarang"
                },
                {
                   "name": "Daftar Monitoring Usulan",

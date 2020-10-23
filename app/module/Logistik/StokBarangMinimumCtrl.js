@@ -75,9 +75,16 @@ define(['initialize'], function(initialize) {
                         "field": "stokminimum",
                         "title": "Stok Minumum",
                         "width" : "60px",
-                    }                    
+                        "template": "<span>{{pembulatanStok('#: stokminimum #', '')}}</span>"
+                    },
+                    {
+                        "field": "ss",
+                        "title": "Buffer Stok",
+                        "width" : "60px",
+                        "template": "<span>{{pembulatanStok('#: ss #', '')}}</span>"
+                    }  
                 ]
-            }            
+            }
 
             $scope.$watch('item.hargaJual', function(newValue, oldValue) {
                 if (newValue != oldValue  ) {
@@ -109,12 +116,19 @@ define(['initialize'], function(initialize) {
             $scope.formatRupiah = function(value, currency) {
                 return currency + " " + parseFloat(value).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
             }
+
+            $scope.pembulatanStok = (data) => {
+                return Math.round(parseInt(data) * 1000) / 1000;
+            }
+
             findProduk.getListRuangan("AsalProduk&select=id,kdAsalProduk,asalProduk", true).then(function(dat){
                 $scope.listSumberDana = dat.data;
             });
             findProduk.getListRuangan("Ruangan&select=id,namaRuangan").then(function(data) {
                 $scope.sourceRuangan = data;
             });
+
+            
             
             $scope.cari = function(){
                 $scope.isRouteLoading=true;

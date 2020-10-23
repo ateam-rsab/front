@@ -3072,6 +3072,30 @@
     ]
   },
   {
+    "name": "KasKecil",
+    "url": "/KasKecil",
+    "controller": "KasKecilCtrl",
+    "templateurl": "module/Logistik/ModulInventory/KasKecil.html",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      },
+      {
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
+      }
+    ]
+  },
+  {
     "name": "Formularium",
     "url": "/Formularium",
     "templateurl": "module/Farmasi/ModulProduksi/Formularium.html",
@@ -4691,6 +4715,26 @@
     "url": "/OrderBarangSPPB",
     "templateurl": "module/Logistik/ModulInventory/OrderBarangSPPB.html",
     "controller": "OrderBarangSPPBCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
+      }
+    ]
+  },
+  {
+    "name": "OrderBarangSPPBLangsung",
+    "url": "/OrderBarangSPPBLangsung",
+    "templateurl": "module/Logistik/ModulInventory/OrderBarangSPPBLangsung.html",
+    "controller": "OrderBarangSPPBLangsungCtrl",
     "deps": [
       {
         "module": "Services",

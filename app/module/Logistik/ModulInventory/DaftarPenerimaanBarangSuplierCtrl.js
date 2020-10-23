@@ -13,6 +13,14 @@ define(['initialize'], function (initialize) {
             LoadCache();
             loadCombo();
             ComboLoad();
+
+            if (dataPegawaiLogin.ruangan) {
+                $scope.item.ruangan = {
+                    id: dataPegawaiLogin.ruangan.id,
+                    namaruangan: dataPegawaiLogin.ruangan.namaruangan
+                }
+            }
+
             function LoadCache() {
                 var chacePeriode = cacheHelper.get('DaftarPenerimaanBarangSuplierCtrl');
                 if (chacePeriode != undefined) {
@@ -21,13 +29,13 @@ define(['initialize'], function (initialize) {
                     $scope.item.tglAkhir = new Date(chacePeriode[1]);
 
                     init();
-                }
-                else {
+                } else {
                     $scope.item.tglAwal = moment($scope.now).format('YYYY-MM-DD 00:00');
                     $scope.item.tglAkhir = moment($scope.now).format('YYYY-MM-DD 23:59');
                     init();
                 }
             }
+
             function loadCombo() {
                 modelItemAkuntansi.getDataDummyPHP("aset/get-data-barang", true, true, 20).then(function (data) {
                     $scope.listNamaBarang = data;
@@ -106,8 +114,9 @@ define(['initialize'], function (initialize) {
                 }
 
                 var client = new HttpClient();
-                client.get('http://127.0.0.1:1237/printvb/logistik?cetak-bukti-penerimaan=1&nores=' + $scope.dataSelected.norec + '&pegawaiPenerima=' + pegawai2 + '&pegawaiPenyerahan=' + pegawai1 + '&pegawaiMengetahui=' + pegawai3
-                    + '&jabatanPenerima=' + jabatan2 + '&jabatanPenyerahan=' + jabatan1 + '&jabatanMengetahui=' + jabatan3 + '&view=' + stt + '&user=' + pegawaiUser.userData.namauser, function (response) {
+                client.get('http://127.0.0.1:1237/printvb/logistik?cetak-bukti-penerimaan=1&nores=' + $scope.dataSelected.norec + '&pegawaiPenerima=' + pegawai2 + '&pegawaiPenyerahan=' + pegawai1 + '&pegawaiMengetahui=' + pegawai3 +
+                    '&jabatanPenerima=' + jabatan2 + '&jabatanPenyerahan=' + jabatan1 + '&jabatanMengetahui=' + jabatan3 + '&view=' + stt + '&user=' + pegawaiUser.userData.namauser,
+                    function (response) {
                         //aadc=response; 
 
                     });
@@ -146,14 +155,12 @@ define(['initialize'], function (initialize) {
                     // Do nothing!
                     return;
                 }
-                var objSave =
-                {
+                var objSave = {
                     nostruk: $scope.dataSelected.norec,
                     noorderfk: $scope.dataSelected.noorderfk
                 }
                 manageLogistikPhp.postbatalterimabarangsuplier(objSave).then(function (e) {
-                    var forsave =
-                    {
+                    var forsave = {
                         nostruk: $scope.dataSelected.nostruk,
                     }
                     manageLogistikPhp.hapusjurnalterimabarang(forsave).then(function (e) {
@@ -161,11 +168,9 @@ define(['initialize'], function (initialize) {
                     });
                 });
             }
+
             function init() {
-                $scope.item.ruangan = {
-                    id: dataPegawaiLogin.ruangan.id,
-                    namaruangan: dataPegawaiLogin.ruangan.namaruangan
-                }
+
                 $scope.isRouteLoading = true;
                 var ins = ""
                 if ($scope.item.instalasi != undefined) {
@@ -199,24 +204,26 @@ define(['initialize'], function (initialize) {
                     "&tglAkhir=" + tglAkhir +
                     "&nostruk=" + $scope.item.struk +
                     "&nofaktur=" + $scope.item.nofaktur +
-                    "&namarekanan=" + $scope.item.namarekanan
-                    + produkfk
-                    + noSppb
-                    + asalProduk
-                    + ruangan
-                    , true).then(function (dat) {
-                        $scope.isRouteLoading = false;
-                        for (var i = 0; i < dat.data.daftar.length; i++) {
-                            dat.data.daftar[i].no = i + 1
-                            // var tanggal = $scope.now;
-                            // var tanggalLahir = new Date(dat.data.daftar[i].tgllahir);
-                            // var umur = dateHelper.CountAge(tanggalLahir, tanggal);
-                            // dat.data.daftar[i].umur =umur.year + ' thn ' + umur.month + ' bln ' + umur.day + ' hari'
-                            //itungUsia(dat.data[i].tgllahir)
-                        }
-                        $scope.dataGrid = dat.data.daftar;
-                        pegawaiUser = dat.data.datalogin
+                    "&namarekanan=" + $scope.item.namarekanan +
+                    produkfk +
+                    noSppb +
+                    asalProduk +
+                    ruangan, true).then(function (dat) {
+                    $scope.isRouteLoading = false;
+                    for (var i = 0; i < dat.data.daftar.length; i++) {
+                        dat.data.daftar[i].no = i + 1
+                        // var tanggal = $scope.now;
+                        // var tanggalLahir = new Date(dat.data.daftar[i].tgllahir);
+                        // var umur = dateHelper.CountAge(tanggalLahir, tanggal);
+                        // dat.data.daftar[i].umur =umur.year + ' thn ' + umur.month + ' bln ' + umur.day + ' hari'
+                        //itungUsia(dat.data[i].tgllahir)
+                    }
+                    $scope.dataGrid = new kendo.data.DataSource({
+                        data: dat.data.daftar,
+                        pageSize: 20
                     });
+                    pegawaiUser = dat.data.datalogin
+                });
                 var objSave = {
                     tglAwal: tglAwal,
                     tglAkhir: tglAkhir
@@ -360,8 +367,7 @@ define(['initialize'], function (initialize) {
             }
 
 
-            $scope.columnGrid = [
-                {
+            $scope.columnGrid = [{
                     "field": "no",
                     "title": "No",
                     "width": "45px",
@@ -434,13 +440,126 @@ define(['initialize'], function (initialize) {
 
 
             ];
+
+            $scope.mainGroupOpt = {
+                toolbar: [{
+                        text: "export",
+                        name: "Export detail",
+                        template: '<button ng-click="exportExcel()" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>'
+                    }
+
+                ],
+                pageable: true,
+                scrollable: true,
+                columns: $scope.columnGrid
+            }
+
+            $scope.exportExcel = function () {
+                var tempDataExport = [];
+                var rows = [{
+                    cells: [{
+                            value: "No."
+                        },
+                        {
+                            value: "No. Dokumen"
+                        },
+                        {
+                            value: "No. PO"
+                        },
+                        {
+                            value: "Tanggal"
+                        },
+                        {
+                            value: "Supplier"
+                        },
+                        {
+                            value: "Item"
+                        },
+                        {
+                            value: "Total Tagihan"
+                        }
+                    ]
+                }];
+
+                tempDataExport = $scope.dataGrid;
+                tempDataExport.fetch(function () {
+                    var data = this.data();
+                    for (var i = 0; i < data.length; i++) {
+                        //push single row for every record
+                        rows.push({
+                            cells: [{
+                                    value: data[i].no
+                                },
+                                {
+                                    value: data[i].nofaktur
+                                },
+                                {
+                                    value: data[i].nosppb
+                                },
+                                {
+                                    value: data[i].tglstruk
+                                },
+                                {
+                                    value: data[i].namarekanan
+                                },
+                                {
+                                    value: data[i].jmlitem
+                                },
+                                {
+                                    value: data[i].totalharusdibayar
+                                },
+                            ]
+                        })
+                    }
+                    var workbook = new kendo.ooxml.Workbook({
+                        sheets: [{
+                            freezePane: {
+                                rowSplit: 1
+                            },
+                            columns: [
+                                // Column settings (width)
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                                {
+                                    autoWidth: true
+                                },
+                            ],
+                            // Title of the sheet
+                            title: "Daftar Penerimaan Barang Dari Suplier",
+                            // Rows of the sheet
+                            rows: rows
+                        }]
+                    });
+                    //save the file as Excel file with extension xlsx
+                    kendo.saveAs({
+                        dataURI: workbook.toDataURL(),
+                        fileName: "daftar-penerimaan-barang-suppler.xlsx"
+                    });
+                });
+            };
+
             $scope.data2 = function (dataItem) {
                 return {
                     dataSource: new kendo.data.DataSource({
                         data: dataItem.details
                     }),
-                    columns: [
-                        {
+                    columns: [{
                             "field": "namaproduk",
                             "title": "Nama Produk",
                             "width": "100px",
@@ -509,6 +628,7 @@ define(['initialize'], function (initialize) {
             $scope.formatTanggal = function (tanggal) {
                 return moment(tanggal).format('DD/MM/YYYY');
             }
+
             function itungUsia(tgl) {
                 debugger;
                 // var tg = parseInt(form.elements[0].value);
@@ -519,7 +639,7 @@ define(['initialize'], function (initialize) {
                 var selisih = Date.parse(tanggal.toGMTString()) - Date.parse(tglLahir.toGMTString());
                 var thn = Math.round(selisih / (1000 * 60 * 60 * 24 * 365));
                 //var bln = Math.round((selisih % 365)/(1000*60*60*24));
-                return thn + ' thn '// + bln + ' bln'
+                return thn + ' thn ' // + bln + ' bln'
             }
             var HttpClient = function () {
                 this.get = function (aUrl, aCallback) {

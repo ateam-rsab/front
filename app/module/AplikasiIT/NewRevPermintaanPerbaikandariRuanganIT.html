@@ -46,9 +46,11 @@
 									</div>
 									<div class="grid_8">
 										<div class="grid_12">
-											<!-- <input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan" k-data-text-field="'namaRuangan'" k-data-value-field="'id'" k-filter="'contains'"  k-data-source="ListRuangan" k-on-change="OnChangeRuangan(item.ruangan)"/> -->
-											<input c-text-box type="input" filter="'varchar'" class="k-textbox"
-												ng-model="item.ruangan" disabled="true" />
+											<input style="width: 100%;" kendo-combo-box k-ng-model="item.ruangan"
+												k-data-text-field="'namaRuangan'" k-data-value-field="'id'"
+												k-filter="'contains'" k-auto-bind="false" k-data-source="listRuangan" />
+											<!-- <input c-text-box type="input" filter="'varchar'" class="k-textbox"
+												ng-model="item.ruangan" disabled="true" /> -->
 										</div>
 										<div class="clear"></div>
 									</div>
@@ -132,16 +134,16 @@
 				<!-- Pencarian -->
 				<hr class="style-four">
 				<div class="grid_12">
-					
+
 					<div class="grid_4">
-							<div class="grid_4" style="padding-top:15px">
-								<label c-label item="item">Status</label>
-							</div>
-							<div class="grid_8">
-								<input style="width: 100%;" kendo-combo-box k-ng-model="item.searchStatus"
-									k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'"
-									k-data-source="dataStatus" />
-							</div>
+						<div class="grid_4" style="padding-top:15px">
+							<label c-label item="item">Status</label>
+						</div>
+						<div class="grid_8">
+							<input style="width: 100%;" kendo-combo-box k-ng-model="item.searchStatus"
+								k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'"
+								k-data-source="dataStatus" />
+						</div>
 					</div>
 					<div class="grid_1" style="margin-top: 5px">
 						<!-- <button class="c-button success" ng-click="Cari(item.pencarian)">Cari</button> -->
@@ -164,6 +166,15 @@
 				</div>
 				<hr class="style-four">
 			</div>
+		</div>
+	</div>
+	<div kendo-window="popupDetail" k-title="'Verifikasi Tagihan Rekanan'" k-width="1000" k-visible="false">
+		<div class="panel panel-default container_12" style="padding: 0px 10px;">
+			<md-card>
+				<md-card-content>
+					<p>{{dataDetailKeluhan}}</p>
+				</md-card-content>
+			</md-card>
 		</div>
 	</div>
 </div>

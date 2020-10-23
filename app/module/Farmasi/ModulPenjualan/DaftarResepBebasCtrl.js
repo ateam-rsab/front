@@ -182,8 +182,8 @@ define(['initialize'], function (initialize) {
                 },
                 {
                     "field": "nostruk",
-                    "title": "NoResep",
-                    "width": "60px",
+                    "title": "No. Resep",
+                    "width": "100px",
                 },
                 {
                     "field": "nostruk_intern",

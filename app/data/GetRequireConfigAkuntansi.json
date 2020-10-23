@@ -597,6 +597,10 @@
       "urlDep": "module/Logistik/ModulInventory/PenerimaanBarangSuplierCtrl"
     },
     {
+      "nameDep": "KasKecilCtrl",
+      "urlDep": "module/Logistik/ModulInventory/KasKecilCtrl"
+    },
+    {
       "nameDep": "FormulariumCtrl",
       "urlDep": "module/Farmasi/ModulProduksi/FormulariumCtrl"
     },
@@ -829,6 +833,10 @@
     {
       "nameDep": "OrderBarangSPPBCtrl",
       "urlDep": "module/Logistik/ModulInventory/OrderBarangSPPBCtrl"
+    },
+    {
+      "nameDep": "OrderBarangSPPBLangsungCtrl",
+      "urlDep": "module/Logistik/ModulInventory/OrderBarangSPPBLangsungCtrl"
     },
     {
       "nameDep": "SurveilansKasusPtmRJCtrl",

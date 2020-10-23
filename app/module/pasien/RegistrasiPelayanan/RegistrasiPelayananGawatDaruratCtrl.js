@@ -23,7 +23,6 @@ define(['initialize'], function (initialize) {
 
             //Buatan urang
             ManagePhp.getData("rekam-medis/get-jenis-kelamin/").then(function (dat) {
-
                 $scope.listJenisKelamin = dat.data.jenisKelamin;
 
             });

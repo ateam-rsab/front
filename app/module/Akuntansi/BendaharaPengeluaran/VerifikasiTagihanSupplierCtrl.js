@@ -6,6 +6,10 @@ define(['initialize'], function (initialize) {
       //catatan : PENTING
       //cek tabel maploginusertoruangan_s
       $scope.dataPegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
+      $scope.isEditKonfirmasi = false;
+
+      $scope.edit = {};
+      $scope.isPaguEdit = false;
 
       $scope.listAnggaran = [];
       $scope.listSumberDana = [];
@@ -191,8 +195,14 @@ define(['initialize'], function (initialize) {
           "width": "150px"
         },
         {
+          "field": "noStruk",
+          "title": "<h3>No. PB</h3>",
+          "template": "<span class='style-center'>{{'#: nostruk ? nostruk : '-' #'}}</span>",
+          "width": "150px"
+        },
+        {
           "field": "tgldokumen",
-          "title": "<h3>Tanggal Dokumen</h3>",
+          "title": "<h3>Tanggal<br> Dokumen</h3>",
           "template": "<span class='style-center'>{{'#: tgldokumen #'}}</span>",
           "width": "150px"
         },
@@ -295,10 +305,19 @@ define(['initialize'], function (initialize) {
               },
               click: cetakTagihan,
               imageClass: "k-icon k-i-pencil"
+            },
+            {
+              text: "Batal Verifikasi",
+              align: "center",
+              attributes: {
+                align: "center"
+              },
+              click: confirmBatalVerif,
+              imageClass: "k-icon k-i-pencil"
             }
           ],
           title: "",
-          width: "600px",
+          width: "650px",
           attributes: {
             style: "text-align:center;valign=middle"
           },
@@ -320,6 +339,12 @@ define(['initialize'], function (initialize) {
           "field": "noSPK",
           "title": "<h3>No. SPK</h3>",
           "template": "<span class='style-center'>{{'#: noSPK #'}}</span>",
+          "width": "150px"
+        },
+        {
+          "field": "noStruk",
+          "title": "<h3>No. PB</h3>",
+          "template": "<span class='style-center'>{{'#: nostruk ? nostruk : '-' #'}}</span>",
           "width": "150px"
         },
         {
@@ -395,6 +420,7 @@ define(['initialize'], function (initialize) {
               click: detailTagihan,
               imageClass: "k-icon k-i-pencil"
             }
+
           ],
           title: "",
           width: "300px",
@@ -404,13 +430,46 @@ define(['initialize'], function (initialize) {
         }
       ];
 
+      function confirmBatalVerif(e) {
+        e.preventDefault();
+        let tr = $(e.target).closest("tr");
+        let dataItem = this.dataItem(tr);
+
+        if (dataItem.confirmfk || dataItem.confirm1fk) {
+          toastr.info("Data sudah di verifikasi", "Tidak Bisa Membatalkan")
+          return;
+        }
+
+        var confirm = $mdDialog.confirm()
+          .title(`Apakah Anda yakin akan membatalkan Verifikasi Tagihan`)
+          .textContent(`Anda akan membatalkan Verifikasi Tagihan dengan No. Voucher ${dataItem.noverifikasi} dengan No. SPK ${dataItem.noSPK}`)
+          .ok('Ya')
+          .cancel('Tidak');
+
+        $mdDialog.show(confirm).then(function () {
+          batalVerif(dataItem);
+        }, function () {});
+      }
+
+      let batalVerif = (data) => {
+        console.log(data);
+        let dataSave = {
+          noverifikasi: data.noverifikasi,
+          norec: data.norec
+        }
+        console.log(dataSave);
+        ManageAkuntansi.postpost(dataSave, 'bendahara-pengeluaran/batal-verifikasi-tagihan-rekanan').then((data) => {
+          $scope.loadData();
+        })
+      }
+
       $scope.getTerbilang = function (data, model) {
         modelItemAkuntansi.getDataGlobal('valet/terbilang/' + data).then(res => {
-          $scope.verif[`${model}`] = res.terbilang;
+          $scope.getTerbilang[`${model}`] = res.terbilang;
         });
       }
 
-      $scope.clearVerifikasi = function () {
+      $scope.cleargetTerbilangikasi = function () {
         $scope.dataSelected = {};
         $scope.verif = {};
       }
@@ -485,9 +544,9 @@ define(['initialize'], function (initialize) {
             {
               value: "No. SPK"
             },
-            {
-              value: "Tanggal Struk"
-            },
+            // {
+            //   value: "Tanggal Struk"
+            // },
             {
               value: "Tanggal Dokumen"
             },
@@ -686,6 +745,7 @@ define(['initialize'], function (initialize) {
       }
 
       $scope.closePopUpKonfirmasi = function () {
+        $scope.isEditKonfirmasi = false;
         $scope.konfirmasiAnggaran.close();
       }
 
@@ -721,7 +781,7 @@ define(['initialize'], function (initialize) {
 
         $scope.confirm = dataItem;
 
-        console.log(dataItem);
+        $scope.isEditKonfirmasi = false;
 
         $scope.isKasubag = e.data.commandName === "Konfirmasi Kasubag" ? true : false;
         if (!$scope.isKasubag && !$scope.confirm.confirmfk) {
@@ -751,14 +811,108 @@ define(['initialize'], function (initialize) {
         $scope.konfirmasiAnggaran.open().center();
       }
 
-      $scope.konfirmasiData = (state) => {
+      $scope.editData = () => {
+        $scope.isEditKonfirmasi = true;
+        $scope.isPaguEdit = true;
+        $scope.edit = $scope.confirm;
+
+        if($scope.confirm.kodeDana) {
+          let kdDana = $scope.confirm.kodeDana.split('.');
+          console.log(kdDana);
+
+          $scope.verif.sumberDana = {
+            asalproduk: kdDana[0] === "RM" ? "Rupiah Murni" : "Badan Layanan Umum",
+            id: kdDana[0] === "RM" ? 2 : 1,
+            kodeanggaran: kdDana[0],
+          }
+
+          $scope.getListAnggaran();
+        }
         
-        if(state & $scope.confirm.statusConfirmAnggaran === "CONFIRM") {
+        $scope.getTerbilang($scope.edit.pph, 'pphTerbilang');
+
+
+        console.log($scope.confirm);
+        $scope.edit.isBa = $scope.confirm.ba !== "" || $scope.confirm.ba ? true : false;
+        $scope.edit.isSppb = $scope.confirm.sppb !== "" || $scope.confirm.sppb ? true : false;
+        // $scope.edit.permohonanPembayaran = $scope.confirm.;
+        // $scope.edit.isKwitansi = $scope.confirm.;
+        $scope.edit.isNoFaktur = $scope.confirm.faktur !== "" || $scope.confirm.faktur ? true : false;
+
+        $scope.confirm.anggaran = {
+          nama_anggaran: $scope.confirm.namaAnggaran,
+          kode_anggaran: $scope.confirm.kodeanggaran,
+        }
+      }
+
+      $scope.onchangeEditAggaran = () => {
+        $scope.confirm.keperluan = 'Untuk Pembayaran ' + ($scope.confirm.anggaran ? $scope.confirm.anggaran.nama_anggaran : '') + ' a/n Supplier ' + $scope.confirm.namarekanan + ' No.SPK = ' + $scope.confirm.noSPK
+        $scope.confirm.kodeDana = $scope.confirm.kode_dana;
+        // $scope.confirm.tahunDana = $scope.confirm.tahun ? data.tahun : new Date().getFullYear();
+        $scope.confirm.namaAnggaran = $scope.confirm.nama_anggaran;
+        
+        // $scope.confirm.sisaPagu = new Intl.NumberFormat('id-ID', {
+        //   style: 'currency',
+        //   currency: 'IDR'
+        // }).format((data.anggaran - data.penggunaan));
+        // $scope.confirm.pagu = data.anggaranFormatted;
+        // $scope.confirm.rawSisaPagu = (data.anggaran - data.penggunaan);
+        // $scope.getTerbilang((data.anggaran - data.penggunaan), 'sisaPaguTerbilang');
+        // $scope.getTerbilang(data.anggaran, 'paguTerbilang');
+        // $scope.isPagu = true;
+      }
+
+      $scope.batalEditData = () => {
+        $scope.isEditKonfirmasi = false;
+      }
+
+      $scope.simpanEditData = () => {
+        let dataSave = {
+          norec: $scope.edit.norec,
+          tglVerifikasi: dateHelper.formatDate($scope.confirm.tglverifikasi, "YYYY-MM-DD"),
+          pegawaifk: $scope.dataPegawaiLogin.id,
+          kodeAnggaran: $scope.confirm.anggaran.kode_anggaran,
+          noverifikasifk: $scope.edit.noverifikasifk ? $scope.edit.noverifikasifk : "",
+          keperluan: $scope.confirm.keperluan,
+          ba: $scope.edit.isBa ? $scope.edit.ba : "",
+          sppb: $scope.edit.isSppb ? $scope.edit.sppb : "",
+          faktur: $scope.edit.isNoFaktur ? $scope.edit.noFaktur : "",
+          pph: JSON.parse($scope.edit.pph)
+        };
+
+        console.log(dataSave);
+
+        $scope.konfirmasiAnggaran.close();
+        var confirm = $mdDialog.confirm()
+          .title('Apakah anda yakin akan Verifikasi Tagihan Rekanan (' + $scope.confirm.namarekanan + ')')
+          .ok('Ya')
+          .cancel('Batal');
+
+        $mdDialog.show(confirm).then(() => {
+          // yes
+          ManageAkuntansi.postpost(dataSave, 'bendahara-pengeluaran/save-verifikasi-tagihan-suplier').then(res => {
+            $scope.verifkasiRekanan.close();
+            window.open('http://192.168.12.4:7777/service-reporting/lap-verifikasi-tagihan-supplier/' + res.data.noverifikasifk);
+            $scope.loadData();
+          });
+        }, () => {
+
+          $scope.isEditKonfirmasi = true; // no
+          $scope.closePopUpVerifikasi();
+          $scope.konfirmasiAnggaran.open().center();
+        });
+
+
+      }
+
+      $scope.konfirmasiData = (state) => {
+
+        if (state & $scope.confirm.statusConfirmAnggaran === "CONFIRM") {
           toastr.info('Data Sudah di Konfirmasi Kasubag');
           return;
         }
 
-        if($scope.confirm.statusConfirmKabag === "CONFIRM") {
+        if ($scope.confirm.statusConfirmKabag === "CONFIRM") {
           toastr.info('Data Sudah di Konfirmasi Kabag');
           return;
         }
@@ -867,7 +1021,7 @@ define(['initialize'], function (initialize) {
       $scope.showPagu = function (data) {
         $scope.keperluan = 'Untuk Pembayaran ' + ($scope.verif.anggaran ? $scope.verif.anggaran.nama_anggaran : '') + ' a/n Supplier ' + $scope.dataSelected.namarekanan + ' No.SPK = ' + $scope.dataSelected.noSPK
         $scope.verif.kodeDana = data.kode_dana;
-        $scope.verif.tahunDana = data.tahun;
+        $scope.verif.tahunDana = data.tahun ? data.tahun : new Date().getFullYear();
         $scope.verif.namaAnggaran = data.nama_anggaran;
         console.log($scope.verif.anggaran);
         $scope.verif.sisaPagu = new Intl.NumberFormat('id-ID', {
@@ -887,6 +1041,11 @@ define(['initialize'], function (initialize) {
         $scope.verifkasiRekanan.close();
       }
 
+      $scope.clearVerifikasi = function () {
+        $scope.dataSelected = {};
+        $scope.verif = {};
+      }
+
       $scope.validasiTotalBayar = function () {
         if (parseInt($scope.verif.totalBayar) > $scope.verif.rawSisaPagu) {
           toastr.warning('Total bayar tidak bisa lebih dari sisa pagu');
@@ -900,6 +1059,11 @@ define(['initialize'], function (initialize) {
         $scope.showInputNoFaktur = $scope.item.isNoFaktur ? true : false;
         $scope.showInputBa = $scope.item.isBa ? true : false;
         $scope.showInputSppb = $scope.item.isSppb ? true : false;
+
+        $scope.showInputNoSpk2 = $scope.edit.isNoSpk ? true : false;
+        $scope.showInputNoFaktur2 = $scope.edit.isNoFaktur ? true : false;
+        $scope.showInputBa2 = $scope.edit.isBa ? true : false;
+        $scope.showInputSppb2 = $scope.edit.isSppb ? true : false;
       }
     }
   ]);

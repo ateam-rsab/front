@@ -28,6 +28,34 @@
     ]
   },
   {
+    "name": "RedirectPage",
+    "url": "/RedirectPage",
+    "templateurl": "module/RedirectPage.html",
+    "controller": "RedirectPageCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "PasienService",
+        "define": "PasienService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      },
+      {
+        "module": "LaboratoriumService",
+        "define": "LaboratoriumService"
+      }
+    ]
+  },
+  {
     "name": "PemesananBahan",
     "url": "/PemesananBahan",
     "templateurl": "module/Gizi/PemesananBahan.html",
@@ -43223,6 +43251,30 @@
     "url": "/VerifikasiTagihanSupplier",
     "templateurl": "module/Akuntansi/BendaharaPengeluaran/VerifikasiTagihanSupplier.html",
     "controller": "VerifikasiTagihanSupplierCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SarprasService",
+        "define": "SarprasService"
+      },
+      {
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
+      }
+    ]
+  },
+  {
+    "name": "RekapitulasiPembayaranPersediaan",
+    "url": "/RekapitulasiPembayaranPersediaan",
+    "templateurl": "module/Akuntansi/BendaharaPengeluaran/RekapitulasiPembayaranPersediaan.html",
+    "controller": "RekapitulasiPembayaranPersediaanCtrl",
     "deps": [
       {
         "module": "Services",
