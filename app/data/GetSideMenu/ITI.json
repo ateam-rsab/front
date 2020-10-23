@@ -2428,6 +2428,10 @@
                 ]
             },
             {
+                "name": "Data Dokter Tamu",
+                "link": "#/DataDokterTamu"
+            },
+            {
                 "name": "Data Pegawai",
                 "children": [
                     {

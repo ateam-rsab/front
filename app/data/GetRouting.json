@@ -1780,10 +1780,10 @@
         "module": "PegawaiService",
         "define": "PegawaiService"
       },
-       {
-          "module": "PhpService",
-          "define": "PhpService"
-        }
+      {
+        "module": "PhpService",
+        "define": "PhpService"
+      }
     ]
   },
   {
@@ -5626,7 +5626,6 @@
         "module": "LoginServices",
         "define": "LoginService"
       },
-
       {
         "module": "SdmService",
         "define": "SdmService"
@@ -6107,8 +6106,8 @@
         "define": "PegawaiService"
       },
       {
-        "module":"PhpService",
-        "define":"PhpService"
+        "module": "PhpService",
+        "define": "PhpService"
       }
     ]
   },
@@ -7778,7 +7777,7 @@
       }
     ]
   },
-   {
+  {
     "name": "PajakPPH21",
     "url": "/PajakPPH21",
     "templateurl": "module/AplikasiHumasdanPemasaran/PajakPPH21.html",
@@ -7799,11 +7798,11 @@
     ]
   },
   {
-    "name":"LatihanRendy",
-    "url":"/LatihanRendy",
+    "name": "LatihanRendy",
+    "url": "/LatihanRendy",
     "templateurl": "module/Sample/LatihanRendy.html",
-    "controller":"LatihanRendyCtrl",
-    "deps":[
+    "controller": "LatihanRendyCtrl",
+    "deps": [
       {
         "module": "Services",
         "define": "Service"
@@ -7879,24 +7878,24 @@
     ]
   },
   {
-          "name": "PegawaiBaru",
-          "url": "/PegawaiBaru",
-          "templateurl": "module/AplikasiIT/DataMaster/PegawaiBaru.html",
-          "controller": "PegawaiBaruCtrl",
-          "deps": [
-            {
-              "module": "Services",
-              "define": "Service"
-            },
-            {
-              "module": "LoginServices",
-              "define": "LoginService"
-            },
-            {
-              "module": "SarprasService",
-              "define": "SarprasService"
-            }
-          ]
+    "name": "PegawaiBaru",
+    "url": "/PegawaiBaru",
+    "templateurl": "module/AplikasiIT/DataMaster/PegawaiBaru.html",
+    "controller": "PegawaiBaruCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SarprasService",
+        "define": "SarprasService"
+      }
+    ]
   },
   {
     "name": "JenisPajakBaru",
@@ -7938,69 +7937,67 @@
       }
     ]
   },
-{
-  "name": "ObjekPajakBaru",
-  "url": "/ObjekPajakBaru",
-  "templateurl": "module/AplikasiIT/DataMaster/ObjekPajakBaru.html",
-  "controller": "ObjekPajakBaruCtrl",
-  "deps": [
-    {
-      "module": "Services",
-      "define": "Service"
-    },
-    {
-      "module": "LoginServices",
-      "define": "LoginService"
-    },
-    {
-      "module": "SarprasService",
-      "define": "SarprasService"
-    }
-  ]
-},
-{
-      "name": "PegawaiSKPajak",
-      "url": "/PegawaiSKPajak",
-      "templateurl": "module/AplikasiIT/DataMaster/PegawaiSKPajak.html",
-      "controller": "PegawaiSKPajakCtrl",
-      "deps": [
-        {
-          "module": "Services",
-          "define": "Service"
-        },
-        {
-          "module": "LoginServices",
-          "define": "LoginService"
-        },
-        {
-          "module": "SarprasService",
-          "define": "SarprasService"
-        }
-      ]
-    },
-
-   {
-        "name": "PTKP",
-        "url": "/PTKP",
-        "templateurl": "module/AplikasiIT/DataMaster/PTKP.html",
-        "controller": "PTKPCtrl",
-        "deps": [
-          {
-            "module": "Services",
-            "define": "Service"
-          },
-          {
-            "module": "LoginServices",
-            "define": "LoginService"
-          },
-          {
-            "module": "SarprasService",
-            "define": "SarprasService"
-          }
-        ]
-      },  
-
-{
+  {
+    "name": "ObjekPajakBaru",
+    "url": "/ObjekPajakBaru",
+    "templateurl": "module/AplikasiIT/DataMaster/ObjekPajakBaru.html",
+    "controller": "ObjekPajakBaruCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SarprasService",
+        "define": "SarprasService"
+      }
+    ]
+  },
+  {
+    "name": "PegawaiSKPajak",
+    "url": "/PegawaiSKPajak",
+    "templateurl": "module/AplikasiIT/DataMaster/PegawaiSKPajak.html",
+    "controller": "PegawaiSKPajakCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SarprasService",
+        "define": "SarprasService"
+      }
+    ]
+  },
+  {
+    "name": "PTKP",
+    "url": "/PTKP",
+    "templateurl": "module/AplikasiIT/DataMaster/PTKP.html",
+    "controller": "PTKPCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SarprasService",
+        "define": "SarprasService"
+      }
+    ]
+  },
+  {
     "name": "SKPajakRate",
     "url": "/SKPajakRate",
     "templateurl": "module/AplikasiIT/DataMaster/SKPajakRate.html",
@@ -8020,7 +8017,6 @@
       }
     ]
   },
-
   {
     "name": "TypeProfile",
     "url": "/TypeProfile",
@@ -8121,7 +8117,7 @@
       }
     ]
   },
-   {
+  {
     "name": "Event",
     "url": "/Event",
     "templateurl": "module/SDM/Event.html",
@@ -11284,7 +11280,7 @@
     "templateurl": "module/Pegawai/RiwayatJabatan.html",
     "controller": "RiwayatJabatanCtrl",
     "deps": [
-       {
+      {
         "module": "Services",
         "define": "Service"
       },
@@ -11304,7 +11300,7 @@
     "templateurl": "module/Pegawai/RiwayatPendidikan.html",
     "controller": "RiwayatPendidikanCtrl",
     "deps": [
-       {
+      {
         "module": "Services",
         "define": "Service"
       },
@@ -13753,7 +13749,7 @@
         "define": "SarprasService"
       }
     ]
-  },  
+  },
   {
     "name": "MasterBundel",
     "url": "/MasterBundel",
@@ -13823,7 +13819,7 @@
       {
         "module": "SarprasService",
         "define": "SarprasService"
-      }      
+      }
     ]
   },
   {
@@ -14358,8 +14354,8 @@
         "define": "DashboarPasienCtrl"
       },
       {
-          "module": "TataRekeningService",
-          "define": "TataRekeningService"
+        "module": "TataRekeningService",
+        "define": "TataRekeningService"
       }
     ]
   },
@@ -16962,8 +16958,8 @@
         "define": "DashboarPasienCtrl"
       },
       {
-          "module": "LogistikServicePhp",
-          "define": "LogistikServicePhp"
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
       }
     ]
   },
@@ -17006,8 +17002,8 @@
         "define": "DashboarPasienCtrl"
       },
       {
-          "module": "LogistikServicePhp",
-          "define": "LogistikServicePhp"
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
       }
     ]
   },
@@ -17098,8 +17094,8 @@
         "define": "LogistikServicePhp"
       },
       {
-         "module": "AkuntansiService",
-         "define": "AkuntansiService"
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
       }
     ]
   },
@@ -19910,12 +19906,12 @@
         "define": "SarprasService"
       },
       {
-          "module": "LogistikServicePhp",
-          "define": "LogistikServicePhp"
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
       },
       {
-         "module": "AkuntansiService",
-         "define": "AkuntansiService"
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
       }
     ]
   },
@@ -21812,7 +21808,7 @@
       }
     ]
   },
- {
+  {
     "name": "RevMasterAlatLaundry",
     "url": "/RevMasterAlatLaundry",
     "templateurl": "module/AplikasiLaundry/RevMasterAlatLaundry.html",
@@ -21991,7 +21987,7 @@
         "define": "SarprasService"
       }
     ]
-  },  
+  },
   {
     "name": "RevDaftarPengambilanLinen",
     "url": "/RevDaftarPengambilanLinen",
@@ -22772,66 +22768,66 @@
       }
     ]
   },
-{
-  "name": "Rekap Layanan Laundry",
-  "url": "/RekapLayananLaundry",
-  "templateurl": "module/AplikasiLaundry/RekapLayananLaundry.html",
-  "controller": "RekapLayananLaundryCtrl",
-  "deps": [
-    {
-      "module": "Services",
-      "define": "Service"
-    },
-    {
-      "module": "LoginServices",
-      "define": "LoginService"
-    },
-    {
-      "module": "SarprasService",
-      "define": "SarprasService"
-    }
-  ]
-},
-{
-  "name": "Rekap Layanan IT",
-  "url": "/RekapLayananIT",
-  "templateurl": "module/AplikasiIT/RekapLayananIT.html",
-  "controller": "RekapLayananITCtrl",
-  "deps": [
-    {
-      "module": "Services",
-      "define": "Service"
-    },
-    {
-      "module": "LoginServices",
-      "define": "LoginService"
-    },
-    {
-      "module": "SarprasService",
-      "define": "SarprasService"
-    }
-  ]
-},
-{  
-  "name": "Daftar Permintaan Linen Bersih dari Ruangan",
-  "url": "/DaftarPermintaanLinenDariRuangan",
-  "templateurl": "module/AplikasiLaundry/DaftarPermintaanLinenDariRuangan.html",
-  "controller": "DaftarPermintaanLinenDariRuanganCtrl",
-  "deps": [
-    {
-      "module": "Services",
-      "define": "Service"
-    },
-    {
-      "module": "LoginServices",
-      "define": "LoginService"
-    },
-    {
-      "module": "SarprasService",
-      "define": "SarprasService"
-    }
-  ]
-},
+  {
+    "name": "Rekap Layanan Laundry",
+    "url": "/RekapLayananLaundry",
+    "templateurl": "module/AplikasiLaundry/RekapLayananLaundry.html",
+    "controller": "RekapLayananLaundryCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SarprasService",
+        "define": "SarprasService"
+      }
+    ]
+  },
+  {
+    "name": "Rekap Layanan IT",
+    "url": "/RekapLayananIT",
+    "templateurl": "module/AplikasiIT/RekapLayananIT.html",
+    "controller": "RekapLayananITCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SarprasService",
+        "define": "SarprasService"
+      }
+    ]
+  },
+  {
+    "name": "Daftar Permintaan Linen Bersih dari Ruangan",
+    "url": "/DaftarPermintaanLinenDariRuangan",
+    "templateurl": "module/AplikasiLaundry/DaftarPermintaanLinenDariRuangan.html",
+    "controller": "DaftarPermintaanLinenDariRuanganCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SarprasService",
+        "define": "SarprasService"
+      }
+    ]
+  },
   {
     "name": "Permintaan Linen Dari Ruangan",
     "url": "/PermintaanLinenByRuangan",
@@ -24034,7 +24030,6 @@
       }
     ]
   },
-  
   {
     "name": "KendoTes",
     "url": "/KendoTes",
@@ -29571,7 +29566,7 @@
         "define": "SarprasService"
       }
     ]
-  }, 
+  },
   {
     "name": "ProperLingkungan",
     "url": "/ProperLingkungan",
@@ -30570,7 +30565,7 @@
       }
     ]
   },
-   {
+  {
     "name": "mapangkatoromawi",
     "url": "/mapangkatoromawi",
     "templateurl": "module/MasterData/MapAngkaToRomawi.html",
@@ -33934,7 +33929,6 @@
       }
     ]
   },
-  
   {
     "name": "JaringanTubuh",
     "url": "/JaringanTubuh",
@@ -37826,7 +37820,7 @@
         "define": "SarprasService"
       }
     ]
-  },  
+  },
   {
     "name": "RevMappingAlatToBundel",
     "url": "/RevMappingAlatToBundel",
@@ -37846,7 +37840,7 @@
         "define": "SarprasService"
       }
     ]
-  },  
+  },
   {
     "name": "RevMappingBMHPToSetAlat",
     "url": "/RevMappingBMHPToSetAlat",
@@ -42162,8 +42156,8 @@
         "define": "SdmService"
       },
       {
-         "module": "PhpServices",
-         "define": "PhpServices"
+        "module": "PhpServices",
+        "define": "PhpServices"
       }
     ]
   },
@@ -42194,8 +42188,8 @@
         "define": "SdmService"
       },
       {
-         "module": "PhpServices",
-         "define": "PhpServices"
+        "module": "PhpServices",
+        "define": "PhpServices"
       }
     ]
   },
@@ -43870,7 +43864,6 @@
       }
     ]
   },
- 
   {
     "name": "dashboardpasien.PengkajianMedis.DashboardInstruksi.FormulirTransferPasienInternal",
     "url": "/FormulirTransferPasienInternal",
@@ -44297,8 +44290,8 @@
         "define": "SdmService"
       },
       {
-         "module": "PhpServices",
-         "define": "PhpServices"
+        "module": "PhpServices",
+        "define": "PhpServices"
       }
     ]
   },
@@ -44839,8 +44832,7 @@
       }
     ]
   },
-  
-   {
+  {
     "name": "IntraOperasi",
     "url": "/IntraOperasi/:noRec",
     "templateurl": "module/Bedah/IntraOperasi.html",
@@ -47554,248 +47546,247 @@
       }
     ]
   },
- 
   {
-      "name": "HargaNettoProdukByKelasEdit",
-      "url": "/HargaNettoProdukByKelasEdit",
-      "templateurl": "module/AplikasiIT/DataMaster/HargaNettoProdukByKelasEdit.html",
-      "controller": "HargaNettoProdukByKelasEditCtrl",
-      "deps": [
-        {
-          "module": "Services",
-          "define": "Service"
-        },
-        {
-          "module": "LoginServices",
-          "define": "LoginService"
-        },
-        {
-          "module": "KasirService",
-          "define": "KasirService"
-        },
-        {
-            "module": "AkuntansiService",
-            "define": "AkuntansiService"
-        },
-        {
-          "module": "SarprasService",
-          "define": "SarprasService"
-        }
-      ]
-    },
-    {
-      "name": "UsulanEvaluasiDanKajianOrganisasiView",
-      "url": "/UsulanEvaluasiDanKajianOrganisasiView/:noUsulan",
-      "templateurl": "module/Hukor/UsulanEvaluasi/UsulanEvaluasiDanKajianOrganisasiView.html",
-      "controller": "UsulanEvaluasiDanKajianOrganisasiViewCtrl",
-      "deps": [
-        {
-          "module": "Services",
-          "define": "Service"
-        },
-        {
-          "module": "LoginServices",
-          "define": "LoginService"
-        },
-        {
-          "module": "SarprasService",
-          "define": "SarprasService"
-        }
-      ]
-    },
-    {
-      "name": "dashboardpasien.LembarPengobatan",
-      "url": "/LembarPengobatanFarmasi/:noCm/:noRec/",
-      "templateurl": "module/Dashboard/Pasien/LembarPengobatanFarmasi.html",
-      "controller": "LembarPengobatanFarmasiCtrl",
-      "deps": [
-        {
-          "module": "Services",
-          "define": "Service"
-        },
-        {
-          "module": "LoginServices",
-          "define": "LoginService"
-        },
-        {
-          "module": "PasienService",
-          "define": "PasienService"
-        },
-        {
-          "module": "ProdukService",
-          "define": "ProdukService"
-        },
-        {
-          "module": "PegawaiService",
-          "define": "PegawaiService"
-        }
-      ]
-    },
-    {
-      "name": "DaftarMonitoringEvaluasiPerundanganTujuan",
-      "url": "/DaftarMonitoringEvaluasiPerundanganTujuan",
-      "templateurl": "module/Hukor/MonitoringEvaluasi/DaftarMonitoringEvaluasiPerundanganTujuan.html",
-      "controller": "DaftarMonitoringEvaluasiPerundanganTujuanCtrl",
-      "deps": [
-        {
-          "module": "Services",
-          "define": "Service"
-        },
-        {
-          "module": "LoginServices",
-          "define": "LoginService"
-        },
-        {
-          "module": "SarprasService",
-          "define": "SarprasService"
-        }
-      ]
-    },
-    {
-      "name": "LaporanPenangananKasusPelayananKesehatanPasien",
-      "url": "/LaporanPenangananKasusPelayananKesehatanPasien",
-      "templateurl": "module/Hukor/PenangananKasus/LaporanPenangananKasusPelayananKesehatanPasien.html",
-      "controller": "LaporanPenangananKasusPelayananKesehatanPasienCtrl",
-      "deps": [
-        {
-          "module": "Services",
-          "define": "Service"
-        },
-        {
-          "module": "LoginServices",
-          "define": "LoginService"
-        },
-        {
-          "module": "SarprasService",
-          "define": "SarprasService"
-        }
-      ]
-    },
-    {
-      "name": "DaftarLaporanPenangananKasusPelayananKesehatanPasien",
-      "url": "/DaftarLaporanPenangananKasusPelayananKesehatanPasien",
-      "templateurl": "module/Hukor/PenangananKasus/DaftarLaporanPenangananKasusPelayananKesehatanPasien.html",
-      "controller": "DaftarLaporanPenangananKasusPelayananKesehatanPasienCtrl",
-      "deps": [
-        {
-          "module": "Services",
-          "define": "Service"
-        },
-        {
-          "module": "LoginServices",
-          "define": "LoginService"
-        },
-        {
-          "module": "SarprasService",
-          "define": "SarprasService"
-        }
-      ]
-    },
-    {
-      "name": "RadiologiPasien.VerifikasiOrderRadiologi",
-      "url": "/:noRegistrasi/:noOrder/:noAntrianPasien/VerifikasiOrderRadiologi",
-      "templateurl": "module/Radiologi/VerifikasiOrderRadiologi.html",
-      "controller": "RadiologiPemeriksaanOrderCtrl",
-      "deps": [
-        {
-          "module": "Services",
-          "define": "Service"
-        },
-        {
-          "module": "ProdukService",
-          "define": "ProdukService"
-        },
-        {
-          "module": "LoginServices",
-          "define": "LoginService"
-        },
-        {
-          "module": "PasienService",
-          "define": "PasienService"
-        },
-        {
-          "module": "PegawaiService",
-          "define": "PegawaiService"
-        },
-        {
-          "module": "RadiologiService",
-          "define": "RadiologiService"
-        },
-        {
-          "module": "LaboratoriumService",
-          "define": "LaboratoriumService"
-        },
-        {
-          "module": "TataRekeningService",
-          "define": "TataRekeningService"
-        }
-      ]
-    },
-    {
-      "name": "RegistrasiPasienBaruBayi",
-      "url": "/RegistrasiPasienBaruBayi",
-      "controller": "registrasiPasienBaruBayiCtrl",
-      "templateurl": "module/pasien/registrasiPasienBaru/indexBayi.html",
-      "deps": [
-        {
-          "module": "Services",
-          "define": "Service"
-        },
-        {
-          "module": "LoginServices",
-          "define": "LoginService"
-        },
-        {
-          "module": "PasienService",
-          "define": "PasienService"
-        }
-      ]
-    },
-    {
-      "name": "VerifikasiBayi",
-      "url": "/VerifikasiBayi",
-      "controller": "VerifikasiBayiCtrl",
-      "templateurl": "module/pasien/registrasiPasienBaru/VerifikasiBayi.html",
-      "deps": [
-        {
-          "module": "Services",
-          "define": "Service"
-        },
-        {
-          "module": "LoginServices",
-          "define": "LoginService"
-        },
-        {
-          "module": "PasienService",
-          "define": "PasienService"
-        },
-        {
-          "module": "PegawaiService",
-          "define": "PegawaiService"
-        }
-      ]
-    },
-    {
-      "name": "RegistrasiPasienBaruBayiVerif",
-      "url": "/RegistrasiPasienBaruBayiVerif/:noCm",
-      "controller": "registrasiPasienBaruBayiCtrl",
-      "templateurl": "module/pasien/registrasiPasienBaru/indexBayi.html",
-      "deps": [
-        {
-          "module": "Services",
-          "define": "Service"
-        },
-        {
-          "module": "LoginServices",
-          "define": "LoginService"
-        },
-        {
-          "module": "PasienService",
-          "define": "PasienService"
-        }
-      ]
-    },
-    {
+    "name": "HargaNettoProdukByKelasEdit",
+    "url": "/HargaNettoProdukByKelasEdit",
+    "templateurl": "module/AplikasiIT/DataMaster/HargaNettoProdukByKelasEdit.html",
+    "controller": "HargaNettoProdukByKelasEditCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "KasirService",
+        "define": "KasirService"
+      },
+      {
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
+      },
+      {
+        "module": "SarprasService",
+        "define": "SarprasService"
+      }
+    ]
+  },
+  {
+    "name": "UsulanEvaluasiDanKajianOrganisasiView",
+    "url": "/UsulanEvaluasiDanKajianOrganisasiView/:noUsulan",
+    "templateurl": "module/Hukor/UsulanEvaluasi/UsulanEvaluasiDanKajianOrganisasiView.html",
+    "controller": "UsulanEvaluasiDanKajianOrganisasiViewCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SarprasService",
+        "define": "SarprasService"
+      }
+    ]
+  },
+  {
+    "name": "dashboardpasien.LembarPengobatan",
+    "url": "/LembarPengobatanFarmasi/:noCm/:noRec/",
+    "templateurl": "module/Dashboard/Pasien/LembarPengobatanFarmasi.html",
+    "controller": "LembarPengobatanFarmasiCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "PasienService",
+        "define": "PasienService"
+      },
+      {
+        "module": "ProdukService",
+        "define": "ProdukService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
+    "name": "DaftarMonitoringEvaluasiPerundanganTujuan",
+    "url": "/DaftarMonitoringEvaluasiPerundanganTujuan",
+    "templateurl": "module/Hukor/MonitoringEvaluasi/DaftarMonitoringEvaluasiPerundanganTujuan.html",
+    "controller": "DaftarMonitoringEvaluasiPerundanganTujuanCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SarprasService",
+        "define": "SarprasService"
+      }
+    ]
+  },
+  {
+    "name": "LaporanPenangananKasusPelayananKesehatanPasien",
+    "url": "/LaporanPenangananKasusPelayananKesehatanPasien",
+    "templateurl": "module/Hukor/PenangananKasus/LaporanPenangananKasusPelayananKesehatanPasien.html",
+    "controller": "LaporanPenangananKasusPelayananKesehatanPasienCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SarprasService",
+        "define": "SarprasService"
+      }
+    ]
+  },
+  {
+    "name": "DaftarLaporanPenangananKasusPelayananKesehatanPasien",
+    "url": "/DaftarLaporanPenangananKasusPelayananKesehatanPasien",
+    "templateurl": "module/Hukor/PenangananKasus/DaftarLaporanPenangananKasusPelayananKesehatanPasien.html",
+    "controller": "DaftarLaporanPenangananKasusPelayananKesehatanPasienCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SarprasService",
+        "define": "SarprasService"
+      }
+    ]
+  },
+  {
+    "name": "RadiologiPasien.VerifikasiOrderRadiologi",
+    "url": "/:noRegistrasi/:noOrder/:noAntrianPasien/VerifikasiOrderRadiologi",
+    "templateurl": "module/Radiologi/VerifikasiOrderRadiologi.html",
+    "controller": "RadiologiPemeriksaanOrderCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "ProdukService",
+        "define": "ProdukService"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "PasienService",
+        "define": "PasienService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      },
+      {
+        "module": "RadiologiService",
+        "define": "RadiologiService"
+      },
+      {
+        "module": "LaboratoriumService",
+        "define": "LaboratoriumService"
+      },
+      {
+        "module": "TataRekeningService",
+        "define": "TataRekeningService"
+      }
+    ]
+  },
+  {
+    "name": "RegistrasiPasienBaruBayi",
+    "url": "/RegistrasiPasienBaruBayi",
+    "controller": "registrasiPasienBaruBayiCtrl",
+    "templateurl": "module/pasien/registrasiPasienBaru/indexBayi.html",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "PasienService",
+        "define": "PasienService"
+      }
+    ]
+  },
+  {
+    "name": "VerifikasiBayi",
+    "url": "/VerifikasiBayi",
+    "controller": "VerifikasiBayiCtrl",
+    "templateurl": "module/pasien/registrasiPasienBaru/VerifikasiBayi.html",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "PasienService",
+        "define": "PasienService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
+    "name": "RegistrasiPasienBaruBayiVerif",
+    "url": "/RegistrasiPasienBaruBayiVerif/:noCm",
+    "controller": "registrasiPasienBaruBayiCtrl",
+    "templateurl": "module/pasien/registrasiPasienBaru/indexBayi.html",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "PasienService",
+        "define": "PasienService"
+      }
+    ]
+  },
+  {
     "name": "Evaluasi",
     "url": "/Evaluasi",
     "templateurl": "module/Evaluasi/Evaluasi.html",
@@ -47844,20 +47835,22 @@
     "url": "/TEST",
     "templateurl": "module/pasien/TEST/TEST.html",
     "controller": "TESTctrl",
-    "deps": [{
-          "module": "Services",
-          "define": "Service"
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
       },
       {
-          "module": "LoginServices",
-          "define": "LoginService"
+        "module": "LoginServices",
+        "define": "LoginService"
       },
       {
-          "module": "SarprasService",
-          "define": "SarprasService"
+        "module": "SarprasService",
+        "define": "SarprasService"
       }
     ]
-  },{
+  },
+  {
     "name": "AntrianRadiologi",
     "url": "/AntrianRadiologi",
     "templateurl": "module/pasien/TouchScreen/AntrianRadiologi.html",
@@ -47930,12 +47923,12 @@
         "define": "ManagementService"
       },
       {
-          "module": "LogistikServicePhp",
-          "define": "LogistikServicePhp"
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
       }
     ]
   },
-   {
+  {
     "name": "Aksespegawai",
     "url": "/Aksespegawai",
     "templateurl": "module/MasterData/Aksespegawai.html",
@@ -47990,7 +47983,7 @@
       }
     ]
   },
-   {
+  {
     "name": "PemantauanAnestesi",
     "url": "/PemantauanAnestesi/:noRec",
     "templateurl": "module/Bedah/PemantauanAnestesi.html",
@@ -48141,12 +48134,12 @@
         "define": "LoginService"
       },
       {
-          "module": "LogistikServicePhp",
-          "define": "LogistikServicePhp"
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
       },
       {
-         "module": "AkuntansiService",
-         "define": "AkuntansiService"
+        "module": "AkuntansiService",
+        "define": "AkuntansiService"
       }
     ]
   },
@@ -48169,8 +48162,8 @@
         "define": "ManagementService"
       },
       {
-          "module": "LogistikServicePhp",
-          "define": "LogistikServicePhp"
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
       }
     ]
   },
@@ -48193,8 +48186,8 @@
         "define": "ManagementService"
       },
       {
-          "module": "LogistikServicePhp",
-          "define": "LogistikServicePhp"
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
       }
     ]
   },
@@ -48217,8 +48210,8 @@
         "define": "ManagementService"
       },
       {
-          "module": "LogistikServicePhp",
-          "define": "LogistikServicePhp"
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
       }
     ]
   },
@@ -48237,8 +48230,8 @@
         "define": "LoginService"
       },
       {
-          "module": "TataRekeningService",
-          "define": "TataRekeningService"
+        "module": "TataRekeningService",
+        "define": "TataRekeningService"
       }
     ]
   },
@@ -48295,6 +48288,126 @@
     "url": "/LapBIOSJumlahPasien",
     "templateurl": "module/Akuntansi/TataRekening/LapBIOSJumlahPasien.html",
     "controller": "LapBIOSJumlahPasienCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
+    "name": "IndikatorPelayanan",
+    "url": "/LapBIOSIndikatorPelayanan",
+    "templateurl": "module/Akuntansi/TataRekening/LapBIOSIndikatorPelayanan.html",
+    "controller": "LapBIOSIndikatorPelayananCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
+    "name": "IndikatorLainnya",
+    "url": "/LapBIOSIndikatorLainnya",
+    "templateurl": "module/Akuntansi/TataRekening/LapBIOSIndikatorLainnya.html",
+    "controller": "LapBIOSIndikatorLainnyaCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
+    "name": "PenerimaanKeuangan",
+    "url": "/LapBIOSPenerimaanKeuangan",
+    "templateurl": "module/Akuntansi/TataRekening/LapBIOSPenerimaanKeuangan.html",
+    "controller": "LapBIOSPenerimaanKeuanganCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
+    "name": "PengeluaranKeuangan",
+    "url": "/LapBIOSPengeluaranKeuangan",
+    "templateurl": "module/Akuntansi/TataRekening/LapBIOSPengeluaranKeuangan.html",
+    "controller": "LapBIOSPengeluaranKeuanganCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      }
+    ]
+  },
+  {
+    "name": "SaldoKeuangan",
+    "url": "/LapBIOSSaldoKeuangan",
+    "templateurl": "module/Akuntansi/TataRekening/LapBIOSSaldoKeuangan.html",
+    "controller": "LapBIOSSaldoKeuanganCtrl",
     "deps": [
       {
         "module": "Services",
@@ -48419,29 +48532,29 @@
     "url": "/LaporanApotek",
     "templateurl": "module/Apotek/LaporanApotek.html",
     "controller": "LaporanApotekCtrl",
-    "deps": [{
-            "module": "Services",
-            "define": "Service"
-        },
-        {
-            "module": "LoginServices",
-            "define": "LoginService"
-        },
-        {
-            "module": "TataRekeningService",
-            "define": "TataRekeningService"
-        },
-        {
-            "module": "SdmService",
-            "define": "SdmService"
-        },
-        {
-          "module": "TataRekeningService",
-          "define": "TataRekeningService"
-        }
-      ]
-    }
-,
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "TataRekeningService",
+        "define": "TataRekeningService"
+      },
+      {
+        "module": "SdmService",
+        "define": "SdmService"
+      },
+      {
+        "module": "TataRekeningService",
+        "define": "TataRekeningService"
+      }
+    ]
+  },
   {
     "name": "dashboardpasien.PengkajianMedis.DashboardInstruksi.ResepProduksi",
     "url": "/InputResepProduksiOrder/:noRec",
@@ -48522,8 +48635,8 @@
         "define": "LoginService"
       },
       {
-          "module": "TataRekeningService",
-          "define": "TataRekeningService"
+        "module": "TataRekeningService",
+        "define": "TataRekeningService"
       }
     ]
   },
@@ -49084,40 +49197,40 @@
     ]
   },
   {
-      "name": "dashboardpasien.DashboardSkriningKekhususan.SkriningKekhususanInformasiIbuRev",
-      "url": "/SkriningKekhususanInformasiIbuRev/:noCM/:tanggal/:noRec/:noRecSOAP/:noRecPasienDaftar",
-      "templateurl": "module/RekamMedis/InformasiIbuRev.html",
-      "controller": "InformasiIbuRevCtrl",
-      "deps": [
-        {
-          "module": "Services",
-          "define": "Service"
-        },
-        {
-          "module": "LoginServices",
-          "define": "LoginService"
-        },
-        {
-          "module": "PasienService",
-          "define": "PasienService"
-        },
-        {
-          "module": "PegawaiService",
-          "define": "PegawaiService"
-        },
-        {
-          "module": "PhpService",
-          "define": "PhpService"
-        },
-        {
-          "define": "DashboarPasienCtrl"
-        },
-        {
-          "define": "DashboardSkriningUmumCtrl"
-        }
-      ]
-    },
-    {
+    "name": "dashboardpasien.DashboardSkriningKekhususan.SkriningKekhususanInformasiIbuRev",
+    "url": "/SkriningKekhususanInformasiIbuRev/:noCM/:tanggal/:noRec/:noRecSOAP/:noRecPasienDaftar",
+    "templateurl": "module/RekamMedis/InformasiIbuRev.html",
+    "controller": "InformasiIbuRevCtrl",
+    "deps": [
+      {
+        "module": "Services",
+        "define": "Service"
+      },
+      {
+        "module": "LoginServices",
+        "define": "LoginService"
+      },
+      {
+        "module": "PasienService",
+        "define": "PasienService"
+      },
+      {
+        "module": "PegawaiService",
+        "define": "PegawaiService"
+      },
+      {
+        "module": "PhpService",
+        "define": "PhpService"
+      },
+      {
+        "define": "DashboarPasienCtrl"
+      },
+      {
+        "define": "DashboardSkriningUmumCtrl"
+      }
+    ]
+  },
+  {
     "name": "dashboardpasien.DashboardSkriningKekhususan.SkriningKekhususanRiwayatLaluRev",
     "url": "/SkriningKekhususanRiwayatLaluRev/:noCM/:tanggal/:noRec/:noRecSOAP/:noRecPasienDaftar",
     "templateurl": "module/RekamMedis/RiwayatLaluRev.html",
@@ -49151,7 +49264,7 @@
       }
     ]
   },
-   {
+  {
     "name": "dashboardpasien.DashboardSkriningKekhususan.SkriningKekhususanRiwayatKelahiranRev",
     "url": "/SkriningKekhususanRiwayatKelahiranRev/:noCM/:tanggal/:noRec/:noRecSOAP/:noRecPasienDaftar",
     "templateurl": "module/RekamMedis/SkriningKekhususanRiwayatKelahiranRev.html",
@@ -49185,7 +49298,7 @@
       }
     ]
   },
-   {
+  {
     "name": "dashboardpasien.DashboardSkriningKekhususan.SkriningKekhususanRiwayatImunisasiDasarRev",
     "url": "/SkriningKekhususanRiwayatImunisasiDasarRev/:noCM/:tanggal/:noRec/:noRecSOAP/:noRecPasienDaftar",
     "templateurl": "module/RekamMedis/SkriningKekhususanRiwayatImunisasiDasarRev.html",
@@ -49219,7 +49332,7 @@
       }
     ]
   },
-   {
+  {
     "name": "dashboardpasien.DashboardSkriningKekhususan.SkriningKekhususanRiwayatTumbuhKembangRev",
     "url": "/SkriningKekhususanRiwayatTumbuhKembangRev/:noCM/:tanggal/:noRec/:noRecSOAP/:noRecPasienDaftar",
     "templateurl": "module/RekamMedis/SkriningKekhususanRiwayatTumbuhKembangRev.html",
@@ -49253,7 +49366,7 @@
       }
     ]
   },
-   {
+  {
     "name": "dashboardpasien.DashboardSkriningKekhususan.SkriningKekhususanKehamilanSekarangRev",
     "url": "/SkriningKekhususanKehamilanSekarangRev/:noCM/:tanggal/:noRec/:noRecSOAP/:noRecPasienDaftar",
     "templateurl": "module/RekamMedis/KehamilanSekarangRev.html",
@@ -49390,7 +49503,7 @@
       {
         "define": "DashboardSkriningUmumCtrl"
       }
-    ]  
+    ]
   },
   {
     "name": "dashboardpasien.DashboardSkriningUmum.ResikoJatuhRev",
@@ -49615,8 +49728,7 @@
       {
         "define": "DashboardSkriningUmumCtrl"
       }
- 
-    ]  
+    ]
   },
   {
     "name": "dashboardpasien.PerencanaanPulangRev",
@@ -49647,7 +49759,7 @@
       {
         "define": "DashboarPasienCtrl"
       }
-    ] 
+    ]
   },
   {
     "name": "KeluhanPelangganBaru",
@@ -49668,12 +49780,12 @@
         "define": "SarprasService"
       },
       {
-          "module": "LogistikServicePhp",
-          "define": "LogistikServicePhp"
+        "module": "LogistikServicePhp",
+        "define": "LogistikServicePhp"
       }
-    ]  
+    ]
   },
-   {
+  {
     "name": "dashboardpasien.DashboardSkriningKekhususan.SkriningKekhususanGinekologiRev",
     "url": "/SkriningKekhususanGinekologiRev/:noCM/:tanggal/:noRec/:noRecSOAP/:noRecPasienDaftar",
     "templateurl": "module/RekamMedis/SkriningKekhususanGinekologiRev.html",
@@ -49695,7 +49807,7 @@
         "module": "PegawaiService",
         "define": "PegawaiService"
       },
-       {
+      {
         "module": "PhpService",
         "define": "PhpService"
       },
@@ -49784,7 +49896,6 @@
       }
     ]
   },
-
   {
     "name": "DaftarHasilTriase",
     "url": "/DaftarHasilTriase",
@@ -49805,7 +49916,6 @@
       }
     ]
   },
-
   {
     "name": "KelompokKerja",
     "url": "/KelompokKerja",
@@ -49830,7 +49940,6 @@
       }
     ]
   },
-
   {
     "name": "KelompokKerjaHead",
     "url": "/KelompokKerjaHead",

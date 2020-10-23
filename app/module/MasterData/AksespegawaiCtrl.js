@@ -98,7 +98,7 @@ define(['initialize'], function (initialize) {
 			}
 
 			$scope.SearchData = function () {
-				manageSarprasPhp.getDataTableTransaksi("pegawai/svc-modul?get=pegawai&nama=" + $scope.item.pegawai.namaLengkap.toLowerCase()).then(function (datapegawai) {
+				manageSarprasPhp.getDataTableTransaksi("pegawai/svc-modul?get=pegawai&nama=" + $scope.item.pegawai.namaLengkap).then(function (datapegawai) {
 					// debugger;
 					// $scope.listdatapegawai = datapegawai.data.pegawai;
 					$scope.listdataloginuser = datapegawai.data.loginuser;
@@ -290,7 +290,7 @@ define(['initialize'], function (initialize) {
 					})
 				}, error => {
 					alert('Nama user sudah digunakan!')
-				})				
+				})
 			}
 
 			$scope.simpan = function () {

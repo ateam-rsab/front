@@ -7,12 +7,16 @@
 <style>
     .container-presensi {
         display: flex;
+<<<<<<< HEAD
         /* justify-content: center; */
     }
 
     #mapid {
         height: 20em;
         z-index: 1;
+=======
+        justify-content: center;
+>>>>>>> fd00d619ca87ae8404890119a7fc5601f62ff6f6
     }
 
     .label-name {
@@ -81,6 +85,10 @@
 
         }
     }
+
+    #map {
+        text-align: center
+    }
 </style>
 
 <md-toolbar md-scroll-shrink class="shadow">
@@ -88,6 +96,7 @@
 </md-toolbar>
 
 <div class="container-presensi">
+<<<<<<< HEAD
     <md-card>
         <md-card-content class="capture">
             <video id="video" width="400" height="400" autoplay></video>
@@ -100,6 +109,8 @@
         </md-card-content>
     </md-card>
 
+=======
+>>>>>>> fd00d619ca87ae8404890119a7fc5601f62ff6f6
     <md-card>
         <md-card-content>
             <div id="mapid"></div>
@@ -111,12 +122,10 @@
                 <label class="label-name">Nama Lengkap Pegawai : </label>
                 <label class="label-content">{{data.namaLengkap ? data.namaLengkap : "-"}}</label>
             </div>
-
             <div>
                 <label class="label-name">ID Finger : </label>
                 <label class="label-content">{{data.idFinger ? data.idFinger : "-"}}</label>
             </div>
-
             <div>
                 <label class="label-name">Jadwal : </label>
                 <label class="label-content">{{data.jadwal ? data.jadwal : "-"}}</label>
@@ -125,9 +134,14 @@
                 <label class="label-name">Work From Home (WFH) : </label>
                 <label class="label-content">{{data.isWFH ? 'Ya' : 'Tidak'}}</label>
             </div> -->
+<<<<<<< HEAD
 
             <div>
                 <div class="grid_2">
+=======
+            <div class="grid_12">
+                <div class="grid_4">
+>>>>>>> fd00d619ca87ae8404890119a7fc5601f62ff6f6
                     <div id="time-part"></div>
                     <!-- <input kendo-time-picker ng-model="str" k-ng-model="tanggalPresensi" k-format="'HH:mm'"
                         style="width: 100%;" disabled> -->
@@ -143,9 +157,10 @@
                         <i class="fa fa-save"></i>
                     </md-button>
                 </div>
-
             </div>
-
+            <div class="grid_12">
+                <div id="map"></div>
+            </div>
             <div class="grid_12">
                 <fieldset class="borderBox">
                     <legend>History Jam Presensi</legend>
@@ -154,7 +169,6 @@
                     </div>
                 </fieldset>
             </div>
-
         </md-card-content>
     </md-card>
 </div>
