@@ -126,66 +126,6 @@ define(['initialize'], function (initialize) {
                 columns: $scope.columnGrid
             }
 
-<<<<<<< HEAD
-
-
-            function getIPAddr() {
-                let dataIP = null;
-                let http = new XMLHttpRequest();
-
-                http.onreadystatechange = () => {
-                    if(http.readyState == 4 && http.status === 200) {
-                        dataIP = http.responseText;
-                    }
-                }
-
-                http.open("GET", "https://api.ipify.org", false);
-
-                http.send();
-
-                return dataIP;
-            }
-
-            $scope.savePresensi = function () {
-                
-                let imgUrl = canvas.toDataURL("image/jpg", 0.7);
-                console.log(imgUrl);
-                
-                // let ip = getIPAddr();
-                // $scope.isRouteLoading = true;
-                // let data = {
-                //     pegawai: {
-                //         id: $scope.dataPegawaiLogin.id
-                //     },
-                //     processtatus: $scope.data.isWFH ? 1 : 0,
-                //     ip_addr: ip
-                // }
-
-                // ManageSdmNew.saveData(data, 'sdm/save-presensi-pegawai/').then((res) => {
-                //     getDataHistory();
-                // })
-            }
-
-            // $scope.savePresensi = function () {
-            //     let data = {
-            //         // tr_date: DateHelper.toTimeStamp(new Date()),
-            //         // tr_time: DateHelper.toTimeStamp(new Date()),
-            //         pegawai: {
-            //             id: $scope.dataPegawaiLogin.id
-            //         },
-            //         latitude: $scope.userLocation.lat,
-            //         longitude: $scope.userLocation.lng,
-            //         akurasi: $scope.userLocation.akurasi ,
-            //         // empl_code: $scope.data.idFinger,
-            //         processtatus: $scope.data.isWFH ? 1 : 0,
-            //         ip_addr: $scope.dataDevice.geoplugin_request
-            //     }
-            //     // console.log(data);
-            //     ManageSdmNew.saveData(data, 'sdm/save-presensi-pegawai/').then((res) => {
-            //         getDataHistory();
-            //     })
-            // }
-=======
             $scope.savePresensi = function () {
                 getLocation();
 
@@ -248,7 +188,6 @@ define(['initialize'], function (initialize) {
             function getDecimal(n) {
                 return (n - Math.floor(n));
             }
->>>>>>> fd00d619ca87ae8404890119a7fc5601f62ff6f6
         }
     ]);
 });
