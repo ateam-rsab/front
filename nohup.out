@@ -1,0 +1,44 @@
+
+> simrs@1.0.0 start /media/refli/DATA2/Work/HARKIT/application/front
+> concurrently "npm run run-app" "npm run watch-css" && forever start --minUptime 1000 --spinSleepTime 1000 ./bin/www 
+
+events.js:174
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: EBADF: bad file descriptor, read
+Emitted 'error' event at:
+    at lazyFs.read (internal/fs/streams.js:165:12)
+    at FSReqWrap.wrapper [as oncomplete] (fs.js:467:17)
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! simrs@1.0.0 start: `concurrently "npm run run-app" "npm run watch-css" && forever start --minUptime 1000 --spinSleepTime 1000 ./bin/www `
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the simrs@1.0.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /home/refli/.npm/_logs/2020-09-15T00_43_45_573Z-debug.log
+
+> simrs@1.0.0 start /media/refli/DATA2/Work/HARKIT/application/front
+> concurrently "npm run run-app" "npm run watch-css" && forever start --minUptime 1000 --spinSleepTime 1000 ./bin/www 
+
+events.js:174
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: EBADF: bad file descriptor, read
+Emitted 'error' event at:
+    at lazyFs.read (internal/fs/streams.js:165:12)
+    at FSReqWrap.wrapper [as oncomplete] (fs.js:467:17)
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! simrs@1.0.0 start: `concurrently "npm run run-app" "npm run watch-css" && forever start --minUptime 1000 --spinSleepTime 1000 ./bin/www `
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the simrs@1.0.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /home/refli/.npm/_logs/2020-09-16T00_27_53_705Z-debug.log
