@@ -30,6 +30,15 @@
         margin: 10px 0;
     }
 
+    #wifi-icon {
+        color: green;
+    }
+
+    #xlabel {
+        color: red;
+    }
+
+    #date-part,
     #time-part {
         font-size: 15px;
         font-weight: bolder;
@@ -57,6 +66,11 @@
 <div class="container-presensi">
     <md-card>
         <md-card-content>
+            <div style="float: right">
+                <i id="wifi-icon" class="fa fa-wifi"></i>
+                <label id="xlabel" class="label-content" ng-hide="isRSABNet">{{strJenisJaringan}}</label>
+                <label class="label-content" ng-show="isRSABNet">{{strJenisJaringan}}</label>
+            </div>
             <div>
                 <label class="label-name">Nama Lengkap Pegawai : </label>
                 <label class="label-content">{{data.namaLengkap ? data.namaLengkap : "-"}}</label>
@@ -75,6 +89,7 @@
             </div> -->
             <div class="grid_12">
                 <div class="grid_4">
+                    <div id="date-part"></div>
                     <div id="time-part"></div>
                     <!-- <input kendo-time-picker ng-model="str" k-ng-model="tanggalPresensi" k-format="'HH:mm'"
                         style="width: 100%;" disabled> -->

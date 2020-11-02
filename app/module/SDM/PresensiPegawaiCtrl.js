@@ -34,7 +34,8 @@ define(['initialize'], function (initialize) {
             let init = function () {
                 var interval = setInterval(function () {
                     var momentNow = moment();
-                    $('#date-part').html(momentNow.format('YYYY MMMM DD') + ' ' + momentNow.format('dddd').substring(0, 3).toUpperCase());
+                    // $('#date-part').html(momentNow.format('YYYY MMMM DD') + ' ' + momentNow.format('dddd').substring(0, 3).toUpperCase());
+                    $('#date-part').html(DateHelper.getTanggalFormatted(momentNow.toDate()));
                     $('#time-part').html(momentNow.format('HH:mm:ss'));
                 }, 100);
 
@@ -43,6 +44,16 @@ define(['initialize'], function (initialize) {
                 ManageSdmNew.getListData('sdm/get-jadwal-pegawai?idPegawai=' + $scope.dataPegawaiLogin.id).then((res) => {
                     $scope.data = res.data.data;
                 });
+
+                $scope.ip = getIPAddr();
+                var listProviders = ['43.225.67.209', '103.116.203.81', '103.116.203.82', '103.116.203.83', '103.116.203.84', '103.116.203.85', '103.116.203.86', '103.116.203.87', '103.116.203.88', '103.116.203.89', '103.116.203.90', '103.116.203.91', '103.116.203.92', '103.116.203.93', '103.116.203.94', '103.116.203.95', '103.247.219.149']
+                if (listProviders.includes($scope.ip)) {
+                    $scope.strJenisJaringan = "Jaringan Internet RSAB"
+                    $scope.isRSABNet = true
+                } else {
+                    $scope.strJenisJaringan = "Bukan Jaringan Internet RSAB"
+                    $scope.isRSABNet = false
+                }
             }
 
             init();
@@ -59,26 +70,57 @@ define(['initialize'], function (initialize) {
                 columns: $scope.columnGrid
             }
 
+            function getIPAddr() {
+                let dataIP = null;
+                let http = new XMLHttpRequest();
+
+                http.onreadystatechange = () => {
+                    if (http.readyState == 4 && http.status === 200) {
+                        dataIP = JSON.parse(http.responseText);
+                    }
+                }
+                http.open("GET", "http://www.geoplugin.net/json.gp", false);
+                http.send();
+
+                return dataIP.geoplugin_request;
+            }
+
+            // $.get('http://www.geoplugin.net/json.gp', function (req) {
+            //     $scope.dataDevice = JSON.parse(req);
+            //     var listProviders = ['43.225.67.209', '103.116.203.81', '103.116.203.82', '103.116.203.83', '103.116.203.84', '103.116.203.85', '103.116.203.86', '103.116.203.87', '103.116.203.88', '103.116.203.89', '103.116.203.90', '103.116.203.91', '103.116.203.92', '103.116.203.93', '103.116.203.94', '103.116.203.95', '103.247.219.149']
+            //     if (listProviders.includes($scope.dataDevice.geoplugin_request)) {
+            //         $scope.strJenisJaringan = "Jaringan Internet RSAB"
+            //     } else {
+            //         $scope.strJenisJaringan = "Bukan Jaringan Internet RSAB"
+            //     }
+            //     for (let index = 0; index < listProviders.length; index++) {
+            //         if (listProviders[index] == $scope.dataDevice.geoplugin_request) {
+            //             $scope.strJenisJaringan = "Jaringan Internet RSAB"
+            //             break
+            //         }
+            //     }
+            //     if (!$scope.strJenisJaringan) {
+            //         $scope.strJenisJaringan = "Bukan Jaringan Internet RSAB"
+            //     }
+            // });
+
             $scope.savePresensi = function () {
                 getLocation();
 
                 $scope.isRouteLoading = true;
-                $.get('http://www.geoplugin.net/json.gp', function (req) {
-                    $scope.dataDevice = JSON.parse(req);
-                    let data = {
-                        pegawai: {
-                            id: $scope.dataPegawaiLogin.id
-                        },
-                        processtatus: $scope.data.isWFH ? 1 : 0,
-                        ip_addr: $scope.dataDevice.geoplugin_request,
-                        latitude: $scope.latitude,
-                        longitude: $scope.longitude,
-                        akurasi: $scope.akurasi
-                    }
-                    ManageSdmNew.saveData(data, 'sdm/save-presensi-pegawai/').then((res) => {
-                        getDataHistory();
-                    })
-                });
+                let data = {
+                    pegawai: {
+                        id: $scope.dataPegawaiLogin.id
+                    },
+                    processtatus: $scope.data.isWFH ? 1 : 0,
+                    ip_addr: $scope.dataDevice.geoplugin_request,
+                    latitude: $scope.latitude,
+                    longitude: $scope.longitude,
+                    akurasi: $scope.akurasi
+                }
+                ManageSdmNew.saveData(data, 'sdm/save-presensi-pegawai/').then((res) => {
+                    getDataHistory();
+                })
             }
 
             var x = document.getElementById("map");
