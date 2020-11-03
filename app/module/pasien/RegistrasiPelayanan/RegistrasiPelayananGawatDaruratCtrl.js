@@ -22,7 +22,7 @@ define(['initialize'], function (initialize) {
             $scope.listKasusPolisi = [{ "id": 1, "name": "Ya" }, { "id": 2, "name": "Tidak" }]
 
             //Buatan urang
-            ManagePhp.getData("rekam-medis/get-jenis-kelamin/").then(function (dat) {
+            ManagePhp.getData("rekam-medis/get-jenis-kelamin").then(function (dat) {
                 $scope.listJenisKelamin = dat.data.jenisKelamin;
 
             });
@@ -362,13 +362,13 @@ define(['initialize'], function (initialize) {
 
 
             //Buatan urang
-            ManagePhp.getData("rekam-medis/get-hubungan-keluarga/").then(function (dat) {
+            ManagePhp.getData("rekam-medis/get-hubungan-keluarga").then(function (dat) {
 
                 $scope.listHubunganKeluarga = dat.data.hubunganKeluarga;
 
             });
 
-            ManagePhp.getData("rekam-medis/get-status-bawa/").then(function (dat) {
+            ManagePhp.getData("rekam-medis/get-status-bawa").then(function (dat) {
 
                 $scope.listStatusBawa = dat.data.statusBawa;
 
