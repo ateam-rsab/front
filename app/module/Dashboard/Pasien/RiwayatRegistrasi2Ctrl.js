@@ -1,7 +1,7 @@
 define(['initialize'], function (initialize, pasienServices) {
     'use strict';
     initialize.controller('RiwayatRegistrasi2Ctrl', ['$q', 'ManagePasien', '$rootScope', '$scope', 'ModelItem', 'ModelItemAkuntansi', '$state', 'FindPasien', 'CacheHelper', 'DateHelper', 'ManageSarprasPhp', '$mdDialog',
-        function ($q, managePasien, $rootScope, $scope, ModelItem,modelItemAkuntansi, $state, findPasien, cacheHelper, dateHelper, manageSarprasPhp, $mdDialog) {
+        function ($q, managePasien, $rootScope, $scope, ModelItem, modelItemAkuntansi, $state, findPasien, cacheHelper, dateHelper, manageSarprasPhp, $mdDialog) {
             $scope.isRouteLoading = false;
             // $scope.showDetail = false;
             var currentParams;
@@ -12,7 +12,7 @@ define(['initialize'], function (initialize, pasienServices) {
                 from: $scope.now,
                 until: $scope.now
             }
-            $scope.isRouteLoading=false;
+            $scope.isRouteLoading = false;
             $scope.items = {};
 
             // if($state.params != undefined){
@@ -41,7 +41,7 @@ define(['initialize'], function (initialize, pasienServices) {
             $scope.listRegistrasiDetil = [];
             $scope.batal();
             $scope.findByRegistrasi = function () {
-                
+
                 loadDatas()
 
                 // var listRawRequired = [
@@ -98,7 +98,7 @@ define(['initialize'], function (initialize, pasienServices) {
             //                     pageable: true,
             //                     pagesize: 5
             //                 })
-                        
+
             //             }
             //             $scope.isRouteLoading = false;
             //             $scope.showDetail = false;
@@ -115,41 +115,54 @@ define(['initialize'], function (initialize, pasienServices) {
             //     $scope.cboInputDiagnosa = true;
             // }
 
-         manageSarprasPhp.getDataTableTransaksi("tatarekening/get-data-combo-daftarregpasien", false).then(function(data) {
-              $scope.listDepartemen = data.data.deptrirj;
-              $scope.item.departement = {id:$scope.listDepartemen[0].id,namadepartemen:$scope.listDepartemen[0].namadepartemen}
-              // $scope.listKelompokPasien = data.data.kelompokpasien;
-              // $scope.listRuangan = data.data.ruanganRi;
-          })
+            manageSarprasPhp.getDataTableTransaksi("tatarekening/get-data-combo-daftarregpasien", false).then(function (data) {
+                $scope.listDepartemen = data.data.deptrirj;
+                $scope.item.departement = {
+                    id: $scope.listDepartemen[0].id,
+                    namadepartemen: $scope.listDepartemen[0].namadepartemen
+                }
+                // $scope.listKelompokPasien = data.data.kelompokpasien;
+                // $scope.listRuangan = data.data.ruanganRi;
+            })
 
-           
-            $scope.findBynoCM = function(){
+
+            $scope.findBynoCM = function () {
 
                 loadData()
-                 $scope.cboDiagnosa=false;
-                 $scope.cboDiagnosa1=false;
-                 $scope.cboInputDiagnosa = true;
+                $scope.cboDiagnosa = false;
+                $scope.cboDiagnosa1 = false;
+                $scope.cboInputDiagnosa = true;
             }
 
-            function loadData(){
-                $scope.isRouteLoading=true;
+            function loadData() {
+                $scope.isRouteLoading = true;
 
-                var noCm =""
-                if($scope.item.noCm != undefined){
-                    var noCm ="noCm=" +$scope.item.noCm
+                var noCm = ""
+                if ($scope.item.noCm != undefined) {
+                    var noCm = "noCm=" + $scope.item.noCm
                 }
 
-                var noReg =""
-                if ($scope.item.noRegistrasi != undefined){
-                    var noReg ="noReg=" +$scope.item.noRegistrasi
-                }   
+                var noReg = ""
+                if ($scope.item.noRegistrasi != undefined) {
+                    var noReg = "noReg=" + $scope.item.noRegistrasi
+                }
 
                 $q.all([
-                    manageSarprasPhp.getDataTableTransaksi("pasien/get-pasien-by-nocm?"
-                       +noCm),
-                    ]).then(function(data) {
-                        $scope.isRouteLoading=false;
-                        var datas = data[0].data.datas;
+                    manageSarprasPhp.getDataTableTransaksi("pasien/get-pasien-by-nocm1?" + noCm),
+                ]).then(function (data) {
+                    // if(data)
+
+                    $scope.isRouteLoading = false;
+                    var datas = data[0].data.datas;
+                    if (!datas) {
+                        $scope.item.namaPasien = null;
+                        $scope.item.tempatLahir = null;
+                        $scope.item.tglLahir = null;
+                        $scope.item.alamatLengkap = null;
+                        $scope.item.noTelepon = null;
+                        $scope.item.namaKeluarga = null;
+                        $scope.item.namaIbu = null;
+                    } else {
                         $scope.item.namaPasien = datas.namapasien;
                         $scope.item.tempatLahir = datas.tempatlahir;
                         $scope.item.tglLahir = datas.tgllahir;
@@ -157,81 +170,81 @@ define(['initialize'], function (initialize, pasienServices) {
                         $scope.item.noTelepon = datas.notelepon;
                         $scope.item.namaKeluarga = datas.namakeluarga;
                         $scope.item.namaIbu = datas.namaibu;
-                        });
+                    }
 
-                    loadDatas()
+                });
+
+                loadDatas();
             }
 
-            function loadDatas(){
+            function loadDatas() {
                 // $scope.isRouteLoading=true;
-                var noReg =""
-                if ($scope.item.noRegistrasi != undefined){
-                    var noReg ="&noReg=" +$scope.item.noRegistrasi
+                var noReg = ""
+                if ($scope.item.noRegistrasi != undefined) {
+                    var noReg = "&noReg=" + $scope.item.noRegistrasi
                 }
 
-                var noCm =""
-                if ($scope.item.noCm != undefined){
-                    var noCm ="&noCm=" +$scope.item.noCm
-                }  
+                var noCm = ""
+                if ($scope.item.noCm != undefined) {
+                    var noCm = "&noCm=" + $scope.item.noCm
+                }
 
-                 var tempDepartemen = "";
-                 if ($scope.item.departement != undefined) {
+                var tempDepartemen = "";
+                if ($scope.item.departement != undefined) {
                     tempDepartemen = "&idDept=" + $scope.item.departement.id;
-                } 
-                
+                }
+
                 $q.all([
-                    manageSarprasPhp.getDataTableTransaksi("pasien/get-antrian-by-nocm1?"
-                        +noReg
-                        +noCm
-                        +tempDepartemen),
-                    ]).then(function(data) {
-                        var dot = data[0].data.datas;
-                        $scope.listRegistrasi = new kendo.data.DataSource({
-                          data: dot,
-                          pageSize: 5,
-                          total: data.length,
-                          serverPaging: false,
-                          schema: {
-                              model: {
-                                  fields: {
-                                  }
-                              }
-                          }
-                      });
-                        // $scope.isRouteLoading=false;
-                        // $scope.listRegistrasi = dot;
+                    manageSarprasPhp.getDataTableTransaksi("pasien/get-antrian-by-nocm1?" +
+                        noReg +
+                        noCm +
+                        tempDepartemen),
+                ]).then(function (data) {
+                    var dot = data[0].data.datas;
+                    $scope.listRegistrasi = new kendo.data.DataSource({
+                        data: dot,
+                        pageSize: 5,
+                        total: data.length,
+                        serverPaging: false,
+                        schema: {
+                            model: {
+                                fields: {}
+                            }
+                        }
                     });
+                    // $scope.isRouteLoading=false;
+                    // $scope.listRegistrasi = dot;
+                });
             };
-        
-            $scope.gridRegistrasi = [
-                {
+
+            $scope.gridRegistrasi = [{
                     title: "#",
                     template: "{{listRegistrasi.indexOf(dataItem) + 1}}",
                     width: 35
-                }, 
+                },
                 {
                     field: "noregistrasi",
                     title: "No. Registrasi",
                     aggregates: ["count"],
                     width: 120
-                }, 
+                },
                 {
                     field: "tglregistrasi",
                     title: "Tgl Registrasi",
                     template: "#if (tglregistrasi) {# #= new moment(tglregistrasi).format(\'DD-MM-YYYY HH:mm\')# #} else {# - #} #",
                     width: 130
-                }, 
+                },
                 {
                     field: "namaruangan",
                     title: "Ruangan Pelayanan",
                     aggregates: ["count"],
                     groupHeaderTemplate: "Ruangan #= value # (Jumlah: #= count#)",
                     width: 250
-                }, 
+                },
                 {
                     field: "namalengkap",
                     title: "Dokter"
-                }, 
+                },
                 {
                     field: "tglpulang",
                     title: "Tgl Pulang",
@@ -239,7 +252,7 @@ define(['initialize'], function (initialize, pasienServices) {
                     width: 130
                 }
             ];
-                
+
             // $scope.findData();
             // $scope.gridOptions = {
             //     sortable: true,
@@ -285,7 +298,7 @@ define(['initialize'], function (initialize, pasienServices) {
 
             ModelItem.getDataDummyGeneric("JenisDiagnosa", true, true, 10).then(function (data) {
                 $scope.sourceJenisDiagnosisPrimer = data;
-                $scope.sourceJenisDiagnosisPrimer1 =data;
+                $scope.sourceJenisDiagnosisPrimer1 = data;
             });
 
             ModelItem.getDataDummyGeneric("Diagnosa", true, true, 10).then(function (data) {
@@ -294,7 +307,7 @@ define(['initialize'], function (initialize, pasienServices) {
                 // $scope.sourceKdDiagnosa = data;
                 // $scope.sourceNamaDiagnosa = data;
             });
-            
+
             ModelItem.getDataDummyGeneric("Ruangan", true, true, 10).then(function (data) {
                 $scope.sourceRuangan = data;
             });
@@ -304,13 +317,13 @@ define(['initialize'], function (initialize, pasienServices) {
             //     $scope.sourceDiagnosisTindakan = data;
             // }); 
 
-             modelItemAkuntansi.getDataDummyPHP("pasien/get-combo-icd9", true, true, 10).then(function(data) {
-                     $scope.sourceDiagnosisPrimer1= data;
+            modelItemAkuntansi.getDataDummyPHP("pasien/get-combo-icd9", true, true, 10).then(function (data) {
+                $scope.sourceDiagnosisPrimer1 = data;
 
-                 });
-          
-            
-           
+            });
+
+
+
 
             $scope.addDataDiagnosisPrimer = function () {
                 var listRawRequired = [
@@ -542,10 +555,30 @@ define(['initialize'], function (initialize, pasienServices) {
                         schema: {
                             model: {
                                 fields: {
-                                    kdDiagnosa: { type: "string", validation: { required: true } },
-                                    namaDiagnosa: { type: "string", validation: { required: true } },
-                                    namaRuangan: { type: "string", validation: { required: true } },
-                                    idRuangan: { type: "number", validation: { required: true } },
+                                    kdDiagnosa: {
+                                        type: "string",
+                                        validation: {
+                                            required: true
+                                        }
+                                    },
+                                    namaDiagnosa: {
+                                        type: "string",
+                                        validation: {
+                                            required: true
+                                        }
+                                    },
+                                    namaRuangan: {
+                                        type: "string",
+                                        validation: {
+                                            required: true
+                                        }
+                                    },
+                                    idRuangan: {
+                                        type: "number",
+                                        validation: {
+                                            required: true
+                                        }
+                                    },
                                 }
                             }
                         }
@@ -557,12 +590,42 @@ define(['initialize'], function (initialize, pasienServices) {
                         schema: {
                             model: {
                                 fields: {
-                                    kdDiagnosa: { type: "string", validation: { required: true } },
-                                    namaDiagnosa: { type: "string", validation: { required: true } },
-                                    jenisDiagnosa: { type: "string", validation: { required: true } },
-                                    idDiagnosa: { type: "number", validation: { required: true } },
-                                    namaRuangan: { type: "string", validation: { required: true } },
-                                    idRuangan: { type: "number", validation: { required: true } },
+                                    kdDiagnosa: {
+                                        type: "string",
+                                        validation: {
+                                            required: true
+                                        }
+                                    },
+                                    namaDiagnosa: {
+                                        type: "string",
+                                        validation: {
+                                            required: true
+                                        }
+                                    },
+                                    jenisDiagnosa: {
+                                        type: "string",
+                                        validation: {
+                                            required: true
+                                        }
+                                    },
+                                    idDiagnosa: {
+                                        type: "number",
+                                        validation: {
+                                            required: true
+                                        }
+                                    },
+                                    namaRuangan: {
+                                        type: "string",
+                                        validation: {
+                                            required: true
+                                        }
+                                    },
+                                    idRuangan: {
+                                        type: "number",
+                                        validation: {
+                                            required: true
+                                        }
+                                    },
                                 }
                             }
                         }
@@ -606,8 +669,8 @@ define(['initialize'], function (initialize, pasienServices) {
                 //     $scope.listRuangan = dat.data.data;
                 // });
 
-                manageSarprasPhp.getDataTableTransaksi("pasien/get-diagnosapasienbynoreg?"
-                    + norReg
+                manageSarprasPhp.getDataTableTransaksi("pasien/get-diagnosapasienbynoreg?" +
+                    norReg
                 ).then(function (data) {
                     $scope.listGridDiagnosa = new kendo.data.DataSource({
                         data: data.data.datas,
@@ -616,16 +679,15 @@ define(['initialize'], function (initialize, pasienServices) {
                         serverPaging: false,
                         schema: {
                             model: {
-                                fields: {
-                                }
+                                fields: {}
                             }
                         }
                     });
                 });
 
-                    // $scope.dataSelected = data.data.datas;
-                manageSarprasPhp.getDataTableTransaksi("pasien/get-diagnosapasienbynoregicd9?"
-                    + norReg
+                // $scope.dataSelected = data.data.datas;
+                manageSarprasPhp.getDataTableTransaksi("pasien/get-diagnosapasienbynoregicd9?" +
+                    norReg
                 ).then(function (data) {
                     $scope.listGridDiagnosa1 = new kendo.data.DataSource({
                         data: data.data.datas,
@@ -634,8 +696,7 @@ define(['initialize'], function (initialize, pasienServices) {
                         serverPaging: false,
                         schema: {
                             model: {
-                                fields: {
-                                }
+                                fields: {}
                             }
                         }
                     });
@@ -648,22 +709,28 @@ define(['initialize'], function (initialize, pasienServices) {
 
             // function LoadData() {
             $scope.kl = function (data) {
-          
+
                 if ($scope.klikInputDiagnosis) return;
                 $scope.currentAntrian = data;
-    
+
 
                 var norReg = ""
                 if ($scope.currentAntrian.noregistrasi != undefined) {
                     norReg = "noReg=" + $scope.currentAntrian.noregistrasi;
                 }
-                manageSarprasPhp.getDataTableTransaksi("pasien/get-pasienbynoreg?"
-                    + norReg
+                manageSarprasPhp.getDataTableTransaksi("pasien/get-pasienbynoreg?" +
+                    norReg
                 ).then(function (dat) {
                     $scope.listRuangan = dat.data.data
-                    $scope.item.namaRuangan = {id:$scope.listRuangan[0].id,namaruangan:$scope.listRuangan[0].namaruangan}
+                    $scope.item.namaRuangan = {
+                        id: $scope.listRuangan[0].id,
+                        namaruangan: $scope.listRuangan[0].namaruangan
+                    }
                     $scope.listRuangan1 = dat.data.data
-                    $scope.item.namaRuangan1 = {id:$scope.listRuangan1[0].id,namaruangan:$scope.listRuangan1[0].namaruangan}
+                    $scope.item.namaRuangan1 = {
+                        id: $scope.listRuangan1[0].id,
+                        namaruangan: $scope.listRuangan1[0].namaruangan
+                    }
 
                 });
 
@@ -679,12 +746,11 @@ define(['initialize'], function (initialize, pasienServices) {
 
                 loaaaaaaad();
             }
-          
+
             $scope.gridDiagnosa =
                 // {
                 // columns: 
-                [
-                    {
+                [{
                         "title": "#",
                         "template": "{{listGridDiagnosa.indexOf(dataItem) + 1}}",
                         "width": 35
@@ -748,8 +814,7 @@ define(['initialize'], function (initialize, pasienServices) {
             $scope.gridDiagnosa1 =
                 // {
                 // columns: 
-                [
-                    {
+                [{
                         "title": "#",
                         "template": "{{listGridDiagnosa1.indexOf(dataItem) + 1}}",
                         "width": 35
@@ -774,7 +839,7 @@ define(['initialize'], function (initialize, pasienServices) {
                     {
                         "field": "keterangantindakan",
                         "title": "Keterangan",
-                        "width" : "100px",
+                        "width": "100px",
                     }
                     // ,
                     // {
@@ -810,12 +875,12 @@ define(['initialize'], function (initialize, pasienServices) {
 
             $scope.cboInputDiagnosa = true;
             $scope.showInputDiagnosa = function () {
-          
+
                 if ($scope.currentAntrian == undefined) {
                     alert("Pilih data Pasien terlebih dahulu !")
                     return;
                 }
-                
+
                 $scope.cboDiagnosa = true
                 $scope.cboDiagnosa1 = true
                 $scope.cboInputDiagnosa = false
@@ -856,10 +921,9 @@ define(['initialize'], function (initialize, pasienServices) {
                 var diagnosa = {
                     norec_dp: $scope.dataSelected.norec_diagnosapasien
                 }
-                var objDelete =
-                    {
-                        diagnosa: diagnosa,
-                    }
+                var objDelete = {
+                    diagnosa: diagnosa,
+                }
                 manageSarprasPhp.deleteDataDiagnosa(objDelete).then(function (e) {
                     delete $scope.item.jenisDiagnosis;
                     delete $scope.item.diagnosisPrimer;
@@ -882,10 +946,9 @@ define(['initialize'], function (initialize, pasienServices) {
                 var diagnosa = {
                     norec_dp: $scope.dataSelected1.norec_diagnosapasien
                 }
-                var objDelete =
-                    {
-                        diagnosa: diagnosa,
-                    }
+                var objDelete = {
+                    diagnosa: diagnosa,
+                }
                 manageSarprasPhp.deleteDataDiagnosaTindakan(objDelete).then(function (e) {
                     // delete $scope.item.jenisDiagnosis;
                     delete $scope.item.diagnosisPrimer1;
@@ -898,9 +961,9 @@ define(['initialize'], function (initialize, pasienServices) {
                 })
                 // loaaaaaaad();
             }
-            
-            $scope.SaveDiagnosa = function(){
-               if ($scope.item.jenisDiagnosis == undefined) {
+
+            $scope.SaveDiagnosa = function () {
+                if ($scope.item.jenisDiagnosis == undefined) {
                     alert("Pilih Jenis Diagnosa terlebih dahulu!!")
                     return
                 }
@@ -917,11 +980,10 @@ define(['initialize'], function (initialize, pasienServices) {
                     norecDiagnosaPasien = $scope.dataSelected.norec_diagnosapasien
                 }
 
-                var keterangan ="";
-                if ($scope.item.keterangan == undefined){
+                var keterangan = "";
+                if ($scope.item.keterangan == undefined) {
                     keterangan = "-"
-                }
-                else{
+                } else {
                     keterangan = $scope.item.keterangan
                 }
 
@@ -936,10 +998,9 @@ define(['initialize'], function (initialize, pasienServices) {
                     tglinputdiagnosa: moment($scope.now).format('YYYY-MM-DD hh:mm:ss'),
                     keterangan: keterangan
                 }
-                var objSave =
-                    {
-                        detaildiagnosapasien: detaildiagnosapasien,
-                    }
+                var objSave = {
+                    detaildiagnosapasien: detaildiagnosapasien,
+                }
 
                 manageSarprasPhp.postDataDiagnosa(objSave).then(function (e) {
                     delete $scope.item.jenisDiagnosis;
@@ -951,11 +1012,11 @@ define(['initialize'], function (initialize, pasienServices) {
                     loaaaaaaad()
                     // window.history.back();
                 })
-               
+
             }
 
-            $scope.SaveDiagnosa1 = function(){
-               // if ($scope.item.jenisDiagnosis1 == undefined) {
+            $scope.SaveDiagnosa1 = function () {
+                // if ($scope.item.jenisDiagnosis1 == undefined) {
                 //     alert("Pilih Jenis Diagnosa terlebih dahulu!!")
                 //     return
                 // }
@@ -972,7 +1033,7 @@ define(['initialize'], function (initialize, pasienServices) {
                     norecDiagnosaTindakanPasien = $scope.dataSelected1.norec_diagnosapasien
                 }
                 var keteranganTindakan = "-";
-                if($scope.item.keteranganTindakan != undefined){
+                if ($scope.item.keteranganTindakan != undefined) {
                     keteranganTindakan = $scope.item.keteranganTindakan
                 }
 
@@ -980,7 +1041,7 @@ define(['initialize'], function (initialize, pasienServices) {
                 var detaildiagnosatindakanpasien = {
                     norec_dp: norecDiagnosaTindakanPasien,
                     // noregistrasifk: $scope.item.namaRuangan.details.norec_apd,
-                    objectpasienfk:$scope.listRuangan1[0].details[0].norec_apd,
+                    objectpasienfk: $scope.listRuangan1[0].details[0].norec_apd,
                     tglpendaftaran: $scope.currentAntrian.tglregistrasi,
                     objectdiagnosatindakanfk: $scope.item.diagnosisPrimer1.id,
                     keterangantindakan: keteranganTindakan,
@@ -988,10 +1049,9 @@ define(['initialize'], function (initialize, pasienServices) {
                     // tglinputdiagnosa: moment($scope.now).format('YYYY-MM-DD hh:mm:ss'),
                     // keterangan: $scope.item.keterangan
                 }
-                var objSave =
-                    {
-                        detaildiagnosatindakanpasien: detaildiagnosatindakanpasien,
-                    }
+                var objSave = {
+                    detaildiagnosatindakanpasien: detaildiagnosatindakanpasien,
+                }
 
                 manageSarprasPhp.postDataDiagnosaTIndakan(objSave).then(function (e) {
                     // delete $scope.item.jenisDiagnosis1;
@@ -1004,7 +1064,7 @@ define(['initialize'], function (initialize, pasienServices) {
                     loaaaaaaad()
                     // window.history.back();
                 })
-               
+
             }
 
             $scope.simpanDiagnosa = function () {
@@ -1016,31 +1076,31 @@ define(['initialize'], function (initialize, pasienServices) {
                 if ($scope.item.diagnosisPrimer != undefined) {
                     kddiagnosa = "&kddiagnosa=" + $scope.item.diagnosisPrimer.kdDiagnosa;
                 }
-                 $scope.SaveDiagnosa();
-               // manageSarprasPhp.getDataTableTransaksi("pasien/get-diagnosapasienbynoreg?"
-               //      + norReg
-               //      + kddiagnosa
-               //  ).then(function (data) {
-               //      debugger;
-               //      var datas = data.data.datas;
-               //         // if (datas == ''){
-               //              if(datas.length > 0){
-               //                  var confirm = $mdDialog.confirm()
-               //                          .title('Peringatan')
-               //                          .textContent('Pasien Sudah Memiliki Diagnosa yang sama ! Lanjut Simpan? ')
-               //                          .ariaLabel('Lucky day')
-               //                          .cancel('Tidak')
-               //                          .ok('Ya')
-               //                      $mdDialog.show(confirm).then(function () {
-               //                          $scope.SaveDiagnosa();
-               //                      })
+                $scope.SaveDiagnosa();
+                // manageSarprasPhp.getDataTableTransaksi("pasien/get-diagnosapasienbynoreg?"
+                //      + norReg
+                //      + kddiagnosa
+                //  ).then(function (data) {
+                //      debugger;
+                //      var datas = data.data.datas;
+                //         // if (datas == ''){
+                //              if(datas.length > 0){
+                //                  var confirm = $mdDialog.confirm()
+                //                          .title('Peringatan')
+                //                          .textContent('Pasien Sudah Memiliki Diagnosa yang sama ! Lanjut Simpan? ')
+                //                          .ariaLabel('Lucky day')
+                //                          .cancel('Tidak')
+                //                          .ok('Ya')
+                //                      $mdDialog.show(confirm).then(function () {
+                //                          $scope.SaveDiagnosa();
+                //                      })
 
-               //              }else{
-               //                  $scope.SaveDiagnosa();
-               //              }
-               //          // }else
-               //          //    $scope.SaveDiagnosa();
-               //  })
+                //              }else{
+                //                  $scope.SaveDiagnosa();
+                //              }
+                //          // }else
+                //          //    $scope.SaveDiagnosa();
+                //  })
             }
 
             $scope.simpanDiagnosa1 = function () {
@@ -1072,7 +1132,7 @@ define(['initialize'], function (initialize, pasienServices) {
                 //                     })
 
                 //             }else{
-                                
+
                 //                 $scope.SaveDiagnosa1();
                 //             }
                 //         // }else
@@ -1107,7 +1167,10 @@ define(['initialize'], function (initialize, pasienServices) {
                         objectkategorydiagnosafk: dataSelected.objectkategorydiagnosafk,
                         qdiagnosa: dataSelected.qdiagnosa
                     })
-                    $scope.item.jenisDiagnosis = { id: dataSelected.objectjenisdiagnosafk, jenisDiagnosa: dataSelected.jenisdiagnosa }
+                    $scope.item.jenisDiagnosis = {
+                        id: dataSelected.objectjenisdiagnosafk,
+                        jenisDiagnosa: dataSelected.jenisdiagnosa
+                    }
                     $scope.item.diagnosisPrimer = {
                         id: dataSelected.objectdiagnosafk,
                         kdDiagnosa: dataSelected.kddiagnosa,
@@ -1133,7 +1196,10 @@ define(['initialize'], function (initialize, pasienServices) {
                         objectkategorydiagnosafk: dataSelected.objectkategorydiagnosafk,
                         qdiagnosa: dataSelected.qdiagnosa
                     }
-                    $scope.item.diagnosisPrimer2 = { id: dataSelected.objectdiagnosafk, namaDiagnosa: dataSelected.namadiagnosa }
+                    $scope.item.diagnosisPrimer2 = {
+                        id: dataSelected.objectdiagnosafk,
+                        namaDiagnosa: dataSelected.namadiagnosa
+                    }
                     $scope.item.namaRuangan = ''
                     $scope.item.namaRuangan = {
                         noregistrasi: dataSelected.noregistrasi,
@@ -1141,7 +1207,7 @@ define(['initialize'], function (initialize, pasienServices) {
                         namaruangan: dataSelected.namaruangan,
                         norec_apd: dataSelected.norec_apd,
                         keterangan: dataSelected.keterangan
-                    }//  { id: dataSelected.objectruanganfk, namaruangan: dataSelected.namaruangan }
+                    } //  { id: dataSelected.objectruanganfk, namaruangan: dataSelected.namaruangan }
                 }
 
             }
@@ -1174,8 +1240,11 @@ define(['initialize'], function (initialize, pasienServices) {
                         qdiagnosa: dataSelected1.qdiagnosa,
                         keterangantindakan: dataSelected1.keterangantindakan
                     })
-                     
-                    $scope.item.jenisDiagnosis1 = { id: dataSelected1.objectjenisdiagnosafk, jenisDiagnosa: dataSelected1.jenisdiagnosa }
+
+                    $scope.item.jenisDiagnosis1 = {
+                        id: dataSelected1.objectjenisdiagnosafk,
+                        jenisDiagnosa: dataSelected1.jenisdiagnosa
+                    }
                     $scope.item.diagnosisPrimer1 = {
                         id: dataSelected1.objectdiagnosafk,
                         kdDiagnosaTindakan: dataSelected1.kdDiagnosaTindakan,
@@ -1202,15 +1271,18 @@ define(['initialize'], function (initialize, pasienServices) {
                         qdiagnosa: dataSelected1.qdiagnosa,
                         keterangantindakan: dataSelected1.keterangantindakan
                     }
-                   
-                    $scope.item.diagnosisPrimer2 = { id: dataSelected1.objectdiagnosafk, namaDiagnosaTindakan: dataSelected1.namaDiagnosaTindakan }
+
+                    $scope.item.diagnosisPrimer2 = {
+                        id: dataSelected1.objectdiagnosafk,
+                        namaDiagnosaTindakan: dataSelected1.namaDiagnosaTindakan
+                    }
                     $scope.item.namaRuangan1 = ''
                     $scope.item.namaRuangan1 = {
                         noregistrasi: dataSelected1.noregistrasi,
                         objectruanganfk: dataSelected1.objectruanganfk,
                         namaruangan: dataSelected1.namaruangan,
                         norec_apd: dataSelected1.norec_apd
-                    }//  { id: dataSelected.objectruanganfk, namaruangan: dataSelected.namaruangan }
+                    } //  { id: dataSelected.objectruanganfk, namaruangan: dataSelected.namaruangan }
                     $scope.item.keteranganTindakan = dataSelected1.keterangantindakan
                 }
 
@@ -1296,7 +1368,8 @@ define(['initialize'], function (initialize, pasienServices) {
             $scope.tambahData = function (page) {
                 if (page.indexOf('9') > 0) {
                     if ($scope.daftarInputIcd9._data.length > 0) {
-                        var dataDiagnosis = [], localData = [];
+                        var dataDiagnosis = [],
+                            localData = [];
                         $scope.daftarInputIcd9._data.forEach(function (items) {
                             dataDiagnosis.push({
                                 "id": items.diagnosisTindakan.id,
@@ -1345,7 +1418,8 @@ define(['initialize'], function (initialize, pasienServices) {
                     }
                 } else if (page.indexOf('10') > 0) {
                     if ($scope.daftarInputIcd10._data.length > 0) {
-                        var dataDiagnosis = [], localData = [];
+                        var dataDiagnosis = [],
+                            localData = [];
                         $scope.daftarInputIcd10._data.forEach(function (items) {
                             dataDiagnosis.push({
                                 diagnosa: {

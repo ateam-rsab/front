@@ -42,7 +42,7 @@ define(['initialize'], function (initialize) {
                 //     .textContent('Harap hubungi pihak ITI')
                 //     .ok('Ya')
                 // $mdDialog.show(confirmDialog)
-                $state.go('OrderBarangSPPB')
+                $state.go('OrderBarangSPPBLangsung')
             }
             $scope.terimaBarang = function () {
                 if ($scope.dataSelected.status2 != 'Done') {

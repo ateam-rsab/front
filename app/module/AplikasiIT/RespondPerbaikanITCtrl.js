@@ -1,6 +1,6 @@
 define(['initialize'], function (initialize) {
   'use strict'
-  initialize.controller('RespondPerbaikanITCtrl', ['$rootScope', '$scope', '$timeout', '$interval', 'ModelItem',  'CetakHelper','IPSRSService', 'ManageIT', 'DateHelper', '$state', '$location', 'socket', '$window', '$mdDialog',
+  initialize.controller('RespondPerbaikanITCtrl', ['$rootScope', '$scope', '$timeout', '$interval', 'ModelItem', 'CetakHelper', 'IPSRSService', 'ManageIT', 'DateHelper', '$state', '$location', 'socket', '$window', '$mdDialog',
     function ($rootScope, $scope, $timeout, $interval, ModelItem, CetakHelper, IPSRSService, ManageIT, DateHelper, $state, $location, socket, $window, $mdDialog) {
       $scope.item = {}
       $scope.tooltipContent = 'Pilih 1 data terlebih dahulu untuk tindakan'
@@ -9,16 +9,16 @@ define(['initialize'], function (initialize) {
       $scope.dataVOloaded = true
       $scope.RubahData = false
       $scope.showbutton = true
-      
+
       // $scope.item.paging = 1
       // $scope.item.take = 10
 
       // $scope.item.Awal = new Date()
       // $scope.item.Akhir = new Date()
-      $scope.showAndHide = function() {
-        $('#contentFilterData').fadeToggle( "fast", "linear" );
+      $scope.showAndHide = function () {
+        $('#contentFilterData').fadeToggle("fast", "linear");
       }
-     
+
       $scope.reset = function () {
         $scope.item.paging = '';
         $scope.item.take = 0;
@@ -36,45 +36,188 @@ define(['initialize'], function (initialize) {
         $scope.item.Akhir = new Date()
         $scope.init()
       }
-      
+
       $scope.print = function () {
         let url = ''
         let baseUrlLaporan = 'reporting/daftarPermintaanPerbaikanIT'
 
-        if ($scope.item.Awal == undefined && $scope.item.Akhir == undefined && $scope.item.statusPekerjaan == undefined && $scope.item.ruangan == undefined) { 
-            url = baseUrlLaporan + '?'
+        if ($scope.item.Awal == undefined && $scope.item.Akhir == undefined && $scope.item.statusPekerjaan == undefined && $scope.item.ruangan == undefined) {
+          url = baseUrlLaporan + '?'
         } else if ($scope.item.Awal != undefined && $scope.item.Akhir != undefined && $scope.item.statusPekerjaan == undefined && $scope.item.ruangan == undefined) {
-            url = baseUrlLaporan + '?startDate=' + DateHelper.getPeriodeFormatted($scope.item.Awal) + '&endDate=' + DateHelper.getPeriodeFormatted($scope.item.Akhir);
+          url = baseUrlLaporan + '?startDate=' + DateHelper.getPeriodeFormatted($scope.item.Awal) + '&endDate=' + DateHelper.getPeriodeFormatted($scope.item.Akhir);
         } else if ($scope.item.Awal == undefined && $scope.item.Akhir == undefined && $scope.item.statusPekerjaan != undefined && $scope.item.ruangan != undefined) {
-            url = baseUrlLaporan + '?ruanganId=' + $scope.item.ruangan.id + '&statusPekerjaan=' + $scope.item.statusPekerjaan.id;
+          url = baseUrlLaporan + '?ruanganId=' + $scope.item.ruangan.id + '&statusPekerjaan=' + $scope.item.statusPekerjaan.id;
         } else if ($scope.item.Awal == undefined && $scope.item.Akhir == undefined && $scope.item.statusPekerjaan == undefined && $scope.item.ruangan != undefined) {
-            url = baseUrlLaporan + '?ruanganId=' + $scope.item.ruangan.id;
+          url = baseUrlLaporan + '?ruanganId=' + $scope.item.ruangan.id;
         } else if ($scope.item.Awal == undefined && $scope.item.Akhir == undefined && $scope.item.statusPekerjaan != undefined && $scope.item.ruangan == undefined) {
-            url = baseUrlLaporan + '?statusPekerjaan=' + $scope.item.statusPekerjaan.id;
+          url = baseUrlLaporan + '?statusPekerjaan=' + $scope.item.statusPekerjaan.id;
         }
-        
+
         var urlLaporan = CetakHelper.openURLReporting(url);
         window.open(urlLaporan, '', 'width=' + screen.availWidth + ', height=' + screen.availHeight);
       }
       $scope.init = function (Pencarians) {
+
+        let keyEnc = {
+          'a': "k",
+          'b': "l",
+          'c': "m",
+          'd': "n",
+          'e': "o",
+          'f': "p",
+          'g': "q",
+          'h': "r",
+          'i': "s",
+          'j': "t",
+          'k': "u",
+          'l': "v",
+          'm': "w",
+          'n': "x",
+          'o': "y",
+          'p': "z",
+          'q': "a",
+          'r': "b",
+          's': "c",
+          't': "d",
+          'u': "e",
+          'v': "f",
+          'w': "g",
+          'x': "h",
+          'y': "i",
+          'z': "j",
+          "1": "2",
+          "2": "3",
+          "3": "4",
+          "4": "5",
+          "5": "6",
+          "6": "7",
+          "7": "8",
+          "8": "9",
+          "9": "0",
+          "0": "1",
+          "A":"Q",
+          "B":"W",
+          "C":"E",
+          "D":"R",
+          "E":"T",
+          "F":"Y",
+          "G":"U",
+          "H":"I",
+          "I":"O",
+          "J":"P",
+          "K":"A",
+          "L":"S",
+          "M":"D",
+          "N":"F",
+          "O":"G",
+          "P":"H",
+          "Q":"J",
+          "R":"K",
+          "S":"L",
+          "T":"Z",
+          "U":"X",
+          "V":"C",
+          "W":"V",
+          "X":"B",
+          "Y":"N",
+          "Z":"M",
+        };
+
+        let keyDec = {
+          "k": "a",
+          "l": "b",
+          "m": "c",
+          "n": "d",
+          "o": "e",
+          "p": "f",
+          "q": "g",
+          "r": "h",
+          "s": "i",
+          "t": "j",
+          "u": "k",
+          "v": "l",
+          "w": "m",
+          "x": "n",
+          "y": "o",
+          "z": "p",
+          "a": "q",
+          "b": "r",
+          "c": "s",
+          "d": "t",
+          "e": "u",
+          "f": "v",
+          "g": "w",
+          "h": "x",
+          "i": "y",
+          "j": "z",
+          "2": "1",
+          "3": "2",
+          "4": "3",
+          "5": "4",
+          "6": "5",
+          "7": "6",
+          "8": "7",
+          "9": "8",
+          "0": "9",
+          "1": "0",
+          "Q":"A",
+          "W":"B",
+          "E":"C",
+          "R":"D",
+          "T":"E",
+          "Y":"F",
+          "U":"G",
+          "I":"H",
+          "O":"I",
+          "P":"J",
+          "A":"K",
+          "S":"L",
+          "D":"M",
+          "F":"N",
+          "G":"O",
+          "H":"P",
+          "J":"Q",
+          "K":"R",
+          "L":"S",
+          "Z":"T",
+          "X":"U",
+          "C":"V",
+          "V":"W",
+          "B":"X",
+          "N":"Y",
+          "M":"Z",
+        }
+
+        let enc;
+        let dec;
+        let data = {
+          kataSandi:"admins",
+          userName:"hrefel"
+        }
+        let str = JSON.stringify(data);
+        enc = str.replace(/[a-zA-Z0-9]/g, m => keyEnc[m]);
+        dec = enc.replace(/[a-zA-Z0-9]/g, m => keyDec[m]);
+        console.log(enc);
+        console.log(dec);
+
         IPSRSService.getItem('user/get-user', true).then(function (dat) {
           $scope.item.userLogin = dat.data.data.namaUser
           $scope.item.idUser = dat.data.data.pegawai.id
         })
         let page = $scope.item.paging,
-            take = $scope.item.take, 
-            sort = '',
-            ruangId = $scope.item.ruangId,
-            statusPekerjaan = $scope.item.statusPekerjaan;
+          take = $scope.item.take,
+          sort = '',
+          ruangId = $scope.item.ruangId,
+          statusPekerjaan = $scope.item.statusPekerjaan;
         let getPencarian = Pencarians
         let urlData, tanggalAwal, tanggalAkhir
         if (page == undefined) {
           page = '';
         }
-        if(take == undefined) {
+        if (take == undefined) {
           take = '';
-        } 
-        if(sort == undefined) {
+        }
+        if (sort == undefined) {
           sort = '';
         }
         if (ruangId == undefined) {
@@ -88,7 +231,7 @@ define(['initialize'], function (initialize) {
           tanggalAwal = new moment($scope.item.Awal).format('YYYY-MM-DD');
           tanggalAkhir = new moment($scope.item.Akhir).format('YYYY-MM-DD');
           urlData = 'it-perbaikan/get-all-permintaan-perbaikan?tanggalAwal=' + tanggalAwal + '&tanggalAkhir=' + tanggalAkhir;
-          if(page || take || sort || ruangId || statusPekerjaan) {
+          if (page || take || sort || ruangId || statusPekerjaan) {
             urlData = 'it-perbaikan/get-all-permintaan-perbaikan?page=' + page + '&take=' + take + '&sort=' + sort + '&tanggalAwal=' + tanggalAwal + '&tanggalAkhir=' + tanggalAkhir + '&ruanganId=' + ruangId + '&statusPekerjaan=' + statusPekerjaan;
           }
         } else {
@@ -111,21 +254,21 @@ define(['initialize'], function (initialize) {
               filterable: {
                 extra: false,
                 operators: {
-                    string: {
-                        contains: "Contains",
-                        startswith: "Starts with"
-                    }
+                  string: {
+                    contains: "Contains",
+                    startswith: "Starts with"
+                  }
                 }
-            },
+              },
               schema: {
-                total: function(response) {
-                    return $scope.rowPage;
-                    // return response.length; // total is returned in the "total" field of the response
+                total: function (response) {
+                  return $scope.rowPage;
+                  // return response.length; // total is returned in the "total" field of the response
                 },
-                data: function(response) {
+                data: function (response) {
                   return response; // twitter's response is { "statuses": [ /* results */ ] }
                 },
-               
+
               },
               scrollable: true,
               batch: true,
@@ -155,7 +298,7 @@ define(['initialize'], function (initialize) {
                 $scope.datagrid[i].statusPengerjaan = 'Sudah Dikerjakan'
               } else if ($scope.datagrid[i].statusPengerjaan == 2) {
                 $scope.datagrid[i].statusPengerjaan = 'Pending'
-              } else if ($scope.datagrid[i].statusPengerjaan == 4) { 
+              } else if ($scope.datagrid[i].statusPengerjaan == 4) {
                 $scope.datagrid[i].statusPengerjaan = 'Dibatalkan oleh user'
               }
 
@@ -174,11 +317,11 @@ define(['initialize'], function (initialize) {
         } else {
           $scope.FilterdataSource(Pencarians)
         }
-        
+
       }
       $scope.init();
 
-      $scope.initGeneric = function() {
+      $scope.initGeneric = function () {
         ManageIT.getItem('it-perbaikan/find-ruangan-asset', true).then(function (dat) {
           $scope.ListRuangan = dat.data.data.ruanganAset
         })
@@ -193,7 +336,7 @@ define(['initialize'], function (initialize) {
         })
       }
       $scope.initGeneric();
-      
+
       $scope.onChangeStatusPekerjaan = function (data) {
         $scope.item.statusPekerjaan = data.id;
         var comboPage = $('#combPage').data('kendoComboBox');
@@ -209,7 +352,7 @@ define(['initialize'], function (initialize) {
         $scope.item.take = data;
         var comboPage = $('#combPage').data('kendoComboBox');
         comboPage.value('');
-        $scope.init();        
+        $scope.init();
       }
 
       $scope.OnChangeRuangan = function (data) {
@@ -218,7 +361,7 @@ define(['initialize'], function (initialize) {
         comboPage.value('');
         $scope.init();
       }
-     
+
       $scope.FilterdataSource = function (getPencarian) {
         if (getPencarian != undefined) {
           var q = getPencarian
@@ -229,10 +372,10 @@ define(['initialize'], function (initialize) {
             filter: {
               logic: 'or',
               filters: [{
-                field: 'noOrder',
-                operator: 'contains',
-                value: q
-              },
+                  field: 'noOrder',
+                  operator: 'contains',
+                  value: q
+                },
                 {
                   field: 'kdProduk',
                   operator: 'contains',
@@ -251,16 +394,34 @@ define(['initialize'], function (initialize) {
 
       var onDataBound = function () {
         $('td').each(function () {
-          if ($(this).text() == 'Belum memilih Produk') { $(this).addClass('gray') }
-          if ($(this).text() == 'Belum di Kerjakan') { $(this).addClass('yellow') }
-          if ($(this).text() == 'Sudah Dikerjakan') { $(this).addClass('green') }
-          if ($(this).text() == 'Pending') { $(this).addClass('red') }
-          
-          if ($(this).text() == 'Belum di Respon') { $(this).addClass('yellow') }
-          if ($(this).text() == 'Sudah di Respon') { $(this).addClass('green') }
-          if ($(this).text() == 'Respon kurang dari 15 menit' || $(this).text() == 'Respon kuranh dari 15 menit') { $(this).addClass('green') }
-          if ($(this).text() == 'Respon kurang dari 15-30 menit') { $(this).addClass('yellow') }
-          if ($(this).text() == 'Respon lebih dari 30 menit') { $(this).addClass('red') }
+          if ($(this).text() == 'Belum memilih Produk') {
+            $(this).addClass('gray')
+          }
+          if ($(this).text() == 'Belum di Kerjakan') {
+            $(this).addClass('yellow')
+          }
+          if ($(this).text() == 'Sudah Dikerjakan') {
+            $(this).addClass('green')
+          }
+          if ($(this).text() == 'Pending') {
+            $(this).addClass('red')
+          }
+
+          if ($(this).text() == 'Belum di Respon') {
+            $(this).addClass('yellow')
+          }
+          if ($(this).text() == 'Sudah di Respon') {
+            $(this).addClass('green')
+          }
+          if ($(this).text() == 'Respon kurang dari 15 menit' || $(this).text() == 'Respon kuranh dari 15 menit') {
+            $(this).addClass('green')
+          }
+          if ($(this).text() == 'Respon kurang dari 15-30 menit') {
+            $(this).addClass('yellow')
+          }
+          if ($(this).text() == 'Respon lebih dari 30 menit') {
+            $(this).addClass('red')
+          }
         })
       }
       $scope.mainGridOptions = {
@@ -275,8 +436,7 @@ define(['initialize'], function (initialize) {
         toolbar: ['excel', 'pdf'],
         scrollable: true,
         dataBound: onDataBound,
-        columns: [
-          {
+        columns: [{
             'field': 'noOrder',
             'title': '<h3 align=center>No.<br>Order<h3>',
             'width': '70px',
@@ -284,7 +444,7 @@ define(['initialize'], function (initialize) {
               style: 'text-align:center;valign=middle;width:70px'
             }
           },
-          { 
+          {
             'field': 'merkProduk',
             'title': '<h3 align=center>Merk<br>Barang<h3>',
             'width': '65px',
@@ -326,7 +486,7 @@ define(['initialize'], function (initialize) {
           {
             'field': 'namaRuangan',
             'title': '<h3 align=center>Nama<br>Ruangan<h3>',
-            'width': '100px' 
+            'width': '100px'
           },
           {
             'field': 'statusPengerjaan',
@@ -351,7 +511,7 @@ define(['initialize'], function (initialize) {
         $scope.KetKerusakan = selectedData.ketKerusakan
         $scope.showbutton = false;
         $scope.klickuserPemesan = selectedData.pelapor,
-        $scope.klickNorecKirim = 'K-0001';
+          $scope.klickNorecKirim = 'K-0001';
         $scope.klickNoOrder = selectedData.noOrder
         $scope.klickKeluhan = selectedData.keluhan
         $scope.klickTanggalPesan = selectedData.tglPesan
@@ -375,7 +535,7 @@ define(['initialize'], function (initialize) {
         $scope.item.statusPengerjaan = selectedData.statusPengerjaan
         // toastr.info($scope.item.namaProduk + " Dipilih")
 
-        if(selectedData) {
+        if (selectedData) {
           if (selectedData.statusRespon == 'Belum di Respon') {
             $scope.disableTindakan = true;
           } else {
@@ -385,7 +545,7 @@ define(['initialize'], function (initialize) {
         }
       }
 
-      $scope.getNotification = function () {        
+      $scope.getNotification = function () {
         ManageIT.getItem('it-perbaikan/get-notifikasi-itperbaikan').then(function (res) {
           $scope.jumlahRequest = 0;
           $scope.jumlahRespon = 0;
@@ -408,14 +568,14 @@ define(['initialize'], function (initialize) {
 
       $scope.intervalFunction();
       $scope.getNotification();
-      $scope.$watch('jumlahRequest', function(newVal, oldVal) {
-        if(newVal != undefined && oldVal != undefined) {
-            toastr.info('Permintaan Baru Masuk ' + newVal);
+      $scope.$watch('jumlahRequest', function (newVal, oldVal) {
+        if (newVal != undefined && oldVal != undefined) {
+          toastr.info('Permintaan Baru Masuk ' + newVal);
         }
       });
 
       $scope.ResponPerbaikanIT = function (selectedData) {
-        if(selectedData.statusPengerjaan == 4 || selectedData.statusPengerjaan == 'Dibatalkan oleh user') {
+        if (selectedData.statusPengerjaan == 4 || selectedData.statusPengerjaan == 'Dibatalkan oleh user') {
           toastr.warning('Data tidak bisa direspon');
         } else {
           if (selectedData.statusRespon == 0) {
@@ -430,9 +590,9 @@ define(['initialize'], function (initialize) {
       }
 
       $scope.PermintaanPerbaikan = function (selectedData) {
-        
+
         // console.log(selectedData);
-        if(selectedData.statusRespon != 0) {
+        if (selectedData.statusRespon != 0) {
           var data = {
             noRec: $scope.klickNorec,
             userPemesan: $scope.klickuserPemesan,

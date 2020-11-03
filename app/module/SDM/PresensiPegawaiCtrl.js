@@ -9,7 +9,13 @@ define(['initialize'], function (initialize) {
             $scope.time = "";
             $scope.isRouteLoading = false;
             $scope.data.isWFH = true;
+            $scope.isDisblePresensi = true;
             $scope.dataPegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
+
+            $scope.userLocation = {};
+
+            let canvas = document.getElementById('canvas');
+            let context = canvas.getContext('2d');
 
             let getDataHistory = function () {
                 $scope.isRouteLoading = true;
@@ -31,12 +37,73 @@ define(['initialize'], function (initialize) {
                 });
             }
 
+            $scope.showImageCapture = () => {
+                context.drawImage(video, 0, 0, 400, 350);
+                $scope.isDisblePresensi = false;
+            }
+
+            function getDecimal(n) {
+                return (n - Math.floor(n));
+            }
+
             let init = function () {
-                var interval = setInterval(function () {
-                    var momentNow = moment();
-                    $('#date-part').html(momentNow.format('YYYY MMMM DD') + ' ' + momentNow.format('dddd').substring(0, 3).toUpperCase());
-                    $('#time-part').html(momentNow.format('HH:mm:ss'));
-                }, 100);
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition((position) => {
+                        $scope.userLocation.lat = position.coords.latitude;
+                        $scope.userLocation.lng = position.coords.longitude;
+                        $scope.userLocation.akurasi = position.coords.accuracy;
+                        $scope.userLocation.latMin = Math.floor(getDecimal(Math.abs(position.coords.latitude)) * 60);
+                        $scope.userLocation.latSec = getDecimal(getDecimal(Math.abs(position.coords.latitude)) * 60) * 60;
+                        $scope.userLocation.longMin = Math.floor(getDecimal(Math.abs(position.coords.longitude)) * 60);
+                        $scope.userLocation.longSec = getDecimal(getDecimal(Math.abs(position.coords.longitude)) * 60) * 60;
+
+
+                        let koordinatViewMap = [$scope.userLocation.lat, $scope.userLocation.lng];
+                        let mymap = L.map('mapid').setView(koordinatViewMap, 13);
+                        var marker = L.marker(koordinatViewMap).addTo(mymap);
+                        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHJlZmVscmVyZSIsImEiOiJja2V1bmFzNmUyemVsMnNtcWRhbnMwbXR1In0.1ZJDyJLNvi2QrCs4X7wZqQ', {
+                            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                            maxZoom: 18,
+                            id: 'mapbox/streets-v11',
+                            tileSize: 512,
+                            zoomOffset: -1,
+                            accessToken: 'pk.eyJ1IjoiaHJlZmVscmVyZSIsImEiOiJja2V1bmFzNmUyemVsMnNtcWRhbnMwbXR1In0.1ZJDyJLNvi2QrCs4X7wZqQ'
+                        }).addTo(mymap);
+
+                        let areaHarkit = [
+                            [-6.184190, 106.797235],
+                            [-6.1861155, 106.801147]
+                        ];
+                        var circle = L.rectangle(areaHarkit, {
+                            color: 'green',
+                            fillColor: '#7ea04d',
+                            fillOpacity: 0.5,
+                            // radius: 500
+                        }).addTo(mymap);
+
+                    });
+
+
+
+                    // navigator.geolocation.watchPosition()
+
+                    // $.get('http://api.geonames.org/findNearestAddress?lat=' + $scope.userLocation.lat + '&lng=' + $scope.userLocation.lng + '&username=demo').then((data) => {
+                    //     console.log(data);
+                    // })
+                } else {
+                    alert("Geolocation not supported");
+                }
+
+                let video = document.getElementById('video');
+
+                if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                    navigator.mediaDevices.getUserMedia({
+                        video: true
+                    }).then((stream) => {
+                        video.srcObject = stream;
+                        video.play();
+                    })
+                }
 
                 $scope.tanggalPresensi = new Date();
                 getDataHistory();

@@ -241,6 +241,8 @@ define(['initialize'], function(initialize) {
           $scope.item = {};
           $scope.noRec = undefined;
           $scope.item.tgl = new Date();
+        }, err => {
+          
         });
 
       }

@@ -16,6 +16,7 @@ define(['initialize'], function (initialize) {
 
             $scope.item.hargaNetto = 0;
 
+            let dataLogin = JSON.parse(localStorage.getItem('datauserlogin'));
             var pegawaiUser = {}
 
             var norec_apd = '';
@@ -1039,14 +1040,15 @@ define(['initialize'], function (initialize) {
                         .ok('Ya')
                         .cancel('Batal');
 
-                    if (isConfirm) {
-                        $mdDialog.show(confirmDialog).then(function () {
-                            // yes
-                            $scope.BridgingConsisD();
-                        }, function () {
-                            console.info('Cancel');
-                        });
-                    }
+                    // if (isConfirm) {
+                    //     $mdDialog.show(confirmDialog).then(function () {
+                    //         // yes
+                    //         $scope.BridgingConsisD();
+                    //     }, function () {
+                    //         console.info('Cancel');
+                    //     });
+                    // }
+                    $scope.BridgingConsisD();
                     // BaruLagi()
                     // if (noOrder == 'EditResep') {
                     //     var objDelete = {norec:norecResep}
@@ -1152,6 +1154,26 @@ define(['initialize'], function (initialize) {
 
                 }
                 Kosongkan()
+            }
+
+            $scope.cetakLabelResep = function () {
+                if ($scope.dataSelected == undefined) {
+                    alert('Pilih resep yg akan di cetak')
+                    return;
+                }
+                var stt = 'false'
+                if (confirm('View Label resep? ')) {
+                    // Save it!
+                    stt = 'true';
+                } else {
+                    // Do nothing!
+                    stt = 'false'
+                }
+                var client = new HttpClient();
+                // 'http://127.0.0.1:1237/printvb/farmasi?cetak-LabelFarmasiOB=' + $scope.dataSelected.norec + '&view=' + stt + '&user=' + $scope.dataLoginUs.namaLengkap
+                client.get('http://127.0.0.1:1237/printvb/farmasi?cetak-LabelFarmasiOB=' + $scope.norecObat + '&view=' + stt + '&user=' + dataLogin.kdUser, function (response) {
+                    // aadc=response;
+                });
             }
 
         }

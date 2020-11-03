@@ -15,184 +15,327 @@ require.config({
     }
 });
 require(['LoginService', 'core', "kendo.angular", 'Configuration', 'Helper', 'jQuery', 'Service', 'HttpServices'],
-    function(LoginService, core, kendo, conf, helper) {
+    function (LoginService, core, kendo, conf, helper) {
         angular.module('myApp', ["kendo.directives", "core", 'LoginServices', 'LocalStorageModule', 'Services', 'HttpServices'])
             .controller('Controller', [
                 'socket', '$rootScope', '$scope', '$timeout', 'LoginService', 'localStorageService',
-                function(socket, $rootScope, $scope, $timeout, loginService, localStorageService) {
-
+                function (socket, $rootScope, $scope, $timeout, loginService, localStorageService) {
+                    let listedUserRedirect = ["ITI", "ketatausahaan"];
                     // Alter Syamsu, perubahaan cara user login
-                    var goLogin = function(userName, password){
+                    var goLogin = function (userName, password) {
                         window.localStorage.clear();
 
-                        var delete_cookie = function(name) {
+                        var delete_cookie = function (name) {
                             var today = new Date();
                             var expr = new Date(today.getTime() + (-1 * 24 * 60 * 60 * 1000));
                             document.cookie = name + '=;expires=' + (expr.toGMTString());
                         }
                         delete_cookie('authorization');
                         delete_cookie('statusCode');
-                        delete_cookie('io'); 
+                        delete_cookie('io');
 
                         loginService.authentication({
                             namaUser: userName,
                             kataSandi: password
-                        }).then(function(data) {
-                                
-                            if (data.data.messages.message) {
-                                window.messageContainer.error(data.data.messages.message);
-                                $scope.isBusy = false;
-                                return;
-                            }
-                            var cookieStr = "statusCode=" + data.data.data.kelompokUser.kelompokUser + ';';
-                            document.cookie = cookieStr;
-                            document.cookie = 'authorization=' + data.data.messages['X-AUTH-TOKEN'] + ";";
-                            
-                            var dataUserLogin = {
-                                id: data.data.data.id,
-                                // Start Syamsu
-                                kdUser : data.data.data.namaUser,
-                                // End Syamsu
-                                waktuLogin : new Date(),
-                                // endWaktuLogin : new Date(new Date().getTime() + ( 2 * 60 * 1000))
-                                endWaktuLogin : new Date(new Date().getTime() + (1 * 24 * 60 * 60 * 1000))
-                            };
+                        }).then(function (data) {
+                                let keyEnc = {
+                                    'a': "k",
+                                    'b': "l",
+                                    'c': "m",
+                                    'd': "n",
+                                    'e': "o",
+                                    'f': "p",
+                                    'g': "q",
+                                    'h': "r",
+                                    'i': "s",
+                                    'j': "t",
+                                    'k': "u",
+                                    'l': "v",
+                                    'm': "w",
+                                    'n': "x",
+                                    'o': "y",
+                                    'p': "z",
+                                    'q': "a",
+                                    'r': "b",
+                                    's': "c",
+                                    't': "d",
+                                    'u': "e",
+                                    'v': "f",
+                                    'w': "g",
+                                    'x': "h",
+                                    'y': "i",
+                                    'z': "j",
+                                    "1": "2",
+                                    "2": "3",
+                                    "3": "4",
+                                    "4": "5",
+                                    "5": "6",
+                                    "6": "7",
+                                    "7": "8",
+                                    "8": "9",
+                                    "9": "0",
+                                    "0": "1",
+                                    "A": "Q",
+                                    "B": "W",
+                                    "C": "E",
+                                    "D": "R",
+                                    "E": "T",
+                                    "F": "Y",
+                                    "G": "U",
+                                    "H": "I",
+                                    "I": "O",
+                                    "J": "P",
+                                    "K": "A",
+                                    "L": "S",
+                                    "M": "D",
+                                    "N": "F",
+                                    "O": "G",
+                                    "P": "H",
+                                    "Q": "J",
+                                    "R": "K",
+                                    "S": "L",
+                                    "T": "Z",
+                                    "U": "X",
+                                    "V": "C",
+                                    "W": "V",
+                                    "X": "B",
+                                    "Y": "N",
+                                    "Z": "M",
+                                };
 
-                            window.localStorage.setItem('datauserlogin', JSON.stringify(dataUserLogin));
-                            window.localStorage.setItem('pegawai', JSON.stringify(data.data.data.pegawai));
-                            var dataUrlRoute = [];
-                            var dataUrlRouteAkuntansi = [];
-                            $.when(
-                                $.getJSON(conf.urlRoute, function(data) {
-                                    dataUrlRoute = data;
-                                }),
-                                $.getJSON(conf.urlRoute_Akuntansi, function(data) {
-                                    dataUrlRouteAkuntansi = data;
-                                }),
-                                $.getJSON(conf.urlRoute_SDM, function(data) {
-                                    dataUrlRouteSDM = data;
-                                })
-                            ).then(function() {
-                                var msgError = "";
-                                var arrDataConfig = [dataUrlRoute, dataUrlRouteAkuntansi, dataUrlRouteSDM];
-                                var dataConfig = [];
-                                dataConfig.push({
-                                    "nameDep": "jQuery",
-                                    "urlDep": "../jquery"
-                                });
-                                for (var i = 0; i < arrDataConfig.length; i++) {
-                                    for (var k = 0; k < arrDataConfig[i].length; k++) {
-                                        dataConfig.push(arrDataConfig[i][k]);
+                                // #region decrypt key
+                                let keyDec = {
+                                    "k": "a",
+                                    "l": "b",
+                                    "m": "c",
+                                    "n": "d",
+                                    "o": "e",
+                                    "p": "f",
+                                    "q": "g",
+                                    "r": "h",
+                                    "s": "i",
+                                    "t": "j",
+                                    "u": "k",
+                                    "v": "l",
+                                    "w": "m",
+                                    "x": "n",
+                                    "y": "o",
+                                    "z": "p",
+                                    "a": "q",
+                                    "b": "r",
+                                    "c": "s",
+                                    "d": "t",
+                                    "e": "u",
+                                    "f": "v",
+                                    "g": "w",
+                                    "h": "x",
+                                    "i": "y",
+                                    "j": "z",
+                                    "2": "1",
+                                    "3": "2",
+                                    "4": "3",
+                                    "5": "4",
+                                    "6": "5",
+                                    "7": "6",
+                                    "8": "7",
+                                    "9": "8",
+                                    "0": "9",
+                                    "1": "0",
+                                    "Q": "A",
+                                    "W": "B",
+                                    "E": "C",
+                                    "R": "D",
+                                    "T": "E",
+                                    "Y": "F",
+                                    "U": "G",
+                                    "I": "H",
+                                    "O": "I",
+                                    "P": "J",
+                                    "A": "K",
+                                    "S": "L",
+                                    "D": "M",
+                                    "F": "N",
+                                    "G": "O",
+                                    "H": "P",
+                                    "J": "Q",
+                                    "K": "R",
+                                    "L": "S",
+                                    "Z": "T",
+                                    "X": "U",
+                                    "C": "V",
+                                    "V": "W",
+                                    "B": "X",
+                                    "N": "Y",
+                                    "M": "Z",
+                                }
+                                //#endregion
+
+                                // for(let i in listedUserRedirect) {
+                                //     if(data.data.data.kelompokUser.kelompokUser === listedUserRedirect[i]) {
+                                //         // alert("Sini")
+                                //         window.location.replace('http://localhost:3333/#/login?namaUser=' + data.config.data.namaUser + '&password=' + data.config.data.kataSandi);
+                                //         return;
+
+                                //     }
+                                // }
+
+                                if (data.data.messages.message) {
+                                    window.messageContainer.error(data.data.messages.message);
+                                    $scope.isBusy = false;
+                                    return;
+                                }
+                                var cookieStr = "statusCode=" + data.data.data.kelompokUser.kelompokUser + ';';
+                                document.cookie = cookieStr;
+                                document.cookie = 'authorization=' + data.data.messages['X-AUTH-TOKEN'] + ";";
+
+                                var dataUserLogin = {
+                                    id: data.data.data.id,
+                                    // Start Syamsu
+                                    kdUser: data.data.data.namaUser,
+                                    // End Syamsu
+                                    waktuLogin: new Date(),
+                                    // endWaktuLogin : new Date(new Date().getTime() + ( 2 * 60 * 1000))
+                                    endWaktuLogin: new Date(new Date().getTime() + (1 * 24 * 60 * 60 * 1000))
+                                };
+
+                                window.localStorage.setItem('datauserlogin', JSON.stringify(dataUserLogin));
+                                window.localStorage.setItem('pegawai', JSON.stringify(data.data.data.pegawai));
+
+                                document.cookie = `${'dataLogin'.replace(/[a-zA-Z0-9]/g, m => keyEnc[m])}=${JSON.stringify({namaUser: userName,kataSandi: password}).replace(/[a-zA-Z0-9]/g, m => keyEnc[m])};`;
+
+                                var dataUrlRoute = [];
+                                var dataUrlRouteAkuntansi = [];
+                                $.when(
+                                    $.getJSON(conf.urlRoute, function (data) {
+                                        dataUrlRoute = data;
+                                    }),
+                                    $.getJSON(conf.urlRoute_Akuntansi, function (data) {
+                                        dataUrlRouteAkuntansi = data;
+                                    }),
+                                    $.getJSON(conf.urlRoute_SDM, function (data) {
+                                        dataUrlRouteSDM = data;
+                                    })
+                                ).then(function () {
+                                    var msgError = "";
+                                    var arrDataConfig = [dataUrlRoute, dataUrlRouteAkuntansi, dataUrlRouteSDM];
+                                    var dataConfig = [];
+                                    dataConfig.push({
+                                        "nameDep": "jQuery",
+                                        "urlDep": "../jquery"
+                                    });
+                                    for (var i = 0; i < arrDataConfig.length; i++) {
+                                        for (var k = 0; k < arrDataConfig[i].length; k++) {
+                                            dataConfig.push(arrDataConfig[i][k]);
+                                        }
                                     }
-                                }
 
-                                if (msgError == "") {
-                                    socket.emit('login', data.data.data.pegawai);
-                                    window.localStorage.setItem('urlBind', JSON.stringify(dataConfig));
-                                    setTimeout(function(){                                                                                        
-                                        window.location = "/app/#/home";
-                                        $scope.isBusy = false;
-                                    }, 1000);
-                                }
-                            });                            
-                        },
-                        function(error) {
-                            if(error.data.messages)
-                                window.messageContainer.error(error.data.messages)
-                            $scope.isBusy = false;
-                            // window.messageContainer.error('Gagal masuk ke dalam system')
-                        });
+                                    if (msgError == "") {
+                                        socket.emit('login', data.data.data.pegawai);
+                                        window.localStorage.setItem('urlBind', JSON.stringify(dataConfig));
+                                        setTimeout(function () {
+                                            window.location = "/app/#/home";
+                                            $scope.isBusy = false;
+                                        }, 1000);
+                                    }
+                                });
+                            },
+                            function (error) {
+                                if (error.data.messages)
+                                    window.messageContainer.error(error.data.messages)
+                                $scope.isBusy = false;
+                                // window.messageContainer.error('Gagal masuk ke dalam system')
+                            });
 
                         loginService.javaAuthentication({
                             namaUser: userName,
                             kataSandi: password
-                        }).then(function(data) {
-                                
-                            if (data.data.messages.message) {
-                                window.messageContainer.error(data.data.messages.message);
-                                $scope.isBusy = false;
-                                return;
-                            }
-                            var cookieStr = "statusCode=" + data.data.data.kelompokUser.kelompokUser + ';';
-                            document.cookie = cookieStr;
-                            document.cookie = 'authorization=' + data.data.messages['X-AUTH-TOKEN'] + ";";
-                            
-                            var dataUserLogin = {
-                                id: data.data.data.id,
-                                // Start Syamsu
-                                kdUser : data.data.data.namaUser,
-                                // End Syamsu
-                                waktuLogin : new Date(),
-                                // endWaktuLogin : new Date(new Date().getTime() + ( 2 * 60 * 1000))
-                                endWaktuLogin : new Date(new Date().getTime() + (1 * 24 * 60 * 60 * 1000))
-                            };
+                        }).then(function (data) {
+                                console.log(data);
+                                if (data.data.messages.message) {
+                                    window.messageContainer.error(data.data.messages.message);
+                                    $scope.isBusy = false;
+                                    return;
+                                }
+                                var cookieStr = "statusCode=" + data.data.data.kelompokUser.kelompokUser + ';';
+                                document.cookie = cookieStr;
+                                document.cookie = 'authorization=' + data.data.messages['X-AUTH-TOKEN'] + ";";
 
-                            window.localStorage.setItem('datauserlogin', JSON.stringify(dataUserLogin));
-                            window.localStorage.setItem('pegawai', JSON.stringify(data.data.data.pegawai));
-                            var dataUrlRoute = [];
-                            var dataUrlRouteAkuntansi = [];
-                            $.when(
-                                $.getJSON(conf.urlRoute, function(data) {
-                                    dataUrlRoute = data;
-                                }),
-                                $.getJSON(conf.urlRoute_Akuntansi, function(data) {
-                                    dataUrlRouteAkuntansi = data;
-                                }),
-                                $.getJSON(conf.urlRoute_SDM, function(data) {
-                                    dataUrlRouteSDM = data;
-                                })
-                            ).then(function() {
-                                var msgError = "";
-                                var arrDataConfig = [dataUrlRoute, dataUrlRouteAkuntansi, dataUrlRouteSDM];
-                                var dataConfig = [];
-                                dataConfig.push({
-                                    "nameDep": "jQuery",
-                                    "urlDep": "../jquery"
-                                });
-                                for (var i = 0; i < arrDataConfig.length; i++) {
-                                    for (var k = 0; k < arrDataConfig[i].length; k++) {
-                                        dataConfig.push(arrDataConfig[i][k]);
+                                var dataUserLogin = {
+                                    id: data.data.data.id,
+                                    // Start Syamsu
+                                    kdUser: data.data.data.namaUser,
+                                    // End Syamsu
+                                    waktuLogin: new Date(),
+                                    // endWaktuLogin : new Date(new Date().getTime() + ( 2 * 60 * 1000))
+                                    endWaktuLogin: new Date(new Date().getTime() + (1 * 24 * 60 * 60 * 1000))
+                                };
+
+                                window.localStorage.setItem('datauserlogin', JSON.stringify(dataUserLogin));
+                                window.localStorage.setItem('pegawai', JSON.stringify(data.data.data.pegawai));
+                                var dataUrlRoute = [];
+                                var dataUrlRouteAkuntansi = [];
+                                $.when(
+                                    $.getJSON(conf.urlRoute, function (data) {
+                                        dataUrlRoute = data;
+                                    }),
+                                    $.getJSON(conf.urlRoute_Akuntansi, function (data) {
+                                        dataUrlRouteAkuntansi = data;
+                                    }),
+                                    $.getJSON(conf.urlRoute_SDM, function (data) {
+                                        dataUrlRouteSDM = data;
+                                    })
+                                ).then(function () {
+                                    var msgError = "";
+                                    var arrDataConfig = [dataUrlRoute, dataUrlRouteAkuntansi, dataUrlRouteSDM];
+                                    var dataConfig = [];
+                                    dataConfig.push({
+                                        "nameDep": "jQuery",
+                                        "urlDep": "../jquery"
+                                    });
+                                    for (var i = 0; i < arrDataConfig.length; i++) {
+                                        for (var k = 0; k < arrDataConfig[i].length; k++) {
+                                            dataConfig.push(arrDataConfig[i][k]);
+                                        }
                                     }
-                                }
 
-                                if (msgError == "") {
-                                    socket.emit('login', data.data.data.pegawai);
-                                    window.localStorage.setItem('urlBind', JSON.stringify(dataConfig));
-                                    setTimeout(function(){                                                                                        
-                                        window.location = "/app/#/home";
-                                        $scope.isBusy = false;
-                                    }, 1000);
-                                }
-                            });                            
-                        },
-                        function(error) {
-                            if(error.data.messages)
-                                window.messageContainer.error(error.data.messages)
-                            $scope.isBusy = false;
-                            // window.messageContainer.error('Gagal masuk ke dalam system')
-                        });
+                                    if (msgError == "") {
+                                        socket.emit('login', data.data.data.pegawai);
+                                        window.localStorage.setItem('urlBind', JSON.stringify(dataConfig));
+                                        setTimeout(function () {
+                                            window.location = "/app/#/home";
+                                            $scope.isBusy = false;
+                                        }, 1000);
+                                    }
+                                });
+                            },
+                            function (error) {
+                                if (error.data.messages)
+                                    window.messageContainer.error(error.data.messages)
+                                $scope.isBusy = false;
+                                // window.messageContainer.error('Gagal masuk ke dalam system')
+                            });
                     };
 
 
                     $scope.isBusy = true;
-                    $scope.login = function(userName, password) {
+                    $scope.login = function (userName, password) {
 
                         var datauserlogin = JSON.parse(window.localStorage.getItem("datauserlogin"));
                         var blmLogout = !(datauserlogin == undefined || datauserlogin == null);
-                        
-                        if (blmLogout){
-                            loginService.logout().then(function(e) {
+
+                        if (blmLogout) {
+                            loginService.logout().then(function (e) {
                                 var pegawai = JSON.parse(window.localStorage.getItem("pegawai"));
                                 socket.emit('logout.otomatis', pegawai);
                                 goLogin(userName, password);
-                            },function(e) {
+                            }, function (e) {
                                 goLogin(userName, password);
                             });
                         } else {
                             goLogin(userName, password);
                         }
                     };
-                     // Alter Syamsu, perubahaan cara user login
+                    // Alter Syamsu, perubahaan cara user login
                 }
             ]);
         angular.bootstrap(document, ['myApp']);

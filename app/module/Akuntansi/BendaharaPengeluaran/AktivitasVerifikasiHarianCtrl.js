@@ -85,11 +85,13 @@ define(['initialize'], function (initialize) {
                                 status: res.data.daftar[i].status ? res.data.daftar[i].status : '-',
                                 statusConfirmKabag: res.data.daftar[i].statusConfirmKabag ? res.data.daftar[i].statusConfirmKabag : '-',
                                 statusConfirmAnggaran: res.data.daftar[i].statusConfirmAnggaran ? res.data.daftar[i].statusConfirmAnggaran : '-',
+                                
                                 jenisPembayaran: "Verifikasi Tagihan Rekanan"
                             })
                         }
 
                     }
+
                     $scope.dataGridVerified = new kendo.data.DataSource({
                         data: $scope.dataTemp,
                         pageSize: 5
@@ -118,8 +120,6 @@ define(['initialize'], function (initialize) {
                         res.data.daftar[i].tglVerifikasiFormatted = dateHelper.formatDate(res.data.daftar[i].tglverifikasi, 'DD-MM-YYYY');
 
                         if (res.data.daftar[i].status === "VERIFIKASI") {
-                            // $scope.dataTemp.push(res.data.daftar[i])
-
                             $scope.dataTemp.push({
                                 confirm1fk: res.data.daftar[i].confirm1fk,
                                 confirmfk: res.data.daftar[i].confirmfk,
@@ -152,6 +152,7 @@ define(['initialize'], function (initialize) {
                         data: $scope.dataTemp,
                         pageSize: 5
                     });
+                    console.log($scope.dataTemp);
 
                     $scope.isRouteLoading = false;
                 }, err => {
@@ -168,7 +169,7 @@ define(['initialize'], function (initialize) {
 
             $scope.columnGrid = [{
                     "field": "namarekanan",
-                    "title": "<h3>Nama Rekanan</h3>",
+                    "title": "<h3>Kepada</h3>",
                     "width": "200px"
                 },
                 {
@@ -203,6 +204,11 @@ define(['initialize'], function (initialize) {
                     "title": "<h3>No. SPK</h3>",
                     "template": "<span class='style-center'>{{'#: noSPK ? noSPK : '-' #'}}</span>",
                     "width": "150px"
+                },
+                {
+                    "field": "faktur",
+                    "title": "<h3>No. Faktur</h3>",
+                    "width": "170px"
                 },
                 {
                     "field": "subtotalFormatted",
@@ -241,43 +247,43 @@ define(['initialize'], function (initialize) {
                     // "template": "<span class='style-center'>{{'#: status #'}}</span>",
                     "width": "200px"
                 },
-                {
-                    command: [{
-                            text: "Konfirmasi Kasubag",
-                            // name:"Konfirmasi",
-                            align: "center",
-                            attributes: {
-                                align: "center"
-                            },
-                            click: showWindowKonfirmasi,
-                            imageClass: "k-icon k-i-pencil"
-                        },
-                        {
-                            text: "Konfirmasi Kabag",
-                            // name:"Konfirmasi",
-                            align: "center",
-                            attributes: {
-                                align: "center"
-                            },
-                            click: showWindowKonfirmasi,
-                            imageClass: "k-icon k-i-pencil"
-                        },
-                        {
-                            text: "Detail Tagihan",
-                            align: "center",
-                            attributes: {
-                                align: "center"
-                            },
-                            click: detailTagihan,
-                            imageClass: "k-icon k-i-pencil"
-                        }
-                    ],
-                    title: "",
-                    width: "600px",
-                    attributes: {
-                        style: "text-align:center;valign=middle"
-                    },
-                }
+                // {
+                //     command: [{
+                //             text: "Konfirmasi Kasubag",
+                //             // name:"Konfirmasi",
+                //             align: "center",
+                //             attributes: {
+                //                 align: "center"
+                //             },
+                //             click: showWindowKonfirmasi,
+                //             imageClass: "k-icon k-i-pencil"
+                //         },
+                //         {
+                //             text: "Konfirmasi Kabag",
+                //             // name:"Konfirmasi",
+                //             align: "center",
+                //             attributes: {
+                //                 align: "center"
+                //             },
+                //             click: showWindowKonfirmasi,
+                //             imageClass: "k-icon k-i-pencil"
+                //         },
+                //         {
+                //             text: "Detail Tagihan",
+                //             align: "center",
+                //             attributes: {
+                //                 align: "center"
+                //             },
+                //             click: detailTagihan,
+                //             imageClass: "k-icon k-i-pencil"
+                //         }
+                //     ],
+                //     title: "",
+                //     width: "600px",
+                //     attributes: {
+                //         style: "text-align:center;valign=middle"
+                //     },
+                // }
             ];
 
             $scope.closePopUpKonfirmasi = function () {
@@ -352,7 +358,7 @@ define(['initialize'], function (initialize) {
                 var tempDataExport = [];
                 var rows = [{
                     cells: [{
-                        value: "Nama Rekanan"
+                        value: "Kepada"
                     }, {
                         value: "Tanggal Verifikasi"
                     }, {

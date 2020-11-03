@@ -1,3 +1,9 @@
+<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="anonymous" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin="anonymous"></script> -->
 <style>
     .container-presensi {
         display: flex;
@@ -17,7 +23,7 @@
     }
 
     md-card {
-        width: 50%;
+        width: 100%;
     }
 
     md-card-content {
@@ -35,13 +41,39 @@
         font-weight: bolder;
     }
 
-    @media only screen and (max-width: 300px) {
-        md-toolbar {
+    md-card-content.capture {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .capture canvas {
+        margin-top: 10px;
+        margin-top: 10px;
+        height: 400px;
+        width: 480px;
+    }
+
+    @media (max-device-width: 600px) {
+        /* md-toolbar {
             font-size: 1em;
         }
 
         md-card {
             width: 100%;
+        } */
+
+        .capture canvas {
+            margin-top: 10px;
+            margin-top: 10px;
+            height: 700px;
+            width: 50%;
+        }
+
+        div.container-presensi {
+            display: block;
+
         }
     }
 
@@ -55,8 +87,28 @@
 </md-toolbar>
 
 <div class="container-presensi">
+<<<<<<< HEAD
+    <md-card>
+        <md-card-content class="capture">
+            <video id="video" width="400" height="400" autoplay></video>
+            <md-button class="md-raised md-primary" ng-click="showImageCapture()"
+                style="width: 20%;height: 80px;margin-bottom: 10px;">
+                <!-- <span style="margin-right: 5px;">Capture</span> -->
+                <i style="font-size: 25px;" class="fa fa-camera"></i>
+            </md-button>
+            <canvas id="canvas" width="400" height="400"></canvas>
+        </md-card-content>
+    </md-card>
+
+=======
+>>>>>>> fd00d619ca87ae8404890119a7fc5601f62ff6f6
     <md-card>
         <md-card-content>
+            <div id="mapid"></div>
+            <div>
+                <label class="label-name">Akurasi : </label>
+                <label class="label-content">{{userLocation.akurasi}} m </label>
+            </div>
             <div>
                 <label class="label-name">Nama Lengkap Pegawai : </label>
                 <label class="label-content">{{data.namaLengkap ? data.namaLengkap : "-"}}</label>
@@ -73,18 +125,25 @@
                 <label class="label-name">Work From Home (WFH) : </label>
                 <label class="label-content">{{data.isWFH ? 'Ya' : 'Tidak'}}</label>
             </div> -->
+<<<<<<< HEAD
+
+            <div>
+                <div class="grid_2">
+=======
             <div class="grid_12">
                 <div class="grid_4">
+>>>>>>> fd00d619ca87ae8404890119a7fc5601f62ff6f6
                     <div id="time-part"></div>
                     <!-- <input kendo-time-picker ng-model="str" k-ng-model="tanggalPresensi" k-format="'HH:mm'"
                         style="width: 100%;" disabled> -->
                 </div>
-                <div class="grid_4" style="margin-top: 20px;">
+                <div class="grid_5" style="margin-top: 20px;">
                     <input type="checkbox" class="k-checkbox" name="wfh" id="wfh" ng-model="data.isWFH">
                     <label c-label item="item" class="k-checkbox-label" for="wfh">Work From Home (WFH)</label>
                 </div>
-                <div class="grid_2" style="margin-top: 17px;">
-                    <md-button class="md-raised md-primary medium-button" ng-click="savePresensi()">
+                <div class="grid_3" style="margin-top: 17px;">
+                    <md-button class="md-raised md-primary medium-button" ng-click="savePresensi()"
+                        ng-disabled="isDisblePresensi">
                         <span style="margin-right: 5px;">Simpan</span>
                         <i class="fa fa-save"></i>
                     </md-button>

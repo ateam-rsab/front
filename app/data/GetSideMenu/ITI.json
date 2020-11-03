@@ -25,6 +25,10 @@
             {
                 "name": "Rekap Layanan IT Internal",
                 "link": "#/RekapLayananIT"
+            },
+            {
+                "name": "To Do List ITI",
+                "link": "https://docs.google.com/spreadsheets/d/16aCy2x-6-JzL8xxdlULND3GfKjwYftonBbI2E_LnXHA/edit?usp=sharing"
             }
         ]
     },
@@ -2601,6 +2605,10 @@
                 "link": "#/PermintaanLinenByRuangan"
             }
         ]
+    },
+    {
+        "name": "Aplikasi Surat Menyurat",
+        "link": "#/RedirectPage"
     },
     {
         "name": "Rensar",

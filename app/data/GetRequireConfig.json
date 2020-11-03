@@ -1,6 +1,10 @@
 {
   "path": [
     {
+      "nameDep": "RedirectPageCtrl",
+      "urlDep": "module/RedirectPageCtrl"
+    },
+    {
       "nameDep": "BankDarahCetakBarcodeCtrl",
       "urlDep": "module/BankDarah/Report/BankDarahCetakBarcodeCtrl"
     },
@@ -7575,6 +7579,10 @@
     {
       "nameDep": "KirimMenuGiziCtrl",
       "urlDep": "module/Gizi/KirimMenuGiziCtrl"
+    },
+    {
+      "nameDep": "RekapitulasiPembayaranPersediaanCtrl",
+      "urlDep": "module/Akuntansi/BendaharaPengeluaran/RekapitulasiPembayaranPersediaanCtrl"
     },
     {
       "nameDep": "VerifikasiTagihanSupplierCtrl",

@@ -635,17 +635,17 @@ define(['initialize'], function (initialize) {
                     //save the file as Excel file with extension xlsx
                     kendo.saveAs({ dataURI: workbook.toDataURL(), fileName: "Daftar Surat Perintah Kerja (SPK).xlsx" });
                 });
+                
             }
 
             $scope.data2 = function (dataItem) {
-                // console.log(dataItem);
-                // $scope.dataSPKExport = new kendo.data.DataSource({
-                //     data:dataItem.details,
-                // });
                 return {
                     dataSource: new kendo.data.DataSource({
                         data: dataItem.details
                     }),
+                    toolbar: [
+                        { text: "export", name: "Export detail", template: '<button ng-click="exportDetail(dataItem)" class="k-button k-button-icontext k-grid-upload"><span class="k-icon k-i-excel"></span>Export to Excel</button>' },
+                    ],
                     columns: [
                         {
                             "field": "tglkebutuhan",
@@ -715,6 +715,88 @@ define(['initialize'], function (initialize) {
                     ]
                 }
             };
+
+            $scope.exportDetail = (dataItem) => {
+                console.log(dataItem.details);
+
+
+                let dataExport = new kendo.data.DataSource({
+                    data: dataItem.details
+                });
+
+                console.log($scope.dataSourceExportSPK);
+
+                var tempDataExport = [];
+                var rows = [
+                    {
+                        cells: [
+                            { value: "Kode Produk" },
+                            { value: "Nama Produk" },
+                            { value: "Spesifikasi" },
+                            { value: "Satuan" },
+                            { value: "QTY" },
+                            { value: "Sudah Terima" },
+                            { value: "Harga Satuan" },
+                            { value: "Total" }
+                        ]
+                    }
+                ];
+
+                tempDataExport = dataExport;
+                tempDataExport.fetch(function () {
+                    var data = this.data();
+                    console.log(data);
+                    for (var i = 0; i < data.length; i++) {
+                        //push single row for every record
+                        rows.push({
+                            cells: [
+                                { value: data[i].prid },
+                                { value: data[i].namaproduk },
+                                { value: data[i].spesifikasi },
+                                { value: data[i].satuanstandar },
+                                { value: data[i].qtyproduk },
+                                { value: data[i].qtyterimalast },
+                                { value: data[i].hargasatuan },
+                                { value: data[i].total }
+                                
+                                // { value: data[i].totalkonfirmasi },
+                                
+                                
+                                // { value: data[i].hargasatuanquo },
+                                // { value: data[i].qtyprodukkonfirmasi },
+                            ]
+                        })
+                    }
+                    var workbook = new kendo.ooxml.Workbook({
+                        sheets: [
+                            {
+                                freezePane: {
+                                    rowSplit: 1
+                                },
+                                columns: [
+                                    // Column settings (width)
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true },
+                                    { autoWidth: true }
+                                ],
+                                // Title of the sheet
+                                title: "Detail UPK",
+                                // Rows of the sheet
+                                rows: rows
+                            }
+                        ]
+                    });
+                    //save the file as Excel file with extension xlsx
+                    kendo.saveAs({ dataURI: workbook.toDataURL(), fileName: "detail-produk-upk-" + dataItem.nousulan+ ".xlsx" });
+                });
+                
+            }
+            
             // $scope.mainGridOptions = { 
             //     pageable: true,
             //     columns: $scope.columnProduk,

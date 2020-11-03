@@ -24,6 +24,7 @@ define(['initialize'], function (initialize) {
             $scope.norecObat = null;
 
             var pegawaiUser = {}
+            let dataLogin = JSON.parse(localStorage.getItem('datauserlogin'));
 
             var norec_apd = '';
             var noOrder = '';
@@ -1386,6 +1387,25 @@ define(['initialize'], function (initialize) {
                 }, function (error) {
                     $scope.onSave = false;
                 })
+            }
+
+            $scope.cetakLabelResep = function () {
+                if ($scope.dataSelected == undefined) {
+                    alert('Pilih resep yg akan di cetak')
+                    return;
+                }
+                var stt = 'false'
+                if (confirm('View Label resep? ')) {
+                    // Save it!
+                    stt = 'true';
+                } else {
+                    // Do nothing!
+                    stt = 'false'
+                }
+                var client = new HttpClient();
+                client.get('http://127.0.0.1:1237/printvb/farmasi?cetak-LabelFarmasi=' + $scope.item.resep + '&view=' + stt + '&user=' + dataLogin.kdUser, function (response) {
+                    // aadc=response;
+                });
             }
 
             $scope.BridgingConsisD = function () {

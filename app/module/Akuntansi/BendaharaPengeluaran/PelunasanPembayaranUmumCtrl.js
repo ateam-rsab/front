@@ -10,12 +10,12 @@ define(['initialize'], function (initialize) {
             $scope.item.tanggalAkhir = $scope.now;
 
             $scope.columnGrid = [{
-                    "field": "tglTransaksiFormatted",
+                    "field": "tgltransaksi",
                     "title": "<h3>Tanggal Transaksi</h3>",
                     "width": "150px"
                 },
                 {
-                    "field": "tglVerifikasiFormatted",
+                    "field": "tglverifikasi",
                     "title": "<h3>Tanggal Verifikasi</h3>",
                     "width": "150px"
                 },
@@ -61,12 +61,12 @@ define(['initialize'], function (initialize) {
                     "width": "200px"
                 },
                 {
-                    "field": "totalTagihanFormatted",
+                    "field": "totaltagihanFormatted",
                     "title": "<h3>Total Tagihan</h3>",
                     "width": "150px"
                 },
                 {
-                    "field": "totalBayarFormatted",
+                    "field": "totalbayarFormatted",
                     "title": "<h3>Total Bayar</h3>",
                     "width": "150px"
                 },
@@ -85,7 +85,7 @@ define(['initialize'], function (initialize) {
                         imageClass: "k-icon k-i-pencil"
                     }],
                     title: "",
-                    width: "600px",
+                    width: "150px",
                     attributes: {
                         style: "text-align:center;valign=middle"
                     },
@@ -108,8 +108,24 @@ define(['initialize'], function (initialize) {
             $scope.getData = () => {
                 $scope.isRouteLoading = true;
                 ManageAkuntansi.getDataTableTransaksi("bendahara-pengeluaran/get-data-pelunasan-pembayaran-umum?tglAwal=" + dateHelper.formatDate($scope.item.tanggalAwal, 'YYYY-MM-DD') + "&tglAkhir=" + dateHelper.formatDate($scope.item.tanggalAkhir, 'YYYY-MM-DD')).then((res) => {
+
+                    for(let i in res.data.daftar) {
+                        res.data.daftar[i].tgltransaksi = dateHelper.formatDate(res.data.daftar[i].tgltransaksi);
+                        res.data.daftar[i].tglverifikasi = dateHelper.formatDate(res.data.daftar[i].tglverifikasi);
+
+                        res.data.daftar[i].totaltagihanFormatted = new Intl.NumberFormat('id-ID', {
+                            style: 'currency',
+                            currency: 'IDR'
+                          }).format(res.data.daftar[i].totaltagihan ? res.data.daftar[i].totaltagihan : 0);
+
+                          res.data.daftar[i].totalbayarFormatted = new Intl.NumberFormat('id-ID', {
+                            style: 'currency',
+                            currency: 'IDR'
+                          }).format(res.data.daftar[i].totalbayar ? res.data.daftar[i].totalbayar : 0);
+                    }
+
                     $scope.dataGrid = new kendo.data.DataSource({
-                        data: res.data,
+                        data: res.data.daftar,
                         pageSize: 5
                     });
                     $scope.isRouteLoading = false;

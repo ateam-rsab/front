@@ -4,6 +4,8 @@ define(['initialize'], function (initialize) {
         function (cacheHelper, $timeout, $q, $rootScope, $scope, ManageAkuntansi, $state, dateHelper, ManageSarpras, modelItemAkuntansi, $mdDialog) {
             $scope.item = {};
             $scope.confirm = {};
+            $scope.edit = {};
+
             $scope.verif = {};
             $scope.dataPegawaiLogin = JSON.parse(localStorage.getItem('pegawai'));
             $scope.now = new Date();
@@ -11,16 +13,20 @@ define(['initialize'], function (initialize) {
             $scope.item.tanggalAkhir = $scope.now;
             $scope.item.tanggalVerifikasi = $scope.now;
 
+            $scope.showbtnEdit = false;
             let init = function () {
                 // serive get sumber dana
                 ManageAkuntansi.getDataTableTransaksi('bendahara-pengeluaran/get-sumber-dana').then(res => {
                     $scope.listSumberDana = res.data;
                 })
 
+                modelItemAkuntansi.getDataDummyPHP("spk/rekanan/get-data-combo-rekanan", true, true, 20).then(function (data) {
+                    $scope.listRekanan = data;
+                })
+
             }
 
             init();
-
             $scope.getListAnggaran = function () {
                 $scope.verif.anggaran = null;
                 $scope.isPagu = false;
@@ -33,6 +39,23 @@ define(['initialize'], function (initialize) {
                     }
                     $scope.listAnggaran = res.data.data;
                 });
+            }
+
+            $scope.onChangeAnggaran = function (data) {
+                $scope.edit.keperluan = 'Untuk Pembayaran ' + ($scope.edit.anggaran ? $scope.edit.anggaran.nama_anggaran : '');
+                $scope.edit.kodeDana = data.kode_dana;
+                $scope.edit.tahunDana = data.tahun;
+                $scope.edit.namaAnggaran = data.nama_anggaran;
+
+                $scope.verif.sisaPagu = new Intl.NumberFormat('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR'
+                }).format((data.anggaran - data.penggunaan));
+                $scope.edit.pagu = data.anggaranFormatted;
+                $scope.edit.rawSisaPagu = (data.anggaran - data.penggunaan);
+                $scope.getTerbilang((data.anggaran - data.penggunaan), 'sisaPaguTerbilang');
+                $scope.getTerbilang(data.anggaran, 'paguTerbilang');
+                // $scope.isPagu = true;
             }
 
             $scope.showPagu = function (data) {
@@ -92,13 +115,18 @@ define(['initialize'], function (initialize) {
             $scope.loadData();
 
             $scope.columnGridVerified = [{
-                    "field": "tglTransaksiFormatted",
-                    "title": "<h3>Tanggal Transaksi</h3>",
+                    "field": "tglSPK",
+                    "title": "<h3>Tanggal SPK</h3>",
                     "width": "150px"
                 },
                 {
                     "field": "tglVerifikasiFormatted",
                     "title": "<h3>Tanggal Verifikasi</h3>",
+                    "width": "150px"
+                },
+                {
+                    "field": "namarekanan",
+                    "title": "<h3>Kepada</h3>",
                     "width": "150px"
                 },
                 {
@@ -135,7 +163,7 @@ define(['initialize'], function (initialize) {
                 {
                     "field": "statusconfirmkabag",
                     "title": "<h3>Status Konfirmasi<br> Ka. Subag</h3>",
-                    "width": "150px"
+                    "width": "170px"
                 },
                 {
                     "field": "statusconfirmanggaran",
@@ -184,7 +212,16 @@ define(['initialize'], function (initialize) {
                             },
                             click: cetak,
                             imageClass: "k-printer"
-                        }
+                        },
+                        // {
+                        //     text: "Batal Verifikasi",
+                        //     align: "center",
+                        //     attributes: {
+                        //         align: "center"
+                        //     },
+                        //     click: confirmBatalVerif,
+                        //     imageClass: "k-icon k-i-pencil"
+                        // }
                         // {
                         //     text: "Detail Tagihan",
                         //     align: "center",
@@ -203,14 +240,53 @@ define(['initialize'], function (initialize) {
                 }
             ];
 
+            function confirmBatalVerif(e) {
+                e.preventDefault();
+                let tr = $(e.target).closest("tr");
+                let dataItem = this.dataItem(tr);
+
+                if (dataItem.confirmfk || dataItem.confirm1fk) {
+                    toastr.info("Data sudah di verifikasi", "Tidak Bisa Membatalkan")
+                    return;
+                }
+
+                var confirm = $mdDialog.confirm()
+                    .title(`Apakah Anda yakin akan membatalkan Verifikasi Tagihan`)
+                    .textContent(`Anda akan membatalkan Verifikasi Tagihan dengan No. Voucher ${dataItem.noverifikasi}`)
+                    .ok('Ya')
+                    .cancel('Tidak');
+
+                $mdDialog.show(confirm).then(function () {
+                    batalVerif(dataItem);
+                }, function () {});
+            }
+
+            let batalVerif = (data) => {
+                console.log(data);
+                let dataSave = {
+                    noverifikasi: data.noverifikasi,
+                    norec: data.norec
+                }
+                console.log(dataSave);
+                ManageAkuntansi.postpost(dataSave, 'bendahara-pengeluaran/batal-verifikasi-pembayaran-umum').then((data) => {
+                    $scope.loadData();
+                });
+
+            }
+
             $scope.columnGridUnverified = [{
-                    "field": "tglTransaksiFormatted",
-                    "title": "<h3>Tanggal Transaksi</h3>",
+                    "field": "tglSPK",
+                    "title": "<h3>Tanggal SPK</h3>",
                     "width": "150px"
                 },
                 {
                     "field": "tglVerifikasiFormatted",
                     "title": "<h3>Tanggal Verifikasi</h3>",
+                    "width": "150px"
+                },
+                {
+                    "field": "namarekanan",
+                    "title": "<h3>Kepada</h3>",
                     "width": "150px"
                 },
                 {
@@ -369,7 +445,7 @@ define(['initialize'], function (initialize) {
                 var tempDataExport = [];
                 var rows = [{
                     cells: [{
-                            value: "Tanggal Transaksi"
+                            value: "Tanggal SPK"
                         },
                         {
                             value: "Tanggal Verifikasi"
@@ -417,7 +493,7 @@ define(['initialize'], function (initialize) {
                         //push single row for every record
                         rows.push({
                             cells: [{
-                                    value: data[i].tglTransaksiFormatted
+                                    value: data[i].tglSPK
                                 },
                                 {
                                     value: data[i].tglVerifikasiFormatted
@@ -554,12 +630,16 @@ define(['initialize'], function (initialize) {
                 let dataItem = this.dataItem(tr);
 
                 $scope.confirm = dataItem;
-                console.log(dataItem);
+                
+                $scope.edit = dataItem;
+                // $scope.showbtnEdit = false;
                 $scope.isKasubag = e.data.commandName === "Konfirmasi Kasubag" ? true : false;
+                $scope.showbtnEdit = $scope.isKasubag;
                 if (!$scope.isKasubag && !$scope.confirm.confirmfk) {
                     toastr.warning('Harap Konfirmasi Ka. Subag Terlebih dahulu')
                     return;
                 }
+
                 ManageAkuntansi.getDataTableTransaksi('bendahara-pengeluaran/get-penggunaan-anggaran?tahun=' + new Date().getFullYear() + "&kodeAnggaran=" + dataItem.kodeanggaran).then(res => {
 
                     for (let i = 0; i < res.data.data.length; i++) {
@@ -621,22 +701,121 @@ define(['initialize'], function (initialize) {
 
             }
 
-            $scope.simpanDataPembayaranUmum = function () {
+            $scope.editData = () => {
+                if($scope.edit.statusconfirmanggaran === "CONFIRM") {
+                    toastr.warning("Data sudah di konfirmasi Ka. Bag");
+                    return;
+                }
+                $scope.popupEditData.open().center();
+                $scope.konfirmasiAnggaran.close();
+                // statusconfirmanggaran
+                $scope.edit.totalbayar = $scope.edit.totaltagihan;
+                $scope.edit.noFaktur = $scope.edit.faktur;
+                $scope.edit.namaRekanan = $scope.edit.namarekanan;
+                $scope.edit.noSpk = $scope.edit.nospk;
 
+                $scope.edit.isBa = $scope.edit.ba !== "" || $scope.edit.ba ? true : false;
+                $scope.edit.isNoFaktur = $scope.edit.faktur !== "" || $scope.edit.faktur ? true : false;
+                $scope.showInputNoFaktur = $scope.edit.isBa;
+                $scope.showInputBa = $scope.edit.isNoFaktur;
+                // $scope.edit.isSppb = true;
+                // $scope.edit.permohonanPembayaran = true;
+                // $scope.edit.isKwitansi = true;
+                
+                if ($scope.confirm.kodeDana) {
+                    let kdDana = $scope.confirm.kodeDana.split('.');
+
+                    $scope.verif.sumberDana = {
+                        asalproduk: kdDana[0] === "RM" ? "Rupiah Murni" : "Badan Layanan Umum",
+                        id: kdDana[0] === "RM" ? 2 : 1,
+                        kodeanggaran: kdDana[0],
+                    }
+
+                    $scope.getListAnggaran();
+                }
+
+                $scope.edit.anggaran = {
+                    kode_anggaran: $scope.edit.kodeanggaran,
+                    nama_anggaran: $scope.edit.namaAnggaran
+                }
+                console.log($scope.edit);
+            }
+
+            $scope.simpanEditData = () => {
+                if (!$scope.verif.sumberDana) {
+
+                    toastr.warning("Harap isi Sumber Dana");
+                    return;
+                };
+                if (!$scope.edit.anggaran) {
+
+                    toastr.warning("Harap isi Anggaran");
+                    return;
+                }
+
+                if (!$scope.edit.totalbayar) {
+
+                    toastr.warning("Harap isi Total yang akan dibayarkan");
+                    return;
+                };
+
+                $scope.popupEditData.close();
+                var confirm = $mdDialog.confirm()
+                    .title(`Apakah Anda yakin akan Menyimpan Data`)
+                    // .textContent(`Anda akan konfirmasi Verifikasi Tagihan dengan Supplier ${$scope.confirm.namarekanan} dengan No. SPK ${$scope.confirm.noSPK}`)
+                    .ok('Ya')
+                    .cancel('Batal');
+
+                $mdDialog.show(confirm).then(function () {
+                    let dataSave = {
+                        kodeAnggaran: $scope.edit.anggaran.kode_anggaran,
+                        pegawaifk: $scope.dataPegawaiLogin.id,
+                        tglVerifikasi: dateHelper.formatDate($scope.edit.tglverifikasi, "YYYY-MM-DD"),
+                        keperluan: $scope.edit.keperluan,
+                        totalTagihan: $scope.edit.totalbayar,
+                        ba: $scope.edit.isBa ? $scope.edit.ba : "",
+                        sppb: $scope.edit.isSppb ? $scope.edit.sppb : "",
+                        faktur: $scope.edit.isNoFaktur ? $scope.edit.noFaktur : "",
+                        norecPU: $scope.edit.norec,
+                        noverifikasifk:$scope.edit.noverifikasifk,
+                        tglSPK: $scope.edit.tglSPK,
+                        pph: $scope.edit.pph ? $scope.edit.pph : 0,
+                        nospk: $scope.edit.noSpk ? $scope.edit.noSpk : "",
+                        namarekanan: $scope.edit.namaRekanan ? $scope.edit.namaRekanan : "",
+                        dana: $scope.edit.sumberDana ? $scope.edit.sumberDana.asalproduk : "",
+                    };
+
+                    ManageAkuntansi.postpost(dataSave, 'bendahara-pengeluaran/save-verifikasi-pembayaran-umum').then(res => {
+                        $scope.clear();
+                        $scope.popupEditData.close();
+                        $scope.loadData();
+                    });
+                }, function () {
+                    $scope.popupEditData.open().center();
+                    toastr.info('Konfirmasi dibatalkan');
+                });
+            }
+
+            $scope.simpanDataPembayaranUmum = function () {
+                console.log($scope.item.namaRekanan);
 
                 if (!$scope.verif.sumberDana) {
+                    $scope.popupTambahBaru.open().center();
                     toastr.warning("Harap isi Sumber Dana");
                     return;
                 };
                 if (!$scope.verif.anggaran) {
+                    $scope.popupTambahBaru.open().center();
                     toastr.warning("Harap isi Anggaran");
                     return;
                 }
 
                 if (!$scope.verif.totalBayar) {
+                    $scope.popupTambahBaru.open().center();
                     toastr.warning("Harap isi Total yang akan dibayarkan");
                     return;
                 };
+
                 let dataSave = {
                     kodeAnggaran: $scope.verif.anggaran.kode_anggaran,
                     pegawaifk: $scope.dataPegawaiLogin.id,
@@ -647,6 +826,7 @@ define(['initialize'], function (initialize) {
                     sppb: $scope.item.isSppb ? $scope.item.sppb : "",
                     faktur: $scope.item.isNoFaktur ? $scope.item.noFaktur : "",
 
+                    tglSPK: $scope.item.tglSPK,
                     pph: $scope.item.pph ? $scope.item.pph : 0,
                     nospk: $scope.item.noSpk ? $scope.item.noSpk : "",
                     namarekanan: $scope.item.namaRekanan ? $scope.item.namaRekanan : "",
@@ -682,6 +862,11 @@ define(['initialize'], function (initialize) {
                 $scope.showInputNoFaktur = $scope.item.isNoFaktur ? true : false;
                 $scope.showInputBa = $scope.item.isBa ? true : false;
                 $scope.showInputSppb = $scope.item.isSppb ? true : false;
+
+                $scope.showInputNoSpk = $scope.edit.isNoSpk ? true : false;
+                $scope.showInputNoFaktur = $scope.edit.isNoFaktur ? true : false;
+                $scope.showInputBa = $scope.edit.isBa ? true : false;
+                $scope.showInputSppb = $scope.edit.isSppb ? true : false;
             }
 
             $scope.clear = function () {
@@ -706,7 +891,16 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.konfirmasiData = (state) => {
+                if($scope.confirm.statusconfirmkabag === "CONFIRM" && state) {
+                    toastr.warning("Data sudah di verifikasi");
+                    return;
+                }
 
+                if($scope.confirm.statusconfirmanggaran === "CONFIRM" && !state) {
+                    toastr.warning("Data sudah di verifikasi");
+                    return;
+                }
+                console.log($scope.confirm);
                 $scope.closePopupKonfirmasi();
 
                 var confirm = $mdDialog.confirm()

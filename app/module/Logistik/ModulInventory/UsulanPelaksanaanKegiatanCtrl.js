@@ -303,8 +303,8 @@ define(['initialize'], function (initialize) {
                                 saldoawalblu: data.data.detail.saldoawalblu,
                                 saldoawalrm: data.data.detail.saldoawalrm
                             }
-                            $scope.item.SaldoBlu = parseFloat(data.data.detail.saldoawalblu).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
-                            $scope.item.SaldoRm = parseFloat(data.data.detail.saldoawalrm).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+                            $scope.item.SaldoBlu = parseFloat(data.data.detail.saldoawalblu ? data.data.detail.saldoawalblu : 0).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+                            $scope.item.SaldoRm = parseFloat(data.data.detail.saldoawalrm ? data.data.detail.saldoawalrm : 0).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
                             $scope.item.ruanganPengusul = {
                                 id: data.data.detail.idunitpengusul,
                                 namaruangan: data.data.detail.unitpengusul
@@ -376,7 +376,7 @@ define(['initialize'], function (initialize) {
                 $scope.item.nip = $scope.item.mengetahui.nip_pns
             }
             $scope.getSatuan = function () {
-                GETKONVERSI(0)
+                GETKONVERSI(0);
             }
 
             function GETKONVERSI(jml) {
@@ -422,8 +422,8 @@ define(['initialize'], function (initialize) {
             $scope.$watch('item.mataAnggaran', function (newValue, oldValue) {
                 if (newValue != oldValue) {
                     if ($scope.item.mataAnggaran != undefined) {
-                        $scope.item.SaldoBlu = parseFloat($scope.item.mataAnggaran.saldoawalblu).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
-                        $scope.item.SaldoRm = parseFloat($scope.item.mataAnggaran.saldoawalrm).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+                        $scope.item.SaldoBlu = parseFloat($scope.item.mataAnggaran.saldoawalblu ? $scope.item.mataAnggaran.saldoawalblu : 0).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+                        $scope.item.SaldoRm = parseFloat($scope.item.mataAnggaran.saldoawalrm ? $scope.item.mataAnggaran.saldoawalrm : 0).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
                     }
                 }
             });
@@ -474,7 +474,7 @@ define(['initialize'], function (initialize) {
                     qty = parseFloat($scope.item.jumlah)
                     hrgsatuan = parseFloat($scope.item.hargaSatuan)
                     ppn = parseFloat($scope.item.ppn)
-                    $scope.item.ppn = parseFloat($scope.item.hargaSatuan) / parseInt($scope.item.persenppn);
+                    // $scope.item.ppn = parseFloat($scope.item.hargaSatuan) / parseInt($scope.item.persenppn);
                     hargadiskon = parseFloat($scope.item.hargaDiskon)
                     $scope.item.subTotal = qty * (hrgsatuan + ppn - hargadiskon)
                 }
@@ -736,8 +736,8 @@ define(['initialize'], function (initialize) {
                         saldoawalblu: dataAnggaranSelected.totalblu,
                         saldoawalrm: dataAnggaranSelected.totalrm
                     }
-                    $scope.item.SaldoBlu = parseFloat(dataAnggaranSelected.totalblu).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
-                    $scope.item.SaldoRm = parseFloat(dataAnggaranSelected.totalrm).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+                    $scope.item.SaldoBlu = parseFloat(dataAnggaranSelected.totalblu ? dataAnggaranSelected.totalblu : 0).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+                    $scope.item.SaldoRm = parseFloat(dataAnggaranSelected.totalrm ? dataAnggaranSelected.totalrm : 0).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
                 }
             }
 

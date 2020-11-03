@@ -17,7 +17,7 @@ define(['initialize'], function (initialize) {
             var verifikasifk = '';
             var norec_apd = '';
             var noOrder = '';
-            var norecResep = '';
+            var norecrOrder = '';
             var dataProdukDetail = [];
             var noTerima = '';
             var data2 = [];
@@ -38,20 +38,20 @@ define(['initialize'], function (initialize) {
             function LoadCache() {
                 var chacePeriode = cacheHelper.get('OrderBarangSPPBCtrl');
                 if (chacePeriode != undefined) {
-                    norecResep = chacePeriode[0];
+                    norecrOrder = chacePeriode[0];
                     noOrder = chacePeriode[1];
 
                     init();
-                    // var chacePeriode = {
-                    //     0: '',
-                    //     1: '',
-                    //     2: '',
-                    //     3: '',
-                    //     4: '',
-                    //     5: '',
-                    //     6: ''
-                    // }
-                    // cacheHelper.set('OrderBarangSPPBCtrl', chacePeriode);
+                    var chacePeriode = {
+                        0: '',
+                        1: '',
+                        2: '',
+                        3: '',
+                        4: '',
+                        5: '',
+                        6: ''
+                    }
+                    cacheHelper.set('OrderBarangSPPBCtrl', chacePeriode);
                 } else {
                     init();
                 }
@@ -59,7 +59,7 @@ define(['initialize'], function (initialize) {
 
             function Load() {
                 if ($state.params != undefined) {
-                    norecResep = $state.params.norec;
+                    norecrOrder = $state.params.norec;
                     noOrder = $state.params.noOrder;
                     init()
                 } else {
@@ -175,7 +175,7 @@ define(['initialize'], function (initialize) {
                                 }
                             ];
 
-                            manageLogistikPhp.getDataTableTransaksi("sppb/get-detail-SPPB?norecOrder=" + norecResep, true).then(function (data) {
+                            manageLogistikPhp.getDataTableTransaksi("sppb/get-detail-SPPB?norecOrder=" + norecrOrder, true).then(function (data) {
                                 $scope.isRouteLoading = false;
                                 $scope.isUnitt = true;
                                 $scope.item.noOrder = data.data.detail.noorder
@@ -256,7 +256,7 @@ define(['initialize'], function (initialize) {
                                 }
                                 $scope.dataGrid = new kendo.data.DataSource({
                                     data: data2,
-                                    pageSize:10
+                                    pageSize: 10
                                 });
 
                                 $scope.item.totalSubTotal = parseFloat(subnyaTotal).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")
@@ -531,7 +531,8 @@ define(['initialize'], function (initialize) {
                             data.jmlstok = null
                             data.jumlah = $scope.item.jumlah
                             data.qtyblmsppb = $scope.item.jumlah
-                            data.qtysppb = $scope.item.qtysppb
+                            data.qtysppb = $scope.item.jumlah
+                            // data.qtysppb = $scope.item.qtysppb
                             data.qtyprodukkonfirmasi = $scope.dataSelected.qtyprodukkonfirmasi
 
                             // if($scope.item.jumlah > data2[i].jumlah){
@@ -563,7 +564,7 @@ define(['initialize'], function (initialize) {
                             data2[i] = data;
                             $scope.dataGrid = new kendo.data.DataSource({
                                 data: data2,
-                                pageSize:10
+                                pageSize: 10
                             });
                             var subTotal = 0;
                             for (var i = data2.length - 1; i >= 0; i--) {
@@ -614,14 +615,15 @@ define(['initialize'], function (initialize) {
                         jmlstok: null,
                         jumlah: $scope.item.jumlah,
                         qtyblmsppb: $scope.item.jumlah,
-                        qtysppb: $scope.item.qtysppb,
+                        // qtysppb: $scope.item.qtysppb,
+                        qtysppb: $scope.item.jumlah,
                         qtyprodukkonfirmasi: $scope.item.jumlah,
                         hargasatuan: String($scope.item.hargaSatuan),
 
                         hargasatuanquo: String($scope.item.hargaSatuan),
                         hargadiscountquo: String($scope.item.disc),
                         hargappnquo: String($scope.item.ppn),
-                        totalkonfirmasi: scope.item.subTotal,
+                        totalkonfirmasi: $scope.item.subTotal,
 
                         hargadiscount: String($scope.item.disc),
                         ppn: String($scope.item.ppn),
@@ -632,7 +634,7 @@ define(['initialize'], function (initialize) {
                     // $scope.dataGrid.add($scope.dataSelected)
                     $scope.dataGrid = new kendo.data.DataSource({
                         data: data2,
-                        pageSize:10
+                        pageSize: 10
                     });
                     var subTotal = 0;
                     for (var i = data2.length - 1; i >= 0; i--) {
@@ -818,7 +820,7 @@ define(['initialize'], function (initialize) {
                     namarekanansales: $scope.item.suplier.namarekanan,
                     objectrekananfk: $scope.item.suplier.id,
                     total: TotTotal,
-                    norec: norecResep,
+                    norec: norecrOrder,
                     jmlHari: qtyHari,
                     norecrealisasi: norec_Realisasi,
                     objectmataanggaranfk: mataanggaran
@@ -853,7 +855,8 @@ define(['initialize'], function (initialize) {
 
                 // manageLogistikPhp.postpermintaanpengirimanbarang(objSave).then(function(e) {
                 // manageLogistikPhp.savesppbnew(objSave).then(function(e) {
-                manageLogistikPhp.savesppbnewera(objSave).then(function (e) {
+                // manageLogistikPhp.savesppbnewera(objSave).then(function (e) {
+                manageLogistikPhp.postpost("sppb/save-sppb-langsung", objSave).then(function (e) {
                     $scope.item.noKirim = e.data.nokirim.nokirim
                     var stt = 'false'
                     if (confirm('View SPPB? ')) {
@@ -943,7 +946,7 @@ define(['initialize'], function (initialize) {
                             // data2.length = data2.length -1
                             $scope.dataGrid = new kendo.data.DataSource({
                                 data: data2,
-                                pageSize:10
+                                pageSize: 10
                             });
                             // for (var i = data2.length - 1; i >= 0; i--) {
                             //     subTotal=subTotal+ parseFloat(data2[i].total)
