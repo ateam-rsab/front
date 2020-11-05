@@ -276,7 +276,7 @@ define(['initialize'], function (initialize) {
 			})
 
 			$scope.simpan = function () {
-				if ($scope.message) {
+				if ($scope.item.id == undefined && $scope.message) {
 					alert($scope.message)
 					return
 				}
