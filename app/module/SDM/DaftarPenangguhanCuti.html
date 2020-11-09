@@ -26,7 +26,8 @@
             <div class="grid_10">
                 <div class="grid_2">
                     <label c-label item="item" c-label-text="bulanPermohonan"></label>
-                    <input kendo-date-picker k-max ="now" k-ng-model="filter.tglPermohonan" style="width: 100%" k-options="yearSelected"/>
+                    <input kendo-date-picker k-max="now" k-ng-model="filter.tglPermohonan" style="width: 100%"
+                        k-options="yearSelected" />
                 </div>
                 <div class="grid_3">
                     <label c-label item="item" c-label-text="namaPegawai"></label>
@@ -42,11 +43,15 @@
                     </div> -->
                 <div class="grid_2">
                     <label c-label item="item" c-label-text="cutiLuarNegeri"></label>
-                    <input style="width: 100%;" kendo-combo-box k-ng-model="filter.cutiLuarNegeri" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listCutiLuarNegeri" />
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="filter.cutiLuarNegeri"
+                        k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
+                        k-data-source="listCutiLuarNegeri" />
                 </div>
                 <div class="grid_2">
                     <label c-label item="item" c-label-text="cutiLuarKota"></label>
-                    <input style="width: 100%;" kendo-combo-box k-ng-model="filter.cutiLuarKota" k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listCutiLuarKota" />
+                    <input style="width: 100%;" kendo-combo-box k-ng-model="filter.cutiLuarKota"
+                        k-data-text-field="'name'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
+                        k-data-source="listCutiLuarKota" />
                 </div>
                 <div class="grid_1">
                     <label c-label c-label-text=""></label>
@@ -98,7 +103,7 @@
             <div class="grid_6"><button class="c-button" ng-click="tangguhkan(currentData)"
                     ng-disabled="!isLoginKesja">Tangguhkan</button></div>
             <!-- <div class="grid_4"><button class="c-button" ng-click="openWindow()">Cetak Permohonan Cuti</button></div> -->
-            <div class="grid_6"><button class="c-button" ng-click="cetakSuratIzin()">Cetak Surat Izin Cuti</button>
+            <div class="grid_6"><button class="c-button" ng-click="cetakSuratIzin()">Cetak Izin Sementara</button>
             </div>
         </div>
     </c-panel>
@@ -173,15 +178,21 @@
     </div>
 
     <!-- popup konfirmasi jumlah cetak label -->
-    <div kendo-window="pilihPejabat" k-title="'Pilih Pejabat Penandatangan'" k-width="400" k-height="120"
-        k-visible="false">
-        <label c-label c-label-text="pejabatPenandaTangan"></label>
-        <input style="width: 100%;" kendo-combo-box k-ng-model="items.pejabatPenandaTangan"
-            k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-auto-bind="false"
-            k-data-source="listPejabat" />
+    <div kendo-window="pilihPejabat" k-title="'Cetak Izin Sementara'" k-width="400" k-height="320" k-visible="false">
+        <label c-label c-label-text="Jabatan"></label>
+        <input style="width: 100%;" kendo-combo-box k-ng-model="items.jabatanCetak" k-data-text-field="'namaJabatan'"
+            k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listJabatanCetak" />
+        <br /><br />
+        <label c-label c-label-text="pejabatPenandatangan"></label>
+        <input style="width: 100%;" kendo-combo-box k-ng-model="items.atasanLangsung" k-data-text-field="'namaLengkap'"
+            k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false" k-data-source="listPegawai" />
+        <br /><br />
+        <label c-label c-label-text="jabatanPenandatangan"></label>
+        <input style="width: 100%;" kendo-combo-box k-ng-model="items.jabatanAtasanLangsung"
+            k-data-text-field="'namaJabatan'" k-data-value-field="'id'" k-filter="'contains'" k-auto-bind="false"
+            k-data-source="listJabatan1" />
         <div class="clear">
-            <button class="k-button" ng-click="cetak2(items.pejabatPenandaTangan)"
-                style="float:right;margin-top:4%">Cetak</button>
+            <button class="k-button" ng-click="cetak2(items)" style="float:right;margin-top:4%">Cetak</button>
         </div>
     </div>
 </div>

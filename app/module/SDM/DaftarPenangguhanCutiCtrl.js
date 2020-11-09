@@ -24,12 +24,12 @@ define(['initialize'], function (initialize) {
 			// 	{id:3, name: "Ditangguhkan"},
 			// ]
 			$scope.listCutiLuarNegeri = [
-				{id:1, name: "Ya"},
-				{id:0, name: "Tidak"},
+				{ id: 1, name: "Ya" },
+				{ id: 0, name: "Tidak" },
 			]
 			$scope.listCutiLuarKota = [
-				{id:1, name: "Ya"},
-				{id:0, name: "Tidak"},
+				{ id: 1, name: "Ya" },
+				{ id: 0, name: "Tidak" },
 			]
 
 			$scope.mainGridOptions = {
@@ -243,7 +243,7 @@ define(['initialize'], function (initialize) {
 						//Untuk tombol halaman
 						var i;
 						$scope.totalPages = result.data.data.totalPages;
-						for (i = page; i <= page+4; i++) {
+						for (i = page; i <= page + 4; i++) {
 							if (i <= $scope.totalPages) {
 								$scope.pages.push({
 									pageNumber: i,
@@ -406,7 +406,7 @@ define(['initialize'], function (initialize) {
 					messageContainer.error("Data tidak dapat diproses");
 				} else {
 					$scope.pilihPejabat.close();
-					var urlLaporan = CetakHelper.openURLReporting("reporting/lapSuratIzinCuti?noRecPlanning=" + $scope.currentData.noRec + "&idAtasan=" + data.id);
+					var urlLaporan = CetakHelper.openURLReporting("reporting/suratIzinSementaraCuti?noRecPlanning=" + $scope.currentData.noRec + "&idJabatan=" + data.jabatanCetak.id + "&idUnitKerja=" + data.jabatanCetak.idUnitKerja + "&idAtasan1=" + data.atasanLangsung.id + "&idJabatanAtasan1=" + data.jabatanAtasanLangsung.id);
 					window.open(urlLaporan, '', 'width:600, height:500');
 				}
 			};
@@ -416,9 +416,35 @@ define(['initialize'], function (initialize) {
 					messageContainer.error('Data belum di pilih');
 				} else {
 					$scope.items = {};
+
+					ManageSdmNew.getListData("pegawai/get-all-jabatan-by-pegawai?idPegawai=" + $scope.currentData.pegwaiId).then(function (res) {
+						$scope.listJabatanCetak = res.data.data;
+						if (res.data.data.length > 0) {
+							items.jabatanCetak = {
+								id: res.data.data[0].id,
+								namaJabatan: res.data.data[0].namaLengkap,
+								idUnitKerja: res.data.data[0].idUnitKerja
+							};
+						};
+					});
+
+					ManageSdm.getItem("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true&order=namaLengkap:asc", true).then(function (dat) {
+						$scope.listPegawai = dat.data;
+					});
+
 					$scope.pilihPejabat.center().open();
 				}
 			}
+
+			$scope.$watch('items.atasanLangsung', function (e) {
+				if (!e) return;
+
+				$scope.items.jabatanAtasanLangsung = undefined
+				ManageSdmNew.getListData("pegawai/get-all-jabatan-by-pegawai?idPegawai="
+					+ e.id).then(function (res) {
+						$scope.listJabatan1 = res.data.data
+					})
+			})
 
 			$scope.tangguhkan = function (current) {
 				if (!current) return;
@@ -472,17 +498,17 @@ define(['initialize'], function (initialize) {
 			// 	}
 			// })
 
-			$scope.$watch('filter.cutiLuarNegeri', function(newVal, oldVal){
-				if(!newVal) return;
-				if (newVal && newVal !== oldVal){
+			$scope.$watch('filter.cutiLuarNegeri', function (newVal, oldVal) {
+				if (!newVal) return;
+				if (newVal && newVal !== oldVal) {
 					// applyFilter("approvalStatus", newVal.id)
 					$scope.loadGrid();
 				}
 			})
 
-			$scope.$watch('filter.cutiLuarKota', function(newVal, oldVal){
-				if(!newVal) return;
-				if (newVal && newVal !== oldVal){
+			$scope.$watch('filter.cutiLuarKota', function (newVal, oldVal) {
+				if (!newVal) return;
+				if (newVal && newVal !== oldVal) {
 					// applyFilter("approvalStatus", newVal.id)
 					$scope.loadGrid();
 				}

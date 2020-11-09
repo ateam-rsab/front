@@ -268,15 +268,16 @@ define(['initialize'], function (initialize) {
 
 			$scope.$watch('item.namaProduk', function (e) {
 				if (!e) return;
-				ManageSdmNew.getListData("pelayanan/validate-nama-produk?namaProduk=" + $scope.item.namaProduk, true).then(function (rs) {
-					if (rs.data.data) {
-						$scope.message = rs.data.data.msg
-					}
-				})
+				ManageSdmNew.getListData("pelayanan/validate-nama-produk?namaProduk=" + $scope.item.namaProduk
+					+ "&idProduk=" + ($scope.item.id == undefined ? "" : $scope.item.id), true).then(function (rs) {
+						if (rs.data.data) {
+							$scope.message = rs.data.data.msg
+						}
+					})
 			})
 
 			$scope.simpan = function () {
-				if ($scope.item.id == undefined && $scope.message) {
+				if ($scope.message) {
 					alert($scope.message)
 					return
 				}
