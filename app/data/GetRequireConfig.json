@@ -4101,6 +4101,10 @@
       "urlDep": "module/SDM/RekamDataDokterTamuCtrl"
     },
     {
+      "nameDep": "DataDokterTamuCtrl",
+      "urlDep": "module/SDM/DataDokterTamuCtrl"
+    },
+    {
       "nameDep": "MutasiPegawaiCtrl",
       "urlDep": "module/SDM/MutasiPegawaiCtrl"
     },

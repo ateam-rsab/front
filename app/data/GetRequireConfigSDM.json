@@ -97,10 +97,6 @@
       "urlDep": "module/SDM/DataPegawaiCtrl"
     },
     {
-      "nameDep": "DataDokterTamuCtrl",
-      "urlDep": "module/SDM/DataDokterTamuCtrl"
-    },
-    {
       "nameDep": "DataFormasiJabatanCtrl",
       "urlDep": "module/SDM/DataFormasiJabatanCtrl"
     },
