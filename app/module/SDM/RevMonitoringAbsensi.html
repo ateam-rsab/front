@@ -1,4 +1,16 @@
 <style>
+    .label-name {
+        display: block;
+        font-size: .8em;
+        font-weight: 800;
+    }
+
+    .label-content {
+        font-size: .8em;
+        text-decoration: underline;
+        font-weight: bolder;
+    }
+
     .style-center {
         display: inline-block;
         text-align: center;
@@ -27,19 +39,12 @@
 
     .k-grid .k-grid-header .k-header {
         text-align: center;
-        top: 0,
-            bottom: 0,
+        top: 0;
+        bottom: 0;
     }
 
     .k-grid tbody button.k-button {
         min-width: 15px;
-    }
-
-    .capture canvas {
-        margin-top: 10px;
-        margin-top: 10px;
-        height: 480px;
-        width: 400px;
     }
 
     button:disabled {
@@ -178,34 +183,25 @@
 
         </div>
         <div ng-include='"../app/module/Shared/TemplateLoading"'></div>
-    </div>
-</div>
-<div kendo-window="windDetailPresensi" k-title="'Detail Presensi'" k-width="1000" k-height="500" k-visible="false">
-    <div class="grid_12">
-        <div class="grid_6">
-            <canvas id="c1" width="400" height="400"></canvas>
+        <div kendo-window="windDetailPresensi" k-title="'Detail Presensi'" k-width="1000" k-height="500"
+            k-visible="false">
+            <div class="panel panel-default container_12">
+                <div class="grid_12 borderBox" ng-repeat="item in dataDetail" style="margin-bottom: 10px;">
+                    <div class="grid_4">
+                        <img src="{{item.imageURLData}}" width="200">
+                    </div>
+                    <div class="grid_8">
+                        <div style="font-size:15px;color:black">
+                            <label class="label-name">Tanggal : </label>
+                            <label class="label-content">{{item.date}}</label>
+                        </div>
+                        <hr>
+                        <div style="font-size:15px;color:black">
+                            <label class="label-name">Lokasi : </label>
+                            <label class="label-content">&#8804; {{item.accuracy}} meter sekitar
+                                {{item.location}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div style="font-size:15px;color:black">
-            <label class="label-name">Tanggal : </label>
-            <label class="label-content">{{date1}}</label>
-        </div>
-        <div style="font-size:15px;color:black">
-            <label class="label-name">Lokasi : </label>
-            <label class="label-content">{{location1}}</label>
-        </div>
-    </div>
-    <div class="clearfix"></div>
-    <div class="grid_12">
-        <div class="grid_6">
-            <canvas id="c2" width="400" height="400"></canvas>
-        </div>
-        <div style="font-size:15px;color:black">
-            <label class="label-name">Tanggal : </label>
-            <label class="label-content">{{date2}}</label>
-        </div>
-        <div style="font-size:15px;color:black">
-            <label class="label-name">Lokasi : </label>
-            <label class="label-content">{{location2}}</label>
-        </div>
-    </div>
-</div>

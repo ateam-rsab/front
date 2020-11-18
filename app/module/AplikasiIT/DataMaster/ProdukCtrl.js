@@ -266,417 +266,425 @@ define(['initialize'], function (initialize) {
 				})
 			};
 
+			$scope.$watch('item.namaProduk', function (e) {
+				if (!e) return;
+				ManageSdmNew.getListData("pelayanan/validate-nama-produk?namaProduk=" + $scope.item.namaProduk
+					+ "&idProduk=" + ($scope.item.id == undefined ? "" : $scope.item.id), true).then(function (rs) {
+						if (rs.data.data) {
+							$scope.message = rs.data.data.msg
+						}
+					})
+			})
+
 			$scope.simpan = function () {
-				ManageSdmNew.getListData("pelayanan/validate-nama-produk?namaProduk=" + $scope.item.namaProduk, true).then(function (rs) {
-					if (rs.data.data) {
-						alert(rs.data.data.msg)
-						return
-					}
+				if ($scope.message) {
+					alert($scope.message)
+					return
+				}
 
-					if ($scope.item.kelompok == undefined) {
-						alert("Kelompok Produk Kosong!!!")
-						return
-					}
+				if ($scope.item.kelompok == undefined) {
+					alert("Kelompok Produk Kosong!!!")
+					return
+				}
 
-					if (!$scope.item.jenisProduk == undefined) {
-						alert("Jenis Produk Kosong!!!")
-						return
-					}
+				if (!$scope.item.jenisProduk == undefined) {
+					alert("Jenis Produk Kosong!!!")
+					return
+				}
 
-					if ($scope.item.detailJenisProduk == undefined) {
-						alert("Detail Jenis Produk Kosong!!!")
-						return
-					}
+				if ($scope.item.detailJenisProduk == undefined) {
+					alert("Detail Jenis Produk Kosong!!!")
+					return
+				}
 
-					// if ($scope.item.satuanStandar == undefined) {
-					// 	alert("Satuan Standar Kosong!!!")
-					// 	return
-					// }
-					var kdproduk = ''
-					if ($scope.item.kdProduk != undefined) {
-						kdproduk = $scope.item.kdProduk
-					}
-					var kdproduk_intern = ''
-					if ($scope.item.kdProdukIntern != undefined) {
-						kdproduk_intern = $scope.item.kdProdukIntern
-					}
-					var kdbarcode = ''
-					if ($scope.item.kdBarcode != undefined) {
-						kdbarcode = $scope.item.kdBarcode
-					}
-					var kodebmn = ''
-					if ($scope.item.kodeBmn != undefined) {
-						kodebmn = $scope.item.kodeBmn
-					}
-					var kodeexternal = ''
-					if ($scope.item.kodeExternal != undefined) {
-						kodeexternal = $scope.item.kodeExternal
-					}
-					var namaproduk = ''
-					if ($scope.item.namaProduk != undefined) {
-						namaproduk = $scope.item.namaProduk
-					}
-					var deskripsiproduk = ''
-					if ($scope.item.deskripsiProduk != undefined) {
-						deskripsiproduk = $scope.item.deskripsiProduk
-					}
-					var keterangan = ''
-					if ($scope.item.keterangan != undefined) {
-						keterangan = $scope.item.keterangan
-					}
-					var namaexternal = ''
-					if ($scope.item.namaExternal != undefined) {
-						namaexternal = $scope.item.namaExternal
-					}
-					var reportdisplay = ''
-					if ($scope.item.reportDisplay != undefined) {
-						reportdisplay = $scope.item.reportDisplay
-					}
-					// objectdetailjenisprodukfk = $scope.item.jenisProduk.id,
-					var objectdetailjenisprodukfk = null
-					if ($scope.item.detailJenisProduk != undefined) {
-						objectdetailjenisprodukfk = $scope.item.detailJenisProduk.id
-					}
-					var objectkategoryprodukfk = null
-					if ($scope.item.kategoryProduk != undefined) {
-						objectkategoryprodukfk = $scope.item.kategoryProduk.id
-					}
-					var objectgenerikfk = null
-					if ($scope.item.jenisProduk != undefined) {
-						objectgenerikfk = $scope.item.jenisProduk.id
-					}
-					var objectgprodukfk = null
-					if ($scope.item.gProduk != undefined) {
-						objectgprodukfk = $scope.item.gProduk.id
-					}
-					var objectlevelprodukfk = null
-					if ($scope.item.levelProduk != undefined) {
-						objectlevelprodukfk = $scope.item.levelProduk.id
-					}
-					var isprodukintern = 0
-					if ($scope.item.isProdukIntern != undefined) {
-						isprodukintern = $scope.item.isProdukIntern
-					}
-					var objectdepartemenfk = null
-					if ($scope.item.departemen != undefined) {
-						objectdepartemenfk = $scope.item.departemen.id
-					}
-					var objectfungsiprodukfk = null
-					if ($scope.item.fungsiProduk != undefined) {
-						objectfungsiprodukfk = $scope.item.fungsiProduk.id
-					}
-					var objectbentukprodukfk = null
-					if ($scope.item.bentukProduk != undefined) {
-						objectbentukprodukfk = $scope.item.bentukProduk.id
-					}
-					var objectbahanprodukfk = null
-					if ($scope.item.bahanProduk != undefined) {
-						objectbahanprodukfk = $scope.item.bahanProduk.id
-					}
-					var objecttypeprodukfk = null
-					if ($scope.item.typeProduk != undefined) {
-						objecttypeprodukfk = $scope.item.typeProduk.id
-					}
-					var objectwarnaprodukfk = null
-					if ($scope.item.warnaProduk != undefined) {
-						objectwarnaprodukfk = $scope.item.warnaProduk.id
-					}
-					var kekuatan = ''
-					if ($scope.item.kekuatan != undefined) {
-						kekuatan = $scope.item.kekuatan
-					}
-					var objectmerkprodukfk = null
-					if ($scope.item.merkProduk != undefined) {
-						objectmerkprodukfk = $scope.item.merkProduk.id
-					}
-					var objectdetailobatfk = null
-					if ($scope.item.detailObat != undefined) {
-						objectdetailobatfk = $scope.item.detailObat.id
-					}
-					var spesifikasi = ''
-					if ($scope.item.spesifikasi != undefined) {
-						spesifikasi = $scope.item.spesifikasi
-					}
-					var objectgolonganprodukfk = null
-					if ($scope.item.golonganProduk != undefined) {
-						objectgolonganprodukfk = $scope.item.golonganProduk.id
-					}
-					var objectdetailgolonganprodukfk = null
-					if ($scope.item.detailGolonganProduk != undefined) {
-						objectdetailgolonganprodukfk = $scope.item.detailGolonganProduk.id
-					}
-					var objectsatuanstandarfk = null
-					if ($scope.item.satuanStandar != undefined) {
-						objectsatuanstandarfk = $scope.item.satuanStandar.id
-					}
-					var objectsatuanbesarfk = null
-					if ($scope.item.satuanBesar != undefined) {
-						objectsatuanbesarfk = $scope.item.satuanBesar.id
-					}
-					var objectsatuankecilfk = null
-					if ($scope.item.satuanKecil != undefined) {
-						objectsatuankecilfk = $scope.item.satuanKecil.id
-					}
-					var qtykalori = 0
-					if ($scope.item.qtyKalori != undefined) {
-						qtykalori = $scope.item.qtyKalori
-					}
-					var qtykarbohidrat = 0
-					if ($scope.item.qtyKarbohidrat != undefined) {
-						qtykarbohidrat = $scope.item.qtyKarbohidrat
-					}
-					var qtylemak = 0
-					if ($scope.item.qtyLemak != undefined) {
-						qtylemak = $scope.item.qtyLemak
-					}
-					var qtyporsi = 0
-					if ($scope.item.qtyPorsi != undefined) {
-						qtyporsi = $scope.item.qtyPorsi
-					}
-					var qtyprotein = 0
-					if ($scope.item.qtyProtein != undefined) {
-						qtyprotein = $scope.item.qtyProtein
-					}
-					var objectjenisperiksafk = null
-					if ($scope.item.jenisperiksa != undefined) {
-						objectjenisperiksafk = $scope.item.jenisperiksa.id
-					}
-					var objectjenisperiksapenunjangfk = null
-					if ($scope.item.jenisPeriksaPenunjang != undefined) {
-						objectjenisperiksapenunjangfk = $scope.item.jenisPeriksaPenunjang.id
-					}
-					var nilainormal = 0
-					if ($scope.item.nilaiNormal != undefined) {
-						nilainormal = $scope.item.nilaiNormal
-					}
-					var bahansamplefk = null
-					if ($scope.item.bahanSample != undefined) {
-						bahansamplefk = $scope.item.bahanSample.id
-					}
-					var golongandarahfk = null
-					if ($scope.item.golonganDarah != undefined) {
-						golongandarahfk = $scope.item.golonganDarah.id
-					}
-					var rhesusfk = null
-					if ($scope.item.rhesus != undefined) {
-						rhesusfk = $scope.item.rhesus.id
-					}
-					var objectaccountfk = null
-					if ($scope.item.account != undefined) {
-						objectaccountfk = $scope.item.account.id
-					}
-					var verifikasianggaran = null
-					if ($scope.item.verifikasiAnggaran != undefined) {
-						verifikasianggaran = $scope.item.verifikasiAnggaran.id
-					}
-					var objectstatusprodukfk = null
-					if ($scope.item.statusProduk != undefined) {
-						objectstatusprodukfk = $scope.item.statusProduk.id
-					}
-					var isarvdonasi = null
-					if ($scope.item.IsARVDonasi != undefined) {
-						isarvdonasi = $scope.item.IsARVDonasi.namaExternal
-					}
-					var isnarkotika = null
-					if ($scope.item.IsNarkotika != undefined) {
-						isnarkotika = $scope.item.IsNarkotika.namaExternal
-					}
-					var ispsikotropika = null
-					if ($scope.item.IsPsikotropika != undefined) {
-						ispsikotropika = $scope.item.IsPsikotropika.namaExternal
-					}
-					var isonkologi = null
-					if ($scope.item.IsOnkologi != undefined) {
-						isonkologi = $scope.item.IsOnkologi.namaExternal
-					}
-					var isoot = null
-					if ($scope.item.Oot != undefined) {
-						isoot = $scope.item.Oot.namaExternal
-					}
-					var isprekusor = null
-					if ($scope.item.IsPrekusor != undefined) {
-						isprekusor = $scope.item.IsPrekusor.namaExternal
-					}
-					var isvaksindonasi = null
-					if ($scope.item.IsVaksinDonasi != undefined) {
-						isvaksindonasi = $scope.item.IsVaksinDonasi.namaExternal
-					}
-					var objectprodusenprodukfk = null
-					if ($scope.item.produsenProduk != undefined) {
-						objectprodusenprodukfk = $scope.item.produsenProduk.id
-					}
-					var objectrekananfk = null
-					if ($scope.item.rekanan != undefined) {
-						objectrekananfk = $scope.item.rekanan.id
-					}
-					// if($scope.item.id !=undefined){
-					var data = {
-						"kdprofile": 0,
-						"statusenabled": true,
-						"kdproduk": kdproduk,//$scope.item.kdProduk,
-						"kdproduk_intern": kdproduk_intern,//$scope.item.kdProdukIntern,
-						"kdbarcode": kdbarcode,//$scope.item.kdBarcode,
-						"kodebmn": kodebmn,//$scope.item.kodeBmn,
-						"kodeexternal": kodeexternal,//$scope.item.kodeExternal,
-						"namaproduk": namaproduk,//$scope.item.namaProduk,
-						"deskripsiproduk": deskripsiproduk,//$scope.item.deskripsiProduk,
-						"keterangan": keterangan,//$scope.item.keterangan,
-						"namaexternal": namaexternal,//$scope.item.namaExternal,
-						"reportdisplay": reportdisplay,//$scope.item.reportDisplay,
-						// "objectdetailjenisprodukfk" : $scope.item.jenisProduk.id,
-						"objectdetailjenisprodukfk": objectdetailjenisprodukfk,//$scope.item.detailJenisProduk.id,
-						"objectkategoryprodukfk": objectkategoryprodukfk,//$scope.item.kategoryProduk.id,
-						"objectgenerikfk": objectgenerikfk,//$scope.item.jenisProduk.id,
-						"objectgprodukfk": objectgprodukfk,//$scope.item.gProduk.id,
-						"objectlevelprodukfk": objectlevelprodukfk,//$scope.item.levelProduk.id,
-						"isprodukintern": isprodukintern,//$scope.item.isProdukIntern,
-						"objectdepartemenfk": objectdepartemenfk,//1,
-						"objectfungsiprodukfk": objectfungsiprodukfk,//$scope.item.fungsiProduk.id,
-						"objectbentukprodukfk": objectbentukprodukfk,//$scope.item.bentukProduk.id,
-						"objectbahanprodukfk": objectbahanprodukfk,//$scope.item.bahanProduk.id,
-						"objecttypeprodukfk": objecttypeprodukfk,//$scope.item.typeProduk.id,
-						"objectwarnaprodukfk": objectwarnaprodukfk,//$scope.item.warnaProduk.id,
-						"kekuatan": kekuatan,//$scope.item.kekuatan,
-						"objectmerkprodukfk": objectmerkprodukfk,//$scope.item.merkProduk.id,
-						"objectdetailobatfk": objectdetailobatfk,//$scope.item.detailObat.id,
-						"spesifikasi": spesifikasi,//$scope.item.spesifikasi,
-						"objectgolonganprodukfk": objectgolonganprodukfk,//$scope.item.golonganProduk.id,
-						"objectdetailgolonganprodukfk": objectdetailgolonganprodukfk,//$scope.item.detailGolonganProduk.id,
-						"objectsatuanstandarfk": objectsatuanstandarfk,//$scope.item.satuanStandar.id,
-						"objectsatuanbesarfk": objectsatuanbesarfk,//$scope.item.satuanBesar.id,
-						"objectsatuankecilfk": objectsatuankecilfk,//$scope.item.satuanKecil.id,
-						"qtykalori": qtykalori,//$scope.item.qtyKalori,
-						"qtykarbohidrat": qtykarbohidrat,//$scope.item.qtyKarbohidrat,
-						"qtylemak": qtylemak,//$scope.item.qtyLemak,
-						"qtyporsi": qtyporsi,//$scope.item.qtyPorsi,
-						"qtyprotein": qtyprotein,//$scope.item.qtyProtein,
-						"objectjenisperiksafk": objectjenisperiksafk,//$scope.item.jenisperiksa.id,
-						"objectjenisperiksapenunjangfk": objectjenisperiksapenunjangfk,//$scope.item.jenisPeriksaPenunjang.id,
-						"nilainormal": nilainormal,//$scope.item.nilaiNormal,
-						"bahansamplefk": bahansamplefk,//$scope.item.bahanSample.id,
-						"golongandarahfk": golongandarahfk,//$scope.item.golonganDarah.id,
-						"rhesusfk": rhesusfk,//$scope.item.rhesus.id,
-						"objectaccountfk": objectaccountfk,//$scope.item.account.id,
-						"verifikasianggaran": verifikasianggaran,//$scope.item.verifikasiAnggaran.id,
-						"objectstatusprodukfk": objectstatusprodukfk,//$scope.item.statusProduk.id,
-						"isarvdonasi": isarvdonasi,//$scope.item.IsVaksinDonasi.namaExternal,
-						"isnarkotika": isnarkotika,//$scope.item.IsNarkotika.namaExternal,
-						"ispsikotropika": ispsikotropika,//$scope.item.IsPsikotropika.namaExternal,
-						"isonkologi": isonkologi,//$scope.item.IsOnkologi.namaExternal,
-						"isoot": isoot,//$scope.item.Oot.namaExternal,
-						"isprekusor": isprekusor,//$scope.item.IsPrekusor.namaExternal,
-						"isvaksindonasi": isvaksindonasi,//$scope.item.IsVaksinDonasi.namaExternal,
-						"objectprodusenprodukfk": objectprodusenprodukfk,//1,
-						"objectrekananfk": objectrekananfk,//$scope.item.rekanan.id,
-						"objectunitlaporanfk": 1,
-						"qproduk": null,
-						"qtyjualterkecil": null,
-						"qtysatukemasan": null,
-						"qtyterkecil": null,
-						"kdprodukintern": null,
-						"objectsediaanfk": null,
-						"objectstatusbarangfk": 1,
-						"tglproduksi": "2017-07-12",
-						"status": null,
-						"objectjenisgenerikfk": null,
-						"poinmedis": null
-					}
-					// }else{
-					// var data = {  
-					//     "norec":"",
-					// 	"kdprofile": "",
-					// 	"statusenabled": true,
-					// 	"kdproduk" : $scope.item.kdProduk,
-					// 	"kdproduk_intern" : $scope.item.kdProdukIntern,
-					// 	"kdbarcode" : $scope.item.kdBarcode,
-					// 	"kodebmn" : $scope.item.kodeBmn,
-					// 	"kodeexternal" : $scope.item.kodeExternal,
-					// 	"namaproduk" : $scope.item.namaProduk,
-					// 	"deskripsiproduk" : $scope.item.deskripsiProduk,
-					// 	"keterangan" : $scope.item.keterangan,
-					// 	"namaexternal" : $scope.item.namaExternal,
-					// 	"reportdisplay" : $scope.item.reportDisplay,
-					// 	// "objectdetailjenisprodukfk" : $scope.item.jenisProduk.id,
-					// 	"objectdetailjenisprodukfk" : $scope.item.detailJenisProduk.id,
-					// 	"objectkategoryprodukfk" : $scope.item.kategoryProduk.id,
-					// 	"objectgenerikfk" : $scope.item.jenisProduk.id,
-					// 	"objectgprodukfk" : $scope.item.gProduk.id,
-					// 	"objectlevelprodukfk" : $scope.item.levelProduk.id,
-					// 	"isprodukintern" : $scope.item.isProdukIntern,
-					// 	"objectdepartemenfk" : 1,
-					// 	"objectfungsiprodukfk" : $scope.item.fungsiProduk.id,
-					// 	"objectbentukprodukfk" : $scope.item.bentukProduk.id,
-					// 	"objectbahanprodukfk" : $scope.item.bahanProduk.id,
-					// 	"objecttypeprodukfk" : $scope.item.typeProduk.id,
-					// 	"objectwarnaprodukfk" : $scope.item.warnaProduk.id,
-					// 	"kekuatan" : $scope.item.kekuatan,
-					// 	"objectmerkprodukfk" : $scope.item.merkProduk.id,
-					// 	"objectdetailobatfk" : $scope.item.detailObat.id,
-					// 	"spesifikasi" : $scope.item.spesifikasi,
-					// 	"objectgolonganprodukfk" : $scope.item.golonganProduk.id,
-					// 	"objectdetailgolonganprodukfk" : $scope.item.detailGolonganProduk.id,
-					// 	"objectsatuanstandarfk" : $scope.item.satuanStandar.id,
-					// 	"objectsatuanbesarfk" : $scope.item.satuanBesar.id,
-					// 	"objectsatuankecilfk" : $scope.item.satuanKecil.id,
-					//                       "qtykalori" : $scope.item.qtyKalori,
-					//                       "qtykarbohidrat" : $scope.item.qtyKarbohidrat,
-					//                       "qtylemak" : $scope.item.qtyLemak,
-					//                       "qtyporsi" : $scope.item.qtyPorsi,
-					//                       "qtyprotein" : $scope.item.qtyProtein,
-					// 	"objectjenisperiksafk" : $scope.item.jenisperiksa.id,
-					// 	"objectjenisperiksapenunjangfk" : $scope.item.jenisPeriksaPenunjang.id,
-					// 	"nilainormal" : $scope.item.nilaiNormal,
-					// 	"bahansamplefk" : $scope.item.bahanSample.id,
-					// 	"golongandarahfk" : $scope.item.golonganDarah.id,
-					// 	"rhesusfk" : $scope.item.rhesus.id,
-					// 	"objectaccountfk" : $scope.item.account.id,
-					// 	"verifikasianggaran" : $scope.item.verifikasiAnggaran.id,
-					// 	"objectstatusprodukfk" : $scope.item.statusProduk.id,
-					// 	"isarvdonasi" : $scope.item.IsVaksinDonasi.namaExternal,
-					// 	"isnarkotika" : $scope.item.IsNarkotika.namaExternal,
-					// 	"ispsikotropika" : $scope.item.IsPsikotropika.namaExternal,
-					// 	"isonkologi" : $scope.item.IsOnkologi.namaExternal,
-					// 	"isoot" : $scope.item.Oot.namaExternal,
-					// 	"isprekusor" : $scope.item.IsPrekusor.namaExternal,
-					// 	"isvaksindonasi" : $scope.item.IsVaksinDonasi.namaExternal,
-					// 	"objectprodusenprodukfk" : 1,
-					// 	"objectrekananfk" : $scope.item.rekanan.id,
-					// 	"objectunitlaporanfk" : 1,
-					// 	"qproduk" : null,
-					// 	"qtyjualterkecil" : null,
-					// 	"qtysatukemasan" : null,
-					// 	"qtyterkecil" : null,
-					// 	"kdprodukintern" : null,
-					// 	"objectsediaanfk" : null,
-					// 	"objectstatusbarangfk" :1,
-					// 	"tglproduksi" : "2017-07-12",
-					// 	"status" : null,
-					// 	"objectjenisgenerikfk" : null,
-					// 	"poinmedis" : null
-					// 	}
-					// }
-					if ($scope.item.id != undefined) {
-						ManageLogistikPhp.saveDataProduk2(data, "produk/update-produk/" + $scope.item.id).then(function (e) {
-							console.log(JSON.stringify(e.data));
-							$scope.item = {};
-							$state.go("Produk2")
-						});
-					} else if ($scope.item.id == undefined) {
-						ManageLogistikPhp.saveDataProduk2(data, "produk/add-produk").then(function (e) {
-							console.log(JSON.stringify(e.data));
-							$scope.item = {};
-							var confirm = $mdDialog.confirm()
-								.title('Caution')
-								.textContent('Apakah Anda Akan Menambah Data Lagi?')
-								.ariaLabel('Lucky day')
-								.cancel('Ya')
-								.ok('Tidak')
-							$mdDialog.show(confirm).then(function () {
-								$state.go("Produk2");
-							})
-						});
-					}
-				})
+				// if ($scope.item.satuanStandar == undefined) {
+				// 	alert("Satuan Standar Kosong!!!")
+				// 	return
+				// }
+				var kdproduk = ''
+				if ($scope.item.kdProduk != undefined) {
+					kdproduk = $scope.item.kdProduk
+				}
+				var kdproduk_intern = ''
+				if ($scope.item.kdProdukIntern != undefined) {
+					kdproduk_intern = $scope.item.kdProdukIntern
+				}
+				var kdbarcode = ''
+				if ($scope.item.kdBarcode != undefined) {
+					kdbarcode = $scope.item.kdBarcode
+				}
+				var kodebmn = ''
+				if ($scope.item.kodeBmn != undefined) {
+					kodebmn = $scope.item.kodeBmn
+				}
+				var kodeexternal = ''
+				if ($scope.item.kodeExternal != undefined) {
+					kodeexternal = $scope.item.kodeExternal
+				}
+				var namaproduk = ''
+				if ($scope.item.namaProduk != undefined) {
+					namaproduk = $scope.item.namaProduk
+				}
+				var deskripsiproduk = ''
+				if ($scope.item.deskripsiProduk != undefined) {
+					deskripsiproduk = $scope.item.deskripsiProduk
+				}
+				var keterangan = ''
+				if ($scope.item.keterangan != undefined) {
+					keterangan = $scope.item.keterangan
+				}
+				var namaexternal = ''
+				if ($scope.item.namaExternal != undefined) {
+					namaexternal = $scope.item.namaExternal
+				}
+				var reportdisplay = ''
+				if ($scope.item.reportDisplay != undefined) {
+					reportdisplay = $scope.item.reportDisplay
+				}
+				// objectdetailjenisprodukfk = $scope.item.jenisProduk.id,
+				var objectdetailjenisprodukfk = null
+				if ($scope.item.detailJenisProduk != undefined) {
+					objectdetailjenisprodukfk = $scope.item.detailJenisProduk.id
+				}
+				var objectkategoryprodukfk = null
+				if ($scope.item.kategoryProduk != undefined) {
+					objectkategoryprodukfk = $scope.item.kategoryProduk.id
+				}
+				var objectgenerikfk = null
+				if ($scope.item.jenisProduk != undefined) {
+					objectgenerikfk = $scope.item.jenisProduk.id
+				}
+				var objectgprodukfk = null
+				if ($scope.item.gProduk != undefined) {
+					objectgprodukfk = $scope.item.gProduk.id
+				}
+				var objectlevelprodukfk = null
+				if ($scope.item.levelProduk != undefined) {
+					objectlevelprodukfk = $scope.item.levelProduk.id
+				}
+				var isprodukintern = 0
+				if ($scope.item.isProdukIntern != undefined) {
+					isprodukintern = $scope.item.isProdukIntern
+				}
+				var objectdepartemenfk = null
+				if ($scope.item.departemen != undefined) {
+					objectdepartemenfk = $scope.item.departemen.id
+				}
+				var objectfungsiprodukfk = null
+				if ($scope.item.fungsiProduk != undefined) {
+					objectfungsiprodukfk = $scope.item.fungsiProduk.id
+				}
+				var objectbentukprodukfk = null
+				if ($scope.item.bentukProduk != undefined) {
+					objectbentukprodukfk = $scope.item.bentukProduk.id
+				}
+				var objectbahanprodukfk = null
+				if ($scope.item.bahanProduk != undefined) {
+					objectbahanprodukfk = $scope.item.bahanProduk.id
+				}
+				var objecttypeprodukfk = null
+				if ($scope.item.typeProduk != undefined) {
+					objecttypeprodukfk = $scope.item.typeProduk.id
+				}
+				var objectwarnaprodukfk = null
+				if ($scope.item.warnaProduk != undefined) {
+					objectwarnaprodukfk = $scope.item.warnaProduk.id
+				}
+				var kekuatan = ''
+				if ($scope.item.kekuatan != undefined) {
+					kekuatan = $scope.item.kekuatan
+				}
+				var objectmerkprodukfk = null
+				if ($scope.item.merkProduk != undefined) {
+					objectmerkprodukfk = $scope.item.merkProduk.id
+				}
+				var objectdetailobatfk = null
+				if ($scope.item.detailObat != undefined) {
+					objectdetailobatfk = $scope.item.detailObat.id
+				}
+				var spesifikasi = ''
+				if ($scope.item.spesifikasi != undefined) {
+					spesifikasi = $scope.item.spesifikasi
+				}
+				var objectgolonganprodukfk = null
+				if ($scope.item.golonganProduk != undefined) {
+					objectgolonganprodukfk = $scope.item.golonganProduk.id
+				}
+				var objectdetailgolonganprodukfk = null
+				if ($scope.item.detailGolonganProduk != undefined) {
+					objectdetailgolonganprodukfk = $scope.item.detailGolonganProduk.id
+				}
+				var objectsatuanstandarfk = null
+				if ($scope.item.satuanStandar != undefined) {
+					objectsatuanstandarfk = $scope.item.satuanStandar.id
+				}
+				var objectsatuanbesarfk = null
+				if ($scope.item.satuanBesar != undefined) {
+					objectsatuanbesarfk = $scope.item.satuanBesar.id
+				}
+				var objectsatuankecilfk = null
+				if ($scope.item.satuanKecil != undefined) {
+					objectsatuankecilfk = $scope.item.satuanKecil.id
+				}
+				var qtykalori = 0
+				if ($scope.item.qtyKalori != undefined) {
+					qtykalori = $scope.item.qtyKalori
+				}
+				var qtykarbohidrat = 0
+				if ($scope.item.qtyKarbohidrat != undefined) {
+					qtykarbohidrat = $scope.item.qtyKarbohidrat
+				}
+				var qtylemak = 0
+				if ($scope.item.qtyLemak != undefined) {
+					qtylemak = $scope.item.qtyLemak
+				}
+				var qtyporsi = 0
+				if ($scope.item.qtyPorsi != undefined) {
+					qtyporsi = $scope.item.qtyPorsi
+				}
+				var qtyprotein = 0
+				if ($scope.item.qtyProtein != undefined) {
+					qtyprotein = $scope.item.qtyProtein
+				}
+				var objectjenisperiksafk = null
+				if ($scope.item.jenisperiksa != undefined) {
+					objectjenisperiksafk = $scope.item.jenisperiksa.id
+				}
+				var objectjenisperiksapenunjangfk = null
+				if ($scope.item.jenisPeriksaPenunjang != undefined) {
+					objectjenisperiksapenunjangfk = $scope.item.jenisPeriksaPenunjang.id
+				}
+				var nilainormal = 0
+				if ($scope.item.nilaiNormal != undefined) {
+					nilainormal = $scope.item.nilaiNormal
+				}
+				var bahansamplefk = null
+				if ($scope.item.bahanSample != undefined) {
+					bahansamplefk = $scope.item.bahanSample.id
+				}
+				var golongandarahfk = null
+				if ($scope.item.golonganDarah != undefined) {
+					golongandarahfk = $scope.item.golonganDarah.id
+				}
+				var rhesusfk = null
+				if ($scope.item.rhesus != undefined) {
+					rhesusfk = $scope.item.rhesus.id
+				}
+				var objectaccountfk = null
+				if ($scope.item.account != undefined) {
+					objectaccountfk = $scope.item.account.id
+				}
+				var verifikasianggaran = null
+				if ($scope.item.verifikasiAnggaran != undefined) {
+					verifikasianggaran = $scope.item.verifikasiAnggaran.id
+				}
+				var objectstatusprodukfk = null
+				if ($scope.item.statusProduk != undefined) {
+					objectstatusprodukfk = $scope.item.statusProduk.id
+				}
+				var isarvdonasi = null
+				if ($scope.item.IsARVDonasi != undefined) {
+					isarvdonasi = $scope.item.IsARVDonasi.namaExternal
+				}
+				var isnarkotika = null
+				if ($scope.item.IsNarkotika != undefined) {
+					isnarkotika = $scope.item.IsNarkotika.namaExternal
+				}
+				var ispsikotropika = null
+				if ($scope.item.IsPsikotropika != undefined) {
+					ispsikotropika = $scope.item.IsPsikotropika.namaExternal
+				}
+				var isonkologi = null
+				if ($scope.item.IsOnkologi != undefined) {
+					isonkologi = $scope.item.IsOnkologi.namaExternal
+				}
+				var isoot = null
+				if ($scope.item.Oot != undefined) {
+					isoot = $scope.item.Oot.namaExternal
+				}
+				var isprekusor = null
+				if ($scope.item.IsPrekusor != undefined) {
+					isprekusor = $scope.item.IsPrekusor.namaExternal
+				}
+				var isvaksindonasi = null
+				if ($scope.item.IsVaksinDonasi != undefined) {
+					isvaksindonasi = $scope.item.IsVaksinDonasi.namaExternal
+				}
+				var objectprodusenprodukfk = null
+				if ($scope.item.produsenProduk != undefined) {
+					objectprodusenprodukfk = $scope.item.produsenProduk.id
+				}
+				var objectrekananfk = null
+				if ($scope.item.rekanan != undefined) {
+					objectrekananfk = $scope.item.rekanan.id
+				}
+				// if($scope.item.id !=undefined){
+				var data = {
+					"kdprofile": 0,
+					"statusenabled": true,
+					"kdproduk": kdproduk,//$scope.item.kdProduk,
+					"kdproduk_intern": kdproduk_intern,//$scope.item.kdProdukIntern,
+					"kdbarcode": kdbarcode,//$scope.item.kdBarcode,
+					"kodebmn": kodebmn,//$scope.item.kodeBmn,
+					"kodeexternal": kodeexternal,//$scope.item.kodeExternal,
+					"namaproduk": namaproduk,//$scope.item.namaProduk,
+					"deskripsiproduk": deskripsiproduk,//$scope.item.deskripsiProduk,
+					"keterangan": keterangan,//$scope.item.keterangan,
+					"namaexternal": namaexternal,//$scope.item.namaExternal,
+					"reportdisplay": reportdisplay,//$scope.item.reportDisplay,
+					// "objectdetailjenisprodukfk" : $scope.item.jenisProduk.id,
+					"objectdetailjenisprodukfk": objectdetailjenisprodukfk,//$scope.item.detailJenisProduk.id,
+					"objectkategoryprodukfk": objectkategoryprodukfk,//$scope.item.kategoryProduk.id,
+					"objectgenerikfk": objectgenerikfk,//$scope.item.jenisProduk.id,
+					"objectgprodukfk": objectgprodukfk,//$scope.item.gProduk.id,
+					"objectlevelprodukfk": objectlevelprodukfk,//$scope.item.levelProduk.id,
+					"isprodukintern": isprodukintern,//$scope.item.isProdukIntern,
+					"objectdepartemenfk": objectdepartemenfk,//1,
+					"objectfungsiprodukfk": objectfungsiprodukfk,//$scope.item.fungsiProduk.id,
+					"objectbentukprodukfk": objectbentukprodukfk,//$scope.item.bentukProduk.id,
+					"objectbahanprodukfk": objectbahanprodukfk,//$scope.item.bahanProduk.id,
+					"objecttypeprodukfk": objecttypeprodukfk,//$scope.item.typeProduk.id,
+					"objectwarnaprodukfk": objectwarnaprodukfk,//$scope.item.warnaProduk.id,
+					"kekuatan": kekuatan,//$scope.item.kekuatan,
+					"objectmerkprodukfk": objectmerkprodukfk,//$scope.item.merkProduk.id,
+					"objectdetailobatfk": objectdetailobatfk,//$scope.item.detailObat.id,
+					"spesifikasi": spesifikasi,//$scope.item.spesifikasi,
+					"objectgolonganprodukfk": objectgolonganprodukfk,//$scope.item.golonganProduk.id,
+					"objectdetailgolonganprodukfk": objectdetailgolonganprodukfk,//$scope.item.detailGolonganProduk.id,
+					"objectsatuanstandarfk": objectsatuanstandarfk,//$scope.item.satuanStandar.id,
+					"objectsatuanbesarfk": objectsatuanbesarfk,//$scope.item.satuanBesar.id,
+					"objectsatuankecilfk": objectsatuankecilfk,//$scope.item.satuanKecil.id,
+					"qtykalori": qtykalori,//$scope.item.qtyKalori,
+					"qtykarbohidrat": qtykarbohidrat,//$scope.item.qtyKarbohidrat,
+					"qtylemak": qtylemak,//$scope.item.qtyLemak,
+					"qtyporsi": qtyporsi,//$scope.item.qtyPorsi,
+					"qtyprotein": qtyprotein,//$scope.item.qtyProtein,
+					"objectjenisperiksafk": objectjenisperiksafk,//$scope.item.jenisperiksa.id,
+					"objectjenisperiksapenunjangfk": objectjenisperiksapenunjangfk,//$scope.item.jenisPeriksaPenunjang.id,
+					"nilainormal": nilainormal,//$scope.item.nilaiNormal,
+					"bahansamplefk": bahansamplefk,//$scope.item.bahanSample.id,
+					"golongandarahfk": golongandarahfk,//$scope.item.golonganDarah.id,
+					"rhesusfk": rhesusfk,//$scope.item.rhesus.id,
+					"objectaccountfk": objectaccountfk,//$scope.item.account.id,
+					"verifikasianggaran": verifikasianggaran,//$scope.item.verifikasiAnggaran.id,
+					"objectstatusprodukfk": objectstatusprodukfk,//$scope.item.statusProduk.id,
+					"isarvdonasi": isarvdonasi,//$scope.item.IsVaksinDonasi.namaExternal,
+					"isnarkotika": isnarkotika,//$scope.item.IsNarkotika.namaExternal,
+					"ispsikotropika": ispsikotropika,//$scope.item.IsPsikotropika.namaExternal,
+					"isonkologi": isonkologi,//$scope.item.IsOnkologi.namaExternal,
+					"isoot": isoot,//$scope.item.Oot.namaExternal,
+					"isprekusor": isprekusor,//$scope.item.IsPrekusor.namaExternal,
+					"isvaksindonasi": isvaksindonasi,//$scope.item.IsVaksinDonasi.namaExternal,
+					"objectprodusenprodukfk": objectprodusenprodukfk,//1,
+					"objectrekananfk": objectrekananfk,//$scope.item.rekanan.id,
+					"objectunitlaporanfk": 1,
+					"qproduk": null,
+					"qtyjualterkecil": null,
+					"qtysatukemasan": null,
+					"qtyterkecil": null,
+					"kdprodukintern": null,
+					"objectsediaanfk": null,
+					"objectstatusbarangfk": 1,
+					"tglproduksi": "2017-07-12",
+					"status": null,
+					"objectjenisgenerikfk": null,
+					"poinmedis": null
+				}
+				// }else{
+				// var data = {  
+				//     "norec":"",
+				// 	"kdprofile": "",
+				// 	"statusenabled": true,
+				// 	"kdproduk" : $scope.item.kdProduk,
+				// 	"kdproduk_intern" : $scope.item.kdProdukIntern,
+				// 	"kdbarcode" : $scope.item.kdBarcode,
+				// 	"kodebmn" : $scope.item.kodeBmn,
+				// 	"kodeexternal" : $scope.item.kodeExternal,
+				// 	"namaproduk" : $scope.item.namaProduk,
+				// 	"deskripsiproduk" : $scope.item.deskripsiProduk,
+				// 	"keterangan" : $scope.item.keterangan,
+				// 	"namaexternal" : $scope.item.namaExternal,
+				// 	"reportdisplay" : $scope.item.reportDisplay,
+				// 	// "objectdetailjenisprodukfk" : $scope.item.jenisProduk.id,
+				// 	"objectdetailjenisprodukfk" : $scope.item.detailJenisProduk.id,
+				// 	"objectkategoryprodukfk" : $scope.item.kategoryProduk.id,
+				// 	"objectgenerikfk" : $scope.item.jenisProduk.id,
+				// 	"objectgprodukfk" : $scope.item.gProduk.id,
+				// 	"objectlevelprodukfk" : $scope.item.levelProduk.id,
+				// 	"isprodukintern" : $scope.item.isProdukIntern,
+				// 	"objectdepartemenfk" : 1,
+				// 	"objectfungsiprodukfk" : $scope.item.fungsiProduk.id,
+				// 	"objectbentukprodukfk" : $scope.item.bentukProduk.id,
+				// 	"objectbahanprodukfk" : $scope.item.bahanProduk.id,
+				// 	"objecttypeprodukfk" : $scope.item.typeProduk.id,
+				// 	"objectwarnaprodukfk" : $scope.item.warnaProduk.id,
+				// 	"kekuatan" : $scope.item.kekuatan,
+				// 	"objectmerkprodukfk" : $scope.item.merkProduk.id,
+				// 	"objectdetailobatfk" : $scope.item.detailObat.id,
+				// 	"spesifikasi" : $scope.item.spesifikasi,
+				// 	"objectgolonganprodukfk" : $scope.item.golonganProduk.id,
+				// 	"objectdetailgolonganprodukfk" : $scope.item.detailGolonganProduk.id,
+				// 	"objectsatuanstandarfk" : $scope.item.satuanStandar.id,
+				// 	"objectsatuanbesarfk" : $scope.item.satuanBesar.id,
+				// 	"objectsatuankecilfk" : $scope.item.satuanKecil.id,
+				//                       "qtykalori" : $scope.item.qtyKalori,
+				//                       "qtykarbohidrat" : $scope.item.qtyKarbohidrat,
+				//                       "qtylemak" : $scope.item.qtyLemak,
+				//                       "qtyporsi" : $scope.item.qtyPorsi,
+				//                       "qtyprotein" : $scope.item.qtyProtein,
+				// 	"objectjenisperiksafk" : $scope.item.jenisperiksa.id,
+				// 	"objectjenisperiksapenunjangfk" : $scope.item.jenisPeriksaPenunjang.id,
+				// 	"nilainormal" : $scope.item.nilaiNormal,
+				// 	"bahansamplefk" : $scope.item.bahanSample.id,
+				// 	"golongandarahfk" : $scope.item.golonganDarah.id,
+				// 	"rhesusfk" : $scope.item.rhesus.id,
+				// 	"objectaccountfk" : $scope.item.account.id,
+				// 	"verifikasianggaran" : $scope.item.verifikasiAnggaran.id,
+				// 	"objectstatusprodukfk" : $scope.item.statusProduk.id,
+				// 	"isarvdonasi" : $scope.item.IsVaksinDonasi.namaExternal,
+				// 	"isnarkotika" : $scope.item.IsNarkotika.namaExternal,
+				// 	"ispsikotropika" : $scope.item.IsPsikotropika.namaExternal,
+				// 	"isonkologi" : $scope.item.IsOnkologi.namaExternal,
+				// 	"isoot" : $scope.item.Oot.namaExternal,
+				// 	"isprekusor" : $scope.item.IsPrekusor.namaExternal,
+				// 	"isvaksindonasi" : $scope.item.IsVaksinDonasi.namaExternal,
+				// 	"objectprodusenprodukfk" : 1,
+				// 	"objectrekananfk" : $scope.item.rekanan.id,
+				// 	"objectunitlaporanfk" : 1,
+				// 	"qproduk" : null,
+				// 	"qtyjualterkecil" : null,
+				// 	"qtysatukemasan" : null,
+				// 	"qtyterkecil" : null,
+				// 	"kdprodukintern" : null,
+				// 	"objectsediaanfk" : null,
+				// 	"objectstatusbarangfk" :1,
+				// 	"tglproduksi" : "2017-07-12",
+				// 	"status" : null,
+				// 	"objectjenisgenerikfk" : null,
+				// 	"poinmedis" : null
+				// 	}
+				// }
+				if ($scope.item.id != undefined) {
+					ManageLogistikPhp.saveDataProduk2(data, "produk/update-produk/" + $scope.item.id).then(function (e) {
+						console.log(JSON.stringify(e.data));
+						$scope.item = {};
+						$state.go("Produk2")
+					});
+				} else if ($scope.item.id == undefined) {
+					ManageLogistikPhp.saveDataProduk2(data, "produk/add-produk").then(function (e) {
+						console.log(JSON.stringify(e.data));
+						$scope.item = {};
+						var confirm = $mdDialog.confirm()
+							.title('Caution')
+							.textContent('Apakah Anda Akan Menambah Data Lagi?')
+							.ariaLabel('Lucky day')
+							.cancel('Ya')
+							.ok('Tidak')
+						$mdDialog.show(confirm).then(function () {
+							$state.go("Produk2");
+						})
+					});
+				}
 			}
 			$scope.batal = function () {
 				$scope.showEdit = false;

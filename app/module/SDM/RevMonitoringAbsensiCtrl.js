@@ -275,7 +275,7 @@ define(['initialize'], function (initialize) {
                     },
                     {
                         field: "terlambat",
-                        title: "Terlambat (menit)",
+                        title: "Terlam-<br/>bat (menit)",
                         width: "50px",
                         footerTemplate: "{{item.terlambat}}",
                         headerAttributes: { style: "text-align : center" },
@@ -289,7 +289,7 @@ define(['initialize'], function (initialize) {
                     },
                     {
                         field: "kelebihanJamKerja",
-                        title: "Kelebihan Menit Kerja",
+                        title: "Kelebih-<br/>an Menit Kerja",
                         width: "50px",
                         aggregates: ["sum"],
                         footerTemplate: "{{item.kelebihan}}",
@@ -349,6 +349,11 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.getDetail = function (data) {
+                if (!$scope.isBebasValidasi) {
+                    toastr.warning("Tidak ada akses!");
+                    return;
+                }
+
                 if (!data) {
                     messageContainer.error("Data Tidak Ditemukan");
                     return;
@@ -358,6 +363,7 @@ define(['initialize'], function (initialize) {
             };
 
             $scope.loadDetail = function (data) {
+                $scope.dataDetail = [];
                 $scope.listTrNo = data.listTrNo;
                 var listTrNo = [];
                 for (let index = 0; index < data.listTrNo.length; index++) {
@@ -365,40 +371,10 @@ define(['initialize'], function (initialize) {
                 }
 
                 ManageSdmNew.getListData("sdm/get-detail-presensi?listTrNo=" + listTrNo).then(function (res) {
-                    if (res.data.data.length == 2) {
-                        var canvas1 = document.getElementById("c1");
-                        var ctx1 = canvas1.getContext("2d");
-                        var image1 = new Image();
-                        image1.onload = function () {
-                            ctx1.drawImage(image1, 0, 0, 400, 400);
-                        };
-                        image1.src = res.data.data[0].imageURLData
-                        $scope.date1 = res.data.data[0].date
-                        $scope.location1 = "\u2264 " + res.data.data[0].accuracy + " meter sekitar " + res.data.data[0].location
-
-                        var canvas2 = document.getElementById("c2");
-                        var ctx2 = canvas2.getContext("2d");
-                        var image2 = new Image();
-                        image2.onload = function () {
-                            ctx2.drawImage(image2, 0, 0, 400, 400);
-                        };
-                        image2.src = res.data.data[1].imageURLData
-                        $scope.date2 = res.data.data[1].date
-                        $scope.location2 = "\u2264 " + res.data.data[1].accuracy + " meter sekitar " + res.data.data[1].location
-                    } else {
-                        var canvas1 = document.getElementById("c1");
-                        var ctx1 = canvas1.getContext("2d");
-                        var image1 = new Image();
-                        image1.onload = function () {
-                            ctx1.drawImage(image1, 0, 0, 400, 400);
-                        };
-                        image1.src = res.data.data[0].imageURLData
-                        $scope.date1 = res.data.data[0].date
-                        $scope.location1 = "\u2264 " + res.data.data[0].accuracy + " meter sekitar " + res.data.data[0].location
-                    }
-
+                    $scope.dataDetail = res.data.data;
+                    $scope.windDetailPresensi.center().open();
                 })
-                $scope.windDetailPresensi.center().open();
+
             }
 
             // $scope.mainGridOption = {
