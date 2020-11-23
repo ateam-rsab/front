@@ -392,11 +392,7 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.getDetail = function (data) {
-<<<<<<< HEAD
-                if(!$scope.isBebasValidasi) {
-=======
                 if (!$scope.isBebasValidasi) {
->>>>>>> ca87ac287694f5a2d544802f0251dfaac93ea8c9
                     toastr.warning("Tidak ada akses!");
                     return;
                 }
@@ -421,11 +417,6 @@ define(['initialize'], function (initialize) {
                     $scope.dataDetail = res.data.data;
                     $scope.windDetailPresensi.center().open();
                 })
-<<<<<<< HEAD
-                
-=======
-
->>>>>>> ca87ac287694f5a2d544802f0251dfaac93ea8c9
             }
 
             // $scope.mainGridOption = {
