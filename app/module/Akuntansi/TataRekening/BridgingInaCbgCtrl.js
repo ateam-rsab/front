@@ -707,7 +707,14 @@ define(['initialize'], function(initialize) {
 					  "data": dt2
 					}
 				manageTataRekening.savebridginginacbg(objData).then(function(e){
-					// LoadData();				
+					var data = e.data.dataresponse
+					for (let i = 0; i < data.length; i++) {
+						var element = data[i];
+						if (element.dataresponse === 'SIGNATURE_NOT_MATCH') {
+							alert('Tanda Tangan Digital tidak sesuai! Silakan periksa kembali No. SEP yang kosong atau (-)!')
+							return
+						}
+					}			
 				})
 			}
 

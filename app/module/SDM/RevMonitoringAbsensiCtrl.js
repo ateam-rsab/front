@@ -307,7 +307,7 @@ define(['initialize'], function (initialize) {
                     },
                     {
                         field: "terlambat",
-                        title: "Terlambat (menit)",
+                        title: "Terlam-<br/>bat (menit)",
                         width: "50px",
                         footerTemplate: "{{item.terlambat}}",
                         headerAttributes: {
@@ -325,7 +325,7 @@ define(['initialize'], function (initialize) {
                     },
                     {
                         field: "kelebihanJamKerja",
-                        title: "Kelebihan Menit Kerja",
+                        title: "Kelebih-<br/>an Menit Kerja",
                         width: "50px",
                         aggregates: ["sum"],
                         footerTemplate: "{{item.kelebihan}}",
@@ -392,7 +392,11 @@ define(['initialize'], function (initialize) {
             }
 
             $scope.getDetail = function (data) {
+<<<<<<< HEAD
                 if(!$scope.isBebasValidasi) {
+=======
+                if (!$scope.isBebasValidasi) {
+>>>>>>> ca87ac287694f5a2d544802f0251dfaac93ea8c9
                     toastr.warning("Tidak ada akses!");
                     return;
                 }
@@ -417,7 +421,11 @@ define(['initialize'], function (initialize) {
                     $scope.dataDetail = res.data.data;
                     $scope.windDetailPresensi.center().open();
                 })
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> ca87ac287694f5a2d544802f0251dfaac93ea8c9
             }
 
             // $scope.mainGridOption = {

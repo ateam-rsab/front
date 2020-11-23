@@ -34,7 +34,7 @@ define(['initialize'], function (initialize) {
                     ManageSdmNew.getListData("sdm/get-all-unit-kerja"),
                     ManageSdmNew.getListData("sdm/get-all-sub-unit-kerja"),
                     ManageSdmNew.getListData("sdm/get-all-kedudukan"),
-                    ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap&criteria=statusEnabled&values=true&order=namaLengkap:asc", true),
+                    ManageSdm.getOrderList("service/list-generic/?view=Pegawai&select=id,namaLengkap,jenisPegawaiId&criteria=statusEnabled&values=true&order=namaLengkap:asc", true),
                     ManageSdm.getOrderList("service/list-generic/?view=Jabatan&select=id,namaJabatan&criteria=statusEnabled&values=true&order=namaJabatan:asc", true),
                     ManageSdm.getOrderList("service/list-generic/?view=JenisPegawai&select=id,jenisPegawai&criteria=statusEnabled&values=true&order=jenisPegawai:asc", true),
                     ManageSdm.getOrderList("service/list-generic/?view=Suku&select=id,suku&criteria=statusEnabled&values=true&order=suku:asc", true),
@@ -96,7 +96,7 @@ define(['initialize'], function (initialize) {
                     var tempDataPegawai = res[7].data;
                     $scope.listPegawai = [];
                     tempDataPegawai.forEach(function (el) {
-                        if (el.id !== 320272) {
+                        if (el.id !== 320272 && el.jenisPegawaiId == 1) {
                             var dataTemp = {
                                 namaLengkap: el.namaLengkap,
                                 id: el.id
@@ -217,13 +217,13 @@ define(['initialize'], function (initialize) {
                     toolbar: [{
                         name: "create",
                         text: "Buat Jabatan Internal Baru",
-                        template: '<button ng-click="createNewJabatanInternal()" id="btnCreateNewJabatan" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Tambah Dokter Penanggung Jawab</button>'
+                        template: '<button ng-click="createNewJabatanInternal()" id="btnCreateNewJabatan" class="k-button k-button-icontext k-grid-upload" href="\\#"><span class="k-icon k-i-plus"></span>Add Data</button>'
                     }],
                     pageable: true,
                     columns: [
                         {
                             field: "atasanLangsung",
-                            title: "<h3 class='small-font'>Dokter Penanggung Jawab</h3>", width: "150px",
+                            title: "<h3 class='small-font'>Nama Dokter</h3>", width: "150px",
                             template: "#if(!atasanLangsungDireksi) { # #= atasanLangsung.namaLengkap # #} else { # #=atasanLangsungDireksi# # } #"
                         },
                         {
@@ -368,8 +368,8 @@ define(['initialize'], function (initialize) {
                 }]
 
                 var confirm = $mdDialog.confirm()
-                    .title('Apakah anda yakin akan menghapus data Dokter Penanggung Jawab?')
-                    .textContent(`Anda akan menghapus data Dokter Penanggung Jawab`)
+                    .title('Apakah anda yakin akan menghapus data Dokter yang Digantikan?')
+                    .textContent(`Anda akan menghapus data Dokter yang Digantikan`)
                     .ariaLabel('Lucky day')
                     .targetEvent(e)
                     .ok('Ya')
